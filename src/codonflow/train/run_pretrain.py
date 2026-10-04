@@ -33,6 +33,16 @@ from codonflow.models.edit_flow import (
 from codonflow.train.pretrain import ConvergenceTracker, validate
 
 
+def batch_to_tensors(batch, dev):
+    L = max(len(b) for b in batch)
+    ids = torch.full((len(batch), L), 64, dtype=torch.long, device=dev)
+    pad = torch.ones((len(batch), L), dtype=torch.bool, device=dev)
+    for i, b in enumerate(batch):
+        ids[i, : len(b)] = torch.tensor(b, dtype=torch.long, device=dev)
+        pad[i, : len(b)] = False
+    return ids, pad
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--train-fasta", required=True)
@@ -98,8 +108,7 @@ def main() -> None:
         n_updates = 0
         optimizer.zero_grad(set_to_none=True)
         for bi, batch in enumerate(train_batches):
-            ids = torch.tensor(batch, dtype=torch.long, device=dev)
-            pad = torch.zeros_like(ids, dtype=torch.bool)
+            ids, pad = batch_to_tensors(batch, dev)
             x0 = fixed_length_noise_like(ids)
             blank, tok = model(x0, pad)
             loss, _, _ = edit_flow_loss(blank, tok, ids, (x0 != ids), pad)
@@ -158,8 +167,7 @@ def main() -> None:
 def validate_packed(model, batches, dev) -> float:
     total, n = 0.0, 0
     for batch in batches:
-        ids = torch.tensor(batch, dtype=torch.long, device=dev)
-        pad = torch.zeros_like(ids, dtype=torch.bool)
+        ids, pad = batch_to_tensors(batch, dev)
         x0 = fixed_length_noise_like(ids)
         blank, tok = model(x0, pad)
         loss, _, _ = edit_flow_loss(blank, tok, ids, (x0 != ids), pad)
