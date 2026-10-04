@@ -77,3 +77,7 @@
 - LD 强对照解已缓存：eGFP CAI 0.794、nanoLuc CAI 0.825。
 - 早期信号：iter10 reward -38.9（未归一化 direct 项量级大，属预期——direct 项是 log-lik 负值），env_reward 0.0116。
 - 训练速度：~7 分钟/iter（含 4×20 步采样 + RNAfold）——1000 iter 上限 + 奖励平台期判据（patience 15）在线；预计数小时内收敛或触发停止条件。
+
+## 2026-10-05 巡检 #11：预训练收敛终态确认（CF-P2-2.1.2-pretrain-001 完结）
+
+- 巡检 #11：tmux `cf_pretrain` 会话已消失，日志尾部出现 `CONVERGENCE CRITERION TRIGGERED - stopping`——非崩溃，属收敛判据正常停机（epoch 5 train 4.0623 / val 4.0611，plateau 3/3，elapsed 469.0m），**不触发重启分支**（收敛即终态）。日志末段 loss 稳定于 4.062x，无 NaN、无飙升（<10），无告警。GPU7 显存 24653 MiB 为 `cf_rloo`（RLOO 微调）任务所在 MIG 实例，与预训练无关；GPU6 4544 MiB 同卡他项。**预训练 run 正式完结**：val 轨迹 4.0794 → 4.0678 → 4.0638 → 4.0610 → 4.0611，末 3 epoch 相对下降均 <0.1%，收敛完成条件（非步数约束）满足。
