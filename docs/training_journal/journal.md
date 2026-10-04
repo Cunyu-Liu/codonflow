@@ -45,3 +45,13 @@
 - 巡检 #3（≈17:35，训练进行 ~88 min）：tmux `cf_pretrain` 存活；e1 b3100→b3500/3705，loss 4.1013→4.0988，平稳下降（epoch 1 约 94.5% 进度，预计 ~5 min 后完成首个 epoch），无 NaN、无飙升；GPU7 显存 23334 MiB 正常。首个 epoch 尚未结束，暂无 val loss 记录，收敛判据未触发，无需干预，继续监控。
 - 巡检 #4（≈18:03，训练进行 ~115.7 min）：tmux `cf_pretrain` 存活（16:07:59 创建）；**epoch 1 完成**：train 4.0977 / val 4.0794，lr 1.00e-05，plateau 0/3；e2 b500→b900/3705，loss 4.0758→4.0755，持续缓降，无 NaN、无飙升；GPU7 物理卡显存 27501 MiB（含同卡其他 MIG 实例，正常）。收敛判据未触发（plateau 0/3），训练未完成，无需干预，继续监控至 val loss 连续 3 epoch 相对下降 <0.1%。
 - 巡检 #5（≈18:33，训练进行 ~145 min）：tmux `cf_pretrain` 存活（16:07:59 创建）；e2 b1700→b2100/3705（epoch 2 约 57% 进度），loss 4.0752→4.0747，持续缓降，无 NaN、无飙升；GPU7 显存 28481 MiB、GPU6 4482 MiB（含同卡其他 MIG 实例，正常）。收敛判据未触发（plateau 0/3，待第 2 个 epoch 结束后产生新 val loss），训练未完成，无需干预，继续监控。
+- 巡检 #6（≈20:02，训练进行 ~234 min）：tmux `cf_pretrain` 存活（16:07:59 创建）；**epoch 2 完成**：train 4.0729 / val 4.0678，较 epoch 1 val 4.0794 相对下降 0.28%（>0.1%，plateau 0/3）；e3 b1500→b1900/3705（epoch 3 约 51% 进度），loss 4.0682→4.0684，平稳，无 NaN、无飙升；GPU7 显存 30535 MiB、GPU6 4316 MiB（含同卡其他 MIG 实例，正常）。另观测到新 tmux 会话 `cf_exp1`（19:40:47 创建，非本巡检职责，仅记录）。收敛判据未触发，训练未完成，无需干预，继续监控至 val loss 连续 3 epoch 相对下降 <0.1%。
+- 巡检 #7（≈20:32，训练进行 ~265 min）：tmux `cf_pretrain` 存活（16:07:59 创建）；e3 b2800→b3200/3705（epoch 3 约 86% 进度，预计 ~8 min 后完成），loss 4.0677→4.0674，平稳缓降，无 NaN、无飙升（NaN 计数 0，CONVERGENCE 标记 0）；GPU7 显存 29558 MiB、GPU6 4150 MiB（含同卡其他 MIG 实例，正常）。epoch 3 的 val loss 尚未产出（plateau 0/3），收敛判据未触发，训练未完成，无需干预，继续监控至 val loss 连续 3 epoch 相对下降 <0.1%。
+
+## 2026-10-04 晚间进度（预训练前 3 epoch + Phase 1 收尾）
+
+- 变体库（1.1.7）：eGFP/nanoLuc 各 1000 条 uniform 同义变体，抽检全量验证身份保持 100% + 合法率 100%（2000/2000）。
+- OOD 家族（1.1.6）：从 test split 按长度多样性选 3 条（斑马鱼 465nt / 果蝇 1179nt / 小鼠 1905nt），簇级隔离由 split 构造保证，configs/ood_families.yaml。
+- EXP-1 尝试与教训：codonGPT 逐 token 采样与 batch generate 在 CPU 争用（loadavg 75/96、gmx 分子动力学任务占 4 个满核）+ GPU 逐 step 多项式循环下都太慢（200 样本 × 3 seeds × 2 arms > 40 分钟未完成）。**决策：EXP-1 推迟到预训练收敛后在专用资源上跑**（或改用一次性 precompute 变体库 + codonGPT 打分近似，视届时负载）。此为本日的执行记录，非科学结论。
+- 预训练 epoch 1-3：val 4.0794 → 4.0678 → 4.0638（每 epoch ~94 分钟）。plateau 计数 1/3。loss 收敛形态符合预期（前期快降，后期进入缓降段）。
+- 定时监控：每 30 分钟自动巡检 cf_pretrain tmux 会话与 loss 走势，会话死亡自动重启（相同超参）。
