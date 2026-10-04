@@ -1,17 +1,22 @@
-# ATC normalization stats (Amendment A1): frozen after Task 1.2 baseline
-# solutions; 5/95 quantiles per axis. Editing this file requires an amendment.
+# ATC normalization stats v2 (Amendment A2, 2026-10-05):
+# measured 5/95 quantiles from the Task 1.2 baseline solution set
+# (codonGPT constrained + LinearDesign + uniform synonymous samples).
+# v1 stored MAGNITUDES for neg_gc_dev/neg_motif which clamped both axes
+# to 0 (dead axes, U collapsed to ~0.01, Doob-h guidance ineffective).
+# v2 stores SIGNED quantiles so normalization maps the true reachable
+# range onto [0,1] as A1 intended. Editing requires an amendment.
 cai:
-  q5: 0.65
-  q95: 0.95
+  q5: 0.705899
+  q95: 0.776457
 neg_mfe:
-  q5: 50.0
-  q95: 250.0
+  q5: 136.225
+  q95: 195.925
 neg_gc_dev:
-  q5: 0.0
-  q95: 0.15
+  q5: -0.119038
+  q95: -0.0732558
 neg_motif:
-  q5: 0.0
-  q95: 5.0
+  q5: -17.75
+  q95: -1
 omega: [1.0, 1.0, 1.0, 0.5]
 rho: 0.01
 beta: 1.0

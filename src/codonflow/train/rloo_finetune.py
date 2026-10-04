@@ -120,7 +120,7 @@ def main() -> None:
 
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)
-    atc = ATCUtility()
+    atc = ATCUtility.from_yaml("/home/cunyuliu/codonflow/configs/atc_norm.yaml")
     mfe_cache: dict = {}
     env_reward = make_env_reward(atc, weights, mfe_cache)
 

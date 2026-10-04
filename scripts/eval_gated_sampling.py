@@ -56,7 +56,7 @@ def main() -> None:
     assert device.type == "cuda", "GPU required"
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)
-    atc = ATCUtility()
+    atc = ATCUtility.from_yaml("/home/cunyuliu/codonflow/configs/atc_norm.yaml")
     model = EditFlowTransformer(EditFlowConfig(d_model=768, n_layers=8, n_heads=12, dropout=0.0))
     state = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
     model.load_state_dict(state)

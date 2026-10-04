@@ -72,6 +72,34 @@ def load_codongpt(device):
 import torch
 
 
+def rapid_ned_pairs(seqs_idx, seqs):
+    """Pairwise NED over sampled indices using rapidfuzz C++ Levenshtein.
+
+    Synonymous variants are same-length so Levenshtein == Hamming, but we
+    keep the general Levenshtein to stay correct for any future arms.
+    ~1000x faster than the pure-Python metrics.ned loop.
+    """
+    try:
+        from rapidfuzz.distance import Levenshtein
+
+        n = len(seqs_idx)
+        out = np.empty(n * (n - 1) // 2, dtype=np.float64)
+        k = 0
+        for a, i in enumerate(seqs_idx):
+            si = seqs[i]
+            for j in seqs_idx[a + 1 :]:
+                out[k] = Levenshtein.distance(si, seqs[j]) / max(len(si), len(seqs[j]))
+                k += 1
+        return out
+    except ImportError:
+        vals = [
+            ned(seqs[i], seqs[j])
+            for a, i in enumerate(seqs_idx)
+            for j in seqs_idx[a + 1 :]
+        ]
+        return np.array(vals)
+
+
 @torch.no_grad()
 def codongpt_mean_loglik(model, tok, seqs, device, batch=16):
     """Sequence mean token log-likelihood under the AR policy (batched)."""
@@ -149,13 +177,13 @@ def main() -> None:
                 prot_ref = translate(source)
                 ident = [int(translate(s) == prot_ref) for s in seqs]
                 idx = rng.choice(len(seqs), size=min(len(seqs), 300), replace=False)
-                vals = [ned(seqs[i], seqs[j]) for a, i in enumerate(idx) for j in idx[a + 1 :]]
+                vals = rapid_ned_pairs(idx, seqs)
                 ned_d[arm] = np.array(vals)
                 summary[arm] = {
                     "n": len(seqs),
                     "identity_rate": sum(ident) / len(seqs),
                     "cai_mean": float(np.mean([cai(s, weights) for s in seqs])),
-                    "ned_mean": float(np.mean(vals)) if vals else 0.0,
+                    "ned_mean": float(np.mean(vals)) if len(vals) else 0.0,
                     "unique_fraction": unique_fraction(seqs),
                     "codon_entropy": codon_entropy_per_aa_position(seqs),
                 }

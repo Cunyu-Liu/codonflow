@@ -123,24 +123,42 @@ def ned(a: str, b: str) -> float:
 
 def pairwise_ned(seqs: Sequence[str], sample_limit: int = 200,
                  rng: Optional[np.random.Generator] = None) -> float:
-    """Mean pairwise NED over a sample of pairs (diversity metric)."""
+    """Mean pairwise NED over a sample of pairs (diversity metric).
+
+    Uses rapidfuzz's C++ Levenshtein when available (~1000x faster than the
+    pure-Python loop); synonymous variants are same-length so this equals
+    the Hamming-based NED.
+    """
     n = len(seqs)
     if n < 2:
         return 0.0
     if rng is None:
         rng = np.random.default_rng(0)
-    idx = np.arange(n)
     if n > sample_limit:
         sel = rng.choice(n, size=sample_limit, replace=False)
         seqs = [seqs[i] for i in sel]
         n = sample_limit
-    total = 0.0
-    pairs = 0
-    for i in range(n):
-        for j in range(i + 1, n):
-            total += ned(seqs[i], seqs[j])
-            pairs += 1
-    return total / max(pairs, 1)
+    try:
+        from rapidfuzz.distance import Levenshtein
+
+        total = 0.0
+        pairs = 0
+        for i in range(n):
+            si = seqs[i]
+            li = len(si)
+            for j in range(i + 1, n):
+                sj = seqs[j]
+                total += Levenshtein.distance(si, sj) / max(li, len(sj))
+                pairs += 1
+        return total / max(pairs, 1)
+    except ImportError:
+        total = 0.0
+        pairs = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                total += ned(seqs[i], seqs[j])
+                pairs += 1
+        return total / max(pairs, 1)
 
 
 def unique_fraction(seqs: Sequence[str]) -> float:
@@ -181,15 +199,20 @@ def hypervolume(points: Sequence[Sequence[float]],
     ref = np.asarray(reference_point, dtype=float)
     if pts.size == 0:
         return 0.0
+    if not np.all(pts >= ref - 1e-12):
+        raise ValueError(
+            "reference point must be worse than (or equal to) every point "
+            "on every axis in the MAXIMIZATION convention"
+        )
     try:
         from pymoo.indicators.hv import HV
 
-        return float(HV(ref_point=ref)(pts))
-    except Exception:
+        return float(HV(ref_point=-ref)(-pts))
+    except ImportError:
         rng = np.random.default_rng(0)
         n_samples = 1_000_000
-        lo = np.minimum(pts.min(axis=0), ref)
-        hi = np.maximum(pts.max(axis=0), ref)
+        lo = ref
+        hi = pts.max(axis=0)
         samples = rng.uniform(lo, hi, size=(n_samples, len(ref)))
         dominated = np.zeros(n_samples, dtype=bool)
         for p in pts:

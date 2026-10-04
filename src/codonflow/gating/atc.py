@@ -20,10 +20,13 @@ from ..core.codon import gc_fraction, feasible_edit
 from ..eval.metrics import mfe
 
 DEFAULT_NORM_STATS = {
-    "cai": {"q5": 0.65, "q95": 0.95},
-    "neg_mfe": {"q5": 50.0, "q95": 250.0},
-    "neg_gc_dev": {"q5": 0.0, "q95": 0.15},
-    "neg_motif": {"q5": 0.0, "q95": 5.0},
+    # v2 (Amendment A2): SIGNED quantiles measured from the Task 1.2 baseline
+    # solution set. v1 stored magnitudes for the negative axes which clamped
+    # them to 0 (dead axes). Values mirrored from configs/atc_norm.yaml.
+    "cai": {"q5": 0.7059, "q95": 0.7765},
+    "neg_mfe": {"q5": 136.2, "q95": 195.9},
+    "neg_gc_dev": {"q5": -0.119, "q95": -0.0733},
+    "neg_motif": {"q5": -17.75, "q95": -1.0},
 }
 
 DEFAULT_OMEGA = (1.0, 1.0, 1.0, 0.5)
@@ -67,6 +70,30 @@ class ATCUtility:
         self.rho = float(rho)
         self.gc_target = float(gc_target)
         self.motif_weights = motif_weights
+
+    @classmethod
+    def from_yaml(cls, path: Optional[str] = None) -> "ATCUtility":
+        """Load calibrated normalization stats from the A1/A2 yaml config.
+
+        Falls back to DEFAULT_NORM_STATS when path is None or missing.
+        """
+        if not path:
+            return cls()
+        import yaml
+
+        with open(path) as f:
+            raw = yaml.safe_load(f)
+        stats = {
+            k: {"q5": float(v["q5"]), "q95": float(v["q95"])}
+            for k, v in raw.items()
+            if isinstance(v, dict) and "q5" in v
+        }
+        return cls(
+            norm_stats=stats,
+            omega=raw.get("omega", DEFAULT_OMEGA),
+            rho=float(raw.get("rho", DEFAULT_RHO)),
+            gc_target=float(raw.get("gc_target", DEFAULT_GC_TARGET)),
+        )
 
     def raw_objectives(self, cds: str, mfe_value: Optional[float] = None) -> Dict[str, float]:
         if mfe_value is None:
