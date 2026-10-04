@@ -53,6 +53,14 @@ def main() -> None:
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
     ap.add_argument("--seeds", type=int, default=3)
+    ap.add_argument("--beta", type=float, default=8.0,
+                    help="Doob-h tilt strength; H1a scan. Policy logit spread "
+                         "~0.77 vs beta*U spread needs beta>=4 for the direction "
+                         "signal to be perceptible (measured 2026-10-05).")
+    ap.add_argument("--apply-k", type=int, default=4,
+                    help="edits applied per step (single-position moves leave "
+                         "U nearly unchanged over 20 steps; k>1 matches the "
+                         "pCoMole whole-sequence-move semantics)")
     ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E3_preference_scan.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -66,6 +74,14 @@ def main() -> None:
     model.load_state_dict(state)
     model = model.to(device).eval()
 
+    class ScaledReward:
+        def __init__(self, inner, beta):
+            self.inner = inner
+            self.beta = beta
+
+        def __call__(self, seqs):
+            return [self.beta * u for u in self.inner(seqs)]
+
     all_out = {}
     for header, cds in read_fasta(args.benchmark_fasta):
         name = header.split()[0]
@@ -78,9 +94,10 @@ def main() -> None:
             mfe_cache: dict = {}
             sampler = BatchedGuidedSampler(
                 model, device,
-                BatchedReward(weights, atc, mfe_cache),
+                ScaledReward(BatchedReward(weights, atc, mfe_cache), args.beta),
                 n_steps=args.n_steps, n_candidates=args.n_candidates,
-                temperature=1.0, rng=np.random.default_rng(11),
+                temperature=1.0, apply_k=args.apply_k,
+                rng=np.random.default_rng(11),
             )
             for _ in range(args.n_solutions):
                 x0 = synonymous_x0(cds, rng)

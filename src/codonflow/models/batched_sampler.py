@@ -26,7 +26,15 @@ from ..core.tokenizer import BOS_ID, EOS_ID
 
 
 class BatchedGuidedSampler:
-    """Doob-h guided sampling with batched candidate evaluation."""
+    """Doob-h guided sampling with batched candidate evaluation.
+
+    apply_k: number of accepted edits applied per step (default 1). With
+    apply_k>1 we sample k edits without replacement from the Doob-h
+    weighted candidate pool (positions unique), so a 20-step rollout can
+    touch up to 20*apply_k positions. This matches the pCoMole-style
+    "whole-sequence moves each step" semantics more closely while keeping
+    the scoring-call accounting identical (n_candidates evaluations/step).
+    """
 
     def __init__(
         self,
@@ -36,6 +44,7 @@ class BatchedGuidedSampler:
         n_steps: int = 20,
         n_candidates: int = 10,
         temperature: float = 1.0,
+        apply_k: int = 1,
         rng: Optional[np.random.Generator] = None,
     ):
         self.model = model.to(device).eval()
@@ -44,6 +53,7 @@ class BatchedGuidedSampler:
         self.n_steps = n_steps
         self.n_candidates = n_candidates
         self.temperature = temperature
+        self.apply_k = max(1, int(apply_k))
         self.rng = rng or np.random.default_rng(0)
 
     def _candidates(self, seq_codons: List[str], n: int) -> List[Tuple[int, str]]:
@@ -80,7 +90,9 @@ class BatchedGuidedSampler:
         seq_codons = split_codons(normalize_to_dna(x_0_seq))
         trace: List[Dict] = []
         for step in range(self.n_steps):
-            cands = self._candidates(seq_codons, self.n_candidates)
+            cands = self._candidates(
+                seq_codons, self.n_candidates * self.apply_k
+            )
             if not cands:
                 break
             log_probs = self._token_log_probs(seq_codons)
@@ -101,11 +113,18 @@ class BatchedGuidedSampler:
             arr = arr / max(self.temperature, 1e-9)
             w = np.exp(arr - arr.max())
             w = w / w.sum()
-            pick = int(self.rng.choice(len(cands), p=w))
-            pos, new = cands[pick]
-            seq_codons[pos] = new
+            k = min(self.apply_k, len(cands))
+            picks = self.rng.choice(len(cands), size=k, replace=False, p=w)
+            used_pos = set()
+            for pick in picks:
+                pos, new = cands[int(pick)]
+                if pos in used_pos:
+                    continue
+                used_pos.add(pos)
+                seq_codons[pos] = new
             trace.append(
-                {"step": step, "pos": pos, "codon": new, "log_u": round(log_u_list[pick], 4)}
+                {"step": step, "n_edits": len(used_pos),
+                 "log_u": round(float(np.mean([log_u_list[int(p)] for p in picks])), 4)}
             )
         return "".join(seq_codons), trace
 
