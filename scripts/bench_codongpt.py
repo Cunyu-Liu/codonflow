@@ -50,8 +50,11 @@ def load_codongpt():
     tokenizer = CodonTokenizer.from_pretrained(CKPT_DIR)
     model = GPT2LMHeadModel(config=model_config())
     state = torch.load(f"{CKPT_DIR}/pytorch_model.bin", map_location="cpu", weights_only=True)
-    state = {k: v for k, v in state.items() if not k.endswith(("attn.bias", "attn.masked_bias"))}
-    model.load_state_dict(state, strict=True)
+    state = {k: v for k, v in state.items() if not k.endswith((".attn.bias", ".attn.masked_bias"))}
+    missing, unexpected = model.load_state_dict(state, strict=False)
+    assert not unexpected, f"unexpected keys: {unexpected[:5]}"
+    real_missing = [k for k in missing if not k.endswith((".attn.bias", ".attn.masked_bias"))]
+    assert not real_missing, f"missing keys: {real_missing[:5]}"
     model.eval()
     return model, tokenizer
 
