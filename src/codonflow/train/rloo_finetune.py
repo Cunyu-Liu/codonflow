@@ -35,6 +35,7 @@ from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe
 from codonflow.gating.atc import ATCUtility
 from codonflow.models.edit_flow import EditFlowConfig, EditFlowTransformer, edit_flow_loss
 from codonflow.models.guided_sampler import CodonGuidedSampler, synonymous_x0
+from codonflow.models.batched_sampler import BatchedGuidedSampler, BatchedReward
 from codonflow.rl.rloo import (
     RLOOConfig,
     RewardTracker,
@@ -165,8 +166,9 @@ def main() -> None:
     sigma_reverse = 0.5
     print(f"sigma_env={sigma_env:.4f}", flush=True)
 
-    sampler = CodonGuidedSampler(
-        model, device, env_reward, n_steps=args.n_steps, n_candidates=10,
+    sampler = BatchedGuidedSampler(
+        model, device, BatchedReward(weights, atc, mfe_cache),
+        n_steps=args.n_steps, n_candidates=10,
         temperature=1.0, rng=np.random.default_rng(args.seed),
     )
     tracker = RewardTracker(patience=args.plateau_patience, rel_tol=0.005)
