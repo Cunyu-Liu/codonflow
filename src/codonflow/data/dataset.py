@@ -114,20 +114,36 @@ def x0_random_from_amino_acids(
     return fixed_length_noise_like(target_ids, generator)
 
 
-def split_dataset(
+def length_bucketed_batches(
     sequences: List[str],
-    train_frac: float = 0.8,
-    val_frac: float = 0.1,
+    batch_tokens: int = 24000,
+    max_batch: int = 128,
     seed: int = 0,
-) -> Dict[str, List[str]]:
-    rng = random.Random(seed)
-    seqs = list(sequences)
-    rng.shuffle(seqs)
-    n = len(seqs)
-    n_train = int(n * train_frac)
-    n_val = int(n * val_frac)
-    return {
-        "train": seqs[:n_train],
-        "val": seqs[n_train : n_train + n_val],
-        "test": seqs[n_train + n_val :],
-    }
+) -> List[List[int]]:
+    """Length-bucketed token-budget batches: every batch ~batch_tokens codons.
+
+    Encodes once, sorts by length, packs batches under a token budget, then
+    shuffles batch order (bucketing removes padding waste, shuffling keeps
+    SGD noise). This is the packing strategy for the pretraining run.
+    """
+    import random as _random
+
+    rng = _random.Random(seed)
+    encoded = [(i, encode_cds(s)) for i, s in enumerate(sequences)]
+    encoded.sort(key=lambda p: len(p[1]))
+    batches: List[List[int]] = []
+    cur: List[int] = []
+    cur_max = 0
+    for _i, ids in encoded:
+        new_max = max(cur_max, len(ids))
+        if cur and (new_max * (len(cur) + 1) > batch_tokens or len(cur) >= max_batch):
+            batches.append(cur)
+            cur = [ids]
+            cur_max = len(ids)
+        else:
+            cur.append(ids)
+            cur_max = new_max
+    if cur:
+        batches.append(cur)
+    rng.shuffle(batches)
+    return batches
