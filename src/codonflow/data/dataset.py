@@ -7,7 +7,10 @@ import random
 from dataclasses import dataclass
 from typing import Dict, Iterable, Iterator, List, Optional, Sequence
 
-import torch
+try:
+    import torch
+except ImportError:
+    torch = None
 
 from ..core.tokenizer import BOS_ID, EOS_ID, PAD_ID, VOCAB_SIZE, encode_cds
 from ..core.codon import is_valid_cds, normalize_to_dna
@@ -45,7 +48,7 @@ def fasta_sha256(path: str, block_size: int = 1 << 20) -> str:
 
 
 @dataclass
-class CDSDataset(torch.utils.data.Dataset):
+class CDSDataset:
     sequences: List[str]
     max_len: int = 2002
     drop_invalid: bool = True
