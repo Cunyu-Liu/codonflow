@@ -40,14 +40,29 @@ from codonflow.eval.metrics import (
 
 def load_codongpt():
     sys.path.insert(0, CKPT_DIR)
+    import transformers
+
+    transformers.logging.set_verbosity_error()
     from transformers import GPT2LMHeadModel
 
     from tokenizer import CodonTokenizer
 
     tokenizer = CodonTokenizer.from_pretrained(CKPT_DIR)
-    model = GPT2LMHeadModel.from_pretrained(CKPT_DIR)
+    model = GPT2LMHeadModel(config=model_config())
+    state = torch.load(f"{CKPT_DIR}/pytorch_model.bin", map_location="cpu", weights_only=True)
+    model.load_state_dict(state)
     model.eval()
     return model, tokenizer
+
+
+def model_config():
+    from transformers import GPT2Config
+
+    cfg = GPT2Config.from_pretrained(CKPT_DIR)
+    cfg.bos_token_id = None
+    cfg.eos_token_id = None
+    cfg.vocab_size = 67
+    return cfg
 
 
 def sha256_of_ckpt() -> str:
