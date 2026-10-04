@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codonflow"
+version = "0.1.0"
+description = "Codon-level discrete flow mRNA editor with feasibility gating and label-free bi-reward RLOO"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.4",
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+eval = ["pymoo", "ViennaRNA"]
+baselines = ["transformers", "linformer"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

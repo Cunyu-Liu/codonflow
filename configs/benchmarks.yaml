@@ -1,0 +1,13 @@
+# Benchmark sequences (Task 1.1.5): eGFP / nanoLuc / SpCas9 + OOD probes.
+# Accessions recorded; the MMseqs2 clusters containing these sequences are
+# removed from the training split (leakage protection, Task H2).
+benchmarks:
+  egfp:
+    uniprot: P42212
+    length_nt: 717
+  nanoluc:
+    source: GenBank JQ437429 (promega nanoLuc)
+    length_nt: 513
+  spcas9:
+    uniprot: Q99ZW2
+    length_nt: 4104

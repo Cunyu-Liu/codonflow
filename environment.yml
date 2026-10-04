@@ -1,0 +1,19 @@
+name: codonflow
+channels:
+  - conda-forge
+  - bioconda
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.10
+  - pytorch=2.5.1
+  - pytorch-cuda=12.1
+  - viennarna=2.6.4
+  - mmseqs2
+  - numpy
+  - scipy
+  - pytest
+  - pip
+  - pip:
+      - pymoo
+      - transformers
