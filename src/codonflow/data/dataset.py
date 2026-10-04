@@ -99,7 +99,7 @@ def fixed_length_noise_like(
     ids: torch.Tensor, generator: Optional[torch.Generator] = None
 ) -> torch.Tensor:
     """x_0: uniform random codons (keep special tokens fixed)."""
-    rand = torch.randint(0, VOCAB_SIZE, ids.shape, generator=generator)
+    rand = torch.randint(0, VOCAB_SIZE, ids.shape, generator=generator).to(ids.device)
     out = ids.clone()
     body = (ids != PAD_ID) & (ids != BOS_ID) & (ids != EOS_ID)
     out[body] = rand[body]
