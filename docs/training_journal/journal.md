@@ -114,3 +114,58 @@
 - **RLOO v3**（MIG-82791eab，PID 672145）：修复后 ATC，sigma_env=0.1337，其余超参同 v2。运行中，环境奖励现在有真实梯度信号。
 - **RLOO v2**：保留运行作弱引导对照（iter 70+，plateau 0/15）。
 - GitHub：修复已推送（commit 9e2deea + fc387c1，含 LinearDesign embedded repo 清理）。
+
+## 2026-10-05 上午 2：EXP-2 首轮结果（预训练模型，2 家族）——负向，如实记录
+
+- **结果**：500 评分预算下，uniform+post-filter(topK) 的 hypervolume **高于** gated guided（eGFP 3.5-3.8 vs 2.8-2.9；nanoLuc 2.3-3.0 vs 1.8-2.0；Wilcoxon p=0.031，方向利于 filter）。tt1（首达合格解）gated 略优（idx 5 vs 5-57）。
+- **判读（按 spec 预注册）**：同预算下门控不优于过滤 → 「by construction 效率优势」强断言**当前不成立**（至少在预训练模型 + 该预算粒度下）。
+- **机制分析**：
+  1. topK 是从 500 个独立样本中选 5 个极端值（独立样本天然多样性高、HV 占优）；gated 5 个解来自 5 条爬山轨迹，彼此相关。
+  2. 预算粒度问题：100 calls/rollout → 仅 5 rollouts。门控的价值在「逐步把预算转化为质量」，但 5 条轨迹太少，无法体现。
+  3. 预训练模型（无 RLOO）的引导方向可能次优。
+- **后续动作**（不掩盖、不修饰）：①5 家族正式版在跑（含 OOD，满足 Wilcoxon 样本量）；②RLOO v3 收敛后同配置重跑（预注册公平对照）；③若仍不优 → 按 spec 退化为「质量不劣 + 合法率保证 + tt1 优」弱化叙事，或者提高 rollout 数的预算粒度消融（EXP-6 网格会覆盖）。
+- Wilcoxon p=0.031 的 n=6（2fam×3seed）是边缘显著——5 家族版 n=15 后再定论。
+
+## 2026-10-05 上午 3：RLOO v4（未门控双奖励，GrammarRL 严格配方）收敛 + EXP-4 消融矩阵并行启动
+
+- **关键设计修正**：v2/v3 的 rollout 走门控采样器（同义候选）→ reverse=1[Trans(y)==protein] 恒 1 无方差 → 双奖励退化为 direct-only。spec EXP-4 明确要求 rollout 未门控。新增 --ungated-rollout：n_steps 个随机位置从全 64 密码子 token 分布重采样（BOS/EOS/PAD masked）。
+- **RLOO v4 收敛**（p3_rloo_v4_ungated）：iter 111 触发 plateau 15/15 自然停止；末段 env reward 0.17-0.36（均值 ~0.27）。converged.pt 落盘。
+- **EXP-4 消融矩阵**（6 组全并行，各占 1 MIG）：
+  | 组 | λ | rollout | 状态 |
+  |---|---|---|---|
+  | v4 等权 | 0.5 | 未门控 | **已收敛**（iter 111）|
+  | v3（=消融「门控 rollout」变体）| 0.5 | 门控 | 运行中（env 0.26-0.32）|
+  | lam025 | 0.25 | 未门控 | 刚启动 |
+  | lam075 | 0.75 | 未门控 | 刚启动 |
+  | reverse_only | 1.0 | 未门控 | 刚启动 |
+  | direct_only | 0.0 | 未门控 | 刚启动 |
+  | v2（弱引导对照，死轴 ATC 时期）| 0.5 | 门控 | 运行中 iter 130+ |
+- 指标出口：训练后贪心解码 hypervolume / NED / 身份保持率（rollout vs 贪心分别报告）+ 训练奖励曲线——写评测脚本待所有 run 收敛后统一执行。
+
+## 2026-10-05 上午 4：EXP-4 消融评测 + EXP-3 引导强度诊断与修复
+
+### EXP-4 消融首轮评测（eGFP，guided decode 口径，20 decodes/组）
+
+| 组 | HV | ident | NED |
+|---|---|---|---|
+| v4_equal (λ=0.5 ungated) | 4.43 | 1.00 | 0.221 |
+| v4_lam025 | 4.41 | 1.00 | 0.221 |
+| v4_lam075 | 4.43 | 1.00 | 0.221 |
+| v4_direct_only | 4.36 | 1.00 | 0.222 |
+| v4_reverse_only | 4.02 | 1.00 | 0.225 |
+| v3_gated (gated rollout) | 4.21 | 1.00 | 0.223 |
+| v2_weak_guide | 4.65 | 1.00 | 0.221 |
+| pretrain (无 RL) | 待出 | | |
+
+- 消融梯度形态初现：equal ≈ lam025 ≈ lam075 > direct_only > reverse_only（reverse-only 最弱，与 GrammarRL 预期一致）。v2 意外最高（弱引导 + 训练时间最长 iter 180+）——需要在 RLOO 收敛终态时统一比较（v2 仍在跑，届时用 converged 版重评）。
+- **首轮评测翻车修复（重要）**：原 greedy_decode 用 raw argmax——但 token head 是去噪语义（预测目标序列），argmax 塌缩到高频密码子（229/239 位置预测改变，仅 13 个同义）→ ident=0。修复：解码必须走门控引导采样器（同义候选 + Doob-h 权重，temperature 0.1 近似贪心）。
+
+### EXP-3 引导强度诊断（数值实验，证据在案）
+
+- 实测：策略 log_u spread（同义候选间）≈ 0.77 nats；β=1 时 U spread ≤ 0.5（理想情形），实际相邻编辑 ΔU ~ 0.01-0.05 → 引导信号被策略先验淹没 → 7 方向全部输出相同分布。
+- 修复（H1a 授权范围内）：β=8 + apply_k=4（每步 4 个编辑，对齐 pCoMole 全序列移动语义）。修复后方向分离出现：cai_only CAI 0.778 vs gc_only 0.764（eGFP）。
+- sampler 增加 apply_k 参数（multi-position edits/step），评分调用核算不变。
+
+### 版本纪律
+
+- 代码 commits: c75d635（apply_k + exp3 修复）之前 959bd77（exp4 解码修复）。全部推送。
