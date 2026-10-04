@@ -111,6 +111,10 @@ def main() -> None:
     ap.add_argument("--max-iters", type=int, default=1000)
     ap.add_argument("--plateau-patience", type=int, default=15)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--ungated-rollout", action="store_true",
+                    help="sample rollouts from the UNCONSTRAINED policy (any codon "
+                         "at any position) so the reverse signal has variance "
+                         "(spec EXP-4: rollouts from the ungated policy)")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"
@@ -176,13 +180,43 @@ def main() -> None:
 
     history = []
     converged = False
+    all_codons = [c for c in CODON_TO_INDEX if c in CODON_TO_INDEX]
+
+    def ungated_rollout(x0: str) -> str:
+        """Token-level sampling from the unconstrained policy: at each of
+        n_steps random positions resample the codon from the model's
+        distribution over the 64 codon tokens (special tokens masked out;
+        any codon allowed, synonymous or not, so the reverse signal has
+        variance)."""
+        codons = list(split_codons(x0))
+        L = len(codons)
+        n_codon_tokens = len(CODON_TO_INDEX)
+        idx_to_codon = {v: k for k, v in CODON_TO_INDEX.items()}
+        for _ in range(args.n_steps):
+            pos = int(rng.integers(0, L))
+            ids = [BOS_ID] + [CODON_TO_INDEX[c] for c in codons] + [EOS_ID]
+            t = torch.tensor([ids], dtype=torch.long, device=device)
+            with torch.no_grad():
+                _, token_logits = model(t)
+            logp = torch.log_softmax(token_logits[0].float(), dim=-1)
+            logp = logp[pos + 1]
+            mask = torch.full_like(logp, float("-inf"))
+            mask[:n_codon_tokens] = 0.0
+            probs = torch.exp(logp + mask)
+            nid = int(torch.multinomial(probs, 1).item())
+            codons[pos] = idx_to_codon[nid]
+        return "".join(codons)
+
     for it in range(1, args.max_iters + 1):
         name, cds = sources[it % len(sources)]
         protein = translate(cds)
         group_y = []
         for _ in range(args.group_n):
             x0 = synonymous_x0(cds, rng)
-            y, _trace = sampler.sample(x0)
+            if args.ungated_rollout:
+                y = ungated_rollout(x0)
+            else:
+                y, _trace = sampler.sample(x0)
             group_y.append(y)
         group_y.append(ld_solutions[name])
         rewards = []
