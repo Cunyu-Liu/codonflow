@@ -135,8 +135,8 @@ def run_exp2_arm_b(source, weights, budget, seed, rng):
 def eval_arm(seqs, source, weights, atc, mfe_cache, arm_name, elapsed, scoring_calls):
     feas = [s for s in seqs if feasible_edit(s, source)]
     cais = [cai(s, weights) for s in feas]
-    mfes = [mfe_cache[s] for s in feas if s in mfe_cache]
     us = [score_u(s, atc, weights, mfe_cache) for s in feas]
+    mfes = [mfe_cache[s] for s in feas]
     hv = hypervolume_3d(feas, weights, mfe_cache)
     ned = pairwise_ned(seqs) if len(seqs) > 1 else 0.0
     return {
@@ -194,7 +194,6 @@ def main() -> None:
         for seed in range(args.n_seeds):
             rng = np.random.default_rng(seed)
             mfe_cache: dict = {}
-            prot = protein_of_cds(cds)
             gated_seqs, gated_time, gated_calls = run_exp2_arm_a(
                 cds, model, device, weights, atc,
                 args.budget, args.n_steps, args.n_candidates, seed, rng,
@@ -204,31 +203,31 @@ def main() -> None:
             uni_seqs, uni_time, uni_calls = run_exp2_arm_b(
                 cds, weights, args.budget, seed, rng_b
             )
-            mfe_cache: dict = {}
-            scored = [
-                (score_u(s, atc, weights, mfe_cache), s) for s in uni_seqs
-            ]
-            scored.sort(key=lambda x: -x[0])
-            topk = [s for _, s in scored[: len(gated_seqs)]]
-            u_med = float(np.median([u for u, _ in scored[:50]]))
-
             arm_a = eval_arm(
                 gated_seqs, cds, weights, atc, mfe_cache,
                 "gated_guided", gated_time, gated_calls,
             )
+            mfe_cache_b: dict = {}
+            scored = [
+                (score_u(s, atc, weights, mfe_cache_b), s) for s in uni_seqs
+            ]
+            scored.sort(key=lambda x: -x[0])
+            topk = [s for _, s in scored[: max(len(gated_seqs), 1)]]
+            u_med = float(np.median([u for u, _ in scored[:50]]))
+
             arm_b = eval_arm(
-                uni_seqs, cds, weights, atc, mfe_cache,
+                uni_seqs, cds, weights, atc, mfe_cache_b,
                 "uniform+filter(all)", uni_time, uni_calls,
             )
             arm_b_top = eval_arm(
-                topk, cds, weights, atc, mfe_cache,
+                topk, cds, weights, atc, mfe_cache_b,
                 "uniform+filter(topK)", uni_time, uni_calls,
             )
             tt1, n_t1 = time_to_first_usable(
                 gated_seqs, cds, u_med, atc, weights, mfe_cache
             )
             tt1_b, n_t1b = time_to_first_usable(
-                uni_seqs, cds, u_med, atc, weights, mfe_cache
+                uni_seqs, cds, u_med, atc, weights, mfe_cache_b
             )
             per_seed.append({
                 "seed": seed,
