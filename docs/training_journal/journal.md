@@ -169,3 +169,9 @@
 ### 版本纪律
 
 - 代码 commits: c75d635（apply_k + exp3 修复）之前 959bd77（exp4 解码修复）。全部推送。
+
+## 2026-10-05 上午 5：v2 处置（人工停止，证据已归档）
+
+- v2 iter 220：reward last-60 mean -39.134 (std 0.18) vs first-60 -39.172，env 恒 0.011（死轴 ATC）。实质收敛但 tracker 因 mean_reward 微幅漂移未触发 plateau（rel_tol 0.5% 对 -39 量级 = 0.2 绝对值，振荡 std 0.18 恰好在阈值边缘）。
+- 决策：人工停止 v2（其弱引导对照证据已在 EXP-4 表中：HV 4.65/3.50，为各 RLOO 变体最高——反映其训练 iter 最长 220，但 env 无改善，即「direct 信号把 log-lik 推高但环境目标不动」的现象本身是死轴时期的证据）。
+- 释放 MIG 资源给 EXP-5 主表。
