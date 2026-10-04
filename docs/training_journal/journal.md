@@ -85,3 +85,32 @@
 ## 2026-10-05 巡检 #12：预训练终态复核（无干预）
 
 - 巡检 #12：终态复核与 #11 结论一致——tmux `cf_pretrain` 仍不存在，日志尾部 `CONVERGENCE CRITERION TRIGGERED - stopping`（e5 b3500-3700 loss 4.0622-4.0623，epoch 5 train 4.0623 / val 4.0611，plateau 3/3，elapsed 469.0m）。全日志 NaN 计数 0、无 loss >10 飙升，无告警写入。**不重启**（收敛即完成）。epoch 汇总：e1 4.0977/4.0794 → e2 4.0729/4.0678 → e3 4.0671/4.0638 → e4 4.0641/4.0610 → e5 4.0623/4.0611。GPU7 27903 MiB（`cf_rloo` RLOO 任务，与预训练无关）、GPU6 4378 MiB 同卡他项。预训练 run 保持完结状态。
+
+## 2026-10-05 上午：三项关键 bug 修复（A2 修正案）+ EXP-1 完成 + EXP-2/RLOO v3 启动
+
+### 发现并修复的 bug（全部三次核对+解析验证）
+
+1. **ATC 死轴（根本性）**：configs/atc_norm.yaml v1 对 neg_gc_dev/neg_motif 存的是「幅值」分位数（q5=0/q95=0.15、q5=0/q95=5），而代码传入的是负值目标 → 两轴归一化后恒被 clamp 到 0 → Tchebycheff min 项恒 0 → U(x) 塌缩到 ~0.01 → **Doob-h 引导实际无效**（引导强度相对策略 logit 可忽略）。
+   - 修复：按 A1 规定程序从 Task 1.2 基线解集（codonGPT 约束采样 + LD + uniform，206 条）实测**带符号** 5/95 分位数，重写 atc_norm.yaml（v2）；ATCUtility.from_yaml() 工厂方法接线；DEFAULT_NORM_STATS 同步 v2。
+   - 证据：修复后 U(x) 从恒 ~0.01 → 0.07-0.50（健康方差）；RLOO sigma_env 从 0.0007 → 0.1337（**190×**）。
+   - 归档：Amendment A2（atc_norm.yaml 头注释 + 本日志）。
+   - **影响声明**：RLOO v2（iter 1-70+）与 Gate B 预评的「CAI 0.712→0.766」均使用死轴 ATC——其中 CAI 提升主要来自预训练策略先验（常用密码子偏好）而非 Doob-h 引导。RLOO v2 保留为「弱引导」诊断 run（其 direct/reverse 训练信号本身不受死轴影响，只影响 rollout 质量）。**主结果以 v3 为准。**
+
+2. **hypervolume 方向错误（影响全部 EXP 的主指标）**：metrics.py 直接把最大化目标喂给 pymoo（pymoo 是**最小化**语义）→ 所有 EXP 的 HV 数字一律为 0。
+   - 修复：负向转换 HV(ref_point=-ref)(-pts) + ref-point 合法性断言。
+   - 验证：2D 解析例 0.6×1.4+0.4×1.0=1.24 == 实测 1.24 ✓。
+
+3. **pairwise NED 纯 Python Levenshtein 慢 ~1000×**：EXP-1 原 7-13 小时 → rapidfuzz C++ 路径后 15 分钟完成。同义变体等长，Levenshtein=Hamming，语义不变。
+
+### EXP-1 完成（叙事①证据落地）
+
+- `EXP1_collapse.json` + `EXP1_collapse.png`：3 seeds × 2 基因（eGFP/nanoLuc），每基因 1000 样本/seed。
+- **核心数字**：uniform vs RSCU-weighted 的 NED 分布 KS p=0.0（显著左移）；密码子熵 1.10→1.06 / 1.17→1.12 bits；CAI-greedy 锚点 NED=0/熵=0（塌缩上限可视化）；**codonGPT 自身 loglik 显著偏好塌缩方向**（eGFP -4.08 vs -4.14；nanoLuc -4.12 vs -4.18）——AR 模型偏好低多样性解的直接证据，叙事①成立。
+- 注意（诚实记录）：本 EXP 的 AR 侧用 RSCU-weighted 代理（codonGPT 站在 RSCU 上的偏好 = codonGPT 对塌缩分布的估计）；严格的「AR free vs AR masked」对照按 pre-register 跑 50 样本小规模作为检查（后续补）。
+
+### 并行任务状态
+
+- **EXP-2**（MIG-d2b486bc，PID 643991）：门控 vs 同预算后置过滤，严格预算语义（评分调用数），2 家族 × 3 seeds，Hypervolume + time-to-first-usable + Wilcoxon。运行中。
+- **RLOO v3**（MIG-82791eab，PID 672145）：修复后 ATC，sigma_env=0.1337，其余超参同 v2。运行中，环境奖励现在有真实梯度信号。
+- **RLOO v2**：保留运行作弱引导对照（iter 70+，plateau 0/15）。
+- GitHub：修复已推送（commit 9e2deea + fc387c1，含 LinearDesign embedded repo 清理）。
