@@ -81,3 +81,7 @@
 ## 2026-10-05 巡检 #11：预训练收敛终态确认（CF-P2-2.1.2-pretrain-001 完结）
 
 - 巡检 #11：tmux `cf_pretrain` 会话已消失，日志尾部出现 `CONVERGENCE CRITERION TRIGGERED - stopping`——非崩溃，属收敛判据正常停机（epoch 5 train 4.0623 / val 4.0611，plateau 3/3，elapsed 469.0m），**不触发重启分支**（收敛即终态）。日志末段 loss 稳定于 4.062x，无 NaN、无飙升（<10），无告警。GPU7 显存 24653 MiB 为 `cf_rloo`（RLOO 微调）任务所在 MIG 实例，与预训练无关；GPU6 4544 MiB 同卡他项。**预训练 run 正式完结**：val 轨迹 4.0794 → 4.0678 → 4.0638 → 4.0610 → 4.0611，末 3 epoch 相对下降均 <0.1%，收敛完成条件（非步数约束）满足。
+
+## 2026-10-05 巡检 #12：预训练终态复核（无干预）
+
+- 巡检 #12：终态复核与 #11 结论一致——tmux `cf_pretrain` 仍不存在，日志尾部 `CONVERGENCE CRITERION TRIGGERED - stopping`（e5 b3500-3700 loss 4.0622-4.0623，epoch 5 train 4.0623 / val 4.0611，plateau 3/3，elapsed 469.0m）。全日志 NaN 计数 0、无 loss >10 飙升，无告警写入。**不重启**（收敛即完成）。epoch 汇总：e1 4.0977/4.0794 → e2 4.0729/4.0678 → e3 4.0671/4.0638 → e4 4.0641/4.0610 → e5 4.0623/4.0611。GPU7 27903 MiB（`cf_rloo` RLOO 任务，与预训练无关）、GPU6 4378 MiB 同卡他项。预训练 run 保持完结状态。
