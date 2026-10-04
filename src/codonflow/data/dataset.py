@@ -64,8 +64,6 @@ class CDSDataset:
         d = normalize_to_dna(s)
         return (
             len(d) % 3 == 0
-            and len(d) >= 300
-            and len(d) <= 6000
             and all(c in "ACGT" for c in d)
         )
 
