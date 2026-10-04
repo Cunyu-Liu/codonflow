@@ -63,25 +63,31 @@ GROUPS = [
 ]
 
 
-def greedy_decode(model, x0: str, device, n_steps: int = 20) -> str:
-    """Iterative argmax edits: at each step pick the highest-logit codon at
-    the position with the largest predicted deviation (greedy edit flow)."""
-    codons = list(split_codons(x0))
-    idx_to_codon = {v: k for k, v in CODON_TO_INDEX.items()}
-    for _ in range(n_steps):
-        ids = [BOS_ID] + [CODON_TO_INDEX[c] for c in codons] + [EOS_ID]
-        t = torch.tensor([ids], dtype=torch.long, device=device)
-        with torch.no_grad():
-            _, token_logits = model(t)
-        logp = torch.log_softmax(token_logits[0].float(), dim=-1)
-        best = logp[1 : len(codons) + 1].argmax(dim=-1)
-        cur = torch.tensor([CODON_TO_INDEX[c] for c in codons], device=device)
-        diff = (best != cur)
-        if not diff.any():
-            break
-        pos = int(diff.nonzero()[0, 0].item())
-        codons[pos] = idx_to_codon[int(best[pos].item())]
-    return "".join(codons)
+def greedy_decode(model, x0: str, device, n_steps: int = 20,
+                  reward_fn=None, temperature: float = 0.1) -> str:
+    """Near-greedy guided decode: the token head was trained on noise->target
+    denoising, so raw per-position argmax collapses to high-frequency codons
+    (non-synonymous). The CORRECT decode for an edit flow is the gated
+    guided sampler with near-zero temperature (argmax over the Doob-h
+    weighted synonymous candidates)."""
+    sampler = _get_sampler(model, device, reward_fn, temperature)
+    seq, _ = sampler.sample(x0)
+    return seq
+
+
+_SAMPLER_CACHE = {}
+
+
+def _get_sampler(model, device, reward_fn, temperature):
+    key = (id(model), temperature)
+    if key not in _SAMPLER_CACHE:
+        from codonflow.models.batched_sampler import BatchedGuidedSampler
+
+        _SAMPLER_CACHE[key] = BatchedGuidedSampler(
+            model, device, reward_fn, n_steps=20, n_candidates=10,
+            temperature=temperature, rng=np.random.default_rng(0),
+        )
+    return _SAMPLER_CACHE[key]
 
 
 def main() -> None:
@@ -112,10 +118,12 @@ def main() -> None:
         for name, cds in sources:
             rng = np.random.default_rng(0)
             mfe_cache: dict = {}
+            reward = BatchedReward(weights, atc, mfe_cache)
             decodes = []
             for i in range(args.n_decodes):
                 x0 = synonymous_x0(cds, rng)
-                decodes.append(greedy_decode(model, x0, device, args.n_steps))
+                decodes.append(greedy_decode(model, x0, device, args.n_steps, reward))
+            _SAMPLER_CACHE.clear()
             prot_ref = translate(cds)
             ident = [int(translate(s) == prot_ref) for s in decodes]
             mfes = mfe_batch_parallel(decodes, n_procs=16)
