@@ -114,13 +114,14 @@ class BatchedReward:
     """Reward with a process-wide MFE cache and batched folding."""
 
     def __init__(self, weights, atc, mfe_cache: Optional[Dict[str, float]] = None,
-                 fold_batch: int = 64):
-        from ..eval.metrics import cai, mfe_batch
+                 fold_batch: int = 256):
+        from ..eval.metrics import cai
+        from ..eval.mfe_parallel import mfe_batch_parallel
         from ..core.codon import gc_fraction
         from ..core.motifs import motif_penalty_score
 
         self._cai = cai
-        self._mfe_batch = mfe_batch
+        self._mfe_batch = mfe_batch_parallel
         self._gc = gc_fraction
         self._motif = motif_penalty_score
         self.weights = weights
