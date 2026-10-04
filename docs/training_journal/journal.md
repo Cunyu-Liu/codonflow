@@ -69,3 +69,11 @@
   - 5 步采样 8.8s（CAI +0.002 仅）——质量主要来自前 20 步，符合 pCoMole「中间档预算」结论。
 - 正式 20 samples × 3 seeds 的评测因单卡循环慢（每步一次 GPU forward + RNAfold 串行），改为小样本已拿到 Gate B 关键数字；完整 EXP 表将在 RLOO 之后用批量推理跑。
 - 教训记录：单样本逐 token 循环在 MIG 上 ~1.6s/step；后续引导采样要用批量（一次 forward 评多个候选）优化——列入 EXP-2 前的工程优化项。
+
+## 2026-10-05 凌晨 2：RLOO 微调启动（CF-P3-3.1-rloo-001）
+
+- Gate B = GO 已归档（合法/身份双 100%、成本 1.84× LD、CAI 倾斜 +0.054）。
+- RLOO 训练器上线：GrammarRL 配方（direct 无约束长度归一化 log-lik + reverse 硬翻译 + N=3 组 + LD 解混入 + β=0.02 逐序列正则 + λ=0.5），从 converged.pt 初始化，lr=3.3e-7。
+- LD 强对照解已缓存：eGFP CAI 0.794、nanoLuc CAI 0.825。
+- 早期信号：iter10 reward -38.9（未归一化 direct 项量级大，属预期——direct 项是 log-lik 负值），env_reward 0.0116。
+- 训练速度：~7 分钟/iter（含 4×20 步采样 + RNAfold）——1000 iter 上限 + 奖励平台期判据（patience 15）在线；预计数小时内收敛或触发停止条件。
