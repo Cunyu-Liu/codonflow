@@ -143,6 +143,9 @@ def synonymous_x0(source_cds: str, rng: np.random.Generator) -> str:
     out = []
     for c in codons:
         aa = STANDARD_TABLE_1[c]
+        if aa == "*":
+            out.append(c)
+            continue
         opts = list(SYNONYMOUS_CODONS[aa])
         out.append(opts[int(rng.integers(0, len(opts)))])
     return "".join(out)
