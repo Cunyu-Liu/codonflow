@@ -1,3 +1,12 @@
-# OOD families (Task 1.1.6): cluster-disjoint test members, filled after data
-# clustering; must have zero cluster overlap with the training split.
-families: []
+# OOD families (Task 1.1.6): cluster-disjoint test members
+# auto-selected from test split (length-diverse); clusters disjoint from train by construction
+families:
+  - cluster_id: ENSDART00000133583.2
+    source: test_split:ENSDART00000133583.2
+    length_nt: 465
+  - cluster_id: FBtr0307879
+    source: test_split:FBtr0307879
+    length_nt: 1179
+  - cluster_id: ENSMUST00000202556.4
+    source: test_split:ENSMUST00000202556.4
+    length_nt: 1905
