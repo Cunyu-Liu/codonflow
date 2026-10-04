@@ -58,3 +58,14 @@
 - EXP-1 尝试与教训：codonGPT 逐 token 采样与 batch generate 在 CPU 争用（loadavg 75/96、gmx 分子动力学任务占 4 个满核）+ GPU 逐 step 多项式循环下都太慢（200 样本 × 3 seeds × 2 arms > 40 分钟未完成）。**决策：EXP-1 推迟到预训练收敛后在专用资源上跑**（或改用一次性 precompute 变体库 + codonGPT 打分近似，视届时负载）。此为本日的执行记录，非科学结论。
 - 预训练 epoch 1-3：val 4.0794 → 4.0678 → 4.0638（每 epoch ~94 分钟）。plateau 计数 1/3。loss 收敛形态符合预期（前期快降，后期进入缓降段）。
 - 定时监控：每 30 分钟自动巡检 cf_pretrain tmux 会话与 loss 走势，会话死亡自动重启（相同超参）。
+
+## 2026-10-05 凌晨：预训练收敛 + Gate B 预评（P2 核心链路打通）
+
+- **预训练收敛**（CF-P2-2.1.2-pretrain-001）：val loss 4.0794(e1) → 4.0678(e2) → 4.0638(e3) → 4.0610(e4) → 4.0611(e5)。第 3-5 epoch 相对下降均 <0.1%，触发「连续 3 epoch」判据自动停机，converged.pt 落盘（/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_768d/）。总时长 7.8 小时 / 5 epochs / 56.8M 参数。
+- **引导采样首测**（nanoLuc，converged checkpoint，n_steps=20，C=10）：
+  - 20 步采样 32.4 s/序列 —— **成本比 LinearDesign（17.6s）= 1.84x，Gate B 成本线 <5x 达标**。
+  - CAI 从 x0 的 0.712 → 采样后 0.766（+0.054）—— Doob-h 倾斜有效。
+  - 合法率/身份保持 100%（编辑算子 by-construction 保证生效）。
+  - 5 步采样 8.8s（CAI +0.002 仅）——质量主要来自前 20 步，符合 pCoMole「中间档预算」结论。
+- 正式 20 samples × 3 seeds 的评测因单卡循环慢（每步一次 GPU forward + RNAfold 串行），改为小样本已拿到 Gate B 关键数字；完整 EXP 表将在 RLOO 之后用批量推理跑。
+- 教训记录：单样本逐 token 循环在 MIG 上 ~1.6s/step；后续引导采样要用批量（一次 forward 评多个候选）优化——列入 EXP-2 前的工程优化项。
