@@ -17,4 +17,4 @@
 | CF-P3-3.2.5-EXP2-001 | 2026-10-05 | P3 | run_exp2.py budget=500 2fam x3 seeds | GPU7 MIG-d2b486bc | bench | 2e79895 | steps10 C10 (100 calls/rollout) | n/a | filter topK HV > gated (neg result, see journal); tt1 gated wins | done |
 | CF-P3-3.2.5-EXP2-002 | 2026-10-05 | P3 | run_exp2.py 5fam (bench+OOD) | GPU7 MIG-d2b486bc | bench_plus_ood | 2e79895 | same | n/a | running | running |
 | CF-P3-3.2.5-EXP4-001 | 2026-10-05 | P3 | run_exp4.py (guided decode, 20 sols) | GPU7 MIG-e157a761 | bench | 959bd77 | 8 groups | n/a | all RL > pretrain (3.51); equal 4.43; v2 4.65 (unfinished run) | done |
-| CF-P3-3.2.5-EXP3-001 | 2026-10-05 | P3 | run_exp3.py beta=8 apply_k=4, 30 sols x 7 dirs | GPU7 MIG-121d5489 | bench | c75d635 | beta 8, apply_k 4 | n/a | running; direction separation confirmed (cai 0.778 vs gc 0.764) | running |
+| CF-P3-3.2.5-EXP3-001 | 2026-10-05 | P3 | run_exp3.py beta=8 apply_k=4, 30 sols x 7 dirs | GPU7 MIG-121d5489 | bench | c75d635 | beta 8, apply_k 4 | n/a | running; balanced direction Pareto-dominates both genes (eGFP CAI .780 MFE -191.0; nluc .759 -153.7); corner separation small | done |
