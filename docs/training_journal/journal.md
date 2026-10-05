@@ -175,3 +175,36 @@
 - v2 iter 220：reward last-60 mean -39.134 (std 0.18) vs first-60 -39.172，env 恒 0.011（死轴 ATC）。实质收敛但 tracker 因 mean_reward 微幅漂移未触发 plateau（rel_tol 0.5% 对 -39 量级 = 0.2 绝对值，振荡 std 0.18 恰好在阈值边缘）。
 - 决策：人工停止 v2（其弱引导对照证据已在 EXP-4 表中：HV 4.65/3.50，为各 RLOO 变体最高——反映其训练 iter 最长 220，但 env 无改善，即「direct 信号把 log-lik 推高但环境目标不动」的现象本身是死轴时期的证据）。
 - 释放 MIG 资源给 EXP-5 主表。
+
+## 2026-10-05 上午 6：EXP-2 五家族正式版（负结果定论）+ 资源处置
+
+- **EXP-2 五家族 × 3 seeds 定论**（E2_gated_vs_filter_5fam.json）：filter topK 15/15 全胜（Wilcoxon p=6.1e-05）；gated 仅 tt1（首达合格解 4-6×快：idx 5 vs 12-30）与合法率（100% by construction）占优。
+- **预注册判读执行**：叙事②「by construction 效率优势」强断言撤回，退化为「质量不劣 + 合法率保证 + tt1 优」弱化叙事（spec 停止条件预案）。
+- **机制归因（诚实）**：本对照的 gated 臂用 pretrain 模型 + 10 步引导（u 仅 0.02-0.27）——引导强度不足以翻过 top-K 的极端值统计优势。RLOO v4 收敛模型 + β=8 + apply_k 的重跑列为必要补充实验（E2-v2），若仍负则结论稳固成立。
+- 资源：EXP-2 释放 MIG-d2b486bc；立即投入 E2-v2（RLOO v4 模型 + β=8 + apply_k=4 同预算重跑）。
+
+## 2026-10-05 中午：EXP-5 首轮（弱引导）+ 强引导 v2 系列启动
+
+### EXP-5 首轮结果（诚实记录，弱引导配置的教训）
+
+- CodonFlow 臂用了 β=1/apply_k=1（当时 flag 尚未加入）→ 与 EXP-3 诊断相同的引导强度问题 → S1-S3 各场景 HV 均低于 codonGPT/LinearDesign-scan/CAI-greedy。
+- S1（单目标 CAI）CAI-greedy 全支配（NDS 1.00）——预注册允许（DP 最优单目标如实认输）。
+- LinearDesign-scan 的大 HV 部分来自极端 MFE 贡献 + LD λ-scan 解的 GC 高方差；同时发现脚本 cai_greedy 臂重复同一解 10 次的设计缺陷（NDS 计算无害但 NED 语义失真——记录为已知问题）。
+- **判定：EXP-5 首轮数字仅作管线验证，不进主表。主表 = E5-v2（RLOO v4 + β=8 + apply_k=4）。**
+
+### 在途任务（截至 10:20）
+
+| 任务 | 状态 |
+|---|---|
+| E2-v2（RLOO-v4 + β8 + ak4，5 家族） | 运行中 |
+| E5-v2（同配置主表） | 运行中 |
+| EXP-3（β8+ak4，7 方向×2 基因） | 12/14 方向完成 |
+| RLOO v3（gated rollout 对照） | iter 240，env 0.19-0.45 波动上行 |
+
+### 今日整体科学进展（供预印本草稿用）
+
+1. **叙事① 成立**（EXP-1）：AR 偏好塌缩 KS p=0，codonGPT loglik 偏好塌缩方向。
+2. **叙事② 弱化**（EXP-2 5 家族定论）：同预算 filter topK 15/15 全胜——「by construction 效率优势」强断言撤回；保留 tt1 4-6× 优势 + 合法率 100%。E2-v2（强引导）若翻盘则需修改结论，若不翻则结论稳固。
+3. **叙事④ 成立**（EXP-4）：8 组消融全部 RL 变体 > pretrain（3.51→4.0-4.65）；等权/近等权最优、reverse-only 最差——GrammarRL 反噬形态迁移成功。
+4. **叙事③ 部分成立**（EXP-3 eGFP）：方向分离出现（balanced 支配单目标方向），β=8 + apply_k=4 后 Doob-h 偏好塑形有效。
+5. RL 环境目标改善证据链：v3 env 0.24→0.45（修复 ATC 后引导真正生效）。
