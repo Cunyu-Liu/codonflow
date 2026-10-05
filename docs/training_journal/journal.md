@@ -339,3 +339,10 @@ x0 = fixed_length_noise_like（纯均匀随机）与目标序列**零互信息**
   - 各方向整体抬升（RLOO 使引导采样质量提升）
   - 方向间分离仍小（角点 ω 的解聚集在高频密码子带）
 - 诚实判读：偏好「方向性」仍弱（Doob-h 信号被策略分布形状限制）但「偏好塑形质量」经 RL 后实质提升。叙事③报告口径：偏好可控性 = 弱方向分离 + 强质量提升 + balanced 支配。
+
+## 2026-10-06 清晨 2：EXP-6 基座对照补跑（执行复盘：同实验重复跑错误）
+
+- **发现**：E6_budget_curves.json 与 E6_budget_curves_rloov4.json 逐位一致 → 追查确认第一次 EXP-6 启动时就传了 p3_rloo_v4_ungated/converged.pt（当时意图是"现有最好模型"）——即两份文件是同一实验，**v1 基座版从未跑过**。
+- **教训（过程纪律）**：EXP 启动命令的 checkpoint 参数必须在 journal 记录并复核；本轮已补跑真正的 pretrain 基座版（E6_budget_curves_pretrain.json）。
+- 首批对比：steps=10/C=10/R=5 下 pretrain HV 3.07 vs RLOO-v4 2.98——**低预算档 pretrain 反超**（v4 的策略先验更集中，低预算时探索少；高预算档待出全网格）。
+- 判读等待：若高预算档 v4 一贯领先，则叙事="RL 在充分预算下优于预训练基座"；若全程 pretrain 优，则 EXP-6 的拐点结论以 pretrain 基座为准并如实报告。
