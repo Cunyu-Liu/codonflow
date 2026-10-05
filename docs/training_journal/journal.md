@@ -208,3 +208,24 @@
 3. **叙事④ 成立**（EXP-4）：8 组消融全部 RL 变体 > pretrain（3.51→4.0-4.65）；等权/近等权最优、reverse-only 最差——GrammarRL 反噬形态迁移成功。
 4. **叙事③ 部分成立**（EXP-3 eGFP）：方向分离出现（balanced 支配单目标方向），β=8 + apply_k=4 后 Doob-h 偏好塑形有效。
 5. RL 环境目标改善证据链：v3 env 0.24→0.45（修复 ATC 后引导真正生效）。
+
+## 2026-10-05 下午：E5-v2 结果与 E5-v3 场景化修正 + 值守状态
+
+### E5-v2（balanced 引导全局用）结果
+
+- CodonFlow HV 在 S1-S3 仍落后（S2 29.7%/23.5%、S3 21.6%/19.0% 相对 LD-scan）。S1 CAI-greedy 全支配（预注册允许）。
+- **设计缺陷定位**：S1/S2/S3 共用同一批 balanced 引导解 → 单/双目标场景天然吃亏（用 balanced 解去打 CAI-greedy 的单目标 DP 最优）。
+- **E5-v3 修正**：每场景独立引导方向（S1→ω=(1,0,0), S2→(0.5,0.5,0), S3→balanced）+ 修正 per-scen 目标核算 bug（method_objs 混淆）。已启动。
+- LD-scan 的 HV 优势部分来自极端 MFE 单点（λ=0 解 MFE -444）撑开体积——主表脚注需要说明 HV 参考点语义（记录为论文 known-issue）。
+
+### 值守状态（本 session 收尾）
+
+| 任务 | MIG | 预计完成 |
+|---|---|---|
+| E2-v2 强引导 5 家族 | d2b486bc | ~2h |
+| E5-v3 场景化主表 | 27707c52 | ~5h |
+| RLOO v3 对照 | 82791eab | plateau 后自然停 |
+| 30min 自动巡检 | — | 持续 |
+
+- 所有结果 JSON 在 /mnt/cunyuliu/codonflow/eval_outputs/；图在 eval_outputs/figures/。
+- 定时任务（本地 7747de16）持续巡检 ssh+grep。
