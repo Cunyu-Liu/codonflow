@@ -102,17 +102,21 @@ def score_u(s, atc, weights, mfe_cache):
 
 def run_exp2_arm_a(
     source, model, device, weights, atc, budget, n_steps, n_candidates, seed, rng,
-    mfe_cache: dict,
+    mfe_cache: dict, beta: float = 1.0, apply_k: int = 1,
 ):
     """Gated guided arm: budget = n_steps * n_candidates calls per rollout."""
     calls_per_rollout = n_steps * n_candidates
     n_rollouts = max(1, budget // calls_per_rollout)
     t0 = time.time()
+    inner = BatchedReward(weights, atc, mfe_cache)
+    reward = (
+        (lambda seqs: [beta * u for u in inner(seqs)]) if beta != 1.0 else inner
+    )
     sampler = BatchedGuidedSampler(
-        model, device,
-        BatchedReward(weights, atc, mfe_cache),
+        model, device, reward,
         n_steps=n_steps, n_candidates=n_candidates,
-        temperature=1.0, rng=np.random.default_rng(seed),
+        temperature=1.0, apply_k=apply_k,
+        rng=np.random.default_rng(seed),
     )
     seqs = []
     for _ in range(n_rollouts):
@@ -164,6 +168,10 @@ def main() -> None:
     ap.add_argument("--n-seeds", type=int, default=3)
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
+    ap.add_argument("--beta", type=float, default=1.0,
+                    help="Doob-h tilt (A2: use 8 with RLOO-v4 models)")
+    ap.add_argument("--apply-k", type=int, default=1,
+                    help="edits per step (A2: 4 restores pCoMole-style moves)")
     ap.add_argument("--families", nargs="*", default=None,
                     help="family accessions to use; default: all in fasta")
     ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E2_gated_vs_filter.json")
@@ -197,7 +205,7 @@ def main() -> None:
             gated_seqs, gated_time, gated_calls = run_exp2_arm_a(
                 cds, model, device, weights, atc,
                 args.budget, args.n_steps, args.n_candidates, seed, rng,
-                mfe_cache,
+                mfe_cache, args.beta, args.apply_k,
             )
             rng_b = np.random.default_rng(seed)
             uni_seqs, uni_time, uni_calls = run_exp2_arm_b(
