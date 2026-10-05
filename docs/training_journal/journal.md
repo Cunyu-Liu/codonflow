@@ -295,3 +295,27 @@ x0 = fixed_length_noise_like（纯均匀随机）与目标序列**零互信息**
 - **成本线**：57.5s/解 < LinearDesign（27.7s）×5 = 138.5s——满足 spec 成本约束（停止条件④达标）。
 - 注意（诚实记录）：本网格用 RLOO-v4（v1 退化基座）模型；v2 基座收敛后曲线绝对值会变，但「深度>广度」的相对形态预期稳定（源于 Doob-h 采样结构而非基座）。
 - E5-v3（场景化 ω）同日完成：LD-scan 绝对 HV 仍领先——待 v2 基座重跑后再定主表终值。
+
+## 2026-10-06 凌晨：多卡并行批次（用户指令「gpu 空余较多」响应）
+
+### 并行任务矩阵（峰值 8 任务）
+
+| 任务 | MIG | 状态/结果 |
+|---|---|---|
+| v2 预训练 | 7-1 3g.20gb | epoch 8 进行中，epoch 7 val 2.8501 plateau 1/3 |
+| v4s2_equal 补跑 | 7-1 共存 | **收敛 iter 531**（首跑 OOM 死亡——MIG-13 被他人进程 3.8GB 挤占） |
+| RLOO v3 gated 对照 | 7-2 | **收敛 iter 903**，终态 env ~0.39（对照点：高于 v4-ungated 的 0.27） |
+| EXP-4 3seed 评测 | 27707c52 | 11 组出数，seed 间形态一致（lam025: 4.41/4.20/4.40；lam075: 4.43/4.19/4.43） |
+| EXP-3 v4 基座版 | 121d5489 | cai_only CAI 0.780 MFE -192.8——**全面优于 v1 基座版**（0.778/-187.1） |
+| EXP-6 v4 基座版 | d2b486bc | 刚启动 |
+
+### 修复的执行问题
+
+- exp4_seed_sweep.sh 的 seed 笔误（v4s2 系列误传 seed 1）→ 修正为逐行显式 seed
+- v4s2_equal 在 MIG-e157a761 被 OOM 挤死（他人进程 3.8GB）→ 换 MIG-7-1（3g.20gb 有 6GB 余量）+ PYTORCH_CUDA_ALLOC_CONF=expandable_segments 成功重跑
+- sweep 脚本 wait 返回≠全部成功（静默 OOM）——教训：批量任务后必须 ls converged.json 核对数量
+
+### GPU 资源纪律
+
+- 发现 GPU1/5 显存富余但为他人整卡项目（非我方 MIG 池），不越界
+- 我方池内 MIG-11/12 空闲即用（EXP-3-v4/EXP-6-v4 即时提交）
