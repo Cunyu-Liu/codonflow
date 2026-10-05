@@ -198,6 +198,12 @@ def main() -> None:
     model = model.to(device).eval()
     gpt, tok = load_codongpt(device)
 
+    SCEN_OMEGA = {
+        "S1_cai": (1.0, 0.0, 0.0),
+        "S2_cai_mfe": (0.5, 0.5, 0.0),
+        "S3_quad": (1 / 3, 1 / 3, 1 / 3),
+    }
+
     all_results = {}
     for header, cds in read_fasta(args.benchmark_fasta):
         name = header.split()[0]
@@ -209,23 +215,29 @@ def main() -> None:
             mfe_cache: dict = {}
 
             t0 = time.time()
-            inner = BatchedReward(weights, atc, mfe_cache)
-            reward = (
-                (lambda seqs: [args.beta * u for u in inner(seqs)])
-                if args.beta != 1.0
-                else inner
-            )
-            sampler = BatchedGuidedSampler(
-                model, device, reward,
-                n_steps=args.n_steps, n_candidates=args.n_candidates,
-                temperature=1.0, apply_k=args.apply_k,
-                rng=np.random.default_rng(seed),
-            )
-            cf_sols = []
-            for _ in range(args.n_solutions):
-                x0 = synonymous_x0(cds, rng)
-                seq, _ = sampler.sample(x0)
-                cf_sols.append(seq)
+            cf_sols = {}
+            for scen, (w1, w2, w3) in SCEN_OMEGA.items():
+                atc_s = ATCUtility.from_yaml(ATC_YAML)
+                atc_s.omega = (w1, w2, w3, 0.5)
+                inner = BatchedReward(weights, atc_s, mfe_cache)
+                reward = (
+                    (lambda seqs: [args.beta * u for u in inner(seqs)])
+                    if args.beta != 1.0
+                    else inner
+                )
+                sampler = BatchedGuidedSampler(
+                    model, device, reward,
+                    n_steps=args.n_steps, n_candidates=args.n_candidates,
+                    temperature=1.0, apply_k=args.apply_k,
+                    rng=np.random.default_rng(seed + hash(scen) % 1000),
+                )
+                sols = []
+                rng_s = np.random.default_rng(seed + 17)
+                for _ in range(args.n_solutions):
+                    x0 = synonymous_x0(cds, rng_s)
+                    seq, _ = sampler.sample(x0)
+                    sols.append(seq)
+                cf_sols[scen] = sols
             t_cf = time.time() - t0
 
             t0 = time.time()
@@ -241,27 +253,36 @@ def main() -> None:
             t_uni = time.time() - t0
 
             methods = {
-                "codonflow": (cf_sols, t_cf),
                 "codongpt": (gpt_sols, t_gpt),
                 "lineardesign_scan": (ld_sols, t_ld),
                 "cai_greedy": ([greedy] * min(10, args.n_solutions), 0.0),
                 "uniform_edit_flow": (uni_sols, t_uni),
             }
-            all_objs = []
             method_objs = {}
             for m, (sols, _t) in methods.items():
-                objs = [obj_vector(s, weights, mfe_cache) for s in sols]
-                method_objs[m] = objs
-                all_objs.extend(objs)
+                method_objs[m] = [obj_vector(s, weights, mfe_cache) for s in sols]
+            cf_objs = {
+                scen: [obj_vector(s, weights, mfe_cache) for s in sols]
+                for scen, sols in cf_sols.items()
+            }
 
             row = {"seed": seed}
             for scen, axes in SCENARIOS.items():
                 ref = np.array([0.5, 100.0, -0.2, -25.0])[: len(axes)]
-                for m, (sols, t) in methods.items():
-                    pts = [[o[a] for a in axes] for o in method_objs[m]]
-                    others = [o for o in all_objs]
+                all_objs = list(cf_objs[scen])
+                for m in methods:
+                    all_objs.extend(method_objs[m])
+                for m in list(methods) + ["codonflow"]:
+                    if m == "codonflow":
+                        sols = cf_sols[scen]
+                        t = t_cf / len(SCEN_OMEGA)
+                        objs = cf_objs[scen]
+                    else:
+                        sols, t = methods[m]
+                        objs = method_objs[m]
+                    pts = [[o[a] for a in axes] for o in objs]
                     hv = hypervolume(pts, ref) if pts else 0.0
-                    share = non_dominated_share(method_objs[m], others, axes)
+                    share = non_dominated_share(objs, all_objs, axes)
                     row[f"{scen}/{m}/hv"] = hv
                     row[f"{scen}/{m}/nds"] = share
                     row[f"{scen}/{m}/ned"] = pairwise_ned(sols) if len(sols) > 1 else 0.0
