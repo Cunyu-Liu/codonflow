@@ -18,32 +18,32 @@ MIGS=(
 )
 CPUS=(0-15 16-31 32-47 48-63 64-79 80-95)
 
-# (lambda, group-name) x seeds 1,2
+# (lambda, group-name, seed) — seed 1 and seed 2 rows
 JOBS=(
-  "0.5 v4s1_equal"
-  "0.25 v4s1_lam025"
-  "0.75 v4s1_lam075"
-  "0.0 v4s1_direct"
-  "0.5 v4s2_equal"
-  "0.25 v4s2_lam025"
-  "0.75 v4s2_lam075"
-  "0.0 v4s2_direct"
+  "0.5 v4s1_equal 1"
+  "0.25 v4s1_lam025 1"
+  "0.75 v4s1_lam075 1"
+  "0.0 v4s1_direct 1"
+  "0.5 v4s2_equal 2"
+  "0.25 v4s2_lam025 2"
+  "0.75 v4s2_lam075 2"
+  "0.0 v4s2_direct 2"
 )
 
 i=0
 for job in "${JOBS[@]}"; do
   set -- $job
-  lam=$1; name=$2
+  lam=$1; name=$2; seed=$3
   mig=${MIGS[$(( i % ${#MIGS[@]} ))]}
   cpu=${CPUS[$(( i % ${#CPUS[@]} ))]}
   out=$CKPTDIR/p3_${name}
   log=$LOGDIR/rloo_${name}.log
-  echo "[$(date +%H:%M)] launching $name (lambda=$lam) on $mig cpu=$cpu"
+  echo "[$(date +%H:%M)] launching $name (lambda=$lam seed=$seed) on $mig cpu=$cpu"
   CUDA_VISIBLE_DEVICES=$mig PYTHONPATH=src taskset -c $cpu \
     $PY -u src/codonflow/train/rloo_finetune.py \
     --benchmark-fasta /mnt/cunyuliu/codonflow/corpora/bench.fasta \
     --checkpoint $BASE --out-dir $out --ungated-rollout \
-    --lmbda $lam --seed 1 --max-iters 1000 --plateau-patience 15 \
+    --lmbda $lam --seed $seed --max-iters 1000 --plateau-patience 15 \
     > $log 2>&1 &
   i=$((i+1))
   # stagger launches to avoid simultaneous sigma-calibration CPU spikes
