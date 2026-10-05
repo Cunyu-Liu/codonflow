@@ -53,9 +53,17 @@ ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
 
 GROUPS = [
     ("v4_equal", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_ungated/converged.pt"),
+    ("v4_equal_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_equal/converged.pt"),
+    ("v4_equal_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_equal/converged.pt"),
     ("v4_lam025", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_lam025/converged.pt"),
+    ("v4_lam025_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_lam025/converged.pt"),
+    ("v4_lam025_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_lam025/converged.pt"),
     ("v4_lam075", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_lam075/converged.pt"),
+    ("v4_lam075_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_lam075/converged.pt"),
+    ("v4_lam075_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_lam075/converged.pt"),
     ("v4_direct_only", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_direct_only/converged.pt"),
+    ("v4_direct_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_direct/converged.pt"),
+    ("v4_direct_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_direct/converged.pt"),
     ("v4_reverse_only", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_reverse_only/converged.pt"),
     ("v3_gated", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v3/last.pt"),
     ("v2_weak_guide", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v2/last.pt"),
