@@ -106,6 +106,34 @@ def fixed_length_noise_like(
     return out
 
 
+def corrupt_x_t(
+    ids: torch.Tensor,
+    t: Optional[torch.Tensor] = None,
+    generator: Optional[torch.Generator] = None,
+) -> torch.Tensor:
+    """Corruption-style intermediate state x_t for edit-flow pretraining.
+
+    Replaces a fraction t of the BODY codons with uniform random codons
+    (special tokens untouched). With t ~ U[0,1] sampled per sequence the
+    model sees the whole trajectory: t=1 pure noise (frequency table),
+    t=0 clean (copy), t~0.5 partial evidence - exactly the states the
+    guided sampler faces at inference. Fixes the v1 degeneracy where x0
+    carried zero mutual information with the target (val loss 4.061 ==
+    marginal codon entropy 4.027 + blank BCE; |delta logp| across two
+    different noise draws = 0.031 nats).
+
+    t: (B,) fractions in [0,1]; if None, sampled per sequence.
+    """
+    if t is None:
+        t = torch.rand(ids.shape[0], generator=generator).to(ids.device)
+    t = t.to(ids.device).clamp(0.0, 1.0)
+    body = (ids != PAD_ID) & (ids != BOS_ID) & (ids != EOS_ID)
+    rand = torch.randint(0, VOCAB_SIZE, ids.shape, generator=generator).to(ids.device)
+    keep = torch.rand(ids.shape, generator=generator).to(ids.device) >= t.view(-1, 1)
+    out = torch.where(body & keep, ids, torch.where(body, rand, ids))
+    return out
+
+
 def x0_random_from_amino_acids(
     target_ids: torch.Tensor, generator: Optional[torch.Generator] = None
 ) -> torch.Tensor:

@@ -100,6 +100,8 @@ def main() -> None:
     tracker = ConvergenceTracker(rel_tol=1e-3, patience=3)
     epoch = 0
     t_start = time.time()
+    from codonflow.data.dataset import corrupt_x_t
+
     while True:
         epoch += 1
         model.train()
@@ -109,9 +111,9 @@ def main() -> None:
         optimizer.zero_grad(set_to_none=True)
         for bi, batch in enumerate(train_batches):
             ids, pad = batch_to_tensors(batch, dev)
-            x0 = fixed_length_noise_like(ids)
-            blank, tok = model(x0, pad)
-            loss, _, _ = edit_flow_loss(blank, tok, ids, (x0 != ids), pad)
+            x_t = corrupt_x_t(ids)
+            blank, tok = model(x_t, pad)
+            loss, _, _ = edit_flow_loss(blank, tok, ids, (x_t != ids), pad)
             (loss / args.grad_accum).backward()
             if (bi + 1) % args.grad_accum == 0 or bi == len(train_batches) - 1:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
@@ -131,10 +133,12 @@ def main() -> None:
 
         model.eval()
         val_loss = validate_packed(model, val_batches, dev)
+        cond_gap = conditionality_probe(model, dev)
         converged = tracker.update(val_loss)
         lr_now = optimizer.param_groups[0]["lr"]
         print(
             f"[epoch {epoch}] train {train_loss:.4f} val {val_loss:.4f} "
+            f"condgap {cond_gap:.3f} "
             f"lr {lr_now:.2e} plateau {tracker._plateau}/3 elapsed {(time.time()-t_start)/60:.1f}m",
             flush=True,
         )
@@ -145,6 +149,7 @@ def main() -> None:
                         "epoch": epoch,
                         "train_loss": train_loss,
                         "val_loss": val_loss,
+                        "cond_gap": cond_gap,
                         "elapsed_min": (time.time() - t_start) / 60,
                     }
                 )
@@ -164,13 +169,50 @@ def main() -> None:
 
 
 @torch.no_grad()
+def conditionality_probe(model, dev, n=8) -> float:
+    """|Δlogp| between two different x_t draws at matched corruption t=0.5.
+
+    v1 degenerate model measured 0.031 nats (predicts the global codon
+    frequency table regardless of input). A conditional model must react
+    to the surviving evidence in x_t; healthy values grow toward O(1).
+    """
+    from codonflow.data.dataset import read_fasta
+    from codonflow.core.tokenizer import encode_cds
+
+    seqs = []
+    for h, s in read_fasta("/mnt/cunyuliu/codonflow/corpora/bench.fasta"):
+        seqs.append(encode_cds(s))
+    seqs = seqs[:n]
+    L = max(len(s) for s in seqs)
+    ids = torch.full((len(seqs), L), 64, dtype=torch.long, device=dev)
+    for i, s in enumerate(seqs):
+        ids[i, : len(s)] = torch.tensor(s, dtype=torch.long, device=dev)
+    pad = torch.ones_like(ids, dtype=torch.bool)
+    for i, s in enumerate(seqs):
+        pad[i, : len(s)] = False
+    t_half = torch.full((len(seqs),), 0.5, device=dev)
+    g1, g2 = torch.Generator().manual_seed(1), torch.Generator().manual_seed(2)
+    from codonflow.data.dataset import corrupt_x_t
+
+    x_a = corrupt_x_t(ids, t_half, g1)
+    x_b = corrupt_x_t(ids, t_half, g2)
+    _, tok_a = model(x_a, pad)
+    _, tok_b = model(x_b, pad)
+    la = torch.log_softmax(tok_a.float(), -1)
+    lb = torch.log_softmax(tok_b.float(), -1)
+    return float((la - lb).abs().mean().item())
+
+
+@torch.no_grad()
 def validate_packed(model, batches, dev) -> float:
     total, n = 0.0, 0
+    from codonflow.data.dataset import corrupt_x_t
+
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
-        x0 = fixed_length_noise_like(ids)
-        blank, tok = model(x0, pad)
-        loss, _, _ = edit_flow_loss(blank, tok, ids, (x0 != ids), pad)
+        x_t = corrupt_x_t(ids)
+        blank, tok = model(x_t, pad)
+        loss, _, _ = edit_flow_loss(blank, tok, ids, (x_t != ids), pad)
         total += loss.item()
         n += 1
     return total / max(n, 1)
