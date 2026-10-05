@@ -183,6 +183,8 @@ def main() -> None:
     ap.add_argument("--n-seeds", type=int, default=3)
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
+    ap.add_argument("--beta", type=float, default=8.0)
+    ap.add_argument("--apply-k", type=int, default=4)
     ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E5_main_table.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -207,10 +209,17 @@ def main() -> None:
             mfe_cache: dict = {}
 
             t0 = time.time()
+            inner = BatchedReward(weights, atc, mfe_cache)
+            reward = (
+                (lambda seqs: [args.beta * u for u in inner(seqs)])
+                if args.beta != 1.0
+                else inner
+            )
             sampler = BatchedGuidedSampler(
-                model, device, BatchedReward(weights, atc, mfe_cache),
+                model, device, reward,
                 n_steps=args.n_steps, n_candidates=args.n_candidates,
-                temperature=1.0, rng=np.random.default_rng(seed),
+                temperature=1.0, apply_k=args.apply_k,
+                rng=np.random.default_rng(seed),
             )
             cf_sols = []
             for _ in range(args.n_solutions):
