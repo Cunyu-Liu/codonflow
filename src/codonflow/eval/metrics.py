@@ -199,11 +199,13 @@ def hypervolume(points: Sequence[Sequence[float]],
     ref = np.asarray(reference_point, dtype=float)
     if pts.size == 0:
         return 0.0
+    # Points worse than the reference point on any axis have zero
+    # hypervolume contribution by definition; filter instead of raising.
     if not np.all(pts >= ref - 1e-12):
-        raise ValueError(
-            "reference point must be worse than (or equal to) every point "
-            "on every axis in the MAXIMIZATION convention"
-        )
+        keep = np.all(pts >= ref - 1e-12, axis=1)
+        pts = pts[keep]
+        if pts.size == 0:
+            return 0.0
     try:
         from pymoo.indicators.hv import HV
 

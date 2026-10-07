@@ -156,6 +156,8 @@ def main() -> None:
                 + "\n"
             )
         torch.save(model.state_dict(), out_dir / "last.pt")
+        if (epoch + 1) % 3 == 0:
+            torch.save(model.state_dict(), out_dir / f"epoch_{epoch + 1:03d}.pt")
         if converged:
             torch.save(model.state_dict(), out_dir / "converged.pt")
             (out_dir / "converged.json").write_text(

@@ -65,9 +65,15 @@ GROUPS = [
     ("v4_direct_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_direct/converged.pt"),
     ("v4_direct_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_direct/converged.pt"),
     ("v4_reverse_only", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_reverse_only/converged.pt"),
+    ("v4_reverse_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_reverse/converged.pt"),
+    ("v4_reverse_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_reverse/converged.pt"),
     ("v3_gated", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v3/last.pt"),
     ("v2_weak_guide", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v2/last.pt"),
     ("pretrain", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_768d/converged.pt"),
+    ("pretrain_v2", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
+    ("pretrain_v2_conv", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt"),
+    ("rloo_v5", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v5_v2base/converged.pt"),
+    ("pretrain_v2_ep18", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
 ]
 
 
@@ -105,6 +111,8 @@ def main() -> None:
     ap.add_argument("--n-decodes", type=int, default=30)
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E4_ablation.json")
+    ap.add_argument("--only", default="", help="comma-separated group filter (default: all)")
+    ap.add_argument("--append", action="store_true", help="merge into existing --out json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"
@@ -113,7 +121,12 @@ def main() -> None:
 
     sources = [(h.split()[0], s) for h, s in read_fasta(args.benchmark_fasta)]
     out = {}
+    if args.append and Path(args.out).exists():
+        out = json.loads(Path(args.out).read_text())
+    only = {g.strip() for g in args.only.split(",") if g.strip()}
     for gname, ckpt in GROUPS:
+        if only and gname not in only:
+            continue
         if not Path(ckpt).exists():
             print(f"skip {gname}: no ckpt {ckpt}", flush=True)
             continue
