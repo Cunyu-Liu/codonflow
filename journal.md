@@ -87,3 +87,20 @@
 3. LD-scan 仍领先 (专用优化器), codonflow 定位: 学习式方法中领先 (超 codongpt 一半), 且提供多样性 (NED 0.22 vs codongpt 0.21)
 
 **吞吐经验固化**: E5 单路 ~6块×(1-13h), 三路并行在高 load 下互相拖死 (MFE worker 抢核), 串行+夜间窗口是正解; ref-point 边界须先冒烟再批跑
+
+## 2026-10-09 晚 (交接审计 + E5 协议修复 + OOD 补齐启动)
+
+**交接审计（第 3 遍全链路检查）发现的问题与处置**:
+1. E5 v1 协议 handicap（叙事⑤断链的机制根因）: codonflow 臂每场景单 ω 采样 100 解（同质化），而 LD-scan 用 7-λ 扫描、codonGPT 用随机采样自然铺开——HV 奖励前沿覆盖，我方被协议自身压低。修复: run_exp5_ood.py 的 codonflow 臂改 ω-direction scan（S2 5 方向 / S3 7 方向，每方向 100/k 解，总预算 100 不变）——与基线同等"前沿覆盖协议类"，消除协议不对称
+2. OOD 表（checklist E7/R7-2）从未跑: 5 家族 bench_plus_ood 存在但 E5 只在 egfp/nluc 出表 → 本次 4 路并行补齐（in-family 2 + OOD 3 + SpCas9 长序列探针 4107nt）
+3. data/README.md 数据溯源缺口（B1 未勾选）: 已补全 13 条数据集登记（URL/日期/条数/sha256 前缀），并如实记录"语料 215k vs spec 目标 1M"偏差 + 扩语料列为下一步首位
+4. transformers 5.18 + torch 2.5.1 兼容性: codonGPT ckpt 转存 model.safetensors（修复 CVE 检查导致 torch.load 被拒）；tokenizer 改 from_pretrained + vocab_size=67
+5. 实现细节修复: cai_greedy 从 run_exp5.py 拷贝定义（core.codon 无此函数）; synonymous_x0 的 rng 持久化（避免 x0 重复 seed 退化解集多样性）
+
+**E5' + OOD 四路并行启动（18:35, GPU6 MIG 1g.5gb x4 空闲实例占满）**:
+- arm1 egfp / arm2 nluc（in-family 基准，v2conv 基座）
+- arm3 ood12（mouse 1905nt + fly 1179nt）/ arm4 ood3+spcas9（zfish 465nt + Cas9 4107nt 长探针）
+- 每路 100 解 x 3 seeds x 3 场景（S1/S2/S3），监控脚本 scripts/e5ood_monitor.sh + e5ood_watch.log
+- 冒烟已通过（egfp 10 解全链路 ~17min，identity/legal 100%）
+
+**预期产出（写入 gate_C 前的最后补数）**: E5' 公平协议主表 + OOD generalization gap 表（identity/legal 衰减 <2pp 判定线）+ Cas9 长序列可行性证据（叙事⑥成本维度补强）
