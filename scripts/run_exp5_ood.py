@@ -174,12 +174,14 @@ def main() -> None:
     ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-solutions", type=int, default=100)
     ap.add_argument("--n-seeds", type=int, default=3)
+    ap.add_argument("--seeds", default=None, help="comma list of seeds, overrides n-seeds")
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
     ap.add_argument("--beta", type=float, default=8.0)
     ap.add_argument("--apply-k", type=int, default=4)
     ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E5_ood_v2scan.json")
     args = ap.parse_args()
+    seed_list = [int(x) for x in args.seeds.split(",")] if args.seeds else list(range(args.n_seeds))
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required (CPU fallback forbidden)"
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
@@ -196,7 +198,7 @@ def main() -> None:
         protein = protein_of_cds(cds)
         greedy = cai_greedy(cds, weights)
         per_seed = []
-        for seed in range(args.n_seeds):
+        for seed in seed_list:
             mfe_cache: dict = {}
 
             t0 = time.time()

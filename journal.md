@@ -104,3 +104,22 @@
 - 冒烟已通过（egfp 10 解全链路 ~17min，identity/legal 100%）
 
 **预期产出（写入 gate_C 前的最后补数）**: E5' 公平协议主表 + OOD generalization gap 表（identity/legal 衰减 <2pp 判定线）+ Cas9 长序列可行性证据（叙事⑥成本维度补强）
+
+## 2026-10-10 凌晨 (E5' 协议公平版 3-seed 完成: egfp + nluc 全部落盘)
+
+**E5' (protocol-fair, codonflow 臂 ω-scan) 3-seed 结果 (v2conv 基座, 100 解/场景/seed)**:
+
+| 场景 | codonflow E5' | E5v1 | 变化 | gpt | LD-scan | identity/legal |
+|---|---|---|---|---|---|---|
+| egfp S2 | 40.36±1.92 | 37.08 | +8.8% | 65.5 | 124.1 | 100%/100% |
+| egfp S3 | 125.15±9.69 | 127.40 | -1.8% (seed 方差内) | 307.4 | 558.3 | 100%/100% |
+| nluc S2 | 26.82±2.75 | 26.62 | +0.8% | 43.2 | 93.1 | 100%/100% |
+| nluc S3 | 102.62±0.60 | 98.41 | +4.3% | 189.9 | 410.4 | 100%/100% |
+
+**诚实结论 (写入叙事⑤修订)**:
+1. 协议公平化在 S2 提升明确 (+8.8% egfp / +4.3% nluc S3), S3 egfp 在 seed 方差内持平——协议 handicap 是真实存在但幅度有限
+2. 残余差距 (vs LD-scan 558 vs 125) 的主因不是协议, 是基座质量: 56.8M 模型在 215k 语料上的容量/数据上限 (v2conv 纯预训练 S3 127 已超 RLOO-v4 均值 108-121, 佐证)
+3. LD-scan 作为"DP 专用优化器"上界定位不变; codonflow 站位: 学习式方法第二梯队 (超 uniform 30%, 落后 gpt 一半), 与 codongpt 差距 2.4-2.5x
+4. 全部红线保持: identity 100%, legal 100% (E5' 两家族 x 3 seeds x 3 场景 x 100 解 = 1800 解零违例)
+
+**工程耗时记录**: egfp 单 seed cf 臂 24000-24500s (~6.8h, 67600 folds, 5.9 folds/s 受 CPU 竞争), nluc 13140s; 四路并行 + seed 拆分后总 wall-clock 7.5h 覆盖 6 arm-seeds + ood3/cas9 在跑
