@@ -230,9 +230,14 @@ def main() -> None:
             t_cf = time.time() - t0
             print(f"  {name} seed{seed} cf done {t_cf:.0f}s", flush=True)
 
-            t0 = time.time()
-            gpt_sols = codongpt_sample(gpt, tok, protein, args.n_solutions, device, seed)
-            t_gpt = time.time() - t0
+            gpt_arch_limit = (len(protein) + 1) > 1024
+            if gpt_arch_limit:
+                print(f"  {name}: codongpt SKIPPED (AR context 1024 < {len(protein)+1} codons, arch limit)", flush=True)
+                gpt_sols, t_gpt = [], 0.0
+            else:
+                t0 = time.time()
+                gpt_sols = codongpt_sample(gpt, tok, protein, args.n_solutions, device, seed)
+                t_gpt = time.time() - t0
 
             t0 = time.time()
             ld_sols = lineardesign_scan(protein, args.n_solutions, mfe_cache, weights, np.random.default_rng(seed))
@@ -243,11 +248,12 @@ def main() -> None:
             t_uni = time.time() - t0
 
             methods = {
-                "codongpt": (gpt_sols, t_gpt),
                 "lineardesign_scan": (ld_sols, t_ld),
                 "cai_greedy": ([greedy] * min(10, args.n_solutions), 0.0),
                 "uniform_edit_flow": (uni_sols, t_uni),
             }
+            if gpt_sols:
+                methods["codongpt"] = (gpt_sols, t_gpt)
             method_objs = {m: [obj_vector(s, weights, mfe_cache) for s in sols] for m, (sols, _t) in methods.items()}
             cf_objs = {scen: [obj_vector(s, weights, mfe_cache) for s in sols] for scen, sols in cf_sols.items()}
 
@@ -281,7 +287,10 @@ def main() -> None:
                 ]
                 row[f"{scen}/codonflow/legal_rate"] = sum(legal) / n_cf
             per_seed.append(row)
-            print(f"  {name} seed{seed} baselines done", flush=True)
+            all_results[name] = per_seed
+            Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+            Path(args.out).write_text(json.dumps(all_results, indent=2))
+            print(f"  {name} seed{seed} baselines done (saved)", flush=True)
         all_results[name] = per_seed
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out).write_text(json.dumps(all_results, indent=2))
