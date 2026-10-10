@@ -123,3 +123,18 @@
 4. 全部红线保持: identity 100%, legal 100% (E5' 两家族 x 3 seeds x 3 场景 x 100 解 = 1800 解零违例)
 
 **工程耗时记录**: egfp 单 seed cf 臂 24000-24500s (~6.8h, 67600 folds, 5.9 folds/s 受 CPU 竞争), nluc 13140s; 四路并行 + seed 拆分后总 wall-clock 7.5h 覆盖 6 arm-seeds + ood3/cas9 在跑
+
+## 2026-10-10 下午 (图表全面重设计 + PPT 升级 + Cas9 arch-limit 发现)
+
+**图表重设计 (plot-is-all-you-need skill, 顶刊风格)**:
+- 8 张图全部重绘 (fig1-fig8): serif 字体 + navy/steel/red 色系 + 红框高亮主角 + 面板内 metric box + 配对哑铃图 + 中位数徽章; 300dpi PNG + 矢量 PDF 双格式
+- 每张图带诚实负结果标注 (EXP-3 轴向弱、EXP-6 低预算 RL 略输、E5' 协议公平化的有限提升)
+- 新增 fig7 (pipeline+四大核心数字一页图) + fig8 (AR 1024 密码子墙: 长度阶梯图 + O(n^3) 折叠成本)
+- PPT 29 页: 6 张旧图替换 + 2 新页; 字体统一 Microsoft YaHei, 程序化检查通过
+
+**Cas9 探针的意外发现 (论文新论点)**:
+- codonGPT (GPT-2 架构, 1024 位置) 在生成 SpCas9 (1368 aa) 时第 1024 个密码子触发 CUDA device-side assert —— AR 生成器架构上无法产 >1023 aa 蛋白
+- 编辑式 CodonFlow 直接改写源序列无位置限制 —— 长治疗性蛋白 (Cas9/vaccine抗原/基因治疗 ORF) 唯一的学习式方法路线
+- 已修复脚本: codongpt 臂遇 >1024 密码子自动 SKIP 并记录 arch limit; 每个 seed 完成即增量写 JSON (防中途崩溃丢数据)
+
+**进行中**: ood3 (mouse/fly/zfish OOD 3-seed, cf 臂 ETA ~17:00); cas9 (seed0 cf 完成于 17645s, 正跑 seed1+LD 基线)
