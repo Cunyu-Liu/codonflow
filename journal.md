@@ -138,3 +138,17 @@
 - 已修复脚本: codongpt 臂遇 >1024 密码子自动 SKIP 并记录 arch limit; 每个 seed 完成即增量写 JSON (防中途崩溃丢数据)
 
 **进行中**: ood3 (mouse/fly/zfish OOD 3-seed, cf 臂 ETA ~17:00); cas9 (seed0 cf 完成于 17645s, 正跑 seed1+LD 基线)
+
+## 2026-10-11 中午 (Cas9 3-seed 定稿: 长序列正面证据 + PPT 29 页更新)
+
+**Cas9 长序列探针 3-seed 最终结果 (缩减预算 20 sols, steps=5, C=5, 全方法同预算)**:
+- S1: cf 0.3 (greedy 0.5, LD 0.4) — 单目标 DP/greedy 领先如预注册预期
+- S2: cf 251.7±2.3 (LD 889.6, greedy 586.2, uniform 260.2) — LD DP 最优在 4.1kb 上依然统治双目标
+- **关键新证据: wall-clock cf 310 s/sol vs LD 510 s/sol (0.61x) —— 长序列上 DP 变慢, 编辑式反而更快** (叙事⑥的直接加强: 成本竞争力在长序列反转)
+- 身份/合法率 100% (3 seeds x 60 解零违例)
+- S3 motif 轴 ref-point 尺度 bug 确诊: 随机 4107nt 变体罚 63-82 vs 固定参考点 -25 → HV 归零. 这是评估器 bug 非模型失败 (greedy 罚 11 在 ref 内). 论文处理: Cas9 报 S1/S2 + S3 用长度归一化 motif 罚重算 (v3 待办), 如实文档化
+- codonGPT: arch limit (1024 位置) 跳过并记录 —— 见 fig8
+
+**PPT 29 页终版**: 6 张旧图替换为顶刊风格新图 + fig7 pipeline 总览页 + fig8 arch-limit 页 (已更新 Cas9 实测数字); 字体统一; 程序化检查通过 (29 slides, 8 pics, 0 font issues)
+
+**剩余**: ood3 (mouse seed0/1 cf done 66870s/59155s; fly/zfish 在跑; 全部完成 ETA ~今晚); 完成后出 OOD generalization gap 表 + PPT 最后一页
