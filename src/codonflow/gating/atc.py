@@ -114,9 +114,23 @@ class ATCUtility:
         return min(max(v, 0.0), 1.0)
 
     def utility_from_normalized(self, f: Sequence[float]) -> float:
-        """U = min_k omega_k f_k + rho * sum_k omega_k f_k (to maximize)."""
+        """U = min_{k: omega_k > 0} omega_k f_k + rho * sum_k omega_k f_k.
+
+        Tchebycheff min runs over ACTIVE axes only (omega_k > 0). With
+        zero-weight axes included, 0 * f_k = 0 always wins the min and
+        degenerates U to rho * sum(...) for every sparse omega (the
+        2026-10-11 audit: 28/29 scan directions had |U| ~ 0.01 vs 0.216
+        for the all-positive balanced direction, so Doob-h guidance was
+        effectively off outside the balanced direction). Standard
+        Tchebycheff decomposition (MOEA/D, Zhang & Li 2007) excludes
+        zero-weight axes; all-positive omega (RLOO training config) is
+        bit-identical under this change.
+        """
         w = self.omega
-        tcheb = min(w[k] * f[k] for k in range(len(w)))
+        active = [k for k in range(len(w)) if w[k] > 0]
+        if not active:
+            return 0.0
+        tcheb = min(w[k] * f[k] for k in active)
         aug = self.rho * sum(w[k] * f[k] for k in range(len(w)))
         return tcheb + aug
 

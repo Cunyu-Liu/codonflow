@@ -15,7 +15,7 @@ import os
 from concurrent.futures import ProcessPoolExecutor
 from typing import List, Optional, Sequence
 
-_N_PROC = 16
+_N_PROC = int(os.environ.get("MFE_PROCS", "16"))
 _pool: Optional[ProcessPoolExecutor] = None
 
 

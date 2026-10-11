@@ -156,6 +156,14 @@ def lineardesign_scan(protein, n_solutions, mfe_cache, weights, rng):
     return sols
 
 
+def prefill_mfe(seqs, mfe_cache):
+    missing = [s for s in dict.fromkeys(seqs) if s not in mfe_cache]
+    for i in range(0, len(missing), 256):
+        chunk = missing[i : i + 256]
+        for s, m in zip(chunk, mfe_batch_parallel(chunk)):
+            mfe_cache[s] = m
+
+
 def non_dominated_share(sols_objs, all_objs, axes):
     ours = np.array([[o[a] for a in axes] for o in sols_objs])
     others = np.array([[o[a] for a in axes] for o in all_objs])
@@ -209,7 +217,9 @@ def main() -> None:
                 for di, (w1, w2, w3) in enumerate(dirs):
                     atc_s = ATCUtility.from_yaml(ATC_YAML)
                     atc_s.omega = (w1, w2, w3, 0.5)
-                    inner = BatchedReward(weights, atc_s, mfe_cache)
+                    skip_mfe = (w2 == 0.0)
+                    inner = BatchedReward(weights, atc_s, mfe_cache, skip_mfe=skip_mfe)
+                    print(f"    {scen} dir{di} w=({w1},{w2},{w3}) skip_mfe={skip_mfe}", flush=True)
                     reward = (
                         (lambda seqs: [args.beta * u for u in inner(seqs)])
                         if args.beta != 1.0
@@ -219,7 +229,7 @@ def main() -> None:
                         model, device, reward,
                         n_steps=args.n_steps, n_candidates=args.n_candidates,
                         temperature=1.0, apply_k=args.apply_k,
-                        rng=np.random.default_rng(seed * 1009 + di * 37 + hash(scen) % 911),
+                        rng=np.random.default_rng(seed * 1009 + di * 37 + sum(map(ord, scen)) % 911),
                     )
                     x0_rng = np.random.default_rng(seed * 7 + di * 131 + 17)
                     for _ in range(per_dir):
@@ -254,6 +264,11 @@ def main() -> None:
             }
             if gpt_sols:
                 methods["codongpt"] = (gpt_sols, t_gpt)
+            prefill_mfe(
+                [s for sols in cf_sols.values() for s in sols]
+                + [s for sols, _t in methods.values() for s in sols],
+                mfe_cache,
+            )
             method_objs = {m: [obj_vector(s, weights, mfe_cache) for s in sols] for m, (sols, _t) in methods.items()}
             cf_objs = {scen: [obj_vector(s, weights, mfe_cache) for s in sols] for scen, sols in cf_sols.items()}
 

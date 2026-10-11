@@ -152,3 +152,32 @@
 **PPT 29 页终版**: 6 张旧图替换为顶刊风格新图 + fig7 pipeline 总览页 + fig8 arch-limit 页 (已更新 Cas9 实测数字); 字体统一; 程序化检查通过 (29 slides, 8 pics, 0 font issues)
 
 **剩余**: ood3 (mouse seed0/1 cf done 66870s/59155s; fly/zfish 在跑; 全部完成 ETA ~今晚); 完成后出 OOD generalization gap 表 + PPT 最后一页
+
+## 2026-10-11 傍晚 (关键审计: ATC Tchebycheff 零权重轴退化 bug — 全部扫描方向 reward 失效)
+
+**发现过程**: 在为 ood3 提速做 skip_mfe 数学验证时, 用 ATCUtility 单测发现 S2 (0.7,0.3,0) 方向下 MFE 取值不影响 utility — 深挖确认 `utility_from_normalized` 的 Tchebycheff min 对全部 k 求 min (含零权重轴). 0*omega_k = 0 永远赢得 min, 导致稀疏 omega 下 U 退化为 rho*sum (仅 0.01 量级).
+
+**数学后果 (已 3 遍交叉验证 + 单测确认)**:
+- 修复前: 29 个扫描方向中 28 个 |U|~0.01 (balanced (1/3,1/3,1/3) 是唯一存活方向, U~0.216)
+- beta=8 后 log-h ~0.08 nats vs log-u ~-6 nats → Doob-h 偏好引导在这些方向形同虚设
+- **RLOO 训练不受影响** (yaml omega=(1,1,1,0.5) 全正权, 修复前后 BIT-IDENTICAL, 单测断言通过)
+- E1/E2/E4/E6 不受影响 (默认全正权 omega)
+
+**受影响面 (诚实重跑范围)**:
+- E5` 全部 codonflow 扫描臂 (egfp/nluc/ood3/cas9) 的 S1 + S2 的 4/5 方向 + S3 的 6/7 方向
+- E3 偏好扫描 7 方向中 6 个 (fig3 "corner separation small" 的机制解释 — reward 死了当然分不开)
+- pre-fix 结果已归档: eval_outputs/prefix_atc_bug/ (10 个 JSON)
+
+**修复 (src/codonflow/gating/atc.py)**: Tchebycheff min 仅对 omega_k>0 的活跃轴求 min (标准 MOEA/D 定义, Zhang & Li 2007). 修复后 9 个方向的 U 全部进入 0.20-0.45 量级; S1 方向 CAI 响应 0.006→0.44 (64x). 全正权 omega 数位元不变 (RLOO 结果完全保留).
+
+**性能修复 (数位元不变, 不影响科学数值)**:
+- BatchedReward 增加 skip_mfe (omega_mfe=0 方向跳过候选折叠, 单测 BIT-IDENTICAL)
+- run_exp5_ood: 最终解集批量预折叠 (prefill_mfe, 替代逐条串行 obj_vector)
+- hash(scen) → sum(map(ord, scen)) (消除进程盐值, 保证种子可复现)
+- mfe_parallel: MFE_PROCS 环境变量 (40 候选/步 ÷ 20 workers = 2 整波, 避免尾波浪费)
+
+**重跑计划 (launch_atcfix_wave1.sh, 7 链并行 tmux)**: 15 arm (5 基因 x 3 seed) on GPU6 MIG; cas9 3 seed (GPU7B + MIG5); E3 重扫 (MIG4). 旧串行 ood3 arm 已杀 (其 mouse s0/s1 33h 结果基于旧 ATC, 无增量保存且无法与修复后协议比较, 弃用; 反正 ood3 重跑在 15 arm 内).
+
+**冒烟验证 (zfish 1-sol)**: skip_mfe 分支正确, 增量保存, identity/legal 100%, EXIT=0. mouse 298-sol cf 臂 395s (vs 旧版 66870s — prefill+skip_mfe 的提速直接可见).
+
+**cas9 s0 OOM 教训**: MIG-6e59f9af (GPU7) 被其他用户占满 13GB+ → 模型加载失败; 已改投 MIG5 (GPU6). 投递前必须 nvidia-smi 检查实例实际空闲显存, 不能只看 MIG 划分.

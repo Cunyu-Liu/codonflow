@@ -133,7 +133,7 @@ class BatchedReward:
     """Reward with a process-wide MFE cache and batched folding."""
 
     def __init__(self, weights, atc, mfe_cache: Optional[Dict[str, float]] = None,
-                 fold_batch: int = 256):
+                 fold_batch: int = 256, skip_mfe: bool = False):
         from ..eval.metrics import cai
         from ..eval.mfe_parallel import mfe_batch_parallel
         from ..core.codon import gc_fraction
@@ -147,17 +147,22 @@ class BatchedReward:
         self.atc = atc
         self.mfe_cache = mfe_cache if mfe_cache is not None else {}
         self.fold_batch = fold_batch
+        self.skip_mfe = bool(skip_mfe)
+        if self.skip_mfe:
+            assert atc.omega[1] == 0.0, "skip_mfe requires dead mfe axis (omega[1]==0); bit-identical because 0*anything never enters tcheb/aug"
+
 
     def __call__(self, seqs: List[str]) -> List[float]:
-        missing = [s for s in seqs if s not in self.mfe_cache]
-        for i in range(0, len(missing), self.fold_batch):
-            chunk = missing[i : i + self.fold_batch]
-            mfes = self._mfe_batch(chunk)
-            for s, m in zip(chunk, mfes):
-                self.mfe_cache[s] = m
+        if not self.skip_mfe:
+            missing = [s for s in seqs if s not in self.mfe_cache]
+            for i in range(0, len(missing), self.fold_batch):
+                chunk = missing[i : i + self.fold_batch]
+                mfes = self._mfe_batch(chunk)
+                for s, m in zip(chunk, mfes):
+                    self.mfe_cache[s] = m
         out = []
         for s in seqs:
-            m = self.mfe_cache[s]
+            m = self.mfe_cache.get(s, 0.0)
             out.append(
                 self.atc.utility(
                     self._cai(s, self.weights), -m,
