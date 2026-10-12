@@ -37,10 +37,14 @@ run_arm() {
   local gene=$1 seed=$2 mig=$3 procs=$4
   local fa=/tmp/gene_${gene}.fasta
   local tag=${gene}_s${seed}_fix
-  echo "=== arm ${tag} MIG=${mig} start $(date) ===" > "$LOG/e5o_${tag}.log"
+  # protocol parity with pre-fix runs: egfp/nluc steps=20 (E5' protocol),
+  # mouse/fly/zfish steps=10 (ood3 protocol) — only ATC fix may differ.
+  local steps=10
+  case $gene in egfp|nluc) steps=20 ;; esac
+  echo "=== arm ${tag} MIG=${mig} steps=${steps} start $(date) ===" > "$LOG/e5o_${tag}.log"
   CUDA_VISIBLE_DEVICES=$mig MFE_PROCS=$procs PYTHONPATH=src "$PY" scripts/run_exp5_ood.py \
     --benchmark-fasta "$fa" --checkpoint "$CKPT" \
-    --n-solutions 100 --seeds "$seed" --n-steps 10 \
+    --n-solutions 100 --seeds "$seed" --n-steps "$steps" \
     --out "$OUT/E5_fix_${gene}_s${seed}.json" >> "$LOG/e5o_${tag}.log" 2>&1
   echo "EXIT=$? at $(date)" >> "$LOG/e5o_${tag}.log"
 }
@@ -50,7 +54,7 @@ run_e3() {
   echo "=== e3_fix_${gene} MIG=${mig} start $(date) ===" > "$LOG/e3_fix_${gene}.log"
   CUDA_VISIBLE_DEVICES=$mig MFE_PROCS=16 PYTHONPATH=src "$PY" scripts/run_exp3.py \
     --benchmark-fasta /tmp/gene_${gene}.fasta --checkpoint "$CKPT_V4" \
-    --n-solutions 30 --n-steps 10 \
+    --n-solutions 30 --n-steps 20 \
     --out "$OUT/E3_fix_${gene}.json" >> "$LOG/e3_fix_${gene}.log" 2>&1
   echo "EXIT=$? at $(date)" >> "$LOG/e3_fix_${gene}.log"
 }

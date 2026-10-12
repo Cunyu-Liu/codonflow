@@ -197,3 +197,22 @@
 **三层诊断定论 (论文 discussion 骨架)**: 残余与 LD 的差距不在协议 (E5' 已修), 不在公式 (ATC 已修), 而在 (1) CAI 归一化域饱和 (2) 基座引导容量 (10 步局部搜索) -> v3 大语料 + 大基座。门控 (100%) 与偏好 (响应修复) 可分离塑形 = H1a 直接证据。
 
 **产出**: analyze_atcfix.py + atcfix_summary.json + fig3/fig5/fig9 fix 版重绘; PPT 31 页 9 图 0 字体问题; eval_outputs/E5_fix_* 20 个 JSON + prefix_atc_bug/ 归档 (before/after 机制证据)。
+## 2026-10-12 中午 (v3 语料 4 倍扩容完成: 862k CDS / 25 物种 / cluster-disjoint split)
+
+**语料扩充 (Task 1.1 v3, ~40 分钟完成下载+清洗+聚类+切分)**:
+- wave1: 11 物种 (rat/chimp/dog/chicken/rhesus/cattle/pig/xenopus/gorilla/medaka/yeast) 438,318 条
+- wave2: 9 物种 (cat/rabbit/guinea_pig/sheep/horse/fugu/ciona_x2/anolis) 241,956+52,127 (fix 下载)
+- 清洗规则与 v2 完全一致 (clean_fasta); 失败物种 3 个 (strongylo/hymenolepis/schistosoma r112 无 CDS 目录, 放弃)
+- 合并: v2 215,246 + 新物种 = 862,240 条 / 311,228 簇 (mmseqs 0.8 id, 90 线程 ~15 分钟)
+- split: train 689,635 / val 87,078 / test 85,527 (cluster-disjoint, benchmark 泄漏防护沿用)
+- 工程坑 3 个 (如实记录): ① mmseqs 输出文件名是 cluster_cluster.tsv 不是 cluster.tsv (脚本误判失败); ② mmseqs "there must be an error" 是 set-cover 覆盖过滤的已知误报, 实际成功; ③ r112 大鼠版本名 mRatBN7.2、canis 是 canis_lupus_familiaris、ciona_savignyi 是 CSAV2.0、anolis 是 AnoCar2.0v2 — URL 必须先拉目录列表核实, 不能猜
+
+**v3 预训练调度 (容量对照实验设计)**:
+- 设计: 355M (d1280/L12/H16, spec 两档之一) + 56M 对照 (同语料同协议) — 同数据下两个规模对比 = 容量效应受控实验, 支持 spec L218 判读 (E3 分散但离前沿远 -> 扩 355M)
+- 集群现实: GPU0-5 他人任务满载 (26-40GB/40GB); GPU7 物理 33GB 被占 (honghuiyang 1107659 19GB 直挂整卡 UUID, MIG 探针不可见); GPU6 是 7x1g.5gb MIG (4.75GB/实例) — 56m batch 6000 仍 OOM (长序列桶 O(L^2) 激活主导, 物理装不下预训练)
+- 处置: 看门狗 v2 (v3_355m_watchdog.sh) 每 5 分钟扫描 GPU0-5 (>=14GB 空闲) + GPU7 (>=24GB), 出现空隙自动启动 355M; 48h 超时. 用户规则: 不设 GPU gate, 有空间立即提交
+- 教训: MIG 模式下他人进程可挂整卡 UUID (绕过分区), nvidia-smi compute-apps 的 MIG UUID 探针看不到它 — 判断实例可用性必须看物理卡 used/total
+
+**REGISTRY 修正**: E2-002 状态 running -> done (5fam JSON 完整含 wilcoxon p=6.1e-05)
+
+**下一步**: 看门狗触发后 355M 预训练 (~2-4 天至收敛); 完成后 E5'/E3/OOD 全链路重评 (355M vs 56M vs v2-56M 三点容量曲线)

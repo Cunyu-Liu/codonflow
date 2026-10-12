@@ -272,7 +272,7 @@ def main() -> None:
             method_objs = {m: [obj_vector(s, weights, mfe_cache) for s in sols] for m, (sols, _t) in methods.items()}
             cf_objs = {scen: [obj_vector(s, weights, mfe_cache) for s in sols] for scen, sols in cf_sols.items()}
 
-            row = {"seed": seed}
+            row = {"seed": seed, "n_solutions": args.n_solutions, "n_steps": args.n_steps}
             for scen, axes in SCENARIOS.items():
                 ref = np.array([0.5, 100.0, -0.2, -25.0])[: len(axes)]
                 all_objs = list(cf_objs[scen])
