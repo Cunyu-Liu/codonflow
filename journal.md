@@ -181,3 +181,19 @@
 **冒烟验证 (zfish 1-sol)**: skip_mfe 分支正确, 增量保存, identity/legal 100%, EXIT=0. mouse 298-sol cf 臂 395s (vs 旧版 66870s — prefill+skip_mfe 的提速直接可见).
 
 **cas9 s0 OOM 教训**: MIG-6e59f9af (GPU7) 被其他用户占满 13GB+ → 模型加载失败; 已改投 MIG5 (GPU6). 投递前必须 nvidia-smi 检查实例实际空闲显存, 不能只看 MIG 划分.
+## 2026-10-12 上午 (ATC-fix 重跑全部完成: 20/20 EXIT=0, 3-seed 定稿)
+
+**重跑执行 (launch_atcfix_wave1.sh, 7 链 tmux, 2026-10-11 18:16 -> 10-12 08:59, ~15h)**:
+- 15 arm (5 基因 x 3 seed) + cas9 3-seed (拆 2 个 GPU7 MIG + 1 GPU6 MIG) + E3 重扫 (2 基因); 协议与 pre-fix 严格对齐 (egfp/nluc steps=20, OOD steps=10, cas9 steps=5/C=5; 唯一变量 = ATC 修复)
+- 全部 EXIT=0; 提速实测: egfp cf 臂 24529s -> ~11700s (2.1x, skip_mfe+prefill+MFE_PROCS=20), cas9 18559 -> 8690s (2.1x)
+- 中途事故与处置: ① cas9_s0 首投 MIG-6e59f9af OOM (他人占用) -> 改投 GPU6 MIG5; ② 第一版启动器 steps=10 一刀切, 自查发现与 pre-fix egfp/nluc (steps=20) 协议不符 -> 杀链重排重启 (只损失 25 分钟, 防止"预算变了还当修复效应"的实验事故)
+
+**最终结果 (3-seed, 100 sols/scen, identity/legal 全 100%)**:
+- 修复前后 CF HV: egfp S3 125.15 -> 140.37 (+12.2%); nluc S3 102.62 -> 115.81 (+12.8%); S2 egfp -7.5% / nluc +2.3% (引导激活后多样性收缩的权衡, 如实报告); S1 微涨 (CAI 轴 q95=0.7765 饱和, egfp 0.78 无梯度)
+- E3 轴向分离激活: nluc mfe_only MFE -163.9 vs cai_only -158.5 (Δ5.4, pre-fix ≈0); egfp 因 CAI 饱和分离仍小 (mfe_only Δ1.8)
+- OOD (R7-6): identity/legal 衰减 0.00pp 全 PASS (4500 解零违例); CF/LD 长度不变量比 S2 -2.4% (0.30->0.31), S3 跨家族反升 (0.27->0.65, LD 在长 OOD 上多目标弱); S1 相对差 +14% (mouse CAI 饱和 + 长序列搜索半径)
+- cas9: S2 CF 249.1±1.3 (pre 251.7, 持平); S3=0 仍为 motif ref 尺度 bug (已知, v3 待办: 长度归一化 motif 罚)
+
+**三层诊断定论 (论文 discussion 骨架)**: 残余与 LD 的差距不在协议 (E5' 已修), 不在公式 (ATC 已修), 而在 (1) CAI 归一化域饱和 (2) 基座引导容量 (10 步局部搜索) -> v3 大语料 + 大基座。门控 (100%) 与偏好 (响应修复) 可分离塑形 = H1a 直接证据。
+
+**产出**: analyze_atcfix.py + atcfix_summary.json + fig3/fig5/fig9 fix 版重绘; PPT 31 页 9 图 0 字体问题; eval_outputs/E5_fix_* 20 个 JSON + prefix_atc_bug/ 归档 (before/after 机制证据)。
