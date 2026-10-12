@@ -231,3 +231,22 @@
 - 教训固化: ① MIG 探针必须看实例内占用; ② 共享整卡的"free"是瞬时值, 投递前连续 2 次确认; ③ GPU6 1g.5gb 只适合推理/评测不适合预训练
 - 现役方案: 看门狗 v3 (GPU7 物理 <10GB 投 355M+56M; <26GB 投 56M; GPU0-5 >=22GB 连续空隙投 355M), tmux 持久, 48h 窗口
 - v3 语料/评测脚本已全部备好 (run_v3_eval.sh 参数化 checkpoint), 训练一收敛即无缝进入 E5'/E3/OOD 全链路重评
+## 2026-10-12 晚 (完整 Benchmark 交付 + 集群关机备份, 硬截止 10-13 06:30)
+
+**用户新增需求 1: 完整测评 benchmark + baseline 下游性能对比表 (当日交付, 已完成)**:
+- **L2 层新基准 bench_heldout18**: v3 test split (85,527 条池) 分层抽样 18 基因 (9 物种 x 3 长度带), **泄漏审计 3 遍**: 直接 ID 重叠 0 (v2/v3 train+val) + 同簇近邻排除 30,938 条 (mmseqs 0.8 簇图) + 抽样后复验 0 重叠; 清洗同 v2 (clean_fasta 规则: 300-1800nt + ATG + 规范终止)
+- **首批抽样教训 (自查抓到)**: 第一版从 v2 全语料抽样 -> 16/18 在 train (严重泄漏) -> 推倒重做; 第二版 v3 test + 同簇排除才合格
+- **完整对比表 (bench_master.py, 4 层 x 5 方法 + R4 10x 变体)**:
+  - L2 HELD16 (排除 g08 酵母 ref 域越界 + g14 同簇重复, 诚实脚注): CF/uniform geo 1.27 (S2) / 1.44 (S3), 胜率 14/15 & 13/15; CF/LD 0.22-0.53 (预注册允许: DP 上界); identity/legal **100% x 48 基因-场景全绿**
+  - L1 经典 / L3 OOD / L4 Cas9 / R4 GPT10x 全部落表 (GPT 10x: S3 456 vs 248, +84% 覆盖——采样预算 vs 方向引导机制对照)
+  - 长度趋势新证据: HELD16 CF/LD 比随长度升 (1764nt 0.32 vs 375nt 0.07), 与 Cas9 长序列相对优势一致
+- **Baseline 完整性再核查**: mRNAutilus 无公开代码 (仅网页接口, 按规范文档化); GEMORNA (Science 2025, 开源) 为新发现待补基线 (表格脚注)
+- PPT 新增 2 页: benchmark 总表 + HELD16 逐基因详情 (33 页)
+
+**用户新增需求 2: 集群 12h 内关机, 硬停 + 备份**:
+- hardstop_0530.sh 挂 crontab (10-13 05:10): 杀 watchdog + 全部训练, 留证 (ls + tail log)
+- 备份清单已执行 (backup_20261013/, 本地): 全部 85 eval JSON (E5_fix/HELD18/GPT10x/E3_fix/prefix 归档) + journal/REGISTRY + 全部基准 fasta + v3 cluster.tsv + split 审计 + **10 个关键权重** (p2_v2 基座 / v4 主力 / v4s1/s2 / 4 λ 消融 / direct / reverse, 共 2.27GB) + 355M/56m 训练日志
+- 355M/56M 训练状态 (关机前最后一搏): 355M e1 b7200/18943 loss 3.597 (GPU2, watchdog 15:45 成功抢占); 56M e1 b5800 loss 3.38; 每 epoch 存 last.pt, hardstop 后拉最终版
+- 未收敛权重如实标注: p3_v3_355m/56m 到关机时 ~5-6 epochs (远未收敛), 重启后从 last.pt 续训 (run_pretrain 支持)
+
+**v3 语料/评测链已完整交付**: 862k 语料 + splits + run_v3_eval.sh (checkpoint 参数化) + watchdog v4 驻留式重启 (实测: 355M 被挤死 3 次自动重投, 最终成功占位 GPU2)

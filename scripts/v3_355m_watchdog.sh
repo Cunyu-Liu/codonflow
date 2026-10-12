@@ -1,71 +1,99 @@
 #!/bin/bash
-# Watchdog v3: two-stage. Stage 1: GPU7 physical card < 10GB used (MIGs
-# recoverable) -> launch BOTH pretrains (355M on MIG-10b9b777 batch 24000,
-# 56M on MIG-6e59f9af batch 24000). Stage 2: any whole GPU0-5 with >= 22GB
-# free for 2 consecutive polls -> 355M there (batch 20000, accum 3).
-# Exits once a training launches (tmux session keeps the training alive).
+# Watchdog v4 (resident): keeps BOTH pretrains alive until convergence.
+# - Detects dead training (no run_pretrain process for its out-dir)
+# - Relaunches on first device with enough headroom (MIG instance check
+#   via per-instance occupancy; whole cards need 2 consecutive free polls)
+# - Exits when converged.pt exists for both models
 set -u
 PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
 OUT=/mnt/cunyuliu/codonflow/checkpoints
 S=/mnt/cunyuliu/codonflow/corpora/splits_v3
-LOG=$OUT/p3_v3_355m/watchdog.log
-echo "=== watchdog v3 start $(date) ===" >> "$LOG"
+LOG=$OUT/watchdog4.log
+MIG_A=MIG-10b9b777-a776-56de-9f7c-efde6c584f71   # GPU7 3g.20gb #1
+MIG_B=MIG-6e59f9af-2716-5bf2-ac6e-fb05ef744585   # GPU7 3g.20gb #2
+echo "=== watchdog v4 start $(date) ===" >> "$LOG"
 
-gpu_used() {
-  nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i "$1" | tr -d " "
+alive() {  # $1 = d-model of model
+  pgrep -f "run_pretrain.*--d-model $1" > /dev/null 2>&1
 }
+converged() { [ -f "$1/converged.pt" ]; }
 
-pretrain_355() {  # $1 = CUDA device spec, $2 = batch tokens, $3 = accum
-  echo "$(date) launching 355M on $1 batch=$2 accum=$3" >> "$LOG"
-  cd /home/cunyuliu/codonflow
-  CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
-  $PY src/codonflow/train/run_pretrain.py \
+launch() {  # $1 dev, $2 dmodel, $3 layers, $4 heads, $5 dir, $6 batch, $7 accum
+  echo "$(date) launch d=$2 on $1 batch=$6 accum=$7" >> "$LOG"
+  tmux kill-session -t "$5" 2>/dev/null
+  tmux new-session -d -s "$5" "cd /home/cunyuliu/codonflow && \
+    CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
+    $PY src/codonflow/train/run_pretrain.py \
     --train-fasta $S/train.fasta --val-fasta $S/val.fasta \
-    --out-dir $OUT/p3_v3_355m \
-    --d-model 1280 --n-layers 12 --n-heads 16 --dropout 0.0 \
-    --batch-tokens $2 --grad-accum $3 --lr 1e-5 >> $OUT/p3_v3_355m/train.log 2>&1
-  echo "$(date) 355M exited rc=$?" >> "$LOG"
+    --out-dir $OUT/$5 --d-model $2 --n-layers $3 --n-heads $4 \
+    --dropout 0.0 --batch-tokens $6 --grad-accum $7 --lr 1e-5 \
+    >> $OUT/$5/train.log 2>&1; echo EXIT=\$? at \$(date) >> $OUT/$5/train.log"
 }
 
-pretrain_56() {  # $1 = CUDA device spec, $2 = batch tokens, $3 = accum
-  echo "$(date) launching 56M on $1 batch=$2 accum=$3" >> "$LOG"
-  cd /home/cunyuliu/codonflow
-  CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
-  $PY src/codonflow/train/run_pretrain.py \
-    --train-fasta $S/train.fasta --val-fasta $S/val.fasta \
-    --out-dir $OUT/p3_v3_56m \
-    --d-model 768 --n-layers 8 --n-heads 12 --dropout 0.0 \
-    --batch-tokens $2 --grad-accum $3 --lr 1e-5 >> $OUT/p3_v3_56m/train.log 2>&1
-  echo "$(date) 56M exited rc=$?" >> "$LOG"
+# per-MIG occupancy: parse nvidia-smi -i 7 MIG table lines "  7 GI CI 1 |  14570MiB / 20096MiB"
+mig_used() {  # $1 = CI (0 for first 3g.20gb, 1 for second)
+  nvidia-smi -i 7 2>/dev/null | awk -v ci="$1" '
+    /MIG devices/{seen=1; next}
+    seen && NF >= 8 {
+      split($4, a, "|"); gi=$2; ci_now=$4;
+    }
+    seen && $0 ~ /MiB \/ 20096MiB/ {
+      line=$0; gsub(/[^0-9MiB \/]/, "", line);
+    }
+  '
+  # fallback: simpler parse below
+  nvidia-smi -i 7 2>/dev/null | grep "20096MiB" | awk -v k="$1" 'NR==k+1 {gsub(/[A-Za| ]/,""); print $1}'
 }
 
-LAUNCHED=0
+gpu_free_whole() {
+  local u t
+  u=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits -i "$1" | tr -d " ")
+  t=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i "$1" | tr -d " ")
+  echo $(( t - u ))
+}
+
+LAST_FREE=""
 i=0
-while [ $i -lt 576 ] && [ $LAUNCHED -eq 0 ]; do
-  u7=$(gpu_used 7)
-  if [ "$u7" -lt 10000 ]; then
-    tmux new-session -d -s v3tr355 "$(declare -f pretrain_355); pretrain_355 MIG-10b9b777-a776-56de-9f7c-efde6c584f71 24000 1"
-    LAUNCHED=1
+while [ $i -lt 1152 ]; do  # 1152 * 300s = 4 days
+  if converged $OUT/p3_v3_355m && converged $OUT/p3_v3_56m; then
+    echo "$(date) both converged — watchdog exits" >> "$LOG"
     break
   fi
-  if [ "$u7" -lt 26000 ]; then
-    # one MIG may be usable: try 56M on 6e59f9af (needs ~6GB at batch 24000)
-    tmux new-session -d -s v3tr56 "$(declare -f pretrain_56); pretrain_56 MIG-6e59f9af-2716-5bf2-ac6e-fb05ef744585 24000 1"
-    echo "$(date) GPU7 partial (${u7}MiB): 56M launched on 6e59f9af, keep waiting for 355M space" >> "$LOG"
+  # 56M control (~6GB): GPU7 MIG_B if instance has >=13GB free
+  if ! converged $OUT/p3_v3_56m && ! alive 768; then
+    migB_used=$(nvidia-smi -i 7 2>/dev/null | grep "20096MiB" | awk "NR==2" | grep -oE "[0-9]+MiB / 20096" | grep -oE "^[0-9]+")
+    [ -z "$migB_used" ] && migB_used=99999
+    if [ "$migB_used" -le 7000 ]; then
+      launch $MIG_B 768 8 12 p3_v3_56m 24000 1
+    else
+      f=$(gpu_free_whole 1); [ "$f" -ge 10000 ] && f=$(gpu_free_whole 3); [ "$f" -ge 10000 ] && f=$(gpu_free_whole 5)
+      # whole-card fallback needs 10GB
+      found=""
+      for gi in 1 3 5 0 2 4; do
+        ff=$(gpu_free_whole $gi)
+        if [ "$ff" -ge 10000 ] && [ "$ff" == "$LAST_FREE" ] 2>/dev/null; then found=$gi; break; fi
+      done
+      if [ -n "$found" ]; then launch $found 768 8 12 p3_v3_56m 20000 2; fi
+      LAST_FREE=$(gpu_free_whole 1)
+    fi
   fi
-  if [ $LAUNCHED -eq 0 ]; then
-    for gi in 0 1 2 3 4 5; do
-      free=$(( 40960 - $(gpu_used $gi) ))
-      if [ "$free" -ge 22000 ]; then
-        tmux new-session -d -s v3tr355 "$(declare -f pretrain_355); pretrain_355 $gi 20000 3"
-        LAUNCHED=1
-        break
-      fi
-    done
+  # 355M main (~13GB at batch 20000/accum 3)
+  if ! converged $OUT/p3_v3_355m && ! alive 1280; then
+    migA_used=$(nvidia-smi -i 7 2>/dev/null | grep "20096MiB" | awk "NR==1" | grep -oE "[0-9]+MiB / 20096" | grep -oE "^[0-9]+")
+    [ -z "$migA_used" ] && migA_used=99999
+    if [ "$migA_used" -le 6000 ]; then
+      launch $MIG_A 1280 12 16 p3_v3_355m 24000 1
+    else
+      for gi in 0 1 2 3 4 5; do
+        ff=$(gpu_free_whole $gi)
+        if [ "$ff" -ge 23000 ]; then
+          launch $gi 1280 12 16 p3_v3_355m 20000 3
+          break
+        fi
+      done
+    fi
   fi
-  [ $LAUNCHED -eq 1 ] && break
   i=$((i + 1))
   sleep 300
 done
-[ $LAUNCHED -eq 0 ] && echo "$(date) watchdog v3 timeout" >> "$LOG"
-echo "$(date) watchdog v3 exiting" >> "$LOG"
+echo "$(date) watchdog v4 final exit" >> "$LOG"
