@@ -267,3 +267,10 @@
 - GitHub @ 最终提交: 代码 + journal + 全部脚本
 
 **诚实状态声明 (不得写成科学结论)**: p3_v3_355m / p3_v3_56m 为 interrupted-not-converged (REGISTRY 已如此标注); 它们的 epoch1 val 数字可用于 "数据效应" 的初步证据, 但容量结论 (355M vs 56M) 必须等收敛后 + E5 全链路重评才能写入论文。
+## 2026-10-13 上午 (预印本初稿 v0.1 完成 — 集群关机延迟窗口内补推)
+
+**CodonFlow_preprint_draft.md (arXiv 风格全文, ~3100 词)**:
+- 结构: Abstract / Intro (贡献 5 条) / Related (codon 优化 + 离散流 + MOEA/D) / Method (问题设定, 门控终端分布, Tchebycheff+退化修复, 批式引导采样, 免标注双奖励 RLOO) / Protocol (4 层基准 + 3 遍泄漏审计 + 预注册判读) / Results (E1 多样性塌缩, E2 门控 vs 过滤 wilcoxon p=6.1e-5, E4 双奖励, E5 四层主表, ATC-fix 前后对照机制证据, 预训练病理诊断, 评估器域限制) / Discussion (支持什么/不支持什么/threats) / Conclusion
+- **数字一致性 3 遍核对**: 28 项关键数字 vs JSON 源逐项对账 (atcfix_summary/bench_master/held18_final/E2_5fam), 全部 PASS (前两轮 FAIL 均为 grep 正则误报, 人工复核确认在稿)
+- 诚实边界写在正文: 100-sol 预算下绝对 HV 落后 LD/GPT (0.22-0.53 geo); 355M 容量结论留待收敛后; 评估器 ref 域限制 (yeast/Cas9 S3) 脚注
+- 备份: 项目目录 + 外置盘 + (集群存活) GitHub
