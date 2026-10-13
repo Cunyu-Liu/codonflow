@@ -250,3 +250,20 @@
 - 未收敛权重如实标注: p3_v3_355m/56m 到关机时 ~5-6 epochs (远未收敛), 重启后从 last.pt 续训 (run_pretrain 支持)
 
 **v3 语料/评测链已完整交付**: 862k 语料 + splits + run_v3_eval.sh (checkpoint 参数化) + watchdog v4 驻留式重启 (实测: 355M 被挤死 3 次自动重投, 最终成功占位 GPU2)
+## 2026-10-13 凌晨 (集群关机收尾: 硬停执行 + 最终 checkpoint 拉取 + 双份备份完成)
+
+**hardstop 执行 (crontab 05:10, 按时触发)**:
+- watchdog + 355M + 56M 训练全部杀死, hardstop.log 留证 (last.pt 存在性确认)
+- 355M: epoch1 完成 (train 3.264 / val 2.967 / condgap 0.659, 671.9m), 中断于 e2 b3500; last.pt 945MB (03:04 存)
+- 56M: epoch1 完成 (train 3.075 / val 2.872 / condgap 0.819, 401.5m), 中断于 e2 b12300; last.pt 227MB (00:08 存)
+
+**容量三点曲线的前两个数据点 (重要)**:
+- v3-56M: 1 个 epoch 即 val 2.872, 几乎追平 v2-56M 完整收敛的 2.80 -> 862k 语料的数据效应实锤 (同模型同协议, 唯一变量=语料 4x)
+- v3-355M: 同期 val 2.967 (起步慢符合大模型 scaling 预期; epoch2 已到 train 2.95, 续训后预期显著低于 56M 档)
+- 续训起点已保存: checkpoint load 后从 epoch2 继续 (需给 run_pretrain 加 --resume 语义, 已列重启待办第 1 位)
+
+**备份终态 (双份: 本地 Documents + 外置盘 orico-disc, 3.3GB/12 .pt)**:
+- 全部 190 eval JSON (含 prefix_atc_bug 归档) + 10 收敛权重 + 355M/56M last.pt + journal/REGISTRY + 24 图 + 33 页 PPT + 6 基准 fasta + v3 cluster.tsv + 备份清单 BACKUP_MANIFEST.md (含重启待办优先级序)
+- GitHub @ 最终提交: 代码 + journal + 全部脚本
+
+**诚实状态声明 (不得写成科学结论)**: p3_v3_355m / p3_v3_56m 为 interrupted-not-converged (REGISTRY 已如此标注); 它们的 epoch1 val 数字可用于 "数据效应" 的初步证据, 但容量结论 (355M vs 56M) 必须等收敛后 + E5 全链路重评才能写入论文。
