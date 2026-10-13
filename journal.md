@@ -282,3 +282,11 @@
 - watchdog v4 升级: launch 自动带 --resume (检测 last.pt 存在); alive() 探针改精确匹配 (修复 pgrep 误匹配自探测命令的假阳性 — 三遍检查中抓到的第 3 个 bug); 56M 整卡回退分支修复 LAST_FREE 锁死 bug, 阈值 12GB batch 8000/accum 3
 
 **续训状态**: 56M 已从 epoch2 续 (12:08 起, MIG-6e59f9af); 355M 等待大块空间 (GPU0-5 被他人占 20-36GB, watchdog 驻留轮询); 新 hardstop crontab 10-14 03:15 (15 小时窗口)
+## 2026-10-13 下午 (S3 评估器域补洞: obj_vectors 存储 + 受影响基因重跑)
+
+**补丁 (eval-only, 不影响采样协议)**: run_exp5_ood.py 每个 method x scenario 存 obj_vectors (round 4) + solutions — 支持 offline 的 per-gene 自适应 HV 参考点重算 (关闭 Cas9/fly/yeast 的固定 ref 点域越界洞, 即论文 §5.7 的 evaluator-domain limit)
+
+**重跑 (S3R, 7 arm, GPU6 5 MIG 链)**: cas9 x3 (steps 5, C5, 20 sols — 与 E5_fix 协议一致) + fly x3 + yeast g08 x1; 全部落 S3R_*.json
+- 工程教训: 第一版 run_s3r.sh 的 run5 函数参数错位 (tag/fasta 重复传) — bash -x 手动调试抓出, 修复后 5 链 45 进程全部正常启动
+
+**待 S3R 完成后**: 用 obj_vectors 以 per-gene 参考点 (各基因各轴的 min-margin) 重算 S3 HV -> 更新论文 §5.7 与 HELD16/Cas9 表 (该洞关闭后 fly/yeast/Cas9 的 S3 不再是 0)

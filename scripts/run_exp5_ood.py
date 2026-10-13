@@ -293,6 +293,8 @@ def main() -> None:
                     row[f"{scen}/{m}/nds"] = share
                     row[f"{scen}/{m}/ned"] = pairwise_ned(sols) if len(sols) > 1 else 0.0
                     row[f"{scen}/{m}/time_per_sol"] = t / max(len(sols), 1)
+                    row[f"{scen}/{m}/obj_vectors"] = [[round(float(o[a]), 4) for a in axes] for o in objs]
+                    row[f"{scen}/{m}/solutions"] = list(sols)
                 n_cf = len(cf_sols[scen])
                 ident = [1 if protein_of_cds(s) == protein else 0 for s in cf_sols[scen]]
                 row[f"{scen}/codonflow/identity_rate"] = sum(ident) / n_cf
