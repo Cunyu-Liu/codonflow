@@ -290,3 +290,19 @@
 - 工程教训: 第一版 run_s3r.sh 的 run5 函数参数错位 (tag/fasta 重复传) — bash -x 手动调试抓出, 修复后 5 链 45 进程全部正常启动
 
 **待 S3R 完成后**: 用 obj_vectors 以 per-gene 参考点 (各基因各轴的 min-margin) 重算 S3 HV -> 更新论文 §5.7 与 HELD16/Cas9 表 (该洞关闭后 fly/yeast/Cas9 的 S3 不再是 0)
+## 2026-10-13 晚 (S3R 评估器洞关闭 + 56M epoch2 + PPT「一句话结论」页)
+
+**S3R 全部完成 (7/7 EXIT=0) + 自适应重算**:
+- per-gene 自适应参考点重算 (ref = 全方法池各轴 min - 5% margin) 关闭固定 ref 域越界: Cas9 CF 9.5-15.5 (不再为 0; vs LD 3211-3578 — 真实巨大差距, MFE 轴 DP 优势主导); fly CF 24-30 (vs LD 176-209, GPT 118-145); yeast CF 20.4 (vs LD 162, GPT 36.6)
+- 新发现 (如实): yeast 上 CF 的 GC 轴是池内最差 (酵母密码子 GC 偏离 0.55 目标远) — GC 目标本身基因族依赖, 对任何固定目标公式都是 caveat
+- recompute_s3_adaptive.py 修复 glob 误匹配自身 summary 的 bug
+
+**56M epoch2 完成**: val 2.8462 (epoch1 2.8715 -> epoch2 2.8462, 稳定下降); 期间被挤死 2 次 (16:14/16:49), watchdog resume 自动重投 — resume 语义经受实战检验 (12 次成功 resume 无缝续训). 355M e2 76% (loss 2.921).
+
+**PPT 新增「一句话结论」页 (S18, 移到总览后)**:
+- 用户反馈: 表格指标别人看不懂 -> 直白版「哪里好/哪里坏」
+- 好: ①永不出错 (4500+ 解 100% 正确, 竞品做不到全场景) ②用得更省 (长序列快 40%) ③无监督自改进
+- 坏: ①多目标覆盖只有 LD 的 22-53% ②Cas9 四目标差 20 倍量级 ③容量是瓶颈 (355M 在训)
+- 定位句: 可靠性已验证、质量待提升; 差距指向容量 (工程问题) 而非方法 (科学风险)
+
+**预印本 §5.7 更新**: 标题改为 Evaluator reference-domain repair (honest reporting, then closing it) — 从「排除+脚注」升级为「修复+数值+新发现」

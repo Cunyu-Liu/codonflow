@@ -159,9 +159,9 @@ Same seeds, protocol, budgets; only the utility fix differs (§3.3). Utility mag
 
 v1 masking pretraining converged to validation loss 4.06 ≈ marginal codon entropy 4.03 (the model ignored its input: knowing the corrupted positions gives no information about the answer when the corruption target is itself drawn from the marginals). This is precisely the pretraining-side analogue of the masking failure of §5.1, and motivated the corruption-based v2 objective, which reaches 2.80 with conditional gap 0.82, and downstream hypervolume rose 3.51 → 4.73. On the v3 corpus (4× data), the same 56M architecture reaches validation 2.872 in a single epoch — the data-size effect under matched protocol. (The 355M capacity tier is trained but not converged at the time of writing; §7.)
 
-### 5.7 Known evaluator-domain limits (honest reporting)
+### 5.7 Evaluator reference-domain repair (honest reporting, then closing it)
 
-Fixed HV reference points are calibrated on primate/vertebrate objective ranges: the yeast held-out gene and Cas9's motif axis fall outside the calibrated domain (S3 HV → 0 despite 100% identity/legality and non-degenerate solutions). These cells are excluded with footnotes rather than imputed; a length/distribution-normalized reference scheme is queued (§7).
+Fixed HV reference points are calibrated on primate/vertebrate objective ranges: the yeast held-out gene and Cas9's motif axis initially fell outside the calibrated domain (S3 HV → 0 despite 100% identity/legality and non-degenerate solutions). We reported these cells as excluded-with-footnote, then closed the issue by re-running the affected arms with full objective-vector storage and recomputing S3 with per-gene adaptive reference points (each axis's reference = pooled per-method minimum minus 5% margin). Post-repair values: Cas9 CF 9.5–15.5 vs LD 3,211–3,578 (the gap is genuine and large — dominated by the MFE axis where DP's lattice search excels at 4 kb); fly CF 24–30 vs LD 176–209, GPT 118–145; yeast CF 20.4 vs LD 162, GPT 36.6. The repair also surfaced a substantive finding: on yeast, CodonFlow's GC axis defines the pool worst-case (yeast codon usage is GC-skewed far from the 0.55 target), i.e., the GC objective itself is gene-family-dependent — a caveat for any fixed-target formulation.
 
 ---
 

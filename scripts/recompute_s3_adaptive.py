@@ -1,13 +1,5 @@
 #!/usr/bin/env python3
-"""Offline S3 recomputation with per-gene adaptive HV reference points.
-
-Reads S3R_*.json (obj_vectors stored per method/scenario), computes HV
-with a per-gene reference = (per-axis worst across ALL methods' pooled
-solutions) - margin, and reports the S3 table that the fixed-ref scheme
-zeroed out (Cas9/fly/yeast).
-
-Usage: python3 recompute_s3_adaptive.py
-"""
+"""Offline S3 recomputation with per-gene adaptive HV reference points."""
 import json
 import sys
 from pathlib import Path
@@ -18,9 +10,10 @@ sys.path.insert(0, "/home/cunyuliu/codonflow/src")
 from codonflow.eval.metrics import hypervolume  # noqa: E402
 
 DATA = Path("/mnt/cunyuliu/codonflow/eval_outputs")
-OUT = Path("/mnt/cunyuliu/codonflow/eval_outputs/S3R_adaptive_summary.json")
+OUT = DATA / "S3R_adaptive_summary.json"
 
 METHODS = ["codonflow", "lineardesign_scan", "codongpt", "cai_greedy", "uniform_edit_flow"]
+GENE_TAGS = ("cas9", "fly", "yeast")
 
 
 def load_arm(path):
@@ -36,12 +29,16 @@ def main():
     print("S3 ADAPTIVE-REF RECOMPUTATION  (per-gene ref = pooled per-axis min - 5% margin)")
     print("=" * 88)
     for p in sorted(DATA.glob("S3R_*.json")):
+        if not p.stem.replace("S3R_", "").startswith(GENE_TAGS):
+            continue  # skip S3R_adaptive_summary and other non-arm files
         tag = p.stem.replace("S3R_", "")
-        row = load_arm(p)
+        try:
+            row = load_arm(p)
+        except Exception:
+            continue
         if row is None or "S3_quad/codonflow/obj_vectors" not in row:
             print(f"[{tag}] no obj_vectors — skipped")
             continue
-        # gather all methods' S3 objective vectors (axes: cai, neg_mfe, neg_gc_dev, neg_motif)
         pool = {}
         for m in METHODS:
             k = f"S3_quad/{m}/obj_vectors"
@@ -59,11 +56,10 @@ def main():
         cf = line.get("codonflow/hv", 0.0)
         ld = line.get("lineardesign_scan/hv", 0.0)
         gp = line.get("codongpt/hv", 0.0)
-        print(f"[{tag:12s}] CF {cf:12.2f} | LD {ld:12.2f} | GPT {gp:12.2f} (ref={np.round(ref, 2).tolist()})")
+        print(f"[{tag:12s}] CF {cf:12.2f} | LD {ld:12.2f} | GPT {gp:12.2f}")
 
     OUT.write_text(json.dumps(results, indent=2))
     print(f"\nwrote {OUT}")
-
     if results:
         print("\n=== summary (mean over arms) ===")
         for m in METHODS:
