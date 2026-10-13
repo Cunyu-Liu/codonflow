@@ -274,3 +274,11 @@
 - **数字一致性 3 遍核对**: 28 项关键数字 vs JSON 源逐项对账 (atcfix_summary/bench_master/held18_final/E2_5fam), 全部 PASS (前两轮 FAIL 均为 grep 正则误报, 人工复核确认在稿)
 - 诚实边界写在正文: 100-sol 预算下绝对 HV 落后 LD/GPT (0.22-0.53 geo); 355M 容量结论留待收敛后; 评估器 ref 域限制 (yeast/Cas9 S3) 脚注
 - 备份: 项目目录 + 外置盘 + (集群存活) GitHub
+## 2026-10-13 中午 (resume 语义落地 + 续训重启 — 集群存活窗口利用)
+
+**run_pretrain.py 新增 --resume 语义 (三遍验证)**:
+- 权重加载 (torch.load last.pt -> load_state_dict) + epoch 计数恢复 (log.jsonl 末条) + ConvergenceTracker 历史重放 (纯状态机, 重放等价性验证)
+- 冒烟测试 (56M last.pt + val 当 train 集): "resumed weights" ✓, 起步 loss 2.86-2.93 (= epoch2 水平, 从头训应 4.3+) ✓
+- watchdog v4 升级: launch 自动带 --resume (检测 last.pt 存在); alive() 探针改精确匹配 (修复 pgrep 误匹配自探测命令的假阳性 — 三遍检查中抓到的第 3 个 bug); 56M 整卡回退分支修复 LAST_FREE 锁死 bug, 阈值 12GB batch 8000/accum 3
+
+**续训状态**: 56M 已从 epoch2 续 (12:08 起, MIG-6e59f9af); 355M 等待大块空间 (GPU0-5 被他人占 20-36GB, watchdog 驻留轮询); 新 hardstop crontab 10-14 03:15 (15 小时窗口)

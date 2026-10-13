@@ -62,6 +62,7 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--log-every", type=int, default=100)
     ap.add_argument("--epochs-per-checkpoint", type=int, default=1)
+    ap.add_argument("--resume", default=None, help="path to last.pt; restores weights, epoch counter and tracker history from out-dir log.jsonl")
     args = ap.parse_args()
 
     assert torch.cuda.is_available(), "CUDA required - no CPU fallback"
@@ -87,6 +88,18 @@ def main() -> None:
     model = EditFlowTransformer(model_cfg).to(dev)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"model params: {n_params/1e6:.1f}M", flush=True)
+    start_epoch = 0
+    if args.resume:
+        state = torch.load(args.resume, map_location="cpu", weights_only=True)
+        model.load_state_dict(state)
+        model = model.to(dev)
+        print(f"resumed weights from {args.resume}", flush=True)
+        hist_path = out_dir / "log.jsonl"
+        if hist_path.exists():
+            hist = [json.loads(l) for l in hist_path.read_text().splitlines() if l.strip()]
+            if hist:
+                start_epoch = hist[-1]["epoch"]
+                print(f"resume: last completed epoch {start_epoch}", flush=True)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
 
     train_batches = length_bucketed_batches(
@@ -98,7 +111,10 @@ def main() -> None:
     print(f"train batches: {len(train_batches)}", flush=True)
 
     tracker = ConvergenceTracker(rel_tol=1e-3, patience=3)
-    epoch = 0
+    if args.resume and (out_dir / "log.jsonl").exists():
+        for rec in hist:
+            tracker.update(rec["val_loss"])
+    epoch = start_epoch
     t_start = time.time()
     from codonflow.data.dataset import corrupt_x_t
 

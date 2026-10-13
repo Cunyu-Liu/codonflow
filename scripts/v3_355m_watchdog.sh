@@ -13,20 +13,24 @@ MIG_A=MIG-10b9b777-a776-56de-9f7c-efde6c584f71   # GPU7 3g.20gb #1
 MIG_B=MIG-6e59f9af-2716-5bf2-ac6e-fb05ef744585   # GPU7 3g.20gb #2
 echo "=== watchdog v4 start $(date) ===" >> "$LOG"
 
-alive() {  # $1 = d-model of model
-  pgrep -f "run_pretrain.*--d-model $1" > /dev/null 2>&1
+alive() {  # $1 = d-model of model; match only real python trainer processes
+  pgrep -f "miniconda3/envs/codonflow/bin/python src/codonflow/train/run_pretrain.py.*--d-model $1 " > /dev/null 2>&1
 }
 converged() { [ -f "$1/converged.pt" ]; }
 
 launch() {  # $1 dev, $2 dmodel, $3 layers, $4 heads, $5 dir, $6 batch, $7 accum
-  echo "$(date) launch d=$2 on $1 batch=$6 accum=$7" >> "$LOG"
+  echo "$(date) launch d=$2 on $1 batch=$6 accum=$7 (resume if last.pt)" >> "$LOG"
   tmux kill-session -t "$5" 2>/dev/null
+  RESUME_ARG=""
+  if [ -f "$OUT/$5/last.pt" ]; then
+    RESUME_ARG="--resume $OUT/$5/last.pt"
+  fi
   tmux new-session -d -s "$5" "cd /home/cunyuliu/codonflow && \
     CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
     $PY src/codonflow/train/run_pretrain.py \
     --train-fasta $S/train.fasta --val-fasta $S/val.fasta \
     --out-dir $OUT/$5 --d-model $2 --n-layers $3 --n-heads $4 \
-    --dropout 0.0 --batch-tokens $6 --grad-accum $7 --lr 1e-5 \
+    --dropout 0.0 --batch-tokens $6 --grad-accum $7 --lr 1e-5 $RESUME_ARG \
     >> $OUT/$5/train.log 2>&1; echo EXIT=\$? at \$(date) >> $OUT/$5/train.log"
 }
 
@@ -63,18 +67,17 @@ while [ $i -lt 1152 ]; do  # 1152 * 300s = 4 days
   if ! converged $OUT/p3_v3_56m && ! alive 768; then
     migB_used=$(nvidia-smi -i 7 2>/dev/null | grep "20096MiB" | awk "NR==2" | grep -oE "[0-9]+MiB / 20096" | grep -oE "^[0-9]+")
     [ -z "$migB_used" ] && migB_used=99999
-    if [ "$migB_used" -le 7000 ]; then
+    if [ "$migB_used" -le 12000 ]; then
       launch $MIG_B 768 8 12 p3_v3_56m 24000 1
     else
-      f=$(gpu_free_whole 1); [ "$f" -ge 10000 ] && f=$(gpu_free_whole 3); [ "$f" -ge 10000 ] && f=$(gpu_free_whole 5)
-      # whole-card fallback needs 10GB
-      found=""
+      # whole-card fallback: any card with >=12GB free (single-poll, batch 8000)
       for gi in 1 3 5 0 2 4; do
         ff=$(gpu_free_whole $gi)
-        if [ "$ff" -ge 10000 ] && [ "$ff" == "$LAST_FREE" ] 2>/dev/null; then found=$gi; break; fi
+        if [ "$ff" -ge 12000 ]; then
+          launch $gi 768 8 12 p3_v3_56m 8000 3
+          break
+        fi
       done
-      if [ -n "$found" ]; then launch $found 768 8 12 p3_v3_56m 20000 2; fi
-      LAST_FREE=$(gpu_free_whole 1)
     fi
   fi
   # 355M main (~13GB at batch 20000/accum 3)
