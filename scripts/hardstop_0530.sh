@@ -6,8 +6,8 @@ OUT=/mnt/cunyuliu/codonflow/checkpoints
 LOG=$OUT/hardstop.log
 echo "=== hardstop v2 $(date) ===" >> "$LOG"
 
-pkill -f "v3_355m_watchdog.sh" 2>/dev/null && echo "watchdog process killed" >> "$LOG"
-tmux kill-session -t v3wd4 2>/dev/null && echo "watchdog tmux killed" >> "$LOG"
+pkill -f "v5_watchdog.sh" 2>/dev/null && echo "watchdog process killed" >> "$LOG"
+tmux kill-session -t v3wd5 2>/dev/null && echo "watchdog tmux killed" >> "$LOG"
 tmux kill-session -t v3wd 2>/dev/null
 
 for sess in p3_v3_355m p3_v3_56m; do
