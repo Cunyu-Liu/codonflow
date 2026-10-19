@@ -8,11 +8,11 @@ O="/Volumes/orico-disc/A100 大量项目文件备份/CodonFlow-backup-20261013/v
 for m in v3_56m v3_355m; do
   mkdir -p "$L/$m" "$O/$m"
   echo "=== pulling $m ==="
-  scp -q "A100:/mnt/cunyuliu/codonflow/checkpoints/p3_$m/last.pt" "$L/$m/last.pt" || echo "WARN: $m last.pt pull failed"
-  scp -q "A100:/mnt/cunyuliu/codonflow/checkpoints/p3_$m/log.jsonl" "$L/$m/log.jsonl" || true
-  scp -q "A100:/mnt/cunyuliu/codonflow/checkpoints/p3_$m/train.log" "$L/$m/train.log" || true
-  scp -q "A100:/mnt/cunyuliu/codonflow/checkpoints/p3_$m/converged.pt" "$L/$m/converged.pt" 2>/dev/null && echo "$m converged.pt pulled" || echo "$m not converged (no converged.pt)"
-  scp -q "A100:/mnt/cunyuliu/codonflow/checkpoints/p3_$m/converged.json" "$L/$m/converged.json" 2>/dev/null || true
+  scp -q "A100:/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_$m/last.pt" "$L/$m/last.pt" || echo "WARN: $m last.pt pull failed"
+  scp -q "A100:/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_$m/log.jsonl" "$L/$m/log.jsonl" || true
+  scp -q "A100:/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_$m/train.log" "$L/$m/train.log" || true
+  scp -q "A100:/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_$m/converged.pt" "$L/$m/converged.pt" 2>/dev/null && echo "$m converged.pt pulled" || echo "$m not converged (no converged.pt)"
+  scp -q "A100:/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_$m/converged.json" "$L/$m/converged.json" 2>/dev/null || true
   cp "$L/$m/last.pt" "$O/$m/last.pt" 2>/dev/null || true
   cp "$L/$m/log.jsonl" "$O/$m/log.jsonl" 2>/dev/null || true
   cp "$L/$m/train.log" "$O/$m/train.log" 2>/dev/null || true

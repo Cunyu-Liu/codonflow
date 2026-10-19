@@ -7,10 +7,10 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/src")
+sys.path.insert(0, "/home/codonflow/src")
 from codonflow.eval.metrics import cai_weights_from_rscu, cai, mfe_batch
 
-RSCU = json.loads(Path("/home/cunyuliu/codonflow/configs/cai_ref_train.json").read_text())
+RSCU = json.loads(Path("/home/codonflow/configs/cai_ref_train.json").read_text())
 W = cai_weights_from_rscu(RSCU)
 
 REF = {
@@ -82,7 +82,7 @@ for gene in ("mouse", "fly"):
             for x, s, c, m, g in zip(seqs, sols, cais, mfes, gcs)
         ],
     }
-    dst = Path(f"/mnt/cunyuliu/codonflow/eval_outputs/GEMORNA_{gene}_s0_scored.json")
+    dst = Path(f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GEMORNA_{gene}_s0_scored.json")
     dst.write_text(json.dumps(out, indent=1))
     print(f"[{gene}] identity {n_ident} | unique {len(sols)} | bad {n_bad} | "
           f"CAI {out['cai_mean']:.3f}/{out['cai_best']:.3f} | GC {out['gc_mean']:.3f}" if sols else f"[{gene}] no valid sols")

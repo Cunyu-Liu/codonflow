@@ -13,7 +13,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-OUT = Path("/mnt/cunyuliu/codonflow/eval_outputs/figures")
+OUT = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/figures")
 
 COLORS = {
     "cai_only": "#d62728",
@@ -39,7 +39,7 @@ def nd_share(pts):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--json", default="/mnt/cunyuliu/codonflow/eval_outputs/E3_preference_scan.json")
+    ap.add_argument("--json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E3_preference_scan.json")
     args = ap.parse_args()
     d = json.loads(Path(args.json).read_text())
     fams = list(d.keys())

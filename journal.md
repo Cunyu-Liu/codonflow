@@ -333,3 +333,24 @@
 - 工程教训: hardstop 与 watchdog 需要 kill 顺序协议 (hardstop 应先 pkill watchdog 进程再杀 tmux), 已记录待修
 
 **S3R 8 JSON + 双训练曲线已落本地备份; 355M e2 权重 (945MB) 与 56M e5 权重 (227MB) 慢速传输中 (与用户其他 rsync 竞争带宽 ~70KB/s)**
+
+## 2026-10-19 下午 (新集群迁移完成 + 355M e3 权重找回 + e4 续训启动)
+
+**迁移执行 (px2-jcy.matpool.com:28055, RTX 4090 24GB 单卡, Ubuntu 20.04)**:
+- 环境重建: conda env codonflow (py3.10 + torch 2.5.1 cu12 + ViennaRNA 2.6.4 + mmseqs2) 全新安装, pytest 41/41 绿; conda 走官方源 (清华/USTC 镜像 repodata 超时, 官方 repo.anaconda.com 反而 1.2MB/s 稳定)
+- LinearDesign: 原二进制需要 glibc 2.34 (Ubuntu 20.04 只有 2.31) -> apt install g++ 后源码重编译; eGFP λ=0 冒烟 MFE -437.30 / CAI 0.792 与原集群一致
+- 语料: train d86366a0 / val f72b482b / test 23d567a1 md5 逐一对账一致; 56M converged.pt c8072617 一致
+- **关键找回: 355M e3 权重 (md5 69d502c5) 从 teams 盘 zip 内恢复** — BACKUP_MANIFEST 停机终版记载的"last.pt 损坏已删"只针对 orico/Documents 两端的 scp 直传残片 (1f823d71, ZIP CRC 失败); teams 的 CodonFlow-backup-20261013.zip 内 checkpoints/p3_v3_355m/last.pt 完好 (zip CRC d931e774, torch 内层 zip 153 entries testzip None). 直接 e4 续训, 省掉重跑 e3 的 ~15h
+- 56M 评测终态核验: 17/17 E5+E3 JSON 在位, 程序化检查 identity/legal 全部 1.0 PASS; E5 v3_56m 三 seed HV: egfp S3 133-158 / nluc 83-92 / mouse 371-417 / fly 295-315 / zfish 121-131
+- **355M e4 训练启动** (17:48, GPU0, --resume e3 last.pt): b800 loss 3.03, 8.6GB / 100% util, e3 末 val 2.8350
+- watchdog v8 (单卡 4090 版): tmux v8wd 每 5 分钟轮询, 死进程自动 --resume 拉起
+- 定时监控 (本地侧): 每 3h 检查 train.log/log.jsonl/GPU/tmux/converged.pt
+- 路径全量重映射: /home/cunyuliu → /home/codonflow; /mnt/cunyuliu/codonflow → /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow; miniconda3 → /root/miniconda3; MIG UUID → GPU 0; bash -n 全部通过
+
+**工程坑 (如实记录)**:
+1. 新集群 SSH 有连接频率限制: 连续快速连 3 次会 Connection reset, 等 30-60s 恢复; 用 ControlMaster 长连接缓解
+2. macOS 侧 Documents 目录 TCC 权限阻塞 (Operation not permitted), 本地交接文档读不到 — 一切以 teams zip + GitHub 为准
+3. 新集群是容器 overlay 200GB (已用 157GB), /teams 是挂载大容量; 代码/提交留 /home, 大数据全部放 /teams/HoulabData_1788502323/liucunyu/codonflow
+4. backup zip 里 macOS ._* 垃圾与 __MACOSX 目录需清理后再用
+
+**下一步关键路径 (一个月预印本)**: 355M e4-e7 收敛 (~30h) → 355M 全量评测链 (单卡串行 ~2-3 天) → fig10 容量曲线终版 → 预印本 §6 定稿。

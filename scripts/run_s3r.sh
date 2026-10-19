@@ -2,19 +2,19 @@
 # S3 evaluator-domain rerun: cas9 x3 + fly x3 + yeast(g08) with obj_vectors
 # storage for offline per-gene adaptive HV recomputation. GPU6 MIGs.
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-CKPT=/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
-OUT=/mnt/cunyuliu/codonflow/eval_outputs
-LOG=/mnt/cunyuliu/codonflow/logs
-cd /home/cunyuliu/codonflow
+PY=/root/miniconda3/envs/codonflow/bin/python
+CKPT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+cd /home/codonflow
 
 ensure() {
-  [ -s /tmp/gene_fly.fasta ] || awk -v pat="FBtr0307879" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
-  [ -s /tmp/gene_yeast.fasta ] || /home/cunyuliu/miniconda3/envs/codonflow/bin/python - <<'PYEOF'
+  [ -s /tmp/gene_fly.fasta ] || awk -v pat="FBtr0307879" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
+  [ -s /tmp/gene_yeast.fasta ] || /root/miniconda3/envs/codonflow/bin/python - <<'PYEOF'
 from pathlib import Path
 recs = []
 h, chunks = None, []
-for line in open("/mnt/cunyuliu/codonflow/corpora/bench_heldout18.fasta"):
+for line in open("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_heldout18.fasta"):
     line = line.strip()
     if not line:
         continue
@@ -58,9 +58,9 @@ case "${1:-launch}" in
   c1) ensure
       run5 fly /tmp/gene_fly.fasta 1 $M1 10 100 ""
       run5 fly /tmp/gene_fly.fasta 2 $M1 10 100 "" ;;
-  c2) run5 cas9 /mnt/cunyuliu/codonflow/corpora/cas9_probe.fasta 0 $M2 5 20 "--n-candidates 5" ;;
-  c3) run5 cas9 /mnt/cunyuliu/codonflow/corpora/cas9_probe.fasta 1 $M3 5 20 "--n-candidates 5" ;;
-  c4) run5 cas9 /mnt/cunyuliu/codonflow/corpora/cas9_probe.fasta 2 $M5 5 20 "--n-candidates 5" ;;
+  c2) run5 cas9 /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/cas9_probe.fasta 0 $M2 5 20 "--n-candidates 5" ;;
+  c3) run5 cas9 /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/cas9_probe.fasta 1 $M3 5 20 "--n-candidates 5" ;;
+  c4) run5 cas9 /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/cas9_probe.fasta 2 $M5 5 20 "--n-candidates 5" ;;
   *)
     SELF=$(readlink -f "$0")
     for c in c0 c1 c2 c3 c4; do

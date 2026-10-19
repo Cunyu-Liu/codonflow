@@ -59,7 +59,7 @@ try:
 except ImportError:
     wilcoxon = None
 
-ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
+ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
 
 
 def obj_vector(seq: str, weights, mfe_cache: dict):
@@ -163,7 +163,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--checkpoint", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--budget", type=int, default=500)
     ap.add_argument("--n-seeds", type=int, default=3)
     ap.add_argument("--n-steps", type=int, default=20)
@@ -174,7 +174,7 @@ def main() -> None:
                     help="edits per step (A2: 4 restores pCoMole-style moves)")
     ap.add_argument("--families", nargs="*", default=None,
                     help="family accessions to use; default: all in fasta")
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E2_gated_vs_filter.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E2_gated_vs_filter.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Monitor ATC-fix wave1: log tail + JSON completion + dead-arm detection
-LOG=/mnt/cunyuliu/codonflow/logs
-OUT=/mnt/cunyuliu/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
 echo "=== $(date) ==="
 echo "--- tmux chains alive:"; tmux ls 2>/dev/null | grep atx | wc -l
 echo "--- progress:"

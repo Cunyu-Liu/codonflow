@@ -3,8 +3,8 @@
 # mmseqs2 re-cluster (0.8 id) -> cluster-disjoint splits (same builder).
 # Runs after download_v3_species.sh. All rules identical to v2 (audit parity).
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-C=/mnt/cunyuliu/codonflow/corpora
+PY=/root/miniconda3/envs/codonflow/bin/python
+C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora
 LOG="$C/v3_pipeline.log"
 echo "=== v3 pipeline start $(date) ===" > "$LOG"
 
@@ -27,7 +27,7 @@ for sp in "${NEW_SPECIES[@]}"; do
     echo "SKIP clean $sp" >> "$LOG"
   else
     n=$($PY -c "
-import sys; sys.path.insert(0, '/home/cunyuliu/codonflow/src')
+import sys; sys.path.insert(0, '/home/codonflow/src')
 from codonflow.data.pipeline import clean_fasta
 c = clean_fasta('$fa', '$out')
 print(c['kept'])
@@ -65,7 +65,7 @@ echo "CLUSTERS: $NCLUST" >> "$LOG"
 # 4) rebuild splits (cluster-disjoint 80/10/10, benchmark-leak protected)
 SPLIT_DIR="$C/splits_v3"
 if [ ! -s "$SPLIT_DIR/train.fasta" ]; then
-  $PY /home/cunyuliu/codonflow/scripts/build_splits.py \
+  $PY /home/codonflow/scripts/build_splits.py \
     --cleaned "$MERGED" --cluster-tsv "$TSV" --out-dir "$SPLIT_DIR" >> "$LOG" 2>&1
 fi
 for f in train val test; do

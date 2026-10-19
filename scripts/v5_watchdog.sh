@@ -1,8 +1,8 @@
 #!/bin/bash
 # v5 watchdog: resume-until-convergence, per-5min, hardstop-safe
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-OUT=/mnt/cunyuliu/codonflow/checkpoints
-S=/mnt/cunyuliu/codonflow/corpora/splits_v3
+PY=/root/miniconda3/envs/codonflow/bin/python
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints
+S=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/splits_v3
 LOG=$OUT/watchdog5.log
 echo "=== watchdog v5 start $(date) ===" >> $LOG
 
@@ -20,7 +20,7 @@ launch() {  # $1 dev $2 dmodel $3 layers $4 heads $5 tag $6 batch $7 accum
   tmux kill-session -t "$5" 2>/dev/null
   RA=""
   [ -f "$OUT/$5/last.pt" ] && RA="--resume $OUT/$5/last.pt"
-  tmux new-session -d -s "$5" "cd /home/cunyuliu/codonflow &&     CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True     $PY src/codonflow/train/run_pretrain.py     --train-fasta $S/train.fasta --val-fasta $S/val.fasta     --out-dir $OUT/$5 --d-model $2 --n-layers $3 --n-heads $4     --dropout 0.0 --batch-tokens $6 --grad-accum $7 --lr 1e-5 $RA     >> $OUT/$5/train.log 2>&1; echo EXIT=$? at $(date) >> $OUT/$5/train.log"
+  tmux new-session -d -s "$5" "cd /home/codonflow &&     CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True     $PY src/codonflow/train/run_pretrain.py     --train-fasta $S/train.fasta --val-fasta $S/val.fasta     --out-dir $OUT/$5 --d-model $2 --n-layers $3 --n-heads $4     --dropout 0.0 --batch-tokens $6 --grad-accum $7 --lr 1e-5 $RA     >> $OUT/$5/train.log 2>&1; echo EXIT=$? at $(date) >> $OUT/$5/train.log"
 }
 
 i=0

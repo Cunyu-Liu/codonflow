@@ -6,10 +6,10 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/src")
+sys.path.insert(0, "/home/codonflow/src")
 from codonflow.eval.metrics import hypervolume  # noqa: E402
 
-DATA = Path("/mnt/cunyuliu/codonflow/eval_outputs")
+DATA = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
 OUT = DATA / "S3R_adaptive_summary.json"
 
 METHODS = ["codonflow", "lineardesign_scan", "codongpt", "cai_greedy", "uniform_edit_flow"]

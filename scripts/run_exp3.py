@@ -41,14 +41,14 @@ DIRECTIONS = [
     ("balanced", (1 / 3, 1 / 3, 1 / 3)),
 ]
 
-ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
+ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--checkpoint", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-solutions", type=int, default=100)
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
@@ -61,7 +61,7 @@ def main() -> None:
                     help="edits applied per step (single-position moves leave "
                          "U nearly unchanged over 20 steps; k>1 matches the "
                          "pCoMole whole-sequence-move semantics)")
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E3_preference_scan.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E3_preference_scan.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"

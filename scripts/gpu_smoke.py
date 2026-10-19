@@ -42,7 +42,7 @@ def main() -> int:
         del x
         torch.cuda.empty_cache()
     print(json.dumps(info, indent=2))
-    with open("/mnt/cunyuliu/codonflow/logs/gpu_smoke.json", "w") as f:
+    with open("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs/gpu_smoke.json", "w") as f:
         json.dump(info, f, indent=2)
     return 0
 

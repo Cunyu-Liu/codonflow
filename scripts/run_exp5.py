@@ -58,10 +58,10 @@ from codonflow.models.batched_sampler import BatchedGuidedSampler, BatchedReward
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.core.motifs import motif_penalty_score
 
-ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
-LD_BIN = "/home/cunyuliu/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
-LD_DIR = "/home/cunyuliu/codonflow/third_party/LinearDesign"
-CKPT_GPT = "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
+LD_BIN = "/home/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
+LD_DIR = "/home/codonflow/third_party/LinearDesign"
+CKPT_GPT = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
 
 SCENARIOS = {
     "S1_cai": ["cai"],
@@ -178,14 +178,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--checkpoint", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-solutions", type=int, default=100)
     ap.add_argument("--n-seeds", type=int, default=3)
     ap.add_argument("--n-steps", type=int, default=20)
     ap.add_argument("--n-candidates", type=int, default=10)
     ap.add_argument("--beta", type=float, default=8.0)
     ap.add_argument("--apply-k", type=int, default=4)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E5_main_table.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E5_main_table.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"

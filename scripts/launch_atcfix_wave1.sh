@@ -5,13 +5,13 @@
 #   bash launch_atcfix_wave1.sh c0         -> run chain c0 only (used by tmux)
 # Pre-fix results preserved in eval_outputs/prefix_atc_bug/.
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-CKPT=/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
-CKPT_V4=/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_ungated/converged.pt
-OUT=/mnt/cunyuliu/codonflow/eval_outputs
-LOG=/mnt/cunyuliu/codonflow/logs
+PY=/root/miniconda3/envs/codonflow/bin/python
+CKPT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
+CKPT_V4=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_ungated/converged.pt
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
 SELF=$(readlink -f "$0")
-cd /home/cunyuliu/codonflow
+cd /home/codonflow
 mkdir -p "$OUT" "$LOG"
 
 MIG0=MIG-27707c52-3cf5-55f8-858f-1419d97bbdf3
@@ -26,11 +26,11 @@ MIG7B=MIG-10b9b777-a776-56de-9f7c-efde6c584f71
 
 ensure_fastas() {
   [ -s /tmp/gene_mouse.fasta ] && return 0
-  awk -v pat="ENSMUST00000202556.4" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_mouse.fasta
-  awk -v pat="FBtr0307879"          'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
-  awk -v pat="ENSDART00000133583.2" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_zfish.fasta
-  awk -v pat="egfp" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/bench_egfp.fasta > /tmp/gene_egfp.fasta
-  awk -v pat="nluc" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/bench_nluc.fasta > /tmp/gene_nluc.fasta
+  awk -v pat="ENSMUST00000202556.4" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_mouse.fasta
+  awk -v pat="FBtr0307879"          'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
+  awk -v pat="ENSDART00000133583.2" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_zfish.fasta
+  awk -v pat="egfp" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_egfp.fasta > /tmp/gene_egfp.fasta
+  awk -v pat="nluc" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_nluc.fasta > /tmp/gene_nluc.fasta
 }
 
 run_arm() {
@@ -63,7 +63,7 @@ run_cas9() {
   local seed=$1 mig=$2
   echo "=== cas9_fix_s${seed} MIG=${mig} start $(date) ===" > "$LOG/e5o_cas9_s${seed}_fix.log"
   CUDA_VISIBLE_DEVICES=$mig MFE_PROCS=20 PYTHONPATH=src "$PY" scripts/run_exp5_ood.py \
-    --benchmark-fasta /mnt/cunyuliu/codonflow/corpora/cas9_probe.fasta --checkpoint "$CKPT" \
+    --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/cas9_probe.fasta --checkpoint "$CKPT" \
     --n-solutions 20 --seeds "$seed" --n-steps 5 --n-candidates 5 \
     --out "$OUT/E5_fix_cas9_s${seed}.json" >> "$LOG/e5o_cas9_s${seed}_fix.log" 2>&1
   echo "EXIT=$? at $(date)" >> "$LOG/e5o_cas9_s${seed}_fix.log"

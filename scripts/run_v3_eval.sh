@@ -5,29 +5,29 @@
 # with the SAME code (ATC fix) and SAME protocol as the 10-12 rerun, so the
 # only variable vs E5_fix_* is the base checkpoint (capacity curve point).
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-CKPT_DIR=/mnt/cunyuliu/codonflow/checkpoints/$1
+PY=/root/miniconda3/envs/codonflow/bin/python
+CKPT_DIR=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/$1
 TAG=$2
 CKPT=$CKPT_DIR/converged.pt
-OUT=/mnt/cunyuliu/codonflow/eval_outputs
-LOG=/mnt/cunyuliu/codonflow/logs
-cd /home/cunyuliu/codonflow
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+cd /home/codonflow
 mkdir -p "$OUT" "$LOG"
 [ -f "$CKPT" ] || { echo "no converged.pt in $CKPT_DIR"; exit 2; }
 
-MIG0=MIG-27707c52-3cf5-55f8-858f-1419d97bbdf3
-MIG1=MIG-69a32e2d-cdb9-54e2-bdde-3228e0195de7
-MIG2=MIG-4c9214e6-acd9-5d8a-98a6-feb9c94236c8
-MIG3=MIG-82791eab-f55e-5e73-a1da-a8eddc196cdf
-MIG4=MIG-d2b486bc-d56f-58b3-af42-3850d1d80684
+MIG0=0
+MIG1=0
+MIG2=0
+MIG3=0
+MIG4=0
 
 ensure_fastas() {
   [ -s /tmp/gene_mouse.fasta ] && return 0
-  awk -v pat="ENSMUST00000202556.4" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_mouse.fasta
-  awk -v pat="FBtr0307879"          'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
-  awk -v pat="ENSDART00000133583.2" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/ood3.fasta > /tmp/gene_zfish.fasta
-  awk -v pat="egfp" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/bench_egfp.fasta > /tmp/gene_egfp.fasta
-  awk -v pat="nluc" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /mnt/cunyuliu/codonflow/corpora/bench_nluc.fasta > /tmp/gene_nluc.fasta
+  awk -v pat="ENSMUST00000202556.4" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_mouse.fasta
+  awk -v pat="FBtr0307879"          'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
+  awk -v pat="ENSDART00000133583.2" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_zfish.fasta
+  awk -v pat="egfp" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_egfp.fasta > /tmp/gene_egfp.fasta
+  awk -v pat="nluc" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_nluc.fasta > /tmp/gene_nluc.fasta
 }
 
 run_arm() {

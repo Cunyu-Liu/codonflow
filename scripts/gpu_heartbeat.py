@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-LOG = Path(os.environ.get("CF_HEARTBEAT_LOG", "/mnt/cunyuliu/codonflow/logs/gpu_heartbeat.csv"))
+LOG = Path(os.environ.get("CF_HEARTBEAT_LOG", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs/gpu_heartbeat.csv"))
 INTERVAL = int(os.environ.get("CF_HEARTBEAT_INTERVAL", "1800"))
 HEADER = "timestamp,index,used_gb,total_gb,util\n"
 

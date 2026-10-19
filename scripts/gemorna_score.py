@@ -9,14 +9,14 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/src")
+sys.path.insert(0, "/home/codonflow/src")
 from codonflow.eval.metrics import cai_weights_from_rscu, cai, mfe_batch
 
-RSCU = json.loads(Path("/home/cunyuliu/codonflow/configs/cai_ref_train.json").read_text())
+RSCU = json.loads(Path("/home/codonflow/configs/cai_ref_train.json").read_text())
 W = cai_weights_from_rscu(RSCU)
 
 for gene in ("egfp", "nluc"):
-    src = Path(f"/mnt/cunyuliu/codonflow/eval_outputs/GEMORNA_{gene}_s0.json")
+    src = Path(f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GEMORNA_{gene}_s0.json")
     d = json.loads(src.read_text())
     sols = d["solutions"]
     # append canonical terminal stop (TAA) to match our legality frame
@@ -40,6 +40,6 @@ for gene in ("egfp", "nluc"):
         "mfe_best": min(mfes),
         "solutions": scored,
     }
-    dst = Path(f"/mnt/cunyuliu/codonflow/eval_outputs/GEMORNA_{gene}_s0_scored.json")
+    dst = Path(f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GEMORNA_{gene}_s0_scored.json")
     dst.write_text(json.dumps(out, indent=1))
     print(f"[{gene}] n={len(scored)} cai={out['cai_mean']:.3f} mfe={out['mfe_mean']:.1f} gc={out['gc_mean']:.3f} -> {dst.name}")

@@ -26,7 +26,7 @@ done
 echo "[$(date +%T)] 传输等待结束（round=$round）" | tee -a "$LOG"
 
 # v3_all 原始 md5 远程补取
-V3ALL_REMOTE=$(ssh A100 'md5sum /mnt/cunyuliu/codonflow/corpora/v3_all.fasta' 2>/dev/null | awk '{print $1}')
+V3ALL_REMOTE=$(ssh A100 'md5sum /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/v3_all.fasta' 2>/dev/null | awk '{print $1}')
 echo "v3_all remote md5: $V3ALL_REMOTE" >> "$LOG"
 
 PASS=0; FAIL=0

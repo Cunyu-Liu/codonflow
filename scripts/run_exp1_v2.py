@@ -30,7 +30,7 @@ from codonflow.eval.metrics import (
     ned,
 )
 
-CKPT = "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
 
 
 def load_model(device):
@@ -110,10 +110,10 @@ def sample_ned_distribution(seqs, sample_limit: int = 300, seed: int = 0) -> np.
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-samples", type=int, default=200)
     ap.add_argument("--n-seeds", type=int, default=3)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.json")
     args = ap.parse_args()
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     assert device == "cuda:0", "GPU required"
@@ -184,7 +184,7 @@ def main() -> None:
             ax2.set_ylabel("codon entropy")
         fig.suptitle("EXP-1: AR+masking diversity collapse (NED & codon entropy)")
         fig.tight_layout()
-        fig.savefig("/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.png", dpi=130)
+        fig.savefig("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.png", dpi=130)
         print("figure saved")
     except Exception as e:
         print("figure error:", e)

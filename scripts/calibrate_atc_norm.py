@@ -40,11 +40,11 @@ from codonflow.core.motifs import motif_penalty_score
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--codongpt-json", default="/mnt/cunyuliu/codonflow/eval_outputs/E1_codongpt.json")
-    ap.add_argument("--ld-json", default="/mnt/cunyuliu/codonflow/eval_outputs/E1_lineardesign_bench.json")
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--codongpt-json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E1_codongpt.json")
+    ap.add_argument("--ld-json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E1_lineardesign_bench.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-uniform", type=int, default=100)
-    ap.add_argument("--out", default="/home/cunyuliu/codonflow/configs/atc_norm.yaml")
+    ap.add_argument("--out", default="/home/codonflow/configs/atc_norm.yaml")
     args = ap.parse_args()
 
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))

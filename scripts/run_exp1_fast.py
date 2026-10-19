@@ -45,7 +45,7 @@ from codonflow.eval.metrics import (
 from codonflow.eval.mfe_parallel import mfe_batch_parallel
 from scipy.stats import ks_2samp
 
-CKPT = "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
 
 
 def load_codongpt(device):
@@ -148,10 +148,10 @@ def sample_arm(source, n, mode, weights, rng):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-samples", type=int, default=1000)
     ap.add_argument("--n-seeds", type=int, default=3)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.json")
     args = ap.parse_args()
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     rscu = json.loads(Path(args.rscu_json).read_text())
@@ -229,7 +229,7 @@ def main() -> None:
                 ax.text(i, m + 0.005, f"{m:.3f}", ha="center")
         fig.suptitle("EXP-1: constrained preference shrinks diversity (NED bars, entropy line)")
         fig.tight_layout()
-        fig.savefig("/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.png", dpi=130)
+        fig.savefig("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.png", dpi=130)
         print("figure saved")
     except Exception as e:
         print("figure error:", e)

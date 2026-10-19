@@ -2,7 +2,7 @@
 
 Primary: Ensembl BioMart REST (human + vertebrates CDS, transcript type).
 Fallback: NCBI Datasets RefSeq umps.
-Output: /mnt/cunyuliu/codonflow/corpora/<name>.fasta
+Output: /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/<name>.fasta
 """
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ def fetch(url: str, out_path: Path, retries: int = 5) -> int:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default="/mnt/cunyuliu/codonflow/corpora")
+    ap.add_argument("--out-dir", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora")
     ap.add_argument("--dataset", default="hsapiens_gene_ensembl")
     ap.add_argument("--schema", default="ensembl")
     ap.add_argument("--tag", default="ensembl_human")

@@ -2,7 +2,7 @@
 # HARD STOP v2: kill watchdog FIRST (process + tmux), then trainings.
 # v1 bug: watchdog survives tmux kill and auto-resumes training.
 set -u
-OUT=/mnt/cunyuliu/codonflow/checkpoints
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints
 LOG=$OUT/hardstop.log
 echo "=== hardstop v2 $(date) ===" >> "$LOG"
 

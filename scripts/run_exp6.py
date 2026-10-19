@@ -29,7 +29,7 @@ from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.core.codon import gc_fraction
 from codonflow.core.motifs import motif_penalty_score
 
-ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
+ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
 
 
 def gpu_mem_mb():
@@ -47,11 +47,11 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--checkpoint", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--beta", type=float, default=8.0)
     ap.add_argument("--apply-k", type=int, default=4)
     ap.add_argument("--n-solutions", type=int, default=50)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E6_budget_curves.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E6_budget_curves.json")
     args = ap.parse_args()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     assert device.type == "cuda", "GPU required"

@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-OUT = Path("/mnt/cunyuliu/codonflow/eval_outputs/figures")
+OUT = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/figures")
 
 METHODS = [
     ("codonflow", "CodonFlow"),
@@ -31,7 +31,7 @@ SCEN_LBL = {"S1_cai": "S1: CAI", "S2_cai_mfe": "S2: CAI+MFE", "S3_quad": "S3: qu
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--json", default="/mnt/cunyuliu/codonflow/eval_outputs/E5_main_table.json")
+    ap.add_argument("--json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E5_main_table.json")
     args = ap.parse_args()
     d = json.loads(Path(args.json).read_text())
     fams = list(d.keys())

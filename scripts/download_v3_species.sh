@@ -1,9 +1,9 @@
 #!/bin/bash
 # v3 corpus expansion (Task 1.1 v3): download 11 Ensembl r112 species CDS.
 # Same source/format as v2 aux species. URLs verified 2026-10-12 (HTTP 200/HEAD).
-# Output: /mnt/cunyuliu/codonflow/corpora/<species>_cds.fa.gz + .fa
+# Output: /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/<species>_cds.fa.gz + .fa
 set -u
-C=/mnt/cunyuliu/codonflow/corpora
+C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora
 mkdir -p "$C"
 LOG="$C/v3_download.log"
 echo "=== v3 corpus download start $(date) ===" > "$LOG"

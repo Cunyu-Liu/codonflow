@@ -5,9 +5,9 @@
 #   via per-instance occupancy; whole cards need 2 consecutive free polls)
 # - Exits when converged.pt exists for both models
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-OUT=/mnt/cunyuliu/codonflow/checkpoints
-S=/mnt/cunyuliu/codonflow/corpora/splits_v3
+PY=/root/miniconda3/envs/codonflow/bin/python
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints
+S=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/splits_v3
 LOG=$OUT/watchdog4.log
 MIG_A=MIG-10b9b777-a776-56de-9f7c-efde6c584f71   # GPU7 3g.20gb #1
 MIG_B=MIG-6e59f9af-2716-5bf2-ac6e-fb05ef744585   # GPU7 3g.20gb #2
@@ -25,7 +25,7 @@ launch() {  # $1 dev, $2 dmodel, $3 layers, $4 heads, $5 dir, $6 batch, $7 accum
   if [ -f "$OUT/$5/last.pt" ]; then
     RESUME_ARG="--resume $OUT/$5/last.pt"
   fi
-  tmux new-session -d -s "$5" "cd /home/cunyuliu/codonflow && \
+  tmux new-session -d -s "$5" "cd /home/codonflow && \
     CUDA_VISIBLE_DEVICES=$1 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
     $PY src/codonflow/train/run_pretrain.py \
     --train-fasta $S/train.fasta --val-fasta $S/val.fasta \

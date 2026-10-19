@@ -70,8 +70,8 @@ def lineardesign_solution(protein: str) -> str:
     import re
     import subprocess
 
-    LD_BIN = "/home/cunyuliu/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
-    LD_DIR = "/home/cunyuliu/codonflow/third_party/LinearDesign"
+    LD_BIN = "/home/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
+    LD_DIR = "/home/codonflow/third_party/LinearDesign"
     try:
         proc = subprocess.run(
             [LD_BIN, "0", "0", "codon_usage_freq_table_human.csv"],
@@ -101,7 +101,7 @@ def main() -> None:
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--checkpoint", required=True)
     ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--lr", type=float, default=3.3e-7)
     ap.add_argument("--beta", type=float, default=0.02)
     ap.add_argument("--lmbda", type=float, default=0.5)
@@ -124,7 +124,7 @@ def main() -> None:
 
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)
-    atc = ATCUtility.from_yaml("/home/cunyuliu/codonflow/configs/atc_norm.yaml")
+    atc = ATCUtility.from_yaml("/home/codonflow/configs/atc_norm.yaml")
     mfe_cache: dict = {}
     env_reward = make_env_reward(atc, weights, mfe_cache)
 

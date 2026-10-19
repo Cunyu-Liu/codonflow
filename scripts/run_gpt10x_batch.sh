@@ -1,19 +1,19 @@
 #!/bin/bash
 # GPT10x batch: remaining 13 gene x seed arms on 5 GPU6 MIG instances.
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-cd /home/cunyuliu/codonflow
-export PYTHONPATH=src:/home/cunyuliu/codonflow/scripts
+PY=/root/miniconda3/envs/codonflow/bin/python
+cd /home/codonflow
+export PYTHONPATH=src:/home/codonflow/scripts
 
 run() {
   local gene=$1 seed=$2 mig=$3
-  if [ -f /mnt/cunyuliu/codonflow/eval_outputs/GPT10x_${gene}_s${seed}.json ]; then
+  if [ -f /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GPT10x_${gene}_s${seed}.json ]; then
     return 0
   fi
-  echo "=== GPT10x ${gene}_s${seed} $(date) ===" > /mnt/cunyuliu/codonflow/logs/gpt10x_${gene}_s${seed}.log
+  echo "=== GPT10x ${gene}_s${seed} $(date) ===" > /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs/gpt10x_${gene}_s${seed}.log
   CUDA_VISIBLE_DEVICES=$mig $PY scripts/run_gpt10x.py "$gene" "$seed" \
-    >> /mnt/cunyuliu/codonflow/logs/gpt10x_${gene}_s${seed}.log 2>&1
-  echo "EXIT=$?" >> /mnt/cunyuliu/codonflow/logs/gpt10x_${gene}_s${seed}.log
+    >> /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs/gpt10x_${gene}_s${seed}.log 2>&1
+  echo "EXIT=$?" >> /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs/gpt10x_${gene}_s${seed}.log
 }
 
 M0=MIG-27707c52-3cf5-55f8-858f-1419d97bbdf3

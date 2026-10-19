@@ -9,7 +9,7 @@ budget-fair vs budget-10x comparison is explicit.
 
 Usage:
   python3 run_gpt10x.py <gene> <seed> [--n 1000]
-Output: /mnt/cunyuliu/codonflow/eval_outputs/GPT10x_<gene>_s<seed>.json
+Output: /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GPT10x_<gene>_s<seed>.json
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/src")
+sys.path.insert(0, "/home/codonflow/src")
 
 from codonflow.core.codon import (
     gc_fraction,
@@ -35,7 +35,7 @@ from codonflow.eval.metrics import cai, cai_weights_from_rscu, hypervolume, pair
 from codonflow.eval.mfe_parallel import mfe_batch_parallel
 from codonflow.core.motifs import motif_penalty_score
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/scripts")
+sys.path.insert(0, "/home/codonflow/scripts")
 from run_exp5_ood import (  # noqa: E402
     CKPT_GPT,
     SCENARIOS,
@@ -58,7 +58,7 @@ def main() -> None:
     ap.add_argument("gene")
     ap.add_argument("seed", type=int)
     ap.add_argument("--n", type=int, default=1000)
-    ap.add_argument("--pool", default="/mnt/cunyuliu/codonflow/eval_outputs")
+    ap.add_argument("--pool", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
     ap.add_argument("--temperature", type=float, default=1.0)
     args = ap.parse_args()
 
@@ -69,7 +69,7 @@ def main() -> None:
 
     device = torch.device("cuda:0")
     weights = cai_weights_from_rscu(
-        json.loads(Path("/home/cunyuliu/codonflow/configs/cai_ref_train.json").read_text())
+        json.loads(Path("/home/codonflow/configs/cai_ref_train.json").read_text())
     )
     gpt, tok = load_codongpt(device)
 

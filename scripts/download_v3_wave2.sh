@@ -1,7 +1,7 @@
 #!/bin/bash
 # v3 corpus wave 2: 12 more Ensembl r112 species (verified URLs 2026-10-12).
 set -u
-C=/mnt/cunyuliu/codonflow/corpora
+C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora
 mkdir -p "$C"
 LOG="$C/v3_download_wave2.log"
 echo "=== v3 wave2 download start $(date) ===" > "$LOG"

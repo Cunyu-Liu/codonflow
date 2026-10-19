@@ -1,3 +1,48 @@
+# CodonFlow 新集群交接状态更新（2026-10-19）
+
+> 本节由新集群迁移会话追加。原完整交接文档见下方（2026-10-15 版）。
+> 新集群：px2-jcy.matpool.com:28055 (root) · Ubuntu 20.04 · RTX 4090 24GB 单卡 · 12 CPU · 64GB RAM
+
+## 迁移完成状态（2026-10-19 17:00）
+
+| 项 | 状态 | 证据 |
+|---|---|---|
+| 代码 | GitHub @ 68166f6 已部署 /home/codonflow | git log 干净 |
+| conda env codonflow | py3.10 + torch 2.5.1(cu12) + ViennaRNA 2.6.4 + mmseqs2 18.8cc5c | which/RNAfold --version 验证 |
+| pytest | 41/41 全绿 | /tmp/pip_test.log |
+| LinearDesign | 源码重新编译（原二进制需要 glibc 2.34，Ubuntu 20.04 没有） | eGFP λ=0 MFE -437.30 CAI 0.792 与原集群一致 |
+| 语料 | /teams/HoulabData_1788502323/liucunyu/codonflow/corpora + codonflow/corpora 双份 | train d86366a0 / val f72b482b / test 23d567a1 md5 一致 |
+| 56M 权重 | converged.pt (c8072617) + log.jsonl | md5 对账一致 |
+| 355M 权重 | **e3 last.pt (69d502c5) 从 zip 备份恢复**（巡检时误判损坏的是 orico/Documents 双端的 871 传输残片；teams zip 内完好） | ZIP CRC + torch zip 内层 testzip None |
+| 56M 评测 | 17/17 E5+E3 JSON 全在，identity/legal 全 100% | 程序化核验 PASS |
+| eval_outputs | 120 JSON + figures_src 已复制 | bench_master 数据链齐 |
+| GEMORNA | /teams/.../codonflow/gemorna 还原（第二环境未建，待需要时建 pc_cng） | tar 解包完成 |
+| 355M 训练 | **已在跑：e4 从 e3 权重续训（节省 ~15h）**，GPU0 100% util 8.6GB | train.log e4 b800 loss 3.03 |
+| watchdog | v8_watchdog_4090.sh（单卡版）tmux v8wd 运行中 | watchdog8.log |
+| 路径重映射 | /home/cunyuliu→/home/codonflow, /mnt/cunyuliu/codonflow→/teams/.../codonflow/codonflow, miniconda→/root/miniconda3, MIG UUID→卡号 0 | grep 无残留 |
+
+## 与原计划的偏差（重要）
+
+1. **355M e3 权重找回**：BACKUP_MANIFEST 12:05 停机终版记 last.pt (5fe57780) 在双端损坏已删——那是 scp 直传残片。**teams 盘 zip 里的 checkpoints/p3_v3_355m/last.pt (69d502c5) 完好**（zip CRC d931e774 内层通过），恢复后 e4 续训从 893min 处起步，省掉重跑 e3 的 ~15h。
+2. **单卡 24GB（原 A100 40GB ×8）**：355M (8.6GB) 与 56M 训练可并行但 56M 已收敛；评测链需串行排队（原 5 MIG 并行链 → 单卡 5 串行链，mouse arm ~9h 是瓶颈）。若要并行可在剩余 ~15GB 显存里同时跑 1 条 egfp/nluc 评测链（GPU 评测约 3-4GB）。
+3. **原集群绝对路径已全局替换**，bash -n 全过；运行时验证：run_pretrain / LinearDesign / RNAfold 均实测通过。
+
+## 剩余待办（按预印本关键路径）
+
+1. [进行中] 355M 训练至收敛（plateau 3×<0.1% 自动停，预计 e7-e9，~30-45h）
+2. [ ] 355M 收敛 → run_v3_eval.sh p3_v3_355m v3_355m launch（单卡串行 ~2-3 天，mouse 9h×3）
+3. [ ] fig10 容量曲线补 355M 收敛值（capacity_curves.json 已重建，355M 序列 e1-e3 在位）
+4. [ ] 预印本 §6 容量结论 + 全文定稿
+5. [ ] PPT 最终结论页更新
+6. [ ] GEMORNA 基线如需复跑：conda create -n pc_cng python=3.10 + torch + torchtext==0.6.0
+
+## 监控
+
+- 定时任务（每 3h）：检查 train.log / log.jsonl / GPU util / tmux 会话 / converged.pt
+- watchdog v8：训练进程死掉自动 --resume 拉起
+
+---
+
 # CodonFlow 新集群迁移交接文档
 
 > 生成时间：2026-10-15 21:45 · 原 A100 集群随时停机 · 换新集群时按本文档操作

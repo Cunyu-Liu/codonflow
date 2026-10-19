@@ -18,7 +18,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-CKPT_DIR = "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT_DIR = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
 
 from codonflow.core.codon import (
     SYNONYMOUS_CODONS,
@@ -131,10 +131,10 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
     ap.add_argument("--n-samples", type=int, default=100)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--temperature", type=float, default=1.0)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E1_codongpt.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E1_codongpt.json")
     args = ap.parse_args()
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     assert device == "cuda:0", "GPU required (R6)"

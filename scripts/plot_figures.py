@@ -1,6 +1,6 @@
 """Plot Fig-1 (EXP-1 collapse) and Fig-2 (EXP-2 gated vs filter) from the
 frozen figure specs (docs/figure_specs/figs_1_to_3.md). Reads JSON outputs,
-writes PNG figures to /mnt/cunyuliu/codonflow/eval_outputs/figures/.
+writes PNG figures to /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/figures/.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-OUT_DIR = Path("/mnt/cunyuliu/codonflow/eval_outputs/figures")
+OUT_DIR = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/figures")
 
 
 def plot_fig1(exp1_json: str) -> None:
@@ -102,8 +102,8 @@ def plot_fig2(exp2_json: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--exp1-json", default="/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.json")
-    ap.add_argument("--exp2-json", default="/mnt/cunyuliu/codonflow/eval_outputs/E2_gated_vs_filter.json")
+    ap.add_argument("--exp1-json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.json")
+    ap.add_argument("--exp2-json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E2_gated_vs_filter.json")
     ap.add_argument("--only", choices=["fig1", "fig2"], default=None)
     args = ap.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)

@@ -59,23 +59,23 @@ def sample_ned_distribution(seqs, sample_limit: int = 500, seed: int = 0) -> np.
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-samples", type=int, default=1000)
     ap.add_argument("--n-seeds", type=int, default=3)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/EXP1_collapse.json")
-    ap.add_argument("--fig-dir", default="/mnt/cunyuliu/codonflow/eval_outputs")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/EXP1_collapse.json")
+    ap.add_argument("--fig-dir", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
     args = ap.parse_args()
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     assert device == "cuda:0", "GPU required"
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)
 
-    sys.path.insert(0, "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4")
+    sys.path.insert(0, "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4")
     from transformers import GPT2Config, GPT2LMHeadModel
 
     from tokenizer import CodonTokenizer
 
-    ckpt = "/home/cunyuliu/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+    ckpt = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
     tok = CodonTokenizer.from_pretrained(ckpt)
     cfg = GPT2Config.from_pretrained(ckpt)
     cfg.bos_token_id = None

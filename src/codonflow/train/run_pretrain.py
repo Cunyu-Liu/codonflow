@@ -1,7 +1,7 @@
 """Pretraining entry point: token-budget packed batches + MIG/whole-GPU agnostic.
 
 Convergence: stop when val loss plateaus 3 consecutive epochs (< 0.1% relative
-drop). Checkpoints to /mnt/cunyuliu/codonflow/checkpoints/.
+drop). Checkpoints to /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/.
 Usage: python -m codonflow.train.run_pretrain --train-fasta ... --out-dir ...
 """
 from __future__ import annotations
@@ -198,7 +198,7 @@ def conditionality_probe(model, dev, n=8) -> float:
     from codonflow.core.tokenizer import encode_cds
 
     seqs = []
-    for h, s in read_fasta("/mnt/cunyuliu/codonflow/corpora/bench.fasta"):
+    for h, s in read_fasta("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench.fasta"):
         seqs.append(encode_cds(s))
     seqs = seqs[:n]
     L = max(len(s) for s in seqs)

@@ -3,11 +3,11 @@
 # Each job ~10 min (ungated RLOO converges by plateau ~iter 111).
 # Slots: rotate through GPU6 1g.5gb MIGs + reuse freed slots.
 
-cd /home/cunyuliu/codonflow
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-LOGDIR=/mnt/cunyuliu/codonflow/logs
-CKPTDIR=/mnt/cunyuliu/codonflow/checkpoints
-BASE=/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_768d/converged.pt
+cd /home/codonflow
+PY=/root/miniconda3/envs/codonflow/bin/python
+LOGDIR=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+CKPTDIR=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints
+BASE=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_768d/converged.pt
 MIGS=(
   MIG-69a32e2d-cdb9-54e2-bdde-3228e0195de7
   MIG-4c9214e6-acd9-5d8a-98a6-feb9c94236c8
@@ -41,7 +41,7 @@ for job in "${JOBS[@]}"; do
   echo "[$(date +%H:%M)] launching $name (lambda=$lam seed=$seed) on $mig cpu=$cpu"
   CUDA_VISIBLE_DEVICES=$mig PYTHONPATH=src taskset -c $cpu \
     $PY -u src/codonflow/train/rloo_finetune.py \
-    --benchmark-fasta /mnt/cunyuliu/codonflow/corpora/bench.fasta \
+    --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench.fasta \
     --checkpoint $BASE --out-dir $out --ungated-rollout \
     --lmbda $lam --seed $seed --max-iters 1000 --plateau-patience 15 \
     > $log 2>&1 &

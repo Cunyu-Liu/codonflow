@@ -8,7 +8,7 @@ import numpy as np
 
 from codonflow.core.codon import SYNONYMOUS_CODONS, STANDARD_TABLE_1
 
-src = open("/mnt/cunyuliu/codonflow/corpora/nanoluc_cds.fasta").read().split("\n")[1]
+src = open("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/nanoluc_cds.fasta").read().split("\n")[1]
 rng = np.random.default_rng(1)
 codons = [src[i : i + 3] for i in range(0, len(src), 3)]
 seqs = []

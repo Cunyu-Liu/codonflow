@@ -3,25 +3,25 @@
 # 1 seed x 50 sols, steps=10, ATC-fixed code). Splits genes across 6 GPU6
 # MIG chains. Output: eval_outputs/HELD18_<gene>.json (one file per gene).
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-CKPT=/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
-OUT=/mnt/cunyuliu/codonflow/eval_outputs
-LOG=/mnt/cunyuliu/codonflow/logs
-FASTA=/mnt/cunyuliu/codonflow/corpora/bench_heldout18.fasta
-cd /home/cunyuliu/codonflow
+PY=/root/miniconda3/envs/codonflow/bin/python
+CKPT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+FASTA=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_heldout18.fasta
+cd /home/codonflow
 mkdir -p "$OUT" "$LOG"
 
 # per-gene fasta extraction (header carries |species|bin|len meta)
 ensure_per_gene() {
   if [ ! -d /tmp/held18 ]; then
     mkdir -p /tmp/held18
-    /home/cunyuliu/miniconda3/envs/codonflow/bin/python - <<PYEOF
+    /root/miniconda3/envs/codonflow/bin/python - <<PYEOF
 import os
 from pathlib import Path
 os.makedirs("/tmp/held18", exist_ok=True)
 recs = []
 h, chunks = None, []
-for line in open("/mnt/cunyuliu/codonflow/corpora/bench_heldout18.fasta"):
+for line in open("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_heldout18.fasta"):
     line = line.strip()
     if not line:
         continue

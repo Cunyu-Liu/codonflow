@@ -16,12 +16,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-OUT = Path("/mnt/cunyuliu/codonflow/eval_outputs/figures")
+OUT = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/figures")
 
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--json", default="/mnt/cunyuliu/codonflow/eval_outputs/E4_ablation.json")
+    ap.add_argument("--json", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E4_ablation.json")
     args = ap.parse_args()
     d = json.loads(Path(args.json).read_text())
     fams = sorted({f for g in d.values() for f in g})

@@ -2,7 +2,7 @@
 
 Per-position independent sampling of synonymous codons, two modes: uniform
 and RSCU-weighted. 1000 variants per benchmark sequence, cached under
-/mnt/cunyuliu/codonflow/cache/variants/.
+/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/cache/variants/.
 """
 from __future__ import annotations
 
@@ -56,7 +56,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--source-fasta", required=True)
     ap.add_argument("--n", type=int, default=1000)
-    ap.add_argument("--out-dir", default="/mnt/cunyuliu/codonflow/cache/variants")
+    ap.add_argument("--out-dir", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/cache/variants")
     ap.add_argument("--mode", choices=["uniform", "rscu"], default="uniform")
     ap.add_argument("--rscu-json")
     ap.add_argument("--seed", type=int, default=0)

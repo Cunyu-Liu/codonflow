@@ -19,8 +19,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from codonflow.core.codon import protein_of_cds, translate, normalize_to_dna
 from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe
 
-LD_BIN = "/home/cunyuliu/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
-LD_DIR = "/home/cunyuliu/codonflow/third_party/LinearDesign"
+LD_BIN = "/home/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
+LD_DIR = "/home/codonflow/third_party/LinearDesign"
 CODON_TABLE = "codon_usage_freq_table_human.csv"
 
 SEQ_RE = re.compile(r"mRNA sequence:\s*([ACGUacgu]+)")
@@ -53,9 +53,9 @@ def run_lineardesign(protein: str, lam: str = "0") -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True, help="CDS fasta of benchmarks")
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-repeats", type=int, default=3)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E1_lineardesign_bench.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E1_lineardesign_bench.json")
     args = ap.parse_args()
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)

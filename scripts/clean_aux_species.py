@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import sys
 
-sys.path.insert(0, "/home/cunyuliu/codonflow/src")
+sys.path.insert(0, "/home/codonflow/src")
 from codonflow.data.pipeline import clean_fasta
 
 if __name__ == "__main__":
@@ -13,7 +13,7 @@ if __name__ == "__main__":
         "mus_musculus_cds",
         "danio_rerio_cds",
     ]:
-        src = f"/mnt/cunyuliu/codonflow/corpora/{name}.fa"
-        dst = f"/mnt/cunyuliu/codonflow/corpora/{name}_cleaned.fasta"
+        src = f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/{name}.fa"
+        dst = f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/{name}_cleaned.fasta"
         counts = clean_fasta(src, dst)
         print(name, counts, flush=True)

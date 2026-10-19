@@ -1,2 +1,2 @@
 #!/bin/bash
-bash /home/cunyuliu/codonflow/scripts/hardstop_0530.sh
+bash /home/codonflow/scripts/hardstop_0530.sh

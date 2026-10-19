@@ -2,9 +2,9 @@
 # v3 pipeline v2 (fixes): mmseqs absolute path; include wave1+wave2 species;
 # correct failed-species versions (ciona_savignyi CSAV2.0, anolis AnoCar2.0v2).
 set -u
-PY=/home/cunyuliu/miniconda3/envs/codonflow/bin/python
-MMSEQS=/home/cunyuliu/miniconda3/envs/codonflow/bin/mmseqs
-C=/mnt/cunyuliu/codonflow/corpora
+PY=/root/miniconda3/envs/codonflow/bin/python
+MMSEQS=/root/miniconda3/envs/codonflow/bin/mmseqs
+C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora
 LOG="$C/v3_pipeline2.log"
 echo "=== v3 pipeline2 start $(date) ===" > "$LOG"
 
@@ -37,7 +37,7 @@ for sp in "${ALL_SPECIES[@]}"; do
   [ -s "$fa" ] || { echo "MISSING raw $sp" >> "$LOG"; continue; }
   [ -s "$out" ] && continue
   n=$($PY -c "
-import sys; sys.path.insert(0, '/home/cunyuliu/codonflow/src')
+import sys; sys.path.insert(0, '/home/codonflow/src')
 from codonflow.data.pipeline import clean_fasta
 c = clean_fasta('$fa', '$out')
 print(c['kept'])
@@ -77,7 +77,7 @@ fi
 # 4) rebuild splits
 SPLIT_DIR="$C/splits_v3"
 if [ ! -s "$SPLIT_DIR/train.fasta" ]; then
-  $PY /home/cunyuliu/codonflow/scripts/build_splits.py \
+  $PY /home/codonflow/scripts/build_splits.py \
     --cleaned "$MERGED" --cluster-tsv "$TSV" --out-dir "$SPLIT_DIR" >> "$LOG" 2>&1
 fi
 for f in train val test; do

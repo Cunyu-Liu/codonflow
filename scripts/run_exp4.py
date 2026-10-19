@@ -49,31 +49,31 @@ from codonflow.core.tokenizer import CODON_TO_INDEX, BOS_ID, EOS_ID
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.core.motifs import motif_penalty_score
 
-ATC_YAML = "/home/cunyuliu/codonflow/configs/atc_norm.yaml"
+ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
 
 GROUPS = [
-    ("v4_equal", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_ungated/converged.pt"),
-    ("v4_equal_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_equal/converged.pt"),
-    ("v4_equal_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_equal/converged.pt"),
-    ("v4_lam025", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_lam025/converged.pt"),
-    ("v4_lam025_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_lam025/converged.pt"),
-    ("v4_lam025_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_lam025/converged.pt"),
-    ("v4_lam075", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_lam075/converged.pt"),
-    ("v4_lam075_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_lam075/converged.pt"),
-    ("v4_lam075_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_lam075/converged.pt"),
-    ("v4_direct_only", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_direct_only/converged.pt"),
-    ("v4_direct_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_direct/converged.pt"),
-    ("v4_direct_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_direct/converged.pt"),
-    ("v4_reverse_only", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v4_reverse_only/converged.pt"),
-    ("v4_reverse_s1", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s1_reverse/converged.pt"),
-    ("v4_reverse_s2", "/mnt/cunyuliu/codonflow/checkpoints/p3_v4s2_reverse/converged.pt"),
-    ("v3_gated", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v3/last.pt"),
-    ("v2_weak_guide", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v2/last.pt"),
-    ("pretrain", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_768d/converged.pt"),
-    ("pretrain_v2", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
-    ("pretrain_v2_conv", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt"),
-    ("rloo_v5", "/mnt/cunyuliu/codonflow/checkpoints/p3_rloo_v5_v2base/converged.pt"),
-    ("pretrain_v2_ep18", "/mnt/cunyuliu/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
+    ("v4_equal", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_ungated/converged.pt"),
+    ("v4_equal_s1", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s1_equal/converged.pt"),
+    ("v4_equal_s2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s2_equal/converged.pt"),
+    ("v4_lam025", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_lam025/converged.pt"),
+    ("v4_lam025_s1", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s1_lam025/converged.pt"),
+    ("v4_lam025_s2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s2_lam025/converged.pt"),
+    ("v4_lam075", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_lam075/converged.pt"),
+    ("v4_lam075_s1", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s1_lam075/converged.pt"),
+    ("v4_lam075_s2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s2_lam075/converged.pt"),
+    ("v4_direct_only", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_direct_only/converged.pt"),
+    ("v4_direct_s1", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s1_direct/converged.pt"),
+    ("v4_direct_s2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s2_direct/converged.pt"),
+    ("v4_reverse_only", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v4_reverse_only/converged.pt"),
+    ("v4_reverse_s1", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s1_reverse/converged.pt"),
+    ("v4_reverse_s2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v4s2_reverse/converged.pt"),
+    ("v3_gated", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v3/last.pt"),
+    ("v2_weak_guide", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v2/last.pt"),
+    ("pretrain", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_768d/converged.pt"),
+    ("pretrain_v2", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
+    ("pretrain_v2_conv", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/converged.pt"),
+    ("rloo_v5", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v5_v2base/converged.pt"),
+    ("pretrain_v2_ep18", "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p2_pretrain_v2_corrupt/last.pt"),
 ]
 
 
@@ -107,10 +107,10 @@ def _get_sampler(model, device, reward_fn, temperature):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--rscu-json", default="/home/cunyuliu/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--n-decodes", type=int, default=30)
     ap.add_argument("--n-steps", type=int, default=20)
-    ap.add_argument("--out", default="/mnt/cunyuliu/codonflow/eval_outputs/E4_ablation.json")
+    ap.add_argument("--out", default="/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/E4_ablation.json")
     ap.add_argument("--only", default="", help="comma-separated group filter (default: all)")
     ap.add_argument("--append", action="store_true", help="merge into existing --out json")
     args = ap.parse_args()
