@@ -61,7 +61,7 @@ from codonflow.core.motifs import motif_penalty_score
 ATC_YAML = "/home/codonflow/configs/atc_norm.yaml"
 LD_BIN = "/home/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
 LD_DIR = "/home/codonflow/third_party/LinearDesign"
-CKPT_GPT = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT_GPT = "/teams/HoulabData_1788502323/liucunyu/codonflow/codonGPT_hf"
 
 SCENARIOS = {
     "S1_cai": ["cai"],

@@ -18,7 +18,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-CKPT_DIR = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT_DIR = "/teams/HoulabData_1788502323/liucunyu/codonflow/codonGPT_hf"
 
 from codonflow.core.codon import (
     SYNONYMOUS_CODONS,

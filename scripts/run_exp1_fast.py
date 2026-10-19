@@ -45,7 +45,7 @@ from codonflow.eval.metrics import (
 from codonflow.eval.mfe_parallel import mfe_batch_parallel
 from scipy.stats import ks_2samp
 
-CKPT = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+CKPT = "/teams/HoulabData_1788502323/liucunyu/codonflow/codonGPT_hf"
 
 
 def load_codongpt(device):

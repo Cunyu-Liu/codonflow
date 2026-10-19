@@ -70,12 +70,12 @@ def main() -> None:
     rscu = json.loads(Path(args.rscu_json).read_text())
     weights = cai_weights_from_rscu(rscu)
 
-    sys.path.insert(0, "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4")
+    sys.path.insert(0, "/teams/HoulabData_1788502323/liucunyu/codonflow/codonGPT_hf")
     from transformers import GPT2Config, GPT2LMHeadModel
 
     from tokenizer import CodonTokenizer
 
-    ckpt = "/home/mrna_editflow_goal/mrna_editflow/external_tools/codonGPT_hf_ee7017c4"
+    ckpt = "/teams/HoulabData_1788502323/liucunyu/codonflow/codonGPT_hf"
     tok = CodonTokenizer.from_pretrained(ckpt)
     cfg = GPT2Config.from_pretrained(ckpt)
     cfg.bos_token_id = None
