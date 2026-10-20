@@ -505,3 +505,22 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 8 landed
 **355M log.jsonl 新记录**: {"epoch": 8, "train_loss": 2.8253317016167427, "val_loss": 2.823716446911847, "cond_gap": 1.2416448593139648, "elapsed_min": 1846.8709346731505}
 - (自动记录: 训练曲线截至 e8; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-21 00:15 (巡查: e8 破 e3 新低 2.8237 + HELD18 18/18 全表已自动落 journal + v3rloo 链 5 并行实测慢)
+
+**355M 训练**: e9 进行中 b10000/102589 (9.7%), train loss 2.8197, epoch 9 口径 elapsed 1883.7min
+- 曲线: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / **e8 2.8237 (跌破 e3, 新历史最优)**
+- e4-e7 的「高于 e3」担忧解除: e7 2.8335 已贴平 e3, e8 直接破位。last.pt_e3_backup 不再是历史最优 (e8 起为 last.pt); plateau 判据仍未满足 (e8 环比 e7 -0.35%), 继续训练。收敛仍由 tracker 自动判 (连续 3 epoch 相对下降 <0.1%)
+- 训练速度: e9 b6500 到 b10000 用 12.7min (~276 batch/min), e9 预计 ~5.7h 后落盘 (GPU 与 5 链评测共享)
+
+**HELD18_V3**: 18/18 完成 (19:01 g17 落盘), auto1020 已自动出全表 journal + push (66e3c08):
+- S1 geo 0.976 / S2 geo 1.082 / S3 geo 1.108; 长度分层 S3: long 1.156 / short 1.114 / mid 1.004 —— v3 基座 L2 全线占优 (S1 单目标 DP 域除外)
+
+**v3rloo 评测链调度偏差 (如实记录)**: 用户指令为单链串行, 但 auto1020 实际以 5 并行 chunk (c0-c4) 启动 (19:02)
+- 实测: load 81-85 (10-19 教训线 load 72 即 IO 饥饿), 36 个 eval 进程挤 12 核, 训练掉速至 ~40% 独占水平
+- 决定不干预: 36 进程全 R 态有 CPU 累积非僵死; e9 ETA 5.7h 可接受; 5 链总 wall-clock 仍快于单链串行, 且训练未到收敛关键期。若 e9 落盘明显超 8h 再考虑砍链
+- v3rloo 首批 JSON 预期 19:02+~8h (egfp/nluc steps=20 最重臂); 5 条 log 无新行属正常 (run_exp5_ood 逐 scenario 增量写, 日志只打印方向头)
+
+**系统**: GPU 20.3GB/24GB, 98% util; tmux 全活 (p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c4); watchdog 双实例 (v8wd + 启动链内嵌) —— 训练健康故两者均无动作, 无冲突
+
+**下一步**: e9-e11 关注 plateau 判定与 converged.pt 触发 (auto1020 自动拉 355M 全量链); v3rloo JSON 落盘后做 v3rloo vs v3_56m E5 对比, 裁决 RLOO 增益是否存在
