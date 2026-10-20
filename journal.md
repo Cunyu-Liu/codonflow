@@ -405,3 +405,7 @@
 - GPU 17.3GB / 98%; tmux 四会话 (p3_v3_355m / h18_v3 / v8wd / auto1020) 全存活
 - **auto1020 守护 (tmux auto1020, 08:42 启动)**: 每 5min 轮询——新 epoch→journal+git push; HELD18 18/18→v3rloo 链 (run_v3_eval_rloo.sh, 串行) + held18_v3_vs_v2_summary.py 全表 (几何平均+长度分层) 写 journal; converged.pt→run_v3_eval.sh p3_v3_355m 全量链。后续触发全自动, 人工只做巡查
 - 若 e6 val 仍 >2.8350 且 tracker 判 converged (plateau 满): auto 链用 last.pt (e6 权重) 启动评测——与 journal 既定判断 (e3 为历史最优, 用 e3 做对照) 的取舍在评测启动后再评估
+
+## 2026-10-20 auto: 355M epoch 6 landed
+**355M log.jsonl 新记录**: {"epoch": 6, "train_loss": 2.845156342515951, "val_loss": 2.8412492060366974, "cond_gap": 1.1962485313415527, "elapsed_min": 1100.6936412056286}
+- (自动记录: 训练曲线截至 e6; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
