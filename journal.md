@@ -543,3 +543,11 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 9 landed
 **355M log.jsonl 新记录**: {"epoch": 9, "train_loss": 2.8141134123317033, "val_loss": 2.8091045592154984, "cond_gap": 1.2941683530807495, "elapsed_min": 2232.591271865368}
 - (自动记录: 训练曲线截至 e9; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-21 06:10 (patrol: e9 2.8091 再创新低, e10 已启动; rloo JSON 仍 0 但链健康)
+
+**355M**: e9 val 2.8091 (e8 2.8237 → -0.52%), 连续 2 epoch 破位下降, 收敛无拐点迹象; e10 b2900 已在跑 (train 2.82)
+- auto1020 已自动 journal+push f0a496d; converged.pt 未出现 (plateau 判据未满足: e9 环比 -0.52% >> 0.1%)
+- epoch_009.pt 902M 落盘于 10-20 23:38 (e9 结束时写), last.pt 更新至 e9
+
+**v3rloo**: 11h+ JSON 仍 0/15。进程树深查: egfp cf 臂 30187s 单臂完成 (load 39 环境下显著慢于预期); mouse 三臂仍在 S2/S3 场景 MFE 队列。5 链调度为 auto1020 偏差 (5 并行非单链串行), 但决定不干预维持, 理由: 训练 e9 实际 6h 内落盘未受致命拖慢
