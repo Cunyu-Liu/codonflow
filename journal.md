@@ -524,3 +524,18 @@ long bin geomean ratio: 1.156 (n=3)
 **系统**: GPU 20.3GB/24GB, 98% util; tmux 全活 (p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c4); watchdog 双实例 (v8wd + 启动链内嵌) —— 训练健康故两者均无动作, 无冲突
 
 **下一步**: e9-e11 关注 plateau 判定与 converged.pt 触发 (auto1020 自动拉 355M 全量链); v3rloo JSON 落盘后做 v3rloo vs v3_56m E5 对比, 裁决 RLOO 增益是否存在
+
+## 2026-10-21 05:08 (patrol: e9 87% running, e8 2.8237 best; v3rloo 5 链健康非僵死; 45 个 eval 进程挤 12 核致训练掉速)
+
+**355M 训练**: e9 b89800/102589 (87.6%), train loss 2.8136, 速率 ~4.3 batch/s 独占口径修正: 2172min/b89800 → 实测最近 30 batch 稳定 3.4s/100batch
+- 曲线: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / **e8 2.8237 (历史最优)**
+- e9 ETA ~05:50 落盘; val 拐点尚未出现, plateau 判据 (连续 3 epoch 相对下降 <0.1%) 远未满足, 训练继续
+
+**v3rloo 链健康度深查** (日志静默担忧排查):
+- c4 e3_egfp 已打印首批结果 (CAI 0.780/MFE -187.6), c0 egfp_s0 cf 臂 30187s 完成 —— 链在真跑
+- mouse 三臂主进程 futex_wait (等 MFE worker), 子进程 R 态各累积 ~3h CPU —— 非僵死, 属 load 39 下 MFE 队列慢
+- 全局 45 个 eval python 进程挤 12 核 (load 39-41): E5 与 E3 共享 MFE_PROCS=8, IO/CPU 饱和是评测慢根因, 非进程故障
+
+**系统**: GPU 20.3GB/24GB, 100% util, 75C/405W; tmux p3_v3_355m / v8wd / auto1020 / v3ev c0-c4 全活; h18_v3 已完成退出 (正常); 双 watchdog 无冲突
+
+**下一步**: e9/e10 落盘后看 val 是否续降; v3rloo JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
