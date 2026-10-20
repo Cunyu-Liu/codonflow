@@ -394,3 +394,14 @@
 - tracker: plateau 2/3 (相对 e4 下降 0.75% > 0.1%, 未计入 plateau; 判据按连续 3 epoch 相对下降 <0.1% 计)。e6 已自动启动
 - 关键判断: e5 val (2.8542) 与 e4 (2.8563) 几乎持平且均高于 e3 (2.8350) —— 若 e6 仍 >2.8350, 则 e3 (last.pt_e3_backup) 确认为历史最优权重, 应以 e3 做评测而非最末 epoch
 - HELD18_V3 评测 11/18 (g11 gEgl 评测中), 与 355M 共享 GPU, 355M 速度 ~76% 独占水平; GPU 17.4GB/100%
+
+
+## 2026-10-20 08:5x (巡查: e6 62% + HELD18 12/18 + auto1020 守护已接管后续触发)
+
+**状态快照 (08:44)**:
+- 355M e6 进行中 b63700/102589 (62%), train loss 2.8471 (低于 e5 train 2.8621); 预计 ~11:00-11:30 落盘, 之后 val
+- 曲线: e1 2.9672 / e2 2.8844 / e3 **2.8350 (最优)** / e4 2.8563 / e5 2.8542; e5 已由上一会话记入并 push (208df3a), last.pt_e3_backup 在位
+- HELD18_V3 12/18: g11 (ENSGALT00010048894, 1.16MB 长基因) 耗时 7.7h 于 06:06 落盘; g12 (ENSGALT00010059157) 06:06 起评测中 (8 worker, CPU 正常)。注意: gEgl 鸡基因组长序列拖慢串行链, g13-g17 若同量级则全表还需 ~20h+
+- GPU 17.3GB / 98%; tmux 四会话 (p3_v3_355m / h18_v3 / v8wd / auto1020) 全存活
+- **auto1020 守护 (tmux auto1020, 08:42 启动)**: 每 5min 轮询——新 epoch→journal+git push; HELD18 18/18→v3rloo 链 (run_v3_eval_rloo.sh, 串行) + held18_v3_vs_v2_summary.py 全表 (几何平均+长度分层) 写 journal; converged.pt→run_v3_eval.sh p3_v3_355m 全量链。后续触发全自动, 人工只做巡查
+- 若 e6 val 仍 >2.8350 且 tracker 判 converged (plateau 满): auto 链用 last.pt (e6 权重) 启动评测——与 journal 既定判断 (e3 为历史最优, 用 e3 做对照) 的取舍在评测启动后再评估
