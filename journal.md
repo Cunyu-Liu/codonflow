@@ -424,3 +424,80 @@
 ## 2026-10-20 auto: 355M epoch 7 landed
 **355M log.jsonl 新记录**: {"epoch": 7, "train_loss": 2.833011314862339, "val_loss": 2.833489456412233, "cond_gap": 1.2713844776153564, "elapsed_min": 1465.8801079829534}
 - (自动记录: 训练曲线截至 e7; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-20 auto: HELD18 v3 18/18 complete + v3rloo eval chain launched
+**HELD18_V3 全表 (codonflow 臂, 几何平均 + 长度分层)**:
+genes common: 18
+
+## S1 (codonflow HV): geomean ratio v3/v2conv = 0.976 (n=18)
+| gene | species | bin | len | v2conv | v3 | ratio |
+|---|---|---|---|---|---|---|
+| g00_ENSTRUT00000041279_3.json | human | short | 534nt | 0.35 | 0.35 | 0.991 |
+| g01_ENSTRUT00000055505_2.json | human | short | 315nt | 0.34 | 0.35 | 1.013 |
+| g02_ENSMUST00000217097_2.json | mouse | short | 408nt | 0.32 | 0.31 | 0.982 |
+| g03_ENSMUST00000208011_2.json | mouse | short | 345nt | 0.32 | 0.33 | 1.019 |
+| g04_FBtr0088527.json | fly | short | 375nt | 0.35 | 0.31 | 0.892 |
+| g05_ENSDART00000152871_2.json | zfish | short | 462nt | 0.32 | 0.32 | 1.004 |
+| g06_Y116F11B_13_1.json | celegans | short | 549nt | 0.34 | 0.34 | 0.990 |
+| g07_ENSRNOT00000095761_1.json | rat | short | 408nt | 0.32 | 0.31 | 0.967 |
+| g08_YBL053W_mRNA.json | yeast | short | 375nt | 0.30 | 0.29 | 0.961 |
+| g09_ENSCAFT00845045670_1.json | dog | short | 474nt | 0.30 | 0.31 | 1.015 |
+| g10_ENSGALT00010069053_1.json | chicken | short | 444nt | 0.32 | 0.31 | 0.966 |
+| g11_ENSGALT00010048894_1.json | chicken | long | 1764nt | 0.25 | 0.24 | 0.979 |
+| g12_ENSGALT00010059157_1.json | chicken | long | 1686nt | 0.26 | 0.26 | 0.989 |
+| g13_ENSXETT00000120135_1.json | other | mid | 678nt | 0.32 | 0.30 | 0.954 |
+| g14_FBtr0088525.json | fly | short | 375nt | 0.35 | 0.31 | 0.892 |
+| g15_ENST00000560305_5.json | human | short | 450nt | 0.31 | 0.31 | 0.985 |
+| g16_ENSGALT00010060408_1.json | chicken | mid | 714nt | 0.29 | 0.30 | 1.017 |
+| g17_ENSACAT00000024699_2.json | other | long | 1134nt | 0.30 | 0.29 | 0.965 |
+short bin geomean ratio: 0.974 (n=13)
+mid bin geomean ratio: 0.985 (n=2)
+long bin geomean ratio: 0.978 (n=3)
+
+## S2 (codonflow HV): geomean ratio v3/v2conv = 1.082 (n=17)
+| gene | species | bin | len | v2conv | v3 | ratio |
+|---|---|---|---|---|---|---|
+| g00_ENSTRUT00000041279_3.json | human | short | 534nt | 31.22 | 26.81 | 0.859 |
+| g01_ENSTRUT00000055505_2.json | human | short | 315nt | 5.99 | 8.54 | 1.425 |
+| g02_ENSMUST00000217097_2.json | mouse | short | 408nt | 11.56 | 15.59 | 1.349 |
+| g03_ENSMUST00000208011_2.json | mouse | short | 345nt | 3.74 | 3.07 | 0.821 |
+| g04_FBtr0088527.json | fly | short | 375nt | 2.93 | 4.58 | 1.566 |
+| g05_ENSDART00000152871_2.json | zfish | short | 462nt | 27.27 | 28.09 | 1.030 |
+| g06_Y116F11B_13_1.json | celegans | short | 549nt | 17.34 | 17.22 | 0.993 |
+| g07_ENSRNOT00000095761_1.json | rat | short | 408nt | 17.19 | 17.82 | 1.036 |
+| g09_ENSCAFT00845045670_1.json | dog | short | 474nt | 26.89 | 26.48 | 0.985 |
+| g10_ENSGALT00010069053_1.json | chicken | short | 444nt | 24.41 | 23.54 | 0.965 |
+| g11_ENSGALT00010048894_1.json | chicken | long | 1764nt | 145.65 | 147.59 | 1.013 |
+| g12_ENSGALT00010059157_1.json | chicken | long | 1686nt | 105.07 | 107.57 | 1.024 |
+| g13_ENSXETT00000120135_1.json | other | mid | 678nt | 33.40 | 33.60 | 1.006 |
+| g14_FBtr0088525.json | fly | short | 375nt | 2.93 | 4.58 | 1.566 |
+| g15_ENST00000560305_5.json | human | short | 450nt | 20.94 | 21.07 | 1.006 |
+| g16_ENSGALT00010060408_1.json | chicken | mid | 714nt | 41.62 | 40.90 | 0.983 |
+| g17_ENSACAT00000024699_2.json | other | long | 1134nt | 51.73 | 57.63 | 1.114 |
+short bin geomean ratio: 1.106 (n=12)
+mid bin geomean ratio: 0.994 (n=2)
+long bin geomean ratio: 1.049 (n=3)
+
+## S3 (codonflow HV): geomean ratio v3/v2conv = 1.108 (n=17)
+| gene | species | bin | len | v2conv | v3 | ratio |
+|---|---|---|---|---|---|---|
+| g00_ENSTRUT00000041279_3.json | human | short | 534nt | 109.52 | 131.58 | 1.201 |
+| g01_ENSTRUT00000055505_2.json | human | short | 315nt | 20.82 | 21.27 | 1.022 |
+| g02_ENSMUST00000217097_2.json | mouse | short | 408nt | 74.39 | 39.72 | 0.534 |
+| g03_ENSMUST00000208011_2.json | mouse | short | 345nt | 16.52 | 27.57 | 1.669 |
+| g04_FBtr0088527.json | fly | short | 375nt | 0.41 | 0.75 | 1.846 |
+| g05_ENSDART00000152871_2.json | zfish | short | 462nt | 135.08 | 137.69 | 1.019 |
+| g06_Y116F11B_13_1.json | celegans | short | 549nt | 47.25 | 60.22 | 1.275 |
+| g07_ENSRNOT00000095761_1.json | rat | short | 408nt | 80.54 | 85.26 | 1.059 |
+| g09_ENSCAFT00845045670_1.json | dog | short | 474nt | 127.20 | 126.29 | 0.993 |
+| g10_ENSGALT00010069053_1.json | chicken | short | 444nt | 137.52 | 113.31 | 0.824 |
+| g11_ENSGALT00010048894_1.json | chicken | long | 1764nt | 246.39 | 277.35 | 1.126 |
+| g12_ENSGALT00010059157_1.json | chicken | long | 1686nt | 328.60 | 351.96 | 1.071 |
+| g13_ENSXETT00000120135_1.json | other | mid | 678nt | 109.48 | 114.43 | 1.045 |
+| g14_FBtr0088525.json | fly | short | 375nt | 0.41 | 0.75 | 1.846 |
+| g15_ENST00000560305_5.json | human | short | 450nt | 109.16 | 95.37 | 0.874 |
+| g16_ENSGALT00010060408_1.json | chicken | mid | 714nt | 182.39 | 175.74 | 0.964 |
+| g17_ENSACAT00000024699_2.json | other | long | 1134nt | 86.96 | 111.39 | 1.281 |
+short bin geomean ratio: 1.114 (n=12)
+mid bin geomean ratio: 1.004 (n=2)
+long bin geomean ratio: 1.156 (n=3)
