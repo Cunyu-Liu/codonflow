@@ -501,3 +501,7 @@ long bin geomean ratio: 1.049 (n=3)
 short bin geomean ratio: 1.114 (n=12)
 mid bin geomean ratio: 1.004 (n=2)
 long bin geomean ratio: 1.156 (n=3)
+
+## 2026-10-20 auto: 355M epoch 8 landed
+**355M log.jsonl 新记录**: {"epoch": 8, "train_loss": 2.8253317016167427, "val_loss": 2.823716446911847, "cond_gap": 1.2416448593139648, "elapsed_min": 1846.8709346731505}
+- (自动记录: 训练曲线截至 e8; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
