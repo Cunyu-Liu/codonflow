@@ -569,3 +569,7 @@ long bin geomean ratio: 1.156 (n=3)
 
 **下一步**: e10/e11 落盘看 val 是否续降 (关注 e9 2.8091 后 plateau 判定); v3rloo 剩余 14 JSON 落盘后做 v3rloo vs v3_56m E5 对比, 裁决 RLOO 增益
 
+
+## 2026-10-20 auto: 355M epoch 10 landed
+**355M log.jsonl 新记录**: {"epoch": 10, "train_loss": 2.8084262532760755, "val_loss": 2.8065223370658026, "cond_gap": 1.6343398094177246, "elapsed_min": 2617.1020007014276}
+- (自动记录: 训练曲线截至 e10; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
