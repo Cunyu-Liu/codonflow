@@ -623,3 +623,7 @@ long bin geomean ratio: 1.156 (n=3)
 **系统**: GPU 19.6GB/24GB, 97% util, 76C/415W (355M + rloo eval 并行); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活; h18_v3 与 c4 正常完成退出无需重启; git main=origin/main (722f47b)
 
 **下一步**: e12 ~01:10 落盘 (auto1020 自动记录, 看 plateau 是否 1/3); rloo 剩余 13 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
+
+## 2026-10-20 auto: 355M epoch 12 landed
+**355M log.jsonl 新记录**: {"epoch": 12, "train_loss": 2.8009961656457256, "val_loss": 2.793847070387852, "cond_gap": 1.8151447772979736, "elapsed_min": 3383.5062695384026}
+- (自动记录: 训练曲线截至 e12; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
