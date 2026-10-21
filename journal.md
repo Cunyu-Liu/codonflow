@@ -551,3 +551,21 @@ long bin geomean ratio: 1.156 (n=3)
 - epoch_009.pt 902M 落盘于 10-20 23:38 (e9 结束时写), last.pt 更新至 e9
 
 **v3rloo**: 11h+ JSON 仍 0/15。进程树深查: egfp cf 臂 30187s 单臂完成 (load 39 环境下显著慢于预期); mouse 三臂仍在 S2/S3 场景 MFE 队列。5 链调度为 auto1020 偏差 (5 并行非单链串行), 但决定不干预维持, 理由: 训练 e9 实际 6h 内落盘未受致命拖慢
+
+## 2026-10-21 10:10 (patrol: e10 65.8% running 2.8106; v3rloo 首个 JSON 落盘 1/15; 链健康; e9 2.8091 仍为最优)
+
+**355M 训练**: e10 b67500/102589 (65.8%), train loss 2.8106, 速率 ~4.2m/1000batch (GPU 与评测链共享)
+- 曲线: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / **e9 2.8091 (历史最优)**
+- e4-e6 反弹担忧已彻底解除: e7 起连续 3 epoch 破位下降 (e9 环比 -0.52%), last.pt_e3_backup 已非最优, plateau 判据 (连续 3 epoch 相对下降 <0.1%) 远未满足
+- converged.pt 未出现; e10 预计 ~12:00 落盘, auto1020 会自动 journal+push 并在 converged 后拉 355M 全量评测链
+
+**v3rloo 评测链**: E3_egfp JSON 已落盘 (07:02, 1/15); E3_nluc 正在跑 (log 09:54 活跃, 已出 3 方向结果); E5_mouse s0/s1/s2 三臂全 R 态累积 CPU ~4.8h/进程
+- load 72-75, 54 个 eval 进程挤 12 核 —— 延续 10-20 判断: 健康非僵死, 不干预
+- 调度偏差 (5 并行非单链串行) 维持原决定: 总 wall-clock 更优, 训练未受致命拖慢 (e9 6h 落盘)
+
+**HELD18_V3**: 18/18 已完成, auto1020 全表 (S1 geo 0.976 / S2 geo 1.082 / S3 geo 1.108; S3 分层 long 1.156 / short 1.114 / mid 1.004) 已 journal+push —— v3 基座 L2 全线占优结论确认
+
+**系统**: GPU 20.3GB/24GB, 85% util, 75C/409W; tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c4 全活; h18_v3 正常完成退出; 双 watchdog 无冲突无动作
+
+**下一步**: e10/e11 落盘看 val 是否续降 (关注 e9 2.8091 后 plateau 判定); v3rloo 剩余 14 JSON 落盘后做 v3rloo vs v3_56m E5 对比, 裁决 RLOO 增益
+
