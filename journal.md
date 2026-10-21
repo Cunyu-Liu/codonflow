@@ -573,3 +573,19 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 10 landed
 **355M log.jsonl 新记录**: {"epoch": 10, "train_loss": 2.8084262532760755, "val_loss": 2.8065223370658026, "cond_gap": 1.6343398094177246, "elapsed_min": 2617.1020007014276}
 - (自动记录: 训练曲线截至 e10; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-21 15:10 (patrol: e10 val 2.8065 新最优已auto落账; e11 41.7% running 2.8052; plateau 计数 1/3; rloo 3/17; g04/g14 序列重复发现)
+
+**355M 训练**: e11 b42800/102589 (41.7%), train loss 2.8052, 速率 ~4.2m/1000batch
+- 曲线全貌: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / **e10 2.8065 (历史最优, 已由 auto1020 journal+push 816ea5a)**
+- e4-e6 反弹担忧解除确认: e7 起连续 4 epoch 破位下降; **e10 环比 +0.092% 首次 <0.1%, plateau 计数 1/3** —— 若 e11/e12 继续 <0.1% 则 e12 后写 converged.pt (auto1020 届时自动拉 run_v3_eval.sh p3_v3_355m v3_355m launch 全量评测链)
+- last.pt_e3_backup 已彻底过时 (e3 2.8350 vs e10 2.8065)
+
+**v3rloo 评测链**: 3/17 JSON 落盘 (E3_egfp 07:02 / E5_egfp_s0 11:22 / E3_nluc 14:15); c4 链 (E3×2) 已正常完成退出, c0-c3 存活 (c0-c2 在 mouse 三臂, c3 已过 egfp_s0 进 nluc/zfish 段)
+- 18 个 run_exp5_ood 进程 + 训练共享 GPU; load 87-90 高但链健康, 维持不干预
+
+**HELD18_V3**: 18/18 全表已在 journal (35026fa); **数据质量发现: bench_heldout18.fasta 中 g04 (FBtr0088527) 与 g14 (FBtr0088525) 序列完全相同 (md5 a49bdc2a…, 375nt fly)** —— 非汇总 bug, 是 benchmark 源含重复项; v2conv/v3 两侧同受影响、比值对比仍公平, 但 "18 held-out" 实为 17 unique, geomean 该序列双倍计权。预印本写作时需注明 n=17 unique 或修复 fasta 重跑 (暂不动, 避免中途变更协议)
+
+**系统**: GPU 19.6GB/24GB, 100% util, 77C/410W; tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活; h18_v3 与 c4 均为正常完成退出, 无需重启; git 已同步 (main=origin/main)
+
+**下一步**: e11 ~18:00 落盘看 plateau 计数是否 2/3; rloo 剩余 14 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
