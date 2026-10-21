@@ -609,3 +609,17 @@ long bin geomean ratio: 1.156 (n=3)
 **系统**: GPU 19.6GB/24GB 100% util; tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活 (h18_v3 与 c4 正常完成退出, 无需重启); auto1020 持续守 converged.pt → 届时自动拉 run_v3_eval.sh p3_v3_355m v3_355m launch
 
 **下一步**: e12 ~01:10 落盘看 plateau 是否 1/3; rloo 剩余 13 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
+
+## 2026-10-22 00:10 (patrol: e12 84% running 2.8012; e11 2.8024 best; plateau 0/3; rloo 4/17 nluc_s2 active; all chains alive; HELD18 全表/v3rloo 链均 auto 完成值守中)
+
+**355M 训练**: e12 b86600/102589 (84.3%), train loss 2.8011-2.8015, 速率 ~4.2m/1000batch, 预计 ~01:10 落盘 (auto1020 自动 journal+push)
+- 曲线全貌: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / e10 2.8065 / **e11 2.8024 (历史最优)**
+- e4-e6 反弹早已消化 (e7 起连续 5 epoch 破位下降); last.pt_e3_backup 彻底过时 (e3 2.8350 vs e11 2.8024, 差 1.15%)
+- plateau 判定 0/3 (e10 曾 1/3, e11 环比 -0.146% 重置); converged.pt 未出现, auto1020 值守 → 出现即自动拉 run_v3_eval.sh p3_v3_355m v3_355m launch 全量评测链
+
+**v3rloo 评测链** (auto1020 已于 10-20 19:02 自动启动, 无需人工重复触发): 4/17 JSON (E3_egfp 07:02 / E5_egfp_s0 11:22 / E3_nluc 14:15 / E5_nluc_s1 19:15); c3 在 nluc_s2 (cf 臂 15603s 完成 23:35, log 活跃); c0-c2 仍在 mouse 三臂 (S3_quad MFE 段, 已 ~29h 慢但进程存活累积 CPU); c4 (E3x2) 正常完成退出
+- 5 链并行调度偏差延续 10-20 决定不干预; HELD18 18/18 + v3 vs v2conv 全表 (S1 geo 0.976 / S2 1.082 / S3 geo 1.108 + 长度分层) 已 journal+push; 巡逻基线 "HELD18 11/18 串行中" 已过时: 输出实际在内层 codonflow/codonflow/eval_outputs/, 前缀 HELD18_V356m_ (grep HELD18_V3 匹配 0 属命名差异非缺文件)
+
+**系统**: GPU 19.6GB/24GB, 97% util, 76C/415W (355M + rloo eval 并行); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活; h18_v3 与 c4 正常完成退出无需重启; git main=origin/main (722f47b)
+
+**下一步**: e12 ~01:10 落盘 (auto1020 自动记录, 看 plateau 是否 1/3); rloo 剩余 13 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
