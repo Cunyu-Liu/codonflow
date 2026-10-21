@@ -593,3 +593,19 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 11 landed
 **355M log.jsonl 新记录**: {"epoch": 11, "train_loss": 2.802808717529454, "val_loss": 2.8023669613732234, "cond_gap": 1.6281232833862305, "elapsed_min": 3000.8180812438327}
 - (自动记录: 训练曲线截至 e11; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-21 20:10 (patrol: e11 2.8024 new best already auto-logged; e12 20% running; plateau reset 0/3; rloo 4/17; all chains alive)
+
+**355M 训练**: e12 b20500/102589 (20%), train loss ~2.807, 速率 ~4.2m/1000batch, 预计 ~01:10 落盘
+- 曲线全貌: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / e10 2.8065 / **e11 2.8024 (历史最优, auto1020 已 journal+push c9f8be0)**
+- plateau 判定: e10 曾 1/3 (环比 -0.092%), e11 环比 -0.146% > 0.1% 重置 0/3 —— 距 converged 判定 (连续 3 epoch <0.1%) 至少还需 3 epoch; converged.pt 未出现
+- e4-e6 反弹早已消化: e7 起连续 5 epoch 破位下降; last.pt_e3_backup 彻底过时 (e3 2.8350 vs e11 2.8024, 差 1.15%)
+
+**v3rloo 评测链**: 4/17 JSON 落盘 (E3_egfp 07:02 / E5_egfp_s0 11:22 / E3_nluc 14:15 / **E5_nluc_s1 19:15 新增**); c4 链 (E3x2) 完成退出, c0-c3 存活
+- c0-c2 仍在 mouse 三臂 (S3_quad 段), c3 在 nluc_s2 (S2_cai_mfe 段); load 高但链健康 (进程累积 CPU 持续增长), 维持不干预
+
+**HELD18_V3**: 18/18 + 全表 + v3rloo 链启动均由 auto1020 自动完成 (35026fa/816ea5a), 无需人工重复触发
+
+**系统**: GPU 19.6GB/24GB 100% util; tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活 (h18_v3 与 c4 正常完成退出, 无需重启); auto1020 持续守 converged.pt → 届时自动拉 run_v3_eval.sh p3_v3_355m v3_355m launch
+
+**下一步**: e12 ~01:10 落盘看 plateau 是否 1/3; rloo 剩余 13 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
