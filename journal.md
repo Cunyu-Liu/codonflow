@@ -627,3 +627,19 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 12 landed
 **355M log.jsonl 新记录**: {"epoch": 12, "train_loss": 2.8009961656457256, "val_loss": 2.793847070387852, "cond_gap": 1.8151447772979736, "elapsed_min": 3383.5062695384026}
 - (自动记录: 训练曲线截至 e12; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-22 05:05 (patrol: e12 2.7938 new best already auto-logged+pushed 3c01dad; e13 62% running 2.7968; plateau 0/3; rloo 5/17 E5_nluc_s2 new; mouse 3 arms S3_quad ~33.5h still alive; converged watch continues)
+
+**355M 训练**: e13 b63400/102589 (61.8%), train loss 2.7968-2.7974, 速率 ~3.6m/1000batch, 预计 ~07:30 落盘 (auto1020 自动 journal+push)
+- 曲线全貌: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / e10 2.8065 / e11 2.8024 / **e12 2.7938 (历史最优, auto1020 已 journal+push 3c01dad)**
+- plateau 判定: e12 环比 -0.31% > 0.1% 维持 0/3 (距 converged 判定至少还需 3 epoch); converged.pt 未出现, auto1020 值守 → 出现即自动拉 run_v3_eval.sh p3_v3_355m v3_355m launch 全量评测链
+- e4-e6 反弹已消化 6 epoch; last.pt_e3_backup 彻底过时 (e3 2.8350 vs e12 2.7938, 差 1.46%)
+
+**v3rloo 评测链** (auto1020 已于 10-20 19:02 自动启动): 5/17 JSON (新增 **E5_nluc_s2 03:10**); mouse 三臂 (c0/c1/c2) S3_quad 段单基因 cf 已 ~33.5h (120850s, log mtime 04:36-04:49 活跃); c3 已推进到 zfish_s0 (5645s, 04:44 活跃); 全链存活无需干预
+- 5 链并行调度偏差延续 10-20 决定不干预; mouse 三臂 S3_quad 超 34h 但进程 CPU 持续累积, 暂不干预
+
+**HELD18_V3**: 18/18 + v3 vs v2conv 全表 + v3rloo 链启动均由 auto1020 自动完成 (35026fa/816ea5a), 无需人工动作
+
+**系统**: GPU 20.1GB/24GB 98% util (355M + rloo eval 并行); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c3 全活; h18_v3 与 c4 正常完成退出无需重启; git main=origin/main (3c01dad)
+
+**下一步**: e13 ~07:30 落盘 (auto 记录, 看 plateau 是否 1/3); rloo 剩余 12 JSON 落盘后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
