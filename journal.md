@@ -713,3 +713,21 @@ long bin geomean ratio: 1.156 (n=3)
 **系统**: GPU 19.3GB/24GB 100% util 76C/415W (355M 16.5GB + mouse 3 臂); tmux auto1020 / p3_v3_355m / v3ev_v3rloo56m_c0-c2 / v8wd 全活; h18_v3 正常完成退出无需重启; git main=origin/main (4677295) 工作树 clean
 
 **下一步**: e16 ~01:30 落盘 auto 记录; converged.pt 出现 → auto1020 自动拉 run_v3_eval.sh p3_v3_355m 全量链; rloo 17/17 → 汇总 RLOO 裁决
+
+## 2026-10-23 00:15 (用户指令: 全部训练/评测任务停止 —— 状态冻结)
+
+**停止执行** (00:10): tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c2 全部 kill; run_pretrain / run_exp5_ood 等进程清零; GPU 归零 (1MiB/0%); tmux server 无会话。
+
+**冻结时点状态**:
+- 355M 训练: **e16 b78000/102589 (76%) 进行中即停**, train loss 2.7906。已落盘 15 epoch (log.jsonl 15 行): 曲线 e1 2.9672 / ... / e8 2.8237 / e9 2.8091 / e10 2.8065 / e11 2.8024 / e12 2.7938 / **e13 2.7921 (历史最优)** / e14 2.8069 (反弹) / e15 2.7941。**未触发收敛** (plateau 0/3, converged.pt 不存在)。last.pt = e15 权重 (md5 078b27fc), epoch_015.pt 同步; 每 3 epoch 存档 003/006/009/012/015 齐全; **注意: e13 最优无独立存档** (epoch_012.pt 是最近可得, 若需 e13 需从 e12 重跑 1 epoch 或接受 e12/e15)
+- v3rloo 评测链: **8/17 JSON** (E3 egfp/nluc + E5 egfp_s0 + nluc_s1/s2 + zfish s0/s1/s2); mouse s0/s1/s2 cf 臂已完成但基线 (LD/gpt/MFE) 未写盘即停, 该 3 arm 需整臂重跑; 剩余 fly×3 + egfp_s1/s2 + nluc_s0 未启动
+- HELD18_V3: **18/18 完整收官**, v3 vs v2conv 全表已出: **S3 geomean 1.108 (+10.8%), S2 1.082 (+8.2%), S1 0.976**; 长度分层 S3: long 1.156 / short 1.114 / mid 1.004; yeast g08 双零域 (评估器已知问题, 剔除); g02 mouse -47% 为唯一大退化; identity/legal 全部 100%
+- 56M 相关: v3_56m 17/17 评测 + RLOO v3 ckpt (p3_rloo_v3_56m 三件套) 均在位
+- RLOO v3 vs v3_56m 初步对照 (6 arm): egfp_s0 S3 -14% / zfish_s0/s1 -8%/-6% / nluc_s1/s2 +4%/+5% / zfish_s2 +10% —— 混合, 不支持"RL 有正增益"的强结论; RLOO 35-iter 快收敛的嫌疑 (信号弱) 部分坐实, 最终裁决需 mouse/fly 臂补全
+- 本地 3h 巡检 cron (dbf0ea85) 仍在 Trae 侧活跃——后续如需彻底静默需手动暂停
+
+**恢复路径 (下次继续时)**:
+1. 355M 续训: `tmux new-session -d -s p3_v3_355m "cd /home/codonflow && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=src PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True /root/miniconda3/envs/codonflow/bin/python src/codonflow/train/run_pretrain.py --train-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/splits_v3/train.fasta --val-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/splits_v3/val.fasta --out-dir /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v3_355m --d-model 1280 --n-layers 12 --n-heads 16 --dropout 0.0 --batch-tokens 4000 --grad-accum 15 --lr 1e-5 --resume /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_v3_355m/last.pt"` (或直接 `tmux new-session -d -s v8wd "bash /home/codonflow/scripts/v8_watchdog_4090.sh"`, watchdog 每 5min 自动拉起 + 收敛自动停)
+2. v3rloo 评测链补全: `bash scripts/run_v3_eval_rloo.sh p3_rloo_v3_56m_eval v3rloo56m launch` (幂等, 已有 JSON 自动跳过; mouse 3 arm 因基线未落盘会整臂重跑)
+3. 355M 评测 (收敛后): `bash scripts/run_v3_eval.sh p3_v3_355m v3_355m launch` (需先 cp last.pt converged.pt 或改用 e13 附近权重——见 journal e13 无存档注记)
+4. 集群其余自动脚本: auto_trigger_1020.sh (epoch→journal+git; HELD18→汇总; converged→全量链) 可重启: `tmux new-session -d -s auto1020 "bash /home/codonflow/scripts/auto_trigger_1020.sh"`
