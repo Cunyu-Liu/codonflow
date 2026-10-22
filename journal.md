@@ -683,3 +683,7 @@ long bin geomean ratio: 1.156 (n=3)
 **系统**: GPU 19.3GB/24GB 100% util 77C/420W; load 45 (18 rloo worker + 训练); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c2 全活; h18_v3/c4 正常完成退出无需重启; git main=origin/main (2434866)
 
 **下一步**: e15 ~20:00 落盘看 val 是否回破 2.7921 (若再反弹 + plateau 逻辑, 后续 epoch 关注 cond_gap); rloo mouse 三臂完成后汇总 RLOO 增益裁决; converged.pt 出现 → auto1020 自动拉 run_v3_eval.sh p3_v3_355m 全量链
+
+## 2026-10-20 auto: 355M epoch 15 landed
+**355M log.jsonl 新记录**: {"epoch": 15, "train_loss": 2.7949703374027135, "val_loss": 2.7941253281817025, "cond_gap": 1.917755365371704, "elapsed_min": 4489.868592596054}
+- (自动记录: 训练曲线截至 e15; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
