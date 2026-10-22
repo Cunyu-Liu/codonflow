@@ -700,3 +700,16 @@ long bin geomean ratio: 1.156 (n=3)
 **HELD18_V3**: 18/18 + v3 vs v2conv full table already done by auto1020 (input baseline 11/18 outdated)
 **system**: GPU 19.3GB/24GB 100pct util (355M 16.5GB + 3x918MB mouse arms); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c2 all alive (h18_v3 + c3/c4 exited normally after completion); git main=origin/main (5d0c12e)
 **next**: e16 ~01:30 auto-journaled; after mouse baselines -> fly/egfp/nluc 6 JSONs then 17/17 summary + RLOO verdict; converged.pt -> auto1020 auto-launches run_v3_eval.sh p3_v3_355m full chain
+
+## 2026-10-23 00:02 (patrol: e16 74pct running 2.7903; e13 2.7921 best; e15 auto-journaled; rloo 8/17 mouse MFE baseline 19h; all chains healthy no manual action)
+
+**355M 训练**: e16 b75800/102589 (73.8%), train loss 2.7904, 速率 ~4.3m/1000b, 预计 ~01:30-02:00 落盘 (auto1020 自动 journal+push)
+- 曲线: e13 2.7921 (历史最优) / e14 2.8069 (反弹) / e15 2.7941 (较 e14 改善 0.46% 重置 plateau 0/3); converged.pt 未出现; 巡逻输入基线过时 (e5 2.8542 / e6 2.8412 均已低于 e3 2.8350, last.pt_e3_backup 已被 e13 取代)
+- 注: ckpt 仅保留每 3 epoch (003/006/009/012/015), e13 最优无独立存档, 最近为 epoch_012.pt
+
+**v3rloo 评测链**: 8/17 JSON (E3 egfp/nluc + E5 egfp_s0 + nluc_s1/s2 + zfish s0/s1/s2); mouse s0/s1/s2 自 04:36 起 MFE 基线阶段 (~19.4h, CPU 密集 8 worker 各, 进程活); 后续 fly x3 + egfp_s1/s2 + nluc_s0 排队; 17/17 后做 v3rloo vs v3_56m RLOO 增益裁决
+- HELD18_V3: 18/18 确认收官 (g00-g17 全落盘, 最后 Oct 20 19:01); v3 vs v2conv 全表 auto1020 已写入 (S1 geo 0.976 / S2 1.082 / S3 1.108; S3 long 1.156 / short 1.114 / mid 1.004)
+
+**系统**: GPU 19.3GB/24GB 100% util 76C/415W (355M 16.5GB + mouse 3 臂); tmux auto1020 / p3_v3_355m / v3ev_v3rloo56m_c0-c2 / v8wd 全活; h18_v3 正常完成退出无需重启; git main=origin/main (4677295) 工作树 clean
+
+**下一步**: e16 ~01:30 落盘 auto 记录; converged.pt 出现 → auto1020 自动拉 run_v3_eval.sh p3_v3_355m 全量链; rloo 17/17 → 汇总 RLOO 裁决
