@@ -667,3 +667,19 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 14 landed
 **355M log.jsonl 新记录**: {"epoch": 14, "train_loss": 2.7941757620253136, "val_loss": 2.8068692612353665, "cond_gap": 2.012489080429077, "elapsed_min": 4126.0470273733135}
 - (自动记录: 训练曲线截至 e14; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+## 2026-10-22 15:12 (patrol: e15 27% running 2.792; e13 2.7921 仍最优; e14 反弹至 2.8069; rloo 8/17 mouse 三臂跑中; HELD18 全链收官无人工动作)
+
+**355M 训练**: e15 b26900/102589 (26.2%), train loss 2.7921, 速率 ~4.3m/1000batch, 预计 ~20:00 落盘
+- 曲线全貌: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / e10 2.8065 / e11 2.8024 / e12 2.7938 / **e13 2.7921 (历史最优)** / e14 2.8069 (反弹 +0.53%)
+- plateau 计数: e13 -0.063% (<0.1%, 1/3) 后 e14 +0.53% 反弹重置 → 0/3; converged.pt 未出现; cond_gap 持续走高 (e14 已 2.01, e13 1.75), 后期泛化 gap 扩大值得注意
+- last.pt_e3_backup 彻底过时 (e3 2.8350 vs e13 2.7921)
+
+**v3rloo 评测链**: 8/17 JSON (E3_egfp / E5_egfp_s0 / E3_nluc / E5_nluc_s1/s2 / E5_zfish_s0/s1/s2); mouse 三臂 (E5_mouse_s0/s1/s2) c0-c2 运行中 (8 worker 各), 剩 E5_nluc_s0 + E5_egfp_s1/s2 等
+- 按 zfish ~10.3h/臂节奏, mouse 三臂最早今晚、最晚明日收官; 全 17 JSON 后做 v3rloo vs v3_56m E5 对比裁决 RLOO 增益
+
+**HELD18_V3**: 18/18 + v3 vs v2conv 全表 (S1 geo 0.976 / S2 1.082 / S3 1.108; S3 分层 long 1.156 / short 1.114 / mid 1.004) + v3rloo 链启动均由 auto1020 自动完成 (66e3c08/35026fa), 巡逻输入的 "11/18 串行中" 基线已过时
+
+**系统**: GPU 19.3GB/24GB 100% util 77C/420W; load 45 (18 rloo worker + 训练); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c2 全活; h18_v3/c4 正常完成退出无需重启; git main=origin/main (2434866)
+
+**下一步**: e15 ~20:00 落盘看 val 是否回破 2.7921 (若再反弹 + plateau 逻辑, 后续 epoch 关注 cond_gap); rloo mouse 三臂完成后汇总 RLOO 增益裁决; converged.pt 出现 → auto1020 自动拉 run_v3_eval.sh p3_v3_355m 全量链
