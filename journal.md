@@ -687,3 +687,16 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-20 auto: 355M epoch 15 landed
 **355M log.jsonl 新记录**: {"epoch": 15, "train_loss": 2.7949703374027135, "val_loss": 2.7941253281817025, "cond_gap": 1.917755365371704, "elapsed_min": 4489.868592596054}
 - (自动记录: 训练曲线截至 e15; 若 val 持续高于 e3 2.8350, e3 backup 仍为最优)
+
+
+## 2026-10-22 20:05 (patrol: e16 6.6pct running 2.7948; e13 2.7921 best; e15 2.7941 no plateau; rloo 8/17 mouse baselines running; all chains healthy no manual action)
+
+**355M training**: e16 b6800/102589 (6.6%), train loss 2.7948, rate ~4.3m/1000b, ETA ~01:30 Oct 23 (auto1020 will journal+push)
+- curve: e1 2.9672 / e2 2.8844 / e3 2.8350 / e4 2.8563 / e5 2.8542 / e6 2.8412 / e7 2.8335 / e8 2.8237 / e9 2.8091 / e10 2.8065 / e11 2.8024 / e12 2.7938 / **e13 2.7921 (best)** / e14 2.8069 (rebound) / e15 2.7941 (improved 0.46pct vs e14 but still above e13)
+- plateau: e14->e15 improvement 0.46pct resets count, 0/3; converged.pt not yet; cond_gap e15 1.92 still high
+- patrol input baseline outdated: e5/e6 long below 2.8350; last.pt_e3_backup (e3 2.8350) superseded by e13 2.7921
+
+**v3rloo chain**: 8/17 (E3 egfp/nluc + E5 egfp_s0 + nluc_s1/s2 + zfish s0/s1/s2); mouse s0/s1/s2 cf done 120846s (04:36) now in baselines MFE phase (multi-direction S1/S2/S3, CPU-heavy, started 04:36); then fly x3 + egfp_s1/s2 + nluc_s0 queued in c0-c2
+**HELD18_V3**: 18/18 + v3 vs v2conv full table already done by auto1020 (input baseline 11/18 outdated)
+**system**: GPU 19.3GB/24GB 100pct util (355M 16.5GB + 3x918MB mouse arms); tmux p3_v3_355m / v8wd / auto1020 / v3ev_v3rloo56m_c0-c2 all alive (h18_v3 + c3/c4 exited normally after completion); git main=origin/main (5d0c12e)
+**next**: e16 ~01:30 auto-journaled; after mouse baselines -> fly/egfp/nluc 6 JSONs then 17/17 summary + RLOO verdict; converged.pt -> auto1020 auto-launches run_v3_eval.sh p3_v3_355m full chain
