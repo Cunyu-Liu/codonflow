@@ -1,0 +1,59 @@
+#!/bin/bash
+# v3rloo 评测补全（单卡 5090 与训练分时复用版）
+# 只跑冻结时缺失的 9 arm: egfp_s1, egfp_s2, nluc_s0, mouse_s0/1/2, fly_s0/1/2
+# 幂等：输出 JSON 已存在且非空则跳过
+# 用法: bash run_v3rloo_backfill.sh [chain]   chain ∈ {c0,c1,c2}；缺省 c0
+# c0: egfp_s1 -> nluc_s0 -> fly_s0
+# c1: egfp_s2 -> fly_s1
+# c2: mouse_s0 -> mouse_s1 -> mouse_s2 -> fly_s2  (mouse 2.2kb 是长臂，放最后)
+# 显存预算：每条链 ~4-6GB（100 解 × 20 步 batched 采样），与 26.5GB 训练共存余量 ~6GB——
+# 为稳妥起见默认串行单链；mouse 臂较重（~9h），建议训练收敛后跑。
+set -u
+PY=/root/miniconda3/envs/codonflow/bin/python
+CKPT_DIR=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints/p3_rloo_v3_56m
+TAG=v3rloo56m
+CKPT=$CKPT_DIR/converged.pt
+OUT=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
+LOG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
+cd /home/codonflow
+mkdir -p "$OUT" "$LOG"
+[ -f "$CKPT" ] || { echo "no converged.pt in $CKPT_DIR"; exit 2; }
+
+ensure_fastas() {
+  [ -s /tmp/gene_mouse.fasta ] && return 0
+  awk -v pat="ENSMUST00000202556.4" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_mouse.fasta
+  awk -v pat="FBtr0307879"          'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_fly.fasta
+  awk -v pat="ENSDART00000133583.2" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/ood3.fasta > /tmp/gene_zfish.fasta
+  awk -v pat="egfp" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_egfp.fasta > /tmp/gene_egfp.fasta
+  awk -v pat="nluc" 'index($0,">") && index($0,pat) {p=1; print; next} p && index($0,">") {p=0} p {print}' /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/bench_nluc.fasta > /tmp/gene_nluc.fasta
+}
+
+run_arm() {
+  local gene=$1 seed=$2
+  local steps=10
+  case $gene in egfp|nluc) steps=20 ;; esac
+  local outjson="$OUT/E5_${TAG}_${gene}_s${seed}.json"
+  if [ -s "$outjson" ]; then echo "SKIP existing $outjson"; return 0; fi
+  echo "=== arm ${gene}_s${seed}_${TAG} steps=$steps $(date) ===" > "$LOG/e5o_${gene}_s${seed}_${TAG}.log"
+  CUDA_VISIBLE_DEVICES=0 MFE_PROCS=8 PYTHONPATH=src "$PY" scripts/run_exp5_ood.py \
+    --benchmark-fasta /tmp/gene_${gene}.fasta --checkpoint "$CKPT" \
+    --n-solutions 100 --seeds "$seed" --n-steps "$steps" \
+    --out "$outjson" >> "$LOG/e5o_${gene}_s${seed}_${TAG}.log" 2>&1
+  echo "EXIT=$? at $(date)" >> "$LOG/e5o_${gene}_s${seed}_${TAG}.log"
+}
+
+chain() {
+  ensure_fastas
+  case "$1" in
+    c0) run_arm egfp 1; run_arm nluc 0; run_arm fly 0 ;;
+    c1) run_arm egfp 2; run_arm fly 1 ;;
+    c2) run_arm mouse 0; run_arm mouse 1; run_arm mouse 2; run_arm fly 2 ;;
+    *) echo "unknown chain"; exit 2 ;;
+  esac
+}
+
+if [ $# -ge 1 ]; then
+  chain "$1"
+  exit 0
+fi
+chain c0
