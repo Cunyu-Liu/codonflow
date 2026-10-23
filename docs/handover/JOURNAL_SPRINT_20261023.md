@@ -1,36 +1,57 @@
-# CodonFlow 冲刺期运行日志（新集群 px2-jcy · 2026-10-23 起）
+# CodonFlow 冲刺期运行日志（双集群 · 2026-10-23 起）
 
 > 纪律：每次训练/评测 run 记录在此 + REGISTRY.md；结论必须写证据位置；诚实记录负结果。
-> 延续原 journal.md（700+ 行）的格式与口径。
+> 集群A = 5090 32GB（ssh -p 28365，训练主力）；集群B = 4090 24GB（ssh -p 28055，评测机）。
+> 本文件在本地维护，同步副本在集群A /home/codonflow/docs/handover/。
 
 ---
 
-## 2026-10-23（恢复日）
+## 2026-10-24 凌晨（W3 图表重制 + 双集群推进）
 
-### 环境重建（W1.3，进行中）
+### 训练与评测进度（00:30 快照）
 
-- 13:00 SSH 接入新集群：RTX 5090 32GB（32607MiB）×1、16 核 Xeon Gold 6530、64GB RAM、Ubuntu 20.04.6。GPU 空闲（2MiB/0%）。
-- 资产盘点（W1.1 ✓）：/teams/HoulabData_1788502323/liucunyu/codonflow 全部在位——code_repo（git HEAD eef0310，tree clean）、corpora（md5 对账：train d86366a0 / val f72b482b / test 23d567a1，与 HANDOVER 记录一致）、checkpoints（56M converged c8072617；355M last.pt=078b27fc(e15) + epoch_003/006/009/012/015 + log.jsonl 15 epochs）、eval_outputs 120+ JSON（含 HELD18 18/18、v3rloo 8/17）、gemorna、codonGPT_hf。
-- 代码运行副本：cp code_repo → /home/codonflow（6.9M，git 验证干净）。
-- conda 修复：默认 channels 指向已失效的阿里云镜像（HTTP 404）→ 重写 .condarc 为 conda-forge+bioconda → `conda create -n codonflow python=3.10` 成功。
-- pip 安装（后台 nohup，日志 /tmp/env3.log）：torch 2.14.1+cu126（5090 sm_120 必须用 cu126 轮子；torch 869MB + cudnn 707MB + triton 247MB 等依赖 ~2.5GB，集群网速波动 3-20MB/s，预计 ~40min）→ numpy/scipy/pytest/transformers/pymoo/tqdm → ViennaRNA（pip 包，Python `import RNA` API 与 2.6.4 行为对齐，版本断言需在 pytest 中验证）。
-- **教训**：新集群不带旧环境是常态；conda 镜像 404 优先查 .condarc；nohup + 日志文件方式防 SSH 断连（今天 SSH 3 次被服务器断开）。
+- **355M e16 即将落盘**（b18900/18943，236.5min）——watchdog 将自动继续 e17；plateau 计数待 e17-e19 观察（e13 最优 2.7921 为锚）。
+- v3rloo 评测 **8/17**（8 旧 + egfp_s1 新完成：cf done 9069s，2.5h 符合预期）：
+  - 集群A rloo_c0：egfp_s1 ✓ → nluc_s0 运行中
+  - 集群B rloo_c1：egfp_s2 S2 dir3；rloo_c2：mouse_s0 S2 dir1
+- GPU：集群A 27.6GB/100%（训练+评测共存）；集群B ~20GB（双评测链）。
 
-### 深度反思与文档更新（W1 伴生工作 ✓）
+### W3.1 主图重制（7 张全部完成，house style）
 
-- 完成 REFLECTION_20261023.md：P0-1 绝对 HV 落后 2-4×（容量归因，355M 裁决）；P0-2 RLOO 增益存疑（9 arm 裁决 + 条件性结论备案）；P0-3 评测器参考域（Cas9 motif 归一化 + adaptive ref 正式化）；P1-4 语料 862k 不扩容决策；P1-5 图表全重制计划；三幕故事线重构。
-- 交接文档三件套更新：spec.md + Amendment A4（评测口径升级/降级备案/RLOO 条件性结论/环境变更）；tasks.md v5（W1-W4 冲刺任务 + 验收标准）；checklist.md + J 系列（冲刺期核验项）。
+统一视觉系统：CodonFlow=蓝 #0F4D92 / LinearDesign=红 #B64342 / codonGPT=teal / CAI-greedy=violet / uniform=neutral / GEMORNA=绿；Helvetica 15pt、spine 2.0、无顶右边框、legend 无框、PDF(矢量)+PNG(300dpi) 双输出、Type 42 字体（期刊可编辑）。
 
-### 图表重制（W3.1 预演，首个样张 ✓）
+| 图 | 主张（一句话） | 数据源 | 校验 |
+|---|---|---|---|
+| fig1 塌缩 | masking 在引导之前就塌多样性 | E1_codongpt.json（50 样本/arm 真实 NED/熵/CAI） | PASS 3349×1340 |
+| fig2 门控vs过滤 | 同预算下门控买到可行性+首达效率 | E2_gated_vs_filter.json（3 seeds + Wilcoxon p=6.1e-5 面板） | PASS |
+| fig4 消融 | 单奖励反噬在密码子域复现（等权双优） | E4_ablation_3seed.json（18 arm 3 seeds 聚合） | PASS |
+| fig5 主表 | 五方法×三场景；100% 保证脚注+绝对差距如实 | E5v2conv_main_table.json | PASS 3871×1690 |
+| fig6 预算 | 中间档性价比拐点（12 配置网格） | E6_budget_curves.json（best value/call 标注） | PASS |
+| fig10 容量 | 4× 数据在 56M 上饱和；355M 打开新档 | capacity_curves.json（355M 收敛点待补） | PASS |
+| fig11 RLOO | RL 增益随预训练充分度衰减（6 arm 初版，15 arm 终版待 17/17） | S3R2_full_adaptive.json | PASS |
 
-- fig10 容量曲线 house-style 版完成（fig10_capacity_v2.py → figures_v2/fig10_capacity.pdf+png，3696×1289@300dpi，程序化校验 PASS）。
-- 数据：capacity_curves.json（v1_mask 4.06 塌缩死目标 / v2_corrupt 2.8035@e15 / v3_56M 2.8052@e5 / v3_355M e1-e3 旧序列）。355M 收敛后补第三点终值。
-- 配色系统固化：CodonFlow=蓝 #0F4D92、LinearDesign=红 #B64342、codonGPT=teal、CAI-greedy=violet、uniform=neutral、GEMORNA=绿。后续所有图沿用。
+- 全部脚本本地 fig_batch_v2.py / fig_batch2_v2.py / fig10_capacity_v2.py / fig11_rloo_gain.py；已同步集群A figures_src/。
+- **GitHub 7e72206**（figures v2 commit，走 patch→本地代理推送流）。
+- 程序化校验：分辨率 >2000px、非空白率 0.06–0.39（每张独立阈值检查）——不靠目测靠数据。
 
-### 待办（按优先级）
+### 待续
 
-1. pip 完成后：CUDA 验证（`torch.cuda.is_available()` + 5090 实测 matmul）→ pytest 41/41 → 无 CPU 静默降级断言
-2. watchdog v8 适配 5090（free_mem 32607 + batch-tokens 放大占满 32GB）→ tmux 拉起 355M 续训（从 e15 last.pt）
-3. GPU 空隙插跑 v3rloo 评测 9 arm
-4. Cas9 motif 归一化修复 + adaptive reference 全量重算
-5. 355M 收敛 → run_v3_eval.sh 全量 → fig10 终版
+- e16 落盘 → log.jsonl 追加 → fig10 数据自动可补（capacity_curves.json 由 auto_trigger 或巡检更新）
+- v3rloo 剩 9 arm（nluc_s0 + fly×4 + mouse×3 + egfp_s2）预计 ~20h
+- 355M 评测链待收敛触发（巡检任务提示人工启动，串行 c3→c0→c1→c2→c4）
+
+---
+
+## 2026-10-23 深夜（双集群并行 + W2 推进）——存档摘要
+
+- 集群B 接入验收（环境现成 torch cuda OK + pytest 41/41）；rloo_c1/c2 链拉起；GitHub a1e9326。
+- W2.2/W2.3 完成：S3R2_full_adaptive.json（39 arm per-gene adaptive ref 重算；g08 零域修复验证）；S3R3_cas9_norm.json（Cas9 motif 长度归一化）。
+- RLOO 初步裁决（6 arm，adaptive 口径）：无正向增益（2/6 正、均值 −5.3%）——A4 条件性结论待 17/17 终裁。
+- 数据自检 9 项全 PASS（862k md5 复验一致 / 三重泄漏审计 0 / 四层 benchmark / 5 基线+2 补强）。
+
+## 2026-10-23 恢复日——存档摘要
+
+- 集群A 环境重建：conda codonflow + torch 2.14.1+cu132（**RTX 5090 sm_120 与 cu126 不兼容事故**：is_available True 但 matmul 报 no kernel image——静默降级陷阱，重装 cu132 后实测 OK）+ ViennaRNA 2.7.2 + pytest 41/41。
+- 355M 续训拉起（watchdog v8-5090：batch 20000×3 = 26.5GB/100%util，比 4090 快 37%；28000 OOM 留证回退）。
+- 交接文档三件套更新（spec A4 / tasks v5 / checklist J）+ GitHub 6dda1fa。
+- fig10 house-style 首张。
