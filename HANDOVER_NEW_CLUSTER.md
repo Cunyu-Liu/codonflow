@@ -1,3 +1,54 @@
+# CodonFlow 新集群交接文档（状态冻结版 2026-10-23 00:15 · 同日 12:00 资产归档更新）
+
+> 用户指令：①全部训练/评测任务已停止；②集群全部资产已转移到公共目录 /teams/HoulabData_1788502323/liucunyu/codonflow。
+> 顶层目录结构表见公共目录 README_LAYOUT.md。下方保留 10-19 迁移版与 10-15 原版全文。
+
+## 资产归档更新（2026-10-23 12:00）
+
+- `code_repo/`：/home/codonflow 完整 git 仓已 tar 拷贝至公共目录（882 文件 md5 抽验一致，含 .git，HEAD=20d0fc2）——集群 /home 侧仍保留运行副本，公共目录为快照
+- `tmp_inputs/`：评测输入 fasta（gene_* 5 基因 + held18 拆分）归档
+- `/tmp/cf_extract`（21GB 解压缓存）已清除，容器盘释放至 63GB 可用
+- `README_LAYOUT.md`：公共目录 12 个子目录的用途表 + 冻结状态摘要
+
+**新集群侧 CodonFlow 唯一数据根 = /teams/HoulabData_1788502323/liucunyu/codonflow**（代码/权重/语料/评测/日志/基线全在其中）。
+
+## 冻结时点状态（2026-10-23 00:10）
+
+| 项 | 状态 | 细节 |
+|---|---|---|
+| 355M 预训练 | **停止于 e16 76%**（未收敛） | 15 epoch 已落盘；曲线 e1 2.9672 → e8 2.8237 → e12 2.7938 / **e13 2.7921（最优）** / e14 2.8069（反弹）/ e15 2.7941；plateau 0/3，converged.pt 不存在 |
+| 权重存档 | last.pt=e15（md5 078b27fc）+ epoch_003/006/009/012/015 | **e13 无独立存档**（最近可得 epoch_012.pt=2.7938） |
+| HELD18 v3_56m | **18/18 完整** | S3 geomean **1.108**（+10.8% vs v2conv）；S2 1.082；S1 0.976；长度分层 S3：long 1.156 / short 1.114 / mid 1.004；yeast g08 零域剔除；g02 mouse -47% 为唯一大退化；identity/legal 100% |
+| v3rloo 评测 | **8/17**（E3×2 + E5×6） | mouse s0/s1/s2 cf 臂完成但基线未落盘，需整臂重跑；fly×3 + egfp_s1/s2 + nluc_s0 未启动 |
+| RLOO v3 微调 | ckpt 三件套在位 | 35-iter 快收敛；初步对照（6 arm）混合：egfp/zfish 多为负、nluc/zfish_s2 正——不支持 RL 正增益强结论 |
+| 56M 全套 | 完整 | converged + 17/17 评测 + HELD18 全表 |
+| 集群进程 | **全部清零** | GPU CodonFlow 占用 0（20GB 为 RNA-JEV 项目，未动）；tmux server 空 |
+| 本地 cron | 3h 巡检已暂停 | dbf0ea85（paused） |
+
+## 科学结论快照（可写论文/PPT 的部分）
+
+1. **容量曲线第三点已实质成立**（预训练侧）：355M@862k e13 达 2.7921，低于 56M@862k 收敛值 2.8069（-0.5%），且仍在下降时停止。fig10 数据齐（capacity_curves.json 已含 v3_355M 序列 e1-e15）。
+2. **下游容量效应（L2 层）**：862k 语料使 held-out 18 基因 S3 几何平均 +10.8%、长基因 +15.6%——数据扩容的下游收益首次量化（HELD18_V356m 18/18 vs v2conv 17 基因对照表）。
+3. **RL 增益存疑**：v3 基座上 RLOO 35 iters 即 plateau，下游对照混合——「v3 基座接近该奖励容量上界」假说增强，最终裁决需 mouse/fly 臂补全。
+4. 已知问题延续：HV 零域（yeast g08）、g02 mouse -47% 退化、Cas9 S3 motif ref 尺度 bug（v3 待办）。
+
+## 恢复命令（下次继续，数据根即公共目录）
+
+```bash
+# 1. 355M 续训（watchdog 方式，自动守护+收敛自停）
+tmux new-session -d -s v8wd "bash /teams/HoulabData_1788502323/liucunyu/codonflow/code_repo/scripts/v8_watchdog_4090.sh"
+#   （脚本内路径已指向 /teams 公共目录，代码侧 /home/codonflow 仍在亦可双跑）
+# 2. v3rloo 评测补全（幂等，已有 JSON 跳过）
+bash /teams/HoulabData_1788502323/liucunyu/codonflow/code_repo/scripts/run_v3_eval_rloo.sh p3_rloo_v3_56m_eval v3rloo56m launch
+# 3. 355M 收敛后全量评测
+bash /teams/HoulabData_1788502323/liucunyu/codonflow/code_repo/scripts/run_v3_eval.sh p3_v3_355m v3_355m launch
+# 4. 自动 journal/git/触发器
+tmux new-session -d -s auto1020 "bash /teams/HoulabData_1788502323/liucunyu/codonflow/code_repo/scripts/auto_trigger_1020.sh"
+```
+
+GitHub 代码唯一真相源：Cunyu-Liu/codonflow（main=20d0fc2 及后续）。
+---
+
 # CodonFlow 新集群交接文档（状态冻结版 2026-10-23 00:15）
 
 > 用户指令：全部训练/评测任务已停止。本节为冻结时点状态与恢复路径。下方保留 10-19 迁移版与 10-15 原版全文。
