@@ -194,8 +194,14 @@ def main() -> None:
     assert device.type == "cuda", "GPU required (CPU fallback forbidden)"
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
 
-    model = EditFlowTransformer(EditFlowConfig(d_model=768, n_layers=8, n_heads=12, dropout=0.0))
     state = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
+    _k = [k for k in state if k.endswith("self_attn.in_proj_weight")][0]
+    _d = state[_k].shape[0] // 3
+    _n_layers = max(int(k.split(".")[2]) for k in state
+                    if re.match(r"encoder.layers.\d+.self_attn.in_proj_weight", k)) + 1
+    _n_heads = {768: 12, 1280: 16}.get(_d, 12)
+    print(f"[arch] d_model={_d} n_layers={_n_layers} n_heads={_n_heads} from {args.checkpoint}", flush=True)
+    model = EditFlowTransformer(EditFlowConfig(d_model=_d, n_layers=_n_layers, n_heads=_n_heads, dropout=0.0))
     model.load_state_dict(state)
     model = model.to(device).eval()
     gpt, tok = load_codongpt(device)
