@@ -334,3 +334,29 @@
 - 355M 续训拉起（watchdog v8-5090：batch 20000×3 = 26.5GB/100%util，比 4090 快 37%；28000 OOM 留证回退）。
 - 交接文档三件套更新（spec A4 / tasks v5 / checklist J）+ GitHub 6dda1fa。
 - fig10 house-style 首张。
+# 冲刺 journal 增补（本地缓冲，将合并进集群 JOURNAL_SPRINT_20261023.md）
+
+## 2026-10-25 01:00（★ 355M 评测 6 链并行 · E3 nluc 瞬时 NameError 修复重启 · fig10 21-epoch 终版落档）
+
+### 进度快照
+
+- 355M 评测 JSON：0/17（egfp_s0 主链到 S3_quad dir3；mouse_s1/s2 到 S2 dir1；E3 egfp 30 解扫 7 omega 推进中）。
+- v3rloo：11/17 落盘（mouse_s0 补全臂进行中，S2 dir1；rloo_backfill c2 链 23:42 拉起——集群B 已停用后全部迁回集群A）。
+- 五 tmux 会话 + eval355_e3nluc = 6 链并行；GPU 7.8GB（推理 + MFE_PROCS=12 CPU 满载，load ~72/16 核，RNAfold 主导——正常稳态）。
+
+### 事件与处置（3 遍检查记录）
+
+1. **E3 nluc 臂 22:47 瞬时失败**：`NameError: name 're' is not defined`。根因：补丁部署时序——22:47 c4 链启动时 run_exp3.py 还是「arch patch 无 import re」的中间版本，22:54 文件才写入完整版（含 import re）。
+   - 验证 ×3：(a) grep 确认当前文件 import re 在位（line 16）；(b) py_compile OK；(c) 手动 smoke 跑 nluc 2 解 ×2 步 → `[arch] d_model=1280 n_layers=12 n_heads=16` 正常输出 EXIT=0。
+   - 处置：00:52 tmux eval355_e3nluc 重启 nluc E3 臂（n-solutions 30 / n-steps 20 与链定义一致）。egfp 臂无需重启（用的已是修复后文件，arch 行已打印）。
+2. **fig10 容量图 21-epoch 终版**：update_capacity.py 重跑（epochs 21, best 2.7875, gap −0.0178 vs 56M）→ fig10_capacity_v2.py 渲染（3699×1289, nonblank 0.108）→ 归档 /teams + 本地拉回。集群 commit f1888b5 → 本地代理 am → GitHub main 9258de4 推送完成。
+3. **S3R2_full_adaptive 44-arm 重算验证**：E3_* JSON 为 CF-only 单方法格式（无基线 obj_vectors），确认无需纳入 S3 glob——排除「E3 计数虚低」误判。44 arm = E5_v3_56m×15 + E5_v3rloo×11 + HELD18×18。
+
+### 用户指令执行记录
+
+- 定时巡检任务更新（bf61f514 改为 355M 专用版）：用户主动取消——**遵从，不再动定时任务，全部手动巡检**。
+
+### 下一步
+
+- 等待 355M 17/17 + v3rloo 17/17（预计 24-36h；mouse 长尾臂 ~9h ×3 是关键路径）。
+- 全落盘后：S3R2 重算纳入 355M → 容量第三点下游裁决表（CF 355M vs 56M vs 基线同表）→ fig10/fig11 终版 → Gate C → 预印本 v1 动笔。
