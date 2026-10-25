@@ -773,3 +773,14 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 ## 2026-10-25 14:59 (patrol): eval progress 355m=13/35 rloo=12/17
 
 ## 2026-10-25 15:30 (patrol): eval progress 355m=14/35 rloo=12/17
+
+## 2026-10-25 15:55 (session cont): 355M 第二臂 nluc_s1 强信号
+
+**E5 nluc_s1（355M vs 56M，S3 adaptive 前的固定口径同 JSON 对照）**：
+- S3_quad CF HV：83.05 → 104.39（**+25.70%**）
+- S2_cai_mfe：22.30 → 25.24（+13.15%）
+- S1_cai：0.32 → 0.32（+0.47%）
+- identity/legal：100%/100% 保持
+
+**两臂累计**（egfp_s0 +6.9% / nluc_s1 +25.7%）→ 均值 +16.3%。方向与幅度均支持「容量增益集中在多目标场景」假说。nluc（516nt 短基因）增益大于 egfp（717nt）——与 HELD18 长度分层观察（short +11.4% vs long +15.6%）的交互关系待全量后分析。
+**纪律**：仍不写结论——等 15 臂 + verdict 脚本几何平均比。下一臂 egfp_s1 在跑（c3 链 14:54 起）。
