@@ -72,3 +72,40 @@ tmux new-session -d -s auto1020 "bash /teams/HoulabData_1788502323/liucunyu/codo
 - RLOO v3 增益存疑（9 arm 裁决中）——A4 条件性结论备案
 - yeast g08 零域（adaptive ref 升级为正式口径）；g02 mouse -47%；Cas9 motif 尺度（W2.2 修复）
 - v3 语料 862k vs spec 1M 偏差（容量饱和证据支持不扩容，如实报告）
+
+---
+
+## Tasks 增补 v6（2026-10-25 交接收官版 · 本会话）
+
+> 背景更新：**355M 已于 10-24 21:13 正式收敛**（e21 val 2.7875，plateau 3/3 触发，converged.pt 945MB 在位）；评测架构自动检测补丁已上（run_exp3/run_exp5_ood 从权重推断 d_model/n_layers/n_heads，修复 56M 硬编码）；9 条评测链并行中。
+
+### W1 收官（本会话已完成）
+
+- [x] W1.7 355M 训练至收敛：e16 2.7912（新最优）/ e17 2.8060 / e18 2.7919 / e19 2.7904 / e20 2.7880 / e21 2.7875 → plateau 3/3 → converged.pt（945MB）+ converged.json 落盘
+- [x] W1.8 评测脚本架构自动检测补丁（patch_eval_arch.py）：E3 nluc 首次运行 NameError（re 未导入）已修复并复跑成功
+- [x] W1.9 9 链并行评测启动：eval355_c0-c4（E5 15 臂 + E3 2 臂）、eval355_e3nluc（E3 nluc 复跑）、rloo_backfill c2（mouse×3）、rloo_fly_s2（补 rloo 最后 1 臂）、held18_355m（HELD18 18 基因）、v3ev_v3_355m_serial（总调度）
+- [x] W1.10 patrol_loop.sh 常驻守护上线（30min 周期：进度 journal + git push + 死链告警）
+
+### W2 当前进行中（预计 10-25 至 10-27）
+
+- [ ] W2.4a 355M 全量评测 17+18=35 JSON（mouse 臂 ~9h×3 是长尾，预计 10-26 完成全量）
+- [ ] W2.1a v3rloo 补全至 17/17（fly_s2 + mouse×3 在跑）
+- [ ] W2.6 RLOO 增益最终裁决：17/17 后跑 fig11 数据（E5_v3_56m vs E5_v3rloo56m S3 HV 全表对照）→ 写入预印本 §5.3 条件性结论
+- [ ] W2.7 容量第三点落定：355M converged 2.7875 vs 56M 2.8069（-0.70%），fig10 更新 + 预印本 §6 定稿
+- [ ] W2.8 HELD18 355M vs 56M vs v2conv 三代全表（容量下游效应 L2 层的第三点）
+
+### W3 图表与论文（10-27 至 10-31）
+
+- [ ] W3.1 主图重制（house style 已建：fig_batch_v2.py/fig_batch2_v2.py/fig10_v2/fig11 已渲染 7 张，355M 新数据出来后重渲）
+- [ ] W3.2 预印本 v1：三幕结构重写 + 355M 容量结果 + RLOO 条件性结论
+- [ ] W3.3 PPT 更新（CodonFlow-中期汇报 后续版）
+
+### 数据链交接锚点
+
+| 产物 | 位置 | 状态 |
+|---|---|---|
+| 355M converged.pt | codonflow/checkpoints/p3_v3_355m/ | e21, val 2.7875, plateau 3/3 |
+| 355M 评测 JSON×35 | codonflow/eval_outputs/E5_v3_355m_* + E3_v3_355m_* + HELD18_V3355m_* | 生成中 |
+| v3rloo 17 JSON | codonflow/eval_outputs/E5_v3rloo56m_* | 13/17 → 17/17 |
+| 容量曲线数据 | figures_src/data/capacity_curves.json + update_capacity.py | 已含 e1-e21 全序列 |
+| figures_v2 | figures_src/figures_v2/ + /teams eval_outputs/figures_v2 | 7 张 house style 图在位 |
