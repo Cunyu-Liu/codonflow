@@ -754,3 +754,7 @@ long bin geomean ratio: 1.156 (n=3)
 E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 
 **GPU 纪律说明**：单卡 5090 上 8-9 链并行实测显存 12-14GB；瓶颈为 CPU（load 72-104）。加更多链会过载 CPU 拖慢全部 MFE 阶段（边际负收益）——按「CPU 容量下最大有效并行」执行，spec A5 已记录。
+
+## 2026-10-25 12:35 (patrol): eval progress 355m=11/35 rloo=12/17
+
+## 2026-10-25 12:59 (patrol): eval progress 355m=11/35 rloo=12/17
