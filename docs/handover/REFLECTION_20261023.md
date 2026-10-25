@@ -118,3 +118,38 @@
 - 每次 run 进 REGISTRY.md（run_id/GPU/超参/数据 commit/最终指标/收敛判据）；
 - journal.md 逐日记录训练过程与结论；
 - 每个任务结束即 git commit + push GitHub。
+
+---
+
+## 增补：2026-10-25 交接会话反思（355M 收敛后）
+
+### 状态跃迁：P0-1 的裁决已过半
+
+A4 时「355M 容量档是主表翻身唯一机会」——现在预训练侧已兑现（2.7875 vs 2.8069，-0.70%，且 56M 时代的数据饱和被打开）。**但预训练损失下降 ≠ 下游 HV 提升**（P0-1 的真正裁决在 35 JSON 评测，预计 10-26 齐）。纪律：在 JSON 齐前不写任何「容量已解决」的结论性文字——v3-56M 的教训（862k 语料只带来 -0.25% 损失但 HELD18 S3 +10.8%）说明两侧可以脱钩，方向不确定。
+
+### 本次自查发现的工程问题（已修）
+
+1. **评测脚本 56M 硬编码**：355M 权重一加载就 size mismatch——上一会话在 /home 副本打了 arch 自动检测补丁但未同步 code_repo 快照、未推 GitHub。教训：**补丁必须当会话推送**，跨会话遗忘风险高（本次靠 3 遍 diff 检查才发现两副本不一致）。
+2. **集群 SSH key 失效**：GitHub push 权限断（publickey denied）。已建立 bundle 中继通道（集群→本地 scp→本地 push）。待办：恢复集群侧 deploy key 或 token。
+3. **rloo_backfill c0/c1 闪退误判**：脚本幂等跳过即退出是正常行为，不是故障——排查时差点误杀。教训：幂等脚本的「秒退」要先查目标 JSON 是否已存在再判死活。
+4. **fly_s2 手动臂的 $OUT 转义事故**：tmux 命令里 \$OUT 未展开写到根目录 /E5_...json——发现后已清理重跑。教训：**tmux new-session 里的 shell 变量必须写绝对路径**，不吃外层变量。
+
+### 科学故事线：当前卡点与解法
+
+主线三幕已立（REFLECTION 第一部分），当前处于第三幕数据补全期。新增一个叙事资产：**容量三点曲线本身成为 fig10 的主叙事**（215k/56M→862k/56M→862k/355M 的两级台阶：数据台阶 -0.25%、容量台阶 -0.70%——容量效应是数据效应的 2.8 倍）。这把「绝对 HV 落后」的第三幕从「差距归因」升级为「正面的 scaling 定律刻画」——不管 355M 下游裁决如何，这条曲线都成立且是论文的独立贡献。
+
+### 数据/benchmark/baseline 完整性复查（用户指令逐项）
+
+- **数据集找全**：v3 语料 25 物种 862k（spec 原定 ≥1M，偏差已记录于 A4/预印本 §4.1——容量饱和证据支持不扩容）。✅
+- **清洗方法**：MMseqs2 0.8 聚类 + 长度/阅读框/终止码/模糊碱基过滤，规则冻结在 build_splits.py。✅
+- **数据分布**：长度/GC/CAI/RSCU 四维审计图在 docs/data_audit/audit_train.png。✅
+- **数据泄露**：三遍审计（直接 ID / 同簇近邻排除 30,938 条 / 事后复查 0 重叠），L2 层从 test split 抽样。✅
+- **benchmark 找全**：四层（L1 经典 / L2 held18 无泄漏 / L3 跨家族 OOD / L4 Cas9 长序列）。✅
+- **baseline 找全**：LinearDesign / codonGPT(100+10×) / CAI-greedy / uniform flow / GEMORNA（Science 2025）——mRNAutilus 无公开代码已按预注册政策文档化。⚠️ 一个可补项：Ribo-seq 或 mRNA 稳定性数据集（如 NBT/Science 的序列-表达量表）未纳入——当前四个目标(CAI/MFE/GC/motif)全是计算器指标，无实验表达量验证。**决策：一个月 deadline 内不做湿实验数据接入（超范围），预印本如实列为 limitation + future work**。
+- **划分**：cluster-disjoint 80/10/10，md5 对账三端一致。✅
+
+### 效率复盘
+
+- 双集群并行（W2/W3 在 clusterB 上的工作已随「clusterB retired」收口归档）；
+- SSH 闪断（Connection reset by peer，服务器负载高时）浪费约 40 分钟——已用 sleep+retry 模式收敛；
+- 下一步真正的效率杠杆：35 JSON 齐后一次性渲染全部图 + 重写论文，避免逐个 JSON 手工核对。
