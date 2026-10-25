@@ -731,3 +731,5 @@ long bin geomean ratio: 1.156 (n=3)
 2. v3rloo 评测链补全: `bash scripts/run_v3_eval_rloo.sh p3_rloo_v3_56m_eval v3rloo56m launch` (幂等, 已有 JSON 自动跳过; mouse 3 arm 因基线未落盘会整臂重跑)
 3. 355M 评测 (收敛后): `bash scripts/run_v3_eval.sh p3_v3_355m v3_355m launch` (需先 cp last.pt converged.pt 或改用 e13 附近权重——见 journal e13 无存档注记)
 4. 集群其余自动脚本: auto_trigger_1020.sh (epoch→journal+git; HELD18→汇总; converged→全量链) 可重启: `tmux new-session -d -s auto1020 "bash /home/codonflow/scripts/auto_trigger_1020.sh"`
+
+## 2026-10-25 11:49 (patrol): eval progress 355m=10/35 rloo=12/17
