@@ -27,8 +27,38 @@ while :; do
   for s in eval355_c3 eval355_c4 held18_355m; do
     tmux has-session -t $s 2>/dev/null || { log "dead session $s - not auto-relaunching (check manually)"; }
   done
+  # 里程碑触发：rloo 17/17 齐即跑 RLOO 裁决（一次性）
+  if [ "$NRLOO" -ge 17 ] && [ ! -f "$LG/.rloo_verdict_done" ]; then
+    touch "$LG/.rloo_verdict_done"
+    log "rloo 17/17 reached: running verdict script"
+    /root/miniconda3/envs/codonflow/bin/python /home/codonflow/scripts/verdict_355m_and_rloo.py > "$LG/verdict_snapshot_rloo17.log" 2>&1
+    {
+      echo ""
+      echo "## $(date "+%F %H:%M") (auto): v3rloo 17/17 complete - RLOO adjudication snapshot"
+      echo "\`\`\`"
+      tail -40 "$LG/verdict_snapshot_rloo17.log"
+      echo "\`\`\`"
+    } >> journal.md
+    git add journal.md >/dev/null 2>&1
+    git commit -m "journal(auto): v3rloo 17/17 + RLOO adjudication snapshot" >/dev/null 2>&1
+    git push origin HEAD >/dev/null 2>&1
+  fi
   # 完成检测
-  [ "$NRLOO" -ge 17 ] && [ "$N355" -ge 35 ] && { log "ALL DONE 35/35 + 17/17"; break; }
+  [ "$NRLOO" -ge 17 ] && [ "$N355" -ge 35 ] && {
+    log "ALL DONE 35/35 + 17/17: final verdict"
+    /root/miniconda3/envs/codonflow/bin/python /home/codonflow/scripts/verdict_355m_and_rloo.py > "$LG/verdict_final.log" 2>&1
+    {
+      echo ""
+      echo "## $(date "+%F %H:%M") (auto): ALL EVALS COMPLETE 35+17 - final verdict"
+      echo "\`\`\`"
+      tail -60 "$LG/verdict_final.log"
+      echo "\`\`\`"
+    } >> journal.md
+    git add journal.md >/dev/null 2>&1
+    git commit -m "journal(auto): final verdict 355M capacity + RLOO (all 52 evals complete)" >/dev/null 2>&1
+    git push origin HEAD >/dev/null 2>&1
+    break
+  }
   sleep 1800
 done
 log "patrol_loop exit"
