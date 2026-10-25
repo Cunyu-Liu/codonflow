@@ -735,3 +735,22 @@ long bin geomean ratio: 1.156 (n=3)
 ## 2026-10-25 11:49 (patrol): eval progress 355m=10/35 rloo=12/17
 
 ## 2026-10-25 12:05 (patrol): eval progress 355m=10/35 rloo=12/17
+
+## 2026-10-25 12:30 (handover session): 355M 首臂早期信号 + 交接收官
+
+**355M 评测首批数据**（egfp_s0 + E3×2 完整，其余 32 臂在跑）：
+- E5 egfp_s0: **S3_quad CF HV 158.12 -> 169.03 (+6.90%)**；S2 -1.25%；S1 -5.5%；identity/legal 100% 全保持
+- E3 nluc: MFE 轴显著改善（mfe_only -141.7 -> -153.6，-8.4%）；E3 egfp MFE 略退
+- 早期读数方向：容量增益集中在 S3 多目标场景——与「56M 容量瓶颈主要伤多目标联合搜索」假说一致。**单臂不足为凭，等 15 臂全量后由 verdict_355m_and_rloo.py 裁决（patrol 自动触发）**
+
+**交接收官动作**（全部已 commit，经本地 bundle 中继推 GitHub main=93779a7）：
+- spec.md Amendment A5：355M 收敛事实固化（e21 2.7875, plateau 3/3）
+- tasks.md v6 增补 + checklist K 系列（K1-K5 done）
+- REFLECTION 增补：P0-1 裁决已过半；4 个工程修复记录；故事线升级（容量三点两级台阶：数据 -0.25% vs 容量 -0.70% 为 2.8 倍——独立贡献）
+- verdict_355m_and_rloo.py 一键裁决脚本 + patrol_loop.sh 里程碑自动触发（rloo 17/17 → 自动裁决+journal+push）
+- patrol 常驻守护运行中（30min 周期）
+
+**运行中评测矩阵**（9 会话）：eval355_c0-c3（E5 15 臂）/ held18_355m（18 基因，g07 完成 8/18）/ rloo_backfill c2 + rloo_fly_s2（v3rloo 12/17）/ patrol
+E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
+
+**GPU 纪律说明**：单卡 5090 上 8-9 链并行实测显存 12-14GB；瓶颈为 CPU（load 72-104）。加更多链会过载 CPU 拖慢全部 MFE 阶段（边际负收益）——按「CPU 容量下最大有效并行」执行，spec A5 已记录。
