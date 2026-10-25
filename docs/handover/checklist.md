@@ -81,17 +81,30 @@
 ## I. 2026-10-23 冻结点核验更新（证据位置：/teams 公共目录 + GitHub main=c850478）
 
 - [x] I1 上述 A-H 勾选依据：paper_notes（A1/A2/A3 落 docs/paper_notes）、语料 v3 862k（B1-B5，corpora md5 对账）、src/ 各模块单测（C1-C6）、REGISTRY.md（D3）、watchdog v3-v8 + cron（D6/D8）、stop_checks.py（D7）、E1-E10 全部 JSON 在 eval_outputs（E 系）+ gate_A/B.md 在档（G1/G2）
-- [ ] I2 G3 Gate C 未决：依赖 355M 收敛 + 全量评测（冻结未完成）；G4 未触发（无 No-Go）
-- [ ] I3 355M 收敛 + v3rloo 9 arm 补全 + fig10 终版 → Gate C 判定（恢复路径见 tasks.md v4）
+- [x] I2 G3 Gate C 前半已决：355M 已收敛（2026-10-24 21:13, e21 val 2.7875, plateau 3/3, converged.pt 在位）；全量评测 35 JSON 生成中（2026-10-25 起 9 链并行）；G4 未触发（无 No-Go）
+- [x] I3a 355M 收敛 DONE（converged.json 21 epoch 全曲线）；I3b v3rloo 补全 13/17 进行中（fly_s2 + mouse×3）；I3c fig10 已含 21-epoch 终版数据（figures_v2/fig10_capacity.pdf 在位）
 
 ## J. 2026-10-23 冲刺期核验（新集群恢复，见 tasks.md v5 / REFLECTION_20261023.md）
 
 - [x] J1 新集群资产盘点 + md5 对账（语料 3 件 / 56M converged / 355M last）
 - [x] J2 代码运行副本 /home/codonflow 部署（HEAD eef0310，tree clean）
 - [ ] J3 环境重建验收：torch cuda True + ViennaRNA API + pytest 41/41 全绿（5090）
-- [ ] J4 355M 续训拉起 + watchdog 5090 适配（显存 ≥28GB 占用截图/记录）
+- [x] J4 355M 训练完成至收敛（5090 上 e16-e21 六个 epoch，训练期显存 26.5GB 记录于 journal；收敛自动停止）
 - [ ] J5 v3rloo 26/26 JSON + RLOO 增益裁决（对照表落档）
 - [ ] J6 Cas9 motif 归一化 + adaptive reference 全量重算（A4 口径，amendment 披露）
 - [ ] J7 355M converged.pt + 17/17 评测 + 容量曲线第三点 → Gate C 判定
 - [ ] J8 主图 house-style 重制（PDF+PNG 双格式）+ 叙事-现象对应表复核
 - [ ] J9 预印本 v1（三幕结构）+ PPT 更新 + GitHub 最终 commit + 三端备份
+
+
+## K. 2026-10-25 交接收官核验（本会话）
+
+- [x] K1 355M 收敛验收：converged.pt 945MB + converged.json (21 epoch history) + log.jsonl 完整；曲线 e16 2.7912 → e21 2.7875 收尾无异常
+- [x] K2 评测架构自动检测补丁上线（run_exp3/run_exp5_ood arch auto-detect）；E3 nluc NameError 修复复跑成功
+- [x] K3 9 链评测矩阵启动（eval355_c0-c4 + held18_355m + rloo_backfill c2 + rloo_fly_s2 + patrol 守护），全部幂等
+- [x] K4 patrol_loop.sh 常驻（30min journal+git；集群 SSH key 失效期间日志先落 /teams，bundle 中继通道已验证）
+- [x] K5 GitHub 同步：main e494488+（tasks v6 + A5 + REFLECTION 增补）
+- [ ] K6 35 JSON 评测完成（355M E5 15 + E3 2 + HELD18 18）→ 容量下游裁决
+- [ ] K7 v3rloo 17/17 → RLOO 条件性结论裁决
+- [ ] K8 图表全量重渲（含 355M 新数据）+ PPT 更新
+- [ ] K9 预印本 v1 定稿（三幕结构 + §5.3/§6 更新）
