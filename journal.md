@@ -824,3 +824,10 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 identity 5/5 = 100%。继续等 mouse（2.2kb 长基因，该假说的关键检验臂）/ fly / zfish_s1/s2 / nluc_s0。
 
 ## 2026-10-26 06:00 (patrol): eval progress 355m=19/35 rloo=12/17
+
+## 2026-10-26 07:20 (session cont): 第 6 臂 zfish_s1
+
+**6 臂累计（S3）**：+6.9 / −1.0 / +25.7 / +1.7 / −0.9 / −1.6 → 3 正 3 微负，几何平均 ≈ **+4.9%**。
+家族画像稳定化：nluc 唯一稳定正（两 seed 均 >0）；egfp 种子反号；zfish 两个 seed 均微负（−0.9/−1.6）——**zfish 家族（Danio，密码子用法偏离灵长训练分布）容量增益为负**，与 OOD 家族 GC 偏差已知问题（§5.7）一致：容量放大的模型更拟合训练分布 → 对偏离家族的相对优势缩小。
+这一分层比总几何平均更有信息量：**in-family reporters +8~+16%，cross-family 持平**。若 mouse/fly（同为哺乳/昆虫 OOD）延续此模式，预印本的容量叙事将是「容量收益分布依赖，in-family 兑现、OOD 需家族适配」——比笼统 +5% 更精确也更有审稿防御力。
+identity 6/6 100%。
