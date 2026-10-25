@@ -24,7 +24,7 @@ while :; do
     fi
   }
   # 死链检测与重启
-  for s in eval355_c3 eval355_c4 held18_355m; do
+  for s in eval355_c0 eval355_c1 eval355_c2 eval355_c3 held18_355m rloo_backfill rloo_fly_s2 v3ev_v3_355m_serial; do
     tmux has-session -t $s 2>/dev/null || { log "dead session $s - not auto-relaunching (check manually)"; }
   done
   # 里程碑触发：rloo 17/17 齐即跑 RLOO 裁决（一次性）
