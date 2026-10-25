@@ -769,3 +769,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 - 纪律执行：只写已确认数字（converged.json/E5_egfp_s0/E3 两 JSON），未确认的下游结论不进 PPT
 
 **评测进度**（14:11）：355M 12/35（HELD18 9/18 + E5 3 + E3 2）；rloo 12/17（fly_s2 与 mouse_s1 在 S3 阶段）；10 会话全活；GPU 12GB / load ~93（CPU 瓶颈持续）
+
+## 2026-10-25 14:59 (patrol): eval progress 355m=13/35 rloo=12/17
