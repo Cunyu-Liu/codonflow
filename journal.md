@@ -822,3 +822,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 **5 臂累计（355M vs 56M，S3）**：+6.9 / −1.0 / +25.7 / +1.7 / −0.9 → 3 正 2 微负。egfp 两 seed 反号（+6.9 vs −1.0）——种子方差主导 egfp 家族；nluc 稳定为正。5 臂 S3 几何平均 ≈ +6.0%。
 画像渐清晰：nluc（短基因 516nt）> egfp（717nt）≈ zfish——长度-增益负相关弱信号（与预训练直觉相反，全量后专门分析）。
 identity 5/5 = 100%。继续等 mouse（2.2kb 长基因，该假说的关键检验臂）/ fly / zfish_s1/s2 / nluc_s0。
+
+## 2026-10-26 06:00 (patrol): eval progress 355m=19/35 rloo=12/17
