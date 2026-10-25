@@ -803,3 +803,14 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 ## 2026-10-25 23:30 (patrol): eval progress 355m=16/35 rloo=12/17
 
 ## 2026-10-26 03:00 (patrol): eval progress 355m=17/35 rloo=12/17
+
+## 2026-10-26 03:15 (session cont): 第 4 臂 zfish_s0——画像更完整
+
+**4 臂累计（355M vs 56M）**：egfp_s0 (S3 +6.9%) / nluc_s1 (+25.7%) / nluc_s2 (+1.7%) / zfish_s0 (**−0.9%**)
+- zfish_s0：S1 +0.6% / S2 **−9.4%** / S3 −0.9%——第一个负向臂。4 臂 S3 画像 = 3 正 1 微负，S2 = 3 正 1 负（−9.4%）
+- 初步几何平均（4 臂 S3）：exp(mean(ln(1.069, 1.257, 1.017, 0.991))) ≈ **+7.9%**——落在"中等正增益"区间
+- zfish 是 OOD 家族（训练语料内但在 v3 语料内）vs nluc/egfp 是经典 reporter——增益可能在 in-distribution reporter 上更显著，与容量-分布交互有关，全量后按家族分层分析
+- identity/legal 4/4 臂 100%
+
+**剩余臂**：egfp_s1(baselines) / egfp_s2 / nluc_s0 / zfish_s1/s2 / mouse×3 / fly×3（355M 共 15 E5）；rloo mouse_s1/s2 + fly_s2 baselines（13/17 目标）；HELD18 g11-g17（11/18）。
+**纪律重申**：4/15 臂不足以裁决——几何平均比随臂数波动（前 3 臂 +11% → 4 臂 +7.9%）。等 verdict 脚本全量输出。
