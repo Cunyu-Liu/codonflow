@@ -814,3 +814,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 
 **剩余臂**：egfp_s1(baselines) / egfp_s2 / nluc_s0 / zfish_s1/s2 / mouse×3 / fly×3（355M 共 15 E5）；rloo mouse_s1/s2 + fly_s2 baselines（13/17 目标）；HELD18 g11-g17（11/18）。
 **纪律重申**：4/15 臂不足以裁决——几何平均比随臂数波动（前 3 臂 +11% → 4 臂 +7.9%）。等 verdict 脚本全量输出。
+
+## 2026-10-26 04:30 (patrol): eval progress 355m=18/35 rloo=12/17
