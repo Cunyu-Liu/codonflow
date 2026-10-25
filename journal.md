@@ -801,3 +801,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 继续等（fly_s2 baselines、egfp_s1 baselines、mouse 三臂、zfish 三臂、HELD18 后 7 基因）。
 
 ## 2026-10-25 23:30 (patrol): eval progress 355m=16/35 rloo=12/17
+
+## 2026-10-26 03:00 (patrol): eval progress 355m=17/35 rloo=12/17
