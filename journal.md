@@ -758,3 +758,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 ## 2026-10-25 12:35 (patrol): eval progress 355m=11/35 rloo=12/17
 
 ## 2026-10-25 12:59 (patrol): eval progress 355m=11/35 rloo=12/17
+
+## 2026-10-25 13:29 (patrol): eval progress 355m=12/35 rloo=12/17
