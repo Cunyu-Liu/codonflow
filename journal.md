@@ -799,3 +799,5 @@ E3 2/2 已齐（egfp+nluc）。CPU load ~80 为 RNAfold 瓶颈，GPU 12-14GB。
 **3 臂画像**：S2 双目标 3/3 全正（−1.3~+20.4%）；S3 两正一弱正（egfp +6.9 / nluc_s1 +25.7 / nluc_s2 +1.7——种子方差大，nluc 两 seed 差异 24pp，说明 S3 单臂噪声大，几何平均比才是可靠口径）；S1 小幅互有涨跌；硬保证 100% 恒定。
 预判：若 mouse/fly/zfish 臂延续，S3 几何平均比可能落在 +5~15% 区间——**足以支持「容量 → 多目标下游正增益」的中等强度结论**（不到 A4 降级线的 ≥10% 单臂判定，但方向一致）。
 继续等（fly_s2 baselines、egfp_s1 baselines、mouse 三臂、zfish 三臂、HELD18 后 7 基因）。
+
+## 2026-10-25 23:30 (patrol): eval progress 355m=16/35 rloo=12/17
