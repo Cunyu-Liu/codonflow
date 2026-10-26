@@ -1,0 +1,222 @@
+"""Synthetic regression tests for benchmark identity and leakage audits."""
+import json
+import random
+import sys
+
+import pytest
+
+from scripts.audit_distribution import overlap_audit
+from scripts.build_splits import benchmark_components, read_fasta, read_clusters
+from scripts.gemorna_arm import (
+    load_benchmark_protein,
+    main as gemorna_main,
+    protein_sha256,
+    score_solutions,
+)
+from scripts.gemorna_ood_score import parse_raw_solutions
+from scripts.build_splits import main as build_splits_main
+
+
+def write_fasta(path, records):
+    path.write_text("".join(f">{header}\n{seq}\n" for header, seq in records))
+    return str(path)
+
+
+def test_benchmark_fasta_is_authoritative(tmp_path):
+    fasta = write_fasta(tmp_path / "bench.fasta", [
+        ("egfp_P42212_syn", "ATGGCTTAA"),
+        ("nluc_JQ437370.1", "ATGAAATTTTGA"),
+    ])
+    header, protein = load_benchmark_protein(fasta, "nluc")
+    assert header == "nluc_JQ437370.1"
+    assert protein == "MKF"
+    assert protein_sha256(protein) == protein_sha256("MKF")
+    with pytest.raises(ValueError, match="exactly one"):
+        load_benchmark_protein(fasta, "missing")
+
+
+def test_single_record_benchmark_supports_transcript_header(tmp_path):
+    fasta = write_fasta(tmp_path / "mouse.fasta", [("ENSMUST00000202556.4", "ATGAAATTTTGA")])
+    assert load_benchmark_protein(fasta, "mouse") == ("ENSMUST00000202556.4", "MKF")
+
+
+def test_invalid_benchmark_frame_fails_fast(tmp_path):
+    fasta = write_fasta(tmp_path / "bad.fasta", [("nluc", "ATGAA")])
+    with pytest.raises(ValueError, match="valid CDS"):
+        load_benchmark_protein(fasta, "nluc")
+
+
+def test_generation_records_hash_unique_and_identity_counts(tmp_path, monkeypatch):
+    fasta = write_fasta(tmp_path / "bench.fasta", [("nluc_test", "ATGAAATTTTGA")])
+    proteins = []
+    outputs = iter([
+        ("ATGAAATTT", 0.1),  # synonymous, no stop
+        ("ATGAAATTT", 0.2),  # duplicate
+        ("ATGGCTTAA", 0.3),  # wrong protein
+    ])
+
+    def fake_generate(protein):
+        proteins.append(protein)
+        return next(outputs)
+
+    monkeypatch.setattr("scripts.gemorna_arm.run_generate", fake_generate)
+    out = tmp_path / "gemorna.json"
+    monkeypatch.setattr(sys, "argv", [
+        "gemorna_arm.py", "--gene", "nluc", "--benchmark-fasta", fasta,
+        "--n", "3", "--out", str(out),
+    ])
+    gemorna_main()
+    result = json.loads(out.read_text())
+    assert proteins == ["MKF"] * 3
+    assert result["expected_protein_sha256"] == protein_sha256("MKF")
+    assert result["n_unique"] == 1
+    assert result["n_invalid_identity"] == 1
+    assert result["solutions"][0]["seq"] == "ATGAAATTT"
+
+
+def test_identity_checked_before_metrics_and_ood_deduplicated():
+    solutions = [
+        {"seq": "ATGAAATTT", "naturalness": 0.1},
+        {"seq": "ATGAAGTTC", "naturalness": 0.2},
+        {"seq": "ATGGCTTAA", "naturalness": 0.3},
+        {"seq": "ATGAAAT", "naturalness": 0.4},
+    ]
+    mfe_inputs = []
+
+    def fake_mfe(seqs):
+        mfe_inputs.extend(seqs)
+        return [-float(len(s)) for s in seqs]
+
+    summary, scored = score_solutions(
+        solutions, "MKF", mfe_fn=fake_mfe, deduplicate=True
+    )
+    assert summary["n_identity_pass"] == 2
+    assert summary["n_unique"] == 2
+    assert summary["n_invalid_identity"] == 2
+    assert mfe_inputs == ["ATGAAATTTTAA", "ATGAAGTTCTAA"]
+    assert [s["seq"] for s in scored] == mfe_inputs
+    assert parse_raw_solutions("ATGAAATTT 0.2\n") == [{"seq": "ATGAAATTT", "naturalness": 0.2}]
+
+
+def test_internal_stop_is_rejected_not_treated_as_terminal():
+    summary, scored = score_solutions([{"seq": "ATGTAA", "naturalness": None}], "MKF")
+    assert summary["n_invalid_identity"] == 1
+    assert scored == []
+
+
+def test_benchmark_connected_component_and_unmatched_reported():
+    bench = "ATGAAATTTTGA"
+    synonymous = "ATGAAGTTCTGA"
+    other = "ATGGCTTAA"
+    seqs = {"a": bench, "b": synonymous, "c": other, "d": other}
+    clusters = {"a": ["b"], "b": ["c"], "d": ["d"]}
+    excluded, report = benchmark_components(
+        clusters, seqs, [("nluc", bench), ("unmatched", "ATGTGTTA")]
+    )
+    assert excluded == {"a", "b", "c"}
+    assert report["n_exact_sequence_matched"] == 1
+    assert report["n_exact_sequence_unmatched"] == 1
+    assert report["n_connected_components"] == 1
+    assert report["n_excluded_cds"] == 3
+
+
+def test_synonymous_and_identifier_matches_seed_connected_exclusion():
+    synonymous = "ATGAAGTTCTGA"
+    seqs = {"source": synonymous, "homolog": "ATGGCTTAA", "other": "ATGTGTTA"}
+    clusters = {"source": ["homolog"], "other": ["other"]}
+    excluded, report = benchmark_components(
+        clusters, seqs, [("source extra annotation", "ATGAAATTTTGA")]
+    )
+    assert excluded == {"source", "homolog"}
+    assert report["n_exact_protein_matched"] == 1
+    assert report["n_identifier_matched"] == 1
+    assert report["n_unmatched"] == 0
+    assert report["n_excluded_cds"] == 2
+
+
+def test_build_splits_preserves_unaffected_cluster_assignment(tmp_path, monkeypatch):
+    seqs = {"a": "ATGAAATTTTGA", "b": "ATGAAGTTCTGA", "c": "ATGGCTTAA"}
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", list(seqs.items()))
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\tb\nc\tc\n")
+    bench = write_fasta(tmp_path / "bench.fasta", [("nluc", seqs["a"])])
+
+    def build(out_dir, benchmark=None):
+        argv = [
+            "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+            "--out-dir", str(out_dir), "--train-frac", "0.5",
+        ]
+        if benchmark:
+            argv += ["--benchmark-fasta", benchmark]
+        monkeypatch.setattr(sys, "argv", argv)
+        from scripts.build_splits import main
+        main()
+
+    def expected_assignments():
+        names = sorted(read_clusters(str(clusters)))
+        random.Random(0).shuffle(names)
+        n_train = int(len(names) * 0.5)
+        n_val = max(1, int(len(names) * 0.1))
+        return {
+            "train": names[:n_train],
+            "val": names[n_train:n_train + n_val],
+            "test": names[n_train + n_val:],
+        }
+
+    expected = expected_assignments()
+    with_bench = tmp_path / "with"
+    build(with_bench, bench)
+    unaffected_before = {
+        split: seqs["c"] if "c" in expected[split] else None
+        for split in ("train", "val", "test")
+    }
+    unaffected_after = {
+        split: dict(read_fasta(str(with_bench / f"{split}.fasta"))).get("c")
+        for split in ("train", "val", "test")
+    }
+    assert unaffected_after == unaffected_before
+    assert sum(v is not None for v in unaffected_after.values()) == 1
+    for split in ("train", "val", "test"):
+        retained = dict(read_fasta(str(with_bench / f"{split}.fasta")))
+        assert "a" not in retained and "b" not in retained
+    report = json.loads((with_bench / "split_audit.json").read_text())
+    assert report["benchmark_exclusion"]["n_excluded_cds"] == 2
+
+
+def test_build_splits_requires_explicit_benchmark_path(monkeypatch):
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", "x.fasta", "--cluster-tsv", "x.tsv", "--out-dir", "out",
+    ])
+    with pytest.raises(SystemExit) as exc:
+        build_splits_main()
+    assert exc.value.code == 2
+
+
+def test_exact_cds_and_protein_overlap_with_duplicates(tmp_path):
+    fastas = {
+        "train": write_fasta(tmp_path / "train.fasta", [
+            ("a", "ATGAAATTTTGA"), ("a_duplicate", "ATGAAATTTTGA"),
+            ("synonymous", "ATGAAGTTCTGA"),
+        ]),
+        "val": write_fasta(tmp_path / "val.fasta", [("v", "ATGAAATTTTGA")]),
+        "test": write_fasta(tmp_path / "test.fasta", [("t", "ATGGCTTAA")]),
+        "benchmark": write_fasta(tmp_path / "bench.fasta", [
+            ("nluc", "ATGAAATTTTGA"), ("egfp", "ATGGCTTAA"),
+        ]),
+    }
+    result = overlap_audit(
+        {k: fastas[k] for k in ("train", "val", "test")}, fastas["benchmark"]
+    )
+    assert result["splits"]["train"]["n_duplicate_cds_inputs"] == 1
+    assert result["splits"]["train"]["n_duplicate_protein_inputs"] == 2
+    assert result["splits"]["train"]["length_nt"]["mean"] == 12
+    assert result["splits"]["train"]["gc"]["q50"] == 2 / 12
+    assert result["overlaps"]["train__val"]["n_shared_cds"] == 1
+    assert result["overlaps"]["train__val"]["n_train_inputs_with_shared_cds"] == 2
+    assert result["overlaps"]["train__test"]["n_shared_protein"] == 0
+    assert result["overlaps"]["train__benchmark"]["n_shared_cds"] == 1
+    assert result["overlaps"]["test__benchmark"]["n_shared_protein"] == 1
+    assert result == overlap_audit(
+        {k: fastas[k] for k in ("train", "val", "test")}, fastas["benchmark"]
+    )
+    assert "not family-disjoint proof" in result["scope"]
