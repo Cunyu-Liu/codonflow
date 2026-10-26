@@ -857,3 +857,5 @@ identity 6/6 100%。
 egfp 三 seed：+6.9 / −1.0 / +4.2 → 家族级 +3.2%；nluc +13.5%；zfish −0.8%。
 **rloo mouse_s1：S3 +3.1%**（v3rloo vs v3 基座）——mouse 家族首个正臂（此前 6 臂初步对照中 mouse 数据缺失）。rloo 画像 14/17：若 mouse_s2 也正，RLOO 总画像将转向「弱正但家族依赖」而非「无增益」——verdict 等全量。
 剩余：355M nluc_s0 + mouse×3 + fly×3（7 臂，全在 baselines/cf）；rloo mouse_s2；HELD18 g12-g17（6 基因）。
+
+## 2026-10-26 15:30 (patrol): eval progress 355m=22/35 rloo=14/17
