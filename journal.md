@@ -1,4 +1,15 @@
 
+## 2026-10-27 A6 证据链修复（当前有效）
+
+- 阅读全部交接、journal、最新冲刺日志与 38 页 PPT，独立审查实现。旧 immediate-ATC 不是短 rollout Doob；旧条件去噪不是完整 CTMC Edit Flow；旧 RLOO 的整段 token 打分不是编辑路径概率，环境效用被零权重关闭。
+- 旧 GEMORNA nanoLuc 输入为错误 EGFP-like 蛋白，正式数字作废；LD 100 解含 93 随机补样；旧同预算、time-to-first 和 adaptive verdict 口径均须重审。历史输出标为 `legacy exploratory`，不删除。
+- v3 全量精确审计：train/val/test 交叉重叠真实存在；HELD18 为 17 unique。新 v4 保留 776,474 个唯一蛋白（621,306/76,444/78,724），独立复核 train/val/test 与全部 benchmark 的精确 CDS/蛋白重叠均为 0。只声称 exact-protein + nucleotide-cluster split。
+- 新增有限步同义 Markov 编辑器：联合跳转核、显式 stay、短 rollout log-h 与路径概率；小状态精确 Doob 分布验证通过。真实 56M 一步 RLOO 冒烟：identity=1.0，环境效用实际进入奖励，loss/logp/grad 有限；这只是工程通过，不是性能提升证据。
+- 本地与远端 75 tests 全绿；GitHub main 已合并 GitHub/集群分叉并推送修复提交。
+- 预训练 R1 首轮在验证前因 CPU/CUDA generator 不匹配失败，日志保留，不计科学结果。已修复并加重复验证回归；R2 使用固定验证 corruption、数据 SHA256、代码 commit、best/last/完整训练状态，持续至独立验证 plateau。
+- 当前不做 capacity/RL scaling 因果断言，不以旧 JSON 数作为 Gate C 通过。后续优先小样本 immediate vs short-rollout 与 frozen control，再扩多基因多种子。
+
+
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)
 
 **S4b CAI 表独立性检验（E4_refseq_check.json）**:
