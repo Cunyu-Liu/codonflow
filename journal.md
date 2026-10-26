@@ -861,3 +861,11 @@ egfp 三 seed：+6.9 / −1.0 / +4.2 → 家族级 +3.2%；nluc +13.5%；zfish �
 ## 2026-10-26 15:30 (patrol): eval progress 355m=22/35 rloo=14/17
 
 ## 2026-10-26 19:00 (patrol): eval progress 355m=23/35 rloo=14/17
+
+## 2026-10-26 19:35 (session cont): nluc_s0 落盘——9/15 轻臂全齐
+
+**355M 9 臂（egfp/nluc/zfish 全家族）S3 几何平均 1.0411（+4.11%）**：
+- nluc 家族（3 seed 齐）：+4.4 / +25.7 / +1.7 → 家族几何均 **+9.4%**，S2 全正（+13.2~+20.4）
+- egfp 家族：+3.2%；zfish 家族：−0.8%
+- 剩余 6 长臂（mouse×3 + fly×3）全在跑（load 已降 31——mouse/fly baselines 交替期）
+rloo 14/17（mouse_s2 收官中）；HELD18 12/18（g12 后段）。
