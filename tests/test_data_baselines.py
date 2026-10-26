@@ -138,7 +138,7 @@ def test_build_splits_preserves_unaffected_cluster_assignment(tmp_path, monkeypa
     seqs = {"a": "ATGAAATTTTGA", "b": "ATGAAGTTCTGA", "c": "ATGGCTTAA"}
     cleaned = write_fasta(tmp_path / "cleaned.fasta", list(seqs.items()))
     clusters = tmp_path / "clusters.tsv"
-    clusters.write_text("a\tb\nc\tc\n")
+    clusters.write_text("a\ta\na\tb\nc\tc\n")
     bench = write_fasta(tmp_path / "bench.fasta", [("nluc", seqs["a"])])
 
     def build(out_dir, benchmark=None):
@@ -187,7 +187,7 @@ def test_group_by_protein_removes_exact_protein_duplicates(tmp_path, monkeypatch
     cleaned = tmp_path / "cleaned.fasta"
     cleaned.write_text(">a\nATGAAATTTTGA\n>b\nATGAAGTTCTGA\n>c\nATGGCTTAA\n")
     clusters = tmp_path / "clusters.tsv"
-    clusters.write_text("a\tb\na\tc\nc\tc\n")
+    clusters.write_text("a\ta\na\tb\na\tc\n")
     bench = tmp_path / "bench.fasta"
     bench.write_text(">external\nATGACATAA\n")
     out = tmp_path / "out"

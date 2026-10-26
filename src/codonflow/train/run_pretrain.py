@@ -7,8 +7,10 @@ Usage: python -m codonflow.train.run_pretrain --train-fasta ... --out-dir ...
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -41,6 +43,23 @@ def batch_to_tensors(batch, dev):
         ids[i, : len(b)] = torch.tensor(b, dtype=torch.long, device=dev)
         pad[i, : len(b)] = False
     return ids, pad
+
+
+def file_sha256(path: str) -> str:
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def git_commit() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=Path(__file__).resolve().parents[2], text=True,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "unavailable"
 
 
 def main() -> None:
@@ -85,6 +104,9 @@ def main() -> None:
     print(f"train={len(train_seqs)} val={len(val_seqs)}", flush=True)
     (out_dir / "run_config.json").write_text(json.dumps({
         **vars(args), "n_train": len(train_seqs), "n_val": len(val_seqs),
+        "code_commit": git_commit(),
+        "train_sha256": file_sha256(args.train_fasta),
+        "val_sha256": file_sha256(args.val_fasta),
         "objective": "edited-token denoising" if args.token_only_at_edits else "legacy full-position denoising",
     }, indent=2))
 
@@ -266,7 +288,7 @@ def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False) -
     total, n = 0.0, 0
     from codonflow.data.dataset import corrupt_x_t
 
-    generator = torch.Generator(device=dev).manual_seed(seed)
+    generator = torch.Generator(device="cpu").manual_seed(seed)
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
         x_t = corrupt_x_t(ids, generator=generator)
