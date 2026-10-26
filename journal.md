@@ -859,3 +859,5 @@ egfp 三 seed：+6.9 / −1.0 / +4.2 → 家族级 +3.2%；nluc +13.5%；zfish �
 剩余：355M nluc_s0 + mouse×3 + fly×3（7 臂，全在 baselines/cf）；rloo mouse_s2；HELD18 g12-g17（6 基因）。
 
 ## 2026-10-26 15:30 (patrol): eval progress 355m=22/35 rloo=14/17
+
+## 2026-10-26 19:00 (patrol): eval progress 355m=23/35 rloo=14/17
