@@ -848,3 +848,5 @@ identity 6/6 100%。
 **RLOO 全画像更新（12/17 臂齐）**：egfp (+?)×2、nluc×2、zfish×3、fly×3、mouse_s0 —— 混合正负，与冻结前 6 臂判断一致：v3 基座上 RLOO 无一致正增益。等 mouse_s1/s2 收官后 verdict 脚本自动裁决（17/17 触发）。
 
 **355M 侧**：egfp_s2/mouse×3 cf 完成进入 baselines（4 臂并行基线是 CPU 峰值主因）。HELD18 12/18（g12 跑中）。
+
+## 2026-10-26 14:00 (patrol): eval progress 355m=22/35 rloo=13/17
