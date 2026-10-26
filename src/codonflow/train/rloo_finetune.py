@@ -1,18 +1,16 @@
-"""RLOO fine-tuning trainer (Phase 3, Task 3.1, GrammarRL Eq(4)-(8)).
+"""Path-level RLOO for finite-step synonymous CDS design.
 
-direct   = length-normalized log pi(y|x) with UNCONSTRAINED probabilities
-reverse  = 1[Trans(y) == Trans(x)] hard translation cycle
-group    = N=3 policy rollouts + 1 LinearDesign solution mixed in (equal
-           weight in the LOO baseline, not an imitation target)
-loss     = mean_i [ -A^(i) log pi_theta + beta * (log pi_theta - log pi_ref) ]
-Convergence: reward plateau (patience windows of smoothed reward).
+The legacy unconditional-token scorer and zero-weight environment reward are
+replaced by actual sampled-path log probabilities and an explicit terminal
+utility. Translation identity is retained as a diagnostic hard constraint, not
+counted twice as a learning reward when the proposal is already synonymous.
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import sys
-import time
 from pathlib import Path
 
 import numpy as np
@@ -20,258 +18,213 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from codonflow.core.codon import (
-    feasible_edit,
-    protein_of_cds,
-    translate,
-    gc_fraction,
-    split_codons,
-    normalize_to_dna,
-    STANDARD_TABLE_1,
-    SYNONYMOUS_CODONS,
-)
+from codonflow.core.codon import protein_of_cds, split_codons
 from codonflow.data.dataset import read_fasta
-from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe
+from codonflow.eval.metrics import cai_weights_from_rscu
 from codonflow.gating.atc import ATCUtility
-from codonflow.models.edit_flow import EditFlowConfig, EditFlowTransformer, edit_flow_loss
-from codonflow.models.guided_sampler import CodonGuidedSampler, synonymous_x0
-from codonflow.models.batched_sampler import BatchedGuidedSampler, BatchedReward
-from codonflow.rl.rloo import (
-    RLOOConfig,
-    RewardTracker,
-    combined_reward,
-    loo_advantage,
-    rloo_loss,
-    sequence_log_prob,
+from codonflow.models.batched_sampler import BatchedReward
+from codonflow.models.edit_flow import EditFlowConfig, EditFlowTransformer
+from codonflow.models.guided_sampler import synonymous_x0
+from codonflow.models.synonymous_markov import (
+    FiniteStepSynonymousMarkovEditor,
+    SynonymousJumpProposal,
 )
-from codonflow.core.motifs import motif_penalty_score
-from codonflow.core.tokenizer import CODON_TO_INDEX, BOS_ID, EOS_ID, encode_cds
+from codonflow.rl.rloo import RewardTracker, rloo_loss
 
 
-def make_env_reward(atc: ATCUtility, weights, mfe_cache: dict):
-    def reward(cds: str) -> float:
-        m = mfe_cache.get(cds)
-        if m is None:
-            m = mfe(cds)
-            mfe_cache[cds] = m
-        return atc.utility(
-            cai(cds, weights), -m, -abs(gc_fraction(cds) - 0.55),
-            -motif_penalty_score(cds),
-        )
-    return reward
+def load_model(checkpoint: str, device: torch.device) -> EditFlowTransformer:
+    state = torch.load(checkpoint, map_location="cpu", weights_only=True)
+    key = next(k for k in state if k.endswith("self_attn.in_proj_weight"))
+    d_model = state[key].shape[0] // 3
+    n_layers = max(
+        int(k.split(".")[2]) for k in state
+        if k.startswith("encoder.layers.") and k.endswith("self_attn.in_proj_weight")
+    ) + 1
+    n_heads = {768: 12, 1280: 16}.get(d_model)
+    if n_heads is None:
+        raise ValueError(f"unsupported model width {d_model}")
+    model = EditFlowTransformer(EditFlowConfig(
+        d_model=d_model, n_layers=n_layers, n_heads=n_heads, dropout=0.0,
+    ))
+    model.load_state_dict(state)
+    return model.to(device)
 
 
-def lineardesign_solution(protein: str) -> str:
-    """LinearDesign proxy for the strong rollout in the RLOO group.
-
-    Runs the official binary (MFE-only, lambda=0) and returns the CDS with
-    terminal stop restored.
-    """
-    import re
-    import subprocess
-
-    LD_BIN = "/home/codonflow/third_party/LinearDesign/bin/LinearDesign_2D"
-    LD_DIR = "/home/codonflow/third_party/LinearDesign"
-    try:
-        proc = subprocess.run(
-            [LD_BIN, "0", "0", "codon_usage_freq_table_human.csv"],
-            input=protein, capture_output=True, text=True, cwd=LD_DIR, timeout=300,
-        )
-        m = re.search(r"mRNA sequence:\s*([ACGUacgu]+)", proc.stdout)
-        if m:
-            return normalize_to_dna(m.group(1)) + "TAA"
-    except Exception:
-        pass
-    return None
+def path_from_trace(initial: str, trace: list[dict]) -> list[str]:
+    if not trace:
+        raise ValueError("RLOO requires at least one edit transition")
+    return [initial] + [row["sequence"] for row in trace]
 
 
-def sequence_log_prob_unconstrained(model, codons: list, device) -> torch.Tensor:
-    ids = [BOS_ID] + [CODON_TO_INDEX[c] for c in codons] + [EOS_ID]
-    t = torch.tensor([ids], dtype=torch.long, device=device)
-    _, token_logits = model(t)
-    log_probs = torch.log_softmax(token_logits[0].float(), dim=-1)
-    total = 0.0
-    for i, c in enumerate(codons):
-        total = total + log_probs[i + 1, CODON_TO_INDEX[c]]
-    return total / len(codons)
+def reward_scale(values: list[float], floor: float = 1e-6) -> float:
+    return max(float(np.std(values)), floor)
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--benchmark-fasta", required=True)
-    ap.add_argument("--checkpoint", required=True)
-    ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
-    ap.add_argument("--lr", type=float, default=3.3e-7)
-    ap.add_argument("--beta", type=float, default=0.02)
-    ap.add_argument("--lmbda", type=float, default=0.5)
-    ap.add_argument("--group-n", type=int, default=3)
-    ap.add_argument("--n-steps", type=int, default=20)
-    ap.add_argument("--rollout-batch", type=int, default=8)
-    ap.add_argument("--max-iters", type=int, default=1000)
-    ap.add_argument("--plateau-patience", type=int, default=15)
-    ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--ungated-rollout", action="store_true",
-                    help="sample rollouts from the UNCONSTRAINED policy (any codon "
-                         "at any position) so the reverse signal has variance "
-                         "(spec EXP-4: rollouts from the ungated policy)")
-    args = ap.parse_args()
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-    assert device.type == "cuda", "GPU required"
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--benchmark-fasta", required=True)
+    parser.add_argument("--calibration-fasta", required=True,
+                        help="disjoint held-out CDS; never use benchmark rewards for tuning")
+    parser.add_argument("--checkpoint", required=True)
+    parser.add_argument("--out-dir", required=True)
+    parser.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
+    parser.add_argument("--atc-yaml", default="/home/codonflow/configs/atc_norm.yaml")
+    parser.add_argument("--lr", type=float, default=3.3e-7)
+    parser.add_argument("--beta", type=float, default=0.02,
+                        help="squared path log-ratio trust penalty, not a KL claim")
+    parser.add_argument("--direct-weight", type=float, default=0.0,
+                        help="optional frozen-model path-likelihood reward; 0 avoids duplication")
+    parser.add_argument("--env-weight", type=float, default=1.0)
+    parser.add_argument("--group-n", type=int, default=4)
+    parser.add_argument("--terminal-step", type=int, default=4)
+    parser.add_argument("--candidate-count", type=int, default=8)
+    parser.add_argument("--rollout-count", type=int, default=4)
+    parser.add_argument("--max-iters", type=int, default=100000,
+                        help="safety bound only; smoothed plateau determines normal stopping")
+    parser.add_argument("--plateau-patience", type=int, default=30)
+    parser.add_argument("--reward-smoothing", type=int, default=50)
+    parser.add_argument("--seed", type=int, default=0)
+    args = parser.parse_args()
+    if args.group_n < 2 or args.direct_weight < 0 or args.env_weight < 0:
+        raise ValueError("group-n >= 2 and nonnegative reward weights are required")
+    if args.direct_weight == args.env_weight == 0:
+        raise ValueError("at least one reward component must be active")
+    device = torch.device("cuda:0")
+    if not torch.cuda.is_available():
+        raise RuntimeError("CUDA is required; silent CPU fallback is forbidden")
     torch.manual_seed(args.seed)
+    rng = np.random.default_rng(args.seed)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+    config = vars(args)
+    (out_dir / "config.json").write_text(json.dumps(config, indent=2))
 
-    rscu = json.loads(Path(args.rscu_json).read_text())
-    weights = cai_weights_from_rscu(rscu)
-    atc = ATCUtility.from_yaml("/home/codonflow/configs/atc_norm.yaml")
-    mfe_cache: dict = {}
-    env_reward = make_env_reward(atc, weights, mfe_cache)
-
-    model = EditFlowTransformer(EditFlowConfig(d_model=768, n_layers=8, n_heads=12, dropout=0.0))
-    state = torch.load(args.checkpoint, map_location="cpu", weights_only=True)
-    model.load_state_dict(state)
-    model = model.to(device)
-    ref_model = EditFlowTransformer(EditFlowConfig(d_model=768, n_layers=8, n_heads=12, dropout=0.0))
-    ref_model.load_state_dict(state)
-    ref_model = ref_model.to(device).eval()
-    for p in ref_model.parameters():
-        p.requires_grad_(False)
-
+    model = load_model(args.checkpoint, device)
+    ref_model = copy.deepcopy(model).eval()
+    for parameter in ref_model.parameters():
+        parameter.requires_grad_(False)
+    proposal = SynonymousJumpProposal(model, device)
+    ref_proposal = SynonymousJumpProposal(ref_model, device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
+    weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
+    atc = ATCUtility.from_yaml(args.atc_yaml)
+    mfe_cache: dict = {}
+    terminal_reward = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
 
-    sources = [(h.split()[0], s) for h, s in read_fasta(args.benchmark_fasta)]
-    ld_solutions = {}
-    for name, cds in sources:
-        protein = protein_of_cds(cds)
-        sol = lineardesign_solution(protein)
-        if sol is not None and translate(sol) == translate(cds):
-            ld_solutions[name] = sol
-            print(f"LD solution cached for {name} (CAI {cai(sol, weights):.3f})", flush=True)
-        else:
-            print(f"WARNING: LD solution invalid for {name}; using CAI-greedy", flush=True)
-            prot = protein_of_cds(cds)
-            ld_solutions[name] = "".join(
-                max(SYNONYMOUS_CODONS[aa], key=lambda c: weights.get(c, 0.0))
-                for aa in prot
-            ) + "TAA"
+    sources = [s for _, s in read_fasta(args.benchmark_fasta)]
+    calibration = [s for _, s in read_fasta(args.calibration_fasta)]
+    if not sources or not calibration:
+        raise ValueError("both training and calibration FASTA files must be nonempty")
+    if set(sources) & set(calibration):
+        raise ValueError("calibration sequences must be disjoint from training sources")
 
-    # sigma calibration on held-out inputs (100 synonymous variants, group std)
-    calib_rewards = []
-    rng = np.random.default_rng(999)
-    for name, cds in sources:
-        vals = []
-        for _ in range(100):
-            v = synonymous_x0(cds, rng)
-            vals.append(env_reward(v))
-        calib_rewards.append(np.std(vals))
-    sigma_env = float(np.mean(calib_rewards)) or 1.0
-    sigma_direct = 0.05
-    sigma_reverse = 0.5
-    print(f"sigma_env={sigma_env:.4f}", flush=True)
+    def sample_group(source: str, use_model=True):
+        group = []
+        for index in range(args.group_n):
+            initial = synonymous_x0(source, rng)
+            editor = FiniteStepSynonymousMarkovEditor(
+                proposal, terminal_reward,
+                terminal_step=args.terminal_step,
+                rollout_count=args.rollout_count,
+                candidate_count=args.candidate_count,
+                rng=rng,
+            )
+            terminal, trace = editor.sample(initial)
+            path = path_from_trace(initial, trace)
+            group.append({
+                "initial": initial, "terminal": terminal, "path": path,
+                "utility": terminal_reward([terminal])[0],
+                "identity": protein_of_cds(terminal) == protein_of_cds(source),
+                "index": index,
+            })
+        return group
 
-    sampler = BatchedGuidedSampler(
-        model, device, BatchedReward(weights, atc, mfe_cache),
-        n_steps=args.n_steps, n_candidates=10,
-        temperature=1.0, rng=np.random.default_rng(args.seed),
+    # Frozen-policy within-group standard deviations on held-out CDS. The
+    # terminal utility and path log likelihood have separate scales.
+    calibration_env, calibration_direct = [], []
+    with torch.no_grad():
+        for source in calibration[:100]:
+            group = sample_group(source)
+            utilities = [row["utility"] for row in group]
+            calibration_env.append(reward_scale(utilities))
+            calibration_direct.append(reward_scale([
+                float(ref_proposal.sampled_path_log_probability(row["initial"], row["path"]))
+                for row in group
+            ]))
+    sigma_env = max(float(np.mean(calibration_env)), 1e-6)
+    sigma_direct = max(float(np.mean(calibration_direct)), 1e-6)
+    scales = {"sigma_env": sigma_env, "sigma_direct": sigma_direct,
+              "n_calibration_sequences": min(100, len(calibration))}
+    (out_dir / "reward_calibration.json").write_text(json.dumps(scales, indent=2))
+
+    tracker = RewardTracker(
+        patience=args.plateau_patience, rel_tol=0.005, smoothing=args.reward_smoothing,
     )
-    tracker = RewardTracker(patience=args.plateau_patience, rel_tol=0.005)
-    rng = np.random.default_rng(args.seed)
-
-    history = []
-    converged = False
-    all_codons = [c for c in CODON_TO_INDEX if c in CODON_TO_INDEX]
-
-    def ungated_rollout(x0: str) -> str:
-        """Token-level sampling from the unconstrained policy: at each of
-        n_steps random positions resample the codon from the model's
-        distribution over the 64 codon tokens (special tokens masked out;
-        any codon allowed, synonymous or not, so the reverse signal has
-        variance)."""
-        codons = list(split_codons(x0))
-        L = len(codons)
-        n_codon_tokens = len(CODON_TO_INDEX)
-        idx_to_codon = {v: k for k, v in CODON_TO_INDEX.items()}
-        for _ in range(args.n_steps):
-            pos = int(rng.integers(0, L))
-            ids = [BOS_ID] + [CODON_TO_INDEX[c] for c in codons] + [EOS_ID]
-            t = torch.tensor([ids], dtype=torch.long, device=device)
-            with torch.no_grad():
-                _, token_logits = model(t)
-            logp = torch.log_softmax(token_logits[0].float(), dim=-1)
-            logp = logp[pos + 1]
-            mask = torch.full_like(logp, float("-inf"))
-            mask[:n_codon_tokens] = 0.0
-            probs = torch.exp(logp + mask)
-            nid = int(torch.multinomial(probs, 1).item())
-            codons[pos] = idx_to_codon[nid]
-        return "".join(codons)
-
-    for it in range(1, args.max_iters + 1):
-        name, cds = sources[it % len(sources)]
-        protein = translate(cds)
-        group_y = []
-        for _ in range(args.group_n):
-            x0 = synonymous_x0(cds, rng)
-            if args.ungated_rollout:
-                y = ungated_rollout(x0)
-            else:
-                y, _trace = sampler.sample(x0)
-            group_y.append(y)
-        group_y.append(ld_solutions[name])
-        rewards = []
-        log_pi = []
-        log_ref = []
-        for y in group_y:
-            codons = split_codons(y)
-            lp_theta = sequence_log_prob_unconstrained(model, codons, device)
-            with torch.no_grad():
-                lp_ref = sequence_log_prob_unconstrained(ref_model, codons, device)
-            r_direct = float(lp_ref.item())
-            r_reverse = float(translate(y) == protein)
-            r_env = (env_reward(y) - np.mean([env_reward(v) for v in [y]])) / sigma_env
-            r = combined_reward(
-                torch.tensor([r_direct]), torch.tensor([r_reverse]),
-                sigma_direct, sigma_reverse, args.lmbda,
-            ).item() + 0.0 * r_env
-            rewards.append(r)
-            log_pi.append(lp_theta)
-            log_ref.append(lp_ref)
-        rewards_t = torch.tensor(rewards, device=device)
-        log_pi_t = torch.stack(log_pi)
-        log_ref_t = torch.stack([x.detach() for x in log_ref])
-        loss = rloo_loss(log_pi_t, log_ref_t, rewards_t, beta=args.beta)
+    history, converged = [], False
+    for iteration in range(1, args.max_iters + 1):
+        source = sources[(iteration - 1) % len(sources)]
+        group = sample_group(source)
+        env = torch.tensor([row["utility"] for row in group], dtype=torch.float32)
+        direct_rewards = []
+        with torch.no_grad():
+            for row in group:
+                direct_rewards.append(ref_proposal.sampled_path_log_probability(
+                    row["initial"], row["path"],
+                ))
+        direct = torch.stack(direct_rewards).cpu()
+        rewards = (
+            args.env_weight * env / sigma_env
+            + args.direct_weight * direct / sigma_direct
+        ).to(device)
+        log_pi = torch.stack([
+            proposal.sampled_path_log_probability(row["initial"], row["path"])
+            for row in group
+        ])
+        with torch.no_grad():
+            log_ref = torch.stack([
+                ref_proposal.sampled_path_log_probability(row["initial"], row["path"])
+                for row in group
+            ])
+        loss = rloo_loss(log_pi, log_ref, rewards, beta=args.beta)
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
-        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        if not torch.isfinite(grad_norm):
+            raise FloatingPointError(f"non-finite gradient at iteration {iteration}")
         optimizer.step()
-        mean_reward = float(rewards_t.mean().item())
-        env_mean = float(np.mean([env_reward(y) for y in group_y]))
-        converged = tracker.update(mean_reward)
-        history.append(
-            {"iter": it, "loss": float(loss.item()), "mean_reward": mean_reward,
-             "env_reward_mean": env_mean}
-        )
-        if it % 10 == 0:
-            print(
-                f"iter {it} loss {loss.item():.4f} reward {mean_reward:.4f} "
-                f"env {env_mean:.4f} plateau {tracker._plateau_steps}/{args.plateau_patience}",
-                flush=True,
-            )
-            with open(out_dir / "log.jsonl", "a") as f:
-                for h in history[-10:]:
-                    f.write(json.dumps(h) + "\n")
+        record = {
+            "iteration": iteration,
+            "loss": float(loss.detach()),
+            "grad_norm": float(grad_norm),
+            "env_reward_mean": float(env.mean()),
+            "direct_reward_mean": float(direct.mean()),
+            "identity_rate": float(np.mean([row["identity"] for row in group])),
+            "reward_mean": float(rewards.mean()),
+            "log_pi_mean": float(log_pi.detach().mean()),
+            "log_ref_mean": float(log_ref.mean()),
+            "sigma_env": sigma_env,
+            "sigma_direct": sigma_direct,
+        }
+        if not all(np.isfinite(v) for k, v in record.items() if k != "iteration"):
+            raise FloatingPointError(f"non-finite metric at iteration {iteration}")
+        history.append(record)
+        converged = tracker.update(record["reward_mean"])
+        with (out_dir / "log.jsonl").open("a") as handle:
+            handle.write(json.dumps(record) + "\n")
+        if iteration % 10 == 0:
             torch.save(model.state_dict(), out_dir / "last.pt")
+            print(json.dumps(record), flush=True)
         if converged:
-            print(f"REWARD PLATEAU at iter {it} - stopping", flush=True)
-            torch.save(model.state_dict(), out_dir / "converged.pt")
-            (out_dir / "converged.json").write_text(
-                json.dumps({"iters": it, "last_rewards": history[-20:]}, indent=2)
-            )
             break
+    if not converged and args.max_iters >= 100000:
+        raise RuntimeError("safety iteration bound reached before reward plateau")
+    torch.save(model.state_dict(), out_dir / "converged.pt" if converged else out_dir / "last.pt")
+    (out_dir / "converged.json").write_text(json.dumps({
+        "converged": converged, "iterations": len(history),
+        "smoothed_rewards": tracker.smoothed_history,
+        "config": config, "calibration": scales,
+    }, indent=2))
     (out_dir / "history.json").write_text(json.dumps(history, indent=2))
-    torch.save(model.state_dict(), out_dir / "last.pt")
-    print(f"RLOO done: {len(history)} iters, converged={converged}", flush=True)
 
 
 if __name__ == "__main__":

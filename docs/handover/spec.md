@@ -314,3 +314,48 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 - 预印本 §6 容量结论、fig10 第三点、RLOO 条件性裁决、PPT 更新——全部等 35 JSON 评测完成后一次性收口（W2.4a/W2.6/W2.7/W2.8）。
 
 **不修改**：H1 假设、R6 停止条件、预注册成功标准、A4 降级备案（其触发条件「355M+预算扩展仍不达 S3 ≥10%」需等下游评测裁决）。
+
+---
+
+## Amendment A6（2026-10-26/27 · 实现、数据与评测协议审计修复）
+
+**原则**：不以既有结果数量替代方法有效性；历史输出保留为 `legacy exploratory`，不得用于证明尚未实现或协议不成立的主张。A6 的优先级高于 A1-A5 中与之冲突的实现描述和验收勾选，但不删除历史记录。
+
+### A6.1 方法与证据等级
+
+1. 旧 `BatchedGuidedSampler` 使用 `log_u + immediate_ATC`，没有短 rollout、`logsumexp(log G)-log R` 或 `h(y)/h(x)`；旧 `EditFlowTransformer` 与 `edit_flow_loss` 是条件去噪模型，不是完整时间/速率参数化 CTMC Edit Flow。旧 E2/E3/E5/E6 因而只能支持 **immediate-ATC 同义局部搜索**，不能证明 pCoMole 式精确终端分布。
+2. 新 `synonymous_markov.py` 定义有限步单密码子同义跳转核：位置与候选密码子联合归一化、显式 stay、短 rollout 终端价值和候选剪枝 Doob 近似。精确小状态后向递推测试通过；真实大状态空间下只声称 Monte Carlo 近似，不宣称与 CTMC 等价或终端分布精确。`rollout_count=0` 是独立的 immediate 消融。
+3. 合法性来自合法源 CDS 与同义操作符；调用方必须验证源 CDS。将其表述为 **by-operator feasibility**，不再把全部合法性归因于尚未验证的终端门控。
+4. 新 RLOO 使用真实采样路径概率与终端效用。冻结参考模型的 direct 定义与 GrammarRL 一致，但不能把无条件的整段 token 打分冒充编辑路径概率。默认优化环境效用，reverse 身份恒等只作诊断，避免在同一同义操作空间重复奖励。旧 35/111-iteration 平台不等同于新算法的收敛证据。
+5. 新预训练保留独立验证集、固定验证 corruption、验证最优 checkpoint、完整 optimizer/RNG 状态和 plateau 停止。旧 e21=2.7875 仅表示达到旧 plateau 条件；`converged.pt` 是最后权重而非旧代码自动选择的最优权重。旧不同目标/数据/验证协议的 val loss 不作强因果 scaling 比较。
+
+### A6.2 数据真实性与划分
+
+1. 全量精确审计（`eval_outputs/audits_20261026/v3_exact_overlap.json`）实测：
+   - train/val/test = 689,635/87,078/85,527 输入；train 有 51,391 个重复 CDS 输入和 67,832 个重复翻译蛋白输入。
+   - train–val 共享 73 条 CDS/187 个蛋白，train–test 共享 76 条 CDS/188 个蛋白，val–test 共享 12 条 CDS/28 个蛋白。
+   - HELD18 含 18 输入但只有 17 个唯一 CDS/蛋白；17 个均来自 test，train/val 与 benchmark 精确 CDS/蛋白重叠均为 0。
+2. 因此旧“零泄漏”“18 unique”“family-disjoint”全部撤回。旧划分只近似支持 **nucleotide-cluster-held-out**；同物种序列不自动构成 species OOD，0.8 核苷酸聚类也不证明蛋白 family disjoint。
+3. 新 `splits_v4_protein` 按精确翻译蛋白去重，并执行核苷酸簇不重叠及完整 benchmark 连通簇排除。该版本解决精确重复与 benchmark 排除，不等于更深同源/家族去泄漏；后者须由蛋白聚类或同源证据另行验收。
+4. 新数据审计必须输出各 split 的条数、唯一 CDS/蛋白、长度/GC 分布、无效翻译、跨 split 精确重叠和 benchmark 匹配证据。历史 HELD18 结论降为探索性，正式泛化结论只使用去重且冻结的新测试集。
+
+### A6.3 基线、预算与 HV
+
+1. 旧 `gemorna_arm.py` 的 nanoLuc 硬编码蛋白错误（239-aa EGFP-like），且评分缺少身份核验；旧 GEMORNA nanoLuc 数字作废，必须用 benchmark FASTA 的真实蛋白重跑。所有 GEMORNA 输出在评分前检查翻译身份。
+2. 旧 `lineardesign_scan` 用 7 个 DP 解和 93 个随机同义序列补足 100 解，不能冒名为 100 个 DP 解；旧 CF 100 解预算也可能只有 98 解。旧主表不再称为严格等预算比较。
+3. `apply_k`、多方向、缓存与最终 fold 使旧 `steps*candidates` 不等于真实 scorer 成本；旧 time-to-first-usable 还是解序号而非时间。E2/E6 的效率与预算结论须按四种口径重做：输出解数、唯一 scorer 调用、模型 forward、端到端时间。
+4. 新 S3 采用 **同一基因/seed、全部比较模型联合参考域**：每轴 min−5%×(p95−min)，再按 scale 归一化，报告无量纲 HV。缺失模型或零基线不得静默剔除；最终裁决必须包含完整方法池与全部预设 arms。
+5. 旧 `uniform_edit_flow` 实际是独立均匀同义采样，改名为 `uniform_synonymous`，不再作为无门控 Edit Flow 消融。GEMORNA 等完整方法池未齐时只可出诊断，不得自动生成最终 verdict。
+
+### A6.4 预印本主线的修订
+
+科学问题保持不变：如何在不改变蛋白的前提下学习可控、可比较的同义 CDS 编辑。主线调整为：
+
+1. **定义与测量**：先统一可行性、预算、独立测试和联合 HV，避免把协议差异误当算法收益。
+2. **机制验证**：精确小状态证明有限步 Doob 核；真实实验比较 immediate 与短 rollout，而非把启发式命名为理论保证。
+3. **学习与泛化**：在蛋白去重、cluster-disjoint 的新数据上检验预训练与 RLOO 的增量；按 cluster、family、species 分层命名，不混称 OOD。
+4. **边界**：与真正的 LinearDesign、codonGPT、GEMORNA 和 uniform synonymous 在一致输出预算与成本口径下比较，保留弱项和负结果。绝对覆盖优势未证明前不作 SOTA 或 capacity/RL scaling 因果结论。
+
+### A6.5 新验收门槛
+
+任何新主表/PPT/论文结果必须同时满足：73+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。

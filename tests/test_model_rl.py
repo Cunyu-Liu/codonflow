@@ -72,12 +72,28 @@ def test_sequence_log_prob():
 
 
 def test_reward_tracker_plateau():
-    tr = RewardTracker(patience=3, rel_tol=0.001)
+    tr = RewardTracker(patience=3, rel_tol=0.001, smoothing=1)
     assert not tr.update(1.0)
     assert not tr.update(1.0)
     assert not tr.update(1.0)
     assert tr.update(1.0)
     assert tr.converged
+
+
+def test_reward_tracker_requires_smoothing_window():
+    tr = RewardTracker(patience=2, rel_tol=0.001, smoothing=3)
+    assert not tr.update(1.0)
+    assert not tr.update(1.0)
+    assert not tr.update(1.0)
+    assert not tr.update(1.0)
+    assert tr.update(1.0)
+
+
+def test_rloo_trust_penalty_pulls_toward_reference():
+    theta = torch.tensor([-1.0], requires_grad=True)
+    loss = rloo_loss(theta, torch.tensor([0.0]), torch.zeros(1), beta=0.1)
+    loss.backward()
+    assert theta.grad.item() < 0
 
 
 def test_stop_conditions():

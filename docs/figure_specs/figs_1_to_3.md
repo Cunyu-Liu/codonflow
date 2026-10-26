@@ -1,4 +1,33 @@
-# Figure specs (frozen BEFORE numbers, per spec 3.2.6 discipline)
+# Figure specs v2（2026-10-26/27 · A6 证据修复版）
+
+> 下方 v1 为历史方案，不再作为当前图的验收依据。图标题必须陈述数据支持的结论，不得用图形美观掩盖协议问题。
+
+## 当前主图规范
+
+### Fig-1 数据与测量协议
+
+- Panel A：v3 输入 vs 精确 CDS/蛋白去重数量；Panel B：各 split 长度/GC 分布。
+- Panel C：train/val/test 的精确 CDS 与蛋白交叉重叠审计，含修复前后对照。
+- 所有数字来自同一 `overlap_audit.json` 与冻结 split manifest，禁止手工填数。
+
+### Fig-2 有限步机制与验证
+
+- Panel A：源 CDS→联合同义跳转核→短 rollout→终端效用→路径更新的机制图。
+- Panel B：可枚举小状态上 `q_G(X_T) ∝ q_base(X_T)G(X_T)` 的精确数值验证。
+- 标题使用“finite-step synonymous Markov editing”；短 rollout/候选剪枝标注 approximate，禁止画成已证明的 CTMC 精确采样。
+
+### Fig-3 学习与基线边界
+
+- 主比较只使用 A6 新协议：真实 DP 解、正确 GEMORNA 输入、identity/legal 全检查、完整方法池联合 HV。
+- 同页报告输出解数、唯一 scorer calls、forward 与端到端时间；不把不同成本口径混为一个“同预算”数字。
+- immediate 与 short-rollout 是不同推理算法臂；旧 RLOO 与新 path-RLOO 不共享曲线或结论。
+
+## 历史图规范存档（v1）
+
+- Fig-1 代理采样不支持 AR masking 的因果结论，最多描述 codon-preference 与多样性的关联；若需 masking 因果，必须同 checkpoint 比较 AR-free 与 AR+synonymous-mask。
+- Fig-2 旧 equal-scoring/首达效率图撤回：scorer 计数漏掉 apply_k，首达记录是解序号；旧 filter 胜出也必须保留。
+- Fig-3 前沿必须使用全部方法非支配并集，不得只由 CodonFlow 自身 7 个方向构造参考前沿。
+- 所有图导出 PDF + 300dpi PNG，统一方法色、无顶右边框、直接标注样本量/seed/不确定性。
 
 ## Fig-1 (EXP-1) Baseline preference collapse
 

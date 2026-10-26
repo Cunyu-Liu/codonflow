@@ -138,7 +138,7 @@ def test_build_splits_preserves_unaffected_cluster_assignment(tmp_path, monkeypa
     seqs = {"a": "ATGAAATTTTGA", "b": "ATGAAGTTCTGA", "c": "ATGGCTTAA"}
     cleaned = write_fasta(tmp_path / "cleaned.fasta", list(seqs.items()))
     clusters = tmp_path / "clusters.tsv"
-    clusters.write_text("a\tb\nc\tc\n")
+    clusters.write_text("a\ta\na\tb\nc\tc\n")
     bench = write_fasta(tmp_path / "bench.fasta", [("nluc", seqs["a"])])
 
     def build(out_dir, benchmark=None):
@@ -181,6 +181,25 @@ def test_build_splits_preserves_unaffected_cluster_assignment(tmp_path, monkeypa
         assert "a" not in retained and "b" not in retained
     report = json.loads((with_bench / "split_audit.json").read_text())
     assert report["benchmark_exclusion"]["n_excluded_cds"] == 2
+
+
+def test_group_by_protein_removes_exact_protein_duplicates(tmp_path, monkeypatch):
+    cleaned = tmp_path / "cleaned.fasta"
+    cleaned.write_text(">a\nATGAAATTTTGA\n>b\nATGAAGTTCTGA\n>c\nATGGCTTAA\n")
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\ta\na\tb\na\tc\n")
+    bench = tmp_path / "bench.fasta"
+    bench.write_text(">external\nATGACATAA\n")
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", str(cleaned), "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", str(bench), "--out-dir", str(out), "--group-by-protein",
+    ])
+    build_splits_main()
+    retained = sum((out / f"{split}.fasta").read_text().count(">") for split in ("train", "val", "test"))
+    assert retained == 2
+    report = json.loads((out / "split_audit.json").read_text())
+    assert report["group_by_protein"] is True
 
 
 def test_build_splits_requires_explicit_benchmark_path(monkeypatch):

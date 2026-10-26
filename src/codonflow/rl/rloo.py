@@ -5,9 +5,9 @@ reverse  = 1[Trans(y) == Trans(x)]                 (hard translation cycle)
 r        = (1-lambda) R_direct / sigma_direct + lambda R_reverse / sigma_reverse
 Group    = N policy samples + 1 LinearDesign solution, all equally weighted
            in the LOO baseline (not an imitation target).
-Loss     = mean over group of [ -A^(i) log pi_theta + beta * Delta^(i) ],
-           A^(i) = r^(i) - (1/N) sum_{j != i} r^(j),
-           Delta^(i) = log pi_theta - log pi_ref (per-sequence, not KL).
+Loss     = RLOO advantage + squared log-ratio trust penalty.
+           The linear GrammarRL penalty is not a KL surrogate for arbitrary
+           sampled sequences; CodonFlow uses the squared log ratio instead.
 """
 from __future__ import annotations
 
@@ -79,32 +79,39 @@ def rloo_loss(
     rewards: torch.Tensor,
     beta: float,
 ) -> torch.Tensor:
-    """L = mean_i [ -A^(i) log pi_theta + beta * (log pi_theta - log pi_ref) ].
+    """RLOO advantage with squared log-ratio trust penalty.
 
-    All log-probs are per-sequence length-normalized values; the policy
-    gradient uses unconstrained probabilities (GrammarRL Sec 3.2).
+    The squared log ratio penalizes departure in either direction. It is not
+    labelled KL because sampled-sequence log-ratio differences are not a full
+    path-distribution KL estimator. The advantage is a constant per rollout.
     """
     adv = loo_advantage(rewards)
     delta = log_pi_theta - log_pi_ref
-    per_seq = -adv * log_pi_theta + beta * delta
+    per_seq = -adv.detach() * log_pi_theta + beta * delta.square()
     return per_seq.mean()
 
 
 class RewardTracker:
     """Moving-average plateau detector for the RLOO reward curve."""
 
-    def __init__(self, patience: int = 50, rel_tol: float = 0.005):
+    def __init__(self, patience: int = 50, rel_tol: float = 0.005, smoothing: int = 20):
         self.patience = patience
         self.rel_tol = rel_tol
+        self.smoothing = smoothing
         self.history: List[float] = []
+        self.smoothed_history: List[float] = []
         self.best: Optional[float] = None
         self._plateau_steps = 0
 
     def update(self, value: float) -> bool:
-        """Returns True when the plateau criterion triggers (converged)."""
+        """Compare trailing mean rewards; do not stop on noisy single batches."""
         self.history.append(value)
-        if self.best is None or value > self.best * (1 + self.rel_tol):
-            self.best = max(value, self.best or value)
+        smooth = sum(self.history[-self.smoothing:]) / len(self.history[-self.smoothing:])
+        self.smoothed_history.append(smooth)
+        if len(self.smoothed_history) < self.smoothing:
+            return False
+        if self.best is None or smooth > self.best * (1 + self.rel_tol):
+            self.best = max(smooth, self.best or smooth)
             self._plateau_steps = 0
         else:
             self._plateau_steps += 1

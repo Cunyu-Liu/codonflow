@@ -131,19 +131,43 @@ def main() -> None:
                     help="CDS FASTA whose exact sequences and connected clusters are excluded")
     ap.add_argument("--train-frac", type=float, default=0.8)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--group-by-protein", action="store_true",
+                    help="collapse exact translated-protein groups before cluster splitting")
     args = ap.parse_args()
+    if not 0 < args.train_frac < 1:
+        raise ValueError("train-frac must be between zero and one")
     rng = random.Random(args.seed)
     seqs: Dict[str, str] = {}
     for path in args.cleaned:
         for h, s in read_fasta(path):
             seqs[h] = s
     clusters = read_clusters(args.cluster_tsv)
-    excluded = set()
+    if len({member for members in clusters.values() for member in members}) != sum(
+        len(members) for members in clusters.values()
+    ):
+        raise ValueError("cluster TSV assigns one identifier to multiple representatives")
+    n_clusters_before = len(clusters)
+    missing_cluster_members = set(seqs) - {member for members in clusters.values() for member in members}
+    if missing_cluster_members:
+        raise ValueError(f"{len(missing_cluster_members)} FASTA identifiers absent from cluster TSV")
     benchmark_records = read_fasta(args.benchmark_fasta)
     if not benchmark_records:
         raise ValueError("--benchmark-fasta contains no FASTA records")
     excluded, benchmark_audit = benchmark_components(clusters, seqs, benchmark_records)
     benchmark_audit["enabled"] = True
+    if args.group_by_protein:
+        # Keep the first identifier per exact protein and retain its original
+        # cluster membership. Unlisted members are discarded, not regrouped.
+        representatives = {}
+        for member, seq in seqs.items():
+            protein = cds_protein(seq)
+            if protein is None:
+                raise ValueError(f"invalid CDS translation for {member}")
+            representatives.setdefault(protein, member)
+        retained = set(representatives.values())
+        clusters = {rep: [member for member in members if member in retained]
+                    for rep, members in clusters.items()}
+        clusters = {rep: members for rep, members in clusters.items() if members}
     if benchmark_audit["n_unmatched"]:
         print("WARNING: benchmark sequences without exact CDS/protein/identifier match: "
               + ", ".join(benchmark_audit["unmatched_headers"]))
@@ -172,6 +196,10 @@ def main() -> None:
     audit = {
         "n_input_seqs": len(seqs),
         "n_clusters": n,
+        "n_clusters_before_protein_dedup": n_clusters_before,
+        "n_retained_input_records": sum(counts.values()),
+        "n_removed_as_protein_duplicates": len(seqs) - sum(counts.values()) - len(excluded) if args.group_by_protein else 0,
+        "group_by_protein": args.group_by_protein,
         "split_counts": counts,
         "seed": args.seed,
         "benchmark_exclusion": benchmark_audit,

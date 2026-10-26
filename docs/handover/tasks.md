@@ -1,4 +1,42 @@
-# Tasks（工程级 v5 · 2026-10-23 新集群恢复版）
+# Tasks（工程级 v7 · 2026-10-26/27 证据链修复版）
+
+> 当前执行以本节 **A6 修复队列** 为准；下文 v5/v6 仅保留历史执行轨迹。
+> 代码 `/home/codonflow`，数据/权重/artifacts `/teams/HoulabData_1788502323/liucunyu/codonflow`；单卡 RTX 5090 32GB。
+> 历史产物可以标 done，但不等于科学结论通过。所有新主结果须符合 `spec.md` Amendment A6。
+
+## P0：阻塞新主结果（按依赖顺序）
+
+- [x] A6.0 读取全部本地交接文档、旧 journal、最新 sprint、38 页 PPT 与代码；恢复持久 SSH；盘点 355M 与 RLOO 评测。
+- [x] A6.1 核心代码审查：识别 immediate-ATC 冒充 Doob、旧 RLOO 路径概率/环境目标/校准问题、错误 GEMORNA nanoLuc 输入、LD 随机补样、HELD18 重复及跨 split 重叠。
+- [x] A6.2 全量精确 CDS/蛋白审计：报告 `eval_outputs/audits_20261026/v3_exact_overlap.json`；不再声称零泄漏或 family-disjoint。
+- [x] A6.3 新增有限步同义 Markov 编辑器与精确小状态 Doob 测试；实现短 rollout 和路径概率，明确近似边界。
+- [x] A6.4 GEMORNA 身份检查、蛋白去重划分、联合 HV 工具、训练最优 checkpoint/RNG 保存与 RLOO 奖励修复；本地+远端 73 tests 全绿。
+- [ ] A6.5 `splits_v4_protein` 构建并独立复核：零 train/val/test 精确 CDS/蛋白交叉重叠；完整 benchmark 连通簇排除有记录；数量与分布落档。
+- [ ] A6.6 真实 56M checkpoint 的短 rollout + 路径 RLOO 一步冒烟：reward/grad/logp/identity 全有限，且 rollout 不是 immediate ATC 替身。
+- [ ] A6.7 新预训练 56M 启动：使用新 split 与新输出目录；每 epoch 保存 best/last/training_state；非 plateau 不停止；记录显存与配置 commit。
+- [ ] A6.8 小样本 immediate vs short-rollout vs frozen-model 同预算 pilot；先验证学习/推理信号，再扩到多基因 3 seeds。
+- [ ] A6.9 修正 GEMORNA nanoLuc 及全 baseline 重跑；LD 不再随机补样；完整方法池统一输出预算与成本口径。
+- [ ] A6.10 旧 355M/RLOO 队列自然结束后只归档为 legacy exploratory；不以旧 verdict 作为 Gate C 通过依据。
+
+## P1：论文与图表证据链
+
+- [ ] A6.11 新 cluster-held-out 测试集去重冻结；family 与 species OOD 另行定义，未完成同源聚类前不写 family-disjoint。
+- [ ] A6.12 主实验四口径：输出解数、唯一 scorer calls、模型 forward、端到端时间；补齐 E2/E6 预算重跑。
+- [ ] A6.13 联合 HV 完整 arms/方法池核验，零值与缺失不得静默删除；统计检验与置信区间随表提供。
+- [ ] A6.14 主图按新证据重制：机制示意、数据审计、immediate-vs-rollout、独立泛化、完整基线、成本/预算；PDF+PNG，单一数据源。
+- [ ] A6.15 预印本主线重写：测量定义→有限步机制→学习与泛化→边界；撤回无证据的 SOTA、capacity/RL scaling 和 masking 因果断言。
+- [ ] A6.16 PPT 仅录入 A6 验收结果，修正历史错误页；保留原模板身份，减少堆字，结论与图一一对应。
+
+## P2：工程交付
+
+- [ ] A6.17 GPU queue 提交→active→done/failed 全链路实测；避免同轮重复分配、run_id 冲突与假完成标记。
+- [ ] A6.18 训练监控：每日定时检查训练日志、收敛、NaN/OOM 和队列，不频繁读取显存；资源仅用于真实训练/短 rollout/基线。
+- [ ] A6.19 每个完成任务单独 commit + push；三端核对代码 commit、数据哈希和结果清单，不上传大型权重。
+- [ ] A6.20 Gate C 重审：只有 A6 新协议主结果支持时才可勾选；否则明确 No-Go/降级，不用旧勾选代替裁决。
+
+---
+
+# 历史任务存档（v5/v6，非当前验收依据）
 
 > 项目：CodonFlow（密码子级离散流 mRNA 编辑器）｜spec 见同目录 `spec.md`（含 Amendment A1/A2/A3/A4）
 > 本版替代 v4 冻结版：用户指令恢复全部训练/评测，一个月冲刺预印本。深度自检与故事线重构见同目录 `REFLECTION_20261023.md`。

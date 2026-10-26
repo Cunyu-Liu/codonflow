@@ -1,4 +1,15 @@
-# Data sources registry (Task 1.1 DoD)
+# Data sources registry
+
+## Current audit status（2026-10-26/27）
+
+- 大文件根目录：`/teams/HoulabData_1788502323/liucunyu/codonflow`；代码 `/home/codonflow`。
+- v3 包含 862,240 个清洗后输入、25 物种；该数字不是独立蛋白数。训练/验证/测试为 689,635/87,078/85,527，长度范围 300–6000nt。
+- `eval_outputs/audits_20261026/v3_exact_overlap.json` 已实测 train/val/test 之间存在精确 CDS 和翻译蛋白交叉重叠；旧“零泄漏”与“family-disjoint”不再成立。
+- `splits_v4_protein` 按精确翻译蛋白去重，并排除完整 benchmark 的核苷酸连通簇。它是 exact-protein + nucleotide-cluster split，不自动等于 family 或 species OOD。
+- HELD18 有 17 条唯一序列而非 18；历史 HELD18 只作探索性结果。GEMORNA nanoLuc 旧硬编码输入错误，必须按 benchmark FASTA 重跑。
+- 新增数据的来源 URL、下载日期、输入/保留数量、文件哈希与 split 审计随新 manifest 冻结；未记录的原始物种 URL 不从记忆补写。
+
+## Historical source table（旧版本溯源，非当前验收声明）
 
 All large artifacts live under `/mnt/cunyuliu/codonflow/corpora/`. Pipeline
 step counts: `docs/data_audit/pipeline_counts.md` + `audit_train.json`.
@@ -15,7 +26,7 @@ step counts: `docs/data_audit/pipeline_counts.md` + `audit_train.json`.
 | splits/val | derived | 2026-10-04 | — | 21,149 | df1b516e | cluster-disjoint |
 | splits/test | derived | 2026-10-04 | — | 21,857 | 6123ff2b | cluster-disjoint |
 | bench (egfp+nluc) | UniProt P42212 CDS (syn-rewritten standard); nanoLuc GenBank JQ437370.1 CDS | 2026-10-04 | 2 | 2 | 679d6f53 | egfp.fasta=f2d3db12, nanoluc_cds.fasta=98dd9760; leakage guard: mmseqs cluster of egfp/nluc homologs excluded from train |
-| bench_plus_ood | bench + 3 cross-family OOD (mouse ENSMUST00000202556.4 1905nt, fly FBtr0307879 1179nt, zfish ENSDART00000133583.2 465nt) | 2026-10-05 | 5 | 5 | d908751c | OOD members chosen from test-split clusters, family-disjoint |
+| bench_plus_ood | bench + 3 cross-family OOD (mouse ENSMUST00000202556.4 1905nt, fly FBtr0307879 1179nt, zfish ENSDART00000133583.2 465nt) | 2026-10-05 | 5 | 5 | d908751c | OOD members chosen from test-split nucleotide clusters; not family/species disjoint |
 | spcas9 long probe | UniProt Q99ZW2 CDS (syn-rewritten) | 2026-10-04 | 1 | 1 | 42c2e890 | 4107nt ≈ 1368 aa long-CDS probe |
 
 Cleaning pipeline (per spec R2): (1) drop non-multiple-of-3 / no-stop

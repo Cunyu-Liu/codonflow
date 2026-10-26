@@ -147,12 +147,8 @@ def lineardesign_scan(protein, n_solutions, mfe_cache, weights, rng):
                 sols.append(normalize_to_dna(m.group(1)) + "TAA")
         except Exception:
             pass
-    while len(sols) < n_solutions and rng is not None:
-        codons = []
-        for aa in protein:
-            group = list(SYNONYMOUS_CODONS.get(aa, ["TAA"]))
-            codons.append(group[int(rng.integers(0, len(group)))])
-        sols.append("".join(codons) + "TAA")
+    # Deterministic DP solutions are not padded with random synonymous samples.
+    # Report this compact solution set separately from budget-matched samplers.
     return sols
 
 
@@ -266,7 +262,7 @@ def main() -> None:
             methods = {
                 "lineardesign_scan": (ld_sols, t_ld),
                 "cai_greedy": ([greedy] * min(10, args.n_solutions), 0.0),
-                "uniform_edit_flow": (uni_sols, t_uni),
+                "uniform_synonymous": (uni_sols, t_uni),
             }
             if gpt_sols:
                 methods["codongpt"] = (gpt_sols, t_gpt)

@@ -1,13 +1,12 @@
 # CodonFlow
 
-Feasibility-Gated Codon-level Discrete Flow mRNA Editor + Label-free Bi-Reward RLOO.
+CodonFlow: finite-step synonymous Markov editing for multi-objective CDS design.
 
-> 密码子级离散流 mRNA 编辑器：把「蛋白身份 + 阅读框 + 终止密码子唯一」写进离散流的
-> 可行性门控终端分布（by construction），多目标偏好用 Doob-h 倾斜塑形，
-> 免标注双自监督奖励（direct=编辑似然 + reverse=翻译循环一致性）做 RLOO 微调。
+> 当前 A6 验证版实现联合同义跳转核、短 rollout Doob 近似和 path-level RLOO。
+> 早期条件去噪与 immediate-ATC 结果保留为 legacy exploratory，不等同于完整 CTMC Edit Flow。
+> 当前实现与证据边界见 `docs/handover/spec.md` Amendment A6；不要按旧描述宣称精确终端分布。
 
-**Spec**：见交接文档 `spec.md`（含 Amendment A1 归一化细节）；本仓库为独立课题，
-不与 mRNA_editflow 共享 git 历史。
+**Spec**：`docs/handover/spec.md`；当前任务：`docs/handover/tasks.md` v7。
 
 ## 复现入口
 
@@ -26,10 +25,10 @@ python scripts/gpu_heartbeat.py          # 30min 心跳采样
 src/codonflow/
   core/        密码子表、tokenizer(67)、motif 目录、硬约束 F
   data/        FASTA 读取、CDS 清洗、MMseqs2 聚类切分、数据集
-  models/      Edit Flow 主干、Doob-h 引导采样
-  gating/      ATC 效用（A1 归一化）、门控终端分布权重
-  scorers/     三足评分器（CAI/RNAfold/翻译一致性，零学习）+ LRU 缓存
-  rl/          RLOO 双奖励（GrammarRL Eq(4)-(8)）
+  models/      条件去噪主干、有限步同义 Markov 编辑器、短 rollout 引导
+  gating/      ATC 效用与终端 feasibility 检查
+  scorers/     CAI/RNAfold/翻译一致性指标
+  rl/          路径级 RLOO 与 squared log-ratio trust penalty
   eval/        指标（CAI/MFE/NED/hypervolume）、停止条件断言
 scripts/       gpu_queue、gpu_heartbeat、数据管线、基线
 experiments/   REGISTRY.md（逐 run 登记，schema 冻结）
@@ -38,6 +37,6 @@ docs/          paper_notes / training_journal / data_audit / gates
 
 ## 纪律（spec R6）
 
-- GPU 并行占满显存；训练到收敛（预训练：验证损失连续 3 epoch 相对下降 <0.1%）
-- REGISTRY.md 逐 run 登记；大产物只进 `/mnt/cunyuliu/codonflow/`
+- 单卡真实任务并行；训练到独立验证集 plateau（连续 3 epoch 相对下降 <0.1%），保存验证最优与完整恢复状态
+- REGISTRY.md 逐 run 登记；代码在 `/home/codonflow`，大产物只进 `/teams/HoulabData_1788502323/liucunyu/codonflow`
 - 停止条件五条已代码化（`src/codonflow/eval/stop_checks.py`）
