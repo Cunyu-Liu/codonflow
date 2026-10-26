@@ -837,3 +837,5 @@ identity 6/6 100%。
 ## 2026-10-26 09:20 (session cont): 第 7 臂 zfish_s2
 
 7 臂 S3: +6.9/-1.0/+25.7/+1.7/-0.9/-1.6/+0.0, geomean +4.2%. zfish 家族三 seed 确认家族级 0 增益; nluc 几何均 +13.5%; egfp +2.8%. HELD18 g11 cf 完成待基线; egfp_s2 cf 完成待基线. 剩余 8 E5 臂 + rloo 4 臂 + HELD18 g12-g17.
+
+## 2026-10-26 11:30 (patrol): eval progress 355m=20/35 rloo=13/17
