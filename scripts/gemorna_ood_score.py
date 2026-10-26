@@ -1,88 +1,72 @@
-"""Parse GEMORNA OOD raw generation outputs (mouse/fly) and score them.
+"""Parse GEMORNA OOD raw outputs and score only benchmark-identical CDS.
 
-Input: gemorna_{gene}_raw.txt — one "<CDS> <naturalness>" line per zero-shot sample.
-Output: GEMORNA_{gene}_s0_scored.json (same schema as egfp/nluc scored files).
+Input raw lines contain "<CDS> <naturalness>". References are resolved from
+an explicit benchmark FASTA rather than temporary, hardcoded paths.
 """
+import argparse
 import json
-import sys
 from pathlib import Path
 
-sys.path.insert(0, "/home/codonflow/src")
-from codonflow.eval.metrics import cai_weights_from_rscu, cai, mfe_batch
+try:
+    from .gemorna_arm import load_benchmark_protein, protein_sha256, score_solutions
+except ImportError:
+    from gemorna_arm import load_benchmark_protein, protein_sha256, score_solutions
 
-RSCU = json.loads(Path("/home/codonflow/configs/cai_ref_train.json").read_text())
-W = cai_weights_from_rscu(RSCU)
-
-REF = {
-    "mouse": "/tmp/gene_mouse.fasta",
-    "fly": "/tmp/gene_fly.fasta",
-}
-
-bases = "TCAG"
-aas = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG"
-CODON = {}
-_i = 0
-for b1 in bases:
-    for b2 in bases:
-        for b3 in bases:
-            CODON[b1 + b2 + b3] = aas[_i]; _i += 1
+DEFAULT_RAW_DIR = Path("/mnt/cunyuliu/gemorna")
+DEFAULT_EVAL_DIR = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
 
 
-def translate(nt):
-    return "".join(CODON.get(nt[k:k+3], "X") for k in range(0, len(nt), 3))
-
-
-for gene in ("mouse", "fly"):
-    raw = Path(f"/mnt/cunyuliu/gemorna/gemorna_{gene}_raw.txt")
-    if not raw.exists():
-        print(f"[{gene}] raw missing, skip")
-        continue
-    ref_nt = "".join(l for l in Path(REF[gene]).read_text().splitlines() if not l.startswith(">"))
-    ref_prot = translate(ref_nt)
-    if ref_prot.endswith("*"):
-        ref_prot = ref_prot[:-1]
-
-    sols, n_ident, n_bad = [], 0, 0
-    seen = set()
-    for line in raw.read_text().splitlines():
+def parse_raw_solutions(text: str):
+    solutions = []
+    for line in text.splitlines():
         parts = line.split()
-        if not parts:
-            continue
-        seq, nat = parts[0], (float(parts[1]) if len(parts) > 1 else None)
-        if len(seq) % 3 != 0 or not seq.startswith("ATG") or len(seq) < 60:
-            n_bad += 1
-            continue
-        prot = translate(seq)
-        if prot != ref_prot:
-            n_bad += 1
-            continue
-        n_ident += 1
-        if seq in seen:
-            continue
-        seen.add(seq)
-        sols.append({"seq": seq, "naturalness": nat})
+        if parts:
+            solutions.append({
+                "seq": parts[0],
+                "naturalness": float(parts[1]) if len(parts) > 1 else None,
+            })
+    return solutions
 
-    seqs = [s["seq"] + "TAA" for s in sols]
-    cais = [cai(x, W) for x in seqs]
-    mfes = mfe_batch(seqs)
-    gcs = [(x.count("G") + x.count("C")) / len(x) for x in seqs]
-    out = {
-        "gene": gene,
-        "method": "gemorna",
-        "n_samples": sum(1 for l in raw.read_text().splitlines() if l.strip()),
-        "n_identity_pass": n_ident,
-        "n_unique": len(sols),
-        "n_invalid": n_bad,
-        "cai_mean": sum(cais) / len(cais) if cais else None,
-        "cai_best": max(cais) if cais else None,
-        "mfe_mean": sum(mfes) / len(mfes) if mfes else None,
-        "gc_mean": sum(gcs) / len(gcs) if gcs else None,
-        "solutions": [
-            {"seq": x, "naturalness": s["naturalness"], "cai": c, "mfe": m, "gc": g}
-            for x, s, c, m, g in zip(seqs, sols, cais, mfes, gcs)
-        ],
-    }
-    dst = Path(f"/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/GEMORNA_{gene}_s0_scored.json")
-    dst.write_text(json.dumps(out, indent=1))
-    print(f"[{gene}] identity {n_ident} | unique {len(sols)} | bad {n_bad} | "
-          f"CAI {out['cai_mean']:.3f}/{out['cai_best']:.3f} | GC {out['gc_mean']:.3f}" if sols else f"[{gene}] no valid sols")
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--benchmark-fasta", required=True)
+    ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
+    ap.add_argument("--genes", nargs="+", default=["mouse", "fly"])
+    ap.add_argument("--raw-dir", type=Path, default=DEFAULT_RAW_DIR)
+    ap.add_argument("--out-dir", type=Path, default=DEFAULT_EVAL_DIR)
+    args = ap.parse_args()
+
+    from codonflow.eval.metrics import cai_weights_from_rscu, mfe_batch
+
+    weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
+    args.out_dir.mkdir(parents=True, exist_ok=True)
+    for gene in args.genes:
+        raw = args.raw_dir / f"gemorna_{gene}_raw.txt"
+        if not raw.exists():
+            print(f"[{gene}] raw missing, skip")
+            continue
+        benchmark_header, protein = load_benchmark_protein(args.benchmark_fasta, gene)
+        raw_solutions = parse_raw_solutions(raw.read_text())
+        summary, scored = score_solutions(
+            raw_solutions, protein, weights, mfe_batch, deduplicate=True
+        )
+        out = {
+            "gene": gene,
+            "method": "gemorna",
+            "benchmark_header": benchmark_header,
+            "expected_protein_sha256": protein_sha256(protein),
+            "n_samples": len(raw_solutions),
+            "note": "identity checked against benchmark FASTA; missing terminal stop replaced by TAA",
+            **summary,
+            "n_invalid": summary["n_invalid_identity"],
+            "solutions": scored,
+        }
+        dst = args.out_dir / f"GEMORNA_{gene}_s0_scored.json"
+        dst.write_text(json.dumps(out, indent=1))
+        print(f"[{gene}] identity={out['n_identity_pass']} unique={out['n_unique']} "
+              f"invalid_identity={out['n_invalid_identity']} -> {dst}")
+
+
+if __name__ == "__main__":
+    main()

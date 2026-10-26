@@ -34,7 +34,7 @@ def gpu_snapshot() -> List[Dict]:
         capture_output=True, text=True, check=True,
     ).stdout
     gpus = []
-    for line in out.strip().split("\\n"):
+    for line in out.strip().splitlines():
         idx, used, total, util = [p.strip() for p in line.split(",")]
         gpus.append(
             {
@@ -91,19 +91,23 @@ def submit_job(job: Dict, gpu_ids: List[int]) -> None:
         env["CUDA_VISIBLE_DEVICES"] = str(gpu_ids[0])
         launch = (
             f"{job['cmd']} > {shlex.quote(str(log_file))} 2>&1; "
-            f"echo $? > {shlex.quote(str(QUEUE_DIR / ('exit_' + run_id))}"
+            f"echo $? > {shlex.quote(str(QUEUE_DIR / ('exit_' + run_id)))}"
         )
     full_cmd = launch
-    env_str = " ".join(f"{k}={shlex.quote(v)}" for k, v in [("CUDA_VISIBLE_DEVICES", env["CUDA_VISIBLE_DEVICES"])])
-    tmux_cmd = f"tmux new-session -d -s cfq_{run_id} 'cd {shlex.quote(job.get(\"cwd\", str(QUEUE_DIR.parents[1])))} && {env_str} {full_cmd}'"
-    subprocess.run(tmux_cmd, shell=True, check=False)
+    env_str = "CUDA_VISIBLE_DEVICES=" + shlex.quote(env["CUDA_VISIBLE_DEVICES"])
+    cwd = job.get("cwd", str(QUEUE_DIR.parent))
+    shell_command = f"cd {shlex.quote(cwd)} && {env_str} {full_cmd}"
+    subprocess.run(
+        ["tmux", "new-session", "-d", "-s", f"cfq_{run_id}", shell_command],
+        check=True,
+    )
     job["gpus"] = gpu_ids
     job["submitted_at"] = datetime.now(timezone.utc).isoformat()
     job["log_file"] = str(log_file)
 
 
-def check_finished(running: List[Dict]) -> List[Dict]:
-    still = []
+def check_finished(running: List[Dict]) -> tuple[List[Dict], List[Dict]]:
+    active, completed = [], []
     for job in running:
         exit_file = QUEUE_DIR / f"exit_{job['run_id']}"
         if exit_file.exists():
@@ -111,17 +115,15 @@ def check_finished(running: List[Dict]) -> List[Dict]:
             job["exit_code"] = int(code) if code else -1
             job["finished_at"] = datetime.now(timezone.utc).isoformat()
             exit_file.unlink(missing_ok=True)
-            if job["exit_code"] != 0:
-                job["status"] = "failed"
-            else:
-                job["status"] = "done"
+            job["status"] = "failed" if job["exit_code"] != 0 else "done"
+            completed.append(job)
         else:
-            still.append(job)
-    return still
+            active.append(job)
+    return active, completed
 
 
 def registry_append(event: Dict) -> None:
-    reg = QUEUE_DIR.parents[1] / "experiments" / "REGISTRY.md"
+    reg = QUEUE_DIR.parent / "experiments" / "REGISTRY.md"
     reg.parent.mkdir(parents=True, exist_ok=True)
     line = f"| {event.get('run_id','')} | {event.get('time','')} | auto-queue | {event.get('event','')} | {event.get('detail','')} |\\n"
     with open(reg, "a") as f:
@@ -140,25 +142,26 @@ def main_loop(once: bool = False) -> None:
         try:
             pending = read_json(PENDING, [])
             running = read_json(RUNNING, [])
-            finished = check_finished(running)
-            done_or_failed = [j for j in finished if j.get("status") in ("done", "failed")]
-            if done_or_failed:
-                for j in done_or_failed:
-                    registry_append(
-                        {"run_id": j["run_id"], "time": j["finished_at"],
-                         "event": j["status"], "detail": f"exit={j['exit_code']} gpus={j.get('gpus')}"}
-                    )
-                    if j["status"] == "failed":
-                        alert(f"job failed: {j['run_id']} exit={j['exit_code']}")
-                failed = read_json(FAILED, [])
-                failed.extend([j for j in done_or_failed if j["status"] == "failed"])
-                write_json_atomic(FAILED, failed)
-            write_json_atomic(RUNNING, finished)
+            active, completed = check_finished(running)
+            for job in completed:
+                registry_append(
+                    {"run_id": job["run_id"], "time": job["finished_at"],
+                     "event": job["status"], "detail": f"exit={job['exit_code']} gpus={job.get('gpus')}"}
+                )
+                if job["status"] == "failed":
+                    alert(f"job failed: {job['run_id']} exit={job['exit_code']}")
+            failed = read_json(FAILED, [])
+            failed.extend([j for j in completed if j["status"] == "failed"])
+            write_json_atomic(FAILED, failed)
+            write_json_atomic(RUNNING, active)
             gpus = gpu_snapshot()
             if pending:
                 pending.sort(key=lambda j: (-int(j.get("priority", 0)), j.get("seq", 0)))
                 still_pending = []
                 for job in pending:
+                    run_id = job.get("run_id")
+                    if not run_id or any(j.get("run_id") == run_id for j in active):
+                        raise ValueError(f"duplicate or missing run_id: {run_id!r}")
                     if "seq" not in job:
                         job["seq"] = int(time.time())
                     n_gpu = int(job.get("n_gpu", 1))

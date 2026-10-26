@@ -128,29 +128,25 @@ def edit_flow_loss(
     target_ids: torch.Tensor,
     edit_mask: torch.Tensor,
     pad_mask: Optional[torch.Tensor] = None,
+    token_only_at_edits: bool = False,
 ) -> tuple:
-    """pCoMole eq (6)-style loss.
+    """Conditional denoising loss; not a full CTMC Edit Flow rate objective.
 
-    edit_mask: True at positions where x_t differs from x_1 (positions still
-    to be edited). For those positions we push token_logits toward x_1's
-    token; for aligned positions we push the blank head toward "aligned".
-
-    Returns (loss, blank_loss, token_loss).
+    ``token_only_at_edits=True`` avoids giving a trivial copy target to
+    uncorrupted positions. Existing checkpoints were trained with the default
+    full-position token loss and are therefore labelled legacy objectives.
     """
-    bce = F.binary_cross_entropy_with_logits(blank_logits, edit_mask.float())
-    if pad_mask is not None:
-        keep = (~pad_mask).float()
-        bce = (bce * keep).sum() / keep.sum().clamp_min(1.0)
+    keep = (~pad_mask).float() if pad_mask is not None else torch.ones_like(edit_mask, dtype=torch.float)
+    bce = F.binary_cross_entropy_with_logits(
+        blank_logits, edit_mask.float(), reduction="none",
+    )
+    bce = (bce * keep).sum() / keep.sum().clamp_min(1.0)
     tok_ll = F.cross_entropy(
         token_logits.reshape(-1, token_logits.size(-1)),
-        target_ids.reshape(-1),
-        reduction="none",
+        target_ids.reshape(-1), reduction="none",
     ).reshape(target_ids.shape)
-    if pad_mask is not None:
-        keep = (~pad_mask).float()
-        tok_ll = (tok_ll * keep).sum() / keep.sum().clamp_min(1.0)
-    else:
-        tok_ll = tok_ll.mean()
+    token_keep = keep * edit_mask.float() if token_only_at_edits else keep
+    tok_ll = (tok_ll * token_keep).sum() / token_keep.sum().clamp_min(1.0)
     loss = bce + tok_ll
     return loss, bce, tok_ll
 

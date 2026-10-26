@@ -29,9 +29,14 @@ while :; do
   done
   # 里程碑触发：rloo 17/17 齐即跑 RLOO 裁决（一次性）
   if [ "$NRLOO" -ge 17 ] && [ ! -f "$LG/.rloo_verdict_done" ]; then
+    log "rloo 17/17 reached: running joint-reference diagnostic"
+    /root/miniconda3/envs/codonflow/bin/python scripts/recompute_s3_full_adaptive.py \
+      --model-tags E5_v3_56m E5_v3rloo56m \
+      --out "$EV/audits_20261026/legacy_rloo_joint_hv.json" > "$LG/verdict_snapshot_rloo17.log" 2>&1 && \
+    /root/miniconda3/envs/codonflow/bin/python scripts/verdict_355m_and_rloo.py \
+      --report "$EV/audits_20261026/legacy_rloo_joint_hv.json" \
+      --out "$EV/audits_20261026/legacy_rloo_verdict.json" >> "$LG/verdict_snapshot_rloo17.log" 2>&1 && \
     touch "$LG/.rloo_verdict_done"
-    log "rloo 17/17 reached: running verdict script"
-    /root/miniconda3/envs/codonflow/bin/python /home/codonflow/scripts/verdict_355m_and_rloo.py > "$LG/verdict_snapshot_rloo17.log" 2>&1
     {
       echo ""
       echo "## $(date "+%F %H:%M") (auto): v3rloo 17/17 complete - RLOO adjudication snapshot"
@@ -46,7 +51,12 @@ while :; do
   # 完成检测
   [ "$NRLOO" -ge 17 ] && [ "$N355" -ge 35 ] && {
     log "ALL DONE 35/35 + 17/17: final verdict"
-    /root/miniconda3/envs/codonflow/bin/python /home/codonflow/scripts/verdict_355m_and_rloo.py > "$LG/verdict_final.log" 2>&1
+    /root/miniconda3/envs/codonflow/bin/python scripts/recompute_s3_full_adaptive.py \
+      --model-tags E5_v3_56m E5_v3_355m \
+      --out "$EV/audits_20261026/legacy_capacity_joint_hv.json" > "$LG/verdict_final.log" 2>&1 && \
+    /root/miniconda3/envs/codonflow/bin/python scripts/verdict_355m_and_rloo.py \
+      --report "$EV/audits_20261026/legacy_capacity_joint_hv.json" \
+      --out "$EV/audits_20261026/legacy_capacity_verdict.json" >> "$LG/verdict_final.log" 2>&1
     {
       echo ""
       echo "## $(date "+%F %H:%M") (auto): ALL EVALS COMPLETE 35+17 - final verdict"

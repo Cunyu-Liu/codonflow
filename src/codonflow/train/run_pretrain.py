@@ -46,7 +46,8 @@ def batch_to_tensors(batch, dev):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--train-fasta", required=True)
-    ap.add_argument("--val-fasta", default=None)
+    ap.add_argument("--val-fasta", required=True,
+                    help="independent validation CDS; training-set fallback is forbidden")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--d-model", type=int, default=768)
     ap.add_argument("--n-layers", type=int, default=8)
@@ -62,7 +63,11 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--log-every", type=int, default=100)
     ap.add_argument("--epochs-per-checkpoint", type=int, default=1)
-    ap.add_argument("--resume", default=None, help="path to last.pt; restores weights, epoch counter and tracker history from out-dir log.jsonl")
+    ap.add_argument("--resume", default=None,
+                    help="training_state.pt for full optimizer/RNG resume or a legacy model-only checkpoint")
+    ap.add_argument("--token-only-at-edits", action="store_true",
+                    help="new objective: score token CE only on edited positions")
+    ap.add_argument("--validation-seed", type=int, default=1729)
     args = ap.parse_args()
 
     assert torch.cuda.is_available(), "CUDA required - no CPU fallback"
@@ -72,12 +77,16 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     train_seqs = [s for _, s in read_fasta(args.train_fasta)]
-    val_seqs = (
-        [s for _, s in read_fasta(args.val_fasta)]
-        if args.val_fasta
-        else train_seqs[:1000]
-    )
+    val_seqs = [s for _, s in read_fasta(args.val_fasta)]
+    if not train_seqs or not val_seqs:
+        raise ValueError("train and validation FASTA files must be nonempty")
+    if set(train_seqs) & set(val_seqs):
+        raise ValueError("exact CDS overlap between train and validation is forbidden")
     print(f"train={len(train_seqs)} val={len(val_seqs)}", flush=True)
+    (out_dir / "run_config.json").write_text(json.dumps({
+        **vars(args), "n_train": len(train_seqs), "n_val": len(val_seqs),
+        "objective": "edited-token denoising" if args.token_only_at_edits else "legacy full-position denoising",
+    }, indent=2))
 
     model_cfg = EditFlowConfig(
         d_model=args.d_model,
@@ -89,18 +98,23 @@ def main() -> None:
     n_params = sum(p.numel() for p in model.parameters())
     print(f"model params: {n_params/1e6:.1f}M", flush=True)
     start_epoch = 0
+    resume_state = None
     if args.resume:
-        state = torch.load(args.resume, map_location="cpu", weights_only=True)
-        model.load_state_dict(state)
+        resume_state = torch.load(args.resume, map_location="cpu", weights_only=True)
+        model.load_state_dict(resume_state.get("model", resume_state))
         model = model.to(dev)
-        print(f"resumed weights from {args.resume}", flush=True)
+        if "model" not in resume_state:
+            print("WARNING: legacy model-only resume resets optimizer/RNG; not an exact continuation", flush=True)
         hist_path = out_dir / "log.jsonl"
         if hist_path.exists():
             hist = [json.loads(l) for l in hist_path.read_text().splitlines() if l.strip()]
             if hist:
                 start_epoch = hist[-1]["epoch"]
-                print(f"resume: last completed epoch {start_epoch}", flush=True)
+        print(f"resumed weights from {args.resume} at epoch {start_epoch}", flush=True)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.wd)
+    if resume_state is not None and "optimizer" in resume_state:
+        optimizer.load_state_dict(resume_state["optimizer"])
+        start_epoch = resume_state["epoch"]
 
     train_batches = length_bucketed_batches(
         train_seqs, batch_tokens=args.batch_tokens, max_batch=args.max_batch, seed=args.seed
@@ -115,6 +129,14 @@ def main() -> None:
         for rec in hist:
             tracker.update(rec["val_loss"])
     epoch = start_epoch
+    best_epoch, best_val = 0, float("inf")
+    if resume_state is not None:
+        if "rng" in resume_state:
+            torch.set_rng_state(resume_state["rng"]["cpu"])
+            if torch.cuda.is_available():
+                torch.cuda.set_rng_state_all(resume_state["rng"]["cuda"])
+        if "best_epoch" in resume_state:
+            best_epoch, best_val = resume_state["best_epoch"], resume_state["best_val_loss"]
     t_start = time.time()
     from codonflow.data.dataset import corrupt_x_t
 
@@ -129,7 +151,10 @@ def main() -> None:
             ids, pad = batch_to_tensors(batch, dev)
             x_t = corrupt_x_t(ids)
             blank, tok = model(x_t, pad)
-            loss, _, _ = edit_flow_loss(blank, tok, ids, (x_t != ids), pad)
+            loss, _, _ = edit_flow_loss(
+                blank, tok, ids, (x_t != ids), pad,
+                token_only_at_edits=args.token_only_at_edits,
+            )
             (loss / args.grad_accum).backward()
             if (bi + 1) % args.grad_accum == 0 or bi == len(train_batches) - 1:
                 torch.nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip)
@@ -148,7 +173,10 @@ def main() -> None:
         train_loss = total_loss / max(total_tok, 1)
 
         model.eval()
-        val_loss = validate_packed(model, val_batches, dev)
+        val_loss = validate_packed(
+            model, val_batches, dev, seed=args.validation_seed,
+            token_only_at_edits=args.token_only_at_edits,
+        )
         cond_gap = conditionality_probe(model, dev)
         converged = tracker.update(val_loss)
         lr_now = optimizer.param_groups[0]["lr"]
@@ -171,19 +199,31 @@ def main() -> None:
                 )
                 + "\n"
             )
+        state = {
+            "model": model.state_dict(), "optimizer": optimizer.state_dict(),
+            "epoch": epoch, "best_epoch": best_epoch, "best_val_loss": best_val,
+            "rng": {"cpu": torch.get_rng_state(), "cuda": torch.cuda.get_rng_state_all()},
+            "config": vars(args),
+        }
+        torch.save(state, out_dir / "training_state.pt")
         torch.save(model.state_dict(), out_dir / "last.pt")
-        if (epoch + 1) % 3 == 0:
-            torch.save(model.state_dict(), out_dir / f"epoch_{epoch + 1:03d}.pt")
+        if val_loss < best_val:
+            best_epoch, best_val = epoch, val_loss
+            torch.save(model.state_dict(), out_dir / "best.pt")
+            state["best_epoch"], state["best_val_loss"] = best_epoch, best_val
+            torch.save(state, out_dir / "training_state.pt")
         if converged:
-            torch.save(model.state_dict(), out_dir / "converged.pt")
+            torch.save(torch.load(out_dir / "best.pt", map_location="cpu", weights_only=True),
+                     out_dir / "converged.pt")
             (out_dir / "converged.json").write_text(
-                json.dumps({"epoch": epoch, "val_loss": val_loss, "history": tracker.history}, indent=2)
+                json.dumps({"epoch": epoch, "best_epoch": best_epoch,
+                            "best_val_loss": best_val, "last_val_loss": val_loss,
+                            "history": tracker.history}, indent=2)
             )
             print("CONVERGENCE CRITERION TRIGGERED - stopping", flush=True)
             break
-        if epoch >= 200:
-            print("Safety cap 200 epochs reached without plateau - continuing flag off", flush=True)
-            break
+        if epoch >= 10000:
+            raise RuntimeError("safety epoch bound reached before validation plateau")
 
 
 @torch.no_grad()
@@ -222,15 +262,19 @@ def conditionality_probe(model, dev, n=8) -> float:
 
 
 @torch.no_grad()
-def validate_packed(model, batches, dev) -> float:
+def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False) -> float:
     total, n = 0.0, 0
     from codonflow.data.dataset import corrupt_x_t
 
+    generator = torch.Generator(device=dev).manual_seed(seed)
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
-        x_t = corrupt_x_t(ids)
+        x_t = corrupt_x_t(ids, generator=generator)
         blank, tok = model(x_t, pad)
-        loss, _, _ = edit_flow_loss(blank, tok, ids, (x_t != ids), pad)
+        loss, _, _ = edit_flow_loss(
+            blank, tok, ids, (x_t != ids), pad,
+            token_only_at_edits=token_only_at_edits,
+        )
         total += loss.item()
         n += 1
     return total / max(n, 1)
