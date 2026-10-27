@@ -27,6 +27,8 @@ ALIASES = {"uniform_synonymous": ("uniform_synonymous", "uniform_edit_flow")}
 
 def load_rows(path: Path) -> list[dict]:
     data = json.loads(path.read_text())
+    if data.get("protocol") == "a6_baselines_v1":
+        return [data]
     for rows in data.values():
         if isinstance(rows, list):
             return rows
@@ -35,6 +37,11 @@ def load_rows(path: Path) -> list[dict]:
 
 def objective_pool(row: dict) -> dict[str, np.ndarray]:
     pool = {}
+    if "methods" in row:
+        for method, result in row["methods"].items():
+            if result.get("status") == "done" and "obj_vectors" in result:
+                pool[method] = np.asarray(result["obj_vectors"], dtype=float)
+        return pool
     for method in REQUIRED_METHODS:
         names = ALIASES.get(method, (method,))
         for name in names:
@@ -61,15 +68,29 @@ def joint_range_reference(points, allow_degenerate: bool = False) -> tuple[np.nd
 
 def pooled_reference(rows: list[dict]) -> tuple[np.ndarray, np.ndarray]:
     pools = [objective_pool(row) for row in rows]
-    missing = sorted({
-        method for pool in pools for method in REQUIRED_METHODS
-        if method not in pool or pool[method].ndim != 2 or pool[method].shape[1] != 4 or not len(pool[method])
-    })
+    if any("methods" in row for row in rows):
+        # A6 permits a shared baseline artifact plus model-specific CF arms.
+        for row, pool in zip(rows, pools):
+            if "methods" not in row and "codonflow" not in pool:
+                raise ValueError("model arm is missing codonflow")
+        missing = sorted({
+            method for method in REQUIRED_METHODS
+            if not any(method in pool and pool[method].ndim == 2
+                       and pool[method].shape[1] == 4 and len(pool[method]) for pool in pools)
+        })
+    else:
+        missing = sorted({
+            method for pool in pools for method in REQUIRED_METHODS
+            if method not in pool or pool[method].ndim != 2 or pool[method].shape[1] != 4 or not len(pool[method])
+        })
     if missing:
         raise ValueError(f"incomplete or malformed S3 method pool: {', '.join(missing)}")
     all_points = np.vstack([points for pool in pools for points in pool.values()])
     if not np.isfinite(all_points).all():
         raise ValueError("objective pool contains NaN or infinity")
+    # Shared baselines may occur in multiple model arms. Reference-domain
+    # estimation uses each unique objective vector once, not once per model.
+    all_points = np.unique(all_points, axis=0)
     reference, _ = joint_range_reference(all_points)
     scale = np.quantile(all_points, 0.95, axis=0) - all_points.min(axis=0)
     return reference, scale

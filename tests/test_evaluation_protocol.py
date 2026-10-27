@@ -108,6 +108,25 @@ def test_a6_codongpt_context_limit_is_explicit_exclusion():
     assert generation["n_requested"] == 0
 
 
+def test_a6_nested_baseline_protocol_loads_and_shared_baselines_do_not_shift_reference():
+    nested = {
+        "protocol": "a6_baselines_v1",
+        "methods": {
+            method: {"status": "done", "obj_vectors": row()[f"S3_quad/{method}/obj_vectors"]}
+            for method in REQUIRED_METHODS if method != "codonflow"
+        },
+    }
+    model = {"S3_quad/codonflow/obj_vectors": row()["S3_quad/codonflow/obj_vectors"]}
+    first = pooled_reference([model, nested])
+    repeated = pooled_reference([model, nested, nested])
+    assert np.allclose(first[0], repeated[0])
+    assert np.allclose(first[1], repeated[1])
+    assert "gemorna" in objective_pool(nested)
+    nested["methods"]["gemorna"]["status"] = "architectural_exclusion"
+    with pytest.raises(ValueError, match="incomplete"):
+        pooled_reference([model, nested])
+
+
 def test_nonfinite_pool_fails():
     invalid = row()
     invalid["S3_quad/codonflow/obj_vectors"][0][0] = float("nan")
