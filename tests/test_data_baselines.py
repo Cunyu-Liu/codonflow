@@ -5,7 +5,7 @@ import sys
 
 import pytest
 
-from scripts.audit_distribution import overlap_audit
+from scripts.audit_distribution import histogram, overlap_audit
 from scripts.build_a6_benchmark import build_unique_benchmark
 from scripts.build_a6_benchmark import main as build_benchmark_main
 from scripts.build_splits import benchmark_components, read_fasta, read_clusters
@@ -288,6 +288,9 @@ def test_exact_cds_and_protein_overlap_with_duplicates(tmp_path):
     assert result["splits"]["train"]["n_duplicate_protein_inputs"] == 2
     assert result["splits"]["train"]["length_nt"]["mean"] == 12
     assert result["splits"]["train"]["gc"]["q50"] == 2 / 12
+    assert sum(result["splits"]["train"]["histograms"]["length_nt"]["counts"]) == 3
+    assert sum(result["splits"]["train"]["histograms"]["gc"]["counts"]) == 3
+    assert result["splits"]["train"]["length_nt"]["q05"] == 12
     assert result["overlaps"]["train__val"]["n_shared_cds"] == 1
     assert result["overlaps"]["train__val"]["n_train_inputs_with_shared_cds"] == 2
     assert result["overlaps"]["train__test"]["n_shared_protein"] == 0
@@ -297,3 +300,5 @@ def test_exact_cds_and_protein_overlap_with_duplicates(tmp_path):
         {k: fastas[k] for k in ("train", "val", "test")}, fastas["benchmark"]
     )
     assert "not family-disjoint proof" in result["scope"]
+    with pytest.raises(ValueError, match="outside"):
+        histogram([6001], [0, 300, 6000])
