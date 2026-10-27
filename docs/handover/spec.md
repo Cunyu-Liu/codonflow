@@ -358,7 +358,7 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 
 ### A6.5 新验收门槛
 
-任何新主表/PPT/论文结果必须同时满足：89+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
+任何新主表/PPT/论文结果必须同时满足：94+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
 
 ### A6.6 Benchmark、采样概率与成本的二次审计
 
@@ -373,4 +373,6 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 
 1. `v4_distribution.json` 保存全部 776,474 条 split 与 18 条 benchmark 的长度/GC 直方图、分位数和输入哈希。train/val/test 的平均长度为 1636.9/1645.0/1642.7nt，平均 GC 为 0.5149/0.5141/0.5137；这些描述性接近不等于分布独立证明。benchmark 平均长度 642nt、平均 GC 0.4396，实际为 13 short/2 mid/3 long，需披露其人工分层和低 GC 组成。
 2. `fig_a6_split_distributions.pdf/.png` 已按全量计数渲染并视觉复核；41 页 PPT 已通过全部编辑页 0 issues、markitdown 和 LibreOffice 中文渲染验收，旧量化页统一标为历史探索。
-3. v5 的同源隔离流程：唯一蛋白与 core/unique18 benchmark 一并进入 MMseqs2；以 0.5 identity、0.8 coverage 的预设聚类作为 **protein-homology-cluster** 操作定义，不能冒称 curated family。连通簇从所有 split 排除，保存映射、聚类/输入/输出哈希及 excluded FASTA。只有在全量聚类、独立 cluster/leakage 审计及新训练完成后才能写 OOD 结论。
+3. v5 的同源隔离流程已完成：唯一蛋白与 core/unique18 benchmark 一并进入 MMseqs2（0.5 identity、双向 0.8 coverage、shuffle=0），作为 **protein-homology-cluster** 操作定义，不能冒称 curated family。862,240 输入保留 776,441；85,671 精确蛋白重复；128 条 benchmark 连通簇排除；train/val/test=618,073/80,191/78,177。独立审计确认 split 间蛋白簇不重叠、20 个 benchmark 簇均不进入任何 split、精确 CDS/蛋白重叠为 0 且数量守恒。均值长度 train/val/test=1632.3/1694.5/1628.0nt，GC=0.5148/0.5137/0.5146；val 长度偏移需随模型结果披露。只有新训练及下游对照完成后才能写 OOD 结论。
+4. core seed-0 五方法已独立完成并复核：identity 全部 1.0；LD 6/6、codonGPT 100/100、GEMORNA 74/72、uniform 100/100、CAI-greedy 1/1（eGFP/nanoLuc）。CAI/MFE、解数和哈希已独立重算。`fig_a6_baseline_objectives` 与第 42 页 PPT 仅为 baseline 证据，不是 CodonFlow verdict。
+5. 全参数 base-RLOO 已用逐路径反向完成 20 次更新，无 OOM，identity=1.0，所有数值有限；梯度范数 4.58–19.20（中位 9.64，仍裁剪），校准集效用差为 -6.9167e-05。该结果仅证明低显存优化链可运行，不构成收敛、稳定性或下游收益证据。联合参考域使用唯一目标向量，避免共享 baseline 随模型臂重复而偏移 p95。

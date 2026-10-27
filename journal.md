@@ -19,6 +19,9 @@
 - 全量图复核纠正 benchmark 计数为 13 short/2 mid/3 long（1200nt 属 long），不是此前记录的 14/2/2；所有 spec/REGISTRY 已同步修正。train/val/test 平均长度 1636.9/1645.0/1642.7nt，平均 GC 0.5149/0.5141/0.5137；benchmark 平均长度 642nt、GC 0.4396，明确人工分层与低 GC 组成。`fig_a6_split_distributions.pdf/.png` 已完成视觉复核。
 - PPT 更新为 41 页并同步用户原文件：新增全量分布页，旧量化页统一标为历史探索，第 40 页更新当前证据。全部编辑页布局 0 issues，markitdown 内容检查、LibreOffice 41 页渲染与中文字体嵌入通过。旧版第 14/16/27/28 页几何问题已修复。
 - 启动 protein-homology-cluster v5 准备：隔离安装 MMseqs2 18.8cc5c；唯一蛋白和 core/unique18 benchmark 一并聚类，排除外部种子连通簇并保存 excluded FASTA/哈希。多 benchmark、外部 ID 别名和守恒测试已通过；全量聚类尚未完成，不提前写 family/species 结论。
+- protein-homology-cluster v5 已完成并通过独立审计：862,240 输入→776,441 保留，85,671 精确蛋白重复，128 条 benchmark 连通簇排除，train/val/test=618,073/80,191/78,177。split 间蛋白簇不重叠，20 个 benchmark 簇均不进入任何 split，精确 CDS/蛋白重叠为 0，数量守恒。MMseqs2 identity=0.5、双向 coverage=0.8 是操作定义，不是 curated family/species。v5 平均长度 1632.3/1694.5/1628.0nt，GC 0.5148/0.5137/0.5146，val 长度偏移随结果披露。
+- core seed-0 五方法全部完成并独立复核：identity 全部 1.0；LD 6/6、GPT 100/100、GEMORNA 74/72、uniform 100/100、greedy 1/1（eGFP/nanoLuc）。CAI/MFE、计数、输入哈希重算通过。`fig_a6_baseline_objectives` 与 PPT 第 42 页只呈现 baseline 证据，不作 CodonFlow 裁决；42 页已同步原文件，编辑范围 0 issues、markitdown 和实际渲染通过。unique18 seed-0 全方法基线已启动。
+- 全参数 base-RLOO 以逐路径反向完成 20 次更新，未再 OOM，identity=1.0，所有数值有限；梯度范数 4.58–19.20（中位 9.64，仍裁剪），校准效用 0.0080941→0.0080249，差值 -6.9167e-05。扩大校准到 8 序列、group=4、lr=3.3e-8 后仍无收益证据，不进入主表，不宣布稳定收敛。逐路径与整组反向梯度等价测试通过；联合 HV 参考域改用唯一目标向量，防止共享 baseline 重复改变 p95。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)

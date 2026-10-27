@@ -23,6 +23,7 @@
 - 主比较只使用 A6 新协议：真实 DP 解、正确 GEMORNA 输入、identity/legal 全检查、完整方法池联合 HV。
 - 同页报告输出解数、唯一 scorer calls、forward 与端到端时间；不把不同成本口径混为一个“同预算”数字。
 - immediate 与 short-rollout 是不同推理算法臂；旧 RLOO 与新 path-RLOO 不共享曲线或结论。
+- `fig_a6_baseline_objectives`：仅使用独立复核的 core seed-0 五方法，Panel A/B 展示 CAI–MFE 分布，Panel C 展示真实唯一解数，Panel D 展示端到端生成时间（log scale）。明确 identity=1.0、无随机补足、官方 LD/GEMORNA forward 不可得及共享 GPU 时间边界；不添加 CodonFlow 胜负标题。
 
 ## 历史图规范存档（v1）
 
