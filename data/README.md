@@ -8,6 +8,8 @@
 - `splits_v4_protein` 按精确翻译蛋白去重，并排除完整 benchmark 的核苷酸连通簇。它是 exact-protein + nucleotide-cluster split，不自动等于 family 或 species OOD。
 - HELD18 有 17 条唯一序列而非 18；历史 HELD18 只作探索性结果。GEMORNA nanoLuc 旧硬编码输入错误，必须按 benchmark FASTA 重跑。
 - 新增数据的来源 URL、下载日期、输入/保留数量、文件哈希与 split 审计随新 manifest 冻结；未记录的原始物种 URL 不从记忆补写。
+- `corpora/homology_v5`（2026-10-27）：MMseqs2 18.8cc5c，identity=0.5、双向 coverage=0.8、shuffle=0。唯一蛋白与 core/unique18 benchmark 一并聚类；862,240 输入保留 776,441，85,671 精确蛋白重复，128 条 benchmark 连通簇排除，train/val/test=618,073/80,191/78,177。独立 cluster/exact-overlap/守恒审计通过；这是 protein-homology-cluster 操作划分，不是 curated family 或 species OOD。
+- `eval_outputs/audits_20261026/v5_distribution.json`：v5 全量长度/GC 直方图与分位数；平均长度 1632.3/1694.5/1628.0nt，平均 GC 0.5148/0.5137/0.5146。val 的长度偏移需随下游结果披露。
 
 ## Historical source table（旧版本溯源，非当前验收声明）
 

@@ -19,13 +19,16 @@ from codonflow.eval.metrics import hypervolume  # noqa: E402
 
 DEFAULT_DATA = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
 REQUIRED_METHODS = (
-    "codonflow", "lineardesign_scan", "codongpt", "cai_greedy", "uniform_synonymous",
+    "codonflow", "lineardesign_scan", "codongpt", "gemorna",
+    "cai_greedy", "uniform_synonymous",
 )
 ALIASES = {"uniform_synonymous": ("uniform_synonymous", "uniform_edit_flow")}
 
 
 def load_rows(path: Path) -> list[dict]:
     data = json.loads(path.read_text())
+    if data.get("protocol") == "a6_baselines_v1":
+        return [data]
     for rows in data.values():
         if isinstance(rows, list):
             return rows
@@ -34,6 +37,11 @@ def load_rows(path: Path) -> list[dict]:
 
 def objective_pool(row: dict) -> dict[str, np.ndarray]:
     pool = {}
+    if "methods" in row:
+        for method, result in row["methods"].items():
+            if result.get("status") == "done" and "obj_vectors" in result:
+                pool[method] = np.asarray(result["obj_vectors"], dtype=float)
+        return pool
     for method in REQUIRED_METHODS:
         names = ALIASES.get(method, (method,))
         for name in names:
@@ -44,23 +52,47 @@ def objective_pool(row: dict) -> dict[str, np.ndarray]:
     return pool
 
 
+def joint_range_reference(points, allow_degenerate: bool = False) -> tuple[np.ndarray, np.ndarray]:
+    """Shared min - 5% range reference; optionally handle constant pilot axes."""
+    values = np.asarray(points, dtype=float)
+    if values.ndim != 2 or not len(values) or not np.isfinite(values).all():
+        raise ValueError("joint reference requires a nonempty finite objective matrix")
+    scale = np.ptp(values, axis=0)
+    if np.any(scale <= 0) and not allow_degenerate:
+        raise ValueError("degenerate objective range prevents pooled normalization")
+    safe_scale = np.where(scale > 0, scale, 1.0)
+    reference = values.min(axis=0) - 0.05 * safe_scale
+    reference = np.where(scale > 0, reference, values.min(axis=0) - 1e-6)
+    return reference, safe_scale
+
+
 def pooled_reference(rows: list[dict]) -> tuple[np.ndarray, np.ndarray]:
     pools = [objective_pool(row) for row in rows]
-    missing = sorted({
-        method for pool in pools for method in REQUIRED_METHODS
-        if method not in pool or pool[method].ndim != 2 or pool[method].shape[1] != 4 or not len(pool[method])
-    })
+    if any("methods" in row for row in rows):
+        # A6 permits a shared baseline artifact plus model-specific CF arms.
+        for row, pool in zip(rows, pools):
+            if "methods" not in row and "codonflow" not in pool:
+                raise ValueError("model arm is missing codonflow")
+        missing = sorted({
+            method for method in REQUIRED_METHODS
+            if not any(method in pool and pool[method].ndim == 2
+                       and pool[method].shape[1] == 4 and len(pool[method]) for pool in pools)
+        })
+    else:
+        missing = sorted({
+            method for pool in pools for method in REQUIRED_METHODS
+            if method not in pool or pool[method].ndim != 2 or pool[method].shape[1] != 4 or not len(pool[method])
+        })
     if missing:
         raise ValueError(f"incomplete or malformed S3 method pool: {', '.join(missing)}")
     all_points = np.vstack([points for pool in pools for points in pool.values()])
     if not np.isfinite(all_points).all():
         raise ValueError("objective pool contains NaN or infinity")
-    minimum = all_points.min(axis=0)
-    q95 = np.quantile(all_points, 0.95, axis=0)
-    scale = q95 - minimum
-    if np.any(scale <= 0):
-        raise ValueError("degenerate objective range prevents pooled normalization")
-    reference = minimum - 0.05 * scale
+    # Shared baselines may occur in multiple model arms. Reference-domain
+    # estimation uses each unique objective vector once, not once per model.
+    all_points = np.unique(all_points, axis=0)
+    reference, _ = joint_range_reference(all_points)
+    scale = np.quantile(all_points, 0.95, axis=0) - all_points.min(axis=0)
     return reference, scale
 
 

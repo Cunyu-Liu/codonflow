@@ -6,6 +6,8 @@ standard-library-only deterministic audit without CAI/MFE/plot dependencies.
 from __future__ import annotations
 
 import argparse
+import bisect
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -24,8 +26,30 @@ def summarize_lengths(values):
         "mean": sum(ordered) / len(ordered),
         "min": ordered[0],
         "q50": median,
+        "q05": quantile(ordered, 0.05),
+        "q25": quantile(ordered, 0.25),
+        "q75": quantile(ordered, 0.75),
+        "q95": quantile(ordered, 0.95),
         "max": ordered[-1],
     }
+
+
+def quantile(ordered, probability):
+    position = (len(ordered) - 1) * probability
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    fraction = position - lower
+    return ordered[lower] * (1 - fraction) + ordered[upper] * fraction
+
+
+def histogram(values, edges):
+    counts = [0] * (len(edges) - 1)
+    for value in values:
+        if value < edges[0] or value > edges[-1]:
+            raise ValueError(f"distribution value {value} outside [{edges[0]}, {edges[-1]}]")
+        index = bisect.bisect_right(edges, value) - 1
+        counts[min(index, len(counts) - 1)] += 1
+    return {"edges": edges, "counts": counts}
 
 
 def overlap_audit(split_fastas: Dict[str, str], benchmark_fasta: str):
@@ -56,12 +80,16 @@ def overlap_audit(split_fastas: Dict[str, str], benchmark_fasta: str):
                 protein_counts[protein] = protein_counts.get(protein, 0) + 1
                 memberships.setdefault(("protein", protein), set()).add(split)
         input_counts[split] = {"cds": cds_counts, "protein": protein_counts}
+        length_values = [len(s) for s in cds_values]
+        gc_values = [(s.count("G") + s.count("C")) / len(s) if s else 0.0 for s in cds_values]
         summaries[split] = {
             "n": len(cds_values),
-            "length_nt": summarize_lengths([len(s) for s in cds_values]),
-            "gc": summarize_lengths([
-                (s.count("G") + s.count("C")) / len(s) if s else 0.0 for s in cds_values
-            ]),
+            "length_nt": summarize_lengths(length_values),
+            "gc": summarize_lengths(gc_values),
+            "histograms": {
+                "length_nt": histogram(length_values, [0] + list(range(300, 6001, 300))),
+                "gc": histogram(gc_values, [i / 50 for i in range(51)]),
+            },
             "n_unique_cds": len(cds_counts),
             "n_duplicate_cds_inputs": sum(n - 1 for n in cds_counts.values()),
             "n_cds_sequences_in_duplicate_groups": sum(n for n in cds_counts.values() if n > 1),
@@ -111,6 +139,13 @@ def main():
     if args.splits:
         result = overlap_audit(dict(zip(("train", "val", "test"), args.splits)),
                                args.benchmark_fasta)
+        input_paths = dict(zip(("train", "val", "test"), args.splits))
+        if args.benchmark_fasta:
+            input_paths["benchmark"] = args.benchmark_fasta
+        result["input_sha256"] = {
+            name: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+            for name, path in input_paths.items()
+        }
         out_path = Path(args.overlap_out or Path(args.out_dir) / "overlap_audit.json")
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(json.dumps(result, indent=2))

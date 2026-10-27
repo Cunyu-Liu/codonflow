@@ -7,6 +7,7 @@ import torch
 from scipy.special import logsumexp
 
 from codonflow.core.codon import (
+    CODON_TO_INDEX,
     STANDARD_TABLE_1,
     SYNONYMOUS_CODONS,
     is_synonymous,
@@ -108,6 +109,27 @@ def test_model_adapter_full_joint_normalization_and_synonymy():
             assert transition.codons[transition.position] in protein_synonyms(source[3 * transition.position : 3 * transition.position + 3])
 
 
+def test_stay_probability_logsumexp_not_logit_sum():
+    source = "TTTTAA"
+
+    class StayModel(DeterministicCodonModel):
+        def forward(self, ids):
+            batch, length = ids.shape
+            blank = torch.zeros((batch, length))
+            tokens = torch.full((batch, length, 67), -10.0)
+            # Position 1: strong change; position 2: strong stay.
+            blank[0, 1] = 0.0
+            blank[0, 2] = 0.0
+            tokens[0, 1, CODON_TO_INDEX["TTT"]] = 0.0
+            tokens[0, 2, CODON_TO_INDEX["TTC"]] = 0.0  # TTT stays TTT; TTC is the only alternative.
+            return blank, tokens
+
+    transitions, log_probabilities = SynonymousJumpProposal(StayModel())._transition_tensors(split_codons(source))
+    stay_index = next(i for i, transition in enumerate(transitions) if transition.is_stay)
+    assert math.isclose(sum(math.exp(float(p)) for p in log_probabilities), 1.0, abs_tol=1e-10)
+    assert math.isclose(float(log_probabilities[stay_index]), 0.0, abs_tol=1e-3)
+
+
 def test_model_adapter_rejects_invalid_sources():
     proposal = SynonymousJumpProposal(DeterministicCodonModel())
     for invalid in ("ATG", "ATGTAGTAA", "ATGN", "ATGTA", ""):
@@ -121,6 +143,23 @@ def test_sample_transition_fixed_rng_reproducibility():
     first = proposal.sample_transition(source, 0, np.random.default_rng(19))
     second = proposal.sample_transition(source, 0, np.random.default_rng(19))
     assert first == second
+
+
+def test_batched_rollout_sampling_matches_sequential_kernel():
+    source = split_codons("TTTGCTTAA")
+    other = split_codons("TTCGCTTAA")
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    actual = proposal.sample_transition_batch([source, other], 0, np.random.default_rng(19))
+    after_batch = proposal.forward_calls
+    generator = np.random.default_rng(19)
+    expected = [
+        proposal.sample_transition(source, 0, generator),
+        proposal.sample_transition(other, 0, generator),
+    ]
+    assert actual == expected
+    assert after_batch == 1
+    with pytest.raises(ValueError, match="equal codon lengths"):
+        proposal.sample_transition_batch([source, split_codons("TTTTAA")])
 
 
 def test_log_h_uses_independent_terminal_rollout_rewards():
@@ -140,13 +179,15 @@ def test_log_h_uses_independent_terminal_rollout_rewards():
 
     proposal = TwoTerminalProposal(DeterministicCodonModel())
 
-    def counted_sample(codons, time=0, rng=None):
+    def counted_sample(codons_batch, time=0, rng=None):
         # Balanced deterministic draws make the Monte-Carlo identity exact.
-        calls["base"] += 1
-        codons = source if calls["base"] % 2 else ("TTC", "TAA")
-        return SynonymousTransition(codons, math.log(0.5), None)
+        calls["base"] += len(codons_batch)
+        return [
+            SynonymousTransition(source if (calls["base"] - len(codons_batch) + i + 1) % 2 else ("TTC", "TAA"), math.log(0.5), None)
+            for i in range(len(codons_batch))
+        ]
 
-    proposal.sample_transition = counted_sample
+    proposal.sample_transition_batch = counted_sample
     editor = FiniteStepSynonymousMarkovEditor(
         proposal, reward, terminal_step=1, rollout_count=8, rng=np.random.default_rng(3)
     )
@@ -189,6 +230,52 @@ def test_rollout_guidance_is_not_immediate_atc_and_counts_budget():
     assert reward.calls  # Actual terminal reward calls, not immediate ATC substitution.
 
 
+@pytest.mark.parametrize("rollout_count", [1, 2, 3])
+def test_batched_rollout_cost_formula_and_trace_accounting(rollout_count):
+    source = "TTTGCTTAA"  # Five base transitions; pruning retains exactly four.
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    editor = FiniteStepSynonymousMarkovEditor(
+        proposal,
+        IndependentReward({}),
+        terminal_step=4,
+        rollout_count=rollout_count,
+        candidate_count=4,
+        rng=np.random.default_rng(31),
+    )
+    batch_sizes = []
+    original_sample_batch = proposal.sample_transition_batch
+
+    def counted_sample_batch(states, time=0, rng=None):
+        batch_sizes.append(len(states))
+        return original_sample_batch(states, time, rng)
+
+    proposal.sample_transition_batch = counted_sample_batch
+    terminal, trace = editor.sample(source)
+    assert is_synonymous(terminal, source)
+    first, final = trace[0], trace[-1]
+
+    # First guided step: one current-state forward, four current-value batches,
+    # and 4 candidates x 3 candidate-value batches. R shares each batch.
+    assert first["forward_calls"] == 17
+    assert first["base_state_evaluations"] == 1
+    assert first["rollout_batch_forwards"] == 16
+    assert first["rollout_trajectories"] == 5 * rollout_count
+    assert first["rollout_state_transitions"] == 16 * rollout_count
+
+    # Full path: F = T + T(T+1)/2 + C*T(T-1)/2 = 4 + 10 + 24.
+    assert final["forward_calls"] == 38
+    assert final["base_state_evaluations"] == 4
+    assert final["rollout_batch_forwards"] == 34
+    assert final["rollout_trajectories"] == 16 * rollout_count
+    assert final["rollout_state_transitions"] == 34 * rollout_count
+    assert final["terminal_reward_evaluations"] == 16 * rollout_count + 5
+    assert batch_sizes == [rollout_count] * 34
+    assert proposal.forward_calls == 38
+    assert final["forward_calls"] == (
+        final["base_state_evaluations"] + final["rollout_batch_forwards"]
+    )
+
+
 def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     source = "TTTGCTTAA"
     possible = [
@@ -197,10 +284,10 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     ]
     rewards = {s: float(i) for i, s in enumerate(possible)}
 
-    def run(incumbent=False):
+    def run(incumbent=False, proposal=None):
         reward = IndependentReward(rewards)
         editor = FiniteStepSynonymousMarkovEditor(
-            SynonymousJumpProposal(DeterministicCodonModel()),
+            proposal or SynonymousJumpProposal(DeterministicCodonModel()),
             reward,
             terminal_step=2,
             rollout_count=2,
@@ -211,7 +298,10 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
         return terminal, trace, editor
 
     first, trace, editor = run()
-    second, second_trace, _ = run()
+    per_path_forwards = editor.proposal.forward_calls
+    second, second_trace, second_editor = run(proposal=editor.proposal)
+    assert editor.proposal.forward_calls == 2 * per_path_forwards
+    assert second_editor.proposal.forward_calls == 2 * per_path_forwards
     assert first == second
     assert trace == second_trace
     assert first == trace[-1]["sequence"]  # Default is the trajectory terminal.
@@ -220,11 +310,35 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     assert trace[-1]["mode"] == "rollout"
     assert trace[-1]["unique_terminal_reward_calls"] > 0
     assert trace[-1]["forward_calls"] > 0
-    assert editor.terminal_reward_evaluations == editor.unique_terminal_reward_calls
+    assert editor.terminal_reward_evaluations >= editor.unique_terminal_reward_calls
+    assert trace[-1]["chosen_base_log_probability"] == pytest.approx(-0.47174700857447993)
 
     incumbent, _, incumbent_editor = run(incumbent=True)
     assert incumbent == incumbent_editor.best_terminal
     assert rewards[incumbent] == incumbent_editor.best_terminal_reward
+
+
+def test_base_sampling_matches_differentiable_on_policy_path_probability():
+    source = "TTTGCTTAA"
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    editor = FiniteStepSynonymousMarkovEditor(
+        proposal, lambda seqs: [0.0] * len(seqs), terminal_step=4,
+        sampling_kernel="base", rng=np.random.default_rng(29),
+    )
+    terminal, trace = editor.sample(source)
+    assert trace[-1]["mode"] == "base"
+    assert all(row["log_h_current"] is None for row in trace)
+    expected = sum(row["chosen_base_log_probability"] for row in trace) / len(trace)
+    path = [source] + [row["sequence"] for row in trace]
+    actual = proposal.sampled_path_log_probability(source, path)
+    assert float(actual) == pytest.approx(expected, abs=1e-12)
+    assert editor.forward_calls == 4
+    assert editor.scored_sequences == {terminal}
+    with pytest.raises(ValueError, match="sampling_kernel"):
+        FiniteStepSynonymousMarkovEditor(
+            proposal, lambda seqs: [0.0] * len(seqs), terminal_step=1,
+            sampling_kernel="unknown",
+        )
 
 
 def test_rollout_zero_is_explicit_immediate_ablation():

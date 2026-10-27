@@ -1,5 +1,5 @@
 #!/bin/bash
-# 巡检守护循环：每 30min 检查评测链健康 + 自动 journal/git。集群常驻。
+# 巡检守护循环：每 30min 检查评测链健康。日志写 artifacts；Git 仅验收后提交。
 set -u
 EV=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs
 LG=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/logs
@@ -15,13 +15,7 @@ while :; do
   [ "$N355" -gt "$SEEN_355M" ] || [ "$NRLOO" -gt "$SEEN_RLOO" ] && {
     log "progress: 355m=$N355/35 rloo=$NRLOO/17"
     SEEN_355M=$N355; SEEN_RLOO=$NRLOO
-    if [ "$N355" -ne "$SEEN_355M" ] || true; then
-      echo "" >> journal.md
-      echo "## $(date "+%F %H:%M") (patrol): eval progress 355m=$N355/35 rloo=$NRLOO/17" >> journal.md
-      git add journal.md >/dev/null 2>&1
-      git commit -m "journal(patrol): eval progress 355m=$N355 rloo=$NRLOO" >/dev/null 2>&1
-      git push origin HEAD >/dev/null 2>&1
-    fi
+    log "progress recorded; Git commit deferred to scientific review"
   }
   # 死链检测与重启
   for s in eval355_c0 eval355_c1 eval355_c2 eval355_c3 held18_355m rloo_backfill rloo_fly_s2 v3ev_v3_355m_serial; do
@@ -37,16 +31,7 @@ while :; do
       --report "$EV/audits_20261026/legacy_rloo_joint_hv.json" \
       --out "$EV/audits_20261026/legacy_rloo_verdict.json" >> "$LG/verdict_snapshot_rloo17.log" 2>&1 && \
     touch "$LG/.rloo_verdict_done"
-    {
-      echo ""
-      echo "## $(date "+%F %H:%M") (auto): v3rloo 17/17 complete - RLOO adjudication snapshot"
-      echo "\`\`\`"
-      tail -40 "$LG/verdict_snapshot_rloo17.log"
-      echo "\`\`\`"
-    } >> journal.md
-    git add journal.md >/dev/null 2>&1
-    git commit -m "journal(auto): v3rloo 17/17 + RLOO adjudication snapshot" >/dev/null 2>&1
-    git push origin HEAD >/dev/null 2>&1
+    log "rloo diagnostic finished; see verdict_snapshot_rloo17.log"
   fi
   # 完成检测
   [ "$NRLOO" -ge 17 ] && [ "$N355" -ge 35 ] && {
@@ -57,16 +42,7 @@ while :; do
     /root/miniconda3/envs/codonflow/bin/python scripts/verdict_355m_and_rloo.py \
       --report "$EV/audits_20261026/legacy_capacity_joint_hv.json" \
       --out "$EV/audits_20261026/legacy_capacity_verdict.json" >> "$LG/verdict_final.log" 2>&1
-    {
-      echo ""
-      echo "## $(date "+%F %H:%M") (auto): ALL EVALS COMPLETE 35+17 - final verdict"
-      echo "\`\`\`"
-      tail -60 "$LG/verdict_final.log"
-      echo "\`\`\`"
-    } >> journal.md
-    git add journal.md >/dev/null 2>&1
-    git commit -m "journal(auto): final verdict 355M capacity + RLOO (all 52 evals complete)" >/dev/null 2>&1
-    git push origin HEAD >/dev/null 2>&1
+    log "legacy evaluation chains complete; see verdict_final.log"
     break
   }
   sleep 1800
