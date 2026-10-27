@@ -29,7 +29,7 @@ from codonflow.models.synonymous_markov import (
     FiniteStepSynonymousMarkovEditor,
     SynonymousJumpProposal,
 )
-from codonflow.rl.rloo import RewardTracker, rloo_loss
+from codonflow.rl.rloo import RewardTracker, rloo_accumulate_path_gradients, rloo_loss
 from codonflow.train.run_pretrain import file_sha256, git_commit
 
 
@@ -86,9 +86,13 @@ def main() -> None:
     parser.add_argument("--plateau-patience", type=int, default=30)
     parser.add_argument("--reward-smoothing", type=int, default=50)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--eval-sources", type=int, default=2,
+                        help="calibration sources for paired before/after stability monitoring, not test evaluation")
     args = parser.parse_args()
     if args.group_n < 2 or args.direct_weight < 0 or args.env_weight < 0:
         raise ValueError("group-n >= 2 and nonnegative reward weights are required")
+    if args.eval_sources < 1 or args.max_iters < 1:
+        raise ValueError("eval-sources and max-iters must be positive")
     if args.direct_weight == args.env_weight == 0:
         raise ValueError("at least one reward component must be active")
     device = torch.device("cuda:0")
@@ -140,15 +144,16 @@ def main() -> None:
     if {protein_of_cds(s) for s in sources} & {protein_of_cds(s) for s in calibration}:
         raise ValueError("calibration proteins must be disjoint from training sources")
 
-    def sample_group(source: str):
+    def sample_group(source: str, generator=None):
+        generator = rng if generator is None else generator
         group = []
         for index in range(args.group_n):
-            initial = synonymous_x0(source, rng)
+            initial = synonymous_x0(source, generator)
             editor = FiniteStepSynonymousMarkovEditor(
                 proposal, terminal_reward,
                 terminal_step=args.terminal_step,
                 sampling_kernel="base",
-                rng=rng,
+                rng=generator,
             )
             terminal, trace = editor.sample(initial)
             path = path_from_trace(initial, trace)
@@ -159,6 +164,21 @@ def main() -> None:
                 "index": index,
             })
         return group
+
+    @torch.no_grad()
+    def evaluate_stability():
+        model.eval()
+        groups = [
+            sample_group(source, np.random.default_rng(args.seed + 700001))
+            for source in calibration[:args.eval_sources]
+        ]
+        rows = [row for group in groups for row in group]
+        return {
+            "scope": "paired_calibration_monitor_not_test",
+            "n_sources": len(groups), "n_paths": len(rows),
+            "env_reward_mean": float(np.mean([row["utility"] for row in rows])),
+            "identity_rate": float(np.mean([row["identity"] for row in rows])),
+        }
 
     # Frozen-policy within-group standard deviations on held-out CDS. The
     # terminal utility and path log likelihood have separate scales.
@@ -177,6 +197,8 @@ def main() -> None:
     scales = {"sigma_env": sigma_env, "sigma_direct": sigma_direct,
               "n_calibration_sequences": min(100, len(calibration))}
     (out_dir / "reward_calibration.json").write_text(json.dumps(scales, indent=2))
+    baseline_evaluation = evaluate_stability()
+    (out_dir / "baseline_evaluation.json").write_text(json.dumps(baseline_evaluation, indent=2))
 
     tracker = RewardTracker(
         patience=args.plateau_patience, rel_tol=0.005, smoothing=args.reward_smoothing,
@@ -198,18 +220,20 @@ def main() -> None:
             args.env_weight * env / sigma_env
             + args.direct_weight * direct / sigma_direct
         ).to(device)
-        log_pi = torch.stack([
-            proposal.sampled_path_log_probability(row["initial"], row["path"])
-            for row in group
-        ])
         with torch.no_grad():
             log_ref = torch.stack([
                 ref_proposal.sampled_path_log_probability(row["initial"], row["path"])
                 for row in group
             ])
-        loss = rloo_loss(log_pi, log_ref, rewards, beta=args.beta)
         optimizer.zero_grad(set_to_none=True)
-        loss.backward()
+        log_pi_values = rloo_accumulate_path_gradients(
+            lambda index: proposal.sampled_path_log_probability(
+                group[index]["initial"], group[index]["path"],
+            ),
+            log_ref, rewards, beta=args.beta,
+        )
+        log_pi = torch.stack(log_pi_values)
+        loss = rloo_loss(log_pi, log_ref, rewards, beta=args.beta)
         grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         if not torch.isfinite(grad_norm):
             raise FloatingPointError(f"non-finite gradient at iteration {iteration}")
@@ -241,8 +265,15 @@ def main() -> None:
     if not converged and args.max_iters >= 100000:
         raise RuntimeError("safety iteration bound reached before reward plateau")
     torch.save(model.state_dict(), out_dir / "converged.pt" if converged else out_dir / "last.pt")
+    final_evaluation = evaluate_stability()
+    final_evaluation["delta_env_reward_mean"] = (
+        final_evaluation["env_reward_mean"] - baseline_evaluation["env_reward_mean"]
+    )
+    (out_dir / "final_evaluation.json").write_text(json.dumps(final_evaluation, indent=2))
     (out_dir / "converged.json").write_text(json.dumps({
         "converged": converged, "iterations": len(history),
+        "baseline_evaluation": baseline_evaluation,
+        "final_evaluation": final_evaluation,
         "smoothed_rewards": tracker.smoothed_history,
         "config": config, "calibration": scales,
     }, indent=2))
