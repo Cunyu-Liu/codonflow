@@ -8,6 +8,10 @@
 - 本地与远端 75 tests 全绿；GitHub main 已合并 GitHub/集群分叉并推送修复提交。
 - 预训练 R1 首轮在验证前因 CPU/CUDA generator 不匹配失败，日志保留，不计科学结果。已修复并加重复验证回归；R2 使用固定验证 corruption、数据 SHA256、代码 commit、best/last/完整训练状态，持续至独立验证 plateau。
 - 当前不做 capacity/RL scaling 因果断言，不以旧 JSON 数作为 Gate C 通过。后续优先小样本 immediate vs short-rollout 与 frozen control，再扩多基因多种子。
+- 二次独立审计发现初版 `unique18` 的 17 条旧记录因 v4 的 benchmark 连通簇排除而不在当前 v4 test；旧 manifest 只验证了数量/唯一性，来源断言不成立。已重建 `v4_test_unique18_length_stratified_v2`：18 unique ID/CDS/蛋白，全部逐字来自 v4 test，14 short/2 mid/2 long，SHA256 `30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0`。独立 overlap+hash 报告 `eval_outputs/audits_20261026/unique18_v4_independent_audit.json`。现存 FASTA 不足以恢复可靠物种映射，因此不作 species-OOD 声明。
+- 初版 epoch-1 paired pilot 的 arm 成本只保留末条轨迹：正确重算 forward=16/944、唯一新评分=46/419，而非 4/236 与 15/105；归一化 HV immediate=0.1451408、short-rollout=0.0804204。两臂均 4/4 identity；仅为 4 路径诊断，不推断收敛模型或算法普遍优劣。报告 `a6_pilot_reaccounted.json`；旧 scorer 请求总数不可追溯，标缺失。
+- RL 二次审查发现 MC-Doob 引导采样与基础核路径概率不同，不能混作 on-policy 目标。新增 `sampling_kernel='base'`，其采样 trace 与可微路径概率通过数值一致性回归；path-RLOO 改用基础核轨迹，训练/校准要求蛋白不重叠，记录代码/数据/checkpoint 哈希。多步稳定性通过前不启动完整 RL。
+- 本地完整测试 82 passed, 1 skipped。full-token 与 edited-token 两臂均在 epoch 2；full-token epoch 1 val=2.9152，edited-token epoch 1 val=4.5132，目标不同不作数值优劣比较。full-token allocator warning 后进程继续，未记作训练崩溃。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)

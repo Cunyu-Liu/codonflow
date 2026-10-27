@@ -253,6 +253,29 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     assert rewards[incumbent] == incumbent_editor.best_terminal_reward
 
 
+def test_base_sampling_matches_differentiable_on_policy_path_probability():
+    source = "TTTGCTTAA"
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    editor = FiniteStepSynonymousMarkovEditor(
+        proposal, lambda seqs: [0.0] * len(seqs), terminal_step=4,
+        sampling_kernel="base", rng=np.random.default_rng(29),
+    )
+    terminal, trace = editor.sample(source)
+    assert trace[-1]["mode"] == "base"
+    assert all(row["log_h_current"] is None for row in trace)
+    expected = sum(row["chosen_base_log_probability"] for row in trace) / len(trace)
+    path = [source] + [row["sequence"] for row in trace]
+    actual = proposal.sampled_path_log_probability(source, path)
+    assert float(actual) == pytest.approx(expected, abs=1e-12)
+    assert editor.forward_calls == 4
+    assert editor.scored_sequences == {terminal}
+    with pytest.raises(ValueError, match="sampling_kernel"):
+        FiniteStepSynonymousMarkovEditor(
+            proposal, lambda seqs: [0.0] * len(seqs), terminal_step=1,
+            sampling_kernel="unknown",
+        )
+
+
 def test_rollout_zero_is_explicit_immediate_ablation():
     source = split_codons("TTTTAA")
     reward = IndependentReward({"TTTTAA": math.log(2.0), "TTCTAA": math.log(8.0)})

@@ -358,4 +358,12 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 
 ### A6.5 新验收门槛
 
-任何新主表/PPT/论文结果必须同时满足：73+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
+任何新主表/PPT/论文结果必须同时满足：82+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
+
+### A6.6 Benchmark、采样概率与成本的二次审计
+
+1. 初版 `unique18` 只验证了条数与蛋白唯一性，独立复核发现 17 条旧 HELD18 记录因 v4 构建时的 benchmark 连通簇排除而不在当前 v4 test。该版本作废，不用于新主结果。
+2. 当前 `a6_benchmark/unique18.fasta` 采用 `v4_test_unique18_length_stratified_v2`：全部 18 条逐字来自冻结 v4 test，18 个唯一 ID/CDS/蛋白，14 short、2 mid、2 long，SHA256=`30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0`。旧清单只提供长度分层目标，当前文件不是 HELD18 去重版；现存 FASTA 不足以恢复可靠物种映射，故不作 species-OOD 声明。
+3. 引导采样与基础核路径概率不同。path-RLOO 必须用 `sampling_kernel='base'` 的实际基础核轨迹做 on-policy 优化；不得将 MC-Doob 轨迹的概率当作基础核 on-policy 概率。引导策略的离策略优化需要另行推导与验证，不在当前声称范围内。训练/校准 FASTA 必须蛋白不重叠，且不得使用正式 held-out benchmark 作为训练源。
+4. 初版 paired pilot 的 arm 级 forward 与 scorer 数字只保留最后一条轨迹，旧字段撤回。重算报告 `a6_pilot_reaccounted.json` 仅为 epoch-1、4 条路径诊断：immediate/short-rollout 的 forward=16/944、唯一新评分=46/419、归一化 HV=0.1451/0.0804。旧 scorer 请求总数不可追溯，标为缺失而非反推。新协议逐路径累计并跨路径去重，区分唯一评分与请求次数。
+5. 该 pilot 不证明 rollout 无效，也不证明任何收敛模型优劣；两臂均 4/4 保持身份。新实验必须同时记录 paired 初始状态、checkpoint/data 哈希、四成本口径及同预算 frozen control。

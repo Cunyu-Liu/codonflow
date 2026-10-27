@@ -29,6 +29,7 @@ from codonflow.models.synonymous_markov import (
     FiniteStepSynonymousMarkovEditor, SynonymousJumpProposal,
 )
 from codonflow.train.rloo_finetune import load_model
+from codonflow.train.run_pretrain import file_sha256, git_commit
 from scripts.recompute_s3_full_adaptive import joint_range_reference
 
 
@@ -82,16 +83,21 @@ def main() -> None:
     ]
     output = {
         "config": vars(args), "source": name,
-        "protocol": "paired_same_initial_states_v1", "arms": {},
+        "initial_states": initial_states,
+        "checkpoint_sha256": file_sha256(args.checkpoint),
+        "benchmark_sha256": file_sha256(args.benchmark_fasta),
+        "rscu_sha256": file_sha256(args.rscu_json),
+        "atc_sha256": file_sha256(args.atc_yaml),
+        "code_commit": git_commit(),
+        "protocol": "paired_same_initial_states_v2", "arms": {},
     }
     for mode, rollouts in (("immediate", 0), ("short_rollout", args.rollout_count)):
-        solutions, traces, scorer_batches = [], [], 0
+        solutions, traces, scored_sequences = [], [], set()
         proposal.forward_calls = 0
         mfe_cache = {}
         base_terminal = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
         def terminal(seqs):
-            nonlocal scorer_batches
-            scorer_batches += 1
+            scored_sequences.update(seqs)
             return [args.beta * value for value in base_terminal(seqs)]
         t0 = time.perf_counter()
         for index, initial in enumerate(initial_states):
@@ -121,11 +127,11 @@ def main() -> None:
             "solutions": solutions,
             "elapsed_s": elapsed,
             "forward_calls": proposal.forward_calls,
-            "unique_terminal_reward_calls": sum(t[-1]["unique_terminal_reward_calls"] for t in traces),
+            "unique_terminal_reward_calls": len(scored_sequences),
+            "new_terminal_scores_per_path": [trace[-1]["unique_terminal_reward_calls"] for trace in traces],
             "terminal_reward_evaluations": sum(
                 sum(step["terminal_reward_evaluations"] for step in trace) for trace in traces
             ),
-            "terminal_reward_batches": scorer_batches,
             "traces": traces,
         }
     summarize_arms(output)

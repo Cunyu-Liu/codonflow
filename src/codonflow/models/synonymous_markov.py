@@ -242,10 +242,15 @@ class FiniteStepSynonymousMarkovEditor:
     explicit candidate pruning.  This is a Monte-Carlo, candidate-pruned
     approximation, not a proof of exact terminal tilting.
 
+    ``sampling_kernel='base'`` samples the normalized model kernel directly;
+    its trajectory probability is therefore exactly the one differentiated by
+    ``sampled_path_log_probability`` for on-policy optimization. The default
+    ``'guided'`` setting instead uses approximate MC-Doob transitions and must
+    not be paired with that base-path objective as if it were on-policy.
+
     ``rollout_count=0`` is the separately named ``immediate`` ablation: it uses
-    the candidate's own terminal reward instead of base rollout aggregation
-    and is never the default.  Only single-codon jumps are supported.  The
-    default return is the actual trajectory terminal; ``return_incumbent=True``
+    the candidate's own terminal reward instead of base rollout aggregation.
+    The default return is the trajectory terminal; ``return_incumbent=True``
     explicitly returns the best feasible terminal observed instead.
     """
 
@@ -257,6 +262,7 @@ class FiniteStepSynonymousMarkovEditor:
         rollout_count: int = 16,
         candidate_count: Optional[int] = None,
         rng: Optional[np.random.Generator] = None,
+        sampling_kernel: str = "guided",
     ):
         if terminal_step < 0:
             raise ValueError("terminal_step must be nonnegative")
@@ -264,6 +270,8 @@ class FiniteStepSynonymousMarkovEditor:
             raise ValueError("rollout_count must be nonnegative")
         if candidate_count is not None and candidate_count < 1:
             raise ValueError("candidate_count must be positive or None")
+        if sampling_kernel not in ("guided", "base"):
+            raise ValueError("sampling_kernel must be 'guided' or 'base'")
         self.proposal = proposal
         self.guided_log_probabilities = False
         self.terminal_reward = terminal_reward
@@ -271,11 +279,15 @@ class FiniteStepSynonymousMarkovEditor:
         self.rollout_count = int(rollout_count)
         self.candidate_count = candidate_count
         self.rng = np.random.default_rng(0) if rng is None else rng
-        self.mode = "immediate" if rollout_count == 0 else "rollout"
+        self.sampling_kernel = sampling_kernel
+        self.mode = sampling_kernel if sampling_kernel == "base" else (
+            "immediate" if rollout_count == 0 else "rollout"
+        )
         self.reward_cache: dict[str, float] = {}
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
         self.forward_calls = 0
+        self.scored_sequences: set[str] = set()
         self.best_terminal: Optional[str] = None
         self.best_terminal_reward = -math.inf
 
@@ -285,6 +297,7 @@ class FiniteStepSynonymousMarkovEditor:
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
         self.forward_calls = 0
+        self.scored_sequences.clear()
         self.best_terminal = None
         self.best_terminal_reward = -math.inf
 
@@ -304,6 +317,7 @@ class FiniteStepSynonymousMarkovEditor:
                     self.best_terminal_reward = value
                     self.best_terminal = sequence
         self.terminal_reward_evaluations += len(sequences)
+        self.scored_sequences.update(sequences)
         return [self.reward_cache[s] for s in sequences]
 
     def estimate_log_h(
@@ -398,12 +412,16 @@ class FiniteStepSynonymousMarkovEditor:
         else:
             terminal_reward = -math.inf
         for step in range(start_step, self.terminal_step):
-            guided, current_log_h, candidate_log_h = self.guided_transitions(state, step)
+            if self.sampling_kernel == "base":
+                candidates = self.proposal.enumerate_transitions(state, step)
+                current_log_h, candidate_log_h = None, [None] * len(candidates)
+            else:
+                candidates, current_log_h, candidate_log_h = self.guided_transitions(state, step)
             self.forward_calls = self.proposal.forward_calls - forwards_at_start
             index = _sample_log_probabilities(
-                [t.log_probability for t in guided], self.rng
+                [t.log_probability for t in candidates], self.rng
             )
-            chosen = guided[index]
+            chosen = candidates[index]
             state = chosen.codons
             terminal_reward = None
             if step + 1 == self.terminal_step:
@@ -418,7 +436,7 @@ class FiniteStepSynonymousMarkovEditor:
                     "log_h_candidate": candidate_log_h[index],
                     "terminal_reward": terminal_reward,
                     "mode": self.mode,
-                    "candidate_count": len(guided),
+                    "candidate_count": len(candidates),
                     "unique_terminal_reward_calls": self.unique_terminal_reward_calls,
                     "terminal_reward_evaluations": self.terminal_reward_evaluations,
                     "forward_calls": self.forward_calls,

@@ -30,6 +30,7 @@ from codonflow.models.synonymous_markov import (
     SynonymousJumpProposal,
 )
 from codonflow.rl.rloo import RewardTracker, rloo_loss
+from codonflow.train.run_pretrain import file_sha256, git_commit
 
 
 def load_model(checkpoint: str, device: torch.device) -> EditFlowTransformer:
@@ -62,9 +63,10 @@ def reward_scale(values: list[float], floor: float = 1e-6) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--benchmark-fasta", required=True)
+    parser.add_argument("--training-fasta", required=True,
+                        help="policy fine-tuning sources; held-out benchmark CDS are forbidden")
     parser.add_argument("--calibration-fasta", required=True,
-                        help="disjoint held-out CDS; never use benchmark rewards for tuning")
+                        help="protein-disjoint held-out CDS for reward-scale calibration")
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
@@ -77,8 +79,6 @@ def main() -> None:
     parser.add_argument("--env-weight", type=float, default=1.0)
     parser.add_argument("--group-n", type=int, default=4)
     parser.add_argument("--terminal-step", type=int, default=4)
-    parser.add_argument("--candidate-count", type=int, default=8)
-    parser.add_argument("--rollout-count", type=int, default=4)
     parser.add_argument("--max-iters", type=int, default=100000,
                         help="safety bound only; smoothed plateau determines normal stopping")
     parser.add_argument("--plateau-patience", type=int, default=30)
@@ -96,7 +96,15 @@ def main() -> None:
     rng = np.random.default_rng(args.seed)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    config = vars(args)
+    config = {
+        **vars(args), "sampling_distribution": "base_kernel",
+        "code_commit": git_commit(),
+        "training_sha256": file_sha256(args.training_fasta),
+        "calibration_sha256": file_sha256(args.calibration_fasta),
+        "checkpoint_sha256": file_sha256(args.checkpoint),
+        "rscu_sha256": file_sha256(args.rscu_json),
+        "atc_sha256": file_sha256(args.atc_yaml),
+    }
     (out_dir / "config.json").write_text(json.dumps(config, indent=2))
 
     model = load_model(args.checkpoint, device)
@@ -111,22 +119,21 @@ def main() -> None:
     mfe_cache: dict = {}
     terminal_reward = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
 
-    sources = [s for _, s in read_fasta(args.benchmark_fasta)]
+    sources = [s for _, s in read_fasta(args.training_fasta)]
     calibration = [s for _, s in read_fasta(args.calibration_fasta)]
     if not sources or not calibration:
         raise ValueError("both training and calibration FASTA files must be nonempty")
-    if set(sources) & set(calibration):
-        raise ValueError("calibration sequences must be disjoint from training sources")
+    if {protein_of_cds(s) for s in sources} & {protein_of_cds(s) for s in calibration}:
+        raise ValueError("calibration proteins must be disjoint from training sources")
 
-    def sample_group(source: str, use_model=True):
+    def sample_group(source: str):
         group = []
         for index in range(args.group_n):
             initial = synonymous_x0(source, rng)
             editor = FiniteStepSynonymousMarkovEditor(
                 proposal, terminal_reward,
                 terminal_step=args.terminal_step,
-                rollout_count=args.rollout_count,
-                candidate_count=args.candidate_count,
+                sampling_kernel="base",
                 rng=rng,
             )
             terminal, trace = editor.sample(initial)
