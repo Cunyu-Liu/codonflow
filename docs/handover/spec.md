@@ -385,3 +385,4 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 4. 最终真实冒烟使用冻结 epoch-5 edited-token checkpoint（SHA256=`74a542c165f0a1ebe425d78b012fd7f2c64c228f5cd8ddcc0f7f13370f26f5e2`）、代码 merge=`2854ebb68a6070f0d8ca3200aedf0bec32ef681a`，2 条 paired paths、T=4、C=4、R=2、seed=0。base/immediate/short-rollout 的 identity 均为 1.0；forward=8/8/76，终端请求=2/42/74，唯一 scorer=2/11/66，short-rollout 另有 64 条轨迹和 68 次批量 rollout forward。归一化 HV=0.04913/0.05021/0.14496，仅为协议诊断，不证明收敛模型或算法普遍优劣。
 5. 两次复跑间 live `best.pt` 的 SHA256 从 `c10e73fa` 变为 `74a542c1`，证实训练中最佳权重会被覆盖。正式对照必须使用独立冻结的 checkpoint 文件并核对哈希；本次使用 `frozen_epoch005.pt`，不得把不同 epoch 的输出当同一模型复现。
 6. 本地与集群均为 98 passed、1 skipped；真实模型冒烟和独立 JSON 重算均通过。canonical artifact 为 `eval_outputs/a6_pilot/a6_three_arm_protocol_smoke_v4.json`。
+7. `fig_a6_mechanism_costs` 按同一冻结 JSON 渲染并通过数据断言、视觉和 PDF 字体检查。PPT 第 43 页仅呈现机制与成本，不展示诊断 HV；第 40 页更新为 98 项回归。新增页边界/重叠为 0，43 页 LibreOffice 中文渲染通过。
