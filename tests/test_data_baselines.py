@@ -35,7 +35,10 @@ def fixture_cds_pool():
 def test_unique_benchmark_replaces_absent_and_duplicate_records_only_from_test(tmp_path, monkeypatch):
     valid = fixture_cds_pool()[:18]
     legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(valid)]
-    replacement = ("absent_replacement|sp|short|12nt", fixture_cds_pool()[18])
+    replacement = (
+        "absent_replacement|sp|short|15nt",
+        fixture_cds_pool()[18][:-3] + "GCTTAA",
+    )
     test = legacy[1:] + [replacement]
     legacy_path = write_fasta(tmp_path / "legacy.fasta", legacy)
     test_path = write_fasta(tmp_path / "test.fasta", test)

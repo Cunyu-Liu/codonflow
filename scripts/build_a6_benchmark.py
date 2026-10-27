@@ -25,7 +25,7 @@ def build_unique_benchmark(legacy_path: str, test_path: str):
     if len(test_by_cds) != len(test):
         raise ValueError("frozen test FASTA must have unique CDS")
     seen_cds, seen_protein, seen_headers = set(), set(), set()
-    records, audit = [], []
+    slots = []
     for header, sequence in legacy:
         normalized = sequence.upper().replace("U", "T")
         protein = cds_protein(normalized)
@@ -37,14 +37,23 @@ def build_unique_benchmark(legacy_path: str, test_path: str):
             reason = "duplicate legacy CDS, protein or identifier"
         elif normalized not in test_by_cds or test_by_cds[normalized] != header:
             reason = "legacy record absent from frozen v4 test"
-        candidate_header = header
-        candidate = normalized
-        if reason is not None:
+        if reason is None:
+            seen_headers.add(header)
+            seen_cds.add(normalized)
+            seen_protein.add(protein)
+        slots.append({"legacy_header": header, "sequence": normalized, "reason": reason})
+    records, audit = [], []
+    for slot in slots:
+        header, normalized, reason = slot["legacy_header"], slot["sequence"], slot["reason"]
+        if reason is None:
+            candidate_header, candidate = header, normalized
+        else:
+            fields = header.split("|")
             candidates = []
             for candidate_header, candidate_sequence in test:
                 candidate_sequence = candidate_sequence.upper().replace("U", "T")
                 candidate_fields = candidate_header.split("|")
-                if len(candidate_fields) != 4 or candidate_fields[1:] != fields[1:]:
+                if len(candidate_fields) != 4 or candidate_fields[1:3] != fields[1:3]:
                     continue
                 if (candidate_header in seen_headers or candidate_sequence in seen_cds
                         or cds_protein(candidate_sequence) in seen_protein):
@@ -54,17 +63,17 @@ def build_unique_benchmark(legacy_path: str, test_path: str):
                     candidate_sequence,
                 ))
             if not candidates:
-                raise ValueError(f"no unused frozen-test candidate for stratum {fields[1:]}")
+                raise ValueError(f"no unused frozen-test candidate for stratum {fields[1:3]}")
             _, candidate_header, candidate = min(candidates, key=lambda row: (row[0], row[1]))
+            seen_headers.add(candidate_header)
+            seen_cds.add(candidate)
+            seen_protein.add(cds_protein(candidate))
         audit.append({
             "legacy_header": header, "selected_header": candidate_header,
             "reason": reason or "exact legacy record retained in frozen v4 test",
             "source": "v4_test",
         })
         records.append((candidate_header, candidate))
-        seen_headers.add(candidate_header)
-        seen_cds.add(candidate)
-        seen_protein.add(cds_protein(candidate))
     return records, audit
 
 
