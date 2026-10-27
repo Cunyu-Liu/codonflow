@@ -164,13 +164,14 @@ class SynonymousJumpProposal:
                 edited[position] = alternative
                 transitions.append(SynonymousTransition(tuple(edited), 0.0, position))
 
-        stay_logit = blank_logits.new_zeros(())
-        for position, alternatives, local_logs in locations:
-            stay_logit = stay_logit + blank_logits[position + 1]
-            stay_logit = stay_logit + local_logs[alternatives.index(current[position])]
+        stay_logit = torch.logsumexp(torch.stack([
+            blank_logits[position + 1] + local_logs[alternatives.index(current[position])]
+            for position, alternatives, local_logs in locations
+        ]), dim=0)
         log_weights.append(stay_logit)
         transitions.append(SynonymousTransition(current, 0.0, None))
-        log_probabilities = torch.log_softmax(torch.stack(log_weights).double(), dim=0)
+        log_weights = torch.stack(log_weights)
+        log_probabilities = torch.log_softmax(log_weights.double(), dim=0)
         return transitions, log_probabilities
 
     @torch.no_grad()

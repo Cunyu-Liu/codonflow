@@ -7,6 +7,7 @@ import torch
 from scipy.special import logsumexp
 
 from codonflow.core.codon import (
+    CODON_TO_INDEX,
     STANDARD_TABLE_1,
     SYNONYMOUS_CODONS,
     is_synonymous,
@@ -106,6 +107,27 @@ def test_model_adapter_full_joint_normalization_and_synonymy():
         assert len(differences) == (0 if transition.is_stay else 1)
         if not transition.is_stay:
             assert transition.codons[transition.position] in protein_synonyms(source[3 * transition.position : 3 * transition.position + 3])
+
+
+def test_stay_probability_logsumexp_not_logit_sum():
+    source = "TTTTAA"
+
+    class StayModel(DeterministicCodonModel):
+        def forward(self, ids):
+            batch, length = ids.shape
+            blank = torch.zeros((batch, length))
+            tokens = torch.full((batch, length, 67), -10.0)
+            # Position 1: strong change; position 2: strong stay.
+            blank[0, 1] = 0.0
+            blank[0, 2] = 0.0
+            tokens[0, 1, CODON_TO_INDEX["TTT"]] = 0.0
+            tokens[0, 2, CODON_TO_INDEX["TTC"]] = 0.0  # TTT stays TTT; TTC is the only alternative.
+            return blank, tokens
+
+    transitions, log_probabilities = SynonymousJumpProposal(StayModel())._transition_tensors(split_codons(source))
+    stay_index = next(i for i, transition in enumerate(transitions) if transition.is_stay)
+    assert math.isclose(sum(math.exp(float(p)) for p in log_probabilities), 1.0, abs_tol=1e-10)
+    assert math.isclose(float(log_probabilities[stay_index]), 0.0, abs_tol=1e-3)
 
 
 def test_model_adapter_rejects_invalid_sources():
