@@ -24,6 +24,8 @@
 - 全参数 base-RLOO 以逐路径反向完成 20 次更新，未再 OOM，identity=1.0，所有数值有限；梯度范数 4.58–19.20（中位 9.64，仍裁剪），校准效用 0.0080941→0.0080249，差值 -6.9167e-05。扩大校准到 8 序列、group=4、lr=3.3e-8 后仍无收益证据，不进入主表，不宣布稳定收敛。逐路径与整组反向梯度等价测试通过；联合 HV 参考域改用唯一目标向量，防止共享 baseline 重复改变 p95。
 - 三臂 pilot 成本二次审计发现 v3 将每步累计 scorer 请求再次逐行求和，旧 immediate/short-rollout=102/194 作废。v4 只聚合每路径最终累计行，并新增 base 枚举、rollout 批量 forward、轨迹、逐轨迹转移、实际 scorer invocations 与唯一 scorer。恒定 C,T 时 `F=T+T(T+1)/2+C*T(T-1)/2`，R 不乘入批量 forward；T=4,C=4 首步/全路径为 17/38。定向、全量和独立 JSON 三层核验通过，本地/集群均 98 passed、1 skipped。
 - 最终 canonical 冒烟使用代码 `2854ebb6` 与冻结 epoch-5 checkpoint `74a542c1`，base/immediate/short-rollout：identity=1.0，forward=8/8/76，终端请求=2/42/74，唯一 scorer=2/11/66，short-rollout 轨迹=64；HV=0.04913/0.05021/0.14496，仅为 2 路径协议诊断。复跑间 live best 由 c10e73fa 更新为 74a542c1，故正式对照一律使用冻结权重；epoch-5 edited-token val=4.3912166，epoch 6 已启动，未 plateau。
+- `fig_a6_mechanism_costs` 完成并通过数据断言、视觉与 PDF 字体检查；第 43 页 PPT 采用“左侧四面板 + 右侧判读”，不展示诊断 HV。第 40 页更新为 98 项回归；新增页边界/重叠为 0，markitdown 与 43 页 LibreOffice 中文渲染通过，用户原 PPT 与交付副本 SHA256 一致。
+- RLOO 既有 20 步负差值仅来自 2 个训练源、2 个评估源，不能据此否定算法或盲目调参。已建立 `a6_rloo_queue`：等待 edited-token `converged.json` 后使用完整 v4 train/val、32 个配对校准源启动 path-RLOO，按 smoothed reward plateau 停止；等待期间不占 GPU，不以固定 20 步作收敛结论。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)

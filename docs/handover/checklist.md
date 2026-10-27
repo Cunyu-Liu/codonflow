@@ -15,7 +15,7 @@
 - [ ] L9 immediate/short-rollout/frozen 同预算 pilot；v4 三臂成本与冻结 checkpoint 冒烟已通过，多基因、3 seeds、收敛模型和统一预算尚未完成。
 - [x] L10 GEMORNA 100 次采样得 81 唯一合法解、0 身份错误；不补足独立解。其余 baseline 待补齐。
 - [ ] L11 完整方法池联合 HV、缺失/零值检查与统计不确定性全部通过。
-- [x] L12 数据审计图、全量分布图、真实 baseline 图与 42 页 PPT 已验收；旧错误 nanoLuc 已替换、旧结果标为历史探索。预印本待新证据。
+- [x] L12 数据审计图、全量分布图、真实 baseline 图、机制/成本图与 43 页 PPT 已验收；旧错误 nanoLuc 已替换、旧结果标为历史探索。预印本待新证据。
 - [x] L13 GPU queue 完整生命周期与日志监控通过；主要代码 commit 已推送，最终三端结果清单待训练结束。
 - [ ] L14 Gate C 以 A6 新证据裁决；未达成时明确 No-Go/降级。
 - [x] L15 v4-test 长度分层 18 条 benchmark 独立审计通过：全部逐字来自 test、18 unique ID/CDS/蛋白、train/val 精确重叠为 0、哈希一致。

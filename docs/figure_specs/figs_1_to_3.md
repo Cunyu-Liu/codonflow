@@ -18,6 +18,7 @@
 - Panel B：可枚举小状态上 `q_G(X_T) ∝ q_base(X_T)G(X_T)` 的精确数值验证。
 - 标题使用“finite-step synonymous Markov editing”；短 rollout/候选剪枝标注 approximate，禁止画成已证明的 CTMC 精确采样。
 - 成本面板必须分别展示当前状态 base 枚举、rollout 批量 forward、rollout 轨迹、终端请求、实际 scorer invocations 与唯一 scorer；不得把 R 乘入批量 forward，也不得对累计 trace 行再次求和。图注记录冻结 checkpoint 与代码哈希，live `best.pt` 不作为可复现输入。
+- `fig_a6_mechanism_costs.pdf/.png` 已完成：Panel A 有限步近似，Panel B R scaling，Panel C forward 组成，Panel D scorer 三口径；数据仅来自冻结 v4 JSON，独立 trace 断言通过。第 43 页 PPT 采用该图，实际渲染无遮挡，不展示诊断 HV。
 
 ### Fig-3 学习与基线边界
 

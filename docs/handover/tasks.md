@@ -23,9 +23,9 @@
 - [x] A6.11 v4-test 18 条长度分层 benchmark 冻结并独立审计：18 unique ID/CDS/蛋白，train/val 精确重叠为 0；不是 HELD18 去重版，不作 family/species 声明。蛋白同源 OOD 仍需单独构建。
 - [ ] A6.12 主实验四口径：输出解数、唯一 scorer calls、模型 forward、端到端时间；v4 已补全三臂冒烟的 base/rollout/轨迹/scorer 细分，E2/E6 多基因统一预算重跑待完成。
 - [ ] A6.13 联合 HV 完整 arms/方法池核验，零值与缺失不得静默删除；统计检验与置信区间随表提供。
-- [ ] A6.14 主图按新证据重制：机制示意、数据审计、immediate-vs-rollout、独立泛化、完整基线、成本/预算；PDF+PNG，单一数据源。
+- [ ] A6.14 主图按新证据重制：机制/成本图与数据审计、真实 baseline 图已完成；immediate-vs-rollout 收敛对照、独立泛化、完整联合预算图待新结果，PDF+PNG，单一数据源。
 - [ ] A6.15 预印本主线重写：测量定义→有限步机制→学习与泛化→边界；撤回无证据的 SOTA、capacity/RL scaling 和 masking 因果断言。
-- [ ] A6.16 PPT 仅录入 A6 验收结果，修正历史错误页；保留原模板身份，减少堆字，结论与图一一对应。
+- [ ] A6.16 PPT 仅录入 A6 验收结果，修正历史错误页；当前 43 页，新增机制/成本页且第 40 页更新 98 tests，后续仅追加已验收主结果。
 
 ## P2：工程交付
 
