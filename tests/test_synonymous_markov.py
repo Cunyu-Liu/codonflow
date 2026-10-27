@@ -230,6 +230,52 @@ def test_rollout_guidance_is_not_immediate_atc_and_counts_budget():
     assert reward.calls  # Actual terminal reward calls, not immediate ATC substitution.
 
 
+@pytest.mark.parametrize("rollout_count", [1, 2, 3])
+def test_batched_rollout_cost_formula_and_trace_accounting(rollout_count):
+    source = "TTTGCTTAA"  # Five base transitions; pruning retains exactly four.
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    editor = FiniteStepSynonymousMarkovEditor(
+        proposal,
+        IndependentReward({}),
+        terminal_step=4,
+        rollout_count=rollout_count,
+        candidate_count=4,
+        rng=np.random.default_rng(31),
+    )
+    batch_sizes = []
+    original_sample_batch = proposal.sample_transition_batch
+
+    def counted_sample_batch(states, time=0, rng=None):
+        batch_sizes.append(len(states))
+        return original_sample_batch(states, time, rng)
+
+    proposal.sample_transition_batch = counted_sample_batch
+    terminal, trace = editor.sample(source)
+    assert is_synonymous(terminal, source)
+    first, final = trace[0], trace[-1]
+
+    # First guided step: one current-state forward, four current-value batches,
+    # and 4 candidates x 3 candidate-value batches. R shares each batch.
+    assert first["forward_calls"] == 17
+    assert first["base_state_evaluations"] == 1
+    assert first["rollout_batch_forwards"] == 16
+    assert first["rollout_trajectories"] == 5 * rollout_count
+    assert first["rollout_state_transitions"] == 16 * rollout_count
+
+    # Full path: F = T + T(T+1)/2 + C*T(T-1)/2 = 4 + 10 + 24.
+    assert final["forward_calls"] == 38
+    assert final["base_state_evaluations"] == 4
+    assert final["rollout_batch_forwards"] == 34
+    assert final["rollout_trajectories"] == 16 * rollout_count
+    assert final["rollout_state_transitions"] == 34 * rollout_count
+    assert final["terminal_reward_evaluations"] == 16 * rollout_count + 5
+    assert batch_sizes == [rollout_count] * 34
+    assert proposal.forward_calls == 38
+    assert final["forward_calls"] == (
+        final["base_state_evaluations"] + final["rollout_batch_forwards"]
+    )
+
+
 def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     source = "TTTGCTTAA"
     possible = [
