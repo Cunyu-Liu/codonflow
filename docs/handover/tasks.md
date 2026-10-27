@@ -33,8 +33,8 @@
 - [ ] A6.18 训练监控：每日定时检查训练日志、收敛、NaN/OOM 和队列，不频繁读取显存；资源仅用于真实训练/短 rollout/基线。
 - [ ] A6.19 每个完成任务单独 commit + push；三端核对代码 commit、数据哈希和结果清单，不上传大型权重。
 - [ ] A6.20 Gate C 重审：只有 A6 新协议主结果支持时才可勾选；否则明确 No-Go/降级，不用旧勾选代替裁决。
-- [ ] A6.21 构建 protein-homology-cluster v5：唯一蛋白+benchmark 种子 MMseqs2 聚类、连通簇排除、独立泄漏/守恒审计；不冒称 curated family/species OOD。
-- [ ] A6.22 全参数 path-RLOO 在独立显存窗口完成多步稳定性与 held-out 评价；head-only 4 步和 OOM 记录不视为通过。
+- [x] A6.21 protein-homology-cluster v5 已完成：776,441 保留、128 连通簇排除；独立 cluster/leakage/守恒审计通过；不冒称 curated family/species OOD。
+- [ ] A6.22 全参数 path-RLOO 完成多步稳定性与 held-out 评价：20 步无 OOM 但校准效用未提升、梯度仍裁剪，未通过；head-only 4 步和 OOM 记录不视为通过。
 
 ---
 
