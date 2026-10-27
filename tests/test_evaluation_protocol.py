@@ -3,11 +3,29 @@ import pytest
 
 from scripts.recompute_s3_full_adaptive import (
     REQUIRED_METHODS,
+    joint_range_reference,
     objective_pool,
     pooled_reference,
     recompute_group,
 )
 from scripts.verdict_355m_and_rloo import paired_deltas
+
+
+def summarize_pilot_arms(output):
+    """Recompute normalized pilot HV without rerunning model inference."""
+    from scripts.run_a6_rollout_pilot import summarize_arms
+    return summarize_arms(output)
+
+
+def test_pilot_summary_is_normalized_and_recomputable():
+    output = {"arms": {
+        "a": {"objectives": [[1.0, 10.0, -1.0, 0.0]]},
+        "b": {"objectives": [[3.0, 20.0, -1.0, 2.0]]},
+    }}
+    assert summarize_pilot_arms(output) == summarize_pilot_arms(output)
+    assert output["reference_protocol"].endswith("normalized_v2")
+    assert len(output["normalization_scale"]) == 4
+    assert all(value > 0 for value in output["normalization_scale"])
 
 
 def row(offset=0.0, legacy_name=False):
@@ -44,6 +62,15 @@ def test_missing_entire_method_not_treated_as_empty_solution_set():
     del incomplete["S3_quad/lineardesign_scan/obj_vectors"]
     with pytest.raises(ValueError, match="lineardesign"):
         recompute_group([incomplete])
+
+
+def test_joint_range_reference_normalizes_each_axis_and_handles_constant_pilot_axes():
+    points = [[1.0, 10.0, -1.0], [3.0, 20.0, -1.0]]
+    reference, scale = joint_range_reference(points, allow_degenerate=True)
+    assert np.allclose(reference, [0.9, 9.5, -1.000001])
+    assert np.allclose(scale, [2.0, 10.0, 1.0])
+    with pytest.raises(ValueError, match="degenerate"):
+        joint_range_reference(points)
 
 
 def test_nonfinite_pool_fails():

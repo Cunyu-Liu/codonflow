@@ -29,6 +29,22 @@ from codonflow.models.synonymous_markov import (
     FiniteStepSynonymousMarkovEditor, SynonymousJumpProposal,
 )
 from codonflow.train.rloo_finetune import load_model
+from scripts.recompute_s3_full_adaptive import joint_range_reference
+
+
+def summarize_arms(output):
+    points = np.asarray([
+        point for arm in output["arms"].values() for point in arm["objectives"]
+    ])
+    reference, scale = joint_range_reference(points, allow_degenerate=True)
+    output["normalization_scale"] = scale.tolist()
+    output["degenerate_axes_use_unit_scale"] = True
+    output["reference_protocol"] = "joint_all_arms_min_minus_5pct_range_normalized_v2"
+    for arm in output["arms"].values():
+        arm["reference"] = reference.tolist()
+        normalized = (np.asarray(arm["objectives"]) - reference) / scale
+        arm["hypervolume_joint_reference"] = hypervolume(normalized.tolist(), np.zeros(4))
+    return {name: arm["hypervolume_joint_reference"] for name, arm in output["arms"].items()}
 
 
 def main() -> None:
@@ -65,15 +81,18 @@ def main() -> None:
         for i in range(args.n_solutions)
     ]
     output = {
-        "config": vars(args), "source": name, "protein_sha256": protein,
+        "config": vars(args), "source": name,
         "protocol": "paired_same_initial_states_v1", "arms": {},
     }
     for mode, rollouts in (("immediate", 0), ("short_rollout", args.rollout_count)):
-        solutions, traces = [], []
+        solutions, traces, scorer_batches = [], [], 0
         proposal.forward_calls = 0
         mfe_cache = {}
         base_terminal = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
-        terminal = lambda seqs: [args.beta * value for value in base_terminal(seqs)]
+        def terminal(seqs):
+            nonlocal scorer_batches
+            scorer_batches += 1
+            return [args.beta * value for value in base_terminal(seqs)]
         t0 = time.perf_counter()
         for index, initial in enumerate(initial_states):
             editor = FiniteStepSynonymousMarkovEditor(
@@ -102,20 +121,14 @@ def main() -> None:
             "solutions": solutions,
             "elapsed_s": elapsed,
             "forward_calls": proposal.forward_calls,
-            "unique_terminal_reward_calls": traces[-1][-1]["unique_terminal_reward_calls"],
-            "terminal_reward_evaluations": traces[-1][-1]["terminal_reward_evaluations"],
+            "unique_terminal_reward_calls": sum(t[-1]["unique_terminal_reward_calls"] for t in traces),
+            "terminal_reward_evaluations": sum(
+                sum(step["terminal_reward_evaluations"] for step in trace) for trace in traces
+            ),
+            "terminal_reward_batches": scorer_batches,
             "traces": traces,
         }
-    all_points = np.asarray([
-        point for arm in output["arms"].values() for point in arm["objectives"]
-    ])
-    spread = np.ptp(all_points, axis=0)
-    reference = all_points.min(axis=0) - 0.05 * spread
-    reference = np.where(spread > 0, reference, all_points.min(axis=0) - 1e-6)
-    for arm in output["arms"].values():
-        arm["reference"] = reference.tolist()
-        arm["hypervolume_joint_reference"] = hypervolume(arm["objectives"], reference)
-    output["reference_protocol"] = "joint_all_arms_min_minus_5pct_range"
+    summarize_arms(output)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(json.dumps(output, indent=2))
     print(json.dumps({mode: {k: v for k, v in arm.items() if k not in ("traces", "solutions", "objectives")}

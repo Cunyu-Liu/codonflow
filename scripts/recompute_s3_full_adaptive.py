@@ -44,6 +44,20 @@ def objective_pool(row: dict) -> dict[str, np.ndarray]:
     return pool
 
 
+def joint_range_reference(points, allow_degenerate: bool = False) -> tuple[np.ndarray, np.ndarray]:
+    """Shared min - 5% range reference; optionally handle constant pilot axes."""
+    values = np.asarray(points, dtype=float)
+    if values.ndim != 2 or not len(values) or not np.isfinite(values).all():
+        raise ValueError("joint reference requires a nonempty finite objective matrix")
+    scale = np.ptp(values, axis=0)
+    if np.any(scale <= 0) and not allow_degenerate:
+        raise ValueError("degenerate objective range prevents pooled normalization")
+    safe_scale = np.where(scale > 0, scale, 1.0)
+    reference = values.min(axis=0) - 0.05 * safe_scale
+    reference = np.where(scale > 0, reference, values.min(axis=0) - 1e-6)
+    return reference, safe_scale
+
+
 def pooled_reference(rows: list[dict]) -> tuple[np.ndarray, np.ndarray]:
     pools = [objective_pool(row) for row in rows]
     missing = sorted({
@@ -55,12 +69,8 @@ def pooled_reference(rows: list[dict]) -> tuple[np.ndarray, np.ndarray]:
     all_points = np.vstack([points for pool in pools for points in pool.values()])
     if not np.isfinite(all_points).all():
         raise ValueError("objective pool contains NaN or infinity")
-    minimum = all_points.min(axis=0)
-    q95 = np.quantile(all_points, 0.95, axis=0)
-    scale = q95 - minimum
-    if np.any(scale <= 0):
-        raise ValueError("degenerate objective range prevents pooled normalization")
-    reference = minimum - 0.05 * scale
+    reference, _ = joint_range_reference(all_points)
+    scale = np.quantile(all_points, 0.95, axis=0) - all_points.min(axis=0)
     return reference, scale
 
 

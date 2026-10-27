@@ -275,17 +275,18 @@ class FiniteStepSynonymousMarkovEditor:
         self.reward_cache: dict[str, float] = {}
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
+        self.forward_calls = 0
         self.best_terminal: Optional[str] = None
         self.best_terminal_reward = -math.inf
 
     def reset_counts(self) -> None:
-        """Reset reward cache and all accounting before an independent run."""
+        """Reset per-path cache and accounting; proposal forwards are caller-scoped."""
         self.reward_cache.clear()
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
+        self.forward_calls = 0
         self.best_terminal = None
         self.best_terminal_reward = -math.inf
-        self.proposal.forward_calls = 0
 
     def _terminal_rewards(self, sequences: Sequence[str]) -> list[float]:
         missing = list(dict.fromkeys(s for s in sequences if s not in self.reward_cache))
@@ -299,10 +300,10 @@ class FiniteStepSynonymousMarkovEditor:
                     raise ValueError("terminal_reward returned NaN")
                 self.reward_cache[sequence] = value
                 self.unique_terminal_reward_calls += 1
-                self.terminal_reward_evaluations += 1
                 if math.isfinite(value) and value > self.best_terminal_reward:
                     self.best_terminal_reward = value
                     self.best_terminal = sequence
+        self.terminal_reward_evaluations += len(sequences)
         return [self.reward_cache[s] for s in sequences]
 
     def estimate_log_h(
@@ -390,6 +391,7 @@ class FiniteStepSynonymousMarkovEditor:
         if start_step < 0 or start_step > self.terminal_step:
             raise ValueError("start_step must lie in [0, terminal_step]")
         state = self.proposal.validate_source(split_codons(source))
+        forwards_at_start = self.proposal.forward_calls
         trace: list[dict] = []
         if start_step == self.terminal_step:
             terminal_reward = self._terminal_rewards([source])[0]
@@ -397,6 +399,7 @@ class FiniteStepSynonymousMarkovEditor:
             terminal_reward = -math.inf
         for step in range(start_step, self.terminal_step):
             guided, current_log_h, candidate_log_h = self.guided_transitions(state, step)
+            self.forward_calls = self.proposal.forward_calls - forwards_at_start
             index = _sample_log_probabilities(
                 [t.log_probability for t in guided], self.rng
             )
@@ -418,8 +421,8 @@ class FiniteStepSynonymousMarkovEditor:
                     "candidate_count": len(guided),
                     "unique_terminal_reward_calls": self.unique_terminal_reward_calls,
                     "terminal_reward_evaluations": self.terminal_reward_evaluations,
-                    "forward_calls": self.proposal.forward_calls,
-                    "base_log_probability": chosen.log_probability,
+                    "forward_calls": self.forward_calls,
+                    "chosen_base_log_probability": chosen.log_probability,
                 }
             )
         if not trace and start_step < self.terminal_step:

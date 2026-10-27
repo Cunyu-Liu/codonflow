@@ -6,6 +6,8 @@ import sys
 import pytest
 
 from scripts.audit_distribution import overlap_audit
+from scripts.build_a6_benchmark import build_unique_benchmark
+from scripts.build_a6_benchmark import main as build_benchmark_main
 from scripts.build_splits import benchmark_components, read_fasta, read_clusters
 from scripts.gemorna_arm import (
     load_benchmark_protein,
@@ -21,6 +23,59 @@ def write_fasta(path, records):
     path.write_text("".join(f">{header}\n{seq}\n" for header, seq in records))
     return str(path)
 
+
+def fixture_cds_pool():
+    from scripts.gemorna_arm import cds_protein
+    codons = ["TTT", "TTG", "ATT", "GCT", "GGT"]
+    pool = [f"ATG{a}{b}TAA" for a in codons for b in codons]
+    assert len({cds_protein(s) for s in pool}) == len(pool)
+    return pool
+
+
+def test_unique_benchmark_replaces_absent_and_duplicate_records_only_from_test(tmp_path, monkeypatch):
+    valid = fixture_cds_pool()[:18]
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(valid)]
+    replacement = ("absent_replacement|sp|short|12nt", fixture_cds_pool()[18])
+    test = legacy[1:] + [replacement]
+    legacy_path = write_fasta(tmp_path / "legacy.fasta", legacy)
+    test_path = write_fasta(tmp_path / "test.fasta", test)
+    out, manifest = tmp_path / "frozen.fasta", tmp_path / "manifest.json"
+    monkeypatch.setattr(sys, "argv", [
+        "build_a6_benchmark.py", "--legacy-fasta", legacy_path, "--test-fasta", test_path,
+        "--out-fasta", str(out), "--out-manifest", str(manifest),
+    ])
+    build_benchmark_main()
+    records, audit = build_unique_benchmark(legacy_path, test_path)
+    assert records == read_fasta(str(out))
+    assert len(records) == len({s for _, s in records}) == 18
+    assert all(dict(test).get(h) == s for h, s in records)
+    assert records[0] == replacement
+    assert audit[0]["reason"] == "legacy record absent from frozen v4 test"
+    assert audit[1]["reason"] == "exact legacy record retained in frozen v4 test"
+    assert json.loads(manifest.read_text())["protocol"] == "v4_test_unique18_stratified_v2"
+
+
+def test_unique_benchmark_replaces_duplicate_with_deterministic_tiebreak(tmp_path):
+    pool = fixture_cds_pool()
+    valid = [pool[0], "ATGTTCTTTTAA", *pool[1:17]]
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(valid)]
+    candidates = [("z|sp|short|12nt", pool[19]), ("a|sp|short|12nt", pool[18])]
+    records, audit = build_unique_benchmark(
+        write_fasta(tmp_path / "legacy.fasta", legacy),
+        write_fasta(tmp_path / "test.fasta", legacy + candidates),
+    )
+    assert len(records) == len({s for _, s in records}) == 18
+    assert records[1] == candidates[1]
+    assert audit[1]["reason"].startswith("duplicate legacy")
+
+
+def test_unique_benchmark_fails_if_stratum_cannot_be_filled(tmp_path):
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(fixture_cds_pool()[:18])]
+    with pytest.raises(ValueError, match="no unused frozen-test candidate"):
+        build_unique_benchmark(
+            write_fasta(tmp_path / "legacy.fasta", legacy),
+            write_fasta(tmp_path / "test.fasta", legacy[:-1]),
+        )
 
 def test_benchmark_fasta_is_authoritative(tmp_path):
     fasta = write_fasta(tmp_path / "bench.fasta", [

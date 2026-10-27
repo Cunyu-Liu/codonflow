@@ -219,10 +219,10 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     ]
     rewards = {s: float(i) for i, s in enumerate(possible)}
 
-    def run(incumbent=False):
+    def run(incumbent=False, proposal=None):
         reward = IndependentReward(rewards)
         editor = FiniteStepSynonymousMarkovEditor(
-            SynonymousJumpProposal(DeterministicCodonModel()),
+            proposal or SynonymousJumpProposal(DeterministicCodonModel()),
             reward,
             terminal_step=2,
             rollout_count=2,
@@ -233,7 +233,10 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
         return terminal, trace, editor
 
     first, trace, editor = run()
-    second, second_trace, _ = run()
+    per_path_forwards = editor.proposal.forward_calls
+    second, second_trace, second_editor = run(proposal=editor.proposal)
+    assert editor.proposal.forward_calls == 2 * per_path_forwards
+    assert second_editor.proposal.forward_calls == 2 * per_path_forwards
     assert first == second
     assert trace == second_trace
     assert first == trace[-1]["sequence"]  # Default is the trajectory terminal.
@@ -242,7 +245,8 @@ def test_sampling_reproducibility_trace_and_incumbent_opt_in():
     assert trace[-1]["mode"] == "rollout"
     assert trace[-1]["unique_terminal_reward_calls"] > 0
     assert trace[-1]["forward_calls"] > 0
-    assert editor.terminal_reward_evaluations == editor.unique_terminal_reward_calls
+    assert editor.terminal_reward_evaluations >= editor.unique_terminal_reward_calls
+    assert trace[-1]["chosen_base_log_probability"] == pytest.approx(-0.47174700857447993)
 
     incumbent, _, incumbent_editor = run(incumbent=True)
     assert incumbent == incumbent_editor.best_terminal
