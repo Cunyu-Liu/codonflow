@@ -20,6 +20,9 @@
 - [ ] L14 Gate C 以 A6 新证据裁决；未达成时明确 No-Go/降级。
 - [x] L15 v4-test 长度分层 18 条 benchmark 独立审计通过：全部逐字来自 test、18 unique ID/CDS/蛋白、train/val 精确重叠为 0、哈希一致。
 - [x] L16 protein-homology-cluster v5 与独立审计完成；不是 curated family 注释。species 元数据与相应泛化验证仍未完成，不作 species-OOD 声明。
+- [x] L17 按用户要求完成收尾：full-data RLOO 队列取消，不再新增实验；训练、baseline、旧 legacy 和监控会话全部停止。
+- [x] L18 两臂 epoch-6 best/last/training_state 与 manifest 已冻结并核对哈希；明确标记 stopped_not_converged，恢复入口见 HANDOFF。
+- [x] L19 unique18 的 10 条完整记录已完成身份/解数/哈希/CAI/GC/motif 审计；1 条部分运行、7 条未启动已记录，MFE/NED 留待主表前全量复核。
 
 ## 历史 Checklist（原样保留，非当前验收依据）
 
