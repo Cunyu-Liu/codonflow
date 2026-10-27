@@ -28,8 +28,11 @@ def main():
         for histogram in split["histograms"].values():
             assert sum(histogram["counts"]) == split["n"]
             assert len(histogram["counts"]) + 1 == len(histogram["edges"])
-    for overlap in data["overlaps"].values():
+    for pair in ("train__val", "train__test", "val__test", "train__benchmark", "val__benchmark"):
+        overlap = data["overlaps"][pair]
         assert overlap["n_shared_cds"] == overlap["n_shared_protein"] == 0
+    assert data["overlaps"]["test__benchmark"]["n_shared_cds"] == 18
+    assert data["overlaps"]["test__benchmark"]["n_shared_protein"] == 18
 
     plt.rcParams.update({
         "font.family": ["Arial", "Helvetica", "DejaVu Sans", "sans-serif"],
@@ -93,7 +96,7 @@ def main():
     axes[2].set_ylim(0, 1.0)
     axes[2].set_ylabel("Fraction of sequences")
     axes[2].set_title("c  Length-bin composition", loc="left", fontweight="bold")
-    axes[2].legend(loc="upper right", fontsize=8)
+    axes[2].legend(loc="upper center", bbox_to_anchor=(0.5, -0.20), ncol=3, fontsize=8)
     axes[2].text(3, 1.025, "benchmark: " + " / ".join(map(str, benchmark_counts)),
                  ha="center", va="bottom", fontsize=8.5, color="#252B31")
     for ax in axes:

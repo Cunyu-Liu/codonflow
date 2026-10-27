@@ -9,6 +9,8 @@
 - Panel A：v3 输入 vs 精确 CDS/蛋白去重数量；Panel B：各 split 长度/GC 分布。
 - Panel C：train/val/test 的精确 CDS 与蛋白交叉重叠审计，含修复前后对照。
 - 所有数字来自同一 `overlap_audit.json` 与冻结 split manifest，禁止手工填数。
+- 补充 `fig_a6_split_distributions`：Panel A 全量长度直方图，Panel B 全量 GC 直方图，Panel C train/val/test/benchmark 长度分层组成。输入 SHA256、计数守恒、train/val 与 benchmark 零重叠及 test–benchmark=18 子集关系均经断言核验。
+- 当前 benchmark 为 13 short / 2 mid / 3 long；1200nt 属于 long。自然 split 与人工分层不得混作同一随机代表性或逐基因 OOD 证据。
 
 ### Fig-2 有限步机制与验证
 

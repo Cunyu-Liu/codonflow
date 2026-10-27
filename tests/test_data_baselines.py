@@ -8,6 +8,7 @@ import pytest
 from scripts.audit_distribution import histogram, overlap_audit
 from scripts.build_a6_benchmark import build_unique_benchmark
 from scripts.build_a6_benchmark import main as build_benchmark_main
+from scripts.build_protein_homology_inputs import build_protein_fasta
 from scripts.build_splits import benchmark_components, read_fasta, read_clusters
 from scripts.gemorna_arm import (
     load_benchmark_protein,
@@ -79,6 +80,33 @@ def test_unique_benchmark_fails_if_stratum_cannot_be_filled(tmp_path):
             write_fasta(tmp_path / "legacy.fasta", legacy),
             write_fasta(tmp_path / "test.fasta", legacy[:-1]),
         )
+
+def test_protein_homology_inputs_include_external_benchmark_once(tmp_path):
+    corpus = write_fasta(tmp_path / "corpus.fasta", [
+        ("a", "ATGAAATTTTGA"), ("duplicate", "ATGAAGTTCTGA"), ("c", "ATGGCTTAA"),
+    ])
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [
+        ("external", "ATGCAATAA"), ("same_protein", "ATGAAGTTCTGA"),
+    ])
+    manifest = build_protein_fasta(
+        [corpus], [benchmark], tmp_path / "proteins.fasta", tmp_path / "manifest.json",
+    )
+    assert manifest["n_unique_proteins"] == 3
+    assert manifest["n_benchmark_seed_proteins"] == 1
+    assert [row["id"] for row in manifest["records"]] == ["a", "c", "benchmark__external"]
+    assert len(manifest["protein_fasta_sha256"]) == 64
+
+
+def test_external_benchmark_identifier_excludes_its_homology_component():
+    seqs = {"a": "ATGAAATTTTGA", "homolog": "ATGGCTTAA"}
+    clusters = {"benchmark__external": ["homolog"], "a": ["a"]}
+    excluded, report = benchmark_components(
+        clusters, seqs, [("external", "ATGCAATAA")],
+    )
+    assert excluded == {"homolog"}
+    assert report["n_identifier_matched"] == 1
+    assert report["n_exact_protein_matched"] == 0
+
 
 def test_benchmark_fasta_is_authoritative(tmp_path):
     fasta = write_fasta(tmp_path / "bench.fasta", [
@@ -258,6 +286,29 @@ def test_group_by_protein_removes_exact_protein_duplicates(tmp_path, monkeypatch
     assert retained == 2
     report = json.loads((out / "split_audit.json").read_text())
     assert report["group_by_protein"] is True
+
+
+def test_multiple_benchmarks_and_excluded_fasta_are_audited(tmp_path, monkeypatch):
+    seqs = {"a": "ATGAAATTTTGA", "b": "ATGGCTTAA", "c": "ATGCAATAA"}
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", list(seqs.items()))
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\ta\nb\tb\nc\tc\n")
+    first = write_fasta(tmp_path / "first.fasta", [("a", seqs["a"])])
+    second = write_fasta(tmp_path / "second.fasta", [("b", seqs["b"])])
+    excluded = tmp_path / "excluded.fasta"
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", first, second, "--out-dir", str(out),
+        "--excluded-out-fasta", str(excluded), "--train-frac", "0.5",
+    ])
+    build_splits_main()
+    retained = "".join((out / f"{split}.fasta").read_text() for split in ("train", "val", "test"))
+    assert ">c\n" in retained and ">a\n" not in retained and ">b\n" not in retained
+    assert set(dict(read_fasta(str(excluded)))) == {"a", "b"}
+    report = json.loads((out / "split_audit.json").read_text())
+    assert len(report["input_sha256"]["benchmark_fasta"]) == 2
+    assert len(report["excluded_out_sha256"]) == 64
 
 
 def test_build_splits_requires_explicit_benchmark_path(monkeypatch):
