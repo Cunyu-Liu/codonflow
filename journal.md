@@ -8,7 +8,7 @@
 - 本地与远端 75 tests 全绿；GitHub main 已合并 GitHub/集群分叉并推送修复提交。
 - 预训练 R1 首轮在验证前因 CPU/CUDA generator 不匹配失败，日志保留，不计科学结果。已修复并加重复验证回归；R2 使用固定验证 corruption、数据 SHA256、代码 commit、best/last/完整训练状态，持续至独立验证 plateau。
 - 当前不做 capacity/RL scaling 因果断言，不以旧 JSON 数作为 Gate C 通过。后续优先小样本 immediate vs short-rollout 与 frozen control，再扩多基因多种子。
-- 二次独立审计发现初版 `unique18` 的 17 条旧记录因 v4 的 benchmark 连通簇排除而不在当前 v4 test；旧 manifest 只验证了数量/唯一性，来源断言不成立。已重建 `v4_test_unique18_length_stratified_v2`：18 unique ID/CDS/蛋白，全部逐字来自 v4 test，14 short/2 mid/2 long，SHA256 `30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0`。独立 overlap+hash 报告 `eval_outputs/audits_20261026/unique18_v4_independent_audit.json`。现存 FASTA 不足以恢复可靠物种映射，因此不作 species-OOD 声明。
+- 二次独立审计发现初版 `unique18` 的 17 条旧记录因 v4 的 benchmark 连通簇排除而不在当前 v4 test；旧 manifest 只验证了数量/唯一性，来源断言不成立。已重建 `v4_test_unique18_length_stratified_v2`：18 unique ID/CDS/蛋白，全部逐字来自 v4 test，13 short/2 mid/3 long，SHA256 `30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0`。独立 overlap+hash 报告 `eval_outputs/audits_20261026/unique18_v4_independent_audit.json`。现存 FASTA 不足以恢复可靠物种映射，因此不作 species-OOD 声明。
 - 初版 epoch-1 paired pilot 的 arm 成本只保留末条轨迹：正确重算 forward=16/944、唯一新评分=46/419，而非 4/236 与 15/105；归一化 HV immediate=0.1451408、short-rollout=0.0804204。两臂均 4/4 identity；仅为 4 路径诊断，不推断收敛模型或算法普遍优劣。报告 `a6_pilot_reaccounted.json`；旧 scorer 请求总数不可追溯，标缺失。
 - RL 二次审查发现 MC-Doob 引导采样与基础核路径概率不同，不能混作 on-policy 目标。新增 `sampling_kernel='base'`，其采样 trace 与可微路径概率通过数值一致性回归；path-RLOO 改用基础核轨迹，训练/校准要求蛋白不重叠，记录代码/数据/checkpoint 哈希。多步稳定性通过前不启动完整 RL。
 - 本地完整测试 82 passed, 1 skipped。full-token 与 edited-token 两臂均在 epoch 2；full-token epoch 1 val=2.9152，edited-token epoch 1 val=4.5132，目标不同不作数值优劣比较。full-token allocator warning 后进程继续，未记作训练崩溃。
@@ -16,6 +16,9 @@
 - 批量 base rollout 在真实 56M 模型上与逐状态选择一致，最大 logp 差 `8.8049e-7`；T=4,R=4 的 value rollout forward 从 16 降为 4。仅为调用数优化，不冒称等时间/等预算。五类 baseline 的 nanoLuc n=8 协议冒烟完成：LD 7 次 DP→6 unique、GPT 8 unique、GEMORNA 8 unique、uniform 8 unique、CAI-greedy 1；identity 均 1.0，独立重算 CAI/MFE、输入哈希与计数通过。正式 eGFP/nanoLuc seed-0、100 请求基线已启动，冒烟小样本不进主表。
 - edited-token epoch 2 val=4.437935（epoch 1=4.513184），full-token epoch 2 val=2.857450（epoch 1=2.915224），均未收敛，目标不同不能直接比较损失数值。预训练继续到各自 plateau。旧 preprint draft 已标为不可提交历史稿；A6 大纲明确 on-policy RLOO、长度分层 benchmark、完整 GEMORNA 方法池与同源 OOD 缺口。
 - 全量分布审计增加长度/GC 直方图、分位数和输入 SHA256；图形展示自然 split 与人工长度分层 benchmark 的组成差异，不使用抽样替代全量分布。patrol 不再每 30 分钟自动 commit/push，进度写 artifacts，Git 提交只在科学验收后进行。
+- 全量图复核纠正 benchmark 计数为 13 short/2 mid/3 long（1200nt 属 long），不是此前记录的 14/2/2；所有 spec/REGISTRY 已同步修正。train/val/test 平均长度 1636.9/1645.0/1642.7nt，平均 GC 0.5149/0.5141/0.5137；benchmark 平均长度 642nt、GC 0.4396，明确人工分层与低 GC 组成。`fig_a6_split_distributions.pdf/.png` 已完成视觉复核。
+- PPT 更新为 41 页并同步用户原文件：新增全量分布页，旧量化页统一标为历史探索，第 40 页更新当前证据。全部编辑页布局 0 issues，markitdown 内容检查、LibreOffice 41 页渲染与中文字体嵌入通过。旧版第 14/16/27/28 页几何问题已修复。
+- 启动 protein-homology-cluster v5 准备：隔离安装 MMseqs2 18.8cc5c；唯一蛋白和 core/unique18 benchmark 一并聚类，排除外部种子连通簇并保存 excluded FASTA/哈希。多 benchmark、外部 ID 别名和守恒测试已通过；全量聚类尚未完成，不提前写 family/species 结论。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)
