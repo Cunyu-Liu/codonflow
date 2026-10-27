@@ -19,7 +19,8 @@ from codonflow.eval.metrics import hypervolume  # noqa: E402
 
 DEFAULT_DATA = Path("/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs")
 REQUIRED_METHODS = (
-    "codonflow", "lineardesign_scan", "codongpt", "cai_greedy", "uniform_synonymous",
+    "codonflow", "lineardesign_scan", "codongpt", "gemorna",
+    "cai_greedy", "uniform_synonymous",
 )
 ALIASES = {"uniform_synonymous": ("uniform_synonymous", "uniform_edit_flow")}
 

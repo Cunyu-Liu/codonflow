@@ -73,6 +73,41 @@ def test_joint_range_reference_normalizes_each_axis_and_handles_constant_pilot_a
         joint_range_reference(points)
 
 
+def test_a6_baseline_counts_only_valid_unique_solutions(monkeypatch):
+    from scripts.run_a6_baselines import score_method
+    monkeypatch.setattr("scripts.run_a6_baselines.mfe_batch_parallel", lambda seqs: [-10.0] * len(seqs))
+    weights = {codon: 1.0 for codon in ("TTT", "TTC", "GCT", "GCC", "GCA", "GCG")}
+    result = score_method(
+        "uniform_synonymous", ["TTTGCTTAA", "TTTGCT", "TTTGCTTAA", "ATGAAATAA"],
+        "TTTGCTTAA", weights, {"elapsed_s": 0.1, "forward_calls": 0},
+    )
+    assert result["n_solutions"] == result["n_unique"] == 1
+    assert result["n_invalid_identity"] == 1
+    assert result["unique_terminal_reward_calls"] == 1
+    assert result["identity_rate"] == 1.0
+
+
+def test_a6_ld_and_official_generator_keep_real_budget(monkeypatch):
+    from scripts.run_a6_baselines import generate_method
+    source = "TTTGCTTAA"
+    monkeypatch.setattr("scripts.run_a6_baselines.lineardesign_scan", lambda *args: [source] * 7)
+    raw, generation = generate_method("lineardesign_scan", source, {}, 100, 0, "cpu")
+    assert len(raw) == 7 and generation["generator_calls"] == 7
+    assert generation["forward_calls"] is None
+    monkeypatch.setattr("scripts.run_a6_baselines.run_generate", lambda protein: (source, 0.0))
+    raw, generation = generate_method("gemorna", source, {}, 2, 0, "cpu")
+    assert raw == [source, source] and generation["generator_calls"] == 2
+    assert generation["forward_calls"] is None
+
+
+def test_a6_codongpt_context_limit_is_explicit_exclusion():
+    from scripts.run_a6_baselines import generate_method
+    source = "ATG" + "GCT" * 1024 + "TAA"
+    raw, generation = generate_method("codongpt", source, {}, 2, 0, "cpu", gpt=object())
+    assert raw == [] and generation["status"] == "architectural_exclusion"
+    assert generation["n_requested"] == 0
+
+
 def test_nonfinite_pool_fails():
     invalid = row()
     invalid["S3_quad/codonflow/obj_vectors"][0][0] = float("nan")
