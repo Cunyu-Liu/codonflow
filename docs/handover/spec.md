@@ -386,3 +386,4 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 5. 两次复跑间 live `best.pt` 的 SHA256 从 `c10e73fa` 变为 `74a542c1`，证实训练中最佳权重会被覆盖。正式对照必须使用独立冻结的 checkpoint 文件并核对哈希；本次使用 `frozen_epoch005.pt`，不得把不同 epoch 的输出当同一模型复现。
 6. 本地与集群均为 98 passed、1 skipped；真实模型冒烟和独立 JSON 重算均通过。canonical artifact 为 `eval_outputs/a6_pilot/a6_three_arm_protocol_smoke_v4.json`。
 7. `fig_a6_mechanism_costs` 按同一冻结 JSON 渲染并通过数据断言、视觉和 PDF 字体检查。PPT 第 43 页仅呈现机制与成本，不展示诊断 HV；第 40 页更新为 98 项回归。新增页边界/重叠为 0，43 页 LibreOffice 中文渲染通过。
+8. **收尾状态**：按用户要求停止新增实验。两臂在 epoch 6 停止并冻结恢复状态，未 plateau；full-data RLOO 队列取消；unique18 仅 10/18 完整，1 条部分运行、7 条未启动。当前不能提交预印本或通过 Gate C。统一交接见 `HANDOFF_20261027_WRAPUP.md`。

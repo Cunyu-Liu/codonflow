@@ -4,6 +4,13 @@
 > 代码 `/home/codonflow`，数据/权重/artifacts `/teams/HoulabData_1788502323/liucunyu/codonflow`；单卡 RTX 5090 32GB。
 > 历史产物可以标 done，但不等于科学结论通过。所有新主结果须符合 `spec.md` Amendment A6。
 
+## 收尾交接（2026-10-27，优先于下列运行队列）
+
+- 用户要求停止新增实验并交接；full-data RLOO 队列已取消，旧 legacy、训练、baseline 和监控会话均已停止。
+- 两臂在 epoch 6 安全停止并冻结 best/last/training_state，均未 plateau；恢复必须使用 `handoff_epoch006_training_state.pt`。
+- unique18 完成 10/18，1 条部分运行、7 条未启动；10 条完整记录的收尾审计通过，MFE/NED 留待主表前复核。
+- 当前不能提交预印本或宣布 Gate C。完整问题、未完成事项与禁止事项见 [HANDOFF_20261027_WRAPUP.md](HANDOFF_20261027_WRAPUP.md)。
+
 ## P0：阻塞新主结果（按依赖顺序）
 
 - [x] A6.0 读取全部本地交接文档、旧 journal、最新 sprint、38 页 PPT 与代码；恢复持久 SSH；盘点 355M 与 RLOO 评测。
@@ -13,7 +20,7 @@
 - [x] A6.4 GEMORNA 身份检查、蛋白去重划分、联合 HV 工具、训练最优 checkpoint/RNG 保存与 RLOO 奖励修复；本地+远端 73 tests 全绿。
 - [x] A6.5 `splits_v4_protein` 构建并独立复核：零 train/val/test 精确 CDS/蛋白交叉重叠；完整 benchmark 连通簇排除有记录；数量与分布落档。
 - [x] A6.6 真实 56M checkpoint 的短 rollout + 路径 RLOO 一步冒烟：reward/grad/logp/identity 全有限，且 rollout 不是 immediate ATC 替身；多步 on-policy 稳定性另行验收。
-- [x] A6.7 新预训练 56M 启动：使用新 split 与新输出目录；每 epoch 保存 best/last/training_state；两臂均在第二轮，未收敛，继续至 plateau。
+- [x] A6.7 新预训练 56M 启动并完成阶段收尾：使用新 split 与输出目录，每 epoch 保存 best/last/training_state；两臂均在 epoch 6 主动停止且未 plateau，恢复状态和 manifest 已冻结，后续需续训至 plateau。
 - [ ] A6.8 小样本 immediate vs short-rollout vs frozen-model 同预算 pilot；v4 三臂 2 路径成本协议已用冻结 epoch-5 checkpoint 验收，旧累计请求聚合错误已修复；收敛模型、多基因 3 seeds 与统一预算待完成。
 - [ ] A6.9 修正 GEMORNA nanoLuc 及全 baseline 重跑；LD 不再随机补样；完整方法池统一输出预算与成本口径。
 - [ ] A6.10 旧 355M/RLOO 队列自然结束后只归档为 legacy exploratory；不以旧 verdict 作为 Gate C 通过依据。
@@ -30,11 +37,11 @@
 ## P2：工程交付
 
 - [ ] A6.17 GPU queue 提交→active→done/failed 全链路实测；避免同轮重复分配、run_id 冲突与假完成标记。
-- [ ] A6.18 训练监控：每日定时检查训练日志、收敛、NaN/OOM 和队列，不频繁读取显存；资源仅用于真实训练/短 rollout/基线。
+- [x] A6.18 训练监控已完成阶段任务：日志监控曾覆盖两臂与 baseline；项目收尾时 watch/patrol 和所有科学计算会话均停止，不再占用资源。
 - [ ] A6.19 每个完成任务单独 commit + push；三端核对代码 commit、数据哈希和结果清单，不上传大型权重。
 - [ ] A6.20 Gate C 重审：只有 A6 新协议主结果支持时才可勾选；否则明确 No-Go/降级，不用旧勾选代替裁决。
 - [x] A6.21 protein-homology-cluster v5 已完成：776,441 保留、128 连通簇排除；独立 cluster/leakage/守恒审计通过；不冒称 curated family/species OOD。
-- [ ] A6.22 全参数 path-RLOO 完成多步稳定性与 held-out 评价：20 步无 OOM 但校准效用未提升、梯度仍裁剪，未通过；head-only 4 步和 OOM 记录不视为通过。
+- [ ] A6.22 全参数 path-RLOO 多步稳定性与 held-out 评价仍未通过：20 步小样本诊断不足；full-data 队列已按收尾要求取消，后续需在收敛基座上重新启动。
 
 ---
 

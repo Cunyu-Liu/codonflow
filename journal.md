@@ -25,7 +25,8 @@
 - 三臂 pilot 成本二次审计发现 v3 将每步累计 scorer 请求再次逐行求和，旧 immediate/short-rollout=102/194 作废。v4 只聚合每路径最终累计行，并新增 base 枚举、rollout 批量 forward、轨迹、逐轨迹转移、实际 scorer invocations 与唯一 scorer。恒定 C,T 时 `F=T+T(T+1)/2+C*T(T-1)/2`，R 不乘入批量 forward；T=4,C=4 首步/全路径为 17/38。定向、全量和独立 JSON 三层核验通过，本地/集群均 98 passed、1 skipped。
 - 最终 canonical 冒烟使用代码 `2854ebb6` 与冻结 epoch-5 checkpoint `74a542c1`，base/immediate/short-rollout：identity=1.0，forward=8/8/76，终端请求=2/42/74，唯一 scorer=2/11/66，short-rollout 轨迹=64；HV=0.04913/0.05021/0.14496，仅为 2 路径协议诊断。复跑间 live best 由 c10e73fa 更新为 74a542c1，故正式对照一律使用冻结权重；epoch-5 edited-token val=4.3912166，epoch 6 已启动，未 plateau。
 - `fig_a6_mechanism_costs` 完成并通过数据断言、视觉与 PDF 字体检查；第 43 页 PPT 采用“左侧四面板 + 右侧判读”，不展示诊断 HV。第 40 页更新为 98 项回归；新增页边界/重叠为 0，markitdown 与 43 页 LibreOffice 中文渲染通过，用户原 PPT 与交付副本 SHA256 一致。
-- RLOO 既有 20 步负差值仅来自 2 个训练源、2 个评估源，不能据此否定算法或盲目调参。已建立 `a6_rloo_queue`：等待 edited-token `converged.json` 后使用完整 v4 train/val、32 个配对校准源启动 path-RLOO，按 smoothed reward plateau 停止；等待期间不占 GPU，不以固定 20 步作收敛结论。
+- RLOO 既有 20 步负差值仅来自 2 个训练源、2 个评估源，不能据此否定算法或盲目调参。曾建立 `a6_rloo_queue` 等待 edited-token 收敛；随后按用户收尾要求已取消且未启动，不产生训练结果。
+- **项目收尾**：用户要求停止新增实验并交接。两臂在 epoch 7 进行中主动停止（退出码 143），冻结已完成的 epoch-6 best/last/training_state 与 manifest；edited-token val=4.3854775，full-token val=2.8195373，均未 plateau。旧 legacy、unique18 baseline、watch/patrol 全部停止，无剩余科学计算进程。unique18 完成 10/18，C05E11.2.1 部分运行、7 条未启动；10 条完整记录的身份/解数/哈希/CAI/GC/motif 审计通过，MFE/NED 未做全量重算。统一交接写入 `HANDOFF_20261027_WRAPUP.md`，当前不提交预印本、不宣布 Gate C。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)
