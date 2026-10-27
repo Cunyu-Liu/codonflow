@@ -1,10 +1,9 @@
 """Freeze a deduplicated held-out benchmark from the v4 test split only.
 
-The legacy HELD18 list supplies only species/length strata. Every selected
-record must occur in the frozen v4 test FASTA. The closest-length available
-candidate fills each stratum without consulting model outputs. This is a new
-deterministic benchmark, not a retained HELD18 list or a family-disjointness
-claim.
+The legacy HELD18 list supplies only length-bin targets. Every selected record
+must occur in the frozen v4 test FASTA. The closest-length available candidate
+fills each stratum without consulting model outputs. This is a new deterministic
+length-stratified benchmark, not a retained HELD18 list or a family/species claim.
 """
 from __future__ import annotations
 
@@ -14,6 +13,14 @@ import json
 from pathlib import Path
 
 from scripts.gemorna_arm import cds_protein, read_fasta_records
+
+
+def length_bin(length_nt: int) -> str:
+    if length_nt < 600:
+        return "short"
+    if length_nt < 1200:
+        return "mid"
+    return "long"
 
 
 def build_unique_benchmark(legacy_path: str, test_path: str):
@@ -52,8 +59,7 @@ def build_unique_benchmark(legacy_path: str, test_path: str):
             candidates = []
             for candidate_header, candidate_sequence in test:
                 candidate_sequence = candidate_sequence.upper().replace("U", "T")
-                candidate_fields = candidate_header.split("|")
-                if len(candidate_fields) != 4 or candidate_fields[1:3] != fields[1:3]:
+                if length_bin(len(candidate_sequence)) != fields[2]:
                     continue
                 if (candidate_header in seen_headers or candidate_sequence in seen_cds
                         or cds_protein(candidate_sequence) in seen_protein):
@@ -63,7 +69,7 @@ def build_unique_benchmark(legacy_path: str, test_path: str):
                     candidate_sequence,
                 ))
             if not candidates:
-                raise ValueError(f"no unused frozen-test candidate for stratum {fields[1:3]}")
+                raise ValueError(f"no unused frozen-test candidate for length bin {fields[2]}")
             _, candidate_header, candidate = min(candidates, key=lambda row: (row[0], row[1]))
             seen_headers.add(candidate_header)
             seen_cds.add(candidate)
@@ -97,8 +103,9 @@ def main() -> None:
     out_fasta.parent.mkdir(parents=True, exist_ok=True)
     out_fasta.write_text("".join(f">{header}\n{sequence}\n" for header, sequence in records))
     manifest = {
-        "protocol": "v4_test_unique18_stratified_v2",
-        "scope": "exact-protein and exact-CDS unique test benchmark; not family/species disjoint",
+        "protocol": "v4_test_unique18_length_stratified_v2",
+        "scope": "exact-protein and exact-CDS unique, length-stratified test benchmark; species labels unavailable and no family/species disjointness claim",
+        "length_bins_nt": {"short": "<600", "mid": "600-1199", "long": ">=1200"},
         "legacy_fasta": str(Path(args.legacy_fasta).resolve()),
         "test_fasta": str(Path(args.test_fasta).resolve()),
         "test_sha256": hashlib.sha256(Path(args.test_fasta).read_bytes()).hexdigest(),

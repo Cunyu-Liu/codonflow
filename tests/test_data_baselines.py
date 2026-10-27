@@ -55,7 +55,7 @@ def test_unique_benchmark_replaces_absent_and_duplicate_records_only_from_test(t
     assert records[0] == replacement
     assert audit[0]["reason"] == "legacy record absent from frozen v4 test"
     assert audit[1]["reason"] == "exact legacy record retained in frozen v4 test"
-    assert json.loads(manifest.read_text())["protocol"] == "v4_test_unique18_stratified_v2"
+    assert json.loads(manifest.read_text())["protocol"] == "v4_test_unique18_length_stratified_v2"
 
 
 def test_unique_benchmark_replaces_duplicate_with_deterministic_tiebreak(tmp_path):
