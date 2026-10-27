@@ -358,7 +358,7 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 
 ### A6.5 新验收门槛
 
-任何新主表/PPT/论文结果必须同时满足：82+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
+任何新主表/PPT/论文结果必须同时满足：83+ 回归通过；真实 checkpoint 冒烟通过；数据版本与 split 审计冻结；配置含代码 commit/seed/模型/数据哈希；结果 schema、identity/legal、完整方法池和预算核验通过。旧图与旧结论不得仅因视觉重绘而升级为证据。
 
 ### A6.6 Benchmark、采样概率与成本的二次审计
 
@@ -367,3 +367,4 @@ Q2 固化决策：Phase 1-2 锁定定长同义（身份可精确判定）；Phas
 3. 引导采样与基础核路径概率不同。path-RLOO 必须用 `sampling_kernel='base'` 的实际基础核轨迹做 on-policy 优化；不得将 MC-Doob 轨迹的概率当作基础核 on-policy 概率。引导策略的离策略优化需要另行推导与验证，不在当前声称范围内。训练/校准 FASTA 必须蛋白不重叠，且不得使用正式 held-out benchmark 作为训练源。
 4. 初版 paired pilot 的 arm 级 forward 与 scorer 数字只保留最后一条轨迹，旧字段撤回。重算报告 `a6_pilot_reaccounted.json` 仅为 epoch-1、4 条路径诊断：immediate/short-rollout 的 forward=16/944、唯一新评分=46/419、归一化 HV=0.1451/0.0804。旧 scorer 请求总数不可追溯，标为缺失而非反推。新协议逐路径累计并跨路径去重，区分唯一评分与请求次数。
 5. 该 pilot 不证明 rollout 无效，也不证明任何收敛模型优劣；两臂均 4/4 保持身份。新实验必须同时记录 paired 初始状态、checkpoint/data 哈希、四成本口径及同预算 frozen control。
+6. base rollout 已将同一时刻的多条轨迹合并为一次模型 forward；可微路径打分仍逐状态计算，不改变 RLOO 目标。真实 56M 模型上批量/逐状态选择一致，最大 log-probability 差为 `8.8049e-7`；T=4,R=4 的 value rollout 从 16 次降为 4 次 forward。该优化只降低调用数，不能据此声称等时间或等预算，仍需报告端到端成本。
