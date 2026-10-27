@@ -72,6 +72,8 @@ def main() -> None:
     parser.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     parser.add_argument("--atc-yaml", default="/home/codonflow/configs/atc_norm.yaml")
     parser.add_argument("--lr", type=float, default=3.3e-7)
+    parser.add_argument("--trainable", choices=("all", "heads"), default="all",
+                        help="heads is a low-memory diagnostic; all is the full-policy arm")
     parser.add_argument("--beta", type=float, default=0.02,
                         help="squared path log-ratio trust penalty, not a KL claim")
     parser.add_argument("--direct-weight", type=float, default=0.0,
@@ -108,12 +110,24 @@ def main() -> None:
     (out_dir / "config.json").write_text(json.dumps(config, indent=2))
 
     model = load_model(args.checkpoint, device)
+    if args.trainable == "heads":
+        for parameter in model.parameters():
+            parameter.requires_grad_(False)
+        for head in (model.blank_head, model.token_head):
+            for parameter in head.parameters():
+                parameter.requires_grad_(True)
+    config["n_trainable_parameters"] = sum(
+        parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+    )
+    (out_dir / "config.json").write_text(json.dumps(config, indent=2))
     ref_model = copy.deepcopy(model).eval()
     for parameter in ref_model.parameters():
         parameter.requires_grad_(False)
     proposal = SynonymousJumpProposal(model, device)
     ref_proposal = SynonymousJumpProposal(ref_model, device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
+    optimizer = torch.optim.AdamW(
+        (parameter for parameter in model.parameters() if parameter.requires_grad), lr=args.lr,
+    )
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
     atc = ATCUtility.from_yaml(args.atc_yaml)
     mfe_cache: dict = {}
@@ -168,6 +182,7 @@ def main() -> None:
         patience=args.plateau_patience, rel_tol=0.005, smoothing=args.reward_smoothing,
     )
     history, converged = [], False
+    model.train()
     for iteration in range(1, args.max_iters + 1):
         source = sources[(iteration - 1) % len(sources)]
         group = sample_group(source)
