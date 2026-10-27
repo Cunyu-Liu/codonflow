@@ -14,14 +14,14 @@
 - [x] A6.5 `splits_v4_protein` 构建并独立复核：零 train/val/test 精确 CDS/蛋白交叉重叠；完整 benchmark 连通簇排除有记录；数量与分布落档。
 - [x] A6.6 真实 56M checkpoint 的短 rollout + 路径 RLOO 一步冒烟：reward/grad/logp/identity 全有限，且 rollout 不是 immediate ATC 替身；多步 on-policy 稳定性另行验收。
 - [x] A6.7 新预训练 56M 启动：使用新 split 与新输出目录；每 epoch 保存 best/last/training_state；两臂均在第二轮，未收敛，继续至 plateau。
-- [ ] A6.8 小样本 immediate vs short-rollout vs frozen-model 同预算 pilot；epoch-1 两臂 4 路径诊断已完成并修正成本，冻结对照与多基因 3 seeds 待完成。
+- [ ] A6.8 小样本 immediate vs short-rollout vs frozen-model 同预算 pilot；v4 三臂 2 路径成本协议已用冻结 epoch-5 checkpoint 验收，旧累计请求聚合错误已修复；收敛模型、多基因 3 seeds 与统一预算待完成。
 - [ ] A6.9 修正 GEMORNA nanoLuc 及全 baseline 重跑；LD 不再随机补样；完整方法池统一输出预算与成本口径。
 - [ ] A6.10 旧 355M/RLOO 队列自然结束后只归档为 legacy exploratory；不以旧 verdict 作为 Gate C 通过依据。
 
 ## P1：论文与图表证据链
 
 - [x] A6.11 v4-test 18 条长度分层 benchmark 冻结并独立审计：18 unique ID/CDS/蛋白，train/val 精确重叠为 0；不是 HELD18 去重版，不作 family/species 声明。蛋白同源 OOD 仍需单独构建。
-- [ ] A6.12 主实验四口径：输出解数、唯一 scorer calls、模型 forward、端到端时间；补齐 E2/E6 预算重跑。
+- [ ] A6.12 主实验四口径：输出解数、唯一 scorer calls、模型 forward、端到端时间；v4 已补全三臂冒烟的 base/rollout/轨迹/scorer 细分，E2/E6 多基因统一预算重跑待完成。
 - [ ] A6.13 联合 HV 完整 arms/方法池核验，零值与缺失不得静默删除；统计检验与置信区间随表提供。
 - [ ] A6.14 主图按新证据重制：机制示意、数据审计、immediate-vs-rollout、独立泛化、完整基线、成本/预算；PDF+PNG，单一数据源。
 - [ ] A6.15 预印本主线重写：测量定义→有限步机制→学习与泛化→边界；撤回无证据的 SOTA、capacity/RL scaling 和 masking 因果断言。
