@@ -158,8 +158,19 @@ def main() -> None:
     ):
         raise ValueError("cluster TSV assigns one identifier to multiple representatives")
     n_clusters_before = len(clusters)
-    missing_cluster_members = set(seqs) - {member for members in clusters.values() for member in members}
-    if missing_cluster_members:
+    cluster_members = {member for members in clusters.values() for member in members}
+    missing_cluster_members = set(seqs) - cluster_members
+    if missing_cluster_members and args.group_by_protein:
+        covered_proteins = {
+            cds_protein(seqs[member]) for member in cluster_members if member in seqs
+        }
+        uncovered = {
+            member for member in missing_cluster_members
+            if cds_protein(seqs[member]) not in covered_proteins
+        }
+        if uncovered:
+            raise ValueError(f"{len(uncovered)} FASTA proteins absent from cluster TSV")
+    elif missing_cluster_members:
         raise ValueError(f"{len(missing_cluster_members)} FASTA identifiers absent from cluster TSV")
     benchmark_records = [
         record for path in args.benchmark_fasta for record in read_fasta(path)
@@ -219,6 +230,7 @@ def main() -> None:
         "n_retained_input_records": sum(counts.values()),
         "n_removed_as_protein_duplicates": len(seqs) - sum(counts.values()) - len(excluded) if args.group_by_protein else 0,
         "group_by_protein": args.group_by_protein,
+        "n_unlisted_exact_protein_duplicate_ids": len(missing_cluster_members) if args.group_by_protein else 0,
         "split_counts": counts,
         "seed": args.seed,
         "benchmark_exclusion": benchmark_audit,
