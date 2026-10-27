@@ -6,6 +6,7 @@ import sys
 import pytest
 
 from scripts.audit_distribution import histogram, overlap_audit
+from scripts.audit_homology_split import audit_homology_split
 from scripts.build_a6_benchmark import build_unique_benchmark
 from scripts.build_a6_benchmark import main as build_benchmark_main
 from scripts.build_protein_homology_inputs import build_protein_fasta
@@ -106,6 +107,34 @@ def test_external_benchmark_identifier_excludes_its_homology_component():
     assert excluded == {"homolog"}
     assert report["n_identifier_matched"] == 1
     assert report["n_exact_protein_matched"] == 0
+
+
+def test_homology_audit_checks_external_components_and_conservation(tmp_path):
+    original = write_fasta(tmp_path / "original.fasta", [
+        ("a", "ATGAAATTTTGA"), ("b", "ATGGCTTAA"), ("c", "ATGTTTTAA"),
+    ])
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGCAATAA")])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\ta\nbenchmark__external\tb\nc\tc\n")
+    excluded = write_fasta(tmp_path / "excluded.fasta", [("b", "ATGGCTTAA")])
+    split_dir = tmp_path / "splits"
+    split_dir.mkdir()
+    write_fasta(split_dir / "train.fasta", [("a", "ATGAAATTTTGA")])
+    write_fasta(split_dir / "val.fasta", [("c", "ATGTTTTAA")])
+    write_fasta(split_dir / "test.fasta", [])
+    (split_dir / "split_audit.json").write_text(json.dumps({
+        "n_input_seqs": 3, "n_retained_input_records": 2,
+        "n_removed_as_protein_duplicates": 0,
+        "benchmark_exclusion": {"n_excluded_cds": 1},
+    }))
+    report = audit_homology_split(split_dir, str(clusters), [benchmark], original, excluded)
+    assert report["n_retained"] == 2
+    assert report["n_benchmark_cluster_representatives"] == 1
+    assert all(report["checks"].values())
+    write_fasta(tmp_path / "excluded.fasta", [])
+    write_fasta(split_dir / "train.fasta", [("b", "ATGGCTTAA")])
+    with pytest.raises(ValueError, match="benchmark protein clusters"):
+        audit_homology_split(split_dir, str(clusters), [benchmark], original, excluded)
 
 
 def test_benchmark_fasta_is_authoritative(tmp_path):
