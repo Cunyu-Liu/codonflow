@@ -311,6 +311,40 @@ def test_multiple_benchmarks_and_excluded_fasta_are_audited(tmp_path, monkeypatc
     assert len(report["excluded_out_sha256"]) == 64
 
 
+def test_group_by_protein_accepts_only_represented_unlisted_duplicates(tmp_path, monkeypatch):
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", [
+        ("representative", "ATGAAATTTTGA"),
+        ("unlisted_synonym", "ATGAAGTTCTGA"),
+        ("other", "ATGGCTTAA"),
+    ])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("representative\trepresentative\nother\tother\n")
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGCAATAA")])
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", benchmark, "--out-dir", str(out), "--group-by-protein",
+    ])
+    build_splits_main()
+    report = json.loads((out / "split_audit.json").read_text())
+    assert report["n_unlisted_exact_protein_duplicate_ids"] == 1
+    assert report["n_retained_input_records"] == 2
+
+
+def test_group_by_protein_rejects_unrepresented_protein(tmp_path, monkeypatch):
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", [("missing", "ATGCAATAA")])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("other\tother\n")
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGAAATTTTGA")])
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", benchmark, "--out-dir", str(tmp_path / "out"),
+        "--group-by-protein",
+    ])
+    with pytest.raises(ValueError, match="proteins absent"):
+        build_splits_main()
+
+
 def test_build_splits_requires_explicit_benchmark_path(monkeypatch):
     monkeypatch.setattr(sys, "argv", [
         "build_splits.py", "--cleaned", "x.fasta", "--cluster-tsv", "x.tsv", "--out-dir", "out",
