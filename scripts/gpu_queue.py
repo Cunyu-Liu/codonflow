@@ -21,6 +21,7 @@ PENDING = QUEUE_DIR / "pending.json"
 RUNNING = QUEUE_DIR / "running.json"
 FAILED = QUEUE_DIR / "failed.json"
 LOGS = QUEUE_DIR / "logs"
+REGISTRY = QUEUE_DIR.parent / "experiments" / "REGISTRY.md"
 
 SAFETY_MARGIN_GB = 4.0
 UTIL_THRESHOLD = 30.0
@@ -77,6 +78,7 @@ def find_free_gpus(gpus: List[Dict], vram_gb: float, n_gpu: int) -> Optional[Lis
 
 
 def submit_job(job: Dict, gpu_ids: List[int]) -> None:
+    QUEUE_DIR.mkdir(parents=True, exist_ok=True)
     LOGS.mkdir(parents=True, exist_ok=True)
     run_id = job["run_id"]
     log_file = LOGS / f"{run_id}.log"
@@ -123,7 +125,7 @@ def check_finished(running: List[Dict]) -> tuple[List[Dict], List[Dict]]:
 
 
 def registry_append(event: Dict) -> None:
-    reg = QUEUE_DIR.parent / "experiments" / "REGISTRY.md"
+    reg = REGISTRY
     reg.parent.mkdir(parents=True, exist_ok=True)
     line = f"| {event.get('run_id','')} | {event.get('time','')} | auto-queue | {event.get('event','')} | {event.get('detail','')} |\\n"
     with open(reg, "a") as f:
