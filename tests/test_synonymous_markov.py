@@ -145,6 +145,23 @@ def test_sample_transition_fixed_rng_reproducibility():
     assert first == second
 
 
+def test_batched_rollout_sampling_matches_sequential_kernel():
+    source = split_codons("TTTGCTTAA")
+    other = split_codons("TTCGCTTAA")
+    proposal = SynonymousJumpProposal(DeterministicCodonModel())
+    actual = proposal.sample_transition_batch([source, other], 0, np.random.default_rng(19))
+    after_batch = proposal.forward_calls
+    generator = np.random.default_rng(19)
+    expected = [
+        proposal.sample_transition(source, 0, generator),
+        proposal.sample_transition(other, 0, generator),
+    ]
+    assert actual == expected
+    assert after_batch == 1
+    with pytest.raises(ValueError, match="equal codon lengths"):
+        proposal.sample_transition_batch([source, split_codons("TTTTAA")])
+
+
 def test_log_h_uses_independent_terminal_rollout_rewards():
     source = split_codons("TTTTAA")
     values = {"TTTTAA": math.log(2.0), "TTCTAA": math.log(8.0)}
@@ -162,13 +179,15 @@ def test_log_h_uses_independent_terminal_rollout_rewards():
 
     proposal = TwoTerminalProposal(DeterministicCodonModel())
 
-    def counted_sample(codons, time=0, rng=None):
+    def counted_sample(codons_batch, time=0, rng=None):
         # Balanced deterministic draws make the Monte-Carlo identity exact.
-        calls["base"] += 1
-        codons = source if calls["base"] % 2 else ("TTC", "TAA")
-        return SynonymousTransition(codons, math.log(0.5), None)
+        calls["base"] += len(codons_batch)
+        return [
+            SynonymousTransition(source if (calls["base"] - len(codons_batch) + i + 1) % 2 else ("TTC", "TAA"), math.log(0.5), None)
+            for i in range(len(codons_batch))
+        ]
 
-    proposal.sample_transition = counted_sample
+    proposal.sample_transition_batch = counted_sample
     editor = FiniteStepSynonymousMarkovEditor(
         proposal, reward, terminal_step=1, rollout_count=8, rng=np.random.default_rng(3)
     )

@@ -12,6 +12,7 @@
 - 初版 epoch-1 paired pilot 的 arm 成本只保留末条轨迹：正确重算 forward=16/944、唯一新评分=46/419，而非 4/236 与 15/105；归一化 HV immediate=0.1451408、short-rollout=0.0804204。两臂均 4/4 identity；仅为 4 路径诊断，不推断收敛模型或算法普遍优劣。报告 `a6_pilot_reaccounted.json`；旧 scorer 请求总数不可追溯，标缺失。
 - RL 二次审查发现 MC-Doob 引导采样与基础核路径概率不同，不能混作 on-policy 目标。新增 `sampling_kernel='base'`，其采样 trace 与可微路径概率通过数值一致性回归；path-RLOO 改用基础核轨迹，训练/校准要求蛋白不重叠，记录代码/数据/checkpoint 哈希。多步稳定性通过前不启动完整 RL。
 - 本地完整测试 82 passed, 1 skipped。full-token 与 edited-token 两臂均在 epoch 2；full-token epoch 1 val=2.9152，edited-token epoch 1 val=4.5132，目标不同不作数值优劣比较。full-token allocator warning 后进程继续，未记作训练崩溃。
+- 全参数基础核 RLOO 4 步冒烟在首次 optimizer.step 因 CUDA OOM 退出，进程自身约 2.01 GiB；无训练指标，两臂预训练未中断。改用明确标注的 head-only 低显存诊断完成 4 次更新：identity=1.0，loss/logp/grad 全有限，但 grad norm=164.59/213.39/183.16/87.91，均触发裁剪。该结果只证明基础核采样到终端奖励再到可微路径目标的优化链可运行，不证明稳定收敛或下游提升。全参数训练留待独立显存窗口，稳定性仍需改进。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)

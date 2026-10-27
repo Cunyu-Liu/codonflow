@@ -140,8 +140,18 @@ class SynonymousJumpProposal:
             or token_logits.shape[-1] <= max(ids)
         ):
             raise ValueError("Model output shapes do not match BOS/codons/EOS input")
-        blank_logits = blank_logits[0].float()
-        token_logits = token_logits[0].float()
+        return self._transitions_from_logits(current, blank_logits[0], token_logits[0])
+
+    def _transitions_from_logits(
+        self, current: Sequence[str], blank_logits: torch.Tensor, token_logits: torch.Tensor
+    ) -> tuple[list[SynonymousTransition], torch.Tensor]:
+        """Construct one normalized kernel from [length] and [length,vocab] logits."""
+        blank_logits = blank_logits.float()
+        token_logits = token_logits.float()
+        if (blank_logits.ndim != 1 or token_logits.ndim != 2
+                or token_logits.shape[0] != blank_logits.shape[0]
+                or blank_logits.shape[0] != len(current) + 2):
+            raise ValueError("Model output shapes do not match one CDS state")
 
         transitions: list[SynonymousTransition] = []
         log_weights: list[torch.Tensor] = []
@@ -215,6 +225,42 @@ class SynonymousJumpProposal:
                 else log_probability + step_log_probability
             )
         return log_probability / (len(path) - 1)
+
+    @torch.no_grad()
+    def sample_transition_batch(
+        self,
+        codons_batch: Sequence[Sequence[str]],
+        time: float | int = 0,
+        rng: Optional[np.random.Generator] = None,
+    ) -> list[SynonymousTransition]:
+        """Sample equal-length base states with one model forward per batch."""
+        if not codons_batch:
+            return []
+        states = [self.validate_source(codons) for codons in codons_batch]
+        lengths = {len(state) for state in states}
+        if len(lengths) != 1:
+            raise ValueError("batched rollout states must have equal codon lengths")
+        encoded = [encode_cds("".join(state), add_special=True) for state in states]
+        inputs = torch.tensor(encoded, dtype=torch.long, device=self.device)
+        blank_logits, token_logits = self.model(inputs)
+        self.forward_calls += 1
+        batch_size, length = inputs.shape
+        if (blank_logits.shape != (batch_size, length)
+                or token_logits.shape[:2] != (batch_size, length)
+                or token_logits.shape[-1] <= max(max(ids) for ids in encoded)):
+            raise ValueError("Model output shapes do not match the batched CDS states")
+        generator = np.random.default_rng() if rng is None else rng
+        sampled = []
+        for index, state in enumerate(states):
+            transitions, log_probabilities = self._transitions_from_logits(
+                state, blank_logits[index], token_logits[index],
+            )
+            choice = _sample_log_probabilities(log_probabilities.tolist(), generator)
+            transition = transitions[choice]
+            sampled.append(SynonymousTransition(
+                transition.codons, float(log_probabilities[choice]), transition.position,
+            ))
+        return sampled
 
     def sample_transition(
         self,
@@ -335,14 +381,14 @@ class FiniteStepSynonymousMarkovEditor:
         if count == 0:
             # Deliberate ablation only; unlike the default this does not roll out.
             return self._terminal_rewards(["".join(current)])[0]
-        rewards: list[float] = []
-        for _ in range(count):
-            state = current
-            for time in range(step, self.terminal_step):
-                state = self.proposal.sample_transition(
-                    state, time, self.rng
-                ).codons
-            rewards.extend(self._terminal_rewards(["".join(state)]))
+        states = [current for _ in range(count)]
+        for time in range(step, self.terminal_step):
+            states = [
+                transition.codons for transition in self.proposal.sample_transition_batch(
+                    states, time, self.rng,
+                )
+            ]
+        rewards = self._terminal_rewards(["".join(state) for state in states])
         return _logsumexp(rewards) - math.log(count)
 
     def _prune(
