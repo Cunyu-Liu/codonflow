@@ -13,6 +13,9 @@
 - RL 二次审查发现 MC-Doob 引导采样与基础核路径概率不同，不能混作 on-policy 目标。新增 `sampling_kernel='base'`，其采样 trace 与可微路径概率通过数值一致性回归；path-RLOO 改用基础核轨迹，训练/校准要求蛋白不重叠，记录代码/数据/checkpoint 哈希。多步稳定性通过前不启动完整 RL。
 - 本地完整测试 82 passed, 1 skipped。full-token 与 edited-token 两臂均在 epoch 2；full-token epoch 1 val=2.9152，edited-token epoch 1 val=4.5132，目标不同不作数值优劣比较。full-token allocator warning 后进程继续，未记作训练崩溃。
 - 全参数基础核 RLOO 4 步冒烟在首次 optimizer.step 因 CUDA OOM 退出，进程自身约 2.01 GiB；无训练指标，两臂预训练未中断。改用明确标注的 head-only 低显存诊断完成 4 次更新：identity=1.0，loss/logp/grad 全有限，但 grad norm=164.59/213.39/183.16/87.91，均触发裁剪。该结果只证明基础核采样到终端奖励再到可微路径目标的优化链可运行，不证明稳定收敛或下游提升。全参数训练留待独立显存窗口，稳定性仍需改进。
+- 批量 base rollout 在真实 56M 模型上与逐状态选择一致，最大 logp 差 `8.8049e-7`；T=4,R=4 的 value rollout forward 从 16 降为 4。仅为调用数优化，不冒称等时间/等预算。五类 baseline 的 nanoLuc n=8 协议冒烟完成：LD 7 次 DP→6 unique、GPT 8 unique、GEMORNA 8 unique、uniform 8 unique、CAI-greedy 1；identity 均 1.0，独立重算 CAI/MFE、输入哈希与计数通过。正式 eGFP/nanoLuc seed-0、100 请求基线已启动，冒烟小样本不进主表。
+- edited-token epoch 2 val=4.437935（epoch 1=4.513184），full-token epoch 2 val=2.857450（epoch 1=2.915224），均未收敛，目标不同不能直接比较损失数值。预训练继续到各自 plateau。旧 preprint draft 已标为不可提交历史稿；A6 大纲明确 on-policy RLOO、长度分层 benchmark、完整 GEMORNA 方法池与同源 OOD 缺口。
+- 全量分布审计增加长度/GC 直方图、分位数和输入 SHA256；图形展示自然 split 与人工长度分层 benchmark 的组成差异，不使用抽样替代全量分布。patrol 不再每 30 分钟自动 commit/push，进度写 artifacts，Git 提交只在科学验收后进行。
 
 
 ## 2026-10-06 下午 (refseq 独立性检验 + v2 收敛前夜)
