@@ -32,6 +32,35 @@ def test_pilot_summary_is_normalized_and_recomputable():
     assert output["arms"]["a"]["reference"] == reference
 
 
+def test_a6_pilot_cost_aggregation_uses_only_final_cumulative_rows():
+    from scripts.run_a6_rollout_pilot import aggregate_trace_costs
+
+    # T=4, C=4, R=2: the first and final rows are cumulative within one path.
+    first = {
+        "forward_calls": 17,
+        "base_state_evaluations": 1,
+        "rollout_batch_forwards": 16,
+        "rollout_trajectories": 10,
+        "rollout_state_transitions": 32,
+        "terminal_reward_evaluations": 10,
+    }
+    final = {
+        "forward_calls": 38,
+        "base_state_evaluations": 4,
+        "rollout_batch_forwards": 34,
+        "rollout_trajectories": 32,
+        "rollout_state_transitions": 68,
+        "terminal_reward_evaluations": 37,
+    }
+    costs = aggregate_trace_costs([[first, final], [first, final]])
+    assert costs["forward_calls"] == 76
+    assert costs["base_state_evaluations"] == 8
+    assert costs["rollout_batch_forwards"] == 68
+    assert costs["rollout_trajectories"] == 64
+    assert costs["rollout_state_transitions"] == 136
+    assert costs["terminal_reward_evaluations"] == 74  # Not 194 from summing every row.
+
+
 def row(offset=0.0, legacy_name=False):
     result = {}
     for method in REQUIRED_METHODS:

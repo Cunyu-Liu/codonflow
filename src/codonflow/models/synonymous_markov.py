@@ -333,6 +333,10 @@ class FiniteStepSynonymousMarkovEditor:
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
         self.forward_calls = 0
+        self.base_state_evaluations = 0
+        self.rollout_batch_forwards = 0
+        self.rollout_trajectories = 0
+        self.rollout_state_transitions = 0
         self.scored_sequences: set[str] = set()
         self.best_terminal: Optional[str] = None
         self.best_terminal_reward = -math.inf
@@ -343,6 +347,10 @@ class FiniteStepSynonymousMarkovEditor:
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
         self.forward_calls = 0
+        self.base_state_evaluations = 0
+        self.rollout_batch_forwards = 0
+        self.rollout_trajectories = 0
+        self.rollout_state_transitions = 0
         self.scored_sequences.clear()
         self.best_terminal = None
         self.best_terminal_reward = -math.inf
@@ -382,7 +390,10 @@ class FiniteStepSynonymousMarkovEditor:
             # Deliberate ablation only; unlike the default this does not roll out.
             return self._terminal_rewards(["".join(current)])[0]
         states = [current for _ in range(count)]
+        self.rollout_trajectories += count
         for time in range(step, self.terminal_step):
+            self.rollout_batch_forwards += 1
+            self.rollout_state_transitions += len(states)
             states = [
                 transition.codons for transition in self.proposal.sample_transition_batch(
                     states, time, self.rng,
@@ -413,6 +424,7 @@ class FiniteStepSynonymousMarkovEditor:
         if step < 0 or step >= self.terminal_step:
             raise ValueError("Guidance requires step in [0, terminal_step)")
         base = self._prune(self.proposal.enumerate_transitions(current, step))
+        self.base_state_evaluations += 1
         current_log_h = self.estimate_log_h(current, step)
         candidate_log_h = [
             self.estimate_log_h(t.codons, step + 1) for t in base
@@ -460,6 +472,7 @@ class FiniteStepSynonymousMarkovEditor:
         for step in range(start_step, self.terminal_step):
             if self.sampling_kernel == "base":
                 candidates = self.proposal.enumerate_transitions(state, step)
+                self.base_state_evaluations += 1
                 current_log_h, candidate_log_h = None, [None] * len(candidates)
             else:
                 candidates, current_log_h, candidate_log_h = self.guided_transitions(state, step)
@@ -486,6 +499,10 @@ class FiniteStepSynonymousMarkovEditor:
                     "unique_terminal_reward_calls": self.unique_terminal_reward_calls,
                     "terminal_reward_evaluations": self.terminal_reward_evaluations,
                     "forward_calls": self.forward_calls,
+                    "base_state_evaluations": self.base_state_evaluations,
+                    "rollout_batch_forwards": self.rollout_batch_forwards,
+                    "rollout_trajectories": self.rollout_trajectories,
+                    "rollout_state_transitions": self.rollout_state_transitions,
                     "chosen_base_log_probability": chosen.log_probability,
                 }
             )

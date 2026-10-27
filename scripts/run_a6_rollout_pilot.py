@@ -1,6 +1,6 @@
-"""Paired immediate vs short-rollout inference with auditable resource costs.
+"""Paired base/immediate/short-rollout inference with auditable resource costs.
 
-This pilot evaluates algorithms, not a capacity or training claim. Both arms
+This pilot evaluates algorithms, not a capacity or training claim. All arms
 use the same model, initial states, terminal potential and number of designs.
 """
 from __future__ import annotations
@@ -32,6 +32,32 @@ from codonflow.models.synonymous_markov import (
 from codonflow.train.rloo_finetune import load_model
 from codonflow.train.run_pretrain import file_sha256, git_commit
 from scripts.recompute_s3_full_adaptive import joint_range_reference
+
+
+TRACE_COST_FIELDS = (
+    "forward_calls",
+    "base_state_evaluations",
+    "rollout_batch_forwards",
+    "rollout_trajectories",
+    "rollout_state_transitions",
+    "terminal_reward_evaluations",
+)
+
+
+def aggregate_trace_costs(traces):
+    """Sum final per-path counters without recounting cumulative trace rows."""
+    if not traces or any(not trace for trace in traces):
+        raise ValueError("cost aggregation requires nonempty path traces")
+    final_rows = [trace[-1] for trace in traces]
+    missing = [key for key in TRACE_COST_FIELDS if any(key not in row for row in final_rows)]
+    if missing:
+        raise ValueError(f"trace is missing cost fields: {missing}")
+    costs = {key: sum(int(row[key]) for row in final_rows) for key in TRACE_COST_FIELDS}
+    if costs["forward_calls"] != (
+        costs["base_state_evaluations"] + costs["rollout_batch_forwards"]
+    ):
+        raise ValueError("model forward accounting is inconsistent")
+    return costs
 
 
 def summarize_arms(output):
@@ -92,14 +118,29 @@ def main() -> None:
         "rscu_sha256": file_sha256(args.rscu_json),
         "atc_sha256": file_sha256(args.atc_yaml),
         "code_commit": git_commit(),
-        "protocol": "paired_same_initial_states_v3", "arms": {},
+        "protocol": "paired_same_initial_states_v4", "arms": {},
+        "cost_accounting": {
+            "forward_calls": "All model forwards: current-state base evaluations plus rollout batch forwards.",
+            "base_state_evaluations": "Unbatched current-state base-kernel enumerations along sampled paths; excludes rollout states.",
+            "rollout_batch_forwards": "Batched base-kernel forwards during value rollouts; R trajectories at one time share one call.",
+            "rollout_trajectories": "Terminal rollout trajectories initiated; a trajectory count, not a model-forward count.",
+            "rollout_state_transitions": "Sum of rollout batch sizes, i.e. individual simulated base-kernel transitions.",
+            "terminal_reward_evaluations": "Terminal log-G requests before per-path cache deduplication; read from final cumulative trace rows.",
+            "terminal_scorer_invocations": "Sequence scores actually computed after per-path cache deduplication, including cross-path repeats.",
+            "unique_terminal_reward_calls": "Unique sequences submitted to the terminal scorer at least once across the arm.",
+            "short_rollout_forward_formula": "For constant C and R>0: F=T+T(T+1)/2+C*T(T-1)/2; first step=1+T+C*(T-1); independent of R.",
+            "formula_scope": "Actual trace counters are authoritative when candidate counts vary or paths are truncated.",
+        },
     }
     for mode, rollouts in (("base", None), ("immediate", 0), ("short_rollout", args.rollout_count)):
         solutions, traces, scored_sequences = [], [], set()
+        terminal_scorer_invocations = 0
         proposal.forward_calls = 0
         mfe_cache = {}
         base_terminal = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
         def terminal(seqs):
+            nonlocal terminal_scorer_invocations
+            terminal_scorer_invocations += len(seqs)
             scored_sequences.update(seqs)
             return [args.beta * value for value in base_terminal(seqs)]
         t0 = time.perf_counter()
@@ -114,6 +155,14 @@ def main() -> None:
             solutions.append(terminal_seq)
             traces.append(trace)
         elapsed = time.perf_counter() - t0
+        path_costs = aggregate_trace_costs(traces)
+        path_scorer_invocations = sum(
+            trace[-1]["unique_terminal_reward_calls"] for trace in traces
+        )
+        if path_costs["forward_calls"] != proposal.forward_calls:
+            raise RuntimeError("proposal and per-path forward accounting differ")
+        if terminal_scorer_invocations != path_scorer_invocations:
+            raise RuntimeError("terminal scorer and per-path accounting differ")
         objectives = [[
             cai(seq, weights),
             -mfe_cache[seq],
@@ -130,12 +179,10 @@ def main() -> None:
             "objectives": objectives,
             "solutions": solutions,
             "elapsed_s": elapsed,
-            "forward_calls": proposal.forward_calls,
+            **path_costs,
             "unique_terminal_reward_calls": len(scored_sequences),
+            "terminal_scorer_invocations": terminal_scorer_invocations,
             "new_terminal_scores_per_path": [trace[-1]["unique_terminal_reward_calls"] for trace in traces],
-            "terminal_reward_evaluations": sum(
-                sum(step["terminal_reward_evaluations"] for step in trace) for trace in traces
-            ),
             "traces": traces,
         }
     summarize_arms(output)
