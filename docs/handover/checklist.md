@@ -1,3 +1,28 @@
+# Checklist（A6 验收追加版 · 2026-10-26/27）
+
+> A-H/J-K 的旧勾选只保留历史轨迹。A6 审计发现其中若干项虽然产物存在，但科学验收不成立；当前以本节为准，不用旧勾选推导 Gate C。
+
+## L. 当前有效验收
+
+- [x] L1 全量交接与代码审计完成，核心实现/数据/预算问题有明确证据。
+- [x] L2 v3 精确重叠报告生成，旧“零泄漏/family-disjoint/18 unique”撤回。
+- [x] L3 v4 776,474 唯一蛋白；所有 split 与 benchmark 精确 CDS/蛋白交叉重叠为 0。
+- [x] L4 有限步 Markov 精确小状态 Doob 验证；真实大空间仅称短 rollout 近似。
+- [ ] L5 真实 56M 多步基础核 on-policy path-RLOO 稳定性通过；此前引导路径配基础核概率的一步结果只作历史诊断。
+- [x] L6 本地/远端 98 tests 全绿；正确 GEMORNA nanoLuc 1/1 身份冒烟通过。
+- [x] L7 训练配置含数据 SHA256、代码 commit、固定验证 corruption；R1 失败日志保留。
+- [ ] L8 edited-token/full-token 两臂分别到独立验证 plateau，best/last/training_state 一致。
+- [ ] L9 immediate/short-rollout/frozen 同预算 pilot；v4 三臂成本与冻结 checkpoint 冒烟已通过，多基因、3 seeds、收敛模型和统一预算尚未完成。
+- [x] L10 GEMORNA 100 次采样得 81 唯一合法解、0 身份错误；不补足独立解。其余 baseline 待补齐。
+- [ ] L11 完整方法池联合 HV、缺失/零值检查与统计不确定性全部通过。
+- [x] L12 数据审计图、全量分布图、真实 baseline 图与 42 页 PPT 已验收；旧错误 nanoLuc 已替换、旧结果标为历史探索。预印本待新证据。
+- [x] L13 GPU queue 完整生命周期与日志监控通过；主要代码 commit 已推送，最终三端结果清单待训练结束。
+- [ ] L14 Gate C 以 A6 新证据裁决；未达成时明确 No-Go/降级。
+- [x] L15 v4-test 长度分层 18 条 benchmark 独立审计通过：全部逐字来自 test、18 unique ID/CDS/蛋白、train/val 精确重叠为 0、哈希一致。
+- [x] L16 protein-homology-cluster v5 与独立审计完成；不是 curated family 注释。species 元数据与相应泛化验证仍未完成，不作 species-OOD 声明。
+
+## 历史 Checklist（原样保留，非当前验收依据）
+
 # Checklist
 
 > 项目：CodonFlow（密码子级离散流 mRNA 编辑器）｜验收清单

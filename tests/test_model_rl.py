@@ -12,6 +12,7 @@ from codonflow.rl.rloo import (
     rloo_loss,
     sequence_log_prob,
     RewardTracker,
+    rloo_accumulate_path_gradients,
 )
 from codonflow.eval.stop_checks import StopConditionChecker, StopThresholds
 
@@ -94,6 +95,25 @@ def test_rloo_trust_penalty_pulls_toward_reference():
     loss = rloo_loss(theta, torch.tensor([0.0]), torch.zeros(1), beta=0.1)
     loss.backward()
     assert theta.grad.item() < 0
+
+
+def test_per_path_rloo_backward_matches_joint_gradient():
+    reference = torch.tensor([-2.1, -2.9])
+    rewards = torch.tensor([1.0, 2.0])
+    joint = torch.tensor([-2.0, -3.0], requires_grad=True)
+    rloo_loss(joint, reference, rewards, beta=0.02).backward()
+    expected = joint.grad.detach().clone()
+
+    accumulated = torch.tensor([-2.0, -3.0], requires_grad=True)
+    detached = rloo_accumulate_path_gradients(
+        lambda index: accumulated[index], reference, rewards, beta=0.02,
+    )
+    assert torch.allclose(accumulated.grad, expected, atol=1e-7)
+    assert torch.allclose(torch.stack(detached), accumulated.detach())
+    assert all(not value.requires_grad for value in detached)
+    with torch.no_grad():
+        joint_loss = rloo_loss(torch.stack(detached), reference, rewards, beta=0.02)
+    assert torch.isfinite(joint_loss)
 
 
 def test_stop_conditions():

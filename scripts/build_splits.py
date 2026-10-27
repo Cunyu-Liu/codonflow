@@ -7,6 +7,7 @@ Output: splits/{train,val,test}.fasta + audit JSON.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import random
 from collections import defaultdict
@@ -82,8 +83,8 @@ def benchmark_components(clusters: Dict[str, List[str]], seqs: Dict[str, str],
     match_kinds = defaultdict(set)
     for header, seq in benchmark_records:
         exact = seq_to_members.get(seq.upper().replace("U", "T"), [])
-        identifiers = [header, header.split()[0]]
-        by_id = [member for member in identifiers if member in seqs]
+        identifiers = [header, header.split()[0], f"benchmark__{header.split()[0]}"]
+        by_id = [member for member in identifiers if member in parent]
         protein = cds_protein(seq)
         synonymous = protein_to_members.get(protein, []) if protein is not None else []
         members = set(exact) | set(by_id) | set(synonymous)
@@ -122,17 +123,27 @@ def benchmark_components(clusters: Dict[str, List[str]], seqs: Dict[str, str],
     }
 
 
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--cleaned", nargs="+", required=True)
     ap.add_argument("--cluster-tsv", required=True)
     ap.add_argument("--out-dir", required=True)
-    ap.add_argument("--benchmark-fasta", required=True,
-                    help="CDS FASTA whose exact sequences and connected clusters are excluded")
+    ap.add_argument("--benchmark-fasta", required=True, nargs="+",
+                    help="CDS FASTA files whose sequences and connected clusters are excluded")
     ap.add_argument("--train-frac", type=float, default=0.8)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--group-by-protein", action="store_true",
                     help="collapse exact translated-protein groups before cluster splitting")
+    ap.add_argument("--excluded-out-fasta", default=None,
+                    help="optional FASTA of every record removed by benchmark component exclusion")
     args = ap.parse_args()
     if not 0 < args.train_frac < 1:
         raise ValueError("train-frac must be between zero and one")
@@ -147,14 +158,33 @@ def main() -> None:
     ):
         raise ValueError("cluster TSV assigns one identifier to multiple representatives")
     n_clusters_before = len(clusters)
-    missing_cluster_members = set(seqs) - {member for members in clusters.values() for member in members}
-    if missing_cluster_members:
+    cluster_members = {member for members in clusters.values() for member in members}
+    missing_cluster_members = set(seqs) - cluster_members
+    if missing_cluster_members and args.group_by_protein:
+        covered_proteins = {
+            cds_protein(seqs[member]) for member in cluster_members if member in seqs
+        }
+        uncovered = {
+            member for member in missing_cluster_members
+            if cds_protein(seqs[member]) not in covered_proteins
+        }
+        if uncovered:
+            raise ValueError(f"{len(uncovered)} FASTA proteins absent from cluster TSV")
+    elif missing_cluster_members:
         raise ValueError(f"{len(missing_cluster_members)} FASTA identifiers absent from cluster TSV")
-    benchmark_records = read_fasta(args.benchmark_fasta)
+    benchmark_records = [
+        record for path in args.benchmark_fasta for record in read_fasta(path)
+    ]
     if not benchmark_records:
         raise ValueError("--benchmark-fasta contains no FASTA records")
     excluded, benchmark_audit = benchmark_components(clusters, seqs, benchmark_records)
     benchmark_audit["enabled"] = True
+    if args.excluded_out_fasta:
+        Path(args.excluded_out_fasta).parent.mkdir(parents=True, exist_ok=True)
+        with open(args.excluded_out_fasta, "w") as handle:
+            for member in sorted(excluded):
+                if member in seqs:
+                    handle.write(f">{member}\n{seqs[member]}\n")
     if args.group_by_protein:
         # Keep the first identifier per exact protein and retain its original
         # cluster membership. Unlisted members are discarded, not regrouped.
@@ -200,9 +230,18 @@ def main() -> None:
         "n_retained_input_records": sum(counts.values()),
         "n_removed_as_protein_duplicates": len(seqs) - sum(counts.values()) - len(excluded) if args.group_by_protein else 0,
         "group_by_protein": args.group_by_protein,
+        "n_unlisted_exact_protein_duplicate_ids": len(missing_cluster_members) if args.group_by_protein else 0,
         "split_counts": counts,
         "seed": args.seed,
         "benchmark_exclusion": benchmark_audit,
+        "input_sha256": {
+            "cleaned": [file_sha256(path) for path in args.cleaned],
+            "cluster_tsv": file_sha256(args.cluster_tsv),
+            "benchmark_fasta": [file_sha256(path) for path in args.benchmark_fasta],
+        },
+        "split_sha256": {split: file_sha256(out / f"{split}.fasta") for split in splits},
+        "excluded_out_fasta": args.excluded_out_fasta,
+        "excluded_out_sha256": file_sha256(args.excluded_out_fasta) if args.excluded_out_fasta else None,
     }
     (out / "split_audit.json").write_text(json.dumps(audit, indent=2))
     print(json.dumps(audit))

@@ -29,7 +29,8 @@ from codonflow.models.synonymous_markov import (
     FiniteStepSynonymousMarkovEditor,
     SynonymousJumpProposal,
 )
-from codonflow.rl.rloo import RewardTracker, rloo_loss
+from codonflow.rl.rloo import RewardTracker, rloo_accumulate_path_gradients, rloo_loss
+from codonflow.train.run_pretrain import file_sha256, git_commit
 
 
 def load_model(checkpoint: str, device: torch.device) -> EditFlowTransformer:
@@ -62,14 +63,17 @@ def reward_scale(values: list[float], floor: float = 1e-6) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--benchmark-fasta", required=True)
+    parser.add_argument("--training-fasta", required=True,
+                        help="policy fine-tuning sources; held-out benchmark CDS are forbidden")
     parser.add_argument("--calibration-fasta", required=True,
-                        help="disjoint held-out CDS; never use benchmark rewards for tuning")
+                        help="protein-disjoint held-out CDS for reward-scale calibration")
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     parser.add_argument("--atc-yaml", default="/home/codonflow/configs/atc_norm.yaml")
     parser.add_argument("--lr", type=float, default=3.3e-7)
+    parser.add_argument("--trainable", choices=("all", "heads"), default="all",
+                        help="heads is a low-memory diagnostic; all is the full-policy arm")
     parser.add_argument("--beta", type=float, default=0.02,
                         help="squared path log-ratio trust penalty, not a KL claim")
     parser.add_argument("--direct-weight", type=float, default=0.0,
@@ -77,16 +81,18 @@ def main() -> None:
     parser.add_argument("--env-weight", type=float, default=1.0)
     parser.add_argument("--group-n", type=int, default=4)
     parser.add_argument("--terminal-step", type=int, default=4)
-    parser.add_argument("--candidate-count", type=int, default=8)
-    parser.add_argument("--rollout-count", type=int, default=4)
     parser.add_argument("--max-iters", type=int, default=100000,
                         help="safety bound only; smoothed plateau determines normal stopping")
     parser.add_argument("--plateau-patience", type=int, default=30)
     parser.add_argument("--reward-smoothing", type=int, default=50)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--eval-sources", type=int, default=2,
+                        help="calibration sources for paired before/after stability monitoring, not test evaluation")
     args = parser.parse_args()
     if args.group_n < 2 or args.direct_weight < 0 or args.env_weight < 0:
         raise ValueError("group-n >= 2 and nonnegative reward weights are required")
+    if args.eval_sources < 1 or args.max_iters < 1:
+        raise ValueError("eval-sources and max-iters must be positive")
     if args.direct_weight == args.env_weight == 0:
         raise ValueError("at least one reward component must be active")
     device = torch.device("cuda:0")
@@ -96,38 +102,58 @@ def main() -> None:
     rng = np.random.default_rng(args.seed)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    config = vars(args)
+    config = {
+        **vars(args), "sampling_distribution": "base_kernel",
+        "code_commit": git_commit(),
+        "training_sha256": file_sha256(args.training_fasta),
+        "calibration_sha256": file_sha256(args.calibration_fasta),
+        "checkpoint_sha256": file_sha256(args.checkpoint),
+        "rscu_sha256": file_sha256(args.rscu_json),
+        "atc_sha256": file_sha256(args.atc_yaml),
+    }
     (out_dir / "config.json").write_text(json.dumps(config, indent=2))
 
     model = load_model(args.checkpoint, device)
+    if args.trainable == "heads":
+        for parameter in model.parameters():
+            parameter.requires_grad_(False)
+        for head in (model.blank_head, model.token_head):
+            for parameter in head.parameters():
+                parameter.requires_grad_(True)
+    config["n_trainable_parameters"] = sum(
+        parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+    )
+    (out_dir / "config.json").write_text(json.dumps(config, indent=2))
     ref_model = copy.deepcopy(model).eval()
     for parameter in ref_model.parameters():
         parameter.requires_grad_(False)
     proposal = SynonymousJumpProposal(model, device)
     ref_proposal = SynonymousJumpProposal(ref_model, device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
+    optimizer = torch.optim.AdamW(
+        (parameter for parameter in model.parameters() if parameter.requires_grad), lr=args.lr,
+    )
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
     atc = ATCUtility.from_yaml(args.atc_yaml)
     mfe_cache: dict = {}
     terminal_reward = BatchedReward(weights, atc, mfe_cache, skip_mfe=atc.omega[1] == 0)
 
-    sources = [s for _, s in read_fasta(args.benchmark_fasta)]
+    sources = [s for _, s in read_fasta(args.training_fasta)]
     calibration = [s for _, s in read_fasta(args.calibration_fasta)]
     if not sources or not calibration:
         raise ValueError("both training and calibration FASTA files must be nonempty")
-    if set(sources) & set(calibration):
-        raise ValueError("calibration sequences must be disjoint from training sources")
+    if {protein_of_cds(s) for s in sources} & {protein_of_cds(s) for s in calibration}:
+        raise ValueError("calibration proteins must be disjoint from training sources")
 
-    def sample_group(source: str, use_model=True):
+    def sample_group(source: str, generator=None):
+        generator = rng if generator is None else generator
         group = []
         for index in range(args.group_n):
-            initial = synonymous_x0(source, rng)
+            initial = synonymous_x0(source, generator)
             editor = FiniteStepSynonymousMarkovEditor(
                 proposal, terminal_reward,
                 terminal_step=args.terminal_step,
-                rollout_count=args.rollout_count,
-                candidate_count=args.candidate_count,
-                rng=rng,
+                sampling_kernel="base",
+                rng=generator,
             )
             terminal, trace = editor.sample(initial)
             path = path_from_trace(initial, trace)
@@ -138,6 +164,21 @@ def main() -> None:
                 "index": index,
             })
         return group
+
+    @torch.no_grad()
+    def evaluate_stability():
+        model.eval()
+        groups = [
+            sample_group(source, np.random.default_rng(args.seed + 700001))
+            for source in calibration[:args.eval_sources]
+        ]
+        rows = [row for group in groups for row in group]
+        return {
+            "scope": "paired_calibration_monitor_not_test",
+            "n_sources": len(groups), "n_paths": len(rows),
+            "env_reward_mean": float(np.mean([row["utility"] for row in rows])),
+            "identity_rate": float(np.mean([row["identity"] for row in rows])),
+        }
 
     # Frozen-policy within-group standard deviations on held-out CDS. The
     # terminal utility and path log likelihood have separate scales.
@@ -156,11 +197,14 @@ def main() -> None:
     scales = {"sigma_env": sigma_env, "sigma_direct": sigma_direct,
               "n_calibration_sequences": min(100, len(calibration))}
     (out_dir / "reward_calibration.json").write_text(json.dumps(scales, indent=2))
+    baseline_evaluation = evaluate_stability()
+    (out_dir / "baseline_evaluation.json").write_text(json.dumps(baseline_evaluation, indent=2))
 
     tracker = RewardTracker(
         patience=args.plateau_patience, rel_tol=0.005, smoothing=args.reward_smoothing,
     )
     history, converged = [], False
+    model.train()
     for iteration in range(1, args.max_iters + 1):
         source = sources[(iteration - 1) % len(sources)]
         group = sample_group(source)
@@ -176,18 +220,20 @@ def main() -> None:
             args.env_weight * env / sigma_env
             + args.direct_weight * direct / sigma_direct
         ).to(device)
-        log_pi = torch.stack([
-            proposal.sampled_path_log_probability(row["initial"], row["path"])
-            for row in group
-        ])
         with torch.no_grad():
             log_ref = torch.stack([
                 ref_proposal.sampled_path_log_probability(row["initial"], row["path"])
                 for row in group
             ])
-        loss = rloo_loss(log_pi, log_ref, rewards, beta=args.beta)
         optimizer.zero_grad(set_to_none=True)
-        loss.backward()
+        log_pi_values = rloo_accumulate_path_gradients(
+            lambda index: proposal.sampled_path_log_probability(
+                group[index]["initial"], group[index]["path"],
+            ),
+            log_ref, rewards, beta=args.beta,
+        )
+        log_pi = torch.stack(log_pi_values)
+        loss = rloo_loss(log_pi, log_ref, rewards, beta=args.beta)
         grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         if not torch.isfinite(grad_norm):
             raise FloatingPointError(f"non-finite gradient at iteration {iteration}")
@@ -219,8 +265,15 @@ def main() -> None:
     if not converged and args.max_iters >= 100000:
         raise RuntimeError("safety iteration bound reached before reward plateau")
     torch.save(model.state_dict(), out_dir / "converged.pt" if converged else out_dir / "last.pt")
+    final_evaluation = evaluate_stability()
+    final_evaluation["delta_env_reward_mean"] = (
+        final_evaluation["env_reward_mean"] - baseline_evaluation["env_reward_mean"]
+    )
+    (out_dir / "final_evaluation.json").write_text(json.dumps(final_evaluation, indent=2))
     (out_dir / "converged.json").write_text(json.dumps({
         "converged": converged, "iterations": len(history),
+        "baseline_evaluation": baseline_evaluation,
+        "final_evaluation": final_evaluation,
         "smoothed_rewards": tracker.smoothed_history,
         "config": config, "calibration": scales,
     }, indent=2))

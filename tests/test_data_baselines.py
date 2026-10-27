@@ -5,7 +5,11 @@ import sys
 
 import pytest
 
-from scripts.audit_distribution import overlap_audit
+from scripts.audit_distribution import histogram, overlap_audit
+from scripts.audit_homology_split import audit_homology_split
+from scripts.build_a6_benchmark import build_unique_benchmark
+from scripts.build_a6_benchmark import main as build_benchmark_main
+from scripts.build_protein_homology_inputs import build_protein_fasta
 from scripts.build_splits import benchmark_components, read_fasta, read_clusters
 from scripts.gemorna_arm import (
     load_benchmark_protein,
@@ -20,6 +24,117 @@ from scripts.build_splits import main as build_splits_main
 def write_fasta(path, records):
     path.write_text("".join(f">{header}\n{seq}\n" for header, seq in records))
     return str(path)
+
+
+def fixture_cds_pool():
+    from scripts.gemorna_arm import cds_protein
+    codons = ["TTT", "TTG", "ATT", "GCT", "GGT"]
+    pool = [f"ATG{a}{b}TAA" for a in codons for b in codons]
+    assert len({cds_protein(s) for s in pool}) == len(pool)
+    return pool
+
+
+def test_unique_benchmark_replaces_absent_and_duplicate_records_only_from_test(tmp_path, monkeypatch):
+    valid = fixture_cds_pool()[:18]
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(valid)]
+    replacement = (
+        "absent_replacement|sp|short|15nt",
+        fixture_cds_pool()[18][:-3] + "GCTTAA",
+    )
+    test = legacy[1:] + [replacement]
+    legacy_path = write_fasta(tmp_path / "legacy.fasta", legacy)
+    test_path = write_fasta(tmp_path / "test.fasta", test)
+    out, manifest = tmp_path / "frozen.fasta", tmp_path / "manifest.json"
+    monkeypatch.setattr(sys, "argv", [
+        "build_a6_benchmark.py", "--legacy-fasta", legacy_path, "--test-fasta", test_path,
+        "--out-fasta", str(out), "--out-manifest", str(manifest),
+    ])
+    build_benchmark_main()
+    records, audit = build_unique_benchmark(legacy_path, test_path)
+    assert records == read_fasta(str(out))
+    assert len(records) == len({s for _, s in records}) == 18
+    assert all(dict(test).get(h) == s for h, s in records)
+    assert records[0] == replacement
+    assert audit[0]["reason"] == "legacy record absent from frozen v4 test"
+    assert audit[1]["reason"] == "exact legacy record retained in frozen v4 test"
+    assert json.loads(manifest.read_text())["protocol"] == "v4_test_unique18_length_stratified_v2"
+
+
+def test_unique_benchmark_replaces_duplicate_with_deterministic_tiebreak(tmp_path):
+    pool = fixture_cds_pool()
+    valid = [pool[0], "ATGTTCTTTTAA", *pool[1:17]]
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(valid)]
+    candidates = [("z|sp|short|12nt", pool[19]), ("a|sp|short|12nt", pool[18])]
+    records, audit = build_unique_benchmark(
+        write_fasta(tmp_path / "legacy.fasta", legacy),
+        write_fasta(tmp_path / "test.fasta", legacy + candidates),
+    )
+    assert len(records) == len({s for _, s in records}) == 18
+    assert records[1] == candidates[1]
+    assert audit[1]["reason"].startswith("duplicate legacy")
+
+
+def test_unique_benchmark_fails_if_stratum_cannot_be_filled(tmp_path):
+    legacy = [(f"id{i}|sp|short|12nt", s) for i, s in enumerate(fixture_cds_pool()[:18])]
+    with pytest.raises(ValueError, match="no unused frozen-test candidate"):
+        build_unique_benchmark(
+            write_fasta(tmp_path / "legacy.fasta", legacy),
+            write_fasta(tmp_path / "test.fasta", legacy[:-1]),
+        )
+
+def test_protein_homology_inputs_include_external_benchmark_once(tmp_path):
+    corpus = write_fasta(tmp_path / "corpus.fasta", [
+        ("a", "ATGAAATTTTGA"), ("duplicate", "ATGAAGTTCTGA"), ("c", "ATGGCTTAA"),
+    ])
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [
+        ("external", "ATGCAATAA"), ("same_protein", "ATGAAGTTCTGA"),
+    ])
+    manifest = build_protein_fasta(
+        [corpus], [benchmark], tmp_path / "proteins.fasta", tmp_path / "manifest.json",
+    )
+    assert manifest["n_unique_proteins"] == 3
+    assert manifest["n_benchmark_seed_proteins"] == 1
+    assert [row["id"] for row in manifest["records"]] == ["a", "c", "benchmark__external"]
+    assert len(manifest["protein_fasta_sha256"]) == 64
+
+
+def test_external_benchmark_identifier_excludes_its_homology_component():
+    seqs = {"a": "ATGAAATTTTGA", "homolog": "ATGGCTTAA"}
+    clusters = {"benchmark__external": ["homolog"], "a": ["a"]}
+    excluded, report = benchmark_components(
+        clusters, seqs, [("external", "ATGCAATAA")],
+    )
+    assert excluded == {"homolog"}
+    assert report["n_identifier_matched"] == 1
+    assert report["n_exact_protein_matched"] == 0
+
+
+def test_homology_audit_checks_external_components_and_conservation(tmp_path):
+    original = write_fasta(tmp_path / "original.fasta", [
+        ("a", "ATGAAATTTTGA"), ("b", "ATGGCTTAA"), ("c", "ATGTTTTAA"),
+    ])
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGCAATAA")])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\ta\nbenchmark__external\tb\nc\tc\n")
+    excluded = write_fasta(tmp_path / "excluded.fasta", [("b", "ATGGCTTAA")])
+    split_dir = tmp_path / "splits"
+    split_dir.mkdir()
+    write_fasta(split_dir / "train.fasta", [("a", "ATGAAATTTTGA")])
+    write_fasta(split_dir / "val.fasta", [("c", "ATGTTTTAA")])
+    write_fasta(split_dir / "test.fasta", [])
+    (split_dir / "split_audit.json").write_text(json.dumps({
+        "n_input_seqs": 3, "n_retained_input_records": 2,
+        "n_removed_as_protein_duplicates": 0,
+        "benchmark_exclusion": {"n_excluded_cds": 1},
+    }))
+    report = audit_homology_split(split_dir, str(clusters), [benchmark], original, excluded)
+    assert report["n_retained"] == 2
+    assert report["n_benchmark_cluster_representatives"] == 1
+    assert all(report["checks"].values())
+    write_fasta(tmp_path / "excluded.fasta", [])
+    write_fasta(split_dir / "train.fasta", [("b", "ATGGCTTAA")])
+    with pytest.raises(ValueError, match="benchmark protein clusters"):
+        audit_homology_split(split_dir, str(clusters), [benchmark], original, excluded)
 
 
 def test_benchmark_fasta_is_authoritative(tmp_path):
@@ -202,6 +317,63 @@ def test_group_by_protein_removes_exact_protein_duplicates(tmp_path, monkeypatch
     assert report["group_by_protein"] is True
 
 
+def test_multiple_benchmarks_and_excluded_fasta_are_audited(tmp_path, monkeypatch):
+    seqs = {"a": "ATGAAATTTTGA", "b": "ATGGCTTAA", "c": "ATGCAATAA"}
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", list(seqs.items()))
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("a\ta\nb\tb\nc\tc\n")
+    first = write_fasta(tmp_path / "first.fasta", [("a", seqs["a"])])
+    second = write_fasta(tmp_path / "second.fasta", [("b", seqs["b"])])
+    excluded = tmp_path / "excluded.fasta"
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", first, second, "--out-dir", str(out),
+        "--excluded-out-fasta", str(excluded), "--train-frac", "0.5",
+    ])
+    build_splits_main()
+    retained = "".join((out / f"{split}.fasta").read_text() for split in ("train", "val", "test"))
+    assert ">c\n" in retained and ">a\n" not in retained and ">b\n" not in retained
+    assert set(dict(read_fasta(str(excluded)))) == {"a", "b"}
+    report = json.loads((out / "split_audit.json").read_text())
+    assert len(report["input_sha256"]["benchmark_fasta"]) == 2
+    assert len(report["excluded_out_sha256"]) == 64
+
+
+def test_group_by_protein_accepts_only_represented_unlisted_duplicates(tmp_path, monkeypatch):
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", [
+        ("representative", "ATGAAATTTTGA"),
+        ("unlisted_synonym", "ATGAAGTTCTGA"),
+        ("other", "ATGGCTTAA"),
+    ])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("representative\trepresentative\nother\tother\n")
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGCAATAA")])
+    out = tmp_path / "out"
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", benchmark, "--out-dir", str(out), "--group-by-protein",
+    ])
+    build_splits_main()
+    report = json.loads((out / "split_audit.json").read_text())
+    assert report["n_unlisted_exact_protein_duplicate_ids"] == 1
+    assert report["n_retained_input_records"] == 2
+
+
+def test_group_by_protein_rejects_unrepresented_protein(tmp_path, monkeypatch):
+    cleaned = write_fasta(tmp_path / "cleaned.fasta", [("missing", "ATGCAATAA")])
+    clusters = tmp_path / "clusters.tsv"
+    clusters.write_text("other\tother\n")
+    benchmark = write_fasta(tmp_path / "benchmark.fasta", [("external", "ATGAAATTTTGA")])
+    monkeypatch.setattr(sys, "argv", [
+        "build_splits.py", "--cleaned", cleaned, "--cluster-tsv", str(clusters),
+        "--benchmark-fasta", benchmark, "--out-dir", str(tmp_path / "out"),
+        "--group-by-protein",
+    ])
+    with pytest.raises(ValueError, match="proteins absent"):
+        build_splits_main()
+
+
 def test_build_splits_requires_explicit_benchmark_path(monkeypatch):
     monkeypatch.setattr(sys, "argv", [
         "build_splits.py", "--cleaned", "x.fasta", "--cluster-tsv", "x.tsv", "--out-dir", "out",
@@ -230,6 +402,9 @@ def test_exact_cds_and_protein_overlap_with_duplicates(tmp_path):
     assert result["splits"]["train"]["n_duplicate_protein_inputs"] == 2
     assert result["splits"]["train"]["length_nt"]["mean"] == 12
     assert result["splits"]["train"]["gc"]["q50"] == 2 / 12
+    assert sum(result["splits"]["train"]["histograms"]["length_nt"]["counts"]) == 3
+    assert sum(result["splits"]["train"]["histograms"]["gc"]["counts"]) == 3
+    assert result["splits"]["train"]["length_nt"]["q05"] == 12
     assert result["overlaps"]["train__val"]["n_shared_cds"] == 1
     assert result["overlaps"]["train__val"]["n_train_inputs_with_shared_cds"] == 2
     assert result["overlaps"]["train__test"]["n_shared_protein"] == 0
@@ -239,3 +414,5 @@ def test_exact_cds_and_protein_overlap_with_duplicates(tmp_path):
         {k: fastas[k] for k in ("train", "val", "test")}, fastas["benchmark"]
     )
     assert "not family-disjoint proof" in result["scope"]
+    with pytest.raises(ValueError, match="outside"):
+        histogram([6001], [0, 300, 6000])

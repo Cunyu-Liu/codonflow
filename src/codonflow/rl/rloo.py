@@ -91,6 +91,25 @@ def rloo_loss(
     return per_seq.mean()
 
 
+def rloo_accumulate_path_gradients(
+    log_pi_fn: Callable[[int], torch.Tensor],
+    log_pi_ref: torch.Tensor,
+    rewards: torch.Tensor,
+    beta: float,
+) -> list[torch.Tensor]:
+    """Backpropagate identical RLOO loss one path at a time to bound memory."""
+    if len(log_pi_ref) != len(rewards) or len(rewards) < 2:
+        raise ValueError("RLOO requires aligned log-reference and reward groups of size >= 2")
+    advantage = loo_advantage(rewards).detach()
+    detached_log_pi = []
+    for index in range(len(rewards)):
+        log_pi = log_pi_fn(index)
+        detached_log_pi.append(log_pi.detach())
+        loss = -advantage[index] * log_pi + beta * (log_pi - log_pi_ref[index]).square()
+        (loss / len(rewards)).backward()
+    return detached_log_pi
+
+
 class RewardTracker:
     """Moving-average plateau detector for the RLOO reward curve."""
 

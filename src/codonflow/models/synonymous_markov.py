@@ -140,8 +140,18 @@ class SynonymousJumpProposal:
             or token_logits.shape[-1] <= max(ids)
         ):
             raise ValueError("Model output shapes do not match BOS/codons/EOS input")
-        blank_logits = blank_logits[0].float()
-        token_logits = token_logits[0].float()
+        return self._transitions_from_logits(current, blank_logits[0], token_logits[0])
+
+    def _transitions_from_logits(
+        self, current: Sequence[str], blank_logits: torch.Tensor, token_logits: torch.Tensor
+    ) -> tuple[list[SynonymousTransition], torch.Tensor]:
+        """Construct one normalized kernel from [length] and [length,vocab] logits."""
+        blank_logits = blank_logits.float()
+        token_logits = token_logits.float()
+        if (blank_logits.ndim != 1 or token_logits.ndim != 2
+                or token_logits.shape[0] != blank_logits.shape[0]
+                or blank_logits.shape[0] != len(current) + 2):
+            raise ValueError("Model output shapes do not match one CDS state")
 
         transitions: list[SynonymousTransition] = []
         log_weights: list[torch.Tensor] = []
@@ -164,13 +174,14 @@ class SynonymousJumpProposal:
                 edited[position] = alternative
                 transitions.append(SynonymousTransition(tuple(edited), 0.0, position))
 
-        stay_logit = blank_logits.new_zeros(())
-        for position, alternatives, local_logs in locations:
-            stay_logit = stay_logit + blank_logits[position + 1]
-            stay_logit = stay_logit + local_logs[alternatives.index(current[position])]
+        stay_logit = torch.logsumexp(torch.stack([
+            blank_logits[position + 1] + local_logs[alternatives.index(current[position])]
+            for position, alternatives, local_logs in locations
+        ]), dim=0)
         log_weights.append(stay_logit)
         transitions.append(SynonymousTransition(current, 0.0, None))
-        log_probabilities = torch.log_softmax(torch.stack(log_weights).double(), dim=0)
+        log_weights = torch.stack(log_weights)
+        log_probabilities = torch.log_softmax(log_weights.double(), dim=0)
         return transitions, log_probabilities
 
     @torch.no_grad()
@@ -215,6 +226,42 @@ class SynonymousJumpProposal:
             )
         return log_probability / (len(path) - 1)
 
+    @torch.no_grad()
+    def sample_transition_batch(
+        self,
+        codons_batch: Sequence[Sequence[str]],
+        time: float | int = 0,
+        rng: Optional[np.random.Generator] = None,
+    ) -> list[SynonymousTransition]:
+        """Sample equal-length base states with one model forward per batch."""
+        if not codons_batch:
+            return []
+        states = [self.validate_source(codons) for codons in codons_batch]
+        lengths = {len(state) for state in states}
+        if len(lengths) != 1:
+            raise ValueError("batched rollout states must have equal codon lengths")
+        encoded = [encode_cds("".join(state), add_special=True) for state in states]
+        inputs = torch.tensor(encoded, dtype=torch.long, device=self.device)
+        blank_logits, token_logits = self.model(inputs)
+        self.forward_calls += 1
+        batch_size, length = inputs.shape
+        if (blank_logits.shape != (batch_size, length)
+                or token_logits.shape[:2] != (batch_size, length)
+                or token_logits.shape[-1] <= max(max(ids) for ids in encoded)):
+            raise ValueError("Model output shapes do not match the batched CDS states")
+        generator = np.random.default_rng() if rng is None else rng
+        sampled = []
+        for index, state in enumerate(states):
+            transitions, log_probabilities = self._transitions_from_logits(
+                state, blank_logits[index], token_logits[index],
+            )
+            choice = _sample_log_probabilities(log_probabilities.tolist(), generator)
+            transition = transitions[choice]
+            sampled.append(SynonymousTransition(
+                transition.codons, float(log_probabilities[choice]), transition.position,
+            ))
+        return sampled
+
     def sample_transition(
         self,
         codons: Sequence[str],
@@ -241,10 +288,15 @@ class FiniteStepSynonymousMarkovEditor:
     explicit candidate pruning.  This is a Monte-Carlo, candidate-pruned
     approximation, not a proof of exact terminal tilting.
 
+    ``sampling_kernel='base'`` samples the normalized model kernel directly;
+    its trajectory probability is therefore exactly the one differentiated by
+    ``sampled_path_log_probability`` for on-policy optimization. The default
+    ``'guided'`` setting instead uses approximate MC-Doob transitions and must
+    not be paired with that base-path objective as if it were on-policy.
+
     ``rollout_count=0`` is the separately named ``immediate`` ablation: it uses
-    the candidate's own terminal reward instead of base rollout aggregation
-    and is never the default.  Only single-codon jumps are supported.  The
-    default return is the actual trajectory terminal; ``return_incumbent=True``
+    the candidate's own terminal reward instead of base rollout aggregation.
+    The default return is the trajectory terminal; ``return_incumbent=True``
     explicitly returns the best feasible terminal observed instead.
     """
 
@@ -256,6 +308,7 @@ class FiniteStepSynonymousMarkovEditor:
         rollout_count: int = 16,
         candidate_count: Optional[int] = None,
         rng: Optional[np.random.Generator] = None,
+        sampling_kernel: str = "guided",
     ):
         if terminal_step < 0:
             raise ValueError("terminal_step must be nonnegative")
@@ -263,6 +316,8 @@ class FiniteStepSynonymousMarkovEditor:
             raise ValueError("rollout_count must be nonnegative")
         if candidate_count is not None and candidate_count < 1:
             raise ValueError("candidate_count must be positive or None")
+        if sampling_kernel not in ("guided", "base"):
+            raise ValueError("sampling_kernel must be 'guided' or 'base'")
         self.proposal = proposal
         self.guided_log_probabilities = False
         self.terminal_reward = terminal_reward
@@ -270,21 +325,35 @@ class FiniteStepSynonymousMarkovEditor:
         self.rollout_count = int(rollout_count)
         self.candidate_count = candidate_count
         self.rng = np.random.default_rng(0) if rng is None else rng
-        self.mode = "immediate" if rollout_count == 0 else "rollout"
+        self.sampling_kernel = sampling_kernel
+        self.mode = sampling_kernel if sampling_kernel == "base" else (
+            "immediate" if rollout_count == 0 else "rollout"
+        )
         self.reward_cache: dict[str, float] = {}
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
+        self.forward_calls = 0
+        self.base_state_evaluations = 0
+        self.rollout_batch_forwards = 0
+        self.rollout_trajectories = 0
+        self.rollout_state_transitions = 0
+        self.scored_sequences: set[str] = set()
         self.best_terminal: Optional[str] = None
         self.best_terminal_reward = -math.inf
 
     def reset_counts(self) -> None:
-        """Reset reward cache and all accounting before an independent run."""
+        """Reset per-path cache and accounting; proposal forwards are caller-scoped."""
         self.reward_cache.clear()
         self.unique_terminal_reward_calls = 0
         self.terminal_reward_evaluations = 0
+        self.forward_calls = 0
+        self.base_state_evaluations = 0
+        self.rollout_batch_forwards = 0
+        self.rollout_trajectories = 0
+        self.rollout_state_transitions = 0
+        self.scored_sequences.clear()
         self.best_terminal = None
         self.best_terminal_reward = -math.inf
-        self.proposal.forward_calls = 0
 
     def _terminal_rewards(self, sequences: Sequence[str]) -> list[float]:
         missing = list(dict.fromkeys(s for s in sequences if s not in self.reward_cache))
@@ -298,10 +367,11 @@ class FiniteStepSynonymousMarkovEditor:
                     raise ValueError("terminal_reward returned NaN")
                 self.reward_cache[sequence] = value
                 self.unique_terminal_reward_calls += 1
-                self.terminal_reward_evaluations += 1
                 if math.isfinite(value) and value > self.best_terminal_reward:
                     self.best_terminal_reward = value
                     self.best_terminal = sequence
+        self.terminal_reward_evaluations += len(sequences)
+        self.scored_sequences.update(sequences)
         return [self.reward_cache[s] for s in sequences]
 
     def estimate_log_h(
@@ -319,14 +389,17 @@ class FiniteStepSynonymousMarkovEditor:
         if count == 0:
             # Deliberate ablation only; unlike the default this does not roll out.
             return self._terminal_rewards(["".join(current)])[0]
-        rewards: list[float] = []
-        for _ in range(count):
-            state = current
-            for time in range(step, self.terminal_step):
-                state = self.proposal.sample_transition(
-                    state, time, self.rng
-                ).codons
-            rewards.extend(self._terminal_rewards(["".join(state)]))
+        states = [current for _ in range(count)]
+        self.rollout_trajectories += count
+        for time in range(step, self.terminal_step):
+            self.rollout_batch_forwards += 1
+            self.rollout_state_transitions += len(states)
+            states = [
+                transition.codons for transition in self.proposal.sample_transition_batch(
+                    states, time, self.rng,
+                )
+            ]
+        rewards = self._terminal_rewards(["".join(state) for state in states])
         return _logsumexp(rewards) - math.log(count)
 
     def _prune(
@@ -351,6 +424,7 @@ class FiniteStepSynonymousMarkovEditor:
         if step < 0 or step >= self.terminal_step:
             raise ValueError("Guidance requires step in [0, terminal_step)")
         base = self._prune(self.proposal.enumerate_transitions(current, step))
+        self.base_state_evaluations += 1
         current_log_h = self.estimate_log_h(current, step)
         candidate_log_h = [
             self.estimate_log_h(t.codons, step + 1) for t in base
@@ -389,17 +463,24 @@ class FiniteStepSynonymousMarkovEditor:
         if start_step < 0 or start_step > self.terminal_step:
             raise ValueError("start_step must lie in [0, terminal_step]")
         state = self.proposal.validate_source(split_codons(source))
+        forwards_at_start = self.proposal.forward_calls
         trace: list[dict] = []
         if start_step == self.terminal_step:
             terminal_reward = self._terminal_rewards([source])[0]
         else:
             terminal_reward = -math.inf
         for step in range(start_step, self.terminal_step):
-            guided, current_log_h, candidate_log_h = self.guided_transitions(state, step)
+            if self.sampling_kernel == "base":
+                candidates = self.proposal.enumerate_transitions(state, step)
+                self.base_state_evaluations += 1
+                current_log_h, candidate_log_h = None, [None] * len(candidates)
+            else:
+                candidates, current_log_h, candidate_log_h = self.guided_transitions(state, step)
+            self.forward_calls = self.proposal.forward_calls - forwards_at_start
             index = _sample_log_probabilities(
-                [t.log_probability for t in guided], self.rng
+                [t.log_probability for t in candidates], self.rng
             )
-            chosen = guided[index]
+            chosen = candidates[index]
             state = chosen.codons
             terminal_reward = None
             if step + 1 == self.terminal_step:
@@ -414,11 +495,15 @@ class FiniteStepSynonymousMarkovEditor:
                     "log_h_candidate": candidate_log_h[index],
                     "terminal_reward": terminal_reward,
                     "mode": self.mode,
-                    "candidate_count": len(guided),
+                    "candidate_count": len(candidates),
                     "unique_terminal_reward_calls": self.unique_terminal_reward_calls,
                     "terminal_reward_evaluations": self.terminal_reward_evaluations,
-                    "forward_calls": self.proposal.forward_calls,
-                    "base_log_probability": chosen.log_probability,
+                    "forward_calls": self.forward_calls,
+                    "base_state_evaluations": self.base_state_evaluations,
+                    "rollout_batch_forwards": self.rollout_batch_forwards,
+                    "rollout_trajectories": self.rollout_trajectories,
+                    "rollout_state_transitions": self.rollout_state_transitions,
+                    "chosen_base_log_probability": chosen.log_probability,
                 }
             )
         if not trace and start_step < self.terminal_step:
