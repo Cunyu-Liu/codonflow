@@ -35,9 +35,9 @@ from scripts.recompute_s3_full_adaptive import joint_range_reference
 
 
 def summarize_arms(output):
-    points = np.asarray([
+    points = np.unique(np.asarray([
         point for arm in output["arms"].values() for point in arm["objectives"]
-    ])
+    ]), axis=0)
     reference, scale = joint_range_reference(points, allow_degenerate=True)
     output["normalization_scale"] = scale.tolist()
     output["degenerate_axes_use_unit_scale"] = True
@@ -65,6 +65,8 @@ def main() -> None:
     args = parser.parse_args()
     if args.n_solutions < 1 or args.rollout_count < 0:
         raise ValueError("n-solutions >= 1 and rollout-count >= 0 required")
+    if args.terminal_step < 1 or args.candidate_count < 1:
+        raise ValueError("terminal-step and candidate-count must be positive")
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     if device.type != "cuda":
         raise RuntimeError("GPU required; silent CPU fallback forbidden")
@@ -90,9 +92,9 @@ def main() -> None:
         "rscu_sha256": file_sha256(args.rscu_json),
         "atc_sha256": file_sha256(args.atc_yaml),
         "code_commit": git_commit(),
-        "protocol": "paired_same_initial_states_v2", "arms": {},
+        "protocol": "paired_same_initial_states_v3", "arms": {},
     }
-    for mode, rollouts in (("immediate", 0), ("short_rollout", args.rollout_count)):
+    for mode, rollouts in (("base", None), ("immediate", 0), ("short_rollout", args.rollout_count)):
         solutions, traces, scored_sequences = [], [], set()
         proposal.forward_calls = 0
         mfe_cache = {}
@@ -104,8 +106,9 @@ def main() -> None:
         for index, initial in enumerate(initial_states):
             editor = FiniteStepSynonymousMarkovEditor(
                 proposal, terminal, terminal_step=args.terminal_step,
-                rollout_count=rollouts, candidate_count=args.candidate_count,
+                rollout_count=0 if rollouts is None else rollouts, candidate_count=args.candidate_count,
                 rng=np.random.default_rng(args.seed * 101 + index),
+                sampling_kernel="base" if mode == "base" else "guided",
             )
             terminal_seq, trace = editor.sample(initial)
             solutions.append(terminal_seq)

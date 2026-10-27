@@ -26,6 +26,10 @@ def test_pilot_summary_is_normalized_and_recomputable():
     assert output["reference_protocol"].endswith("normalized_v2")
     assert len(output["normalization_scale"]) == 4
     assert all(value > 0 for value in output["normalization_scale"])
+    reference = output["arms"]["a"]["reference"]
+    output["arms"]["duplicate_b"] = {"objectives": [[3.0, 20.0, -1.0, 2.0]]}
+    summarize_pilot_arms(output)
+    assert output["arms"]["a"]["reference"] == reference
 
 
 def row(offset=0.0, legacy_name=False):
