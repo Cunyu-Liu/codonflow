@@ -138,8 +138,8 @@ def score_solutions(solutions, expected_protein: str, weights=None, mfe_fn=None,
     return summary, scored
 
 
-PY = "/home/miniconda3/envs/pc_cng/bin/python"
-REPO = "/mnt/cunyuliu/gemorna"
+PY = os.environ.get("CODONFLOW_GEMORNA_PYTHON", "/root/miniconda3/envs/pc_cng/bin/python")
+REPO = os.environ.get("CODONFLOW_GEMORNA_REPO", "/teams/HoulabData_1788502323/liucunyu/codonflow/gemorna/gemorna")
 
 
 def run_generate(protein: str) -> tuple:
@@ -150,7 +150,10 @@ def run_generate(protein: str) -> tuple:
          "--protein_seq", protein],
         cwd=REPO, capture_output=True, text=True, timeout=600)
     if res.returncode != 0:
-        return None, None
+        raise RuntimeError(
+            f"GEMORNA failed with exit {res.returncode}: "
+            f"{res.stderr[-4000:] or res.stdout[-4000:]}"
+        )
     lines = [l for l in res.stdout.splitlines() if l.strip()]
     if len(lines) < 2:
         return None, None
@@ -201,6 +204,7 @@ def main():
         "n_invalid_identity": n_invalid,
         "n_invalid_skipped": n_invalid,
         "seed": args.seed,
+        "reproducibility_note": "arm label only; official generator exposes no seed option",
         "solutions": rows,
     }
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)

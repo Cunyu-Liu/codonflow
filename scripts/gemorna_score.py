@@ -21,6 +21,9 @@ def main():
     ap.add_argument("--rscu-json", default="/home/codonflow/configs/cai_ref_train.json")
     ap.add_argument("--genes", nargs="+", choices=("egfp", "nluc"), default=["egfp", "nluc"])
     ap.add_argument("--eval-dir", type=Path, default=DEFAULT_EVAL_DIR)
+    ap.add_argument("--input-name", default="GEMORNA_{gene}_s0.json",
+                    help="filename template relative to eval-dir, must contain {gene}")
+    ap.add_argument("--output-name", default="GEMORNA_{gene}_s0_scored.json")
     ap.add_argument("--out-dir", type=Path, help="defaults to --eval-dir")
     args = ap.parse_args()
 
@@ -33,7 +36,7 @@ def main():
     for gene in args.genes:
         benchmark_header, protein = load_benchmark_protein(args.benchmark_fasta, gene)
         expected_sha = protein_sha256(protein)
-        src = args.eval_dir / f"GEMORNA_{gene}_s0.json"
+        src = args.eval_dir / args.input_name.format(gene=gene)
         d = json.loads(src.read_text())
         if d.get("expected_protein_sha256", expected_sha) != expected_sha:
             raise ValueError(f"{src}: generation protein differs from {args.benchmark_fasta}")
@@ -43,12 +46,13 @@ def main():
             "method": "gemorna",
             "benchmark_header": benchmark_header,
             "expected_protein_sha256": expected_sha,
+            "rscu_json": str(Path(args.rscu_json).resolve()),
             "n_samples": len(d["solutions"]),
             "note": "identity checked against benchmark FASTA; missing terminal stop replaced by TAA",
             **summary,
             "solutions": scored,
         }
-        dst = out_dir / f"GEMORNA_{gene}_s0_scored.json"
+        dst = out_dir / args.output_name.format(gene=gene)
         dst.write_text(json.dumps(out, indent=1))
         print(f"[{gene}] n={out['n']} invalid_identity={out['n_invalid_identity']} -> {dst}")
 
