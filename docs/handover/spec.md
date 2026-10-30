@@ -6,6 +6,13 @@
 
 ---
 
+## 当前执行状态（2026-10-30 恢复冲刺）
+
+- 2026-10-27 的“停止新增实验”状态已由用户本轮明确指令解除；P0–P4 依赖顺序和 A6 科学合同不变。
+- 当前集群为单卡 RTX 4090 24GB，不是历史文档中的 RTX 5090。两臂已从各自 `handoff_epoch006_training_state.pt` 精确恢复 optimizer/RNG，并于 2026-10-30 21:11 CST 并行续训；启动前 training_state SHA256 与 manifest 完全一致，CUDA matmul 实测通过。
+- edited-token 使用 tmux `a6_edit_resume`，full-token 使用 `a6_full_resume`；均沿用 v4 数据、原超参数和独立验证 plateau 3×<0.1% 停止判据，不设置固定训练步数作为收敛结论。
+- 当前仍无收敛模型、完整 unique18 或新的 CodonFlow 下游主结果。PPT 只能更新已复核证据和明确标为进行中的状态，不得提前填入主结果。
+
 ## Why
 
 **科学问题（一句话）**：在「保阅读框 + 保蛋白身份」的硬约束下，对全长 mRNA 的 CDS 做多目标同义优化（CAI / MFE / GC / motif 排除）时，现有三条路线全部存在结构性缺陷：AR + logit masking 造成「合法但平庸」的质量塌缩、MDM+后置搜索采样效率坍塌、软奖励 RL 无法保证 by-construction 的身份保持。**「约束进终端分布 + 偏好进过程 + 免标注循环一致性奖励」三件事的统一，在 mRNA 编辑上尚无公开工作（截至 2026-10-04 检索）。**

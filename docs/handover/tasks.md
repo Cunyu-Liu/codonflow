@@ -1,10 +1,19 @@
 # Tasks（工程级 v7 · 2026-10-26/27 证据链修复版）
 
 > 当前执行以本节 **A6 修复队列** 为准；下文 v5/v6 仅保留历史执行轨迹。
-> 代码 `/home/codonflow`，数据/权重/artifacts `/teams/HoulabData_1788502323/liucunyu/codonflow`；单卡 RTX 5090 32GB。
+> 代码 `/home/codonflow`，数据/权重/artifacts `/teams/HoulabData_1788502323/liucunyu/codonflow`；当前单卡 RTX 4090 24GB。
 > 历史产物可以标 done，但不等于科学结论通过。所有新主结果须符合 `spec.md` Amendment A6。
 
-## 收尾交接（2026-10-27，优先于下列运行队列）
+## 恢复冲刺（2026-10-30，当前执行）
+
+- [x] R6.0 通读全部交接文档，核对远端无新增结果、无残留任务；确认当前为 RTX 4090 24GB。
+- [x] R6.1 两臂 training_state SHA256 与 manifest 一致，CUDA matmul 实测通过；21:11 CST 从 epoch 6 完整状态并行恢复，tmux=`a6_edit_resume` / `a6_full_resume`。
+- [ ] R6.2 两臂分别训练至独立验证 plateau，冻结 converged/best/last/training_state 与哈希；未完成前不得更新为最终模型结果。
+- [ ] R6.3 unique18 seed-0 从原目录 `--resume` 补齐，保留 C05E11.2.1 部分记录；再执行 seeds 1/2 与全量独立审计。
+- [ ] R6.4 仅在 R6.2 完成后，以同一冻结 checkpoint 做 base/immediate/short-rollout 多基因 3 seeds 对照；联合 HV、四成本口径、置信区间与配对统计齐全后才进入 PPT 主结果。
+- [ ] R6.5 更新导师汇报 PPT：解释指标方向，逐表回源核对，修复第 10/19/34/35/43 页，新增论文逻辑链总页；无新结果处明确“待裁决”，不虚构更新。
+
+## 收尾交接（2026-10-27，历史状态）
 
 - 用户要求停止新增实验并交接；full-data RLOO 队列已取消，旧 legacy、训练、baseline 和监控会话均已停止。
 - 两臂在 epoch 6 安全停止并冻结 best/last/training_state，均未 plateau；恢复必须使用 `handoff_epoch006_training_state.pt`。

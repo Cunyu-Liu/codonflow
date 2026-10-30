@@ -23,6 +23,7 @@
 - [x] L17 按用户要求完成收尾：full-data RLOO 队列取消，不再新增实验；训练、baseline、旧 legacy 和监控会话全部停止。
 - [x] L18 两臂 epoch-6 best/last/training_state 与 manifest 已冻结并核对哈希；明确标记 stopped_not_converged，恢复入口见 HANDOFF。
 - [x] L19 unique18 的 10 条完整记录已完成身份/解数/哈希/CAI/GC/motif 审计；1 条部分运行、7 条未启动已记录，MFE/NED 留待主表前全量复核。
+- [ ] L20 2026-10-30 恢复冲刺：两臂 training_state 哈希与 CUDA matmul 已核验并从 epoch 6 精确恢复；须待各自 plateau、冻结 converged checkpoint 和完整下游验收后才能勾选。
 
 ## 历史 Checklist（原样保留，非当前验收依据）
 

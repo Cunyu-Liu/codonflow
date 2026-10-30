@@ -1,5 +1,12 @@
 
-## 2026-10-27 A6 证据链修复（当前有效）
+## 2026-10-30 A6 恢复冲刺（当前执行）
+
+- 21:07 CST 盘点：远端无 tmux 科学任务、无 10 月 27 日后的新结果，单卡 RTX 4090 24GB 空闲。纠正“模型已经训练完”的假设：edited-token 与 full-token 均仅完成 epoch 6，未 plateau。
+- 21:11 CST 两臂并行恢复。启动前分别核对 `handoff_epoch006_training_state.pt` SHA256：edited-token `1181e4b1…50d1`，full-token `1ff9701c…6ecd`，与 manifest 一致；CUDA 2.14.1+cu132 在 RTX 4090 上完成 1024×1024 matmul、同步和有限值断言。tmux 为 `a6_edit_resume` / `a6_full_resume`，均从完整 optimizer/RNG 状态恢复到 epoch 7。
+- 续训沿用 v4 train/val、原学习率与 batch 配置、固定 validation seed=1729 和 plateau 3×<0.1% 判据；不得以固定步数或训练损失代替收敛验收。下一阶段仍是补全 unique18，再在收敛冻结权重上做统一预算下游对照。
+- 当前科学结论不变：无新 CodonFlow 下游主结果，Gate C 未通过，预印本不可提交。后续每个完成 epoch、失败和下游 run 均追加证据路径与哈希。
+
+## 2026-10-27 A6 证据链修复（历史有效证据）
 
 - 阅读全部交接、journal、最新冲刺日志与 38 页 PPT，独立审查实现。旧 immediate-ATC 不是短 rollout Doob；旧条件去噪不是完整 CTMC Edit Flow；旧 RLOO 的整段 token 打分不是编辑路径概率，环境效用被零权重关闭。
 - 旧 GEMORNA nanoLuc 输入为错误 EGFP-like 蛋白，正式数字作废；LD 100 解含 93 随机补样；旧同预算、time-to-first 和 adaptive verdict 口径均须重审。历史输出标为 `legacy exploratory`，不删除。
