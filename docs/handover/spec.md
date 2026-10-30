@@ -78,7 +78,7 @@
 1. GEMORNA 必须从权威 benchmark FASTA 读取蛋白，逐条翻译核验后评分。旧 nanoLuc 239-aa EGFP-like 输入错误，旧结果作废；独立 `pc_cng` 环境可复现正确冒烟。
 2. LinearDesign 的确定性 DP 解不能用随机同义序列补足 100 后冒名；旧 100 解含 7 DP + 93 random。uniform baseline 是 `uniform_synonymous`，不是无门控 Edit Flow。
 3. 成本分开报告：输出解数、唯一 scorer 调用、模型 forward、端到端时间；旧 `steps*candidates` 和解序号 time-to-first 不可用于效率结论。
-4. S3：同一基因/seed、全部模型联合参考域，轴 `min−5%×(p95−min)`，按 scale 归一化 HV；缺模型、缺 arm、零基线均显式列出，禁止静默剔除。
+4. S3：同一基因/seed、全部方法（CodonFlow 三臂 + 五基线）的**唯一并集**构成联合参考域；参考点取各轴 `min − 5%×(max−min)`，归一化 scale 取各轴 `q95 − min`（退化轴用 1 并显式记录），HV 在 `(points−ref)/scale` 上以 0 为参考计算。实现为 `scripts/a6_joint_hv.py`（与 `recompute_s3_full_adaptive.pooled_reference` 等价）；缺模型、缺 arm、零基线一律列入 `missing_methods`，禁止静默剔除，也不记零分。旧 pilot 曾用 `ptp` 作 scale（protocol v2），与主表口径不一致，已统一为 v3（q95 scale）。
 5. 主结果先通过 98+ 测试、真实 checkpoint 冒烟、identity/legal、完整方法池和预算核验，再写图/PPT/论文。
 6. 初版 epoch-1 pilot 的 arm 级 forward/scorer 仅含末条轨迹，旧字段撤回；重算 immediate/short-rollout forward=16/944、唯一新评分=46/419、归一化 HV=0.1451/0.0804。仅为 4 条配对路径诊断，不用于收敛模型裁决。
 7. `paired_same_initial_states_v4` 分开记录当前状态 base 枚举、rollout 批量 forward、rollout 轨迹、逐轨迹转移、cache 前终端请求、实际 scorer invocations 与跨路径唯一 scorer。v3 把每步累计请求再次求和，旧 102/194 作废；聚合只读每路径最终累计行。

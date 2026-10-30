@@ -67,8 +67,21 @@ done
 
 ## G3 联合 HV 主表
 
-- 参考域：同一基因/seed、**全部方法**的 obj_vectors 取并集，轴 `min − 0.05×(p95 − min)`，按 scale 归一化（实现：`scripts/recompute_s3_full_adaptive.py::joint_range_reference`）。
+- 参考域：同一基因/seed、**全部方法**的 obj_vectors 取唯一并集；参考点 `min − 0.05×(max−min)`，scale `q95 − min`，HV 在 `(points−ref)/scale` 上以 0 为参考（实现：`scripts/a6_joint_hv.py`，与 `recompute_s3_full_adaptive.pooled_reference` 等价）。
 - 方法池固定：CodonFlow（收敛臂）、LinearDesign、codonGPT、GEMORNA、CAI-greedy、uniform_synonymous。缺失/架构性排除必须显式列出，不记零分、不静默删除。
+
+```bash
+# 联合 HV 聚合（唯一并集参考域；缺失方法进 missing_methods）
+C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow
+cd /home/codonflow && PYTHONPATH=src \
+  /root/miniconda3/envs/codonflow/bin/python scripts/a6_joint_hv.py \
+  --pilot-glob "$C/eval_outputs/a6_pilot/three_arm_converged_*_s0.json" \
+  --baseline-glob "$C/eval_outputs/a6_baselines/core_s0/*_s0.json" \
+  --out $C/eval_outputs/a6_pilot/joint_hv_converged_s0.json
+```
+
+- 口径（与 spec §4.4、`pooled_reference` 一致）：参考点 `min − 5%×(max−min)`，scale `q95 − min`，HV 在 `(points−ref)/scale` 上以 0 为参考。退化轴会被拒绝；确有需要时加 `--allow-degenerate` 并记录轴号。
+- 自检：`scripts/a6_joint_hv.py --self-test`（5 条不变量），并有 `tests/test_a6_joint_hv.py` 5 项契约测试。
 - 验收：HV + 置信区间（bootstrap）；NED；identity/legal；四成本；配对检验（同基因同 seed 的 Wilcoxon/符号检验）。预注册线：HV 相对最强基线 ≥+10%、NED ≥基线 70%、OOD 衰减 <2pp。
 
 ## G4 论文与图

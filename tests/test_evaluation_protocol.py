@@ -23,9 +23,16 @@ def test_pilot_summary_is_normalized_and_recomputable():
         "b": {"objectives": [[3.0, 20.0, -1.0, 2.0]]},
     }}
     assert summarize_pilot_arms(output) == summarize_pilot_arms(output)
-    assert output["reference_protocol"].endswith("normalized_v2")
+    assert output["reference_protocol"].endswith("q95_scale_v3")
     assert len(output["normalization_scale"]) == 4
     assert all(value > 0 for value in output["normalization_scale"])
+    # canonical A6 scale is the robust q95 - min range (matches pooled_reference),
+    # not the full peak-to-peak range used by the retired v2 protocol.
+    import numpy as _np
+    unique_points = _np.asarray([[1.0, 10.0, -1.0, 0.0], [3.0, 20.0, -1.0, 2.0]])
+    raw_scale = _np.quantile(unique_points, 0.95, axis=0) - unique_points.min(axis=0)
+    expected_scale = _np.where(raw_scale > 0, raw_scale, 1.0)   # degenerate axes use unit scale
+    assert _np.allclose(output["normalization_scale"], expected_scale)
     reference = output["arms"]["a"]["reference"]
     output["arms"]["duplicate_b"] = {"objectives": [[3.0, 20.0, -1.0, 2.0]]}
     summarize_pilot_arms(output)

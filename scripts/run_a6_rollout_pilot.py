@@ -64,10 +64,16 @@ def summarize_arms(output):
     points = np.unique(np.asarray([
         point for arm in output["arms"].values() for point in arm["objectives"]
     ]), axis=0)
-    reference, scale = joint_range_reference(points, allow_degenerate=True)
+    reference, _ = joint_range_reference(points, allow_degenerate=True)
+    # Canonical A6 protocol (matches scripts/recompute_s3_full_adaptive.pooled_reference):
+    # scale is the robust q95 - min range, not the full ptp, so that pilot HVs are
+    # comparable with the joint main table.
+    raw_scale = np.quantile(points, 0.95, axis=0) - points.min(axis=0)
+    scale = np.where(raw_scale > 0, raw_scale, 1.0)
     output["normalization_scale"] = scale.tolist()
     output["degenerate_axes_use_unit_scale"] = True
-    output["reference_protocol"] = "joint_all_arms_min_minus_5pct_range_normalized_v2"
+    output["degenerate_axes"] = [int(i) for i in np.where(raw_scale <= 0)[0]]
+    output["reference_protocol"] = "joint_all_arms_min_minus_5pct_ptp_q95_scale_v3"
     for arm in output["arms"].values():
         arm["reference"] = reference.tolist()
         normalized = (np.asarray(arm["objectives"]) - reference) / scale
