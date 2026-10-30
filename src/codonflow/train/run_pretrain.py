@@ -87,10 +87,15 @@ def main() -> None:
     ap.add_argument("--token-only-at-edits", action="store_true",
                     help="new objective: score token CE only on edited positions")
     ap.add_argument("--validation-seed", type=int, default=1729)
+    ap.add_argument("--gpu-mem-fraction", type=float, default=None,
+                    help="hard cap of torch CUDA allocator as a fraction of total GPU memory; required when two arms share one GPU")
     args = ap.parse_args()
 
     assert torch.cuda.is_available(), "CUDA required - no CPU fallback"
     dev = torch.device("cuda:0")
+    if args.gpu_mem_fraction:
+        torch.cuda.set_per_process_memory_fraction(float(args.gpu_mem_fraction), 0)
+        print(f"gpu_mem_fraction cap {args.gpu_mem_fraction}", flush=True)
     torch.manual_seed(args.seed)
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
