@@ -88,6 +88,8 @@ def main() -> None:
     parser.add_argument("--rollout-count", type=int, default=4)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--beta", type=float, default=1.0)
+    parser.add_argument("--record-id", default=None,
+                        help="select one record from a multi-record benchmark FASTA; otherwise the FASTA must contain exactly one record")
     args = parser.parse_args()
     if args.n_solutions < 1 or args.rollout_count < 0:
         raise ValueError("n-solutions >= 1 and rollout-count >= 0 required")
@@ -102,8 +104,13 @@ def main() -> None:
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
     atc = ATCUtility.from_yaml(args.atc_yaml)
     sources = [(h.split()[0], s) for h, s in read_fasta(args.benchmark_fasta)]
+    if args.record_id is not None:
+        selected = [row for row in sources if row[0] == args.record_id]
+        if len(selected) != 1:
+            raise ValueError(f"record-id {args.record_id!r} must match exactly one benchmark record")
+        sources = selected
     if len(sources) != 1:
-        raise ValueError("pilot requires exactly one source CDS")
+        raise ValueError("pilot requires exactly one source CDS (use --record-id to select one)")
     name, source = sources[0]
     protein = protein_of_cds(source)
     initial_states = [

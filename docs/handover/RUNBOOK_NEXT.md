@@ -44,10 +44,20 @@ cd /home/codonflow && PYTHONPATH=src \
   /root/miniconda3/envs/codonflow/bin/python scripts/run_a6_rollout_pilot.py \
   --benchmark-fasta $C/corpora/a6_benchmark/unique18.fasta \
   --checkpoint $C/checkpoints/a6_v4_56m_r2/converged.pt \
-  --rscu-json /home/codonflow/configs/cai_ref_v4train.json \
+  --rscu-json /home/codonflow/configs/a6/cai_ref_v4train.json \
   --atc-yaml /home/codonflow/configs/atc_norm.yaml \
-  --out $C/eval_outputs/a6_pilot/three_arm_converged_s0.json \
+  --record-id <ONE_RECORD_ID> \
+  --out $C/eval_outputs/a6_pilot/three_arm_converged_<record>_s0.json \
   --n-solutions 100 --terminal-step 4 --candidate-count 4 --rollout-count 4 --seed 0
+```
+
+- **这个脚本一次只能吃一条 CDS**（2026-10-31 实测：多记录 FASTA 会直接 `ValueError`）。
+  已加 `--record-id` 选记录；按记录循环：
+
+```bash
+for rid in $(grep '^>' $C/corpora/a6_benchmark/unique18.fasta | sed 's/^>//' | awk '{print $1}'); do
+  ... --record-id "$rid" --out $C/eval_outputs/a6_pilot/three_arm_converged_${rid}_s0.json
+done
 ```
 
 - 三个臂由脚本内部固定展开：`base` / `immediate`（rollout=0，消融）/ `short_rollout`（R=rollout-count）。
