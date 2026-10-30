@@ -98,7 +98,7 @@ def generate_method(method, source, weights, n, seed, device, gpt=None):
     raise ValueError(f"unknown method {method}")
 
 
-def score_method(method, raw_solutions, source, weights, generation):
+def score_method(method, raw_solutions, source, weights, generation, gc_target=0.55):
     valid, seen = [], set()
     n_invalid = 0
     for sequence in raw_solutions:
@@ -116,7 +116,7 @@ def score_method(method, raw_solutions, source, weights, generation):
     if not valid:
         raise ValueError(f"{method}: no valid unique synonymous solutions")
     objectives = [[cai(sequence, weights), -mfe,
-                   -abs((sequence.count("G") + sequence.count("C")) / len(sequence) - 0.55),
+                   -abs((sequence.count("G") + sequence.count("C")) / len(sequence) - gc_target),
                    -motif_penalty_score(sequence)]
                   for sequence, mfe in zip(valid, mfes)]
     if not np.isfinite(objectives).all():
@@ -142,6 +142,8 @@ def main():
     parser.add_argument("--methods", nargs="+", choices=METHODS, default=list(METHODS))
     parser.add_argument("--n-solutions", type=int, default=100)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--atc-yaml", default="/home/codonflow/configs/atc_norm.yaml",
+                        help="single source of truth for the GC target; fallback 0.55 only if the file is absent")
     parser.add_argument("--record-id", default=None)
     parser.add_argument("--resume", action="store_true",
                         help="reuse only completed methods from the matching output file")
@@ -157,6 +159,11 @@ def main():
         if len(records) != 1:
             raise ValueError("record-id must match exactly one benchmark sequence")
     weights = cai_weights_from_rscu(json.loads(Path(args.rscu_json).read_text()))
+    gc_target = 0.55
+    if args.atc_yaml and Path(args.atc_yaml).exists():
+        from codonflow.gating.atc import ATCUtility
+        gc_target = float(ATCUtility.from_yaml(args.atc_yaml).gc_target)
+    print(json.dumps({"gc_target": gc_target, "atc_yaml": args.atc_yaml}), flush=True)
     gpt = None
     if "codongpt" in args.methods:
         from scripts.run_exp5_ood import load_codongpt
@@ -171,6 +178,7 @@ def main():
             "benchmark_fasta": str(Path(args.benchmark_fasta).resolve()),
             "benchmark_sha256": file_sha256(args.benchmark_fasta),
             "rscu_sha256": file_sha256(args.rscu_json), "code_commit": git_commit(),
+            "gc_target": gc_target, "atc_yaml": str(args.atc_yaml),
             "methods": {},
         }
         if args.resume and path.exists():
@@ -198,7 +206,7 @@ def main():
                     output["methods"][method] = {"method": method, **generation,
                                                  "solutions": [], "obj_vectors": []}
                 else:
-                    output["methods"][method] = score_method(method, raw, source, weights, generation)
+                    output["methods"][method] = score_method(method, raw, source, weights, generation, gc_target)
                 output["methods"][method]["code_commit"] = git_commit()
             except Exception as error:
                 output["methods"][method] = {"method": method, "status": "failed",
