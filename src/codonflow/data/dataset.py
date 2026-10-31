@@ -134,6 +134,62 @@ def corrupt_x_t(
     return out
 
 
+SYN_PROBS_CACHE: dict = {}
+
+
+def _synonym_probability_matrix(vocab_size: int) -> torch.Tensor:
+    """[V, V] matrix whose row i is uniform over the synonyms of codon id i.
+
+    Special tokens and the three stops map to themselves (a stop must stay a
+    stop so the CDS keeps exactly one terminal stop).  Built once and cached.
+    """
+    key = int(vocab_size)
+    if key in SYN_PROBS_CACHE:
+        return SYN_PROBS_CACHE[key]
+    from ..core.tokenizer import encode_cds  # local import avoids a cycle
+    from ..models.synonymous_markov import CODON_TO_INDEX, STANDARD_TABLE_1, SYNONYMOUS_CODONS
+    matrix = torch.eye(vocab_size)
+    for codon in CODON_TO_INDEX:
+        aa = STANDARD_TABLE_1.get(codon)
+        if aa in (None, "*"):
+            continue
+        alts = [c for c in SYNONYMOUS_CODONS[aa] if STANDARD_TABLE_1[c] != "*"]
+        ids = [encode_cds(c, add_special=False)[0] for c in alts]
+        cid = encode_cds(codon, add_special=False)[0]
+        matrix[cid] = 0.0
+        matrix[cid, ids] = 1.0 / len(ids)
+    SYN_PROBS_CACHE[key] = matrix
+    return matrix
+
+
+def corrupt_x_t_synonymous(
+    ids: torch.Tensor,
+    t: Optional[torch.Tensor] = None,
+    generator: Optional[torch.Generator] = None,
+) -> torch.Tensor:
+    """Protein-preserving corruption for edit-flow pretraining.
+
+    Same trajectory parameter t as :func:`corrupt_x_t`, but every replaced
+    codon is drawn uniformly from the synonyms of the *target* codon, so the
+    corrupted intermediate state is always a feasible synonymous state - the
+    exact support the sampler starts from at inference.  The previous
+    arbitrary-codon corruption made every training state out of distribution
+    for the deployment kernel.
+    """
+    if t is None:
+        t = torch.rand(ids.shape[0], generator=generator).to(ids.device)
+    t = t.to(ids.device).clamp(0.0, 1.0)
+    body = (ids != PAD_ID) & (ids != BOS_ID) & (ids != EOS_ID)
+    keep = torch.rand(ids.shape, generator=generator).to(ids.device) >= t.view(-1, 1)
+    replace = body & ~keep
+    out = ids.clone()
+    if replace.any():
+        probs = _synonym_probability_matrix(VOCAB_SIZE).to(ids.device)
+        chosen = torch.multinomial(probs[ids[replace]], 1, generator=generator).squeeze(1)
+        out[replace] = chosen
+    return out
+
+
 def x0_random_from_amino_acids(
     target_ids: torch.Tensor, generator: Optional[torch.Generator] = None
 ) -> torch.Tensor:

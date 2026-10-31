@@ -87,6 +87,9 @@ def main() -> None:
     ap.add_argument("--token-only-at-edits", action="store_true",
                     help="new objective: score token CE only on edited positions")
     ap.add_argument("--validation-seed", type=int, default=1729)
+    ap.add_argument("--corruption", choices=("arbitrary", "synonymous"), default="arbitrary",
+                    help="pretraining corruption family; 'synonymous' keeps the protein and matches the "
+                         "state distribution the sampler starts from (required for a usable editor)")
     ap.add_argument("--gpu-mem-fraction", type=float, default=None,
                     help="hard cap of torch CUDA allocator as a fraction of total GPU memory; required when two arms share one GPU")
     args = ap.parse_args()
@@ -165,7 +168,9 @@ def main() -> None:
         if "best_epoch" in resume_state:
             best_epoch, best_val = resume_state["best_epoch"], resume_state["best_val_loss"]
     t_start = time.time()
-    from codonflow.data.dataset import corrupt_x_t
+    from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
+    corrupt = corrupt_x_t_synonymous if args.corruption == "synonymous" else corrupt_x_t
+    print(f"corruption family: {args.corruption}", flush=True)
 
     while True:
         epoch += 1
@@ -176,7 +181,7 @@ def main() -> None:
         optimizer.zero_grad(set_to_none=True)
         for bi, batch in enumerate(train_batches):
             ids, pad = batch_to_tensors(batch, dev)
-            x_t = corrupt_x_t(ids)
+            x_t = corrupt(ids)
             blank, tok = model(x_t, pad)
             loss, _, _ = edit_flow_loss(
                 blank, tok, ids, (x_t != ids), pad,
@@ -203,6 +208,7 @@ def main() -> None:
         val_loss = validate_packed(
             model, val_batches, dev, seed=args.validation_seed,
             token_only_at_edits=args.token_only_at_edits,
+            corruption=args.corruption,
         )
         cond_gap = conditionality_probe(model, dev)
         converged = tracker.update(val_loss)
@@ -289,14 +295,15 @@ def conditionality_probe(model, dev, n=8) -> float:
 
 
 @torch.no_grad()
-def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False) -> float:
+def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False, corruption='arbitrary') -> float:
     total, n = 0.0, 0
-    from codonflow.data.dataset import corrupt_x_t
+    from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
+    corrupt = corrupt_x_t_synonymous if corruption == "synonymous" else corrupt_x_t
 
     generator = torch.Generator(device="cpu").manual_seed(seed)
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
-        x_t = corrupt_x_t(ids, generator=generator)
+        x_t = corrupt(ids, generator=generator)
         blank, tok = model(x_t, pad)
         loss, _, _ = edit_flow_loss(
             blank, tok, ids, (x_t != ids), pad,
