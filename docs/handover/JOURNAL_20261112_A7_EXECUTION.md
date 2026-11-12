@@ -174,3 +174,10 @@
 - 每个 seed 3 个并发基因，总计 6 个独立任务；MFE_PROCS=2/任务，保留正确 CC 与持久化 GEMORNA。已完成的 3 个基因不重跑。
 - 不再设置自动复算 watcher；分片全部结束后手动进行三 seed 验收。
 - release-112 非人类已恢复 4 个物种；人类116下载仍在进行。
+
+## 26. G0 自动裁决器与 CUDA 证据
+
+- 新增 `a7_g0_gate.py`：只有全量分布、冻结资产、25 物种正确 release、三 seed 独立复算和 CUDA matmul 全部通过才输出 `passed=true`。
+- source manifest 逐物种核对 cleaning 数量守恒、哈希和实际文件；人类只接受 release-116，其余物种 release-112。缺失 seed 或物种均有独立检查项。
+- 新增通过/缺失两类契约测试；px2 真实 CUDA 证据保存为 `07_a7_data/cuda_evidence_px2.json`，包含同步 matmul、设备、形状和版本。
+- 当前 G0 仍未裁决通过，待原始恢复和 seeds 1/2 完成后运行统一入口。
