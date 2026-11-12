@@ -1,99 +1,165 @@
-# RUNBOOK · 收敛之后按这个顺序跑（2026-10-31 编写）
+# CodonFlow RUNBOOK（A7 · 按科学门执行）
 
-> 目的：把 P0→P3 的每条命令、判据、禁止事项写死，避免 checkpoint 落盘后临时找参数、重复返工。
-> 所有路径以集群为准：代码 `/home/codonflow`，数据/权重 `/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow`。
-> 环境：`/root/miniconda3/envs/codonflow/bin/python`（torch cu132，ViennaRNA 2.7.2）。跑前 `PYTHONPATH=src`。
+> 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
+> 当前动作：**合同、数据协议镜像与执行计划已更新；未启动任何训练或评测。2026-11-12 本轮 SSH 被远端提前关闭，GPU 与资产仍待在线复核。**
+> 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
-## G0 收敛判定（自动，不要人工宣布）
+## 0. 立即失效的旧入口
 
-- 判据在代码里：`ConvergenceTracker(rel_tol=1e-3, patience=3)`，即 val 连续 3 个 epoch 相对下降 < 0.1%。
-- 触发后脚本自动写 `converged.pt` + `converged.json` 并退出；**没有 converged.json 就不算收敛**。
-- 核对三件事（缺一不可）：
+以下内容全部视为历史，禁止复制执行：
 
-```bash
-B=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/checkpoints
-cat $B/a6_v4_56m_r2/converged.json          # best_epoch / best_val_loss / history
-sha256sum $B/a6_v4_56m_r2/converged.pt
-sha256sum $B/a6_v4_56m_fulltoken/converged.pt
-```
+- 任何读取 `a6_v4_56m_r2/converged.pt` 或 `a6_v4_56m_fulltoken/converged.pt` 的下游命令；
+- 任何把旧 arbitrary-corruption 模型当作有效 base 的三臂、联合 HV 或 RLOO 命令；
+- 任何将 `a6_v5_syn_*` 误认为 D5 同源划分训练模型的记录；
+- 任何用 per-test-output 动态估计 HV reference/scale 的聚合命令；
+- 任何用 random padding 补足 LinearDesign/GEMORNA 等唯一解数的命令。
 
-- **禁止**：用 `last.pt` 或 `best.pt` 冒充收敛；用 val 绝对值跨臂比较（两个目标不同量纲）。
+旧模型只保留作复制退化反例。2026-10-31 的 synonymous 新两臂停在 e1 b800，**无 checkpoint**；未来获授权执行时只能从已冻结的新配置开始，不能声称从 checkpoint 恢复。
 
-## G1 unique18 基线（seed 0 → seeds 1/2）
+## 1. 所有后续 run 的统一前置检查
 
-```bash
-C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow
-cd /home/codonflow && PYTHONPATH=src MFE_PROCS=8 \
-  /root/miniconda3/envs/codonflow/bin/python scripts/run_a6_baselines.py \
-  --benchmark-fasta $C/corpora/a6_benchmark/unique18.fasta \
-  --rscu-json /home/codonflow/configs/cai_ref_v4train.json \
-  --out-dir $C/eval_outputs/a6_baselines/unique18_s0 \
-  --n-solutions 100 --seed 0 --resume
-```
+每次执行前必须依次确认：
 
-- seeds 1/2：同命令只改 `--seed 1` / `--seed 2`（文件名带 `_sN`，同目录不会覆盖；**不要新建数据目录**）。
-- RSCU 参考表：`configs/a6/cai_ref_v4train.json` 与 `configs/cai_ref_v4train.json` 字节相同，
-  SHA256 均为 `80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f`，用任一路径均可；换表必须登记。
-- 验收：18 条 × 5 方法全部 `status=done`；`identity_rate=1.0`；`n_unique` 如实记录（GEMORNA 会少于 100，不补样）；MFE/NED 全量独立复核（不能只查有限性）。
+1. 用户已授权该实验动作，且当前任务位于 `tasks.md` 允许推进的任务块；
+2. 前置 Gate 已通过，证据路径和冻结 JSON 存在；
+3. 重新盘点远端进程、GPU、代码路径和数据挂载，不沿用上日“正在运行/已停止”状态；
+4. 代码 commit、`code_dirty`、环境、RNAfold 版本和数据 SHA256 已记录；
+5. 输出目录不可与历史 run 混写，配置和协议版本不可变；
+6. checkpoint 使用不可变路径和 SHA256，禁止 live `best.pt`；
+7. 结果 schema、预算、统计方法和停止规则已在查看结果前冻结。
 
-## G2 三臂同预算推断（唯一 checkpoint + 配对初始状态）
+任一项不满足：不执行，不通过修改旧 JSON 绕过。
 
-```bash
-C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow
-cd /home/codonflow && PYTHONPATH=src \
-  /root/miniconda3/envs/codonflow/bin/python scripts/run_a6_rollout_pilot.py \
-  --benchmark-fasta $C/corpora/a6_benchmark/unique18.fasta \
-  --checkpoint $C/checkpoints/a6_v4_56m_r2/converged.pt \
-  --rscu-json /home/codonflow/configs/a6/cai_ref_v4train.json \
-  --atc-yaml /home/codonflow/configs/atc_norm.yaml \
-  --record-id <ONE_RECORD_ID> \
-  --out $C/eval_outputs/a6_pilot/three_arm_converged_<record>_s0.json \
-  --n-solutions 100 --terminal-step 4 --candidate-count 4 --rollout-count 4 --seed 0
-```
+## 2. G0 · 数据与协议就绪
 
-- **这个脚本一次只能吃一条 CDS**（2026-10-31 实测：多记录 FASTA 会直接 `ValueError`）。
-  已加 `--record-id` 选记录；按记录循环：
+### 输入
 
-```bash
-for rid in $(grep '^>' $C/corpora/a6_benchmark/unique18.fasta | sed 's/^>//' | awk '{print $1}'); do
-  ... --record-id "$rid" --out $C/eval_outputs/a6_pilot/three_arm_converged_${rid}_s0.json
-done
-```
+- D4/D5 划分、原始来源记录、清洗管线和既往 benchmark 清单；
+- 当前 spec §4–§6 与 tasks P1。
 
-- 三个臂由脚本内部固定展开：`base` / `immediate`（rollout=0，消融）/ `short_rollout`（R=rollout-count）。
-- 每基因 × seed 至少各一次；论文主表要 2 个 core 基因 × 3 seeds，另加 unique18 子集做长度分层。
-- 验收：三臂 `identity=1.0`；四成本字段齐全（`forward_calls`、`base_state_evaluations`、`rollout_batch_forwards`、`rollout_state_transitions`、终端请求、唯一 scorer）；恒定 C/T 时 forward 与公式 `F=T+T(T+1)/2+C*T(T-1)/2` 对得上。
-- **禁止**：把 2 路径协议诊断写成算法优劣；把不同 checkpoint 的臂拼成一组对照。
+### 必做产物
 
-## G3 联合 HV 主表
+1. `data_cleaning_manifest`：逐步过滤数量、原因、哈希和数量守恒；
+2. `data_distribution_report`：长度、GC、CAI/RSCU、密码子使用、物种、簇大小与选择偏差；
+3. `development_benchmark`：eGFP/nanoLuc + unique18，明确仅用于开发；
+4. `confirmation24_d5`：未参与既往实验的 24 个唯一蛋白/CDS，含排除清单和 SHA256；
+5. `calibration_protocol`：对应 train 的 CAI/RSCU、独立 HV reference/scale、GC target、motif 与 folding 条件；
+6. `simple_search_protocol`：uniform/hill-climbing/MH/AReUReDi-style 的 paired 初始化和预算；
+7. `baseline_resource_matrix`：外部方法的版本、输入、代码/权重、复跑与排除状态；
+8. `evaluation_schema` + 统计契约测试。
 
-- 参考域：同一基因/seed、**全部方法**的 obj_vectors 取唯一并集；参考点 `min − 0.05×(max−min)`，scale `q95 − min`，HV 在 `(points−ref)/scale` 上以 0 为参考（实现：`scripts/a6_joint_hv.py`，与 `recompute_s3_full_adaptive.pooled_reference` 等价）。
-- 方法池固定：CodonFlow（收敛臂）、LinearDesign、codonGPT、GEMORNA、CAI-greedy、uniform_synonymous。缺失/架构性排除必须显式列出，不记零分、不静默删除。
+### 通过条件
 
-```bash
-# 联合 HV 聚合（唯一并集参考域；缺失方法进 missing_methods）
-C=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow
-cd /home/codonflow && PYTHONPATH=src \
-  /root/miniconda3/envs/codonflow/bin/python scripts/a6_joint_hv.py \
-  --pilot-glob "$C/eval_outputs/a6_pilot/three_arm_converged_*_s0.json" \
-  --baseline-glob "$C/eval_outputs/a6_baselines/core_s0/*_s0.json" \
-  --out $C/eval_outputs/a6_pilot/joint_hv_converged_s0.json
-```
+`checklist.md` C2 全部通过。当前 G0 未通过，不能进入主训练。
 
-- 口径（与 spec §4.4、`pooled_reference` 一致）：参考点 `min − 5%×(max−min)`，scale `q95 − min`，HV 在 `(points−ref)/scale` 上以 0 为参考。退化轴会被拒绝；确有需要时加 `--allow-degenerate` 并记录轴号。
-- 自检：`scripts/a6_joint_hv.py --self-test`（5 条不变量），并有 `tests/test_a6_joint_hv.py` 5 项契约测试。
-- 验收：HV + 置信区间（bootstrap）；NED；identity/legal；四成本；配对检验（同基因同 seed 的 Wilcoxon/符号检验）。预注册线：HV 相对最强基线 ≥+10%、NED ≥基线 70%、OOD 衰减 <2pp。
+## 3. G1 · 模型收敛且非退化
 
-## G4 论文与图
+### 训练规则
 
-- 只有 G0–G3 全部通过才写 Results 章和主图；否则按“测量 + 机制”方法学论文降级。
-- 每张图必须能指到冻结 JSON + checkpoint SHA256 + 代码 commit；图上标题不得超出数据支持的结论。
+- 仅使用 G0 冻结的 D4 开发配置和 synonymous corruption；模型名使用 `M_SYN_D4_*`。
+- 保存 best/last/training_state/converged、完整配置和哈希。
+- 独立 val 连续 3 epoch 相对改善 <0.1% 才允许写 converged；plateau 本身不代表可下游评测。
+- full-token 与 edited-token 的 val 不直接比大小。
 
-## 本轮已知的坑（照抄会出错）
+### 行为验收
 
-1. 两个 56M 臂在 24 GB 卡上**不能**用同样的 20000 token micro-batch 并行（各需 11–12 GiB）。必须带 `--gpu-mem-fraction`（当前 0.58 / 0.30），且有效 batch 都是 60,000 token。
-2. `--resume` 基线脚本会校验 `protocol / source_sha256 / benchmark_sha256`，换 benchmark 文件会被拒绝，别硬改 JSON。
-3. `unique18.fasta` 的 SHA256 必须是 `30e3dbbf…`；不是这个就别跑。
-4. GEMORNA 必须从权威 benchmark FASTA 逐条翻译核验，旧 239 aa EGFP-like 输入已作废。
-5. LinearDesign 只给 7 个确定性解时**不许随机补样到 100**。
-6. 训练曲线跨臂不可比 val 绝对值；`live best.pt` 会变，对照必须用冻结文件。
+在至少 3 个开发基因上，每基因 100 个 paired 样本：
+
+- identity/legal = 100%；
+- 至少 95% 输出不同于初始序列；
+- 至少 80 个唯一终端序列；
+- 最大单一终端序列频率不超过 20%；
+- stay-p、P(edit)、位置覆盖、奖励响应和 uniform 逐串重合全部入档。
+
+这些是排除明显退化的操作阈值，不是性能结果。未通过则回到训练/采样状态诊断，禁止进入 G2。
+
+## 4. G2 · learned vs 简单搜索
+
+### 方法池
+
+- learned base；
+- uniform synonymous；
+- greedy/hill-climbing；
+- Metropolis-Hastings/annealing；
+- AReUReDi-style 同操作符搜索。
+
+### 配对协议
+
+- 同一源 CDS、同一 paired 初始状态、同一终端目标和 scorer/cache；
+- 开发集、每基因至少 3 seeds；
+- B = 50 / 100 / 500 唯一 terminal scorer evaluations；
+- 同时保留真实唯一输出数、forward 和端到端时间，不随机补样。
+
+### 主分析
+
+1. 固定独立参考域的 HV anytime AUC；
+2. 原始 Pareto front、逐目标 best-at-budget、non-dominated 指标和长度归一化 NED；
+3. 每基因选择最强简单搜索作为对照；
+4. 基因级 paired bootstrap 95% CI、Wilcoxon 和 Holm。
+
+### Go/No-Go
+
+必须同时满足 spec G2：中位相对改善 ≥10%、CI 下界 >0、校正后 `p<0.05`、identity/legal=100%、NED 不低于最强简单搜索的 70% 且无塌缩。
+
+No-Go 时：停止 short-rollout 主贡献、RLOO、扩参和 SOTA 写作。不得通过删减简单基线、改变参考域或挑选 seed 使其通过。
+
+## 5. G3 · short-rollout 净收益
+
+仅 G2 Go 后执行：
+
+- 同一冻结 checkpoint，immediate vs short-rollout；
+- paired 初始状态、相同预算和终端势函数；
+- 同时比较质量、唯一 scorer、forward 和 wall-clock；
+- 记录 rollout/candidate 增加时的近似偏差与成本。
+
+只有主终点和时间成本均有正向基因级证据才保留 short-rollout；否则主线使用 immediate，不将短 rollout 写成必要组件。
+
+## 6. G4 · 独立确认与外部边界
+
+### 顺序
+
+1. 在不访问确认集的前提下训练并验收 `M_SYN_D5_*`；
+2. 在 untouched 24 基因确认集重复 G2 主对照，禁止调阈值、参考域或统计口径；
+3. 加入 LinearDesign、GEMORNA、codonGPT 和最强简单搜索；
+4. 可复跑时才加入 mRNAutilus/ProMORNA/mRNA-GPT，否则列入 missing/not-reproduced；
+5. natural-source 与 protein-only 初始化分开分析；
+6. 按目标数、长度、GC 和预算写优势/失败边界。
+
+D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，原确认资格作废，必须重新建立 untouched 集合并登记 amendment。
+
+## 7. G5 · 论文和主图
+
+- 可先写 Introduction、Method、Evaluation Protocol 和精确小状态机制验证；不得预写学习收益。
+- G2 后才写 learned-vs-simple 中心结果；G3 后写 rollout；G4 后写外部边界和 Discussion。
+- 中心图为 learned vs 简单搜索的 anytime 质量—成本前沿。
+- 每图必须能定位冻结 JSON、代码 commit、数据 SHA256 和 checkpoint SHA256。
+- 无湿实验时，不出现表达、稳定性、安全性或疗效宣称。
+
+## 8. 产物与成本最小字段
+
+每个结果至少包含：
+
+- `protocol_version`、`run_id`、`status`、`seed`；
+- `source_sha256`、`benchmark_sha256`、`data_split_sha256`；
+- `code_commit`、`code_dirty`、环境和配置哈希；
+- `checkpoint_path`、`checkpoint_sha256`（无模型方法为 `null`）；
+- 原始目标向量、唯一输出数、identity/legal、NED；
+- B 网格与 anytime 指标；
+- `forward_calls`、`base_state_evaluations`、`rollout_batch_forwards`、`rollout_state_transitions`；
+- cache 前终端请求、实际 scorer invocations、唯一 scorer、wall-clock；
+- `missing_methods`、`exclusions`、失败/部分运行状态。
+
+官方实现不可见的计数写 `null`，不得写 0 或猜测值。
+
+## 9. 失败与恢复纪律
+
+- OOM、NaN、进程死亡、部分输出全部保留；不得将退出码或文件存在解释为科学成功。
+- 无 training_state/checkpoint 时不得声称精确恢复；必要时从零开始并新建不可变 run ID。
+- 失败 run 不覆盖原目录；恢复时核对 protocol/source/benchmark/checkpoint 哈希。
+- 不为占满 GPU 制造任务，不并行跳过科学门，不删除负结果。
+
+## 10. 当前唯一下一步
+
+A7 数据/确认集/calibration/简单搜索/统计协议已实现，完整回归为 **126 passed, 1 skipped**，真实 eGFP 四方法冒烟通过。详细产物见 `JOURNAL_20261101_A7_G0.md`。
+
+G0 仍未通过。下一步只完成 P1 剩余项：恢复 D4/D5 全量数据与 unique18、实际冻结 24 基因确认集、生成 per-gene calibration、复核 unique18 既有输出 manifest。外部 baseline 资源表已冻结于 `configs/a7_baseline_resources.json`。远端当前 connection refused，不能用合成冒烟替代这些验收。**当前没有获准直接运行的 G1–G4 主实验命令。**

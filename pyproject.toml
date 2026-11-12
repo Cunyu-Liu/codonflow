@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "codonflow"
 version = "0.1.0"
-description = "Codon-level discrete flow mRNA editor with feasibility gating and label-free bi-reward RLOO"
+description = "Finite-step synonymous CDS editing with budget-matched learned and simple-search evaluation"
 requires-python = ">=3.10"
 dependencies = [
     "torch>=2.4",

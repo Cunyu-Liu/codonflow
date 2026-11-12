@@ -1,0 +1,47 @@
+{
+  "protocol_version": "a7_data_v1",
+  "status": "g0_open_remote_execution_recheck_required",
+  "runtime": {
+    "code_worktree": "/home/codonflow",
+    "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031",
+    "gpu_required_for_training_and_gpu_validation": true,
+    "cpu_fallback_allowed": false
+  },
+  "development": {
+    "role": "debugging_and_g2_g3_development_only",
+    "core_records": [
+      {"record_id": "egfp_P42212_syn", "canonical_fasta": "corpora/bench_egfp.fasta"},
+      {"record_id": "nluc_JQ437370.1", "canonical_fasta": "corpora/bench_nluc.fasta"}
+    ],
+    "unique18": {
+      "canonical_fasta": "corpora/a6_benchmark/unique18.fasta",
+      "expected_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+      "status": "handoff_verified_seed0_complete_seeds1_2_and_mfe_ned_recalculation_open"
+    }
+  },
+  "confirmation": {
+    "role": "untouched_final_evaluation_only",
+    "n": 24,
+    "source": "D5_test",
+    "builder": "scripts/a7_build_confirmation.py",
+    "required_inputs": ["test_fasta", "exclusion_fastas", "cluster_tsv"],
+    "selection_uses": ["length_nt", "gc", "identifier", "cluster_membership"],
+    "selection_forbids": ["model_outputs", "cai", "mfe", "hypervolume"],
+    "artifact": "07_a7_data/confirmation24/confirmation24.fasta",
+    "expected_sha256": "a128bdbf6bfbc94f33d8d4d72f99173108ee0f0d8d3318d5a0d287de3b710d6d",
+    "status": "handoff_verified_remote_recheck_required"
+  },
+  "calibration": {
+    "builder": "scripts/a7_build_calibration_pool.py",
+    "source_role": "independent_calibration_not_test",
+    "reference_rule": "min_minus_5pct_ptp",
+    "scale_rule": "q95_minus_min",
+    "degenerate_axes": "reject",
+    "shared_with_search_utility": true,
+    "artifact_dir": "07_a7_data/calibration24",
+    "rscu_artifact": "07_a7_data/cai_ref_d5train.json",
+    "rscu_expected_sha256": "2a5e05ef17a03a2b3b063990fd875d565a6db3fbedebab7689bca1fa45658c5d",
+    "expected_reference_records": 24,
+    "status": "handoff_verified_24_of_24_remote_recheck_required"
+  }
+}

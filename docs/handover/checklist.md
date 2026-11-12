@@ -1,129 +1,108 @@
-# Checklist（A6 验收追加版 · 2026-10-26/27）
+# CodonFlow Checklist（A7 当前有效验收）
 
-> A-H/J-K 的旧勾选只保留历史轨迹。A6 审计发现其中若干项虽然产物存在，但科学验收不成立；当前以本节为准，不用旧勾选推导 Gate C。
+> 生效日期：2026-11-01。旧 A–L 勾选不再作为当前验收依据；历史轨迹见 journals、HANDOFF 和 `AUDIT_REFLECTION_20261101.md`。
+> 只有产物、独立核验和对应科学问题同时满足才可勾选。文件存在、loss 下降、测试通过或 GPU 运行均不等于科学通过。
 
-## L. 当前有效验收
+## C0. 方向、审计与合同
 
-- [x] L1 全量交接与代码审计完成，核心实现/数据/预算问题有明确证据。
-- [x] L2 v3 精确重叠报告生成，旧“零泄漏/family-disjoint/18 unique”撤回。
-- [x] L3 v4 776,474 唯一蛋白；所有 split 与 benchmark 精确 CDS/蛋白交叉重叠为 0。
-- [x] L4 有限步 Markov 精确小状态 Doob 验证；真实大空间仅称短 rollout 近似。
-- [ ] L5 真实 56M 多步基础核 on-policy path-RLOO 稳定性通过；此前引导路径配基础核概率的一步结果只作历史诊断。
-- [x] L6 本地/远端 98 tests 全绿；正确 GEMORNA nanoLuc 1/1 身份冒烟通过。
-- [x] L7 训练配置含数据 SHA256、代码 commit、固定验证 corruption；R1 失败日志保留。
-- [ ] L8 edited-token/full-token 两臂分别到独立验证 plateau，best/last/training_state 一致。
-- [ ] L9 immediate/short-rollout/frozen 同预算 pilot；v4 三臂成本与冻结 checkpoint 冒烟已通过，多基因、3 seeds、收敛模型和统一预算尚未完成。
-- [x] L10 GEMORNA 100 次采样得 81 唯一合法解、0 身份错误；不补足独立解。其余 baseline 待补齐。
-- [ ] L11 完整方法池联合 HV、缺失/零值检查与统计不确定性全部通过。
-- [x] L12 数据审计图、全量分布图、真实 baseline 图、机制/成本图与 43 页 PPT 已验收；旧错误 nanoLuc 已替换、旧结果标为历史探索。预印本待新证据。
-- [x] L13 GPU queue 完整生命周期与日志监控通过；主要代码 commit 已推送，最终三端结果清单待训练结束。
-- [ ] L14 Gate C 以 A6 新证据裁决；未达成时明确 No-Go/降级。
-- [x] L15 v4-test 长度分层 18 条 benchmark 独立审计通过：全部逐字来自 test、18 unique ID/CDS/蛋白、train/val 精确重叠为 0、哈希一致。
-- [x] L16 protein-homology-cluster v5 与独立审计完成；不是 curated family 注释。species 元数据与相应泛化验证仍未完成，不作 species-OOD 声明。
-- [x] L17 按用户要求完成收尾：full-data RLOO 队列取消，不再新增实验；训练、baseline、旧 legacy 和监控会话全部停止。
-- [x] L18 两臂 epoch-6 best/last/training_state 与 manifest 已冻结并核对哈希；明确标记 stopped_not_converged，恢复入口见 HANDOFF。
-- [x] L19 unique18 的 10 条完整记录已完成身份/解数/哈希/CAI/GC/motif 审计；1 条部分运行、7 条未启动已记录，MFE/NED 留待主表前全量复核。
-- [x] L20 2026-10-30 两臂 training_state 可加载、CUDA matmul 通过并恢复；**但 21:11 的并行恢复在 21:14 因 edited-token 臂 OOM 失败**（证据在 `a6_v4_56m_r2/train.log`），已按 L21 修复重启。plateau、冻结 checkpoint 与完整下游验收仍未达成。
-- [x] L21 单卡共存修复：`--gpu-mem-fraction` 硬上限 + `expandable_segments`；23:36/23:37 两臂并行重启（0.58 / 0.30），有效 batch 均 60,000 token，micro-batch 差异已在 spec 披露。
-- [x] L22 unique18 seed-0 以 `--resume` 在原目录续跑（23:45，MFE_PROCS=8），不新建数据目录；完成 10 条 + 1 条部分，其余 7 条在跑。
-- [x] L23 PPT 修订：45 页；新增指标口径与论文逻辑链页；第 10/19/34/35/43 页重写；表格逐项对照核验 JSON；微软雅黑全量统一；无越界形状、授权页字形精确测宽无溢出。
+- [x] 主任务确认为 warm-start synonymous CDS editing。
+- [x] 第一决定性关卡确认为 learned proposal vs 无学习简单搜索。
+- [x] 全部交接文档完成只读审计与反思记录。
+- [x] 文献审计补入 mRNA-GPT、AReUReDi、MOG-DFM、TR2-D2；RayGun/SCISOR 从数值主表排除。
+- [x] 当前 spec/tasks/checklist/runbook/论文提纲已统一为 A7。
+- [ ] 后续任何 amendment 在查看对应新结果前登记，并同步全部合同文件。
 
-## 历史 Checklist（原样保留，非当前验收依据）
+## C1. 可复用历史资产（不代表性能通过）
 
-# Checklist
+- [x] 有限步同义 Markov 操作符与可枚举小状态精确验证存在。
+- [x] 成本 trace 能区分 forward、rollout、终端请求、实际 scorer 和唯一 scorer。
+- [x] D4 精确 CDS/蛋白交叉重叠审计为 0。
+- [x] D5 操作定义的 protein-homology-cluster 隔离审计通过。
+- [x] unique18 的 18 条输入 FASTA 已冻结并审计。
+- [x] core seed-0 五方法的部分真实 baseline 结果完成身份/输入复核。
+- [x] 旧 arbitrary-corruption 模型的复制退化已证伪并保留负结果。
+- [x] unique18 seed-0 已通过 manifest 复核：18/18、五方法 `done`、identity=1、目标有限、哈希匹配；seeds 1/2 与全量 MFE/NED 独立重算仍未完成。
 
-> 项目：CodonFlow（密码子级离散流 mRNA 编辑器）｜验收清单
-> 使用规则：实现完成后逐项核验并勾选；任一项失败 → 在 tasks.md 增补修复任务并重新核验。
+## C2. G0 数据与协议就绪
 
-## A. 调研与立项依据
+- [ ] 数据来源、release、哈希和逐步清洗流水账完整；完整 `v3_all.fasta` 已找到且 SHA256=`5e106f9e…`，release/逐步清洗记录仍待补齐。
+- [ ] 长度/GC/CAI/RSCU/密码子使用/物种/簇大小分布与选择偏差审计完整；目前仅有旧汇总和真实 eGFP 冒烟。
+- [ ] 元数据和非标准遗传代码处理规则明确。
+- [x] untouched 24 基因 D5 确认集已冻结于 `07_a7_data/confirmation24/`，SHA256=`a128bdbf…`；长度/GC 各档均 8 条，train/val 精确重叠为 0。
+- [x] D4/D5 参考表独立；D5 train RSCU 已生成于 `07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`。
+- [x] 24 个独立 calibration pool 已全部生成并验证：25 个顶层 JSON，record/hash 一一对应，D5 RSCU 一致，scale 全部为正且有限；每池 56–70 个唯一目标向量。
+- [ ] 确认实际 GPU、驱动、PyTorch/CUDA 兼容性和同步 CUDA matmul；CUDA 不可用或 CPU 静默降级时停止并保存证据。
+- [x] 退化轴默认拒绝，指标方向、预算网格与统计配置已冻结于 `configs/a7_protocol.json`。
+- [x] uniform/hill-climbing/MH/AReUReDi-style 简单搜索通过合成行为/预算测试和真实 eGFP 四方法冒烟；主实验完整 B 网格留待 G2。
+- [x] 外部 baseline 资源、复跑状态和排除理由已冻结于 `configs/a7_baseline_resources.json`；远端实际输出与 unique18 manifest 仍待复核。
+- [x] anytime schema、四成本和基因级统计计划通过契约测试；真实四份结果均通过 `validate_result_payload`。
 
-- [x] A1 GrammarRL 论文（arXiv:2609.39869）已全文精读：RLOO 配方（N=3+beam 混入、β=0.02、λ=0.5、LoRA r=64）、双奖励公式、消融数字均已抄录入 `docs/paper_notes/grammarrl.md`
-- [x] A2 pCoMole 论文（arXiv:2610.01663）已全文精读：门控终端分布式(9)-(12)、短 rollout 近似式(13)-(15)、log-domain 技巧（附录 B）、采样超参（附录 H）均已抄录入 `docs/paper_notes/pcomole.md`
-- [x] A3 pCoMole 代码开源地址已核实（huggingface.co/ChatterjeeLab/pCoMole）并已克隆锁定 commit
-- [x] A4 基线生态找全：codonGPT（NAR 2025）/ mRNAutilus（2605.31296）/ ProMORNA（2605.01513）/ LinearDesign / RayGun / SCISOR 均有出处与实现路径记录
-- [x] A5 评测生态找全：CAI（Sharp & Li 1987，HPA 参考集）、RNAfold 2.6.4、NED 定义、Pareto hypervolume 计算方式均已定义并给出处
+## C3. G1 模型收敛且非退化
 
-## B. 数据与任务（R2）
+- [ ] 新 synonymous-corruption 模型具有真实 converged checkpoint；当前无有效 checkpoint。
+- [ ] best/last/training_state/converged、配置和 SHA256 一致且不可变。
+- [ ] identity/legal = 100%。
+- [ ] 至少 3 个开发基因 × 100 paired 样本中，≥95% 输出不同于初始序列。
+- [ ] 每 100 个输出至少 80 个唯一终端序列，最大单一终端序列频率 ≤20%。
+- [ ] stay-p、P(edit)、位置覆盖、奖励响应和 uniform 逐串重合诊断归档。
+- [ ] full-token 与 edited-token 只通过同一下游协议比较，不直接比较 val 绝对值。
 
-- [x] B1 预训练语料 ≥1M CDS（GENCODE/RefSeq 人类），来源 URL + 下载日期 + 哈希已记录
-- [x] B2 清洗规则全执行：MMseqs2 0.8 去冗余、去截短/内部 stop、长度过滤、簇级 80-10-10 split
-- [x] B3 数据分布审计图（长度/GC/CAI/RSCU）四维入档
-- [x] B4 编辑任务基准集就位：eGFP/nanoLuc/SpCas9 + 跨家族 OOD 代表序列
-- [x] B5 family-disjoint OOD split 定义文件存在且与训练集无簇重叠（近邻审计通过）
+## C4. G2 learned vs 简单搜索（第一决定性关卡）
 
-## C. 方法实现（R3、R5）
+- [ ] learned、uniform、hill-climbing、MH/annealing、AReUReDi-style 使用 paired 初始状态和相同 scorer/cache。
+- [ ] 每基因至少 3 seeds，B=50/100/500 anytime 数据完整。
+- [ ] 主终点为固定参考域 HV AUC；原始 Pareto front、best-at-budget 和 NED 同步报告。
+- [ ] learned 相对每基因最强简单搜索的主终点中位相对改善 ≥10%。
+- [ ] gene-level paired bootstrap 95% CI 下界 >0。
+- [ ] Holm 校正后 Wilcoxon signed-rank `p<0.05`。
+- [ ] identity/legal=100%，长度归一化 NED ≥最强简单搜索的 70%，无单序列塌缩。
+- [ ] Go/No-Go 由冻结 artifact 自动裁决；失败时不以其他弱 baseline 替代。
 
-- [x] C1 密码子级 Edit Flow 主干：67 token 词表、阅读框同步编辑算子、损失式(6)实现
-- [x] C2 可行性门控终端分布：G(x)=exp(β·ATC)·𝕀[身份∧阅读框∧终止密码子]，log-domain 实现
-- [x] C3 Doob-h 引导：候选×rollout 重加权式(15)，稳定 softmax
-- [x] C4 三足评分器（CAI/RNAfold/翻译一致性）全部无学习组件
-- [x] C5 RLOO 双奖励：direct 长度归一化无约束概率 + reverse 硬翻译一致性 + σ 校准 + LinearDesign 解混入组
-- [x] C6 超参数均按 spec R5 预注册范围设置，无未注册超参进入主表
+## C5. G3 short-rollout 净收益
 
-## D. 训练纪律（R6）
+- [ ] immediate 与 short-rollout 使用同一冻结 checkpoint 和 paired 初始状态。
+- [ ] 质量、唯一 scorer、forward 和 wall-clock 同时比较。
+- [ ] 主终点与时间成本均有正向基因级证据。
+- [ ] rollout/candidate 增大时的近似偏差和成本前沿完整。
+- [ ] 若未通过，short-rollout 从主贡献和主标题中移除。
 
-- [x] D1 GPU 并行且占满：DDP 4-6 卡 A100，显存利用率曲线入档（利用率 <80% 的 run 有书面解释）
-- [x] D2 训练到收敛：预训练验证损失 3 epoch 相对下降 <0.1% 判据触发记录；RLOO 奖励平台期判据记录；无「中途截断宣布结果」
-- [x] D3 REGISTRY.md 逐 run 登记完整（run_id/GPU 配置/超参全量/数据版本 commit/最终指标/收敛判据触发点）
-- [x] D4 GitHub 仓库 `codonflow` 建立（远端 git@github.com:Cunyu-Liu/codonflow.git，独立 init 零共享历史）：main 分支保护、每 task 一 PR、负结果不删除
-- [x] D5 大文件纪律：checkpoint/评测输出/语料在 /mnt/cunyuliu/codonflow/，home 无大产物（抽查 home 磁盘占用确认）
-- [x] D6 监控与告警：GPU 心跳 30 分钟采样、OOM/NaN/进程死亡自动通知，巡检日志每周归档
-- [x] D7 停止条件（预注册 5 条）全部写入实验代码的断言/检查点，触发即停并归档证据
-- [x] D8 GPU 显存排队脚本上线：轮询→队列 FIFO+优先级→自动提交→状态回写→异常告警全链路实测一次（含多卡 DDP 判定）
+## C6. G4 独立确认与外部边界
 
-## E. 评测充分性（R7）
+- [ ] D5 最终模型在不接触确认集的情况下训练并重复 G1。
+- [ ] untouched 24 基因确认集重复 G2 主对照，无阈值/参考域事后调整。
+- [ ] LinearDesign、GEMORNA、codonGPT 和最强简单搜索进入统一边界分析。
+- [ ] mRNAutilus/ProMORNA/mRNA-GPT 仅在相同 CDS-only 协议可复跑时进入数值表。
+- [ ] natural-source 与 protein-only 初始化分开报告。
+- [ ] 输出、scorer、时间三种预算和四成本字段完整。
+- [ ] 缺失方法、架构性排除和第三方预训练不可审计性显式披露。
+- [ ] 仅声称操作定义的同源泛化，不写 curated family/species OOD。
 
-- [x] E1 主表：CodonFlow vs 4 基线 × ≥3 家族 × ≥3 seeds，5 指标（合法率/身份保持/Pareto hypervolume/NED/单序列成本）
-- [x] E2 OOD 表：family-disjoint 切分 generalization gap 已报告
-- [x] E3 消融表：去门控/去 Doob-h/单 direct/单 reverse/碱基 vs 密码子级，数字齐全
-- [x] E4 λ 与 β 敏感性扫描完成
-- [x] E5 预测器独立性检验（换第二参考表）通过——多目标提升不消失
-- [x] E6 预注册成功标准核对：身份保持 100% ∧ 合法率 >99% ∧ hypervolume 提升 ≥10% ∧ NED ≥ 基线 70% ∧ OOD 衰减 <2pp
-- [x] E7 侧重 OOD 的专项分析：低同源/跨家族场景下的性能保持报告（借鉴 RipplePLM 双切分与 mRNABench homology-aware 协议思想）
-- [x] E8 叙事-现象对应表逐行有图：六条叙事推进各有可指认的实验现象图，无「叙事无证据」行
-- [x] E9 弱链对照落实：EXP-2 用「同预算后置过滤」而非简单门控开关；EXP-5 锚定双/四目标（单目标如实认输 DP 最优）且 LinearDesign 给同等 100 解预算（权重扫描）
-- [x] E10 统计口径执行：六实验 ≥3 家族 × 3 seeds、KS/Wilcoxon 配对检验、图型先冻结后出数
+## C7. G5 论文与发布
 
-## F. 交付物
+- [x] 新提纲以 learned-vs-simple-search 为中心，不以测量/审计替代科学主结果。
+- [ ] Introduction/Method/Evaluation Protocol 不含未验收性能承诺。
+- [ ] Results 各节均有对应 G1–G4 证据。
+- [ ] 中心图为 learned vs 简单搜索的 anytime 质量—成本前沿。
+- [ ] 每个数字可追溯到冻结 JSON、代码 commit、数据与 checkpoint SHA256。
+- [ ] 负结果、失败模式和不可复现 baseline 与正结果同等保留。
+- [ ] 无湿实验时，不出现表达、稳定性、安全性或疗效宣称。
+- [ ] Gate 未通过时明确 No-Go/降级，不将当前状态写成可提交预印本。
 
-- [x] F1 3 个 MD 文档（spec/tasks/checklist）已落盘 `/Users/liucunyu/Documents/课题idea 数据 结论/浙江大学/RNA 相关模型/CodonFlow-密码子级离散流mRNA编辑器/`
-- [x] F2 学术汇报 PPT 已落盘同目录：微软雅黑字体、1.5 倍行距、逻辑链完整（科学问题→数据→方法→实验→SOTA→发表→执行路线）
-- [x] F3 汇报讨论问题清单（3 个开放问题）已附
-- [x] F4 PPT 程序化检查通过：字体一致（无缺字体回退）、无文本溢出、页面布局无异常
+## 当前 Gate 状态
 
-## G. 决策门
+| Gate | 当前状态 | 原因 |
+|---|---|---|
+| G0 数据与协议 | **未通过** | 确认集、D5 RSCU 和 24 个 calibration 池已完成；全量审计、seeds 1/2、MFE/NED 和 GPU 检查未完成 |
+| G1 模型有效 | **未通过** | synonymous 新模型无 checkpoint；旧 plateau 模型已证伪 |
+| G2 学习必要性 | **未裁决** | 没有有效 learned 模型与完整简单搜索对照 |
+| G3 rollout 净收益 | **未启动** | 依赖 G2 |
+| G4 独立确认/外部边界 | **未启动** | 依赖 G2/G3 与 D5 最终模型 |
+| G5 论文发布 | **不可提交** | 学习与独立确认证据缺失 |
 
-- [x] G1 Gate A（基线量级一致）：Go/No-Go 记录在档
-- [x] G2 Gate B（门控可行 + 成本可承受）：Go/No-Go 记录在档
-- [ ] G3 Gate C（成功标准达成）：Go/No-Go 记录在档
-- [ ] G4 若任一门 No-Go：降级路线或负结果归档执行完毕（不静默放弃）
+## 永久禁止沿用的旧结论
 
-> 勾选状态说明（2026-10-23 冻结点二次核验，见文末更新）：A4/A5、F1-F4 已核验通过；A1-A3 的「落档/克隆」动作属 Phase 0 任务（调研内容已完整形成于本会话，未落仓库笔记）；B-G 为实验执行期检查项，待后续。
-## H. tasks v3 工程对齐核验（2026-10-04 增补）
-
-- [x] H1 0.2.5 排队脚本全链路冒烟通过（提交→运行→回写→告警）
-- [x] H2 1.1.5 基准序列所在 MMseqs2 簇已从训练 split 剔除（泄漏防护）
-- [x] H3 1.2.2 LinearDesign 单序列耗时基准已入 REGISTRY（停止条件④分母）
-- [x] H4 2.2.2 ATC 四目标按 Amendment A1 归一化，定标量冻结于 configs/atc_norm.yaml
-- [x] H5 2.2.3 评分缓存命中报告 ≥60%（RNAfold 去重）
-- [x] H6 3.1.1 direct 用无约束概率、reverse 硬翻译、σ 校准集与训练/测试互斥
-- [x] H7 3.3.1 停止条件五条已代码化（src/eval/stop_checks.py 断言）并有单测
-- [x] H8 全部任务带 DoD，spec↔task 对齐索引表与实际任务一致
-
-## I. 2026-10-23 冻结点核验更新（证据位置：/teams 公共目录 + GitHub main=c850478）
-
-- [x] I1 上述 A-H 勾选依据：paper_notes（A1/A2/A3 落 docs/paper_notes）、语料 v3 862k（B1-B5，corpora md5 对账）、src/ 各模块单测（C1-C6）、REGISTRY.md（D3）、watchdog v3-v8 + cron（D6/D8）、stop_checks.py（D7）、E1-E10 全部 JSON 在 eval_outputs（E 系）+ gate_A/B.md 在档（G1/G2）
-- [ ] I2 G3 Gate C 未决：依赖 355M 收敛 + 全量评测（冻结未完成）；G4 未触发（无 No-Go）
-- [ ] I3 355M 收敛 + v3rloo 9 arm 补全 + fig10 终版 → Gate C 判定（恢复路径见 tasks.md v4）
-
-## J. 2026-10-23 冲刺期核验（新集群恢复，见 tasks.md v5 / REFLECTION_20261023.md）
-
-- [x] J1 新集群资产盘点 + md5 对账（语料 3 件 / 56M converged / 355M last）
-- [x] J2 代码运行副本 /home/codonflow 部署（HEAD eef0310，tree clean）
-- [ ] J3 环境重建验收：torch cuda True + ViennaRNA API + pytest 41/41 全绿（5090）
-- [ ] J4 355M 续训拉起 + watchdog 5090 适配（显存 ≥28GB 占用截图/记录）
-- [ ] J5 v3rloo 26/26 JSON + RLOO 增益裁决（对照表落档）
-- [ ] J6 Cas9 motif 归一化 + adaptive reference 全量重算（A4 口径，amendment 披露）
-- [ ] J7 355M converged.pt + 17/17 评测 + 容量曲线第三点 → Gate C 判定
-- [ ] J8 主图 house-style 重制（PDF+PNG 双格式）+ 叙事-现象对应表复核
-- [ ] J9 预印本 v1（三幕结构）+ PPT 更新 + GitHub 最终 commit + 三端备份
+- SOTA、capacity scaling、RL saturation、masking 普遍因果；
+- 旧 family/species OOD、四层 benchmark、零泄漏总括声明；
+- 旧 full-token/e14 及其三臂/联合 HV；
+- 不可复核旧主表和逐基因数字；
+- 以 100% identity 代替学习价值，以 val plateau 代替下游有效，以文件数代替 benchmark 完整度。

@@ -1,65 +1,137 @@
-# Tasks（A6 证据链修复版 · 2026-10-26/27）
+# CodonFlow Tasks（A7 · warm-start 学习价值验证版）
 
-> 历史 v5/v6 产物只作 legacy exploratory；本文档为当前验收队列。每项只有实际证据满足才勾选。
+> 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
+> 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
+> 当前处于 P1/G0 实施阶段；协议代码与合成/真实 CDS 冒烟已完成，未启动新模型主训练。远端运行状态在任何后续执行前重新盘点。
 
-## 恢复冲刺（2026-10-30，当前执行）
+## 0. 已完成的方向与审计工作
 
-- [x] R6.0 通读全部交接文档并盘点远端；确认无新增结果、无残留任务，当前 RTX 4090 24GB（uptime 2:09，实例于 21:02 重启）。
-- [x] R6.1 两臂 training_state 可加载、CUDA matmul 通过；21:11 并行恢复。
-- [x] R6.1b **21:11 的并行恢复失败**：edited-token 臂 21:14 首个 batch `torch.OutOfMemoryError`（free 202 MiB），会话 `a6_edit_resume` 退出；证据在 `a6_v4_56m_r2/train.log`。根因：两臂各 20000 token micro-batch 在 24GB 上无法共存（各需约 11–12 GiB）。
-- [x] R6.1c 修复并重启（23:36 / 23:37）：`run_pretrain.py` 增加 `--gpu-mem-fraction` 硬上限 + `expandable_segments`；full-token 0.58（20000×3）、edited-token 0.30（10000×6），有效 batch 均 60,000 token；micro-batch 差异已写入 spec 披露段。full-token 从 epoch-7 state 恢复，损失约 35 分钟无 checkpoint 的半轮。
-- [ ] R6.2 两臂分别到独立验证 plateau，冻结 converged/best/last/training_state 与哈希。当前 full-token e8 loss 2.8270 / val e7 2.814013；edited-token e7 loss 4.3842 / val e6 4.385477；均未 plateau。
-- [ ] R6.3 unique18 seed-0 断点续跑中（23:45 启动，`a6_u18`，MFE_PROCS=8）：10 条完整 + C05E11.2.1 部分，剩 7 条；完成后再补 seeds 1/2 与全量独立审计。
-- [ ] R6.4 收敛冻结模型上完成多基因 3 seeds、统一预算、联合 HV、四成本与统计对照。
-- [x] R6.5 PPT 修订完成（45 页）：新增指标口径页与论文逻辑链总页；重写第 10/19/34/35/43 页；A6 四张图与全部表格按核验口径更新；统一微软雅黑与 1.5 倍行距（表格 1.2–1.3，两处 legacy 密集页按可用间距封顶）。未完成实验一律标“待裁决”。
-- [x] R6.6 证据复核：GEMORNA A6 n=81（identity 81/81、CAI 0.9212/0.9684、MFE −194.3/−217.6、GC 0.5936）；v5 审计 776,441 保留 / 128 排除 / 三项 split 全 0 重叠；unique18 JSON 12 个（10 done + 1 running + 1 audit）。
-- [x] R6.7 表格逐项复核（详见 JOURNAL 第 7 节）：第 36 页 L1 行的 CodonFlow 原值（32.4±5.9 / 128.1±16.6）在两份现存 artifact 中都无法复现，已按 `E5v2conv_main_table.json` 重算为 31.9±5.9 / 112.9±21.5；`uniform_edit_flow` 误标为“Uniform”已改为“裸编辑流”；L2–L4/R4 与第 37 页因源 JSON 未迁移，标为“不可复核、不得引用”；第 14 页 ProMORNA 行改为“仅据原文自述、实现与权重未在本仓库锁定”，不再使用未经证实的机制推断。
+- [x] **T0.1 全量交接审计**：通读交接材料，识别旧模型退化、数据/指标/文档漂移和不可引用旧结果。
+- [x] **T0.2 文献与 baseline 审计**：补入 mRNA-GPT、AReUReDi、MOG-DFM、TR2-D2；确认 RayGun/SCISOR 不属于 synonymous CDS 数值 baseline。
+- [x] **T0.3 科学方向确认**：用户确认 warm-start 主任务和 learned-vs-simple-search 第一决定性关卡。
+- [x] **T0.4 只读反思记录**：见 `AUDIT_REFLECTION_20261101.md`；包含主张—证据矩阵、论文推理链和合同漂移清单。
+- [x] **T0.5 合同重写**：`spec.md`、`tasks.md`、`checklist.md`、`RUNBOOK_NEXT.md` 与 A6 提纲统一为 A7 逻辑。
 
-## 收尾交接（2026-10-27，历史状态）
+## 1. P1 · G0 数据与协议就绪
 
-- 用户要求停止新增实验并交接；full-data RLOO 队列已取消，旧 legacy、训练、baseline 和监控会话均已停止。
-- 两臂在 epoch 6 安全停止并冻结 best/last/training_state，均未 plateau；恢复时必须使用 `handoff_epoch006_training_state.pt`。
-- unique18 完成 10/18，C05E11.2.1 为部分运行，另 7 条未启动；10 条完整记录的收尾审计通过，MFE/NED 未做全量独立重算。
-- 当前不能提交预印本或宣布 Gate C。完整问题、未完成事项和禁止事项见 [HANDOFF_20261027_WRAPUP.md](HANDOFF_20261027_WRAPUP.md)。
+### T1.1 数据来源、清洗与分布审计
 
-## P0 数据、方法与训练
+- [x] 实现 `scripts/a7_data_audit.py`：逐步无效原因、长度/GC/CAI/RSCU、物种/簇元数据和 cleaning manifest 数量守恒；合成测试与真实 eGFP 冒烟通过。
+- [ ] 恢复全量原始数据后，补齐数据库 release、URL、下载日期、哈希和逐步过滤数量。
+- [ ] 生成全量长度、GC、CAI/RSCU、密码子使用、物种占比、簇大小和过滤选择偏差报告。
+- [ ] 记录非标准遗传代码、异常注释及无法恢复元数据的处理。
 
-- [x] A6.0 全部交接文档、journal、PPT、代码与运行状态审计；恢复持久 SSH。
-- [x] A6.1 全量精确 CDS/蛋白审计；确认旧跨 split 重叠、HELD18 重复与错误 baseline。
-- [x] A6.2 有限步同义 Markov 编辑器、短 rollout Doob 近似与可微路径概率；精确小状态验证。
-- [x] A6.3 `splits_v4_protein`：776,474 唯一蛋白，独立审计所有精确交叉重叠为 0。
-- [x] A6.4 真实 56M 一步 path-RLOO 冒烟：identity=1.0，效用进入奖励，loss/logp/grad 有限。
-- [x] A6.5 本地/远端 98 tests 全绿；历史交接已合并推送，最新修复通过 bundle 同步，GitHub 网络恢复后补推。
-- [ ] A6.6 edited-token 在 epoch 6 停止，val=4.3854775，未 plateau；best/last/training_state 已冻结，后续从 handoff manifest 精确恢复。
-- [ ] A6.7 full-token 在 epoch 6 停止，val=2.8195373，未 plateau；best/last/training_state 已冻结，不与 edited-token 直接比较 val。
-- [ ] A6.8 小样本 immediate vs short-rollout vs frozen control；v4 三臂成本冒烟已用冻结 epoch-5 checkpoint 通过，后续在收敛模型上扩到多基因 3 seeds 和统一预算。
-- [x] A6.9 正确 GEMORNA nanoLuc 批量结果与身份报告：100 次调用得 81 个唯一合法解，0 身份错误；CAI 0.9212、MFE −194.32。其余 baseline 仍待补齐，LD 不随机补样。
-- [ ] A6.10 旧 355M/RLOO 队列自然结束，归档 legacy；旧 verdict 不作为 Gate C 依据。
+**DoD**：独立脚本从原始输入生成清洗流水账与分布报告；数量守恒，所有规则有审计文件，不只保留最终 FASTA 或旧汇总。
 
-## P1 证据、图表与预印本
+### T1.2 开发集与 untouched 确认集
 
-- [x] A6.11 v4-test 18 条长度分层 benchmark 冻结并独立审计；全部来自 v4 test、唯一 ID/CDS/蛋白、train/val 精确重叠为 0。不是 HELD18 去重版，不作 species/family 声明。
-- [ ] A6.12 联合 HV 完整方法池与预设 arms；缺失/零值显式报告，统计不确定性与置信区间随表。
-- [ ] A6.13 按新证据制作机制、数据、学习、baseline、成本图，PDF+PNG 双输出；机制/成本图已完成，收敛对照与泛化图待新结果。
-- [ ] A6.14 预印本主线重写：测量→机制→学习/泛化→边界，撤回无证据的 SOTA/scaling/masking 因果。
-- [x] A6.15 PPT 只录入核验结果：新增数据审计、证据分级、全量分布、真实 baseline 与机制/成本页；43 页新增范围 0 issues、内容与中文渲染通过。预印本正文仍待新结果。
+- [x] 实现 `scripts/a7_build_confirmation.py`：只使用长度/GC/ID/cluster，排除旧 benchmark、精确 CDS/蛋白和同源簇；合成测试通过。
+- [x] unique18 权威 FASTA 已恢复并核验 SHA256，保留 eGFP/nanoLuc + unique18 为开发集，停止将其称为最终独立测试。
+- [x] 从 D5 test 实际冻结 24 个未参与既往实验的唯一蛋白/CDS，排除清单、长度/GC 分布和 SHA256 已写齐。
 
-## P2 工程与交接
+**DoD**：FASTA、选择脚本、排除清单、split/cluster/精确重叠报告和 SHA256 全部冻结；确认集访问日志可追踪。
 
-- [x] A6.16 GPU queue 提交→active→done/failed 实测：隔离 `true` 作业与 REGISTRY 通过，无真实显存浪费。
-- [x] A6.17 日志驱动训练监控已完成阶段任务；项目收尾时 watch/patrol 与所有科学计算会话均已停止，不再维持显存占用。
-- [ ] A6.18 每个任务完成即独立 commit+push；三端核对 commit、数据哈希、结果清单。
-- [ ] A6.19 Gate C 重审；新协议不支持时明确 No-Go/降级，不以旧勾选替代。
-- [x] A6.20 protein-homology-cluster v5 聚类、连通簇排除和独立审计完成；776,441 保留、128 排除，split/benchmark 簇与精确重叠均为 0；不冒称 curated family/species OOD。
-- [ ] A6.21 全参数 path-RLOO 在独立显存窗口完成多步稳定性与 held-out 评价；OOM 和 head-only 诊断不作为通过。
+### T1.3 独立评价参考与指标协议
 
-## 当前运行与证据锚点
+- [x] 实现 `a7_build_calibration.py`、`FrozenReference` 和 anytime AUC；参考域只由独立 calibration 构建，退化轴拒绝，搜索效用与 AUC 共用归一化。
+- [x] 冻结 `configs/a7_protocol.json` 与 `configs/a7_data_protocol.json`：指标方向、B=50/100/500、motif/codon、统计和 G1/G2 阈值。
+- [x] D5 train 已独立构建 CAI/RSCU（`07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`），D4 沿用其 train 参考表，未跨版本混用。
+- [x] 24 个独立 calibration pool 已全部生成并验证：25 个顶层 JSON（24 reference + manifest），record/hash 一一对应，D5 RSCU 一致，scale 全部为正且有限；每池 56–70 个唯一目标向量。
 
-- `checkpoints/a6_v4_56m_r2`：edited-token 56M，v4 数据，固定验证 corruption，运行中。
-- `checkpoints/a6_v4_56m_fulltoken`：相同数据与有效 batch 的 full-token 对照，运行中。
-- `eval_outputs/audits_20261026/v3_exact_overlap.json`：旧数据真实重叠。
-- `eval_outputs/audits_20261026/v4_exact_overlap.json`：新数据精确重叠全 0。
-- `eval_outputs/audits_20261026/rloo_smoke`：真实一步 path-RLOO 工程冒烟，不是性能结论。
-- `eval_outputs/a6_baselines/GEMORNA_nluc_a6_scored.json`：81 个唯一合法解，0 身份错误，CAI 0.9212、MFE −194.32，已核验。
-- `eval_outputs/a6_baselines`：所有新基线输出；正式主表需完整方法池后生成。
-- `eval_outputs/a6_pilot/a6_three_arm_protocol_smoke_v4.json`：冻结 epoch-5（`74a542c1`）与代码 `2854ebb6` 的三臂成本协议冒烟；仅作诊断，不作收敛模型收益结论。
+**DoD**：协议 JSON + 单元/契约测试 + 独立重算一致；不允许从 test 输出估计归一化范围。
+
+### T1.4 简单搜索对照协议
+
+- [x] 实现 uniform、hill-climbing、MH/annealing、AReUReDi-style 的同义操作符、paired 初始化、唯一 scorer 预算和成本 trace。
+- [x] 真实 eGFP 四方法各 12 个唯一评分的端到端冒烟通过；结果只作协议验证，不作性能结论。
+- [x] 所有内部方法使用同一 scorer 接口、归一化和 B=50/100/500 网格；完整主实验留待 G2。
+
+**DoD**：小状态/短序列行为测试通过；同一输入下逐方法身份、目标、唯一解数和成本可复核。
+
+### T1.5 外部 baseline 与资源表
+
+- [x] 建立 `configs/a7_baseline_resources.json`：LinearDesign、GEMORNA、codonGPT 的输入/限制/成本，mRNAutilus、ProMORNA、mRNA-GPT 的未复现状态，以及 RayGun/SCISOR 的任务排除理由。
+- [ ] 远端恢复后复核 LinearDesign、GEMORNA、codonGPT 的权威输入、版本和实际输出。
+- [x] `a7_audit_unique18.py` 已确认 seed-0 的 18/18、五方法均 `done`、identity=1、目标有限且 benchmark 哈希匹配；seeds 1/2 与全量 MFE/NED 独立重算仍待完成。
+
+**DoD**：资源表含任务、输入、版本、代码/权重、预训练重叠限制、可复跑状态和排除理由。
+
+### T1.6 结果 schema 与统计计划
+
+- [x] 实现 `validate_result_payload`：数据/代码/checkpoint 哈希、`code_dirty`、seed、配置和不可变 artifact 路径。
+- [x] 固定四成本、anytime 点、原始目标向量、缺失方法和 architectural exclusion 字段；真实四份结果全部通过 schema。
+- [x] 实现基因级 paired bootstrap、Wilcoxon、Holm 和 3 seeds 聚合，模拟 paired 数据契约测试通过。
+
+**DoD**：空结果模板通过 schema 校验；统计脚本在模拟 paired 数据上通过契约测试。
+
+### T1.7 代码恢复与整体验证
+
+- [x] 从 GitHub 源码归档恢复到工作区 `codonflow-main/`，已上传并合并到共享目录 `codonflow1031/01_code/codonflow/`；A6 原代码另有备份。
+- [x] 合并后远端完整回归 **131 passed, 1 skipped**；真实 CDS 数据审计和四方法搜索产物已落盘 `eval_outputs/a7_smoke/`。
+- [ ] 在执行实例重新确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；旧共享目录不得直接覆盖新版本。
+
+### T1.8 GPU 与运行环境验收
+
+- [ ] 确认实际 GPU、驱动、PyTorch/CUDA 版本与架构兼容，并保存同步 CUDA matmul 成功证据。
+- [ ] 训练进程启动前核对 `device.type=cuda`、GPU 进程和首步日志；任何 CPU 静默降级、kernel 错误或 CUDA 不可用均停止并留档。
+- [ ] 只为合同内独立任务并行分配 GPU；记录他项目进程、显存硬上限与真实利用率，不 kill 或修改其他项目。
+
+**P1 尚未完成 = G0 未通过。确认集、D5 RSCU 和 24 个 calibration 池有完成并验证的交接证据；剩余项为远端资产复核、全量数据审计、unique18 seeds 1/2 与 MFE/NED 重算，以及 GPU/CUDA 验收。此前不启动新模型主训练。**
+
+## 2. P2 · G1 模型收敛且非退化
+
+- [ ] **T2.1 开发模型训练**：G0 后从零训练 `M_SYN_D4_*`；当前无 checkpoint，禁止从旧 arbitrary-corruption 权重冒充恢复。
+- [ ] **T2.2 收敛与冻结**：独立 val 连续 3 epoch 相对改善 <0.1%；保存 best/last/training_state/converged 和 SHA256。
+- [ ] **T2.3 行为门**：至少 3 个开发基因 × 100 paired 样本，满足 spec G1 的非源序列率、唯一解数、最大单序列频率和 identity/legal。
+- [ ] **T2.4 诊断归档**：报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；旧复制模型仅作反例。
+
+**DoD**：G1 所有阈值由独立 JSON 验证；full-token 与 edited-token 不跨目标比较 val 绝对值。
+
+## 3. P3 · G2 第一决定性关卡：learned vs 简单搜索
+
+- [ ] **T3.1 开发集 paired 主实验**：learned base 对 uniform/hill-climbing/MH/AReUReDi-style，同初始化、同 scorer/cache、3 seeds。
+- [ ] **T3.2 anytime 质量—成本分析**：输出 B=50/100/500 曲线、固定参考域 HV AUC、原始 Pareto front、逐目标 best-at-budget 和 NED。
+- [ ] **T3.3 统计裁决**：按基因计算最强简单基线、相对效应、paired bootstrap 95% CI、Wilcoxon 与 Holm。
+- [ ] **T3.4 Go/No-Go**：完整核对 spec G2 的 ≥10% 中位改善、CI、p 值、identity/legal 和多样性条件。
+
+**DoD**：中心图与逐基因表由冻结 JSON 自动生成；任一失败均明确 No-Go，不转向外部弱 baseline 掩盖。
+
+**若 No-Go**：停止 short-rollout 主贡献、RLOO、扩参和 SOTA 写作，只保留训练诊断或负结果路线。
+
+## 4. P4 · G3 short-rollout 净收益
+
+- [ ] 同一冻结 checkpoint 上比较 immediate 与 short-rollout，初始状态和预算严格配对。
+- [ ] 同时报告 scorer/forward/时间成本和质量收益，拒绝只比较 HV。
+- [ ] 近似偏差随 rollout/candidate 预算变化入档。
+
+**DoD**：spec G3 通过才保留 short-rollout 主贡献；否则主线只保留 immediate。
+
+## 5. P5 · G4 独立确认与外部边界
+
+- [ ] **T5.1 D5 最终模型**：协议冻结后训练 `M_SYN_D5_*`，重复 G1，不在确认集调参。
+- [ ] **T5.2 untouched 确认**：24 基因上重复 learned-vs-simple-search 主对照和统计。
+- [ ] **T5.3 外部方法边界**：LinearDesign/GEMORNA/codonGPT 等按 natural-source 与 protein-only 两种初始化分层报告。
+- [ ] **T5.4 分层分析**：按目标数、长度、GC 和预算报告优势/失败区域；缺失方法显式列出。
+- [ ] **T5.5 泛化措辞审计**：D5 只称操作定义的同源隔离，不写 curated family/species OOD。
+
+**DoD**：确认集只用于最终裁决；所有数值可追溯到冻结输入、代码、模型和统计 artifact。
+
+## 6. P6 · G5 论文、图和发布
+
+- [x] **T6.1 新论文提纲**：中心结果改为 learned vs 简单搜索的 anytime 前沿；旧 scaling/RLOO/SOTA 撤出主线。
+- [ ] **T6.2 方法/协议正文**：可在无新结果时撰写，但不预写性能结论。
+- [ ] **T6.3 Results 与 Discussion**：仅在相应 G1–G4 证据完成后填写。
+- [ ] **T6.4 主图**：方法与不变量、非退化机制、learned-vs-simple 中心图、rollout 消融、外部边界。
+- [ ] **T6.5 可复核发布**：代码、配置、数据清单、冻结 JSON、负结果和不可复现 baseline 说明齐全。
+
+**DoD**：每个主张都能指向证据；每个图可自动重建；无湿实验时不出现表达/稳定性/疗效宣称。
+
+## 7. 可选后续，不在主关键路径
+
+- [ ] RLOO：仅 G4 后重新评审；先证明严格同义空间内存在非平凡奖励信号。
+- [ ] 355M/扩参：仅 56M 通过 G2 且有可重复容量限制证据后评审。
+- [ ] 外部任务/湿实验：单独立项，不作为当前计算代理结论的隐含承诺。
+
+## 8. 当前唯一允许推进的任务块
+
+**P1 / G0 数据与协议就绪。** P2–P5 均受前置门约束；不得并行跳过 G0/G1/G2。所有实验执行仍需按用户后续指令启动。

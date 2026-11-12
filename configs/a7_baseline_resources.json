@@ -1,0 +1,147 @@
+{
+  "protocol_version": "a7_baseline_resources_v1",
+  "checked_at": "2026-11-01",
+  "methods": [
+    {
+      "name": "uniform",
+      "task": "warm_start_synonymous_cds_editing",
+      "role": "required_internal_simple_search",
+      "implementation": "src/codonflow/models/simple_search.py",
+      "status": "implemented_and_smoke_tested",
+      "input": "source_cds",
+      "forward_calls": 0,
+      "pretraining_overlap": "not_applicable"
+    },
+    {
+      "name": "hill_climbing",
+      "task": "warm_start_synonymous_cds_editing",
+      "role": "required_internal_simple_search",
+      "implementation": "src/codonflow/models/simple_search.py",
+      "status": "implemented_and_smoke_tested",
+      "input": "source_cds",
+      "forward_calls": 0,
+      "pretraining_overlap": "not_applicable"
+    },
+    {
+      "name": "mh_annealing",
+      "task": "warm_start_synonymous_cds_editing",
+      "role": "required_internal_simple_search",
+      "implementation": "src/codonflow/models/simple_search.py",
+      "status": "implemented_and_smoke_tested",
+      "input": "source_cds",
+      "forward_calls": 0,
+      "pretraining_overlap": "not_applicable"
+    },
+    {
+      "name": "areuredi_style",
+      "task": "warm_start_synonymous_cds_editing",
+      "role": "required_internal_simple_search",
+      "implementation": "src/codonflow/models/simple_search.py",
+      "status": "implemented_and_smoke_tested",
+      "input": "source_cds",
+      "forward_calls": 0,
+      "pretraining_overlap": "not_applicable",
+      "note": "same-operator Tchebycheff/annealed-MH style control, not a claim of official AReUReDi reproduction",
+      "source": "https://arxiv.org/abs/2510.00352"
+    },
+    {
+      "name": "lineardesign_scan",
+      "task": "protein_to_cds_reference_design",
+      "role": "external_cds_baseline",
+      "implementation": "official_binary_via_existing_lineardesign_scan",
+      "status": "remote_revalidation_required",
+      "input": "protein; natural-source and protein-only tracks must be separated",
+      "forward_calls": null,
+      "forward_note": "not exposed by official DP binary",
+      "output_policy": "keep actual DP solutions; never random-pad",
+      "pretraining_overlap": "not_applicable"
+    },
+    {
+      "name": "codongpt",
+      "task": "protein_to_cds_reference_design",
+      "role": "external_cds_baseline",
+      "implementation": "released_checkpoint_existing_adapter",
+      "status": "remote_revalidation_required",
+      "input": "protein",
+      "context_limit_codons": 1024,
+      "forward_calls": "n_solutions_times_sequence_length",
+      "pretraining_overlap": "not_fully_auditable",
+      "source": "https://doi.org/10.1093/nar/gkaf1345",
+      "note": "architectural exclusions must be explicit, never scored as zero or silently removed"
+    },
+    {
+      "name": "gemorna",
+      "task": "protein_to_cds_reference_design",
+      "role": "external_cds_baseline",
+      "implementation": "official_weights_in_separate_pc_cng_environment",
+      "status": "remote_revalidation_required",
+      "input": "protein; authoritative benchmark protein only",
+      "forward_calls": null,
+      "pretraining_overlap": "not_fully_auditable",
+      "output_policy": "report true unique count; terminal TAA alignment disclosed; never random-pad",
+      "source": "https://github.com/RainaBio/GEMORNA"
+    },
+    {
+      "name": "cai_greedy",
+      "task": "protein_to_cds_reference_design",
+      "role": "deterministic_reference",
+      "implementation": "existing_cai_greedy",
+      "status": "implemented_requires_revalidation",
+      "input": "protein",
+      "forward_calls": 0,
+      "output_policy": "one deterministic solution; do not compare output count as if stochastic",
+      "pretraining_overlap": "reference_table_dependent"
+    },
+    {
+      "name": "mRNAutilus",
+      "task": "full_transcript_multiobjective_design",
+      "role": "related_not_currently_reproduced",
+      "implementation": "no_usable_implementation_link_found_in_accessed_paper",
+      "status": "not_reproduced_resource_unverified",
+      "input": "CDS template and UTR lengths; not identical to CDS-only warm-start",
+      "source": "https://arxiv.org/abs/2605.31296",
+      "comparison_policy": "related work only unless CDS-only outputs and protocol can be reproduced; never paste abstract metrics into main table"
+    },
+    {
+      "name": "ProMORNA",
+      "task": "full_transcript_multiobjective_rl_design",
+      "role": "related_not_currently_reproduced",
+      "implementation": "no_usable_implementation_link_found_in_accessed_paper",
+      "status": "not_reproduced_resource_unverified",
+      "input": "protein; full-length transcript output",
+      "source": "https://arxiv.org/abs/2605.01513v2",
+      "comparison_policy": "related work only unless CDS-only outputs and protocol can be reproduced"
+    },
+    {
+      "name": "mRNA-GPT",
+      "task": "full_transcript_multiobjective_rl_design",
+      "role": "related_not_currently_reproduced",
+      "implementation": "resource_not_locked",
+      "status": "not_reproduced_resource_unverified",
+      "input": "full-length mRNA design; not identical to CDS-only warm-start",
+      "source": "https://www.biorxiv.org/content/10.64898/2026.03.31.715707v1",
+      "comparison_policy": "related work and future resource check; no cross-task abstract-number comparison"
+    },
+    {
+      "name": "RayGun",
+      "task": "protein_miniaturization_and_modification",
+      "role": "excluded_wrong_task",
+      "implementation": "not_applicable",
+      "status": "excluded_from_synonymous_cds_numeric_table",
+      "source": "https://doi.org/10.1038/s41586-026-10842-8"
+    },
+    {
+      "name": "SCISOR",
+      "task": "protein_deletion_diffusion",
+      "role": "excluded_wrong_task",
+      "implementation": "not_applicable",
+      "status": "excluded_from_synonymous_cds_numeric_table",
+      "source": "https://arxiv.org/abs/2511.07390"
+    }
+  ],
+  "unique18_output_review": {
+    "status": "remote_artifacts_required",
+    "required_fields": ["done", "partial", "missing", "MFE", "NED", "seeds", "input_hashes"],
+    "rule": "file count is not completion evidence"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "protocol_version": "a7_evaluation_v1",
+  "task": "warm_start_synonymous_cds_editing",
+  "budgets": [50, 100, 500],
+  "reference": {
+    "source": "independent_calibration_only",
+    "margin": 0.05,
+    "upper_quantile": 0.95,
+    "degenerate_axes": "reject"
+  },
+  "simple_methods": ["uniform", "hill_climbing", "mh_annealing", "areuredi_style"],
+  "objectives": {
+    "cai": "maximize",
+    "neg_mfe": "maximize",
+    "neg_gc_deviation": "maximize",
+    "neg_motif_per_codon": "maximize"
+  },
+  "statistics": {
+    "unit": "gene",
+    "seeds_per_gene": 3,
+    "bootstrap": 10000,
+    "confidence_level": 0.95,
+    "test": "wilcoxon_signed_rank_greater",
+    "multiple_testing": "holm"
+  },
+  "g1_behavior": {
+    "min_non_source_fraction": 0.95,
+    "min_unique_per_100": 80,
+    "max_single_terminal_frequency": 0.2
+  },
+  "g2_learning_value": {
+    "min_median_relative_improvement": 0.1,
+    "bootstrap_lower_bound_exclusive": 0.0,
+    "holm_p_exclusive": 0.05,
+    "min_ned_ratio": 0.7
+  }
+}

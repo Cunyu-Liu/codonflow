@@ -2,11 +2,11 @@
 
 CodonFlow: finite-step synonymous Markov editing for multi-objective CDS design.
 
-> 当前 A6 验证版实现联合同义跳转核、短 rollout Doob 近似和 path-level RLOO。
-> 早期条件去噪与 immediate-ATC 结果保留为 legacy exploratory，不等同于完整 CTMC Edit Flow。
-> 当前实现与证据边界见 `docs/handover/spec.md` Amendment A6；不要按旧描述宣称精确终端分布。
+> 当前 A7 以 warm-start synonymous CDS editing 为主任务，以 learned proposal 对无学习简单搜索的预算收益为第一决定性关卡。
+> 早期条件去噪、immediate-ATC、旧 RLOO 和旧 scaling 结果保留为 legacy exploratory，不进入当前主结论。
+> 当前实现与证据边界见 `docs/handover/spec.md`；大空间 short-rollout 仍是近似，不得宣称精确终端分布。
 
-**Spec**：`docs/handover/spec.md`；当前任务：`docs/handover/tasks.md` v7。
+**Spec**：`docs/handover/spec.md`；当前任务：`docs/handover/tasks.md`（P1/G0）。
 
 ## 复现入口
 
