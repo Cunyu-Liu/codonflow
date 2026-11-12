@@ -230,3 +230,9 @@
 - 22/25 manifest 记录犬 gzip 截断、anole 404、Ciona savignyi 404。官方目录核实正确文件为 `AnoCar2.0v2`、`CSAV2.0`，犬 URL 不变。
 - 恢复器将重试前 `.tmp` 改为 `.truncated` 留证，并在重试时合并既有 manifest，避免仅 3 条新记录覆盖先前 22 条。
 - 三个失败物种已并行重启恢复。完整回归 **154 passed, 1 skipped**。
+
+## 35. seed1 长序列 OOM 与双 seed 限流
+
+- `C41G7.2.1` 在 codonGPT 长序列批量 forward 时 OOM，完整错误显示其他项目也占用大量显存。保留已完成文件。
+- seed1 进一步降为 workers=1，seed2 已为 workers=1；两条任务均单分片 GPU 运行，不用 CPU 替代。
+- 原始恢复重试仍在进行，manifest 暂为 22/25，G0 未放行。
