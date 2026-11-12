@@ -26,7 +26,7 @@ The objective vector, written in maximization form, is
 
 $$f(y)=\left[\mathrm{CAI}(y),-\mathrm{MFE}(y),-|\mathrm{GC}(y)-g_\star|,-\mathrm{motif}(y)/L_{\mathrm{codons}}\right].$$
 
-All objectives are computational proxies. We use $g_\star=0.55$ as a frozen design setting, not a claim of universal biological optimality. CAI depends on a train-only or independent reference RSCU table, and MFE depends on the declared RNAfold implementation and default folding conditions.
+All objectives are computational proxies. We use $g_\star=0.55$ as a frozen design setting, not a claim of universal biological optimality. CAI follows Sharp and Li's geometric mean of relative synonymous codon adaptiveness [sharp1987cai] and depends on a train-only or independent reference RSCU table. MFE depends on the declared ViennaRNA implementation and default folding conditions [lorenz2011viennarna].
 
 ### 3.2 Finite-step synonymous proposal
 
@@ -42,7 +42,7 @@ We record forward calls, base-state evaluations, rollout batch forwards, rollout
 
 Development models are trained from scratch on D4 with synonymous corruption: corrupted codons are sampled only within the same amino-acid group, so both training and inference states preserve translation identity. Full-token and edited-token objectives are evaluated independently and their validation losses are not compared as if they were identical metrics. No arbitrary-corruption checkpoint is used for initialization or downstream evaluation.
 
-Each arm has 56.8M parameters (width 768, 8 Transformer layers, 12 heads, no dropout) and uses AdamW with learning rate $10^{-5}$ and weight decay 0.03. The effective training budget is 60,000 tokens per optimizer update: full-token uses 20,000-token packed batches with three accumulation steps, and edited-token uses 10,000-token batches with six. Both use a maximum batch size of 128 and gradient clipping at 1.0. The validation packed-batch budget is 24,000 tokens, with corruption seed 1729. Each original validation batch is corrupted once; forward computation is split into 4,000-token micro-batches to bound attention memory. BCE and token losses are recombined using their respective valid-position counts, preserving the original batch's random draws and normalization.
+Each arm has 56.8M parameters (width 768, 8 Transformer layers, 12 heads, no dropout) [vaswani2017attention] and uses AdamW [loshchilov2017adamw] with learning rate $10^{-5}$ and weight decay 0.03. The effective training budget is 60,000 tokens per optimizer update: full-token uses 20,000-token packed batches with three accumulation steps, and edited-token uses 10,000-token batches with six. Both use a maximum batch size of 128 and gradient clipping at 1.0. The validation packed-batch budget is 24,000 tokens, with corruption seed 1729. Each original validation batch is corrupted once; forward computation is split into 4,000-token micro-batches to bound attention memory. BCE and token losses are recombined using their respective valid-position counts, preserving the original batch's random draws and normalization.
 
 Convergence requires three consecutive epochs with less than 0.1% relative validation improvement. There is no maximum-epoch stopping rule. We freeze best, last, optimizer/RNG training state, converged weights, complete configuration, and SHA256 hashes, and verify loading and a finite forward pass on CUDA. Convergence alone is insufficient: the model must also pass non-degeneracy checks on at least three development genes with 100 paired samples per gene, including 100% identity/legal relative to the natural source, at least 95% outputs differing from their corresponding randomized synonymous initial sequence, at least 80 unique terminal sequences per 100, and maximum single-sequence frequency at most 20%.
 
@@ -50,7 +50,7 @@ Convergence requires three consecutive epochs with less than 0.1% relative valid
 
 ### 4.1 Data versions and provenance
 
-D4 contains 621,306/76,444/78,724 train/validation/test unique proteins with zero exact CDS or protein overlap across splits. D5 uses operational protein-homology-cluster isolation with MMseqs2 identity 0.5 and bidirectional coverage 0.8, yielding 618,073/80,191/78,177 records. D5 does not establish curated family- or species-level out-of-distribution generalization.
+D4 contains 621,306/76,444/78,724 train/validation/test unique proteins with zero exact CDS or protein overlap across splits. D5 uses operational protein-homology-cluster isolation with MMseqs2 identity 0.5 and bidirectional coverage 0.8 [steinegger2017mmseqs2], yielding 618,073/80,191/78,177 records. D5 does not establish curated family- or species-level out-of-distribution generalization.
 
 The source corpus contains 862,240 records from 25 species using Ensembl release 112. Recovery artifacts retain URLs, retrieval timestamps, raw and cleaned hashes, and per-rule cleaning counts without claiming the original download dates. A release-116 human recovery was evaluated and isolated because it introduced 227,289 additional base identifiers and was not the closest source match. Non-ATG sequences are reported separately. Standard genetic code table 1 is used throughout.
 
@@ -62,13 +62,13 @@ CAI/RSCU tables are built only from the corresponding training split or an indep
 
 If $l_j$ and $u_j$ are the minimum and maximum of unique calibration objectives on axis $j$, the reference is $r_j=l_j-0.05(u_j-l_j)$ and the scale is $q_{0.95,j}-l_j$. Non-finite or non-positive scales are rejected. The same frozen normalization is used for search utility and anytime hypervolume AUC. The 18-gene D4 development pools have been checked against source and RSCU hashes, independently recomputed reference domains, and byte-identical regeneration of a representative pool.
 
-The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$, including the initial point at zero budget. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
+The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$, including the initial point at zero budget [zitzler1999hypervolume]. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
 
 ### 4.3 Comparisons and statistics
 
 Internal comparisons use identical source CDS, paired initialization, terminal objective, independently initialized scorer caches with identical semantics, and seeds 0, 1, and 2. For each gene and seed, the initial CDS is a per-position uniform synonymous sample from the natural source using initialization seed $1009\times$ the run seed. All methods score that same initial state at budget one. The learned arm uses $T=4$ and 32 paths per model-forward batch. Every comparison requires 500 unique terminal evaluations per gene, seed, and method. The gate independently reconstructs paired initializations, verifies every raw sequence and its uniqueness, checks independent-calibration provenance, and recomputes NED and anytime AUC from raw points. Metadata that disagrees across genes or arms is rejected.
 
-For each gene, the strongest simple baseline is the method with the greatest mean AUC over the three seeds. Learned and baseline AUCs are then averaged within gene. Genes—not seeds—are the independent statistical units. We report median relative effect, 10,000 gene-level paired bootstrap replicates for the 95% confidence interval, one-sided Wilcoxon signed-rank tests, and Holm correction across the full-token and edited-token arms. NED is computed from a deterministic sample of at most 200 outputs per run and is compared with the same per-gene strongest baseline.
+For each gene, the strongest simple baseline is the method with the greatest mean AUC over the three seeds. Learned and baseline AUCs are then averaged within gene. Genes—not seeds—are the independent statistical units. We report median relative effect, 10,000 gene-level paired bootstrap replicates for the 95% confidence interval, one-sided Wilcoxon signed-rank tests [wilcoxon1945ranking], and Holm correction across the full-token and edited-token arms [holm1979sequential]. NED is computed from a deterministic sample of at most 200 outputs per run and is compared with the same per-gene strongest baseline.
 
 External methods are assessed by task and input type. Natural-source warm-start and protein-only initialization are reported separately. Unavailable costs are `null`, and architectural exclusions or missing methods are explicit rather than scored as zero. Third-party pretraining overlap that cannot be audited is reported as a limitation.
 
@@ -127,3 +127,19 @@ Li, S., Chauvin, P., Gross, O., Bailey, M., and Jager, S. mRNA-GPT: A Generative
 Devkota, K., Shonai, D., Mao, J., et al. Miniaturizing and modifying natural proteins with Raygun. *Nature* (2026). https://doi.org/10.1038/s41586-026-10842-8
 
 Baron, E., Amin, A. N., Weitzman, R., Marks, D., and Wilson, A. G. A Diffusion Model to Shrink Proteins While Maintaining Their Function. *arXiv:2511.07390* (2025). https://arxiv.org/abs/2511.07390
+
+Sharp, P. M., and Li, W.-H. The codon adaptation index—a measure of directional synonymous codon usage bias, and its potential applications. *Nucleic Acids Research* (1987). https://doi.org/10.1093/nar/15.3.1281
+
+Lorenz, R., Bernhart, S. H., Höner zu Siederdissen, C., et al. ViennaRNA Package 2.0. *Algorithms for Molecular Biology* (2011). https://doi.org/10.1186/1748-7188-6-26
+
+Vaswani, A., Shazeer, N., Parmar, N., et al. Attention Is All You Need. *arXiv:1706.03762* (2017). https://arxiv.org/abs/1706.03762
+
+Loshchilov, I., and Hutter, F. Decoupled Weight Decay Regularization. *arXiv:1711.05101* (2017). https://arxiv.org/abs/1711.05101
+
+Steinegger, M., and Söding, J. MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. *Nature Biotechnology* (2017). https://doi.org/10.1038/nbt.3988
+
+Zitzler, E., and Thiele, L. Multiobjective evolutionary algorithms: a comparative case study and the strength Pareto approach. *IEEE Transactions on Evolutionary Computation* (1999). https://doi.org/10.1109/4235.797969
+
+Wilcoxon, F. Individual Comparisons by Ranking Methods. *Biometrics Bulletin* (1945). https://doi.org/10.2307/3001968
+
+Holm, S. A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, 6(2), 65–70 (1979). https://www.jstor.org/stable/4615733

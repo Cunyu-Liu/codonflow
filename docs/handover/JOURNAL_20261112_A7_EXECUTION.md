@@ -505,3 +505,10 @@
 - 普通HTTPS长期失败后，GitHub SSH认证实测可用，使用同一仓库SSH地址正常fast-forward推送，远端main SHA=`b9edbe13a719d21f6af430a4fdd1877394602e5a`，经 `gh` API核实。
 - 先前API对象同步路径因blob/tree SHA校验失败而停止，未更新远端引用；最终未采用该路径。没有强推或改写历史。
 - r4 FULL/EDIT持续真实CUDA训练，训练loss仍下降，尚未完成首个epoch或产生收敛/G1证据。
+
+## 74. 方法学原始引文补齐
+
+- CAI：Sharp & Li 1987，`10.1093/nar/15.3.1281`；ViennaRNA：Lorenz et al. 2011，`10.1186/1748-7188-6-26`。
+- Transformer：Vaswani et al. `arXiv:1706.03762`；AdamW：Loshchilov & Hutter `arXiv:1711.05101`；MMseqs2：Steinegger & Söding `10.1038/nbt.3988`。
+- HV：Zitzler & Thiele 1999 `10.1109/4235.797969`；Wilcoxon 1945 `10.2307/3001968`；Holm 1979 Scandinavian Journal of Statistics 6(2):65–70，JSTOR 4615733。
+- 上述题名、作者、期刊与DOI/arXiv元数据已核对；Holm使用原始论文而非后续改进程序。相关正文引用和参考文献已补齐，Results仍保持Gate占位。
