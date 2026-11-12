@@ -1,6 +1,6 @@
 # Finite-step synonymous editing for budget-aware multi-objective CDS optimization
 
-> **Status: working manuscript — not for submission.** No new model has passed G1, and no learned-versus-simple-search result exists. This file contains only methods, evaluation protocol, and evidence status as of 2026-11-12. Results sections remain gated.
+> **Status: working manuscript — not for submission.** No new model has passed G1, and no learned-versus-simple-search result exists. This file contains only methods, evaluation protocol, and evidence status as of 2026-11-13. Results sections remain gated.
 
 ## Abstract
 
@@ -10,7 +10,7 @@
 
 A protein can be encoded by an exponential number of synonymous coding sequences (CDS). Improving codon usage, predicted folding energy, GC composition, and motif profiles under a fixed evaluation budget is therefore a constrained multi-objective optimization problem, not merely a feasibility problem. Methods that preserve translation identity can still differ substantially in the quality and diversity of solutions reached per scorer evaluation.
 
-We study warm-start synonymous CDS editing: given a source CDS, make finite-step synonymous changes while preserving its translated protein. Our central question is whether a learned edit proposal improves anytime multi-objective quality relative to the strongest non-learned local search under identical initialization, terminal objectives, and evaluation budgets. Short rollouts, reinforcement learning, larger models, and external comparisons are conditional on answering this question and are not assumed contributions.
+We study warm-start synonymous CDS editing: given a source CDS, make finite-step synonymous changes while preserving its translated protein. Our central question is whether a learned edit proposal improves anytime multi-objective quality relative to the strongest non-learned simple search under identical initialization, terminal objectives, and evaluation budgets. Short rollouts, reinforcement learning, larger models, and external comparisons are conditional on answering this question and are not assumed contributions.
 
 ## 2. Related Work
 
@@ -30,15 +30,21 @@ All objectives are computational proxies. We use $g_\star=0.55$ as a frozen desi
 
 ### 3.2 Finite-step synonymous proposal
 
-A state is a legal CDS. An elementary move selects one codon position and replaces it with an alternative synonymous codon, with an explicit stay action. Position and codon probabilities are jointly normalized. The learned proposal is evaluated against uniform synonymous moves, greedy hill-climbing, Metropolis–Hastings/annealing, and an AReUReDi-style search using the same operator and terminal scorer.
+A state is a legal CDS. An elementary learned move selects one non-stop codon position and replaces it with an alternative synonymous codon, with an explicit stay action. For position $i$, current codon $c$, blank logits $a_i$, and token logits $u_{ic}$, alternatives are normalized only within the amino-acid group. All non-self (position, codon) events and the aggregated stay event are jointly normalized. The terminal stop is never edited.
 
-A terminal preference potential can tilt the finite-step kernel. Exact backward recursion is used only on enumerable small states. On large CDS spaces, short Monte Carlo rollouts and candidate pruning are approximations, not claims of an exact terminal distribution. We record forward calls, base-state evaluations, rollout batch forwards, rollout transitions, cache-before terminal requests, actual scorer invocations, unique scorer evaluations, and wall-clock separately.
+The primary development evaluation uses the learned base kernel for four finite transitions ($T=4$), without terminal guidance or rollout. This isolates the value of the learned proposal. Batched paths use the same kernel and random-number stream ordering per state; vectorized local normalization changes neither the transition support nor the accounting of state transitions. A terminal preference potential can tilt the finite-step kernel. Exact backward recursion is used only on enumerable small states. On large CDS spaces, short Monte Carlo rollouts and candidate pruning are approximations, not claims of an exact terminal distribution, and are evaluated separately after the base proposal.
+
+The learned proposal is evaluated against global uniform synonymous sampling, greedy hill-climbing, Metropolis–Hastings/annealing, and an AReUReDi-style search. The uniform baseline independently samples synonymous codons per position after scoring the paired initial state; the other non-learned methods use the same single-codon local operator as the learned kernel. Search utilities use weights $(1,1,1,0.5)$ after frozen calibration normalization; AReUReDi-style uses an augmented Tchebycheff scalarization. These are internal implementations, not claims of exact reproduction of all external algorithms.
+
+We record forward calls, base-state evaluations, rollout batch forwards, rollout transitions, cache-before terminal requests, actual scorer invocations, unique scorer evaluations, and wall-clock separately. Each method has an independent cache with identical semantics, preventing another method's evaluations from consuming or subsidizing its budget.
 
 ### 3.3 Synonymous-corruption training
 
 Development models are trained from scratch on D4 with synonymous corruption: corrupted codons are sampled only within the same amino-acid group, so both training and inference states preserve translation identity. Full-token and edited-token objectives are evaluated independently and their validation losses are not compared as if they were identical metrics. No arbitrary-corruption checkpoint is used for initialization or downstream evaluation.
 
-Convergence requires three consecutive epochs with less than 0.1% relative validation improvement. There is no maximum-epoch stopping rule. We freeze best, last, optimizer/RNG training state, converged weights, complete configuration, and SHA256 hashes. Convergence alone is insufficient: the model must also pass non-degeneracy checks on at least three development genes with 100 paired samples per gene, including 100% identity/legal, at least 95% non-source outputs, at least 80 unique terminal sequences per 100, and maximum single-sequence frequency at most 20%.
+Each arm has 56.8M parameters (width 768, 8 Transformer layers, 12 heads, no dropout) and uses AdamW with learning rate $10^{-5}$ and weight decay 0.03. The effective training budget is 60,000 tokens per optimizer update: full-token uses 20,000-token packed batches with three accumulation steps, and edited-token uses 10,000-token batches with six. Both use a maximum batch size of 128 and gradient clipping at 1.0. The validation packed-batch budget is 24,000 tokens, with corruption seed 1729.
+
+Convergence requires three consecutive epochs with less than 0.1% relative validation improvement. There is no maximum-epoch stopping rule. We freeze best, last, optimizer/RNG training state, converged weights, complete configuration, and SHA256 hashes, and verify loading and a finite forward pass on CUDA. Convergence alone is insufficient: the model must also pass non-degeneracy checks on at least three development genes with 100 paired samples per gene, including 100% identity/legal relative to the natural source, at least 95% outputs differing from their corresponding randomized synonymous initial sequence, at least 80 unique terminal sequences per 100, and maximum single-sequence frequency at most 20%.
 
 ## 4. Evaluation Protocol
 
@@ -52,19 +58,23 @@ The development benchmark consists of eGFP, nanoLuc, and the repeatedly used uni
 
 ### 4.2 Independent reference domains and objectives
 
-CAI/RSCU tables are built only from the corresponding training split or an independent public reference. D4 and D5 tables are never mixed. Each gene's hypervolume reference point and scale come from an independent calibration pool, not from evaluated test outputs. Degenerate calibration axes are rejected. The same normalization is used for search utility and anytime hypervolume AUC.
+CAI/RSCU tables are built only from the corresponding training split or an independent public reference. D4 and D5 tables are never mixed. For each development gene, an independent calibration pool contains 40 global-uniform runs and four axis-specific hill-climbing runs of 10 unique evaluations each (calibration seed 1729). Confirmation-gene pools use the same construction with the D5 training RSCU. No learned-model or final evaluation output contributes to these pools.
 
-The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method.
+If $l_j$ and $u_j$ are the minimum and maximum of unique calibration objectives on axis $j$, the reference is $r_j=l_j-0.05(u_j-l_j)$ and the scale is $q_{0.95,j}-l_j$. Non-finite or non-positive scales are rejected. The same frozen normalization is used for search utility and anytime hypervolume AUC. The 18-gene D4 development pools have been checked against source and RSCU hashes, independently recomputed reference domains, and byte-identical regeneration of a representative pool.
+
+The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$, including the initial point at zero budget. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
 
 ### 4.3 Comparisons and statistics
 
-Internal comparisons use identical source CDS, paired initialization, synonymous operator, terminal objective, scorer/cache, and at least three sampling seeds. The strongest simple-search baseline is selected independently per gene. Genes—not seeds—are the independent statistical units. We report median relative effect, gene-level paired bootstrap 95% confidence intervals, Wilcoxon signed-rank tests, and Holm multiple-comparison correction.
+Internal comparisons use identical source CDS, paired initialization, terminal objective, independently initialized scorer caches with identical semantics, and seeds 0, 1, and 2. For each gene and seed, the initial CDS is a per-position uniform synonymous sample from the natural source using initialization seed $1009\times$ the run seed. All methods score that same initial state at budget one. The learned arm uses $T=4$ and 32 paths per model-forward batch. Every comparison requires 500 unique terminal evaluations per gene, seed, and method.
+
+For each gene, the strongest simple baseline is the method with the greatest mean AUC over the three seeds. Learned and baseline AUCs are then averaged within gene. Genes—not seeds—are the independent statistical units. We report median relative effect, 10,000 gene-level paired bootstrap replicates for the 95% confidence interval, one-sided Wilcoxon signed-rank tests, and Holm correction across the full-token and edited-token arms. NED is computed from a deterministic sample of at most 200 outputs per run and is compared with the same per-gene strongest baseline.
 
 External methods are assessed by task and input type. Natural-source warm-start and protein-only initialization are reported separately. Unavailable costs are `null`, and architectural exclusions or missing methods are explicit rather than scored as zero. Third-party pretraining overlap that cannot be audited is reported as a limitation.
 
 ### 4.4 Evidence gates
 
-G0 requires complete data provenance, distribution and metadata audits, development/confirmation protocols, independent calibration, result schemas, baseline resources, and actual synchronized CUDA matmul evidence. G1 requires convergence and non-degeneracy. G2 requires learned proposals to improve the primary endpoint by at least 10% median relative effect with a positive paired-bootstrap lower bound, corrected $p<0.05$, full identity/legal, and adequate diversity. G3 tests whether short-rollout benefits exceed costs. G4 repeats the comparison in the untouched confirmation set and assesses external boundaries. G5 permits scientific results and release claims only after the corresponding evidence exists.
+G0 requires complete data provenance, distribution and metadata audits, development/confirmation protocols, independent calibration, result schemas, baseline resources, and actual synchronized CUDA matmul evidence. G1 requires convergence and non-degeneracy. G2 requires complete 18-gene, three-seed comparisons in both arms, at least 10% median relative improvement in the primary endpoint, a positive paired-bootstrap lower bound, Holm-corrected $p<0.05$, full identity/legal, and learned NED at least 70% of the selected strongest baseline in every gene. G3 tests whether short-rollout benefits exceed costs. G4 repeats the comparison in the untouched confirmation set and assesses external boundaries. G5 permits scientific results and release claims only after the corresponding evidence exists.
 
 ## 5. Results
 

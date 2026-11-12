@@ -52,9 +52,9 @@
 ### T1.5 外部 baseline 与资源表
 
 - [x] 建立 `configs/a7_baseline_resources.json`：LinearDesign、GEMORNA、codonGPT 的输入/限制/成本，mRNAutilus、ProMORNA、mRNA-GPT 的未复现状态，以及 RayGun/SCISOR 的任务排除理由。
-- [ ] 远端恢复后复核 LinearDesign、GEMORNA、codonGPT 的权威输入、版本和实际输出。
-- [x] `a7_audit_unique18.py` 已确认 seed-0 的 18/18、五方法均 `done`、identity=1、目标有限且 benchmark 哈希匹配；seeds 1/2 与全量 MFE/NED 独立重算仍待完成。
-- [x] `a7_recompute_unique18.py` 已完成 seed-0 真实独立复算：18/18 的 MFE/NED、四轴目标、identity、唯一解数及 source/benchmark/RSCU 哈希全部匹配，RNAfold 2.7.2；报告 `07_a7_data/unique18_seed0_independent_mfe_ned.json`，SHA256=`c0425d18…`。seeds 1/2 生成与复算仍待完成。
+- [x] LinearDesign、GEMORNA、codonGPT 的权威输入、版本和真实输出已在 unique18 三 seed 中复核，并用于独立 MFE/NED 复算；成本缺失和第三方预训练不可审计性仍按限制披露。
+- [x] `a7_audit_unique18.py` 已确认 seeds 0/1/2 均为18/18、五方法 `done`、identity=1、目标有限且 benchmark 哈希匹配。
+- [x] `a7_recompute_unique18.py` 已完成 seeds 0/1/2 真实独立复算：每 seed 18/18 的 MFE/NED、四轴目标、identity、唯一解数及 source/benchmark/RSCU 哈希全部匹配，RNAfold 2.7.2；三份报告及完整 SHA256 见 G0 gate 与执行日志。
 
 **DoD**：资源表含任务、输入、版本、代码/权重、预训练重叠限制、可复跑状态和排除理由。
 
@@ -70,7 +70,7 @@
 
 - [x] 从 GitHub 源码归档恢复到工作区 `codonflow-main/`，已上传并合并到共享目录 `codonflow1031/01_code/codonflow/`；A6 原代码另有备份。
 - [x] 合并后远端完整回归 **131 passed, 1 skipped**；真实 CDS 数据审计和四方法搜索产物已落盘 `eval_outputs/a7_smoke/`。
-- [ ] 在执行实例重新确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；旧共享目录不得直接覆盖新版本。
+- [x] 已在执行实例确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；当前本地与训练机均为 **184 passed, 1 skipped**，代码以 GitHub 和训练机提交为准，不反向覆盖旧共享备份。
 
 ### T1.8 GPU 与运行环境验收
 
@@ -122,7 +122,7 @@
 ## 6. P6 · G5 论文、图和发布
 
 - [x] **T6.1 新论文提纲**：中心结果改为 learned vs 简单搜索的 anytime 前沿；旧 scaling/RLOO/SOTA 撤出主线。
-- [ ] **T6.2 方法/协议正文**：可在无新结果时撰写，但不预写性能结论。
+- [x] **T6.2 方法/协议正文**：`paper/CodonFlow_preprint_A7.md` 已形成与实现一致的工作稿，覆盖训练、base proposal、全局uniform、calibration、配对预算和统计；不预写性能结论。
 - [ ] **T6.3 Results 与 Discussion**：仅在相应 G1–G4 证据完成后填写。
 - [ ] **T6.4 主图**：方法与不变量、非退化机制、learned-vs-simple 中心图、rollout 消融、外部边界。
 - [ ] **T6.5 可复核发布**：代码、配置、数据清单、冻结 JSON、负结果和不可复现 baseline 说明齐全。

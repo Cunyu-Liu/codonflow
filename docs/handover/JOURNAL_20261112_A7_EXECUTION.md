@@ -401,3 +401,11 @@
 - 监视器已启动，状态 `waiting_for_convergence`；状态文件 `07_a7_data/g1_r3_watcher/status.json`，启动日志 `launch.log`，PID 文件 `watcher.pid`。
 - FULL/EDIT 配置SHA分别为 `a6bcc4fe…`、`05ec5d8e…`，与 r3 一致；G1 固定 C31E10.3b.1/C14A6.7.1/C01H6.8b.1、100 paired samples、T=4。
 - 监视器只在真实收敛后审计并进入 G1，G2 preflight 输出仅作启动许可；当前没有新的模型验收或性能结果。
+
+## 60. 预印本方法与评价协议工作稿复核
+
+- 更新 `paper/CodonFlow_preprint_A7.md`，明确 G1 non-source 相对 randomized paired initial，identity/legal 相对天然源；uniform 为强全局逐位置同义采样，局部搜索/learned 为单密码子核。
+- 补齐56.8M架构、AdamW、60k有效token、独立验证seed、T=4、batch32 base无guidance/rollout、独立cache和完整成本计数。
+- 写入40 uniform+四轴×10 calibration、reference/scale公式、3 seeds初始化、最强simple按基因3-seed均值AUC选择、bootstrap/Wilcoxon/Holm及NED采样规则。
+- G2明确18基因、双臂、500唯一评分、≥10%改善、CI、p和NED≥70%。Results/Abstract/Discussion仍为Gate占位，没有加入训练中间loss或接口AUC作为科学结论。
+- 当前仍是不可提交的工作稿；只完成方法/协议部分，不代表预印本已经完整。
