@@ -499,3 +499,9 @@
 - `a7_convergence_audit.py` 新增 `validate_run_config`，除模型/数据外，还核对 batch_tokens、max_batch、grad_accum、grad_clip、val_batch_tokens、val_micro_batch_tokens、lr、wd和gpu_mem_fraction，防止只验证部分协议。
 - 新增 micro-batch 不一致反例测试。恢复指南已改为r4真实状态，论文明确原batch一次腐蚀、4000-token micro-forward、BCE/token分别按有效位置还原，不改变验证定义。
 - r4继续正常训练，尚无收敛结果。文档更新不代表G1通过。
+
+## 73. GitHub SSH 正常推送恢复
+
+- 普通HTTPS长期失败后，GitHub SSH认证实测可用，使用同一仓库SSH地址正常fast-forward推送，远端main SHA=`b9edbe13a719d21f6af430a4fdd1877394602e5a`，经 `gh` API核实。
+- 先前API对象同步路径因blob/tree SHA校验失败而停止，未更新远端引用；最终未采用该路径。没有强推或改写历史。
+- r4 FULL/EDIT持续真实CUDA训练，训练loss仍下降，尚未完成首个epoch或产生收敛/G1证据。
