@@ -373,3 +373,10 @@
 - 独立重算 AUC、逐序列 protein identity、唯一数、schema、CUDA 与 clean commit 全部通过。相对串行加速 **3.137185×**，`g2_interface_learned_acceptance.json` SHA256=`890688b033af9366bf12474ea0c4f386d94c5792012eebb2fd9d8bf62cd76b41`。这是随机权重工程接口验收，不是科学 Gate 或模型性能。
 - 原非向量化 batch 任务在产生结果前被取代，已只终止该冗余 smoke PID 82341，保留日志与 `g2_interface_smoke_random_batched/cancelled.json`；未触碰两条正式训练或其他项目进程。
 - `4e003e8` 已成功推送 GitHub；强 uniform 和 partial 修正版 simple v2 正在运行，尚无完成结果。正式模型仍处 P2/G1。
+
+## 56. uniform 接口交叉核验与 G1 stop 修正
+
+- `g2_interface_simple_v2/C31E10.3b.1_uniform_s0.json` 已完成：全局 uniform、500唯一解、identity=1、178.088秒，SHA256=`5d6782c11410f6e00dc351cd3423f478245e66ccd1a7b667021c75de389d4140`。
+- 其天然源 SHA 与 learned 一致且不同于 initial SHA；paired initial SHA 与 learned 完全一致；schema 和冻结 calibration 的 AUC 重算通过。其余 simple 方法仍在运行。
+- 修复 G1 uniform 诊断包含终端 stop 索引的问题；现在仅在前 `len(codons)-1` 个可编辑位置抽样，保留当前密码子作为 stay 可能性。100个 seed 的 stop 保持回归已加入。
+- 以上仍是工程验证，没有新训练收敛、G1或G2科学结论。

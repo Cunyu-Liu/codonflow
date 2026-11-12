@@ -1,4 +1,5 @@
-from scripts.a7_g1_behavior import behavior_metrics, passes_g1
+from scripts.a7_g1_behavior import behavior_metrics, passes_g1, uniform_path
+import numpy as np
 
 
 def test_behavior_metrics_accepts_diverse_legal_outputs():
@@ -30,3 +31,11 @@ def test_non_source_rate_is_measured_from_paired_random_initialization():
     assert row["identity_legal"] == 1.0
     assert row["non_source_rate"] == 0.0
     assert not passes_g1(row)
+
+
+def test_uniform_diagnostic_never_edits_the_terminal_stop():
+    source = "ATGGCTTAA"
+    for seed in range(100):
+        output = uniform_path(source, 4, np.random.default_rng(seed))
+        assert output[-3:] == "TAA"
+        assert len(output) == len(source)

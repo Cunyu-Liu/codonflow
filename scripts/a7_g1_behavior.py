@@ -48,7 +48,7 @@ def passes_g1(row, n_samples=100):
 def uniform_path(source, terminal_step, rng):
     codons = split_codons(source)
     for _ in range(terminal_step):
-        position = int(rng.integers(len(codons)))
+        position = int(rng.integers(len(codons) - 1))
         alternatives = SYNONYMOUS_CODONS[STANDARD_TABLE_1[codons[position]]]
         codons[position] = str(rng.choice(alternatives))
     return "".join(codons)
