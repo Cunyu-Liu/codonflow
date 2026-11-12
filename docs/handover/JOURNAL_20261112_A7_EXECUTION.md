@@ -199,3 +199,9 @@
 
 - seed2 的同一基因再次失败，按预设降级规则将 workers 从 2 降为 1；seed1 保持 workers=2。只停止自己的 driver/子进程，done 文件不重复生成。
 - 当前 GPU 仍有其他项目高负载，不使用 CPU 替代。原始恢复保持 9/25，人类116下载中。
+
+## 30. G1 非退化验收入口
+
+- 新增 `a7_g1_behavior.py`：冻结 checkpoint SHA256、强制 CUDA、每基因至少 100 paired 样本，检查 identity/legal、非源率、唯一解和最大单序列频率。
+- 记录 stay-p、实际路径 P(edit)、实际采样位置覆盖、两种奖励 profile 响应和 uniform 逐串重合；不使用枚举全部位置冒充覆盖。
+- 契约测试覆盖多样输出与复制塌缩；修正 overlap 是集合大小而非样本数的测试预期。完整回归 **154 passed, 1 skipped**。
