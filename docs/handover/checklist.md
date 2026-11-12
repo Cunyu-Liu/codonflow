@@ -26,7 +26,7 @@
 ## C2. G0 数据与协议就绪
 
 - [ ] 数据来源、release、哈希和逐步清洗流水账完整；完整 `v3_all.fasta` 已找到且 SHA256=`5e106f9e…`，release/逐步清洗记录仍待补齐。
-- [ ] 长度/GC/CAI/RSCU/密码子使用/物种/簇大小分布与选择偏差审计完整；目前仅有旧汇总和真实 eGFP 冒烟。
+- [x] D4/D5 六个 split 的长度/GC/CAI/RSCU/密码子使用/簇分布审计完成，见 `07_a7_data/full_audits_20261112_v2/`；非 ATG 部分 CDS、物种元数据缺失与选择偏差限制已披露。
 - [ ] 元数据和非标准遗传代码处理规则明确。
 - [x] untouched 24 基因 D5 确认集已冻结于 `07_a7_data/confirmation24/`，SHA256=`a128bdbf…`；长度/GC 各档均 8 条，train/val 精确重叠为 0。
 - [x] D4/D5 参考表独立；D5 train RSCU 已生成于 `07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`。

@@ -174,7 +174,7 @@ PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python \
   scripts/a7_recompute_unique18.py \
   --input-dir $LEGACY/eval_outputs/a6_baselines/unique18_s0 \
   --benchmark-fasta $LEGACY/corpora/a6_benchmark/unique18.fasta \
-  --rscu-json $LEGACY/configs/cai_ref_v4train.json \
+  --rscu-json $R/01_code/codonflow/configs/cai_ref_v4train.json \
   --seeds 0 1 2 \
   --out $R/07_a7_data/unique18_independent_mfe_ned.json
 ```

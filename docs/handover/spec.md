@@ -87,7 +87,7 @@
 ### 4.2 G0 前必须补齐
 
 1. **来源与清洗流水账**：数据库/release/URL/下载日期/哈希；逐步报告输入数、每条过滤规则移除数和剩余数。
-2. **质量分层**：合法阅读框、ATG/单 stop/internal stop/ambiguous base、长度、翻译有效性；记录非标准遗传代码和异常注释的处理。
+2. **质量分层**：合法阅读框、ATG/单 stop/internal stop/ambiguous base、长度、翻译有效性；记录非标准遗传代码和异常注释的处理。操作合法性按 alphabet、阅读框和唯一终端 stop 判定，不强制 ATG；非 ATG 记录单列为可能部分 CDS 的质量与选择偏差，不得与操作非法混同，也不得在查看分布后静默删除。
 3. **分布审计**：长度、GC、CAI/RSCU、密码子使用、物种占比、簇大小；说明 300–6000 nt 过滤和蛋白去重造成的选择偏差。
 4. **元数据**：尽可能恢复 transcript ID、species、gene/protein 映射；无法恢复时明确降级，不编造 family/species 标签。
 5. **参考表与归一化**：CAI/RSCU 只由对应训练 split 或独立公开参考集构建；D4 与 D5 不得混用。HV 范围来自独立 calibration pool，不能由 test 输出决定。
