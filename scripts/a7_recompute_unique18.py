@@ -84,8 +84,14 @@ def recompute_payload(payload, source, weights, fold=mfe_batch_parallel):
     }
 
 
-def recompute_unique18(input_dir, benchmark_fasta, rscu_json, seeds=(0, 1, 2), fold=mfe_batch_parallel):
+def recompute_unique18(input_dir, benchmark_fasta, rscu_json, seeds=(0, 1, 2),
+                       fold=mfe_batch_parallel, record_ids=None):
     benchmark_records = {header.split()[0]: sequence for header, sequence in read_fasta(benchmark_fasta)}
+    if record_ids:
+        unknown = set(record_ids) - set(benchmark_records)
+        if unknown:
+            raise ValueError(f"unknown record-id values: {sorted(unknown)}")
+        benchmark_records = {record_id: benchmark_records[record_id] for record_id in record_ids}
     weights = cai_weights_from_rscu(json.loads(Path(rscu_json).read_text()))
     rows = []
     for record_id, source in benchmark_records.items():
@@ -134,9 +140,12 @@ def main():
     parser.add_argument("--benchmark-fasta", required=True)
     parser.add_argument("--rscu-json", required=True)
     parser.add_argument("--seeds", nargs="+", type=int, default=[0, 1, 2])
+    parser.add_argument("--record-id", action="append", dest="record_ids",
+                        help="restrict to one or more exact record IDs for independent sharding")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
-    result = recompute_unique18(args.input_dir, args.benchmark_fasta, args.rscu_json, args.seeds)
+    result = recompute_unique18(args.input_dir, args.benchmark_fasta, args.rscu_json,
+                                args.seeds, record_ids=args.record_ids)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     temporary = out.with_suffix(out.suffix + ".tmp")

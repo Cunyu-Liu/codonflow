@@ -74,3 +74,8 @@ def test_directory_audit_requires_every_requested_seed(tmp_path):
     assert len(result["records"]) == 2
     assert result["records"][1]["status"] == "missing"
     assert not result["mfe_ned_independently_recomputed"]
+    shard = recompute_unique18(input_dir, fasta, rscu, seeds=(0,), fold=lambda sequences: MFES,
+                               record_ids=["gene"])
+    assert shard["n_records"] == 1
+    assert len(shard["records"]) == 1
+    assert shard["mfe_ned_independently_recomputed"]
