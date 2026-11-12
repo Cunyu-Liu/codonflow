@@ -519,3 +519,10 @@
 - 两臂 `run_config.json` 均保留原训练/验证数据SHA、CUDA训练commit=`1f38db6f35735326917e106c95ce61a3f17abe27`、独立validation seed及r4显存参数；代码目录clean。训练loss只用于判断优化是否正常，不作为科学结果。
 - 此时尚无 `log.jsonl`、best/last/training_state/converged，不能判断独立val是否收敛。`g1_r4_watcher=waiting_for_convergence`，`g2_r4_watcher=waiting_for_g1_preflights`，没有提前越过Gate。
 - 已复核自动链：收敛出现后先运行完整checkpoint/CUDA审计，再逐臂执行100样本G1及preflight；双preflight齐全后才dry-run并运行108 learned+54 shared simple。正式G2与模型性能结论仍未产生。
+
+## 76. FULL 第1个独立验证 epoch 与 checkpoint 完整性
+
+- FULL r4 第1个epoch于2026-11-13 07:16 CST完成并进入e2：`train_loss=1.5952072525580994`，独立`val_loss=1.2731186264378969`，`cond_gap=2.2910664081573486`，`elapsed_min=134.7866612315178`，plateau=`0/3`。
+- `best.pt`、`last.pt`、`training_state.pt`与`log.jsonl`均已生成。独立读取验证：log/state/best_epoch均为1，state的best_val与log严格相等，best/last/state模型张量逐项相等且全部有限，优化器非空并保存1份CUDA RNG状态。
+- 当前哈希：best=`501506b60f224a56b4a14cdd1ea96f39789eff7ea5783c6fb7e52517a5149fc2`；last=`9c51701d9c291acdbccaacf726c72a470edab7ddecf495f991586eff69126281`；training_state=`5f909b68ae22c902430b9ca430e8179dde5fee59976606171ab76b2506fa55b6`。不同序列化文件的SHA不同不代表张量不同，张量相等性已单独验证。
+- 以上仅确认完整epoch和可恢复状态，不是收敛、G1或模型性能证据。FULL继续e2，G1/G2 watcher保持等待。
