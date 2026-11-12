@@ -1,4 +1,5 @@
 import gzip
+import io
 import json
 from pathlib import Path
 
@@ -51,3 +52,23 @@ def test_corrupt_gzip_is_quarantined_and_redownloaded(tmp_path):
     result = recover_one(record, 112, out_dir, url_override=source.as_uri())
     assert result["status"] == "done"
     assert (target / "Test.1.cds.all.fa.corrupt").read_bytes() == b"\x1f\x8b truncated"
+
+
+def test_range_resume_preserves_valid_partial_download(tmp_path, monkeypatch):
+    record = {"species": "test_species", "base": "Test.1"}
+    source = tmp_path / "source.gz"
+    long_cds = "ATG" + "A" * 297 + "TAA"
+    with gzip.open(source, "wt") as handle:
+        handle.write(f">keep\n{long_cds}\n")
+    compressed = source.read_bytes()
+    offset = 100
+    response = io.BytesIO(compressed[offset:])
+    response.status = 206
+    monkeypatch.setattr("urllib.request.urlopen", lambda request, timeout: response)
+    out_dir = tmp_path / "out"
+    partial = out_dir / "test_species" / "Test.1.cds.all.fa.gz.tmp"
+    partial.parent.mkdir(parents=True)
+    partial.write_bytes(compressed[:offset])
+    result = recover_one(record, 112, out_dir, url_override="https://example.invalid/source.gz")
+    assert result["status"] == "done"
+    assert (out_dir / "test_species" / "Test.1.cds.all.fa.gz").read_bytes() == compressed

@@ -56,10 +56,15 @@ def recover_one(record, release, out_dir, url_override=None):
             return previous
     if not gz_path.exists():
         temporary = gz_path.with_suffix(".gz.tmp")
-        if temporary.exists():
+        offset = temporary.stat().st_size if temporary.exists() else 0
+        if offset and temporary.open("rb").read(2) != b"\x1f\x8b":
             temporary.replace(gz_path.with_suffix(".truncated"))
-        with urllib.request.urlopen(url, timeout=900) as response, temporary.open("wb") as handle:
-            shutil.copyfileobj(response, handle)
+            offset = 0
+        request = urllib.request.Request(url, headers={"Range": f"bytes={offset}-"} if offset else {})
+        with urllib.request.urlopen(request, timeout=900) as response:
+            append = bool(offset and getattr(response, "status", 200) == 206)
+            with temporary.open("ab" if append else "wb") as handle:
+                shutil.copyfileobj(response, handle)
         temporary.replace(gz_path)
     try:
         with gzip.open(gz_path, "rb") as source:
