@@ -280,6 +280,12 @@
 - 实际 CUDA 并行：GPU 利用率 100%，约 16.5GB 显存；full-token 首步 loss 5.7661，edited-token 首步 loss 5.5690。训练持续至注册 plateau，不设步数上限。
 - px2 最新代码完整回归 **159 passed, 1 skipped**。
 
+## 44. PPT 第 46 页：G0 通过与训练启动
+
+- 新增 PPT 第 46 页，记录 G0 全部通过、unique18 三 seed 全匹配、25 物种来源、56.8M 双臂和真实 CUDA 100% 利用率。
+- 页面明确 G1 进行中、未收敛、未做 learned-vs-simple 裁决、预印本不可提交。
+- 验证：46 页重开、关键文本、形状边界与 LibreOffice 渲染全部通过，临时文件已清理。
+
 ## 40. Gate 约束训练启动器
 
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
