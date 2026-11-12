@@ -18,7 +18,7 @@
 
 - [x] 实现 `scripts/a7_data_audit.py`：逐步无效原因、长度/GC/CAI/RSCU、物种/簇元数据和 cleaning manifest 数量守恒；合成测试与真实 eGFP 冒烟通过。
 - [x] 生成 D4/D5 六个 split 的全量长度、GC、CAI/RSCU、密码子使用和簇分布报告：`07_a7_data/full_audits_20261112_v2/`；记录数、操作合法性、唯一蛋白和 D5 簇映射全部通过。非 ATG 部分 CDS 已单列，物种占比和选择偏差限制写入 manifest。
-- [ ] 恢复原始逐物种输入与逐步清洗日志，补齐数据库 release、URL、下载日期、哈希和逐步过滤数量；目前只有 release-112 下载脚本与 cleaned `v3_all.fasta`。
+- [x] 25 物种原始输入已恢复并生成 release、URL、恢复时间、哈希和逐步过滤数量：`07_a7_data/raw_release112/manifest.json`，25/25 `passed=true`；G0 source_recovery 检查通过。
 - [x] 通过冻结 transcript ID 规则恢复 25 物种映射与逐 split 分布（`full_audits_20261112_v2/species_distribution.json`）；全部记录映射成功。非 ATG 可能部分 CDS、标准遗传代码 table 1 和异常注释处理已披露；不得据此声称 species OOD。
 
 **DoD**：独立脚本从原始输入生成清洗流水账与分布报告；数量守恒，所有规则有审计文件，不只保留最终 FASTA 或旧汇总。

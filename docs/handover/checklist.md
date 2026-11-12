@@ -25,7 +25,7 @@
 
 ## C2. G0 数据与协议就绪
 
-- [ ] 数据来源、release、哈希和逐步清洗流水账完整；完整 `v3_all.fasta` 已找到且 SHA256=`5e106f9e…`，release/逐步清洗记录仍待补齐。
+- [x] 25 物种来源、release、恢复时间、哈希和逐步清洗流水账完整：`07_a7_data/raw_release112/manifest.json`，25/25 通过，G0 source_recovery=true。
 - [x] D4/D5 六个 split 的长度/GC/CAI/RSCU/密码子使用/簇分布审计完成，见 `07_a7_data/full_audits_20261112_v2/`；非 ATG 部分 CDS、物种元数据缺失与选择偏差限制已披露。
 - [x] 25 物种 ID 元数据与逐 split 分布已恢复，标准遗传代码 table 1、非 ATG 可能部分 CDS 和异常注释处理规则明确；不支持 species OOD 宣称。
 - [x] untouched 24 基因 D5 确认集已冻结于 `07_a7_data/confirmation24/`，SHA256=`a128bdbf…`；长度/GC 各档均 8 条，train/val 精确重叠为 0。
@@ -92,7 +92,7 @@
 
 | Gate | 当前状态 | 原因 |
 |---|---|---|
-| G0 数据与协议 | **未通过** | 确认集、D5 RSCU 和 24 个 calibration 池已完成；全量审计、seeds 1/2、MFE/NED 和 GPU 检查未完成 |
+| G0 数据与协议 | **未通过** | 全量分布、25 物种来源、冻结资产和 CUDA 已通过；unique18 seeds 1/2 生成与独立复算未完成 |
 | G1 模型有效 | **未通过** | synonymous 新模型无 checkpoint；旧 plateau 模型已证伪 |
 | G2 学习必要性 | **未裁决** | 没有有效 learned 模型与完整简单搜索对照 |
 | G3 rollout 净收益 | **未启动** | 依赖 G2 |

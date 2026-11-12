@@ -261,6 +261,12 @@
 - 新增 Range 契约测试，共 4 项恢复测试通过。旧犬进程已停止并以断点续传方式恢复。
 - seed1 当前15/18，seed2 12/18；原始 manifest 暂为24/25。
 
+## 41. 25/25 原始来源验收通过
+
+- `raw_release112/manifest.json` 已达到 25/25、`passed=true`、无失败记录，SHA256=`ae5a7fe88c82277533c916e6d359bec41cb10b5aa6265a03a1d71c58c18ad3c0`。
+- 当前 G0 检查：full_distribution=true、frozen_assets=true、source_recovery=true、cuda_matmul=true、unique18_all_seeds=false；仅剩 seeds 1/2 独立复算未完成。
+- seed1 当前17/18，seed2 12/18；主训练仍未启动。
+
 ## 40. Gate 约束训练启动器
 
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
