@@ -141,3 +141,9 @@
 - 假模型契约测试验证批量 forward 和蛋白身份；修正测试中 M+A+stop 应为 3 次调用的错误预期。完整回归 **147 passed, 1 skipped**。
 - 真实 GPU smoke：C31E10.3b.1、100/100 唯一解、identity=1.0、17,800 forward、2.7959 秒。产物仅作性能/接口验证，不作科学结果。
 - 已用批量实现和正确 CC 恢复 seeds 1/2，并重挂复算 watcher。
+
+## 21. 批量 forward 成本口径纠正
+
+- 批量 smoke 的 17,800 是样本×token 等效计算量，不是实际模型调用；实际批量 forward 为 178。为避免成本误报，`forward_calls` 改为真实批量调用数，新增 `autoregressive_token_forward_evaluations` 保存等效量。
+- 新契约测试同时检查两种计数，focused tests 通过。旧部分文件移入 `07_a7_data/quarantine_pre_forward_cost_fix/`，未手改 JSON。
+- 已停止自己的 watcher/父进程/GEMORNA 子进程，并以正确成本口径重新生成 seeds 1/2；批量 smoke 仅作接口验证，不进入科学结果。

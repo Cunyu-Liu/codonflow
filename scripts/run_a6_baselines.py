@@ -97,7 +97,8 @@ def generate_method(method, source, weights, n, seed, device, gpt=None):
         start = time.perf_counter()
         solutions = codongpt_batch_sample(model, tokenizer, protein, n, seed, device)
         return solutions, {"elapsed_s": time.perf_counter() - start,
-                           "forward_calls": n * (len(protein) + 1),
+                           "forward_calls": len(protein) + 1,
+                           "autoregressive_token_forward_evaluations": n * (len(protein) + 1),
                            "generator_calls": n, "n_requested": n}
     raise ValueError(f"unknown method {method}")
 

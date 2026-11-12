@@ -3,7 +3,7 @@ from types import SimpleNamespace
 import torch
 
 from codonflow.core.codon import CODONS, protein_of_cds
-from scripts.run_a6_baselines import codongpt_batch_sample
+from scripts.run_a6_baselines import codongpt_batch_sample, generate_method
 
 
 class Tokenizer:
@@ -40,3 +40,14 @@ def test_codongpt_batch_preserves_protein_and_batches_forward_calls():
     assert len(model.calls) == 3
     assert model.calls[0] == (4, 1)
     assert model.calls[-1] == (4, 3)
+
+
+def test_codongpt_cost_distinguishes_batched_and_token_equivalent_forwards():
+    tokenizer = Tokenizer()
+    model = Model(tokenizer)
+    weights = {codon: 1.0 for codon in CODONS}
+    _solutions, costs = generate_method("codongpt", "ATGGCTTAA", weights, 4, 0,
+                                        torch.device("cpu"), (model, tokenizer))
+    assert costs["forward_calls"] == 3
+    assert costs["autoregressive_token_forward_evaluations"] == 12
+    assert len(model.calls) == 3
