@@ -188,3 +188,9 @@
 - release-112 已恢复 6 个非人类物种，人类116仍未完成；G0 保持未通过。
 - `RUNBOOK_NEXT.md` 已写入统一 `a7_g0_gate.py` 命令，只有 `g0_gate.json passed=true` 才允许启动训练。
 - G0 功能提交 `2a1c64f` 的 GitHub push 仍间歇失败，后续继续标准推送，不强推。
+
+## 28. 分片 OOM 与并发调整
+
+- seed2 的 `ENSACAT00000037188.1` 在 GEMORNA 初始化时报 `CUDA out of memory`，driver 保留完整 traceback；不是数据错误，已完成文件不受影响。
+- 总并发 6 对其他项目动态余量不足。只停止自己的 driver/子进程，将每个 seed 降为 2 个并发（总计 4），按 done 状态断点续跑；若仍 OOM 继续降并发，不使用 CPU 替代。
+- release-112 已恢复 9 个非人类物种，人类116仍在下载。
