@@ -21,8 +21,7 @@ from codonflow.eval.anytime import FrozenReference, anytime_curve
 from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe, pairwise_ned
 from codonflow.eval.protocol import validate_result_payload
 from codonflow.models.guided_sampler import synonymous_x0
-from codonflow.models.simple_search import UniqueObjectiveScorer, weighted_sum
-from codonflow.models.synonymous_markov import FiniteStepSynonymousMarkovEditor
+from codonflow.models.simple_search import UniqueObjectiveScorer
 from codonflow.train.run_pretrain import file_sha256, git_commit
 from scripts.a7_run_simple_search import code_dirty
 

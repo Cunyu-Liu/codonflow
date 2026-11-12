@@ -336,3 +336,11 @@
 - 独立重新运行 C31E10.3b.1 calibration，reference 与 pool 均与冻结文件逐字节一致（69 唯一目标向量）；产物保存在 `calibration_unique18_independent_recheck/`。显式 global-synonymous calibration 模式保持了旧池生成语义。
 - learned 推理从逐路径 forward 改为同长度路径批量 forward，仍使用原 `SynonymousJumpProposal.sample_transition_batch` 和 base kernel，不引入 terminal guidance 或 rollout。每条路径、每个状态转移及实际 batch forward 分开计费；唯一 terminal scorer 预算不变。
 - 批量化后完整回归 **170 passed, 1 skipped**；尚未完成真实 CUDA 批量接口验证，不得写成性能或科学结果。原串行随机接口任务保留日志，不覆盖输出。
+
+## 51. 收敛审计器与 GPU 接口证据
+
+- 新增 `a7_convergence_audit.py`：只有完整 checkpoint、连续 log epoch、三 epoch <0.1% plateau、best/last/training_state/converged、优化器/CUDA RNG、数据/配置/commit 一致时才生成通过清单。
+- 四个 checkpoint 均须可加载；在 CUDA 上加载每种权重、执行有限前向并同步，另核对 converged 与 best 张量逐项一致。禁止 CPU 降级和 `/home` 大型权重输出。
+- 历史、继续显著改善、日志不一致和错误 best epoch 的4项聚焦测试通过。正式模型尚未完成首个 epoch，因此该工具没有实际通过记录。
+- 两个随机接口进程均已确认占用 CUDA 显存，GPU 利用率采样100%；尚无最终 JSON，不能写成接口验收通过。批量任务等待器保留，后续以产物为准。
+- `f6bfaad` 的 GitHub push 再次失败；训练机 bundle 同步已完成，远端主干仍为 `5796bf4`，后续补推。
