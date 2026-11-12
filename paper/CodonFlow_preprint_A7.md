@@ -46,7 +46,7 @@ Convergence requires three consecutive epochs with less than 0.1% relative valid
 
 D4 contains 621,306/76,444/78,724 train/validation/test unique proteins with zero exact CDS or protein overlap across splits. D5 uses operational protein-homology-cluster isolation with MMseqs2 identity 0.5 and bidirectional coverage 0.8, yielding 618,073/80,191/78,177 records. D5 does not establish curated family- or species-level out-of-distribution generalization.
 
-The source corpus contains 862,240 records from 25 species. Non-human sources use Ensembl release 112; the human BioMart source corresponds to release 116. Recovery artifacts retain URLs, retrieval timestamps, raw and cleaned hashes, and per-rule cleaning counts without claiming the original download dates. Non-ATG sequences are reported separately. Standard genetic code table 1 is used throughout.
+The source corpus contains 862,240 records from 25 species using Ensembl release 112. Recovery artifacts retain URLs, retrieval timestamps, raw and cleaned hashes, and per-rule cleaning counts without claiming the original download dates. A release-116 human recovery was evaluated and isolated because it introduced 227,289 additional base identifiers and was not the closest source match. Non-ATG sequences are reported separately. Standard genetic code table 1 is used throughout.
 
 The development benchmark consists of eGFP, nanoLuc, and the repeatedly used unique18 set. It is not an untouched test set. A separate 24-gene D5 confirmation set was selected using only length, GC, identifiers, and cluster membership, with exact CDS/protein and homology exclusions. It is reserved for final confirmation and not used for model tuning.
 
