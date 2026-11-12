@@ -303,3 +303,12 @@
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
 - `--dry-run` 仅打印冻结命令，便于 G0 后核对；未通过 Gate 时直接拒绝。契约测试覆盖命令保留与 Gate/哈希失败。
 - 完整回归 **159 passed, 1 skipped**，主训练仍未启动。
+
+## 47. 2026-11-13 r3 训练溯源与 G2 前置审查
+
+- 两条 r3 训练仍在真实 CUDA 上运行，GPU 利用率采样为 100%；FULL 为 e1 b1100/17421、EDIT 为 e1 b2100/35442。均为首个 epoch 中间日志，不是收敛或性能证据。
+- 训练机旧分支缺少 GitHub 的两个已验证提交，且修复和配置处于未提交状态。逐项比对源码、r3 配置和测试后，将相同内容正常提交、合并并推送，最终 commit=`6735cb3290400240ead5bc81f7e4f841d4978a8a`；没有 reset、强推、kill 或覆盖训练进程。
+- r3 配置再次核验：FULL SHA256=`a6bcc4fe60ccfe082ebf126412bf9b0a46321c06a8eb8341f03a523df49142c6`，EDIT SHA256=`05ec5d8e850bf7a4f698f1c32935e57c975e647e337922da3d836c3cad95da94`。G0 哈希仍匹配。
+- 启动 `07_a7_data/calibration_unique18/`：18 个开发基因，D4 train RSCU，seed=1729，n_uniform=40、n_per_axis=10；任务正在运行，尚未验收。该池只用于独立标定，不得由参评模型输出估计。
+- G2 代码审查：目前只有 simple-search runner 和基础聚合器，尚无已验收的 learned G2 runner、完整配对检查和 G2 gate。正式 G2 仍未启动；不会将已有外部五方法或随机 smoke 冒充 learned 对照。
+- 修订 spec/tasks/checklist/RECOVERY 中残留的 G0 未通过和 seeds 1/2 未完成状态；科学阈值不变。

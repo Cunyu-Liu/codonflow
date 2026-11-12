@@ -21,7 +21,7 @@
 - [x] unique18 的 18 条输入 FASTA 已冻结并审计。
 - [x] core seed-0 五方法的部分真实 baseline 结果完成身份/输入复核。
 - [x] 旧 arbitrary-corruption 模型的复制退化已证伪并保留负结果。
-- [x] unique18 seed-0 已完成真实独立 MFE/NED 复算：18/18 全匹配，四轴目标、identity、解数和哈希一致；seeds 1/2 生成与复算仍未完成。
+- [x] unique18 seeds 0/1/2 均已完成 18/18、五方法真实生成和独立 MFE/NED 复算；四轴目标、identity、解数和哈希全部一致。
 
 ## C2. G0 数据与协议就绪
 

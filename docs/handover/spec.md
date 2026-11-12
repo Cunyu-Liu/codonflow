@@ -163,7 +163,7 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 
 ### G0：数据与协议就绪
 
-必须完成 §4.2、开发/确认集冻结、baseline 资源表、独立 calibration 参考域和结果 schema。当前 **未通过**。
+必须完成 §4.2、开发/确认集冻结、baseline 资源表、独立 calibration 参考域和结果 schema。当前 **已通过**，裁决文件为 `07_a7_data/g0_gate.json`，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。
 
 ### G1：模型收敛且非退化
 

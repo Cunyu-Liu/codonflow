@@ -2,7 +2,7 @@
 
 ## 1. 是否可以重新做
 
-> 2026-11-12 本轮执行状态：已重新通读全部本地交接文档并同步合同副本。px1:27882 与 px2:29375 的 TCP 端口可连接，但 SSH 会话均被远端提前关闭，尚未取得本轮 GPU、进程或资产证据；不沿用下方旧 CUDA 状态，不启动训练。代码工作副本必须为 `/home/codonflow`，大型资产保留在 `/teams`，不得反向覆盖。
+> 2026-11-13 当前执行状态：G0 已通过，裁决文件 `07_a7_data/g0_gate.json` SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。两条 r3 D4 synonymous 模型正在 px2 CUDA 上并行训练，尚在首个 epoch，尚无 checkpoint、收敛或 G1 证据。代码 `/home/codonflow` 与 GitHub `6735cb3` 已核对一致；大型资产保留在 `/teams`，不得反向覆盖。G2 正式执行工具尚未验收，不得把旧五方法输出或 smoke 作为 learned-vs-simple 结果。
 
 可以，而且不需要重新立项目。当前可恢复的是 A7 warm-start synonymous CDS editing 路线：先完成 G0 数据与协议，再从零训练新 synonymous-corruption 模型，最后做 learned-vs-simple-search 决定性对照。
 
