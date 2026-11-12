@@ -312,3 +312,11 @@
 - 启动 `07_a7_data/calibration_unique18/`：18 个开发基因，D4 train RSCU，seed=1729，n_uniform=40、n_per_axis=10；任务正在运行，尚未验收。该池只用于独立标定，不得由参评模型输出估计。
 - G2 代码审查：目前只有 simple-search runner 和基础聚合器，尚无已验收的 learned G2 runner、完整配对检查和 G2 gate。正式 G2 仍未启动；不会将已有外部五方法或随机 smoke 冒充 learned 对照。
 - 修订 spec/tasks/checklist/RECOVERY 中残留的 G0 未通过和 seeds 1/2 未完成状态；科学阈值不变。
+
+## 48. G1 配对口径修复与 G2 执行工具准备
+
+- 发现并修复 G1 把天然源序列误作 non-source 基准的问题：现在逐样本使用对应的随机 synonymous 初始序列；identity/legal 仍相对天然源验证。新增回归覆盖“未编辑但与天然源不同”的失败情况。
+- G2 的 uniform 基线改为从同一 paired 初始状态进行独立单密码子同义替换，与其他方法共享操作符。calibration 显式保留原全局同义采样，保证冻结池生成方式不因基线修复而改变。
+- 新增 `scripts/a7_run_learned.py`：真实 CUDA、冻结 checkpoint/hash、B=500 唯一 terminal scorer、base proposal、T=4、逐序列 identity、NED、HV anytime 和完整成本字段。simple/learned 使用同一 `seed*1009` 初始化函数；独立缓存避免跨方法预算泄漏。
+- 两个 runner 均核对 calibration 的天然源 SHA256，结果增加 initial SHA256；G1 与 G2 的用途和输出严格区分。
+- 本地完整回归 **164 passed, 1 skipped**。当前仍未训练收敛、未通过 G1、未运行正式 G2，也未形成模型性能结论。calibration_unique18 与两条训练继续运行。

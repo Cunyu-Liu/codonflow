@@ -9,15 +9,18 @@ import subprocess
 import sys
 from pathlib import Path
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from codonflow.core.codon import gc_fraction, split_codons
+from codonflow.core.codon import feasible_edit, gc_fraction, split_codons
 from codonflow.core.motifs import motif_penalty_score
 from codonflow.data.dataset import read_fasta
 from codonflow.eval.anytime import FrozenReference, anytime_curve
 from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe, pairwise_ned
 from codonflow.eval.protocol import validate_result_payload
+from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.models.simple_search import SimpleSearch
 from codonflow.train.run_pretrain import file_sha256, git_commit
 
@@ -70,10 +73,13 @@ def main() -> None:
         safe = re.sub(r"[^A-Za-z0-9_.-]", "_", header)
         calibration_path = Path(args.calibration_dir) / f"{safe}.json"
         calibration = json.loads(calibration_path.read_text())
+        if calibration["source_sha256"] != hashlib.sha256(source.encode()).hexdigest():
+            raise ValueError(f"calibration source mismatch: {header}")
         frozen = FrozenReference.from_dict(calibration)
+        initial = synonymous_x0(source, np.random.default_rng(args.seed * 1009))
         for method in args.methods:
             result = SimpleSearch(
-                source, objectives, args.weights, seed=args.seed,
+                initial, objectives, args.weights, seed=args.seed,
                 normalization=(frozen.reference, frozen.scale),
             ).run(method, max_unique_scorer=args.max_unique_scorer)
             anytime = anytime_curve(result.points, frozen)
@@ -83,6 +89,9 @@ def main() -> None:
                 "run_id": f"a7_{safe}_{method}_s{args.seed}",
                 "record_id": header,
                 "seed": args.seed,
+                "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
+                "initial_index": 0,
+                "terminal_step": None,
                 "benchmark_sha256": benchmark_sha256,
                 "data_split_sha256": args.data_split_sha256,
                 "code_commit": git_commit(),
@@ -92,7 +101,9 @@ def main() -> None:
                 "rscu_sha256": file_sha256(args.rscu_json),
                 "calibration_sha256": file_sha256(str(calibration_path)),
                 "anytime": anytime,
-                "identity_rate": 1.0,
+                "identity_rate": float(np.mean([
+                    feasible_edit(point["sequence"], source) for point in result.points
+                ])),
                 "ned": pairwise_ned([point["sequence"] for point in result.points]),
                 "missing_methods": [],
                 "exclusions": [],

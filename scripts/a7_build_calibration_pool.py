@@ -37,9 +37,9 @@ def build_pool(source, objective_fn, n_uniform=40, n_per_axis=10, seed=1729):
     points = []
     runs = []
     for method, weights, budget in calibration_runs(n_uniform, n_per_axis):
-        result = SimpleSearch(source, objective_fn, weights, seed=seed).run(
-            method, max_unique_scorer=budget,
-        )
+        result = SimpleSearch(
+            source, objective_fn, weights, seed=seed, uniform_operator="global_synonymous",
+        ).run(method, max_unique_scorer=budget)
         points.extend(point["objectives"] for point in result.points)
         runs.append({"method": method, "weights": weights, "budget": budget,
                      "status": result.status, "n_unique": len(result.points),

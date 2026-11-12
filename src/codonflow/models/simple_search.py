@@ -129,6 +129,7 @@ class SimpleSearch:
         initial_temperature: float = 1.0,
         final_temperature: float = 0.01,
         normalization: Optional[tuple[Sequence[float], Sequence[float]]] = None,
+        uniform_operator: str = "single_codon",
     ):
         self.source = normalize_to_dna(source)
         if not is_valid_cds(self.source):
@@ -140,6 +141,9 @@ class SimpleSearch:
         self.initial_temperature = initial_temperature
         self.final_temperature = final_temperature
         self.normalization = normalization
+        if uniform_operator not in ("single_codon", "global_synonymous"):
+            raise ValueError("unknown uniform operator")
+        self.uniform_operator = uniform_operator
         if initial_temperature <= 0 or final_temperature <= 0:
             raise ValueError("temperatures must be positive")
         if normalization is not None:
@@ -177,8 +181,10 @@ class SimpleSearch:
         attempts = 0
         while scorer.unique_calls < max_unique_scorer and attempts < max_attempts:
             attempts += 1
-            if method == "uniform":
+            if method == "uniform" and self.uniform_operator == "global_synonymous":
                 candidate = random_synonymous(self.source, rng)
+            elif method == "uniform":
+                candidate = single_codon_proposal(self.source, rng)
             else:
                 candidate = single_codon_proposal(current, rng)
             candidate_objectives = scorer(candidate)

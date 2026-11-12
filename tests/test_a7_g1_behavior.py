@@ -21,3 +21,12 @@ def test_behavior_metrics_rejects_source_collapse():
     assert row["max_single_frequency"] == 1
     assert row["uniform_exact_overlap"] == 1
     assert not passes_g1(row)
+
+
+def test_non_source_rate_is_measured_from_paired_random_initialization():
+    source = "ATGGCTTAA"
+    initial = "ATGGCGTAA"
+    row = behavior_metrics(source, [initial] * 100, [initial] * 100, [initial] * 100)
+    assert row["identity_legal"] == 1.0
+    assert row["non_source_rate"] == 0.0
+    assert not passes_g1(row)

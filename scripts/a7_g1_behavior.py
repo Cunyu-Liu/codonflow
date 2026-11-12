@@ -23,14 +23,17 @@ from codonflow.models.synonymous_markov import FiniteStepSynonymousMarkovEditor,
 from codonflow.train.run_pretrain import file_sha256, git_commit
 
 
-def behavior_metrics(source, sequences, uniform_sequences):
+def behavior_metrics(source, sequences, uniform_sequences, initial_sequences=None):
     if not sequences:
         return {"identity_legal": 0.0, "non_source_rate": 0.0, "n_unique": 0,
                 "max_single_frequency": 1.0, "uniform_exact_overlap": 0}
     counts = Counter(sequences)
+    initials = [source] * len(sequences) if initial_sequences is None else initial_sequences
+    if len(initials) != len(sequences):
+        raise ValueError("each output must have its paired initial sequence")
     return {
         "identity_legal": float(np.mean([feasible_edit(sequence, source) for sequence in sequences])),
-        "non_source_rate": float(np.mean([sequence != source for sequence in sequences])),
+        "non_source_rate": float(np.mean([sequence != initial for sequence, initial in zip(sequences, initials)])),
         "n_unique": len(counts),
         "max_single_frequency": max(counts.values()) / len(sequences),
         "uniform_exact_overlap": len(set(sequences) & set(uniform_sequences)),
@@ -52,11 +55,12 @@ def uniform_path(source, terminal_step, rng):
 
 
 def evaluate_gene(source, proposal, seed, n_samples, terminal_step, reward_profiles):
-    outputs, uniform_outputs = [], []
+    outputs, uniform_outputs, initial_sequences = [], [], []
     sampled_positions = set()
     edit_indicators = []
     for index in range(n_samples):
         initial = synonymous_x0(source, np.random.default_rng(seed * 1009 + index))
+        initial_sequences.append(initial)
         editor = FiniteStepSynonymousMarkovEditor(
             proposal, lambda sequences: [0.0] * len(sequences), terminal_step,
             rollout_count=0, rng=np.random.default_rng(seed * 7919 + index), sampling_kernel="base",
@@ -67,7 +71,7 @@ def evaluate_gene(source, proposal, seed, n_samples, terminal_step, reward_profi
         sampled_positions.update(positions)
         edit_indicators.append(bool(positions))
         uniform_outputs.append(uniform_path(initial, terminal_step, np.random.default_rng(seed * 1009 + index)))
-    row = behavior_metrics(source, outputs, uniform_outputs)
+    row = behavior_metrics(source, outputs, uniform_outputs, initial_sequences)
     transitions = proposal.enumerate_transitions(split_codons(source))
     row["stay_p"] = float(np.exp([t.log_probability for t in transitions if t.is_stay][0]))
     row["p_edit"] = float(np.mean(edit_indicators))

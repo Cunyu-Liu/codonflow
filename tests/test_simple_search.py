@@ -14,19 +14,35 @@ def objective(sequence):
 
 @pytest.mark.parametrize("method", SimpleSearch.METHODS)
 def test_search_is_reproducible_legal_and_budgeted(method):
-    first = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run(method, max_unique_scorer=8)
-    second = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run(method, max_unique_scorer=8)
+    budget = 4 if method == "uniform" else 8
+    first = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run(method, max_unique_scorer=budget)
+    second = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run(method, max_unique_scorer=budget)
     assert first.status == "done"
-    assert len(first.points) == 8
-    assert [point["budget"] for point in first.points] == list(range(1, 9))
+    assert len(first.points) == budget
+    assert [point["budget"] for point in first.points] == list(range(1, budget + 1))
     assert [point["sequence"] for point in first.points] == [point["sequence"] for point in second.points]
     assert [point["objectives"] for point in first.points] == [point["objectives"] for point in second.points]
-    assert len({point["sequence"] for point in first.points}) == 8
+    assert len({point["sequence"] for point in first.points}) == budget
     assert all(feasible_edit(point["sequence"], SOURCE) for point in first.points)
     payload = first.to_dict()
-    assert payload["costs"]["unique_terminal_reward_calls"] == 8
+    assert payload["costs"]["unique_terminal_reward_calls"] == budget
     assert payload["costs"]["forward_calls"] == 0
     json.dumps(payload)
+
+
+def test_uniform_uses_the_same_single_codon_operator():
+    result = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run("uniform", max_unique_scorer=4)
+    for point in result.points[1:]:
+        differences = [i for i, (a, b) in enumerate(zip(result.source, point["sequence"])) if a != b]
+        assert 1 <= len(differences) <= 3
+        assert differences[0] // 3 == differences[-1] // 3
+
+
+def test_calibration_retains_frozen_global_synonymous_sampling():
+    result = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7,
+                          uniform_operator="global_synonymous").run("uniform", max_unique_scorer=4)
+    assert result.points[1]["sequence"] != SOURCE
+    assert result.points[1]["sequence"][3:6] != SOURCE[3:6]
 
 
 def test_tchebycheff_ignores_zero_weight_axes_in_minimum():
