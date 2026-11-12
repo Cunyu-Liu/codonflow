@@ -127,3 +127,10 @@
 - 在 `CodonFlow-中期汇报-20261009.pptx` 末尾新增 A7 G0 状态页：862,240 条/25 物种、24/24 校准、seed-0 18/18、px2 CUDA 与 142 项测试基线。
 - 页面明确 seeds 1/2 与 raw recovery 仍在进行，G0 未关闭、主训练未启动，不含模型性能或可提交预印本结论。
 - 验证：PPT 重开为 45 页、关键文本存在、25 个形状无越界；LibreOffice PDF 第 45 页渲染为 1601×900，非空白比例正常。临时验证文件已清理。
+
+## 19. GEMORNA Triton 编译失败与断点恢复
+
+- seeds 1/2 首次运行在 GEMORNA 阶段停止：`RuntimeError: Failed to find C compiler`。LinearDesign 已完成文件保留，部分结果不视为完整 seed。
+- 使用 `CC=/root/miniconda3/envs/pc_cng/bin/x86_64-conda-linux-gnu-cc` 进行 `MAA` 单次真实 GPU 验证，成功生成 `ATGGCCGCC`，随后以相同 CC 和 `--resume` 重启两条任务，日志追加不覆盖。
+- 失败触发的复算 JSON 为 `n_matching=0/18`、`complete=false`，已重命名为 `unique18_seed{1,2}_independent_mfe_ned_partial_before_cc_fix.json`；新 watcher 等待新 PID，不沿用部分审计。
+- release-112 原始恢复正在写入 gzip 临时文件，尚无完成物种，未提前勾选 provenance。
