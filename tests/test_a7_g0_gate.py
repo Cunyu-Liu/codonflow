@@ -50,6 +50,8 @@ def test_g0_gate_passes_only_complete_evidence(tmp_path):
 def test_g0_gate_rejects_missing_seed_and_source(tmp_path):
     full, frozen, sources, unique, cuda, registry = make_g0_evidence(tmp_path)
     unique = unique[:-1]
+    unique.append(tmp_path / "missing_unique.json")
+    sources.append(tmp_path / "missing_source.json")
     source_payload = json.loads(sources[0].read_text())
     source_payload["records"] = source_payload["records"][:-1]
     sources[0].write_text(json.dumps(source_payload))

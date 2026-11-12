@@ -242,3 +242,9 @@
 - 单分片仍发生长序列 OOM，改为固定 16 样本 micro-batch，从内存机制上限制激活峰值。采样语义不变，真实 forward 按批次数累计，等效 token forward 不变。
 - `C41G7.2.1` 真实 GPU 验证通过：100/100 唯一解、identity=1.0、forward=4,116、等效计算=58,800、34.91 秒。
 - 两个 seed 已按断点恢复，不使用 CPU 替代。完整回归 **155 passed, 1 skipped**。
+
+## 37. 当前 G0 裁决证据
+
+- 修复 `a7_g0_gate.py` 在缺失 manifest/审计时的异常：缺失文件现记为失败证据，source/unique hash 写 `null`，不中断报告。
+- 当前 `g0_gate_current.json`：full_distribution=true、frozen_assets=true、cuda_matmul=true、source_recovery=false、unique18_all_seeds=false，passed=false。
+- 这确认 G0 未放行；seeds 1/2 与犬/anole 仍是直接阻塞。

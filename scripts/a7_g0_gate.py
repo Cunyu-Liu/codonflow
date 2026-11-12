@@ -21,6 +21,9 @@ def evaluate_g0(full_audit_path, frozen_path, source_manifest_paths, unique_path
     source_records = {}
     source_failures = []
     for path in source_manifest_paths:
+        if not Path(path).exists():
+            source_failures.append({"path": str(path), "status": "missing_manifest"})
+            continue
         manifest = json.loads(Path(path).read_text())
         source_failures.extend(row for row in manifest.get("records", []) if row.get("status") != "done")
         for row in manifest.get("records", []):
@@ -42,6 +45,8 @@ def evaluate_g0(full_audit_path, frozen_path, source_manifest_paths, unique_path
         )
     unique = {}
     for path in unique_paths:
+        if not Path(path).exists():
+            continue
         payload = json.loads(Path(path).read_text())
         for seed in payload.get("seeds", []):
             unique[seed] = payload
@@ -74,8 +79,10 @@ def evaluate_g0(full_audit_path, frozen_path, source_manifest_paths, unique_path
         "evidence": {
             "full_audit": {"path": str(full_audit_path), "sha256": file_sha256(full_audit_path)},
             "frozen_assets": {"path": str(frozen_path), "sha256": file_sha256(frozen_path)},
-            "source_manifests": [{"path": str(path), "sha256": file_sha256(path)} for path in source_manifest_paths],
-            "unique18": [{"path": str(path), "sha256": file_sha256(path)} for path in unique_paths],
+            "source_manifests": [{"path": str(path), "sha256": file_sha256(path) if Path(path).exists() else None}
+                                 for path in source_manifest_paths],
+            "unique18": [{"path": str(path), "sha256": file_sha256(path) if Path(path).exists() else None}
+                         for path in unique_paths],
             "cuda": {"path": str(cuda_path), "sha256": file_sha256(cuda_path)},
         },
     }
