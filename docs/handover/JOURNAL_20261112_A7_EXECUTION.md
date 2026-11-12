@@ -260,3 +260,9 @@
 - 下载临时文件已有合法 gzip 前缀时，恢复器使用 HTTP Range 从既有字节继续，避免网络慢时反复从头下载；非法前缀仍保留为 `.truncated`，服务器忽略 Range 时重写。
 - 新增 Range 契约测试，共 4 项恢复测试通过。旧犬进程已停止并以断点续传方式恢复。
 - seed1 当前15/18，seed2 12/18；原始 manifest 暂为24/25。
+
+## 40. Gate 约束训练启动器
+
+- 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
+- `--dry-run` 仅打印冻结命令，便于 G0 后核对；未通过 Gate 时直接拒绝。契约测试覆盖命令保留与 Gate/哈希失败。
+- 完整回归 **159 passed, 1 skipped**，主训练仍未启动。
