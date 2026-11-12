@@ -53,6 +53,7 @@
 - [x] 建立 `configs/a7_baseline_resources.json`：LinearDesign、GEMORNA、codonGPT 的输入/限制/成本，mRNAutilus、ProMORNA、mRNA-GPT 的未复现状态，以及 RayGun/SCISOR 的任务排除理由。
 - [ ] 远端恢复后复核 LinearDesign、GEMORNA、codonGPT 的权威输入、版本和实际输出。
 - [x] `a7_audit_unique18.py` 已确认 seed-0 的 18/18、五方法均 `done`、identity=1、目标有限且 benchmark 哈希匹配；seeds 1/2 与全量 MFE/NED 独立重算仍待完成。
+- [x] 新增 `a7_recompute_unique18.py`：只读冻结 solutions，独立重算 MFE/NED 与四轴目标，并核对 source/benchmark/RSCU 哈希、record/seed、identity、唯一解数；4 项契约测试通过。真实 unique18 全量复算仍待远端执行。
 
 **DoD**：资源表含任务、输入、版本、代码/权重、预训练重叠限制、可复跑状态和排除理由。
 

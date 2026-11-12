@@ -160,6 +160,23 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 ## 10. 当前唯一下一步
 
-A7 数据/确认集/calibration/简单搜索/统计协议已实现，完整回归为 **126 passed, 1 skipped**，真实 eGFP 四方法冒烟通过。详细产物见 `JOURNAL_20261101_A7_G0.md`。
+先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。A7 代码已上传，最新完整回归为 **131 passed, 1 skipped**，历史备份已传完。
 
-G0 仍未通过。下一步只完成 P1 剩余项：恢复 D4/D5 全量数据与 unique18、实际冻结 24 基因确认集、生成 per-gene calibration、复核 unique18 既有输出 manifest。外部 baseline 资源表已冻结于 `configs/a7_baseline_resources.json`。远端当前 connection refused，不能用合成冒烟替代这些验收。**当前没有获准直接运行的 G1–G4 主实验命令。**
+untouched 24 基因确认集和 D5 train RSCU 已完成。24 个独立 calibration pool 已全部生成并通过 record/hash、RSCU 和正 scale 核验，每池 56–70 个唯一目标向量。下一步完成全量数据审计、unique18 seeds 1/2、MFE/NED 独立重算和 CUDA matmul 检查。**G0 未通过前，不启动 G1–G4 主实验。**
+
+独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
+
+```bash
+cd /home/codonflow
+R=/teams/HoulabData_1788502323/liucunyu/codonflow1031
+LEGACY=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow
+PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python \
+  scripts/a7_recompute_unique18.py \
+  --input-dir $LEGACY/eval_outputs/a6_baselines/unique18_s0 \
+  --benchmark-fasta $LEGACY/corpora/a6_benchmark/unique18.fasta \
+  --rscu-json $LEGACY/configs/cai_ref_v4train.json \
+  --seeds 0 1 2 \
+  --out $R/07_a7_data/unique18_independent_mfe_ned.json
+```
+
+若实际 seed 目录按 `unique18_s1`/`unique18_s2` 分目录保存，须分别复算并在汇总 manifest 中合并，不能假设所有 seed 都在 `unique18_s0`。
