@@ -121,3 +121,9 @@
 - LinearDesign 在正确 cwd 用真实短蛋白运行成功；codonGPT/GEMORNA 权重路径已核验。
 - px2 无 tmux，改用 nohup。unique18 seeds 1/2 已并行启动（PID 5171/5172），codonGPT 权重加载成功，日志与 PID 保存在 `07_a7_data/unique18_seed{1,2}_{run.log,pid}`。
 - 25 物种 release-112 恢复已启动（PID 19887），输出 `07_a7_data/raw_release112/`，不覆盖历史 cleaned 数据。
+
+## 18. PPT 第 45 页状态记录
+
+- 在 `CodonFlow-中期汇报-20261009.pptx` 末尾新增 A7 G0 状态页：862,240 条/25 物种、24/24 校准、seed-0 18/18、px2 CUDA 与 142 项测试基线。
+- 页面明确 seeds 1/2 与 raw recovery 仍在进行，G0 未关闭、主训练未启动，不含模型性能或可提交预印本结论。
+- 验证：PPT 重开为 45 页、关键文本存在、25 个形状无越界；LibreOffice PDF 第 45 页渲染为 1601×900，非空白比例正常。临时验证文件已清理。
