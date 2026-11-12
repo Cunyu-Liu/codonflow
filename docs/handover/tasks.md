@@ -74,8 +74,9 @@
 ### T1.8 GPU 与运行环境验收
 
 - [x] px2 RTX 5090、driver 595.84/CUDA 13.2 已实测同步 CUDA matmul 成功；其他项目约 9GB 显存进程未触碰。独立 `codonflow` cu132 环境仍在重建，当前成功 matmul 使用 `llr_env` 仅作硬件验证。
-- [ ] 训练进程启动前核对 `device.type=cuda`、GPU 进程和首步日志；任何 CPU 静默降级、kernel 错误或 CUDA 不可用均停止并留档。
-- [ ] 只为合同内独立任务并行分配 GPU；记录他项目进程、显存硬上限与真实利用率，不 kill 或修改其他项目。
+- [x] 独立 `codonflow`/`pc_cng` cu132 环境在 px2 部署完成；完整回归 142 passed、1 skipped，ViennaRNA 2.7.2、rapidfuzz 3.14.5 和真实 CUDA matmul 均通过。
+- [x] seeds 1/2 已使用两个真实 CUDA 进程并行启动；无 CPU 静默降级。主训练仍须等待 G0 全部通过。
+- [x] 仅为合同内任务并行分配 GPU；保留其他项目进程，记录日志、PID 与资源边界，不 kill 或修改其他项目。
 
 **P1 尚未完成 = G0 未通过。确认集、D5 RSCU 和 24 个 calibration 池有完成并验证的交接证据；剩余项为远端资产复核、全量数据审计、unique18 seeds 1/2 与 MFE/NED 重算，以及 GPU/CUDA 验收。此前不启动新模型主训练。**
 

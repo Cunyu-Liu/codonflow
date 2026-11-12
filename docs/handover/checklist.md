@@ -31,7 +31,7 @@
 - [x] untouched 24 基因 D5 确认集已冻结于 `07_a7_data/confirmation24/`，SHA256=`a128bdbf…`；长度/GC 各档均 8 条，train/val 精确重叠为 0。
 - [x] D4/D5 参考表独立；D5 train RSCU 已生成于 `07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`。
 - [x] 24 个独立 calibration pool 已全部生成并验证：25 个顶层 JSON，record/hash 一一对应，D5 RSCU 一致，scale 全部为正且有限；每池 56–70 个唯一目标向量。
-- [x] px2 RTX 5090 上真实同步 CUDA matmul 通过；px1 CUDA 不可用已留证。独立 CodonFlow cu132 环境和训练前 device 检查仍待验收。
+- [x] px2 独立 CodonFlow/GEMORNA cu132 环境、完整测试和真实 CUDA matmul 均通过；px1 CUDA 不可用已留证。
 - [x] 退化轴默认拒绝，指标方向、预算网格与统计配置已冻结于 `configs/a7_protocol.json`。
 - [x] uniform/hill-climbing/MH/AReUReDi-style 简单搜索通过合成行为/预算测试和真实 eGFP 四方法冒烟；主实验完整 B 网格留待 G2。
 - [x] 外部 baseline 资源、复跑状态和排除理由已冻结于 `configs/a7_baseline_resources.json`；远端实际输出与 unique18 manifest 仍待复核。

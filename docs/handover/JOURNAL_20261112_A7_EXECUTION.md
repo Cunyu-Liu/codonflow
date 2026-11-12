@@ -113,3 +113,11 @@
 - 报告：`07_a7_data/unique18_seed0_independent_mfe_ned.json`，SHA256=`c0425d18b58e523b55a9275b74c96283f907e73babb9d06a13865bfe15b1af9f`，RNAfold 2.7.2。
 - seeds 1/2 尚未生成与复算，不将 seed-0 写成全部 seeds 完成。
 - 新增 25 物种 release-112 恢复管线与契约测试；完整回归 **146 passed, 1 skipped**。
+
+## 17. px2 独立环境验收与并行任务启动
+
+- Conda 镜像404、Python3.9 错误 venv、低速重复下载和 `/teams` 不支持 symlink 均保留失败记录；最终通过 tar 归档部署 `/root/miniconda3/envs/{codonflow,pc_cng}`，未复用 `llr_env`。
+- px2 CodonFlow 环境完整回归 **142 passed, 1 skipped**；torch 2.14.1+cu132、ViennaRNA 2.7.2、rapidfuzz 3.14.5、torchtext 0.6.0 和真实 CUDA matmul 全部通过。
+- LinearDesign 在正确 cwd 用真实短蛋白运行成功；codonGPT/GEMORNA 权重路径已核验。
+- px2 无 tmux，改用 nohup。unique18 seeds 1/2 已并行启动（PID 5171/5172），codonGPT 权重加载成功，日志与 PID 保存在 `07_a7_data/unique18_seed{1,2}_{run.log,pid}`。
+- 25 物种 release-112 恢复已启动（PID 19887），输出 `07_a7_data/raw_release112/`，不覆盖历史 cleaned 数据。
