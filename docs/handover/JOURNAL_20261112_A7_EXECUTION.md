@@ -167,3 +167,10 @@
 - 人类 release-112 与 v3_all 只有 71,506 个共享 base ID，且版本号系统变化；其余已恢复物种计数一致。历史人类来源为 BioMart 当前版本，经 URL 验证 release-116 存在、release-117 不存在。
 - 注册表改为仅人类 release-116，其余物种保持 release-112；`source_url` 支持 per-record release 并新增测试。人类116独立恢复已启动，不把112版本差异写成原数据丢失。
 - seeds 1/2 的首个 codonGPT 成本已复核：真实 forward=178，等效 token forward=17,800。
+
+## 25. unique18 按基因分片并行
+
+- 顺序任务已完成 3/18 后，新增 `a7_run_unique18_shards.py`：只跳过 `status=done` 的基因，running/partial 保留并重跑。
+- 每个 seed 3 个并发基因，总计 6 个独立任务；MFE_PROCS=2/任务，保留正确 CC 与持久化 GEMORNA。已完成的 3 个基因不重跑。
+- 不再设置自动复算 watcher；分片全部结束后手动进行三 seed 验收。
+- release-112 非人类已恢复 4 个物种；人类116下载仍在进行。
