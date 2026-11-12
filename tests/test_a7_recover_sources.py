@@ -23,7 +23,11 @@ def test_recover_one_records_hashes_and_cleaning_counts(tmp_path):
     with gzip.open(source, "wt") as handle:
         handle.write(f">keep\n{long_cds}\n>short\nATGTAA\n")
     out_dir = tmp_path / "out"
+    partial = out_dir / "test_species" / "Test.1.cds.all.fa.gz.tmp"
+    partial.parent.mkdir(parents=True)
+    partial.write_bytes(b"truncated")
     result = recover_one(record, 112, out_dir, url_override=source.as_uri())
+    assert (out_dir / "test_species" / "Test.1.cds.all.fa.truncated").read_bytes() == b"truncated"
     assert result["status"] == "done"
     assert result["n_input"] == 2 and result["n_retained"] == 1
     assert result["cleaning_counts"] == {"too_short": 1, "kept": 1}

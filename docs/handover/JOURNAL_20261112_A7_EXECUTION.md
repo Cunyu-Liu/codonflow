@@ -224,3 +224,9 @@
 - recovered 计数交叉检查发现兔/羊映射互换，随后官方 FASTA 直接验证：ENSOCUT=兔、ENSOART=羊、ENSORLT=青鳉。旧映射把兔/羊/青鳉混淆，不能沿用。
 - 修正并两次重算后，v3_all 和六个 split 均恢复为 25 个物种；`species_distribution.json` SHA256=`1a765a155da2e17b5cb2de50333682191c55758726091aa446d97ee3a4b5a13d`，`species_map.json` SHA256=`9ddab6c47fcb2f75aae36c231797df15978bfdda1b0119aef234257f68f66d38`。
 - 更新 manifest SHA256=`fc84dd2f55f9ee62aa8cd2fde6034696c89492801281bc8bad2072ea17eb7b5c`。原始恢复17/25，seeds 1/2 为12/18、11/18。
+
+## 34. 原始恢复失败修复与断点合并
+
+- 22/25 manifest 记录犬 gzip 截断、anole 404、Ciona savignyi 404。官方目录核实正确文件为 `AnoCar2.0v2`、`CSAV2.0`，犬 URL 不变。
+- 恢复器将重试前 `.tmp` 改为 `.truncated` 留证，并在重试时合并既有 manifest，避免仅 3 条新记录覆盖先前 22 条。
+- 三个失败物种已并行重启恢复。完整回归 **154 passed, 1 skipped**。

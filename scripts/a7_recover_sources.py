@@ -56,6 +56,8 @@ def recover_one(record, release, out_dir, url_override=None):
             return previous
     if not gz_path.exists():
         temporary = gz_path.with_suffix(".gz.tmp")
+        if temporary.exists():
+            temporary.replace(gz_path.with_suffix(".truncated"))
         with urllib.request.urlopen(url, timeout=900) as response, temporary.open("wb") as handle:
             shutil.copyfileobj(response, handle)
         temporary.replace(gz_path)
@@ -120,15 +122,20 @@ def main():
         records = [row for row in records if row["species"] in args.species]
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         rows = list(pool.map(lambda row: recover_safe(row, registry["release"], args.out_dir), records))
-    manifest = {"protocol": "a7_source_recovery_manifest_v1", "release": registry["release"],
-                "n_requested": len(records), "n_done": sum(row["status"] == "done" for row in rows),
-                "records": rows}
-    manifest["passed"] = manifest["n_done"] == len(records)
     out = Path(args.out_dir) / "manifest.json"
+    existing = {}
+    if out.exists():
+        existing = {row["species"]: row for row in json.loads(out.read_text()).get("records", [])}
+    existing.update({row["species"]: row for row in rows})
+    combined = list(existing.values())
+    manifest = {"protocol": "a7_source_recovery_manifest_v1", "release": registry["release"],
+                "n_requested": len(combined), "n_done": sum(row["status"] == "done" for row in combined),
+                "records": combined}
+    manifest["passed"] = len(combined) == 25 and manifest["n_done"] == 25
     out.parent.mkdir(parents=True, exist_ok=True)
     atomic_json(out, manifest)
     print(json.dumps({"out": str(out), "n_done": manifest["n_done"],
-                      "n_requested": len(records), "passed": manifest["passed"]}))
+                      "n_requested": len(combined), "passed": manifest["passed"]}))
 
 
 if __name__ == "__main__":
