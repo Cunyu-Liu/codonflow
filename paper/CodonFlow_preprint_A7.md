@@ -14,7 +14,7 @@ We study warm-start synonymous CDS editing: given a source CDS, make finite-step
 
 ## 2. Related Work
 
-LinearDesign uses dynamic programming for codon optimization; codonGPT and GEMORNA represent generative CDS models. mRNAutilus, ProMORNA, and mRNA-GPT address broader full-length mRNA generation or reinforcement-learning settings and are not directly interchangeable with our CDS-only warm-start task. pCoMole combines a feasibility-gated terminal distribution, augmented Tchebycheff utility, Doob-h transformation, and short Monte Carlo rollouts for variable-length biomolecular editing [chen2026pcomole]. AReUReDi combines Tchebycheff scalarization, locally balanced proposals, and annealed Metropolis–Hastings updates [chen2025areuredi]; MOG-DFM uses hybrid rank-directional scores and an adaptive hypercone filter for multi-objective discrete flow guidance [chen2025mogdfm]. TR2-D2 instead uses tree-search replay buffers for trajectory-aware fine-tuning [tang2025tr2d2]. These overlaps require direct comparison with simple search rather than claims of theoretical firstness. Our AReUReDi-style baseline is an internal synonymous-search implementation, not an official reproduction. RayGun and SCISOR address protein editing or deletion and are excluded from synonymous CDS numerical baselines.
+LinearDesign uses dynamic programming for joint codon-use and RNA-structure optimization [zhang2023lineardesign]; codonGPT applies reinforcement learning to generative mRNA design [rajbanshi2025codongpt], while GEMORNA uses deep generative models for CDS and UTR design [zhang2025gemorna]. mRNAutilus jointly generates coding and untranslated regions using discrete diffusion and Monte Carlo tree guidance [patel2026mrnautilus]. ProMORNA uses cold-start supervised fine-tuning followed by multi-objective reinforcement learning [shao2026promorna], and mRNA-GPT uses full-length pretraining and PPO-based optimization [li2026mrnagpt]. These full-transcript tasks are not directly interchangeable with our CDS-only warm-start task. pCoMole combines a feasibility-gated terminal distribution, augmented Tchebycheff utility, Doob-h transformation, and short Monte Carlo rollouts for variable-length biomolecular editing [chen2026pcomole]. AReUReDi combines Tchebycheff scalarization, locally balanced proposals, and annealed Metropolis–Hastings updates [chen2025areuredi]; MOG-DFM uses hybrid rank-directional scores and an adaptive hypercone filter for multi-objective discrete flow guidance [chen2025mogdfm]. TR2-D2 instead uses tree-search replay buffers for trajectory-aware fine-tuning [tang2025tr2d2]. These overlaps require direct comparison with simple search rather than claims of theoretical firstness. Our AReUReDi-style baseline is an internal synonymous-search implementation, not an official reproduction. RayGun miniaturizes and modifies natural proteins [devkota2026raygun], while SCISOR learns insertion–deletion distributions for protein shrinking [baron2025scisor]. Neither is a synonymous CDS editor, so both are excluded from synonymous CDS numerical baselines.
 
 ## 3. Method
 
@@ -111,3 +111,19 @@ Chen, T., Zhang, Y., and Chatterjee, P. AReUReDi: Annealed Rectified Updates for
 Chen, T., Zhang, Y., Tang, S., and Chatterjee, P. Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design. *arXiv:2505.07086* (2025). https://arxiv.org/abs/2505.07086
 
 Tang, S., Zhu, Y., Tao, M., and Chatterjee, P. TR2-D2: Tree Search Guided Trajectory-Aware Fine-Tuning for Discrete Diffusion. *arXiv:2509.25171* (2025). https://arxiv.org/abs/2509.25171
+
+Zhang, H., Zhang, L., Lin, A., et al. Algorithm for optimized mRNA design improves stability and immunogenicity. *Nature* (2023). https://doi.org/10.1038/s41586-023-06127-z
+
+Rajbanshi, B., and Guruacharya, A. codonGPT: reinforcement learning on a generative language model enables scalable mRNA design. *Nucleic Acids Research* (2025). https://doi.org/10.1093/nar/gkaf1345
+
+Zhang, H., Liu, H., Xu, Y., et al. Deep generative models design mRNA sequences with enhanced translational capacity and stability. *Science* (2025). https://doi.org/10.1126/science.adr8470
+
+Patel, S., Tang, S., Kim, Y., et al. mRNAutilus: Multi-Objective-Guided Discrete Generation of mRNA with Optimized Therapeutic Properties. *arXiv:2605.31296* (2026). https://arxiv.org/abs/2605.31296
+
+Shao, Z., Wang, T., Shen, Y., Huang, T., and Xiao, Y. ProMORNA: An End-to-End Generative Framework for Full-Length mRNA Design. *arXiv:2605.01513* (2026). https://arxiv.org/abs/2605.01513
+
+Li, S., Chauvin, P., Gross, O., Bailey, M., and Jager, S. mRNA-GPT: A Generative Model for Full-Length mRNA Design and Optimization. *bioRxiv* (2026). https://doi.org/10.64898/2026.03.31.715707
+
+Devkota, K., Shonai, D., Mao, J., et al. Miniaturizing and modifying natural proteins with Raygun. *Nature* (2026). https://doi.org/10.1038/s41586-026-10842-8
+
+Baron, E., Amin, A. N., Weitzman, R., Marks, D., and Wilson, A. G. A Diffusion Model to Shrink Proteins While Maintaining Their Function. *arXiv:2511.07390* (2025). https://arxiv.org/abs/2511.07390

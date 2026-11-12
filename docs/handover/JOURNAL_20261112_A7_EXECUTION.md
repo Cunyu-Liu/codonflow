@@ -447,3 +447,13 @@
 - MOG-DFM：`arXiv:2505.07086`，Chen/Zhang/Tang/Chatterjee，2025；hybrid rank-directional score与adaptive hypercone filter。
 - TR2-D2：`arXiv:2509.25171`，Tang/Zhu/Tao/Chatterjee，2025；树搜索replay buffer和trajectory-aware fine-tuning。
 - Related Work与References已加入这4条原始出处，明确我们的AReUReDi-style只是内部同义搜索对照，不是官方复现。其他文献继续核验，Results保持空白。
+
+## 66. 外部 baseline 与全长 mRNA 文献核验
+
+- LinearDesign：Zhang et al., Nature 2023，DOI=`10.1038/s41586-023-06127-z`，原始预印本 `arXiv:2004.10177`；此前错误DOI后缀未写入。
+- codonGPT：Binita Rajbanshi、Anuj Guruacharya，NAR 2025，`10.1093/nar/gkaf1345`。
+- GEMORNA：Zhang et al., Science 2025，`10.1126/science.adr8470`。
+- mRNAutilus `arXiv:2605.31296`、ProMORNA `arXiv:2605.01513`、mRNA-GPT `10.64898/2026.03.31.715707` 均核实为全长mRNA任务，不与CDS-only warm-start混比。
+- RayGun `10.1038/s41586-026-10842-8` 与SCISOR `arXiv:2511.07390` 为蛋白缩小/删除任务，维持数值表排除。
+- 经Crossref全名复核，纠正作者首字母：Rajbanshi=B、Devkota=K、Shonai=D、Mao=J；未保留猜测缩写。参考文献共12条，任务边界与原始摘要一致。
+- `a7_baseline_resources.json` 已更新三seed复核状态、3份独立复算报告SHA及LinearDesign出处。没有将外部摘要指标写为CodonFlow结果。

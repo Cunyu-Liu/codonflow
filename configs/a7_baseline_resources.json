@@ -1,6 +1,6 @@
 {
   "protocol_version": "a7_baseline_resources_v1",
-  "checked_at": "2026-11-01",
+  "checked_at": "2026-11-13",
   "methods": [
     {
       "name": "uniform",
@@ -49,19 +49,20 @@
       "task": "protein_to_cds_reference_design",
       "role": "external_cds_baseline",
       "implementation": "official_binary_via_existing_lineardesign_scan",
-      "status": "remote_revalidation_required",
+      "status": "revalidated_unique18_three_seeds_independent_mfe_ned_matched",
       "input": "protein; natural-source and protein-only tracks must be separated",
       "forward_calls": null,
       "forward_note": "not exposed by official DP binary",
       "output_policy": "keep actual DP solutions; never random-pad",
-      "pretraining_overlap": "not_applicable"
+      "pretraining_overlap": "not_applicable",
+      "source": "https://doi.org/10.1038/s41586-023-06127-z"
     },
     {
       "name": "codongpt",
       "task": "protein_to_cds_reference_design",
       "role": "external_cds_baseline",
       "implementation": "released_checkpoint_existing_adapter",
-      "status": "remote_revalidation_required",
+      "status": "revalidated_unique18_three_seeds_independent_mfe_ned_matched",
       "input": "protein",
       "context_limit_codons": 1024,
       "forward_calls": "n_solutions_times_sequence_length",
@@ -74,7 +75,7 @@
       "task": "protein_to_cds_reference_design",
       "role": "external_cds_baseline",
       "implementation": "official_weights_in_separate_pc_cng_environment",
-      "status": "remote_revalidation_required",
+      "status": "revalidated_unique18_three_seeds_independent_mfe_ned_matched",
       "input": "protein; authoritative benchmark protein only",
       "forward_calls": null,
       "pretraining_overlap": "not_fully_auditable",
@@ -140,8 +141,13 @@
     }
   ],
   "unique18_output_review": {
-    "status": "remote_artifacts_required",
+    "status": "completed_three_seeds_independent_mfe_ned_recalculation",
     "required_fields": ["done", "partial", "missing", "MFE", "NED", "seeds", "input_hashes"],
-    "rule": "file count is not completion evidence"
+    "rule": "file count is not completion evidence",
+    "reports": {
+      "seed0": {"path": "07_a7_data/unique18_seed0_independent_mfe_ned.json", "sha256": "c0425d18b58e523b55a9275b74c96283f907e73babb9d06a13865bfe15b1af9f"},
+      "seed1": {"path": "07_a7_data/unique18_seed1_independent_mfe_ned.json", "sha256": "b3f52a0eb09c9b1595f01e3a5bb86c4e1a7df5e127b8a8fedb5dbe31ea85644c"},
+      "seed2": {"path": "07_a7_data/unique18_seed2_independent_mfe_ned.json", "sha256": "16a89c1c2c7877eb0d63fcabc42b1a40c8cd499c1c27d81d91977771a4932d32"}
+    }
   }
 }
