@@ -77,3 +77,11 @@
 - 汇总 manifest：`07_a7_data/full_audits_20261112_v2/manifest.json`，SHA256=`5950f13e65504d7b530b74ba0b276d333763a6b16e7ff8a1436938d5bdf821ad`，`passed=true`。
 - GitHub `main=5f0f01b` 已通过 bundle 部署为 `/home/codonflow-a7`，旧 `/home/codonflow` 未覆盖；远端新工作副本完整回归 **139 passed, 1 skipped**。
 - `v3_all` 862,240 条审计与 unique18 seed-0 MFE/NED 复算仍未完成；进程在远端运行，未重复启动。
+
+## 12. v3_all 全量源数据审计通过
+
+- `v3_all.fasta` 实际审计通过：862,240 条 ID 均唯一，全部操作合法，SHA256=`5e106f9e…`；797,386 个唯一 CDS、776,569 个唯一蛋白。
+- 非 ATG 记录 73,445 条，保留为可能部分 CDS 的质量限制。长度 300–6000 nt、均值 1602.57 nt，GC 均值 0.51431，CAI 均值 0.78948。
+- 审计文件 `full_audits_20261112_v2/v3_all.json`，SHA256=`01ceeb16dc55e5b8086aa363dfeccdf21cae8a89fb60db293a2b04e091f30047`。
+- 汇总 manifest 已加入 v3_all，更新后 SHA256=`ba39f7641eba74ddaaf51d62be10ede1744f120213c16da3dbc7f8fdbda3edd3`。
+- unique18 seed-0 仍在远端复算；复算器已新增 record-id 分片，完整回归 **139 passed, 1 skipped**，提交 `900027c` 待 push。
