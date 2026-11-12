@@ -191,7 +191,6 @@ PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python \
   --full-audit $R/07_a7_data/full_audits_20261112_v2/manifest.json \
   --frozen-assets $R/07_a7_data/frozen_asset_verification_20261112.json \
   --source-manifest $R/07_a7_data/raw_release112/manifest.json \
-  --source-manifest $R/07_a7_data/raw_release116_human/manifest.json \
   --unique-audit $R/07_a7_data/unique18_seed0_independent_mfe_ned.json \
   --unique-audit $R/07_a7_data/unique18_seed1_independent_mfe_ned.json \
   --unique-audit $R/07_a7_data/unique18_seed2_independent_mfe_ned.json \
