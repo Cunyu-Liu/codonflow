@@ -431,3 +431,10 @@
 - dry-run 必须得到108 learned+54 shared simple，随后运行正式分片器、G2 Gate和冻结JSON图形生成；最终状态只读取真实 `scientific_gate_passed`，不自动进入G3。
 - G1失败、监视器提前退出、preflight变动、任务数异常或执行失败均记录failed和traceback，不覆盖旧状态。
 - 3项等待/双preflight/失败停止测试通过。正式训练与G1仍在进行，G2尚未启动。
+
+## 64. G2 等待器实际启动与连接恢复
+
+- `6bbee52c88d885cca338dfb95ddc1243854fe3a2` 已推送GitHub并同步训练机，本地/训练机完整回归 **191 passed, 1 skipped**。
+- bundle复制及G2等待器首次启动分别遇到一次远端SSH关闭；重连后先确认训练日志仍推进、`g2_r3_watcher/status.json` 不存在，再启动，未盲目重复提交。
+- 当前 `07_a7_data/g2_r3_watcher/status.json` 为 `waiting_for_g1_preflights`，`scientific_gate_passed=false`。只有两臂G1和preflight均通过才会自动dry-run及运行162分片。
+- 两条正式训练仍在首个epoch，尚无收敛或G1结果；自动流程没有提前越过Gate。
