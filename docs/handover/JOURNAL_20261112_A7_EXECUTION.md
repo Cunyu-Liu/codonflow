@@ -267,6 +267,12 @@
 - 当前 G0 检查：full_distribution=true、frozen_assets=true、source_recovery=true、cuda_matmul=true、unique18_all_seeds=false；仅剩 seeds 1/2 独立复算未完成。
 - seed1 当前17/18，seed2 12/18；主训练仍未启动。
 
+## 42. seeds 1/2 全部生成完成，进入最终复算
+
+- 两条 seed 均达到 **18/18 完整基因**，五方法全部 `done`。最后完成项包含 ENSACAT00000006494.4，持久化 GEMORNA 与 micro-batch codonGPT 正常运行。
+- 已并行启动 seeds 1/2 独立 MFE/NED 复算，日志与 PID 写入 `unique18_seed{1,2}_recompute_final.{log,pid}`，不再使用自动 watcher。
+- 复算完成后将运行 `a7_g0_gate.py`；当前原始来源 25/25 已通过，G0 只待这两项审计。
+
 ## 40. Gate 约束训练启动器
 
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
