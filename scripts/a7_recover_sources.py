@@ -19,6 +19,7 @@ from codonflow.train.run_pretrain import file_sha256
 
 
 def source_url(record, release):
+    release = record.get("release", release)
     return (f"https://ftp.ensembl.org/pub/release-{release}/fasta/{record['species']}/cds/"
             f"{record['base']}.cds.all.fa.gz")
 
@@ -75,7 +76,7 @@ def recover_one(record, release, out_dir, url_override=None):
         "species": species,
         "assembly": record["base"],
         "source": "Ensembl FTP",
-        "release": release,
+        "release": record.get("release", release),
         "url": url,
         "recovered_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "recovery_note": "new recovery timestamp; original download timestamp is not claimed",

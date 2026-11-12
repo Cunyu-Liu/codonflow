@@ -12,7 +12,8 @@ def test_registry_has_25_unique_release112_species():
     assert len(records) == 25
     assert len({row["species"] for row in records}) == 25
     assert all(source_url(row, payload["release"]).startswith(
-        "https://ftp.ensembl.org/pub/release-112/fasta/") for row in records)
+        f"https://ftp.ensembl.org/pub/release-{row.get('release', payload['release'])}/fasta/")
+        for row in records)
 
 
 def test_recover_one_records_hashes_and_cleaning_counts(tmp_path):

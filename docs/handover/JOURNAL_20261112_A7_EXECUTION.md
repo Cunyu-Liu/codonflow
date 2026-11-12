@@ -160,3 +160,10 @@
 - seeds 1/2 首个 codonGPT 均为 100/100 唯一合法解；`forward_calls=178`、`autoregressive_token_forward_evaluations=17,800`，生成约 3.74/3.78 秒。GEMORNA 已进入持久化模式。
 - 首个完成恢复物种 `takifugu_rubripes`：输入 52,243、保留 50,176，与 v3_all 物种计数一致；原始/清洗哈希已写入 recovery.json。
 - 完整回归 **149 passed, 1 skipped**；GEMORNA 持久化提交 `d8f6306` 待 push。
+
+## 24. Watcher 与人类来源版本修正
+
+- 旧 watcher 的子进程在 baseline 完成前再次生成 `0/18 matching`，已隔离为 `partial_early_watch` 并停止自动链。后续只在 18/18 完成后手动复算；当前两条 baseline 已完成 2/18。
+- 人类 release-112 与 v3_all 只有 71,506 个共享 base ID，且版本号系统变化；其余已恢复物种计数一致。历史人类来源为 BioMart 当前版本，经 URL 验证 release-116 存在、release-117 不存在。
+- 注册表改为仅人类 release-116，其余物种保持 release-112；`source_url` 支持 per-record release 并新增测试。人类116独立恢复已启动，不把112版本差异写成原数据丢失。
+- seeds 1/2 的首个 codonGPT 成本已复核：真实 forward=178，等效 token forward=17,800。
