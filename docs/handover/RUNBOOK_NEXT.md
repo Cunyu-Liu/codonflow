@@ -85,7 +85,9 @@
 
 ### 配对协议
 
-- 同一源 CDS、同一 paired 初始状态、同一终端目标和 scorer/cache；
+- 同一源 CDS、同一 paired 初始状态、同一终端目标和独立同构 scorer/cache；不得跨方法泄漏 cache 预算；
+- uniform 首次评分使用 paired 初始状态，后续全局逐位置均匀同义采样；hill/MH/AReUReDi/learned 使用单密码子局部核；
+- learned base 采用已验证的向量化 `sample_transition_batch`，path_batch_size=32，T=4，不用 terminal guidance 或 rollout；
 - 开发集、每基因至少 3 seeds；
 - B = 50 / 100 / 500 唯一 terminal scorer evaluations；
 - 同时保留真实唯一输出数、forward 和端到端时间，不随机补样。

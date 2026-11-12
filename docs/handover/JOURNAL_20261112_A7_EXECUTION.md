@@ -366,3 +366,10 @@
 - `a7_protocol.json`、spec/checklist/runbook 同步上述定义；calibration 生成方式不变。单密码子 uniform 仅保留可选消融，不替代强 uniform。
 - simple runner 把非 done 映射为 `partial`，记录 `incomplete_reason` 并保存 JSON；G2 Gate 仍明确拒绝。失败日志 `g2_interface_simple/run.log` 保留，不覆盖旧目录。
 - 新增全局/局部 uniform 回归，相关36项测试通过。旧批量与向量化 learned 接口尚无最终 JSON，simple 修正版尚待独立重跑。
+
+## 55. 向量化 learned 接口验收与冗余 smoke 取消
+
+- `g2_interface_smoke_random_vectorized/C31E10.3b.1_learned_s0.json`：500唯一评分、515 paths、2060 base transitions、68 batch forwards、451.945秒；SHA256=`9609e0fba4b9c68d65348d7bb0242881c18a64cecb15fb168b6552542a452cff`。
+- 独立重算 AUC、逐序列 protein identity、唯一数、schema、CUDA 与 clean commit 全部通过。相对串行加速 **3.137185×**，`g2_interface_learned_acceptance.json` SHA256=`890688b033af9366bf12474ea0c4f386d94c5792012eebb2fd9d8bf62cd76b41`。这是随机权重工程接口验收，不是科学 Gate 或模型性能。
+- 原非向量化 batch 任务在产生结果前被取代，已只终止该冗余 smoke PID 82341，保留日志与 `g2_interface_smoke_random_batched/cancelled.json`；未触碰两条正式训练或其他项目进程。
+- `4e003e8` 已成功推送 GitHub；强 uniform 和 partial 修正版 simple v2 正在运行，尚无完成结果。正式模型仍处 P2/G1。
