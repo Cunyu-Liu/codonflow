@@ -487,3 +487,9 @@
 - 本地与训练机完整回归 **200 passed, 1 skipped**，代码commit=`1f38db6f35735326917e106c95ce61a3f17abe27`。
 - r4 FULL/EDIT已从零启动，配置SHA分别为 `4704a062c24a0e35fd870b327a64e9c45f862a0547f8a3440d6c3083915748ee`、`91290185230488a767162b17ec38f901bf81ef7266c18fa8e92384a068b2c41d`。
 - `g1_r4_watcher` 与 `g2_r4_watcher` 均处于等待状态；r3 watcher failed状态保留，不覆盖。当前没有有效checkpoint，G1/G2未放行。
+
+## 71. r4 训练进行中与 GitHub 推送恢复
+
+- r4 FULL/EDIT 均正常进入训练批次，配置SHA与冻结r4一致，G1/G2 watcher保持等待，无CPU降级或新异常；尚无首个epoch的val/checkpoint。
+- GitHub多次HTTP/2、连接超时和空回复后，使用 `http.ipVersion=ipv4` + HTTP/1.1 成功正常推送。官方 `gh` API 二次核实远端main SHA=`39f0520bdc793499c223291e40dc2f69135ba983`，本地与远端一致。
+- 未使用API重写历史或强推。后续Git操作优先使用已验证的IPv4通道，连接失败时不误报已上传。
