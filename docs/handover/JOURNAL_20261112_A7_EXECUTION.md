@@ -33,7 +33,8 @@
 - `configs/a7_data_protocol.json` 已通过 `python3 -m json.tool` 解析及路径、哈希、记录数、CPU fallback 禁止断言。
 - 两处 spec/tasks/checklist 已做逐字节一致性与 SHA256 检查；三份镜像均一致。
 - 本地完整回归为 **128 passed, 1 skipped**，不是交接记录的 131 passed。GitHub `origin/main=4f3dac9` 尚未包含本地 A7 文件；远端共享副本可能另有 3 项测试，必须在 SSH 恢复后核对，不得把本地计数写成远端计数。
-- 本地目录原为无 `.git` 的源码归档，现已关联 GitHub 并暂存待提交文件；最终 commit/push 结果另行记录。
+- 本地目录原为无 `.git` 的源码归档，现已关联 GitHub 并提交 `3b45775 feat: add A7 protocol and synchronize recovery contract`，提交前 `git diff --cached --check` 通过。
+- 首次标准 push 遇到 HTTP/2 framing error；改用 HTTP/1.1 后遇到 GitHub 443 连接超时。代码尚未确认上传，不强推、不改写历史。
 
 ## 6. 下一步
 
