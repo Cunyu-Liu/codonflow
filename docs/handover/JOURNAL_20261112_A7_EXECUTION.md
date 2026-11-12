@@ -290,6 +290,12 @@
 - 两条首启训练在首个 epoch 中段进程消失，日志无 traceback、无 OOM，GPU 随后空闲；原因标记为外部中断，未臆测具体平台原因。
 - 原目录无 best/last/training_state/converged，无法精确恢复。保留原日志，以 `M_SYN_D4_*_r2` 新 run ID 从零启动，不覆盖、不伪装 resume。
 - r2 已重新使用 CUDA 运行，G0 与 synonymous corruption 不变。
+
+## 46. 验证阶段 CUDA generator 设备修复与 r3
+
+- r2 首个验证阶段失败：CPU generator 与 CUDA probs 不匹配；随后发现 `rand/randint` 也需直接在输入设备创建，不能只靠 `.to()`。
+- 修复 `validate_packed` generator=device 以及 synonymous/arbitrary corruption 的随机张量设备参数。完整回归 **160 passed, 1 skipped**，直接 `CUDA_VALIDATE_PACKED_OK`。
+- r2 无恢复状态，使用 r3 新 run ID 从零启动，保留失败日志与配置。
 - 验证：46 页重开、关键文本、形状边界与 LibreOffice 渲染全部通过，临时文件已清理。
 
 ## 40. Gate 约束训练启动器

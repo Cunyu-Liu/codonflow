@@ -125,11 +125,10 @@ def corrupt_x_t(
     t: (B,) fractions in [0,1]; if None, sampled per sequence.
     """
     if t is None:
-        t = torch.rand(ids.shape[0], generator=generator).to(ids.device)
-    t = t.to(ids.device).clamp(0.0, 1.0)
+        t = torch.rand(ids.shape[0], device=ids.device, generator=generator).clamp(0.0, 1.0)
     body = (ids != PAD_ID) & (ids != BOS_ID) & (ids != EOS_ID)
-    rand = torch.randint(0, VOCAB_SIZE, ids.shape, generator=generator).to(ids.device)
-    keep = torch.rand(ids.shape, generator=generator).to(ids.device) >= t.view(-1, 1)
+    rand = torch.randint(0, VOCAB_SIZE, ids.shape, device=ids.device, generator=generator)
+    keep = torch.rand(ids.shape, device=ids.device, generator=generator) >= t.view(-1, 1)
     out = torch.where(body & keep, ids, torch.where(body, rand, ids))
     return out
 
@@ -177,10 +176,9 @@ def corrupt_x_t_synonymous(
     for the deployment kernel.
     """
     if t is None:
-        t = torch.rand(ids.shape[0], generator=generator).to(ids.device)
-    t = t.to(ids.device).clamp(0.0, 1.0)
+        t = torch.rand(ids.shape[0], device=ids.device, generator=generator).clamp(0.0, 1.0)
     body = (ids != PAD_ID) & (ids != BOS_ID) & (ids != EOS_ID)
-    keep = torch.rand(ids.shape, generator=generator).to(ids.device) >= t.view(-1, 1)
+    keep = torch.rand(ids.shape, device=ids.device, generator=generator) >= t.view(-1, 1)
     replace = body & ~keep
     out = ids.clone()
     if replace.any():

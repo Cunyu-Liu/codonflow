@@ -300,7 +300,7 @@ def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False, c
     from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
     corrupt = corrupt_x_t_synonymous if corruption == "synonymous" else corrupt_x_t
 
-    generator = torch.Generator(device="cpu").manual_seed(seed)
+    generator = torch.Generator(device=dev).manual_seed(seed)
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
         x_t = corrupt(ids, generator=generator)
