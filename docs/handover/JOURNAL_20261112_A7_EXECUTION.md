@@ -284,6 +284,12 @@
 
 - 新增 PPT 第 46 页，记录 G0 全部通过、unique18 三 seed 全匹配、25 物种来源、56.8M 双臂和真实 CUDA 100% 利用率。
 - 页面明确 G1 进行中、未收敛、未做 learned-vs-simple 裁决、预印本不可提交。
+
+## 45. 首个训练进程中断与从零重启
+
+- 两条首启训练在首个 epoch 中段进程消失，日志无 traceback、无 OOM，GPU 随后空闲；原因标记为外部中断，未臆测具体平台原因。
+- 原目录无 best/last/training_state/converged，无法精确恢复。保留原日志，以 `M_SYN_D4_*_r2` 新 run ID 从零启动，不覆盖、不伪装 resume。
+- r2 已重新使用 CUDA 运行，G0 与 synonymous corruption 不变。
 - 验证：46 页重开、关键文本、形状边界与 LibreOffice 渲染全部通过，临时文件已清理。
 
 ## 40. Gate 约束训练启动器
