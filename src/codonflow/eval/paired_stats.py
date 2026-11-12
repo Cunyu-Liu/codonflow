@@ -52,13 +52,16 @@ def paired_gene_effects(
         if not available_simple:
             raise ValueError(f"missing simple methods for {gene}")
         learned = float(np.mean(method_values[learned_method]))
-        simple = max(float(np.mean(method_values[m])) for m in available_simple)
+        simple_means = {method: float(np.mean(method_values[method])) for method in available_simple}
+        strongest_simple_method = max(available_simple, key=lambda method: simple_means[method])
+        simple = simple_means[strongest_simple_method]
         if simple <= 0:
             raise ValueError(f"relative effect requires positive simple AUC for {gene}")
         per_gene.append({
             "gene": gene,
             "learned_auc": learned,
             "strongest_simple_auc": simple,
+            "strongest_simple_method": strongest_simple_method,
             "absolute_improvement": learned - simple,
             "relative_improvement": (learned - simple) / abs(simple),
             "n_seeds": len(grouped[gene]),

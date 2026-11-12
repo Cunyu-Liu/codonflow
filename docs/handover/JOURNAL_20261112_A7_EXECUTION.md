@@ -320,3 +320,11 @@
 - 新增 `scripts/a7_run_learned.py`：真实 CUDA、冻结 checkpoint/hash、B=500 唯一 terminal scorer、base proposal、T=4、逐序列 identity、NED、HV anytime 和完整成本字段。simple/learned 使用同一 `seed*1009` 初始化函数；独立缓存避免跨方法预算泄漏。
 - 两个 runner 均核对 calibration 的天然源 SHA256，结果增加 initial SHA256；G1 与 G2 的用途和输出严格区分。
 - 本地完整回归 **164 passed, 1 skipped**。当前仍未训练收敛、未通过 G1、未运行正式 G2，也未形成模型性能结论。calibration_unique18 与两条训练继续运行。
+
+## 49. G2 自动验收门与接口任务状态
+
+- 新增 `a7_g2_gate.py`：要求每基因 seeds 0/1/2、learned 与四个 simple 方法完整，500 唯一 scorer，初始/源/benchmark/split/calibration/RSCU/commit 配对一致，identity=1，learned CUDA checkpoint 和 clean commit 可核验。
+- 按主终点均值选择每基因最强 simple，再比较 learned/simple NED；18 基因下限、≥10% 中位改善、bootstrap 下界、跨双臂 Holm p 和 NED≥70% 共同裁决。缺失、partial、重复、未配对或错 checkpoint 均显式失败。
+- 聚焦测试 **25 passed**，包括完整合成正例和多种拒绝反例；不是模型性能证据。
+- `8e40307` 首次 GitHub 推送遇到 HTTP/2 framing 失败，第二次连接超时；代码已保存在本地与 `/home/codonflow`，但 GitHub 尚未确认同步，后续必须补推。
+- 随机 checkpoint learned CUDA 接口任务仍在运行，尚无结果 JSON，不标记通过。development calibration 最新完成14/18；正式训练继续，G1/G2 均未通过。
