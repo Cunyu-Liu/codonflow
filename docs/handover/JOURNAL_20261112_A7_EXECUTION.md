@@ -409,3 +409,11 @@
 - 写入40 uniform+四轴×10 calibration、reference/scale公式、3 seeds初始化、最强simple按基因3-seed均值AUC选择、bootstrap/Wilcoxon/Holm及NED采样规则。
 - G2明确18基因、双臂、500唯一评分、≥10%改善、CI、p和NED≥70%。Results/Abstract/Discussion仍为Gate占位，没有加入训练中间loss或接口AUC作为科学结论。
 - 当前仍是不可提交的工作稿；只完成方法/协议部分，不代表预印本已经完整。
+
+## 61. G2 正式分片执行器与 dry-run
+
+- 新增 `a7_execute_g2.py`：必须同时提供 FULL/EDIT preflight，核对输出根目录、G1/审计/配置/checkpoint/RSCU哈希、共同benchmark/records/seeds/协议及clean commit。
+- 每臂18基因×3 seeds，共108 learned shards；四方法shared simple共54 shards，不为两臂重复计算。simple-workers=4、learned-workers=2并行，只有所有结果done/identity=1/500唯一解后才运行G2 Gate。
+- learned 非done现在保存partial及原因，不能进入统计。resume保留previous_status，每次attempt使用独立日志，不覆盖失败记录。
+- `a7_g2_gate.py` 支持同一arm同时传learned/simple glob，避免把shared simple误作独立臂。相关10项测试通过；完整回归 **187 passed, 1 skipped**，GitHub/训练机同步 `3064f3c`。
+- 首次synthetic dry-run命令的嵌套引号失败已修正；重跑确认108+54=162任务，`scientific_gate_passed=false`。产物在 `g2_executor_dry_run/`，明确不是启动证据，未执行正式G2。
