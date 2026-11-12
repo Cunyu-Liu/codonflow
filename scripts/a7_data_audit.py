@@ -15,6 +15,7 @@ from codonflow.core.codon import (
     CODONS,
     STANDARD_TABLE_1,
     has_unique_terminal_stop,
+    is_valid_cds,
     normalize_to_dna,
     protein_of_cds,
 )
@@ -59,6 +60,8 @@ def audit_records(records, cai_weights=None, species_map=None, cluster_map=None,
     codon_counts = Counter({codon: 0 for codon in CODONS})
     n = 0
     n_valid = 0
+    n_operator_legal = 0
+    n_atg_start = 0
     for header, sequence in records:
         n += 1
         ids.add(header)
@@ -73,7 +76,9 @@ def audit_records(records, cai_weights=None, species_map=None, cluster_map=None,
             reasons.append("frame")
         if not min_length <= len(sequence) <= max_length:
             reasons.append("length")
-        if not sequence.startswith("ATG"):
+        if sequence.startswith("ATG"):
+            n_atg_start += 1
+        else:
             reasons.append("start")
         if not has_unique_terminal_stop(sequence):
             reasons.append("terminal_or_internal_stop")
@@ -81,8 +86,9 @@ def audit_records(records, cai_weights=None, species_map=None, cluster_map=None,
             invalid[reason] += 1
         if not reasons:
             n_valid += 1
-            protein = protein_of_cds(sequence)
-            proteins.add(protein)
+        if is_valid_cds(sequence):
+            n_operator_legal += 1
+            proteins.add(protein_of_cds(sequence))
             if cai_weights is not None:
                 cais.append(cai(sequence, cai_weights))
         for index in range(0, len(sequence) - len(sequence) % 3, 3):
@@ -102,6 +108,12 @@ def audit_records(records, cai_weights=None, species_map=None, cluster_map=None,
         "n_unique_proteins": len(proteins),
         "n_duplicate_cds_inputs": n - len(cds_values),
         "n_valid_cds": n_valid,
+        "n_operator_legal": n_operator_legal,
+        "n_atg_start": n_atg_start,
+        "validity_definitions": {
+            "n_operator_legal": "valid alphabet + frame + unique terminal stop; ATG and length range are not required",
+            "n_valid_cds": "operator legal + ATG start + configured length range",
+        },
         "invalid_reason_counts": dict(sorted(invalid.items())),
         "length_nt": summarize_lengths(lengths),
         "gc": summarize_lengths(gcs),

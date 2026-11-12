@@ -26,6 +26,15 @@ def test_data_audit_reports_quality_distribution_and_metadata():
     assert len(result["rscu"]) == 61
 
 
+def test_data_audit_separates_operator_legality_from_atg_quality():
+    result = audit_records([("partial", "GTGTTTGCTTAA")], min_length=1)
+    assert result["n_operator_legal"] == 1
+    assert result["n_valid_cds"] == 0
+    assert result["n_atg_start"] == 0
+    assert result["n_unique_proteins"] == 1
+    assert result["invalid_reason_counts"] == {"start": 1}
+
+
 def test_cleaning_manifest_requires_conservation():
     validate_cleaning_manifest({"n_input": 10, "n_retained": 7,
                                 "removed": {"length": 2, "stop": 1}, "fasta_n": 7})
