@@ -394,3 +394,10 @@
 - 进程无收敛产物即结束、PID命令不匹配、审计失败或G1未通过均停止并写 `status=failed` 与 traceback；不自动重启、不覆盖历史状态、不自动启动G2。
 - 产物分臂保存在 `/teams`，包含配置/审计/G1/preflight哈希及独立命令日志。完成状态仅为 `g1_passed_g2_preflight_ready`，`scientific_gate_passed` 仍由实际G2决定。
 - 配置、PID命令匹配和失败日志3项测试通过。监视器尚未部署启动，正式训练仍在进行。
+
+## 59. G1 监视器实际启动
+
+- `/home/codonflow` 与 GitHub 已同步 `7ab3cb819a974cfcd65ff3449db348f3dfcac76c`，本地/训练机完整回归 **184 passed, 1 skipped**。
+- 监视器已启动，状态 `waiting_for_convergence`；状态文件 `07_a7_data/g1_r3_watcher/status.json`，启动日志 `launch.log`，PID 文件 `watcher.pid`。
+- FULL/EDIT 配置SHA分别为 `a6bcc4fe…`、`05ec5d8e…`，与 r3 一致；G1 固定 C31E10.3b.1/C14A6.7.1/C01H6.8b.1、100 paired samples、T=4。
+- 监视器只在真实收敛后审计并进入 G1，G2 preflight 输出仅作启动许可；当前没有新的模型验收或性能结果。
