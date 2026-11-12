@@ -387,3 +387,10 @@
 - 首次后台验收脚本的嵌套 f-string 引号错误已留证；它发生在实验完成后，只影响验收脚本。改用显式方法列表的独立核验后，四份结果均通过，`g2_interface_simple_v2/acceptance.json` SHA256=`ab3c90d2afe1faa87105e78a33f035d9790e910c7db50f7ccae247ffd06f58d3`。这些是工程数字，不是 learned-vs-simple 结论。
 - 新增 `a7_g2_preflight.py`：绑定收敛审计、对应G1、不可变checkpoint、CUDA证据、至少18开发基因、calibration/source/RSCU和clean commit；输出 `ready_for_g2=true` 但 `scientific_gate_passed=false`，避免把启动许可误写成科学通过。
 - preflight 合成正例和checkpoint不匹配反例通过。正式D4模型仍未收敛，G1/G2未启动科学验收。
+
+## 58. G1 收敛后自动验收监视器
+
+- 新增 `a7_follow_g1.py`：仅轮询训练产物和 launcher PID，不频繁读取 GPU 显存；只有 `converged.json` 出现后才运行 CUDA 收敛审计、三基因×100样本G1和G2 preflight。
+- 进程无收敛产物即结束、PID命令不匹配、审计失败或G1未通过均停止并写 `status=failed` 与 traceback；不自动重启、不覆盖历史状态、不自动启动G2。
+- 产物分臂保存在 `/teams`，包含配置/审计/G1/preflight哈希及独立命令日志。完成状态仅为 `g1_passed_g2_preflight_ready`，`scientific_gate_passed` 仍由实际G2决定。
+- 配置、PID命令匹配和失败日志3项测试通过。监视器尚未部署启动，正式训练仍在进行。
