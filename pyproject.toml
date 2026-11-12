@@ -15,7 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest"]
-eval = ["pymoo", "ViennaRNA"]
+eval = ["pymoo", "ViennaRNA", "rapidfuzz"]
 baselines = ["transformers", "linformer"]
 
 [tool.setuptools.packages.find]
