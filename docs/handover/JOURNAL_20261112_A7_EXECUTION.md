@@ -526,3 +526,11 @@
 - `best.pt`、`last.pt`、`training_state.pt`与`log.jsonl`均已生成。独立读取验证：log/state/best_epoch均为1，state的best_val与log严格相等，best/last/state模型张量逐项相等且全部有限，优化器非空并保存1份CUDA RNG状态。
 - 当前哈希：best=`501506b60f224a56b4a14cdd1ea96f39789eff7ea5783c6fb7e52517a5149fc2`；last=`9c51701d9c291acdbccaacf726c72a470edab7ddecf495f991586eff69126281`；training_state=`5f909b68ae22c902430b9ca430e8179dde5fee59976606171ab76b2506fa55b6`。不同序列化文件的SHA不同不代表张量不同，张量相等性已单独验证。
 - 以上仅确认完整epoch和可恢复状态，不是收敛、G1或模型性能证据。FULL继续e2，G1/G2 watcher保持等待。
+
+## 77. EDIT 第1个独立验证 epoch 与训练机远端修正
+
+- EDIT r4 第1个epoch于2026-11-13 07:21 CST完成并进入e2：`train_loss=1.6063771899820114`，独立`val_loss=1.340145922990471`，`cond_gap=3.243673801422119`，`elapsed_min=140.55504025618237`，plateau=`0/3`。
+- 独立读取确认log/state/best_epoch均为1，best_val严格一致，best/last/state模型张量逐项相等且全部有限，优化器非空并保存1份CUDA RNG状态。
+- EDIT当前哈希：best=`73a515f0e30cb69bb165592468a1b45e05eb02581daf32754bf6617a3502b41a`；last=`0f6440795347199353b3aec8b9106b8ba9568e216baac444011c97ac50f88939`；training_state=`506481faccda32268192cb863d3dee0e5b100b555f7228e099626e26caf1df62`。
+- 训练机 `/home/codonflow` 的origin原先指向初始部署bundle，普通pull不会获取GitHub后续提交；已改为 `git@github.com:Cunyu-Liu/codonflow.git` 并fast-forward至 `6e542755388250d11a7f1de23292ce6dd571ab83`，HEAD/origin/main一致且工作目录clean。未修改训练代码或配置。
+- 两臂现在均只有e1独立val，不能横向比较两种token目标，也未满足3期plateau。G1/G2继续等待。
