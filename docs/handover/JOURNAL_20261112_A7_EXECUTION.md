@@ -181,3 +181,10 @@
 - source manifest 逐物种核对 cleaning 数量守恒、哈希和实际文件；人类只接受 release-116，其余物种 release-112。缺失 seed 或物种均有独立检查项。
 - 新增通过/缺失两类契约测试；px2 真实 CUDA 证据保存为 `07_a7_data/cuda_evidence_px2.json`，包含同步 matmul、设备、形状和版本。
 - 当前 G0 仍未裁决通过，待原始恢复和 seeds 1/2 完成后运行统一入口。
+
+## 27. 分片进展与 G0 命令固化
+
+- 当前 seed1 完成 6/18、seed2 完成 8/18；分片文件与 done 状态分别核对，未运行自动复算。
+- release-112 已恢复 6 个非人类物种，人类116仍未完成；G0 保持未通过。
+- `RUNBOOK_NEXT.md` 已写入统一 `a7_g0_gate.py` 命令，只有 `g0_gate.json passed=true` 才允许启动训练。
+- G0 功能提交 `2a1c64f` 的 GitHub push 仍间歇失败，后续继续标准推送，不强推。

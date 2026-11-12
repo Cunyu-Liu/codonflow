@@ -180,3 +180,24 @@ PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python \
 ```
 
 若实际 seed 目录按 `unique18_s1`/`unique18_s2` 分目录保存，须分别复算并在汇总 manifest 中合并，不能假设所有 seed 都在 `unique18_s0`。
+
+G0 最终统一裁决（所有输入存在后运行；任一检查失败退出码为 1）：
+
+```bash
+cd /home/codonflow
+R=/teams/HoulabData_1788502323/liucunyu/codonflow1031
+PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python \
+  scripts/a7_g0_gate.py \
+  --full-audit $R/07_a7_data/full_audits_20261112_v2/manifest.json \
+  --frozen-assets $R/07_a7_data/frozen_asset_verification_20261112.json \
+  --source-manifest $R/07_a7_data/raw_release112/manifest.json \
+  --source-manifest $R/07_a7_data/raw_release116_human/manifest.json \
+  --unique-audit $R/07_a7_data/unique18_seed0_independent_mfe_ned.json \
+  --unique-audit $R/07_a7_data/unique18_seed1_independent_mfe_ned.json \
+  --unique-audit $R/07_a7_data/unique18_seed2_independent_mfe_ned.json \
+  --cuda-evidence $R/07_a7_data/cuda_evidence_px2.json \
+  --registry /home/codonflow/configs/a7_source_recovery.json \
+  --out $R/07_a7_data/g0_gate.json
+```
+
+`g0_gate.json` 的 `passed=true` 是唯一允许启动 `M_SYN_D4_*` 的 G0 放行证据；不得以单项完成记录替代。
