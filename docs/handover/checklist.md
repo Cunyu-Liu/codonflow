@@ -27,7 +27,7 @@
 
 - [ ] 数据来源、release、哈希和逐步清洗流水账完整；完整 `v3_all.fasta` 已找到且 SHA256=`5e106f9e…`，release/逐步清洗记录仍待补齐。
 - [x] D4/D5 六个 split 的长度/GC/CAI/RSCU/密码子使用/簇分布审计完成，见 `07_a7_data/full_audits_20261112_v2/`；非 ATG 部分 CDS、物种元数据缺失与选择偏差限制已披露。
-- [ ] 元数据和非标准遗传代码处理规则明确。
+- [x] 25 物种 ID 元数据与逐 split 分布已恢复，标准遗传代码 table 1、非 ATG 可能部分 CDS 和异常注释处理规则明确；不支持 species OOD 宣称。
 - [x] untouched 24 基因 D5 确认集已冻结于 `07_a7_data/confirmation24/`，SHA256=`a128bdbf…`；长度/GC 各档均 8 条，train/val 精确重叠为 0。
 - [x] D4/D5 参考表独立；D5 train RSCU 已生成于 `07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`。
 - [x] 24 个独立 calibration pool 已全部生成并验证：25 个顶层 JSON，record/hash 一一对应，D5 RSCU 一致，scale 全部为正且有限；每池 56–70 个唯一目标向量。

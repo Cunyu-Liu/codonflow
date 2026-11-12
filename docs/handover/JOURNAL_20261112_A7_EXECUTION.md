@@ -92,3 +92,10 @@
 - 在 `codonflow` 环境安装 `rapidfuzz=3.14.5`，并用实际函数与纯 Python 距离逐项验证一致。未停止当前任务；`pairwise_ned` 会在后续调用动态使用加速实现，距离定义不变。
 - `environment.yml` 与 `pyproject.toml` 的 eval 依赖已补 `rapidfuzz`。首次验证命令因未设置 `PYTHONPATH` 失败，随后在 `/home/codonflow-a7` 以 `PYTHONPATH=src` 验证通过。
 - seed-0 尚未产出最终 JSON，仍不得标记复算完成。
+
+## 14. 25 物种元数据恢复
+
+- 从冻结 transcript ID 命名规则恢复 22 类 Ensembl 前缀、FlyBase、WormBase 和酵母映射；未识别 Ensembl 前缀直接失败，不猜测 family。
+- `v3_all` 与六个 split 均精确识别 25 个物种，共 2,415,155 条输入记录全部映射成功。
+- 产物：`full_audits_20261112_v2/species_distribution.json`，SHA256=`541b8de1f9c01c91a92ee2aeaf22133faf4b43e0caf48076aee411190fb26563`；`07_a7_data/species_map.json`，SHA256=`479d0c745f50605a6a7171884d68895ba68e522abe3cd55c659987370919efef`。
+- 新增 `a7_species_audit.py` 与 3 项契约测试。该映射只支持物种占比描述，不支持 species OOD。
