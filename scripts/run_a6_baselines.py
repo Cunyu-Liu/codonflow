@@ -33,24 +33,26 @@ from scripts.run_exp5_ood import cai_greedy, lineardesign_scan
 METHODS = ("lineardesign_scan", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous")
 
 
-def codongpt_batch_sample(model, tokenizer, protein, n, seed, device):
+def codongpt_batch_sample(model, tokenizer, protein, n, seed, device, microbatch=16):
     bos = tokenizer.convert_tokens_to_ids(["[BOS]"])[0]
     torch.manual_seed(seed)
     from codonflow.core.codon import SYNONYMOUS_CODONS
-    ids = torch.full((n, 1), bos, dtype=torch.long, device=device)
     codons = [[] for _ in range(n)]
     with torch.no_grad():
-        for aa in protein + "*":
-            alternatives = SYNONYMOUS_CODONS.get(aa, ("TAA",))
-            option_ids = tokenizer.convert_tokens_to_ids(list(alternatives))
-            logits = model(input_ids=ids).logits[:, -1, :].float()
-            mask = torch.full_like(logits, -torch.inf)
-            mask[:, option_ids] = 0.0
-            next_ids = torch.multinomial(torch.softmax(logits + mask, dim=-1), 1)
-            tokens = tokenizer.convert_ids_to_tokens(next_ids[:, 0].tolist())
-            for index, token in enumerate(tokens):
-                codons[index].append(token)
-            ids = torch.cat([ids, next_ids], dim=1)
+        for start in range(0, n, microbatch):
+            stop = min(start + microbatch, n)
+            ids = torch.full((stop - start, 1), bos, dtype=torch.long, device=device)
+            for aa in protein + "*":
+                alternatives = SYNONYMOUS_CODONS.get(aa, ("TAA",))
+                option_ids = tokenizer.convert_tokens_to_ids(list(alternatives))
+                logits = model(input_ids=ids).logits[:, -1, :].float()
+                mask = torch.full_like(logits, -torch.inf)
+                mask[:, option_ids] = 0.0
+                next_ids = torch.multinomial(torch.softmax(logits + mask, dim=-1), 1)
+                tokens = tokenizer.convert_ids_to_tokens(next_ids[:, 0].tolist())
+                for offset, token in enumerate(tokens):
+                    codons[start + offset].append(token)
+                ids = torch.cat([ids, next_ids], dim=1)
     return ["".join(token for token in row if not token.startswith("[")) for row in codons]
 
 
@@ -103,7 +105,7 @@ def generate_method(method, source, weights, n, seed, device, gpt=None):
         start = time.perf_counter()
         solutions = codongpt_batch_sample(model, tokenizer, protein, n, seed, device)
         return solutions, {"elapsed_s": time.perf_counter() - start,
-                           "forward_calls": len(protein) + 1,
+                           "forward_calls": ((n + 15) // 16) * (len(protein) + 1),
                            "autoregressive_token_forward_evaluations": n * (len(protein) + 1),
                            "generator_calls": n, "n_requested": n}
     raise ValueError(f"unknown method {method}")

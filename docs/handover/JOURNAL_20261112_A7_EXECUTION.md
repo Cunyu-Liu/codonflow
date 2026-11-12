@@ -236,3 +236,9 @@
 - `C41G7.2.1` 在 codonGPT 长序列批量 forward 时 OOM，完整错误显示其他项目也占用大量显存。保留已完成文件。
 - seed1 进一步降为 workers=1，seed2 已为 workers=1；两条任务均单分片 GPU 运行，不用 CPU 替代。
 - 原始恢复重试仍在进行，manifest 暂为 22/25，G0 未放行。
+
+## 36. codonGPT micro-batch 修复长序列 OOM
+
+- 单分片仍发生长序列 OOM，改为固定 16 样本 micro-batch，从内存机制上限制激活峰值。采样语义不变，真实 forward 按批次数累计，等效 token forward 不变。
+- `C41G7.2.1` 真实 GPU 验证通过：100/100 唯一解、identity=1.0、forward=4,116、等效计算=58,800、34.91 秒。
+- 两个 seed 已按断点恢复，不使用 CPU 替代。完整回归 **155 passed, 1 skipped**。

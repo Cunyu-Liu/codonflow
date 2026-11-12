@@ -62,3 +62,16 @@ def test_gemorna_persistent_cost_and_sample_count(monkeypatch):
     assert costs["generator_calls"] == 1
     assert costs["official_model_calls"] == 4
     assert costs["forward_calls"] is None
+
+
+def test_codongpt_microbatch_bounds_memory_and_preserves_costs():
+    tokenizer = Tokenizer()
+    model = Model(tokenizer)
+    weights = {codon: 1.0 for codon in CODONS}
+    solutions, costs = generate_method("codongpt", "ATGGCTTAA", weights, 20, 0,
+                                       torch.device("cpu"), (model, tokenizer))
+    assert len(solutions) == 20
+    assert len(model.calls) == 6
+    assert costs["forward_calls"] == 6
+    assert costs["autoregressive_token_forward_evaluations"] == 60
+    assert model.calls[0][0] == 16 and model.calls[-1][0] == 4
