@@ -163,6 +163,27 @@ def run_generate(protein: str) -> tuple:
     return cds, nat
 
 
+def run_generate_batch(protein: str, n: int) -> list:
+    script = os.environ.get("CODONFLOW_GEMORNA_BATCH_SCRIPT",
+                            "/home/codonflow/scripts/gemorna_persistent.py")
+    res = subprocess.run(
+        [PY, script, "--ckpt_path", "checkpoints/gemorna_cds.pt",
+         "--protein_seq", protein, "--n", str(n)],
+        cwd=REPO, capture_output=True, text=True, timeout=3600)
+    if res.returncode != 0:
+        raise RuntimeError(f"GEMORNA persistent generation failed: {res.stderr[-4000:] or res.stdout[-4000:]}")
+    rows = []
+    for line in res.stdout.splitlines():
+        try:
+            payload = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        rows.append((payload["sequence"], payload.get("naturalness")))
+    if len(rows) != n:
+        raise RuntimeError(f"GEMORNA returned {len(rows)}/{n} sequences")
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--gene", required=True, choices=GENES)

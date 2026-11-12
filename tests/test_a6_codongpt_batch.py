@@ -51,3 +51,14 @@ def test_codongpt_cost_distinguishes_batched_and_token_equivalent_forwards():
     assert costs["forward_calls"] == 3
     assert costs["autoregressive_token_forward_evaluations"] == 12
     assert len(model.calls) == 3
+
+
+def test_gemorna_persistent_cost_and_sample_count(monkeypatch):
+    import scripts.run_a6_baselines as baselines
+    monkeypatch.setattr(baselines, "run_generate_batch", lambda protein, n: [("ATGGCTTAA", 0.0)] * n)
+    weights = {codon: 1.0 for codon in CODONS}
+    solutions, costs = generate_method("gemorna", "ATGGCTTAA", weights, 4, 0, torch.device("cpu"))
+    assert solutions == ["ATGGCTTAA"] * 4
+    assert costs["generator_calls"] == 1
+    assert costs["official_model_calls"] == 4
+    assert costs["forward_calls"] is None

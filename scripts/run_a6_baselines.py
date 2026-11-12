@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
 import time
@@ -26,7 +27,7 @@ from codonflow.eval.mfe_parallel import mfe_batch_parallel
 from codonflow.core.motifs import motif_penalty_score
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.train.run_pretrain import file_sha256, git_commit
-from scripts.gemorna_arm import normalized_identity_pass, run_generate
+from scripts.gemorna_arm import normalized_identity_pass, run_generate, run_generate_batch
 from scripts.run_exp5_ood import cai_greedy, lineardesign_scan
 
 METHODS = ("lineardesign_scan", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous")
@@ -77,15 +78,20 @@ def generate_method(method, source, weights, n, seed, device, gpt=None):
                            "generator_calls": 7, "n_requested": 7}
     if method == "gemorna":
         start = time.perf_counter()
-        solutions = []
-        for _ in range(n):
-            sequence, _ = run_generate(protein)
-            if sequence is not None:
-                solutions.append(sequence)
+        persistent = os.environ.get("CODONFLOW_GEMORNA_PERSISTENT", "1") == "1"
+        if persistent:
+            solutions = [sequence for sequence, _ in run_generate_batch(protein, n)]
+        else:
+            solutions = []
+            for _ in range(n):
+                sequence, _ = run_generate(protein)
+                if sequence is not None:
+                    solutions.append(sequence)
         return solutions, {"elapsed_s": time.perf_counter() - start, "forward_calls": None,
                            "forward_note": "not exposed by official GEMORNA generator",
-                           "generator_calls": n, "n_requested": n,
-                           "sampling_note": "official generator has no seed parameter"}
+                           "generator_calls": 1 if persistent else n,
+                           "official_model_calls": n, "n_requested": n,
+                           "sampling_note": "official model.gen has no seed parameter; persistent process only avoids reloads"}
     if method == "codongpt":
         if gpt is None:
             raise ValueError("codonGPT model was not loaded")

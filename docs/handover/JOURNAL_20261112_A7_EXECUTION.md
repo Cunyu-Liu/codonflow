@@ -147,3 +147,10 @@
 - 批量 smoke 的 17,800 是样本×token 等效计算量，不是实际模型调用；实际批量 forward 为 178。为避免成本误报，`forward_calls` 改为真实批量调用数，新增 `autoregressive_token_forward_evaluations` 保存等效量。
 - 新契约测试同时检查两种计数，focused tests 通过。旧部分文件移入 `07_a7_data/quarantine_pre_forward_cost_fix/`，未手改 JSON。
 - 已停止自己的 watcher/父进程/GEMORNA 子进程，并以正确成本口径重新生成 seeds 1/2；批量 smoke 仅作接口验证，不进入科学结果。
+
+## 22. GEMORNA 持久化生成
+
+- 官方 `src/generate.py` 每次调用都会重建模型并加载权重。新增 `gemorna_persistent.py`，在同一进程顺序调用官方 `model.gen`，不改采样算法、不增加 seed 参数。
+- 成本分开记录：`generator_calls=1` 为一次持久化子进程，`official_model_calls=n` 为官方生成调用数，`forward_calls=null` 仍为官方不可见。
+- 真实 GPU smoke：10/10 唯一解、identity=1.0，持久化生成耗时 29.87 秒；focused tests 通过。
+- 已停止自己的旧 GEMORNA 子进程并以 `--resume` 切换 seeds 1/2，已完成 LinearDesign/codonGPT 不重跑。

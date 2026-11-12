@@ -134,9 +134,10 @@ def test_a6_ld_and_official_generator_keep_real_budget(monkeypatch):
     raw, generation = generate_method("lineardesign_scan", source, {}, 100, 0, "cpu")
     assert len(raw) == 7 and generation["generator_calls"] == 7
     assert generation["forward_calls"] is None
-    monkeypatch.setattr("scripts.run_a6_baselines.run_generate", lambda protein: (source, 0.0))
+    monkeypatch.setattr("scripts.run_a6_baselines.run_generate_batch", lambda protein, n: [(source, 0.0)] * n)
     raw, generation = generate_method("gemorna", source, {}, 2, 0, "cpu")
-    assert raw == [source, source] and generation["generator_calls"] == 2
+    assert raw == [source, source] and generation["generator_calls"] == 1
+    assert generation["official_model_calls"] == 2
     assert generation["forward_calls"] is None
 
 
