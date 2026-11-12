@@ -34,6 +34,17 @@ def code_dirty():
         return None
 
 
+def completed_result(path, expected):
+    payload = json.loads(Path(path).read_text())
+    validate_result_payload(payload)
+    if payload["status"] != "done" or payload["code_dirty"] is not False:
+        raise ValueError(f"cannot resume incomplete or dirty result: {path}")
+    for key, value in expected.items():
+        if payload.get(key) != value:
+            raise ValueError(f"resume mismatch for {key}: {path}")
+    return payload
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--benchmark-fasta", required=True)
@@ -41,6 +52,7 @@ def main() -> None:
     parser.add_argument("--calibration-dir", required=True)
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-dir", required=True)
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument("--methods", nargs="+", choices=SimpleSearch.METHODS,
                         default=list(SimpleSearch.METHODS))
     parser.add_argument("--record-id")
@@ -78,6 +90,20 @@ def main() -> None:
         frozen = FrozenReference.from_dict(calibration)
         initial = synonymous_x0(source, np.random.default_rng(args.seed * 1009))
         for method in args.methods:
+            out_path = out_dir / f"{safe}_{method}_s{args.seed}.json"
+            if out_path.exists():
+                if not args.resume:
+                    raise FileExistsError(f"refusing to overwrite result: {out_path}")
+                completed_result(out_path, {
+                    "record_id": header, "seed": args.seed, "method": method,
+                    "source_sha256": hashlib.sha256(source.encode()).hexdigest(),
+                    "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
+                    "calibration_sha256": file_sha256(str(calibration_path)),
+                    "rscu_sha256": file_sha256(args.rscu_json),
+                    "checkpoint_sha256": None, "code_commit": git_commit(),
+                })
+                print(json.dumps({"record_id": header, "method": method, "status": "skipped_existing"}), flush=True)
+                continue
             result = SimpleSearch(
                 initial, objectives, args.weights, seed=args.seed,
                 normalization=(frozen.reference, frozen.scale),
@@ -89,6 +115,7 @@ def main() -> None:
                 "run_id": f"a7_{safe}_{method}_s{args.seed}",
                 "record_id": header,
                 "seed": args.seed,
+                "source_sha256": hashlib.sha256(source.encode()).hexdigest(),
                 "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
                 "initial_index": 0,
                 "terminal_step": None,

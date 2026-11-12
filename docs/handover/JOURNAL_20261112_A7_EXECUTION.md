@@ -344,3 +344,10 @@
 - 历史、继续显著改善、日志不一致和错误 best epoch 的4项聚焦测试通过。正式模型尚未完成首个 epoch，因此该工具没有实际通过记录。
 - 两个随机接口进程均已确认占用 CUDA 显存，GPU 利用率采样100%；尚无最终 JSON，不能写成接口验收通过。批量任务等待器保留，后续以产物为准。
 - `f6bfaad` 的 GitHub push 再次失败；训练机 bundle 同步已完成，远端主干仍为 `5796bf4`，后续补推。
+
+## 52. G2 严格断点与天然源元数据修复
+
+- 修复 simple payload 把 paired 初始序列哈希写入 `source_sha256` 的问题；现在与 learned 一样记录天然源 SHA，初始序列另存 `initial_sha256`。Gate 会拒绝任何旧的不一致结果。
+- simple/learned 均支持 `--resume`，默认拒绝覆盖已有结果；只有 done、clean、record/seed/method/source/initial/calibration/RSCU/checkpoint/commit 全匹配才跳过，不静默忽略错误或缺失。
+- 新增3项 resume 契约测试；与 G2、learned 合计10项聚焦测试通过，完整回归 **177 passed, 1 skipped**。
+- 随机串行和批量接口尚未生成结果 JSON，不能声称提速或通过；当前正式训练仍在进行，G1/G2 未启动科学验收。

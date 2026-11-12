@@ -23,7 +23,7 @@ from codonflow.eval.protocol import validate_result_payload
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.models.simple_search import UniqueObjectiveScorer
 from codonflow.train.run_pretrain import file_sha256, git_commit
-from scripts.a7_run_simple_search import code_dirty
+from scripts.a7_run_simple_search import code_dirty, completed_result
 
 
 def learned_search(initial, proposal, objective_fn, weights, normalization, seed,
@@ -85,6 +85,7 @@ def main():
     parser.add_argument("--calibration-dir", required=True)
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-dir", required=True)
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument("--record-id", action="append", dest="record_ids")
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--terminal-step", type=int, default=4)
@@ -136,6 +137,20 @@ def main():
             raise ValueError(f"calibration source mismatch: {header}")
         frozen = FrozenReference.from_dict(calibration)
         initial = synonymous_x0(source, np.random.default_rng(args.seed * 1009))
+        out_path = out_dir / f"{safe}_learned_s{args.seed}.json"
+        if out_path.exists():
+            if not args.resume:
+                raise FileExistsError(f"refusing to overwrite result: {out_path}")
+            completed_result(out_path, {
+                "record_id": header, "seed": args.seed, "method": "learned",
+                "source_sha256": hashlib.sha256(source.encode()).hexdigest(),
+                "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
+                "calibration_sha256": file_sha256(str(calibration_path)),
+                "rscu_sha256": file_sha256(args.rscu_json),
+                "checkpoint_sha256": args.checkpoint_sha256, "code_commit": git_commit(),
+            })
+            print(json.dumps({"record_id": header, "method": "learned", "status": "skipped_existing"}), flush=True)
+            continue
         payload = learned_search(initial, proposal, objectives, args.weights,
                                  (frozen.reference, frozen.scale), args.seed,
                                  args.terminal_step, args.max_unique_scorer, args.path_batch_size)

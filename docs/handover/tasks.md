@@ -37,6 +37,7 @@
 - [x] 冻结 `configs/a7_protocol.json` 与 `configs/a7_data_protocol.json`：指标方向、B=50/100/500、motif/codon、统计和 G1/G2 阈值。
 - [x] D5 train 已独立构建 CAI/RSCU（`07_a7_data/cai_ref_d5train.json`，SHA256=`2a5e05ef…`），D4 沿用其 train 参考表，未跨版本混用。
 - [x] 24 个独立 calibration pool 已全部生成并验证：25 个顶层 JSON（24 reference + manifest），record/hash 一一对应，D5 RSCU 一致，scale 全部为正且有限；每池 56–70 个唯一目标向量。
+- [x] unique18 development calibration 已 18/18 完成，D4 RSCU、逐文件哈希和参考域重算通过；`07_a7_data/calibration_unique18_acceptance.json` passed=true，SHA256=`e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c`。代表基因独立重生成逐字节一致。
 
 **DoD**：协议 JSON + 单元/契约测试 + 独立重算一致；不允许从 test 输出估计归一化范围。
 
