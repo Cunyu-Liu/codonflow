@@ -79,6 +79,7 @@ def main() -> None:
     ap.add_argument("--grad-accum", type=int, default=1)
     ap.add_argument("--grad-clip", type=float, default=1.0)
     ap.add_argument("--val-batch-tokens", type=int, default=24000)
+    ap.add_argument("--val-micro-batch-tokens", type=int, default=4000)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--log-every", type=int, default=100)
     ap.add_argument("--epochs-per-checkpoint", type=int, default=1)
@@ -208,7 +209,7 @@ def main() -> None:
         val_loss = validate_packed(
             model, val_batches, dev, seed=args.validation_seed,
             token_only_at_edits=args.token_only_at_edits,
-            corruption=args.corruption,
+            corruption=args.corruption, micro_batch_tokens=args.val_micro_batch_tokens,
         )
         cond_gap = conditionality_probe(model, dev, corruption=args.corruption)
         converged = tracker.update(val_loss)
@@ -297,7 +298,8 @@ def conditionality_probe(model, dev, n=8, corruption="arbitrary") -> float:
 
 
 @torch.no_grad()
-def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False, corruption='arbitrary') -> float:
+def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False,
+                    corruption='arbitrary', micro_batch_tokens=4000) -> float:
     total, n = 0.0, 0
     from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
     corrupt = corrupt_x_t_synonymous if corruption == "synonymous" else corrupt_x_t
@@ -306,12 +308,46 @@ def validate_packed(model, batches, dev, seed=1729, token_only_at_edits=False, c
     for batch in batches:
         ids, pad = batch_to_tensors(batch, dev)
         x_t = corrupt(ids, generator=generator)
-        blank, tok = model(x_t, pad)
-        loss, _, _ = edit_flow_loss(
-            blank, tok, ids, (x_t != ids), pad,
-            token_only_at_edits=token_only_at_edits,
-        )
-        total += loss.item()
+        if micro_batch_tokens is None:
+            chunks = [(0, len(batch))]
+        else:
+            if micro_batch_tokens < 1:
+                raise ValueError("micro_batch_tokens must be positive or None")
+            chunks = []
+            start = 0
+            tokens = 0
+            for index, sequence in enumerate(batch):
+                if tokens and tokens + len(sequence) > micro_batch_tokens:
+                    chunks.append((start, index))
+                    start, tokens = index, 0
+                tokens += len(sequence)
+            chunks.append((start, len(batch)))
+        weighted_loss = 0.0
+        bce_weighted = 0.0
+        token_weighted = 0.0
+        keep_total = 0.0
+        token_keep_total = 0.0
+        for start, end in chunks:
+            micro_ids, micro_pad = ids[start:end], pad[start:end]
+            micro_x = x_t[start:end]
+            blank, tok = model(micro_x, micro_pad)
+            loss, bce, token_loss = edit_flow_loss(
+                blank, tok, micro_ids, (micro_x != micro_ids), micro_pad,
+                token_only_at_edits=token_only_at_edits,
+            )
+            if len(chunks) == 1:
+                weighted_loss = loss.item()
+                continue
+            keep = (~micro_pad).float()
+            token_keep = keep * (micro_x != micro_ids).float() if token_only_at_edits else keep
+            bce_weighted += bce.item() * keep.sum().item()
+            token_weighted += token_loss.item() * token_keep.sum().item()
+            keep_total += keep.sum().item()
+            token_keep_total += token_keep.sum().item()
+        if len(chunks) == 1:
+            total += weighted_loss
+        else:
+            total += bce_weighted / max(keep_total, 1e-12) + token_weighted / max(token_keep_total, 1e-12)
         n += 1
     return total / max(n, 1)
 

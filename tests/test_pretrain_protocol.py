@@ -1,4 +1,5 @@
 import torch
+import pytest
 from unittest.mock import patch
 
 from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
@@ -42,3 +43,14 @@ def test_conditionality_probe_uses_device_and_matching_corruption():
     assert constructor.call_count == 2
     assert all(call.kwargs["device"] == torch.device("cpu") for call in constructor.call_args_list)
     assert corrupt.call_count == 2
+
+
+@pytest.mark.parametrize("token_only_at_edits", [False, True])
+def test_validation_micro_batching_preserves_full_batch_loss(token_only_at_edits):
+    model = EditFlowTransformer(EditFlowConfig(d_model=32, n_layers=1, n_heads=4, dropout=0.0))
+    batches = [[list(range(8)), list(range(10))], [list(range(12)), list(range(6)), list(range(9))]]
+    full = validate_packed(model, batches, torch.device("cpu"), seed=1729,
+                           token_only_at_edits=token_only_at_edits, micro_batch_tokens=None)
+    micro = validate_packed(model, batches, torch.device("cpu"), seed=1729,
+                            token_only_at_edits=token_only_at_edits, micro_batch_tokens=4)
+    assert micro == pytest.approx(full, abs=1e-6)

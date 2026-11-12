@@ -30,6 +30,7 @@ def test_r4_preserves_validation_protocol_and_provides_headroom():
     for config in (full, edit):
         assert config["resume"] is None
         assert config["val_batch_tokens"] == 24000
+        assert config["val_micro_batch_tokens"] == 4000
         assert config["corruption"] == "synonymous"
         assert config["out_dir"].endswith("_r4")
         assert config["batch_tokens"] * config["grad_accum"] == 60000

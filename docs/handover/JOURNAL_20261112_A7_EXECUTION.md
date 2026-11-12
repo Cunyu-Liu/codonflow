@@ -472,3 +472,10 @@
 - EDIT 在独立 val forward 中 OOM：进程上限0.30=9.41GB，需额外2.06GB时物理显存尚有12.69GB空闲，属于人为上限而非物理耗尽。保持val_batch_tokens=24000及验证聚合不变，r4 EDIT cap调至0.42；FULL cap仍为0.35。
 - r3 两臂均无 best/last/training_state/converged，不能精确resume。G1/G2 watcher均记录failed并停止，未进入下一阶段。
 - r4 使用全新run ID和输出目录从零启动；不覆盖r3日志，不伪造恢复，不跳过验证或保存伪checkpoint。
+
+## 69. 验证显存问题的等价 micro-batch 修复
+
+- r4 EDIT cap从0.30升至0.42后，直接全量CUDA验证仍在首个长batch OOM，尽管当时约29GB空闲；不能靠继续放大上限解决注意力峰值。
+- `validate_packed` 保留原24000-token batch及一次完整batch腐蚀，再按4000 tokens分micro forward。BCE和token loss分别按各自有效位置数还原，不能用两个权重之和作分母。两种目标下full/micro loss一致，6项probe/验证聚焦测试通过。
+- r4 显式加入 `val_micro_batch_tokens=4000`，原val batch/数据/RNG/聚合语义不变。r3无checkpoint，仍需新run ID从零重启；r4尚未启动。
+- 首个直接验证OOM已保留失败证据，未写伪val或伪收敛结果。

@@ -22,6 +22,7 @@
   "effective_batch_tokens": 60000,
   "grad_clip": 1.0,
   "val_batch_tokens": 24000,
+  "val_micro_batch_tokens": 4000,
   "seed": 0,
   "validation_seed": 1729,
   "token_only_at_edits": true,
@@ -32,5 +33,5 @@
   },
   "max_epochs": null,
   "max_steps": null,
-  "restart_reason": "validation forward exceeded the artificial 0.30 process cap; raise to 0.42 with physical headroom; no checkpoint resume; keep val budget 24000"
+  "restart_reason": "validation forward exceeded the artificial 0.30 process cap; use 4000-token forward micro-batches with identical original-batch corruption and loss normalization; cap 0.42; no checkpoint resume"
 }

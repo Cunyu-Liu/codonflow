@@ -29,6 +29,7 @@ def training_command(config):
         "--batch-tokens", str(config["batch_tokens"]), "--max-batch", str(config["max_batch"]),
         "--grad-accum", str(config["grad_accum"]), "--grad-clip", str(config["grad_clip"]),
         "--val-batch-tokens", str(config["val_batch_tokens"]), "--seed", str(config["seed"]),
+        "--val-micro-batch-tokens", str(config.get("val_micro_batch_tokens", 4000)),
         "--validation-seed", str(config["validation_seed"]),
         "--gpu-mem-fraction", str(config["gpu_mem_fraction"]),
     ]
