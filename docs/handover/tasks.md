@@ -73,7 +73,7 @@
 
 ### T1.8 GPU 与运行环境验收
 
-- [ ] 确认实际 GPU、驱动、PyTorch/CUDA 版本与架构兼容，并保存同步 CUDA matmul 成功证据。
+- [x] px2 RTX 5090、driver 595.84/CUDA 13.2 已实测同步 CUDA matmul 成功；其他项目约 9GB 显存进程未触碰。独立 `codonflow` cu132 环境仍在重建，当前成功 matmul 使用 `llr_env` 仅作硬件验证。
 - [ ] 训练进程启动前核对 `device.type=cuda`、GPU 进程和首步日志；任何 CPU 静默降级、kernel 错误或 CUDA 不可用均停止并留档。
 - [ ] 只为合同内独立任务并行分配 GPU；记录他项目进程、显存硬上限与真实利用率，不 kill 或修改其他项目。
 

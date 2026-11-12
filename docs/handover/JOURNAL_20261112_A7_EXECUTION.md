@@ -99,3 +99,10 @@
 - `v3_all` 与六个 split 均精确识别 25 个物种，共 2,415,155 条输入记录全部映射成功。
 - 产物：`full_audits_20261112_v2/species_distribution.json`，SHA256=`541b8de1f9c01c91a92ee2aeaf22133faf4b43e0caf48076aee411190fb26563`；`07_a7_data/species_map.json`，SHA256=`479d0c745f50605a6a7171884d68895ba68e522abe3cd55c659987370919efef`。
 - 新增 `a7_species_audit.py` 与 3 项契约测试。该映射只支持物种占比描述，不支持 species OOD。
+
+## 15. px2 GPU 硬件验证与环境恢复
+
+- 用户提供 px2 凭据后，实测 RTX 5090 32GB、driver 595.84/CUDA 13.2，其他项目两个 `llr_env` 进程约占 9GB，未触碰。真实同步 CUDA matmul 成功：`torch.Size([512, 512]) cuda:0`。
+- 该硬件验证使用现有 `llr_env` 的 torch 2.11.0+cu128，仅证明 GPU 可用；不得据此复用其他项目环境训练。
+- 最新代码已通过 bundle 部署至 `/home/codonflow`，提交 `fc5eba4`。独立 `codonflow` 环境重建首先遇到阿里云 Conda 镜像 404，随后 channel-alias 参数/环境变量未生效；改用隔离 `/home/codonflow-condarc`，不修改全局配置。
+- px1 再次验证仍 `CUDA=False N=0`，无 CPU 替代训练。
