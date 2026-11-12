@@ -351,3 +351,10 @@
 - simple/learned 均支持 `--resume`，默认拒绝覆盖已有结果；只有 done、clean、record/seed/method/source/initial/calibration/RSCU/checkpoint/commit 全匹配才跳过，不静默忽略错误或缺失。
 - 新增3项 resume 契约测试；与 G2、learned 合计10项聚焦测试通过，完整回归 **177 passed, 1 skipped**。
 - 随机串行和批量接口尚未生成结果 JSON，不能声称提速或通过；当前正式训练仍在进行，G1/G2 未启动科学验收。
+
+## 53. learned 串行接口完成与 base 批量向量化
+
+- 原串行随机 checkpoint 接口完成：500 唯一 terminal scorer、515 paths、2060 base state evaluations/forwards、1417.836秒，identity=1、CUDA、clean commit。产物 SHA256=`76e9d1ca3f544bf438be4826407218fd1d93a1f3279380519f9fcc03d9401b37`。这是随机权重工程验证，不是 G1/G2 科学结果。
+- 原批量接口已运行超过10分钟，尚无 JSON；simple 四方法接口已启动，尚无完成输出。均不以进程存在冒充完成。
+- 审查发现批量版本仍逐状态、逐位置执行局部 log-softmax。已将 `sample_transition_batch` 改为按位置对整个 batch 向量化，候选顺序、显式 stay 和采样 RNG 与原实现一致，Transformer forward 数不变。
+- 同 RNG 回归要求转移/位置完全一致，log probability 在1e-12内一致；不同张量形状归约导致的约4e-16差异已明确记录。完整回归 **177 passed, 1 skipped**。新向量化的真实 CUDA 与500预算接口仍待验证。

@@ -156,7 +156,10 @@ def test_batched_rollout_sampling_matches_sequential_kernel():
         proposal.sample_transition(source, 0, generator),
         proposal.sample_transition(other, 0, generator),
     ]
-    assert actual == expected
+    for sampled, reference in zip(actual, expected):
+        assert sampled.codons == reference.codons
+        assert sampled.position == reference.position
+        assert sampled.log_probability == pytest.approx(reference.log_probability, abs=1e-12)
     assert after_batch == 1
     with pytest.raises(ValueError, match="equal codon lengths"):
         proposal.sample_transition_batch([source, split_codons("TTTTAA")])

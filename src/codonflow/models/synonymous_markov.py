@@ -250,15 +250,48 @@ class SynonymousJumpProposal:
                 or token_logits.shape[-1] <= max(max(ids) for ids in encoded)):
             raise ValueError("Model output shapes do not match the batched CDS states")
         generator = np.random.default_rng() if rng is None else rng
+        weights = []
+        choices = []
+        stay_weights = []
+        batch_index = torch.arange(batch_size, device=token_logits.device)
+        for position in range(len(states[0]) - 1):
+            amino_acids = {STANDARD_TABLE_1[state[position]] for state in states}
+            if len(amino_acids) != 1:
+                raise ValueError("batch states must preserve amino acids by position")
+            alternatives = list(SYNONYMOUS_CODONS[next(iter(amino_acids))])
+            indices = [CODON_TO_INDEX[codon] for codon in alternatives]
+            row = position + 1
+            local_logs = torch.log_softmax(token_logits[:, row, indices].double(), dim=-1)
+            blank = blank_logits[:, row].double()
+            current = [alternatives.index(state[position]) for state in states]
+            current_index = torch.tensor(current, dtype=torch.long, device=token_logits.device)
+            stay_weights.append(blank + local_logs[batch_index, current_index])
+            for alternative_index, alternative in enumerate(alternatives):
+                values = (blank + local_logs[:, alternative_index]).clone()
+                self_index = torch.tensor(
+                    [index for index, current_index in enumerate(current)
+                     if current_index == alternative_index], dtype=torch.long, device=token_logits.device,
+                )
+                values[self_index] = -math.inf
+                weights.append(values)
+                choices.append((position, alternative))
+        weights.append(torch.logsumexp(torch.stack(stay_weights, dim=1), dim=1))
+        choices.append((None, None))
+        log_probabilities = torch.log_softmax(torch.stack(weights, dim=1), dim=1)
         sampled = []
         for index, state in enumerate(states):
-            transitions, log_probabilities = self._transitions_from_logits(
-                state, blank_logits[index], token_logits[index],
-            )
-            choice = _sample_log_probabilities(log_probabilities.tolist(), generator)
-            transition = transitions[choice]
+            choice = _sample_log_probabilities(log_probabilities[index].tolist(), generator)
+            position, alternative = choices[choice]
+            if position is None:
+                edited = state
+            else:
+                edited = list(state)
+                if edited[position] == alternative:
+                    raise RuntimeError("a self jump received zero-probability sampling mass")
+                edited[position] = alternative
+                edited = tuple(edited)
             sampled.append(SynonymousTransition(
-                transition.codons, float(log_probabilities[choice]), transition.position,
+                edited, float(log_probabilities[index, choice]), position,
             ))
         return sampled
 
