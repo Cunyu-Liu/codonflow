@@ -248,3 +248,9 @@
 - 修复 `a7_g0_gate.py` 在缺失 manifest/审计时的异常：缺失文件现记为失败证据，source/unique hash 写 `null`，不中断报告。
 - 当前 `g0_gate_current.json`：full_distribution=true、frozen_assets=true、cuda_matmul=true、source_recovery=false、unique18_all_seeds=false，passed=false。
 - 这确认 G0 未放行；seeds 1/2 与犬/anole 仍是直接阻塞。
+
+## 38. 24/25 与犬 gzip 自恢复修复
+
+- anole 已完成，manifest 更新为 24/25；仅剩犬 gzip 截断。
+- 恢复器新增完整 gzip 解压校验，损坏 `.gz` 和对应 raw 改为 `.corrupt` 留证后重新下载，避免损坏文件导致反复失败。
+- 新增损坏包契约测试，犬已按修复后的逻辑重启恢复。

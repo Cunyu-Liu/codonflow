@@ -61,6 +61,15 @@ def recover_one(record, release, out_dir, url_override=None):
         with urllib.request.urlopen(url, timeout=900) as response, temporary.open("wb") as handle:
             shutil.copyfileobj(response, handle)
         temporary.replace(gz_path)
+    try:
+        with gzip.open(gz_path, "rb") as source:
+            while source.read(8 * 1024 * 1024):
+                pass
+    except (EOFError, OSError):
+        if raw_path.exists():
+            raw_path.replace(raw_path.with_suffix(".corrupt"))
+        gz_path.replace(gz_path.with_suffix(".corrupt"))
+        return recover_one(record, release, out_dir, url_override=url_override)
     with gz_path.open("rb") as handle:
         gzip_magic = handle.read(2)
     if gzip_magic != b"\x1f\x8b":
