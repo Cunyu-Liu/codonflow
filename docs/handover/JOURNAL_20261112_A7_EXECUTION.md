@@ -424,3 +424,10 @@
 - 标题直接按真实Gate标记Go/No-Go，曲线含50/100/500预算网格，保留每基因最强simple及NED/统计注释，不删负结果。
 - 合成fixture已补齐真实曲线网格；测试验证PDF/PNG magic、36行逐基因表和manifest。完整回归 **188 passed, 1 skipped**。
 - 通过临时本地HTTP实际检查测试图的三面板、图例、阈值线和文字布局，随后关闭页面/服务并删除图片。合成图不进入PPT或论文，真实G1/G2仍未完成。
+
+## 63. G2 证据门后续监视器
+
+- 新增 `a7_follow_g2.py`：等待 `g1_r3_watcher/status.json` 明确为 `g1_passed_g2_preflight_ready`，核验双臂 preflight 哈希后才执行 dry-run。
+- dry-run 必须得到108 learned+54 shared simple，随后运行正式分片器、G2 Gate和冻结JSON图形生成；最终状态只读取真实 `scientific_gate_passed`，不自动进入G3。
+- G1失败、监视器提前退出、preflight变动、任务数异常或执行失败均记录failed和traceback，不覆盖旧状态。
+- 3项等待/双preflight/失败停止测试通过。正式训练与G1仍在进行，G2尚未启动。
