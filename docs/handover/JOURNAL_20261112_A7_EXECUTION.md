@@ -194,3 +194,8 @@
 - seed2 的 `ENSACAT00000037188.1` 在 GEMORNA 初始化时报 `CUDA out of memory`，driver 保留完整 traceback；不是数据错误，已完成文件不受影响。
 - 总并发 6 对其他项目动态余量不足。只停止自己的 driver/子进程，将每个 seed 降为 2 个并发（总计 4），按 done 状态断点续跑；若仍 OOM 继续降并发，不使用 CPU 替代。
 - release-112 已恢复 9 个非人类物种，人类116仍在下载。
+
+## 29. seed2 进一步限流
+
+- seed2 的同一基因再次失败，按预设降级规则将 workers 从 2 降为 1；seed1 保持 workers=2。只停止自己的 driver/子进程，done 文件不重复生成。
+- 当前 GPU 仍有其他项目高负载，不使用 CPU 替代。原始恢复保持 9/25，人类116下载中。
