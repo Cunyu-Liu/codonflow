@@ -380,3 +380,10 @@
 - 其天然源 SHA 与 learned 一致且不同于 initial SHA；paired initial SHA 与 learned 完全一致；schema 和冻结 calibration 的 AUC 重算通过。其余 simple 方法仍在运行。
 - 修复 G1 uniform 诊断包含终端 stop 索引的问题；现在仅在前 `len(codons)-1` 个可编辑位置抽样，保留当前密码子作为 stay 可能性。100个 seed 的 stop 保持回归已加入。
 - 以上仍是工程验证，没有新训练收敛、G1或G2科学结论。
+
+## 57. simple 四方法接口验收与 G2 preflight
+
+- C31E10.3b.1 的全局 uniform、hill、MH、AReUReDi-style 均完成500唯一解、identity=1、clean commit、零模型 forward。耗时依次178.088/181.124/191.734/165.615秒，初始SHA与天然源SHA全组一致。
+- 首次后台验收脚本的嵌套 f-string 引号错误已留证；它发生在实验完成后，只影响验收脚本。改用显式方法列表的独立核验后，四份结果均通过，`g2_interface_simple_v2/acceptance.json` SHA256=`ab3c90d2afe1faa87105e78a33f035d9790e910c7db50f7ccae247ffd06f58d3`。这些是工程数字，不是 learned-vs-simple 结论。
+- 新增 `a7_g2_preflight.py`：绑定收敛审计、对应G1、不可变checkpoint、CUDA证据、至少18开发基因、calibration/source/RSCU和clean commit；输出 `ready_for_g2=true` 但 `scientific_gate_passed=false`，避免把启动许可误写成科学通过。
+- preflight 合成正例和checkpoint不匹配反例通过。正式D4模型仍未收敛，G1/G2未启动科学验收。
