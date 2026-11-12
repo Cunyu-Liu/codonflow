@@ -32,6 +32,27 @@ from scripts.run_exp5_ood import cai_greedy, lineardesign_scan
 METHODS = ("lineardesign_scan", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous")
 
 
+def codongpt_batch_sample(model, tokenizer, protein, n, seed, device):
+    bos = tokenizer.convert_tokens_to_ids(["[BOS]"])[0]
+    torch.manual_seed(seed)
+    from codonflow.core.codon import SYNONYMOUS_CODONS
+    ids = torch.full((n, 1), bos, dtype=torch.long, device=device)
+    codons = [[] for _ in range(n)]
+    with torch.no_grad():
+        for aa in protein + "*":
+            alternatives = SYNONYMOUS_CODONS.get(aa, ("TAA",))
+            option_ids = tokenizer.convert_tokens_to_ids(list(alternatives))
+            logits = model(input_ids=ids).logits[:, -1, :].float()
+            mask = torch.full_like(logits, -torch.inf)
+            mask[:, option_ids] = 0.0
+            next_ids = torch.multinomial(torch.softmax(logits + mask, dim=-1), 1)
+            tokens = tokenizer.convert_ids_to_tokens(next_ids[:, 0].tolist())
+            for index, token in enumerate(tokens):
+                codons[index].append(token)
+            ids = torch.cat([ids, next_ids], dim=1)
+    return ["".join(token for token in row if not token.startswith("[")) for row in codons]
+
+
 def generate_method(method, source, weights, n, seed, device, gpt=None):
     """Return raw solutions and generation costs before objective scoring."""
     protein = protein_of_cds(source)
@@ -74,24 +95,7 @@ def generate_method(method, source, weights, n, seed, device, gpt=None):
                         "forward_calls": 0, "generator_calls": 0, "n_requested": 0}
         model, tokenizer = gpt
         start = time.perf_counter()
-        solutions = []
-        bos = tokenizer.convert_tokens_to_ids(["[BOS]"])[0]
-        torch.manual_seed(seed)
-        from codonflow.core.codon import SYNONYMOUS_CODONS
-        with torch.no_grad():
-            for _ in range(n):
-                ids = torch.tensor([[bos]], device=device)
-                codons = []
-                for aa in protein + "*":
-                    alternatives = SYNONYMOUS_CODONS.get(aa, ("TAA",))
-                    option_ids = tokenizer.convert_tokens_to_ids(list(alternatives))
-                    logits = model(input_ids=ids).logits[0, -1].float()
-                    mask = torch.full_like(logits, -torch.inf)
-                    mask[option_ids] = 0.0
-                    next_id = torch.multinomial(torch.softmax(logits + mask, dim=-1), 1).item()
-                    codons.append(tokenizer.convert_ids_to_tokens(next_id))
-                    ids = torch.cat([ids, torch.tensor([[next_id]], device=device)], dim=1)
-                solutions.append("".join(c for c in codons if not c.startswith("[")))
+        solutions = codongpt_batch_sample(model, tokenizer, protein, n, seed, device)
         return solutions, {"elapsed_s": time.perf_counter() - start,
                            "forward_calls": n * (len(protein) + 1),
                            "generator_calls": n, "n_requested": n}

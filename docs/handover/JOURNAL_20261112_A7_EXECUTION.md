@@ -134,3 +134,10 @@
 - 使用 `CC=/root/miniconda3/envs/pc_cng/bin/x86_64-conda-linux-gnu-cc` 进行 `MAA` 单次真实 GPU 验证，成功生成 `ATGGCCGCC`，随后以相同 CC 和 `--resume` 重启两条任务，日志追加不覆盖。
 - 失败触发的复算 JSON 为 `n_matching=0/18`、`complete=false`，已重命名为 `unique18_seed{1,2}_independent_mfe_ned_partial_before_cc_fix.json`；新 watcher 等待新 PID，不沿用部分审计。
 - release-112 原始恢复正在写入 gzip 临时文件，尚无完成物种，未提前勾选 provenance。
+
+## 20. codonGPT 批量自回归优化
+
+- 顺序实现每个样本逐密码子 forward，seed 任务长时间无完成项。先停止自己的 watcher 和可恢复任务，保留 LinearDesign 断点，再改为同长度样本批量自回归；forward/scorer 成本定义不变。
+- 假模型契约测试验证批量 forward 和蛋白身份；修正测试中 M+A+stop 应为 3 次调用的错误预期。完整回归 **147 passed, 1 skipped**。
+- 真实 GPU smoke：C31E10.3b.1、100/100 唯一解、identity=1.0、17,800 forward、2.7959 秒。产物仅作性能/接口验证，不作科学结果。
+- 已用批量实现和正确 CC 恢复 seeds 1/2，并重挂复算 watcher。
