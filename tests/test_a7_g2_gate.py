@@ -34,7 +34,9 @@ def paired_payload(gene, seed, method):
                   "elapsed_s": 1.0},
         "identity_rate": 1.0,
         "ned": 0.8 if learned else 0.7,
-        "anytime": {"auc": 1.2 if learned else (1.0 if method == "hill_climbing" else 0.8)},
+        "anytime": {"auc": 1.2 if learned else (1.0 if method == "hill_climbing" else 0.8),
+                    "curve": [{"budget": budget, "hv": (1.2 if learned else (1.0 if method == "hill_climbing" else 0.8)) * fraction}
+                              for budget, fraction in ((50, 0.5), (100, 0.75), (500, 1.0))]},
         "missing_methods": [],
         "exclusions": [],
     }

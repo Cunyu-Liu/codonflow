@@ -417,3 +417,10 @@
 - learned 非done现在保存partial及原因，不能进入统计。resume保留previous_status，每次attempt使用独立日志，不覆盖失败记录。
 - `a7_g2_gate.py` 支持同一arm同时传learned/simple glob，避免把shared simple误作独立臂。相关10项测试通过；完整回归 **187 passed, 1 skipped**，GitHub/训练机同步 `3064f3c`。
 - 首次synthetic dry-run命令的嵌套引号失败已修正；重跑确认108+54=162任务，`scientific_gate_passed=false`。产物在 `g2_executor_dry_run/`，明确不是启动证据，未执行正式G2。
+
+## 62. G2 中心图生成器与临时渲染检查
+
+- 新增 `a7_plot_g2.py`：读取冻结 `a7_g2_gate_v1` 及原始JSON，逐个核对SHA、done与identity，重建双臂 anytime 曲线和基因级效应CI；输出PDF、PNG、逐基因CSV与manifest。
+- 标题直接按真实Gate标记Go/No-Go，曲线含50/100/500预算网格，保留每基因最强simple及NED/统计注释，不删负结果。
+- 合成fixture已补齐真实曲线网格；测试验证PDF/PNG magic、36行逐基因表和manifest。完整回归 **188 passed, 1 skipped**。
+- 通过临时本地HTTP实际检查测试图的三面板、图例、阈值线和文字布局，随后关闭页面/服务并删除图片。合成图不进入PPT或论文，真实G1/G2仍未完成。
