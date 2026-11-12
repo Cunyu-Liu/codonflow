@@ -106,3 +106,10 @@
 - 该硬件验证使用现有 `llr_env` 的 torch 2.11.0+cu128，仅证明 GPU 可用；不得据此复用其他项目环境训练。
 - 最新代码已通过 bundle 部署至 `/home/codonflow`，提交 `fc5eba4`。独立 `codonflow` 环境重建首先遇到阿里云 Conda 镜像 404，随后 channel-alias 参数/环境变量未生效；改用隔离 `/home/codonflow-condarc`，不修改全局配置。
 - px1 再次验证仍 `CUDA=False N=0`，无 CPU 替代训练。
+
+## 16. unique18 seed-0 独立复算通过
+
+- 实际完成 18/18：MFE、NED、CAI/MFE/GC/motif 四轴、identity、真实唯一解数、source/benchmark/RSCU 哈希和 record/seed 全部匹配；`complete_all_requested_seeds=true` 仅针对请求的 seed 0。
+- 报告：`07_a7_data/unique18_seed0_independent_mfe_ned.json`，SHA256=`c0425d18b58e523b55a9275b74c96283f907e73babb9d06a13865bfe15b1af9f`，RNAfold 2.7.2。
+- seeds 1/2 尚未生成与复算，不将 seed-0 写成全部 seeds 完成。
+- 新增 25 物种 release-112 恢复管线与契约测试；完整回归 **146 passed, 1 skipped**。
