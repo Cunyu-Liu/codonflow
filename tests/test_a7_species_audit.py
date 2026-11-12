@@ -8,6 +8,9 @@ from scripts.a7_species_audit import audit_species, species_for_header
 def test_species_identifier_conventions():
     assert species_for_header("ENST00000641515.2") == "homo_sapiens"
     assert species_for_header("ENSECAT00000031957.1") == "equus_caballus"
+    assert species_for_header("ENSOCUT00000027669.2") == "oryctolagus_cuniculus"
+    assert species_for_header("ENSOART00000000039.1") == "ovis_aries"
+    assert species_for_header("ENSORLT00000032594.1") == "oryzias_latipes"
     assert species_for_header("FBtr0343930") == "drosophila_melanogaster"
     assert species_for_header("YDR387C_mRNA") == "saccharomyces_cerevisiae"
     assert species_for_header("C55C2.5a.1") == "caenorhabditis_elegans"

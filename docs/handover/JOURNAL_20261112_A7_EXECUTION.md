@@ -218,3 +218,9 @@
 - 三个基因×100 paired 样本的完整 CUDA 流程成功，`g1_random_smoke.json passed=true`；这不是训练模型，不能作为 G1 科学通过或性能结果。
 - 首次 checkpoint 创建命令缺少 `PYTHONPATH=src` 失败，修正后完成；无 CPU 降级。
 - 原始恢复达到15/25，seeds 1/2 为12/18、11/18。
+
+## 33. 物种映射交叉验证与纠正
+
+- recovered 计数交叉检查发现兔/羊映射互换，随后官方 FASTA 直接验证：ENSOCUT=兔、ENSOART=羊、ENSORLT=青鳉。旧映射把兔/羊/青鳉混淆，不能沿用。
+- 修正并两次重算后，v3_all 和六个 split 均恢复为 25 个物种；`species_distribution.json` SHA256=`1a765a155da2e17b5cb2de50333682191c55758726091aa446d97ee3a4b5a13d`，`species_map.json` SHA256=`9ddab6c47fcb2f75aae36c231797df15978bfdda1b0119aef234257f68f66d38`。
+- 更新 manifest SHA256=`fc84dd2f55f9ee62aa8cd2fde6034696c89492801281bc8bad2072ea17eb7b5c`。原始恢复17/25，seeds 1/2 为12/18、11/18。
