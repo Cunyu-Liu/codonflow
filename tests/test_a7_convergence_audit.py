@@ -1,6 +1,6 @@
 import pytest
 
-from scripts.a7_convergence_audit import validate_history
+from scripts.a7_convergence_audit import validate_history, validate_run_config
 
 
 def history_and_rows(values):
@@ -36,3 +36,10 @@ def test_convergence_rejects_wrong_best_epoch():
     reported["best_epoch"] = 1
     with pytest.raises(ValueError, match="epoch"):
         validate_history(history, reported, rows)
+
+
+def test_convergence_audit_checks_micro_batch_protocol():
+    config = {"val_micro_batch_tokens": 4000}
+    validate_run_config(config, config.copy())
+    with pytest.raises(ValueError, match="val_micro_batch_tokens"):
+        validate_run_config(config, {"val_micro_batch_tokens": 8000})

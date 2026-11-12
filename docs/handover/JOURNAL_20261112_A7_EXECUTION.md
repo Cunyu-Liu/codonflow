@@ -493,3 +493,9 @@
 - r4 FULL/EDIT 均正常进入训练批次，配置SHA与冻结r4一致，G1/G2 watcher保持等待，无CPU降级或新异常；尚无首个epoch的val/checkpoint。
 - GitHub多次HTTP/2、连接超时和空回复后，使用 `http.ipVersion=ipv4` + HTTP/1.1 成功正常推送。官方 `gh` API 二次核实远端main SHA=`39f0520bdc793499c223291e40dc2f69135ba983`，本地与远端一致。
 - 未使用API重写历史或强推。后续Git操作优先使用已验证的IPv4通道，连接失败时不误报已上传。
+
+## 72. 收敛配置完整性审计与 micro-forward 文档同步
+
+- `a7_convergence_audit.py` 新增 `validate_run_config`，除模型/数据外，还核对 batch_tokens、max_batch、grad_accum、grad_clip、val_batch_tokens、val_micro_batch_tokens、lr、wd和gpu_mem_fraction，防止只验证部分协议。
+- 新增 micro-batch 不一致反例测试。恢复指南已改为r4真实状态，论文明确原batch一次腐蚀、4000-token micro-forward、BCE/token分别按有效位置还原，不改变验证定义。
+- r4继续正常训练，尚无收敛结果。文档更新不代表G1通过。

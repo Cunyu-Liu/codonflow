@@ -38,6 +38,17 @@ def validate_history(history, reported, log_rows, tolerance=1e-3, patience=3):
             "relative_tolerance": tolerance, "patience_epochs": patience}
 
 
+def validate_run_config(config, run_config):
+    keys = ("train_fasta", "val_fasta", "d_model", "n_layers", "n_heads", "dropout",
+            "seed", "validation_seed", "token_only_at_edits", "corruption", "batch_tokens",
+            "max_batch", "grad_accum", "grad_clip", "val_batch_tokens", "val_micro_batch_tokens",
+            "lr", "wd", "gpu_mem_fraction")
+    for key in keys:
+        expected = config.get(key, 4000 if key == "val_micro_batch_tokens" else None)
+        if run_config.get(key) != expected:
+            raise ValueError(f"run configuration mismatch: {key}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True)
@@ -64,10 +75,7 @@ def main():
         config["convergence"]["relative_tolerance"], config["convergence"]["patience_epochs"],
     )
     run_config = json.loads((out_dir / "run_config.json").read_text())
-    for key in ("train_fasta", "val_fasta", "d_model", "n_layers", "n_heads", "dropout",
-                "seed", "validation_seed", "token_only_at_edits", "corruption"):
-        if run_config[key] != config[key]:
-            raise ValueError(f"run configuration mismatch: {key}")
+    validate_run_config(config, run_config)
     for key, hash_key in (("train_fasta", "train_sha256"), ("val_fasta", "val_sha256")):
         if file_sha256(config[key]) != config[hash_key] or run_config[hash_key] != config[hash_key]:
             raise ValueError(f"data hash mismatch: {key}")
