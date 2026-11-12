@@ -137,4 +137,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**P2 / G1 模型收敛与非退化验收。** r3 的 FULL/EDIT 正在训练，尚未产生 checkpoint；正式 G1、G2 仍未通过。可并行准备开发集独立 calibration 和 G2 工具，但不得运行或宣称正式 learned-vs-simple 结果。P3–P5 受前置门约束。
+**P2 / G1 模型收敛与非退化验收。** r4 的 FULL/EDIT 正在训练，尚未产生 checkpoint；正式 G1、G2 仍未通过。可并行准备开发集独立 calibration 和 G2 工具，但不得运行或宣称正式 learned-vs-simple 结果。P3–P5 受前置门约束。

@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**G0 已通过；两条 D4 r3 正在 CUDA 并行训练，尚未收敛或通过 G1。development calibration 18/18 已验收，G2 工具正在用随机 checkpoint 做接口验证，正式 G2 未启动。**
+> 当前动作：**G0 已通过；两条 D4 r4 正在 CUDA 并行训练，尚未收敛或通过 G1。development calibration 18/18 已验收，G2 工具已通过工程接口验证，正式 G2 未启动。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口

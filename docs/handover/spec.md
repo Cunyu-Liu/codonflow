@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。本文是当前唯一有效合同；旧版勾选、命令和数字只在 journal/audit 中追溯。
 > 已确认方向：主任务为 **warm-start synonymous CDS editing**；第一决定性关卡为 **learned proposal vs 无学习简单搜索**。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。两条 `M_SYN_D4_*` 开发模型已从零启动并实际使用 CUDA 并行训练，尚未收敛或通过 G1。
+> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两条 `M_SYN_D4_*` 开发模型已从零启动并实际使用 CUDA 并行训练，尚未收敛或通过 G1。r3 在验证阶段分别因 probe CPU generator 和显存峰值失败，未留下可恢复 checkpoint；失败日志保留。
 > 2026-11-12 执行补充：代码与提交以远端 `/home/codonflow` 为工作副本；大型数据、权重、日志和 artifacts 只放 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。训练及 GPU 验证必须实际使用 CUDA；CUDA 不可用、kernel 不兼容或 CPU 静默降级时立即停止并保存证据。独立任务可并行，但不得为占满显存制造实验或越过 Gate。
 
 ## 0. 当前事实状态

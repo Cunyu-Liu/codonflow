@@ -479,3 +479,11 @@
 - `validate_packed` 保留原24000-token batch及一次完整batch腐蚀，再按4000 tokens分micro forward。BCE和token loss分别按各自有效位置数还原，不能用两个权重之和作分母。两种目标下full/micro loss一致，6项probe/验证聚焦测试通过。
 - r4 显式加入 `val_micro_batch_tokens=4000`，原val batch/数据/RNG/聚合语义不变。r3无checkpoint，仍需新run ID从零重启；r4尚未启动。
 - 首个直接验证OOM已保留失败证据，未写伪val或伪收敛结果。
+
+## 70. r4 全量 CUDA 验证通过与双臂启动
+
+- 逐 batch CUDA 调试最终1800/1800通过，正式 `validate_packed` 单次全量调用也通过：76444条独立val、1800原batch、val_micro_batch_tokens=4000、synonymous corruption，loss和cond gap均有限。
+- `07_a7_data/r4_cuda_validation.json` passed=true，SHA256=`9ce613b92d62cb3fb198e85fc6cacb3559036b564fcd41df27d10421614777f6`。仅工程验证，不是训练收敛或性能结果。
+- 本地与训练机完整回归 **200 passed, 1 skipped**，代码commit=`1f38db6f35735326917e106c95ce61a3f17abe27`。
+- r4 FULL/EDIT已从零启动，配置SHA分别为 `4704a062c24a0e35fd870b327a64e9c45f862a0547f8a3440d6c3083915748ee`、`91290185230488a767162b17ec38f901bf81ef7266c18fa8e92384a068b2c41d`。
+- `g1_r4_watcher` 与 `g2_r4_watcher` 均处于等待状态；r3 watcher failed状态保留，不覆盖。当前没有有效checkpoint，G1/G2未放行。
