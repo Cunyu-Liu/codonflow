@@ -457,3 +457,11 @@
 - RayGun `10.1038/s41586-026-10842-8` 与SCISOR `arXiv:2511.07390` 为蛋白缩小/删除任务，维持数值表排除。
 - 经Crossref全名复核，纠正作者首字母：Rajbanshi=B、Devkota=K、Shonai=D、Mao=J；未保留猜测缩写。参考文献共12条，任务边界与原始摘要一致。
 - `a7_baseline_resources.json` 已更新三seed复核状态、3份独立复算报告SHA及LinearDesign出处。没有将外部摘要指标写为CodonFlow结果。
+
+## 67. G2 Gate v2：原始证据独立重算
+
+- `a7_g2_gate.py` 升级为 `a7_g2_gate_v2`：正式CLI强制benchmark与calibration路径，重 reconstruct paired initial、逐序列identity、500唯一解、calibration来源/RSCU/SHA、NED与anytime AUC。
+- 增加跨基因及跨臂 benchmark/RSCU/split/code_commit一致性检查，禁止仅信任runner自报identity/NED/AUC。执行器已传入必需路径，绘图仅接受v2并记录raw重算标志。
+- 合法fixture使用五个不同密码子位置的四进制编码产生500唯一同义序列；先前重叠导致324唯一的问题已修正，没有降低唯一性阈值。
+- 正向重算与initial/identity/AUC/NED篡改反例共12项测试通过；包含calibration角色检查的完整回归 **196 passed, 1 skipped**。
+- 论文方法同步写明原始指标重算。以上仍是验证工具，不是G2结果；两条正式训练仍未收敛。

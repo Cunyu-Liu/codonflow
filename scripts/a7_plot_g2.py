@@ -25,7 +25,7 @@ TEAL = "#2a7f62"
 
 def load_gate_inputs(gate_path):
     gate = json.loads(Path(gate_path).read_text())
-    if gate.get("protocol") != "a7_g2_gate_v1" or len(gate["arms"]) != 2:
+    if gate.get("protocol") != "a7_g2_gate_v2" or len(gate["arms"]) != 2:
         raise ValueError("G2 figure requires the two-arm frozen gate")
     arms = []
     for arm in gate["arms"]:
@@ -143,6 +143,7 @@ def generate_figure(gate_path, out_prefix):
     manifest = {"protocol": "a7_g2_figure_v1", "gate_path": str(gate_path),
                 "gate_sha256": hashlib.sha256(Path(gate_path).read_bytes()).hexdigest(),
                 "gate_passed": gate["passed"], "code_commit": git_commit(),
+                "raw_metrics_recomputed": gate["raw_metrics_recomputed"],
                 "outputs": {path.suffix: {"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
                             for path in (out.with_suffix(".png"), out.with_suffix(".pdf"), table_path)}}
     manifest_path = out.with_suffix(".manifest.json")

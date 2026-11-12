@@ -165,7 +165,9 @@ def main():
         status["simple_completed"] = len(simple_completed)
         status["learned_completed"] = len(learned_completed)
         gate = root / "g2_gate.json"
-        gate_command = [sys.executable, "scripts/a7_g2_gate.py", "--out", str(gate)]
+        gate_command = [sys.executable, "scripts/a7_g2_gate.py", "--out", str(gate),
+                        "--benchmark-fasta", template["benchmark_fasta"],
+                        "--calibration-dir", template["calibration_dir"]]
         for arm, preflight in arms.items():
             gate_command.extend(["--arm", ",".join([
                 arm, preflight["checkpoint_sha256"],
