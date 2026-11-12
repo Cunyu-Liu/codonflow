@@ -205,3 +205,9 @@
 - 新增 `a7_g1_behavior.py`：冻结 checkpoint SHA256、强制 CUDA、每基因至少 100 paired 样本，检查 identity/legal、非源率、唯一解和最大单序列频率。
 - 记录 stay-p、实际路径 P(edit)、实际采样位置覆盖、两种奖励 profile 响应和 uniform 逐串重合；不使用枚举全部位置冒充覆盖。
 - 契约测试覆盖多样输出与复制塌缩；修正 overlap 是集合大小而非样本数的测试预期。完整回归 **154 passed, 1 skipped**。
+
+## 31. 人类 release 选择纠偏
+
+- release-116 实际恢复 298,824 条，新增 227,289 个 base ID；release-112 仅新增 7,113 个。两者对旧人类 base ID 覆盖率均约 99.5%，但 release-112 明显更接近历史来源。
+- 先前仅根据旧 BioMart 时间推测 release-116 不充分，现撤回该选择。注册表恢复为人类 release-112，release-116 产物保留隔离，不用于训练或 G0。
+- A7 正文同步纠正为人类 release-112，并披露 release-116 被评估后排除。当前原始恢复12/25，seeds均11/18。
