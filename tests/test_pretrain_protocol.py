@@ -1,9 +1,9 @@
 import torch
 from unittest.mock import patch
 
-from codonflow.data.dataset import corrupt_x_t
+from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
 from codonflow.models.edit_flow import EditFlowConfig, EditFlowTransformer
-from codonflow.train.run_pretrain import validate_packed
+from codonflow.train.run_pretrain import conditionality_probe, validate_packed
 
 
 def test_validation_is_reproducible_across_calls():
@@ -30,3 +30,15 @@ def test_validation_generator_uses_model_device():
     with patch("codonflow.train.run_pretrain.torch.Generator", wraps=torch.Generator) as constructor:
         validate_packed(model, [[list(range(8))]], device, seed=1729, token_only_at_edits=True)
     constructor.assert_called_once_with(device=device)
+
+
+def test_conditionality_probe_uses_device_and_matching_corruption():
+    model = EditFlowTransformer(EditFlowConfig(d_model=32, n_layers=1, n_heads=4, dropout=0.0))
+    with patch("codonflow.data.dataset.read_fasta", return_value=[("x", "ATGGCTTAA")]), \
+            patch("codonflow.train.run_pretrain.torch.Generator", wraps=torch.Generator) as constructor, \
+            patch("codonflow.data.dataset.corrupt_x_t_synonymous", wraps=corrupt_x_t_synonymous) as corrupt:
+        gap = conditionality_probe(model, torch.device("cpu"), corruption="synonymous")
+    assert gap >= 0
+    assert constructor.call_count == 2
+    assert all(call.kwargs["device"] == torch.device("cpu") for call in constructor.call_args_list)
+    assert corrupt.call_count == 2

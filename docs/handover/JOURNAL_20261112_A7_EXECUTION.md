@@ -465,3 +465,10 @@
 - 合法fixture使用五个不同密码子位置的四进制编码产生500唯一同义序列；先前重叠导致324唯一的问题已修正，没有降低唯一性阈值。
 - 正向重算与initial/identity/AUC/NED篡改反例共12项测试通过；包含calibration角色检查的完整回归 **196 passed, 1 skipped**。
 - 论文方法同步写明原始指标重算。以上仍是验证工具，不是G2结果；两条正式训练仍未收敛。
+
+## 68. r3 首个验证阶段双臂失败与修复
+
+- FULL 在 `conditionality_probe` 失败，traceback 明确为两个默认 CPU generator；独立 val 已执行但未写 epoch 日志或 checkpoint。probe 已改为 device generator，并与训练臂使用同一 corruption 类型。
+- EDIT 在独立 val forward 中 OOM：进程上限0.30=9.41GB，需额外2.06GB时物理显存尚有12.69GB空闲，属于人为上限而非物理耗尽。保持val_batch_tokens=24000及验证聚合不变，r4 EDIT cap调至0.42；FULL cap仍为0.35。
+- r3 两臂均无 best/last/training_state/converged，不能精确resume。G1/G2 watcher均记录failed并停止，未进入下一阶段。
+- r4 使用全新run ID和输出目录从零启动；不覆盖r3日志，不伪造恢复，不跳过验证或保存伪checkpoint。

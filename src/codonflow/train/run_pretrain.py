@@ -210,7 +210,7 @@ def main() -> None:
             token_only_at_edits=args.token_only_at_edits,
             corruption=args.corruption,
         )
-        cond_gap = conditionality_probe(model, dev)
+        cond_gap = conditionality_probe(model, dev, corruption=args.corruption)
         converged = tracker.update(val_loss)
         lr_now = optimizer.param_groups[0]["lr"]
         print(
@@ -260,7 +260,7 @@ def main() -> None:
 
 
 @torch.no_grad()
-def conditionality_probe(model, dev, n=8) -> float:
+def conditionality_probe(model, dev, n=8, corruption="arbitrary") -> float:
     """|Δlogp| between two different x_t draws at matched corruption t=0.5.
 
     v1 degenerate model measured 0.031 nats (predicts the global codon
@@ -282,11 +282,13 @@ def conditionality_probe(model, dev, n=8) -> float:
     for i, s in enumerate(seqs):
         pad[i, : len(s)] = False
     t_half = torch.full((len(seqs),), 0.5, device=dev)
-    g1, g2 = torch.Generator().manual_seed(1), torch.Generator().manual_seed(2)
-    from codonflow.data.dataset import corrupt_x_t
+    g1 = torch.Generator(device=dev).manual_seed(1)
+    g2 = torch.Generator(device=dev).manual_seed(2)
+    from codonflow.data.dataset import corrupt_x_t, corrupt_x_t_synonymous
+    corrupt = corrupt_x_t_synonymous if corruption == "synonymous" else corrupt_x_t
 
-    x_a = corrupt_x_t(ids, t_half, g1)
-    x_b = corrupt_x_t(ids, t_half, g2)
+    x_a = corrupt(ids, t_half, g1)
+    x_b = corrupt(ids, t_half, g2)
     _, tok_a = model(x_a, pad)
     _, tok_b = model(x_b, pad)
     la = torch.log_softmax(tok_a.float(), -1)
