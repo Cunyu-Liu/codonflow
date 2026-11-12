@@ -154,3 +154,9 @@
 - 成本分开记录：`generator_calls=1` 为一次持久化子进程，`official_model_calls=n` 为官方生成调用数，`forward_calls=null` 仍为官方不可见。
 - 真实 GPU smoke：10/10 唯一解、identity=1.0，持久化生成耗时 29.87 秒；focused tests 通过。
 - 已停止自己的旧 GEMORNA 子进程并以 `--resume` 切换 seeds 1/2，已完成 LinearDesign/codonGPT 不重跑。
+
+## 23. 新口径首批产物与首个恢复物种
+
+- seeds 1/2 首个 codonGPT 均为 100/100 唯一合法解；`forward_calls=178`、`autoregressive_token_forward_evaluations=17,800`，生成约 3.74/3.78 秒。GEMORNA 已进入持久化模式。
+- 首个完成恢复物种 `takifugu_rubripes`：输入 52,243、保留 50,176，与 v3_all 物种计数一致；原始/清洗哈希已写入 recovery.json。
+- 完整回归 **149 passed, 1 skipped**；GEMORNA 持久化提交 `d8f6306` 待 push。
