@@ -155,6 +155,8 @@ def main():
                                  (frozen.reference, frozen.scale), args.seed,
                                  args.terminal_step, args.max_unique_scorer, args.path_batch_size)
         payload["path_batch_size"] = args.path_batch_size
+        payload["status"] = "done" if payload["status"] == "done" else "partial"
+        payload["incomplete_reason"] = None if payload["status"] == "done" else "max_attempts_exhausted"
         sequences = [point["sequence"] for point in payload["points"]]
         payload.update({
             "protocol_version": "a7_evaluation_v1",

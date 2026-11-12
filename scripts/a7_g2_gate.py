@@ -103,19 +103,26 @@ def evaluate_g2(arms, expected_genes, min_genes=18):
             "passed": bool(arms) and all(arm["result"]["passed"] for arm in arms)}
 
 
+def expand_arm_spec(item):
+    name, checkpoint_sha256, *patterns = item.split(",")
+    if not name or len(checkpoint_sha256) != 64 or not patterns:
+        raise ValueError("each arm requires name, checkpoint SHA256 and at least one glob")
+    paths = []
+    for pattern in patterns:
+        matched = sorted(glob.glob(pattern))
+        if not matched:
+            raise ValueError(f"empty input glob: {pattern}")
+        paths.extend(matched)
+    return {"name": name, "checkpoint_sha256": checkpoint_sha256, "paths": paths}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--arm", action="append", required=True,
-                        help="name,checkpoint_sha256,glob (repeat per learned arm)")
+                        help="name,checkpoint_sha256,learned_glob,simple_glob (repeat per learned arm)")
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
-    arms = []
-    for item in args.arm:
-        name, checkpoint_sha256, pattern = item.split(",", 2)
-        paths = sorted(glob.glob(pattern))
-        if not paths:
-            raise ValueError(f"empty input glob: {pattern}")
-        arms.append({"name": name, "checkpoint_sha256": checkpoint_sha256, "paths": paths})
+    arms = [expand_arm_spec(item) for item in args.arm]
     all_payloads = [json.loads(Path(path).read_text()) for arm in arms for path in arm["paths"]]
     expected_genes = {payload["record_id"] for payload in all_payloads}
     result = evaluate_g2(arms, expected_genes)
