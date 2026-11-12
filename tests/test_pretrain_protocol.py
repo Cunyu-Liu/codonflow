@@ -1,4 +1,5 @@
 import torch
+from unittest.mock import patch
 
 from codonflow.data.dataset import corrupt_x_t
 from codonflow.models.edit_flow import EditFlowConfig, EditFlowTransformer
@@ -21,3 +22,11 @@ def test_corruption_preserves_special_tokens_with_cpu_generator():
     assert corrupted[0, 0].item() == 65
     assert corrupted[0, -2].item() == 66
     assert corrupted[0, -1].item() == 64
+
+
+def test_validation_generator_uses_model_device():
+    model = EditFlowTransformer(EditFlowConfig(d_model=32, n_layers=1, n_heads=4, dropout=0.0))
+    device = torch.device("cpu")
+    with patch("codonflow.train.run_pretrain.torch.Generator", wraps=torch.Generator) as constructor:
+        validate_packed(model, [[list(range(8))]], device, seed=1729, token_only_at_edits=True)
+    constructor.assert_called_once_with(device=device)
