@@ -99,6 +99,7 @@ def main():
     parser.add_argument("--rscu-json", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--record-id", action="append", dest="record_ids")
     parser.add_argument("--n-samples", type=int, default=100)
     parser.add_argument("--terminal-step", type=int, default=4)
     args = parser.parse_args()
@@ -119,6 +120,12 @@ def main():
         "gc": lambda sequence: -abs(gc_fraction(sequence) - 0.55),
     }
     records = [(header.split()[0], sequence) for header, sequence in read_fasta(args.benchmark_fasta)]
+    if args.record_ids:
+        selected = set(args.record_ids)
+        unknown = selected - {record_id for record_id, _ in records}
+        if unknown:
+            raise ValueError(f"unknown record-id values: {sorted(unknown)}")
+        records = [row for row in records if row[0] in selected]
     if len(records) < 3:
         raise ValueError("G1 requires at least three development genes")
     rows = []

@@ -211,3 +211,10 @@
 - release-116 实际恢复 298,824 条，新增 227,289 个 base ID；release-112 仅新增 7,113 个。两者对旧人类 base ID 覆盖率均约 99.5%，但 release-112 明显更接近历史来源。
 - 先前仅根据旧 BioMart 时间推测 release-116 不充分，现撤回该选择。注册表恢复为人类 release-112，release-116 产物保留隔离，不用于训练或 G0。
 - A7 正文同步纠正为人类 release-112，并披露 release-116 被评估后排除。当前原始恢复12/25，seeds均11/18。
+
+## 32. G1 真实 CUDA smoke
+
+- `a7_g1_behavior.py` 支持按 record-id 选择三个开发基因；随机初始化 checkpoint 仅用于接口验证，SHA256=`285593ef…`。
+- 三个基因×100 paired 样本的完整 CUDA 流程成功，`g1_random_smoke.json passed=true`；这不是训练模型，不能作为 G1 科学通过或性能结果。
+- 首次 checkpoint 创建命令缺少 `PYTHONPATH=src` 失败，修正后完成；无 CPU 降级。
+- 原始恢复达到15/25，seeds 1/2 为12/18、11/18。
