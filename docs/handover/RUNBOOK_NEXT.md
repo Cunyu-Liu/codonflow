@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**合同、数据协议镜像与执行计划已更新；未启动任何训练或评测。2026-11-12 本轮 SSH 被远端提前关闭，GPU 与资产仍待在线复核。**
+> 当前动作：**G0 已通过；两条 D4 r3 正在 CUDA 并行训练，尚未收敛或通过 G1。development calibration 18/18 已验收，G2 工具正在用随机 checkpoint 做接口验证，正式 G2 未启动。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口
@@ -50,7 +50,7 @@
 
 ### 通过条件
 
-`checklist.md` C2 全部通过。当前 G0 未通过，不能进入主训练。
+`checklist.md` C2 全部通过。当前 G0 已通过（`07_a7_data/g0_gate.json`，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`），不得把 G0 通过解释为模型有效。
 
 ## 3. G1 · 模型收敛且非退化
 
@@ -160,9 +160,9 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 ## 10. 当前唯一下一步
 
-先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。A7 代码已上传，最新完整回归为 **131 passed, 1 skipped**，历史备份已传完。
+先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **178 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
 
-untouched 24 基因确认集和 D5 train RSCU 已完成。24 个独立 calibration pool 已全部生成并通过 record/hash、RSCU 和正 scale 核验，每池 56–70 个唯一目标向量。下一步完成全量数据审计、unique18 seeds 1/2、MFE/NED 独立重算和 CUDA matmul 检查。**G0 未通过前，不启动 G1–G4 主实验。**
+G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。当前只推进 D4 r3 收敛与 G1。收敛后先运行 `a7_convergence_audit.py`，再对两臂分别运行 `a7_g1_behavior.py`。G1 全部通过后才启动 G2；G2 必须使用全局 uniform、 paired 初始状态和 `a7_g2_gate.py` 完整裁决。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 

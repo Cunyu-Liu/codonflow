@@ -358,3 +358,11 @@
 - 原批量接口已运行超过10分钟，尚无 JSON；simple 四方法接口已启动，尚无完成输出。均不以进程存在冒充完成。
 - 审查发现批量版本仍逐状态、逐位置执行局部 log-softmax。已将 `sample_transition_batch` 改为按位置对整个 batch 向量化，候选顺序、显式 stay 和采样 RNG 与原实现一致，Transformer forward 数不变。
 - 同 RNG 回归要求转移/位置完全一致，log probability 在1e-12内一致；不同张量形状归约导致的约4e-16差异已明确记录。完整回归 **177 passed, 1 skipped**。新向量化的真实 CUDA 与500预算接口仍待验证。
+
+## 54. G2 uniform 协议澄清与 partial 留证（正式结果前）
+
+- 工程接口中，单密码子 independent uniform 在 C31E10.3b.1 达到25,000 attempts 后未凑齐500唯一序列，脚本因 `max_attempts_exhausted` 不在结果 schema 而未保存 JSON。该基因534nt，完整同义空间极大，不是空间不足。
+- 纠正此前对“同操作符”的过窄解释：G2 保留更强的**全局逐位置独立均匀同义采样**作为 uniform；hill/MH/AReUReDi/learned 仍使用单密码子局部核。所有方法首次评分均为同一 paired 初始状态，scorer/cache、预算、校准与 Gate 阈值不变。这是正式 learned 结果前的基线修正，避免用弱 uniform 降低对照强度。
+- `a7_protocol.json`、spec/checklist/runbook 同步上述定义；calibration 生成方式不变。单密码子 uniform 仅保留可选消融，不替代强 uniform。
+- simple runner 把非 done 映射为 `partial`，记录 `incomplete_reason` 并保存 JSON；G2 Gate 仍明确拒绝。失败日志 `g2_interface_simple/run.log` 保留，不覆盖旧目录。
+- 新增全局/局部 uniform 回归，相关36项测试通过。旧批量与向量化 learned 接口尚无最终 JSON，simple 修正版尚待独立重跑。

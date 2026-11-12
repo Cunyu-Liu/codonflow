@@ -106,10 +106,12 @@ def main() -> None:
                 continue
             result = SimpleSearch(
                 initial, objectives, args.weights, seed=args.seed,
-                normalization=(frozen.reference, frozen.scale),
+                normalization=(frozen.reference, frozen.scale), uniform_operator="global_synonymous",
             ).run(method, max_unique_scorer=args.max_unique_scorer)
-            anytime = anytime_curve(result.points, frozen)
             payload = result.to_dict()
+            payload["status"] = "done" if result.status == "done" else "partial"
+            payload["incomplete_reason"] = None if result.status == "done" else result.status
+            anytime = anytime_curve(result.points, frozen)
             payload.update({
                 "protocol_version": "a7_evaluation_v1",
                 "run_id": f"a7_{safe}_{method}_s{args.seed}",
@@ -119,6 +121,7 @@ def main() -> None:
                 "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
                 "initial_index": 0,
                 "terminal_step": None,
+                "uniform_operator": "global_synonymous",
                 "benchmark_sha256": benchmark_sha256,
                 "data_split_sha256": args.data_split_sha256,
                 "code_commit": git_commit(),

@@ -30,8 +30,16 @@ def test_search_is_reproducible_legal_and_budgeted(method):
     json.dumps(payload)
 
 
-def test_uniform_uses_the_same_single_codon_operator():
+def test_uniform_samples_full_synonymous_space_from_the_paired_start():
     result = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run("uniform", max_unique_scorer=4)
+    assert result.points[0]["sequence"] == SOURCE
+    assert all(feasible_edit(point["sequence"], SOURCE) for point in result.points)
+    assert any(point["sequence"][3:6] != SOURCE[3:6] for point in result.points[1:])
+
+
+def test_uniform_supports_local_single_codon_ablation():
+    result = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7,
+                          uniform_operator="single_codon").run("uniform", max_unique_scorer=4)
     for point in result.points[1:]:
         differences = [i for i, (a, b) in enumerate(zip(result.source, point["sequence"])) if a != b]
         assert 1 <= len(differences) <= 3

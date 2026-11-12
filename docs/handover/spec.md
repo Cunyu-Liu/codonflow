@@ -114,7 +114,7 @@ unique18 平均长度 642 nt、GC 0.4396，且 13/18 为短序列，与训练总
 - AReUReDi-style 同操作符多目标搜索；
 - learned base proposal。
 
-所有内部方法使用相同初始状态、同义操作符、终端目标、scorer/cache 和预算追踪。最强简单基线按基因取主终点最优者，形成严格对照。
+所有内部方法使用相同初始状态、同义可行状态与终端目标、scorer/cache 和预算追踪。`uniform` 在首次评分使用相同 paired 初始状态，后续从完整同义空间按位置独立均匀采样，作为强全局基线；hill-climbing、MH/annealing 与 AReUReDi-style 使用相同单密码子局部核。learned base 使用其学习到的单密码子核。最强简单基线按基因取主终点最优者，形成严格对照。
 
 ### 5.2 G4 外部 CDS 对照
 

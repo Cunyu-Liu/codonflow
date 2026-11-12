@@ -10,7 +10,7 @@
 - [x] 全部交接文档完成只读审计与反思记录。
 - [x] 文献审计补入 mRNA-GPT、AReUReDi、MOG-DFM、TR2-D2；RayGun/SCISOR 从数值主表排除。
 - [x] 当前 spec/tasks/checklist/runbook/论文提纲已统一为 A7。
-- [ ] 后续任何 amendment 在查看对应新结果前登记，并同步全部合同文件。
+- [x] 正式模型结果产生前，已登记 G2 uniform 工程澄清：保留更强的全局逐位置同义均匀采样；局部搜索与 learned 使用单密码子核，配对初始、scorer、预算与全部 Gate 阈值不变。
 
 ## C1. 可复用历史资产（不代表性能通过）
 

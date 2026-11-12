@@ -9,6 +9,9 @@
     "degenerate_axes": "reject"
   },
   "simple_methods": ["uniform", "hill_climbing", "mh_annealing", "areuredi_style"],
+  "uniform_sampling": "independent_per_position_global_synonymous",
+  "local_single_codon_methods": ["hill_climbing", "mh_annealing", "areuredi_style", "learned"],
+  "paired_initialization": "synonymous_x0(seed*1009)",
   "objectives": {
     "cai": "maximize",
     "neg_mfe": "maximize",

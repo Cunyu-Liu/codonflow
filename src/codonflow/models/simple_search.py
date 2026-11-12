@@ -129,7 +129,7 @@ class SimpleSearch:
         initial_temperature: float = 1.0,
         final_temperature: float = 0.01,
         normalization: Optional[tuple[Sequence[float], Sequence[float]]] = None,
-        uniform_operator: str = "single_codon",
+        uniform_operator: str = "global_synonymous",
     ):
         self.source = normalize_to_dna(source)
         if not is_valid_cds(self.source):
