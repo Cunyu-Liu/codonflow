@@ -273,6 +273,13 @@
 - 已并行启动 seeds 1/2 独立 MFE/NED 复算，日志与 PID 写入 `unique18_seed{1,2}_recompute_final.{log,pid}`，不再使用自动 watcher。
 - 复算完成后将运行 `a7_g0_gate.py`；当前原始来源 25/25 已通过，G0 只待这两项审计。
 
+## 43. G0 正式通过与 D4 双臂训练启动
+
+- seeds 1/2 独立复算均 18/18 全匹配；最终 `g0_gate.json passed=true`，所有检查项通过，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。
+- 两条 56.8M `M_SYN_D4_FULL/EDIT_seed0` 从零启动，明确打印 synonymous corruption、train=621306、val=76444 和模型参数量，未使用旧 checkpoint。
+- 实际 CUDA 并行：GPU 利用率 100%，约 16.5GB 显存；full-token 首步 loss 5.7661，edited-token 首步 loss 5.5690。训练持续至注册 plateau，不设步数上限。
+- px2 最新代码完整回归 **159 passed, 1 skipped**。
+
 ## 40. Gate 约束训练启动器
 
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
