@@ -438,3 +438,12 @@
 - bundle复制及G2等待器首次启动分别遇到一次远端SSH关闭；重连后先确认训练日志仍推进、`g2_r3_watcher/status.json` 不存在，再启动，未盲目重复提交。
 - 当前 `07_a7_data/g2_r3_watcher/status.json` 为 `waiting_for_g1_preflights`，`scientific_gate_passed=false`。只有两臂G1和preflight均通过才会自动dry-run及运行162分片。
 - 两条正式训练仍在首个epoch，尚无收敛或G1结果；自动流程没有提前越过Gate。
+
+## 65. 离散流相关工作的原始出处核验
+
+- 本地AutoGLM token服务不可用，改用公开arXiv页面及官方API元数据，逐条核对标题、作者、年份和方法边界，不凭记忆补写书目。
+- pCoMole：`arXiv:2610.01663`，Chen/Holsman/Zhao/Chatterjee，2026；terminal feasibility、augmented Tchebycheff、Doob-h与短MC rollout，NeurIPS 2026。
+- AReUReDi：`arXiv:2510.00352`，Chen/Zhang/Chatterjee，2025；Tchebycheff、locally balanced proposals与annealed MH。
+- MOG-DFM：`arXiv:2505.07086`，Chen/Zhang/Tang/Chatterjee，2025；hybrid rank-directional score与adaptive hypercone filter。
+- TR2-D2：`arXiv:2509.25171`，Tang/Zhu/Tao/Chatterjee，2025；树搜索replay buffer和trajectory-aware fine-tuning。
+- Related Work与References已加入这4条原始出处，明确我们的AReUReDi-style只是内部同义搜索对照，不是官方复现。其他文献继续核验，Results保持空白。

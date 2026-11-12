@@ -14,7 +14,7 @@ We study warm-start synonymous CDS editing: given a source CDS, make finite-step
 
 ## 2. Related Work
 
-LinearDesign uses dynamic programming for codon optimization; codonGPT and GEMORNA represent generative CDS models. mRNAutilus, ProMORNA, and mRNA-GPT address broader full-length mRNA generation or reinforcement-learning settings and are not directly interchangeable with our CDS-only warm-start task. pCoMole introduced related terminal gating and Doob-style guidance concepts; AReUReDi and MOG-DFM study multi-objective discrete search and flow guidance, while TR2-D2 studies trajectory-aware training. These overlaps require direct comparison with simple search rather than claims of theoretical firstness. RayGun and SCISOR address protein editing or deletion and are excluded from synonymous CDS numerical baselines.
+LinearDesign uses dynamic programming for codon optimization; codonGPT and GEMORNA represent generative CDS models. mRNAutilus, ProMORNA, and mRNA-GPT address broader full-length mRNA generation or reinforcement-learning settings and are not directly interchangeable with our CDS-only warm-start task. pCoMole combines a feasibility-gated terminal distribution, augmented Tchebycheff utility, Doob-h transformation, and short Monte Carlo rollouts for variable-length biomolecular editing [chen2026pcomole]. AReUReDi combines Tchebycheff scalarization, locally balanced proposals, and annealed Metropolis–Hastings updates [chen2025areuredi]; MOG-DFM uses hybrid rank-directional scores and an adaptive hypercone filter for multi-objective discrete flow guidance [chen2025mogdfm]. TR2-D2 instead uses tree-search replay buffers for trajectory-aware fine-tuning [tang2025tr2d2]. These overlaps require direct comparison with simple search rather than claims of theoretical firstness. Our AReUReDi-style baseline is an internal synonymous-search implementation, not an official reproduction. RayGun and SCISOR address protein editing or deletion and are excluded from synonymous CDS numerical baselines.
 
 ## 3. Method
 
@@ -101,3 +101,13 @@ G0 requires complete data provenance, distribution and metadata audits, developm
 ## 7. Reproducibility statement
 
 Every result is linked to its run ID, data and code hashes, dirty-tree status, immutable checkpoint path and SHA256, configuration, seeds, and frozen JSON artifacts. Failed runs, partial outputs, negative results, and unavailable baselines are retained. Current source audits and seed-0 protocol checks do not constitute learned-model performance evidence.
+
+## 8. References
+
+Chen, T., Holsman, M., Zhao, L., and Chatterjee, P. pCoMole: Pareto-Constrained Molecule Editing with Discrete Flows. *arXiv:2610.01663* (2026). https://arxiv.org/abs/2610.01663
+
+Chen, T., Zhang, Y., and Chatterjee, P. AReUReDi: Annealed Rectified Updates for Refining Discrete Flows with Multi-Objective Guidance. *arXiv:2510.00352* (2025). https://arxiv.org/abs/2510.00352
+
+Chen, T., Zhang, Y., Tang, S., and Chatterjee, P. Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design. *arXiv:2505.07086* (2025). https://arxiv.org/abs/2505.07086
+
+Tang, S., Zhu, Y., Tao, M., and Chatterjee, P. TR2-D2: Tree Search Guided Trajectory-Aware Fine-Tuning for Discrete Diffusion. *arXiv:2509.25171* (2025). https://arxiv.org/abs/2509.25171
