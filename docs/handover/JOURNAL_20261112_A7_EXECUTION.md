@@ -273,6 +273,31 @@
 - 已并行启动 seeds 1/2 独立 MFE/NED 复算，日志与 PID 写入 `unique18_seed{1,2}_recompute_final.{log,pid}`，不再使用自动 watcher。
 - 复算完成后将运行 `a7_g0_gate.py`；当前原始来源 25/25 已通过，G0 只待这两项审计。
 
+## 43. G0 正式通过与 D4 双臂训练启动
+
+- seeds 1/2 独立复算均 18/18 全匹配；最终 `g0_gate.json passed=true`，所有检查项通过，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。
+- 两条 56.8M `M_SYN_D4_FULL/EDIT_seed0` 从零启动，明确打印 synonymous corruption、train=621306、val=76444 和模型参数量，未使用旧 checkpoint。
+- 实际 CUDA 并行：GPU 利用率 100%，约 16.5GB 显存；full-token 首步 loss 5.7661，edited-token 首步 loss 5.5690。训练持续至注册 plateau，不设步数上限。
+- px2 最新代码完整回归 **159 passed, 1 skipped**。
+
+## 44. PPT 第 46 页：G0 通过与训练启动
+
+- 新增 PPT 第 46 页，记录 G0 全部通过、unique18 三 seed 全匹配、25 物种来源、56.8M 双臂和真实 CUDA 100% 利用率。
+- 页面明确 G1 进行中、未收敛、未做 learned-vs-simple 裁决、预印本不可提交。
+
+## 45. 首个训练进程中断与从零重启
+
+- 两条首启训练在首个 epoch 中段进程消失，日志无 traceback、无 OOM，GPU 随后空闲；原因标记为外部中断，未臆测具体平台原因。
+- 原目录无 best/last/training_state/converged，无法精确恢复。保留原日志，以 `M_SYN_D4_*_r2` 新 run ID 从零启动，不覆盖、不伪装 resume。
+- r2 已重新使用 CUDA 运行，G0 与 synonymous corruption 不变。
+
+## 46. 验证阶段 CUDA generator 设备修复与 r3
+
+- r2 首个验证阶段失败：CPU generator 与 CUDA probs 不匹配；随后发现 `rand/randint` 也需直接在输入设备创建，不能只靠 `.to()`。
+- 修复 `validate_packed` generator=device 以及 synonymous/arbitrary corruption 的随机张量设备参数。完整回归 **160 passed, 1 skipped**，直接 `CUDA_VALIDATE_PACKED_OK`。
+- r2 无恢复状态，使用 r3 新 run ID 从零启动，保留失败日志与配置。
+- 验证：46 页重开、关键文本、形状边界与 LibreOffice 渲染全部通过，临时文件已清理。
+
 ## 40. Gate 约束训练启动器
 
 - 新增 `a7_run_training.py`：只有 `g0_gate passed=true`、train/val 哈希匹配、无旧 resume、无 epoch/step 上限且 CUDA 可用时才执行。
