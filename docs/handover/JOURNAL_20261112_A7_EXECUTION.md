@@ -328,3 +328,11 @@
 - 聚焦测试 **25 passed**，包括完整合成正例和多种拒绝反例；不是模型性能证据。
 - `8e40307` 首次 GitHub 推送遇到 HTTP/2 framing 失败，第二次连接超时；代码已保存在本地与 `/home/codonflow`，但 GitHub 尚未确认同步，后续必须补推。
 - 随机 checkpoint learned CUDA 接口任务仍在运行，尚无结果 JSON，不标记通过。development calibration 最新完成14/18；正式训练继续，G1/G2 均未通过。
+
+## 50. development calibration 验收与 learned 批量推理
+
+- `calibration_unique18` 已完成18/18，全部 `done`。逐文件 reference/pool SHA、天然源、D4 train RSCU、seed=1729、40 uniform+每轴10、全部 runs、正有限 scale 均通过。
+- `07_a7_data/calibration_unique18_acceptance.json`：passed=true，SHA256=`e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c`。
+- 独立重新运行 C31E10.3b.1 calibration，reference 与 pool 均与冻结文件逐字节一致（69 唯一目标向量）；产物保存在 `calibration_unique18_independent_recheck/`。显式 global-synonymous calibration 模式保持了旧池生成语义。
+- learned 推理从逐路径 forward 改为同长度路径批量 forward，仍使用原 `SynonymousJumpProposal.sample_transition_batch` 和 base kernel，不引入 terminal guidance 或 rollout。每条路径、每个状态转移及实际 batch forward 分开计费；唯一 terminal scorer 预算不变。
+- 批量化后完整回归 **170 passed, 1 skipped**；尚未完成真实 CUDA 批量接口验证，不得写成性能或科学结果。原串行随机接口任务保留日志，不覆盖输出。

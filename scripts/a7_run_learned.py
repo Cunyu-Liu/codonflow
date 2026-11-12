@@ -28,7 +28,9 @@ from scripts.a7_run_simple_search import code_dirty
 
 
 def learned_search(initial, proposal, objective_fn, weights, normalization, seed,
-                   terminal_step=4, max_unique_scorer=500):
+                   terminal_step=4, max_unique_scorer=500, path_batch_size=32):
+    if path_batch_size < 1:
+        raise ValueError("path_batch_size must be positive")
     scorer = UniqueObjectiveScorer(objective_fn)
     started = time.perf_counter()
     points = []
@@ -45,14 +47,16 @@ def learned_search(initial, proposal, objective_fn, weights, normalization, seed
     attempts = 0
     max_attempts = max(1000, 50 * max_unique_scorer)
     while len(points) < max_unique_scorer and attempts < max_attempts:
-        editor = FiniteStepSynonymousMarkovEditor(
-            proposal, lambda sequences: [0.0] * len(sequences), terminal_step,
-            rollout_count=0, rng=np.random.default_rng(seed * 7919 + attempts),
-            sampling_kernel="base",
-        )
-        terminal, _trace = editor.sample(initial)
-        record(terminal)
-        attempts += 1
+        count = min(path_batch_size, max_unique_scorer - len(points), max_attempts - attempts)
+        states = [split_codons(initial) for _ in range(count)]
+        rng = np.random.default_rng(seed * 7919 + attempts)
+        for step in range(terminal_step):
+            states = [transition.codons for transition in proposal.sample_transition_batch(
+                states, step, rng,
+            )]
+        for state in states:
+            record("".join(state))
+        attempts += count
     return {
         "protocol": "a7_learned_base_v1",
         "method": "learned",
@@ -85,6 +89,7 @@ def main():
     parser.add_argument("--record-id", action="append", dest="record_ids")
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--terminal-step", type=int, default=4)
+    parser.add_argument("--path-batch-size", type=int, default=32)
     parser.add_argument("--max-unique-scorer", type=int, default=500)
     parser.add_argument("--gc-target", type=float, default=0.55)
     parser.add_argument("--weights", nargs="+", type=float, default=[1, 1, 1, 0.5])
@@ -134,7 +139,8 @@ def main():
         initial = synonymous_x0(source, np.random.default_rng(args.seed * 1009))
         payload = learned_search(initial, proposal, objectives, args.weights,
                                  (frozen.reference, frozen.scale), args.seed,
-                                 args.terminal_step, args.max_unique_scorer)
+                                 args.terminal_step, args.max_unique_scorer, args.path_batch_size)
+        payload["path_batch_size"] = args.path_batch_size
         sequences = [point["sequence"] for point in payload["points"]]
         payload.update({
             "protocol_version": "a7_evaluation_v1",
