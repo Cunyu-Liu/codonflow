@@ -512,3 +512,10 @@
 - Transformer：Vaswani et al. `arXiv:1706.03762`；AdamW：Loshchilov & Hutter `arXiv:1711.05101`；MMseqs2：Steinegger & Söding `10.1038/nbt.3988`。
 - HV：Zitzler & Thiele 1999 `10.1109/4235.797969`；Wilcoxon 1945 `10.2307/3001968`；Holm 1979 Scandinavian Journal of Statistics 6(2):65–70，JSTOR 4615733。
 - 上述题名、作者、期刊与DOI/arXiv元数据已核对；Holm使用原始论文而非后续改进程序。相关正文引用和参考文献已补齐，Results仍保持Gate占位。
+
+## 75. r4 首个 epoch 持续训练与自动验收链复核
+
+- 2026-11-13 06:48 CST 实时读取：FULL 为 `e1 b14800/17421`，100-batch 平均训练 loss 为 1.6510；EDIT 为 `e1 b28300/35442`，对应 loss 为 1.6720。两个 launcher 均仍存在，运行命令与冻结 r4 配置一致。
+- 两臂 `run_config.json` 均保留原训练/验证数据SHA、CUDA训练commit=`1f38db6f35735326917e106c95ce61a3f17abe27`、独立validation seed及r4显存参数；代码目录clean。训练loss只用于判断优化是否正常，不作为科学结果。
+- 此时尚无 `log.jsonl`、best/last/training_state/converged，不能判断独立val是否收敛。`g1_r4_watcher=waiting_for_convergence`，`g2_r4_watcher=waiting_for_g1_preflights`，没有提前越过Gate。
+- 已复核自动链：收敛出现后先运行完整checkpoint/CUDA审计，再逐臂执行100样本G1及preflight；双preflight齐全后才dry-run并运行108 learned+54 shared simple。正式G2与模型性能结论仍未产生。
