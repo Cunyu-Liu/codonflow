@@ -557,3 +557,11 @@
 - 为恢复配额，仅删除可重建的冗余`envs/pc_cng.tar.gz`，原SHA256=`904c1f7901dbf6edee97b1136dbdd6f5e3477519ce61ade8eb30389bd28a693b`；解包环境仍在，写入probe已成功。未删除数据、权重、r4日志或他人文件，未修改其他项目进程。
 - 两臂e2 training_state SHA与第78/79节记录一致，可精确恢复。采用新r5目录而非原目录续写或从零重跑；新增`a7_resume_training.py`和两份r5配置，复制log/best/state并复核SHA，实际resume指向r5冻结副本，记录`resume_provenance.json`。
 - 启动守卫包括G0/数据SHA、连续历史、best epoch/loss、全训练参数、最新best张量、优化器和CUDA RNG。`a7_follow_g1.py`现可验证恢复provenance并识别`a7_resume_training.py`，非法配置、覆盖目录或篡改均拒绝。聚焦回归11项通过；完整回归为**207 passed, 1 skipped**，spec/tasks/checklist/RUNBOOK已同步真实状态。
+
+## 81. r5 双臂精确恢复与逐批一致性验证
+
+- 恢复代码提交 `87220d42ec2247ef979450d0faee911a76486a77` 已推送GitHub并部署；本地和训练机完整回归均为 **207 passed, 1 skipped**。两个真实dry-run均保留r4数据、batch、优化器、4000-token micro-validation和显存参数。
+- FULL配置SHA=`a33c063bb9d613d143294058c0e8ae9cfd84f32b9a6af77b5e0b280fc8be2832`，EDIT配置SHA=`8e5ad2a3a2f76786b4faf23b845d365b5e37cbe137eb80209022bc35721d04f7`。两份`resume_provenance.json`均passed=true，源state SHA与第78/79节一致，r5冻结副本SHA相同。
+- 两臂日志均明确`resumed weights ... at epoch 2`。随后进入e3，r5与r4的首个batch loss逐项完全一致：FULL=1.2582，EDIT=1.2374；只重置本段wall-clock，不改变训练状态。该直接对照验证模型/优化器/RNG恢复语义。
+- 实际CUDA子进程172982/173029运行，合计约16.68GB，GPU利用率100%。`g1_r5_watcher=waiting_for_convergence`、`g2_r5_watcher=waiting_for_g1_preflights`，没有继承r4空状态或提前放行。
+- 为下一epoch预留配额，再删除可重建的冗余`envs/codonflow.tar.gz`，原SHA256=`9e293bf2bd91b0bf8facfbd939a6f0d0bccf1042ac007549da5fc1239ca5e039`；活动环境和解包目录保留，写入probe再次通过。未删除数据、权重或日志。

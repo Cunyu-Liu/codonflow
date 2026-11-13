@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
 > 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两臂已完成两期独立 val，e3 中断后正以新 r5 目录从完整 e2 状态精确恢复；尚未收敛或通过 G1。
+> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两臂完成两期独立 val 后在 e3 中断，r5 已精确恢复并继续 CUDA 训练；e3 首 batch loss 与 r4 完全一致。尚未收敛或通过 G1。
 
 ## 0. 已完成的方向与审计工作
 
@@ -70,7 +70,7 @@
 
 - [x] 从 GitHub 源码归档恢复到工作区 `codonflow-main/`，已上传并合并到共享目录 `codonflow1031/01_code/codonflow/`；A6 原代码另有备份。
 - [x] 合并后远端完整回归 **131 passed, 1 skipped**；真实 CDS 数据审计和四方法搜索产物已落盘 `eval_outputs/a7_smoke/`。
-- [x] 已在执行实例确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；r5 恢复变更后本地完整回归为 **207 passed, 1 skipped**，训练机须部署后复跑同套测试，代码以 GitHub 和训练机提交为准，不反向覆盖旧共享备份。
+- [x] 已在执行实例确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；r5 恢复提交 `87220d42` 后，本地与训练机均为 **207 passed, 1 skipped**，代码以 GitHub 和训练机提交为准，不反向覆盖旧共享备份。
 
 ### T1.8 GPU 与运行环境验收
 
