@@ -534,3 +534,10 @@
 - EDIT当前哈希：best=`73a515f0e30cb69bb165592468a1b45e05eb02581daf32754bf6617a3502b41a`；last=`0f6440795347199353b3aec8b9106b8ba9568e216baac444011c97ac50f88939`；training_state=`506481faccda32268192cb863d3dee0e5b100b555f7228e099626e26caf1df62`。
 - 训练机 `/home/codonflow` 的origin原先指向初始部署bundle，普通pull不会获取GitHub后续提交；已改为 `git@github.com:Cunyu-Liu/codonflow.git` 并fast-forward至 `6e542755388250d11a7f1de23292ce6dd571ab83`，HEAD/origin/main一致且工作目录clean。未修改训练代码或配置。
 - 两臂现在均只有e1独立val，不能横向比较两种token目标，也未满足3期plateau。G1/G2继续等待。
+
+## 78. FULL 第2个独立验证 epoch
+
+- FULL r4 e2已完成并进入e3：`train_loss=1.2606556437368455`，独立`val_loss=1.2570717637705173`，`cond_gap=2.631462574005127`，`elapsed_min=268.6066977818807`。
+- val相对e1改善约1.26%，高于0.1%阈值，因此plateau仍为0/3，不能停止或进入G1。best_epoch=2。
+- 独立读取确认log含连续e1/e2，state epoch=2、best_val与历史最小值严格一致，state模型与last逐张量相等，best与last逐张量相等，全部有限，优化器及CUDA RNG完整。
+- e2当前哈希：best=`3da3d5c1326de99d706ac7392e9084b17062a2d19d11799927819540230db8bd`；last=`5a43a227c5f39e50ff77c789caff58f574239d205b57079e0ce5f666d4561e64`；training_state=`557638d772ded5cca16ecb963a910dc51832c7c4ed0876e7011f2a7cb7d45f7b`。这是训练过程证据，不是模型性能结论。
