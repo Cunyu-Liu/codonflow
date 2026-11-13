@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**G0 已通过；两条 D4 r4 正在 CUDA 并行训练，尚未收敛或通过 G1。development calibration 18/18 已验收，G2 工具已通过工程接口验证，正式 G2 未启动。**
+> 当前动作：**G0 已通过；r4 两臂 e3 中断且未收敛，正以新 r5 目录从校验后的 e2 状态精确恢复。development calibration 18/18 已验收，G2 工具已通过工程接口验证，正式 G2 未启动。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口
@@ -162,9 +162,9 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 ## 10. 当前唯一下一步
 
-先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **201 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
+先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **207 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
 
-G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。`a7_follow_g1.py` 正在等待真实收敛，随后自动运行 `a7_convergence_audit.py`、两臂 `a7_g1_behavior.py` 和 `a7_g2_preflight.py`。两臂 preflight 同时就绪后，先用 `a7_execute_g2.py --dry-run` 核对162个分片，再启动正式G2；simple-workers=4、learned-workers=2，最终由 `a7_g2_gate.py` 裁决。
+G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。先用 `a7_resume_training.py` 在新 r5 目录复制并校验 e2 log/best/training_state，再恢复 CUDA 训练；随后新建 `g1_r5_watcher` 和 `g2_r5_watcher`，执行与此前相同的收敛审计、G1、双 preflight 和162分片 G2 协议。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 

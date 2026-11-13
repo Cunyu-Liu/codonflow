@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
 > 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。两条开发模型已从零启动并实际使用 CUDA 并行训练，尚未收敛或通过 G1。
+> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两臂已完成两期独立 val，e3 中断后正以新 r5 目录从完整 e2 状态精确恢复；尚未收敛或通过 G1。
 
 ## 0. 已完成的方向与审计工作
 
@@ -70,7 +70,7 @@
 
 - [x] 从 GitHub 源码归档恢复到工作区 `codonflow-main/`，已上传并合并到共享目录 `codonflow1031/01_code/codonflow/`；A6 原代码另有备份。
 - [x] 合并后远端完整回归 **131 passed, 1 skipped**；真实 CDS 数据审计和四方法搜索产物已落盘 `eval_outputs/a7_smoke/`。
-- [x] 已在执行实例确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；当前本地与训练机均为 **184 passed, 1 skipped**，代码以 GitHub 和训练机提交为准，不反向覆盖旧共享备份。
+- [x] 已在执行实例确认 `/home/codonflow` 代码版本、共享资产挂载和完整回归；r5 恢复变更后本地完整回归为 **207 passed, 1 skipped**，训练机须部署后复跑同套测试，代码以 GitHub 和训练机提交为准，不反向覆盖旧共享备份。
 
 ### T1.8 GPU 与运行环境验收
 
@@ -83,7 +83,7 @@
 
 ## 2. P2 · G1 模型收敛且非退化
 
-- [ ] **T2.1 开发模型训练**：G0 后从零训练 `M_SYN_D4_*`；当前无 checkpoint，禁止从旧 arbitrary-corruption 权重冒充恢复。
+- [ ] **T2.1 开发模型训练**：r4 已从零完成 e1/e2 并保留完整 checkpoint；e3 中断后以新 r5 从 e2 精确恢复，禁止从旧 arbitrary-corruption 权重冒充恢复或覆盖 r4。
 - [ ] **T2.2 收敛与冻结**：独立 val 连续 3 epoch 相对改善 <0.1%；保存 best/last/training_state/converged 和 SHA256。
 - [ ] **T2.3 行为门**：至少 3 个开发基因 × 100 paired 样本，满足 spec G1 的非源序列率、唯一解数、最大单序列频率和 identity/legal。
 - [ ] **T2.4 诊断归档**：报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；旧复制模型仅作反例。
@@ -137,4 +137,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**P2 / G1 模型收敛与非退化验收。** r4 的 FULL/EDIT 正在训练，尚未产生 checkpoint；正式 G1、G2 仍未通过。可并行准备开发集独立 calibration 和 G2 工具，但不得运行或宣称正式 learned-vs-simple 结果。P3–P5 受前置门约束。
+**P2 / G1 模型收敛与非退化验收。** r4 已完成两期独立 val 并在 e3 中断，当前以 r5 从冻结 e2 状态恢复；正式 G1、G2 仍未通过。可并行准备开发集独立 calibration 和 G2 工具，但不得运行或宣称正式 learned-vs-simple 结果。P3–P5 受前置门约束。

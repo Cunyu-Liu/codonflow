@@ -14,11 +14,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from codonflow.train.run_pretrain import file_sha256
 
 
-def training_command(config):
-    if config.get("status") != "frozen_pending_g0" or config.get("corruption") != "synonymous":
-        raise ValueError("training config is not a frozen synonymous pending-G0 arm")
-    if config.get("resume") is not None or config.get("max_epochs") is not None or config.get("max_steps") is not None:
-        raise ValueError("old checkpoint resume or step-bounded training is forbidden")
+def training_command(config, allow_resume=False):
+    expected_status = "frozen_resume_from_complete_epoch" if allow_resume else "frozen_pending_g0"
+    if config.get("status") != expected_status or config.get("corruption") != "synonymous":
+        raise ValueError("training config has an invalid frozen status or corruption family")
+    if config.get("max_epochs") is not None or config.get("max_steps") is not None:
+        raise ValueError("step-bounded training is forbidden")
+    if allow_resume:
+        if not config.get("resume"):
+            raise ValueError("exact resume requires a complete training_state.pt")
+    elif config.get("resume") is not None:
+        raise ValueError("old checkpoint resume is forbidden for a from-scratch run")
     command = [
         sys.executable, "-m", "codonflow.train.run_pretrain",
         "--train-fasta", config["train_fasta"], "--val-fasta", config["val_fasta"],
@@ -35,10 +41,12 @@ def training_command(config):
     ]
     if config["token_only_at_edits"]:
         command.append("--token-only-at-edits")
+    if allow_resume:
+        command.extend(["--resume", config["resume"]])
     return command
 
 
-def preflight(config_path, g0_gate_path):
+def preflight(config_path, g0_gate_path, allow_resume=False):
     config = json.loads(Path(config_path).read_text())
     gate = json.loads(Path(g0_gate_path).read_text())
     if not gate.get("passed"):
@@ -49,7 +57,7 @@ def preflight(config_path, g0_gate_path):
         hash_key = "train_sha256" if key == "train_fasta" else "val_sha256"
         if file_sha256(config[key]) != config[hash_key]:
             raise ValueError(f"data hash mismatch: {key}")
-    return training_command(config)
+    return training_command(config, allow_resume=allow_resume)
 
 
 def main():

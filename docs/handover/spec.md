@@ -2,15 +2,15 @@
 
 > 生效日期：2026-11-01。本文是当前唯一有效合同；旧版勾选、命令和数字只在 journal/audit 中追溯。
 > 已确认方向：主任务为 **warm-start synonymous CDS editing**；第一决定性关卡为 **learned proposal vs 无学习简单搜索**。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两条 `M_SYN_D4_*` 开发模型已从零启动并实际使用 CUDA 并行训练，尚未收敛或通过 G1。r3 在验证阶段分别因 probe CPU generator 和显存峰值失败，未留下可恢复 checkpoint；失败日志保留。
+> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。r4 两臂已完成 e1/e2 独立验证并保存完整 checkpoint，但在 e3 中途同时中断，且现场确认 `/teams` 配额写入失败；r4 未收敛、未通过 G1。当前以新 r5 目录从已校验 e2 状态精确恢复，r4 全部证据保留。
 > 2026-11-12 执行补充：代码与提交以远端 `/home/codonflow` 为工作副本；大型数据、权重、日志和 artifacts 只放 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。训练及 GPU 验证必须实际使用 CUDA；CUDA 不可用、kernel 不兼容或 CPU 静默降级时立即停止并保存证据。独立任务可并行，但不得为占满显存制造实验或越过 Gate。
 
 ## 0. 当前事实状态
 
 - 2026-11-12 交接证据记录：untouched 24 基因确认集、D5 train RSCU 和 24/24 独立 calibration pool 已完成并验证；合并代码完整回归为 131 passed, 1 skipped。上述资产仍须在执行实例上复核路径、哈希和内容，不能只凭交接文字推进。
-- unique18 seed-0 的 18/18、五方法已有完成记录；seeds 1/2 与全量 MFE/NED 独立重算仍未完成。全量数据来源、清洗、分布和元数据审计仍未闭环。
-- 当前没有通过行为验收的有效新模型 checkpoint。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
-- synonymous-corruption 两臂在 2026-10-31 仅运行到 e1 b800 后停止，**没有 checkpoint**。当前没有通过行为验收的有效 CodonFlow 模型，也没有可用的新下游结果。
+- unique18 seeds 0/1/2 均完成 18/18、五方法及独立 MFE/NED 复算；25 物种原始来源、全量清洗、分布、冻结资产和 calibration 已闭环并通过 G0。
+- 当前没有通过行为验收的收敛新模型。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
+- 2026-10-31 synonymous 两臂早期停止时无 checkpoint；r4 后续已完成 e1/e2 并保留完整恢复状态，但 e3 中断且未收敛。当前以 r5 精确恢复，不能将恢复 checkpoint 直接视为 G1 通过或新下游结果。
 - 已有资产：有限步同义 Markov 操作符、小状态精确验证、成本 trace、v4/v5 内部划分审计、core seed-0 五方法 baseline 的部分结果。
 - `unique18.fasta` 的 18 条输入已审计，但 baseline 输出不得仅凭文件数称为完整；正式使用前必须按 manifest 复核 done/partial/missing、MFE/NED 和种子。
 - 旧 SOTA、capacity scaling、RL saturation、masking 因果、family/species OOD、四层 benchmark 结论全部撤回，不得搬入新论文。
@@ -172,7 +172,7 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 3. 报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；这些诊断不能替代 G2。
 4. 上述数值是排除明显退化的操作阈值，不是性能证据；如需修改，必须在查看新输出前记录 amendment。
 
-当前 **未通过，且无有效 checkpoint**。
+当前 **未通过**。r4 的 e1/e2 checkpoint 仅用于精确恢复，不是 converged 或通过行为验收的模型；r5 仍须完成全部 G1。
 
 ### G2：第一决定性关卡——learned vs 简单搜索
 

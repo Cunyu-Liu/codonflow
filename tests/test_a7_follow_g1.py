@@ -26,7 +26,8 @@ def test_watcher_accepts_only_unbounded_synonymous_configs(tmp_path):
         parse_arm_configs([f"FULL={full}"])
 
 
-def test_watcher_checks_launcher_command(tmp_path, monkeypatch):
+@pytest.mark.parametrize("launcher", ["a7_run_training.py", "a7_resume_training.py"])
+def test_watcher_checks_launcher_command(tmp_path, monkeypatch, launcher):
     config_path = tmp_path / "config.json"
     log = tmp_path / "train.log"
     log.with_name("train.pid").write_text("123")
@@ -35,7 +36,7 @@ def test_watcher_checks_launcher_command(tmp_path, monkeypatch):
 
     def read_bytes(path):
         if str(path) == "/proc/123/cmdline":
-            return f"python a7_run_training.py --config {config_path}\0".encode()
+            return f"python {launcher} --config {config_path}\0".encode()
         return original(path)
 
     monkeypatch.setattr(Path, "read_bytes", read_bytes)

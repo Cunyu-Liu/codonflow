@@ -549,3 +549,11 @@
 - 独立读取确认log连续，state epoch/best_val正确，state模型与last逐张量相等，best与last逐张量相等，全部有限，优化器及CUDA RNG完整。
 - e2当前哈希：best=`355c38b0c44b958ffa42ea1238b0bca7a8c2ff5cc8aa2b9a4cd02b3875cf5fd7`；last=`e2f081f90575dde0673720c7aac9c89fe7e30ada0611cae80b05a5a239e3bb87`；training_state=`b8f36b9ca2a089c0f1097cb74770d4238303fac8e22a449a4079ed01a6ee7d0f`。
 - 完整性读取前的多次SSH连接关闭已通过重连解决，未误记为训练失败。第3期独立验证取证已启动，G1/G2仍未放行。
+
+## 80. r4 e3 同时中断、配额故障与 r5 精确恢复设计
+
+- 2026-11-13 10:28 CST左右，FULL止于`e3 b8500/17421`，EDIT止于`e3 b12000/35442`；两臂launcher及G1/G2 watcher均消失，训练日志无Python traceback。系统PID1自2026-10-18持续运行，未发生主机重启。确切外部终止原因未证实，不写成代码错误或科学失败。
+- watcher status在10:30被截断为0字节；随后写中断证据时实测`OSError: [Errno 122] Disk quota exceeded`。`df`仍显示约68GB空余，属于配额限制而非整盘耗尽。`r4_interruption_20261113.json`已冻结，SHA256=`eec03e7889115ce7216b8d9b60cb6dddcefccbabaab9028e791e0f31a8917e02`。
+- 为恢复配额，仅删除可重建的冗余`envs/pc_cng.tar.gz`，原SHA256=`904c1f7901dbf6edee97b1136dbdd6f5e3477519ce61ade8eb30389bd28a693b`；解包环境仍在，写入probe已成功。未删除数据、权重、r4日志或他人文件，未修改其他项目进程。
+- 两臂e2 training_state SHA与第78/79节记录一致，可精确恢复。采用新r5目录而非原目录续写或从零重跑；新增`a7_resume_training.py`和两份r5配置，复制log/best/state并复核SHA，实际resume指向r5冻结副本，记录`resume_provenance.json`。
+- 启动守卫包括G0/数据SHA、连续历史、best epoch/loss、全训练参数、最新best张量、优化器和CUDA RNG。`a7_follow_g1.py`现可验证恢复provenance并识别`a7_resume_training.py`，非法配置、覆盖目录或篡改均拒绝。聚焦回归11项通过；完整回归为**207 passed, 1 skipped**，spec/tasks/checklist/RUNBOOK已同步真实状态。

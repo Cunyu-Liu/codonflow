@@ -25,10 +25,21 @@ def parse_arm_configs(values):
         if arm not in ("FULL", "EDIT") or not separator or arm in configs:
             raise ValueError("arm configs must be unique FULL/EDIT entries")
         config = json.loads(Path(path).read_text())
-        if config.get("corruption") != "synonymous" or config.get("resume") is not None:
-            raise ValueError(f"invalid from-scratch synonymous config: {path}")
+        if config.get("corruption") != "synonymous":
+            raise ValueError(f"invalid synonymous config: {path}")
         if config.get("max_epochs") is not None or config.get("max_steps") is not None:
             raise ValueError("step-bounded training is forbidden")
+        if config.get("resume") is not None:
+            if config.get("status") != "frozen_resume_from_complete_epoch":
+                raise ValueError(f"invalid exact-resume status: {path}")
+            manifest = Path(config["out_dir"]) / "resume_provenance.json"
+            provenance = json.loads(manifest.read_text())
+            if (provenance.get("passed") is not True
+                    or provenance.get("config_sha256") != file_sha256(str(path))
+                    or provenance.get("run_id") != config.get("run_id")
+                    or provenance.get("resume_epoch", 0) < 1
+                    or file_sha256(provenance["frozen_resume_path"]) != provenance["frozen_resume_sha256"]):
+                raise ValueError(f"invalid exact-resume provenance: {manifest}")
         configs[arm] = (Path(path), config)
     return configs
 
@@ -41,7 +52,8 @@ def launcher_running(launcher_log, config_path):
     except ProcessLookupError:
         return False
     command = Path(f"/proc/{pid}/cmdline").read_bytes().replace(b"\0", b" ").decode()
-    if "a7_run_training.py" not in command or str(config_path) not in command:
+    launchers = ("a7_run_training.py", "a7_resume_training.py")
+    if not any(name in command for name in launchers) or str(config_path) not in command:
         raise RuntimeError(f"launcher PID does not match expected training command: {pid}")
     return True
 
