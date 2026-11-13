@@ -565,3 +565,12 @@
 - 两臂日志均明确`resumed weights ... at epoch 2`。随后进入e3，r5与r4的首个batch loss逐项完全一致：FULL=1.2582，EDIT=1.2374；只重置本段wall-clock，不改变训练状态。该直接对照验证模型/优化器/RNG恢复语义。
 - 实际CUDA子进程172982/173029运行，合计约16.68GB，GPU利用率100%。`g1_r5_watcher=waiting_for_convergence`、`g2_r5_watcher=waiting_for_g1_preflights`，没有继承r4空状态或提前放行。
 - 为下一epoch预留配额，再删除可重建的冗余`envs/codonflow.tar.gz`，原SHA256=`9e293bf2bd91b0bf8facfbd939a6f0d0bccf1042ac007549da5fc1239ca5e039`；活动环境和解包目录保留，写入probe再次通过。未删除数据、权重或日志。
+
+## 82. r5 e3–e5 完整验证历史与 e6 状态
+
+- 2026-11-13 22:57 CST复核，两臂均在e6正常训练；此前e3部分写入已完整落盘，不构成损坏。两臂e1–e5 log均连续，state epoch/best epoch/best val与历史一致，state模型与last逐张量相等，最新best与last逐张量相等，全部有限，优化器和CUDA RNG完整。
+- FULL val：e3=1.2473306381960376、e4=1.1969102320661726、e5=1.1884122049187509；最近三期相对改善依次约0.775%、4.042%、0.710%，均超过0.1%，未形成plateau。
+- EDIT val：e3=1.3220487321818926、e4=1.2742710047314432、e5=1.2625686300154422；最近三期相对改善约0.478%、3.614%、0.918%，均超过0.1%，未形成plateau。
+- FULL e5哈希：best=`813ff39ef6bb0c33b33ec96a06d0ecce494907ad30c37cf7baa1d14f50625f51`，last=`19f959536f72633a7114b4739d589e2c6af4e17d76f27c33cbe00a2a2da79c22`，training_state=`175d32f0ecd9fe313acd59f1dbabea214276cf39a6eead6495dd57e0b074c359`。
+- EDIT e5哈希：best=`35aefc88ecca9f97a583d9ab9161c6fdfb1d3cdd5e3d3f8bc05cb8258a84c0af`，last=`f3d270908bea9d08c10d3b404c9690e3819ad7024c0cd635720cabefdd2d02f6`，training_state=`8ca11d880e9665da1f2778e99f21aa3e6619eaecbdaac5a4e4e3d79f186f243c`。
+- `g1_r5_watcher`与`g2_r5_watcher`仍正确等待；无converged、G1或模型性能结论，不更新PPT结果页。
