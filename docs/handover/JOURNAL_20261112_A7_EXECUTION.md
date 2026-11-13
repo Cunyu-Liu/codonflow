@@ -541,3 +541,11 @@
 - val相对e1改善约1.26%，高于0.1%阈值，因此plateau仍为0/3，不能停止或进入G1。best_epoch=2。
 - 独立读取确认log含连续e1/e2，state epoch=2、best_val与历史最小值严格一致，state模型与last逐张量相等，best与last逐张量相等，全部有限，优化器及CUDA RNG完整。
 - e2当前哈希：best=`3da3d5c1326de99d706ac7392e9084b17062a2d19d11799927819540230db8bd`；last=`5a43a227c5f39e50ff77c789caff58f574239d205b57079e0ce5f666d4561e64`；training_state=`557638d772ded5cca16ecb963a910dc51832c7c4ed0876e7011f2a7cb7d45f7b`。这是训练过程证据，不是模型性能结论。
+
+## 79. EDIT 第2个独立验证 epoch
+
+- EDIT r4 e2于2026-11-13 09:43 CST完成并进入e3：`train_loss=1.3324587512453727`，独立`val_loss=1.3284007660976211`，`cond_gap=3.3836584091186523`，`elapsed_min=281.82563204367955`。
+- val相对e1改善约0.876%，高于0.1%阈值，plateau仍为0/3，best_epoch=2。两臂均已连续完成2期独立val，均未收敛。
+- 独立读取确认log连续，state epoch/best_val正确，state模型与last逐张量相等，best与last逐张量相等，全部有限，优化器及CUDA RNG完整。
+- e2当前哈希：best=`355c38b0c44b958ffa42ea1238b0bca7a8c2ff5cc8aa2b9a4cd02b3875cf5fd7`；last=`e2f081f90575dde0673720c7aac9c89fe7e30ada0611cae80b05a5a239e3bb87`；training_state=`b8f36b9ca2a089c0f1097cb74770d4238303fac8e22a449a4079ed01a6ee7d0f`。
+- 完整性读取前的多次SSH连接关闭已通过重连解决，未误记为训练失败。第3期独立验证取证已启动，G1/G2仍未放行。
