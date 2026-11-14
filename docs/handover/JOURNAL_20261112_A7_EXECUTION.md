@@ -574,3 +574,10 @@
 - FULL e5哈希：best=`813ff39ef6bb0c33b33ec96a06d0ecce494907ad30c37cf7baa1d14f50625f51`，last=`19f959536f72633a7114b4739d589e2c6af4e17d76f27c33cbe00a2a2da79c22`，training_state=`175d32f0ecd9fe313acd59f1dbabea214276cf39a6eead6495dd57e0b074c359`。
 - EDIT e5哈希：best=`35aefc88ecca9f97a583d9ab9161c6fdfb1d3cdd5e3d3f8bc05cb8258a84c0af`，last=`f3d270908bea9d08c10d3b404c9690e3819ad7024c0cd635720cabefdd2d02f6`，training_state=`8ca11d880e9665da1f2778e99f21aa3e6619eaecbdaac5a4e4e3d79f186f243c`。
 - `g1_r5_watcher`与`g2_r5_watcher`仍正确等待；无converged、G1或模型性能结论，不更新PPT结果页。
+
+## 83. r5 e6–e15 持续优化与 plateau 状态复核
+
+- 2026-11-14 22:15 CST重新在线核实：FULL在e16 `b4500/17421`，EDIT在e15 `b20100/35442`，两臂进程与配置一致。此前暂停后的旧监视连接未用于推断当前状态。
+- FULL已完成15期，best_epoch=15、best_val=1.1647381445463216。e11–e15 val依次1.1686501204002862、1.1668536782546193、1.167723697979275、1.1655283308253375、1.1647381445463216；e15相对改善约0.0678%，仅plateau 1/3。
+- EDIT已完成14期，best_epoch=13、best_val=1.2430650269002725。e10–e14 val依次1.2487324268383495、1.2471096746817667、1.2458527315078864、1.2430650269002725、1.2433213658634028；e14略回升，仅plateau 1/3。
+- 两臂log epoch与state严格连续，best epoch/loss与历史最小值一致，优化器和CUDA RNG存在。最近三期均不满足连续<0.1%的收敛条件，G1/G2 watcher继续等待，无性能结论或PPT更新。
