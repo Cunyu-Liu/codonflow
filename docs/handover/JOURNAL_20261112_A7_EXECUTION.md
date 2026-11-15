@@ -642,3 +642,11 @@
 - 两套本地spec/tasks和共享交接镜像已同步；`HANDOFF_A7_20261116.md`、RECOVERY和next-agent提示已纠正历史“无GPU/无checkpoint”状态。论文状态更新为双G1通过、G2未裁决，仍不可提交。
 
 - 二级分析与当前交接提交 `07d115ae6f2fbf73d84be3ec230cec07fa5a562b` 已从独立worktree正常推送GitHub。正式执行目录保持 `831303b9` 且clean，显示main behind 1是刻意冻结，不得在G2运行中pull；这不会给新分片引入第三套执行commit。
+
+
+## 91. PPT 第48页：双 G1 已核验记录
+
+- 原47页PPT SHA256=`5447d9372b3a8d9187f79aa6238fb4ed6f3a7e6d8347c59fc7717910e6c48410`，已在覆盖前备份到 `/teams/.../04_deliverables/CodonFlow-中期汇报-20261009_pre_dual_g1_47slides.pptx`。
+- 新页复用既有四卡片英文版式，记录FULL 21 epochs/best val 1.159711、EDIT 26 epochs/best val 1.231330、双臂identity=100%、每基因100唯一解、max frequency 1%、FULL non-source 95–98%、EDIT 100%和双preflight ready；明确G2 running、no Go/No-Go、no performance claim。
+- 所有数字直接对照双臂convergence与G1 JSON；checkpoint前缀、CUDA、三基因各100样本及非源序列率断言通过。python-pptx重开48页、LibreOffice导出48页PDF、实际PNG视觉检查均通过，无缺字、溢出或遮挡。
+- 最终PPT SHA256=`2db15247e0a79c527d178f678eb4ada6fe792cefe9c87c064ef98d648ac41eb5`，本地与 `/teams/.../04_deliverables/CodonFlow-中期汇报-20261009.pptx` 一致。该页不是G2性能结果。

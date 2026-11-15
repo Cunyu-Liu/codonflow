@@ -6,7 +6,7 @@
 
 - G0 已通过，FULL r5 e21 与 EDIT r5 e26 已收敛并通过 G1，双 preflight 就绪。
 - 当前仅允许 P3/G2。首次 G2 完成 25 个有效分片后因混合 code commit 停止；已修复并严格 resume，尚无科学 Go/No-Go。
-- G2 执行目录 `/home/codonflow` HEAD 固定为 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 **210 passed, 1 skipped**。GitHub 最新 main=`07d115ae6f2fbf73d84be3ec230cec07fa5a562b`，新增二级分析且回归 212 passed / 1 skipped；执行目录显示 behind 是刻意冻结，不得在运行中 pull。
+- G2 执行目录 `/home/codonflow` HEAD 固定为 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 **210 passed, 1 skipped**。二级分析代码提交 `07d115ae6f2fbf73d84be3ec230cec07fa5a562b` 已推送，回归 212 passed / 1 skipped；执行目录显示 behind 是刻意冻结，不得在运行中 pull。
 - 代码与提交在 `/home`；大型资产在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 恢复顺序
