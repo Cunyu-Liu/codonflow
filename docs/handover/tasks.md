@@ -94,7 +94,7 @@
 
 - [x] **T3.0 混合版本中断恢复**：保留 25 个有效分片和原 failed 状态；差异审计确认两历史提交仅文档变化。执行器、worker 与 Gate 使用冻结的显式祖先 commit 集合，其余科学元数据仍严格配对；聚焦测试 15 项、完整回归 210 passed / 1 skipped。
 - [ ] **T3.1 开发集 paired 主实验**：learned base 对 uniform/hill-climbing/MH/AReUReDi-style，同初始化、同 scorer/cache、3 seeds；严格 resume 108 learned+54 shared simple，不重跑合法旧分片。
-- [ ] **T3.2 anytime 质量—成本分析**：输出 B=50/100/500 曲线、固定参考域 HV AUC、原始 Pareto front、逐目标 best-at-budget 和 NED。
+- [ ] **T3.2 anytime 质量—成本分析**：输出 B=50/100/500 曲线、固定参考域 HV AUC、原始 Pareto front、逐目标 best-at-budget、非支配覆盖、成本和 NED。`a7_plot_g2.py` 已有主图链；新增 `a7_summarize_g2.py` 从冻结 Gate/原始哈希输入重建二级结果，完整回归 212 passed / 1 skipped，真实 G2 输出仍待完成。
 - [ ] **T3.3 统计裁决**：按基因计算最强简单基线、相对效应、paired bootstrap 95% CI、Wilcoxon 与 Holm。
 - [ ] **T3.4 Go/No-Go**：完整核对 spec G2 的 ≥10% 中位改善、CI、p 值、identity/legal 和多样性条件。
 

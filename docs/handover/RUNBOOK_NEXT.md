@@ -99,6 +99,20 @@
 3. 每基因选择最强简单搜索作为对照；
 4. 基因级 paired bootstrap 95% CI、Wilcoxon 和 Holm。
 
+`g2_complete` 后在已部署的新分析代码上运行（不得在 G2 分片执行中移动 `/home/codonflow` HEAD）：
+
+```bash
+R=/teams/HoulabData_1788502323/liucunyu/codonflow1031
+/root/miniconda3/envs/codonflow/bin/python scripts/a7_plot_g2.py \
+  --gate $R/eval_outputs/a7_g2_r5/g2_gate.json \
+  --out-prefix $R/eval_outputs/a7_g2_r5/figures/g2_main
+/root/miniconda3/envs/codonflow/bin/python scripts/a7_summarize_g2.py \
+  --gate $R/eval_outputs/a7_g2_r5/g2_gate.json \
+  --out-prefix $R/eval_outputs/a7_g2_r5/figures/g2_main
+```
+
+二级汇总器输出原始三预算 Pareto 前沿、逐目标最优及序列哈希、双向非支配覆盖和逐 run 成本；它不重新裁决或放宽 Gate。
+
 ### Go/No-Go
 
 必须同时满足 spec G2：中位相对改善 ≥10%、CI 下界 >0、校正后 `p<0.05`、identity/legal=100%、NED 不低于最强简单搜索的 70% 且无塌缩。

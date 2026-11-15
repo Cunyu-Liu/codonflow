@@ -1,6 +1,6 @@
 # Finite-step synonymous editing for budget-aware multi-objective CDS optimization
 
-> **Status: working manuscript — not for submission.** No new model has passed G1, and no learned-versus-simple-search result exists. This file contains only methods, evaluation protocol, and evidence status as of 2026-11-13. Results sections remain gated.
+> **Status: working manuscript — not for submission.** Both development models have passed G1 convergence and non-degeneracy checks. The resumed G2 learned-versus-simple-search experiment is still running and has no Go/No-Go decision as of 2026-11-16. Later results remain gated.
 
 ## Abstract
 
@@ -62,7 +62,7 @@ CAI/RSCU tables are built only from the corresponding training split or an indep
 
 If $l_j$ and $u_j$ are the minimum and maximum of unique calibration objectives on axis $j$, the reference is $r_j=l_j-0.05(u_j-l_j)$ and the scale is $q_{0.95,j}-l_j$. Non-finite or non-positive scales are rejected. The same frozen normalization is used for search utility and anytime hypervolume AUC. The 18-gene D4 development pools have been checked against source and RSCU hashes, independently recomputed reference domains, and byte-identical regeneration of a representative pool.
 
-The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$, including the initial point at zero budget [zitzler1999hypervolume]. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
+The primary endpoint is hypervolume AUC over unique terminal-scorer budgets $B=50,100,500$, including the initial point at zero budget [zitzler1999hypervolume]. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Raw fronts retain every non-dominated point under strict dominance with all four objectives maximized. For each gene, seed, and budget, we report the fractions of the selected strongest-simple front strictly dominated by the learned front and vice versa. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
 
 ### 4.3 Comparisons and statistics
 
@@ -80,7 +80,7 @@ G0 requires complete data provenance, distribution and metadata audits, developm
 
 ### 5.1 Mechanism and non-degeneracy
 
-[Requires G1.]
+Both development models met the prespecified convergence and non-degeneracy requirements. The full-token model converged at epoch 21 with best validation loss 1.159711; the edited-token model converged at epoch 26 with best validation loss 1.231330. These losses arise from different objectives and are not directly compared. Across three development genes with 100 paired samples per gene, both models achieved 100% translation identity, 100 unique terminal sequences per gene, and a maximum single-sequence frequency of 1%. The fraction of outputs differing from the randomized synonymous initial sequence was 95–98% for the full-token model and 100% for the edited-token model. These results exclude the previously observed copy-collapse behavior but do not establish an optimization advantage over simple search.
 
 ### 5.2 Learned proposal versus simple search
 
@@ -100,7 +100,7 @@ G0 requires complete data provenance, distribution and metadata audits, developm
 
 ## 7. Reproducibility statement
 
-Every result is linked to its run ID, data and code hashes, dirty-tree status, immutable checkpoint path and SHA256, configuration, seeds, and frozen JSON artifacts. Failed runs, partial outputs, negative results, and unavailable baselines are retained. Current source audits and seed-0 protocol checks do not constitute learned-model performance evidence.
+Every result is linked to its run ID, data and code hashes, dirty-tree status, immutable checkpoint path and SHA256, configuration, seeds, and frozen JSON artifacts. Failed runs, partial outputs, negative results, and unavailable baselines are retained. G1 convergence and non-degeneracy checks do not constitute learned-model optimization evidence.
 
 ## 8. References
 

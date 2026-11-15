@@ -1,57 +1,27 @@
-# CodonFlow A7 恢复指南（2026-11-12）
+# CodonFlow A7 恢复指南（2026-11-16 当前版）
 
-## 1. 是否可以重新做
+> 本文取代 2026-11-12/13 的“CUDA 不可用、无有效 checkpoint、等待 G0”状态；那些内容仅是历史。
 
-> 2026-11-13 当前执行状态：G0 已通过，裁决文件 `07_a7_data/g0_gate.json` SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。两条 r4 D4 synonymous 模型正在 px2 CUDA 上并行训练，尚在首个 epoch，尚无 checkpoint、收敛或 G1 证据。代码 `/home/codonflow` 与 GitHub `75356f6` 已核对一致；大型资产保留在 `/teams`，不得反向覆盖。r3 在验证阶段失败且无恢复状态，已保留日志；r4 使用4000-token micro-forward，保持原24000-token batch、腐蚀与loss归一化等价，全量1800/1800 CUDA验证通过。G2 正式执行工具已验收，但不得把旧五方法输出或 smoke 作为 learned-vs-simple 结果。
+## 当前状态
 
-可以，而且不需要重新立项目。当前可恢复的是 A7 warm-start synonymous CDS editing 路线：先完成 G0 数据与协议，再从零训练新 synonymous-corruption 模型，最后做 learned-vs-simple-search 决定性对照。
+- G0 已通过，FULL r5 e21 与 EDIT r5 e26 已收敛并通过 G1，双 preflight 就绪。
+- 当前仅允许 P3/G2。首次 G2 完成 25 个有效分片后因混合 code commit 停止；已修复并严格 resume，尚无科学 Go/No-Go。
+- `/home/codonflow` HEAD/origin/main=`831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 **210 passed, 1 skipped**。
+- 代码与提交在 `/home`；大型资产在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
-没有可合法 resume 的新模型 checkpoint。旧 v4 权重已证伪，只能保留作负结果；新 synonymous 模型必须从零训练。
+## 恢复顺序
 
-## 2. 已上传/已核验的资产
+1. 先读 `HANDOFF_A7_20261116.md`、`spec.md`、`tasks.md`、`checklist.md` 和 journal 第 89 节。
+2. 核对 `/home/codonflow` HEAD、origin/main 与 clean 状态。运行期间不得修改或提交该目录。
+3. 读取 `eval_outputs/a7_g2_r5/execution_status.json` 和 `07_a7_data/g2_r5_resume2/execution.log`；用 `executor.pid` 核对真实进程，不能仅凭 PID 存在推断成功，也不能重复启动。
+4. 若干预前状态为 running，先确认 learned worker 的 `device=cuda:0` 和真实 CUDA 进程；CUDA 不可用或 CPU 静默降级必须停止并留证。
+5. 若执行器 failed，保留状态、日志和现有分片。只有登记的祖先 commit 才可进入允许集合，且必须做差异审计；不得任意加入 HEAD 或重跑合法旧分片。
+6. 只有 `g2_complete` 后运行 Gate 独立复核和 `a7_plot_g2.py`。G2 Go 才能进入 G3，No-Go 按 spec 停止后续性能路线。
 
-共享根目录：`/teams/HoulabData_1788502323/liucunyu/codonflow1031`
+## 已验证恢复证据
 
-- `01_code/codonflow/`：A6 最新基座叠加 A7 新代码；合并后远端测试 **131 passed, 1 skipped**。
-- `01_code/codonflow_a6_85c36606/`：上传前的 A6 完整代码备份。
-- `04_deliverables/`：A7 合同、论文提纲、PPT、图表和历史文档。
-- `06_backup/backup_20261013/`：5.2GB 历史备份已传完，共 181 个文件，manifest 哈希一致。
-- 外部既有数据：`/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/{corpora,checkpoints,eval_outputs}`。
+- dry-run：108 learned+54 shared simple；SHA256=`c87e85441ca0b94fbebb168dc9d28111b989e8d343d31f4ab191d99eb9feb06d`。
+- 25 个旧分片 precheck passed=true；SHA256=`905fe45abd8937b9316c0a7d612bb7f2a8de8b97585418df782117d8504531e4`。
+- 旧分片均为 done、identity=1、code_dirty=false，恢复日志显示 `skipped_existing`。
 
-D4/D5 最终 split、unique18 和 seed-0 五方法输出已核验。D4/D5 的数量和哈希与既有独立审计一致。
-
-## 3. 恢复前仍必须补齐
-
-### G0-A GPU 与执行环境
-
-- `codonflow` 和 `pc_cng` 环境存在，CPU 测试通过。
-- 当前服务器 `torch.cuda.is_available()=False`。在确认 GPU 分配、驱动和 CUDA matmul 前，只能做 CPU 协议工作，不能启动 GPU 主训练。
-- 用 `/home/codonflow` 执行前，先从共享目录恢复/同步代码；不要直接用旧的 `/home` 文件覆盖共享 A7 代码。
-
-### G0-B 数据与 benchmark
-
-- 若只做训练：D4/D5 最终 split 足够，不必先重新下载全部原始物种。完整 `v3_all.fasta` 也已找到，SHA256=`5e106f9e…`。
-- 若要从头重建清洗数据：还需 25 物种原始文件、release/URL/下载日期和逐步清洗记录。
-- unique18 只能作开发集。untouched 24 基因确认集已冻结于 `07_a7_data/confirmation24/confirmation24.fasta`，SHA256=`a128bdbf…`。
-- D5 train RSCU 已生成于 `07_a7_data/cai_ref_d5train.json`；24 个独立 calibration pool 已全部生成并验证，每池 56–70 个唯一目标向量，reference/pool 哈希、D5 RSCU 和正 scale 均通过检查。
-
-### G0-C 既有输出复核
-
-- unique18 seed-0 已有 18/18、五方法 `done`；还需 seeds 1/2 和全量 MFE/NED 独立复核。
-- 不能把旧 v4 三臂、联合 HV、SOTA、scaling 或 RLOO 结果用于新论文。
-
-## 4. 推荐恢复顺序
-
-1. 确认 GPU 与 CUDA matmul，恢复 `/home/codonflow` 工作副本。
-2. 运行 `PYTHONPATH=src /root/miniconda3/envs/codonflow/bin/python -m pytest -q`，应达到 131 passed、1 skipped。
-3. 完成全量清洗/分布审计、untouched 确认集、独立 calibration 和 baseline manifest 复核。
-4. G0 通过后，从零训练 `M_SYN_D4_*`，冻结 converged/best/last/training_state 与 SHA256。
-5. G1 行为门通过后，做 learned vs uniform/hill-climbing/MH/AReUReDi-style 同预算对照。
-6. 只有 G2 证明 learned 优于最强简单搜索，才继续 short-rollout、D5 确认和外部方法边界；RLOO/扩参不在当前关键路径。
-
-## 5. 禁止事项
-
-- 不读取旧 `a6_v4_56m_*` checkpoint 做新对照。
-- 不把旧文件数量当完整 benchmark，不把 val plateau 当模型有效。
-- 不用 test 输出估计 HV 归一化范围，不随机补足 baseline 解数。
-- 不在 GPU 不可用时静默改 CPU 训练，不删除失败日志或负结果。
+不得使用旧 arbitrary-corruption checkpoint，不得把训练 loss、G1、smoke、identity 或文件数量写成 G2 性能结论。

@@ -629,3 +629,14 @@
 - Gate v2 在允许集合内接受混合 commit，仍严格配对全部科学元数据并独立重算 identity、500 唯一解、NED 和 anytime；输出记录允许版本和每臂实际版本。旧失败状态嵌入新状态的 `previous_status`，日志按新时间戳命名，不覆盖旧证据。
 - 新增真实 Git 祖先/非法 SHA 反例、双 commit resume 接受/拒绝、混合 Gate 接受/拒绝测试。聚焦回归 15 项通过；训练机完整回归 **210 passed, 1 skipped**。搜索算法、模型采样、参考域、预算与全部科学 Gate 阈值均未改变。
 - 下一步仅在真实 dry-run 确认 108 learned+54 shared simple 及允许集合后执行 `--resume`；正式 Gate 前仍无 Go/No-Go，PPT 与论文性能结论不更新。
+
+
+## 90. G2 正式恢复启动与二级交付链补齐
+
+- 修复提交 `831303b93473144482e6fa99a692f2360ecf8dbb` 已推送并部署。真实 dry-run 为108 learned+54 shared simple，允许集合仅 `1ef8961b`、`5f9e5a56` 与当前修复提交；dry-run SHA256=`c87e85441ca0b94fbebb168dc9d28111b989e8d343d31f4ab191d99eb9feb06d`。
+- 25个旧分片路径/SHA/状态已冻结于 `07_a7_data/g2_r5_resume2/precheck.json`，SHA256=`905fe45abd8937b9316c0a7d612bb7f2a8de8b97585418df782117d8504531e4`。正式resume日志明确旧分片 `skipped_existing`，后续独立审计再次确认旧SHA完全不变。
+- 启动时确认两个真实CUDA learned worker和四个simple worker，GPU利用率88%；运行完整性审计中的learned结果均为 `device=cuda:0`、T=4、path_batch=32，全部done/identity=1/clean。当前仍只代表工程与正确性状态，不是性能结论。
+- 原SSH后台监视到时不等于实验失败；独立读取确认远端executor继续且结果增加后，启动不限时的轻量JSON状态监视，没有重复提交实验或频繁查询GPU。
+- 静态交付审计发现主图仅覆盖AUC/统计/NED，缺少合同要求的自动二级表。新增 `a7_summarize_g2.py`：从冻结Gate及SHA校验的原始输入重建B=50/100/500原始Pareto前沿、四目标best-at-budget、双向非支配覆盖和逐run成本，不重新裁决或修改阈值。
+- 使用独立 `/home/codonflow-analysis` worktree 测试分析代码，避免移动正式G2的 `/home/codonflow` HEAD。首轮唯一失败是单基因统计fixture按规则Gate=false而测试误设必须true，已修正为忠实继承Gate；随后聚焦3项及完整回归 **212 passed, 1 skipped** 均通过。真实G2二级输出尚未生成。
+- 两套本地spec/tasks和共享交接镜像已同步；`HANDOFF_A7_20261116.md`、RECOVERY和next-agent提示已纠正历史“无GPU/无checkpoint”状态。论文状态更新为双G1通过、G2未裁决，仍不可提交。
