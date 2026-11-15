@@ -33,8 +33,7 @@ def load_preflights(values):
     if set(arms) != {"FULL", "EDIT"}:
         raise ValueError("both FULL and EDIT preflights are required")
     shared = ("record_ids", "seeds", "benchmark_fasta", "benchmark_sha256",
-              "calibration_dir", "rscu_sha256", "code_commit", "budget",
-              "terminal_step", "path_batch_size")
+              "calibration_dir", "rscu_sha256", "budget", "terminal_step", "path_batch_size")
     for key in shared:
         if arms["FULL"][key] != arms["EDIT"][key]:
             raise ValueError(f"unmatched arm preflight field: {key}")
@@ -76,7 +75,8 @@ def main():
     if file_sha256(args.rscu_json) != template["rscu_sha256"]:
         raise ValueError("RSCU file does not match preflight")
     commit = git_commit()
-    subprocess.run(["git", "merge-base", "--is-ancestor", template["code_commit"], commit], check=True)
+    for preflight in arms.values():
+        subprocess.run(["git", "merge-base", "--is-ancestor", preflight["code_commit"], commit], check=True)
     if subprocess.check_output(["git", "status", "--porcelain"], text=True).strip():
         raise ValueError("G2 execution requires a clean source tree")
     audit = json.loads(Path(template["convergence_audit_path"]).read_text())

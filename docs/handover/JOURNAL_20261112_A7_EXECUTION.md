@@ -603,3 +603,11 @@
 - 2026-11-15 23:43 CST实时核验：EDIT在e25最后训练batch，best_epoch=24、best_val=1.2334503794277947，log/state/best与优化器/CUDA RNG一致。
 - e20–e24 val依次1.2367032443423835、1.2359371088609077、1.2350312830497956、1.2334648725845854、1.2334503794277947；最近三期相对改善约0.0733%、0.1268%、0.00117%。最后一项仅plateau 1/3，不能提前停止。
 - FULL G1/preflight已通过。EDIT e25独立val=1.2322787538608178，plateau 2/3，已进入e26；仍需下一期确认，双preflight和正式G2尚未放行。
+
+## 87. 双 G1 通过与 G2 preflight 提交绑定修复
+
+- EDIT在e26收敛，best_val=1.2313300454448592；`convergence_EDIT.json` SHA256=`07114000fd4afa52d5335f1979bac9df571910505d5262e15621b7064572d471`，converged.pt SHA256=`77e81b5b9af886c2cc4a712fc064e5fc3c3c6f7386369a27916d67758736a9df`。
+- EDIT三基因各100 paired样本均通过G1：identity/legal=1.0、non-source=1.0、100唯一解、最大单序列频率0.01、uniform重合0；stay-p约0.0002646/0.0003460/0.0004119，位置覆盖约0.808/0.923/0.859。该行为与FULL高stay-p不同，不能预先解释为性能优势。
+- `g1_EDIT.json` SHA256=`0758eb6a8136a829d2b370c45bac2ffc20f8f055161e89b683891f21c5581eb7`；`g2_preflight_EDIT.json` SHA256=`a87d6014cbe8e751d36daf5013935b2e138682929b7810ed565864d71e172b15`。双preflight就绪，scientific_gate_passed=false。
+- 首次G2在正式分片前停止：`load_preflights`错误要求两臂`code_commit`完全相同，而FULL/EDIT preflight产生于不同文档提交。未执行dry-run或正式分片，没有科学结果丢失。
+- 修复为每臂分别验证其commit是当前代码祖先且工作树clean，其他record/seeds/benchmark/calibration/RSCU/budget/T/path_batch字段仍严格一致。新增不同commit接受及不完整record拒绝回归；完整回归 **207 passed, 1 skipped**。后续使用新watcher目录，保留原failed状态。

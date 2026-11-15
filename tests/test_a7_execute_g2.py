@@ -23,6 +23,8 @@ def preflight(tmp_path, arm):
 def test_g2_executor_requires_matching_complete_preflights(tmp_path):
     full, _ = preflight(tmp_path, "FULL")
     edit, edit_value = preflight(tmp_path, "EDIT")
+    edit_value["code_commit"] = "def"
+    edit.write_text(json.dumps(edit_value))
     arms = load_preflights([f"FULL={full}", f"EDIT={edit}"])
     assert len(arms["FULL"]["record_ids"]) == 18
     edit_value["record_ids"] = edit_value["record_ids"][:-1]
