@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
 > 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 已完成 e21 收敛、G1 行为验收和 preflight；EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练。双 preflight 未完成，正式 G2 未启动。
+> 当前处于 P3/G2 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。正式 G2 正在执行108 learned+54 shared simple分片，尚无 Go/No-Go 裁决。
 
 ## 0. 已完成的方向与审计工作
 
@@ -83,10 +83,10 @@
 
 ## 2. P2 · G1 模型收敛且非退化
 
-- [ ] **T2.1 开发模型训练**：FULL r5 已完成 e21 收敛，EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练；r4 的 e1/e2 checkpoint 仅用于精确恢复，禁止从旧 arbitrary-corruption 权重冒充恢复或覆盖 r4。
-- [ ] **T2.2 收敛与冻结**：独立 val 连续 3 epoch 相对改善 <0.1%；保存 best/last/training_state/converged 和 SHA256。
-- [ ] **T2.3 行为门**：至少 3 个开发基因 × 100 paired 样本，满足 spec G1 的非源序列率、唯一解数、最大单序列频率和 identity/legal。
-- [ ] **T2.4 诊断归档**：报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；旧复制模型仅作反例。
+- [x] **T2.1 开发模型训练**：FULL r5 e21 与 EDIT r5 e26 均已收敛；r4 的 e1/e2 checkpoint 仅用于精确恢复，禁止从旧 arbitrary-corruption 权重冒充恢复或覆盖 r4。
+- [x] **T2.2 收敛与冻结**：两臂均满足独立 val 连续 3 epoch 相对改善 <0.1%；best/last/training_state/converged 和 SHA256 已冻结。
+- [x] **T2.3 行为门**：两臂均完成至少 3 个开发基因 × 100 paired 样本，满足 spec G1 的非源序列率、唯一解数、最大单序列频率和 identity/legal。
+- [x] **T2.4 诊断归档**：两臂 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合均已入档；旧复制模型仅作反例。
 
 **DoD**：G1 所有阈值由独立 JSON 验证；full-token 与 edited-token 不跨目标比较 val 绝对值。
 
@@ -137,4 +137,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**P2 / G1 模型收敛与非退化验收。** FULL r5 已完成 e21 收敛、G1 和 preflight，EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练；正式 G2 仍未放行。可并行准备开发集独立 calibration 和 G2 工具，但不得运行或宣称正式 learned-vs-simple 结果。P3–P5 受前置门约束。
+**P3 / G2 learned vs 简单搜索。** 双臂 G1 已完成，正式 G2 正在执行108 learned+54 shared simple分片。不得提前宣称 Go/No-Go 或性能优势。P4–P5 受前置门约束。

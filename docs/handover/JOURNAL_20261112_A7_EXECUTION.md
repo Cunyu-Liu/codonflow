@@ -611,3 +611,10 @@
 - `g1_EDIT.json` SHA256=`0758eb6a8136a829d2b370c45bac2ffc20f8f055161e89b683891f21c5581eb7`；`g2_preflight_EDIT.json` SHA256=`a87d6014cbe8e751d36daf5013935b2e138682929b7810ed565864d71e172b15`。双preflight就绪，scientific_gate_passed=false。
 - 首次G2在正式分片前停止：`load_preflights`错误要求两臂`code_commit`完全相同，而FULL/EDIT preflight产生于不同文档提交。未执行dry-run或正式分片，没有科学结果丢失。
 - 修复为每臂分别验证其commit是当前代码祖先且工作树clean，其他record/seeds/benchmark/calibration/RSCU/budget/T/path_batch字段仍严格一致。新增不同commit接受及不完整record拒绝回归；完整回归 **207 passed, 1 skipped**。后续使用新watcher目录，保留原failed状态。
+
+## 88. 正式 G2 分片启动
+
+- 修复提交 `1ef8961b96cb92e539981ac2c93c046fc7780c86` 已推送并部署；训练机完整回归 **207 passed, 1 skipped**。
+- 真实dry-run确认108 learned+54 shared simple=162分片，根目录 `eval_outputs/a7_g2_r5`，simple-workers=4、learned-workers=2。
+- 新 `g2_r5_watcher_resume1/status.json=running_g2`，原 `g2_r5_watcher/status.json=failed`保留。`execution_status.json=running`，code_commit=1ef8961b，scientific_gate_passed=false。
+- 正式learned-vs-simple对照已启动，尚无完成结果或Go/No-Go裁决。后续只读取真实分片、Gate v2和冻结图形manifest。

@@ -2,14 +2,14 @@
 
 > 生效日期：2026-11-01。本文是当前唯一有效合同；旧版勾选、命令和数字只在 journal/audit 中追溯。
 > 已确认方向：主任务为 **warm-start synonymous CDS editing**；第一决定性关卡为 **learned proposal vs 无学习简单搜索**。
-> 当前处于 P2/G1 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 已在 e21 达到收敛并通过独立审计、三基因 G1 和 G2 preflight；EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练。正式 G2 尚未放行，r4 全部证据保留。
+> 当前处于 P3/G2 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。正式 G2 正以108 learned+54 shared simple分片执行，尚无 Go/No-Go 裁决，r4 全部证据保留。
 > 2026-11-12 执行补充：代码与提交以远端 `/home/codonflow` 为工作副本；大型数据、权重、日志和 artifacts 只放 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。训练及 GPU 验证必须实际使用 CUDA；CUDA 不可用、kernel 不兼容或 CPU 静默降级时立即停止并保存证据。独立任务可并行，但不得为占满显存制造实验或越过 Gate。
 
 ## 0. 当前事实状态
 
 - 2026-11-12 交接证据记录：untouched 24 基因确认集、D5 train RSCU 和 24/24 独立 calibration pool 已完成并验证；合并代码完整回归为 131 passed, 1 skipped。上述资产仍须在执行实例上复核路径、哈希和内容，不能只凭交接文字推进。
 - unique18 seeds 0/1/2 均完成 18/18、五方法及独立 MFE/NED 复算；25 物种原始来源、全量清洗、分布、冻结资产和 calibration 已闭环并通过 G0。
-- FULL r5 已在 e21 收敛并通过 G1 行为验收；EDIT r5 仍在训练，不能提前将双臂或 learned-vs-simple 写成通过。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
+- FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪；正式 G2 正在执行，不能提前写成 learned-vs-simple 通过。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
 - r4 已完成 e1/e2 并保留完整恢复状态，但 e3 中断且未收敛；r5 精确恢复只提供训练连续性，G1 仍由独立收敛审计、行为结果和 checkpoint 哈希判定。
 - 已有资产：有限步同义 Markov 操作符、小状态精确验证、成本 trace、v4/v5 内部划分审计、core seed-0 五方法 baseline 的部分结果。
 - `unique18.fasta` 的 18 条输入已审计，但 baseline 输出不得仅凭文件数称为完整；正式使用前必须按 manifest 复核 done/partial/missing、MFE/NED 和种子。
@@ -172,7 +172,7 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 3. 报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；这些诊断不能替代 G2。
 4. 上述数值是排除明显退化的操作阈值，不是性能证据；如需修改，必须在查看新输出前记录 amendment。
 
-当前 **FULL 通过，EDIT 未完成**。FULL r5 e21 收敛审计、三基因行为验收和 preflight 均通过；EDIT r5 仍须完成全部 G1。双 preflight 未完成，不得启动正式 G2。
+当前 **双臂均通过**。FULL r5 e21 与 EDIT r5 e26 的收敛审计、三基因行为验收和 preflight 均通过，正式 G2 正在执行，尚无 Go/No-Go 裁决。
 
 ### G2：第一决定性关卡——learned vs 简单搜索
 

@@ -39,13 +39,13 @@
 
 ## C3. G1 模型收敛且非退化
 
-- [ ] 新 synonymous-corruption 模型具有真实 converged checkpoint；FULL r5 e21 已收敛并通过 G1，EDIT r5 仍须完成收敛与 G1。
-- [ ] best/last/training_state/converged、配置和 SHA256 一致且不可变。
-- [ ] identity/legal = 100%。
-- [ ] 至少 3 个开发基因 × 100 paired 样本中，≥95% 输出不同于初始序列。
-- [ ] 每 100 个输出至少 80 个唯一终端序列，最大单一终端序列频率 ≤20%。
-- [ ] stay-p、P(edit)、位置覆盖、奖励响应和 uniform 逐串重合诊断归档。
-- [ ] full-token 与 edited-token 只通过同一下游协议比较，不直接比较 val 绝对值。
+- [x] 新 synonymous-corruption 模型具有真实 converged checkpoint；FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1。
+- [x] best/last/training_state/converged、配置和 SHA256 一致且不可变。
+- [x] identity/legal = 100%。
+- [x] 至少 3 个开发基因 × 100 paired 样本中，≥95% 输出不同于初始序列。
+- [x] 每 100 个输出至少 80 个唯一终端序列，最大单一终端序列频率 ≤20%。
+- [x] stay-p、P(edit)、位置覆盖、奖励响应和 uniform 逐串重合诊断归档。
+- [x] full-token 与 edited-token 只通过同一下游协议比较，不直接比较 val 绝对值。
 
 ## C4. G2 learned vs 简单搜索（第一决定性关卡）
 
@@ -93,8 +93,8 @@
 | Gate | 当前状态 | 原因 |
 |---|---|---|
 | G0 数据与协议 | **通过** | `g0_gate.json passed=true`，全量分布、25 物种来源、冻结资产、三 seed 复算和 CUDA 全部通过 |
-| G1 模型有效 | **FULL 通过；EDIT 待完成** | FULL r5 e21 收敛且行为验收通过；EDIT r5 仍在 e21 训练 |
-| G2 学习必要性 | **未裁决** | 没有有效 learned 模型与完整简单搜索对照 |
+| G1 模型有效 | **通过** | FULL r5 e21 与 EDIT r5 e26 均收敛且行为验收通过 |
+| G2 学习必要性 | **执行中，未裁决** | 108 learned+54 shared simple 正在运行，尚无完整统计结果 |
 | G3 rollout 净收益 | **未启动** | 依赖 G2 |
 | G4 独立确认/外部边界 | **未启动** | 依赖 G2/G3 与 D5 最终模型 |
 | G5 论文发布 | **不可提交** | 学习与独立确认证据缺失 |
