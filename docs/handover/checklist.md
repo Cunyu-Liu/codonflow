@@ -39,7 +39,7 @@
 
 ## C3. G1 模型收敛且非退化
 
-- [ ] 新 synonymous-corruption 模型具有真实 converged checkpoint；r4 e1/e2 checkpoint 完整但并未收敛，r5 精确恢复仍须重新完成 G1。
+- [ ] 新 synonymous-corruption 模型具有真实 converged checkpoint；FULL r5 e21 已收敛并通过 G1，EDIT r5 仍须完成收敛与 G1。
 - [ ] best/last/training_state/converged、配置和 SHA256 一致且不可变。
 - [ ] identity/legal = 100%。
 - [ ] 至少 3 个开发基因 × 100 paired 样本中，≥95% 输出不同于初始序列。
@@ -93,7 +93,7 @@
 | Gate | 当前状态 | 原因 |
 |---|---|---|
 | G0 数据与协议 | **通过** | `g0_gate.json passed=true`，全量分布、25 物种来源、冻结资产、三 seed 复算和 CUDA 全部通过 |
-| G1 模型有效 | **未通过** | r4 两期 val checkpoint 完整但未收敛，r5 恢复尚未完成；旧 plateau 模型已证伪 |
+| G1 模型有效 | **FULL 通过；EDIT 待完成** | FULL r5 e21 收敛且行为验收通过；EDIT r5 仍在 e21 训练 |
 | G2 学习必要性 | **未裁决** | 没有有效 learned 模型与完整简单搜索对照 |
 | G3 rollout 净收益 | **未启动** | 依赖 G2 |
 | G4 独立确认/外部边界 | **未启动** | 依赖 G2/G3 与 D5 最终模型 |

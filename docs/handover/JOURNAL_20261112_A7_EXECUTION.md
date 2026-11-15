@@ -581,3 +581,19 @@
 - FULL已完成15期，best_epoch=15、best_val=1.1647381445463216。e11–e15 val依次1.1686501204002862、1.1668536782546193、1.167723697979275、1.1655283308253375、1.1647381445463216；e15相对改善约0.0678%，仅plateau 1/3。
 - EDIT已完成14期，best_epoch=13、best_val=1.2430650269002725。e10–e14 val依次1.2487324268383495、1.2471096746817667、1.2458527315078864、1.2430650269002725、1.2433213658634028；e14略回升，仅plateau 1/3。
 - 两臂log epoch与state严格连续，best epoch/loss与历史最小值一致，优化器和CUDA RNG存在。最近三期均不满足连续<0.1%的收敛条件，G1/G2 watcher继续等待，无性能结论或PPT更新。
+
+## 84. FULL r5 收敛、G1 与 G2 preflight 正式通过
+
+- 2026-11-15 14:30 CST实时核验：FULL在e21触发`CONVERGENCE CRITERION TRIGGERED`并停止；EDIT仍在e21训练，正式G2未启动。
+- FULL best_epoch=21、best_val=1.159711169985858。最后三期相对改善为0.0004868166、0.0000478013、0.0001429611，均<0.001；21期完整历史、四份checkpoint、优化器/CUDA RNG、配置/数据/commit及CUDA forward均通过独立审计。
+- `convergence_FULL.json` SHA256=`f97bb3ce1f6ee7b8572062a6508d913077234e8f9be9267e3c8b628b45b1d45b`；converged.pt SHA256=`e6a26102b0f5ae9443dbfb9526d418169ba577138016e70430203d80eef16d1c`。
+- 三基因各100 paired样本全部通过G1：identity/legal=1.0；non-source依次0.98/0.98/0.95；每基因100个唯一终端序列，最大单序列频率0.01，uniform逐串重合0；位置覆盖约0.678/0.721/0.733，奖励响应非退化。
+- `g1_FULL.json` SHA256=`a4bd8df80ebf3e8a9e5684b8ee1324a7a24e5c7462f6a1d45065ed737de6be8f`；`g2_preflight_FULL.json` SHA256=`b1515c22d34031918e37ebff35e8e3951496c7d43694ae3dc9e59abe7cb94e42`，checkpoint哈希三方一致，preflight ready=true且scientific_gate_passed=false。
+- 这只证明FULL收敛且非退化，不是learned-vs-simple性能证据。必须等待EDIT收敛/G1及双preflight后才能运行正式G2。
+
+## 85. PPT 第47页：FULL G1 已核验记录
+
+- 在 `CodonFlow-中期汇报-20261009.pptx` 末尾新增FULL G1页，记录21 epochs、best val 1.159711、identity 100%、每基因100唯一解、non-source 95–98%和证据路径；明确EDIT训练中、双preflight未完成、G2未启动、预印本不可提交。
+- 初版中文在当前LibreOffice环境缺字，原PPT旧页也存在相同环境问题；最终采用简洁英文标签，不改变科学内容。最终页已经完整渲染检查，无丢字、溢出或遮挡，重开为47页。
+- 最终PPT SHA256=`5447d9372b3a8d9187f79aa6238fb4ed6f3a7e6d8347c59fc7717910e6c48410`。临时PDF/PNG/预览服务和浏览器页均已清理。
+- 本页仅为G1里程碑，不是learned-vs-simple性能结果。
