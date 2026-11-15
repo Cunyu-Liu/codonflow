@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**G0 已通过；FULL r5 已完成 e21 收敛、G1 和 preflight，EDIT r5 仍在 e21 训练。development calibration 18/18 已验收，双 preflight 未完成，正式 G2 未启动。**
+> 当前动作：**G0 已通过；FULL r5 已完成 e21 收敛、G1 和 preflight，EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练。development calibration 18/18 已验收，双 preflight 未完成，正式 G2 未启动。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口
@@ -164,7 +164,7 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **207 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
 
-G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。FULL r5 已完成 e21 收敛、三基因 G1 和 preflight，EDIT r5 仍在 e21 训练。`g1_r5_watcher` 和 `g2_r5_watcher` 继续等待 EDIT；双 preflight 后执行相同162分片 G2 协议。
+G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。FULL r5 已完成 e21 收敛、三基因 G1 和 preflight，EDIT r5 已完成 e25，plateau 2/3，正在 e26 训练。`g1_r5_watcher` 和 `g2_r5_watcher` 继续等待 EDIT；双 preflight 后执行相同162分片 G2 协议。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 
