@@ -640,3 +640,5 @@
 - 静态交付审计发现主图仅覆盖AUC/统计/NED，缺少合同要求的自动二级表。新增 `a7_summarize_g2.py`：从冻结Gate及SHA校验的原始输入重建B=50/100/500原始Pareto前沿、四目标best-at-budget、双向非支配覆盖和逐run成本，不重新裁决或修改阈值。
 - 使用独立 `/home/codonflow-analysis` worktree 测试分析代码，避免移动正式G2的 `/home/codonflow` HEAD。首轮唯一失败是单基因统计fixture按规则Gate=false而测试误设必须true，已修正为忠实继承Gate；随后聚焦3项及完整回归 **212 passed, 1 skipped** 均通过。真实G2二级输出尚未生成。
 - 两套本地spec/tasks和共享交接镜像已同步；`HANDOFF_A7_20261116.md`、RECOVERY和next-agent提示已纠正历史“无GPU/无checkpoint”状态。论文状态更新为双G1通过、G2未裁决，仍不可提交。
+
+- 二级分析与当前交接提交 `07d115ae6f2fbf73d84be3ec230cec07fa5a562b` 已从独立worktree正常推送GitHub。正式执行目录保持 `831303b9` 且clean，显示main behind 1是刻意冻结，不得在G2运行中pull；这不会给新分片引入第三套执行commit。

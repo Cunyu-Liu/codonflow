@@ -6,7 +6,7 @@
 
 当前事实：G0 与双臂 G1 已通过；FULL r5 e21 和 EDIT r5 e26 收敛。当前唯一任务是 P3/G2 learned vs 最强无学习简单搜索，正式严格 resume 正在执行 108 learned+54 shared simple；尚无 Go/No-Go，预印本不可提交。
 
-代码 `/home/codonflow`，当前提交 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 210 passed、1 skipped。大型资产 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。先读 `eval_outputs/a7_g2_r5/execution_status.json`、`07_a7_data/g2_r5_resume2/execution.log` 和 executor.pid；不得盲目重复启动。
+G2 执行代码 `/home/codonflow` 固定提交 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 210 passed、1 skipped。GitHub 最新 main=`07d115ae6f2fbf73d84be3ec230cec07fa5a562b`，新增二级分析；执行目录 behind 是刻意冻结，不得在运行中 pull。大型资产 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。先读 `eval_outputs/a7_g2_r5/execution_status.json`、`07_a7_data/g2_r5_resume2/execution.log` 和 executor.pid；不得盲目重复启动。
 
 首次运行的 25 个合法分片必须复用，不得重跑或删除。允许 commit 仅限当前修复提交及已登记祖先 `1ef8961b96cb92e539981ac2c93c046fc7780c86`、`5f9e5a560b118568d435fa68a72ef9253d4252c5`；两历史提交仅文档差异。运行中不要修改或提交 `/home/codonflow`。
 
