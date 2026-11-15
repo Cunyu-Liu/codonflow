@@ -650,3 +650,26 @@
 - 新页复用既有四卡片英文版式，记录FULL 21 epochs/best val 1.159711、EDIT 26 epochs/best val 1.231330、双臂identity=100%、每基因100唯一解、max frequency 1%、FULL non-source 95–98%、EDIT 100%和双preflight ready；明确G2 running、no Go/No-Go、no performance claim。
 - 所有数字直接对照双臂convergence与G1 JSON；checkpoint前缀、CUDA、三基因各100样本及非源序列率断言通过。python-pptx重开48页、LibreOffice导出48页PDF、实际PNG视觉检查均通过，无缺字、溢出或遮挡。
 - 最终PPT SHA256=`2db15247e0a79c527d178f678eb4ada6fe792cefe9c87c064ef98d648ac41eb5`，本地与 `/teams/.../04_deliverables/CodonFlow-中期汇报-20261009.pptx` 一致。该页不是G2性能结果。
+
+
+## 92. G2 运行中公平性与完整性复核
+
+- 第二次运行完整性审计覆盖86个结果：全部done、identity=1、code clean；21个learned结果均记录 `device=cuda:0`。25个旧分片SHA仍完全不变；本次attempt日志无Traceback、RuntimeError、ValueError或CUDA OOM。上一份审计已归档到 `runtime_integrity_history/`。
+- 静态复核 `SimpleSearch`、learned runner、paired initialization与统计实现：所有方法budget 1评分同一paired初始，每run独立cache；只有新序列增加唯一scorer预算，重复请求保留终端成本；uniform在初始点后全局逐位置同义采样，hill/MH/AReUReDi-style使用单密码子局部核。
+- learned使用相同初始、T=4、独立scorer，forward与wall-clock另记；最强简单搜索按每基因三seed平均AUC选择，bootstrap/Wilcoxon以基因为单位，seed不作为独立生物样本。实现与冻结合同一致，无需修改协议或重跑。
+- 上述仍是协议和工程检查，不是G2性能结论；正式Gate继续运行。
+
+
+## 93. 最长基因计算 slowdown 的直接核验
+
+- 当结果增长到110个（FULL 21、shared simple 89、EDIT 0）时，FULL在 `C41G7.2.1` 上数分钟未新增。该序列实测1764 nt，是18个开发基因中最长者；第二1686 nt，其余不超过1200 nt。
+- 当前worker日志只有正常nested-tensor警告，无异常。一次GPU快照利用率41%，但该阶段RNAfold等CPU计算占主导，不能为占卡改变预算或替换任务。
+- 直接 `/proc` 两次采样间隔5秒：6个相关worker均为 `R`，各增加约500–501 CPU ticks，约等于每个进程持续占用一个CPU核。由此确认是实际计算而非挂起；未重启、未kill、未改协议。
+- 科学Gate仍未开始，以上只是运行诊断，不是性能结论。
+
+
+## 94. 第三次 G2 运行完整性审计
+
+- 第三轮独立快照覆盖124个结果：全部done、identity=1、code clean；26个learned结果均明确 `device=cuda:0`、T=4、path_batch=32。25个旧分片SHA保持完全不变。
+- 当前resume attempt日志再次扫描，无Traceback、RuntimeError、ValueError或CUDA OOM。上一份审计已独立归档到 `runtime_integrity_history/`，未覆盖历史快照。
+- 截至本节仍无正式Gate或性能结论；三轮运行完整性检查不能替代最终Gate v2的原始指标与统计复核。
