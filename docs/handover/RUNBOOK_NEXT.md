@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**G0 与双臂 G1 已通过；正式 G2 正在执行108 learned+54 shared simple分片。development calibration 18/18 已验收，尚无 Go/No-Go 裁决。**
+> 当前动作：**G0 与双臂 G1 已通过；首次正式 G2 保留 25 个有效分片后因混合 code commit 停止。使用显式祖先允许集合严格 resume，不重跑旧分片，尚无 Go/No-Go 裁决。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口
@@ -162,9 +162,24 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 ## 10. 当前唯一下一步
 
-先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **207 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
+先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **210 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
 
-G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。`g2_r5_watcher_resume1` 正在执行108 learned+54 shared simple分片，首次 preflight 提交绑定失败已修复并留证；尚无 Go/No-Go 裁决。
+G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。首次 G2 的 25 个有效分片已保留，随后因混合 code commit 停止；`g2_r5_watcher_resume1/status.json=failed` 是工程溯源失败，不是科学 No-Go。
+
+先对以下命令加 `--dry-run` 核对 108 learned+54 shared simple 和允许版本集合，再去掉 `--dry-run` 执行。当前修复提交自动纳入，上次 failed 状态的 `1ef8961b96cb92e539981ac2c93c046fc7780c86` 自动继承，文档提交 `5f9e5a5` 显式登记；不接受未登记版本。
+
+```bash
+cd /home/codonflow
+R=/teams/HoulabData_1788502323/liucunyu/codonflow1031
+/root/miniconda3/envs/codonflow/bin/python scripts/a7_execute_g2.py \
+  --preflight FULL=$R/07_a7_data/g1_r5_watcher/g2_preflight_FULL.json \
+  --preflight EDIT=$R/07_a7_data/g1_r5_watcher/g2_preflight_EDIT.json \
+  --rscu-json $R/01_code/codonflow/configs/cai_ref_v4train.json \
+  --accept-code-commit 5f9e5a560b118568d435fa68a72ef9253d4252c5 \
+  --resume
+```
+
+正式 Gate 与图形生成完成后才读取科学结果；尚无 Go/No-Go 裁决。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 

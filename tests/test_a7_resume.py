@@ -33,3 +33,14 @@ def test_resume_rejects_partial_result(tmp_path):
     path.write_text(json.dumps(result))
     with pytest.raises(ValueError, match="incomplete or dirty"):
         completed_result(path, {})
+
+
+def test_resume_accepts_only_explicit_code_commit_set(tmp_path):
+    result = payload()
+    result.update({"method": "uniform", "code_dirty": False, "code_commit": "abc"})
+    path = tmp_path / "result.json"
+    path.write_text(json.dumps(result))
+    expected = {"code_commit": frozenset({"abc", "def"})}
+    assert completed_result(path, expected) == result
+    with pytest.raises(ValueError, match="resume mismatch for code_commit"):
+        completed_result(path, {"code_commit": frozenset({"def"})})

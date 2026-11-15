@@ -23,6 +23,7 @@ from codonflow.eval.protocol import validate_result_payload
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.models.simple_search import SimpleSearch
 from codonflow.train.run_pretrain import file_sha256, git_commit
+from scripts.a7_provenance import resolve_accepted_code_commits
 
 
 def code_dirty():
@@ -40,7 +41,8 @@ def completed_result(path, expected):
     if payload["status"] != "done" or payload["code_dirty"] is not False:
         raise ValueError(f"cannot resume incomplete or dirty result: {path}")
     for key, value in expected.items():
-        if payload.get(key) != value:
+        matches = payload.get(key) in value if isinstance(value, (set, frozenset)) else payload.get(key) == value
+        if not matches:
             raise ValueError(f"resume mismatch for {key}: {path}")
     return payload
 
@@ -53,6 +55,7 @@ def main() -> None:
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--methods", nargs="+", choices=SimpleSearch.METHODS,
                         default=list(SimpleSearch.METHODS))
     parser.add_argument("--record-id")
@@ -63,6 +66,7 @@ def main() -> None:
     args = parser.parse_args()
     if len(args.weights) != 4:
         raise ValueError("exactly four objective weights are required")
+    accepted_code_commits = resolve_accepted_code_commits(args.accept_code_commit)
     records = [(header.split()[0], sequence) for header, sequence in read_fasta(args.benchmark_fasta)]
     if args.record_id:
         records = [row for row in records if row[0] == args.record_id]
@@ -100,7 +104,9 @@ def main() -> None:
                     "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
                     "calibration_sha256": file_sha256(str(calibration_path)),
                     "rscu_sha256": file_sha256(args.rscu_json),
-                    "checkpoint_sha256": None, "code_commit": git_commit(),
+                    "benchmark_sha256": benchmark_sha256,
+                    "data_split_sha256": args.data_split_sha256,
+                    "checkpoint_sha256": None, "code_commit": accepted_code_commits,
                 })
                 print(json.dumps({"record_id": header, "method": method, "status": "skipped_existing"}), flush=True)
                 continue

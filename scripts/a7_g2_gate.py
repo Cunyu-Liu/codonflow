@@ -5,10 +5,14 @@ import argparse
 import glob
 import hashlib
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from codonflow.core.codon import feasible_edit
 from codonflow.data.dataset import read_fasta
@@ -17,6 +21,7 @@ from codonflow.eval.metrics import pairwise_ned
 from codonflow.eval.paired_stats import holm_adjust, paired_gene_effects
 from codonflow.eval.protocol import validate_result_payload
 from codonflow.models.guided_sampler import synonymous_x0
+from scripts.a7_provenance import resolve_accepted_code_commits
 
 SIMPLE_METHODS = ("uniform", "hill_climbing", "mh_annealing", "areuredi_style")
 
@@ -53,7 +58,7 @@ def recompute_raw_metrics(payload, source, calibration_dir):
 
 
 def load_paired_results(paths, arm, expected_genes, expected_seeds=(0, 1, 2),
-                        source_records=None, calibration_dir=None):
+                        source_records=None, calibration_dir=None, accepted_code_commits=None):
     grouped = defaultdict(dict)
     inputs = []
     for path in paths:
@@ -63,6 +68,8 @@ def load_paired_results(paths, arm, expected_genes, expected_seeds=(0, 1, 2),
             raise ValueError(f"incomplete result cannot enter G2: {path}")
         if payload["code_dirty"] is not False:
             raise ValueError(f"G2 requires a clean source-controlled commit: {path}")
+        if accepted_code_commits is not None and payload["code_commit"] not in accepted_code_commits:
+            raise ValueError(f"unregistered code commit cannot enter G2: {path}")
         if payload["seed"] not in expected_seeds or payload["record_id"] not in expected_genes:
             raise ValueError(f"unexpected gene or seed: {path}")
         if not payload.get("initial_sha256") or len(payload["points"]) != 500:
@@ -98,26 +105,33 @@ def load_paired_results(paths, arm, expected_genes, expected_seeds=(0, 1, 2),
     for (gene, seed), learned in observations.items():
         rows = [grouped[(gene, seed, method)] for method in ("learned", *SIMPLE_METHODS)]
         for field in ("initial_sha256", "source_sha256", "benchmark_sha256",
-                      "data_split_sha256", "calibration_sha256", "rscu_sha256", "code_commit"):
+                      "data_split_sha256", "calibration_sha256", "rscu_sha256"):
             if len({row[field] for row in rows}) != 1:
                 raise ValueError(f"unmatched {field}: {gene}, seed={seed}")
+        if accepted_code_commits is None and len({row["code_commit"] for row in rows}) != 1:
+            raise ValueError(f"unmatched code_commit: {gene}, seed={seed}")
         if rows[0]["checkpoint_sha256"] != arm["checkpoint_sha256"]:
             raise ValueError(f"checkpoint mismatch: {gene}, seed={seed}")
     return grouped, inputs
 
 
-def evaluate_g2(arms, expected_genes, min_genes=18, source_records=None, calibration_dir=None):
+def evaluate_g2(arms, expected_genes, min_genes=18, source_records=None, calibration_dir=None,
+                accepted_code_commits=None):
     all_statistics = []
     fingerprints = []
     for arm in arms:
-        grouped, inputs = load_paired_results(arm["paths"], arm, expected_genes,
-                                             source_records=source_records, calibration_dir=calibration_dir)
+        grouped, inputs = load_paired_results(
+            arm["paths"], arm, expected_genes, source_records=source_records,
+            calibration_dir=calibration_dir, accepted_code_commits=accepted_code_commits,
+        )
         rows = [{"gene": gene, "seed": seed, "method": method,
                  "auc": payload["anytime"]["auc"]}
                 for (gene, seed, method), payload in grouped.items()]
-        fingerprints.append({field: {payload[field] for payload in grouped.values()}
-                             for field in ("benchmark_sha256", "rscu_sha256",
-                                           "data_split_sha256", "code_commit")})
+        fingerprint = {field: {payload[field] for payload in grouped.values()}
+                       for field in ("benchmark_sha256", "rscu_sha256", "data_split_sha256")}
+        if accepted_code_commits is None:
+            fingerprint["code_commit"] = {payload["code_commit"] for payload in grouped.values()}
+        fingerprints.append(fingerprint)
         statistics = paired_gene_effects(rows, SIMPLE_METHODS, n_bootstrap=10000, seed=0)
         diversity = []
         for gene_row in statistics["per_gene"]:
@@ -129,6 +143,7 @@ def evaluate_g2(arms, expected_genes, min_genes=18, source_records=None, calibra
             diversity.append({"gene": gene, "baseline": baseline, "learned_ned": learned_ned,
                               "simple_ned": simple_ned, "ratio": ratio})
         arm_result = {"arm": arm["name"], "checkpoint_sha256": arm["checkpoint_sha256"],
+                      "code_commits": sorted({payload["code_commit"] for payload in grouped.values()}),
                       "statistics": statistics, "diversity": diversity, "inputs": inputs}
         all_statistics.append(statistics)
         arm["result"] = arm_result
@@ -154,6 +169,7 @@ def evaluate_g2(arms, expected_genes, min_genes=18, source_records=None, calibra
         result["checks"] = checks[arm["name"]]
         result["passed"] = all(checks[arm["name"]].values())
     return {"protocol": "a7_g2_gate_v2", "raw_metrics_recomputed": source_records is not None,
+            "accepted_code_commits": sorted(accepted_code_commits) if accepted_code_commits is not None else None,
             "expected_genes": sorted(expected_genes),
             "seeds": [0, 1, 2], "budgets": [50, 100, 500], "arms": [arm["result"] for arm in arms],
             "passed": bool(arms) and all(arm["result"]["passed"] for arm in arms)}
@@ -179,7 +195,9 @@ def main():
     parser.add_argument("--out", required=True)
     parser.add_argument("--benchmark-fasta", required=True)
     parser.add_argument("--calibration-dir", required=True)
+    parser.add_argument("--accept-code-commit", action="append", default=[])
     args = parser.parse_args()
+    accepted_code_commits = resolve_accepted_code_commits(args.accept_code_commit)
     source_records = {header.split()[0]: sequence for header, sequence in read_fasta(args.benchmark_fasta)}
     arms = [expand_arm_spec(item) for item in args.arm]
     all_payloads = [json.loads(Path(path).read_text()) for arm in arms for path in arm["paths"]]
@@ -187,7 +205,8 @@ def main():
     if expected_genes != set(source_records):
         raise ValueError("G2 inputs must cover exactly the benchmark records")
     result = evaluate_g2(arms, expected_genes, source_records=source_records,
-                         calibration_dir=args.calibration_dir)
+                         calibration_dir=args.calibration_dir,
+                         accepted_code_commits=accepted_code_commits)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=2))

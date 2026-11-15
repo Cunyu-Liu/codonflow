@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
 > 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
-> 当前处于 P3/G2 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。正式 G2 正在执行108 learned+54 shared simple分片，尚无 Go/No-Go 裁决。
+> 当前处于 P3/G2 实施阶段；G0 已于 2026-11-12 正式通过。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。首次正式 G2 的 25 个有效分片已保留，运行因混合 code commit 溯源失败而停止；正在按显式祖先允许集合恢复，尚无 Go/No-Go 裁决。
 
 ## 0. 已完成的方向与审计工作
 
@@ -92,7 +92,8 @@
 
 ## 3. P3 · G2 第一决定性关卡：learned vs 简单搜索
 
-- [ ] **T3.1 开发集 paired 主实验**：learned base 对 uniform/hill-climbing/MH/AReUReDi-style，同初始化、同 scorer/cache、3 seeds。
+- [x] **T3.0 混合版本中断恢复**：保留 25 个有效分片和原 failed 状态；差异审计确认两历史提交仅文档变化。执行器、worker 与 Gate 使用冻结的显式祖先 commit 集合，其余科学元数据仍严格配对；聚焦测试 15 项、完整回归 210 passed / 1 skipped。
+- [ ] **T3.1 开发集 paired 主实验**：learned base 对 uniform/hill-climbing/MH/AReUReDi-style，同初始化、同 scorer/cache、3 seeds；严格 resume 108 learned+54 shared simple，不重跑合法旧分片。
 - [ ] **T3.2 anytime 质量—成本分析**：输出 B=50/100/500 曲线、固定参考域 HV AUC、原始 Pareto front、逐目标 best-at-budget 和 NED。
 - [ ] **T3.3 统计裁决**：按基因计算最强简单基线、相对效应、paired bootstrap 95% CI、Wilcoxon 与 Holm。
 - [ ] **T3.4 Go/No-Go**：完整核对 spec G2 的 ≥10% 中位改善、CI、p 值、identity/legal 和多样性条件。
@@ -137,4 +138,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**P3 / G2 learned vs 简单搜索。** 双臂 G1 已完成，正式 G2 正在执行108 learned+54 shared simple分片。不得提前宣称 Go/No-Go 或性能优势。P4–P5 受前置门约束。
+**P3 / G2 learned vs 简单搜索。** 双臂 G1 已完成，首次正式 G2 的 25 个有效分片已保留，当前严格 resume 108 learned+54 shared simple。不得提前宣称 Go/No-Go 或性能优势。P4–P5 受前置门约束。

@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from codonflow.eval.protocol import validate_result_payload
 from codonflow.train.run_pretrain import file_sha256, git_commit
+from scripts.a7_provenance import resolve_accepted_code_commits
 
 
 def load_preflights(values):
@@ -56,6 +57,7 @@ def main():
     parser.add_argument("--simple-workers", type=int, default=4)
     parser.add_argument("--learned-workers", type=int, default=2)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     if args.simple_workers < 1 or args.learned_workers < 1:
@@ -75,6 +77,14 @@ def main():
     if file_sha256(args.rscu_json) != template["rscu_sha256"]:
         raise ValueError("RSCU file does not match preflight")
     commit = git_commit()
+    status_path = root / "execution_status.json"
+    previous_status = json.loads(status_path.read_text()) if args.resume and status_path.exists() else None
+    accepted_values = list(args.accept_code_commit)
+    if previous_status is not None:
+        accepted_values.extend(previous_status.get("accepted_code_commits", [previous_status["code_commit"]]))
+    accepted_code_commits = resolve_accepted_code_commits(accepted_values)
+    if commit not in accepted_code_commits:
+        raise RuntimeError("HEAD moved while resolving G2 code provenance")
     for preflight in arms.values():
         subprocess.run(["git", "merge-base", "--is-ancestor", preflight["code_commit"], commit], check=True)
     if subprocess.check_output(["git", "status", "--porcelain"], text=True).strip():
@@ -100,6 +110,8 @@ def main():
                            "--terminal-step", str(preflight["terminal_step"]),
                            "--path-batch-size", str(preflight["path_batch_size"]),
                            "--max-unique-scorer", str(preflight["budget"])]
+                for accepted in sorted(accepted_code_commits):
+                    command.extend(["--accept-code-commit", accepted])
                 if args.resume:
                     command.append("--resume")
                 tasks.append({"arm": arm, "record_id": record_id, "seed": seed,
@@ -113,25 +125,28 @@ def main():
                        "--data-split-sha256", data_split_sha256,
                        "--out-dir", str(root / "shared_simple"), "--seed", str(seed),
                        "--max-unique-scorer", str(template["budget"])]
+            for accepted in sorted(accepted_code_commits):
+                command.extend(["--accept-code-commit", accepted])
             if args.resume:
                 command.append("--resume")
             simple_tasks.append({"arm": None, "record_id": record_id, "seed": seed, "command": command})
     if args.dry_run:
         print(json.dumps({"ready_for_g2_execution": True, "scientific_gate_passed": False,
                           "n_learned_tasks": len(tasks), "n_simple_tasks": len(simple_tasks),
-                          "root": str(root), "code_commit": commit}))
+                          "root": str(root), "code_commit": commit,
+                          "accepted_code_commits": sorted(accepted_code_commits)}))
         return
-    status_path = root / "execution_status.json"
     if status_path.exists() and not args.resume:
         raise FileExistsError(f"refusing to overwrite execution status: {status_path}")
     log_dir = root / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     status = {"protocol": "a7_g2_execution_v1", "status": "running", "code_commit": commit,
+              "accepted_code_commits": sorted(accepted_code_commits),
               "scientific_gate_passed": False, "n_learned_tasks": len(tasks),
               "n_simple_tasks": len(simple_tasks), "simple_workers": args.simple_workers,
               "learned_workers": args.learned_workers}
-    if status_path.exists():
-        status["previous_status"] = json.loads(status_path.read_text())
+    if previous_status is not None:
+        status["previous_status"] = previous_status
     status_path.write_text(json.dumps(status, indent=2))
     attempt = int(time.time())
 
@@ -148,7 +163,7 @@ def main():
             validate_result_payload(payload)
             if payload["status"] != "done" or payload["identity_rate"] != 1.0:
                 raise ValueError(f"incomplete G2 result: {path}")
-            if payload["code_commit"] != commit or payload["code_dirty"] is not False:
+            if payload["code_commit"] not in accepted_code_commits or payload["code_dirty"] is not False:
                 raise ValueError(f"code provenance mismatch: {path}")
         return {"label": label, "record_id": task["record_id"], "seed": task["seed"]}
 
@@ -168,13 +183,15 @@ def main():
         gate_command = [sys.executable, "scripts/a7_g2_gate.py", "--out", str(gate),
                         "--benchmark-fasta", template["benchmark_fasta"],
                         "--calibration-dir", template["calibration_dir"]]
+        for accepted in sorted(accepted_code_commits):
+            gate_command.extend(["--accept-code-commit", accepted])
         for arm, preflight in arms.items():
             gate_command.extend(["--arm", ",".join([
                 arm, preflight["checkpoint_sha256"],
                 str(root / arm / "*_learned_s*.json"),
                 str(root / "shared_simple" / "*_s*.json"),
             ])])
-        with (log_dir / "g2_gate.log").open("w") as log:
+        with (log_dir / f"g2_gate_{attempt}.log").open("w") as log:
             subprocess.run(gate_command, stdout=log, stderr=subprocess.STDOUT, check=True)
         gate_result = json.loads(gate.read_text())
         status["status"] = "g2_complete"

@@ -618,3 +618,14 @@
 - 真实dry-run确认108 learned+54 shared simple=162分片，根目录 `eval_outputs/a7_g2_r5`，simple-workers=4、learned-workers=2。
 - 新 `g2_r5_watcher_resume1/status.json=running_g2`，原 `g2_r5_watcher/status.json=failed`保留。`execution_status.json=running`，code_commit=1ef8961b，scientific_gate_passed=false。
 - 正式learned-vs-simple对照已启动，尚无完成结果或Go/No-Go裁决。后续只读取真实分片、Gate v2和冻结图形manifest。
+
+
+## 89. G2 混合 code commit 中断与严格续跑修复
+
+- 2026-11-16 复核：首次正式运行已有 25 个 `done`、`identity_rate=1.0`、`code_dirty=false` 的结果分片；5 个来自 `1ef8961b96cb92e539981ac2c93c046fc7780c86`，20 个来自 `5f9e5a560b118568d435fa68a72ef9253d4252c5`。两次提交之间只有 5 个交接文档变化，无算法、训练或评估代码差异。
+- 执行器在 `shared_simple/C01H6.8b.1_hill_climbing_s0.json` 发现 commit 与启动时冻结值不同而停止。`execution_status.json=failed` 和 `g2_r5_watcher_resume1/status.json=failed` 均保留；这不是科学 No-Go，未读取或宣称 AUC/性能结果。
+- 新增 `a7_provenance.py` 与可重复的 `--accept-code-commit`：当前 HEAD 自动纳入，resume 自动继承上次状态登记的版本，额外版本必须显式提供且为当前 HEAD 的祖先。执行器在启动时冻结允许集合，并传给 learned/simple worker 与 Gate，避免运行中 HEAD 移动被静默接受。
+- `completed_result` 支持显式集合校验；旧分片仍须满足 done/clean 以及 source、paired initial、benchmark、calibration、RSCU、数据划分、checkpoint、terminal step 和 path batch 等匹配。未登记 commit、dirty、partial 或其他元数据不匹配均拒绝。
+- Gate v2 在允许集合内接受混合 commit，仍严格配对全部科学元数据并独立重算 identity、500 唯一解、NED 和 anytime；输出记录允许版本和每臂实际版本。旧失败状态嵌入新状态的 `previous_status`，日志按新时间戳命名，不覆盖旧证据。
+- 新增真实 Git 祖先/非法 SHA 反例、双 commit resume 接受/拒绝、混合 Gate 接受/拒绝测试。聚焦回归 15 项通过；训练机完整回归 **210 passed, 1 skipped**。搜索算法、模型采样、参考域、预算与全部科学 Gate 阈值均未改变。
+- 下一步仅在真实 dry-run 确认 108 learned+54 shared simple 及允许集合后执行 `--resume`；正式 Gate 前仍无 Go/No-Go，PPT 与论文性能结论不更新。

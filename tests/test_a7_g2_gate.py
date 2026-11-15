@@ -80,3 +80,18 @@ def test_g2_gate_rejects_mismatched_initialization(tmp_path):
     (tmp_path / "g0_uniform_0.json").write_text(json.dumps(payload))
     with pytest.raises(ValueError, match="unmatched initial_sha256"):
         evaluate_g2([arm], {f"g{i}" for i in range(18)})
+
+
+def test_g2_gate_accepts_only_registered_mixed_code_commits(tmp_path):
+    arm = make_arm(tmp_path)
+    path = tmp_path / "g0_uniform_0.json"
+    payload = json.loads(path.read_text())
+    payload["code_commit"] = "7654321"
+    path.write_text(json.dumps(payload))
+    accepted = frozenset({"1234567", "7654321"})
+    result = evaluate_g2([arm], {f"g{i}" for i in range(18)}, accepted_code_commits=accepted)
+    assert result["accepted_code_commits"] == sorted(accepted)
+    assert result["arms"][0]["code_commits"] == sorted(accepted)
+    with pytest.raises(ValueError, match="unregistered code commit"):
+        evaluate_g2([arm], {f"g{i}" for i in range(18)},
+                    accepted_code_commits=frozenset({"1234567"}))

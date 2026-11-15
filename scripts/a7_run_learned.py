@@ -23,6 +23,7 @@ from codonflow.eval.protocol import validate_result_payload
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.models.simple_search import UniqueObjectiveScorer
 from codonflow.train.run_pretrain import file_sha256, git_commit
+from scripts.a7_provenance import resolve_accepted_code_commits
 from scripts.a7_run_simple_search import code_dirty, completed_result
 
 
@@ -86,6 +87,7 @@ def main():
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--record-id", action="append", dest="record_ids")
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--terminal-step", type=int, default=4)
@@ -96,6 +98,7 @@ def main():
     args = parser.parse_args()
     if len(args.weights) != 4:
         raise ValueError("exactly four objective weights are required")
+    accepted_code_commits = resolve_accepted_code_commits(args.accept_code_commit)
     if args.max_unique_scorer < 500:
         raise ValueError("G2 requires at least 500 unique terminal scorer calls")
     if file_sha256(args.checkpoint) != args.checkpoint_sha256:
@@ -147,7 +150,10 @@ def main():
                 "initial_sha256": hashlib.sha256(initial.encode()).hexdigest(),
                 "calibration_sha256": file_sha256(str(calibration_path)),
                 "rscu_sha256": file_sha256(args.rscu_json),
-                "checkpoint_sha256": args.checkpoint_sha256, "code_commit": git_commit(),
+                "benchmark_sha256": file_sha256(args.benchmark_fasta),
+                "data_split_sha256": args.data_split_sha256,
+                "terminal_step": args.terminal_step, "path_batch_size": args.path_batch_size,
+                "checkpoint_sha256": args.checkpoint_sha256, "code_commit": accepted_code_commits,
             })
             print(json.dumps({"record_id": header, "method": "learned", "status": "skipped_existing"}), flush=True)
             continue
