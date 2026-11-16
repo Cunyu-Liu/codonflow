@@ -684,3 +684,13 @@
 - 主图及manifest生成，实际视觉检查通过。二级输出含540个run记录（两臂共享baseline）、108行comparison、6480行best-at-budget、540行costs；三预算Pareto、双向非支配覆盖和输出SHA均复核。真实数据暴露成本CSV遗漏 `generator_calls`，已补字段及回归测试，完整回归212 passed/1 skipped，修复提交 `3d09147e9b8a3aab50faddbc89269b0609bbfeb4` 已推送。
 - PPT第49页记录真实No-Go、CI、Holm p、NED、324/324与停止决策；python-pptx重开、49页PDF导出和PNG视觉检查通过。最终SHA256=`493feb8df0ba1048672a45dccdee75116d6d78903a7a855b0a3a4f25ef983ba6`，48页版本已备份。
 - 论文Results 5.2、spec/tasks/checklist/RECOVERY/next-agent已改为训练诊断与负结果路线。当前仍是不可提交预印本，不将负结果包装为性能胜利。
+
+
+## 96. G2 失败机制诊断与第50页 PPT
+
+- 新增 `07_a7_data/g2_failure_diagnostics.json`，SHA256=`1db9232929fe484e1081544897275ad7e1df3e296247578c5fb5c144e0718877`，明确 exploratory_not_gate=true。第二套独立实现直接从原始500点重算全部诊断，逐值一致。
+- FULL learned-minus-hill目标差距（calibration scale）：CAI −1.2973、folding −2.2803、GC −1.3279；EDIT为−1.2892/−2.2692/−1.2939。learned从初始点取得的改进远小于hill。
+- 中位编辑密码子比例：FULL 1.9017%、EDIT 2.6320%，hill 38.2433%；中位NED FULL 0.01296、EDIT 0.01977，hill 0.06247。中位耗时FULL 153.96s、EDIT 143.34s，hill 125.86s。learned质量更低且没有速度优势。
+- 这些关联支持“有限步objective-blind proposal终端优化不足”，但不证明唯一机制或容量上限，不改变G2 No-Go，不启动G3。
+- PPT第50页记录目标差距、初始点增益、编辑幅度、NED、耗时与解释边界；50页重开、PDF导出和实际PNG视觉检查均通过。最终SHA256=`6fad2279f5dc1a9f073a454def0bf91ec1ae5bc69329a4583d4258fc3ab79891`，49页版本已备份。
+- T3.5诊断完成；后续任何新实验必须先登记T3.6诊断协议、对照与停止规则，不得借诊断绕过G2。
