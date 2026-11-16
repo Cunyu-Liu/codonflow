@@ -2,7 +2,7 @@
 
 > 生效日期：2026-11-01。与 `spec.md` 的 G0–G5 一一对应。
 > 主任务：warm-start synonymous CDS editing。第一决定性关卡：learned vs 无学习简单搜索。
-> G2 已完成并正式 **No-Go**：324/324结果及二级表齐全，独立Gate重算一致。FULL/EDIT中位相对改善−94.28%/−93.47%，两臂18/18基因均负效应，identity/legal=100%但NED未达。T3.7 proposal-in-the-loop诊断与独立复核已完成；T3.8其余15开发基因复现协议已冻结；仅允许该协议的实现、验证与负结果/机制报告，禁止进入G3。
+> G2 已完成并正式 **No-Go**：324/324结果及二级表齐全，独立Gate重算一致。FULL/EDIT中位相对改善−94.28%/−93.47%，两臂18/18基因均负效应，identity/legal=100%但NED未达。T3.7 proposal-in-the-loop诊断与独立复核已完成；T3.8其余15开发基因复现协议已冻结；正在按协议执行90分片与负结果/机制报告，禁止进入G3。
 
 ## 0. 已完成的方向与审计工作
 
@@ -101,7 +101,7 @@
 - [x] **T3.6 诊断协议复核**：已冻结 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`。复用G2随机hill结果，新增18个T=1 learned-hill分片，同accept/reject、cache、calibration和500唯一scorer；只作开发诊断，不翻案G2。
 - [x] **T3.7 proposal-in-the-loop 实施与复核**：18/18均done、真实CUDA、identity=100%、500唯一解；完整回归221 passed / 1 skipped。Gate与独立重跑逐字节一致，SHA256=`6de0998d…`；独立原始点审计SHA256=`b578b267…`。FULL/EDIT逐基因中位AUC相对变化+18.03%/+35.62%，但耗时比中位20.79×/2.62×；仅形成后续假设，不翻案G2。388唯一解partial、技术修正1及恢复历史全部保留。
 
-- [ ] **T3.8 其余15开发基因复现**：协议已冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`。双臂共90个新learned-hill分片，复用paired random-hill；AUC与wall-clock共同主要，NED/四目标辅助。先实现15基因任务生成与统计、完整回归和dry-run，再执行；仅作开发证据，不接触D5、不进入G3、不翻案G2。
+- [ ] **T3.8 其余15开发基因复现**：协议已冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`。双臂共90个新learned-hill分片，复用paired random-hill；AUC与wall-clock共同主要，NED/四目标辅助。15基因任务生成、统计、成本与best-at-budget已实现，223 passed / 1 skipped及T3.7默认数值回归通过；真实dry-run=90，执行器PID 2071716已双臂并行启动，两个worker均实测真实CUDA。仅作开发证据，不接触D5、不进入G3、不翻案G2。
 
 **DoD**：中心图与逐基因表由冻结 JSON 自动生成；任一失败均明确 No-Go，不转向外部弱 baseline 掩盖。
 
@@ -143,4 +143,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**T3.7已完成；T3.8其余15开发基因复现协议已冻结，当前仅允许该协议的实现、验证与负结果/机制报告。** 三开发基因中，learned-hill的AUC关联为正但耗时更高，实用价值未证。禁止启动G3、D5确认、扩参、RLOO或SOTA写作；任何新实验必须先冻结独立假设、对照、成本与停止规则，不得借诊断绕过G2。
+**T3.7已完成；T3.8其余15开发基因复现协议已冻结，当前正在按协议执行90分片与负结果/机制报告。** 三开发基因中，learned-hill的AUC关联为正但耗时更高，实用价值未证。禁止启动G3、D5确认、扩参、RLOO或SOTA写作；任何新实验必须先冻结独立假设、对照、成本与停止规则，不得借诊断绕过G2。

@@ -191,9 +191,9 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 
 T3.7 proposal-in-the-loop诊断已完成：18/18 learned-hill均为done、真实CUDA、identity=100%、500唯一解且code clean。Gate与独立重跑逐字节一致，SHA256=`6de0998de4eda4068a06b09c29dbb4369458cc9efbac568e81d91ba9d4209707`；独立原始点审计SHA256=`b578b26720aa2e0589c4e6df6ca6e769caa0aea20a951c9877ddbf1e6c7086fd`。FULL逐基因AUC相对变化+0.35%/+45.22%/+18.03%，EDIT +27.00%/+60.41%/+35.62%；但FULL/EDIT耗时比中位20.79×/2.62×，所有run均更慢。该三开发基因结果仅形成提议偏好与成本假设，无独立确认、显著性或泛化宣称，不翻案G2。原388唯一解partial以SHA=1c127354…保留，技术修正1及混合commit历史完整。
 
-### T3.8 开发集复现协议（已冻结，尚未执行）
+### T3.8 开发集复现协议（执行中）
 
-T3.7的3基因阳性关联只能在unique18其余15个开发基因上复现检验，不得接触D5确认集。协议冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`：双臂各15×3=90个新learned-hill分片，复用paired random-hill，500唯一scorer、100,000尝试上限，AUC与wall-clock为共同主要结局，NED和四目标为辅助。统计仅描述开发证据，固定`scientific_gate_passed=false`，不设新Go阈值，不翻案G2。实现、完整回归和真实dry-run通过后才允许启动；不得进入G3。
+T3.7的3基因阳性关联只能在unique18其余15个开发基因上复现检验，不得接触D5确认集。协议冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`：双臂各15×3=90个新learned-hill分片，复用paired random-hill，500唯一scorer、100,000尝试上限，AUC与wall-clock为共同主要结局，NED和四目标为辅助。统计仅描述开发证据，固定`scientific_gate_passed=false`，不设新Go阈值，不翻案G2。实现提交`d773327d`，223 passed / 1 skipped、T3.7默认数值回归及真实dry-run=90已通过；执行器PID 2071716双臂运行，两个worker真实CUDA。不得进入G3。
 
 ### G3：short-rollout 净收益
 
