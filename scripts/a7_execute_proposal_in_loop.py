@@ -100,7 +100,7 @@ def main():
                           "n_tasks": len(tasks), "out_root": str(root),
                           "code_commit": git_commit(), "accepted_code_commits": sorted(accepted)}))
         return
-    status_path = root / "execution_status.json"
+    status_path = root / (f"execution_status_{args.only_arm}.json" if args.only_arm else "execution_status.json")
     if status_path.exists() and not args.resume:
         raise FileExistsError(f"refusing to overwrite execution status: {status_path}")
     previous = json.loads(status_path.read_text()) if status_path.exists() else None
