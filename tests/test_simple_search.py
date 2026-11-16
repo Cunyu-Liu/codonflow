@@ -3,7 +3,7 @@ import json
 import pytest
 
 from codonflow.core.codon import feasible_edit, gc_fraction
-from codonflow.models.simple_search import SimpleSearch, augmented_tchebycheff
+from codonflow.models.simple_search import SimpleSearch, augmented_tchebycheff, single_codon_proposal
 
 SOURCE = "TTTGCTTAA"
 
@@ -70,3 +70,21 @@ def test_utility_uses_frozen_calibration_normalization():
     assert raw == 2.0
     normalized = search._utility("hill_climbing", [0.5, 50])
     assert normalized == 1.0
+
+
+def test_custom_proposal_preserves_default_random_semantics():
+    first = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7,
+                         proposal_fn=single_codon_proposal).run("hill_climbing", max_unique_scorer=8)
+    second = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7).run("hill_climbing", max_unique_scorer=8)
+    assert first.points == second.points
+
+
+def test_custom_proposal_is_used_and_validated():
+    result = SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7,
+                          proposal_fn=lambda _sequence, _rng: "TTTGCATAA").run(
+        "hill_climbing", max_unique_scorer=3)
+    assert result.points[1]["sequence"] == "TTTGCATAA"
+    with pytest.raises(ValueError, match="invalid or non-synonymous"):
+        SimpleSearch(SOURCE, objective, [1, 1, 0.1], seed=7,
+                     proposal_fn=lambda _sequence, _rng: "TTTATGTAA").run(
+            "hill_climbing", max_unique_scorer=3)

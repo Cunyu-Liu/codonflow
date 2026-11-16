@@ -130,6 +130,7 @@ class SimpleSearch:
         final_temperature: float = 0.01,
         normalization: Optional[tuple[Sequence[float], Sequence[float]]] = None,
         uniform_operator: str = "global_synonymous",
+        proposal_fn: Optional[Callable[[str, np.random.Generator], str]] = None,
     ):
         self.source = normalize_to_dna(source)
         if not is_valid_cds(self.source):
@@ -144,6 +145,8 @@ class SimpleSearch:
         if uniform_operator not in ("single_codon", "global_synonymous"):
             raise ValueError("unknown uniform operator")
         self.uniform_operator = uniform_operator
+        self.proposal_fn = proposal_fn
+        self._protein = [STANDARD_TABLE_1[codon] for codon in split_codons(self.source)]
         if initial_temperature <= 0 or final_temperature <= 0:
             raise ValueError("temperatures must be positive")
         if normalization is not None:
@@ -185,8 +188,13 @@ class SimpleSearch:
                 candidate = random_synonymous(self.source, rng)
             elif method == "uniform":
                 candidate = single_codon_proposal(self.source, rng)
+            elif self.proposal_fn is not None:
+                candidate = self.proposal_fn(current, rng)
             else:
                 candidate = single_codon_proposal(current, rng)
+            if (not is_valid_cds(candidate) or len(candidate) != len(self.source)
+                    or [STANDARD_TABLE_1[codon] for codon in split_codons(candidate)] != self._protein):
+                raise ValueError("proposal produced an invalid or non-synonymous CDS")
             candidate_objectives = scorer(candidate)
             if len(scorer.cache) > len(points):
                 points.append({"budget": len(points) + 1, "sequence": candidate,
