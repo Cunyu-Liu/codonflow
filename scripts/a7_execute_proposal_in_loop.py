@@ -42,6 +42,8 @@ def main():
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-root", required=True)
     parser.add_argument("--accept-code-commit", action="append", default=[])
+    parser.add_argument("--only-arm", choices=("FULL", "EDIT"))
+    parser.add_argument("--skip-gate", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -91,6 +93,8 @@ def main():
                 if args.resume:
                     command.append("--resume")
                 tasks.append({"arm": arm, "gene": gene, "seed": seed, "command": command})
+    if args.only_arm:
+        tasks = [task for task in tasks if task["arm"] == args.only_arm]
     if args.dry_run:
         print(json.dumps({"ready": True, "scientific_gate_passed": False,
                           "n_tasks": len(tasks), "out_root": str(root),
@@ -128,21 +132,25 @@ def main():
                     execute(task)
             return arm
         with ThreadPoolExecutor(max_workers=2) as pool:
-            completed = list(pool.map(run_arm, ("FULL", "EDIT")))
-        gate = root / "diagnostic_gate.json"
-        gate_command = [sys.executable, "scripts/a7_proposal_in_loop_gate.py",
-                        "--benchmark-fasta", args.benchmark_fasta,
-                        "--calibration-dir", args.calibration_dir, "--out", str(gate)]
-        for commit in sorted(accepted):
-            gate_command.extend(["--accept-code-commit", commit])
-        for arm, _checkpoint, checkpoint_sha256 in arms.values():
-            gate_command.extend(["--arm", f"{arm},{checkpoint_sha256},{root / arm / '*_learned_hill_s*.json'},{args.baseline_dir}"])
-        with (log_dir / f"diagnostic_gate_{attempt}.log").open("w") as log:
-            subprocess.run(gate_command, stdout=log, stderr=subprocess.STDOUT, check=True)
-        status["status"] = "diagnostic_complete"
-        status["diagnostic_gate"] = str(gate)
-        status["diagnostic_gate_sha256"] = file_sha256(str(gate))
-        status["completed_tasks"] = len(tasks)
+            completed = list(pool.map(run_arm, (args.only_arm,) if args.only_arm else ("FULL", "EDIT")))
+        if args.skip_gate:
+            status["status"] = "shards_complete"
+            status["completed_tasks"] = len(tasks)
+        else:
+            gate = root / "diagnostic_gate.json"
+            gate_command = [sys.executable, "scripts/a7_proposal_in_loop_gate.py",
+                            "--benchmark-fasta", args.benchmark_fasta,
+                            "--calibration-dir", args.calibration_dir, "--out", str(gate)]
+            for commit in sorted(accepted):
+                gate_command.extend(["--accept-code-commit", commit])
+            for arm, _checkpoint, checkpoint_sha256 in arms.values():
+                gate_command.extend(["--arm", f"{arm},{checkpoint_sha256},{root / arm / '*_learned_hill_s*.json'},{args.baseline_dir}"])
+            with (log_dir / f"diagnostic_gate_{attempt}.log").open("w") as log:
+                subprocess.run(gate_command, stdout=log, stderr=subprocess.STDOUT, check=True)
+            status["status"] = "diagnostic_complete"
+            status["diagnostic_gate"] = str(gate)
+            status["diagnostic_gate_sha256"] = file_sha256(str(gate))
+            status["completed_tasks"] = len(tasks)
     except Exception as error:
         status["status"] = "failed"
         status["error"] = str(error)
