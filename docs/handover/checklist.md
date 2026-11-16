@@ -49,14 +49,14 @@
 
 ## C4. G2 learned vs 简单搜索（第一决定性关卡）
 
-- [ ] learned、uniform、hill-climbing、MH/annealing、AReUReDi-style 使用 paired 初始状态和相同 scorer/cache。
-- [ ] 每基因至少 3 seeds，B=50/100/500 anytime 数据完整。
-- [ ] 主终点为固定参考域 HV AUC；原始 Pareto front、best-at-budget 和 NED 同步报告。
-- [ ] learned 相对每基因最强简单搜索的主终点中位相对改善 ≥10%。
-- [ ] gene-level paired bootstrap 95% CI 下界 >0。
-- [ ] Holm 校正后 Wilcoxon signed-rank `p<0.05`。
-- [ ] identity/legal=100%，长度归一化 NED ≥最强简单搜索的 70%，无单序列塌缩。
-- [ ] Go/No-Go 由冻结 artifact 自动裁决；失败时不以其他弱 baseline 替代。
+- [x] learned、uniform、hill-climbing、MH/annealing、AReUReDi-style 使用 paired 初始状态和相同 scorer/cache。
+- [x] 每基因至少 3 seeds，B=50/100/500 anytime 数据完整。
+- [x] 主终点为固定参考域 HV AUC；原始 Pareto front、best-at-budget、非支配覆盖、成本和 NED 同步报告。
+- [ ] learned 相对每基因最强简单搜索的主终点中位相对改善 ≥10%（实际 FULL −94.28%、EDIT −93.47%，未达）。
+- [ ] gene-level paired bootstrap 95% CI 下界 >0（两臂CI均完全低于0，未达）。
+- [ ] Holm 校正后 Wilcoxon signed-rank `p<0.05`（两臂 Holm p=1.0，未达）。
+- [ ] identity/legal=100% 已通过；但最低 NED ratio FULL=0.133、EDIT=0.163，低于0.70，未达。
+- [x] Go/No-Go 由冻结 artifact 自动裁决；独立重算一致为 **No-Go**，未以其他弱 baseline 替代。
 
 ## C5. G3 short-rollout 净收益
 
@@ -94,10 +94,10 @@
 |---|---|---|
 | G0 数据与协议 | **通过** | `g0_gate.json passed=true`，全量分布、25 物种来源、冻结资产、三 seed 复算和 CUDA 全部通过 |
 | G1 模型有效 | **通过** | FULL r5 e21 与 EDIT r5 e26 均收敛且行为验收通过 |
-| G2 学习必要性 | **工程恢复中，未裁决** | 25 个有效分片保留；混合 code commit 已停止原运行，待严格 resume，尚无完整统计结果 |
-| G3 rollout 净收益 | **未启动** | 依赖 G2 |
-| G4 独立确认/外部边界 | **未启动** | 依赖 G2/G3 与 D5 最终模型 |
-| G5 论文发布 | **不可提交** | 学习与独立确认证据缺失 |
+| G2 学习必要性 | **No-Go** | 324/324完成；FULL/EDIT −94.28%/−93.47%，CI<0、Holm p=1、NED未达；独立重算一致 |
+| G3 rollout 净收益 | **禁止启动** | G2 No-Go，停止short-rollout主贡献 |
+| G4 独立确认/外部边界 | **禁止启动** | G2 No-Go，不训练D5最终模型或接触确认集 |
+| G5 论文发布 | **不可提交** | 学习价值未成立，仅允许训练诊断/负结果路线 |
 
 ## 永久禁止沿用的旧结论
 

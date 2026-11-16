@@ -1,27 +1,24 @@
-# CodonFlow A7 恢复指南（2026-11-16 当前版）
+# CodonFlow A7 恢复指南（2026-11-16，G2 No-Go）
 
-> 本文取代 2026-11-12/13 的“CUDA 不可用、无有效 checkpoint、等待 G0”状态；那些内容仅是历史。
+## 当前唯一有效状态
 
-## 当前状态
+G0 与双臂 G1 已通过；G2 已正式 **No-Go**。不得进入 G3、D5 确认、扩参、RLOO 或 SOTA 写作；仅允许训练诊断与负结果路线。预印本不可提交。
 
-- G0 已通过，FULL r5 e21 与 EDIT r5 e26 已收敛并通过 G1，双 preflight 就绪。
-- 当前仅允许 P3/G2。首次 G2 完成 25 个有效分片后因混合 code commit 停止；已修复并严格 resume，尚无科学 Go/No-Go。
-- G2 执行目录 `/home/codonflow` HEAD 固定为 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 **210 passed, 1 skipped**。二级分析代码提交 `07d115ae6f2fbf73d84be3ec230cec07fa5a562b` 已推送，回归 212 passed / 1 skipped；执行目录显示 behind 是刻意冻结，不得在运行中 pull。
-- 代码与提交在 `/home`；大型资产在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
+- 324/324 结果完成，108 learned 全部真实 CUDA，identity/legal=100%。
+- FULL/EDIT 中位相对改善 −94.28%/−93.47%，CI均完全低于0，Holm p=1.0，最低NED ratio=0.133/0.163。
+- 两臂18/18基因均负效应，最强基线均为hill-climbing。
+- 原Gate SHA256=`a2e157b2635860460cde95d8c3a03d12a7b948b2cd6d20dab5ce37deb8923cbc`；独立重算SHA256=`9a1b5c9b0b6313789c1608bfecf39d31587fbc4ea624035a78b0589cc9c475e1`，逐项一致。
 
-## 恢复顺序
+## 恢复检查
 
-1. 先读 `HANDOFF_A7_20261116.md`、`spec.md`、`tasks.md`、`checklist.md` 和 journal 第 89 节。
-2. 核对 `/home/codonflow` HEAD、origin/main 与 clean 状态。运行期间不得修改或提交该目录。
-3. 读取 `eval_outputs/a7_g2_r5/execution_status.json` 和 `07_a7_data/g2_r5_resume2/execution.log`；用 `executor.pid` 核对真实进程，不能仅凭 PID 存在推断成功，也不能重复启动。
-4. 若干预前状态为 running，先确认 learned worker 的 `device=cuda:0` 和真实 CUDA 进程；CUDA 不可用或 CPU 静默降级必须停止并留证。
-5. 若执行器 failed，保留状态、日志和现有分片。只有登记的祖先 commit 才可进入允许集合，且必须做差异审计；不得任意加入 HEAD 或重跑合法旧分片。
-6. 只有 `g2_complete` 后运行 Gate 独立复核和 `a7_plot_g2.py`。G2 Go 才能进入 G3，No-Go 按 spec 停止后续性能路线。
+1. 先读 `HANDOFF_A7_20261116.md`、`spec.md`、`tasks.md`、`checklist.md` 与 journal 第95节。
+2. 读取 `eval_outputs/a7_g2_r5/execution_status.json`，应为 `g2_complete` 且 `scientific_gate_passed=false`。不要重新启动G2或G3。
+3. 核对原Gate与独立重算的统计、NED和输入哈希；主图与二级manifest已生成，540个二级run记录包含两臂共享baseline。
+4. 代码 `/home/codonflow` 可 fast-forward 到最新分析提交；G2历史执行提交831303b及两个登记祖先只用于追溯，不要回滚或重跑。
+5. 大型资产仅在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。所有失败日志、负结果和旧分片保留。
 
-## 已验证恢复证据
+## 后续允许动作
 
-- dry-run：108 learned+54 shared simple；SHA256=`c87e85441ca0b94fbebb168dc9d28111b989e8d343d31f4ab191d99eb9feb06d`。
-- 25 个旧分片 precheck passed=true；SHA256=`905fe45abd8937b9316c0a7d612bb7f2a8de8b97585418df782117d8504531e4`。
-- 旧分片均为 done、identity=1、code_dirty=false，恢复日志显示 `skipped_existing`。
+只分析训练目标、learned/hill-climbing轨迹、目标响应、位置覆盖、NED和成本。G1非退化不等于G2有效，identity不等于学习价值。任何新诊断实验先登记协议，不得借诊断进入short-rollout、D5确认、扩参或SOTA路线。
 
-不得使用旧 arbitrary-corruption checkpoint，不得把训练 loss、G1、smoke、identity 或文件数量写成 G2 性能结论。
+PPT 已49页，SHA256=`493feb8df0ba1048672a45dccdee75116d6d78903a7a855b0a3a4f25ef983ba6`。分析修复提交 `3d09147e9b8a3aab50faddbc89269b0609bbfeb4`，回归212 passed、1 skipped。

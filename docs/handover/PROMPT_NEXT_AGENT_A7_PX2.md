@@ -1,5 +1,5 @@
-# CodonFlow A7 px2 下一位执行者入口（2026-11-16）
+# CodonFlow A7 px2 下一位执行者入口（G2 No-Go）
 
-旧版“CUDA 不可用、无有效 checkpoint、先完成 G0”的提示已失效。当前统一入口为 `PROMPT_NEXT_AGENT_A7.md`，实时交接为 `HANDOFF_A7_20261116.md`，恢复指南为 `RECOVERY_A7.md`。
+旧版训练、G2 resume、G3和D5命令均不得执行。当前统一入口为 `PROMPT_NEXT_AGENT_A7.md`，实时交接为 `HANDOFF_A7_20261116.md`。
 
-当前只推进 P3/G2 严格 resume；G0 与双臂 G1 已通过。先核对 `/home/codonflow` 提交 `831303b93473144482e6fa99a692f2360ecf8dbb`、`eval_outputs/a7_g2_r5/execution_status.json` 和真实进程，不得重复启动、修改运行中的代码或宣称性能结论。全部约束以当前 spec/tasks 为准。
+G0与双G1通过，G2已正式No-Go：FULL/EDIT −94.28%/−93.47%，独立Gate重算一致，324/324结果齐全。当前仅允许训练诊断与负结果路线，禁止short-rollout、D5确认、扩参、RLOO或SOTA写作。所有约束以当前spec/tasks为准。

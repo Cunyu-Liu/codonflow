@@ -673,3 +673,14 @@
 - 第三轮独立快照覆盖124个结果：全部done、identity=1、code clean；26个learned结果均明确 `device=cuda:0`、T=4、path_batch=32。25个旧分片SHA保持完全不变。
 - 当前resume attempt日志再次扫描，无Traceback、RuntimeError、ValueError或CUDA OOM。上一份审计已独立归档到 `runtime_integrity_history/`，未覆盖历史快照。
 - 截至本节仍无正式Gate或性能结论；三轮运行完整性检查不能替代最终Gate v2的原始指标与统计复核。
+
+
+## 95. G2 正式 No-Go、独立重算与负结果交付
+
+- 162个分片任务全部完成，形成FULL 54、EDIT 54、shared simple 216，共324/324结果；108 learned均为 `device=cuda:0`。最终完整性审计：全部done、identity=1、code clean，25个旧分片SHA未变。
+- 原 `g2_gate.json` SHA256=`a2e157b2635860460cde95d8c3a03d12a7b948b2cd6d20dab5ce37deb8923cbc`，明确 `passed=false`。FULL中位相对改善−0.9428115508554356，CI[−0.9546217103964749,−0.9334506962585823]，Holm p=1.0，min NED ratio=0.13275320964562584；EDIT中位相对改善−0.9346841546012767，CI[−0.9502342868596908,−0.928519392606465]，Holm p=1.0，min NED ratio=0.16325907080922822。identity/legal通过，其余性能/NED条件均未达。
+- 两臂18/18基因全部为负效应，且每基因最强简单基线均为hill-climbing。不能把G1非退化或identity解释为学习价值；G3、D5确认、扩参、RLOO和SOTA写作停止。
+- 独立重跑Gate v2生成 `g2_gate_independent_rerun.json`，SHA256=`9a1b5c9b0b6313789c1608bfecf39d31587fbc4ea624035a78b0589cc9c475e1`。两臂statistics、diversity、全部输入SHA、checks和No-Go逐项一致，raw_metrics_recomputed=true。
+- 主图及manifest生成，实际视觉检查通过。二级输出含540个run记录（两臂共享baseline）、108行comparison、6480行best-at-budget、540行costs；三预算Pareto、双向非支配覆盖和输出SHA均复核。真实数据暴露成本CSV遗漏 `generator_calls`，已补字段及回归测试，完整回归212 passed/1 skipped，修复提交 `3d09147e9b8a3aab50faddbc89269b0609bbfeb4` 已推送。
+- PPT第49页记录真实No-Go、CI、Holm p、NED、324/324与停止决策；python-pptx重开、49页PDF导出和PNG视觉检查通过。最终SHA256=`493feb8df0ba1048672a45dccdee75116d6d78903a7a855b0a3a4f25ef983ba6`，48页版本已备份。
+- 论文Results 5.2、spec/tasks/checklist/RECOVERY/next-agent已改为训练诊断与负结果路线。当前仍是不可提交预印本，不将负结果包装为性能胜利。

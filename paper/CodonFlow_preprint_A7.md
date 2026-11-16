@@ -1,6 +1,6 @@
 # Finite-step synonymous editing for budget-aware multi-objective CDS optimization
 
-> **Status: working manuscript — not for submission.** Both development models have passed G1 convergence and non-degeneracy checks. The resumed G2 learned-versus-simple-search experiment is still running and has no Go/No-Go decision as of 2026-11-16. Later results remain gated.
+> **Status: working manuscript — not for submission.** Both development models passed G1, but the completed G2 learned-versus-simple-search experiment is a decisive No-Go. An independent Gate rerun reproduced all statistics, NED values, input hashes, and the decision. Short-rollout, confirmation, scaling, RLOO, and SOTA claims remain stopped.
 
 ## Abstract
 
@@ -84,19 +84,19 @@ Both development models met the prespecified convergence and non-degeneracy requ
 
 ### 5.2 Learned proposal versus simple search
 
-[Requires G2. This is the central result and may be negative.]
+The learned base proposal failed the prespecified G2 gate decisively. All 324 planned runs completed with 100% translation identity and legal reading frames, and all 108 learned runs used CUDA. Hill-climbing was the strongest simple method in every gene in both arms. In the full-token arm, the median relative AUC improvement was −94.28% (95% paired-bootstrap CI [−95.46%, −93.35%]); in the edited-token arm, it was −93.47% ([−95.02%, −92.85%]). Every gene had a negative effect in both arms, and both Holm-adjusted p-values were 1.0. The minimum learned-to-simple NED ratios were 0.133 and 0.163, respectively, below the required 0.70. Thus, non-degenerate synonymous generation did not translate into budget-efficient multi-objective optimization or adequate sequence diversity. An independent Gate rerun reproduced all statistics, NED values, raw-input hashes, and the No-Go decision. Raw Pareto fronts, per-objective best-at-budget, bidirectional non-dominated coverage, and per-run costs are preserved alongside the frozen gate.
 
 ### 5.3 Immediate versus short-rollout editing
 
-[Requires G3.]
+[Not run: G2 No-Go prohibits short-rollout claims.]
 
 ### 5.4 Independent confirmation and external boundaries
 
-[Requires G4.]
+[Not run: G2 No-Go prohibits confirmation and external performance claims.]
 
 ## 6. Discussion
 
-[Write after G2–G4. Discuss failure regions, proxy limitations, missing baselines, and the distinction between computational objectives and biological efficacy.]
+The present development evidence rejects the learned base proposal as an effective replacement for iterative simple search under the frozen scorer budget. The result is consistent with insufficient terminal optimization from an objective-blind, four-transition proposal, but does not by itself identify a unique causal mechanism or a model-capacity limit. Subsequent work is restricted to training and search-behavior diagnostics; it must not be used to bypass the failed gate. All objectives remain computational proxies and do not support claims about expression, stability, or biological efficacy.
 
 ## 7. Reproducibility statement
 

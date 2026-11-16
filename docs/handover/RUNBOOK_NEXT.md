@@ -1,7 +1,7 @@
 # CodonFlow RUNBOOK（A7 · 按科学门执行）
 
 > 生效日期：2026-11-01。与 `spec.md`、`tasks.md`、`checklist.md` 配套。
-> 当前动作：**G0 与双臂 G1 已通过；首次正式 G2 保留 25 个有效分片后因混合 code commit 停止。使用显式祖先允许集合严格 resume，不重跑旧分片，尚无 Go/No-Go 裁决。**
+> 当前动作：**G2 已正式 No-Go，324/324结果与独立重算一致。仅允许训练诊断与负结果路线；禁止G3、D5确认、扩参、RLOO或SOTA写作。**
 > 路径纪律：代码与 Git 提交在 `/home/codonflow`；大型数据、权重、日志和 artifacts 在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
 
 ## 0. 立即失效的旧入口
@@ -176,24 +176,11 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 ## 10. 当前唯一下一步
 
-先读 `HANDOFF_A7_20261112.md` 和 `PROMPT_NEXT_AGENT_A7.md`。当前完整回归为 **210 passed, 1 skipped**，Git 工作副本为 `/home/codonflow`，最新提交以 journal 和 GitHub 为准。
+先读 `HANDOFF_A7_20261116.md`、`RECOVERY_A7.md` 和 `PROMPT_NEXT_AGENT_A7.md`。G0 与双臂 G1 已通过；G2 已正式 **No-Go**。当前完整回归为 **212 passed, 1 skipped**，分析修复提交为 `3d09147e9b8a3aab50faddbc89269b0609bbfeb4`。
 
-G0 已通过；unique18 三 seed、25 物种来源、24 个 D5 calibration 和18个 D4 development calibration 均已验收。r4 于 e3 中断，已冻结 `07_a7_data/r4_interruption_20261113.json` 并恢复 `/teams` 写入。FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1，双 preflight 已就绪。首次 G2 的 25 个有效分片已保留，随后因混合 code commit 停止；`g2_r5_watcher_resume1/status.json=failed` 是工程溯源失败，不是科学 No-Go。
+324/324结果已完成，identity/legal=100%；FULL/EDIT中位相对改善−94.28%/−93.47%，CI均完全低于0，Holm p=1.0，最低NED ratio=0.133/0.163。两臂18/18基因均负效应，hill-climbing均为最强基线。原Gate SHA256=`a2e157b2…`，独立重算SHA256=`9a1b5c9b…`，逐项一致。主图、三预算Pareto、best-at-budget、非支配覆盖和成本表均已生成并核验。
 
-先对以下命令加 `--dry-run` 核对 108 learned+54 shared simple 和允许版本集合，再去掉 `--dry-run` 执行。当前修复提交自动纳入，上次 failed 状态的 `1ef8961b96cb92e539981ac2c93c046fc7780c86` 自动继承，文档提交 `5f9e5a5` 显式登记；不接受未登记版本。
-
-```bash
-cd /home/codonflow
-R=/teams/HoulabData_1788502323/liucunyu/codonflow1031
-/root/miniconda3/envs/codonflow/bin/python scripts/a7_execute_g2.py \
-  --preflight FULL=$R/07_a7_data/g1_r5_watcher/g2_preflight_FULL.json \
-  --preflight EDIT=$R/07_a7_data/g1_r5_watcher/g2_preflight_EDIT.json \
-  --rscu-json $R/01_code/codonflow/configs/cai_ref_v4train.json \
-  --accept-code-commit 5f9e5a560b118568d435fa68a72ef9253d4252c5 \
-  --resume
-```
-
-正式 Gate 与图形生成完成后才读取科学结果；尚无 Go/No-Go 裁决。
+**禁止重跑G2或启动G3、D5确认、扩参、RLOO、SOTA写作。** 当前仅允许T3.5训练诊断与负结果路线：分析搜索轨迹、目标响应、位置覆盖、NED与成本。任何新实验先登记诊断协议，不得借诊断绕过G2。PPT已49页，SHA256=`493feb8d…`。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 

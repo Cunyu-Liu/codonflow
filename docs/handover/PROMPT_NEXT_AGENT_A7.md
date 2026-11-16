@@ -1,13 +1,9 @@
-# 给下一位执行者的提示词（CodonFlow A7，2026-11-16）
+# 给下一位执行者的提示词（CodonFlow A7，G2 No-Go）
 
-先核验实时状态，不要执行旧提示中的训练或恢复命令，不要在文档或回复中记录服务器密码。
+先读 `HANDOFF_A7_20261116.md`、`RECOVERY_A7.md`、`spec.md`、`tasks.md`、`checklist.md` 与 journal 第95节。不要执行旧版启动、resume、G3或D5命令，不要在文档或回复中记录服务器密码。
 
-必读：`HANDOFF_A7_20261116.md`、`RECOVERY_A7.md`、`spec.md`、`tasks.md`、`checklist.md`、`RUNBOOK_NEXT.md`、`JOURNAL_20261112_A7_EXECUTION.md` 第 89 节。
+G0与双G1已通过；G2已正式 **No-Go**。324/324结果完成，identity/legal=100%，但FULL/EDIT中位相对改善−94.28%/−93.47%，CI完全低于0、Holm p=1.0、NED未达；两臂18/18基因均负效应，hill-climbing均为最强基线。原Gate与独立重算逐项一致，禁止进入G3、D5确认、扩参、RLOO或SOTA写作。
 
-当前事实：G0 与双臂 G1 已通过；FULL r5 e21 和 EDIT r5 e26 收敛。当前唯一任务是 P3/G2 learned vs 最强无学习简单搜索，正式严格 resume 正在执行 108 learned+54 shared simple；尚无 Go/No-Go，预印本不可提交。
+证据：`eval_outputs/a7_g2_r5/g2_gate.json` SHA256=`a2e157b2…`；`g2_gate_independent_rerun.json` SHA256=`9a1b5c9b…`。主图、原始Pareto、best-at-budget、非支配覆盖和成本表已生成。PPT已49页，SHA256=`493feb8d…`。
 
-G2 执行代码 `/home/codonflow` 固定提交 `831303b93473144482e6fa99a692f2360ecf8dbb`，完整回归 210 passed、1 skipped。二级分析代码提交 `07d115ae6f2fbf73d84be3ec230cec07fa5a562b` 已推送；执行目录 behind 是刻意冻结，不得在运行中 pull。大型资产 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。先读 `eval_outputs/a7_g2_r5/execution_status.json`、`07_a7_data/g2_r5_resume2/execution.log` 和 executor.pid；不得盲目重复启动。
-
-首次运行的 25 个合法分片必须复用，不得重跑或删除。允许 commit 仅限当前修复提交及已登记祖先 `1ef8961b96cb92e539981ac2c93c046fc7780c86`、`5f9e5a560b118568d435fa68a72ef9253d4252c5`；两历史提交仅文档差异。运行中不要修改或提交 `/home/codonflow`。
-
-完成后独立复核 Gate v2、原始 500 唯一解、identity/legal、paired initial、NED、anytime AUC、bootstrap/Wilcoxon/Holm，再运行 `a7_plot_g2.py`。G2 Go 才进入 G3；No-Go 如实记录并停止 short-rollout 主贡献、扩参、RLOO 和 SOTA 写作。训练/GPU 验证必须真实 CUDA；禁止 CPU 静默降级。确认结果后才更新 PPT 和论文 Results。
+当前只允许训练诊断与负结果路线：分析搜索轨迹、目标响应、位置覆盖、NED和成本，区分有限步objective-blind proposal缺乏终端优化与实现问题。任何新实验先登记协议，不得借诊断绕过G2，不得把identity、G1或训练loss写成学习价值。
