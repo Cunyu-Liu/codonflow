@@ -187,6 +187,10 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 
 当前 **正式 No-Go**：324/324 完成，identity/legal=100%，但 FULL/EDIT 中位相对改善−94.28%/−93.47%，CI均完全低于0、Holm p=1.0，最低NED ratio=0.133/0.163；两臂18/18基因均负效应且hill-climbing最强。原Gate SHA256=`a2e157b2…`，独立重算SHA256=`9a1b5c9b…`，统计、NED、输入哈希和裁决一致。停止 short-rollout 主贡献、RLOO、扩参和 SOTA 写作，转入训练诊断或负结果路线；不得用外部弱 baseline 绕过此门。
 
+### T3.7 补充诊断（不是新验收门）
+
+proposal-in-the-loop协议已冻结：两臂各3个G1开发基因×3 seeds，learned T=1提议置于既有hill-climbing accept/reject中，与随机hill保持paired initial、calibration、独立cache和500唯一terminal scorer一致。阳性只形成后续独立实验假设，阴性支持既有No-Go，均不翻案G2。实现完整回归219 passed / 1 skipped；当前EDIT 9/9、FULL 4/9，已产出的13片均done、真实CUDA、identity=100%、500唯一解且code_dirty=false。FULL原执行器PID 1854465仍在运行，不得重复启动，待18片齐备后统一独立重算。
+
 ### G3：short-rollout 净收益
 
 只在 G2 通过后进行。使用同一冻结 checkpoint、paired 初始状态和相同预算比较 immediate 与 short-rollout。主终点和时间成本均有正向 gene-level 证据才保留 short-rollout；否则主线只保留 immediate。
