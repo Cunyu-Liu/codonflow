@@ -189,7 +189,7 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 
 ### T3.7 补充诊断（不是新验收门）
 
-proposal-in-the-loop协议已冻结：两臂各3个G1开发基因×3 seeds，learned T=1提议置于既有hill-climbing accept/reject中，与随机hill保持paired initial、calibration、独立cache和500唯一terminal scorer一致。阳性只形成后续独立实验假设，阴性支持既有No-Go，均不翻案G2。实现完整回归219 passed / 1 skipped；当前EDIT 9/9、FULL 4/9，已产出的13片均done、真实CUDA、identity=100%、500唯一解且code_dirty=false。FULL原执行器PID 1854465仍在运行，不得重复启动，待18片齐备后统一独立重算。
+proposal-in-the-loop协议已冻结：两臂各3个G1开发基因×3 seeds，learned T=1提议置于既有hill-climbing accept/reject中，与随机hill保持paired initial、calibration、独立cache和500唯一terminal scorer一致。阳性只形成后续独立实验假设，阴性支持既有No-Go，均不翻案G2。实现完整回归221 passed / 1 skipped；当前EDIT 9/9、FULL 5/9，已产出的14片均done、真实CUDA、identity=100%、500唯一解且code_dirty=false。FULL首次C14A6.7.1 seed1在25,000次提议后仅388唯一解，partial SHA=1c127354…已隔离保留；技术修正1将后续尝试上限登记为100,000，500唯一scorer不变。恢复执行器PID 1987357正在重算缺失两片，不得重复启动，待18片齐备后统一独立重算。
 
 ### G3：short-rollout 净收益
 
