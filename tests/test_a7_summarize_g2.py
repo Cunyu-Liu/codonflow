@@ -1,3 +1,4 @@
+import csv
 import json
 
 from scripts.a7_g2_gate import evaluate_g2
@@ -16,6 +17,10 @@ def test_g2_secondary_summary_rebuilds_raw_fronts_best_and_costs(tmp_path):
     full = make_arm(tmp_path, n_genes=1)
     edit = make_arm(tmp_path, n_genes=1)
     edit["name"] = "EDIT"
+    for path in full["paths"]:
+        payload = json.loads(open(path).read())
+        payload["costs"]["generator_calls"] = 500
+        open(path, "w").write(json.dumps(payload))
     gate = evaluate_g2([full, edit], {"g0"}, min_genes=1)
     gate_path = tmp_path / "g2_gate.json"
     gate_path.write_text(json.dumps(gate))
@@ -30,4 +35,7 @@ def test_g2_secondary_summary_rebuilds_raw_fronts_best_and_costs(tmp_path):
     assert len(raw["runs"][0]["budgets"]["500"]["best_by_objective"]) == 4
     assert len((tmp_path / "analysis" / "g2.comparison.csv").read_text().splitlines()) == 7
     assert len((tmp_path / "analysis" / "g2.best_at_budget.csv").read_text().splitlines()) == 361
-    assert len((tmp_path / "analysis" / "g2.costs.csv").read_text().splitlines()) == 31
+    with (tmp_path / "analysis" / "g2.costs.csv").open() as handle:
+        rows = list(csv.DictReader(handle))
+    assert len(rows) == 30
+    assert rows[0]["generator_calls"] == "500"

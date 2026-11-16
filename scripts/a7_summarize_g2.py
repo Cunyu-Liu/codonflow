@@ -162,7 +162,7 @@ def generate_summary(gate_path, out_prefix):
                           "value", "objectives", "first_best_budget", "sequence_sha256"], best_rows)
     cost_path = Path(f"{out}.costs.csv")
     cost_fields = ["arm", "gene", "seed", "method", "n_unique", "auc", "ned",
-                   "forward_calls", "base_state_evaluations", "rollout_batch_forwards",
+                   "forward_calls", "generator_calls", "base_state_evaluations", "rollout_batch_forwards",
                    "rollout_state_transitions", "terminal_reward_evaluations",
                    "unique_terminal_reward_calls", "elapsed_s"]
     write_csv(cost_path, cost_fields, cost_rows)
