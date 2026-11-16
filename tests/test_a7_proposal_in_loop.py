@@ -1,8 +1,9 @@
+import hashlib
 import json
 
 import pytest
 
-from scripts.a7_run_proposal_in_loop import validate_baseline
+from scripts.a7_run_proposal_in_loop import quarantine_partial_result, validate_baseline
 from tests.test_a7_protocol import payload
 
 
@@ -40,3 +41,25 @@ def test_baseline_validation_rejects_duplicate_or_incomplete_results(tmp_path):
     path.write_text(json.dumps(result))
     with pytest.raises(ValueError, match="incomplete or dirty"):
         validate_baseline(path, {})
+
+
+def test_partial_result_is_preserved_outside_completed_glob(tmp_path):
+    path = tmp_path / "g1_learned_hill_s1.json"
+    result = baseline_payload()
+    result["status"] = "partial"
+    path.write_text(json.dumps(result))
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    quarantined = quarantine_partial_result(path)
+    assert quarantined.parent == tmp_path / "partials"
+    assert digest[:12] in quarantined.name
+    assert hashlib.sha256(quarantined.read_bytes()).hexdigest() == digest
+    assert not path.exists()
+    assert not list(tmp_path.glob("*_learned_hill_s*.json"))
+
+
+def test_quarantine_rejects_complete_result(tmp_path):
+    path = tmp_path / "g1_learned_hill_s1.json"
+    path.write_text(json.dumps(baseline_payload()))
+    with pytest.raises(ValueError, match="only a partial"):
+        quarantine_partial_result(path)
+    assert path.exists()

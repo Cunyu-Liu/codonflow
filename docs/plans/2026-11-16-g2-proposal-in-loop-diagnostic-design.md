@@ -26,6 +26,12 @@ CUDA不可用、checkpoint/RSCU/calibration哈希不符、初始不配对、dirt
 
 主要描述 learned-hill 相对既有 random-hill 的逐基因AUC方向、四目标差距、NED和耗时，不设置事后Go阈值，不修改G2。只有预先登记的后续独立实验才可检验新假设；不得据此启动short-rollout、D5确认、扩参、RLOO或SOTA写作。
 
+## 技术修正 1：唯一解不足时的尝试上限（恢复前登记）
+
+FULL `C14A6.7.1 seed1` 首次运行在25,000次提议后仅得到388个唯一解，以`max_attempts_exhausted`结束；其SHA256=`1c127354c11944d2d7f3e5069996c44d42b2b184530c80aa93c37eea8c11fb6c`。这是重复候选导致的工程上限，不是CUDA故障或科学Gate结果。原执行器与自动Gate均已停止，partial未进入统计。
+
+在读取该分片结局后、任何重跑前，将后续诊断的提议尝试上限统一登记为100,000；500唯一terminal scorer、paired initial、模型、seed、accept/reject、calibration、NED/AUC和全部科学解释边界均不变。已完成分片未触及该上限，不重跑。缺失分片从相同初始和seed完整重算，原partial连同SHA移入独立`partials/`目录，禁止覆盖、删除或作为完成结果。新运行若仍不足500唯一解，继续保留partial并停止，不进入Gate。
+
 ## 实施与验证
 
 为 `SimpleSearch` 增加可选 proposal callable，默认行为逐字节保持不变；学习提议适配器只负责T=1候选。单元测试覆盖默认路径不变、非法提议、cache/唯一预算、接受规则与CUDA缺失拒绝。先跑聚焦和完整回归，再做小规模CUDA工程检查；smoke不进入科学结论。完成后独立重算原始指标并提交代码、日志和负/正诊断，不选择性删除结果。

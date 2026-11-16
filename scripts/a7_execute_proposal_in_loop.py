@@ -85,7 +85,8 @@ def main():
                            "--baseline-dir", args.baseline_dir,
                            "--rscu-json", args.rscu_json, "--calibration-dir", args.calibration_dir,
                            "--data-split-sha256", args.data_split_sha256,
-                           "--out-dir", str(root / arm), "--record-id", gene, "--seed", str(seed)]
+                           "--out-dir", str(root / arm), "--record-id", gene, "--seed", str(seed),
+                           "--max-attempts", "100000"]
                 for commit in sorted(accepted):
                     command.extend(["--baseline-code-commit", commit])
                 for commit in sorted(accepted):

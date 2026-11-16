@@ -34,6 +34,24 @@ def validate_baseline(path, expected):
     return payload
 
 
+def quarantine_partial_result(path):
+    path = Path(path)
+    payload = json.loads(path.read_text())
+    if payload.get("status") != "partial":
+        raise ValueError(f"only a partial diagnostic can be quarantined: {path}")
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    quarantine_dir = path.parent / "partials"
+    quarantine_dir.mkdir(exist_ok=True)
+    target = quarantine_dir / f"{path.stem}_{digest[:12]}.json"
+    if target.exists():
+        if hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+            raise FileExistsError(f"different partial diagnostic already exists: {target}")
+        path.unlink()
+    else:
+        path.replace(target)
+    return target
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", required=True)
@@ -48,13 +66,14 @@ def main():
     parser.add_argument("--record-id", required=True)
     parser.add_argument("--seed", type=int, required=True)
     parser.add_argument("--max-unique-scorer", type=int, default=500)
+    parser.add_argument("--max-attempts", type=int, default=100000)
     parser.add_argument("--gc-target", type=float, default=0.55)
     parser.add_argument("--weights", nargs="+", type=float, default=[1, 1, 1, 0.5])
     parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
-    if len(args.weights) != 4 or args.max_unique_scorer != 500:
-        raise ValueError("diagnostic requires four weights and exactly 500 unique scorer calls")
+    if len(args.weights) != 4 or args.max_unique_scorer != 500 or args.max_attempts != 100000:
+        raise ValueError("diagnostic requires four weights, 500 unique scorer calls and 100000 attempt ceiling")
     if not str(Path(args.out_dir).resolve()).startswith("/teams/"):
         raise ValueError("diagnostic outputs must remain on /teams")
     accepted_code_commits = resolve_accepted_code_commits(
@@ -116,9 +135,14 @@ def main():
     if out_path.exists():
         if not args.resume:
             raise FileExistsError(f"refusing to overwrite result: {out_path}")
-        validate_baseline(out_path, expected)
-        print(json.dumps({"record_id": header, "method": "learned_hill", "status": "skipped_existing"}))
-        return
+        if json.loads(out_path.read_text()).get("status") == "partial":
+            quarantine = quarantine_partial_result(out_path)
+            print(json.dumps({"record_id": header, "method": "learned_hill",
+                              "status": "quarantined_partial", "path": str(quarantine)}))
+        else:
+            validate_baseline(out_path, expected)
+            print(json.dumps({"record_id": header, "method": "learned_hill", "status": "skipped_existing"}))
+            return
 
     def objectives(sequence):
         return [cai(sequence, weights), -mfe(sequence),
@@ -132,7 +156,8 @@ def main():
     result = SimpleSearch(initial, objectives, args.weights, seed=args.seed,
                           normalization=(frozen.reference, frozen.scale),
                           proposal_fn=learned_proposal).run(
-        "hill_climbing", max_unique_scorer=args.max_unique_scorer)
+        "hill_climbing", max_unique_scorer=args.max_unique_scorer,
+        max_attempts=args.max_attempts)
     payload = result.to_dict()
     payload["method"] = "learned_hill"
     payload["status"] = "done" if result.status == "done" else "partial"
@@ -147,6 +172,7 @@ def main():
         "initial_index": 0,
         "terminal_step": 1,
         "path_batch_size": 1,
+        "max_attempts": args.max_attempts,
         "uniform_operator": "learned_single_codon_t1",
         "benchmark_sha256": file_sha256(args.benchmark_fasta),
         "data_split_sha256": args.data_split_sha256,
@@ -175,6 +201,9 @@ def main():
     temporary = out_path.with_suffix(".tmp")
     temporary.write_text(json.dumps(payload, indent=2))
     temporary.replace(out_path)
+    if payload["status"] != "done":
+        quarantine = quarantine_partial_result(out_path)
+        raise RuntimeError(f"incomplete diagnostic retained at {quarantine}: {result.status}")
     validate_baseline(out_path, expected)
     print(json.dumps({"record_id": header, "method": "learned_hill", "seed": args.seed,
                       "status": payload["status"], "auc": payload["anytime"]["auc"]}))
