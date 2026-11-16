@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from codonflow.data.dataset import read_fasta
 from codonflow.models.guided_sampler import synonymous_x0
 from codonflow.train.run_pretrain import file_sha256, git_commit
-from scripts.a7_proposal_in_loop_gate import DIAGNOSTIC_GENES
+from scripts.a7_proposal_in_loop_gate import DIAGNOSTIC_GENES, select_genes
 from scripts.a7_provenance import resolve_accepted_code_commits
 from scripts.a7_run_proposal_in_loop import validate_baseline
 
@@ -42,6 +42,7 @@ def main():
     parser.add_argument("--data-split-sha256", required=True)
     parser.add_argument("--out-root", required=True)
     parser.add_argument("--accept-code-commit", action="append", default=[])
+    parser.add_argument("--exclude-record-id", action="append", default=[])
     parser.add_argument("--only-arm", choices=("FULL", "EDIT"))
     parser.add_argument("--skip-gate", action="store_true")
     parser.add_argument("--resume", action="store_true")
@@ -57,12 +58,13 @@ def main():
     if subprocess.check_output(["git", "status", "--porcelain"], text=True).strip():
         raise ValueError("diagnostic requires a clean source tree")
     records = {header.split()[0]: sequence for header, sequence in read_fasta(args.benchmark_fasta)}
+    genes = select_genes(records, args.exclude_record_id) if args.exclude_record_id else DIAGNOSTIC_GENES
     benchmark_sha256 = file_sha256(args.benchmark_fasta)
     rscu_sha256 = file_sha256(args.rscu_json)
     for name, checkpoint, expected_sha in arms.values():
         if file_sha256(checkpoint) != expected_sha:
             raise ValueError(f"checkpoint mismatch: {name}")
-    for gene in DIAGNOSTIC_GENES:
+    for gene in genes:
         source = records[gene]
         calibration_path = Path(args.calibration_dir) / f"{gene}.json"
         for seed in (0, 1, 2):
@@ -77,7 +79,7 @@ def main():
             })
     tasks = []
     for arm, checkpoint, checkpoint_sha256 in arms.values():
-        for gene in DIAGNOSTIC_GENES:
+        for gene in genes:
             for seed in (0, 1, 2):
                 command = [sys.executable, "scripts/a7_run_proposal_in_loop.py",
                            "--checkpoint", checkpoint, "--checkpoint-sha256", checkpoint_sha256,
@@ -99,6 +101,8 @@ def main():
     if args.dry_run:
         print(json.dumps({"ready": True, "scientific_gate_passed": False,
                           "n_tasks": len(tasks), "out_root": str(root),
+                          "selected_record_ids": list(genes),
+                          "excluded_record_ids": sorted(args.exclude_record_id),
                           "code_commit": git_commit(), "accepted_code_commits": sorted(accepted)}))
         return
     status_path = root / (f"execution_status_{args.only_arm}.json" if args.only_arm else "execution_status.json")
@@ -111,6 +115,8 @@ def main():
     status = {"protocol": "a7_proposal_in_loop_execution_v1", "status": "running",
               "scientific_gate_passed": False, "code_commit": git_commit(),
               "accepted_code_commits": sorted(accepted), "n_tasks": len(tasks),
+              "selected_record_ids": list(genes),
+              "excluded_record_ids": sorted(args.exclude_record_id),
               "previous_status": previous}
     status_path.write_text(json.dumps(status, indent=2))
     attempt = int(time.time())
@@ -142,6 +148,8 @@ def main():
             gate_command = [sys.executable, "scripts/a7_proposal_in_loop_gate.py",
                             "--benchmark-fasta", args.benchmark_fasta,
                             "--calibration-dir", args.calibration_dir, "--out", str(gate)]
+            for record_id in args.exclude_record_id:
+                gate_command.extend(["--exclude-record-id", record_id])
             for commit in sorted(accepted):
                 gate_command.extend(["--accept-code-commit", commit])
             for arm, _checkpoint, checkpoint_sha256 in arms.values():
