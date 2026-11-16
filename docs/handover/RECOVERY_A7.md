@@ -19,6 +19,6 @@ G0 与双臂 G1 已通过；G2 已正式 **No-Go**。不得进入 G3、D5 确认
 
 ## 后续允许动作
 
-T3.5诊断已完成：`07_a7_data/g2_failure_diagnostics.json` SHA256=`1db92329…`，独立重算一致。learned中位编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s；支持终端优化不足，不证明唯一机制或容量上限。任何新实验先登记T3.6诊断协议，不得借诊断进入short-rollout、D5确认、扩参或SOTA路线。
+T3.5诊断已完成：`07_a7_data/g2_failure_diagnostics.json` SHA256=`1db92329…`，独立重算一致。learned中位编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s；支持终端优化不足，不证明唯一机制或容量上限。T3.6协议已冻结于 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`，当前仅允许T3.7 proposal-in-the-loop诊断，阳性仅形成后续假设，阴性支持负结果，不得借诊断进入short-rollout、D5确认、扩参或SOTA路线。
 
 PPT 已50页，SHA256=`6fad2279f5dc1a9f073a454def0bf91ec1ae5bc69329a4583d4258fc3ab79891`。分析修复提交 `3d09147e9b8a3aab50faddbc89269b0609bbfeb4`，回归212 passed、1 skipped。

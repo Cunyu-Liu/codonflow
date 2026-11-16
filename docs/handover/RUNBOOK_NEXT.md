@@ -180,7 +180,7 @@ D5 只能支持操作定义的同源泛化。确认集一旦被用于调参，�
 
 324/324结果已完成，identity/legal=100%；FULL/EDIT中位相对改善−94.28%/−93.47%，CI均完全低于0，Holm p=1.0，最低NED ratio=0.133/0.163。两臂18/18基因均负效应，hill-climbing均为最强基线。原Gate SHA256=`a2e157b2…`，独立重算SHA256=`9a1b5c9b…`，逐项一致。主图、三预算Pareto、best-at-budget、非支配覆盖和成本表均已生成并核验。
 
-**禁止重跑G2或启动G3、D5确认、扩参、RLOO、SOTA写作。** T3.5诊断已完成：`g2_failure_diagnostics.json` SHA256=`1db92329…`，原始500点独立重算一致；learned编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s，支持终端优化不足但不证明唯一机制或容量上限。后续新实验先登记T3.6诊断协议，不得借诊断绕过G2。PPT已50页，SHA256=`6fad2279…`。
+**禁止重跑G2或启动G3、D5确认、扩参、RLOO、SOTA写作。** T3.5诊断已完成：`g2_failure_diagnostics.json` SHA256=`1db92329…`，原始500点独立重算一致；learned编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s，支持终端优化不足但不证明唯一机制或容量上限。T3.6协议已冻结于 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`，当前仅允许T3.7 proposal-in-the-loop诊断，阳性仅形成后续假设，阴性支持负结果。PPT已50页，SHA256=`6fad2279…`。
 
 独立 MFE/NED 复算入口（seeds 1/2 生成完成后运行；只读原结果，缺少 ViennaRNA 时必须失败）：
 

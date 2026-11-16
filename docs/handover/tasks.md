@@ -98,7 +98,8 @@
 - [x] **T3.3 统计裁决**：两臂18/18基因均为负效应，最强基线均为hill-climbing；FULL/EDIT中位相对改善−94.28%/−93.47%，CI完全低于0，Holm p=1.0。
 - [x] **T3.4 正式 No-Go**：`g2_gate.json` SHA256=`a2e157b2…`；独立重算SHA256=`9a1b5c9b…`，统计、NED、输入哈希与裁决逐项一致。不得进入G3。
 - [x] **T3.5 失败机制诊断**：`07_a7_data/g2_failure_diagnostics.json` SHA256=`1db92329…`，原始500点独立重算一致。learned中位编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s；支持终端优化不足，不宣称唯一机制或容量上限。
-- [ ] **T3.6 后续诊断协议复核**：任何新实验须先登记目标、对照和停止规则；不得借诊断绕过G2进入short-rollout、D5确认、扩参、RLOO或SOTA写作。
+- [x] **T3.6 诊断协议复核**：已冻结 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`。复用G2随机hill结果，新增18个T=1 learned-hill分片，同accept/reject、cache、calibration和500唯一scorer；只作开发诊断，不翻案G2。
+- [ ] **T3.7 proposal-in-the-loop 实施**：为SimpleSearch增加可选proposal callable，默认路径不变；完成回归、CUDA工程检查和18分片后独立重算。阳性仅形成后续假设，阴性支持负结果；禁止进入G3。
 
 **DoD**：中心图与逐基因表由冻结 JSON 自动生成；任一失败均明确 No-Go，不转向外部弱 baseline 掩盖。
 
@@ -140,4 +141,4 @@
 
 ## 8. 当前唯一允许推进的任务块
 
-**T3.5诊断已完成，当前仅允许T3.6诊断协议复核与负结果路线。** G2 No-Go证据齐全，失败诊断为终端优化不足但不证明唯一机制或容量上限。禁止启动G3、D5确认、扩参、RLOO或SOTA写作；任何新实验须先登记协议，不得借诊断绕过G2。
+**T3.6协议已冻结，当前仅允许T3.7 proposal-in-the-loop诊断。** G2 No-Go证据齐全，失败诊断为终端优化不足但不证明唯一机制或容量上限。禁止启动G3、D5确认、扩参、RLOO或SOTA写作；阳性只形成后续假设，阴性支持负结果，不得借诊断绕过G2。

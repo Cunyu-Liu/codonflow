@@ -694,3 +694,12 @@
 - 这些关联支持“有限步objective-blind proposal终端优化不足”，但不证明唯一机制或容量上限，不改变G2 No-Go，不启动G3。
 - PPT第50页记录目标差距、初始点增益、编辑幅度、NED、耗时与解释边界；50页重开、PDF导出和实际PNG视觉检查均通过。最终SHA256=`6fad2279f5dc1a9f073a454def0bf91ec1ae5bc69329a4583d4258fc3ab79891`，49页版本已备份。
 - T3.5诊断完成；后续任何新实验必须先登记T3.6诊断协议、对照与停止规则，不得借诊断绕过G2。
+
+
+## 97. T3.6 proposal-in-the-loop 诊断协议冻结
+
+- 比较三条路线：先训练新目标模型（成本高且混杂）、仅写负结果（不能区分核与优化器）、同一accept/reject优化器中的提议消融（最小直接诊断）。选择第三条，不改变G2 No-Go。
+- 已写入 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`：复用现有FULL/EDIT checkpoint、calibration和G2随机hill结果；仅新增3个G1基因×3 seeds×2臂=18个T=1 learned-hill结果。
+- 新分片与随机hill使用相同paired initial、四目标权重、delta>=0接受规则、独立cache和500唯一terminal evaluations；NED、anytime、成本完整记录。旧随机hill只在SHA及全部配对字段复核后复用，不重跑。
+- CUDA不可用、哈希/初始不配对、dirty、partial、identity<100%、唯一解不足或未登记commit均停止留证。默认SimpleSearch行为必须保持不变，先完成回归和CUDA工程检查。
+- 结果只作开发诊断：阳性形成后续研究假设，阴性支持负结果；不设事后Go阈值，不启动short-rollout、D5确认、扩参、RLOO或SOTA写作。

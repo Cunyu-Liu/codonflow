@@ -11,6 +11,7 @@
 - unique18 seeds 0/1/2 均完成 18/18、五方法及独立 MFE/NED 复算；25 物种原始来源、全量清洗、分布、冻结资产和 calibration 已闭环并通过 G0。
 - FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1。G2 324/324 结果已完成：FULL/EDIT中位相对改善−94.28%/−93.47%，两臂18/18基因均负效应且hill-climbing最强，identity/legal=100%但NED未达；独立Gate重算一致，正式No-Go。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
 - T3.5诊断已完成：`g2_failure_diagnostics.json` SHA256=`1db92329…`，原始500点独立重算一致。learned中位编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s；支持终端优化不足，不证明唯一机制或容量上限。后续新实验须先登记T3.6诊断协议。
+- T3.6协议已冻结于 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`：复用G2随机hill结果，新增18个T=1 learned-hill分片，同accept/reject、calibration、paired initial和500唯一scorer。只作proposal-in-the-loop开发诊断，阳性仅形成后续假设，阴性支持负结果，不翻案G2或进入G3。
 - r4 已完成 e1/e2 并保留完整恢复状态，但 e3 中断且未收敛；r5 精确恢复只提供训练连续性，G1 仍由独立收敛审计、行为结果和 checkpoint 哈希判定。
 - 已有资产：有限步同义 Markov 操作符、小状态精确验证、成本 trace、v4/v5 内部划分审计、core seed-0 五方法 baseline 的部分结果。
 - `unique18.fasta` 的 18 条输入已审计，但 baseline 输出不得仅凭文件数称为完整；正式使用前必须按 manifest 复核 done/partial/missing、MFE/NED 和种子。
