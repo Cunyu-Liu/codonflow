@@ -45,7 +45,7 @@ def main():
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
-    arms = dict(parse_arm(value) for value in args.arm)
+    arms = {name: (name, path, sha256) for name, path, sha256 in map(parse_arm, args.arm)}
     if set(arms) != {"FULL", "EDIT"}:
         raise ValueError("FULL and EDIT checkpoints are required")
     root = Path(args.out_root)
