@@ -189,7 +189,7 @@ RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值
 
 ### T3.7 补充诊断（不是新验收门）
 
-proposal-in-the-loop协议已冻结：两臂各3个G1开发基因×3 seeds，learned T=1提议置于既有hill-climbing accept/reject中，与随机hill保持paired initial、calibration、独立cache和500唯一terminal scorer一致。阳性只形成后续独立实验假设，阴性支持既有No-Go，均不翻案G2。实现完整回归221 passed / 1 skipped；当前EDIT 9/9、FULL 5/9，已产出的14片均done、真实CUDA、identity=100%、500唯一解且code_dirty=false。FULL首次C14A6.7.1 seed1在25,000次提议后仅388唯一解，partial SHA=1c127354…已隔离保留；技术修正1将后续尝试上限登记为100,000，500唯一scorer不变。恢复执行器PID 1987357正在重算缺失两片，不得重复启动，待18片齐备后统一独立重算。
+T3.7 proposal-in-the-loop诊断已完成：18/18 learned-hill均为done、真实CUDA、identity=100%、500唯一解且code clean。Gate与独立重跑逐字节一致，SHA256=`6de0998de4eda4068a06b09c29dbb4369458cc9efbac568e81d91ba9d4209707`；独立原始点审计SHA256=`b578b26720aa2e0589c4e6df6ca6e769caa0aea20a951c9877ddbf1e6c7086fd`。FULL逐基因AUC相对变化+0.35%/+45.22%/+18.03%，EDIT +27.00%/+60.41%/+35.62%；但FULL/EDIT耗时比中位20.79×/2.62×，所有run均更慢。该三开发基因结果仅形成提议偏好与成本假设，无独立确认、显著性或泛化宣称，不翻案G2。原388唯一解partial以SHA=1c127354…保留，技术修正1及混合commit历史完整。
 
 ### G3：short-rollout 净收益
 
