@@ -43,6 +43,7 @@ def main():
     parser.add_argument("--out-root", required=True)
     parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--exclude-record-id", action="append", default=[])
+    parser.add_argument("--workers-per-arm", type=int, default=1)
     parser.add_argument("--only-arm", choices=("FULL", "EDIT"))
     parser.add_argument("--skip-gate", action="store_true")
     parser.add_argument("--resume", action="store_true")
@@ -51,6 +52,8 @@ def main():
     arms = {name: (name, path, sha256) for name, path, sha256 in map(parse_arm, args.arm)}
     if set(arms) != {"FULL", "EDIT"}:
         raise ValueError("FULL and EDIT checkpoints are required")
+    if not 1 <= args.workers_per_arm <= 16:
+        raise ValueError("workers-per-arm must be between 1 and 16")
     root = Path(args.out_root)
     if not str(root.resolve()).startswith("/teams/"):
         raise ValueError("diagnostic outputs must remain on /teams")
@@ -102,6 +105,7 @@ def main():
         print(json.dumps({"ready": True, "scientific_gate_passed": False,
                           "n_tasks": len(tasks), "out_root": str(root),
                           "selected_record_ids": list(genes),
+                          "workers_per_arm": args.workers_per_arm,
                           "excluded_record_ids": sorted(args.exclude_record_id),
                           "code_commit": git_commit(), "accepted_code_commits": sorted(accepted)}))
         return
@@ -116,6 +120,7 @@ def main():
               "scientific_gate_passed": False, "code_commit": git_commit(),
               "accepted_code_commits": sorted(accepted), "n_tasks": len(tasks),
               "selected_record_ids": list(genes),
+              "workers_per_arm": args.workers_per_arm,
               "excluded_record_ids": sorted(args.exclude_record_id),
               "previous_status": previous}
     status_path.write_text(json.dumps(status, indent=2))
@@ -134,9 +139,9 @@ def main():
 
     try:
         def run_arm(arm):
-            for task in tasks:
-                if task["arm"] == arm:
-                    execute(task)
+            arm_tasks = [task for task in tasks if task["arm"] == arm]
+            with ThreadPoolExecutor(max_workers=args.workers_per_arm) as pool:
+                list(pool.map(execute, arm_tasks))
             return arm
         with ThreadPoolExecutor(max_workers=2) as pool:
             completed = list(pool.map(run_arm, (args.only_arm,) if args.only_arm else ("FULL", "EDIT")))

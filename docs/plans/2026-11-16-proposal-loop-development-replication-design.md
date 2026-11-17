@@ -37,3 +37,12 @@ CUDA不可用、checkpoint/RSCU/calibration/benchmark哈希错误、初始不配
 ## 实施与验证
 
 复用T3.7 worker、严格resume、partial隔离和独立Gate；仅增加显式15基因任务生成与统计，不改变模型、采样或accept/reject。测试覆盖15基因完整集合、排除三基因、缺失/重复/错误基因拒绝、混合commit白名单、partial拒绝、原始指标与成本聚合。先聚焦测试、完整回归和真实dry-run，再双臂各一个worker并行执行。smoke和单基因结果不得写成最终结论。
+
+
+## 技术修正 2：development15剩余FULL分片并行恢复（启动前登记）
+
+用户明确要求提高GPU并行度。原执行器PID 2071716的EDIT 45/45已完成，FULL仅单worker运行且显存空余。原父执行器先SIGSTOP，当前C47A4.1.1 seed2子进程继续至原子写出；只有该子进程完成后才结束旧父进程，不中断或丢弃当前分片。旧running状态保留，随后以唯一任务列表resume，不允许新旧两个执行器同时启动新分片。
+
+执行器新增`--workers-per-arm`，默认1保持原行为，本次仅FULL剩余分片显式使用12。所有任务仍是原15基因×3 seeds，已完成分片严格校验后跳过，不改变checkpoint、paired initial、T=1、accept/reject、calibration、500唯一scorer、100,000尝试上限、代码白名单或统计规则。子进程真实CUDA、identity、500唯一解及dirty-tree停止条件不变。
+
+资源实测：GPU总显存32607MiB，当前16289MiB；CPU 16核、内存60GB。12个worker按每片约972MiB估算总显存约28.9GB，不继续增加进程。并发、代码commit和恢复历史必须写入状态。不同并发的wall-clock只作实际成本描述，不作为隔离微基准或直接速度胜负；最终AUC/NED/scorer口径不变。
