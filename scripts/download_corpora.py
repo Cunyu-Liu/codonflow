@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import List
 
 BIOMART_URL = (
-    "https://www.ensembl.org/biomart/martservice?query={xml}"
+    "https://release112.ensembl.org/biomart/martservice?query={xml}"
 )
 
 BIOMART_XML = """<?xml version="1.0" encoding="UTF-8"?>

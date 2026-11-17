@@ -1,11 +1,18 @@
 {
   "protocol_version": "a7_data_v1",
-  "status": "g0_open_remote_execution_recheck_required",
+  "status": "g0_passed_source_lineage_review_required",
   "runtime": {
     "code_worktree": "/home/codonflow",
     "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031",
     "gpu_required_for_training_and_gpu_validation": true,
     "cpu_fallback_allowed": false
+  },
+  "source_lineage_review": {
+    "status": "human_release_mismatch_confirmed",
+    "non_human_source": "Ensembl release 112 FTP",
+    "human_source": "unversioned live BioMart in scripts/download_corpora.py",
+    "impact": "Recovered release-112 human records are not identical to v3_all; existing results remain historical and no silent replacement is allowed.",
+    "audit_artifact": "07_a7_data/source_lineage_human/manifest.json"
   },
   "development": {
     "role": "debugging_and_g2_g3_development_only",
@@ -16,7 +23,7 @@
     "unique18": {
       "canonical_fasta": "corpora/a6_benchmark/unique18.fasta",
       "expected_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
-      "status": "handoff_verified_seed0_complete_seeds1_2_and_mfe_ned_recalculation_open"
+      "status": "completed_three_seeds_independent_mfe_ned_recalculation"
     }
   },
   "confirmation": {
@@ -29,7 +36,7 @@
     "selection_forbids": ["model_outputs", "cai", "mfe", "hypervolume"],
     "artifact": "07_a7_data/confirmation24/confirmation24.fasta",
     "expected_sha256": "a128bdbf6bfbc94f33d8d4d72f99173108ee0f0d8d3318d5a0d287de3b710d6d",
-    "status": "handoff_verified_remote_recheck_required"
+    "status": "frozen_untouched_not_used_for_training_or_tuning"
   },
   "calibration": {
     "builder": "scripts/a7_build_calibration_pool.py",
@@ -42,6 +49,6 @@
     "rscu_artifact": "07_a7_data/cai_ref_d5train.json",
     "rscu_expected_sha256": "2a5e05ef17a03a2b3b063990fd875d565a6db3fbedebab7689bca1fa45658c5d",
     "expected_reference_records": 24,
-    "status": "handoff_verified_24_of_24_remote_recheck_required"
+    "status": "verified_24_of_24"
   }
 }
