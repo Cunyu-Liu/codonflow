@@ -79,6 +79,8 @@
 - [x] seeds 1/2 已使用两个真实 CUDA 进程并行启动；无 CPU 静默降级。主训练仍须等待 G0 全部通过。
 - [x] 仅为合同内任务并行分配 GPU；保留其他项目进程，记录日志、PID 与资源边界，不 kill 或修改其他项目。
 
+- [x] **T1.9 人类源数据谱系审计与版本固定**：恢复版与`v3_all`共享57,240条唯一CDS，恢复版/v3各自独有1,704/230条；根因为人类脚本使用未固定BioMart，非人类固定release112。审计`07_a7_data/source_lineage_human/manifest.json` SHA256=`2eed1bcae8d2193c1466e0eb193d041ba5c30b250b06c7700bdc920f28d800f8`。脚本固定release112，配置状态更新，完整回归224 passed、1 skipped，提交`31072aea`。不得静默替换历史数据。
+
 **P1 已完成 = G0 已通过。** 最终裁决为 `07_a7_data/g0_gate.json passed=true`，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。unique18 三 seed 均为 18/18、五方法 done，独立 MFE/NED 全匹配；所有旧证据仅作资产，不能作为新模型性能结果。
 
 ## 2. P2 · G1 模型收敛且非退化
@@ -116,6 +118,8 @@
 **DoD**：spec G3 通过才保留 short-rollout 主贡献；否则主线只保留 immediate。
 
 ## 5. P5 · G4 独立确认与外部边界
+
+- [ ] **T5.0 外部开发对照统一**：development15完成后，统一LinearDesign/GEMORNA/codonGPT的AUC、Pareto、NED、wall-clock与输入分层；natural-source和protein-only分开，第三方预训练不可审计性披露。未复现方法只列相关，不伪造数值，不以开发对照宣称SOTA。
 
 - [ ] **T5.1 D5 最终模型**：协议冻结后训练 `M_SYN_D5_*`，重复 G1，不在确认集调参。
 - [ ] **T5.2 untouched 确认**：24 基因上重复 learned-vs-simple-search 主对照和统计。

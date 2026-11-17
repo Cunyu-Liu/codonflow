@@ -1,8 +1,8 @@
 # CodonFlow Spec（A7 · warm-start 学习价值验证版）
 
 > 生效日期：2026-11-01。本文是当前唯一有效合同；旧版勾选、命令和数字只在 journal/audit 中追溯。
-> 已确认方向：主任务为 **warm-start synonymous CDS editing**；第一决定性关卡为 **learned proposal vs 无学习简单搜索**。
-> 当前 G2 已完成并正式 **No-Go**，进入训练诊断/负结果路线。324/324 结果完成，identity/legal=100%；FULL/EDIT 中位相对改善分别为 −94.28%/−93.47%，独立 Gate 重算逐项一致。不得进入 G3、扩参、RLOO 或 SOTA 写作；全部失败与负结果证据保留。
+> 已确认方向：主任务为 **warm-start synonymous CDS editing**；主研究目标是检验 **CodonFlow能否在统一benchmark、独立确认和质量—成本上超越现有mRNA设计方法**，不是预设其已经超越。第一决定性关卡仍为 learned proposal vs 无学习简单搜索。
+> 当前 G2 已完成并正式 **No-Go**，保留训练诊断/负结果路线并补齐数据与外部对照。324/324 结果完成，identity/legal=100%；FULL/EDIT 中位相对改善分别为 −94.28%/−93.47%，独立 Gate 重算逐项一致。不得进入 G3、扩参、RLOO 或无证据的 SOTA 写作；全部失败与负结果证据保留。
 > 2026-11-12 执行补充：代码与提交以远端 `/home/codonflow` 为工作副本；大型数据、权重、日志和 artifacts 只放 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。训练及 GPU 验证必须实际使用 CUDA；CUDA 不可用、kernel 不兼容或 CPU 静默降级时立即停止并保存证据。独立任务可并行，但不得为占满显存制造实验或越过 Gate。
 
 ## 0. 当前事实状态
@@ -45,13 +45,14 @@
 
 | ID | 假设 | 证伪条件 |
 |---|---|---|
+| H0 | CodonFlow在统一外部baseline、独立确认和质量—成本上超越现有mRNA设计方法 | 统一外部比较或独立确认未显示稳定优势；当前G2已证伪原始提议，不得宣称H0成立 |
 | H1a | 有限步单密码子同义核在可枚举小状态上实现精确终端 tilt | 精确小状态验证失败 |
 | H1b | 大空间 short-rollout/候选剪枝只是近似，其偏差和成本可被测量 | 不把它作为“必然更优”的假设；若把近似写成精确即表述错误 |
 | H2 | learned proposal 相对最强简单搜索改善 anytime 多目标质量—成本表现 | 预注册主终点未达到 G2，或 identity/legal/多样性发生不可接受退化 |
 | H3 | short-rollout 相对 immediate 的净收益覆盖额外 scorer/forward/时间成本 | G3 无正向净收益；失败后删除 short-rollout 主贡献 |
 | H4 | 在外部 CDS 方法和独立确认集上，可界定本方法的适用与失败区域 | 没有稳定优势区域时，结论改为边界/负结果，不写 SOTA |
 
-以下不是预设假设：第一个、SOTA、容量瓶颈、RL 随预训练饱和、family/species 泛化、表达或稳定性提升。
+以下是待证目标而非已成立结论：第一个、SOTA、容量瓶颈、RL 随预训练饱和、family/species 泛化、表达或稳定性提升。
 
 ## 3. 方法边界与命名
 
@@ -85,6 +86,7 @@
 - D4：train/val/test = 621,306/76,444/78,724；split 间及 split 与已审计 benchmark 的精确 CDS/蛋白重叠为 0。
 - D5：train/val/test = 618,073/80,191/78,177；MMseqs2 identity=0.5、双向 coverage=0.8，split/benchmark 簇隔离和精确重叠审计通过。
 - D5 不是 curated family 或 species OOD；没有下游结果前不能声称同源泛化。
+- 人类源谱系审计确认：v3构建时人类使用未固定BioMart，非人类固定release112。恢复版与`v3_all`共享57,240条唯一CDS，恢复版/v3各自独有1,704/230条；审计`07_a7_data/source_lineage_human/manifest.json` SHA256=`2eed1bcae8d2193c1466e0eb193d041ba5c30b250b06c7700bdc920f28d800f8`。因此25/25文件恢复不等于原v3逐版本一致。`configs/a7_data_protocol.json`已更新真实G0状态和该限制，后续下载脚本固定release112，提交`31072aea`；历史数据与结果不得静默替换。
 
 ### 4.2 G0 前必须补齐
 
