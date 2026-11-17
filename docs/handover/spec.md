@@ -201,6 +201,10 @@ T3.7的3基因阳性关联只能在unique18其余15个开发基因上复现检�
 
 只在 G2 通过后进行。使用同一冻结 checkpoint、paired 初始状态和相同预算比较 immediate 与 short-rollout。主终点和时间成本均有正向 gene-level 证据才保留 short-rollout；否则主线只保留 immediate。
 
+### T5.0 外部开发对照（先于G4）
+
+development15完成后按`docs/plans/2026-11-17-external-baseline-unification-design.md`统一LinearDesign/GEMORNA/codonGPT。先对实际输出做A7口径重评，再按冻结预算补protein-only公平实验；缺失预算不补零，旧motif计数与A7长度归一化不得混用，A6生成时间与A7端到端时间不得直接求比。natural-source与protein-only分表，外部开发证据不等于G4或SOTA。
+
 ### G4：独立确认与外部边界
 
 - 用 D5 训练最终模型，在 untouched 24 基因确认集上重复 G2 主对照；不得重新选择阈值或参考域。

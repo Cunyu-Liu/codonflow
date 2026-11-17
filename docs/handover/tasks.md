@@ -119,7 +119,7 @@
 
 ## 5. P5 · G4 独立确认与外部边界
 
-- [ ] **T5.0 外部开发对照统一**：development15完成后，统一LinearDesign/GEMORNA/codonGPT的AUC、Pareto、NED、wall-clock与输入分层；natural-source和protein-only分开，第三方预训练不可审计性披露。未复现方法只列相关，不伪造数值，不以开发对照宣称SOTA。
+- [ ] **T5.0 外部开发对照统一**：协议已冻结于`docs/plans/2026-11-17-external-baseline-unification-design.md`。development15完成后，统一LinearDesign/GEMORNA/codonGPT的AUC、Pareto、NED、wall-clock与输入分层；先复核实际预算，再按冻结预算补protein-only实验。natural-source和protein-only分开，旧motif和生成时间不得误用，缺失预算不补零。未复现方法只列相关，不伪造数值，不以开发对照宣称SOTA。
 
 - [ ] **T5.1 D5 最终模型**：协议冻结后训练 `M_SYN_D5_*`，重复 G1，不在确认集调参。
 - [ ] **T5.2 untouched 确认**：24 基因上重复 learned-vs-simple-search 主对照和统计。
