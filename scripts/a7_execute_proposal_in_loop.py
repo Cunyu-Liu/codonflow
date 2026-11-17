@@ -43,6 +43,7 @@ def main():
     parser.add_argument("--out-root", required=True)
     parser.add_argument("--accept-code-commit", action="append", default=[])
     parser.add_argument("--exclude-record-id", action="append", default=[])
+    parser.add_argument("--skip-shard", action="append", default=[])
     parser.add_argument("--workers-per-arm", type=int, default=1)
     parser.add_argument("--only-arm", choices=("FULL", "EDIT"))
     parser.add_argument("--skip-gate", action="store_true")
@@ -101,11 +102,29 @@ def main():
                 tasks.append({"arm": arm, "gene": gene, "seed": seed, "command": command})
     if args.only_arm:
         tasks = [task for task in tasks if task["arm"] == args.only_arm]
+    skipped = []
+    for value in args.skip_shard:
+        parts = value.split(":")
+        if len(parts) != 3 or parts[0] not in ("FULL", "EDIT"):
+            raise ValueError(f"skip-shard must be ARM:GENE:SEED: {value}")
+        try:
+            seed = int(parts[2])
+        except ValueError as error:
+            raise ValueError(f"skip-shard seed must be an integer: {value}") from error
+        key = (parts[0], parts[1], seed)
+        if key in skipped:
+            raise ValueError(f"duplicate skip-shard: {value}")
+        if not any((task["arm"], task["gene"], task["seed"]) == key for task in tasks):
+            raise ValueError(f"skip-shard does not match a task: {value}")
+        skipped.append(key)
+    tasks = [task for task in tasks
+             if (task["arm"], task["gene"], task["seed"]) not in set(skipped)]
     if args.dry_run:
         print(json.dumps({"ready": True, "scientific_gate_passed": False,
                           "n_tasks": len(tasks), "out_root": str(root),
                           "selected_record_ids": list(genes),
                           "workers_per_arm": args.workers_per_arm,
+                          "skipped_shards": [":".join(map(str, key)) for key in skipped],
                           "excluded_record_ids": sorted(args.exclude_record_id),
                           "code_commit": git_commit(), "accepted_code_commits": sorted(accepted)}))
         return
@@ -121,6 +140,7 @@ def main():
               "accepted_code_commits": sorted(accepted), "n_tasks": len(tasks),
               "selected_record_ids": list(genes),
               "workers_per_arm": args.workers_per_arm,
+              "skipped_shards": [":".join(map(str, key)) for key in skipped],
               "excluded_record_ids": sorted(args.exclude_record_id),
               "previous_status": previous}
     status_path.write_text(json.dumps(status, indent=2))

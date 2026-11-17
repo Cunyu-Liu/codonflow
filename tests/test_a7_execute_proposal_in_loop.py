@@ -26,7 +26,8 @@ def test_development15_dry_run_has_90_tasks(monkeypatch, capsys, tmp_path):
             "--baseline-dir", "/teams/baseline", "--rscu-json", "/teams/rscu.json",
             "--calibration-dir", "/teams/calibration", "--data-split-sha256", "b" * 64,
             "--baseline-code-commit", "a" * 64,
-            "--out-root", "/teams/development15", "--workers-per-arm", "12", "--dry-run"]
+            "--out-root", "/teams/development15", "--workers-per-arm", "12",
+            "--skip-shard", "FULL:g3:0", "--dry-run"]
     for arm in ("FULL", "EDIT"):
         argv.extend(["--arm", f"{arm}=/teams/{arm}.pt:{'a' * 64}"])
     for record_id in ("g0", "g1", "g2"):
@@ -34,8 +35,9 @@ def test_development15_dry_run_has_90_tasks(monkeypatch, capsys, tmp_path):
     monkeypatch.setattr("sys.argv", argv)
     executor.main()
     result = json.loads(capsys.readouterr().out)
-    assert result["ready"] is True and result["n_tasks"] == 90
+    assert result["ready"] is True and result["n_tasks"] == 89
     assert result["selected_record_ids"] == [f"g{index}" for index in range(3, 18)]
     assert result["excluded_record_ids"] == ["g0", "g1", "g2"]
     assert result["workers_per_arm"] == 12
+    assert result["skipped_shards"] == ["FULL:g3:0"]
     assert result["scientific_gate_passed"] is False
