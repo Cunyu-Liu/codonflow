@@ -103,7 +103,7 @@
 - [x] **T3.6 诊断协议复核**：已冻结 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`。复用G2随机hill结果，新增18个T=1 learned-hill分片，同accept/reject、cache、calibration和500唯一scorer；只作开发诊断，不翻案G2。
 - [x] **T3.7 proposal-in-the-loop 实施与复核**：18/18均done、真实CUDA、identity=100%、500唯一解；完整回归221 passed / 1 skipped。Gate与独立重跑逐字节一致，SHA256=`6de0998d…`；独立原始点审计SHA256=`b578b267…`。FULL/EDIT逐基因中位AUC相对变化+18.03%/+35.62%，但耗时比中位20.79×/2.62×；仅形成后续假设，不翻案G2。388唯一解partial、技术修正1及恢复历史全部保留。
 
-- [ ] **T3.8 其余15开发基因复现**：协议已冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`。双臂共90个新learned-hill分片，复用paired random-hill；AUC与wall-clock共同主要，NED/四目标辅助。15基因任务生成、统计、成本与best-at-budget已实现，223 passed / 1 skipped及T3.7默认数值回归通过；真实dry-run=90；当前EDIT45/45、FULL20/45。旧C47 seed2由PID 2674455独立运行，12-way执行器PID 2694122显式跳过该片处理其余任务，均不得重复启动；两者完成后统一Gate。并发不改变科学口径，wall-clock仅实际成本描述。仅作开发证据，不接触D5、不进入G3、不翻案G2。
+- [x] **T3.8 其余15开发基因复现**：90/90分片完成，全部真实CUDA、identity=100%、500唯一解；Gate与独立重跑SHA256=`835ffe64…`逐字节一致，原始点审计SHA256=`3d3c1c40…`。15/15基因均正向：FULL中位AUC+59.95%、EDIT+68.73%，CI下界为正、Holm p=6.1e-5；耗时比中位42.68×/2.41×。支持终端选择中的提议价值，但不是独立确认或外部SOTA；12-way恢复历史完整，wall-clock只作实际成本描述。
 
 **DoD**：中心图与逐基因表由冻结 JSON 自动生成；任一失败均明确 No-Go，不转向外部弱 baseline 掩盖。
 
