@@ -1,0 +1,151 @@
+{
+  "baseline_revision": 36,
+  "baseline_slide_count": 74,
+  "baseline_xml_sha256": "e50f935aec1665d784144e4afeadb1d665352a3afab587922dc0dbf2dff3465c",
+  "check_count": 10,
+  "checks": [
+    {
+      "detail": {
+        "finalization": "13/13",
+        "source_commit": "38b48079856aeb9d33a1b10844d77aa8f6640032"
+      },
+      "name": "frozen_official_and_finalization_evidence",
+      "pass": true
+    },
+    {
+      "detail": {
+        "independent": "17/17",
+        "max_numeric_delta": 0.0
+      },
+      "name": "independent_reexecution_pass",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 37,
+        "before": 36,
+        "slide_id": "pgh"
+      },
+      "name": "write_and_revision_confirmed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 75,
+        "before": 74,
+        "last_id": "pgh"
+      },
+      "name": "exactly_one_page_appended",
+      "pass": true
+    },
+    {
+      "detail": {
+        "old_pages": 74,
+        "previous_last_id": "pgU"
+      },
+      "name": "old_page_ids_and_order_unchanged",
+      "pass": true
+    },
+    {
+      "detail": {
+        "different_pages": [],
+        "unchanged": 74
+      },
+      "name": "all_74_old_pages_semantically_unchanged",
+      "pass": true
+    },
+    {
+      "detail": {
+        "ga_best_minus_start": 0.0,
+        "ga_s": 1.2729171668179333,
+        "generations": 2,
+        "mean_pearson": 0.6044025421142578,
+        "population": 8,
+        "std_pearson": 0.17268328368663788,
+        "test_s": 4.6736052692867815
+      },
+      "name": "kpi_protocol_and_cost_match_evidence",
+      "pass": true
+    },
+    {
+      "detail": {
+        "rows": [
+          [
+            "Official VeloGRU test",
+            "E. coli / cuda:0",
+            "7 selected records",
+            "0.604403 mean Pearson",
+            "PASS"
+          ],
+          [
+            "Native reference",
+            "E. coli / CPU",
+            "C1P620 \u00b7 36 codons",
+            "-0.025608 fitness",
+            "reference"
+          ],
+          [
+            "GA start",
+            "yeast / CPU",
+            "pop 8 \u00b7 gen 2 \u00b7 fixed seed",
+            "0.345986 fitness",
+            "legal CDS"
+          ],
+          [
+            "GA best",
+            "yeast / CPU",
+            "identical to start",
+            "0.000000 change",
+            "legal CDS"
+          ]
+        ]
+      },
+      "name": "table_recomputed_from_frozen_reports",
+      "pass": true
+    },
+    {
+      "detail": {
+        "functional_ood": false,
+        "main_baseline_comparison": false,
+        "note_paragraphs": 4,
+        "sota_claim": false
+      },
+      "name": "notes_and_scientific_boundary",
+      "pass": true
+    },
+    {
+      "detail": {
+        "in_bounds": true,
+        "minimum_explicit_font_px": 9.0,
+        "page_number": 75,
+        "table_rows": 5
+      },
+      "name": "new_page_geometry_and_readability_structure",
+      "pass": true
+    }
+  ],
+  "evidence_sha256": {
+    "finalization": "c056cc6207a15d74403926c676010a0fae50d7f7a215cb0ab19ce1fd40e609c5",
+    "independent": "ca18a827ceab5b36fc76904e2b64c98e545cc0e699024bbe0fdae2ddc192c873",
+    "production": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5"
+  },
+  "old_pages_unchanged": true,
+  "passed_checks": 10,
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "protocol": "a8_rk05_veloharmo_ppt_independent_verification_v1",
+  "readback_revision": 37,
+  "readback_slide_count": 75,
+  "readback_xml_sha256": "863fb78d364a05b21a9ceceb133f72aa8751d404643d8f9b58b877953164ae12",
+  "scope": {
+    "bounded_official_smoke_recorded": true,
+    "five_species_processed_matrices_complete": false,
+    "functional_ood": false,
+    "ga_iterative_improvement": false,
+    "main_baseline_matrix_closed": false,
+    "sota_claim": false
+  },
+  "slide_id": "pgh",
+  "slide_number": 75,
+  "status": "PASS"
+}
