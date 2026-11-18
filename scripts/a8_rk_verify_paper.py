@@ -238,6 +238,40 @@ def main() -> None:
     }
     check("codontransformer_bounded_execution_and_scope", all(ct_checks.values()), ct_checks)
 
+    velos = data["velo_official"]
+    velosv = data["velo_official_verify"]
+    velosf = data["velo_official_final"]
+    vt = velos["official_velogru_test"]
+    vg = velos["bounded_ga"]
+    velo_official_strings = [
+        velos["source_commit"], f"**{vt['mean_pearson']:.6f}**", f"**{vt['std_pearson']:.6f}**",
+        f"**{vt['metric_delta']:.2e}**", vg["target_record"], str(vg["target_codons"]),
+        f"population **{vg['population_size']}**", f"generations **{vg['generations']}**", f"seed **{vg['seed']}**",
+        f"**{vg['legal_synonymous_count']}/{vg['candidate_count']} legal synonymous CDSs**",
+        f"native **{vg['fitness']['native']:.6f}**", f"start **{vg['fitness']['start']:.6f}**", f"best **{vg['fitness']['best']:.6f}**",
+        "best − start = 0.000000", "**no iterative improvement occurred**", "unit tests passed **10/10**",
+        f"**{velosv['passed_checks']}/{velosv['check_count']} checks**", f"**{velosf['passed_checks']}/{velosf['check_count']} checks**",
+        "not five-species closure", "not held-out or OOD performance",
+        sha256(Path(audit["source_paths"]["velo_official"])),
+        sha256(Path(audit["source_paths"]["velo_official_verify"])),
+        sha256(Path(audit["source_paths"]["velo_official_final"])),
+    ]
+    velo_official_checks = {
+        "rendered_from_frozen_json": all(s in text for s in velo_official_strings),
+        "official_test": vt["returncode"] == 0 and vt["feature_dimension"] == 105 and vt["records"] == 7 and vt["device"] == "cuda:0" and vt["metric_delta"] <= 1e-7,
+        "unmodified_failure_and_patch": velos["official_ga_unmodified"]["returncode"] != 0 and not velos["official_ga_unmodified"]["executed_successfully"] and len(vg["patch"]) == 7,
+        "legal_and_negative_result": vg["legal_synonymous_count"] == vg["candidate_count"] == 2 and vg["best_sequence"] == vg["start_sequence"] and vg["best_minus_start"] == 0 and not vg["start_to_best_improved"],
+        "independent": velosv["status"] == "PASS" and velosv["passed_checks"] == velosv["check_count"] == 17 and velosv["max_numeric_delta"] == 0.0 and velosv["ga_best_equals_start"],
+        "finalization": velosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and velosf["passed_checks"] == velosf["check_count"] == 13,
+        "scope": not velos["main_baseline_comparison"] and not velos["functional_ood"] and not velos["sota_claim"] and not velos["five_species_processed_matrices_complete"],
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "velo_official": "veloharmo_official_smoke_v1.json",
+            "velo_official_verify": "veloharmo_independent_verification_v1.json",
+            "velo_official_final": "veloharmo_finalization_v1.json",
+        }.items()),
+    }
+    check("veloharmo_bounded_official_execution_and_scope", all(velo_official_checks.values()), velo_official_checks)
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -292,7 +326,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v6",
+        "schema_version": "a8-rk-paper-independent-verification-v7",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

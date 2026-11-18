@@ -7,7 +7,7 @@
     "8.1"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
+  "output_sha256": "078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -19,7 +19,7 @@
     "OOD",
     "wet-lab validation"
   ],
-  "schema_version": "a8-rk-paper-sync-v6",
+  "schema_version": "a8-rk-paper-sync-v7",
   "scientific_scope": {
     "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
     "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
@@ -31,7 +31,7 @@
     "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
     "sota": false,
     "submittable": false,
-    "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open"
+    "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open"
   },
   "source_paths": {
     "cdgb_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_audit.json",
@@ -68,6 +68,9 @@
     "rnarl_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/rnarl_official_independent_verification.json",
     "velo_final": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_finalization.json",
     "velo_loader": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_official_loader_smoke.json",
+    "velo_official": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_official_smoke_v1.json",
+    "velo_official_final": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_finalization_v1.json",
+    "velo_official_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_independent_verification_v1.json",
     "velo_qc": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_qc.json",
     "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json"
   },
@@ -106,6 +109,9 @@
     "rnarl_verify": "065215732f57a601431949220a4f4a25e7219d5f0cf7b22e3064288c87fdb47b",
     "velo_final": "faef939f00649d625fa23e98cc3d213e8488311d91bc601af3ef1f13d0c201a3",
     "velo_loader": "f4955ec45787b0777fe22fb35cc019362e3ce91fcaf97b6687faebad52861d71",
+    "velo_official": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+    "velo_official_final": "c056cc6207a15d74403926c676010a0fae50d7f7a215cb0ab19ce1fd40e609c5",
+    "velo_official_verify": "ca18a827ceab5b36fc76904e2b64c98e545cc0e699024bbe0fdae2ddc192c873",
     "velo_qc": "0cebea3aa272e72625356a23096cb5888e0311bf8290d688672f61d36660d2fb",
     "velo_verify": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a"
   },

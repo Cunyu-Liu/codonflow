@@ -103,6 +103,9 @@ def main() -> None:
         "velo_verify": repo / "audits/20261118/RK03/veloharmo_ecoli_independent_verification.json",
         "velo_loader": repo / "audits/20261118/RK03/veloharmo_official_loader_smoke.json",
         "velo_final": repo / "audits/20261118/RK03/veloharmo_finalization.json",
+        "velo_official": repo / "audits/20261118/RK05/veloharmo_official_smoke_v1.json",
+        "velo_official_verify": repo / "audits/20261118/RK05/veloharmo_independent_verification_v1.json",
+        "velo_official_final": repo / "audits/20261118/RK05/veloharmo_finalization_v1.json",
         "rk07": args.rk07_dir / "final_results.json",
         "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
     }
@@ -145,6 +148,9 @@ def main() -> None:
     velov = data["velo_verify"]
     velol = data["velo_loader"]
     velof = data["velo_final"]
+    velos = data["velo_official"]
+    velosv = data["velo_official_verify"]
+    velosf = data["velo_official_final"]
     rk07 = data["rk07"]
     rk07v = data["rk07_verify"]
 
@@ -206,6 +212,13 @@ def main() -> None:
     require(veloq["raw_records"] == veloq["clean_records"] == 1170 and veloq["excluded_records"] == 0 and veloq["duplicate_gene_ids"] == 0 and veloq["modal_feature_numeric_dim"] == 6, "VeloHARMO E. coli counts changed")
     require(velol["pass"] and velol["x_all_finite"] and velol["density_all_finite"] and not velol["training_performed"] and not velol["publication_metrics_reproduced"], "VeloHARMO loader scope changed")
     require(not velof["science_flags"]["five_species_data_closed"] and not velof["science_flags"]["official_cross_validation_reproduced"] and not velof["science_flags"]["sota_claim"], "VeloHARMO scientific scope exceeded")
+    require(velos["status"] == "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE" and velos["source_commit"] == "38b48079856aeb9d33a1b10844d77aa8f6640032", "VeloHARMO official bounded execution incomplete")
+    require(velos["official_velogru_test"]["returncode"] == 0 and velos["official_velogru_test"]["feature_dimension"] == 105 and velos["official_velogru_test"]["records"] == 7, "VeloHARMO official test changed")
+    require(velos["official_ga_unmodified"]["returncode"] != 0 and not velos["official_ga_unmodified"]["executed_successfully"] and len(velos["bounded_ga"]["patch"]) == 7, "VeloHARMO GA failure/patch history changed")
+    require(velos["bounded_ga"]["legal_synonymous_count"] == velos["bounded_ga"]["candidate_count"] == 2 and not velos["bounded_ga"]["start_to_best_improved"] and velos["bounded_ga"]["best_minus_start"] == 0, "VeloHARMO GA sequence or negative result changed")
+    require(velosv["status"] == "PASS" and velosv["passed_checks"] == velosv["check_count"] == 17 and velosv["max_numeric_delta"] == 0.0, "VeloHARMO official independent verification failed")
+    require(velosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and velosf["passed_checks"] == velosf["check_count"] == 13, "VeloHARMO official finalization failed")
+    require(not velos["main_baseline_comparison"] and not velos["functional_ood"] and not velos["sota_claim"] and not velos["five_species_processed_matrices_complete"], "VeloHARMO official scope exceeded")
 
     split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
     test = rk07["split_metrics"]["test"]
@@ -289,6 +302,8 @@ The same bounded protocol then executed `{edc['benchmark']['record_id']}` ({ed_c
 
 The official-example default output matched the README sequence exactly. Default and constrained modes each produced **2/2 legal synonymous CDSs**, with one terminal stop and no internal stop. The two modes returned identical sequences for each protein, giving **{cts['unique_sequence_count']} unique CDSs across four runs**; this is not evidence that the constraint option improves performance. Model loading took **{cts['model_load_seconds']:.3f} s** and summed inference time was **{cts['total_inference_seconds']:.3f} s**, including first-call warmup; these are not time-matched baseline costs. Independent deterministic re-execution and raw-output verification passed **{ctsv['passed_checks']}/{ctsv['check_count']} checks**, helper tests passed **8/8**, and finalization passed **{ctsf['passed_checks']}/{ctsf['check_count']} checks**. This remains an official-example plus single-C01 bounded smoke, not a matched MFE/EFE comparison, dense-budget evaluation, main baseline matrix, functional OOD result, or SOTA claim.
 
+**VeloHARMO bounded official execution.** At fixed commit `{velos['source_commit']}`, the unmodified `VeloGRU/run.py test` used the official 105-dimensional feature path and E. coli fold-0 weights on seven deterministically selected short processed-matrix records. On CUDA it reported mean Pearson **{velos['official_velogru_test']['mean_pearson']:.6f}** with population SD **{velos['official_velogru_test']['std_pearson']:.6f}**; direct native-prediction recomputation agreed within **{velos['official_velogru_test']['metric_delta']:.2e}**. These are length-selected diagnostics, not held-out or OOD performance. The unmodified GA entry point failed on the missing `Mimo_data` import; an exact seven-item compatibility patch changed only the import, data/weight/plot paths, population, and generation budget. On `{velos['bounded_ga']['target_record']}` ({velos['bounded_ga']['target_codons']} codons), the CPU GA ran with population **{velos['bounded_ga']['population_size']}**, generations **{velos['bounded_ga']['generations']}**, and seed **{velos['bounded_ga']['seed']}**. Start and best sequences were **{velos['bounded_ga']['legal_synonymous_count']}/{velos['bounded_ga']['candidate_count']} legal synonymous CDSs** under the native terminal-stop contract. Predicted-profile fitness was native **{velos['bounded_ga']['fitness']['native']:.6f}**, start **{velos['bounded_ga']['fitness']['start']:.6f}**, and best **{velos['bounded_ga']['fitness']['best']:.6f}**; thus `best == start`, `best − start = {velos['bounded_ga']['best_minus_start']:.6f}`, and **no iterative improvement occurred**. The start-to-native difference is only an initial-population/model-objective contrast, not experimental functional gain. Independent re-execution passed **{velosv['passed_checks']}/{velosv['check_count']} checks** with maximum numeric delta **{velosv['max_numeric_delta']:.1f}**, unit tests passed **10/10**, and finalization passed **{velosf['passed_checks']}/{velosf['check_count']} checks**. This is not five-species closure, a full-budget harmonization result, main baseline comparison, functional OOD evidence, or SOTA claim.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -323,6 +338,9 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("VeloHARMO E. coli matrix", veloq["matrix_sha256"]),
         ("VeloHARMO finalization", source_hashes["velo_final"]),
         ("VeloHARMO independent verifier", source_hashes["velo_verify"]),
+        ("VeloHARMO bounded official production", source_hashes["velo_official"]),
+        ("VeloHARMO bounded independent verifier", source_hashes["velo_official_verify"]),
+        ("VeloHARMO bounded finalization", source_hashes["velo_official_final"]),
     ]
     evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
     reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
@@ -351,13 +369,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("LinearDesign bounded official execution" in text, "LinearDesign bounded result missing")
     require("EnsembleDesign bounded official execution" in text and "EFE is not LinearDesign MFE" in text and "No matched LinearDesign comparison" in text, "EnsembleDesign bounded result or scope missing")
     require("CodonTransformer bounded official execution" in text and "2/2 legal synonymous CDSs" in text and "not a matched MFE/EFE comparison" in text, "CodonTransformer bounded result or scope missing")
+    require("VeloHARMO bounded official execution" in text and "no iterative improvement occurred" in text and "best − start = 0.000000" in text and "not five-species closure" in text, "VeloHARMO bounded result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v6",
+        "schema_version": "a8-rk-paper-sync-v7",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -376,7 +395,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
-            "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open",
+            "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
             "sota": False,
             "submittable": False,
         },

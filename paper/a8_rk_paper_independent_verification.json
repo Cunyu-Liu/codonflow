@@ -1,9 +1,9 @@
 {
-  "check_count": 17,
+  "check_count": 18,
   "checks": [
     {
       "detail": {
-        "sources": 36
+        "sources": 39
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
+      "detail": "078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -106,6 +106,20 @@
       "pass": true
     },
     {
+      "detail": {
+        "finalization": true,
+        "frozen_sources": true,
+        "independent": true,
+        "legal_and_negative_result": true,
+        "official_test": true,
+        "rendered_from_frozen_json": true,
+        "scope": true,
+        "unmodified_failure_and_patch": true
+      },
+      "name": "veloharmo_bounded_official_execution_and_scope",
+      "pass": true
+    },
+    {
       "detail": null,
       "name": "rnarl_negative_reproducibility_scope",
       "pass": true
@@ -131,12 +145,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
-  "passed_checks": 17,
+  "paper_sha256": "078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d",
+  "passed_checks": 18,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v6",
+  "schema_version": "a8-rk-paper-independent-verification-v7",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "0520d93610769ccb2906505d6ceb26dc78ae3f731183bdd8569f6c1d783e59d1"
+  "sync_audit_sha256": "54a08b82075f5e54d4582db7556d11c6150a03122165efe9cf7c3fdf12990871"
 }
