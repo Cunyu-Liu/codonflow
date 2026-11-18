@@ -435,3 +435,27 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK05/codontransformer_ppt_independent_verification.json` 为 **PASS，10/10 checks**：整稿 74 页，前 73 页 slide ID、顺序与 ID-independent 语义 XML 全部不变；新页四行表由冻结 JSON 重算，4 段备注、页码、画布边界和科学边界通过。baseline/readback XML、两个候选版本、preflight 和完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_codontransformer_v1/`。
 - PPT verifier/preflight 与验证报告以 commit=`0c33d35580c02ae06932083200bc6fbd5dd3882c` 推送，本地与 GitHub `a8-rk` HEAD 一致。当前在线主稿真实状态为 **74 页、revision 36、末页 `pgU`**。本 handoff、REGISTRY、tasks 和 RK05 README 随后续文档提交推送。
 - RK-05 强 baseline 主矩阵仍未关闭；RK03 剩余机制维度、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA 和前瞻湿实验仍未关闭。未跟踪的 `audits/20261118/RK05/id3_independent_verification.pid` 不是科学结果，不应提交。
+
+## 24. VeloHARMO 官方 bounded smoke、A8 v7 与 PPT 第 75 页
+
+### 固定来源、真实双设备执行与独立复核
+
+- 官方 VeloHARMO 固定 commit=`38b48079856aeb9d33a1b10844d77aa8f6640032`；固定归档为 31,429,853 bytes，SHA256=`68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef`。E. coli processed matrix 为 38,906,084 bytes，SHA256=`71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f`。E. coli/yeast fold-0 权重均为 `models:BiGRU`，输入维度=105、hidden=128、2 层、477,185 参数，SHA256 分别为 `a22badecac33e6c34f736dbf18274982b734ebb293cf1d632aff65ac6af9f35d` 与 `b73691027121c1cadb3a4ed3b45c04ab4ca477163b0e39b5b4e3bdfdc52c5ddc`。官方整对象 checkpoint 只在固定且已校验的文件上使用 `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`。
+- 从 1,170 条 E. coli 记录中确定性选取 7 条最短合格记录：至少 30 codons、序列/count/feature 长度一致、count finite 且非常数、至少一个 count>0.5，按长度、record ID、source index 排序。子集 SHA256=`ba42db8a99b3d35e87c5c8c57d9333a7c01d62eff85aa8b3309c1bbdefef93ac`；记录为 A5A616/P03061/P62522/P0ADF3/P0DSF5/Q2EES6/C1P620。GA 原生硬编码 subset index=6，因此目标为 C1P620，36 codons。
+- 未修改官方 `VeloGRU/run.py test` 在 `cuda:0` 返回码 0，feature dimension=105、records=7、parameters=477,185，wall=`4.6736052692867815 s`。mean Pearson=`0.6044025421142578`，官方 SD=`0.17268328368663788`；独立直接重算 mean 相同、SD=`0.17268326878547668`，`metric_delta=1.4901161193847656e-08`。这是完整 processed matrix 上的长度选择子集诊断，不是 held-out、OOD 或五物种性能。
+- 真实 GA 为 242 行，SHA256=`9631c15d7d373584e519966eb9382db34dba191ca21c1fedf599e4c4407299af`。未修改入口真实返回码 1，`ModuleNotFoundError: No module named 'Mimo_data'`，失败日志原样保留。生产 wrapper 只做 7 处可审计替换：缺失导入、矩阵路径、两个权重路径、输出图路径、population 与 generations 预算；算法主体不变。population=8、generations=2、seed=20261118，GA 在 CPU 单线程运行，wall=`1.2729171668179333 s`。
+- GA 目标是原生 E. coli 模型参考速度谱与 yeast 模型候选速度谱的 Pearson 相似度，不是实验功能。native/start/best 适应度分别为 `-0.02560763992369175 / 0.34598612785339355 / 0.34598612785339355`；start 与 best 序列完全相同，`best_minus_start=0`、`start_to_best_improved=false`。`best_minus_native=0.3715937677770853` 仅描述初始随机候选相对原生序列的预测谱目标差，不是 GA 迭代提升或实验功能增益。2/2 序列为合法同义 CDS，unique=2；原生矩阵没有 terminal stop，未套用 C01 的额外终止子合同。
+- 独立 verifier 不导入生产模块，重新执行固定 GA、重算双模型速度谱、复核原始 GA 失败、7 项补丁、输入子集、序列/适应度、官方 GPU 预测、float32 聚合、环境、FASTA 和 artifacts 哈希，结果 **17/17 PASS、max_numeric_delta=0.0**。单元测试 **10/10 PASS**，finalization **13/13 PASS**，状态仅为 `CLOSED_BOUNDED_OFFICIAL_SMOKE`。早期 stop-contract、补丁路径/引号、float32 密度容差及 CUDA/CPU 路径失败均保留；最终密度量化最大差 `1.9747801438541046e-07`，明确使用 `5e-7` 容差。科学证据 commit=`8fce8dcaf5749d838f2378424b50042a8970cc27`，已推送并核对远端。
+
+### A8 v7、复现记录与科学边界
+
+- A8 生成器/verifier 升级为 v7，新增生产、独立和 finalization 三份冻结 JSON 及哈希锚点，并设置硬门槛：官方 test 返回码 0、105 维、7 记录；未修改 GA 失败与 7 项补丁保留；2/2 合法同义；best=start 且零迭代提升；独立 17/17、finalization 13/13；禁止宣称五物种、主矩阵、功能 OOD 或 SOTA。A7 未改；A8 v7 SHA256=`078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d`，独立 **18/18 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。commit=`9948b2ec251ae593ef9a864206cdd20672134923`。
+- 生产、独立 verifier、finalizer、单元测试、v1–v4 测试日志和完整复现命令见 `audits/20261118/RK05/README.md`。最终 raw 输出位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/`；独立 raw 输出位于同目录级别的 `veloharmo_independent_v1/`。早期失败目录与 driver 日志均保留，大型数据、权重和 artifacts 未提交 Git。
+- 官方 test/原生预测使用 `cuda:0`，GA 使用 CPU，二者耗时与数值不得混作同一公平成本口径。E. coli/yeast fold-0 权重存在不等于五物种模型闭环；正式训练/交叉验证、研究 OOD、完整 harmonization 主结果和公平成本仍未完成。
+
+### PPT 写后验收与当前续作
+
+- 结果经独立验收后才写入既有在线主稿。实时基线为 74 页、revision 36、末页 `pgU`，只追加第 75 页 `pgh`，写入后 revision=37。页面记录 mean=`0.604403`、SD=`0.172683`、GA iterative gain=`0.000000`、独立 17/17、finalization 13/13，并用四行表区分官方 CUDA test、native reference、GA start 和 GA best；明确 start=best、无迭代提升，以及五物种、主矩阵、功能 OOD、SOTA 未关闭。
+- `audits/20261118/RK05/veloharmo_ppt_independent_verification.json` 最终为 **PASS，10/10 checks**：整稿 75 页，前 74 页 slide ID、顺序与 ID-independent 语义 XML 全部不变，新页数值、表格、备注、画布边界和科学边界通过。readback XML SHA256=`863fb78d364a05b21a9ceceb133f72aa8751d404643d8f9b58b877953164ae12`。首次 9/10 失败仅由第 74 页 `</slide>` 后 tail whitespace 触发；逐项 diff 证明旧页标签、属性、文字和子元素未变，失败报告与 diff 均保留。
+- PPT verifier/report 以 commit=`49ed134d4966fcc5c8d70c00c654cd414b898c51` 推送并核对 GitHub 远端。当前在线主稿真实状态为 **75 页、revision 37、末页 `pgh`**；raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_veloharmo_v1/`。
+- 本任务只关闭 bounded official smoke。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK04 长度/GC OOD 与 train-only 校准、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文仍未关闭。

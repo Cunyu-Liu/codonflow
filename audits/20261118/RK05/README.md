@@ -457,3 +457,71 @@ $PY_STD scripts/a8_rk05_verify_codontransformer_ppt.py \
   --add-response "$PPT/codontransformer-add-response-v01.json" \
   --evidence-dir "$R" --output <NEW_PPT_VERIFICATION_JSON>
 ```
+
+---
+
+# VeloHARMO fixed-source official bounded smoke
+
+Fixed official source commit: `38b48079856aeb9d33a1b10844d77aa8f6640032`. The source archive has 31,429,853 bytes and SHA256 `68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef`. The E. coli processed matrix has 38,906,084 bytes and SHA256 `71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f`. Both fold-0 checkpoints are `models:BiGRU` with 105 input features, hidden size 128, two layers and 477,185 parameters. The 111-dimensional loader tensor therefore cannot be passed directly to these 105-dimensional models.
+
+The deterministic seven-record subset contains the shortest eligible records with at least 30 codons, aligned sequence/count/feature lengths, finite nonconstant counts and at least one count greater than 0.5. Its SHA256 is `ba42db8a99b3d35e87c5c8c57d9333a7c01d62eff85aa8b3309c1bbdefef93ac`. The original GA hardcodes subset index 6, selecting C1P620 with 36 codons. The native matrix sequence has no terminal stop; final QC requires exact translation, no internal stop and preservation of the native terminal-stop convention rather than importing the C01 extra-stop contract.
+
+## Official execution and retained failures
+
+The unmodified `VeloGRU/run.py test` completed on `cuda:0` with return code 0. Across the seven length-selected records it produced mean Pearson `0.6044025421142578` and SD `0.17268328368663788`; direct recomputation gave the same mean, SD `0.17268326878547668`, and `metric_delta=1.4901161193847656e-08`. This is a processed-matrix, length-selected diagnostic, not held-out, OOD, five-species or publication performance.
+
+The unmodified GA entry point failed with return code 1 and `ModuleNotFoundError: No module named 'Mimo_data'`; that evidence is retained. The production wrapper applies only seven auditable compatibility replacements: the missing import, matrix path, two checkpoint paths, plot path, population and generations. The algorithm body is unchanged. Bounded execution uses population 8, two generations, seed 20261118 and CPU single-thread execution. Official test/native prediction timings on CUDA and GA timing on CPU are separate device protocols and must not be combined into a fair cost comparison.
+
+The GA objective is Pearson similarity between the native E. coli-model reference profile and yeast-model candidate profiles. It is a predicted-profile objective, not experimental function. Native/start/best fitness values are `-0.02560763992369175`, `0.34598612785339355` and `0.34598612785339355`. Start and best sequences are exactly identical, so iterative gain is zero. The `0.3715937677770853` best-minus-native difference describes only the initial candidate relative to native; it is neither GA improvement nor experimental functional gain. Both evaluated CDS sequences are legally synonymous and unique.
+
+Independent re-execution passed **17/17 checks** with `max_numeric_delta=0.0`; unit tests passed **10/10**, and finalization passed **13/13** with status `CLOSED_BOUNDED_OFFICIAL_SMOKE`. Early stop-contract, patch-path/quoting, density-tolerance and CUDA/CPU failures are retained in separate raw directories. The final density comparison uses an explicit `5e-7` tolerance after quantifying the official float32 rounding difference (`1.9747801438541046e-07` maximum); the tolerance was not silently relaxed. Scientific evidence is in commit `8fce8dcaf5749d838f2378424b50042a8970cc27`.
+
+## Reproduction
+
+Run from `/home/codonflow-a8-rk`. Use new output/report paths for every fresh execution; do not overwrite frozen evidence or pre-create a log inside a production output directory that must be absent or empty.
+
+```bash
+PY=/root/miniconda3/envs/llr_env/bin/python
+SRC=/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032
+ART=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05
+R=audits/20261118/RK05
+MAT=audits/20261118/RK03/veloharmo_materialization.json
+
+TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1 $PY scripts/a8_rk05_veloharmo_official_smoke.py \
+  --source-dir "$SRC" --materialization "$MAT" \
+  --output-dir "$ART/veloharmo_reproduction_v1" \
+  --report <NEW_PRODUCTION_REPORT> \
+  --population-size 8 --generations 2 --seed 20261118
+
+TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1 $PY scripts/a8_rk05_verify_veloharmo_official_smoke.py \
+  --source-dir "$SRC" --materialization "$MAT" \
+  --production-report <NEW_PRODUCTION_REPORT> \
+  --output-dir "$ART/veloharmo_independent_reproduction_v1" \
+  --output <NEW_INDEPENDENT_REPORT>
+
+$PY scripts/a8_rk05_finalize_veloharmo_official_smoke.py \
+  --production-report <NEW_PRODUCTION_REPORT> \
+  --independent-report <NEW_INDEPENDENT_REPORT> \
+  --materialization-report "$MAT" \
+  --loader-report audits/20261118/RK03/veloharmo_official_loader_smoke.json \
+  --output <NEW_FINALIZATION_REPORT>
+```
+
+Production raw output is frozen under `$ART/veloharmo_official_smoke_38b480_v1/`; independent raw output is under `$ART/veloharmo_independent_v1/`. Final production and independent driver logs, early failure directories and thread-check diagnostics are retained separately. Code and commits remain under `/home`; matrices, checkpoints, generated FASTA/JSON/JPEG, logs and PPT raw XML remain under `/teams`.
+
+## A8 v7 and online PPT verification
+
+A8 v7 was generated from frozen evidence rather than hand-edited result numbers. It adds the CUDA diagnostic, CPU GA zero iterative gain, seven compatibility replacements, retained unmodified-entry failure, three VeloHARMO evidence sources and hard scope guards. A7 is unchanged. A8 SHA256 is `078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d`; independent paper verification passed **18/18** and remains `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`. A8 v7 generator/verifier evidence is in commit `9948b2ec251ae593ef9a864206cdd20672134923`.
+
+The verified result was appended once to the existing online deck as slide 75, `pgh`, revision 37. Independent post-write verification passed **10/10 checks**: all previous 74 slide IDs/order and semantic XML remained unchanged, and the four-row native/start/best table, KPI values, notes, page bounds and scientific boundaries were recomputed from frozen evidence. The initial 9/10 report was caused only by trailing whitespace after slide 74's closing tag; its failure report and element-by-element diff are retained, and the final semantic comparison ignores only XML tail whitespace. Readback XML SHA256 is `863fb78d364a05b21a9ceceb133f72aa8751d404643d8f9b58b877953164ae12`. PPT evidence is in commit `49ed134d4966fcc5c8d70c00c654cd414b898c51`.
+
+Reproduce the readback audit without changing the online deck:
+
+```bash
+$PY scripts/a8_rk05_verify_veloharmo_ppt.py \
+  --repo /home/codonflow-a8-rk \
+  --raw-dir "$ART/ppt_veloharmo_v1" \
+  --output <NEW_PPT_VERIFICATION_JSON>
+```
+
+This closes only the bounded official smoke. Five-species processed matrices, formal training/cross-validation, the complete strong-baseline matrix, matched cost, functional OOD, CodonFlow-RK generation and SOTA remain open.
