@@ -17,6 +17,7 @@
 - [x] RK-06 bounded 子项：dense-v2/actual-set 评价器与 synthetic 10/10 审计；C01H6.8b.1 seed0 五方法 286 条 raw CDS 复核，最终 44/44 PASS，与 A7 最大差异 0。代码 `db3e1667` / `56a62b44` 已推送，第 61–62 页 PPT 已记录。真实 dense 轨迹、全记录矩阵和统一成本主比较仍 pending。
 - [x] RK-03 bounded RiboMIMO 子项：四份固定官方矩阵与五份参考 FASTA 完整核验，43/43 个缺失版本化蛋白精确补回；v2 production 共 15,669 raw / 8,109 clean，独立 raw-source recompute 13/13 PASS。生产修复 commit `81c0cddf`、最终审计/交接 commit `73f93af7` 已推送，第 63 页 PPT 已记录。该子项只验收作者处理后的 A-site count 与参考蛋白 QC，不覆盖 raw-read/P-site 重比对、UTR 或功能 OOD。
 - [x] RK-07 bounded Boël 跨蛋白代理诊断：RK04 train/dev/test=`5079/635/634` 全量 frozen test 完成，独立 raw-source verifier 9/9 PASS，契约测试 10/10 PASS。production commit `a7250465`、verifier/audit/README commit `e59cc5b6` 已推送；PPT 第 64–65 页（`pgt`/`pgX`，revision 27）已记录并回读。test 上五个 paired Spearman 比较经 Holm 均不显著；只证明有限且不稳定的跨蛋白信号，不关闭固定蛋白同义 E1、RK-G1、功能 OOD 或生成器门槛。
+- [x] RK-05 bounded RNARL 固定源码可用性审计：commit `88428e5d…` 的 10 份源码/示例逐字节匹配，真实 import/constructor smoke 与独立 AST 16/16 PASS 共同确认 actor 缺 `esm2_dim/device` 和 `evaluate`、reward 缺 `device`、GRPO 缺 9 个调用方法及 2 个 main globals。代码/负结果 commit `1401f63c` 已推送，PPT 第 66 页（`pgL`，revision 28）已记录。未执行完整训练/生成或复现论文指标，不授权主比较，也不证明 RNARL 方法无效。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
 
@@ -41,7 +42,7 @@
 - **任务**：获取 VeloHARMO 五物种 Ribo-seq 来源、RNARL Zenodo `15486992`、CodonTransformer 可用数据；保留 D4/D5。
 - **输出**：UTR–CDS/蛋白映射、Ribo QC、自然数据分布报告与 SHA。
 - **验收**：覆盖/映射/重复 QC 完整；长度/GC/CAI/MFE/EFE/宿主/蛋白簇分布可复算。
-- **当前进展（2026-11-18）**：RiboMIMO 官方 commit `094c693d…` 的 Mohammad16、Mohammad19-1/2、Subtelny14 四份矩阵已通过 blob/SHA 完整性核验；修复 NP/YP/WP 解析并补回 43 个版本化蛋白后，v2 all-QC/clean 为 15,669/8,109 条，独立 verifier 不导入生产 QC 模块，13/13 PASS。Mohammad19 两个不同 GSM 样本的 1,385 对双 clean 配对，profile Pearson/Spearman 中位数为 0.6146/0.5835，仅作重现性诊断。v1 的 YP 误排已修复，诊断 artifact 未验收。RNARL 21 文件 manifest、CodonTransformer 4,652,159,854-byte 文件及行级 QC、VeloHARMO 其余物种矩阵、UTR–CDS、raw-read/P-site 重比对和完整自然分布报告仍 pending；RK-03 与 RK-G0 不关闭。
+- **当前进展（2026-11-18）**：RiboMIMO 官方 commit `094c693d…` 的 Mohammad16、Mohammad19-1/2、Subtelny14 四份矩阵已通过 blob/SHA 完整性核验；修复 NP/YP/WP 解析并补回 43 个版本化蛋白后，v2 all-QC/clean 为 15,669/8,109 条，独立 verifier 不导入生产 QC 模块，13/13 PASS。Mohammad19 两个不同 GSM 样本的 1,385 对双 clean 配对，profile Pearson/Spearman 中位数为 0.6146/0.5835，仅作重现性诊断。RNARL 已修正真实 RNA 字母、终端 `*`、整对泄漏排除和 clean-pair 授权口径；21 文件精确字节合计 714,327,390，v2 partial smoke 为 15 文件、33,924 raw/33,510 clean，仍非全量。CodonTransformer 已实现流式 QC/独立 verifier，真实前缀 1,000/1,000 clean、独立 8/8 PASS，仅属 prefix smoke。VeloHARMO 固定树仅列 14 个条目和两份 E. coli ZIP 条目，未物化内容，五物种矩阵完整性不成立。RNARL 全量 final manifest/QC、CodonTransformer 最终 bytes/SHA 与 1,001,197 pairs/164 organisms 全量 QC、VeloHARMO 矩阵内容、UTR–CDS、raw-read/P-site 重比对和完整自然分布报告仍 pending；RK-03 与 RK-G0 不关闭。
 
 ### RK-04 建立无泄漏功能与 OOD 划分
 
@@ -55,6 +56,7 @@
 - **任务**：按任务跑通 LinearDesign、EnsembleDesign、RNARL、ID3、CodonTransformer、VeloHARMO 官方 smoke；逐步补 CAGFN、codonGPT、GEMORNA、COformer、CHARMING、RiboMIMO/iXnos/ROSE。
 - **输出**：官方 commit/环境/命令/输入/输出/默认与最佳配置/成本/失败原因矩阵。
 - **验收**：关键直接 baseline 有真实输出；无法运行者标明不可比，不用弱替代冒充。
+- **当前进展（2026-11-18，RNARL bounded availability）**：官方固定源码 `88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5` 的 10 个文件与 Git blobs 一致，三份 example 各 9 行。首次真实 smoke 被过新的 hub 阻断；只在 `/home/codonflow-a8-rk-smoke/rnarl_python_deps` 隔离安装 `transformers==4.46.3`、`huggingface-hub==0.27.0` 后，三模块可导入，但精确构造/接口仍失败：actor 缺 `esm2_dim/device` 且无 `TrainingManager.evaluate`，reward 缺 `device`，GRPO 缺 9 个被调用方法、`load_and_preprocess_data/save_model`，并读取未局部赋值的 `rewards`。独立 verifier 不导入 smoke 模块，按 AST 重算，16/16 PASS；复现说明与两次真实记录见 `audits/20261118/RK05/`。结论是公开快照不能直接形成可比 baseline，不是方法无效结论；完整训练、生成、论文指标和主比较仍未完成，修复实现必须标为新 baseline。
 
 ### RK-06 统一评价器与成本
 

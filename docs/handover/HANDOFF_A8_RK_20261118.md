@@ -251,3 +251,30 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK07/final_independent_verification.json` 为 **PASS，9/9 checks**，SHA256=`1dab1cf3405a7158bcc0a2d395dbb2882395b7a252ba671c49197b9158cfa815`。raw feature 最大差=0，prediction 最大差约 `1.3322676295501878e-15`，paired CI 最大差约 `2.23e-16`，stratum metric 最大差约 `4.45e-16`，p_raw/p_Holm/optimizer_gradient 差异均为 0。
 - final artifact 与 pre-test dev baseline 完全一致，`forbidden_split_used=false`；verifier 和生产代码未因 test 结果而修改。E1 固定蛋白同义任务、RK-G0/G1、长度/GC OOD、完整 baseline、生成器和论文门槛仍未关闭。
 - PPT：第 64 页（`pgt`）记录六模型 dev/test 原生分组柱状图、test 点估计最强单代理 GC 与 0/5 Holm 显著增量；第 65 页（`pgX`）记录五个 paired 比较、CAI 的 CI/Holm 区别和 GC 高/低失败分层。65 页 revision 27 实时回读通过，前 63 页 slide ID 与语义 XML 均未改变；服务端仅将 `0.212870` 归一化为数值等价的 `0.21287`。
+
+## 16. RK-03 自然数据进展与 RK-05 RNARL 固定源码审计
+
+### RNARL 数据 QC 与下载收尾（仍非全量验收）
+
+- RNA-aware v2 生产 QC、独立 verifier 和下载修复以 `99f7ca1d`、`747b33e9`、`09b4d814` 推送。真实记录使用 `ACGU/AUG/UGA/UAA/UAG` 和蛋白终端 `*`；`Protein_Length` 包含 `*`。保存原始 `source_cds_rna`，canonical `cds_dna` 只供翻译和泄漏审计。任一成员的 Protein_ID、蛋白序列或 exact CDS 跨 split 重合时整对排除。
+- clean-pair 授权以全量文件处理、非空 clean pairs 和整对泄漏排除为前提；raw overlap 仍如实报告，不能把 LinearDesign 生成对称为天然 CDS，也不能恢复 CSV 中不存在的 lambda 身份或授权功能训练/OOD。
+- 官方 21 文件精确字节报告 `audits/20261118/RK03/rnarl_official_file_sizes.json` 合计 `714,327,390` bytes，commit=`218c6de4`；持久 finalizer commit=`42ee3984`。已知错误 Arabidopsis test final 保留在 quarantine，expected MD5 未改。
+- v2 partial smoke 仅覆盖当时已验收的 15 文件：33,924 raw、33,510 clean、16,755 clean pairs；pair-structure 不满足 12 组，2 个 exact CDS overlap pairs 整对排除。它不是 21 文件正式结果，既有 partial 的 bounded-ready 字段也不用于否定后续授权逻辑。
+
+### CodonTransformer 与 VeloHARMO（严格限定来源范围）
+
+- CodonTransformer 流式生产 QC/独立 verifier commit=`1fd6cf02`，真实 1,000 行 prefix smoke/审计 commit=`81ba6525`。prefix 为 1,000/1,000 clean、无排除原因/重复、独立 8/8 PASS；读取时 full hash 未验证，故不证明 publisher-reported 1,001,197 pairs、164 organisms 或最终分布。正式 final bytes/SHA、全量行级 QC 和独立报告通过前不得写成训练就绪。
+- VeloHARMO 固定 commit=`38b48079856aeb9d33a1b10844d77aa8f6640032` 的树审计 commit=`dd61dbf1`：14 个 tree entries，仅列两份 E. coli ZIP 条目，没有 yeast/Pseudomonas/Drosophila/human 处理后矩阵。`PASS_SOURCE_TREE_AUDIT_ONLY` 不表示 ZIP 已下载、解压或 QC；五物种完整性、模型训练和 SOTA 均未授权。
+
+### RNARL 官方 baseline 负向可复现性审计（bounded 完成）
+
+- 固定源码 commit=`88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5`；原外部工作树 tracked-deleted 状态未恢复或覆盖。只读 `git archive` 导出到 `/home/codonflow-a8-rk-smoke/rnarl_88428e5d`，10 个源码/示例文件逐字节匹配固定 Git blobs，三个官方 example CSV 均为 9 行。
+- 首次真实 smoke 被过新的 `huggingface-hub==2.2.0` 阻断；随后仅在 `/home/codonflow-a8-rk-smoke/rnarl_python_deps` 隔离安装 `transformers==4.46.3`、`huggingface-hub==0.27.0`，项目环境未改。第二次三个模块均成功导入，但这只是隔离 overlay，不是完整官方环境复现。
+- 精确 actor 构造缺 `esm2_dim/device`，且无 `TrainingManager.evaluate`；reward 构造缺 `device`；GRPO 缺 `update_old_policy/get_esm_embeddings/sample_actions/calculate_rewards/compute_advantages/calculate_log_probs/calculate_policy_loss/calculate_kl_divergence/log_batch_stats`，另缺 `load_and_preprocess_data/save_model`，`policy_optimization_step` 读取未局部赋值的 `rewards`。
+- 独立 verifier 不导入生产 smoke 模块，从固定源码 AST 重算构造参数、类方法、全局函数和 `rewards` load/store，并复核 Git bytes、示例行数、两次运行与隔离依赖。`audits/20261118/RK05/rnarl_official_independent_verification.json` 为 **PASS_NEGATIVE_REPRODUCIBILITY_AUDIT，16/16 PASS**；代码、两次真实 smoke、独立报告和复现 README 以 commit=`1401f63cf4af2e706d6e273e3a733e1d608bedb0` 推送。
+- 该结论仅为：**当前公开快照不能直接形成可比 baseline。** 不证明 RNARL 科学方法无效，不表示完成训练、生成、论文指标复现、SOTA 或主比较。若修补公开源码，必须标为新实现，不能改标为未修改的官方结果。
+
+### PPT 与续作入口
+
+- 既有在线 deck 第 66 页=`pgL`，revision 28，标题为 `RK-05 | Public RNARL Snapshot Is Not Directly Runnable`。写入后重新读取真实 smoke/独立报告，数值合同通过；66 页全文回读通过，前 65 页 slide ID 与语义 XML 均未改变。页面明确保留负向边界，无训练/生成/论文指标/SOTA/主比较授权。
+- 下一步只认真实 finalization 报告、final manifest、raw/quarantine 实物和独立 verifier；partial/prefix/source-tree/negative-availability 审计均不得冒充全量数据或模型性能。RK-03、RK-05 强 baseline 矩阵、RK-G0 及后续机制/生成/OOD/论文 gates 仍未关闭。
