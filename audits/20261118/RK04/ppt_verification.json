@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "source_revision": 20,
+  "current_revision": 22,
+  "slide_count": 60,
+  "new_slide_ids": [
+    "pgn",
+    "pgo"
+  ],
+  "first_58_pages_content_and_structure_unchanged": true,
+  "checks": [
+    {
+      "check": "response_ok",
+      "status": "PASS",
+      "detail": 22
+    },
+    {
+      "check": "slide_count_60",
+      "status": "PASS",
+      "detail": 60
+    },
+    {
+      "check": "first_58_pages_content_and_structure_unchanged",
+      "status": "PASS",
+      "detail": {
+        "raw_xml_difference_pages": [
+          58
+        ],
+        "difference_scope": "whitespace-only tail after original slide 58"
+      }
+    },
+    {
+      "check": "new_slide_ids",
+      "status": "PASS",
+      "detail": [
+        "pgn",
+        "pgo"
+      ]
+    },
+    {
+      "check": "page59_counts",
+      "status": "PASS",
+      "detail": [
+        "5,079",
+        "635",
+        "634",
+        "19,072",
+        "5,555",
+        "25,420",
+        "13,569"
+      ]
+    },
+    {
+      "check": "page59_boundaries",
+      "status": "PASS",
+      "detail": [
+        "PASS_WITH_SCIENTIFIC_BOUNDARIES",
+        "No functional training, OOD evaluation or SOTA claim."
+      ]
+    },
+    {
+      "check": "page60_checks",
+      "status": "PASS",
+      "detail": [
+        "33/33",
+        "19/19",
+        "99df1d96",
+        "cross-split overlaps"
+      ]
+    },
+    {
+      "check": "page60_boundaries",
+      "status": "PASS",
+      "detail": [
+        "No generator, functional OOD or SOTA performance claim.",
+        "training remains gated."
+      ]
+    },
+    {
+      "check": "speaker_notes_present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "new_slide_elements_within_canvas",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "current_xml_sha256": "b7c5f9651df573723953a4545037fb06f338bf329eca51238dcc482aad8311ef"
+}

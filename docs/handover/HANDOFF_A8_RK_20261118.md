@@ -11,7 +11,7 @@
 - 下一位执行者提示词：`docs/handover/PROMPT_NEXT_AGENT_A8_RK.md`
 - 预印本工作稿：`paper/CodonFlow_preprint_A7.md`
 
-A8-RK 的实际执行位于隔离工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`。RK-01 commit=`5ad3393a4f90c4a743cf7e0725b45ea62e395172`；RK-02 commit=`087b8822e14dcb15710dc2f40d8db5650b8687a4`，均已推送 GitHub。原主工作树 `/home/codonflow` 的 `main` 及其既有未推送提交未被改写或推送。大型资产沿用 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。不得在交接、日志或提示词中记录服务器密码。
+A8-RK 的实际执行位于隔离工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`。RK-01 commit=`5ad3393a4f90c4a743cf7e0725b45ea62e395172`；RK-02 commit=`087b8822e14dcb15710dc2f40d8db5650b8687a4`；RK-04 代码与审计 commit=`99df1d96e041e1f78b67e69210276df66d7b5f6f`，均已推送 GitHub。原主工作树 `/home/codonflow` 的 `main` 及其既有未推送提交未被改写或推送。大型资产沿用 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。不得在交接、日志或提示词中记录服务器密码。
 
 ## 2. 本轮讨论的关键结论
 
@@ -57,7 +57,7 @@ VeloHARMO 所用五物种 Ribo-seq、UTR–CDS 配对、tRNA/密码子参考、�
 - Kelsic et al., Cell Systems 2016：MAGE-seq 12,726 个 infA 单/双密码子突变。
 - LinearDesign/GEMORNA/COformer：只纳入实际可恢复的序列和测量上下文。
 
-**RK-02 已实际下载、清洗并审计：8 份官方原始附件完成 SHA 登记，Boël 与 MAGE 形成 25,420 个 assay rows；Kudla 支持附件已取得，但 154 条逐构建序列—表达表仍未获得，状态为 `PARTIAL_KUDLA_ROW_DATA_UNAVAILABLE`。** 所有 split 仍为 `UNASSIGNED`，尚未用于训练。Theodorou et al. 的 Dasher/六蛋白原始数据原文明确不公开，不得纳入训练承诺。
+**RK-02 已实际下载、清洗并审计：8 份官方原始附件完成 SHA 登记，Boël 与 MAGE 形成 25,420 个 assay rows；Kudla 支持附件已取得，但 154 条逐构建序列—表达表仍未获得，状态为 `PARTIAL_KUDLA_ROW_DATA_UNAVAILABLE`。** RK-02 时点所有 split 仍为 `UNASSIGNED`，尚未用于训练；RK-04 的后续划分见第 12 节。Theodorou et al. 的 Dasher/六蛋白原始数据原文明确不公开，不得纳入训练承诺。
 
 数据清洗必须保留 accession/release/license/raw-clean SHA、蛋白/UTR/载体/宿主/assay/batch/replicate、单位、检出限和缺失原因。功能值只在 `protein×host×assay×batch` 内标准化。同一蛋白变体不得随机跨 split；功能主测为蛋白 OOD，Ribo 主测增加研究 OOD；RSCU/归一化/校准只由 train 拟合。
 
@@ -146,6 +146,31 @@ Fig.1 代理失效；Fig.2 机制增量；Fig.3 模型；Fig.4 分任务 SOTA；
 - 最终回读确认 58 页；新页 ID=`pgp/pgg/pgZ/pgS/pgP/pgi`，关键数字和备注齐全，无元素越界；原 52 页内容与结构保持不变，仅第 52 页 XML 末尾存在无语义空白差异。
 - PPT 核验记录：`audits/20261118/RK02/ppt_verification.json`。本地下载的 PPT 构建脚本与完整回读仅作工作留档，不作为大型数据资产提交。
 
-### 下一步边界
+### 下一步边界（RK-02 时点）
 
-RK-01、RK-02 已完成；RK-G0 尚未关闭。下一步只能继续蛋白 family mapping、construct-signature 分组、无泄漏 split、官方 baseline smoke、dense-v2 与成本协议。没有完成这些工作前，不得声称已开始 RK 功能训练、机制有效或超过 SOTA。
+RK-01、RK-02 已完成；RK-G0 尚未关闭。RK-02 之后先完成蛋白 operational cluster mapping、construct-signature 分组和无泄漏 split；后续 RK-04 实际结果见第 12 节。官方 baseline smoke、dense-v2 与成本协议仍是独立待办，不能把数据清洗或审计数量写成模型性能。
+
+## 12. RK-04 实际完成记录与当前续作入口
+
+### 数据划分与独立复核
+
+- 代码与审计 commit：`99df1d96e041e1f78b67e69210276df66d7b5f6f`；推送后本地 HEAD 与 `origin/a8-rk` 一致，工作树干净。
+- 生产脚本：`scripts/a8_build_rk_splits.py`；独立复核：`scripts/a8_rk_verify_splits.py`；测试：`scripts/tests/test_a8_build_rk_splits.py`。完整协议和失败修正记录见 `audits/20261118/RK04/README.md`。
+- 输入仍为 25,420 行统一长表，真实 SHA256=`c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377`。交接中另一串 `c436784d…` 已证实为转录错误，没有修改输入。
+- Boël 6,348 行对应 6,348 个不同蛋白，是跨蛋白天然非同义变体池，不是固定蛋白同义功能文库。MAGE 19,072 行全部属于同一个 infA 蛋白，禁止按 assay 行随机拆分。
+- MMseqs2 operational homology clusters 使用 identity=0.50、双向 coverage=0.80；infA 所在簇在任何训练前冻结，其余 Boël 簇只根据序列、簇行数和 seed=20261118 做 deterministic 80/10/10 balancing，不读取标签或模型输出。
+- 正式输出：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1`。Boël train/dev/test=5,079/635/634 行，对应 4,442/556/556 clusters；MAGE 19,072 行全部 `functional_untouched`。
+- 共 6,349 条蛋白序列、5,555 个 operational clusters；infA 独立成簇，本阈值下额外冻结的 Boël 行数为 0。MAGE 13,569 个 construct-signature groups 全部 untouched。
+- 独立复核 33/33 checks PASS；RK-02+RK-04 组合测试 19/19 PASS。exact CDS、exact/derived protein、source protein ID、operational cluster、construct-signature group、非空 mutation signature 的跨 split 两两重叠均为 0。
+- `training_ready=false`、`training_or_model_selection_performed=false`、`functional_untouched_evaluated=false`。长度/GC OOD、train-only 归一化/校准仍 pending；RK-04 不授权功能训练，也不构成功能 OOD、生成器或 SOTA 结果。
+
+### PPT 与证据
+
+- 在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>。在 58 页 revision 20 基线上只追加第 59–60 页，slide IDs=`pgn/pgo`，写入后 revision=22。
+- 新页记录 split 数量与协议、33/33 独立复核、19/19 测试、六类零重叠、commit 和科学边界；没有把数据准备包装为核心性能。
+- `audits/20261118/RK04/ppt_verification.json` 为 PASS：整稿 60 页，前 58 页内容与结构保持不变（第 58 页末尾仅有无语义空白差异），新页文本、备注和画布边界检查通过。
+- 失败目录 `rk04_v1_failed_mmseqs_symlink/` 保留为失败证据，不是正式 split。正式 MMseqs2 临时目录为 `/home/codonflow-a8-rk-runtime/rk04_mmseqs_v1`，大型产物未提交 Git。
+
+### 当前下一步
+
+RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 官方强 baseline smoke 矩阵、RK-06 dense B=1 评价器/actual-set schema/独立 scorer/统一成本协议。legacy sparse `anytime_curve` 不得改名冒充 dense-v2；`fixed_dna_folding.py` 在两个工作树的 `src` 下均未找到，不能假设存在。没有功能 OOD 机制增量、CodonFlow-RK 生成器、强 baseline 主结果、untouched 最终评估、time-matched SOTA 或前瞻湿实验结果。
