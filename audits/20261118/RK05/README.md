@@ -213,3 +213,9 @@ From `/home/codonflow-a8-rk`, using the verified fixed materialization and **new
 ```
 
 The unified seven-λ actual-set matrix, dense candidate-budget comparison, functional OOD evaluation, CDGB assessment, main-baseline ranking, and SOTA assessment remain pending.
+
+## PPT record
+
+The bounded result was recorded only after the independent 10/10 and finalization 8/8 checks passed. One slide was appended to the existing online deck as slide 71, `pgB`, revision 33. It retains the fixed commit, all three official MFE/CAI/wall-time rows, default-dangles2 MFE, the v1 scorer-convention failure, independent/finalization status, and the bounded-only scope.
+
+`lineardesign_ppt_verification.json` records the server readback: 71 slides, all previous 70 slide IDs and semantic XML unchanged, all required values present, four speaker-note paragraphs, and no main-baseline/CDGB/OOD/SOTA claim. Code, evidence, A8 v3, and reproduction documentation were pushed in `8be5369081b614beede261b7430f1230e0783e37`; the PPT verification and handoff update are recorded separately.

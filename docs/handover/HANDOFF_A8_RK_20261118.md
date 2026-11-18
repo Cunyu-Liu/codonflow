@@ -369,3 +369,4 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 固定归档和 raw official outputs 留在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`；代码、报告与提交留在 `/home`。
 - 状态仅为 `BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED`。统一 actual-set 七 λ、dense budget、主 baseline、功能 OOD 与 SOTA 均未完成；CDGB 尚未建立可核验的官方来源/commit/build/execution artifact，通用搜索未命中不等于方法或实现不存在。
 - A8 生成器/verifier 已升级为 v3，新增 LinearDesign 固定源码、三 λ 指标、双 dangles 和 v1 retained failure；A7 未改。A8 SHA256=`d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd`，独立 **14/14 PASS**，仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
+- 代码、独立报告、A8 v3 和复现文档已以 commit=`8be5369081b614beede261b7430f1230e0783e37` 推送。既有在线主稿随后追加第 71 页 `pgB`、revision=33；回读确认前 70 页 slide ID 与语义 XML 全部不变，新页数值、边界和 4 段备注完整。PPT 验证报告为 `audits/20261118/RK05/lineardesign_ppt_verification.json`。
