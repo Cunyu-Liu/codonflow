@@ -1,0 +1,148 @@
+{
+  "protocol": "a8_rk05_codontransformer_ppt_independent_verification_v1",
+  "status": "PASS",
+  "check_count": 10,
+  "passed_checks": 10,
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pgU",
+  "slide_number": 74,
+  "baseline_slide_count": 73,
+  "readback_slide_count": 74,
+  "baseline_revision": 35,
+  "readback_revision": 36,
+  "old_pages_unchanged": true,
+  "baseline_xml_sha256": "a470d1354edd5afdec19b1cdca834ab4af5d96eea35086e5843b3f66eae09ddc",
+  "readback_xml_sha256": "e50f935aec1665d784144e4afeadb1d665352a3afab587922dc0dbf2dff3465c",
+  "evidence_sha256": {
+    "production": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+    "independent": "c9fb748bacafe6e57a548dcb0f93e882962c8605757d526b404d27e620e64d31",
+    "finalization": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac",
+    "materialization": "91ab29709fadcb3b75e78d779c5b03be9bb093b1e337f981a63cba7cefa90501"
+  },
+  "checks": [
+    {
+      "name": "frozen_official_and_finalization_evidence",
+      "pass": true,
+      "detail": {
+        "source_commit": "4a447b01dab860feb81b647ff1ff88ad598517f4",
+        "model_commit": "9744dcc920d813066391fc828d7a590207f148e8",
+        "finalization": "10/10"
+      }
+    },
+    {
+      "name": "independent_reexecution_pass",
+      "pass": true,
+      "detail": {
+        "independent": "13/13",
+        "max_numeric_delta": 0.0
+      }
+    },
+    {
+      "name": "write_and_revision_confirmed",
+      "pass": true,
+      "detail": {
+        "before": 35,
+        "after": 36,
+        "slide_id": "pgU"
+      }
+    },
+    {
+      "name": "exactly_one_page_appended",
+      "pass": true,
+      "detail": {
+        "before": 73,
+        "after": 74,
+        "last_id": "pgU"
+      }
+    },
+    {
+      "name": "old_page_ids_and_order_unchanged",
+      "pass": true,
+      "detail": {
+        "old_pages": 73
+      }
+    },
+    {
+      "name": "all_73_old_pages_semantically_unchanged",
+      "pass": true,
+      "detail": {
+        "unchanged": 73,
+        "different_pages": []
+      }
+    },
+    {
+      "name": "kpi_protocol_and_cost_match_evidence",
+      "pass": true,
+      "detail": {
+        "runs": 4,
+        "unique_cds": 2,
+        "load_s": 4.438656704965979,
+        "inference_s": 2.0327787059359252
+      }
+    },
+    {
+      "name": "table_recomputed_from_frozen_reports",
+      "pass": true,
+      "detail": {
+        "rows": [
+          [
+            "official_example",
+            "official_default",
+            "70 aa",
+            "213 nt",
+            "PASS"
+          ],
+          [
+            "official_example",
+            "match_protein",
+            "70 aa",
+            "213 nt",
+            "PASS"
+          ],
+          [
+            "C01H6.8b.1",
+            "official_default",
+            "135 aa",
+            "408 nt",
+            "PASS"
+          ],
+          [
+            "C01H6.8b.1",
+            "match_protein",
+            "135 aa",
+            "408 nt",
+            "PASS"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "notes_and_scientific_boundary",
+      "pass": true,
+      "detail": {
+        "note_paragraphs": 4,
+        "main_baseline_comparison": false,
+        "functional_ood": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "new_page_geometry_and_readability_structure",
+      "pass": true,
+      "detail": {
+        "in_bounds": true,
+        "minimum_explicit_font_px": 9.0,
+        "table_rows": 5,
+        "page_number": 74
+      }
+    }
+  ],
+  "scope": {
+    "bounded_official_smoke_recorded": true,
+    "matched_mfe_efe_comparison": false,
+    "dense_budget_complete": false,
+    "main_baseline_matrix_closed": false,
+    "functional_ood": false,
+    "sota_claim": false
+  }
+}
