@@ -1,0 +1,214 @@
+{
+  "schema_version": "a8-rk-functional-split-v1",
+  "created_at": "2026-11-18T12:44:30.266299+00:00",
+  "status": "PASS_WITH_SCIENTIFIC_BOUNDARIES",
+  "input": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/functional_long.csv",
+    "bytes": 27433093,
+    "sha256": "c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377"
+  },
+  "input_rows": 25420,
+  "protocol": {
+    "protocol_id": "a8_rk_split_v1_mmseqs2_id050_cov080_seed20261118",
+    "seed": 20261118,
+    "mmseqs_version": "ab57c0b9cd8893f1063e391c94cc845a3179bab1",
+    "mmseqs_binary": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/tools/mmseqs2-latest/mmseqs/bin/mmseqs",
+      "bytes": 24264160,
+      "sha256": "43e701faccbf58aa2c33cda15ecd0c73c06f76b79c3e2b021f6f1167b176d380"
+    },
+    "command": [
+      "/teams/HoulabData_1788502323/liucunyu/codonflow1031/tools/mmseqs2-latest/mmseqs/bin/mmseqs",
+      "easy-cluster",
+      "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/proteins.fasta",
+      "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/protein_clusters",
+      "/home/codonflow-a8-rk-runtime/rk04_mmseqs_v1",
+      "--min-seq-id",
+      "0.5",
+      "-c",
+      "0.8",
+      "--cov-mode",
+      "0",
+      "--threads",
+      "16"
+    ],
+    "temporary_directory": "/home/codonflow-a8-rk-runtime/rk04_mmseqs_v1",
+    "identity": 0.5,
+    "bidirectional_coverage": 0.8,
+    "coverage_mode": 0,
+    "allocation": "deterministic cluster-size balancing; no expression labels or model results used",
+    "cluster_scope": "operational MMseqs2 homology clusters, not curated protein families"
+  },
+  "infa_reference": {
+    "source": "73 S1 WT controls; positions 1..73; position 73 is terminal stop",
+    "cds_nt": 219,
+    "protein_aa": 72,
+    "cds_sha256": "0b128c049a7bd14b923126e03db45946f7d33f71f6602f5884f9873ce79a382b",
+    "protein_sha256": "7693d167bfae34fc5345154a75e21dc6db164f9d80a2c79eb79999814eb0b62f",
+    "operational_cluster": "mage__infA"
+  },
+  "counts": {
+    "dev": {
+      "rows": 635,
+      "clusters": 556,
+      "sources": {
+        "boel_2016_nesg6348": 635
+      },
+      "datasets": {
+        "protein_dataset_xlsx": 635
+      },
+      "expression_types": {
+        "ordinal_total_protein_expression_score_0_5": 635
+      },
+      "variant_classes": {
+        "cross_protein_natural_nonsynonymous_pool": 635
+      },
+      "unique_construct_signature_groups": 635
+    },
+    "functional_untouched": {
+      "rows": 19072,
+      "clusters": 1,
+      "sources": {
+        "kelsic_2016_mage_seq": 19072
+      },
+      "datasets": {
+        "data_s1_single_codon_csv": 9344,
+        "data_s2_codon_pair_csv": 8192,
+        "data_s3_utr_csv": 1536
+      },
+      "expression_types": {
+        "UTR_relative_fitness_rich": 1536,
+        "relative_fitness_minimal": 4672,
+        "relative_fitness_rich": 12864
+      },
+      "variant_classes": {
+        "codon_pair_variant": 7938,
+        "nonsynonymous_single_codon": 8836,
+        "single_codon_variant_in_pair_assay": 252,
+        "synonymous_single_codon": 362,
+        "utr_hairpin_variant": 1530,
+        "wild_type_control": 154
+      },
+      "unique_construct_signature_groups": 13569
+    },
+    "test": {
+      "rows": 634,
+      "clusters": 556,
+      "sources": {
+        "boel_2016_nesg6348": 634
+      },
+      "datasets": {
+        "protein_dataset_xlsx": 634
+      },
+      "expression_types": {
+        "ordinal_total_protein_expression_score_0_5": 634
+      },
+      "variant_classes": {
+        "cross_protein_natural_nonsynonymous_pool": 634
+      },
+      "unique_construct_signature_groups": 634
+    },
+    "train": {
+      "rows": 5079,
+      "clusters": 4442,
+      "sources": {
+        "boel_2016_nesg6348": 5079
+      },
+      "datasets": {
+        "protein_dataset_xlsx": 5079
+      },
+      "expression_types": {
+        "ordinal_total_protein_expression_score_0_5": 5079
+      },
+      "variant_classes": {
+        "cross_protein_natural_nonsynonymous_pool": 5079
+      },
+      "unique_construct_signature_groups": 5079
+    }
+  },
+  "boel_rows_frozen_with_infa_cluster": 0,
+  "leakage": {
+    "pairwise_overlaps": {
+      "exact_cds": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      },
+      "exact_protein_or_derived_infa": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      },
+      "source_protein_id": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      },
+      "operational_cluster": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      },
+      "construct_signature_group": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      },
+      "nonblank_mutation_signature": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    "all_pairwise_overlaps_zero": true
+  },
+  "artifacts": {
+    "functional_long_split": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+      "bytes": 34088815,
+      "sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+    },
+    "protein_fasta": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/proteins.fasta",
+      "bytes": 1816666,
+      "sha256": "38c593b73eddbf2a88f5e32258ea52e08320c9ac55427083d988b5291a9cc359"
+    },
+    "cluster_tsv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/protein_clusters_cluster.tsv",
+      "bytes": 159385,
+      "sha256": "581efab2909f5ff63aff9a3c9ead24bf9582d9b82420066663859824e08bad85"
+    },
+    "split_assignments": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/split_assignments.csv",
+      "bytes": 665521,
+      "sha256": "9bece243752d12e8e1d9ee0cc2a69e9a94332fab0b39b676e8038fe36592e362"
+    }
+  },
+  "training_ready": false,
+  "training_or_model_selection_performed": false,
+  "functional_untouched_evaluated": false,
+  "scientific_boundaries": [
+    "Boël supports cross-protein heterologous expression modeling, not fixed-protein synonymous-function prediction.",
+    "All MAGE infA rows and every Boël member of the infA cluster are frozen before model training.",
+    "No multi-protein synonymous functional training corpus is currently available; no RK-G0/G1 or SOTA claim is authorized.",
+    "Split creation does not close RK-03/RK-05/RK-06 and does not authorize generator training."
+  ]
+}

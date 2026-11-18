@@ -1,0 +1,235 @@
+{
+  "schema_version": "a8-rk-functional-split-independent-verification-v1",
+  "created_at": "2026-11-18T12:44:32.685390+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "input_schema",
+      "status": "PASS",
+      "detail": 31
+    },
+    {
+      "check": "row_conservation",
+      "status": "PASS",
+      "detail": 25420
+    },
+    {
+      "check": "original_input_sha",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "all_source_fields_unchanged",
+      "status": "PASS",
+      "detail": {}
+    },
+    {
+      "check": "no_unassigned_rows",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "protocol_id_complete",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "cluster_fasta_coverage",
+      "status": "PASS",
+      "detail": 6349
+    },
+    {
+      "check": "cluster_representatives_valid",
+      "status": "PASS",
+      "detail": 5555
+    },
+    {
+      "check": "protein_fasta_exact_recalculation",
+      "status": "PASS",
+      "detail": 6349
+    },
+    {
+      "check": "infa_reference_length_and_stop",
+      "status": "PASS",
+      "detail": {
+        "cds_nt": 219,
+        "protein_aa": 72
+      }
+    },
+    {
+      "check": "row_cluster_mapping",
+      "status": "PASS",
+      "detail": 0
+    },
+    {
+      "check": "infa_cluster_untouched",
+      "status": "PASS",
+      "detail": "mage__infA"
+    },
+    {
+      "check": "all_mage_untouched",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "no_mage_in_model_dev",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "functional_untouched_not_evaluated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "no_training_or_selection_claim",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "zero_overlap_exact_cds",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "zero_overlap_exact_protein_or_derived_infa",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "zero_overlap_source_protein_id",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "zero_overlap_operational_cluster",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "zero_overlap_construct_signature_group",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "zero_overlap_nonblank_mutation_signature",
+      "status": "PASS",
+      "detail": {
+        "dev__functional_untouched": 0,
+        "dev__test": 0,
+        "dev__train": 0,
+        "functional_untouched__test": 0,
+        "functional_untouched__train": 0,
+        "test__train": 0
+      }
+    },
+    {
+      "check": "assignment_table_coverage",
+      "status": "PASS",
+      "detail": 6349
+    },
+    {
+      "check": "assignment_table_clusters",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "assignment_table_splits",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "assignment_row_counts",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "summary_counts_exact",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "artifact_sha_functional_long_split",
+      "status": "PASS",
+      "detail": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+    },
+    {
+      "check": "artifact_sha_protein_fasta",
+      "status": "PASS",
+      "detail": "38c593b73eddbf2a88f5e32258ea52e08320c9ac55427083d988b5291a9cc359"
+    },
+    {
+      "check": "artifact_sha_cluster_tsv",
+      "status": "PASS",
+      "detail": "581efab2909f5ff63aff9a3c9ead24bf9582d9b82420066663859824e08bad85"
+    },
+    {
+      "check": "artifact_sha_split_assignments",
+      "status": "PASS",
+      "detail": "9bece243752d12e8e1d9ee0cc2a69e9a94332fab0b39b676e8038fe36592e362"
+    },
+    {
+      "check": "scientific_boundary_retained",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "all_pairwise_overlap_flag",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "rows": 25420,
+  "counts": {
+    "dev": 635,
+    "functional_untouched": 19072,
+    "test": 634,
+    "train": 5079
+  },
+  "clusters": 5555,
+  "infa_cluster": "mage__infA",
+  "boel_rows_frozen_with_infa_cluster": 0,
+  "artifact_sha256": {
+    "functional_long_split": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+    "protein_fasta": "38c593b73eddbf2a88f5e32258ea52e08320c9ac55427083d988b5291a9cc359",
+    "cluster_tsv": "581efab2909f5ff63aff9a3c9ead24bf9582d9b82420066663859824e08bad85",
+    "split_assignments": "9bece243752d12e8e1d9ee0cc2a69e9a94332fab0b39b676e8038fe36592e362"
+  },
+  "training_ready": false,
+  "functional_untouched_evaluated": false
+}
