@@ -250,4 +250,4 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 独立 verifier=`scripts/a8_rk07_verify_proxy.py`，不导入生产模块，逐项核验 protocol/feature/prediction/dev SHA，独立构建参考 RSCU，重算全部 6,348 条 CDS 翻译、CAI、GC、18°C MFE、模型预测、train-only 标准化、univariate fit、logistic 梯度、点指标、1,000 次 bootstrap、Holm、长度/GC 分层和 dev 冻结。
 - `audits/20261118/RK07/final_independent_verification.json` 为 **PASS，9/9 checks**，SHA256=`1dab1cf3405a7158bcc0a2d395dbb2882395b7a252ba671c49197b9158cfa815`。raw feature 最大差=0，prediction 最大差约 `1.3322676295501878e-15`，paired CI 最大差约 `2.23e-16`，stratum metric 最大差约 `4.45e-16`，p_raw/p_Holm/optimizer_gradient 差异均为 0。
 - final artifact 与 pre-test dev baseline 完全一致，`forbidden_split_used=false`；verifier 和生产代码未因 test 结果而修改。E1 固定蛋白同义任务、RK-G0/G1、长度/GC OOD、完整 baseline、生成器和论文门槛仍未关闭。
-- PPT：独立验收已通过，待追加结果页并另行记录服务端回读。
+- PPT：第 64 页（`pgt`）记录六模型 dev/test 原生分组柱状图、test 点估计最强单代理 GC 与 0/5 Holm 显著增量；第 65 页（`pgX`）记录五个 paired 比较、CAI 的 CI/Holm 区别和 GC 高/低失败分层。65 页 revision 27 实时回读通过，前 63 页 slide ID 与语义 XML 均未改变；服务端仅将 `0.212870` 归一化为数值等价的 `0.21287`。
