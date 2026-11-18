@@ -130,3 +130,9 @@ From `/home/codonflow-a8-rk`, using the already verified fixed materialization a
 ```
 
 The materialization script intentionally refuses to overwrite an existing source target or audit. Large ZIPs, weights, and official outputs remain under `/teams`; source and commits remain under `/home`. No full-12x12 run, multi-seed comparison, dense-budget evaluation, functional-expression claim, main-baseline ranking, or SOTA claim is authorized.
+
+## 8. PPT record and handoff closure
+
+The bounded result was recorded only after the independent and finalization reports passed their scope checks. One slide was appended to the existing online deck as slide 68, `pgC`, revision 30. It retains `12/12` official runs, `112/116` independent checks, `11/11` finalization checks, all four CPC saved-to-recomputed values, the final summary statistics, the fixed-source root cause, and the exclusion boundary.
+
+`audits/20261118/RK05/id3_ppt_verification.json` records the server readback: 68 slides, all previous 67 slide IDs and semantic XML unchanged, all required values present, five speaker-note paragraphs, and the quick-test-only boundary. Evidence and reproduction documentation were pushed in `51fcda9f95a7770cf1a4ee0f1e8b2956eab719a1`; the PPT/handoff record does not promote the smoke to a main baseline comparison.

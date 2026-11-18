@@ -279,3 +279,33 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 既有在线 deck 第 66 页=`pgL`，revision 28，标题为 `RK-05 | Public RNARL Snapshot Is Not Directly Runnable`。写入后重新读取真实 smoke/独立报告，数值合同通过；66 页全文回读通过，前 65 页 slide ID 与语义 XML 均未改变。页面明确保留负向边界，无训练/生成/论文指标/SOTA/主比较授权。
 - CodonTransformer 全量结果已追加第 67 页=`pgy`，revision 29。页面记录固定 raw、1,001,197/449,655 rows、164/40 organisms、排除原因、重复、8/8 独立 PASS 与 finalization PASS；回读确认前 66 页 slide ID 和语义 XML 未改变，关键数值及 bounded 边界均在。
 - 下一步只认真实 finalization 报告、final manifest、raw/quarantine 实物和独立 verifier；partial/prefix/source-tree/negative-availability 审计均不得冒充全量数据或模型性能。RK-03、RK-05 强 baseline 矩阵、RK-G0 及后续机制/生成/OOD/论文 gates 仍未关闭。
+
+## 17. RK-05 ID3 bounded quick-test 与 RNARL 坏残片恢复补丁
+
+### ID3 固定源码、运行协议与工程适配
+
+- ID3 固定 commit=`ed23037e5a74ca10953954c425ac736fb89578a8`，固定 ZIP SHA256=`9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f`；DeepRaccess 固定 commit=`1a37235e31e1d5a7d5e2bfb705e3a00f1cdcaa9c`，ZIP SHA256=`dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348`。源码在 `/home/codonflow-a8-rk-external/ID3`，大型 ZIP/权重在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`。
+- 官方 quick-test 的真实协议是 O15263 上 3 类 constraints × 4 variants=12 runs、2 iterations、1 seed、base_seed=42、`enable_cai=False`；README 的 5 iterations 与 fixed preset 不一致。full-12x12 另为 12 proteins ×12 configurations、1000 iterations、1 seed，本轮没有运行。
+- 生产 wrapper 只做 UTR 的 T→U 归一化、CPU-only official-force 作用域和 CPU 子进程 CUDA 隔离，没有修改固定上游源码。三次工程失败（UTR 字母、全局 GPU gate、device 未传递）分别保留审计，不包装成科学负结果，也没有停止其他 GPU 进程。
+- `cpu_v4` 官方输出目录为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4`。official summary：12/12 successful、0 failed、total_time=417.591162443161 s、average=34.799263536930084 s；生产审计 `id3_official_quick_test.json` 为 43/43 PASS。
+
+### 独立复核、CPC 缺陷与可用范围
+
+- 独立 verifier v2 不修改官方 payload、不放宽 `2e-5` 容差，重算 24 条离散轨迹记录、36 个 initial/best/final 字段和全部 12 个 final；仅对 18 条唯一序列调用模型。报告为 `BOUNDED_OFFICIAL_EXECUTION_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT`，112/116，四项失败原样保留。v1 108/112 报告另存为失败归档，没有删除。
+- 固定源码根因由 AST 定位：`CodonProfileConstraint.forward()` 调用 `CodonPsiFunction.forward()` 时漏传 `beta`，使 CodonPsi 使用默认 0.0；runner 在 `beta==1.0` 分支又把软路径的 `accessibility_loss.item()` 当作离散分数。`cpc-01/11` 的 initial/best 因而与离散 argmax 序列不一致；final 经 deferred validation 离散重算后可用。
+- `cpc-01` saved→recomputed initial=`1.7490674257→3.4766187668`，best=`1.6879907846→2.6521768570`；`cpc-11` initial=`1.7701568604→2.4008736610`，best=`1.6919028759→1.9028095007`。这两个实验的 saved initial/best/improvement/trajectory accessibility 以及 `performance_table`、`constraint_comparison`、`variant_comparison` 等 best 聚合全部排除。
+- 12/12 final 通过，10 组完整 metric payload 通过，`cpc-01/11` 仅 final 可用；12 组官方 best sequence 均与独立离散 argmin 一致。final count=12、mean=`2.5201897621154785`、min=`1.902809500694275`、max=`3.240176200866699`，与官方 summary 一致；saved std=0 不使用。
+- `id3_official_quick_test_finalization.json` 为 11/11 PASS、`ppt_record_ready=true`，同时明确 `all_payload_metrics_verified=false`、`main_baseline_comparison=false`、`sota_claim=false`。证据、独立复核、测试、失败归档和复现 README 以 commit=`51fcda9f95a7770cf1a4ee0f1e8b2956eab719a1` 推送；本地与远端合同测试均 9/9 PASS。
+
+### PPT 与当前续作
+
+- 在线主稿在 67 页 revision 29 基线上只追加第 68 页，slide ID=`pgC`，写入后 revision=30。页面保留 12/12、112/116、11/11、四项 saved→recomputed 数值、final 汇总、根因与排除边界；没有方法排名图。
+- `audits/20261118/RK05/id3_ppt_verification.json` 为 PASS：整稿 68 页，前 67 页 slide ID 与语义 XML 全部不变；关键文本、表格、5 段演讲者备注、页码和 bounded 口径回读通过。复现命令与报告 SHA 见 `audits/20261118/RK05/README.md`。
+- 该结果只授权单蛋白、2 iterations、单 seed 的 bounded quick-test 记录，不是 full-12x12、多 seed、功能 OOD、主 baseline 排名或 SOTA。RK-05 强 baseline 矩阵仍未关闭；后续运行必须沿用分层指标规则，不得把 CPC×1 的受影响字段重新并入比较。
+
+### RNARL 坏 part 恢复补丁（仅工程验收）
+
+- 旧下载器在每次重试进入 `try` 前对满尺寸 `.part` 校验，MD5/SHA 失败后异常逃出循环，坏残片会永久保留。补丁把满尺寸校验纳入重试；完整或超限且校验失败的 part 使用唯一 `.part.rejected-<time_ns>-<pid>` 名称隔离，不删除证据，再从零重下；成功记录新增 `quarantined_parts`。
+- 权威脚本及测试已部署 `/home/codonflow-a8-rk`，项目模块方式运行 10/10 PASS。补丁、测试与 `rnarl_download_recovery_patch.json` 以 commit=`f0db530b2564dbc172ed78eebd610479c4ef7a06` 推送；进行中的 `rnarl_download_manifest.json` 未提交。
+- 该审计状态仅为 `PASS_PATCH_TESTS__FORMAL_DATA_COMPLETION_PENDING`。没有启动第二个并发下载器，旧进程已加载的代码不会因磁盘补丁原地改变。正式恢复必须依据唯一 patched downloader 的真实 final manifest、raw/quarantine 实物、21 文件全量 QC、独立 verifier 和 finalization；10/10 工程测试与 15 文件 partial smoke 均不能替代这些证据。
+- 后续 pre-recovery 实物审计逐文件重算 bytes/MD5/SHA：18 个已存在 final 全部 verified、0 个 invalid final、3 个 missing final、3 个 part，报告为 `rnarl_pre_final_recovery_audit.json`。为覆盖防御性边界，final 也采用与 part 相同的唯一命名隔离和重试路径，成功记录新增 `quarantined_destinations`；权威 final+part 补丁 11/11 tests PASS，代码与 `rnarl_download_final_recovery_patch.json` 已部署。该 11/11 仍仅是工程验收，不是正式数据完成或 PPT 结果。

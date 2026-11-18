@@ -1,0 +1,30 @@
+{
+  "authoritative_code_sha256": "29985f4e3b4df0b94bf997c0e56e7df1d2163db6c3d64498b22366e32005d3ab",
+  "authoritative_patch_deployed": true,
+  "authoritative_test_sha256": "fb2f725c3d3cd3d7704be96e92e024d4e84e504735d889b2cc367318396607e6",
+  "candidate_code_sha256": "29985f4e3b4df0b94bf997c0e56e7df1d2163db6c3d64498b22366e32005d3ab",
+  "candidate_path": "/home/codonflow-a8-rk-smoke/rnarl_download_candidate_final_v2/scripts/a8_rk03_download.py",
+  "created_at": "2026-11-18T18:17:43.790432+00:00",
+  "finalization_complete": false,
+  "formal_data_complete": false,
+  "formal_qc_complete": false,
+  "independent_verification_complete": false,
+  "new_behavior": [
+    "Invalid existing final is moved to a unique .rejected-<time_ns>-<pid> name before retry.",
+    "Full or oversized invalid part uses the same evidence-preserving quarantine path.",
+    "Successful records include quarantined_destinations and quarantined_parts.",
+    "Verified existing finals are reused without HTTP."
+  ],
+  "new_downloader_started_by_this_audit": false,
+  "note": "Engineering recovery only. No running process code changes in place and no scientific result is authorized.",
+  "old_downloader_alive_at_audit": true,
+  "old_downloader_pid": 3436022,
+  "ppt_result_ready": false,
+  "pre_recovery_audit": "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_pre_final_recovery_audit.json",
+  "pre_recovery_audit_sha256": "9ebb26f5af1a8423fb85372912c2c3c7c278cba6ae06fefcd8829db8c7825410",
+  "schema_version": "a8-rk03-rnarl-final-recovery-patch-v1",
+  "status": "PASS_PATCH_TESTS__FORMAL_DATA_COMPLETION_PENDING",
+  "test_command": "PYTHONPATH=/home/codonflow-a8-rk /root/miniconda3/envs/codonflow/bin/python -m scripts.tests.test_a8_rk03_download",
+  "tests_passed": 11,
+  "tests_total": 11
+}

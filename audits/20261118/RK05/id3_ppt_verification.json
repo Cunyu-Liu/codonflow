@@ -1,0 +1,48 @@
+{
+  "boundary_present": true,
+  "current_xml_sha256": "113655bc239384822f2b3424493dc58d15cc7ae0c0a0e510c1c3970048aab738",
+  "new_slide_id": "pgC",
+  "new_slide_number": 68,
+  "old_slide_count": 67,
+  "old_slide_id_mismatches": [],
+  "old_slide_semantic_mismatches": [],
+  "page_number_ok": true,
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "readback_revision_id": 30,
+  "required_text": {
+    "1.687991 → 2.652177": true,
+    "1.691903 → 1.902810": true,
+    "1.749067 → 3.476619": true,
+    "1.770157 → 2.400874": true,
+    "11/11": true,
+    "112/116": true,
+    "12/12": true,
+    "RK-05 | ID3 Quick-Test Runs 12/12; CPC STE Metrics Are Bounded": true,
+    "mean 2.520190 · min 1.902810 · max 3.240176": true
+  },
+  "root_cause_present": true,
+  "schema_version": "a8-rk05-id3-ppt-verification-v1",
+  "scope": "Bounded ID3 official quick-test record only; no main baseline ranking or SOTA claim.",
+  "slide_count": 68,
+  "source_finalization_sha256": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",
+  "source_independent_sha256": "03980d217794fcb57511be368a7f90e5f34ac0209cc4f3294ad3818ffcd3c7ae",
+  "speaker_note_paragraphs": 5,
+  "speaker_notes": [
+    "固定 ID3 与 DeepRaccess 源码的官方 quick-test 已在 CPU 上真实完成 12 个配置，配置为 O15263、两次迭代和单 seed 42。",
+    "独立 verifier 重算了 24 条离散轨迹与全部最终分数；12 条最终序列均保持蛋白，最终汇总均值、最小值和最大值一致。",
+    "固定源码中 CPC 没有把 beta 传给 CodonPsi，而 runner 将 beta 等于 1 的软路径输出当作离散分数，因此 cpc-01 和 cpc-11 的四项 initial/best 检查保留为失败。",
+    "这 10 组完整指标和 2 组 final-only 结果是分层验收；两组受影响的历史、最佳、改进和轨迹字段及 best 汇总均排除，官方 payload 未改写。",
+    "本页只是 bounded smoke 记录，不是 full-12x12、多 seed、主 baseline 排名、功能结论或 SOTA。"
+  ],
+  "status": "PASS",
+  "url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "write_response": {
+    "data": {
+      "revision_id": 30,
+      "slide_id": "pgC",
+      "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g"
+    },
+    "identity": "user",
+    "ok": true
+  }
+}

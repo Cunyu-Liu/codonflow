@@ -110,13 +110,32 @@ class DownloadTests(unittest.TestCase):
             self.assertEqual(len(rejected), 1)
             self.assertEqual(rejected[0].read_bytes(), RangeHandler.payload)
 
-    def test_existing_bad_final_is_not_overwritten(self):
+    def test_existing_bad_final_is_quarantined_and_redownloaded(self):
         with tempfile.TemporaryDirectory() as tmp:
             destination = Path(tmp) / "data.csv"
             destination.write_bytes(b"do-not-overwrite")
-            with self.assertRaises(DataValidationError):
-                download_verified(self.url, destination, self.spec, retries=1)
-            self.assertEqual(destination.read_bytes(), b"do-not-overwrite")
+            result = download_verified(self.url, destination, self.spec, retries=1)
+            self.assertEqual(result["status"], "downloaded_verified")
+            self.assertEqual(destination.read_bytes(), RangeHandler.payload)
+            self.assertEqual(len(result["quarantined_destinations"]), 1)
+            rejected = Path(result["quarantined_destinations"][0]["path"])
+            self.assertEqual(rejected.read_bytes(), b"do-not-overwrite")
+            self.assertEqual(rejected.name.count("rejected-"), 1)
+            self.assertEqual(RangeHandler.ranges, [None])
+
+    def test_bad_final_is_quarantined_before_verified_part_promotion(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "data.csv"
+            destination.write_bytes(b"bad-final")
+            part = destination.with_name("data.csv.part")
+            part.write_bytes(RangeHandler.payload)
+            result = download_verified(self.url, destination, self.spec, retries=1)
+            self.assertEqual(result["status"], "promoted_verified_part")
+            self.assertEqual(destination.read_bytes(), RangeHandler.payload)
+            self.assertEqual(len(result["quarantined_destinations"]), 1)
+            self.assertEqual(Path(result["quarantined_destinations"][0]["path"]).read_bytes(), b"bad-final")
+            self.assertFalse(part.exists())
+            self.assertEqual(RangeHandler.ranges, [])
 
     def test_complete_verified_part_promotes_without_http(self):
         with tempfile.TemporaryDirectory() as tmp:

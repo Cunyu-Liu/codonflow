@@ -65,11 +65,11 @@ def _part_path(destination: Path) -> Path:
     return destination.with_name(destination.name + ".part")
 
 
-def _quarantine_part(part: Path, reason: str) -> Dict[str, object]:
-    """Preserve rejected bytes under a unique name so the next retry starts cleanly."""
-    size = part.stat().st_size
-    quarantine = part.with_name(f"{part.name}.rejected-{time.time_ns()}-{os.getpid()}")
-    os.replace(part, quarantine)
+def _quarantine_rejected(path: Path, reason: str) -> Dict[str, object]:
+    """Preserve rejected final/part bytes under a unique name before recovery."""
+    size = path.stat().st_size
+    quarantine = path.with_name(f"{path.name}.rejected-{time.time_ns()}-{os.getpid()}")
+    os.replace(path, quarantine)
     return {"path": str(quarantine), "bytes": size, "reason": reason}
 
 
@@ -82,9 +82,14 @@ def download_verified(
 ) -> Dict[str, object]:
     """Download to a resumable sidecar and atomically promote only verified bytes."""
     destination.parent.mkdir(parents=True, exist_ok=True)
+    quarantined_destinations: list[Dict[str, object]] = []
     if destination.exists():
-        result = verify_integrity(destination, spec)
-        return {"status": "reused_verified", "attempts": 0, **result}
+        try:
+            result = verify_integrity(destination, spec)
+        except DataValidationError as exc:
+            quarantined_destinations.append(_quarantine_rejected(destination, str(exc)))
+        else:
+            return {"status": "reused_verified", "attempts": 0, **result}
 
     part = _part_path(destination)
     last_error: Optional[BaseException] = None
@@ -103,14 +108,14 @@ def download_verified(
                     try:
                         result = verify_integrity(part, spec)
                     except DataValidationError as exc:
-                        quarantined_parts.append(_quarantine_part(part, str(exc)))
+                        quarantined_parts.append(_quarantine_rejected(part, str(exc)))
                         offset = 0
                     else:
                         os.replace(part, destination)
                         return {
                             "status": "promoted_verified_part", "attempts": attempt - 1,
                             "resumed_from_bytes": offset, "http_status": None,
-                            "quarantined_parts": quarantined_parts, **result,
+                            "quarantined_parts": quarantined_parts, "quarantined_destinations": quarantined_destinations, **result,
                         }
             headers = {"User-Agent": USER_AGENT, "Accept": "*/*"}
             if offset:
@@ -162,6 +167,7 @@ def download_verified(
                 "resumed_from_bytes": offset if append else 0,
                 "http_status": status,
                 "quarantined_parts": quarantined_parts,
+                "quarantined_destinations": quarantined_destinations,
                 **result,
             }
         except (OSError, urllib.error.URLError, DataValidationError) as exc:
@@ -172,7 +178,7 @@ def download_verified(
                 and part.exists()
                 and part.stat().st_size >= int(expected_bytes)
             ):
-                quarantined_parts.append(_quarantine_part(part, str(exc)))
+                quarantined_parts.append(_quarantine_rejected(part, str(exc)))
             if attempt < retries:
                 time.sleep(min(2 ** (attempt - 1), 8))
     raise DataValidationError(
