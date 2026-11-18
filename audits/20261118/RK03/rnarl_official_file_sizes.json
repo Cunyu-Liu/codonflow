@@ -1,0 +1,242 @@
+{
+  "schema_version": "a8-rk03-rnarl-official-file-sizes-v1",
+  "created_at": "2026-11-18T16:19:28.755122+00:00",
+  "source_record": "https://zenodo.org/records/15486992",
+  "method": "Verified local final bytes when official MD5 matches; otherwise curl HEAD final HTTP 200 Content-Length with ordered retries",
+  "config_updated": false,
+  "config_sha256_before": "01a20b190e1152fd169d9a48b87b13dbc59871482fa9d872b86a4ac9e51839bd",
+  "config_sha256_after": "01a20b190e1152fd169d9a48b87b13dbc59871482fa9d872b86a4ac9e51839bd",
+  "files": [
+    {
+      "file_id": "arabidopsis_test",
+      "filename": "Arabidopsis_thaliana_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_test.csv?download=1",
+      "expected_md5": "bda51e8464933741254b5fb8330bd315",
+      "expected_bytes": 8310481,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "arabidopsis_train",
+      "filename": "Arabidopsis_thaliana_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_train.csv?download=1",
+      "expected_md5": "7553e31ac05a0b41fc5c15a2f4e1f8f6",
+      "expected_bytes": 150805006,
+      "byte_source": "official_head_content_length",
+      "http_status": 200,
+      "last_modified": "Tue, 23 Dec 2025 23:38:24 GMT",
+      "head_attempts": 1
+    },
+    {
+      "file_id": "arabidopsis_val",
+      "filename": "Arabidopsis_thaliana_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_val.csv?download=1",
+      "expected_md5": "707faaf69c3f67b68ae5f03ace9817ec",
+      "expected_bytes": 8332202,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "chlamydomonas_test",
+      "filename": "Chlamydomonas_reinhardtii_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_test.csv?download=1",
+      "expected_md5": "2f9057ac87a5eac4194246505897f2cd",
+      "expected_bytes": 5347535,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "chlamydomonas_train",
+      "filename": "Chlamydomonas_reinhardtii_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_train.csv?download=1",
+      "expected_md5": "d7d6f3255d99d0087abea92497d78210",
+      "expected_bytes": 94637924,
+      "byte_source": "official_head_content_length",
+      "http_status": 200,
+      "last_modified": "Tue, 23 Dec 2025 23:38:28 GMT",
+      "head_attempts": 1
+    },
+    {
+      "file_id": "chlamydomonas_val",
+      "filename": "Chlamydomonas_reinhardtii_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_val.csv?download=1",
+      "expected_md5": "5b0a60706df48f57db39f2015b34e600",
+      "expected_bytes": 5224383,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "ecoli_test",
+      "filename": "Escherichia_coli_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_test.csv?download=1",
+      "expected_md5": "2ea037be84380774570d9dc0fa108539",
+      "expected_bytes": 818614,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "ecoli_train",
+      "filename": "Escherichia_coli_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_train.csv?download=1",
+      "expected_md5": "23894f9cf1523b1d3263704fe0c2a9d3",
+      "expected_bytes": 16408126,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "ecoli_val",
+      "filename": "Escherichia_coli_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_val.csv?download=1",
+      "expected_md5": "fa745751ddd8418021111fc795f90aef",
+      "expected_bytes": 888753,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "human_circrna_test",
+      "filename": "Homo_sapiens_circRNA_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_test.csv?download=1",
+      "expected_md5": "eadfad0947fd50f525531e7d810fa225",
+      "expected_bytes": 3178499,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "human_circrna_train",
+      "filename": "Homo_sapiens_circRNA_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_train.csv?download=1",
+      "expected_md5": "1688a3e35f429a9347b9f885bd99deb0",
+      "expected_bytes": 57602053,
+      "byte_source": "official_head_content_length",
+      "http_status": 200,
+      "last_modified": "Tue, 23 Dec 2025 23:38:21 GMT",
+      "head_attempts": 1
+    },
+    {
+      "file_id": "human_circrna_val",
+      "filename": "Homo_sapiens_circRNA_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_val.csv?download=1",
+      "expected_md5": "7fc71582d6e118c8eef5844cdd6c4ac7",
+      "expected_bytes": 3317906,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "human_test",
+      "filename": "Homo_sapiens_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_test.csv?download=1",
+      "expected_md5": "eb6e7104640e1a22cdacc0f182b7cef1",
+      "expected_bytes": 13779874,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "human_train",
+      "filename": "Homo_sapiens_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_train.csv?download=1",
+      "expected_md5": "bd7e5db39008ba84dc72b74d1f7bfa1b",
+      "expected_bytes": 255575152,
+      "byte_source": "official_head_content_length",
+      "http_status": 200,
+      "last_modified": "Tue, 23 Dec 2025 23:38:18 GMT",
+      "head_attempts": 1
+    },
+    {
+      "file_id": "human_val",
+      "filename": "Homo_sapiens_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_val.csv?download=1",
+      "expected_md5": "3f9d2ac4578ddd68c0e6a66f57fe219e",
+      "expected_bytes": 14149694,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "penicillium_test",
+      "filename": "Penicillium chrysogenum_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_test.csv?download=1",
+      "expected_md5": "ba2f36b49f4d2f89e6c24aa58ce1cccb",
+      "expected_bytes": 3487697,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "penicillium_train",
+      "filename": "Penicillium chrysogenum_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_train.csv?download=1",
+      "expected_md5": "e27f9f4910276249729123ef17ff77bf",
+      "expected_bytes": 61560429,
+      "byte_source": "official_head_content_length",
+      "http_status": 200,
+      "last_modified": "Tue, 23 Dec 2025 23:38:26 GMT",
+      "head_attempts": 1
+    },
+    {
+      "file_id": "penicillium_val",
+      "filename": "Penicillium chrysogenum_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_val.csv?download=1",
+      "expected_md5": "d438224dd2123af989e7600bf3bcad8f",
+      "expected_bytes": 3402173,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "thermococcus_test",
+      "filename": "Thermococcus_kodakarensis_KOD1_test.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_test.csv?download=1",
+      "expected_md5": "a845351eb3c165d8d2031085ecf06380",
+      "expected_bytes": 367574,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "thermococcus_train",
+      "filename": "Thermococcus_kodakarensis_KOD1_train.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_train.csv?download=1",
+      "expected_md5": "71743b8c967e597e3caecdb611dfc751",
+      "expected_bytes": 6747903,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    },
+    {
+      "file_id": "thermococcus_val",
+      "filename": "Thermococcus_kodakarensis_KOD1_val.csv",
+      "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_val.csv?download=1",
+      "expected_md5": "be9f1c989d4cdb0e3f6a7c4244c4b734",
+      "expected_bytes": 385412,
+      "byte_source": "verified_local_final_md5_matched",
+      "http_status": null,
+      "last_modified": null,
+      "head_attempts": 0
+    }
+  ]
+}
