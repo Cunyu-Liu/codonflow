@@ -696,10 +696,132 @@
 - T3.5诊断完成；后续任何新实验必须先登记T3.6诊断协议、对照与停止规则，不得借诊断绕过G2。
 
 
-## 97. T3.6 proposal-in-the-loop 诊断协议冻结
+## 97. T3.6 协议冻结与 T3.7 实施中状态
 
-- 比较三条路线：先训练新目标模型（成本高且混杂）、仅写负结果（不能区分核与优化器）、同一accept/reject优化器中的提议消融（最小直接诊断）。选择第三条，不改变G2 No-Go。
-- 已写入 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`：复用现有FULL/EDIT checkpoint、calibration和G2随机hill结果；仅新增3个G1基因×3 seeds×2臂=18个T=1 learned-hill结果。
-- 新分片与随机hill使用相同paired initial、四目标权重、delta>=0接受规则、独立cache和500唯一terminal evaluations；NED、anytime、成本完整记录。旧随机hill只在SHA及全部配对字段复核后复用，不重跑。
-- CUDA不可用、哈希/初始不配对、dirty、partial、identity<100%、唯一解不足或未登记commit均停止留证。默认SimpleSearch行为必须保持不变，先完成回归和CUDA工程检查。
-- 结果只作开发诊断：阳性形成后续研究假设，阴性支持负结果；不设事后Go阈值，不启动short-rollout、D5确认、扩参、RLOO或SOTA写作。
+- 冻结 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`（协议提交`7c96c31`）：FULL/EDIT各3个G1开发基因×3 seeds，共18个T=1 learned-hill分片；与既有random-hill严格paired initial、accept/reject、calibration、独立cache和500唯一terminal scorer一致。阳性只形成后续独立实验假设，阴性支持G2 No-Go，均不翻案。
+- 为`SimpleSearch`增加可选proposal callable，默认路径保持不变；worker拒绝非法/非同义候选、CPU降级、partial、dirty code、错误checkpoint/calibration/RSCU及未登记commit。执行器支持双臂/单臂、严格resume、dry-run和分臂状态文件；Gate自动纳入配套random-hill并重算原始指标，固定`exploratory_not_gate=true`、`scientific_gate_passed=false`。
+- 科学代码提交`c5dca69e`；最终完整回归**219 passed、1 skipped**。EDIT曾因恢复允许集合遗漏`079f0113`中断，保留原failed状态后显式登记该祖先恢复。分臂执行器早期共用根状态文件的竞争历史同样保留，当前以实际分片和进程为准。
+- 当前EDIT 9/9、FULL 4/9，13个已产出分片均为done、真实`cuda:0`、identity=100%、500唯一解且`code_dirty=false`；配对baseline SHA和budget序号逐片通过。FULL原执行器PID 1854465仍运行，不重复提交。
+- FULL/EDIT的C01H6.8b.1 seed0 AUC分别6.574358/7.754995，random-hill为5.859800；仅是单片工程与诊断信号，不是性能结论。待18片齐备后fast-forward执行代码、统一独立Gate、合并最终状态并更新交付；当前不启动G3。
+- 运行状态文档提交`75c10188`已推送GitHub，本地与`/teams/.../04_deliverables/交接文档/`的spec/tasks/HANDOFF/RECOVERY逐项SHA一致。
+
+
+## 98. FULL 唯一解不足、partial保留与技术修正恢复
+
+- 首次FULL执行器正常处理至`C14A6.7.1 seed1`时，25,000次提议仅产生388个唯一解，状态为`partial/max_attempts_exhausted`；identity=100%、真实cuda:0、code clean。25,000次forward、25,001次terminal请求和388次唯一scorer均已记录。原结果SHA256=`1c127354c11944d2d7f3e5069996c44d42b2b184530c80aa93c37eea8c11fb6c`，不是SSH或CUDA故障。
+- 原执行器因此停止，自动Gate在FULL 6个顶层结果（5 done+1 partial）处按设计拒绝，未生成诊断Gate，未进入统计。EDIT 9/9、FULL 5/9完成，共14个有效分片。
+- 重跑前冻结技术修正1：后续提议尝试上限统一为100,000，500唯一terminal scorer、paired initial、模型、seed、accept/reject、calibration、AUC/NED和科学解释边界不变。已完成且未触及上限的分片不重跑；partial必须保留，不得覆盖、删除或计入Gate。
+- 新增`quarantine_partial_result`：原partial按内容SHA移入独立`FULL/partials/`，新partial也不会留在完成结果glob。缺失分片从相同初始和seed完整重算，因为原结果未保存RNG/搜索状态，不能伪造无缝resume。
+- 修复提交`8b873984593e2beab5ceb5ad4bda5b141582c982`已推送GitHub；19项聚焦测试和完整回归221 passed、1 skipped通过。真实dry-run为9个FULL任务，允许集合仅登记祖先和当前提交；部署后旧完成片逐个跳过。
+- 原partial已核验保留于`FULL/partials/C14A6.7.1_learned_hill_s1_1c127354c119.json`，SHA不变。恢复执行器PID 1987357正在重算C14A6.7.1 seed1，worker 1987605实测为GPU进程，显存972MiB；未发生CPU静默降级。新自动Gate等待FULL 9/9，否则停止。
+
+
+## 99. T3.7 完成、独立复核与第51页 PPT
+
+- FULL/EDIT各9片，18/18均为done、真实`cuda:0`、identity=100%、500唯一合法解且`code_dirty=false`。技术修正后的新FULL分片记录`max_attempts=100000`；唯一terminal scorer仍严格500。原388唯一解partial的SHA保持`1c127354c11944d2d7f3e5069996c44d42b2b184530c80aa93c37eea8c11fb6c`，未进入统计。
+- 首次自动Gate在18片preflight通过后停止：命令漏登记新修复commit `8b873984`，正确拒绝新分片。显式加入该已审核祖先后重跑，其他校验不变。局部监视曾有进程检查命令漏写`sshpass -e`，只产生连接 Usage 日志，不影响远端执行器或科学结果。
+- 统一`diagnostic_gate.json`与`diagnostic_gate_independent_rerun.json`逐字节一致，SHA256均为`6de0998de4eda4068a06b09c29dbb4369458cc9efbac568e81d91ba9d4209707`。两者均`diagnostic_complete=true`、`raw_metrics_recomputed=true`、`exploratory_not_gate=true`、`scientific_gate_passed=false`。
+- 第二套原始点审计直接重算AUC、NED、500唯一解、identity、paired initial、baseline SHA及seed内/基因内聚合，全部一致；`diagnostic_raw_audit.json` SHA256=`b578b26720aa2e0589c4e6df6ca6e769caa0aea20a951c9877ddbf1e6c7086fd`。统一`execution_status.json=diagnostic_complete`，保留根状态竞争、分臂failed/running、partial和版本遗漏历史。
+- FULL三基因（C31E10.3b.1/C14A6.7.1/C01H6.8b.1）AUC相对变化+0.3549%/+45.2190%/+18.0269%，中位+18.0269%，8/9 seeds高于paired random-hill；EDIT为+26.9962%/+60.4119%/+35.6208%，中位+35.6208%，9/9 seeds为正。两臂NED ratio范围0.926–1.150。
+- 所有learned run均更慢。FULL平均耗时比11.18×/45.09×/20.79×，中位20.79×；EDIT为2.60×/3.77×/2.62×，中位2.62×。 FULL一个基因近零收益，不能写成稳定优势。结果只支持“终端accept/reject可暴露提议偏好，但成本和稳定性限制明显”的后续独立假设；三开发基因不提供独立确认、显著性或泛化，不翻案G2，不启动G3。
+- 论文新增Results 5.3与Discussion边界；spec/tasks/checklist/RECOVERY/next-agent同步。文档与论文提交`26159cb0`已push。
+- PPT新增第51页，记录双臂逐基因/中位AUC、seed方向、耗时比、NED范围及“Hypothesis only”。python-pptx重开51页、LibreOffice导出51页PDF及实际PNG视觉检查通过，无缺字、溢出或遮挡。最终SHA256=`db64f3ae3face53dea8cccc0e13e64d645cb2878a1fbb70fd0aa0d6a0abc3dd0`，50页版本已备份。预印本仍不可提交。
+
+
+## 100. T3.8 其余15开发基因复现协议冻结
+
+- 比较三条后续路线：其余15个开发基因复现可检验跨基因稳定性；原三基因增加seeds只提高既有基因随机性估计；D5 untouched确认在G2 No-Go下禁止使用。选择第一条，仍仅作开发证据。
+- 协议冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`：排除T3.7三基因，unique18其余全部15个ID，seeds0/1/2，FULL/EDIT共90个新learned-hill分片，复用G2 paired random-hill。模型、T=1、accept/reject、calibration、独立cache、500唯一scorer及100,000尝试上限固定。
+- AUC与wall-clock为共同主要结局，同时报告NED、四目标、forward、cache前请求和唯一scorer；不得用质量正向掩盖成本。基因内先聚合3 seeds，报告中位相对效应、逐基因/seed方向、bootstrap CI、Wilcoxon和Holm，但不设新Go阈值、不作独立确认。
+- 输出独立`eval_outputs/a7_proposal_loop_development15/`。CUDA、identity、唯一解、配对哈希、partial、dirty code和版本白名单停止规则保持；partial按SHA隔离。完整Gate与第二套原始点/成本审计必需。
+- 当前只完成协议与spec/tasks更新，提交`091e2d84`已push；尚未实现15基因执行器、运行dry-run或启动GPU任务。下一步先测试和真实preflight，不进入G3/D5。
+
+
+## 101. T3.8 实现、真实preflight与90任务启动
+
+- 实现提交`d773327d951790dd64723067f013451d954fc142`：仅显式排除ID时选择其余基因，默认T3.7三基因不变；dry-run/状态记录selected/excluded IDs，Gate接收相同排除集合。未改变模型、采样、accept/reject或预算。
+- Gate新增逐run forward/terminal请求/wall-clock、逐基因耗时比、10,000次paired bootstrap、Wilcoxon、双臂Holm，以及复用G2 `point_at_budget`的B=50/100/500四目标best-at-budget。零差值合成结果保持中性统计，错误/重复/空选择拒绝。
+- 首轮聚焦测试20 passed、1 failed，原因是测试命令漏传必需的`--baseline-code-commit`，补齐后21项通过；不是执行器逻辑失败。最终完整回归**223 passed、1 skipped**，diff check通过。
+- 使用T3.7真实18片做默认路径回归，expected genes、AUC、NED及相对效应与原Gate逐项一致；证据`07_a7_data/development15/t37_default_regression.json`。
+- 真实dry-run确认15个指定ID、90个新任务及45个配套random-hill，checkpoint/calibration/RSCU/baseline/paired initial/版本白名单全部通过；证据`07_a7_data/development15/dry_run.json`。
+- 执行器PID `2071716`已启动，FULL worker 2071779与EDIT worker 2071780均在nvidia-smi中实测972MiB显存，禁止CPU降级。输出独立`eval_outputs/a7_proposal_loop_development15/`，最终Gate由执行器自动调用；尚未产生科学结论，不进入G3/D5。
+
+
+## 102. T3.8 EDIT完成、FULL 18/45里程碑
+
+- 2026-11-17复核：EDIT 45/45完成，FULL 18/45完成（6个基因×3 seeds），共63/90。FULL按基因顺序执行，不能将18片误写为18个独立基因。
+- 63片全部`done`、真实`cuda:0`、identity=100%、500唯一解、`code_dirty=false`、`max_attempts=100000`，代码均为实现提交`d773327d`；每片baseline SHA与500点唯一性逐片通过。
+- 一次SSH closed导致独立审计命令未执行，重连后通过，未误记为实验失败。执行器PID 2071716仍正常，未重复提交任务。
+- 当前只记录工程完整性，不提前汇总AUC、统计或成本结论；等90片及最终Gate后独立复核，不进入G3/D5。
+
+
+## 103. 主研究目标、源数据谱系解释与配置修正
+
+- 主研究目标明确为：检验CodonFlow能否在统一benchmark、独立确认和质量—成本上超越现有mRNA设计方法。它是待证H0而非当前结论；没有学习模型就无法回答其相对无学习搜索的增益，G2原始提议失败仍保留，禁止先写SOTA。
+- 源数据审计确认：24个非人类脚本固定Ensembl release112 FTP，人类`download_corpora.py`使用未固定实时BioMart，因此恢复版release112人类与v3人类不完全一致，不是单纯过滤6750条。
+- 标识符差异：raw/v3为7295/545，去版本号后7113/363。实际唯一CDS：raw 58,944、v3 57,470、共享57,240、各自独有1704/230。`07_a7_data/source_lineage_human/manifest.json`最终SHA256=`2eed1bcae8d2193c1466e0eb193d041ba5c30b250b06c7700bdc920f28d800f8`。
+- release115候选整包多次下载超时，保留partial文件与失败状态，不用于根因结论；未声称原始BioMart精确版本。不得静默替换v3、重训以掩盖谱系或改写历史结果。
+- `configs/a7_data_protocol.json`更新为G0通过但谱系审查必需，unique18/confirmation24/calibration状态同步真实完成度。`download_corpora.py`固定release112并新增回归；完整回归224 passed、1 skipped，提交`31072aea`已push。
+- 后续顺序保持：完成development15，统一LinearDesign/GEMORNA/codonGPT的AUC/Pareto/成本与natural-source/protein-only分层，再评审confirmation24。外部方法尚不宣称找全或已统一击败。
+
+
+## 104. 外部baseline统一协议与原始schema核查
+
+- 只读核查A6真实输出：LinearDesign仅少量真实解，codonGPT约100，GEMORNA请求100后约70–90唯一解；均不得随机补足至500。codonGPT超1024 codons为架构排除，GEMORNA无官方seed参数，forward null不得伪造。
+- 旧`obj_vectors`第四轴为motif计数，A7要求长度归一化penalty，必须对原始序列按A7口径重评，不可直接复用旧向量。A6 elapsed主要生成时间，A7 learned/simple包含终端评分，旧时间不得直接比较；公平时间必须重新端到端测量。
+- 外部三方法均为protein-to-CDS输入，不能与CodonFlow natural-source结果写成同一因果对照。分析线A只复核实际预算，分析线B按冻结请求预算补protein-only实验，缺失预算不补零、不事后加到获胜。
+- 协议冻结于`docs/plans/2026-11-17-external-baseline-unification-design.md`，但development15未完成前不计算或发布外部排名。当前未宣称baseline找全或SOTA。
+
+
+## 105. 外部实际预算重评工具与单基因工程冒烟
+
+- 新增`a7_recompute_external.py`：从A6原始序列按A7口径重算CAI/MFE/GC/长度归一化motif、identity、NED、actual-budget AUC及可达预算的Pareto/best；缺失B=50/100/500不补零，架构排除保留，旧生成成本独立标记为非端到端。
+- 合成测试覆盖旧999目标不可复用、缺失预算、架构排除、重复序列与非同义拒绝。完整回归**226 passed、1 skipped**，提交`1f5c4b16`已push。
+- 真实C31E10.3b.1 seed0工程冒烟通过，SHA256=`d1d1772a7a81e6e46ef5e7642395a6a2f3c03d86e9b422f71f5dd5f728edef4d`。仅验证schema与重算链，不作外部排名：LinearDesign 5解（无冻结预算覆盖）、codonGPT 100（50/100）、GEMORNA 85（50）、CAI-greedy 1、uniform 100（50/100）。所有点motif独立重算通过。
+- development15尚未完成，外部全量重评和protein-only补实验仍未启动，不宣称SOTA。
+
+
+## 106. development15 FULL 12-way安全并行恢复登记
+
+- 用户要求提高GPU并行度。原执行器EDIT 45/45完成，FULL单worker显存占用低，原父进程2071716先SIGSTOP，当前C47A4.1.1 seed2子进程继续，避免父子同时启动重复分片。
+- 资源实测：GPU 32607MiB总显存、当时16289MiB已用，16核CPU、60GB内存。选择12 workers，预计约28.9GB，不继续盲目增加进程；wall-clock在不同并发下只作成本描述，不作隔离速度公平。
+- 执行器新增`--workers-per-arm`，默认1保持原语义，12-way只按唯一任务列表并行；不改变模型、seed、T=1、accept/reject、calibration、500唯一scorer或100,000尝试上限。完整回归226 passed、1 skipped，提交`b2733261`已push。
+- 真实12-way FULL dry-run为45任务/15 ID，当前commit与历史commit白名单均通过；证据`development15/parallel12_dry_run.json`。
+- 一次性协调器PID 2681360等待当前子进程完成后，先验证done/CUDA/identity/500唯一解，再结束旧父进程并exec 12-way resume。若不是done则不启动新队列。原running状态保留，禁止手工重复启动。
+
+
+## 107. development15 12-way实际启动与严格版本恢复
+
+- 首次12-way队列因漏登记历史分片commit `d773327d`，在首个已完成分片resume校验处被拒绝；没有覆盖结果，`execution_status_FULL.json=previous_status.failed`保留。
+- 新增`--skip-shard ARM:GENE:SEED`并测试，允许保留正在运行的`FULL:C47A4.1.1:2`，同时并行处理其余唯一分片。提交`ce3be062`已push。
+- 恢复队列补齐`d773327d`后启动，PID`2694122`，12个worker；显存约20.9GB、GPU利用率99%。16核CPU已承担12个评分进程，不再盲目增加并发。
+- 12-way队列使用`--skip-gate`，因为旧C47 seed2仍独立计算；两进程全部结束后统一Gate。任何并发wall-clock只作成本描述，不改变AUC/NED/唯一scorer口径。
+
+
+## 108. development15完成、独立复核与第52页PPT
+
+- FULL/EDIT各45片，90/90完成。所有分片done、真实CUDA、identity=100%、500唯一解且code clean；25个新FULL分片使用`ce3be062`，其余为`d773327d`。旧C47 seed2耗时12828.115s，最终完成，旧父进程已结束。
+- 统一Gate与独立重跑逐字节一致，SHA256=`835ffe644098a75a6cfcec2f9440dd9f84a004cd4eb9ce95ac0fe1cba0a0bdf5`。`diagnostic_raw_audit.json` SHA256=`3d3c1c4055e39a9cefff9524dfb52d0239d8e09f3e09e945494bb331f78addcc`，重算AUC/NED/identity/500唯一解/best-at-budget/paired hashes/成本聚合全部一致。统一`execution_status.json=diagnostic_complete`，保留并行恢复历史。
+- 15个新开发基因在两臂均正向。FULL中位相对AUC+59.95%，CI[40.72%,104.38%]；EDIT +68.73%，CI[50.78%,104.14%]；Holm p=6.1035e-5。FULL/EDIT耗时比中位42.68×/2.41×，FULL最大242.65×。支持学习提议在终端选择中有用，但不是独立确认或外部SOTA。
+- 论文补入15基因复现及成本限制；PPT第52页完成重开、52页PDF和PNG视觉检查，SHA256=`3cb3890d17be5c08ac25a69056cfd086515cf8892d5115ac942cd322d3c31edb`，51页版本已备份。
+- 后续进入外部实际预算复核。批量执行器提交`dc75b056`，完整回归228 passed、1 skipped，54输入dry-run通过；8个CPU worker重评A6真实输出，不补缺失预算、不混用输入或时间语义。
+
+
+## 109. 外部54文件实际预算重评完成
+
+- `a7_execute_external.py`以8个CPU worker完成18基因×3 seeds共54个A6输出重评，无缺失；执行状态`external_reference_complete`。旧motif向量未复用，全部按A7长度归一化penalty和独立calibration重新计算。
+- 每个方法保留真实唯一解、实际可达预算、Pareto/best-at-budget、NED、架构排除和legacy生成成本，不随机补足、不形成不公平排行榜。
+- 独立第二套全量审计已启动，逐点重算CAI/MFE/GC/motif、identity、AUC、NED和预算覆盖，并核对54个输出SHA。完成后再汇总外部边界及决定protein-only补实验。
+
+## 110. A8 严格科研工程审查与合同重定义（2026-11-18）
+
+- 全量外部状态最终确认54/54结果文件、18/18 record ID完成，`external_reference_complete`；仍为`scientific_gate_passed=false`、`not_a_method_ranking=true`。审查发现`actual_budget_auc`对未达预算沿用HV=0，与“缺失预算不补零”冲突；该字段降级为legacy diagnostic，主分析改为实际集合Pareto/best-at-actual-budget。
+- 远端审查HEAD=`dc75b0561b8773b28ef81ce9d551c110ea1ad992`，当时工作树干净；完整回归228 passed、1 skipped、8 warnings。FULL/EDIT r5、G2和T3.8 hash与交接一致。G2 324/324正式No-Go及T3.8 90/90开发诊断均保留，未改写历史。逐基因复核明确：T3.8 FULL 15/15基因NED≥70%，EDIT 14/15；此前笼统“NED门槛未通过”已改为分臂表述，两臂时间要求均不满足。
+- 新的机制判断：G2的learned arm只采样并记录scorer，simple hill/MH/AReUReDi-style使用终端utility反馈；相同预算没有控制终端信息。T3.8把学习提议放入hill后转正，支持先做`proposal={random,learned}×feedback={off,on}`因子实验，而不是直接扩参。
+- 逐行代码审查确认：训练只接收同义腐蚀CDS，不接收time或四目标；`SynonymousJumpProposal._transition_tensors`忽略time；天然CDS只定义蛋白并生成随机同义初始状态，初始化后不再输入。任务改名`protein-defined synonymous CDS search from randomized synonymous initialization`；不再暗示已实现天然密码子条件或完整时间条件离散流。
+- A7 anytime AUC实际为B=50/100/500稀疏三点，并约定插入`(0,0)`；真实初始序列在B=1评分。新增只读敏感性脚本`audit_20261118_metric_sensitivity.py`，加入真实初始点和B=10/25/250后FULL/EDIT中位相对效应为−94.58%/−93.61%，仍18/18全负；本地证据`审计与交接_20261117/results/g2_metric_sensitivity_20261118.json`，远端`audits/20261118/g2_metric_sensitivity.json`。它不是新Gate或全scorer独立复算。
+- 全量数据独立复核完成：D4/D5六个split数量、唯一CDS/蛋白和SHA一致；跨split精确CDS/蛋白/ID重叠均为0；D5 unmapped=0、跨split cluster重叠=0。脚本`audit_20261118_data_splits.py`通过合成FASTA测试；证据`data_split_independent_20261118.json`。非ATG记录继续作为可能部分CDS与选择偏差披露。
+- 本地—远端源码漂移被单独记录：本地旧版`sampled_path_log_probability`仍有`@torch.no_grad()`，远端当前版本没有；Dummy实测远端路径log-prob `requires_grad=True`、`grad_fn=DivBackward0`。因此不能把“路径不可微”写成当前远端缺陷，后续以干净权威工作树执行。
+- 交接`spec.md/tasks.md`已重写为A8：G0真实性、G1反馈匹配机制、G2开发质量—时间、G3 untouched24、G4外部边界、G5预印本；最多两轮模型/训练迭代。主指标改为真实B=1起、全部500唯一scorer点的dense budget-step AUC，v1永久保留历史复现。
+- 完整审查报告保存为项目根目录`CodonFlow_A8_严格科研工程审查与一个月路线_20261118.md`，当前评分25/50、阶段A。A8-G1尚未执行，没有新训练、没有untouched评估、没有SOTA或可提交结论。
+- 预印本工作稿仅修正任务定义、反馈混杂、sparse AUC、raw scorer审计范围、外部54/54非排名状态及讨论边界；仍为不可提交工作稿。下一步严格按P0，先做评价与原始scorer审计，再做冻结模型2×2，不先增加模块。

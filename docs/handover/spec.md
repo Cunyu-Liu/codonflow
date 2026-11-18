@@ -1,241 +1,167 @@
-# CodonFlow Spec（A7 · warm-start 学习价值验证版）
+# CodonFlow Spec（A8 · 证据驱动抢救与预印本合同）
 
-> 生效日期：2026-11-01。本文是当前唯一有效合同；旧版勾选、命令和数字只在 journal/audit 中追溯。
-> 已确认方向：主任务为 **warm-start synonymous CDS editing**；主研究目标是检验 **CodonFlow能否在统一benchmark、独立确认和质量—成本上超越现有mRNA设计方法**，不是预设其已经超越。第一决定性关卡仍为 learned proposal vs 无学习简单搜索。
-> 当前 G2 已完成并正式 **No-Go**，保留训练诊断/负结果路线并补齐数据与外部对照。324/324 结果完成，identity/legal=100%；FULL/EDIT 中位相对改善分别为 −94.28%/−93.47%，独立 Gate 重算逐项一致。不得进入 G3、扩参、RLOO 或无证据的 SOTA 写作；全部失败与负结果证据保留。
-> 2026-11-12 执行补充：代码与提交以远端 `/home/codonflow` 为工作副本；大型数据、权重、日志和 artifacts 只放 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。训练及 GPU 验证必须实际使用 CUDA；CUDA 不可用、kernel 不兼容或 CPU 静默降级时立即停止并保存证据。独立任务可并行，但不得为占满显存制造实验或越过 Gate。
+> 生效日期：2026-11-18。本文是当前执行合同；A7 的 spec、Gate、负结果和恢复历史只作不可变证据，不得静默改写。
+> 权威科学代码：远端 `/home/codonflow`，审查时 HEAD=`dc75b0561b8773b28ef81ce9d551c110ea1ad992`，工作树干净，完整回归 228 passed、1 skipped。大型数据、权重、日志和 artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。
+> 本地 `codonflow-main/` HEAD=`5f9e5a560b118568d435fa68a72ef9253d4252c5`，有继承的 modified/untracked 文件且部分核心文件落后于远端；它是交接镜像，不得直接当作干净训练基线，也不得反向覆盖远端。
+> 当前裁决：原始 A7 open-loop 方案正式 No-Go；learned-hill 在开发集有正向但高成本信号；尚无可提交预印本、独立确认、外部 SOTA 或生物功能结论。下一阶段首先修正对照和指标，不是扩参。
 
-## 0. 当前事实状态
+## 0. 证据纪律与当前事实
 
-- 2026-11-12 交接证据记录：untouched 24 基因确认集、D5 train RSCU 和 24/24 独立 calibration pool 已完成并验证；合并代码完整回归为 131 passed, 1 skipped。上述资产仍须在执行实例上复核路径、哈希和内容，不能只凭交接文字推进。
-- unique18 seeds 0/1/2 均完成 18/18、五方法及独立 MFE/NED 复算；25 物种原始来源、全量清洗、分布、冻结资产和 calibration 已闭环并通过 G0。
-- FULL r5 e21 与 EDIT r5 e26 均已收敛并通过 G1。G2 324/324 结果已完成：FULL/EDIT中位相对改善−94.28%/−93.47%，两臂18/18基因均负效应且hill-climbing最强，identity/legal=100%但NED未达；独立Gate重算一致，正式No-Go。旧 arbitrary-corruption full-token 模型虽在 e14 达到 val plateau，但已塌缩为“不编辑/复制”；其 checkpoint、三臂输出和联合 HV 均只作负结果证据，不得进入主结果。
-- T3.5诊断已完成：`g2_failure_diagnostics.json` SHA256=`1db92329…`，原始500点独立重算一致。learned中位编辑比例1.90%/2.63% vs hill 38.24%，NED 0.013/0.020 vs 0.062，learned 154/143s vs hill 126s；支持终端优化不足，不证明唯一机制或容量上限。后续新实验须先登记T3.6诊断协议。
-- T3.6协议已冻结于 `docs/plans/2026-11-16-g2-proposal-in-loop-diagnostic-design.md`：复用G2随机hill结果，新增18个T=1 learned-hill分片，同accept/reject、calibration、paired initial和500唯一scorer。只作proposal-in-the-loop开发诊断，阳性仅形成后续假设，阴性支持负结果，不翻案G2或进入G3。
-- r4 已完成 e1/e2 并保留完整恢复状态，但 e3 中断且未收敛；r5 精确恢复只提供训练连续性，G1 仍由独立收敛审计、行为结果和 checkpoint 哈希判定。
-- 已有资产：有限步同义 Markov 操作符、小状态精确验证、成本 trace、v4/v5 内部划分审计、core seed-0 五方法 baseline 的部分结果。
-- `unique18.fasta` 的 18 条输入已审计，但 baseline 输出不得仅凭文件数称为完整；正式使用前必须按 manifest 复核 done/partial/missing、MFE/NED 和种子。
-- 旧 SOTA、capacity scaling、RL saturation、masking 因果、family/species OOD、四层 benchmark 结论全部撤回，不得搬入新论文。
-- 当前不能提交预印本，不能宣称 Gate 通过或 CodonFlow 优于任何方法。
+### 0.1 四类信息必须分开
 
-## 1. 主任务与科学问题
+1. **仓库事实**：可由代码、配置、原始 JSON、FASTA、checkpoint hash、进程或测试直接复核。
+2. **合理推断**：与事实一致但尚未由因子实验唯一识别的机制解释。
+3. **材料不足**：缺少输入、原始序列、资源记录、第三方预训练信息或可比实验。
+4. **待新增证据**：必须经新实验、独立复算或文献全文核验才能回答。
 
-### 1.1 主任务：warm-start synonymous CDS editing
+禁止把“已有代码”“测试通过”“跑完训练”“开发集阳性”“独立确认”“论文主张成立”混为一谈。
 
-给定源 CDS `x`，其翻译蛋白为 `p`，输出一组 CDS `Y`，要求每个 `y ∈ Y`：
+### 0.2 已冻结事实
 
-1. 与 `x` 等长、阅读框合法；
-2. 翻译后与 `p` 完全一致；
-3. 只含一个预先定义的终端 stop；
-4. 在冻结的计算目标和预算下改善质量—多样性—成本前沿。
+- FULL r5：`checkpoints/a7_full_r5/converged.pt`，SHA256=`e6a26102b0f5ae9443dbfb9526d418169ba577138016e70430203d80eef16d1c`；best epoch 18、停止 epoch 21、best val=1.159711169985858。
+- EDIT r5：`checkpoints/a7_edit_r5/converged.pt`，SHA256=`77e81b5b9af886c2cc4a712fc064e5fc3c3c6f7386369a27916d67758736a9df`；best epoch 23、停止 epoch 26、best val=1.2313300454448592。
+- G2：324/324 完成，identity/legal=100%；FULL/EDIT 相对每基因最强简单搜索的中位 AUC 改善 −94.28%/−93.47%，18/18 基因均负，最强基线均为 hill-climbing，Holm p=1.0。Gate=`eval_outputs/a7_g2_r5/g2_gate.json`，SHA256=`a2e157b2635860460cde95d8c3a03d12a7b948b2cd6d20dab5ce37deb8923cbc`。
+- T3.8：90/90 learned-hill 分片完成；15/15 个其余开发基因为正，FULL/EDIT 中位 AUC 改善 +59.95%/+68.73%，Holm p=6.1035e-5；耗时比中位 42.68×/2.41×，FULL 最大 242.65×。FULL 15/15 基因 NED≥70%，EDIT 14/15；两臂时间要求均不满足。Gate SHA256=`835ffe644098a75a6cfcec2f9440dd9f84a004cd4eb9ce95ac0fe1cba0a0bdf5`。它仅是开发诊断，不翻案 G2。
+- 2026-11-18 AUC 敏感性：从实际初始评分 B=1 起，增加 B=10/25/250 后，FULL/EDIT 中位效应为 −94.58%/−93.61%，仍均 18/18 负。证据=`audits/20261118/g2_metric_sensitivity.json`，本地副本 SHA256=`cb0698f21e15a36d092bedd4050026a4d511a87360e01e85d0d47cec68dfbaa9`。这只是已存目标向量的敏感性分析，不是新 Gate 或全 scorer 独立重算。
+- 外部实际预算重评：54/54 完成、18/18 record，状态=`external_reference_complete`，但 `scientific_gate_passed=false`、`not_a_method_ranking=true`。缺少真实顺序轨迹和完整预算的方法不得进入统一 AUC 排名。
+- D4=621,306/76,444/78,724；D5=618,073/80,191/78,177。D5 是 MMseqs2 identity=0.5、双向 coverage=0.8 的操作性蛋白同源簇隔离，不是 curated family/species OOD。
+- 2026-11-18 全量独立复核再次确认上述记录数、唯一 CDS/蛋白和 split SHA；D4/D5 跨 split 精确 CDS/蛋白/ID 重叠均为0，D5 unmapped=0且跨 split cluster 重叠=0。证据=`审计与交接_20261117/results/data_split_independent_20261118.json`。非 ATG 记录仍须作为可能部分 CDS 与选择偏差披露。
+- unique18 已反复用于开发；untouched 24 未用于新评价，仍禁止调参、选择模型或反复查看。
+- 全部目标是计算代理；没有湿实验，禁止表达、稳定性、安全性、免疫原性或疗效提升表述。
 
-蛋白身份由同义操作符保证，是**方法不变量和正确性条件**，不是相对性能优势。
+### 0.3 已撤回内容
 
-### 1.2 次级任务：protein-only 初始化
+旧 arbitrary-corruption、capacity scaling、RLOO、family/species OOD、联合 HV、旧 SOTA 与生物功能宣称均不得搬入 A8 主结果。蛋白一致性由同义操作符保证，不是模型创新。
 
-从蛋白 `p` 生成同义初始 CDS 后再编辑，只用于外部方法对照和初始化敏感性分析。它不得与 natural-source warm-start 混成一张因果对照表。
+## 1. 核心科学问题与任务命名
 
-### 1.3 核心科学问题
+### 1.1 当前真正实现的任务
 
-> 在相同初始状态、终端目标和 scorer/时间预算下，学习到的有限步同义编辑提议，是否比最强无学习局部搜索更有效地进行多目标 CDS 优化？
+**protein-defined synonymous CDS search from randomized synonymous initialization**：
 
-短 rollout、RLOO、模型扩容和 OOD 都必须服从这个问题，不再各自成为预设贡献。
+给定天然 CDS 所定义的蛋白序列、固定长度和终端 stop，从该蛋白的随机同义 CDS 初始状态出发，在 CAI、MFE、GC target deviation、长度归一化 motif penalty、scorer/forward/wall-clock 预算下，输出一组同义 CDS，并比较质量—多样性—成本前沿。
+
+输入蛋白来自天然 CDS；`scripts/a7_run_learned.py` 与简单搜索均以 `synonymous_x0(source, rng)` 初始化。初始化后，模型只读取当前随机同义状态，不再读取天然密码子序列。因此“natural-source warm-start editing”不是当前信息流的准确名称；若要主张天然 CDS 条件编辑，必须新增显式天然序列条件输入及对应消融。
+
+### 1.2 新核心科学问题
+
+> 在蛋白、随机同义初始分布、终端反馈、目标权重、scorer 预算和硬件成本严格一致的条件下，学习到的局部/块编辑提议，能否相对最强无学习搜索改善 dense anytime 多目标质量，并在 untouched 同源隔离基因上保持时间匹配优势？
+
+### 1.3 创新定位
+
+当前可检验的创新是**成本可审计的同义提议学习及反馈匹配评估设计**。它是建模/训练策略与实验整合的候选创新，不是已成立的概念首创。有限步离散流、time conditioning、短 rollout、RLOO、扩容和天然序列条件都必须经消融后才能进入贡献列表。
 
 ## 2. 可证伪假设
 
-| ID | 假设 | 证伪条件 |
+| ID | 假设 | 最小证伪证据 |
 |---|---|---|
-| H0 | CodonFlow在统一外部baseline、独立确认和质量—成本上超越现有mRNA设计方法 | 统一外部比较或独立确认未显示稳定优势；当前G2已证伪原始提议，不得宣称H0成立 |
-| H1a | 有限步单密码子同义核在可枚举小状态上实现精确终端 tilt | 精确小状态验证失败 |
-| H1b | 大空间 short-rollout/候选剪枝只是近似，其偏差和成本可被测量 | 不把它作为“必然更优”的假设；若把近似写成精确即表述错误 |
-| H2 | learned proposal 相对最强简单搜索改善 anytime 多目标质量—成本表现 | 预注册主终点未达到 G2，或 identity/legal/多样性发生不可接受退化 |
-| H3 | short-rollout 相对 immediate 的净收益覆盖额外 scorer/forward/时间成本 | G3 无正向净收益；失败后删除 short-rollout 主贡献 |
-| H4 | 在外部 CDS 方法和独立确认集上，可界定本方法的适用与失败区域 | 没有稳定优势区域时，结论改为边界/负结果，不写 SOTA |
+| A8-H1 | G2 的惨败部分来自 open-loop 与反馈搜索的信息不对等，而不只是模型容量不足 | `proposal={random,learned} × terminal_feedback={off,on}` 中 learned 无独立效应，且交互不成立 |
+| A8-H2 | 自然序列去噪训练与终端 CAI/MFE/GC/motif 优化错位；终端对齐训练能改善 learned-hill | 终端对齐模型在相同骨干、预算和反馈下不优于 frozen r5 learned-hill 或 random-hill |
+| A8-H3 | 当前模型包含可利用的目标/密码子偏好 | 合法同义概率质量、候选分数与 Δutility/接受收益无稳定关联，或因子实验无 learned 主效应 |
+| A8-H4 | 提议优势可转化为实用质量—成本优势 | 等 scorer 有质量优势但 time-matched 无优势，或成本优化后仍不具竞争力 |
+| A8-H5 | CAI/MFE/GC/motif 前沿对真实同义变体功能有增量效度 | 外部同义变体数据中无增量关联；若成立则仅保留算法 benchmark，撤销广泛生物价值叙事 |
+| A8-H6 | D5 untouched 基因上可复现开发效应 | 独立确认效应方向/幅度不复现，或只在单一长度/GC 层成立 |
 
-以下是待证目标而非已成立结论：第一个、SOTA、容量瓶颈、RL 随预训练饱和、family/species 泛化、表达或稳定性提升。
+## 3. 当前架构事实与边界
 
-## 3. 方法边界与命名
+### 3.1 实际数据流
 
-### 3.1 可保留的方法资产
+- `src/codonflow/models/edit_flow.py::EditFlowTransformer`：67 个 codon/special token，8 层双向 Transformer，`d_model=768`、`n_heads=12`，输出 blank head 与 token head。
+- `src/codonflow/train/run_pretrain.py` 与 `src/codonflow/data/dataset.py::corrupt_x_t_synonymous`：腐蚀比例随时间参数变化，但网络 forward 不接收时间、目标权重、CAI/MFE/GC/motif、物种、蛋白 embedding 或结构信息。
+- `src/codonflow/models/synonymous_markov.py::SynonymousJumpProposal._transition_tensors`：当前推理忽略 `time`；T=4 是重复时间齐次局部核，不是时间条件离散流。
+- FULL 对全部位置计算 token CE，EDIT 只对实际变化位置计算 token CE。token CE 在全部 67 类上计算，推理却在合法同义集合内重新归一化；合法概率质量及其与优化失败的关系尚未测量。
+- `edit_flow_loss` 的 docstring 已说明是简化 masking realization，不是完整 CTMC Edit Flow rate objective。论文不得把当前实现包装为完整离散流理论验证。
+- `scripts/a7_run_learned.py::learned_search`：模型从同一随机同义初始状态重复采样，scorer 只记录，不根据终端反馈改变后续提议。
+- `src/codonflow/models/simple_search.py::SimpleSearch.run`：hill/MH/AReUReDi-style 使用终端 utility 决定接受/后续搜索。G2 的“同 scorer 预算”没有控制终端信息，不能单独归因于架构或容量。
+- A7 blank head 参与“位置×替换密码子”联合核，stay 被聚合；旧 `CodonGuidedSampler` 只使用 token logits，二者不得混写。
+- 双向全注意力长度复杂度为 O(L²)，token 最大长度 2002；RNAfold 还引入额外长序列成本。当前没有证据支持靠扩容解决 G2。
 
-- `synonymous_markov.py`：合法源检查、单密码子同义跳转、位置/密码子联合归一化、显式 stay。
-- `FiniteStepSynonymousMarkovEditor`：精确小状态 Doob 验证；真实大空间仅使用 short MC rollout 与候选剪枝近似。
-- `rollout_count=0` 为 immediate 消融；轨迹、forward、终端请求、实际 scorer 和唯一 scorer 必须分别记录。
-- feasibility 主要来自 by-operator construction；终端势函数表达偏好，不能把全部合法性归因于 terminal gate。
+### 3.2 优化与工程风险
 
-### 3.2 Legacy 禁止项
+- 训练使用固定 length-bucketed batches、动态腐蚀、AdamW、梯度裁剪，无实际 LR scheduler；验证 loss 是 packed-batch 均值，不是严格全 token 加权。
+- `conditionality_probe` 含远端固定路径，影响可移植性。
+- 本地与远端源码漂移、`experiments/REGISTRY.md` 停更、多个历史训练入口并存，均是复现风险。
+- G2/T3.8 独立审计主要重算已存 `objectives` 的 HV/AUC，并独立重算 NED；`a7_recompute_unique18.py` 才从序列重算完整目标。不得把前者写成全 scorer 独立复算。
 
-- 旧 `BatchedGuidedSampler`、旧条件去噪和旧 RLOO 不得用来证明新有限步方法有效。
-- 旧 full-token/e14 和 edited-token 任意腐蚀模型不得用于新对照。
-- 旧 56M/355M 曲线不得解释为容量定律；旧 RLOO 结果不得解释为 RL 收益或无效。
-- `live best.pt` 不得用于跨时间比较；所有对照使用不可变 checkpoint + SHA256。
+## 4. 数据、划分与公平性
 
-### 3.3 版本命名
+1. D4 仅精确蛋白去重/划分，D5 才是操作性同源簇隔离；旧通用 pipeline 的核苷酸 MMseqs2 默认参数不得与 D5 的蛋白参数混写。
+2. CAI/RSCU 只能来自对应 train split 或独立公共参考；D4/D5 不混用。
+3. untouched 24 的选择只用长度、GC、ID、cluster，并排除精确 CDS/蛋白及同源簇；它只能在 A8-G3 使用一次。
+4. LinearDesign、codonGPT、GEMORNA 等第三方的预训练数据重叠无法完整审计，必须披露，不能宣称完全无污染。
+5. 参数量、预训练数据、请求数、真实唯一 scorer、forward、输出数、硬件、并行度和 wall-clock 分开报告。
+6. 外部方法只有实际输出集合时，报告 Pareto/best-at-actual-budget/实际成本；不得用零填充伪造 500 点，也不得把无序输出当 anytime 轨迹。
 
-- `D3`：旧 862,240 条、存在精确跨 split 重叠的数据版本，仅历史。
-- `D4`：`splits_v4_protein`，776,474 个唯一蛋白。
-- `D5`：protein-homology-cluster，776,441 条；只是操作定义的同源隔离。
-- `M_ARB_*`：旧 arbitrary-corruption 模型，统一标记 `invalid_for_downstream`。
-- `M_SYN_D4_*`：使用 D4 和 synonymous corruption 的开发模型；不得再简称“v5 模型”。
-- `M_SYN_D5_*`：未来使用 D5 的确认模型，只有实际训练后才存在。
+## 5. A8 评价合同
 
-## 4. 数据、清洗与泄漏合同
+### 5.1 不可变 legacy 指标
 
-### 4.1 已有证据
+A7 `anytime_curve` 只在 B=50/100/500 计算 HV，额外从 `(0,0)` 做梯形积分并除以 500；真实初始序列在 B=1 评分。它应命名为 `legacy_sparse_3point_auc_v1`，仅用于复现历史，不称完整连续 anytime 曲线。预印本中“including the initial point at zero budget”必须撤回。
 
-- D4：train/val/test = 621,306/76,444/78,724；split 间及 split 与已审计 benchmark 的精确 CDS/蛋白重叠为 0。
-- D5：train/val/test = 618,073/80,191/78,177；MMseqs2 identity=0.5、双向 coverage=0.8，split/benchmark 簇隔离和精确重叠审计通过。
-- D5 不是 curated family 或 species OOD；没有下游结果前不能声称同源泛化。
-- 人类源谱系审计确认：v3构建时人类使用未固定BioMart，非人类固定release112。恢复版与`v3_all`共享57,240条唯一CDS，恢复版/v3各自独有1,704/230条；审计`07_a7_data/source_lineage_human/manifest.json` SHA256=`2eed1bcae8d2193c1466e0eb193d041ba5c30b250b06c7700bdc920f28d800f8`。因此25/25文件恢复不等于原v3逐版本一致。`configs/a7_data_protocol.json`已更新真实G0状态和该限制，后续下载脚本固定release112，提交`31072aea`；历史数据与结果不得静默替换。
+`a7_recompute_external.py` 的 `actual_budget_auc` 对尚无点的预算会给 HV=0，与“缺失预算不补零、不进入统一 AUC 排名”冲突；该字段只作探索性诊断，不能排名。
 
-### 4.2 G0 前必须补齐
+### 5.2 新主终点 `dense_budget_step_auc_v2`
 
-1. **来源与清洗流水账**：数据库/release/URL/下载日期/哈希；逐步报告输入数、每条过滤规则移除数和剩余数。
-2. **质量分层**：合法阅读框、ATG/单 stop/internal stop/ambiguous base、长度、翻译有效性；记录非标准遗传代码和异常注释的处理。操作合法性按 alphabet、阅读框和唯一终端 stop 判定，不强制 ATG；非 ATG 记录单列为可能部分 CDS 的质量与选择偏差，不得与操作非法混同，也不得在查看分布后静默删除。
-3. **分布审计**：长度、GC、CAI/RSCU、密码子使用、物种占比、簇大小；说明 300–6000 nt 过滤和蛋白去重造成的选择偏差。
-4. **元数据**：尽可能恢复 transcript ID、species、gene/protein 映射；无法恢复时明确降级，不编造 family/species 标签。
-5. **参考表与归一化**：CAI/RSCU 只由对应训练 split 或独立公开参考集构建；D4 与 D5 不得混用。HV 范围来自独立 calibration pool，不能由 test 输出决定。
-6. **外部方法泄漏声明**：CodonFlow 内部零重叠不等于第三方预训练模型未见过目标；无法审计时列为限制。
+- 每个真实唯一 scorer 点按预算 b=1…500 排序，HV_b 为截至 b 的累计最优 hypervolume；B=1 使用真实初始 HV，不添加零预算假点。
+- 主指标为 `Σ_{b=1}^{499} HV_b / 499`，即完整 budget-step 面积；B=50/100/500 的 Pareto、四目标 best-at-budget 为共同次要终点。
+- 同时报告 time-matched HV、NED、identity/legal、唯一解数、forward、cache-before requests、真实 scorer、wall-clock。
+- 主成本实验固定单 worker、同 GPU/CPU、同 ViennaRNA 版本与并发；高并发历史时间只作描述，不能当公平速度对比。
+- v1 与 v2 必须并存输出，任何结论变化都需解释；旧结果不得覆盖。
 
-### 4.3 Benchmark 分为开发与确认
+### 5.3 反馈匹配因子对照
 
-- **开发集**：eGFP/nanoLuc + 已冻结 unique18。可用于调试、阈值预注册和 G2/G3 开发裁决，不作为最终独立证据。
-- **确认集**：在任何新模型调参前，从 D5 test 中冻结 24 个未参与既往实验的唯一蛋白/CDS；按长度和 GC 分层，尽可能保留物种元数据。排除所有旧 benchmark、unique18 及其同源连通簇。
-- 确认集只能用于最终 G4；若用于调参，必须重新建立 untouched 集合并记录 amendment。
-- Fluc2P/Spike/PEMax/MUC1/uAb 只作为候选外部任务；序列、许可和 CDS-only 适用性核查前不得称为统一公共 benchmark。
+最小核心设计为：
 
-### 4.4 当前分布限制
+| proposal | feedback=off | feedback=on（同一 hill accept/reject） |
+|---|---|---|
+| random single-codon | random-open-loop | random-hill |
+| learned single-codon | learned-open-loop | learned-hill |
 
-unique18 平均长度 642 nt、GC 0.4396，且 13/18 为短序列，与训练总体约 1.64 kb、GC 0.514 不同。它只能作为长度分层开发集，不能代表自然总体或支撑广泛泛化结论。
+每组使用相同 paired initial、目标权重、calibration、独立 cache 和 500 唯一 scorer。主对比为 feedback=on 内 learned vs random；off 组及交互用于识别机制。不得再拿 learned-off 直接对比 random-on 后宣称架构无效。
 
-## 5. Baseline 与对照层级
+### 5.4 统计
 
-### 5.1 G2 必需简单搜索对照
+基因为独立单位，seed 先在基因内聚合。报告中位相对效应、10,000 次基因级 paired bootstrap 95% CI、双侧效应方向、预注册单侧 Wilcoxon、FULL/EDIT 或多臂 Holm 校正。确认集不做模型选择。开发集显著不等于独立确认。
 
-- `uniform_synonymous`；
-- greedy/hill-climbing；
-- Metropolis-Hastings/annealing；
-- AReUReDi-style 同操作符多目标搜索；
-- learned base proposal。
+## 6. A8 Gates 与停止规则
 
-所有内部方法使用相同初始状态、同义可行状态与终端目标、scorer/cache 和预算追踪。`uniform` 在首次评分使用相同 paired 初始状态，后续从完整同义空间按位置独立均匀采样，作为强全局基线；hill-climbing、MH/annealing 与 AReUReDi-style 使用相同单密码子局部核。learned base 使用其学习到的单密码子核。最强简单基线按基因取主终点最优者，形成严格对照。
+| Gate | 必要内容 | 通过条件 | 失败处理 |
+|---|---|---|---|
+| A8-G0 真实性/口径 | 版本、原始序列、scorer、hash、环境、v2、外部缺失预算 | 关键 artifact 可追溯；独立重算无未解释差异；228+ 回归及新增测试通过 | 停止训练，先修数据/代码 |
+| A8-G1 机制 | 2×2 因子、合法概率质量、候选—Δutility、成本诊断 | 预注册 6 个开发基因×3 seeds 完整；learned-on 相对 random-on 有稳定正效应且能区分反馈作用 | 不训练新骨干；若 learned 无价值，转负结果/benchmark |
+| A8-G2 开发模型 | 18 开发基因、v2、成本、消融 | 相对最强简单搜索中位 dense AUC 改善≥10%、CI 下界>0、Holm p<0.05、identity/legal=100%、逐基因 NED≥70%；time-matched 改善>0且CI下界>0 | 最多两轮目标/训练迭代；仍失败则停止学习模型主线 |
+| A8-G3 独立确认 | D5 模型、untouched 24、只跑一次 | 重复主要质量/时间门槛，报告长度/GC 分层与失败区域 | 不写泛化/SOTA；转开发诊断或负结果 |
+| A8-G4 外部边界 | LinearDesign 等按任务、输入、实际输出和成本比较 | 至少一个预注册可比任务显示有竞争力的质量—成本，并披露不可比项 | 不写外部 SOTA，仅内部算法结论 |
+| A8-G5 预印本 | 主张—证据矩阵、原始结果、图、代码、负面结果 | 每项主张有对应 Gate；无代理→生物功能越界 | 不提交 |
 
-### 5.2 G4 外部 CDS 对照
+任何 Gate 不得通过挑选弱 baseline、删除失败基因、补零、事后改指标或重复使用 untouched 24 来“修复”。
 
-- LinearDesign、GEMORNA、codonGPT；
-- CAI-greedy 与最强简单搜索保留为参照；
-- mRNAutilus、ProMORNA、mRNA-GPT 先核查代码/权重/公开序列，能在同一 CDS-only 协议复跑才进入数值表；否则列为“相关但未数值复现”。
+## 7. 架构迭代约束
 
-RayGun 与 SCISOR 是蛋白编辑/删除方法，不进入 synonymous CDS 数值主表。
+1. 首先冻结骨干做机制实验；不得先扩参。
+2. 最多三个候选方向，优先级依次为：终端对齐的轻量微调；成本感知的块提议/解码；有时间与目标条件的真实离散流。
+3. 每个方案必须写明瓶颈、修改、理论/经验依据、风险、最小实现、对照、消融、量化成功标准和失败退出。
+4. 新架构必须解决已测瓶颈，并证明相对同参数/同成本随机搜索和 frozen r5 的新增能力。
+5. 若简化模型或 head-only 微调已足够，不保留无收益的复杂模块。
 
-### 5.3 输入信息公平
+## 8. 论文与科学表述边界
 
-- G2 是严格的 natural-source warm-start 内部对照。
-- G4 同时报告 natural-source 与 protein-only 初始化；外部方法若只使用蛋白，必须标明输入差异，禁止把两种初始化混为同一因果结论。
+- 当前阶段为 **A：工程原型和评估资产较完整，但论文级核心贡献尚未成立**。
+- 可保留的论文主线：领域痛点 → 简单搜索强且便宜 → 原 open-loop 学习提议失败 → 反馈匹配揭示提议价值 → 终端对齐与成本优化 → 独立/外部边界 → 何时学习有优势。
+- 若 2×2 或独立确认失败，主线必须改为严格的负结果与 benchmark，不得继续写 SOTA。
+- 计算代理只能支持算法优化结论。没有外部功能效度或湿实验时，不得写“提升 mRNA 表达/稳定性”。
+- LinearDesign、codonGPT、CAGFN 等已经覆盖联合 CAI/MFE、同义约束 RL、多目标条件/Pareto 等相关能力，不能把“使用学习模型/离散生成/同义 mask”本身写成首创。
 
-## 6. 指标、预算与统计
+## 9. 训练与实验记录强制模板
 
-### 6.1 目标与正确性
+每次训练或评价在启动前建立 run ID，结束后补齐：
 
-- 计算目标：CAI、MFE、GC target deviation、长度归一化 motif penalty；所有方向统一为最大化。
-- CAI 参考宿主/参考表、GC target、RNAfold 版本与 folding 条件、motif 清单必须在运行前冻结。
-- 固定 GC=0.55 只能作为明确计算设定，不得宣称为跨物种最优生物目标。
-- identity/legal 必须逐序列验证；任何违规都使该臂失败，不能只用均值掩盖。
+`日期｜假设｜代码commit+dirty diff hash｜环境/CUDA/GPU｜数据版本与split SHA｜checkpoint SHA｜完整命令与配置｜seed｜batch/optimizer/scheduler/clip｜best/last epoch与收敛依据｜train/val曲线｜forward/scorer/wall-clock｜artifact路径与SHA｜指标版本｜结果｜结论与不可声称事项｜失败/恢复历史｜复核人/复核脚本`。
 
-### 6.2 主终点与辅助指标
+三重检查固定为：①代码 diff、单元/契约测试；②输入/hash/schema/数量守恒；③独立原始点或原始序列复算。`experiments/REGISTRY.md` 必须在下次训练前补齐 A7 记录并恢复实时更新；journal 不能成为唯一训练台账。
 
-- **主终点**：固定独立参考域下，多目标 HV 随唯一 terminal scorer 预算变化的 anytime AUC。
-- **辅助指标**：各目标 best-at-budget、原始 Pareto front、IGD+/epsilon 或 non-dominated coverage、长度归一化 NED。
-- HV 参考点和 scale 对每个基因跨方法、跨 seed 固定；不得再由当次参评输出或 test seed 重新估计。
-- 退化轴默认拒绝计算并显式记录；只有运行前登记的 amendment 才允许替代规则，禁止事后选择有利口径。
+## 10. 一个月范围
 
-### 6.3 三种预算分开报告
+第 1 周只完成真实性、指标、因子机制和基线；第 2 周最多两轮终端对齐/成本实验；第 3 周完成开发消融、untouched 确认和外部可比实验；第 4 周完成机制图、复现包和预印本。短 rollout、RLOO、355M、完整 CTMC、湿实验均非默认关键路径。
 
-1. scorer 预算：唯一 terminal evaluations；
-2. 输出预算：真实唯一解数，不随机补足；
-3. 时间预算：同硬件端到端 wall-clock。
-
-模型 forward、rollout batch forward、轨迹数、状态转移、cache 前请求、实际 scorer、唯一 scorer 分开记录。官方实现不可见的计数记 `null`，不得编造。
-
-### 6.4 预算网格与统计单位
-
-- scorer 网格：B = 50 / 100 / 500；主比较使用整条 anytime 曲线，不只看单一 B。
-- 每个基因至少 3 个采样 seed；seed 只估计随机性，不作为独立生物样本。
-- 主要统计单位是基因。使用 paired gene-level bootstrap 95% CI、Wilcoxon signed-rank 与 Holm 多重比较校正；同时报告中位相对效应和逐基因结果。
-
-## 7. 验收门与停止规则
-
-### G0：数据与协议就绪
-
-必须完成 §4.2、开发/确认集冻结、baseline 资源表、独立 calibration 参考域和结果 schema。当前 **已通过**，裁决文件为 `07_a7_data/g0_gate.json`，SHA256=`8b5dbeea278c31792fb1a6107539c223cb9031a821d7152aee5f7e25d0ea136b`。
-
-### G1：模型收敛且非退化
-
-1. 独立 val 连续 3 epoch 相对改善 <0.1% 才允许写 converged；保存 best/last/training_state/converged 和哈希。
-2. 在至少 3 个开发基因、每基因 100 个配对样本上：identity/legal=100%，≥95% 输出不同于初始序列，≥80 个唯一终端序列，最大单一终端序列频率 ≤20%。
-3. 报告 stay-p、P(edit)、位置覆盖、奖励响应和与 uniform 的逐串重合；这些诊断不能替代 G2。
-4. 上述数值是排除明显退化的操作阈值，不是性能证据；如需修改，必须在查看新输出前记录 amendment。
-
-当前 **双臂均通过**。FULL r5 e21 与 EDIT r5 e26 的收敛审计、三基因行为验收和 preflight 均通过；这些只证明非退化，不构成 G2 学习价值。
-
-### G2：第一决定性关卡——learned vs 简单搜索
-
-在开发集、3 seeds、相同初始状态与预算下比较 §5.1 方法。通过需同时满足：
-
-- identity/legal=100%；
-- learned 相对每基因最强简单搜索的主终点中位相对改善 ≥10%；
-- gene-level paired bootstrap 95% CI 的下界 >0，Holm 校正后配对检验 `p<0.05`；
-- 长度归一化 NED 不低于最强简单搜索的 70%，且无明显单序列塌缩。
-
-当前 **正式 No-Go**：324/324 完成，identity/legal=100%，但 FULL/EDIT 中位相对改善−94.28%/−93.47%，CI均完全低于0、Holm p=1.0，最低NED ratio=0.133/0.163；两臂18/18基因均负效应且hill-climbing最强。原Gate SHA256=`a2e157b2…`，独立重算SHA256=`9a1b5c9b…`，统计、NED、输入哈希和裁决一致。停止 short-rollout 主贡献、RLOO、扩参和 SOTA 写作，转入训练诊断或负结果路线；不得用外部弱 baseline 绕过此门。
-
-### T3.7 补充诊断（不是新验收门）
-
-T3.7 proposal-in-the-loop诊断已完成：18/18 learned-hill均为done、真实CUDA、identity=100%、500唯一解且code clean。Gate与独立重跑逐字节一致，SHA256=`6de0998de4eda4068a06b09c29dbb4369458cc9efbac568e81d91ba9d4209707`；独立原始点审计SHA256=`b578b26720aa2e0589c4e6df6ca6e769caa0aea20a951c9877ddbf1e6c7086fd`。FULL逐基因AUC相对变化+0.35%/+45.22%/+18.03%，EDIT +27.00%/+60.41%/+35.62%；但FULL/EDIT耗时比中位20.79×/2.62×，所有run均更慢。该三开发基因结果仅形成提议偏好与成本假设，无独立确认、显著性或泛化宣称，不翻案G2。原388唯一解partial以SHA=1c127354…保留，技术修正1及混合commit历史完整。
-
-### T3.8 开发集复现协议（执行中）
-
-T3.7的3基因阳性关联只能在unique18其余15个开发基因上复现检验，不得接触D5确认集。协议冻结于`docs/plans/2026-11-16-proposal-loop-development-replication-design.md`：双臂各15×3=90个新learned-hill分片，复用paired random-hill，500唯一scorer、100,000尝试上限，AUC与wall-clock为共同主要结局，NED和四目标为辅助。统计仅描述开发证据，固定`scientific_gate_passed=false`，不设新Go阈值，不翻案G2。实现提交`d773327d`；12-way恢复提交`ce3be062`，226 passed / 1 skipped。当前EDIT45/45、FULL20/45，12-way执行器PID2694122与旧C47 seed2 PID2674455并行，禁止重复启动，完成后统一Gate。不得进入G3。
-
-### G3：short-rollout 净收益
-
-只在 G2 通过后进行。使用同一冻结 checkpoint、paired 初始状态和相同预算比较 immediate 与 short-rollout。主终点和时间成本均有正向 gene-level 证据才保留 short-rollout；否则主线只保留 immediate。
-
-### T5.0 外部开发对照（先于G4）
-
-development15完成后按`docs/plans/2026-11-17-external-baseline-unification-design.md`统一LinearDesign/GEMORNA/codonGPT。先对实际输出做A7口径重评，再按冻结预算补protein-only公平实验；缺失预算不补零，旧motif计数与A7长度归一化不得混用，A6生成时间与A7端到端时间不得直接求比。natural-source与protein-only分表，外部开发证据不等于G4或SOTA。
-
-### G4：独立确认与外部边界
-
-- 用 D5 训练最终模型，在 untouched 24 基因确认集上重复 G2 主对照；不得重新选择阈值或参考域。
-- 再与 §5.2 外部方法比较两种初始化、目标数、长度和三种预算。
-- 主结论可以是优势区域和失败边界，不要求所有场景 SOTA；但不得用确认集调参。
-- D5 只支持操作定义的同源泛化，不支持 curated family/species OOD。
-
-### G5：论文与发布
-
-只有 G1–G4 对应证据齐全，才能写学习结果、外部主表和 Discussion。若 G2/G4 失败，只能按实际证据降级为测量/机制/负结果报告，不得改名为性能胜利。
-
-## 8. RLOO、扩参和湿实验的位置
-
-- RLOO 不是主合同组成部分。严格同义空间中翻译一致性接近常量，必须先证明存在非平凡学习信号；只有 G4 后才可单独评审。
-- 355M/更大模型不是当前关键路径。只有 56M 通过 G2 且存在可重复的容量限制证据时才扩容。
-- 本轮没有湿实验。CAI/MFE/GC/motif 仅为计算代理，禁止写成表达、稳定性、安全性或疗效证据。
-
-## 9. 论文主线与可发表性边界
-
-主线：**优化预算问题 → 可学习同义提议 → 机制正确但有效性待证 → learned vs 简单搜索 → rollout 净收益 → 独立确认与外部边界。**
-
-- 数据审计和小状态验证是支撑证据，不再冒充全文中心结果。
-- 中心结果是 learned vs 简单搜索的 anytime 质量—成本前沿。
-- 当前发表状态为 **不可提交**。若 G2/G4 不成立，仅测量与机制资产不足以支撑强方法论文。
-- 相关工作必须覆盖 pCoMole、AReUReDi、MOG-DFM、TR2-D2、mRNAutilus、ProMORNA、mRNA-GPT、codonGPT、GEMORNA 和 LinearDesign，并明确任务差异。
-
-## 10. 工程与证据纪律
-
-- 每个 run 记录数据 SHA256、代码 commit、`code_dirty`、配置、seed、checkpoint 不可变路径与 SHA256。
-- 断点续跑可使用多个代码 commit 仅限：当前 HEAD、上次状态登记版本及显式登记的当前 HEAD 祖先；启动时冻结允许集合并传到 worker/Gate。必须有差异审计证明科学语义未变，其余输入和配对字段继续严格一致，不能借版本白名单绕过验收。
-- 训练、baseline、负结果和失败日志全部保留；不得删除不利结果。
-- 图表只从冻结 JSON 自动生成，标题不得超出数据支持范围。
-- 旧 runbook 中指向 `a6_v4_56m_*` 的命令全部视为历史，禁止执行。
-- 本合同修改不等于授权自动启动训练或评测；后续实验按 tasks 的依赖与用户指令执行。
+一个月的目标是得到**可证伪、可复核、达到门槛才宣称竞争力的完整结果**。若学习模型持续失败，按时交付严格负结果和可复现 benchmark，而不是用不可比数字包装成功。
