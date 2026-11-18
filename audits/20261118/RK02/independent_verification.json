@@ -1,0 +1,288 @@
+{
+  "schema_version": "a8-rk-independent-verification-v1",
+  "verified_at": "2026-11-18T11:47:03.354698+00:00",
+  "producer_module_imported": false,
+  "raw_counts": {
+    "protein_dataset_xlsx": 6348,
+    "data_s1_single_codon_csv": 4672,
+    "data_s2_codon_pair_csv": 8192,
+    "data_s3_utr_csv": 1536,
+    "data_s4_genomewide_csv": 4099
+  },
+  "clean_counts": {
+    "boel_2016_nesg6348": 6348,
+    "data_s1_single_codon_csv": 9344,
+    "data_s2_codon_pair_csv": 8192,
+    "data_s3_utr_csv": 1536,
+    "functional_long": 25420
+  },
+  "checks": [
+    {
+      "check": "raw_sha256:som_pdf",
+      "status": "PASS",
+      "detail": "8b3d78c7489e941b8d57fd0edb7fa0d2daf2d061308e3294b57828cf0d1e1ec5"
+    },
+    {
+      "check": "raw_sha256:oligos_txt",
+      "status": "PASS",
+      "detail": "e108c3991b817719a345ad085cfa23e9f9910a6fd3563017a819a84c87061d7d"
+    },
+    {
+      "check": "raw_sha256:protein_dataset_xlsx",
+      "status": "PASS",
+      "detail": "7e32a22549f4565a08284e64f4187c5562181b909bfb382849cd9227fe4ef978"
+    },
+    {
+      "check": "raw_sha256:supplement_pdf",
+      "status": "PASS",
+      "detail": "220f95efe292385455c0a5f992e339f438adb20fd878b40bb0070aa42ef03ab2"
+    },
+    {
+      "check": "raw_sha256:data_s1_single_codon_csv",
+      "status": "PASS",
+      "detail": "ba9090668178ae0b95e5eadf161c90f611227fb2d505d538f4766670151c1368"
+    },
+    {
+      "check": "raw_sha256:data_s2_codon_pair_csv",
+      "status": "PASS",
+      "detail": "873f4ef0b410fb1299217d7c5cf0ffd5c78947591c9f944da867c428bdf93672"
+    },
+    {
+      "check": "raw_sha256:data_s3_utr_csv",
+      "status": "PASS",
+      "detail": "58759029fa3ce44644d35ba115de7273aec5b449c323160c19e41d7e2591882b"
+    },
+    {
+      "check": "raw_sha256:data_s4_genomewide_csv",
+      "status": "PASS",
+      "detail": "62b8dc92e47b94b5d8d540e9f254517aecdc76acb4bd3e07b8d514a15328e391"
+    },
+    {
+      "check": "clean_sha256:boel_2016_nesg6348",
+      "status": "PASS",
+      "detail": "f76f0988c08aa7daa01c2a0100c01682f6e205b7003ba4d8c241d2eb167ccf2d"
+    },
+    {
+      "check": "clean_row_count:boel_2016_nesg6348",
+      "status": "PASS",
+      "detail": 6348
+    },
+    {
+      "check": "clean_schema:boel_2016_nesg6348",
+      "status": "PASS",
+      "detail": [
+        "construct_id",
+        "expression_type",
+        "expression_value",
+        "source_id",
+        "split_assignment"
+      ]
+    },
+    {
+      "check": "clean_sha256:data_s1_single_codon_csv",
+      "status": "PASS",
+      "detail": "83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8"
+    },
+    {
+      "check": "clean_row_count:data_s1_single_codon_csv",
+      "status": "PASS",
+      "detail": 9344
+    },
+    {
+      "check": "clean_schema:data_s1_single_codon_csv",
+      "status": "PASS",
+      "detail": [
+        "construct_id",
+        "expression_type",
+        "expression_value",
+        "source_id",
+        "split_assignment"
+      ]
+    },
+    {
+      "check": "clean_sha256:data_s2_codon_pair_csv",
+      "status": "PASS",
+      "detail": "7acecf37b7ca432468a8e5c7a45ab6f471df41ae7d30d493cf8e4fe95e06edf1"
+    },
+    {
+      "check": "clean_row_count:data_s2_codon_pair_csv",
+      "status": "PASS",
+      "detail": 8192
+    },
+    {
+      "check": "clean_schema:data_s2_codon_pair_csv",
+      "status": "PASS",
+      "detail": [
+        "construct_id",
+        "expression_type",
+        "expression_value",
+        "source_id",
+        "split_assignment"
+      ]
+    },
+    {
+      "check": "clean_sha256:data_s3_utr_csv",
+      "status": "PASS",
+      "detail": "ce4a95c8de05d50f7d405f126c5f3ec787dcba1aa8fca099f8486823bb1f0f96"
+    },
+    {
+      "check": "clean_row_count:data_s3_utr_csv",
+      "status": "PASS",
+      "detail": 1536
+    },
+    {
+      "check": "clean_schema:data_s3_utr_csv",
+      "status": "PASS",
+      "detail": [
+        "construct_id",
+        "expression_type",
+        "expression_value",
+        "source_id",
+        "split_assignment"
+      ]
+    },
+    {
+      "check": "clean_sha256:functional_long",
+      "status": "PASS",
+      "detail": "c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377"
+    },
+    {
+      "check": "clean_row_count:functional_long",
+      "status": "PASS",
+      "detail": 25420
+    },
+    {
+      "check": "clean_schema:functional_long",
+      "status": "PASS",
+      "detail": [
+        "construct_id",
+        "expression_type",
+        "expression_value",
+        "source_id",
+        "split_assignment"
+      ]
+    },
+    {
+      "check": "boel_independent_translation_and_labels",
+      "status": "PASS",
+      "detail": 6348
+    },
+    {
+      "check": "boel_raw_clean_rows",
+      "status": "PASS",
+      "detail": {
+        "raw": 6348,
+        "clean": 6348
+      }
+    },
+    {
+      "check": "boel_expression_distribution",
+      "status": "PASS",
+      "detail": {
+        "0": 1754,
+        "1": 131,
+        "2": 423,
+        "3": 896,
+        "4": 1171,
+        "5": 1973
+      }
+    },
+    {
+      "check": "mage_raw_clean_multiplicity:data_s1_single_codon_csv",
+      "status": "PASS",
+      "detail": {
+        "raw": 4672,
+        "clean": 9344,
+        "assay_multiplier": 2
+      }
+    },
+    {
+      "check": "mage_raw_clean_multiplicity:data_s2_codon_pair_csv",
+      "status": "PASS",
+      "detail": {
+        "raw": 8192,
+        "clean": 8192,
+        "assay_multiplier": 1
+      }
+    },
+    {
+      "check": "mage_raw_clean_multiplicity:data_s3_utr_csv",
+      "status": "PASS",
+      "detail": {
+        "raw": 1536,
+        "clean": 1536,
+        "assay_multiplier": 1
+      }
+    },
+    {
+      "check": "mage_single_unique_variants",
+      "status": "PASS",
+      "detail": 4599
+    },
+    {
+      "check": "mage_pair_unique_signatures",
+      "status": "PASS",
+      "detail": 8127
+    },
+    {
+      "check": "mage_pair_nonwt_measurement_rows",
+      "status": "PASS",
+      "detail": 8190
+    },
+    {
+      "check": "functional_long_independent_sum",
+      "status": "PASS",
+      "detail": {
+        "sum": 25420,
+        "long": 25420
+      }
+    },
+    {
+      "check": "no_random_or_preassigned_split",
+      "status": "PASS",
+      "detail": 50840
+    },
+    {
+      "check": "no_kudla_synthetic_rows",
+      "status": "PASS",
+      "detail": 0
+    },
+    {
+      "check": "kudla_zero_actual_sequence_label_rows",
+      "status": "PASS",
+      "detail": {
+        "paper_reported": 154,
+        "actual": 0
+      }
+    },
+    {
+      "check": "kudla_supporting_files_verified",
+      "status": "PASS",
+      "detail": [
+        {
+          "path": "raw/kudla_2009_gfp/som_pdf.pdf",
+          "sha256": "8b3d78c7489e941b8d57fd0edb7fa0d2daf2d061308e3294b57828cf0d1e1ec5",
+          "role": "protocol_and_supplement",
+          "status": "browser_downloaded"
+        },
+        {
+          "path": "raw/kudla_2009_gfp/oligos_txt.txt",
+          "sha256": "e108c3991b817719a345ad085cfa23e9f9910a6fd3563017a819a84c87061d7d",
+          "role": "degenerate_oligos_not_154_variant_table",
+          "status": "browser_downloaded"
+        }
+      ]
+    },
+    {
+      "check": "kudla_data_product_failure_recorded",
+      "status": "PASS",
+      "detail": 1
+    },
+    {
+      "check": "all_expression_values_finite",
+      "status": "PASS",
+      "detail": 50840
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,276 @@
+{
+  "schema_version": "a8-rk-functional-audit-v1",
+  "created_at": "2026-11-18T11:44:26.600963+00:00",
+  "config": "configs/a8_rk_functional_sources.json",
+  "data_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional",
+  "status": "PARTIAL_KUDLA_ROW_DATA_UNAVAILABLE",
+  "paper_reported_counts": {
+    "kudla_2009_gfp": 154,
+    "boel_2016_nesg6348": 6348,
+    "kelsic_2016_total_in_situ_codon_mutants": 12726
+  },
+  "actual_download_and_clean_counts": {
+    "boel_2016_nesg6348": {
+      "raw_rows": 6348,
+      "clean_rows": 6348,
+      "excluded_rows": 0,
+      "unique_names": 6348,
+      "unique_cds": 6348,
+      "duplicate_name_groups": 0,
+      "duplicate_cds_groups": 0,
+      "expression_distribution": {
+        "0": 1754,
+        "1": 131,
+        "2": 423,
+        "3": 896,
+        "4": 1171,
+        "5": 1973
+      },
+      "min_cds_nt": 171,
+      "max_cds_nt": 3000,
+      "design": "cross-protein heterologous expression, not a within-protein synonymous library",
+      "worksheet": "E6348.csv",
+      "raw_sha256": "7e32a22549f4565a08284e64f4187c5562181b909bfb382849cd9227fe4ef978"
+    },
+    "data_s1_single_codon_csv": {
+      "raw_rows": 4672,
+      "clean_long_rows": 9344,
+      "excluded_rows": 0,
+      "wild_type_controls": 73,
+      "single_codon_variants": 4599,
+      "positions": 73,
+      "codons_per_position": {
+        "1": 64,
+        "2": 64,
+        "3": 64,
+        "4": 64,
+        "5": 64,
+        "6": 64,
+        "7": 64,
+        "8": 64,
+        "9": 64,
+        "10": 64,
+        "11": 64,
+        "12": 64,
+        "13": 64,
+        "14": 64,
+        "15": 64,
+        "16": 64,
+        "17": 64,
+        "18": 64,
+        "19": 64,
+        "20": 64,
+        "21": 64,
+        "22": 64,
+        "23": 64,
+        "24": 64,
+        "25": 64,
+        "26": 64,
+        "27": 64,
+        "28": 64,
+        "29": 64,
+        "30": 64,
+        "31": 64,
+        "32": 64,
+        "33": 64,
+        "34": 64,
+        "35": 64,
+        "36": 64,
+        "37": 64,
+        "38": 64,
+        "39": 64,
+        "40": 64,
+        "41": 64,
+        "42": 64,
+        "43": 64,
+        "44": 64,
+        "45": 64,
+        "46": 64,
+        "47": 64,
+        "48": 64,
+        "49": 64,
+        "50": 64,
+        "51": 64,
+        "52": 64,
+        "53": 64,
+        "54": 64,
+        "55": 64,
+        "56": 64,
+        "57": 64,
+        "58": 64,
+        "59": 64,
+        "60": 64,
+        "61": 64,
+        "62": 64,
+        "63": 64,
+        "64": 64,
+        "65": 64,
+        "66": 64,
+        "67": 64,
+        "68": 64,
+        "69": 64,
+        "70": 64,
+        "71": 64,
+        "72": 64,
+        "73": 64
+      },
+      "unique_position_codon_keys": 4672,
+      "unique_nonwt_mutation_signatures": 4599,
+      "assays_per_construct": 2,
+      "paper_reported_single_codon_variants": 4599,
+      "matches_paper_variant_count": true,
+      "raw_sha256": "ba9090668178ae0b95e5eadf161c90f611227fb2d505d538f4766670151c1368"
+    },
+    "data_s2_codon_pair_csv": {
+      "raw_rows": 8192,
+      "clean_long_rows": 8192,
+      "excluded_rows": 0,
+      "wild_type_controls": 2,
+      "raw_nonwt_rows": 8190,
+      "unique_nonwt_mutation_signatures": 8127,
+      "cross_window_duplicate_signature_rows": 63,
+      "single_codon_rows_in_pair_assay": 252,
+      "true_pair_variant_rows": 7938,
+      "paper_reported_pair_construct_count": 8127,
+      "matches_paper_construct_count": true,
+      "raw_sha256": "873f4ef0b410fb1299217d7c5cf0ffd5c78947591c9f944da867c428bdf93672"
+    },
+    "data_s3_utr_csv": {
+      "raw_rows": 1536,
+      "clean_long_rows": 1536,
+      "excluded_rows": 0,
+      "unique_replicate_construct_keys": 1536,
+      "wild_type_controls": 6,
+      "utr_variant_rows": 1530,
+      "raw_sha256": "58759029fa3ce44644d35ba115de7273aec5b449c323160c19e41d7e2591882b"
+    },
+    "data_s4_genomewide_csv": {
+      "status": "excluded_from_sequence_label_long_table",
+      "reason": "genome-wide structure context, not per-construct expression/fitness labels",
+      "raw_sha256": "62b8dc92e47b94b5d8d540e9f254517aecdc76acb4bd3e07b8d514a15328e391"
+    },
+    "kudla_2009_gfp": {
+      "status": "supporting_files_downloaded_row_level_sequence_expression_table_unavailable",
+      "raw_supporting_files": [
+        {
+          "path": "raw/kudla_2009_gfp/som_pdf.pdf",
+          "sha256": "8b3d78c7489e941b8d57fd0edb7fa0d2daf2d061308e3294b57828cf0d1e1ec5",
+          "role": "protocol_and_supplement",
+          "status": "browser_downloaded"
+        },
+        {
+          "path": "raw/kudla_2009_gfp/oligos_txt.txt",
+          "sha256": "e108c3991b817719a345ad085cfa23e9f9910a6fd3563017a819a84c87061d7d",
+          "role": "degenerate_oligos_not_154_variant_table",
+          "status": "browser_downloaded"
+        }
+      ],
+      "actual_sequence_label_rows": 0,
+      "clean_rows": 0,
+      "paper_reported_construct_count": 154
+    }
+  },
+  "clean_artifacts": {
+    "boel_2016_nesg6348": {
+      "path": "clean/boel_2016_nesg6348/sequence_expression.csv",
+      "bytes": 12424986,
+      "sha256": "f76f0988c08aa7daa01c2a0100c01682f6e205b7003ba4d8c241d2eb167ccf2d",
+      "rows": 6348
+    },
+    "data_s1_single_codon_csv": {
+      "path": "clean/kelsic_2016_mage_seq/single_codon_fitness.csv",
+      "bytes": 7073640,
+      "sha256": "83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8",
+      "rows": 9344
+    },
+    "data_s2_codon_pair_csv": {
+      "path": "clean/kelsic_2016_mage_seq/codon_pair_fitness.csv",
+      "bytes": 6738823,
+      "sha256": "7acecf37b7ca432468a8e5c7a45ab6f471df41ae7d30d493cf8e4fe95e06edf1",
+      "rows": 8192
+    },
+    "data_s3_utr_csv": {
+      "path": "clean/kelsic_2016_mage_seq/utr_fitness.csv",
+      "bytes": 1196814,
+      "sha256": "ce4a95c8de05d50f7d405f126c5f3ec787dcba1aa8fca099f8486823bb1f0f96",
+      "rows": 1536
+    },
+    "functional_long": {
+      "path": "clean/functional_long.csv",
+      "bytes": 27433093,
+      "sha256": "c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377",
+      "rows": 25420
+    }
+  },
+  "functional_long_rows": 25420,
+  "row_exclusions_including_s4_source_exclusion": 2,
+  "unresolved_download_failures": [],
+  "unresolved_data_products": [
+    {
+      "source_id": "kudla_2009_gfp",
+      "required_product": "154 row-level EGFP sequence-expression records",
+      "status": "unavailable_not_downloaded",
+      "actual_sequence_label_rows": 0,
+      "evidence": "SOM contains Materials and Methods, Figs. S1-S9 and references; oligos are degenerate synthesis primers, not the 154-variant table",
+      "action": "obtain the original row-level table from the authors or a verified archival copy; do not digitize figure values"
+    }
+  ],
+  "resolved_download_failures": [
+    {
+      "source_id": "kelsic_2016_mage_seq",
+      "file_id": "data_s1_single_codon_csv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-1.csv",
+      "relative_path": "raw/kelsic_2016_mage_seq/data_s1_single_codon_csv.csv",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: DataValidationError: HTML/challenge page received instead of data"
+    },
+    {
+      "source_id": "kelsic_2016_mage_seq",
+      "file_id": "data_s2_codon_pair_csv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-2.csv",
+      "relative_path": "raw/kelsic_2016_mage_seq/data_s2_codon_pair_csv.csv",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: DataValidationError: HTML/challenge page received instead of data"
+    },
+    {
+      "source_id": "kelsic_2016_mage_seq",
+      "file_id": "data_s3_utr_csv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-3.csv",
+      "relative_path": "raw/kelsic_2016_mage_seq/data_s3_utr_csv.csv",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: DataValidationError: HTML/challenge page received instead of data"
+    },
+    {
+      "source_id": "kelsic_2016_mage_seq",
+      "file_id": "data_s4_genomewide_csv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-4.csv",
+      "relative_path": "raw/kelsic_2016_mage_seq/data_s4_genomewide_csv.csv",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: DataValidationError: HTML/challenge page received instead of data"
+    },
+    {
+      "source_id": "kudla_2009_gfp",
+      "file_id": "som_pdf",
+      "url": "https://www.science.org/doi/suppl/10.1126/science.1170160/suppl_file/kudla.som.pdf",
+      "relative_path": "raw/kudla_2009_gfp/som_pdf.pdf",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "source_id": "kudla_2009_gfp",
+      "file_id": "oligos_txt",
+      "url": "https://www.science.org/doi/suppl/10.1126/science.1170160/suppl_file/kudla.som.oligos.txt",
+      "relative_path": "raw/kudla_2009_gfp/oligos_txt.txt",
+      "status": "failed",
+      "error": "DataValidationError: download failed after 3 attempts: HTTPError: HTTP Error 403: Forbidden"
+    }
+  ],
+  "leakage": {
+    "random_row_split_forbidden": true,
+    "boel": "Natural non-synonymous cross-protein pool; family labels unavailable in Supplementary Data 2; fixed family mapping required before split.",
+    "mage": "Single infA family; single/pair windows overlap. Keep all infA constructs in one fixed partition or use construct-signature grouping; never random rows.",
+    "duplicate_policy": "Exact duplicate rows quarantined; cross-window mutation signatures counted separately from measurement rows.",
+    "current_split_assignment": "UNASSIGNED; no train/dev/test split has been created."
+  },
+  "training_or_split_created": false
+}

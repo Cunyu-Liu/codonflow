@@ -11,6 +11,8 @@
 - [x] LinearDesign/GEMORNA/codonGPT 等 54/54 实际输出重评；不是统一排名。
 - [x] 2026-11-18 远端 HEAD `012338aa`、干净工作树、核心文件哈希核对；历史回归 228 passed、1 skipped。
 - [x] 识别旧路线根因：目标错位、反馈混杂、无功能监督、普通 codon Transformer、baseline 不全。
+- [x] RK-01：冻结六个来源、环境 manifest、数据与 run registry；隔离分支 `a8-rk`，未改写主工作树。
+- [x] RK-02：8 份官方原始附件完成 SHA 登记，生成 25,420 行统一长表；11/11 测试及独立 39/39 检查通过。Kudla 逐条序列—表达表未获得，实际为 0 行并记录 `unavailable`；未创建 split 或训练。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
 
