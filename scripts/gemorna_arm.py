@@ -169,7 +169,8 @@ def run_generate_batch(protein: str, n: int) -> list:
     res = subprocess.run(
         [PY, script, "--ckpt_path", "checkpoints/gemorna_cds.pt",
          "--protein_seq", protein, "--n", str(n)],
-        cwd=REPO, capture_output=True, text=True, timeout=3600)
+        cwd=REPO, capture_output=True, text=True, timeout=3600,
+        env={**os.environ, "PYTHONPATH": os.path.join(REPO, "src") + os.pathsep + os.environ.get("PYTHONPATH", "")})
     if res.returncode != 0:
         raise RuntimeError(f"GEMORNA persistent generation failed: {res.stderr[-4000:] or res.stdout[-4000:]}")
     rows = []
