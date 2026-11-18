@@ -174,7 +174,7 @@ The first v1 run is retained as `lineardesign_official_smoke_v1_failure.json`. I
 - `scripts/a8_rk05_finalize_lineardesign_official_smoke.py`
 - `tests/test_a8_rk05_lineardesign_official_smoke.py` (11/11 PASS)
 
-The fixed archive and all raw official outputs remain under `/teams`; scripts, reports, and Git commits remain under `/home`. CDGB remains unassessed: no verified official repository, commit, build, or execution artifact was established in this bounded task. That absence is not a claim that the CDGB method is invalid or has no implementation.
+The fixed archive and all raw official outputs remain under `/teams`; scripts, reports, and Git commits remain under `/home`. The separate CDGB source-identity audit below established no verified official repository, commit, build, or execution artifact. That bounded source finding is not a claim that the CDGB method is invalid or has no implementation.
 
 ## Reproduction
 
@@ -212,10 +212,72 @@ From `/home/codonflow-a8-rk`, using the verified fixed materialization and **new
   --output <NEW_FINALIZATION_JSON>
 ```
 
-The unified seven-λ actual-set matrix, dense candidate-budget comparison, functional OOD evaluation, CDGB assessment, main-baseline ranking, and SOTA assessment remain pending.
+The unified seven-λ actual-set matrix, dense candidate-budget comparison, functional OOD evaluation, CDGB official execution, main-baseline ranking, and SOTA assessment remain pending. The bounded CDGB source-identity audit is documented below.
 
 ## PPT record
 
 The bounded result was recorded only after the independent 10/10 and finalization 8/8 checks passed. One slide was appended to the existing online deck as slide 71, `pgB`, revision 33. It retains the fixed commit, all three official MFE/CAI/wall-time rows, default-dangles2 MFE, the v1 scorer-convention failure, independent/finalization status, and the bounded-only scope.
 
 `lineardesign_ppt_verification.json` records the server readback: 71 slides, all previous 70 slide IDs and semantic XML unchanged, all required values present, four speaker-note paragraphs, and no main-baseline/CDGB/OOD/SOTA claim. Code, evidence, A8 v3, and reproduction documentation were pushed in `8be5369081b614beede261b7430f1230e0783e37`; the PPT verification and handoff update are recorded separately.
+
+---
+
+# CDGB source-identity and official-code availability audit (2026-11-19)
+
+## Bounded negative source result
+
+`SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED` — the candidate paper identity is unresolved and its embedded DOI resolves to a different publication. Independent verification passed **8/8 checks** by recomputing all findings from the frozen raw API responses; finalization passed **6/6 checks**. This is a source-reproducibility result, not a model-performance result and not evidence that the CDGB method is invalid or that no implementation exists.
+
+Candidate title: `CDGB: a deep learning framework for codon de-optimization directed by the protein representation model`. Candidate URL: `https://academic.oup.com/bib/article/27/4/bbaf332/8199205`. The DOI embedded in that URL, `10.1093/bib/bbaf332`, resolves in Crossref to **Multimodal zero-shot learning of previously unseen epitranscriptomes from RNA-seq data**, Briefings in Bioinformatics volume 26 issue 4, rather than the CDGB candidate title.
+
+Nine API responses were frozen under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/`:
+
+| Query layer | Returned records | Exact candidate-title matches |
+|---|---:|---:|
+| Crossref candidate bibliographic title | 20 | 0 |
+| Crossref CDGB title | 3 | 0 |
+| OpenAlex CDGB title | 7 | 0 |
+| Europe PMC CDGB title | 4 | 0 |
+| Europe PMC codon-deoptimization title | 2 | 0 |
+| GitHub CDGB+codon repositories | 0 | not applicable |
+| GitHub codon-deoptimization repositories | 14 | no official ownership established |
+| GitHub CDGB+protein-representation repositories | 0 | not applicable |
+
+The ninth response is the direct Crossref DOI lookup proving the title conflict. The broad GitHub query returns other projects and cannot be promoted to an official CDGB implementation. No authoritative author list or publisher code link was established, so an author-homepage assignment would be speculative. Searches are time-dependent and non-exhaustive.
+
+No official repository, immutable commit, source build, execution, output sequence, runtime, quality metric, main-baseline comparison, functional OOD result, or SOTA claim was produced. Official sequence-output count and performance-result count are both zero.
+
+## Evidence and reproduction
+
+- `cdgb_source_audit.json`, SHA256 `dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691`
+- `cdgb_source_independent_verification.json`, SHA256 `964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980`
+- `cdgb_source_finalization.json`, SHA256 `dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2`
+- `scripts/a8_rk05_cdgb_source_audit.py`
+- `scripts/a8_rk05_verify_cdgb_source_audit.py`
+- `scripts/a8_rk05_finalize_cdgb_source_audit.py`
+- `tests/test_a8_rk05_cdgb_source_audit.py` (8/8 PASS)
+
+From `/home/codonflow-a8-rk`, use new output paths for a repeat audit; never overwrite the frozen v1 raw responses:
+
+```bash
+/root/miniconda3/envs/codonflow/bin/python -m unittest \
+  tests.test_a8_rk05_cdgb_source_audit -v
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_cdgb_source_audit.py \
+  --output-dir <NEW_RAW_API_RESPONSE_DIR> \
+  --report <NEW_CDGB_AUDIT_JSON>
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_verify_cdgb_source_audit.py \
+  --audit <NEW_CDGB_AUDIT_JSON> \
+  --output <NEW_CDGB_INDEPENDENT_JSON>
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_finalize_cdgb_source_audit.py \
+  --audit <NEW_CDGB_AUDIT_JSON> \
+  --verification <NEW_CDGB_INDEPENDENT_JSON> \
+  --output <NEW_CDGB_FINALIZATION_JSON>
+```
+
+A repeat query reflects the then-current APIs and need not reproduce the same hit counts. The frozen v1 responses and byte hashes are the authoritative evidence for this report. Before any future CDGB execution, obtain an authoritative citation whose title and authors match CDGB, an author/publisher-linked official repository and immutable commit, and official build instructions with a documented minimal input.

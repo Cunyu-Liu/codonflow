@@ -1,0 +1,541 @@
+{
+  "protocol": "a8_rk05_cdgb_source_audit_v1",
+  "created_at": "2026-11-18T19:25:19.107701+00:00",
+  "status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+  "candidate": {
+    "title": "CDGB: a deep learning framework for codon de-optimization directed by the protein representation model",
+    "url": "https://academic.oup.com/bib/article/27/4/bbaf332/8199205",
+    "doi_embedded_in_url": "10.1093/bib/bbaf332"
+  },
+  "query_count_expected": 9,
+  "query_count_succeeded": 9,
+  "query_failures": [],
+  "raw_response_manifest": [
+    {
+      "name": "crossref_candidate_title",
+      "kind": "crossref_search",
+      "url": "https://api.crossref.org/works?query.bibliographic=CDGB%3A+a+deep+learning+framework+for+codon+de-optimization+directed+by+the+protein+representation+model&rows=20&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL%2Ccontainer-title%2Cvolume%2Cissue",
+      "http_status": 200,
+      "final_url": "https://api.crossref.org/works?query.bibliographic=CDGB%3A+a+deep+learning+framework+for+codon+de-optimization+directed+by+the+protein+representation+model&rows=20&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL%2Ccontainer-title%2Cvolume%2Cissue",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/crossref_candidate_title.json",
+      "bytes": 28063,
+      "sha256": "c8920909e607ab953c75c4f0b88e1a279a90590f70d7fccfb34772ffbc1bed01"
+    },
+    {
+      "name": "crossref_cdgb_title",
+      "kind": "crossref_search",
+      "url": "https://api.crossref.org/works?query.title=CDGB&filter=from-pub-date%3A2020-01-01&rows=50&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL%2Ccontainer-title%2Cvolume%2Cissue",
+      "http_status": 200,
+      "final_url": "https://api.crossref.org/works?query.title=CDGB&filter=from-pub-date%3A2020-01-01&rows=50&select=DOI%2Ctitle%2Cauthor%2Cpublished%2CURL%2Ccontainer-title%2Cvolume%2Cissue",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/crossref_cdgb_title.json",
+      "bytes": 8127,
+      "sha256": "9d6948e85d9b4be27614b8d716b6fbc362227b06b13bfc24efbcce865b845ea7"
+    },
+    {
+      "name": "crossref_candidate_doi",
+      "kind": "crossref_doi",
+      "url": "https://api.crossref.org/works/10.1093/bib/bbaf332",
+      "http_status": 200,
+      "final_url": "https://api.crossref.org/works/10.1093/bib/bbaf332",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/crossref_candidate_doi.json",
+      "bytes": 59420,
+      "sha256": "79295b02e0ee6ea749eff1b4a281bd85121ca82a984ebfcb974db38195f83155"
+    },
+    {
+      "name": "openalex_cdgb_title",
+      "kind": "openalex_search",
+      "url": "https://api.openalex.org/works?filter=title.search%3ACDGB&per-page=50",
+      "http_status": 200,
+      "final_url": "https://api.openalex.org/works?filter=title.search%3ACDGB&per-page=50",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/openalex_cdgb_title.json",
+      "bytes": 195791,
+      "sha256": "81c6050ad4eba0623078fc1e33c72eee62d17412834058fe5b0e97a114e97676"
+    },
+    {
+      "name": "europepmc_cdgb_title",
+      "kind": "europepmc_search",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3ACDGB&format=json&pageSize=100&resultType=lite",
+      "http_status": 200,
+      "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3ACDGB&format=json&pageSize=100&resultType=lite",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/europepmc_cdgb_title.json",
+      "bytes": 5007,
+      "sha256": "3315c1fe4fe4c3c3c01af9e6b302fb3a249f1b00d9c13e693517b5c1fcdc24e3"
+    },
+    {
+      "name": "europepmc_deoptimization_title",
+      "kind": "europepmc_search",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22codon+de-optimization%22&format=json&pageSize=100&resultType=lite",
+      "http_status": 200,
+      "final_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE%3A%22codon+de-optimization%22&format=json&pageSize=100&resultType=lite",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/europepmc_deoptimization_title.json",
+      "bytes": 2779,
+      "sha256": "a2de2bc5d236428949b7fd74b024242ff61ee735a580639cf1a82bef431519e1"
+    },
+    {
+      "name": "github_cdgb_codon",
+      "kind": "github_search",
+      "url": "https://api.github.com/search/repositories?q=%22CDGB%22+codon+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "http_status": 200,
+      "final_url": "https://api.github.com/search/repositories?q=%22CDGB%22+codon+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/github_cdgb_codon.json",
+      "bytes": 69,
+      "sha256": "a9db2cf4f4a6f55599f861977936ded28d9bed2c085ee89907039c06a3e81558"
+    },
+    {
+      "name": "github_codon_deoptimization",
+      "kind": "github_search",
+      "url": "https://api.github.com/search/repositories?q=%22codon+de-optimization%22+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "http_status": 200,
+      "final_url": "https://api.github.com/search/repositories?q=%22codon+de-optimization%22+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/github_codon_deoptimization.json",
+      "bytes": 100525,
+      "sha256": "863ad2c27208ef0d7c8a588b7c0ae8cb213f96121a089aaa966bfe99159243a8"
+    },
+    {
+      "name": "github_cdgb_protein_representation",
+      "kind": "github_search",
+      "url": "https://api.github.com/search/repositories?q=%22CDGB%22+%22protein+representation%22+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "http_status": 200,
+      "final_url": "https://api.github.com/search/repositories?q=%22CDGB%22+%22protein+representation%22+in%3Aname%2Cdescription%2Creadme&per_page=50",
+      "attempt": 1,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/github_cdgb_protein_representation.json",
+      "bytes": 69,
+      "sha256": "a9db2cf4f4a6f55599f861977936ded28d9bed2c085ee89907039c06a3e81558"
+    }
+  ],
+  "query_summaries": {
+    "crossref_candidate_title": {
+      "returned_title_or_repository_count": 20,
+      "exact_candidate_title_matches": [],
+      "returned_records": [
+        {
+          "DOI": "10.1101/2025.05.30.656984",
+          "title": [
+            "High-Codon: A Deep Learning-Based Codon Optimization Tool for Enhanced Heterologous Protein Expression in Escherichia coli"
+          ],
+          "URL": "https://doi.org/10.1101/2025.05.30.656984"
+        },
+        {
+          "DOI": "10.1021/acssynbio.3c00301.s001",
+          "title": [
+            "DeCOIL: Optimization of Degenerate Codon Libraries for Machine Learning-Assisted Protein Engineering"
+          ],
+          "URL": "https://doi.org/10.1021/acssynbio.3c00301.s001"
+        },
+        {
+          "DOI": "10.64898/2026.04.21.720047",
+          "title": [
+            "Protein structure-informed deep learning enables species-specific codon optimization"
+          ],
+          "URL": "https://doi.org/10.64898/2026.04.21.720047"
+        },
+        {
+          "DOI": "10.1101/2024.12.12.628267",
+          "title": [
+            "ppLM-CO:Pre-trained Protein Language Model for Codon Optimization"
+          ],
+          "URL": "https://doi.org/10.1101/2024.12.12.628267"
+        },
+        {
+          "DOI": "10.1021/acs.jcim.5c02885.s002",
+          "title": [
+            "PeptideNet: An Integrative Deep Learning Framework for Predicting Diverse Bioactive Peptides Using Protein Language Model Embeddings"
+          ],
+          "URL": "https://doi.org/10.1021/acs.jcim.5c02885.s002"
+        },
+        {
+          "DOI": "10.1016/j.neucom.2024.127342",
+          "title": [
+            "A deep latent space model for interpretable representation learning on directed graphs"
+          ],
+          "URL": "https://doi.org/10.1016/j.neucom.2024.127342"
+        },
+        {
+          "DOI": "10.5220/0012336000003636",
+          "title": [
+            "Deep Reinforcement Learning Framework with Representation Learning for Concurrent Negotiation"
+          ],
+          "URL": "https://doi.org/10.5220/0012336000003636"
+        },
+        {
+          "DOI": "10.1038/s41598-026-69388-4",
+          "title": [
+            "A deep learning framework for efficient prostate tumor segmentation using deep learning model powered by wombat optimization"
+          ],
+          "URL": "https://doi.org/10.1038/s41598-026-69388-4"
+        },
+        {
+          "DOI": "10.22215/etd/2020-14102",
+          "title": [
+            "A Deep Representation Learning Framework for Medical Imaging Data Analysis"
+          ],
+          "URL": "https://doi.org/10.22215/etd/2020-14102"
+        },
+        {
+          "DOI": "10.1016/j.bidere.2025.100042",
+          "title": [
+            "DeepCodon: A deep learning codon-optimization model to enhance protein expression"
+          ],
+          "URL": "https://doi.org/10.1016/j.bidere.2025.100042"
+        },
+        {
+          "DOI": "10.1038/s41598-020-74091-z",
+          "title": [
+            "Codon optimization with deep learning to enhance protein expression"
+          ],
+          "URL": "https://doi.org/10.1038/s41598-020-74091-z"
+        },
+        {
+          "DOI": "10.1109/tcbbio.2025.3532332/mm1",
+          "title": [
+            "Enhancing Chemical Prediction in Plasma Protein Binding: a Deep Learning Model Combining Molecular Descriptors and Fingerprint Representation with Attention Mechanisms_supp2-3532332.xlsx"
+          ],
+          "URL": "https://doi.org/10.1109/tcbbio.2025.3532332/mm1"
+        },
+        {
+          "DOI": "10.1109/tcbbio.2025.3532332/mm2",
+          "title": [
+            "Enhancing Chemical Prediction in Plasma Protein Binding: a Deep Learning Model Combining Molecular Descriptors and Fingerprint Representation with Attention Mechanisms_supp1-3532332.docx"
+          ],
+          "URL": "https://doi.org/10.1109/tcbbio.2025.3532332/mm2"
+        },
+        {
+          "DOI": "10.1021/acs.jmedchem.1c01830.s002",
+          "title": [
+            "InteractionGraphNet: A Novel and Efficient Deep Graph Representation Learning Framework for Accurate ProteinLigand Interaction Predictions"
+          ],
+          "URL": "https://doi.org/10.1021/acs.jmedchem.1c01830.s002"
+        },
+        {
+          "DOI": "10.1038/s42004-026-02168-3",
+          "title": [
+            "A sequence-based deep learning framework (PepInter) for protein–peptide interaction representation learning with pretrained protein language models"
+          ],
+          "URL": "https://doi.org/10.1038/s42004-026-02168-3"
+        },
+        {
+          "DOI": "10.1021/acs.jmedchem.1c01830.s001",
+          "title": [
+            "InteractionGraphNet: A Novel and Efficient Deep Graph Representation Learning Framework for Accurate ProteinLigand Interaction Predictions"
+          ],
+          "URL": "https://doi.org/10.1021/acs.jmedchem.1c01830.s001"
+        },
+        {
+          "DOI": "10.1016/j.measurement.2026.122791",
+          "title": [
+            "An attention-guided deep learning framework for brain tumor diagnosis with quaternion feature representation and physics-inspired optimization"
+          ],
+          "URL": "https://doi.org/10.1016/j.measurement.2026.122791"
+        },
+        {
+          "DOI": "10.7717/peerj.16538/fig-3",
+          "title": [
+            "Figure 3: Deep learning-DTW ensemble model framework."
+          ],
+          "URL": "https://doi.org/10.7717/peerj.16538/fig-3"
+        },
+        {
+          "DOI": "10.31219/osf.io/dwgzn_v1",
+          "title": [
+            "Engineering Protein Expression Noise via Synonymous Codon Sequence Design: A Predictive Computational Approach using a Simplified Model"
+          ],
+          "URL": "https://doi.org/10.31219/osf.io/dwgzn_v1"
+        },
+        {
+          "DOI": "10.1101/2023.04.12.536512",
+          "title": [
+            "Automated Protein Affinity Optimization using a 1D-CNN Deep Learning Model"
+          ],
+          "URL": "https://doi.org/10.1101/2023.04.12.536512"
+        }
+      ]
+    },
+    "crossref_cdgb_title": {
+      "returned_title_or_repository_count": 3,
+      "exact_candidate_title_matches": [],
+      "returned_records": [
+        {
+          "DOI": "10.3390/ijms25073878",
+          "title": [
+            "CdgB Regulates Morphological Differentiation and Toyocamycin Production in Streptomyces diastatochromogenes 1628"
+          ],
+          "URL": "https://doi.org/10.3390/ijms25073878"
+        },
+        {
+          "DOI": "10.1371/journal.pone.0278036",
+          "title": [
+            "The GGDEF-EAL protein CdgB from Azospirillum baldaniorum Sp245, is a dual function enzyme with potential polar localization"
+          ],
+          "URL": "https://doi.org/10.1371/journal.pone.0278036"
+        },
+        {
+          "DOI": "10.1007/978-1-0716-3738-8_14",
+          "title": [
+            "Discovery of Live Cell Selective Fluorescent Probes and Elucidation of Their Mechanisms: Case Study of B Cell Selective Probe CDgB"
+          ],
+          "URL": "https://doi.org/10.1007/978-1-0716-3738-8_14"
+        }
+      ]
+    },
+    "crossref_candidate_doi": {
+      "returned_title_or_repository_count": 1,
+      "exact_candidate_title_matches": []
+    },
+    "openalex_cdgb_title": {
+      "returned_title_or_repository_count": 7,
+      "exact_candidate_title_matches": [],
+      "returned_records": [
+        {
+          "doi": "https://doi.org/10.1128/jb.01460-10",
+          "title": "Identification and Characterization of CdgB, a Diguanylate Cyclase Involved in Developmental Processes in Streptomyces coelicolor",
+          "id": "https://openalex.org/W2101868207"
+        },
+        {
+          "doi": null,
+          "title": "Functional investigation of cdgB gene in Moenomycin A production of Streptomyces ghanaensis",
+          "id": "https://openalex.org/W2971118795"
+        },
+        {
+          "doi": "https://doi.org/10.3390/ijms25073878",
+          "title": "CdgB Regulates Morphological Differentiation and Toyocamycin Production in Streptomyces diastatochromogenes 1628",
+          "id": "https://openalex.org/W4393356873"
+        },
+        {
+          "doi": null,
+          "title": "Identification of an interaction between diguanylate cyclase CdgB and a putative interacting partner (PIP) in Streptomyces",
+          "id": "https://openalex.org/W7214839542"
+        },
+        {
+          "doi": "https://doi.org/10.5121/csit.2024.141706",
+          "title": "Categorial Dependency Grammars extended with barriers (CDGb) yield an Abstract Family of Languages (AFL)",
+          "id": "https://openalex.org/W4396717820"
+        },
+        {
+          "doi": "https://doi.org/10.1371/journal.pone.0278036",
+          "title": "The GGDEF-EAL protein CdgB from Azospirillum baldaniorum Sp245, is a dual function enzyme with potential polar localization",
+          "id": "https://openalex.org/W4309927994"
+        },
+        {
+          "doi": "https://doi.org/10.1007/978-1-0716-3738-8_14",
+          "title": "Discovery of Live Cell Selective Fluorescent Probes and Elucidation of Their Mechanisms: Case Study of B Cell Selective Probe CDgB",
+          "id": "https://openalex.org/W4393151796"
+        }
+      ]
+    },
+    "europepmc_cdgb_title": {
+      "returned_title_or_repository_count": 4,
+      "exact_candidate_title_matches": [],
+      "hit_count": 4,
+      "returned_records": [
+        {
+          "title": "CdgB Regulates Morphological Differentiation and Toyocamycin Production in <i>Streptomyces diastatochromogenes</i> 1628.",
+          "authorString": "Wang R, Zhang Z, Yu X, Song Y, Shentu X.",
+          "journalTitle": "Int J Mol Sci",
+          "pubYear": "2024",
+          "doi": "10.3390/ijms25073878",
+          "pmid": "38612686",
+          "pmcid": "PMC11012013"
+        },
+        {
+          "title": "Discovery of Live Cell Selective Fluorescent Probes and Elucidation of Their Mechanisms: Case Study of B Cell Selective Probe CDgB.",
+          "authorString": "Kwon HY, Chang YT, Kang NY.",
+          "journalTitle": "Methods Mol Biol",
+          "pubYear": "2024",
+          "doi": "10.1007/978-1-0716-3738-8_14",
+          "pmid": "38526792",
+          "pmcid": null
+        },
+        {
+          "title": "The GGDEF-EAL protein CdgB from Azospirillum baldaniorum Sp245, is a dual function enzyme with potential polar localization.",
+          "authorString": "Viruega-Góngora VI, Acatitla-Jácome IS, Zamorano-Sánchez D, Reyes-Carmona SR, Xiqui-Vázquez ML, Baca BE, Ramírez-Mata A.",
+          "journalTitle": "PLoS One",
+          "pubYear": "2022",
+          "doi": "10.1371/journal.pone.0278036",
+          "pmid": "36417483",
+          "pmcid": "PMC9683572"
+        },
+        {
+          "title": "Identification and characterization of CdgB, a diguanylate cyclase involved in developmental processes in Streptomyces coelicolor.",
+          "authorString": "Tran NT, Den Hengst CD, Gomez-Escribano JP, Buttner MJ.",
+          "journalTitle": "J Bacteriol",
+          "pubYear": "2011",
+          "doi": "10.1128/jb.01460-10",
+          "pmid": "21515767",
+          "pmcid": "PMC3133206"
+        }
+      ]
+    },
+    "europepmc_deoptimization_title": {
+      "returned_title_or_repository_count": 2,
+      "exact_candidate_title_matches": [],
+      "hit_count": 2,
+      "returned_records": [
+        {
+          "title": "A Novel Strategy of US3 Codon De-Optimization for Construction of an Attenuated Pseudorabies Virus against High Virulent Chinese Pseudorabies Virus Variant.",
+          "authorString": "Xu M, Wang Y, Liu Y, Chen S, Zhu L, Tong L, Zheng Y, Osterrieder N, Zhang C, Wang J.",
+          "journalTitle": "Vaccines (Basel)",
+          "pubYear": "2023",
+          "doi": "10.3390/vaccines11081288",
+          "pmid": "37631856",
+          "pmcid": "PMC10458909"
+        },
+        {
+          "title": "Optimizing assembly and production of native bispecific antibodies by codon de-optimization.",
+          "authorString": "Magistrelli G, Poitevin Y, Schlosser F, Pontini G, Malinge P, Josserand S, Corbier M, Fischer N.",
+          "journalTitle": "MAbs",
+          "pubYear": "2017",
+          "doi": "10.1080/19420862.2016.1267088",
+          "pmid": "28001485",
+          "pmcid": "PMC5297534"
+        }
+      ]
+    },
+    "github_cdgb_codon": {
+      "returned_title_or_repository_count": 0,
+      "exact_candidate_title_matches": [],
+      "total_count_reported_by_github": 0,
+      "repositories": []
+    },
+    "github_codon_deoptimization": {
+      "returned_title_or_repository_count": 14,
+      "exact_candidate_title_matches": [],
+      "total_count_reported_by_github": 14,
+      "repositories": [
+        {
+          "full_name": "ericrenone/QUANTUM-BIO-SEAM-HORIZON-PROOF",
+          "html_url": "https://github.com/ericrenone/QUANTUM-BIO-SEAM-HORIZON-PROOF",
+          "description": "Empirical Verification of the col(F)/ker(F) Quantum-Classical Interface in Biological Information Processing",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/The-Silent-Dimension",
+          "html_url": "https://github.com/ericrenone/The-Silent-Dimension",
+          "description": "A Novel of Ideas: Thought Experiments on the Hidden Architecture of Reality. What If the Most Important Dimension Is the One We Can’t See?",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/PRIGOGINE-LEVEL-THINKING",
+          "html_url": "https://github.com/ericrenone/PRIGOGINE-LEVEL-THINKING",
+          "description": "A Cognitive Framework for Dissipative Structures in Information, Biology, and Computation",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/LAB-GUIDE-THE-QUANTUM-BIO-SEAM",
+          "html_url": "https://github.com/ericrenone/LAB-GUIDE-THE-QUANTUM-BIO-SEAM",
+          "description": "The Discrete col(F)/ker(F) Boundary as the Quantum-Classical Interface of Biological Information, the Genomic Maxwell's Demon at the Non-Equilibrium Criticality Horizon, and the Sherman-Morrison Architecture of Cellular Fate Transitions",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/RITM-Practical-Laboratory-Implementation-August-2026",
+          "html_url": "https://github.com/ericrenone/RITM-Practical-Laboratory-Implementation-August-2026",
+          "description": "Bundibugyo Ebola: Visible Adaptive Patterns in PCR Failure Data",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/THE-GENETIC-QUANTUM-SEAM-COMPLETION",
+          "html_url": "https://github.com/ericrenone/THE-GENETIC-QUANTUM-SEAM-COMPLETION",
+          "description": "The Universal col(F)/ker(F) Law from Quantum Biology to Cosmology: A Unified Framework of Life, Computation, and Reality  ERI Labs · AHFE0924 Collaboration · Jersey City, New Jersey · github.com/ericrenone/THE-GENETIC-QUANTUM-SEAM-COMPLETION · June 23, 2026",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/Teleport",
+          "html_url": "https://github.com/ericrenone/Teleport",
+          "description": "Quantum Tunneling as the Hidden Engine of Genetic Mutation and Evolutionary Innovation June 23, 2026",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/Wobble-Position-Information-Aug-2026",
+          "html_url": "https://github.com/ericrenone/Wobble-Position-Information-Aug-2026",
+          "description": "Why Viral Escape Via Synonymous Mutation Is Invisible to Current Biology.  A Technical Analysis of Adaptive Information Encoding in Codon Space and Disciplinary Blindness to Its Detection",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/THE-GENETIC-QUANTUM-SEAM",
+          "html_url": "https://github.com/ericrenone/THE-GENETIC-QUANTUM-SEAM",
+          "description": "The col(F)/ker(F) Partition of the Genetic Code, Sherman-Morrison Cellular Architecture, and the Universal Boundary of Life  ERI Labs · Synthetic Biology · Quantum Information · Non-Equilibrium Thermodynamics · github.com/ericrenone/THE-GENETIC-QUANTUM-SEAM · June 23, 2026",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/The-Quantum-Classical-Interface-July-2026",
+          "html_url": "https://github.com/ericrenone/The-Quantum-Classical-Interface-July-2026",
+          "description": "Systolic Hardware Architecture & Biological Information Processing at the Wobble Boundary",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/THE-SILENT-LAYER",
+          "html_url": "https://github.com/ericrenone/THE-SILENT-LAYER",
+          "description": "Unified Architecture for Pandemic Response Through Codon-Level Viral Architecture.  ERI Labs | July 2026 | Strategic Integration Document",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/PROTEOMICS-INFORMATION-GEOMETRY-August-2026",
+          "html_url": "https://github.com/ericrenone/PROTEOMICS-INFORMATION-GEOMETRY-August-2026",
+          "description": "Four-Layer Translation-Folding Architecture as Universal Adaptation System. Biology",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/CANCER-PHASE-TRANSITIONS-CHROMATIN-COLLAPSE-WOBBLE-ESCAPE-AND-THE-MALIGNANT-BOUNDARY",
+          "html_url": "https://github.com/ericrenone/CANCER-PHASE-TRANSITIONS-CHROMATIN-COLLAPSE-WOBBLE-ESCAPE-AND-THE-MALIGNANT-BOUNDARY",
+          "description": "λ_chromatin < 0.18 as the Spectral Threshold for Metastatic Fate, Therapeutic Resistance, and Irreversible Cellular Commitment",
+          "owner": "ericrenone"
+        },
+        {
+          "full_name": "ericrenone/THE-OMNIFORCE-COMPLETION-SYNTHESIS",
+          "html_url": "https://github.com/ericrenone/THE-OMNIFORCE-COMPLETION-SYNTHESIS",
+          "description": "Unifying the Quantum Bio-Seam, CORDIC Iteration, Leech Lattice Geometry, and the Universal Information Completion Law Across Biological, Computational, and Physical Domains",
+          "owner": "ericrenone"
+        }
+      ]
+    },
+    "github_cdgb_protein_representation": {
+      "returned_title_or_repository_count": 0,
+      "exact_candidate_title_matches": [],
+      "total_count_reported_by_github": 0,
+      "repositories": []
+    }
+  },
+  "candidate_doi_identity": {
+    "candidate_url": "https://academic.oup.com/bib/article/27/4/bbaf332/8199205",
+    "doi_embedded_in_candidate_url": "10.1093/bib/bbaf332",
+    "crossref_doi": "10.1093/bib/bbaf332",
+    "crossref_title": "Multimodal zero-shot learning of previously unseen epitranscriptomes from RNA-seq data",
+    "crossref_container_title": [
+      "Briefings in Bioinformatics"
+    ],
+    "crossref_volume": "26",
+    "crossref_issue": "4",
+    "resolved": false,
+    "conflict": true
+  },
+  "exact_candidate_title_matches": {},
+  "source_assessment": {
+    "candidate_bibliographic_identity_resolved": false,
+    "candidate_doi_title_conflict": true,
+    "exact_candidate_title_match_count": 0,
+    "official_repository_verified": false,
+    "official_source_commit": null,
+    "official_build_performed": false,
+    "official_execution_performed": false,
+    "official_sequence_output_count": 0,
+    "performance_result_count": 0,
+    "build_or_execution_authorized": false,
+    "method_invalid_claim": false,
+    "implementation_nonexistence_claim": false,
+    "ppt_record_ready": false
+  },
+  "bounded_conclusion": "The supplied CDGB candidate could not be resolved to an authoritative bibliographic record or official repository. The DOI embedded in the candidate URL resolves to a different paper. No CDGB build or execution is authorized. This is a source-reproducibility finding, not evidence that the method is invalid or that no implementation exists.",
+  "search_limits": "Crossref, OpenAlex, Europe PMC, and GitHub repository search are non-exhaustive and time-dependent. Without verified authors, DOI, journal metadata, or an author/publisher code link, an author-homepage search cannot be assigned reliably.",
+  "required_next_evidence": [
+    "authoritative DOI or publisher record whose title and authors match CDGB",
+    "author- or publisher-linked official repository and immutable commit",
+    "official environment/build instructions and a documented minimal input"
+  ]
+}

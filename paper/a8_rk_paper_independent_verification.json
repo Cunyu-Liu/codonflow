@@ -1,9 +1,9 @@
 {
-  "check_count": 14,
+  "check_count": 15,
   "checks": [
     {
       "detail": {
-        "sources": 24
+        "sources": 27
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd",
+      "detail": "cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -83,6 +83,13 @@
     },
     {
       "detail": {
+        "expected_strings": 11
+      },
+      "name": "cdgb_source_identity_and_no_execution",
+      "pass": true
+    },
+    {
+      "detail": {
         "required_boundaries": 8
       },
       "name": "pending_and_no_sota_boundaries_preserved",
@@ -95,12 +102,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd",
-  "passed_checks": 14,
+  "paper_sha256": "cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59",
+  "passed_checks": 15,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v3",
+  "schema_version": "a8-rk-paper-independent-verification-v4",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "b44148c1d6c2ae11c80130a63d0c9d0da61cad2f1b4d41578151495a66d3d2b5"
+  "sync_audit_sha256": "491950e89dbb2271946cf163a227183bcedf5444b21c021f32d9da8f6fdb85df"
 }

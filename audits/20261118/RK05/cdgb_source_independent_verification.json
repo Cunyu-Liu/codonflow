@@ -1,0 +1,145 @@
+{
+  "protocol": "a8_rk05_cdgb_source_independent_verification_v1",
+  "created_at": "2026-11-18T19:25:27.002454+00:00",
+  "status": "PASS",
+  "checks_passed": 8,
+  "checks_total": 8,
+  "checks": {
+    "all_expected_queries_complete": {
+      "pass": true,
+      "expected": [
+        "crossref_candidate_doi",
+        "crossref_candidate_title",
+        "crossref_cdgb_title",
+        "europepmc_cdgb_title",
+        "europepmc_deoptimization_title",
+        "github_cdgb_codon",
+        "github_cdgb_protein_representation",
+        "github_codon_deoptimization",
+        "openalex_cdgb_title"
+      ],
+      "observed": [
+        "crossref_candidate_doi",
+        "crossref_candidate_title",
+        "crossref_cdgb_title",
+        "europepmc_cdgb_title",
+        "europepmc_deoptimization_title",
+        "github_cdgb_codon",
+        "github_cdgb_protein_representation",
+        "github_codon_deoptimization",
+        "openalex_cdgb_title"
+      ]
+    },
+    "raw_response_hashes": {
+      "pass": true,
+      "verified_files": 9,
+      "details": [
+        {
+          "name": "crossref_candidate_title",
+          "matches": true,
+          "bytes": 28063,
+          "sha256": "c8920909e607ab953c75c4f0b88e1a279a90590f70d7fccfb34772ffbc1bed01"
+        },
+        {
+          "name": "crossref_cdgb_title",
+          "matches": true,
+          "bytes": 8127,
+          "sha256": "9d6948e85d9b4be27614b8d716b6fbc362227b06b13bfc24efbcce865b845ea7"
+        },
+        {
+          "name": "crossref_candidate_doi",
+          "matches": true,
+          "bytes": 59420,
+          "sha256": "79295b02e0ee6ea749eff1b4a281bd85121ca82a984ebfcb974db38195f83155"
+        },
+        {
+          "name": "openalex_cdgb_title",
+          "matches": true,
+          "bytes": 195791,
+          "sha256": "81c6050ad4eba0623078fc1e33c72eee62d17412834058fe5b0e97a114e97676"
+        },
+        {
+          "name": "europepmc_cdgb_title",
+          "matches": true,
+          "bytes": 5007,
+          "sha256": "3315c1fe4fe4c3c3c01af9e6b302fb3a249f1b00d9c13e693517b5c1fcdc24e3"
+        },
+        {
+          "name": "europepmc_deoptimization_title",
+          "matches": true,
+          "bytes": 2779,
+          "sha256": "a2de2bc5d236428949b7fd74b024242ff61ee735a580639cf1a82bef431519e1"
+        },
+        {
+          "name": "github_cdgb_codon",
+          "matches": true,
+          "bytes": 69,
+          "sha256": "a9db2cf4f4a6f55599f861977936ded28d9bed2c085ee89907039c06a3e81558"
+        },
+        {
+          "name": "github_codon_deoptimization",
+          "matches": true,
+          "bytes": 100525,
+          "sha256": "863ad2c27208ef0d7c8a588b7c0ae8cb213f96121a089aaa966bfe99159243a8"
+        },
+        {
+          "name": "github_cdgb_protein_representation",
+          "matches": true,
+          "bytes": 69,
+          "sha256": "a9db2cf4f4a6f55599f861977936ded28d9bed2c085ee89907039c06a3e81558"
+        }
+      ]
+    },
+    "candidate_doi_identity_conflict": {
+      "pass": true,
+      "candidate_title": "CDGB: a deep learning framework for codon de-optimization directed by the protein representation model",
+      "doi_resolves_to_title": "Multimodal zero-shot learning of previously unseen epitranscriptomes from RNA-seq data",
+      "doi": "10.1093/bib/bbaf332"
+    },
+    "no_exact_scholarly_title_match": {
+      "pass": true,
+      "exact_matches": {},
+      "searched_sources": [
+        "crossref_candidate_title",
+        "crossref_cdgb_title",
+        "europepmc_cdgb_title",
+        "europepmc_deoptimization_title",
+        "openalex_cdgb_title"
+      ]
+    },
+    "no_official_repository_or_commit": {
+      "pass": true,
+      "github_total_counts": {
+        "github_cdgb_codon": 0,
+        "github_codon_deoptimization": 14,
+        "github_cdgb_protein_representation": 0
+      },
+      "note": "Repository search results cannot establish official ownership while the bibliographic identity itself is unresolved."
+    },
+    "build_and_execution_blocked": {
+      "pass": true,
+      "official_build_performed": false,
+      "official_execution_performed": false,
+      "official_sequence_output_count": 0,
+      "performance_result_count": 0
+    },
+    "bounded_negative_wording": {
+      "pass": true,
+      "method_invalid_claim": false,
+      "implementation_nonexistence_claim": false
+    },
+    "production_status_consistent": {
+      "pass": true,
+      "observed_status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "expected_status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED"
+    }
+  },
+  "independent_production_import": false,
+  "independent_recomputation_from_frozen_raw_responses": true,
+  "production_audit": "audits/20261118/RK05/cdgb_source_audit.json",
+  "production_audit_sha256": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691",
+  "official_execution_authorized": false,
+  "main_baseline_comparison": false,
+  "functional_ood": false,
+  "sota_claim": false
+}

@@ -7,7 +7,7 @@
     "8.1"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd",
+  "output_sha256": "cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -19,8 +19,9 @@
     "OOD",
     "wet-lab validation"
   ],
-  "schema_version": "a8-rk-paper-sync-v3",
+  "schema_version": "a8-rk-paper-sync-v4",
   "scientific_scope": {
+    "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
     "id3": "official bounded quick-test only; CPC STE defects retained",
     "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
     "rk07": "bounded cross-protein diagnostic only",
@@ -31,6 +32,9 @@
     "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open"
   },
   "source_paths": {
+    "cdgb_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_audit.json",
+    "cdgb_final": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_finalization.json",
+    "cdgb_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_independent_verification.json",
     "ct_final": "/home/codonflow-a8-rk/audits/20261118/RK03/codontransformer_finalization.json",
     "id3": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test.json",
     "id3_final": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test_finalization.json",
@@ -57,6 +61,9 @@
     "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json"
   },
   "source_sha256": {
+    "cdgb_audit": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691",
+    "cdgb_final": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2",
+    "cdgb_verify": "964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980",
     "ct_final": "e8cee66179c738dc23ebe2c082a4425502e92c61394ab4ef1f67ac6be386c58c",
     "id3": "b0a10e1af4b80cac6fa2cab34df860b5ba506283e37fd9967b55a16aa2036743",
     "id3_final": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",

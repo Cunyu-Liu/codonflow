@@ -187,6 +187,34 @@ def main() -> None:
     ]
     check("rnarl_negative_reproducibility_scope", all(s in text for s in rnarl_strings) and not rnarl["official_full_training_executed"], None)
 
+    cdgb = data["cdgb_audit"]
+    cdgbv = data["cdgb_verify"]
+    cdgbf = data["cdgb_final"]
+    cdgb_strings = [
+        cdgb["candidate"]["title"],
+        cdgb["candidate"]["doi_embedded_in_url"],
+        cdgb["candidate_doi_identity"]["crossref_title"],
+        f"**{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries**",
+        f"**{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**",
+        f"**{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**",
+        "No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established",
+        "not evidence that the CDGB method is invalid or that no implementation exists",
+        sha256(Path(audit["source_paths"]["cdgb_audit"])),
+        sha256(Path(audit["source_paths"]["cdgb_verify"])),
+        sha256(Path(audit["source_paths"]["cdgb_final"])),
+    ]
+    check(
+        "cdgb_source_identity_and_no_execution",
+        all(s in text for s in cdgb_strings)
+        and cdgb["candidate_doi_identity"]["conflict"]
+        and cdgbf["science_flags"]["official_sequence_output_count"] == 0
+        and cdgbf["science_flags"]["performance_result_count"] == 0
+        and not cdgbf["science_flags"]["official_execution_complete"]
+        and not cdgbf["science_flags"]["method_invalid_claim"]
+        and not cdgbf["science_flags"]["implementation_nonexistence_claim"],
+        {"expected_strings": len(cdgb_strings)},
+    )
+
     pending = [
         "five-species processed matrices are not available",
         "does not establish natural-CDS provenance, lambda strata, UTR/raw-read remapping, functional training, functional OOD",
@@ -202,7 +230,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v3",
+        "schema_version": "a8-rk-paper-independent-verification-v4",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

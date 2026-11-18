@@ -82,6 +82,9 @@ def main() -> None:
         "ld_verify": repo / "audits/20261118/RK05/lineardesign_independent_verification_v2.json",
         "ld_final": repo / "audits/20261118/RK05/lineardesign_finalization.json",
         "ld_v1_failure": repo / "audits/20261118/RK05/lineardesign_official_smoke_v1_failure.json",
+        "cdgb_audit": repo / "audits/20261118/RK05/cdgb_source_audit.json",
+        "cdgb_verify": repo / "audits/20261118/RK05/cdgb_source_independent_verification.json",
+        "cdgb_final": repo / "audits/20261118/RK05/cdgb_source_finalization.json",
         "rnarl_smoke": repo / "audits/20261118/RK05/rnarl_official_contract_smoke_v2.json",
         "rnarl_verify": repo / "audits/20261118/RK05/rnarl_official_independent_verification.json",
         "rnarl_qc": repo / "audits/20261118/RK03/rnarl_qc.json",
@@ -112,6 +115,9 @@ def main() -> None:
     ldv = data["ld_verify"]
     ldf = data["ld_final"]
     ld_fail = data["ld_v1_failure"]
+    cdgb = data["cdgb_audit"]
+    cdgbv = data["cdgb_verify"]
+    cdgbf = data["cdgb_final"]
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarlq = data["rnarl_qc"]
@@ -147,6 +153,12 @@ def main() -> None:
     require(ldf["status"] == "BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED" and ldf["passed_checks"] == ldf["check_count"] == 8, "LinearDesign finalization failed")
     require(ld_fail["status"] == "FAIL_INDEPENDENT_SCORER_CONVENTION_MISMATCH" and not ld_fail["production_report_written"], "LinearDesign v1 failure was not preserved")
     require(not ldf["science_flags"]["main_baseline_comparison"] and not ldf["science_flags"]["sota_claim"], "LinearDesign scope exceeded")
+    require(cdgb["status"] == "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED" and cdgb["query_count_succeeded"] == cdgb["query_count_expected"] == 9, "CDGB source audit incomplete")
+    require(cdgb["candidate_doi_identity"]["conflict"] and not cdgb["candidate_doi_identity"]["resolved"], "CDGB candidate DOI conflict missing")
+    require(cdgbv["status"] == "PASS" and cdgbv["checks_passed"] == cdgbv["checks_total"] == 8 and not cdgbv["independent_production_import"], "CDGB independent verification failed")
+    require(cdgbf["status"] == "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED" and cdgbf["checks_passed"] == cdgbf["checks_total"] == 6 and cdgbf["science_flags"]["paper_sync_ready"], "CDGB finalization failed")
+    require(cdgbf["science_flags"]["official_sequence_output_count"] == 0 and cdgbf["science_flags"]["performance_result_count"] == 0 and not cdgbf["science_flags"]["official_execution_complete"], "CDGB execution scope exceeded")
+    require(not cdgbf["science_flags"]["method_invalid_claim"] and not cdgbf["science_flags"]["implementation_nonexistence_claim"], "CDGB negative wording exceeded evidence")
     require(rnalrv["status"] == "PASS_NEGATIVE_REPRODUCIBILITY_AUDIT" and all(rnalrv["checks"].values()), "RNARL negative audit not verified")
     require(not rnarl["official_full_training_executed"] and not rnarl["paper_metrics_reproduced"], "RNARL availability scope exceeded")
     require(rnarlqv["status"] == "PASS" and rnarlqv["passed_checks"] == rnarlqv["check_count"] == 8 and rnarlqv["max_numeric_delta"] == 0.0, "RNARL full independent QC failed")
@@ -228,6 +240,8 @@ Independent raw-output verification passed **{ldv['passed_checks']}/{ldv['check_
 
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
+**CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
+
 The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending."""
 
     evidence_rows = [
@@ -240,6 +254,9 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("LinearDesign independent verifier v2", source_hashes["ld_verify"]),
         ("LinearDesign finalization", source_hashes["ld_final"]),
         ("LinearDesign v1 retained failure", source_hashes["ld_v1_failure"]),
+        ("CDGB source audit", source_hashes["cdgb_audit"]),
+        ("CDGB independent verifier", source_hashes["cdgb_verify"]),
+        ("CDGB finalization", source_hashes["cdgb_final"]),
         ("RNARL negative audit", source_hashes["rnarl_verify"]),
         ("RNARL full QC finalization", source_hashes["rnarl_final"]),
         ("RNARL corrected independent verifier", source_hashes["rnarl_qc_verify"]),
@@ -272,12 +289,13 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("RNARL official 21-file pair table contains" in text, "RNARL full QC result missing")
     require("five-species processed matrices are not available" in text, "VeloHARMO missing-species boundary missing")
     require("LinearDesign bounded official execution" in text, "LinearDesign bounded result missing")
+    require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v3",
+        "schema_version": "a8-rk-paper-sync-v4",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -291,6 +309,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
             "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
+            "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
             "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open",

@@ -1,0 +1,45 @@
+{
+  "protocol": "a8_rk05_cdgb_source_finalization_v1",
+  "created_at": "2026-11-18T19:25:27.089860+00:00",
+  "status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+  "checks": {
+    "production_source_audit_complete": true,
+    "independent_verification_pass": true,
+    "candidate_identity_conflict_preserved": true,
+    "official_execution_not_authorized_or_performed": true,
+    "bounded_scientific_wording": true,
+    "evidence_hashes_current": true
+  },
+  "checks_passed": 6,
+  "checks_total": 6,
+  "science_flags": {
+    "source_audit_complete": true,
+    "candidate_bibliographic_identity_resolved": false,
+    "candidate_doi_title_conflict": true,
+    "official_repository_verified": false,
+    "official_fixed_commit": null,
+    "official_build_complete": false,
+    "official_execution_complete": false,
+    "official_sequence_output_count": 0,
+    "performance_result_count": 0,
+    "main_baseline_comparison": false,
+    "functional_ood": false,
+    "sota_claim": false,
+    "method_invalid_claim": false,
+    "implementation_nonexistence_claim": false,
+    "ppt_record_ready": true,
+    "paper_sync_ready": true
+  },
+  "evidence": {
+    "audit": {
+      "path": "audits/20261118/RK05/cdgb_source_audit.json",
+      "sha256": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691"
+    },
+    "independent_verification": {
+      "path": "audits/20261118/RK05/cdgb_source_independent_verification.json",
+      "sha256": "964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980"
+    }
+  },
+  "conclusion": "CDGB remains excluded from official execution because the candidate bibliographic identity is unresolved and its embedded DOI resolves to another paper. This bounded source audit is complete; no official CDGB sequence, runtime, quality metric, main-baseline comparison, OOD result, or SOTA claim was produced.",
+  "next_gate": "Obtain an authoritative CDGB citation and author/publisher-linked official repository with an immutable commit before build or execution."
+}
