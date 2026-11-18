@@ -1,0 +1,108 @@
+{
+  "schema_version": "a8-rk03-veloharmo-source-tree-audit-v1",
+  "created_at": "2026-11-18T16:38:23.152121+00:00",
+  "status": "PASS_SOURCE_TREE_AUDIT_ONLY",
+  "repository": "https://github.com/BianBian2021/VeloHARMO",
+  "paper": "https://academic.oup.com/bib/article/27/5/bbag558/8885519",
+  "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "tree_hash": "578454a0c0f2fdc2dd4e735e6735505dede1518c",
+  "head_matches": true,
+  "git_lazy_fetch_disabled": true,
+  "tree_entry_count": 14,
+  "listed_matrix_archives": [
+    {
+      "path": "VeloBERT/E.coli.summary.add.pro.SS.txt.zip",
+      "mode": "100644",
+      "blob_id": "da059624f0f11ae3a1b4998869b30b7e02f88169"
+    },
+    {
+      "path": "VeloGRU/E.coli.summary.add.pro.SS.txt.zip",
+      "mode": "100644",
+      "blob_id": "da059624f0f11ae3a1b4998869b30b7e02f88169"
+    }
+  ],
+  "organism_matrix_availability": {
+    "E_coli": "two_same_named_archives_listed_content_not_materialized_or_qc_verified",
+    "Saccharomyces_cerevisiae": "no_processed_matrix_archive_in_fixed_tree",
+    "Pseudomonas_aeruginosa": "no_processed_matrix_archive_in_fixed_tree",
+    "Drosophila_melanogaster": "no_processed_matrix_archive_in_fixed_tree",
+    "Human": "no_processed_matrix_archive_in_fixed_tree"
+  },
+  "archive_bytes_and_content_verified": false,
+  "five_species_processed_matrices_complete": false,
+  "paper_metrics_independently_reproduced": false,
+  "model_training_or_sota_claim_authorized": false,
+  "all_tree_entries": [
+    {
+      "path": "Genetic_algorithm/E.coli.fold_0_best_network.pth",
+      "mode": "100644",
+      "blob_id": "142fa6c3d508404f49d2bed6d78e0298d7ffdb93"
+    },
+    {
+      "path": "Genetic_algorithm/ga_velocity_pattern.add.time.pearson.ss.py",
+      "mode": "100644",
+      "blob_id": "47039e2eceb50b9fa0025d81ecbd34fec2298e4d"
+    },
+    {
+      "path": "Genetic_algorithm/yeast.fold_0_best_network.pth",
+      "mode": "100644",
+      "blob_id": "6340946cd2cd5430b854eb1cc7898469f98f65b1"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "blob_id": "059840a932563c73a2a333ddf7e8241dca117ae2"
+    },
+    {
+      "path": "VeloBERT/E.coli.summary.add.pro.SS.txt.zip",
+      "mode": "100644",
+      "blob_id": "da059624f0f11ae3a1b4998869b30b7e02f88169"
+    },
+    {
+      "path": "VeloBERT/dataset.py",
+      "mode": "100644",
+      "blob_id": "decd8d0a91cb6085bfd2505d9ec684908c0f31ca"
+    },
+    {
+      "path": "VeloBERT/train.py",
+      "mode": "100644",
+      "blob_id": "78878c37d4dba6ba23949c69728e995a5669eee5"
+    },
+    {
+      "path": "VeloBERT/utils.py",
+      "mode": "100644",
+      "blob_id": "3a951648009d6f7de6379ea8e6da070d41eff406"
+    },
+    {
+      "path": "VeloGRU/E.coli.summary.add.pro.SS.txt.zip",
+      "mode": "100644",
+      "blob_id": "da059624f0f11ae3a1b4998869b30b7e02f88169"
+    },
+    {
+      "path": "VeloGRU/VeloGRU_data.py",
+      "mode": "100644",
+      "blob_id": "4633dc1ee129e355e6c3d34487a926e2228306b8"
+    },
+    {
+      "path": "VeloGRU/VeloGRU_train.py",
+      "mode": "100644",
+      "blob_id": "84279674301e67ed7f38c2a1984ecdebbf2d4747"
+    },
+    {
+      "path": "VeloGRU/models.py",
+      "mode": "100644",
+      "blob_id": "6baa893f0b620724683e2244695a1cb371892ad5"
+    },
+    {
+      "path": "VeloGRU/run.py",
+      "mode": "100644",
+      "blob_id": "a34afecd2c8af32dac4fcfa5bd4012d1c8a6d6f2"
+    },
+    {
+      "path": "VeloGRU/utils.py",
+      "mode": "100644",
+      "blob_id": "4cc5bfd54485358aa111814b48439a974c2321af"
+    }
+  ],
+  "scope": "Fixed-commit tree and blob-ID audit only; the listed E. coli ZIP payloads were not represented as downloaded, decompressed, or biologically QC-verified."
+}
