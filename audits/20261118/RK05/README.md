@@ -341,7 +341,7 @@ $PY scripts/a8_rk05_ensembledesign_official_smoke.py \
   --audit <NEW_EXAMPLE_AUDIT_JSON>
 
 $PY scripts/a8_rk05_ensembledesign_official_smoke.py \
-  --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow1031/codonflow/corpora/a6_benchmark/unique18.fasta \
+  --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta \
   --record-id C01H6.8b.1 --source-dir "$SRC" \
   --materialization "$R/ensembledesign_materialization.json" \
   --build-report "$R/ensembledesign_build.json" --python-deps "$DEPS" \
@@ -366,3 +366,20 @@ $PY -m unittest discover -s tests -p 'test_a8_rk05_ensembledesign_official_smoke
 ```
 
 Evidence: `ensembledesign_materialization.json`, `ensembledesign_build.json`, retained `ensembledesign_official_example_smoke.json` (v1 failure), `ensembledesign_official_example_smoke_v2.json`, `ensembledesign_c01_smoke_v1.json`, both independent reports, `ensembledesign_finalization.json`, and `ensembledesign_unit_tests.txt`. The two independent-verifier commands above verify the frozen production reports. Use new output and audit paths for every fresh execution because the official entry point deletes a same-named record subdirectory; do not overwrite the frozen v1/v2 evidence.
+
+## Online PPT record and verification
+
+The verified result was appended to the existing online deck as slide 73, `pgO`, revision 35. Candidate preflight passed **8/8 checks** against the frozen JSON reports. Independent post-write verification passed **10/10 checks**: exactly one slide was appended, all previous 72 slide IDs and semantic XML remained unchanged, the four-row table was recomputed from the production reports, and the EFE/MFE and bounded-scope boundaries were retained. Scientific/A8 v5 evidence is in commit `5ba0a8848ccf701f5e070b61fe357ca6d05eeb3c`; PPT verifier/report evidence is in commit `9986974ac46cc65aaf0708e509e9ad5ff2cfb2af`.
+
+The candidate slide, preflight log, complete baseline/readback XML, and write responses are archived under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ensembledesign_v1/`. To reproduce the independent readback audit without changing the online deck:
+
+```bash
+PPT=$ART/ppt_ensembledesign_v1
+$PY scripts/a8_rk05_verify_ensembledesign_ppt.py \
+  --baseline-xml "$PPT/ensembledesign-baseline-v01.xml" \
+  --baseline-response "$PPT/ensembledesign-baseline-response-v01.json" \
+  --readback-xml "$PPT/ensembledesign-readback-v02.xml" \
+  --readback-response "$PPT/ensembledesign-readback-response-v02.json" \
+  --add-response "$PPT/ensembledesign-add-response-v01.json" \
+  --evidence-dir "$R" --output <NEW_PPT_VERIFICATION_JSON>
+```

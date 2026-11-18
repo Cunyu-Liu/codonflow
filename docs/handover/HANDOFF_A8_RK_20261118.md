@@ -391,4 +391,26 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 在线主稿在 71 页 revision 33 基线上只追加第 72 页，slide ID=`pgR`，写入后 revision=34。页面包含 9/9 查询、0 个学术精确题名匹配、8/8 独立 PASS、6/6 finalization、Crossref/scholarly/GitHub 三行证据表、实际 DOI 题名和零执行边界；没有性能图或方法排名。
 - `audits/20261118/RK05/cdgb_ppt_verification.json` 为 **PASS，10/10 checks**：整稿 72 页，前 71 页 slide ID 与 ID-independent 语义 XML 全部不变；新页关键文本、精确 4×3 表格、4 段演讲者备注、页码和画布边界全部通过。baseline/readback XML 与完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/`。
 - 操作记录：第一次本地 slide-only preflight 因本地证据 JSON 相对路径不存在而未完成，但同一 shell 的后续 add 请求已返回 `pgR`；没有重复追加。最终验收不依赖该 incomplete preflight，而依赖远端冻结报告与独立整稿写后复核。
-- 当前在线主稿真实状态为 **72 页、revision 34、末页 `pgR`**。本 PPT 验证报告、REGISTRY/tasks 和本 handoff 更新随后续文档提交推送。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK06 dense/full matrix、功能 OOD、生成器、SOTA 和湿实验仍未关闭。
+- CDGB 完成时在线主稿状态为 **72 页、revision 34、末页 `pgR`**。本 PPT 验证报告、REGISTRY/tasks 和本 handoff 更新随后续文档提交推送。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK06 dense/full matrix、功能 OOD、生成器、SOTA 和湿实验仍未关闭；EnsembleDesign 后续状态见第 22 节。
+
+## 22. EnsembleDesign 官方 bounded smoke、A8 v5 与 PPT 第 73 页
+
+### 固定来源、真实执行与独立复核
+
+- 官方 `LinearFold/EnsembleDesign` 固定 commit=`cd9324f9574a754063d421e76670bc9fd7555324`；codeload ZIP 为 325,276 bytes、75 members、CRC PASS，SHA256=`0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2`。源码位于 `/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324`，固定归档、构建日志和 raw outputs 均在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`。
+- 三次 `make` 分别记录返回码和日志；首轮报告进程因未把隔离 `python-gflags==3.1.2` 加入自身 `sys.path` 而未生成构建报告，原始日志保留，随后三次 confirmation build 完成，最终 `BUILD_COMPLETE`。官方源码未修改。
+- bounded 参数为 beam_size=100、lr=0.03、epsilon=0.5、num_iters=3、num_runs=2、num_threads=4。官方 example v2 为 3 records/6 runs/4 unique CDS，总耗时 `8.044502989854664 s`；三条 best EFE=`-18.00/-43.71/-70.29 kcal/mol`，与 README 精确一致。C01H6.8b.1 为 1 record/2 runs/2 unique CDS，总耗时 `52.65070143900812 s`，best run=1、EFE=`-269.97 kcal/mol`，135 aa 对应 405 nt。
+- 官方输出不含额外 stop。首轮 example wrapper v1 错假设额外 terminal stop，官方进程 returncode=0 但包装器 stop-gate 真实失败；v1 raw/report 原样保留。v2 只修正该包装器契约，源码、参数和 scorer tolerance 未变。
+- EFE 由官方 LinearPartition `-V -d0 -b0` 与 ViennaRNA 2.7.2、37°C、`dangles=0` 独立核对。**EFE 不是 LinearDesign MFE，不能直接排名。** example/C01 独立 verifier 均从 raw stdout/results/run 文件重算，分别 **13/13 PASS**；单元测试 **11/11 PASS**，finalization **11/11 PASS**。
+
+### A8 v5、复现和 Git 证据
+
+- A8 生成器/verifier 升级为 v5，新增五份 EnsembleDesign 冻结来源、example/C01 EFE 表、成本、双独立复核、finalization 和失败/边界。A7 未改；A8 v5 SHA256=`505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca`，独立 **16/16 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
+- 生产/独立/finalizer/测试、物化/构建/执行/复核/finalization 报告、RK05 README、A8 v5 和同步审计以 commit=`5ba0a8848ccf701f5e070b61fe357ca6d05eeb3c` 推送，本地与 GitHub `a8-rk` HEAD 一致。复现命令中的 C01 benchmark 路径已按冻结报告和实际文件 SHA 核对为 `/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta`。
+
+### PPT 写后验收与当前续作
+
+- 结果经独立验收后才写入在线主稿。候选页 preflight **8/8 PASS**；在 72 页 revision 34 基线上只追加第 73 页，slide ID=`pgO`，写入后 revision=35。页面含 8/8 runs、6 unique CDS、双 13/13、11/11 四个 KPI，seq1/seq2/seq3/C01 四行 EFE 表、bounded 参数、aggregate wall time、v1 retained failure 和 EFE≠MFE 边界。
+- `audits/20261118/RK05/ensembledesign_ppt_verification.json` 为 **PASS，10/10 checks**：整稿 73 页，前 72 页 slide ID 与 ID-independent 语义 XML 全部不变；新页表格由冻结 JSON 重算，4 段备注、页码、画布边界与科学边界通过。baseline/readback XML、候选页和完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ensembledesign_v1/`。
+- PPT verifier 与验证报告以 commit=`9986974ac46cc65aaf0708e509e9ad5ff2cfb2af` 推送，本地与 GitHub `a8-rk` HEAD 一致。当前在线主稿真实状态为 **73 页、revision 35、末页 `pgO`**。
+- 本任务只关闭官方 example + 单 C01 的 bounded smoke。没有 matched LinearDesign comparison、dense budget、完整强 baseline 主矩阵、功能 OOD 或 SOTA；RK03 剩余机制维度、RK06 dense/full matrix、CodonFlow-RK 生成器、完整 Fig.1–7 和前瞻湿实验仍未关闭。
