@@ -7,7 +7,7 @@
     "8.1"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca",
+  "output_sha256": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -19,9 +19,10 @@
     "OOD",
     "wet-lab validation"
   ],
-  "schema_version": "a8-rk-paper-sync-v5",
+  "schema_version": "a8-rk-paper-sync-v6",
   "scientific_scope": {
     "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
+    "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
     "ensembledesign": "official README example and single-C01 bounded smoke only; EFE is not MFE; no matched comparison or ranking",
     "id3": "official bounded quick-test only; CPC STE defects retained",
     "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
@@ -37,6 +38,10 @@
     "cdgb_final": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_finalization.json",
     "cdgb_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_independent_verification.json",
     "ct_final": "/home/codonflow-a8-rk/audits/20261118/RK03/codontransformer_finalization.json",
+    "ct_final_smoke": "/home/codonflow-a8-rk/audits/20261118/RK05/codontransformer_finalization_v1.json",
+    "ct_materialization": "/home/codonflow-a8-rk/audits/20261118/RK05/codontransformer_materialization.json",
+    "ct_smoke": "/home/codonflow-a8-rk/audits/20261118/RK05/codontransformer_official_smoke_v1.json",
+    "ct_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/codontransformer_independent_verification_v1.json",
     "ed_c01": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_c01_smoke_v1.json",
     "ed_c01_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_c01_independent_v1.json",
     "ed_example": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_official_example_smoke_v2.json",
@@ -71,6 +76,10 @@
     "cdgb_final": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2",
     "cdgb_verify": "964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980",
     "ct_final": "e8cee66179c738dc23ebe2c082a4425502e92c61394ab4ef1f67ac6be386c58c",
+    "ct_final_smoke": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac",
+    "ct_materialization": "91ab29709fadcb3b75e78d779c5b03be9bb093b1e337f981a63cba7cefa90501",
+    "ct_smoke": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+    "ct_verify": "c9fb748bacafe6e57a548dcb0f93e882962c8605757d526b404d27e620e64d31",
     "ed_c01": "b72d17ee16f4afe148430f735ee65cecbf8728fb7b98ddac23469937ee0a98b9",
     "ed_c01_verify": "bf73ff5156526f55e5882e94d16f511293db4421b23afca7cb38c816cbab34dd",
     "ed_example": "eb86291b020da35c2338715d37803882f1a05e9fe0631077e3cd20159e023e18",

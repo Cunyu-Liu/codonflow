@@ -185,7 +185,7 @@ def main() -> None:
     edv = data["ed_example_verify"]
     edcv = data["ed_c01_verify"]
     edf = data["ed_final"]
-    check("ensembledesign_bounded_execution_and_scope", {
+    ed_checks = {
         "three_example_records_six_runs_four_unique": ed["input_record_count"] == 3 and ed["run_count"] == 6 and ed["unique_output_sequences"] == 4 and ed["official_example"]["pass"],
         "example_efe_values": [r["best_official_efe_kcal_mol"] for r in ed["records"]] == [-18.0, -43.71, -70.29],
         "c01_one_record_two_runs_two_unique": edc["input_record_count"] == 1 and edc["run_count"] == 2 and edc["unique_output_sequences"] == 2 and edc["records"][0]["best_official_efe_kcal_mol"] == -269.97 and edc["records"][0]["runs"][0]["sequence_length_nt"] == 405,
@@ -200,7 +200,43 @@ def main() -> None:
             "ed_c01_verify": "ensembledesign_c01_independent_v1.json",
             "ed_final": "ensembledesign_finalization.json",
         }.items()),
-    })
+    }
+    check("ensembledesign_bounded_execution_and_scope", all(ed_checks.values()), ed_checks)
+
+    cts = data["ct_smoke"]
+    ctsv = data["ct_verify"]
+    ctsf = data["ct_final_smoke"]
+    ctm = data["ct_materialization"]
+    ct_expected_rows = [f"| {r['record_id']} | {r['mode']} | {r['qc']['protein_aa']} | {r['qc']['dna_nt']} | {'PASS' if r['qc']['legal_synonymous_cds'] else 'FAIL'} |" for r in cts["runs"]]
+    ct_strings = [
+        cts["source_commit"], cts["model_commit"], cts["benchmark_record"],
+        "**358,342,232 bytes**", "23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd",
+        "**2/2 legal synonymous CDSs**", f"**{cts['unique_sequence_count']} unique CDSs across four runs**",
+        f"**{cts['model_load_seconds']:.3f} s**", f"**{cts['total_inference_seconds']:.3f} s**",
+        f"**{ctsv['passed_checks']}/{ctsv['check_count']} checks**", f"**{ctsf['passed_checks']}/{ctsf['check_count']} checks**",
+        "not a matched MFE/EFE comparison", "not evidence that the constraint option improves performance",
+        sha256(Path(audit["source_paths"]["ct_smoke"])),
+        sha256(Path(audit["source_paths"]["ct_verify"])),
+        sha256(Path(audit["source_paths"]["ct_final_smoke"])),
+        sha256(Path(audit["source_paths"]["ct_materialization"])),
+    ] + ct_expected_rows
+    ct_checks = {
+        "rendered_from_frozen_json": all(s in text for s in ct_strings),
+        "four_default_and_constrained_runs": len(cts["runs"]) == 4 and cts["default_run_count"] == cts["constrained_run_count"] == 2,
+        "official_example_exact": cts["official_example_readme_exact_match"] and cts["official_example_pass"],
+        "translation_and_unique_outputs": cts["default_legal_count"] == cts["constrained_legal_count"] == 2 and cts["unique_sequence_count"] == 2 and all(r["qc"]["legal_synonymous_cds"] for r in cts["runs"]),
+        "materialization": ctm["status"] == "COMPLETE" and len(ctm["model"]["files"]) == 8,
+        "independent_reexecution": ctsv["status"] == "PASS" and ctsv["passed_checks"] == ctsv["check_count"] == 13 and ctsv["max_numeric_delta"] == 0.0,
+        "finalization": ctsf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ctsf["passed_checks"] == ctsf["check_count"] == 10,
+        "scope": not cts["main_baseline_comparison"] and not cts["dense_budget_complete"] and not cts["functional_ood"] and not cts["sota_claim"],
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "ct_smoke": "codontransformer_official_smoke_v1.json",
+            "ct_verify": "codontransformer_independent_verification_v1.json",
+            "ct_final_smoke": "codontransformer_finalization_v1.json",
+            "ct_materialization": "codontransformer_materialization.json",
+        }.items()),
+    }
+    check("codontransformer_bounded_execution_and_scope", all(ct_checks.values()), ct_checks)
 
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
@@ -256,7 +292,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v5",
+        "schema_version": "a8-rk-paper-independent-verification-v6",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

@@ -163,6 +163,17 @@ Independent raw-output verification passed **10/10 checks** with maximum numeric
 
 The same bounded protocol then executed `C01H6.8b.1` (135 aa) for **2 runs**, producing **2 unique CDSs** in **52.651 s**. Best run 1 had official EFE **-269.97 kcal/mol** and CDS length **405 nt**; no extra terminal stop was appended. Independent raw-output and scorer verification passed **13/13** example checks and **13/13** C01 checks, both with maximum numeric delta **0.0**; finalization passed **11/11 checks**. The initial stop-contract wrapper failure remains preserved. EFE is not LinearDesign MFE, so these values do not authorize a direct cross-method ranking. No matched LinearDesign comparison, dense-budget evaluation, functional OOD result, or SOTA claim was produced.
 
+**CodonTransformer bounded official execution.** The fixed source commit `4a447b01dab860feb81b647ff1ff88ad598517f4` and model revision `9744dcc920d813066391fc828d7a590207f148e8` were materialized with eight model files; `model.safetensors` has **358,342,232 bytes** and SHA256 `23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd`. Four deterministic GPU inferences covered the official README example and `C01H6.8b.1` under both the official default and `match_protein=True` modes:
+
+| Record | Mode | Protein (aa) | CDS including stop (nt) | Translation QC |
+|---|---|---:|---:|---|
+| official_example | official_default | 70 | 213 | PASS |
+| official_example | match_protein | 70 | 213 | PASS |
+| C01H6.8b.1 | official_default | 135 | 408 | PASS |
+| C01H6.8b.1 | match_protein | 135 | 408 | PASS |
+
+The official-example default output matched the README sequence exactly. Default and constrained modes each produced **2/2 legal synonymous CDSs**, with one terminal stop and no internal stop. The two modes returned identical sequences for each protein, giving **2 unique CDSs across four runs**; this is not evidence that the constraint option improves performance. Model loading took **4.439 s** and summed inference time was **2.033 s**, including first-call warmup; these are not time-matched baseline costs. Independent deterministic re-execution and raw-output verification passed **13/13 checks**, helper tests passed **8/8**, and finalization passed **10/10 checks**. This remains an official-example plus single-C01 bounded smoke, not a matched MFE/EFE comparison, dense-budget evaluation, main baseline matrix, functional OOD result, or SOTA claim.
+
 **RNARL fixed-source availability audit.** At public commit `88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5`, exact entry-point smoke and independent AST checks passed **16/16 checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **9 called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `CDGB: a deep learning framework for codon de-optimization directed by the protein representation model` was assessed through **9/9 frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `10.1093/bib/bbaf332`, instead resolves to `Multimodal zero-shot learning of previously unseen epitranscriptomes from RNA-seq data` in Briefings in Bioinformatics volume 26 issue 4. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned 14 unrelated candidates and does not establish official ownership. Independent verification passed **8/8 checks**, and finalization passed **6/6 checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -211,6 +222,10 @@ The working-manuscript values above were rendered from the following frozen arti
 | EnsembleDesign example independent verifier | `b6c24a7f94ef5786cd3fe11a2c802bde79ea3318539279f88fb4335b4fe2a1d7` |
 | EnsembleDesign C01 independent verifier | `bf73ff5156526f55e5882e94d16f511293db4421b23afca7cb38c816cbab34dd` |
 | EnsembleDesign finalization | `226cf4b15b0bdfac35a846941fc17986e5f1f3a76851ed33e106946d8b8a4fde` |
+| CodonTransformer materialization | `91ab29709fadcb3b75e78d779c5b03be9bb093b1e337f981a63cba7cefa90501` |
+| CodonTransformer bounded production | `cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1` |
+| CodonTransformer independent verifier | `c9fb748bacafe6e57a548dcb0f93e882962c8605757d526b404d27e620e64d31` |
+| CodonTransformer finalization | `39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac` |
 | CDGB source audit | `dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691` |
 | CDGB independent verifier | `964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980` |
 | CDGB finalization | `dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2` |

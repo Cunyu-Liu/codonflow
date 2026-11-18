@@ -1,9 +1,9 @@
 {
-  "check_count": 16,
+  "check_count": 17,
   "checks": [
     {
       "detail": {
-        "sources": 32
+        "sources": 36
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca",
+      "detail": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -77,8 +77,32 @@
       "pass": true
     },
     {
-      "detail": null,
+      "detail": {
+        "bounded_elapsed_values": true,
+        "c01_one_record_two_runs_two_unique": true,
+        "example_efe_values": true,
+        "finalization": true,
+        "frozen_sources": true,
+        "independent_checks": true,
+        "science_boundaries": true,
+        "three_example_records_six_runs_four_unique": true
+      },
       "name": "ensembledesign_bounded_execution_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "finalization": true,
+        "four_default_and_constrained_runs": true,
+        "frozen_sources": true,
+        "independent_reexecution": true,
+        "materialization": true,
+        "official_example_exact": true,
+        "rendered_from_frozen_json": true,
+        "scope": true,
+        "translation_and_unique_outputs": true
+      },
+      "name": "codontransformer_bounded_execution_and_scope",
       "pass": true
     },
     {
@@ -107,12 +131,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca",
-  "passed_checks": 16,
+  "paper_sha256": "1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35",
+  "passed_checks": 17,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v5",
+  "schema_version": "a8-rk-paper-independent-verification-v6",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "14c9f10b39b0b89508b0fd0f1d29b6794e6d844675816a7ff5f03b98dd004165"
+  "sync_audit_sha256": "0520d93610769ccb2906505d6ceb26dc78ae3f731183bdd8569f6c1d783e59d1"
 }

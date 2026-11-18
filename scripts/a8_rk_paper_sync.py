@@ -87,6 +87,10 @@ def main() -> None:
         "ed_example_verify": repo / "audits/20261118/RK05/ensembledesign_official_example_independent_v2.json",
         "ed_c01_verify": repo / "audits/20261118/RK05/ensembledesign_c01_independent_v1.json",
         "ed_final": repo / "audits/20261118/RK05/ensembledesign_finalization.json",
+        "ct_smoke": repo / "audits/20261118/RK05/codontransformer_official_smoke_v1.json",
+        "ct_verify": repo / "audits/20261118/RK05/codontransformer_independent_verification_v1.json",
+        "ct_final_smoke": repo / "audits/20261118/RK05/codontransformer_finalization_v1.json",
+        "ct_materialization": repo / "audits/20261118/RK05/codontransformer_materialization.json",
         "cdgb_audit": repo / "audits/20261118/RK05/cdgb_source_audit.json",
         "cdgb_verify": repo / "audits/20261118/RK05/cdgb_source_independent_verification.json",
         "cdgb_final": repo / "audits/20261118/RK05/cdgb_source_finalization.json",
@@ -125,6 +129,10 @@ def main() -> None:
     edv = data["ed_example_verify"]
     edcv = data["ed_c01_verify"]
     edf = data["ed_final"]
+    cts = data["ct_smoke"]
+    ctsv = data["ct_verify"]
+    ctsf = data["ct_final_smoke"]
+    ctm = data["ct_materialization"]
     cdgb = data["cdgb_audit"]
     cdgbv = data["cdgb_verify"]
     cdgbf = data["cdgb_final"]
@@ -170,6 +178,13 @@ def main() -> None:
     require(edv["max_numeric_delta"] == edcv["max_numeric_delta"] == 0.0 and not edv["independent_production_import"] and not edcv["independent_production_import"], "EnsembleDesign independent recomputation contract changed")
     require(edf["status"] == "PASS" and edf["passed_checks"] == edf["check_count"] == 11 and edf["task_completion_authorized"], "EnsembleDesign finalization failed")
     require(not edf["main_baseline_matrix_closed"] and not edf["functional_ood_closed"] and not edf["sota_claim"] and not ed["matched_lineardesign_comparison"] and not edc["matched_lineardesign_comparison"], "EnsembleDesign scientific scope exceeded")
+    require(cts["status"] == "BOUNDED_OFFICIAL_EXECUTION_COMPLETE" and len(cts["runs"]) == 4 and cts["official_example_readme_exact_match"], "CodonTransformer bounded execution incomplete")
+    require(cts["default_legal_count"] == cts["default_run_count"] == 2 and cts["constrained_legal_count"] == cts["constrained_run_count"] == 2, "CodonTransformer translation contract failed")
+    require(cts["unique_sequence_count"] == 2 and cts["source_commit"] == "4a447b01dab860feb81b647ff1ff88ad598517f4" and cts["model_commit"] == "9744dcc920d813066391fc828d7a590207f148e8", "CodonTransformer source/model/output identity changed")
+    require(ctsv["status"] == "PASS" and ctsv["passed_checks"] == ctsv["check_count"] == 13 and ctsv["max_numeric_delta"] == 0.0, "CodonTransformer independent verification failed")
+    require(ctsf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ctsf["passed_checks"] == ctsf["check_count"] == 10, "CodonTransformer finalization failed")
+    require(ctm["status"] == "COMPLETE" and len(ctm["model"]["files"]) == 8, "CodonTransformer materialization incomplete")
+    require(not cts["main_baseline_comparison"] and not cts["dense_budget_complete"] and not cts["functional_ood"] and not cts["sota_claim"], "CodonTransformer scientific scope exceeded")
     require(cdgb["status"] == "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED" and cdgb["query_count_succeeded"] == cdgb["query_count_expected"] == 9, "CDGB source audit incomplete")
     require(cdgb["candidate_doi_identity"]["conflict"] and not cdgb["candidate_doi_identity"]["resolved"], "CDGB candidate DOI conflict missing")
     require(cdgbv["status"] == "PASS" and cdgbv["checks_passed"] == cdgbv["checks_total"] == 8 and not cdgbv["independent_production_import"], "CDGB independent verification failed")
@@ -204,6 +219,7 @@ def main() -> None:
     ld_rows = "\n".join(f"| {r['lambda']:.1f} | {r['official_mfe_kcal_mol']:.2f} | {r['official_cai']:.3f} | {r['elapsed_s']:.3f} |" for r in ld["runs"])
     ed_rows = "\n".join(f"| {r['record_id']} | {r['protein_length_aa']} | {r['best_run_id']} | {r['best_official_efe_kcal_mol']:.2f} |" for r in ed["records"])
     ed_c01_record = edc["records"][0]
+    ct_rows = "\n".join(f"| {r['record_id']} | {r['mode']} | {r['qc']['protein_aa']} | {r['qc']['dna_nt']} | {'PASS' if r['qc']['legal_synonymous_cds'] else 'FAIL'} |" for r in cts["runs"])
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -265,6 +281,14 @@ Independent raw-output verification passed **{ldv['passed_checks']}/{ldv['check_
 
 The same bounded protocol then executed `{edc['benchmark']['record_id']}` ({ed_c01_record['protein_length_aa']} aa) for **{edc['run_count']} runs**, producing **{edc['unique_output_sequences']} unique CDSs** in **{edc['total_elapsed_s']:.3f} s**. Best run {ed_c01_record['best_run_id']} had official EFE **{ed_c01_record['best_official_efe_kcal_mol']:.2f} kcal/mol** and CDS length **{ed_c01_record['runs'][0]['sequence_length_nt']} nt**; no extra terminal stop was appended. Independent raw-output and scorer verification passed **{edv['passed_checks']}/{edv['check_count']}** example checks and **{edcv['passed_checks']}/{edcv['check_count']}** C01 checks, both with maximum numeric delta **0.0**; finalization passed **{edf['passed_checks']}/{edf['check_count']} checks**. The initial stop-contract wrapper failure remains preserved. EFE is not LinearDesign MFE, so these values do not authorize a direct cross-method ranking. No matched LinearDesign comparison, dense-budget evaluation, functional OOD result, or SOTA claim was produced.
 
+**CodonTransformer bounded official execution.** The fixed source commit `{cts['source_commit']}` and model revision `{cts['model_commit']}` were materialized with eight model files; `model.safetensors` has **358,342,232 bytes** and SHA256 `23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd`. Four deterministic GPU inferences covered the official README example and `{cts['benchmark_record']}` under both the official default and `match_protein=True` modes:
+
+| Record | Mode | Protein (aa) | CDS including stop (nt) | Translation QC |
+|---|---|---:|---:|---|
+{ct_rows}
+
+The official-example default output matched the README sequence exactly. Default and constrained modes each produced **2/2 legal synonymous CDSs**, with one terminal stop and no internal stop. The two modes returned identical sequences for each protein, giving **{cts['unique_sequence_count']} unique CDSs across four runs**; this is not evidence that the constraint option improves performance. Model loading took **{cts['model_load_seconds']:.3f} s** and summed inference time was **{cts['total_inference_seconds']:.3f} s**, including first-call warmup; these are not time-matched baseline costs. Independent deterministic re-execution and raw-output verification passed **{ctsv['passed_checks']}/{ctsv['check_count']} checks**, helper tests passed **8/8**, and finalization passed **{ctsf['passed_checks']}/{ctsf['check_count']} checks**. This remains an official-example plus single-C01 bounded smoke, not a matched MFE/EFE comparison, dense-budget evaluation, main baseline matrix, functional OOD result, or SOTA claim.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -286,6 +310,10 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("EnsembleDesign example independent verifier", source_hashes["ed_example_verify"]),
         ("EnsembleDesign C01 independent verifier", source_hashes["ed_c01_verify"]),
         ("EnsembleDesign finalization", source_hashes["ed_final"]),
+        ("CodonTransformer materialization", source_hashes["ct_materialization"]),
+        ("CodonTransformer bounded production", source_hashes["ct_smoke"]),
+        ("CodonTransformer independent verifier", source_hashes["ct_verify"]),
+        ("CodonTransformer finalization", source_hashes["ct_final_smoke"]),
         ("CDGB source audit", source_hashes["cdgb_audit"]),
         ("CDGB independent verifier", source_hashes["cdgb_verify"]),
         ("CDGB finalization", source_hashes["cdgb_final"]),
@@ -322,13 +350,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("five-species processed matrices are not available" in text, "VeloHARMO missing-species boundary missing")
     require("LinearDesign bounded official execution" in text, "LinearDesign bounded result missing")
     require("EnsembleDesign bounded official execution" in text and "EFE is not LinearDesign MFE" in text and "No matched LinearDesign comparison" in text, "EnsembleDesign bounded result or scope missing")
+    require("CodonTransformer bounded official execution" in text and "2/2 legal synonymous CDSs" in text and "not a matched MFE/EFE comparison" in text, "CodonTransformer bounded result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v5",
+        "schema_version": "a8-rk-paper-sync-v6",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -343,6 +372,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "id3": "official bounded quick-test only; CPC STE defects retained",
             "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
             "ensembledesign": "official README example and single-C01 bounded smoke only; EFE is not MFE; no matched comparison or ranking",
+            "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
             "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
