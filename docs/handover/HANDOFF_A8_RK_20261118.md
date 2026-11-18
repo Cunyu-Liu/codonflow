@@ -277,4 +277,5 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 ### PPT 与续作入口
 
 - 既有在线 deck 第 66 页=`pgL`，revision 28，标题为 `RK-05 | Public RNARL Snapshot Is Not Directly Runnable`。写入后重新读取真实 smoke/独立报告，数值合同通过；66 页全文回读通过，前 65 页 slide ID 与语义 XML 均未改变。页面明确保留负向边界，无训练/生成/论文指标/SOTA/主比较授权。
+- CodonTransformer 全量结果已追加第 67 页=`pgy`，revision 29。页面记录固定 raw、1,001,197/449,655 rows、164/40 organisms、排除原因、重复、8/8 独立 PASS 与 finalization PASS；回读确认前 66 页 slide ID 和语义 XML 未改变，关键数值及 bounded 边界均在。
 - 下一步只认真实 finalization 报告、final manifest、raw/quarantine 实物和独立 verifier；partial/prefix/source-tree/negative-availability 审计均不得冒充全量数据或模型性能。RK-03、RK-05 强 baseline 矩阵、RK-G0 及后续机制/生成/OOD/论文 gates 仍未关闭。

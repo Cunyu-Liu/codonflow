@@ -146,6 +146,8 @@ $PY -m scripts.a8_rk03_verify_ribomimo \
 
 `codontransformer_independent_verification.json` 为 **8/8 PASS**，不导入生产模块，从 raw 逐行重算翻译、token、accession 坐标、clean 精确集合、计数、重复、分布和 artifact SHA；最大数值差=0。`codontransformer_finalization.json` 为 **PASS**，确认 `bounded_natural_sequence_distribution_ready=true`、`functional_training_authorized=false`、`functional_ood_claim_authorized=false`。
 
+该子项只授权 bounded 自然 DNA–protein 序列分布使用，不提供功能标签、宿主匹配 CAI、训练模型、功能 OOD、生成质量或 SOTA 证据。结果已写入既有在线 deck 第 67 页（`pgy`，revision 29）；回读确认前 66 页 slide ID 和语义 XML 均未改变，核验记录为 `codontransformer_ppt_verification.json`。
+
 报告中的 `config_sha256=01a20b19…` 是全量运行时的配置快照；后续 commit `895458f1` 只激活 RNARL 21 文件的 expected_bytes，未改变 CodonTransformer source record、raw bytes 或 raw SHA。独立行级 QC 不等于重新下载并核对每一条 NCBI accession。
 
 复现命令：
