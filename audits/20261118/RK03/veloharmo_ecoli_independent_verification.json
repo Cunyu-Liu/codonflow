@@ -1,0 +1,68 @@
+{
+  "schema_version": "a8-rk03-veloharmo-independent-verification-v1",
+  "created_at": "2026-11-18T18:41:40.096127+00:00",
+  "status": "PASS",
+  "independent_production_import": false,
+  "checks": [
+    {
+      "name": "fixed_outer_inner_archive_and_matrix",
+      "pass": true,
+      "detail": {
+        "matrix_bytes": 38906084,
+        "matrix_sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f"
+      }
+    },
+    {
+      "name": "all_rows_independent_recompute",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "clean_exact_ordered_record_set",
+      "pass": true,
+      "detail": {
+        "clean_records": 1170
+      }
+    },
+    {
+      "name": "summary_counts_dimensions_and_distributions",
+      "pass": true,
+      "detail": {
+        "errors": [],
+        "max_numeric_delta": 0.0
+      }
+    },
+    {
+      "name": "home_code_teams_payload_weights_and_symlinks",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "artifact_manifest_bytes_sha256",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "bounded_scientific_scope",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "passed_checks": 7,
+  "check_count": 7,
+  "max_numeric_delta": 0.0,
+  "recomputed": {
+    "raw_records": 1170,
+    "clean_records": 1170,
+    "unique_gene_ids": 1170,
+    "duplicate_gene_ids": 0,
+    "modal_feature_numeric_dim": 6
+  },
+  "artifacts": {
+    "veloharmo_ecoli_all_qc.jsonl.gz": "28964e5e0ddb92a8ce83347431cbc5cdfd21527f6aa7e6ac599e5def43f1e744",
+    "veloharmo_ecoli_clean.jsonl.gz": "41242206ccf1dfb565ab86d4b669abe344bf0bbf2438e5117c2d45de529c5339",
+    "qc_summary.json": "0cebea3aa272e72625356a23096cb5888e0311bf8290d688672f61d36660d2fb",
+    "artifact_manifest.json": "5087f298bfdf0268e2eba81f86983bab648b1933146db02f5b6fefce68eb80df"
+  },
+  "scope": "E. coli processed matrix only; no five-species completeness, raw-read remapping, training, OOD or SOTA authorization."
+}

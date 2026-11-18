@@ -1,0 +1,141 @@
+{
+  "schema_version": "a8-rk03-veloharmo-finalization-v1",
+  "created_at": "2026-11-18T18:45:28.638030+00:00",
+  "status": "ECOLI_QC_VERIFIED_FIVE_SPECIES_NOT_AVAILABLE",
+  "checks": [
+    {
+      "name": "fixed_archive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "matrix_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "qc_counts",
+      "pass": true,
+      "detail": {
+        "raw_records": 1170,
+        "clean_records": 1170,
+        "unique_gene_ids": 1170,
+        "duplicate_gene_ids": 0,
+        "modal_feature_numeric_dim": 6
+      }
+    },
+    {
+      "name": "independent_recompute",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "official_loader",
+      "pass": true,
+      "detail": {
+        "x_shape": [
+          1170,
+          1520,
+          111
+        ],
+        "density_shape": [
+          1170,
+          1520,
+          1
+        ]
+      }
+    },
+    {
+      "name": "artifact_manifest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "home_code_teams_payload_layout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "bounded_scope_retained",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "passed_checks": 8,
+  "check_count": 8,
+  "repository": "https://github.com/BianBian2021/VeloHARMO",
+  "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "archive_sha256": "68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef",
+  "matrix_sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f",
+  "raw_records": 1170,
+  "clean_records": 1170,
+  "excluded_records": 0,
+  "unique_gene_ids": 1170,
+  "duplicate_gene_ids": 0,
+  "modal_feature_numeric_dim": 6,
+  "clean_length_distribution": {
+    "n": 1170,
+    "min": 16.0,
+    "median": 246.0,
+    "max": 1520.0,
+    "mean": 288.31538461538463
+  },
+  "clean_coverage_distribution": {
+    "n": 1170,
+    "min": 0.599476439790576,
+    "median": 0.7912217941662081,
+    "max": 1.0,
+    "mean": 0.795494160135025
+  },
+  "loader": {
+    "x_shape": [
+      1170,
+      1520,
+      111
+    ],
+    "density_shape": [
+      1170,
+      1520,
+      1
+    ],
+    "length_shape": [
+      1170,
+      1
+    ],
+    "length_min": 16,
+    "length_max": 1520,
+    "all_finite": true
+  },
+  "independent_checks": "7/7",
+  "max_numeric_delta": 0.0,
+  "available_processed_matrices": [
+    "Escherichia_coli"
+  ],
+  "unavailable_processed_matrices": [
+    "Pseudomonas_aeruginosa",
+    "Drosophila_melanogaster",
+    "Homo_sapiens",
+    "Saccharomyces_cerevisiae"
+  ],
+  "weights_available": [
+    "E.coli.fold_0_best_network.pth",
+    "yeast.fold_0_best_network.pth"
+  ],
+  "science_flags": {
+    "ppt_record_ready": true,
+    "ecoli_matrix_ready": true,
+    "five_species_data_closed": false,
+    "official_cross_validation_reproduced": false,
+    "model_training_complete": false,
+    "main_baseline_comparison": false,
+    "functional_ood": false,
+    "sota_claim": false
+  },
+  "scope": "Verified E. coli processed matrix and official loader only. Four other processed matrices are not present in the fixed public snapshot; no model training, publication metric, OOD or SOTA claim.",
+  "artifacts": {
+    "veloharmo_materialization.json": "807362f0d055bc0340f333ad58e1eb21c10a468a475629f105d0e391eb1f439f",
+    "veloharmo_ecoli_qc.json": "0cebea3aa272e72625356a23096cb5888e0311bf8290d688672f61d36660d2fb",
+    "veloharmo_ecoli_independent_verification.json": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a",
+    "veloharmo_official_loader_smoke.json": "f4955ec45787b0777fe22fb35cc019362e3ce91fcaf97b6687faebad52861d71"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "a8-rk03-veloharmo-ecoli-qc-v1",
+  "created_at": "2026-11-18T18:40:41.547795+00:00",
+  "status": "COMPLETE_ECOLI_QC_PENDING_INDEPENDENT_VERIFICATION",
+  "organism": "Escherichia_coli",
+  "matrix_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032/shared/E.coli.summary.add.pro.SS.txt",
+  "matrix_bytes": 38906084,
+  "matrix_sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f",
+  "official_four_line_structure": true,
+  "raw_records": 1170,
+  "clean_records": 1170,
+  "excluded_records": 0,
+  "unique_gene_ids": 1170,
+  "duplicate_gene_ids": 0,
+  "duplicate_gene_rows": 0,
+  "feature_numeric_dim_counts": {
+    "6": 1170
+  },
+  "modal_feature_numeric_dim": 6,
+  "exclusion_reason_counts": {},
+  "start_atg_records": 1067,
+  "terminal_stop_records": 0,
+  "secondary_structure_counts": {
+    "-": 65897,
+    "E": 64746,
+    "G": 11474,
+    "S": 23882,
+    "T": 36291,
+    "H": 130294,
+    "B": 2923,
+    "I": 1822
+  },
+  "clean_length_distribution": {
+    "n": 1170,
+    "min": 16.0,
+    "median": 246.0,
+    "max": 1520.0,
+    "mean": 288.31538461538463
+  },
+  "clean_coverage_distribution": {
+    "n": 1170,
+    "min": 0.599476439790576,
+    "median": 0.7912217941662081,
+    "max": 1.0,
+    "mean": 0.795494160135025
+  },
+  "clean_record_mean_velocity_distribution": {
+    "n": 1170,
+    "min": 621.5982352869487,
+    "median": 1002.5642422667594,
+    "max": 1044.144144144144,
+    "mean": 1000.6329308450634
+  },
+  "ecoli_single_matrix_bounded_ready_pending_verifier": true,
+  "raw_reads_or_p_site_remapping_independently_performed": false,
+  "five_species_processed_matrices_complete": false,
+  "publisher_cross_validation_reproduced": false,
+  "model_training_authorized": false,
+  "functional_ood_or_sota_claim_authorized": false,
+  "scope": "Publisher E. coli processed matrix QC only; not five-species completeness, raw-read remapping, training, OOD or SOTA evidence.",
+  "artifacts": {
+    "all_qc": "veloharmo_ecoli_all_qc.jsonl.gz",
+    "clean": "veloharmo_ecoli_clean.jsonl.gz"
+  }
+}

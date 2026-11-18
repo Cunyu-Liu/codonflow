@@ -1,0 +1,39 @@
+{
+  "schema_version": "a8-rk03-veloharmo-official-loader-smoke-v1",
+  "created_at": "2026-11-18T18:44:07.991349+00:00",
+  "status": "PASS_OFFICIAL_LOADER_ONLY",
+  "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "entrypoint": "VeloGRU/VeloGRU_data.py::load_data",
+  "python": "/root/miniconda3/envs/llr_env/bin/python",
+  "torch_version": "2.11.0+cu128",
+  "matrix_path": "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/VeloGRU/E.coli.summary.add.pro.SS.txt",
+  "matrix_sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f",
+  "x_shape": [
+    1170,
+    1520,
+    111
+  ],
+  "density_shape": [
+    1170,
+    1520,
+    1
+  ],
+  "length_shape": [
+    1170,
+    1
+  ],
+  "x_dtype": "torch.float32",
+  "density_dtype": "torch.float32",
+  "x_all_finite": true,
+  "density_all_finite": true,
+  "density_min": 0.0,
+  "density_max": 77.14354705810547,
+  "length_min": 16,
+  "length_max": 1520,
+  "records": 1170,
+  "training_performed": false,
+  "publication_metrics_reproduced": false,
+  "sota_claim": false,
+  "scope": "Official processed-matrix loader smoke only; no training or performance comparison.",
+  "pass": true
+}

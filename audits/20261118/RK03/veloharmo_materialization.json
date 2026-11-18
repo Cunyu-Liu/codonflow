@@ -1,0 +1,108 @@
+{
+  "schema_version": "a8-rk03-veloharmo-materialization-v1",
+  "created_at": "2026-11-18T18:40:29.551906+00:00",
+  "status": "PASS_MATERIALIZATION_ONLY",
+  "repository": "https://github.com/BianBian2021/VeloHARMO",
+  "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "outer_archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032.zip",
+  "outer_archive_bytes": 31429853,
+  "outer_archive_sha256": "68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef",
+  "source_dir": "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "payload_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "files": [
+    {
+      "path": "Genetic_algorithm/E.coli.fold_0_best_network.pth",
+      "storage": "teams",
+      "bytes": 1912867,
+      "sha256": "a22badecac33e6c34f736dbf18274982b734ebb293cf1d632aff65ac6af9f35d"
+    },
+    {
+      "path": "Genetic_algorithm/ga_velocity_pattern.add.time.pearson.ss.py",
+      "storage": "home",
+      "bytes": 8546,
+      "sha256": "9631c15d7d373584e519966eb9382db34dba191ca21c1fedf599e4c4407299af"
+    },
+    {
+      "path": "Genetic_algorithm/yeast.fold_0_best_network.pth",
+      "storage": "teams",
+      "bytes": 1912867,
+      "sha256": "b73691027121c1cadb3a4ed3b45c04ab4ca477163b0e39b5b4e3bdfdc52c5ddc"
+    },
+    {
+      "path": "README.md",
+      "storage": "home",
+      "bytes": 3641,
+      "sha256": "0beff232498b735738480697f6256a1ebab19ce09a73394a3801a92616b452b7"
+    },
+    {
+      "path": "VeloBERT/E.coli.summary.add.pro.SS.txt.zip",
+      "storage": "teams",
+      "bytes": 13923842,
+      "sha256": "bc801327526eaddc00b71a5b041112ffaa6c6255da7d2ca860155f35481fc38b"
+    },
+    {
+      "path": "VeloBERT/dataset.py",
+      "storage": "home",
+      "bytes": 12318,
+      "sha256": "c2d3e437c3738b9b4c91326361e4bfcdaa7f79a841b9523f7e10e135f1d4366f"
+    },
+    {
+      "path": "VeloBERT/train.py",
+      "storage": "home",
+      "bytes": 28423,
+      "sha256": "e0106619cf26d5490cfc22f86025d9e6eb4929587b7494812d41f1a0fc61d0bb"
+    },
+    {
+      "path": "VeloBERT/utils.py",
+      "storage": "home",
+      "bytes": 2816,
+      "sha256": "9922aa9f91e04a9b7ab711d169a2b68e74749c7e495bc9c48489914516ea646c"
+    },
+    {
+      "path": "VeloGRU/E.coli.summary.add.pro.SS.txt.zip",
+      "storage": "teams",
+      "bytes": 13923842,
+      "sha256": "bc801327526eaddc00b71a5b041112ffaa6c6255da7d2ca860155f35481fc38b"
+    },
+    {
+      "path": "VeloGRU/VeloGRU_data.py",
+      "storage": "home",
+      "bytes": 8790,
+      "sha256": "1e1f62564c9392180e7d42ebffc04e9a8782f126d3bac456caf8889bc9cdcd3b"
+    },
+    {
+      "path": "VeloGRU/VeloGRU_train.py",
+      "storage": "home",
+      "bytes": 15626,
+      "sha256": "14d002ed5ee8dcc8aa2ae4156c5ac17f8b336e891dded4a518e1097ac72b04d9"
+    },
+    {
+      "path": "VeloGRU/models.py",
+      "storage": "home",
+      "bytes": 8785,
+      "sha256": "12e4be166197f465120c8573ec81ac2267b023c96444fc6d5063f9a2c379b3c7"
+    },
+    {
+      "path": "VeloGRU/run.py",
+      "storage": "home",
+      "bytes": 4184,
+      "sha256": "96c8909a5f627b4043fac4f22e38dde7b3af98b2b7c8a04a6210046b2111a1fc"
+    },
+    {
+      "path": "VeloGRU/utils.py",
+      "storage": "home",
+      "bytes": 2530,
+      "sha256": "105c92e83134235b421a9f0c14e13b5696f1f9a560504e71b1b271dabba4fecb"
+    }
+  ],
+  "matrix": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032/shared/E.coli.summary.add.pro.SS.txt",
+    "bytes": 38906084,
+    "sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f",
+    "two_archives_identical": true
+  },
+  "weights_stored_under_teams": true,
+  "source_symlinks_resolve": true,
+  "five_species_processed_matrices_complete": false,
+  "model_training_or_sota_claim_authorized": false
+}
