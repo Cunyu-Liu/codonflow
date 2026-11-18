@@ -1,0 +1,372 @@
+{
+  "checks": [
+    {
+      "detail": [
+        "run_unified_experiment.py",
+        "id3/experiments/configs/unified_experiment_config.py",
+        "id3/experiments/core/unified_experiment_runner.py",
+        "id3/utils/deepraccess_wrapper.py",
+        "data/proteins/O15263.fasta.txt",
+        "README.md"
+      ],
+      "name": "fixed_source_files",
+      "pass": true
+    },
+    {
+      "detail": "9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f",
+      "name": "id3_zip_sha256",
+      "pass": true
+    },
+    {
+      "detail": "dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348",
+      "name": "deepraccess_zip_sha256",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "O15263"
+        ],
+        "expected": [
+          "O15263"
+        ]
+      },
+      "name": "quick_preset_proteins",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ],
+        "expected": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ]
+      },
+      "name": "quick_preset_constraints",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "expected": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "name": "quick_preset_variants",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 2,
+        "expected": 2
+      },
+      "name": "quick_preset_iterations",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      },
+      "name": "quick_preset_seeds",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": false,
+        "expected": false
+      },
+      "name": "quick_preset_enable_cai",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "O15263",
+          "P00004",
+          "P01308",
+          "P01825",
+          "P04637",
+          "P0CG48",
+          "P0DTC2",
+          "P0DTC9",
+          "P31417",
+          "P42212",
+          "P61626",
+          "P99999"
+        ],
+        "expected": [
+          "O15263",
+          "P00004",
+          "P01308",
+          "P01825",
+          "P04637",
+          "P0CG48",
+          "P0DTC2",
+          "P0DTC9",
+          "P31417",
+          "P42212",
+          "P61626",
+          "P99999"
+        ]
+      },
+      "name": "full_preset_proteins",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ],
+        "expected": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ]
+      },
+      "name": "full_preset_constraints",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "expected": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "name": "full_preset_variants",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 1000,
+        "expected": 1000
+      },
+      "name": "full_preset_iterations",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      },
+      "name": "full_preset_seeds",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": false,
+        "expected": false
+      },
+      "name": "full_preset_enable_cai",
+      "pass": true
+    },
+    {
+      "detail": {
+        "full_12x12_interpretation": "12 proteins x (3 constraints x 4 variants); source seeds=1",
+        "full_readme_12_seeds": true,
+        "full_source_seeds": 1,
+        "quick_readme_5_iterations": true,
+        "quick_source_iterations": 2
+      },
+      "name": "readme_quick_mismatch_retained",
+      "pass": true
+    },
+    {
+      "detail": {
+        "full_12x12_interpretation": "12 proteins x (3 constraints x 4 variants); source seeds=1",
+        "full_readme_12_seeds": true,
+        "full_source_seeds": 1,
+        "quick_readme_5_iterations": true,
+        "quick_source_iterations": 2
+      },
+      "name": "readme_full_mismatch_retained",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk-external/ID3/DeepRaccess/path/FCN_structured.pth",
+      "name": "structured_weight_present",
+      "pass": true
+    },
+    {
+      "detail": "PASS_FIXED_SOURCE_AND_WEIGHT_MATERIALIZATION",
+      "name": "deepraccess_materialization_status",
+      "pass": true
+    },
+    {
+      "detail": {
+        "commit": "1a37235e31e1d5a7d5e2bfb705e3a00f1cdcaa9c",
+        "target": "/home/codonflow-a8-rk-external/ID3/DeepRaccess"
+      },
+      "name": "deepraccess_materialization_identity",
+      "pass": true
+    },
+    {
+      "detail": {
+        "mismatches": [],
+        "registered_files": 24
+      },
+      "name": "deepraccess_all_materialized_file_hashes",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bytes": 38009969,
+        "sha256": "136be4db9403aaf366eb6bb9790a8f099de22bd0048be02a5a4754c36ce664d2"
+      },
+      "name": "materialized_structured_weight_matches_audit",
+      "pass": true
+    },
+    {
+      "detail": "KeyError: 'T'",
+      "name": "unhandled_exception",
+      "pass": false
+    }
+  ],
+  "checks_passed": 22,
+  "checks_total": 23,
+  "error": "KeyError: 'T'",
+  "finished_utc": "2026-11-18T17:38:25.925393+00:00",
+  "orchestration_wall_time_s": 5.299275636672974,
+  "readme_contract_lines": [
+    {
+      "line": 72,
+      "text": "# Quick test (5 iterations, 1 seed)"
+    },
+    {
+      "line": 75,
+      "text": "# Full 12x12 experiments (1000 iterations, 12 seeds) - Accessibility only"
+    },
+    {
+      "line": 76,
+      "text": "python run_unified_experiment.py --preset full-12x12"
+    },
+    {
+      "line": 79,
+      "text": "python run_unified_experiment.py --preset full-12x12-cai-penalty"
+    },
+    {
+      "line": 159,
+      "text": "python run_unified_experiment.py --preset full-12x12"
+    }
+  ],
+  "readme_source_discrepancies": {
+    "full_12x12_interpretation": "12 proteins x (3 constraints x 4 variants); source seeds=1",
+    "full_readme_12_seeds": true,
+    "full_source_seeds": 1,
+    "quick_readme_5_iterations": true,
+    "quick_source_iterations": 2
+  },
+  "schema_version": "a8-rk05-id3-official-smoke-v1",
+  "science_flags": {
+    "dense_budget_evaluation": false,
+    "functional_expression_claim": false,
+    "main_baseline_comparison": false,
+    "natural_cds_claim": false,
+    "official_quick_test_executed": false,
+    "pretrained_deepraccess_verified": false,
+    "sota_claim": false,
+    "upstream_example_used_as_result": false
+  },
+  "source": {
+    "deepraccess_commit": "1a37235e31e1d5a7d5e2bfb705e3a00f1cdcaa9c",
+    "deepraccess_file_count": 24,
+    "deepraccess_materialization_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/deepraccess_materialization.json",
+    "deepraccess_materialization_audit_sha256": "d9bca3ab20d676e68b8420556f3fd69be58ee56f2c3d627ce1ba6070a3751de4",
+    "deepraccess_zip": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/deepraccess_1a37235_fixed.zip",
+    "deepraccess_zip_sha256": "dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348",
+    "id3_commit": "ed23037e5a74ca10953954c425ac736fb89578a8",
+    "id3_zip": "/home/id3_ed23037_fixed.zip",
+    "id3_zip_sha256": "9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f",
+    "required_file_sha256": {
+      "README.md": "49d5df6bd2e927be8bb9ce14bf2f139128833ae604a1968a0782f3d74851a2b4",
+      "data/proteins/O15263.fasta.txt": "f677eeece0ae6d4f591bff2101e0d805aab9c69d0cf2ecd91d11adb7b33301f2",
+      "id3/experiments/configs/unified_experiment_config.py": "6a5971fe5a5fe2b1dec843c3e2a37d9486a7dc4d3a0352800ed0443e509a57e8",
+      "id3/experiments/core/unified_experiment_runner.py": "723724e348cbce3bd2abcb2b1eafd3cf13bff812279c43398089db634fb329c8",
+      "id3/utils/deepraccess_wrapper.py": "87e25be8cd58201bce874347d16dc7ecfa58b6f052f048b208c0ee476053a489",
+      "run_unified_experiment.py": "25d82054da784037608b5b34110133ef9e0439751b5b852c03dd2f2df245331a"
+    },
+    "source_dir": "/home/codonflow-a8-rk-external/ID3",
+    "structured_weight": "/home/codonflow-a8-rk-external/ID3/DeepRaccess/path/FCN_structured.pth",
+    "structured_weight_bytes": 38009969,
+    "structured_weight_sha256": "136be4db9403aaf366eb6bb9790a8f099de22bd0048be02a5a4754c36ce664d2"
+  },
+  "source_preset_contract": {
+    "full_12x12": {
+      "constraints": [
+        "lagrangian",
+        "ams",
+        "cpc"
+      ],
+      "enable_cai": false,
+      "iterations": 1000,
+      "proteins": [
+        "O15263",
+        "P00004",
+        "P01308",
+        "P01825",
+        "P04637",
+        "P0CG48",
+        "P0DTC2",
+        "P0DTC9",
+        "P31417",
+        "P42212",
+        "P61626",
+        "P99999"
+      ],
+      "seeds": 1,
+      "variants": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ]
+    },
+    "quick_test": {
+      "constraints": [
+        "lagrangian",
+        "ams",
+        "cpc"
+      ],
+      "enable_cai": false,
+      "iterations": 2,
+      "proteins": [
+        "O15263"
+      ],
+      "seeds": 1,
+      "variants": [
+        "00",
+        "01",
+        "10",
+        "11"
+      ],
+      "verbose": true
+    }
+  },
+  "started_utc": "2026-11-18T17:38:20.626743+00:00",
+  "status": "FAIL_OFFICIAL_ID3_SMOKE",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/codonflow-a8-rk/scripts/a8_rk05_id3_official_smoke.py\", line 258, in main\n    probs[0, j, index[base]] = 1.0\nKeyError: 'T'\n"
+}

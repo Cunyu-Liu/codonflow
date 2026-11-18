@@ -52,3 +52,81 @@ PYTHONPATH=/home/codonflow-a8-rk-smoke/rnarl_python_deps \
 ```
 
 No ESM-2 weight download, official checkpoint, full actor/reward/GRPO training, generation, paper-metric reproduction, SOTA claim, or baseline main comparison was performed or authorized. Fixing the public source would be a new implementation and must be evaluated separately rather than relabeled as the unchanged official result.
+
+---
+
+# ID3 / DeepRaccess fixed-source quick-test (2026-11-18)
+
+## Bounded result
+
+`BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT` — the official CPU quick-test executed 12/12 configurations with zero failed jobs, and all 12 final sequences and final DeepRaccess scores were independently verified. This is not a full metric-payload PASS and not a main-baseline result.
+
+- ID3: `Li-Hongmin/ID3` commit `ed23037e5a74ca10953954c425ac736fb89578a8`; fixed codeload ZIP SHA256 `9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f`.
+- DeepRaccess: `hmdlab/DeepRaccess` commit `1a37235e31e1d5a7d5e2bfb705e3a00f1cdcaa9c`; fixed ZIP SHA256 `dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348`. Source and all three weights were re-hashed after symlink resolution; materialization status is `PASS_FIXED_SOURCE_AND_WEIGHT_MATERIALIZATION` with 24 files.
+- Actual preset: O15263, three constraints × four variants, 2 iterations, seed 42, `enable_cai=false`, CPU. The source—not the README—defines 2 quick-test iterations and 1 full-12x12 seed. Official wall time was 417.591162443161 s; orchestration wall time was 434.3220009803772 s.
+- Production audit: `PASS_OFFICIAL_QUICK_TEST_SMOKE`, 43/43 checks. Independent v2: 112/116 checks, 24 discrete trajectory records recomputed, 36 recorded initial/best/final values checked. Finalization: 11/11 checks. Four failed checks remain explicit in the independent report.
+- Independent final accessibility across the 12 runs: mean `2.5201897621154785`, min `1.902809500694275`, max `3.240176200866699`. The saved summary final mean/min/max match these recomputations. These are single-protein, single-seed, two-iteration smoke values only.
+
+## Upstream CPC STE metric defect
+
+The fixed `CodonProfileConstraint.forward()` accepts `beta` but calls `CodonPsiFunction.forward(codon_probs, self.codon_encodings)` without forwarding it; CodonPsi therefore uses its default `beta=0.0`. The fixed runner's `beta == 1.0` branch nevertheless records `accessibility_loss.item()` as though it were the hard/discrete value. The CPC source file was independently matched to the fixed ID3 ZIP, and both source patterns were detected by AST without modifying upstream.
+
+Consequently, `cpc-01` and `cpc-11` each fail the independent initial/best numeric recomputation:
+
+| run | field | saved | independently recomputed |
+|---|---|---:|---:|
+| cpc-01 | initial | 1.7490674257278442 | 3.476618766784668 |
+| cpc-01 | best | 1.6879907846450806 | 2.652176856994629 |
+| cpc-01 | final | 2.652176856994629 | 2.652176856994629 |
+| cpc-11 | initial | 1.7701568603515625 | 2.4008736610412598 |
+| cpc-11 | best | 1.6919028759002686 | 1.902809500694275 |
+| cpc-11 | final | 1.902809500694275 | 1.902809500694275 |
+
+The other 10 runs pass the full quick-test metric-payload verification. All 12 official best sequences match the independently recomputed argmin over the recorded amino-acid-preserving discrete candidates. Nevertheless, for `cpc-01/11`, saved initial/best/improvement/trajectory accessibility fields are excluded. The summary `performance_table`, `constraint_comparison`, and `variant_comparison` are also excluded because they aggregate affected best metrics. The final-only summary statistics were independently recomputed and are retained; the saved `std=0` is not used.
+
+The original v1 independent report (`108/112`, four failed checks) is preserved as `id3_official_quick_test_independent_v1_fail_108_of_112.json`. No tolerance was relaxed, no failed check was deleted, and the official payloads and pinned upstream source were not rewritten.
+
+## CPU execution adaptations and retained failures
+
+The official source was not patched. The production wrapper only:
+
+1. normalizes the default DNA-compatible UTR alphabet `T` to model-input `U`;
+2. scopes `--force` to CPU execution to skip the upstream global GPU-process gate without stopping other processes;
+3. hides CUDA from the CPU official subprocess so DeepRaccess automatic device selection also remains on CPU.
+
+The three preceding failure reports are retained: `id3_official_quick_test_preflight_keyerror_T_v1.json`, `id3_official_quick_test_global_gpu_gate_v2.json`, and `id3_official_quick_test_device_mismatch_v3.json`. These are engineering failures, not scientific negative results.
+
+## Evidence and reproduction
+
+- `deepraccess_materialization.json`
+- `id3_official_quick_test.json` and `id3_official_quick_test.log`
+- `id3_official_quick_test_independent.json` and `id3_independent_verification.log`
+- `id3_official_quick_test_finalization.json`
+- `scripts/a8_rk05_materialize_deepraccess.py`
+- `scripts/a8_rk05_id3_official_smoke.py`
+- `scripts/a8_rk05_verify_id3_official_smoke.py`
+- `scripts/a8_rk05_finalize_id3_official_smoke.py`
+
+From `/home/codonflow-a8-rk`, using the already verified fixed materialization and a **new** output/audit path for a repeat run:
+
+```bash
+/root/miniconda3/envs/llr_env/bin/python scripts/tests/test_a8_rk05_id3_official_smoke.py
+
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk05_id3_official_smoke.py \
+  --device cpu --official-force \
+  --deepraccess-zip-sha256 dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348 \
+  --output-dir <NEW_OFFICIAL_OUTPUT_DIR> \
+  --audit-output <NEW_PRODUCTION_JSON>
+
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk05_verify_id3_official_smoke.py \
+  --production-report <NEW_PRODUCTION_JSON> \
+  --output-dir <NEW_OFFICIAL_OUTPUT_DIR> \
+  --verification-output <NEW_INDEPENDENT_JSON>
+
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk05_finalize_id3_official_smoke.py \
+  --production-report <NEW_PRODUCTION_JSON> \
+  --verification-report <NEW_INDEPENDENT_JSON> \
+  --output <NEW_FINALIZATION_JSON>
+```
+
+The materialization script intentionally refuses to overwrite an existing source target or audit. Large ZIPs, weights, and official outputs remain under `/teams`; source and commits remain under `/home`. No full-12x12 run, multi-seed comparison, dense-budget evaluation, functional-expression claim, main-baseline ranking, or SOTA claim is authorized.

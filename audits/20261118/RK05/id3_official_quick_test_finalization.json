@@ -1,0 +1,389 @@
+{
+  "artifacts": {
+    "independent_report": {
+      "bytes": 50051,
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test_independent.json",
+      "sha256": "03980d217794fcb57511be368a7f90e5f34ac0209cc4f3294ad3818ffcd3c7ae"
+    },
+    "official_summary": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/summary.json",
+      "sha256": "8e3be4ee3d3df62744ef2a2ab8067b401da4512a0485afb631e8ba89f733c399"
+    },
+    "production_report": {
+      "bytes": 30084,
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test.json",
+      "sha256": "b0a10e1af4b80cac6fa2cab34df860b5ba506283e37fd9967b55a16aa2036743"
+    }
+  },
+  "checks": [
+    {
+      "detail": {
+        "checks": "43/43",
+        "status": "PASS_OFFICIAL_QUICK_TEST_SMOKE"
+      },
+      "name": "official_execution_and_production_checks",
+      "pass": true
+    },
+    {
+      "detail": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "name": "independent_status_allowed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_report_hash_linked",
+      "pass": true
+    },
+    {
+      "detail": {
+        "average_time_per_experiment": 34.799263536930084,
+        "failed": 0,
+        "successful": 12,
+        "total_experiments": 12,
+        "total_time": 417.591162443161
+      },
+      "name": "official_12_success_zero_failure",
+      "pass": true
+    },
+    {
+      "detail": 12,
+      "name": "12_independent_final_scores",
+      "pass": true
+    },
+    {
+      "detail": {
+        "device": "cpu",
+        "discrete_trajectory_records_scored": 24,
+        "max_abs_delta": 1.7275513410568237,
+        "performed": true,
+        "recorded_initial_best_final_values_checked": 36,
+        "tolerance": 2e-05,
+        "torch": "2.11.0+cu128",
+        "unique_sequences_scored": 18
+      },
+      "name": "24_discrete_candidates_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "best_sequences_match_posthoc_argmin",
+      "pass": true
+    },
+    {
+      "detail": [
+        "best_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+        "best_score_recompute_20261119_015606_O15263_cpc_11_seed42.json",
+        "initial_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+        "initial_score_recompute_20261119_015606_O15263_cpc_11_seed42.json"
+      ],
+      "name": "exact_four_red_metric_checks_retained",
+      "pass": true
+    },
+    {
+      "detail": {
+        "excluded_fields_for_final_only_runs": [
+          "initial_accessibility",
+          "best_accessibility",
+          "best_seq_design.accessibility",
+          "improvement",
+          "trajectory.accessibility",
+          "summary accessibility aggregates containing those fields"
+        ],
+        "final_accessibility_remains_quick_test_only": true,
+        "final_only_runs": [
+          "20261119_015501_O15263_cpc_01_seed42.json",
+          "20261119_015606_O15263_cpc_11_seed42.json"
+        ],
+        "final_sequence_score_accepted_runs": 12,
+        "full_metric_payload_accepted_runs": 10,
+        "official_best_sequences_match_recomputed_argmin_for_all_runs": true,
+        "official_execution_completed_runs": 12
+      },
+      "name": "ten_full_two_final_only",
+      "pass": true
+    },
+    {
+      "detail": {
+        "cpc_forward": {
+          "beta_keyword_passed": false,
+          "call_lineno": 335,
+          "class": "CodonProfileConstraint",
+          "detected": true,
+          "forward_has_beta_parameter": true,
+          "method": "forward",
+          "positional_argument_count": 2
+        },
+        "cpc_source_sha256": "e05a134dbbfe5cdaac19d3734fde45ae4512c126f51d46b72fc305373d1fd1d1",
+        "explanation": "CPC accepts beta but omits it in CodonPsiFunction.forward, whose default is beta=0. The runner nevertheless treats beta=1 accessibility_loss as the hard/discrete value. This can corrupt CPC-01/11 trajectory, initial and best metric fields without changing the independently recomputed final-sequence score.",
+        "runner": {
+          "assignment_lineno": 478,
+          "detected": true,
+          "if_lineno": 476
+        },
+        "runner_source_sha256": "723724e348cbce3bd2abcb2b1eafd3cf13bff812279c43398089db634fb329c8"
+      },
+      "name": "fixed_source_defect_evidence",
+      "pass": true
+    },
+    {
+      "detail": {
+        "independent": {
+          "count": 12,
+          "max": 3.240176200866699,
+          "mean": 2.5201897621154785,
+          "min": 1.902809500694275
+        },
+        "saved": {
+          "average": 2.5201897621154785,
+          "best": 1.902809500694275,
+          "std": 0.0,
+          "worst": 3.240176200866699
+        }
+      },
+      "name": "official_final_statistics_recomputed",
+      "pass": true
+    }
+  ],
+  "checks_passed": 11,
+  "checks_total": 11,
+  "execution": {
+    "constraints": [
+      "lagrangian",
+      "ams",
+      "cpc"
+    ],
+    "device": "cpu",
+    "failed": 0,
+    "iterations": 2,
+    "official_total_wall_time_s": 417.591162443161,
+    "orchestration_wall_time_s": 434.3220009803772,
+    "preset": "quick-test",
+    "protein": "O15263",
+    "recorded_discrete_candidates": 24,
+    "seed": 42,
+    "successful": 12,
+    "variants": [
+      "00",
+      "01",
+      "10",
+      "11"
+    ]
+  },
+  "finished_utc": "2026-11-18T18:07:19.904159+00:00",
+  "independent_acceptance": {
+    "accepted_final_statistics": {
+      "count": 12,
+      "max": 3.240176200866699,
+      "mean": 2.5201897621154785,
+      "min": 1.902809500694275
+    },
+    "excluded_official_outputs": [
+      "For cpc-01 and cpc-11: initial_accessibility, best_accessibility, best_seq_design.accessibility, improvement and trajectory.accessibility.",
+      "summary.performance_table, summary.constraint_comparison and summary.variant_comparison because they aggregate affected best metrics.",
+      "Any method ranking, full-12x12 interpretation, multi-seed statistics, dense-budget claim, functional expression claim or SOTA claim."
+    ],
+    "failed_check_names_retained": [
+      "best_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+      "best_score_recompute_20261119_015606_O15263_cpc_11_seed42.json",
+      "initial_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+      "initial_score_recompute_20261119_015606_O15263_cpc_11_seed42.json"
+    ],
+    "final_only_runs": [
+      "20261119_015501_O15263_cpc_01_seed42.json",
+      "20261119_015606_O15263_cpc_11_seed42.json"
+    ],
+    "final_sequence_score_verified_runs": 12,
+    "fully_verified_metric_payload_runs": 10,
+    "official_statistics_std_not_used": true,
+    "posthoc_recomputed_rows": [
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_014950_O15263_lagrangian_00_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.7783493995666504,
+        "recomputed_initial_accessibility": 3.102947235107422,
+        "recomputed_official_best_sequence_accessibility": 2.630126714706421,
+        "recorded_best_accessibility": 2.630126714706421,
+        "recorded_final_accessibility": 2.7783493995666504,
+        "recorded_initial_accessibility": 3.102947235107422
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015018_O15263_lagrangian_01_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 0,
+        "recomputed_final_accessibility": 3.240176200866699,
+        "recomputed_initial_accessibility": 3.102947235107422,
+        "recomputed_official_best_sequence_accessibility": 3.102947235107422,
+        "recorded_best_accessibility": 3.10294771194458,
+        "recorded_final_accessibility": 3.240176200866699,
+        "recorded_initial_accessibility": 3.10294771194458
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015103_O15263_lagrangian_10_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.698474168777466,
+        "recomputed_initial_accessibility": 2.5328123569488525,
+        "recomputed_official_best_sequence_accessibility": 2.1634130477905273,
+        "recorded_best_accessibility": 2.1634130477905273,
+        "recorded_final_accessibility": 2.698474168777466,
+        "recorded_initial_accessibility": 2.5328123569488525
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015135_O15263_lagrangian_11_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.4153499603271484,
+        "recomputed_initial_accessibility": 2.5328123569488525,
+        "recomputed_official_best_sequence_accessibility": 2.2682089805603027,
+        "recorded_best_accessibility": 2.2682085037231445,
+        "recorded_final_accessibility": 2.4153499603271484,
+        "recorded_initial_accessibility": 2.5328123569488525
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015214_O15263_ams_00_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.5664501190185547,
+        "recomputed_initial_accessibility": 3.102947235107422,
+        "recomputed_official_best_sequence_accessibility": 2.5664501190185547,
+        "recorded_best_accessibility": 2.5664501190185547,
+        "recorded_final_accessibility": 2.5664501190185547,
+        "recorded_initial_accessibility": 3.102947235107422
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015244_O15263_ams_01_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.9149703979492188,
+        "recomputed_initial_accessibility": 3.102947235107422,
+        "recomputed_official_best_sequence_accessibility": 2.9149703979492188,
+        "recorded_best_accessibility": 2.9149718284606934,
+        "recorded_final_accessibility": 2.9149703979492188,
+        "recorded_initial_accessibility": 3.102947235107422
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015320_O15263_ams_10_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.149547815322876,
+        "recomputed_initial_accessibility": 2.5328123569488525,
+        "recomputed_official_best_sequence_accessibility": 2.149547815322876,
+        "recorded_best_accessibility": 2.149547815322876,
+        "recorded_final_accessibility": 2.149547815322876,
+        "recorded_initial_accessibility": 2.5328123569488525
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015350_O15263_ams_11_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.3689863681793213,
+        "recomputed_initial_accessibility": 2.5328123569488525,
+        "recomputed_official_best_sequence_accessibility": 2.3689863681793213,
+        "recorded_best_accessibility": 2.3689868450164795,
+        "recorded_final_accessibility": 2.3689863681793213,
+        "recorded_initial_accessibility": 2.5328123569488525
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015429_O15263_cpc_00_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.652176856994629,
+        "recomputed_initial_accessibility": 3.476618766784668,
+        "recomputed_official_best_sequence_accessibility": 2.652176856994629,
+        "recorded_best_accessibility": 2.652176856994629,
+        "recorded_final_accessibility": 2.652176856994629,
+        "recorded_initial_accessibility": 3.476618766784668
+      },
+      {
+        "acceptance": "FINAL_SEQUENCE_SCORE_ONLY__EXCLUDE_INITIAL_BEST_IMPROVEMENT_AND_TRAJECTORY_ACCESSIBILITY",
+        "file": "20261119_015501_O15263_cpc_01_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 2.652176856994629,
+        "recomputed_initial_accessibility": 3.476618766784668,
+        "recomputed_official_best_sequence_accessibility": 2.652176856994629,
+        "recorded_best_accessibility": 1.6879907846450806,
+        "recorded_final_accessibility": 2.652176856994629,
+        "recorded_initial_accessibility": 1.7490674257278442
+      },
+      {
+        "acceptance": "FULL_QUICK_TEST_PAYLOAD_SCORES_VERIFIED",
+        "file": "20261119_015538_O15263_cpc_10_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 1.902809500694275,
+        "recomputed_initial_accessibility": 2.4008736610412598,
+        "recomputed_official_best_sequence_accessibility": 1.902809500694275,
+        "recorded_best_accessibility": 1.902809500694275,
+        "recorded_final_accessibility": 1.902809500694275,
+        "recorded_initial_accessibility": 2.4008736610412598
+      },
+      {
+        "acceptance": "FINAL_SEQUENCE_SCORE_ONLY__EXCLUDE_INITIAL_BEST_IMPROVEMENT_AND_TRAJECTORY_ACCESSIBILITY",
+        "file": "20261119_015606_O15263_cpc_11_seed42.json",
+        "official_best_sequence_matches_recomputed_best": true,
+        "recomputed_best_iteration": 1,
+        "recomputed_final_accessibility": 1.902809500694275,
+        "recomputed_initial_accessibility": 2.4008736610412598,
+        "recomputed_official_best_sequence_accessibility": 1.902809500694275,
+        "recorded_best_accessibility": 1.6919028759002686,
+        "recorded_final_accessibility": 1.902809500694275,
+        "recorded_initial_accessibility": 1.7701568603515625
+      }
+    ],
+    "verification_checks_passed": 112,
+    "verification_checks_total": 116,
+    "verification_status": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT"
+  },
+  "schema_version": "a8-rk05-id3-official-quick-test-finalization-v1",
+  "science_flags": {
+    "all_final_sequence_scores_verified": true,
+    "all_payload_metrics_verified": false,
+    "bounded_quick_test_record_ready": true,
+    "dense_budget_evaluation": false,
+    "full_12x12_executed": false,
+    "functional_expression_claim": false,
+    "main_baseline_comparison": false,
+    "multi_seed_evaluation": false,
+    "official_12_run_execution_complete": true,
+    "ppt_record_ready": true,
+    "sota_claim": false
+  },
+  "source": {
+    "deepraccess_commit": "1a37235e31e1d5a7d5e2bfb705e3a00f1cdcaa9c",
+    "id3_commit": "ed23037e5a74ca10953954c425ac736fb89578a8",
+    "id3_zip_sha256": "9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f",
+    "output_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4"
+  },
+  "started_utc": "2026-11-18T18:07:19.897910+00:00",
+  "status": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+  "upstream_defect": {
+    "cpc_forward": {
+      "beta_keyword_passed": false,
+      "call_lineno": 335,
+      "class": "CodonProfileConstraint",
+      "detected": true,
+      "forward_has_beta_parameter": true,
+      "method": "forward",
+      "positional_argument_count": 2
+    },
+    "cpc_source_sha256": "e05a134dbbfe5cdaac19d3734fde45ae4512c126f51d46b72fc305373d1fd1d1",
+    "explanation": "CPC accepts beta but omits it in CodonPsiFunction.forward, whose default is beta=0. The runner nevertheless treats beta=1 accessibility_loss as the hard/discrete value. This can corrupt CPC-01/11 trajectory, initial and best metric fields without changing the independently recomputed final-sequence score.",
+    "runner": {
+      "assignment_lineno": 478,
+      "detected": true,
+      "if_lineno": 476
+    },
+    "runner_source_sha256": "723724e348cbce3bd2abcb2b1eafd3cf13bff812279c43398089db634fb329c8"
+  }
+}

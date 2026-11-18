@@ -1,0 +1,123 @@
+2026-11-19 01:49:07,246 - id3.experiments.configs.unified_experiment_config - INFO - 🚀 Unified ID3-DeepRaccess Experiment Configuration
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - ============================================================
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Mode: Accessibility-only Optimization
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Theory: L_total = L_Access (+ constraint penalties)
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Proteins: 1 - ['O15263']
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Constraints: ['lagrangian', 'ams', 'cpc']
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Variants: ['00', '01', '10', '11']
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Iterations: 2
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Learning Rate: 0.05
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Seeds: 1 (starting from 42)
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Device: cpu
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - Output: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4
+2026-11-19 01:49:07,247 - id3.experiments.configs.unified_experiment_config - INFO - 
+2026-11-19 01:49:07,250 - __main__ - INFO - 💾 Configuration saved to: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/config.json
+2026-11-19 01:49:07,250 - __main__ - INFO - 🎯 Running 12 experiments...
+💻 Using CPU for computation
+🔍 Auto-detected model file: /home/codonflow-a8-rk-external/ID3/DeepRaccess/path/FCN_structured.pth
+📦 Loading DeepRaccess model: /home/codonflow-a8-rk-external/ID3/id3/utils/../../DeepRaccess/path/FCN_structured.pth
+✅ DeepRaccess model loaded successfully
+✅ DeepRaccess wrapper initialized, device: cpu
+2026-11-19 01:49:08,801 - id3.experiments.core.unified_experiment_runner - INFO - 🚀 Serial execution of 12 experiments (optimal performance mode)
+2026-11-19 01:49:08,801 - id3.experiments.core.unified_experiment_runner - INFO - 💡 Performance tests show: Serial is 2-5x faster than parallel
+2026-11-19 01:49:08,801 - id3.experiments.core.unified_experiment_runner - INFO - 📊 Initialized progress tracking: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/progress.json
+Overall Experiments:   0%|                                                   | 0/12 [00:00<?, ?it/s]Exp: O15263-lagrangian-00-42 [1/12]:   0%|                                   | 0/12 [00:00<?, ?it/s]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:19<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:19<00:19, 19.88s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:36<00:19, 19.88s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:36<00:00, 17.85s/it][A
+                                                                                                    [A2026-11-19 01:49:50,531 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_014950_O15263_lagrangian_00_seed42.json | Accessibility: 2.7783
+Exp: O15263-lagrangian-00-42 [1/12]:   0%|                                   | 0/12 [00:41<?, ?it/s]Exp: O15263-lagrangian-00-42 [1/12]:   8%|██▎                        | 1/12 [00:41<07:37, 41.57s/it]Exp: O15263-lagrangian-01-42 [2/12]:   8%|██▎                        | 1/12 [00:41<07:37, 41.57s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:11<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:11<00:11, 11.10s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:23<00:11, 11.10s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:23<00:00, 11.78s/it][A
+                                                                                                    [A2026-11-19 01:50:18,202 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015018_O15263_lagrangian_01_seed42.json | Accessibility: 3.2402
+Exp: O15263-lagrangian-01-42 [2/12]:   8%|██▎                        | 1/12 [01:09<07:37, 41.57s/it]Exp: O15263-lagrangian-01-42 [2/12]:  17%|████▌                      | 2/12 [01:09<05:33, 33.39s/it]Exp: O15263-lagrangian-10-42 [3/12]:  17%|████▌                      | 2/12 [01:09<05:33, 33.39s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:20<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:20<00:20, 20.92s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:40<00:20, 20.92s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:40<00:00, 19.91s/it][A
+                                                                                                    [A2026-11-19 01:51:03,128 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015103_O15263_lagrangian_10_seed42.json | Accessibility: 2.6985
+Exp: O15263-lagrangian-10-42 [3/12]:  17%|████▌                      | 2/12 [01:54<05:33, 33.39s/it]Exp: O15263-lagrangian-10-42 [3/12]:  25%|██████▊                    | 3/12 [01:54<05:47, 38.66s/it]Exp: O15263-lagrangian-11-42 [4/12]:  25%|██████▊                    | 3/12 [01:54<05:47, 38.66s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:13<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:13<00:13, 13.53s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:27<00:13, 13.53s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:27<00:00, 13.92s/it][A
+                                                                                                    [A2026-11-19 01:51:35,986 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015135_O15263_lagrangian_11_seed42.json | Accessibility: 2.4153
+Exp: O15263-lagrangian-11-42 [4/12]:  25%|██████▊                    | 3/12 [02:27<05:47, 38.66s/it]Exp: O15263-lagrangian-11-42 [4/12]:  33%|█████████                  | 4/12 [02:27<04:50, 36.37s/it]Exp: O15263-ams-00-42 [5/12]:  33%|███████████▎                      | 4/12 [02:27<04:50, 36.37s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:17<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:17<00:17, 17.26s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:34<00:17, 17.26s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:34<00:00, 17.10s/it][A
+                                                                                                    [A2026-11-19 01:52:14,691 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015214_O15263_ams_00_seed42.json | Accessibility: 2.5665
+Exp: O15263-ams-00-42 [5/12]:  33%|███████████▎                      | 4/12 [03:05<04:50, 36.37s/it]Exp: O15263-ams-00-42 [5/12]:  42%|██████████████▏                   | 5/12 [03:05<04:20, 37.22s/it]Exp: O15263-ams-01-42 [6/12]:  42%|██████████████▏                   | 5/12 [03:05<04:20, 37.22s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:12<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:12<00:12, 12.72s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:25<00:12, 12.72s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:25<00:00, 12.81s/it][A
+                                                                                                    [A2026-11-19 01:52:44,695 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015244_O15263_ams_01_seed42.json | Accessibility: 2.9150
+Exp: O15263-ams-01-42 [6/12]:  42%|██████████████▏                   | 5/12 [03:35<04:20, 37.22s/it]Exp: O15263-ams-01-42 [6/12]:  50%|█████████████████                 | 6/12 [03:35<03:28, 34.76s/it]Exp: O15263-ams-10-42 [7/12]:  50%|█████████████████                 | 6/12 [03:35<03:28, 34.76s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:15<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:15<00:15, 15.53s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:31<00:15, 15.53s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:31<00:00, 15.67s/it][A
+                                                                                                    [A2026-11-19 01:53:20,237 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015320_O15263_ams_10_seed42.json | Accessibility: 2.1495
+Exp: O15263-ams-10-42 [7/12]:  50%|█████████████████                 | 6/12 [04:11<03:28, 34.76s/it]Exp: O15263-ams-10-42 [7/12]:  58%|███████████████████▊              | 7/12 [04:11<02:55, 35.02s/it]Exp: O15263-ams-11-42 [8/12]:  58%|███████████████████▊              | 7/12 [04:11<02:55, 35.02s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:13<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:13<00:13, 13.14s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:24<00:13, 13.14s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:24<00:00, 12.10s/it][A
+                                                                                                    [A2026-11-19 01:53:50,306 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015350_O15263_ams_11_seed42.json | Accessibility: 2.3690
+Exp: O15263-ams-11-42 [8/12]:  58%|███████████████████▊              | 7/12 [04:41<02:55, 35.02s/it]Exp: O15263-ams-11-42 [8/12]:  67%|██████████████████████▋           | 8/12 [04:41<02:13, 33.46s/it]Exp: O15263-cpc-00-42 [9/12]:  67%|██████████████████████▋           | 8/12 [04:41<02:13, 33.46s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:17<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:17<00:17, 17.05s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:34<00:17, 17.05s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:34<00:00, 17.41s/it][A
+                                                                                                    [A2026-11-19 01:54:29,993 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015429_O15263_cpc_00_seed42.json | Accessibility: 2.6522
+Exp: O15263-cpc-00-42 [9/12]:  67%|██████████████████████▋           | 8/12 [05:21<02:13, 33.46s/it]Exp: O15263-cpc-00-42 [9/12]:  75%|█████████████████████████▌        | 9/12 [05:21<01:46, 35.40s/it]Exp: O15263-cpc-01-42 [10/12]:  75%|████████████████████████▊        | 9/12 [05:21<01:46, 35.40s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:13<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:13<00:13, 13.21s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:26<00:13, 13.21s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:26<00:00, 13.25s/it][A
+                                                                                                    [A2026-11-19 01:55:01,223 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015501_O15263_cpc_01_seed42.json | Accessibility: 2.6522
+Exp: O15263-cpc-01-42 [10/12]:  75%|████████████████████████▊        | 9/12 [05:52<01:46, 35.40s/it]Exp: O15263-cpc-01-42 [10/12]:  83%|██████████████████████████▋     | 10/12 [05:52<01:08, 34.10s/it]Exp: O15263-cpc-10-42 [11/12]:  83%|██████████████████████████▋     | 10/12 [05:52<01:08, 34.10s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:17<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:17<00:17, 17.49s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:33<00:17, 17.49s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:33<00:00, 16.60s/it][A
+                                                                                                    [A2026-11-19 01:55:38,673 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015538_O15263_cpc_10_seed42.json | Accessibility: 1.9028
+Exp: O15263-cpc-10-42 [11/12]:  83%|██████████████████████████▋     | 10/12 [06:29<01:08, 34.10s/it]Exp: O15263-cpc-10-42 [11/12]:  92%|█████████████████████████████▎  | 11/12 [06:29<00:35, 35.12s/it]Exp: O15263-cpc-11-42 [12/12]:  92%|█████████████████████████████▎  | 11/12 [06:29<00:35, 35.12s/it]
+Optimizing:   0%|                                                             | 0/2 [00:00<?, ?it/s][A
+Optimizing:   0%|                                                             | 0/2 [00:11<?, ?it/s][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:11<00:11, 11.70s/it][A
+Optimizing:  50%|██████████████████████████▌                          | 1/2 [00:23<00:11, 11.70s/it][A
+Optimizing: 100%|█████████████████████████████████████████████████████| 2/2 [00:23<00:00, 11.72s/it][A
+                                                                                                    [A2026-11-19 01:56:06,381 - id3.experiments.core.unified_experiment_runner - INFO - ✅ Saved experiment result: 20261119_015606_O15263_cpc_11_seed42.json | Accessibility: 1.9028
+Exp: O15263-cpc-11-42 [12/12]:  92%|█████████████████████████████▎  | 11/12 [06:57<00:35, 35.12s/it]Exp: O15263-cpc-11-42 [12/12]: 100%|████████████████████████████████| 12/12 [06:57<00:00, 32.87s/it]Exp: O15263-cpc-11-42 [12/12]: 100%|████████████████████████████████| 12/12 [06:57<00:00, 34.79s/it]
+2026-11-19 01:56:06,392 - id3.experiments.core.unified_experiment_runner - INFO - 💾 All experiment results saved to: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4
+2026-11-19 01:56:06,392 - id3.experiments.core.unified_experiment_runner - INFO - 📊 Progress tracking file: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/progress.json
+
+📊 Experiment Summary
+============================================================
+Successful: 12/12
+Failed: 0/12
+Average accessibility: 2.5202
+Best accessibility: 1.9028
+Total time: 417.6s
+Summary saved: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/summary.json
+Individual experiments saved in: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/
+
+🎉 Experiment complete!
+   • Pure accessibility optimization with constraint penalties

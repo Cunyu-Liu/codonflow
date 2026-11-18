@@ -1,0 +1,1024 @@
+{
+  "amino_acid_preserving_candidate_count": 24,
+  "best_design_present_count": 12,
+  "checks": [
+    {
+      "detail": "PASS_OFFICIAL_QUICK_TEST_SMOKE",
+      "name": "producer_reports_pass",
+      "pass": true
+    },
+    {
+      "detail": "43/43",
+      "name": "producer_all_checks_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "producer_did_not_use_upstream_example",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "producer_has_no_sota_or_main_comparison",
+      "pass": true
+    },
+    {
+      "detail": {
+        "official_force": true,
+        "official_force_scope": "CPU-only skip of upstream global GPU-process gate; no GPU allocation or experiment-config change"
+      },
+      "name": "official_force_cpu_scoped",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "official_cpu_cuda_isolation",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": "9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f",
+        "expected": "9566b8cc1492ed6870e792e4b8ffed00c1b08debfb1719b41de872b7107f066f",
+        "path": "/home/id3_ed23037_fixed.zip"
+      },
+      "name": "sha256_id3_zip",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": "dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348",
+        "expected": "dfcdaefe51af5a02a7a62d7a5263a261984156d4365fed86f007dbe408bf7348",
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/deepraccess_1a37235_fixed.zip"
+      },
+      "name": "sha256_deepraccess_zip",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": "136be4db9403aaf366eb6bb9790a8f099de22bd0048be02a5a4754c36ce664d2",
+        "expected": "136be4db9403aaf366eb6bb9790a8f099de22bd0048be02a5a4754c36ce664d2",
+        "path": "/home/codonflow-a8-rk-external/ID3/DeepRaccess/path/FCN_structured.pth"
+      },
+      "name": "sha256_structured_weight",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_README.md",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_data/proteins/O15263.fasta.txt",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_id3/experiments/configs/unified_experiment_config.py",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_id3/experiments/core/unified_experiment_runner.py",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_id3/utils/deepraccess_wrapper.py",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_file_run_unified_experiment.py",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "deepraccess_materialization_audit_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "deepraccess_materialization_contract",
+      "pass": true
+    },
+    {
+      "detail": {
+        "mismatches": [],
+        "registered_files": 24
+      },
+      "name": "deepraccess_every_source_and_weight_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "O15263"
+        ],
+        "expected": [
+          "O15263"
+        ]
+      },
+      "name": "source_quick_proteins",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ],
+        "expected": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ]
+      },
+      "name": "source_quick_constraints",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "expected": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "name": "source_quick_variants",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 2,
+        "expected": 2
+      },
+      "name": "source_quick_iterations",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      },
+      "name": "source_quick_seeds",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": false,
+        "expected": false
+      },
+      "name": "source_quick_enable_cai",
+      "pass": true
+    },
+    {
+      "detail": 1000,
+      "name": "source_full_1000_iterations",
+      "pass": true
+    },
+    {
+      "detail": 1,
+      "name": "source_full_one_seed",
+      "pass": true
+    },
+    {
+      "detail": [
+        "O15263",
+        "P00004",
+        "P01308",
+        "P01825",
+        "P04637",
+        "P0CG48",
+        "P0DTC2",
+        "P0DTC9",
+        "P31417",
+        "P42212",
+        "P61626",
+        "P99999"
+      ],
+      "name": "source_full_12_proteins",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_full_12_configurations_per_protein",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "producer_preset_ast_matches_independent_ast",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "readme_quick_5_vs_source_2_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "readme_full_12_seeds_vs_source_1_retained",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "O15263"
+        ],
+        "expected": [
+          "O15263"
+        ]
+      },
+      "name": "saved_quick_proteins",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ],
+        "expected": [
+          "lagrangian",
+          "ams",
+          "cpc"
+        ]
+      },
+      "name": "saved_quick_constraints",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "expected": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "name": "saved_quick_variants",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 2,
+        "expected": 2
+      },
+      "name": "saved_quick_iterations",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": 1,
+        "expected": 1
+      },
+      "name": "saved_quick_seeds",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": false,
+        "expected": false
+      },
+      "name": "saved_quick_enable_cai",
+      "pass": true
+    },
+    {
+      "detail": {
+        "average_time_per_experiment": 34.799263536930084,
+        "failed": 0,
+        "successful": 12,
+        "total_experiments": 12,
+        "total_time": 417.591162443161
+      },
+      "name": "overview_total_success_failure",
+      "pass": true
+    },
+    {
+      "detail": [
+        "20261119_014950_O15263_lagrangian_00_seed42.json",
+        "20261119_015018_O15263_lagrangian_01_seed42.json",
+        "20261119_015103_O15263_lagrangian_10_seed42.json",
+        "20261119_015135_O15263_lagrangian_11_seed42.json",
+        "20261119_015214_O15263_ams_00_seed42.json",
+        "20261119_015244_O15263_ams_01_seed42.json",
+        "20261119_015320_O15263_ams_10_seed42.json",
+        "20261119_015350_O15263_ams_11_seed42.json",
+        "20261119_015429_O15263_cpc_00_seed42.json",
+        "20261119_015501_O15263_cpc_01_seed42.json",
+        "20261119_015538_O15263_cpc_10_seed42.json",
+        "20261119_015606_O15263_cpc_11_seed42.json"
+      ],
+      "name": "exactly_12_real_result_payloads",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actual": [
+          [
+            "O15263",
+            "ams",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "11",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "11",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "11",
+            42
+          ]
+        ],
+        "expected": [
+          [
+            "O15263",
+            "ams",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "ams",
+            "11",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "cpc",
+            "11",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "00",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "01",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "10",
+            42
+          ],
+          [
+            "O15263",
+            "lagrangian",
+            "11",
+            42
+          ]
+        ]
+      },
+      "name": "experiment_key_matrix",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "all_result_status_completed",
+      "pass": true
+    },
+    {
+      "detail": [
+        "20261119_015320_O15263_ams_10_seed42.json",
+        "progress.json",
+        "20261119_015538_O15263_cpc_10_seed42.json",
+        "20261119_015501_O15263_cpc_01_seed42.json",
+        "20261119_015429_O15263_cpc_00_seed42.json",
+        "20261119_015350_O15263_ams_11_seed42.json",
+        "20261119_015103_O15263_lagrangian_10_seed42.json",
+        "20261119_015606_O15263_cpc_11_seed42.json",
+        "20261119_015214_O15263_ams_00_seed42.json",
+        "20261119_015018_O15263_lagrangian_01_seed42.json",
+        "20261119_014950_O15263_lagrangian_00_seed42.json",
+        "20261119_015244_O15263_ams_01_seed42.json",
+        "20261119_015135_O15263_lagrangian_11_seed42.json"
+      ],
+      "name": "progress_json_quirk_recorded",
+      "pass": true
+    },
+    {
+      "detail": 64,
+      "name": "O15263_length_64",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_014950_O15263_lagrangian_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015018_O15263_lagrangian_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015103_O15263_lagrangian_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015135_O15263_lagrangian_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015214_O15263_ams_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015244_O15263_ams_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015320_O15263_ams_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015350_O15263_ams_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015429_O15263_cpc_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015501_O15263_cpc_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015538_O15263_cpc_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "payload_invariants_20261119_015606_O15263_cpc_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 24,
+      "name": "total_24_discrete_trajectory_records",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "all_final_protein_preserved",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/config.json",
+      "name": "artifact_hash_config.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/summary.json",
+      "name": "artifact_hash_summary.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/progress.json",
+      "name": "artifact_hash_progress.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_014950_O15263_lagrangian_00_seed42.json",
+      "name": "artifact_hash_20261119_014950_O15263_lagrangian_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015018_O15263_lagrangian_01_seed42.json",
+      "name": "artifact_hash_20261119_015018_O15263_lagrangian_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015103_O15263_lagrangian_10_seed42.json",
+      "name": "artifact_hash_20261119_015103_O15263_lagrangian_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015135_O15263_lagrangian_11_seed42.json",
+      "name": "artifact_hash_20261119_015135_O15263_lagrangian_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015214_O15263_ams_00_seed42.json",
+      "name": "artifact_hash_20261119_015214_O15263_ams_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015244_O15263_ams_01_seed42.json",
+      "name": "artifact_hash_20261119_015244_O15263_ams_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015320_O15263_ams_10_seed42.json",
+      "name": "artifact_hash_20261119_015320_O15263_ams_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015350_O15263_ams_11_seed42.json",
+      "name": "artifact_hash_20261119_015350_O15263_ams_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015429_O15263_cpc_00_seed42.json",
+      "name": "artifact_hash_20261119_015429_O15263_cpc_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015501_O15263_cpc_01_seed42.json",
+      "name": "artifact_hash_20261119_015501_O15263_cpc_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015538_O15263_cpc_10_seed42.json",
+      "name": "artifact_hash_20261119_015538_O15263_cpc_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/id3_official_quick_test_ed23037_cpu_v4/20261119_015606_O15263_cpc_11_seed42.json",
+      "name": "artifact_hash_20261119_015606_O15263_cpc_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test.log",
+      "name": "artifact_hash_id3_official_quick_test.log",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK05/deepraccess_materialization.json",
+      "name": "artifact_hash_deepraccess_materialization.json",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "log_explicit_pretrained_load",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "log_no_random_initialization_fallback",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.7783493995666504,
+        "recorded": 2.7783493995666504
+      },
+      "name": "final_score_recompute_20261119_014950_O15263_lagrangian_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_014950_O15263_lagrangian_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_014950_O15263_lagrangian_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 3.240176200866699,
+        "recorded": 3.240176200866699
+      },
+      "name": "final_score_recompute_20261119_015018_O15263_lagrangian_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 4.76837158203125e-07,
+      "name": "initial_score_recompute_20261119_015018_O15263_lagrangian_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 4.76837158203125e-07,
+      "name": "best_score_recompute_20261119_015018_O15263_lagrangian_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.698474168777466,
+        "recorded": 2.698474168777466
+      },
+      "name": "final_score_recompute_20261119_015103_O15263_lagrangian_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015103_O15263_lagrangian_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_015103_O15263_lagrangian_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.4153499603271484,
+        "recorded": 2.4153499603271484
+      },
+      "name": "final_score_recompute_20261119_015135_O15263_lagrangian_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015135_O15263_lagrangian_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 4.76837158203125e-07,
+      "name": "best_score_recompute_20261119_015135_O15263_lagrangian_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.5664501190185547,
+        "recorded": 2.5664501190185547
+      },
+      "name": "final_score_recompute_20261119_015214_O15263_ams_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015214_O15263_ams_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_015214_O15263_ams_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.9149703979492188,
+        "recorded": 2.9149703979492188
+      },
+      "name": "final_score_recompute_20261119_015244_O15263_ams_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015244_O15263_ams_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 1.430511474609375e-06,
+      "name": "best_score_recompute_20261119_015244_O15263_ams_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.149547815322876,
+        "recorded": 2.149547815322876
+      },
+      "name": "final_score_recompute_20261119_015320_O15263_ams_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015320_O15263_ams_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_015320_O15263_ams_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.3689863681793213,
+        "recorded": 2.3689863681793213
+      },
+      "name": "final_score_recompute_20261119_015350_O15263_ams_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015350_O15263_ams_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 4.76837158203125e-07,
+      "name": "best_score_recompute_20261119_015350_O15263_ams_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.652176856994629,
+        "recorded": 2.652176856994629
+      },
+      "name": "final_score_recompute_20261119_015429_O15263_cpc_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015429_O15263_cpc_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_015429_O15263_cpc_00_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 2.652176856994629,
+        "recorded": 2.652176856994629
+      },
+      "name": "final_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 1.7275513410568237,
+      "name": "initial_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+      "pass": false
+    },
+    {
+      "detail": 0.9641860723495483,
+      "name": "best_score_recompute_20261119_015501_O15263_cpc_01_seed42.json",
+      "pass": false
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 1.902809500694275,
+        "recorded": 1.902809500694275
+      },
+      "name": "final_score_recompute_20261119_015538_O15263_cpc_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "initial_score_recompute_20261119_015538_O15263_cpc_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "best_score_recompute_20261119_015538_O15263_cpc_10_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "abs_delta": 0.0,
+        "recomputed": 1.902809500694275,
+        "recorded": 1.902809500694275
+      },
+      "name": "final_score_recompute_20261119_015606_O15263_cpc_11_seed42.json",
+      "pass": true
+    },
+    {
+      "detail": 0.6307168006896973,
+      "name": "initial_score_recompute_20261119_015606_O15263_cpc_11_seed42.json",
+      "pass": false
+    },
+    {
+      "detail": 0.21090662479400635,
+      "name": "best_score_recompute_20261119_015606_O15263_cpc_11_seed42.json",
+      "pass": false
+    }
+  ],
+  "checks_passed": 108,
+  "checks_total": 112,
+  "cost_and_discrete_records_independent": {
+    "caution": "Not a complete instrumented model-call count and not a unified-cost main comparison.",
+    "final_evaluation_records": 12,
+    "recorded_discrete_candidates": 24
+  },
+  "discrete_candidate_count": 24,
+  "finished_utc": "2026-11-18T17:58:44.543014+00:00",
+  "per_run_independent": [
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_014950_O15263_lagrangian_00_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015018_O15263_lagrangian_01_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015103_O15263_lagrangian_10_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015135_O15263_lagrangian_11_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015214_O15263_ams_00_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015244_O15263_ams_01_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015320_O15263_ams_10_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015350_O15263_ams_11_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015429_O15263_cpc_00_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015501_O15263_cpc_01_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015538_O15263_cpc_10_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    },
+    {
+      "best_design_present": true,
+      "candidate_count": 2,
+      "file": "20261119_015606_O15263_cpc_11_seed42.json",
+      "issues": [],
+      "valid_candidate_count": 2
+    }
+  ],
+  "producer_module_imported": false,
+  "production_orchestration_wall_time_s": 434.3220009803772,
+  "production_report_sha256": "b0a10e1af4b80cac6fa2cab34df860b5ba506283e37fd9967b55a16aa2036743",
+  "schema_version": "a8-rk05-id3-independent-verification-v1",
+  "science_flags": {
+    "dense_budget_evaluation": false,
+    "functional_expression_claim": false,
+    "main_baseline_comparison": false,
+    "quick_test_smoke_only": true,
+    "sota_claim": false
+  },
+  "scope_note": "Independent verification of one official 2-iteration quick-test only; no full experiment, baseline ranking, SOTA, dense-budget or functional claim.",
+  "score_recomputation": {
+    "device": "cpu",
+    "max_abs_delta": 1.7275513410568237,
+    "performed": true,
+    "sequences_scored": 36,
+    "tolerance": 2e-05,
+    "torch": "2.11.0+cu128"
+  },
+  "started_utc": "2026-11-18T17:56:07.764941+00:00",
+  "status": "FAIL_INDEPENDENT_VERIFICATION"
+}
