@@ -19,6 +19,8 @@ class RangeHandler(BaseHTTPRequestHandler):
     payload = b"Protein_ID,CDS_Sequence\nP1,ATGAAATAG\n" * 100
     ranges = []
     ignore_range = False
+    range_total_override = None
+    response_limit = None
 
     def do_GET(self):
         type(self).ranges.append(self.headers.get("Range"))
@@ -32,10 +34,12 @@ class RangeHandler(BaseHTTPRequestHandler):
             status = 206
             self.send_response(status)
             self.send_header(
-                "Content-Range", f"bytes {offset}-{len(self.payload)-1}/{len(self.payload)}"
+                "Content-Range", f"bytes {offset}-{len(self.payload)-1}/{type(self).range_total_override or len(self.payload)}"
             )
         else:
             self.send_response(status)
+        if type(self).response_limit is not None:
+            body = body[:type(self).response_limit]
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Content-Type", "text/csv")
         self.end_headers()
@@ -62,6 +66,8 @@ class DownloadTests(unittest.TestCase):
     def setUp(self):
         RangeHandler.ranges = []
         RangeHandler.ignore_range = False
+        RangeHandler.range_total_override = None
+        RangeHandler.response_limit = None
         self.spec = {
             "media_type": "text/csv",
             "expected_bytes": len(RangeHandler.payload),
@@ -107,6 +113,49 @@ class DownloadTests(unittest.TestCase):
             with self.assertRaises(DataValidationError):
                 download_verified(self.url, destination, self.spec, retries=1)
             self.assertEqual(destination.read_bytes(), b"do-not-overwrite")
+
+    def test_complete_verified_part_promotes_without_http(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "data.csv"
+            part = destination.with_name("data.csv.part")
+            part.write_bytes(RangeHandler.payload)
+            result = download_verified(self.url, destination, self.spec, retries=3)
+            self.assertEqual(result["status"], "promoted_verified_part")
+            self.assertEqual(result["attempts"], 0)
+            self.assertEqual(destination.read_bytes(), RangeHandler.payload)
+            self.assertEqual(RangeHandler.ranges, [])
+
+    def test_complete_bad_part_fails_without_http_and_is_preserved(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "data.csv"
+            part = destination.with_name("data.csv.part")
+            part.write_bytes(RangeHandler.payload)
+            bad_spec = dict(self.spec, expected_sha256="0" * 64)
+            with self.assertRaisesRegex(DataValidationError, "sha256 mismatch"):
+                download_verified(self.url, destination, bad_spec, retries=3)
+            self.assertEqual(part.read_bytes(), RangeHandler.payload)
+            self.assertEqual(RangeHandler.ranges, [])
+
+    def test_content_range_total_mismatch_is_rejected_before_append(self):
+        RangeHandler.range_total_override = len(RangeHandler.payload) + 1
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "data.csv"
+            part = destination.with_name("data.csv.part")
+            part.write_bytes(RangeHandler.payload[:100])
+            with self.assertRaisesRegex(DataValidationError, "Content-Range total mismatch"):
+                download_verified(self.url, destination, self.spec, retries=1)
+            self.assertEqual(part.read_bytes(), RangeHandler.payload[:100])
+
+    def test_short_range_response_reports_incomplete_without_expected_bytes(self):
+        RangeHandler.response_limit = 25
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "data.csv"
+            part = destination.with_name("data.csv.part")
+            part.write_bytes(RangeHandler.payload[:100])
+            spec = {"media_type": "text/csv"}
+            with self.assertRaisesRegex(DataValidationError, "incomplete payload"):
+                download_verified(self.url, destination, spec, retries=1)
+            self.assertEqual(part.stat().st_size, 125)
 
     def test_html_is_not_csv(self):
         with tempfile.TemporaryDirectory() as tmp:

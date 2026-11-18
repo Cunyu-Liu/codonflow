@@ -8,6 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -81,20 +82,47 @@ def download_verified(
     last_error: Optional[BaseException] = None
     for attempt in range(1, retries + 1):
         offset = part.stat().st_size if part.exists() else 0
+        expected_bytes = spec.get("expected_bytes")
+        if expected_bytes is not None and offset:
+            expected_total = int(expected_bytes)
+            if offset > expected_total:
+                raise DataValidationError(
+                    f"resumable part exceeds expected byte count: expected={expected_total}, actual={offset}"
+                )
+            if offset == expected_total:
+                result = verify_integrity(part, spec)
+                os.replace(part, destination)
+                return {
+                    "status": "promoted_verified_part", "attempts": 0,
+                    "resumed_from_bytes": offset, "http_status": None, **result,
+                }
         try:
             headers = {"User-Agent": USER_AGENT, "Accept": "*/*"}
             if offset:
                 headers["Range"] = f"bytes={offset}-"
             request = urllib.request.Request(url, headers=headers)
+            response_total: Optional[int] = None
             with urllib.request.urlopen(request, timeout=timeout) as response:
                 status = int(getattr(response, "status", 200))
                 append = bool(offset and status == 206)
                 if offset and status == 206:
                     content_range = response.headers.get("Content-Range", "")
-                    if not content_range.startswith(f"bytes {offset}-"):
+                    matched = re.fullmatch(r"bytes (\d+)-(\d+)/(\d+)", content_range)
+                    if not matched or int(matched.group(1)) != offset:
                         raise DataValidationError(
                             f"invalid Content-Range for offset {offset}: {content_range!r}"
                         )
+                    start, end, response_total = (int(value) for value in matched.groups())
+                    if end < start or end >= response_total:
+                        raise DataValidationError(f"invalid Content-Range bounds: {content_range!r}")
+                    if expected_bytes is not None and response_total != int(expected_bytes):
+                        raise DataValidationError(
+                            f"Content-Range total mismatch: expected={expected_bytes}, actual={response_total}"
+                        )
+                elif status == 200:
+                    content_length = response.headers.get("Content-Length")
+                    if content_length and content_length.isdigit():
+                        response_total = int(content_length)
                 mode = "ab" if append else "wb"
                 with part.open(mode) as handle:
                     while True:
@@ -102,11 +130,15 @@ def download_verified(
                         if not chunk:
                             break
                         handle.write(chunk)
-                        expected_bytes = spec.get("expected_bytes")
                         if expected_bytes is not None and handle.tell() > int(expected_bytes):
                             raise DataValidationError(
                                 f"payload exceeds expected byte count: {expected_bytes}"
                             )
+            actual_total = part.stat().st_size
+            if expected_bytes is None and response_total is not None and actual_total != response_total:
+                raise DataValidationError(
+                    f"incomplete payload after response: expected={response_total}, actual={actual_total}"
+                )
             result = verify_integrity(part, spec)
             os.replace(part, destination)
             return {
