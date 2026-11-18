@@ -459,3 +459,25 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK05/veloharmo_ppt_independent_verification.json` 最终为 **PASS，10/10 checks**：整稿 75 页，前 74 页 slide ID、顺序与 ID-independent 语义 XML 全部不变，新页数值、表格、备注、画布边界和科学边界通过。readback XML SHA256=`863fb78d364a05b21a9ceceb133f72aa8751d404643d8f9b58b877953164ae12`。首次 9/10 失败仅由第 74 页 `</slide>` 后 tail whitespace 触发；逐项 diff 证明旧页标签、属性、文字和子元素未变，失败报告与 diff 均保留。
 - PPT verifier/report 以 commit=`49ed134d4966fcc5c8d70c00c654cd414b898c51` 推送并核对 GitHub 远端。当前在线主稿真实状态为 **75 页、revision 37、末页 `pgh`**；raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_veloharmo_v1/`。
 - 本任务只关闭 bounded official smoke。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK04 长度/GC OOD 与 train-only 校准、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文仍未关闭。
+
+## 25. RiboMIMO 官方 bounded training、A8 v8 与 PPT 第 76 页
+
+### 固定来源、真实训练与独立复核
+
+- 官方 RiboMIMO 固定 commit=`094c693d4df45f4b29f5a3209b31c452a39092a5`；codeload 归档 SHA256=`0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162`。原始 partial-clone 工作树不完整，最终只使用 `/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5` 的固定归档恢复源码；归档内四份矩阵与 RK03 已核验 raw 逐 SHA 一致。
+- 冻结协议为 Mohammad16 最短 20 条合格 unique-name 记录、一次 repeat、2 folds、2 epochs、batch=4、seed=20261118、官方 random gene split、单线程 CPU、97 维输入、hidden=256、depth=2。子集 SHA256=`bd2bcd2566d7d02271c35548c18695a8ec151377568c6422a24a0f60b864998b`；每折 train/valid/test=9/1/10，派生 split seed=136。作者 prediction pickle 未用作本次训练输出。
+- 未修改入口在 NumPy 变长数组处失败；只修 ragged array 后又在 padding 的 object dtype 转 Tensor 处失败。探索性 LongTensor 补丁经 unseeded 对照证明非必要，最终 runtime 只保留六项兼容替换：五处 ragged `dtype=object` 和一处 numeric padding `dtype=float`，模型、优化器、split 与训练逻辑不变。v1–v4 原始目录、driver logs、环境误读的 superseded 报告均保留；最终 v4 从真实训练进程确认 CPU、单线程、deterministic=true、无可见 GPU。
+- 两个最佳验证 checkpoint 各含 22 个参数张量、1,860,356 参数。fold-0 的 163 个 positive masked positions 上，独立 checkpoint 重算 R²/MSE/Pearson=`-0.0909230222/2.5958190157/0.0077743819`；fold-1 的 185 个位置为 `-0.0033395900/2.0020711321/0.0228037406`。两折 mean=`-0.047131/2.298945/0.015289`，population SD=`0.043792/0.296874/0.007515`。这些是极小 bounded 子集的执行诊断，不是论文性能复现、预测效用或方法排名。
+- 独立 verifier 不导入生产模块，重新筛选并重训两折，checkpoint 张量 `max_abs_delta=0.0`，总体 **17/17 PASS**；最大指标差 `4.099541271911436e-07` 与官方日志六位小数一致。finalization **13/13 PASS**，最终单元测试 **10/10 PASS**。生产报告 SHA256=`ce79120bef6f25aefcd9e3b5e440c764a300f78c6da3d6cecd01c9f55bf4a9b6`，独立报告 SHA256=`d97874904cca4b4e1589ee4eb4daac482450762c7b9d8dee840c0756eb443195`，finalization SHA256=`69c532e20612b7d8de83486f7c2ced7961ac416f7c3e5218946f2804956407d8`。科学证据与 RK05 README commit=`a6e119650c4dd52110849b43aa377cbbd1e422b0`，已推送并核对远端。
+
+### A8 v8、复现记录与科学边界
+
+- A8 生成器/verifier 升级为 v8，纳入 RiboMIMO 三份冻结 JSON 及哈希、bounded 训练协议、两折指标、六项兼容替换、17/17 与 13/13 核验；A7 未改。A8 v8 SHA256=`7f1a6d5ce3f5b17d6beb1a79958e8b91e30765fb68b58dd225635b8a696c4733`，独立论文核验 **19/19 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。commit=`56f9c4d559dc29f94b295f2500f7c0a3af1410e4`。
+- 最终生产 raw 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/`，独立 raw 位于 `ribomimo_independent_v1/`；完整失败史、证据哈希和复现命令见 `audits/20261118/RK05/README.md`。大型矩阵、归档、checkpoint、runtime copy 和日志均未提交 Git。
+- 本结果只关闭 bounded official training smoke。完整官方 10-fold/100-epoch、同源/蛋白/study OOD、功能 OOD、统一成本强 baseline 主矩阵、CodonFlow-RK 生成器、SOTA、前瞻湿实验和可投稿论文均未关闭；负 R² 与近零 Pearson 不得包装为可推广预测性能。
+
+### PPT 写后验收与当前续作
+
+- 结果和 A8 v8 经独立验收后才写入既有在线主稿。实时基线为 75 页、revision 37、末页 `pgh`；候选页 preflight **8/8 PASS** 后只追加第 76 页，slide ID=`pgG`，写入后 revision=38。页面展示两折与汇总 R²/MSE/Pearson、20 genes、1,860,356 参数、17/17 独立 PASS、13/13 finalization，并显式标注 bounded、非完整协议、非 OOD、非主矩阵、非 SOTA。
+- `audits/20261118/RK05/ribomimo_ppt_verification.json` 为 **PASS，11/11 checks**：整稿 76 页，前 75 页 slide ID、顺序与 ID-independent 语义 XML 全部不变；新页数值、四行表、4 段备注、画布边界和科学边界通过。候选、baseline/readback XML 与完整响应位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ribomimo_v1/`。PPT verifier/report commit=`c317eb6755a6d6f6543b6297a0fdbc417186aa4d`，已推送并核对 GitHub 远端。
+- 当前在线主稿真实状态为 **76 页、revision 38、末页 `pgG`**。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK04 长度/GC OOD 与 train-only 校准、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文仍未关闭；遗留 `id3_independent_verification.pid` 不属于本任务，不应提交。

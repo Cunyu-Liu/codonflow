@@ -590,3 +590,31 @@ $PY scripts/a8_rk05_finalize_ribomimo_official_smoke.py \
 ```
 
 Code and commits remain under `/home`; source archives, matrices, runtime copies, checkpoints, logs and other raw artifacts remain under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`. The unified strong-baseline matrix, full-budget training, homology/study OOD, functional OOD, CodonFlow-RK generation and SOTA assessment remain open.
+
+## A8 v8 manuscript and verified online record
+
+The scientific evidence and this reproduction section were pushed in commit `a6e119650c4dd52110849b43aa377cbbd1e422b0`. The A8 generator and independent verifier then consumed the three frozen RiboMIMO reports. A8 v8 has SHA256 `7f1a6d5ce3f5b17d6beb1a79958e8b91e30765fb68b58dd225635b8a696c4733`, independent manuscript verification is **19/19 PASS**, and the status remains `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`; commit `56f9c4d559dc29f94b295f2500f7c0a3af1410e4` contains the generator, verifier, synchronized manuscript and audits. A7 remains unchanged.
+
+After scientific and manuscript verification, one page was appended to the existing online deck. The transaction baseline was 75 slides at revision 37 with last slide `pgh`; the new RiboMIMO page is slide 76, `slide_id=pgG`, at revision 38. Candidate-only preflight passed **8/8** before any server write. Post-write independent verification passed **11/11**: exactly one page was appended, all previous slide IDs/order and ID-independent semantic XML were unchanged, and the new page's values, table, notes, bounds and scope matched the frozen JSON. The evidence is:
+
+- `ribomimo_ppt_candidate_verification.json`
+- `ribomimo_ppt_verification.json`
+- `scripts/a8_rk05_verify_ribomimo_ppt.py`
+- PPT commit `c317eb6755a6d6f6543b6297a0fdbc417186aa4d`
+- Archived candidate, baseline/readback XML and complete responses under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ribomimo_v1/`
+
+To reverify the archived transaction without writing to the deck:
+
+```bash
+PPT=$ART/ppt_ribomimo_v1
+$PY scripts/a8_rk05_verify_ribomimo_ppt.py \
+  --evidence-dir "$R" \
+  --baseline-xml "$PPT/ribomimo-baseline-v01.xml" \
+  --baseline-response "$PPT/ribomimo-baseline-response-v01.json" \
+  --readback-xml "$PPT/ribomimo-readback-v01.xml" \
+  --readback-response "$PPT/ribomimo-readback-response-v01.json" \
+  --add-response "$PPT/ribomimo-add-response-v01.json" \
+  --expected-new-slide-id pgG --output <NEW_PPT_VERIFICATION_JSON>
+```
+
+The online URL is <https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>. This record closes only the bounded RiboMIMO official-training smoke and its reporting; it does not close the scientific or submission Gates listed above.
