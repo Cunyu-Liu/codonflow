@@ -1,0 +1,148 @@
+{
+  "protocol": "a8_rk05_ensembledesign_ppt_independent_verification_v1",
+  "status": "PASS",
+  "check_count": 10,
+  "passed_checks": 10,
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pgO",
+  "slide_number": 73,
+  "baseline_slide_count": 72,
+  "readback_slide_count": 73,
+  "baseline_revision": 34,
+  "readback_revision": 35,
+  "old_pages_unchanged": true,
+  "baseline_xml_sha256": "34c34bbf8ef37e1ab21f2a22d73e606a4bf18b335d60a5f9db48c962f01962d9",
+  "readback_xml_sha256": "a470d1354edd5afdec19b1cdca834ab4af5d96eea35086e5843b3f66eae09ddc",
+  "evidence_sha256": {
+    "example": "eb86291b020da35c2338715d37803882f1a05e9fe0631077e3cd20159e023e18",
+    "c01": "b72d17ee16f4afe148430f735ee65cecbf8728fb7b98ddac23469937ee0a98b9",
+    "example_independent": "b6c24a7f94ef5786cd3fe11a2c802bde79ea3318539279f88fb4335b4fe2a1d7",
+    "c01_independent": "bf73ff5156526f55e5882e94d16f511293db4421b23afca7cb38c816cbab34dd",
+    "finalization": "226cf4b15b0bdfac35a846941fc17986e5f1f3a76851ed33e106946d8b8a4fde"
+  },
+  "checks": [
+    {
+      "name": "frozen_official_and_finalization_evidence",
+      "pass": true,
+      "detail": {
+        "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+        "finalization": "11/11"
+      }
+    },
+    {
+      "name": "two_independent_reports_pass",
+      "pass": true,
+      "detail": {
+        "example": "13/13",
+        "c01": "13/13"
+      }
+    },
+    {
+      "name": "write_and_revision_confirmed",
+      "pass": true,
+      "detail": {
+        "before": 34,
+        "after": 35,
+        "slide_id": "pgO"
+      }
+    },
+    {
+      "name": "exactly_one_page_appended",
+      "pass": true,
+      "detail": {
+        "before": 72,
+        "after": 73,
+        "last_id": "pgO"
+      }
+    },
+    {
+      "name": "old_page_ids_and_order_unchanged",
+      "pass": true,
+      "detail": {
+        "old_pages": 72
+      }
+    },
+    {
+      "name": "all_72_old_pages_semantically_unchanged",
+      "pass": true,
+      "detail": {
+        "unchanged": 72,
+        "different_pages": []
+      }
+    },
+    {
+      "name": "kpi_protocol_and_cost_match_evidence",
+      "pass": true,
+      "detail": {
+        "runs": 8,
+        "unique_cds": 6,
+        "example_s": 8.044502989854664,
+        "c01_s": 52.65070143900812
+      }
+    },
+    {
+      "name": "table_recomputed_from_frozen_reports",
+      "pass": true,
+      "detail": {
+        "rows": [
+          [
+            "seq1",
+            "17 aa",
+            "1",
+            "-18.00",
+            "51 nt"
+          ],
+          [
+            "seq2",
+            "27 aa",
+            "1",
+            "-43.71",
+            "81 nt"
+          ],
+          [
+            "seq3",
+            "33 aa",
+            "2",
+            "-70.29",
+            "99 nt"
+          ],
+          [
+            "C01H6.8b.1",
+            "135 aa",
+            "1",
+            "-269.97",
+            "405 nt"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "notes_failure_and_scientific_boundary",
+      "pass": true,
+      "detail": {
+        "note_paragraphs": 4,
+        "main_baseline_comparison": false,
+        "functional_ood": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "new_page_geometry_and_readability_structure",
+      "pass": true,
+      "detail": {
+        "in_bounds": true,
+        "minimum_explicit_font_px": 9.0,
+        "table_rows": 5,
+        "page_number": 73
+      }
+    }
+  ],
+  "scope": {
+    "bounded_official_smoke_recorded": true,
+    "matched_lineardesign_comparison": false,
+    "dense_budget_complete": false,
+    "main_baseline_matrix_closed": false,
+    "functional_ood": false,
+    "sota_claim": false
+  }
+}
