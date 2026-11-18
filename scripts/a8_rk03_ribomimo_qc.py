@@ -110,10 +110,10 @@ def source_key(header: str, reference: str) -> Optional[str]:
     protein_id = field(header, "protein_id")
     if protein_id:
         return protein_id
-    match = re.search(r"(?:^|_)(NP_\d+\.\d+)(?:_|$)", token)
+    match = re.search(r"(?:^|_)((?:NP|YP|WP)_\d+\.\d+)(?:_|$)", token)
     if match:
         return match.group(1)
-    return token if token.startswith("NP_") else None
+    return token if re.fullmatch(r"(?:NP|YP|WP)_[A-Za-z0-9]+(?:\.\d+)?", token) else None
 
 
 def translate_record(codons: Sequence[str], allowed_starts: set) -> str:
@@ -340,11 +340,21 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--raw-dir", type=Path, required=True)
     parser.add_argument("--reference-dir", type=Path, required=True)
     parser.add_argument("--ecoli-protein-fasta", default="ecoli_protein.faa.gz")
+    parser.add_argument("--ecoli-supplement-fasta", default="ecoli_protein_supplement.fasta")
     parser.add_argument("--yeast-protein-fasta", default="orf_trans_all.fasta.gz")
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args(argv)
+    ecoli_reference = read_fasta(args.reference_dir / args.ecoli_protein_fasta)
+    supplement_path = args.reference_dir / args.ecoli_supplement_fasta
+    supplement_reference: Dict[str, str] = {}
+    if supplement_path.exists():
+        supplement_reference = read_fasta(supplement_path)
+        for key, value in supplement_reference.items():
+            if key in ecoli_reference and ecoli_reference[key] != value:
+                raise ValueError(f"conflicting reference protein for {key}")
+        ecoli_reference.update(supplement_reference)
     references = {
-        "ecoli": read_fasta(args.reference_dir / args.ecoli_protein_fasta),
+        "ecoli": ecoli_reference,
         "yeast": read_fasta(args.reference_dir / args.yeast_protein_fasta),
     }
     args.output_dir.mkdir(parents=True, exist_ok=True)
@@ -364,7 +374,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     write_jsonl_gz((record for dataset in DATASETS for record in all_records[dataset]), all_path)
     write_jsonl_gz(clean_records, clean_path)
     summary = {
-        "schema_version": "a8-rk03-ribomimo-qc-v1",
+        "schema_version": "a8-rk03-ribomimo-qc-v2",
         "source_commit": SOURCE_COMMIT,
         "source_semantics": "author-processed codon-level ribosomal A-site counts; raw reads/P-site remapping unavailable in these files",
         "normalization": {
@@ -374,9 +384,22 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             "end_masking_not_applied_by_this_qc": "RiboMIMO model later masks first 5 and last 4 codons; raw and pre-mask normalized values are preserved here",
         },
         "reference_protein_fastas": {
-            key: {"path": str(args.reference_dir / value), "sha256": sha256_file(args.reference_dir / value), "entries": len(references[key])}
+            key: {
+                "path": str(args.reference_dir / value),
+                "sha256": sha256_file(args.reference_dir / value),
+                "entries": len(references[key]) - (len(supplement_reference) if key == "ecoli" else 0),
+            }
             for key, value in (("ecoli", args.ecoli_protein_fasta), ("yeast", args.yeast_protein_fasta))
         },
+        "ecoli_supplement_fasta": (
+            {
+                "path": str(supplement_path),
+                "sha256": sha256_file(supplement_path),
+                "entries": len(supplement_reference),
+            }
+            if supplement_reference else None
+        ),
+        "ecoli_reference_entries_after_supplement": len(references["ecoli"]),
         "clean_rule": "no duplicate key, aligned lengths, canonical sequence/start/stop, finite nonnegative counts, strict coverage, and exact translated-reference protein match",
         "utr_status": "not_provided_by_ribomimo_source",
         "datasets": summaries,

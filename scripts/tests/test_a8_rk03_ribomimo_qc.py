@@ -10,6 +10,7 @@ from scripts.a8_rk03_ribomimo_qc import (
     process_dataset,
     read_fasta,
     replicate_qc,
+    source_key,
 )
 
 
@@ -21,6 +22,14 @@ class RiboMIMOQCTests(unittest.TestCase):
         empty, empty_mean = normalize_counts([0.0, 0.5])
         self.assertEqual(empty, [None, None])
         self.assertIsNone(empty_mean)
+
+    def test_source_key_supports_versioned_np_yp_wp_accessions(self):
+        self.assertEqual(source_key(">YP_025292.1", "ecoli"), "YP_025292.1")
+        self.assertEqual(
+            source_key(">lcl|NC_000913.3_cds_WP_001234567.1_1 [gene=x]", "ecoli"),
+            "WP_001234567.1",
+        )
+        self.assertEqual(source_key(">YAL001C", "yeast"), "YAL001C")
 
     def test_fasta_gzip_and_translation_reference(self):
         with tempfile.TemporaryDirectory() as tmp:
