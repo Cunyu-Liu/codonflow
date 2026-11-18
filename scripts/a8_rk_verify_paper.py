@@ -308,6 +308,43 @@ def main() -> None:
     }
     check("ribomimo_bounded_official_training_and_scope", all(ribo_official_checks.values()), ribo_official_checks)
 
+    ixnos = data["ixnos_official"]
+    ixnosv = data["ixnos_official_verify"]
+    ixnosf = data["ixnos_official_final"]
+    ixm = ixnos["training"]["test_metrics"]
+    ix_unit_log = (repo / "audits/20261118/RK05/ixnos_unit_tests_v2.log").read_text(encoding="utf-8")
+    ixnos_strings = [
+        ixnos["config"]["source_commit"], f"**{ixnos['prefix_qc']['records']:,} complete reads**",
+        f"**{ixnos['trimmed_qc']['records']:,} reads**", "**756,168**", "**723,724**", "**1,238 genes**",
+        f"seed **{ixnos['config']['seed']}**", "**20 train / 10 test genes**",
+        f"**{ixnos['training']['train_shape'][0]:,} train / {ixnos['training']['test_shape'][0]:,} test codons**",
+        f"**{ixnos['training']['parameter_count']:,} parameters**",
+        f"test R² was **{ixm['r2']:.6f}**", f"MSE **{ixm['mse']:.6f}**",
+        f"Pearson **{ixm['pearson']:.6f}**", f"Spearman **{ixm['spearman']:.6f}**",
+        f"train-mean constant baseline had MSE **{ixnos['training']['train_mean_baseline_metrics']['mse']:.6f}**",
+        f"**{ixnosv['checks_passed']}/{ixnosv['checks_total']} checks**",
+        f"**{ixnosf['checks_passed']}/{ixnosf['checks_total']} checks**", "unit tests passed **10/10**",
+        "simple uniform multimapping weights rather than RSEM", "execution diagnostics, not paper-performance estimates",
+        "Bowtie alignment multisets matched after canonical sorting",
+        "not the full 102,187,657-read run", "333/167-gene 60-epoch protocol",
+        sha256(Path(audit["source_paths"]["ixnos_official"])),
+        sha256(Path(audit["source_paths"]["ixnos_official_verify"])),
+        sha256(Path(audit["source_paths"]["ixnos_official_final"])),
+    ]
+    ixnos_checks = {
+        "rendered_from_frozen_json": all(s in text for s in ixnos_strings),
+        "real_prefix_and_model_contract": ixnos["prefix_qc"]["records"] == 1000000 and ixnos["trimmed_qc"]["records"] == 864464 and ixnos["training"]["train_shape"] == [3816, 760] and ixnos["training"]["test_shape"] == [1963, 760] and ixnos["training"]["parameter_count"] == 152401,
+        "independent": ixnosv["status"] == "PASS" and ixnosv["checks_passed"] == ixnosv["checks_total"] == 27 and ixnosv["max_prediction_abs_delta"] <= 1e-12 and ixnosv["max_target_abs_delta"] == 0.0 and ixnosv["max_checkpoint_abs_delta"] == 0.0,
+        "finalization_and_unit_tests": ixnosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ixnosf["checks_passed"] == ixnosf["checks_total"] == 16 and "Ran 10 tests" in ix_unit_log and "OK\n" in ix_unit_log,
+        "scope": ixnos["scope_flags"]["real_ribosome_profiling_reads"] and ixnos["scope_flags"]["simple_mapping_weights_used"] and not ixnos["scope_flags"]["rsem_used"] and not ixnos["scope_flags"]["full_SRR1049521_used"] and not ixnos["scope_flags"]["paper_protocol_reproduced"] and not ixnos["scope_flags"]["best_test_epoch_selected"] and not ixnos["scope_flags"]["functional_ood"] and not ixnos["scope_flags"]["codonflow_comparison"] and not ixnos["scope_flags"]["sota_claim"],
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "ixnos_official": "ixnos_official_smoke_v1.json",
+            "ixnos_official_verify": "ixnos_independent_verification_v1.json",
+            "ixnos_official_final": "ixnos_finalization_v1.json",
+        }.items()),
+    }
+    check("ixnos_bounded_official_training_and_scope", all(ixnos_checks.values()), ixnos_checks)
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -354,6 +391,8 @@ def main() -> None:
         "[Pending RK-G2.",
         "[Pending RK-G3.",
         "not the full 10-fold × 100-epoch protocol",
+        "not the full 102,187,657-read run",
+        "333/167-gene 60-epoch protocol",
         "The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending.",
         "non-submittable working manuscript",
         "No SOTA claim.",
@@ -363,7 +402,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v8",
+        "schema_version": "a8-rk-paper-independent-verification-v9",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

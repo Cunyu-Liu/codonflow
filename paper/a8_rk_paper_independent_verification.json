@@ -1,9 +1,9 @@
 {
-  "check_count": 19,
+  "check_count": 20,
   "checks": [
     {
       "detail": {
-        "sources": 42
+        "sources": 45
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "7f1a6d5ce3f5b17d6beb1a79958e8b91e30765fb68b58dd225635b8a696c4733",
+      "detail": "51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -134,6 +134,18 @@
       "pass": true
     },
     {
+      "detail": {
+        "finalization_and_unit_tests": true,
+        "frozen_sources": true,
+        "independent": true,
+        "real_prefix_and_model_contract": true,
+        "rendered_from_frozen_json": true,
+        "scope": true
+      },
+      "name": "ixnos_bounded_official_training_and_scope",
+      "pass": true
+    },
+    {
       "detail": null,
       "name": "rnarl_negative_reproducibility_scope",
       "pass": true
@@ -147,7 +159,7 @@
     },
     {
       "detail": {
-        "required_boundaries": 9
+        "required_boundaries": 11
       },
       "name": "pending_and_no_sota_boundaries_preserved",
       "pass": true
@@ -159,12 +171,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "7f1a6d5ce3f5b17d6beb1a79958e8b91e30765fb68b58dd225635b8a696c4733",
-  "passed_checks": 19,
+  "paper_sha256": "51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79",
+  "passed_checks": 20,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v8",
+  "schema_version": "a8-rk-paper-independent-verification-v9",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "ac79d748071f48c31bef637b645a66bd7393c0914a9348da2a617924f5aebeed"
+  "sync_audit_sha256": "79b85618276d043117c7733fcb9c201e881b518f2cb624690be94576e86ca139"
 }

@@ -109,6 +109,9 @@ def main() -> None:
         "ribo_official": repo / "audits/20261118/RK05/ribomimo_official_smoke_v2.json",
         "ribo_official_verify": repo / "audits/20261118/RK05/ribomimo_independent_verification_v1.json",
         "ribo_official_final": repo / "audits/20261118/RK05/ribomimo_finalization_v1.json",
+        "ixnos_official": repo / "audits/20261118/RK05/ixnos_official_smoke_v1.json",
+        "ixnos_official_verify": repo / "audits/20261118/RK05/ixnos_independent_verification_v1.json",
+        "ixnos_official_final": repo / "audits/20261118/RK05/ixnos_finalization_v1.json",
         "rk07": args.rk07_dir / "final_results.json",
         "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
     }
@@ -157,6 +160,9 @@ def main() -> None:
     ribos = data["ribo_official"]
     ribosv = data["ribo_official_verify"]
     ribosf = data["ribo_official_final"]
+    ixnos = data["ixnos_official"]
+    ixnosv = data["ixnos_official_verify"]
+    ixnosf = data["ixnos_official_final"]
     rk07 = data["rk07"]
     rk07v = data["rk07_verify"]
 
@@ -232,6 +238,11 @@ def main() -> None:
     require(ribosv["status"] == "PASS" and ribosv["passed_checks"] == ribosv["check_count"] == 17 and ribosv["max_numeric_delta"] <= 5e-7 and not ribosv["production_module_imported"], "RiboMIMO independent verification failed")
     require(ribosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ribosf["passed_checks"] == ribosf["check_count"] == 13, "RiboMIMO finalization failed")
     require(not ribos["main_baseline_comparison"] and not ribos["study_ood"] and not ribos["functional_ood"] and not ribos["sota_claim"] and not ribos["full_official_10fold_100epoch_reproduced"], "RiboMIMO scientific scope exceeded")
+    require(ixnos["status"] == "BOUNDED_OFFICIAL_SMOKE_COMPLETE_PENDING_INDEPENDENT_VERIFICATION" and ixnos["config"]["source_commit"] == "1ea2337dd24d1e6fa3859f08573e99f02512810f", "iXnos bounded official execution incomplete")
+    require(ixnos["prefix_qc"]["records"] == 1000000 and ixnos["trimmed_qc"]["records"] == 864464 and ixnos["training"]["train_shape"] == [3816, 760] and ixnos["training"]["test_shape"] == [1963, 760] and ixnos["training"]["parameter_count"] == 152401, "iXnos bounded data/model contract changed")
+    require(ixnosv["status"] == "PASS" and ixnosv["checks_passed"] == ixnosv["checks_total"] == 27 and ixnosv["max_prediction_abs_delta"] <= 1e-12 and ixnosv["max_checkpoint_abs_delta"] == 0.0, "iXnos independent verification failed")
+    require(ixnosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ixnosf["checks_passed"] == ixnosf["checks_total"] == 16, "iXnos finalization failed")
+    require(ixnos["scope_flags"]["real_ribosome_profiling_reads"] and ixnos["scope_flags"]["simple_mapping_weights_used"] and not ixnos["scope_flags"]["rsem_used"] and not ixnos["scope_flags"]["full_SRR1049521_used"] and not ixnos["scope_flags"]["paper_protocol_reproduced"] and not ixnos["scope_flags"]["best_test_epoch_selected"] and not ixnos["scope_flags"]["sota_claim"], "iXnos scientific scope exceeded")
 
     split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
     test = rk07["split_metrics"]["test"]
@@ -247,6 +258,7 @@ def main() -> None:
     ed_c01_record = edc["records"][0]
     ct_rows = "\n".join(f"| {r['record_id']} | {r['mode']} | {r['qc']['protein_aa']} | {r['qc']['dna_nt']} | {'PASS' if r['qc']['legal_synonymous_cds'] else 'FAIL'} |" for r in cts["runs"])
     ribom = ribos["official_result"]["metrics"]
+    ixm = ixnos["training"]["test_metrics"]
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -320,6 +332,8 @@ The official-example default output matched the README sequence exactly. Default
 
 **RiboMIMO bounded official training.** At fixed commit `{ribos['source']['commit']}`, the official training/cross-validation entry point ran on **20 shortest eligible Mohammad16 genes** with one repeat × two folds, two epochs, batch size 4, seed **{ribos['protocol']['seed']}**, and CPU single-thread execution. Exactly six compatibility replacements preserve ragged arrays and restore numeric padding dtype; the model, optimizer, random gene split and training logic are unchanged. Across the two best-validation checkpoint test folds, R² was **{ribom['r2_mean']:.6f} ± {ribom['r2_std']:.6f}**, MSE was **{ribom['mse_mean']:.6f} ± {ribom['mse_std']:.6f}**, and Pearson was **{ribom['pearson_mean']:.6f} ± {ribom['pearson_std']:.6f}** (mean ± population SD). Both checkpoints contain **{ribos['official_result']['checkpoint_parameter_count']:,} parameters**. Independent retraining exactly matched checkpoint tensors, while checkpoint-level metric recomputation passed **{ribosv['passed_checks']}/{ribosv['check_count']} checks** with maximum numeric delta **{ribosv['max_numeric_delta']:.2e}** from six-decimal log rounding; finalization passed **{ribosf['passed_checks']}/{ribosf['check_count']} checks**, and unit tests passed **10/10**. The unmodified NumPy ragged failure and post-ragged object-to-Tensor failure are retained. These small-subset values are execution diagnostics, not evidence of predictive utility or a method ranking. This is not the full 10-fold × 100-epoch protocol, homology/protein/study/functional OOD, a main-baseline comparison, or a SOTA result.
 
+**iXnos bounded official prefix-read training.** At fixed commit `{ixnos['config']['source_commit']}`, the first **{ixnos['prefix_qc']['records']:,} complete reads** of ENA run `SRR1049521` (all 40 nt; a prefix, not a random sample) were processed with the official Weinberg linker trimmer, rRNA/noncoding-RNA filters, Bowtie transcriptome mapping, length/frame-specific P-site offsets, and simple uniform multimapping weights rather than RSEM. Trimming retained **{ixnos['trimmed_qc']['records']:,} reads**; **756,168** entered transcriptome mapping and **723,724** had at least one alignment. A total of **1,238 genes** met the bounded thresholds (minimum 50 counts and 20 codons with data); seed **{ixnos['config']['seed']}** selected **20 train / 10 test genes**. The official 760-feature tanh network with 200 hidden units ran for two epochs and produced **{ixnos['training']['train_shape'][0]:,} train / {ixnos['training']['test_shape'][0]:,} test codons** and **{ixnos['training']['parameter_count']:,} parameters**. At the prespecified final epoch, test R² was **{ixm['r2']:.6f}**, MSE **{ixm['mse']:.6f}**, Pearson **{ixm['pearson']:.6f}**, and Spearman **{ixm['spearman']:.6f}**; the train-mean constant baseline had MSE **{ixnos['training']['train_mean_baseline_metrics']['mse']:.6f}** and R² approximately zero. Independent reprocessing/retraining passed **{ixnosv['checks_passed']}/{ixnosv['checks_total']} checks** with exact targets and checkpoint tensors, prefix/trimmed FASTQs were byte-identical and Bowtie alignment multisets matched after canonical sorting (run-specific PG metadata excluded), finalization passed **{ixnosf['checks_passed']}/{ixnosf['checks_total']} checks**, and unit tests passed **10/10**. The initial headless-backend import failure is retained. These bounded values are execution diagnostics, not paper-performance estimates. This is not the full 102,187,657-read run, RSEM workflow, 333/167-gene 60-epoch protocol, functional OOD, main-baseline comparison, or SOTA result.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -360,6 +374,9 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("RiboMIMO bounded official production", source_hashes["ribo_official"]),
         ("RiboMIMO bounded independent verifier", source_hashes["ribo_official_verify"]),
         ("RiboMIMO bounded finalization", source_hashes["ribo_official_final"]),
+        ("iXnos bounded official production", source_hashes["ixnos_official"]),
+        ("iXnos bounded independent verifier", source_hashes["ixnos_official_verify"]),
+        ("iXnos bounded finalization", source_hashes["ixnos_official_final"]),
     ]
     evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
     reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
@@ -390,13 +407,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("CodonTransformer bounded official execution" in text and "2/2 legal synonymous CDSs" in text and "not a matched MFE/EFE comparison" in text, "CodonTransformer bounded result or scope missing")
     require("VeloHARMO bounded official execution" in text and "no iterative improvement occurred" in text and "best − start = 0.000000" in text and "not five-species closure" in text, "VeloHARMO bounded result or scope missing")
     require("RiboMIMO bounded official training" in text and "20 shortest eligible Mohammad16 genes" in text and "small-subset values are execution diagnostics" in text and "not the full 10-fold × 100-epoch protocol" in text, "RiboMIMO bounded result or scope missing")
+    require("iXnos bounded official prefix-read training" in text and "simple uniform multimapping weights rather than RSEM" in text and "not the full 102,187,657-read run" in text and "execution diagnostics, not paper-performance estimates" in text, "iXnos bounded result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v8",
+        "schema_version": "a8-rk-paper-sync-v9",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -405,7 +423,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
         "source_paths": {name: str(path) for name, path in paths.items()},
         "source_sha256": source_hashes,
         "generated_sections": ["3.1", "3.2 RK04 addition", "6.2", "6.5", "8.1"],
-        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "RiboMIMO full 10-fold × 100-epoch protocol and homology/study OOD", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
+        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "RiboMIMO full 10-fold × 100-epoch protocol and homology/study OOD", "iXnos full-run RSEM and 333/167-gene 60-epoch protocol", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
         "scientific_scope": {
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
@@ -417,6 +435,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
             "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
             "ribomimo_official": "bounded 20-gene two-fold two-epoch official training only; six NumPy compatibility replacements; negative R-squared and near-zero Pearson are execution diagnostics; full protocol, OOD, main matrix and SOTA open",
+            "ixnos_official": "bounded first-one-million-read official Weinberg processing and 20/10-gene two-epoch training only; simple mapping weights, final epoch only; full run, RSEM, paper protocol, OOD, main matrix and SOTA open",
             "sota": False,
             "submittable": False,
         },
