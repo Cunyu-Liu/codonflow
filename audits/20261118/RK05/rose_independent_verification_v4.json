@@ -1,0 +1,367 @@
+{
+  "check_count": 34,
+  "checks": [
+    {
+      "details": null,
+      "name": "official_archive_identity",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "official_demo_identity",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_source_hashes",
+      "passed": true
+    },
+    {
+      "details": [
+        "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/r64/Pop14/model/net_architecture_cv/best_model_0.caffemodel"
+      ],
+      "name": "Pop14_only_one_released_checkpoint",
+      "passed": true
+    },
+    {
+      "details": 1902,
+      "name": "Pop14_complete_arrays",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_balanced_binary_labels",
+      "passed": true
+    },
+    {
+      "details": {
+        "expected_nonzero": 116022,
+        "nonzero": 116022,
+        "shape": [
+          1902,
+          64,
+          1,
+          61
+        ]
+      },
+      "name": "Pop14_independent_encoding_exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_production_h5_labels_exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_production_only_path_and_batch_changes",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_independent_only_path_and_batch_changes",
+      "passed": true
+    },
+    {
+      "details": 128834,
+      "name": "Pop14_parameter_count",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_independent_forward_shape_and_labels",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Pop14_labels_exact",
+      "passed": true
+    },
+    {
+      "details": 0.0,
+      "name": "Pop14_logits_bitwise_exact",
+      "passed": true
+    },
+    {
+      "details": 0.0,
+      "name": "Pop14_production_float32_formula_exact",
+      "passed": true
+    },
+    {
+      "details": {
+        "max_abs_delta": 9.63369359840982e-08,
+        "tolerance": 2e-07
+      },
+      "name": "Pop14_stable_float64_probability_rounding_only",
+      "passed": true
+    },
+    {
+      "details": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 0.0,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 0.0,
+        "log_loss": 0.0,
+        "roc_auc": 0.0
+      },
+      "name": "Pop14_official_formula_metrics_exact",
+      "passed": true
+    },
+    {
+      "details": {
+        "abs_deltas": {
+          "accuracy_at_0.5": 0.0,
+          "average_precision": 0.0,
+          "balanced_accuracy_at_0.5": 0.0,
+          "brier_score": 3.1329991379003275e-10,
+          "log_loss": 7.97255755857762e-09,
+          "roc_auc": 0.0
+        },
+        "tolerances": {
+          "accuracy_at_0.5": 1e-12,
+          "average_precision": 1e-06,
+          "balanced_accuracy_at_0.5": 1e-12,
+          "brier_score": 1e-08,
+          "log_loss": 1e-07,
+          "roc_auc": 1e-07
+        }
+      },
+      "name": "Pop14_stable_float64_metrics_rounding_only",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_source_hashes",
+      "passed": true
+    },
+    {
+      "details": [
+        "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/hg38/LCL_Battle2015/model/net_architecture_cv/best_model_0.caffemodel"
+      ],
+      "name": "Battle15_only_one_released_checkpoint",
+      "passed": true
+    },
+    {
+      "details": 9980,
+      "name": "Battle15_complete_arrays",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_balanced_binary_labels",
+      "passed": true
+    },
+    {
+      "details": {
+        "expected_nonzero": 608780,
+        "nonzero": 608780,
+        "shape": [
+          9980,
+          64,
+          1,
+          61
+        ]
+      },
+      "name": "Battle15_independent_encoding_exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_production_h5_labels_exact",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_production_only_path_and_batch_changes",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_independent_only_path_and_batch_changes",
+      "passed": true
+    },
+    {
+      "details": 265858,
+      "name": "Battle15_parameter_count",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_independent_forward_shape_and_labels",
+      "passed": true
+    },
+    {
+      "details": null,
+      "name": "Battle15_labels_exact",
+      "passed": true
+    },
+    {
+      "details": 0.0,
+      "name": "Battle15_logits_bitwise_exact",
+      "passed": true
+    },
+    {
+      "details": 0.0,
+      "name": "Battle15_production_float32_formula_exact",
+      "passed": true
+    },
+    {
+      "details": {
+        "max_abs_delta": 9.882173590547438e-08,
+        "tolerance": 2e-07
+      },
+      "name": "Battle15_stable_float64_probability_rounding_only",
+      "passed": true
+    },
+    {
+      "details": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 0.0,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 0.0,
+        "log_loss": 0.0,
+        "roc_auc": 0.0
+      },
+      "name": "Battle15_official_formula_metrics_exact",
+      "passed": true
+    },
+    {
+      "details": {
+        "abs_deltas": {
+          "accuracy_at_0.5": 0.0,
+          "average_precision": 3.472840437446223e-08,
+          "balanced_accuracy_at_0.5": 0.0,
+          "brier_score": 4.670441811072124e-10,
+          "log_loss": 2.4266502141045976e-09,
+          "roc_auc": 0.0
+        },
+        "tolerances": {
+          "accuracy_at_0.5": 1e-12,
+          "average_precision": 1e-06,
+          "balanced_accuracy_at_0.5": 1e-12,
+          "brier_score": 1e-08,
+          "log_loss": 1e-07,
+          "roc_auc": 1e-07
+        }
+      },
+      "name": "Battle15_stable_float64_metrics_rounding_only",
+      "passed": true
+    }
+  ],
+  "independent_output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4",
+  "passed_count": 34,
+  "production_driver_imported": false,
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/rose_official_single_checkpoint_v1.json",
+  "production_report_sha256": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a",
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "schema_version": 1,
+  "scope": "Independent re-encoding and single-checkpoint inference only; no training, ensemble, OOD, matched-cost or SOTA claim.",
+  "status": "PASS",
+  "studies": {
+    "Battle15": {
+      "independent_hdf5": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Battle15/test.h5",
+        "sha256": "e169425ff097d57f4a2744cb908c4a3393eaea326edc25c0ecfe25c1465fcb13"
+      },
+      "independent_network": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Battle15/train_test.prototxt",
+        "sha256": "5f5094632b0818d4751f686d308a895346de5d17682cf4d0b76808dad075ba67"
+      },
+      "independent_predictions": {
+        "bytes": 192188,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Battle15/predictions.npz",
+        "sha256": "2720f2847fd0ffcdb715ae9eb4d4b8e7021ee65b117323505006905732872ecc"
+      },
+      "logit_max_abs_delta": 0.0,
+      "metric_abs_deltas": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 0.0,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 0.0,
+        "log_loss": 0.0,
+        "roc_auc": 0.0
+      },
+      "metrics": {
+        "accuracy_at_0.5": 0.7281563126252505,
+        "average_precision": 0.7940684856547645,
+        "balanced_accuracy_at_0.5": 0.7281563126252506,
+        "brier_score": 0.1860703554692874,
+        "log_loss": 0.5623744449501323,
+        "roc_auc": 0.807230252087341
+      },
+      "probability_max_abs_delta": 9.882173590547438e-08,
+      "production_float32_formula_max_abs_delta": 0.0,
+      "records": 9980,
+      "single_full_forward_seconds": 89.4397975881584,
+      "stable_float64_metric_abs_deltas": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 3.472840437446223e-08,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 4.670441811072124e-10,
+        "log_loss": 2.4266502141045976e-09,
+        "roc_auc": 0.0
+      },
+      "stable_float64_metrics": {
+        "accuracy_at_0.5": 0.7281563126252505,
+        "average_precision": 0.7940684509263601,
+        "balanced_accuracy_at_0.5": 0.7281563126252506,
+        "brier_score": 0.1860703559363316,
+        "log_loss": 0.5623744473767825,
+        "roc_auc": 0.807230252087341
+      }
+    },
+    "Pop14": {
+      "independent_hdf5": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Pop14/test.h5",
+        "sha256": "1377015e8bf9ae2f7254b44a3b8b55738765074faebae2e88977be6ed9ec42a0"
+      },
+      "independent_network": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Pop14/train_test.prototxt",
+        "sha256": "3636436f6b23c0e21e125518610870a5ef851f2d9044af7840df186c8ae9e5d6"
+      },
+      "independent_predictions": {
+        "bytes": 37571,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v4/Pop14/predictions.npz",
+        "sha256": "5072e17c5e9b1ad056f4fe25982001d329c5273a6999b5dedf137809cf6738dd"
+      },
+      "logit_max_abs_delta": 0.0,
+      "metric_abs_deltas": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 0.0,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 0.0,
+        "log_loss": 0.0,
+        "roc_auc": 0.0
+      },
+      "metrics": {
+        "accuracy_at_0.5": 0.7786540483701367,
+        "average_precision": 0.859273684276944,
+        "balanced_accuracy_at_0.5": 0.7786540483701367,
+        "brier_score": 0.15508207952710534,
+        "log_loss": 0.4987314376203304,
+        "roc_auc": 0.8618886976020593
+      },
+      "probability_max_abs_delta": 9.63369359840982e-08,
+      "production_float32_formula_max_abs_delta": 0.0,
+      "records": 1902,
+      "single_full_forward_seconds": 10.265475725289434,
+      "stable_float64_metric_abs_deltas": {
+        "accuracy_at_0.5": 0.0,
+        "average_precision": 0.0,
+        "balanced_accuracy_at_0.5": 0.0,
+        "brier_score": 3.1329991379003275e-10,
+        "log_loss": 7.97255755857762e-09,
+        "roc_auc": 0.0
+      },
+      "stable_float64_metrics": {
+        "accuracy_at_0.5": 0.7786540483701367,
+        "average_precision": 0.859273684276944,
+        "balanced_accuracy_at_0.5": 0.7786540483701367,
+        "brier_score": 0.15508207984040526,
+        "log_loss": 0.49873144559288796,
+        "roc_auc": 0.8618886976020593
+      }
+    }
+  },
+  "total_seconds": 108.02609519241378
+}

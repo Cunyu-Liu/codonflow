@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_VERIFIER_METRIC_PRECISION_TOLERANCE",
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "attempt_output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v2",
+  "execution_log": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v2/execution.log",
+    "bytes": 1398,
+    "sha256": "73f24de3249a41ef777ba49acd6931a86be78537401f68212d3c5840ee5bd3b5"
+  },
+  "failed_check": "Pop14_metrics_reproduced",
+  "observed_metric_abs_deltas": {
+    "roc_auc": 0.0,
+    "average_precision": 0.0,
+    "accuracy_at_0.5": 0.0,
+    "balanced_accuracy_at_0.5": 0.0,
+    "log_loss": 7.97255755857762e-09,
+    "brier_score": 3.1329991379003275e-10
+  },
+  "incorrect_uniform_threshold": 1e-12,
+  "diagnosis": "Ranking and thresholded classification metrics were exactly reproduced. Log loss and Brier score differ only through the already-diagnosed official-float32 versus stable-float64 probability calculation; a single 1e-12 tolerance was inappropriate for these nonlinear reductions.",
+  "disposition": "Retain this failed attempt. Use 1e-12 for AUC/AP/accuracy/balanced accuracy, 1e-7 for log loss and 1e-8 for Brier score, while retaining exact logits and exact official-float32-formula checks.",
+  "scientific_result_changed": false,
+  "not_a_model_or_data_failure": true
+}

@@ -1,0 +1,324 @@
+{
+  "execution": {
+    "command": [
+      "/usr/bin/python3",
+      "scripts/a8_rk05_rose_official_single_checkpoint.py",
+      "--protocol",
+      "audits/20261118/RK05/rose_official_single_checkpoint_protocol_v1.json",
+      "--output-root",
+      "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1",
+      "--report",
+      "audits/20261118/RK05/rose_official_single_checkpoint_v1.json"
+    ],
+    "environment_sha256": "4f5315eac3895a3e0f3d547eee8095fd200b9902a06012ed997e66c12e12a43e",
+    "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1",
+    "total_seconds": 112.82697493582964
+  },
+  "explicit_nonclaims": [
+    "Not a 64-checkpoint ensemble: the release contains only best_model_0.caffemodel per study.",
+    "Not model training or reproduction of the 100000-iteration 64-model protocol.",
+    "Not continuous codon dwell-time or velocity regression; outputs are binary stalling probabilities.",
+    "Not protein OOD, study OOD, functional OOD, matched-cost comparison, SOTA or a CodonFlow-RK result.",
+    "Not independent raw-read remapping or P-site remapping; the released arrays are author-processed test data."
+  ],
+  "protocol_sha256": "549f9ccc268659573ef1f878611bce184090ba26b97ebe8410400dafc05e0a83",
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "schema_version": 1,
+  "scientific_scope": {
+    "not_64_checkpoint_ensemble": true,
+    "not_codonflow_rk": true,
+    "not_continuous_velocity_regression": true,
+    "not_matched_cost_or_sota": true,
+    "not_protein_or_study_or_functional_ood": true,
+    "not_raw_read_or_psite_remapping": true,
+    "not_training": true,
+    "task": "binary ribosome-stalling classification on author-processed released test arrays"
+  },
+  "source": {
+    "archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/rose_8b86d69d89ca7ef95193729e6d1a4738bc6a4451.zip",
+    "archive_sha256": "8bd85ae8593de547e6790aefcef311f098de7e3219d69b8b4b898266a8eae73b",
+    "commit": "8b86d69d89ca7ef95193729e6d1a4738bc6a4451",
+    "official_demo_sha256": "9ab4df2c7bfaa022cb731f76588d263e88a8d15dcf3547081435c58726272548",
+    "repository": "https://github.com/mlcb-thu/rose",
+    "restored_root": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451"
+  },
+  "status": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+  "studies": {
+    "Battle15": {
+      "artifacts": {
+        "adapted_network": {
+          "bytes": 3595,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Battle15/train_test.prototxt",
+          "sha256": "ae4a8d0e65ac35bd42c5e3bb8d1b37a832fed34b95e9467bbd8e62c06d4e1f42"
+        },
+        "hdf5": {
+          "bytes": 155929568,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Battle15/test.h5",
+          "sha256": "59136a4cfbc38800c5025df62a80ea5de4a191eddf95f659669bfb8343743713"
+        },
+        "hdf5_list": {
+          "bytes": 109,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Battle15/test.txt",
+          "sha256": "7d885768553b3b3997ae02a4cd1c2ae0d6295e844d29de056f34ae280d36fcbc"
+        },
+        "official_network_copy": {
+          "bytes": 3507,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Battle15/train_test_backup.official.prototxt",
+          "sha256": "4c208b09b6f9cec11644877d8cb04957b3e2b2c4858e7fa4c52f7ed6753e11ca"
+        },
+        "predictions": {
+          "bytes": 116603,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Battle15/predictions.npz",
+          "sha256": "4f441a73032de3ad24f3ea37847b68c0c7a08c90e9e168f9ab2021836a45c2c9"
+        },
+        "weights": {
+          "bytes": 1064875,
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/hg38/LCL_Battle2015/model/net_architecture_cv/best_model_0.caffemodel",
+          "sha256": "010ed03366cab5950e054ba16c81bdfd29ddaa7333309fac1bec15f48c96f8c2"
+        }
+      },
+      "checkpoint_count": 1,
+      "encoded_dtype": "float32",
+      "encoded_shape": [
+        9980,
+        64,
+        1,
+        61
+      ],
+      "forward_passes": 1,
+      "input_codons_per_record": 61,
+      "input_nt_per_record": 183,
+      "metrics": {
+        "accuracy_at_0.5": 0.7281563126252505,
+        "average_precision": 0.7940684856547645,
+        "balanced_accuracy_at_0.5": 0.7281563126252506,
+        "brier_score": 0.1860703554692874,
+        "confusion_matrix_at_0.5": {
+          "fn": 1627,
+          "fp": 1086,
+          "tn": 3904,
+          "tp": 3363
+        },
+        "constant_prevalence_baseline": {
+          "average_precision": 0.5,
+          "brier_score": 0.25,
+          "log_loss": 0.6931471805599453,
+          "probability": 0.5,
+          "roc_auc": 0.5
+        },
+        "log_loss": 0.5623744449501323,
+        "roc_auc": 0.807230252087341
+      },
+      "negative": 4990,
+      "network_adaptation": {
+        "actual_test_batch_size": 9980,
+        "algorithm_or_weights_changed": false,
+        "original_test_batch_size": 1648,
+        "source_path_replacements": 2
+      },
+      "parameter_count": 265858,
+      "parameter_shapes": {
+        "conv1": [
+          [
+            128,
+            64,
+            1,
+            7
+          ],
+          [
+            128
+          ]
+        ],
+        "conv2": [
+          [
+            128,
+            64,
+            1,
+            10
+          ],
+          [
+            128
+          ]
+        ],
+        "conv3": [
+          [
+            128,
+            64,
+            1,
+            13
+          ],
+          [
+            128
+          ]
+        ],
+        "ip2": [
+          [
+            2,
+            9856
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "positive": 4990,
+      "records": 9980,
+      "source_artifacts": {
+        "X_test": {
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/data/Battle15/X_test.npy",
+          "sha256": "acb6d1c0cf8ce5cb47511b2afb71f7ba811bf0f32101a1ff848f400185513965"
+        },
+        "y_test": {
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/data/Battle15/y_test.npy",
+          "sha256": "b26e6320327c0f603f74106d47584f875861e24a13fba1a59f580d6713af5dd6"
+        }
+      },
+      "timing_seconds": {
+        "encoding": 0.4063490889966488,
+        "hdf5_write": 3.9062267439439893,
+        "network_load": 0.4086564783938229,
+        "single_full_forward": 95.1936452430673,
+        "study_total": 99.98095142096281
+      },
+      "training": false
+    },
+    "Pop14": {
+      "artifacts": {
+        "adapted_network": {
+          "bytes": 3585,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Pop14/train_test.prototxt",
+          "sha256": "ccdd5ffee86396bd4c6fbeb57c1d4e3f38cc85467c03e8132ab3ceb4d9cc53a6"
+        },
+        "hdf5": {
+          "bytes": 29718896,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Pop14/test.h5",
+          "sha256": "b89ce6624e92bce7f878ae6fc448740878ffa056f3bad3d4fffeba37b636b8c6"
+        },
+        "hdf5_list": {
+          "bytes": 106,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Pop14/test.txt",
+          "sha256": "1d05c96773a5a08147f0690c3f3f020a77f98820635602bb3c010513b1e6aa10"
+        },
+        "official_network_copy": {
+          "bytes": 3484,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Pop14/train_test_backup.official.prototxt",
+          "sha256": "84b5e9e90992806b0e5ce79d925f5f1ee06b2803fe4ff987eeb2eb40ceef0f83"
+        },
+        "predictions": {
+          "bytes": 22974,
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/Pop14/predictions.npz",
+          "sha256": "9a31c0d448565346b98efd17419388bacab7850ac24b8973c0e4f8cd46d871b6"
+        },
+        "weights": {
+          "bytes": 516760,
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/r64/Pop14/model/net_architecture_cv/best_model_0.caffemodel",
+          "sha256": "c1b64b4b1f4c7443840a2c4c198242cdafe6c72155d011131d3af1c63236ecad"
+        }
+      },
+      "checkpoint_count": 1,
+      "encoded_dtype": "float32",
+      "encoded_shape": [
+        1902,
+        64,
+        1,
+        61
+      ],
+      "forward_passes": 1,
+      "input_codons_per_record": 61,
+      "input_nt_per_record": 183,
+      "metrics": {
+        "accuracy_at_0.5": 0.7786540483701367,
+        "average_precision": 0.859273684276944,
+        "balanced_accuracy_at_0.5": 0.7786540483701367,
+        "brier_score": 0.15508207952710534,
+        "confusion_matrix_at_0.5": {
+          "fn": 214,
+          "fp": 207,
+          "tn": 744,
+          "tp": 737
+        },
+        "constant_prevalence_baseline": {
+          "average_precision": 0.5,
+          "brier_score": 0.25,
+          "log_loss": 0.6931471805599453,
+          "probability": 0.5,
+          "roc_auc": 0.5
+        },
+        "log_loss": 0.4987314376203304,
+        "roc_auc": 0.8618886976020593
+      },
+      "negative": 951,
+      "network_adaptation": {
+        "actual_test_batch_size": 1902,
+        "algorithm_or_weights_changed": false,
+        "original_test_batch_size": 10000,
+        "source_path_replacements": 2
+      },
+      "parameter_count": 128834,
+      "parameter_shapes": {
+        "conv1": [
+          [
+            64,
+            64,
+            1,
+            7
+          ],
+          [
+            64
+          ]
+        ],
+        "conv2": [
+          [
+            64,
+            64,
+            1,
+            9
+          ],
+          [
+            64
+          ]
+        ],
+        "conv3": [
+          [
+            64,
+            64,
+            1,
+            13
+          ],
+          [
+            64
+          ]
+        ],
+        "ip2": [
+          [
+            2,
+            4928
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "positive": 951,
+      "records": 1902,
+      "source_artifacts": {
+        "X_test": {
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/data/Pop14/X_test.npy",
+          "sha256": "fe946b0b2c6b555694c60d75789ce87a717f3fd4741d5054e93d9801d2cb9bae"
+        },
+        "y_test": {
+          "path": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451/data/Pop14/y_test.npy",
+          "sha256": "2c947753b2085cb11ad342de211483081e22f7fd24ec1485b681f4e322003f57"
+        }
+      },
+      "timing_seconds": {
+        "encoding": 0.07290196930989623,
+        "hdf5_write": 0.7280829339288175,
+        "network_load": 0.07253288896754384,
+        "single_full_forward": 10.769228039775044,
+        "study_total": 11.672653194051236
+      },
+      "training": false
+    }
+  }
+}

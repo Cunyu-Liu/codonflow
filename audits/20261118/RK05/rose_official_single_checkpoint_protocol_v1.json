@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "status": "FROZEN_BEFORE_FULL_INFERENCE",
+  "source": {
+    "repository": "https://github.com/mlcb-thu/rose",
+    "commit": "8b86d69d89ca7ef95193729e6d1a4738bc6a4451",
+    "archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/rose_8b86d69d89ca7ef95193729e6d1a4738bc6a4451.zip",
+    "archive_sha256": "8bd85ae8593de547e6790aefcef311f098de7e3219d69b8b4b898266a8eae73b",
+    "restored_root": "/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451",
+    "official_demo_sha256": "9ab4df2c7bfaa022cb731f76588d263e88a8d15dcf3547081435c58726272548"
+  },
+  "task": "binary ribosome-stalling probability inference on the complete released test arrays",
+  "training": false,
+  "ensemble": false,
+  "checkpoint_count_per_study": 1,
+  "checkpoint_name": "best_model_0.caffemodel",
+  "network_template": "train_test_backup.prototxt",
+  "network_selection_reason": "This is the template used by official script/demo_test.py; its parallel convolution branches accept the released 61-codon inputs and matched both released checkpoints in a two-row compatibility probe.",
+  "compatibility_changes_only": [
+    "Replace hard-coded HDF5 list paths with run-local paths.",
+    "Set the TEST batch size to the complete released test-array size.",
+    "Run the same Caffe network in CPU mode because the installed package is CPU-only."
+  ],
+  "encoding": {
+    "sequence_length_nt": 183,
+    "sequence_length_codons": 61,
+    "tensor_layout": "N x 64 x 1 x 61 float32",
+    "codon_order": "nested A,T,C,G outer-to-inner loops, exactly as official demo_test.py",
+    "unknown_codon": "all-zero 64-vector, exactly as official demo_test.py"
+  },
+  "forward_passes_per_study": 1,
+  "selection_rule": "No model selection, no tuning and no test-driven checkpoint choice; use the sole released best_model_0.caffemodel for each study.",
+  "primary_metric": "ROC AUC, matching official demo_test.py",
+  "secondary_metrics": [
+    "average precision",
+    "accuracy at probability >= 0.5",
+    "balanced accuracy at probability >= 0.5",
+    "log loss",
+    "Brier score"
+  ],
+  "thread_limit": 1,
+  "studies": {
+    "Pop14": {
+      "relative_model_dir": "r64/Pop14/model/net_architecture_cv",
+      "x_sha256": "fe946b0b2c6b555694c60d75789ce87a717f3fd4741d5054e93d9801d2cb9bae",
+      "y_sha256": "2c947753b2085cb11ad342de211483081e22f7fd24ec1485b681f4e322003f57",
+      "weights_sha256": "c1b64b4b1f4c7443840a2c4c198242cdafe6c72155d011131d3af1c63236ecad",
+      "network_sha256": "84b5e9e90992806b0e5ce79d925f5f1ee06b2803fe4ff987eeb2eb40ceef0f83",
+      "original_test_batch_size": 10000,
+      "expected_records": 1902,
+      "expected_positive": 951,
+      "expected_negative": 951,
+      "expected_parameters": 128834
+    },
+    "Battle15": {
+      "relative_model_dir": "hg38/LCL_Battle2015/model/net_architecture_cv",
+      "x_sha256": "acb6d1c0cf8ce5cb47511b2afb71f7ba811bf0f32101a1ff848f400185513965",
+      "y_sha256": "b26e6320327c0f603f74106d47584f875861e24a13fba1a59f580d6713af5dd6",
+      "weights_sha256": "010ed03366cab5950e054ba16c81bdfd29ddaa7333309fac1bec15f48c96f8c2",
+      "network_sha256": "4c208b09b6f9cec11644877d8cb04957b3e2b2c4858e7fa4c52f7ed6753e11ca",
+      "original_test_batch_size": 1648,
+      "expected_records": 9980,
+      "expected_positive": 4990,
+      "expected_negative": 4990,
+      "expected_parameters": 265858
+    }
+  },
+  "explicit_nonclaims": [
+    "Not a 64-checkpoint ensemble: the release contains only best_model_0.caffemodel per study.",
+    "Not model training or reproduction of the 100000-iteration 64-model protocol.",
+    "Not continuous codon dwell-time or velocity regression; outputs are binary stalling probabilities.",
+    "Not protein OOD, study OOD, functional OOD, matched-cost comparison, SOTA or a CodonFlow-RK result.",
+    "Not independent raw-read remapping or P-site remapping; the released arrays are author-processed test data."
+  ]
+}

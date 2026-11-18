@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_VERIFIER_FLOAT32_FLOAT64_TOLERANCE",
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "attempt_output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v1",
+  "execution_log": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v1/execution.log",
+    "bytes": 1266,
+    "sha256": "7f8f74ed62671c5e0a248ad48c4271cc5b75a0a01436c1722a56462945257b36"
+  },
+  "failed_check": "Pop14_probabilities_numerically_exact",
+  "observed_max_abs_probability_delta": 9.63369359840982e-08,
+  "incorrect_threshold": 1e-15,
+  "diagnosis": "Production uses the official float32 two-exp expression before float64 serialization; the independent verifier used a stable float64 logistic expression. The Caffe logits had already passed bitwise equality. The verifier incorrectly demanded float64-level identity between different-precision formulas.",
+  "disposition": "Retain this failed attempt. Rerun in a new output root with independent exact verification of the official float32 formula and a separate 2e-7 float32-rounding bound for the stable float64 comparison.",
+  "scientific_result_changed": false,
+  "not_a_model_or_data_failure": true
+}

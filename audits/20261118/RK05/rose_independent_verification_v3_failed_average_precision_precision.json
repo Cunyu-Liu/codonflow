@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "FAIL_VERIFIER_AVERAGE_PRECISION_FLOAT32_TIES",
+  "protocol_version": "rose_official_single_checkpoint_v1",
+  "attempt_output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v3",
+  "execution_log": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_independent_v3/execution.log",
+    "bytes": 2076,
+    "sha256": "7c28ea397c19a35a1e4cd9269e6b3f1d4fd858c386ccd039dd2fba6d265cc642"
+  },
+  "failed_check": "Battle15_metrics_reproduced",
+  "observed_metric_abs_deltas": {
+    "roc_auc": 0.0,
+    "average_precision": 3.472840437446223e-08,
+    "accuracy_at_0.5": 0.0,
+    "balanced_accuracy_at_0.5": 0.0,
+    "log_loss": 2.4266502141045976e-09,
+    "brier_score": 4.670441811072124e-10
+  },
+  "diagnosis": "The stable-float64 probabilities can break near-ties in official float32 scores, causing a small average-precision reduction even when ROC AUC and thresholded predictions are identical. Requiring AP identity between the two precisions was not a valid verifier criterion.",
+  "disposition": "Retain this failed attempt. Primary independent metric verification must recompute the official float32 probabilities independently and require exact production-metric equality. Stable-float64 metrics remain secondary with explicit rounding/tie tolerances.",
+  "scientific_result_changed": false,
+  "not_a_model_or_data_failure": true
+}
