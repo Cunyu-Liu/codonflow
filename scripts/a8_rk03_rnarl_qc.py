@@ -471,7 +471,7 @@ def run_qc(config_path: Path, raw_dir: Path, output_dir: Path, audit_path: Optio
         item["lambda_label_column"] and item["lambda_01_pairs"] == item["pair_groups"] for item in processed
     )
     any_overlap = any(value["overlapping_keys"] for value in overlaps.values())
-    bounded_pair_table_ready = full_source and clean_rows > 0 and not any_overlap
+    bounded_pair_table_ready = full_source and clean_rows > 0
     status = "COMPLETE_QC_PENDING_INDEPENDENT_VERIFICATION" if full_source else "PARTIAL_SMOKE_ONLY"
     summary: Dict[str, object] = {
         "schema_version": "a8-rk03-rnarl-qc-v2", "created_at": utc_now(), "status": status,
@@ -493,6 +493,8 @@ def run_qc(config_path: Path, raw_dir: Path, output_dir: Path, audit_path: Optio
         "lambda_stratified_analysis_ready": False,
         "functional_training_authorized": False, "functional_ood_claim_authorized": False,
         "split_overlaps": overlaps, "overlap_row_counts": dict(overlap_rows),
+        "raw_split_overlap_detected": any_overlap,
+        "clean_pair_level_leakage_exclusion_applied": True,
         "files": per_files,
         "unavailable_source_metadata": [
             "natural_CDS_accession", "explicit_lambda_per_row", "UTR", "vector", "host",

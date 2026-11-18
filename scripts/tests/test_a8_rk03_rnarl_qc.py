@@ -156,6 +156,22 @@ class RNARLQCTests(unittest.TestCase):
             self.assertTrue(all(row["pair_cross_split_overlap"] for row in rows))
             self.assertEqual(sum("pair_member_cross_split_overlap" in row["exclusion_reasons"] for row in rows), 2)
 
+    def test_excluded_raw_overlap_does_not_block_bounded_clean_pair_table(self):
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory); raw = tmp / "raw"; raw.mkdir()
+            train_rows = valid_pair("p1") + valid_pair("p3", "MP*", "AUGCCGUAA", "AUGCCCUAA")
+            write_csv(raw / "Toy_train.csv", train_rows)
+            write_csv(raw / "Other_test.csv", valid_pair("p2", left="AUGCUGUAA", right="AUGUUGUAA"))
+            config = make_config(tmp, raw, ["Toy_train.csv", "Other_test.csv"])
+            summary = run_qc(config, raw, tmp / "out")
+            self.assertEqual(summary["clean_rows"], 2)
+            self.assertEqual(summary["clean_pairs"], 1)
+            self.assertTrue(summary["raw_split_overlap_detected"])
+            self.assertTrue(summary["clean_pair_level_leakage_exclusion_applied"])
+            self.assertTrue(summary["bounded_lineardesign_pair_table_ready_pending_verifier"])
+            self.assertFalse(summary["functional_training_authorized"])
+            self.assertFalse(summary["functional_ood_claim_authorized"])
+
     def test_explicit_lambda_column_is_required_for_lambda_recovery(self):
         with tempfile.TemporaryDirectory() as directory:
             tmp = Path(directory); raw = tmp / "raw"; raw.mkdir()
