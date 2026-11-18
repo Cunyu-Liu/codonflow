@@ -1,0 +1,53 @@
+{
+  "authoritative_patch_deployed": true,
+  "code": {
+    "configs/a8_rk03_sources.json": {
+      "bytes": 12136,
+      "sha256": "955c2997eb9a285f91b3a45675f4a508b422ec8badb66c24920f0b0083513efa"
+    },
+    "scripts/a8_rk03_download.py": {
+      "bytes": 12166,
+      "sha256": "9635b3fb5c820e8f8556d1c0f6ac9619ff29ba8e8816fcbc16671cf69438ab1f"
+    },
+    "scripts/tests/test_a8_rk03_download.py": {
+      "bytes": 9075,
+      "sha256": "4281c86b70bc33978e030fba93897f2a1778513b2f69bead029cf0373cd76cef"
+    }
+  },
+  "created_utc": "2026-11-18T18:09:55.679258+00:00",
+  "historical_running_process": {
+    "alive_at_audit": true,
+    "new_downloader_started_by_this_audit": false,
+    "pid": "3436022",
+    "pid_file": "/home/codonflow_rnarl_download_v2.pid",
+    "process_code_modified_in_place": false
+  },
+  "live_data_snapshot_not_acceptance": {
+    "final_csv_count": 18,
+    "part_count": 3,
+    "quarantined_part_count": 0
+  },
+  "patch_contract": {
+    "evidence_deletion": false,
+    "full_or_oversized_invalid_part": "quarantine with unique .part.rejected-<time_ns>-<pid> name and retry from zero",
+    "new_success_field": "quarantined_parts",
+    "valid_full_part": "verify and promote atomically"
+  },
+  "schema_version": "a8-rk03-download-recovery-patch-v1",
+  "science_flags": {
+    "finalization_complete": false,
+    "formal_download_complete": false,
+    "formal_qc_complete": false,
+    "independent_verification_complete": false,
+    "ppt_result_ready": false,
+    "training_ready": false
+  },
+  "scope_note": "Engineering recovery patch only. The old running downloader was not modified or replaced. No formal RNARL full-data result, QC, independent verification or finalization is authorized by this audit.",
+  "status": "PASS_PATCH_TESTS__FORMAL_DATA_COMPLETION_PENDING",
+  "tests": {
+    "command": "PYTHONPATH=/home/codonflow-a8-rk /root/miniconda3/envs/codonflow/bin/python -m scripts.tests.test_a8_rk03_download",
+    "failed": 0,
+    "passed": 10,
+    "returncode": 0
+  }
+}

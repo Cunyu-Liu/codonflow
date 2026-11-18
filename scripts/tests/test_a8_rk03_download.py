@@ -104,7 +104,11 @@ class DownloadTests(unittest.TestCase):
             with self.assertRaisesRegex(DataValidationError, "sha256 mismatch"):
                 download_verified(self.url, destination, bad_spec, retries=1)
             self.assertFalse(destination.exists())
-            self.assertTrue(destination.with_name("data.csv.part").exists())
+            part = destination.with_name("data.csv.part")
+            self.assertFalse(part.exists())
+            rejected = list(Path(tmp).glob("data.csv.part.rejected-*"))
+            self.assertEqual(len(rejected), 1)
+            self.assertEqual(rejected[0].read_bytes(), RangeHandler.payload)
 
     def test_existing_bad_final_is_not_overwritten(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -125,16 +129,19 @@ class DownloadTests(unittest.TestCase):
             self.assertEqual(destination.read_bytes(), RangeHandler.payload)
             self.assertEqual(RangeHandler.ranges, [])
 
-    def test_complete_bad_part_fails_without_http_and_is_preserved(self):
+    def test_complete_bad_part_is_quarantined_and_redownloaded(self):
         with tempfile.TemporaryDirectory() as tmp:
             destination = Path(tmp) / "data.csv"
             part = destination.with_name("data.csv.part")
-            part.write_bytes(RangeHandler.payload)
-            bad_spec = dict(self.spec, expected_sha256="0" * 64)
-            with self.assertRaisesRegex(DataValidationError, "sha256 mismatch"):
-                download_verified(self.url, destination, bad_spec, retries=3)
-            self.assertEqual(part.read_bytes(), RangeHandler.payload)
-            self.assertEqual(RangeHandler.ranges, [])
+            part.write_bytes(b"X" * len(RangeHandler.payload))
+            result = download_verified(self.url, destination, self.spec, retries=3)
+            self.assertEqual(result["status"], "downloaded_verified")
+            self.assertEqual(destination.read_bytes(), RangeHandler.payload)
+            self.assertEqual(len(result["quarantined_parts"]), 1)
+            rejected = Path(result["quarantined_parts"][0]["path"])
+            self.assertEqual(rejected.stat().st_size, len(RangeHandler.payload))
+            self.assertFalse(part.exists())
+            self.assertEqual(RangeHandler.ranges, [None])
 
     def test_content_range_total_mismatch_is_rejected_before_append(self):
         RangeHandler.range_total_override = len(RangeHandler.payload) + 1

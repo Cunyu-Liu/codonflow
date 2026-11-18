@@ -65,6 +65,14 @@ def _part_path(destination: Path) -> Path:
     return destination.with_name(destination.name + ".part")
 
 
+def _quarantine_part(part: Path, reason: str) -> Dict[str, object]:
+    """Preserve rejected bytes under a unique name so the next retry starts cleanly."""
+    size = part.stat().st_size
+    quarantine = part.with_name(f"{part.name}.rejected-{time.time_ns()}-{os.getpid()}")
+    os.replace(part, quarantine)
+    return {"path": str(quarantine), "bytes": size, "reason": reason}
+
+
 def download_verified(
     url: str,
     destination: Path,
@@ -80,23 +88,30 @@ def download_verified(
 
     part = _part_path(destination)
     last_error: Optional[BaseException] = None
+    quarantined_parts: list[Dict[str, object]] = []
     for attempt in range(1, retries + 1):
         offset = part.stat().st_size if part.exists() else 0
         expected_bytes = spec.get("expected_bytes")
-        if expected_bytes is not None and offset:
-            expected_total = int(expected_bytes)
-            if offset > expected_total:
-                raise DataValidationError(
-                    f"resumable part exceeds expected byte count: expected={expected_total}, actual={offset}"
-                )
-            if offset == expected_total:
-                result = verify_integrity(part, spec)
-                os.replace(part, destination)
-                return {
-                    "status": "promoted_verified_part", "attempts": 0,
-                    "resumed_from_bytes": offset, "http_status": None, **result,
-                }
         try:
+            if expected_bytes is not None and offset:
+                expected_total = int(expected_bytes)
+                if offset > expected_total:
+                    raise DataValidationError(
+                        f"resumable part exceeds expected byte count: expected={expected_total}, actual={offset}"
+                    )
+                if offset == expected_total:
+                    try:
+                        result = verify_integrity(part, spec)
+                    except DataValidationError as exc:
+                        quarantined_parts.append(_quarantine_part(part, str(exc)))
+                        offset = 0
+                    else:
+                        os.replace(part, destination)
+                        return {
+                            "status": "promoted_verified_part", "attempts": attempt - 1,
+                            "resumed_from_bytes": offset, "http_status": None,
+                            "quarantined_parts": quarantined_parts, **result,
+                        }
             headers = {"User-Agent": USER_AGENT, "Accept": "*/*"}
             if offset:
                 headers["Range"] = f"bytes={offset}-"
@@ -146,10 +161,18 @@ def download_verified(
                 "attempts": attempt,
                 "resumed_from_bytes": offset if append else 0,
                 "http_status": status,
+                "quarantined_parts": quarantined_parts,
                 **result,
             }
         except (OSError, urllib.error.URLError, DataValidationError) as exc:
             last_error = exc
+            if (
+                isinstance(exc, DataValidationError)
+                and expected_bytes is not None
+                and part.exists()
+                and part.stat().st_size >= int(expected_bytes)
+            ):
+                quarantined_parts.append(_quarantine_part(part, str(exc)))
             if attempt < retries:
                 time.sleep(min(2 ** (attempt - 1), 8))
     raise DataValidationError(
