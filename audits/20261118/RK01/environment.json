@@ -1,0 +1,62 @@
+{
+  "schema_version": "a8-rk-environment-v1",
+  "captured_at_utc": "2026-11-18T11:26:06.746265+00:00",
+  "repository": {
+    "path": "/home/codonflow-a8-rk",
+    "branch": "a8-rk",
+    "base_commit": "cd7905f48d498beec1563191d12b276b3d8c8728",
+    "baseline_status": "clean",
+    "current_status": "M docs/handover/spec.md\n M docs/handover/tasks.md\n M \"docs/review/CodonFlow_A8_\\344\\270\\245\\346\\240\\274\\347\\247\\221\\347\\240\\224\\345\\267\\245\\347\\250\\213\\345\\256\\241\\346\\237\\245\\344\\270\\216\\344\\270\\200\\344\\270\\252\\346\\234\\210\\350\\267\\257\\347\\272\\277_20261118.md\"\n M experiments/REGISTRY.md\n M paper/CodonFlow_preprint_A7.md\n?? audits/\n?? configs/a8_rk_functional_sources.json\n?? docs/handover/HANDOFF_A8_RK_20261118.md\n?? docs/handover/PROMPT_NEXT_AGENT_A8_RK.md\n?? experiments/RK_DATA_REGISTRY.md\n?? scripts/a8_rk_capture_environment.py",
+    "remote_origin": "git@github.com:Cunyu-Liu/codonflow.git"
+  },
+  "documents": {
+    "docs/handover/spec.md": {
+      "sha256": "b407d8702e584b6e6fbfe2836d9caf77a843e373ace7c9f2bc1e67a1da691e43",
+      "present": true
+    },
+    "docs/handover/tasks.md": {
+      "sha256": "a03896073c47f5037a752eab8d8c3bac2de393ce7606db59e9cc534c74fbd524",
+      "present": true
+    },
+    "docs/handover/HANDOFF_A8_RK_20261118.md": {
+      "sha256": "1facae9b1ea5f915e18a1ff95d17c29a74b1d30bfd6f97c341bd1d290e6e2b5a",
+      "present": true
+    },
+    "docs/handover/PROMPT_NEXT_AGENT_A8_RK.md": {
+      "sha256": "e715037ca01261437109cd9400add61e8282f7f4956043025324b860898a6f6b",
+      "present": true
+    },
+    "docs/review/CodonFlow_A8_严格科研工程审查与一个月路线_20261118.md": {
+      "sha256": "a9dd78b516570dc18250952a1329a22628ca6ead9e8b36d2c77846f603d27ac8",
+      "present": true
+    },
+    "paper/CodonFlow_preprint_A7.md": {
+      "sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+      "present": true
+    }
+  },
+  "runtime": {
+    "python_executable": "/root/miniconda3/bin/python",
+    "python_version": "3.9.18 (main, Sep 11 2023, 13:41:44) \n[GCC 11.2.0]",
+    "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+    "machine": "x86_64",
+    "cpu_count": 128,
+    "packages": {
+      "numpy": null,
+      "pandas": null,
+      "scipy": null,
+      "pytest": null,
+      "openpyxl": null,
+      "requests": "2.31.0",
+      "biopython": null
+    },
+    "git_version": "git version 2.25.1",
+    "curl_version": "curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brotli/1.0.7 libidn2/2.2.0 libpsl/0.21.0 (+libidn2/2.2.0) libssh/0.9.3/openssl/zlib nghttp2/1.40.0 librtmp/2.3"
+  },
+  "storage": {
+    "data_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional",
+    "data_root_exists": true,
+    "data_root_free_bytes": 973946748928
+  },
+  "secret_policy": "No environment dump, credential, token, password, or SSH command is captured."
+}

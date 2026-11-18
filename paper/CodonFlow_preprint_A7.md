@@ -1,153 +1,183 @@
-# Finite-step synonymous editing for budget-aware multi-objective CDS optimization
+# Learning structure–translation–decay coupling for synonymous mRNA design
 
-> **Status: working manuscript — not for submission.** Both development models passed G1, but the completed G2 learned-open-loop versus feedback-guided simple-search experiment is a decisive No-Go for the original A7 design. The 15-gene learned-hill diagnostic is complete and positive but costly; it is not independent confirmation. External actual-output recomputation is complete for 54/54 inputs but is explicitly not a method ranking. A8 feedback-matched, dense-budget, untouched-confirmation, scaling, RLOO, and SOTA claims remain gated.
+> **Status: A8-RK working manuscript — not for submission.** CodonFlow-RK and its functional/mechanistic experiments are proposed, not completed. The original A7 open-loop model failed G2; learned-hill showed positive but costly development associations. No SOTA, independent generalization, biological-function improvement, or prospective experimental claim is currently authorized.
 
 ## Abstract
 
-[Write after G1–G4. Do not fill with protocol smoke tests, training losses, or historical performance claims.]
+[Write only after RK-G0–G4. The final abstract must follow: limitation of independent proxies → evidence for spatial coupling on real synonymous variants → mechanism-derived model → strongest-baseline results with OOD and cost → independent functional validation. Do not substitute training loss, legal generation, or planned wet-lab work for results.]
 
 ## 1. Introduction
 
-A protein can be encoded by an exponential number of synonymous coding sequences (CDS). Improving codon usage, predicted folding energy, GC composition, and motif profiles under a fixed evaluation budget is therefore a constrained multi-objective optimization problem, not merely a feasibility problem. Methods that preserve translation identity can still differ substantially in the quality and diversity of solutions reached per scorer evaluation.
+A protein can be encoded by an exponential number of synonymous coding sequences (CDSs), but synonymous variants are not functionally interchangeable. Their differences arise from processes operating at distinct spatial and kinetic scales: RNA structures control access to the translation-initiation region, codon-dependent elongation shapes ribosome traffic and co-translational folding, and translation-coupled decay alters transcript lifetime. These processes are coupled through the complete transcript and host context. A design framework based on independent global scores may therefore miss the determinants that distinguish functional synonymous sequences.
 
-We study protein-defined synonymous CDS search from randomized synonymous initialization: a natural CDS defines the target protein, but the search starts from a per-position random synonymous sequence. After initialization, the current model reads the current synonymous CDS rather than the original natural codon sequence. Our central question is whether a learned edit proposal improves anytime multi-objective quality relative to non-learned search when initialization, terminal feedback, objectives, and evaluation budgets are matched. The original A7 comparison did not match terminal feedback and therefore cannot isolate architecture quality. Short rollouts, reinforcement learning, larger models, and external comparisons are conditional on answering the feedback-matched question and are not assumed contributions.
+Controlled experiments motivate this concern. Kudla et al. measured a synthetic library of 154 GFP variants and found large expression differences without a significant CAI association, whereas folding near the ribosome-binding region had substantial explanatory power [kudla2009coding]. Boël et al. analyzed 6,348 experiments and linked codon content to protein expression, mRNA abundance and lifetime, with folding effects concentrated near the initial codons [boel2016codon]. MAGE-seq further showed that distant synonymous substitutions can affect fitness by disrupting native 5′ RNA conformations [kelsic2016mage]. These observations do not imply one universal mechanism across hosts and assays. They instead expose a testable gap: can spatially coupled structural and translational variables explain held-out synonymous function better than independent scalar proxies?
+
+We propose to study this question under fixed protein, UTR, host and assay contexts. The intended contribution is not another codon language model with an auxiliary reward. It is a mechanism-derived model, CodonFlow-RK, that represents each synonymous choice on its legal simplex, explicitly models UTR–CDS and long-range CDS interactions, and learns initiation, elongation and decay potentials from structural, Ribo-seq and experimentally measured synonymous-variant data. A preference- and budget-conditioned Markov generator then uses only the potentials supported by out-of-distribution experiments.
+
+The investigation proceeds as a linked chain. First, we quantify where common proxies fail on real variants. Second, we test which mechanistic components add out-of-protein and out-of-study information. Third, we derive the generator from those components and compare it with the strongest task-specific methods under matched quality and time budgets. Fourth, corresponding predictive and generative ablations test whether the same mechanisms explain both function and design gains. Finally, untouched proteins, studies and hosts define the generalization boundary, and independent functional measurements determine biological validity. Prospective design–build–test–learn validation remains necessary for a translational or therapeutic claim.
 
 ## 2. Related Work
 
-LinearDesign uses dynamic programming for joint codon-use and RNA-structure optimization [zhang2023lineardesign]; codonGPT applies reinforcement learning to generative mRNA design [rajbanshi2025codongpt], while GEMORNA uses deep generative models for CDS and UTR design [zhang2025gemorna]. mRNAutilus jointly generates coding and untranslated regions using discrete diffusion and Monte Carlo tree guidance [patel2026mrnautilus]. ProMORNA uses cold-start supervised fine-tuning followed by multi-objective reinforcement learning [shao2026promorna], and mRNA-GPT uses full-length pretraining and PPO-based optimization [li2026mrnagpt]. These full-transcript tasks are not directly interchangeable with our CDS-only warm-start task. pCoMole combines a feasibility-gated terminal distribution, augmented Tchebycheff utility, Doob-h transformation, and short Monte Carlo rollouts for variable-length biomolecular editing [chen2026pcomole]. AReUReDi combines Tchebycheff scalarization, locally balanced proposals, and annealed Metropolis–Hastings updates [chen2025areuredi]; MOG-DFM uses hybrid rank-directional scores and an adaptive hypercone filter for multi-objective discrete flow guidance [chen2025mogdfm]. TR2-D2 instead uses tree-search replay buffers for trajectory-aware fine-tuning [tang2025tr2d2]. These overlaps require direct comparison with simple search rather than claims of theoretical firstness. Our AReUReDi-style baseline is an internal synonymous-search implementation, not an official reproduction. RayGun miniaturizes and modifies natural proteins [devkota2026raygun], while SCISOR learns insertion–deletion distributions for protein shrinking [baron2025scisor]. Neither is a synonymous CDS editor, so both are excluded from synonymous CDS numerical baselines.
+### 2.1 Codon and CDS design
 
-## 3. Method
+LinearDesign jointly optimizes codon usage and RNA structure using dynamic programming and lattice parsing [zhang2023lineardesign]. EnsembleDesign extends structure-aware design to ensemble free energy [dai2025ensembledesign]. CodonTransformer learns multispecies codon preferences from more than one million DNA–protein pairs [fallahpour2025codontransformer]. codonGPT combines a codon language model, synonymous logit masking and reinforcement learning [rajbanshi2025codongpt]. GEMORNA uses deep generative models for CDS and UTR design [zhang2025gemorna]. CAGFN applies curriculum-augmented GFlowNets to codon-level multi-objective generation [laajil2025cagfn].
 
-### 3.1 Task and invariants
+More recent methods are direct competitors rather than background citations. RNARL combines ESM2-conditioned generation, mixture-of-experts layers, length-aware sampling and GRPO across six species and multiple RNA types [lin2026rnarl]. ID3 performs constrained gradient-based input optimization with hard synonymous parameterizations and compares against GA, SA and enumerable small-window optima [li2026id3]. COformer learns from outputs of commercial optimization tools and validates several designs experimentally, but those computational outputs are proxy targets rather than large-scale functional ground truth [kim2026coformer]. VeloHARMO uses organism-specific Ribo-seq models and genetic search to harmonize translation-velocity profiles, while noting the limited amount of quantitative experimental validation [bian2026veloharmo]. CHARMING, tAI-based harmonization, ICOR and frequency-based codon samplers define additional task-specific controls.
 
-For source CDS $x$ encoding protein $p$, the editor outputs candidates $y$ with the same length and reading frame, identical translation $p$, and exactly one terminal stop codon. Validity follows from the synonymous edit operator, not from a post-hoc filter. ATG start is not required by the operator; non-ATG records are separately reported as possible partial CDS rather than silently discarded or mislabeled as operator-invalid.
+Full-transcript methods, including mRNAutilus and ProMORNA, jointly consider CDS and UTRs and add predicted functional objectives and experimental validation [patel2026mrnautilus, shao2026promorna]. They are compared only when UTR, inputs and costs can be made equivalent; otherwise they define an external task boundary rather than entries in a fabricated CDS-only ranking.
 
-The objective vector, written in maximization form, is
+### 2.2 Multi-objective discrete generation
 
-$$f(y)=\left[\mathrm{CAI}(y),-\mathrm{MFE}(y),-|\mathrm{GC}(y)-g_\star|,-\mathrm{motif}(y)/L_{\mathrm{codons}}\right].$$
+AReUReDi, MOG-DFM and pCoMole provide related multi-objective discrete-search or flow formulations [chen2025areuredi, chen2025mogdfm, chen2026pcomole]. GFlowNet trajectory balance, discrete flow matching, ESM embeddings, attention and reinforcement learning are therefore not treated as novel contributions in isolation. The candidate contribution under test is the experimentally supported structure–translation–decay potential and its integration with full-transcript context in a synonymous legal space.
 
-All objectives are computational proxies. We use $g_\star=0.55$ as a frozen design setting, not a claim of universal biological optimality. CAI follows Sharp and Li's geometric mean of relative synonymous codon adaptiveness [sharp1987cai] and depends on a train-only or independent reference RSCU table. MFE depends on the declared ViennaRNA implementation and default folding conditions [lorenz2011viennarna].
+## 3. Data and Scientific Tasks
 
-### 3.2 Finite-step synonymous proposal
+### 3.1 Natural, mechanistic and functional data
 
-A state is a legal CDS. An elementary learned move selects one non-stop codon position and replaces it with an alternative synonymous codon, with an explicit stay action. For position $i$, current codon $c$, blank logits $a_i$, and token logits $u_{ic}$, alternatives are normalized only within the amino-acid group. All non-self (position, codon) events and the aggregated stay event are jointly normalized. The terminal stop is never edited.
+Natural CDS–protein pairs provide sequence and host priors, not functional labels. In addition to the audited D4/D5 corpora, candidate external corpora include CodonTransformer and RNARL datasets. Mechanistic data include the five-organism Ribo-seq resources used by VeloHARMO, fixed UTR–CDS contexts and structural/accessibility measurements or calculations. Ribo occupancy is interpreted as a relative, experiment-dependent proxy for translation dynamics rather than an absolute elongation rate.
 
-The primary A7 development evaluation used the learned base kernel for four finite transitions ($T=4$), without terminal guidance or rollout, while hill-climbing and the other iterative baselines used terminal feedback. It therefore evaluates the original open-loop design but does not isolate proposal quality from access to terminal feedback. Batched paths use the same kernel and random-number stream ordering per state; vectorized local normalization changes neither the transition support nor the accounting of state transitions. The transition rule ignores the supplied time value, so repeated transitions are time-homogeneous rather than a time-conditioned discrete flow. A terminal preference potential can tilt the finite-step kernel. Exact backward recursion is used only on enumerable small states. On large CDS spaces, short Monte Carlo rollouts and candidate pruning are approximations, not claims of an exact terminal distribution, and remain gated.
+Functional supervision is restricted to experimentally measured synonymous variants with traceable sequence and assay context. Priority datasets are the 154 GFP variants from Kudla et al., the Protein Data Set underlying the 6,348 experiments of Boël et al., and the 12,726 infA codon mutants from MAGE-seq. Published LinearDesign, GEMORNA or COformer sequences are included only when sequence and measurement context can be recovered. The primary Dasher and six-protein data from Theodorou et al. are not publicly available and are not used [theodorou2026machine].
 
-The learned proposal is evaluated against global uniform synonymous sampling, greedy hill-climbing, Metropolis–Hastings/annealing, and an AReUReDi-style search. The uniform baseline independently samples synonymous codons per position after scoring the paired initial state; the other non-learned methods use the same single-codon local operator as the learned kernel. Search utilities use weights $(1,1,1,0.5)$ after frozen calibration normalization; AReUReDi-style uses an augmented Tchebycheff scalarization. These are internal implementations, not claims of exact reproduction of all external algorithms.
+Every external dataset remains `candidate` until actual download, translation checks, sample reconciliation and hash registration are complete. Functional values retain their original units, replicate noise, assay, batch, vector, UTR and host. Normalization is performed within `protein×host×assay×batch` groups and fitted only on training data.
 
-We record forward calls, base-state evaluations, rollout batch forwards, rollout transitions, cache-before terminal requests, actual scorer invocations, unique scorer evaluations, and wall-clock separately. Each method has an independent cache with identical semantics, preventing another method's evaluations from consuming or subsidizing its budget.
+### 3.2 Leakage-controlled generalization tasks
 
-### 3.3 Synonymous-corruption training
+Exact CDS, exact protein, identifiers, operational protein-homology clusters and functional source proteins are audited across splits. Variants of the same protein never cross random train/test partitions. Functional prediction uses protein-level OOD; Ribo-seq models additionally use study-level OOD; natural sequence models retain homology-cluster OOD. Length and GC strata evaluate difficult regimes rather than define new tuning sets.
 
-Development models are trained from scratch on D4 with synonymous corruption: corrupted codons are sampled only within the same amino-acid group, so both training and inference states preserve translation identity. Full-token and edited-token objectives are evaluated independently and their validation losses are not compared as if they were identical metrics. No arbitrary-corruption checkpoint is used for initialization or downstream evaluation.
+D4 contains 621,306/76,444/78,724 train/validation/test records. D5 contains 618,073/80,191/78,177 records and uses MMseqs2 identity 0.5 with bidirectional coverage 0.8. These are operational splits, not curated family- or species-level proof. The existing unique18 set is development-only. Untouched24 and a separate functional untouched set are evaluated once after all choices are frozen.
 
-Each arm has 56.8M parameters (width 768, 8 Transformer layers, 12 heads, no dropout) [vaswani2017attention] and uses AdamW [loshchilov2017adamw] with learning rate $10^{-5}$ and weight decay 0.03. The effective training budget is 60,000 tokens per optimizer update: full-token uses 20,000-token packed batches with three accumulation steps, and edited-token uses 10,000-token batches with six. Both use a maximum batch size of 128 and gradient clipping at 1.0. The validation packed-batch budget is 24,000 tokens, with corruption seed 1729. Each original validation batch is corrupted once; forward computation is split into 4,000-token micro-batches to bound attention memory. BCE and token losses are recombined using their respective valid-position counts, preserving the original batch's random draws and normalization.
+### 3.3 Task-specific comparisons
 
-Convergence requires three consecutive epochs with less than 0.1% relative validation improvement. There is no maximum-epoch stopping rule. We freeze best, last, optimizer/RNG training state, converged weights, complete configuration, and SHA256 hashes, and verify loading and a finite forward pass on CUDA. Convergence alone is insufficient: the model must also pass non-degeneracy checks on at least three development genes with 100 paired samples per gene, including 100% identity/legal relative to the natural source, at least 95% outputs differing from their corresponding randomized synonymous initial sequence, at least 80 unique terminal sequences per 100, and maximum single-sequence frequency at most 20%.
+Functional and fitness prediction is compared with CAI, GC, local/global MFE, Boël's codon-influence models and reproducible sequence or velocity models. Velocity prediction uses RiboMIMO, iXnos, ROSE, VeloGRU and VeloBERT. Harmonization uses VeloHARMO, CHARMING, tAI, ICOR, frequency-based methods and RNARL. Accessibility design uses ID3, GA, SA and C10/C10-CAI, including exact enumeration when feasible. CDS multi-objective design uses LinearDesign, EnsembleDesign, RNARL, CAGFN, codonGPT, GEMORNA, CodonTransformer, COformer and strong internal stochastic searches.
 
-## 4. Evaluation Protocol
+A task is declared superior only when the prespecified effect and its paired confidence-interval lower bound exceed the strongest comparable baseline under the same protocol. Otherwise it remains unresolved; baselines are not replaced with weaker alternatives after seeing results.
 
-### 4.1 Data versions and provenance
+## 4. CodonFlow-RK
 
-D4 contains 621,306/76,444/78,724 train/validation/test unique proteins with zero exact CDS or protein overlap across splits. D5 uses operational protein-homology-cluster isolation with MMseqs2 identity 0.5 and bidirectional coverage 0.8 [steinegger2017mmseqs2], yielding 618,073/80,191/78,177 records. D5 does not establish curated family- or species-level out-of-distribution generalization.
+### 4.1 Synonymous constraint space and transcript context
 
-The source corpus contains 862,240 records from 25 species using Ensembl release 112. Recovery artifacts retain URLs, retrieval timestamps, raw and cleaned hashes, and per-rule cleaning counts without claiming the original download dates. A release-116 human recovery was evaluated and isolated because it introduced 227,289 additional base identifiers and was not the closest source match. Non-ATG sequences are reported separately. Standard genetic code table 1 is used throughout.
+For target amino acids $a=(a_1,\ldots,a_L)$, each codon belongs to its synonymous set $c_i\in C(a_i)$. This parameterization preserves translation, length and terminal stop by construction. The model conditions on the current synonymous state, protein context, fixed 5′/3′UTRs, host, objective preference and remaining budget. UTR generation is outside the present task.
 
-The development benchmark consists of eGFP, nanoLuc, and the repeatedly used unique18 set. It is not an untouched test set. A separate 24-gene D5 confirmation set was selected using only length, GC, identifiers, and cluster membership, with exact CDS/protein and homology exclusions. It is reserved for final confirmation and not used for model tuning.
+### 4.2 Dual-resolution structural representation
 
-### 4.2 Independent reference domains and objectives
+Codon nodes carry amino-acid, protein, host and current-state information. Each candidate codon is also expanded into three nucleotides. A pairing-constrained interaction channel represents 5′UTR–CDS and long-range CDS–CDS coupling, with high resolution around initiation and sparse or axial long-range interactions for computational tractability. This is a learned structural inductive bias, not a claim to compute an exact partition function.
 
-CAI/RSCU tables are built only from the corresponding training split or an independent public reference. D4 and D5 tables are never mixed. For each development gene, an independent calibration pool contains 40 global-uniform runs and four axis-specific hill-climbing runs of 10 unique evaluations each (calibration seed 1729). Confirmation-gene pools use the same construction with the D5 training RSCU. No learned-model or final evaluation output contributes to these pools.
+### 4.3 Structure–translation–decay potentials
 
-If $l_j$ and $u_j$ are the minimum and maximum of unique calibration objectives on axis $j$, the reference is $r_j=l_j-0.05(u_j-l_j)$ and the scale is $q_{0.95,j}-l_j$. Non-finite or non-positive scales are rejected. The same frozen normalization is used for search utility and anytime hypervolume AUC. The 18-gene D4 development pools have been checked against source and RSCU hashes, independently recomputed reference domains, and byte-identical regeneration of a representative pool.
+The shared representation predicts initiation accessibility $\Phi_{\mathrm{init}}$, an ensemble-structural term $\Phi_{\mathrm{ens}}$, a codon-resolved velocity field $v=(v_1,\ldots,v_L)$, and decay or functional outputs $\Phi_{\mathrm{decay}}$ with uncertainty. These quantities are supervised by their corresponding data layers and are included only when matched ablations show incremental out-of-distribution value. CAI and motif features serve as low-fidelity information; structure and Ribo-seq provide intermediate fidelity; measured expression, fitness or half-life provide high-fidelity supervision.
 
-The legacy primary endpoint is a sparse three-point hypervolume [zitzler1999hypervolume] AUC computed at unique terminal-scorer budgets $B=50,100,500$. The implementation additionally inserts a conventional $(B=0,\mathrm{HV}=0)$ point for trapezoidal integration and divides by 500; the actual initial sequence is first scored at $B=1$, not at zero budget. Thus this is a sparse-budget proxy, not a fully observed continuous anytime curve. The A8 protocol prespecifies a dense budget-step endpoint from the real $B=1$ initial value through all 500 unique evaluations, while retaining the legacy value for historical comparison. Secondary endpoints include raw Pareto fronts, per-objective best-at-budget, non-dominated metrics, and length-normalized NED. Raw fronts retain every non-dominated point under strict dominance with all four objectives maximized. For each gene, seed, and budget, we report the fractions of the selected strongest-simple front strictly dominated by the learned front and vice versa. Output count, scorer count, and wall-clock are separate budgets; solutions are never randomly padded to match another method. Incomplete runs are retained as partial evidence and cannot enter the scientific comparison.
+### 4.4 Preference- and budget-conditioned generation
 
-### 4.3 Comparisons and statistics
+Given a natural-prior kernel $q_0$, the proposed local transition is
 
-Internal comparisons use identical source-defined protein, paired randomized synonymous initialization, terminal objective, independently initialized scorer caches with identical semantics, and seeds 0, 1, and 2. For each gene and seed, the initial CDS is a per-position uniform synonymous sample from the natural source using initialization seed $1009\times$ the run seed. All methods score that same initial state at budget one. The A7 learned-open-loop arm uses $T=4$ and 32 paths per model-forward batch. Every comparison requires 500 unique terminal evaluations per gene, seed, and method. The gate independently reconstructs paired initializations, verifies every raw sequence and its uniqueness, checks independent-calibration provenance, and recomputes NED and anytime AUC from the stored objective vectors. This gate is not a full CAI/MFE/GC/motif rescoring of every raw sequence; separate raw-sequence audits provide that evidence. Metadata that disagrees across genes or arms is rejected.
+$$q_\theta(y\mid x;w,b,h,u)\propto q_0(y\mid x;h,u)\exp\left[-\beta\sum_k w_k\Delta\Phi_k(x,y)-\beta_c\Delta\mathrm{cost}(x,y)\right],$$
 
-For each gene, the strongest simple baseline is the method with the greatest mean AUC over the three seeds. Learned and baseline AUCs are then averaged within gene. Genes—not seeds—are the independent statistical units. We report median relative effect, 10,000 gene-level paired bootstrap replicates for the 95% confidence interval, one-sided Wilcoxon signed-rank tests [wilcoxon1945ranking], and Holm correction across the full-token and edited-token arms [holm1979sequential]. NED is computed from a deterministic sample of at most 200 outputs per run and is compared with the same per-gene strongest baseline.
+where $w$ denotes Pareto preference, $b$ remaining budget, $h$ host and $u$ fixed UTR context. A preference-conditioned trajectory-balance or energy-tilting objective replaces natural-sequence-only cross-entropy, so terminal feedback is present during training rather than attached only at inference. Small enumerable systems will test agreement between the mathematical target and sampled distribution. If that agreement or the stated objective is not implemented, the method will not be described as a discrete flow.
 
-External methods are assessed by task and input type. The current implementation is protein-defined search from randomized synonymous initialization, so it is not treated as a separate natural-codon-conditioned advantage. External methods with only an unordered actual output set are evaluated by actual-set Pareto quality and best-at-actual-budget rather than a fabricated 500-point AUC. Unavailable costs are `null`, and architectural exclusions or missing methods are explicit rather than scored as zero. Third-party pretraining overlap that cannot be audited is reported as a limitation.
+### 4.5 Required ablations
 
-### 4.4 Evidence gates
+All components are evaluated under matched inputs, parameter or compute budgets: no pair channel, no initiation term, no velocity field, no decay term, no natural prior, no preference conditioning and no budget conditioning. Predictive and generative ablations must tell a consistent mechanistic story; an attention map or improved scalar reward is not a mechanism demonstration.
 
-G0 requires complete data provenance, distribution and metadata audits, development/confirmation protocols, independent calibration, result schemas, baseline resources, and actual synchronized CUDA matmul evidence. G1 requires convergence and non-degeneracy. G2 requires complete 18-gene, three-seed comparisons in both arms, at least 10% median relative improvement in the primary endpoint, a positive paired-bootstrap lower bound, Holm-corrected $p<0.05$, full identity/legal, and learned NED at least 70% of the selected strongest baseline in every gene. G3 tests whether short-rollout benefits exceed costs. G4 repeats the comparison in the untouched confirmation set and assesses external boundaries. G5 permits scientific results and release claims only after the corresponding evidence exists.
+## 5. Evaluation Protocol
 
-## 5. Results
+### 5.1 Proxy validity and mechanistic increments
 
-### 5.1 Mechanism and non-degeneracy
+The first experiment measures proxy–function associations separately by assay and host, without pooling incompatible experimental contexts. The second compares identical backbones with and without mechanistic terms on protein- and study-level OOD. The third tests whether structural fitness, velocity and mRNA/protein outcomes show consistent cross-layer behavior. Retrospective associations are not described as causal unless supported by intervention.
 
-Both development models met the prespecified convergence and non-degeneracy requirements. The full-token model converged at epoch 21 with best validation loss 1.159711; the edited-token model converged at epoch 26 with best validation loss 1.231330. These losses arise from different objectives and are not directly compared. Across three development genes with 100 paired samples per gene, both models achieved 100% translation identity, 100 unique terminal sequences per gene, and a maximum single-sequence frequency of 1%. The fraction of outputs differing from the randomized synonymous initial sequence was 95–98% for the full-token model and 100% for the edited-token model. These results exclude the previously observed copy-collapse behavior but do not establish an optimization advantage over simple search.
+### 5.2 Design quality, diversity and cost
 
-### 5.2 Learned proposal versus simple search
+For trajectory-based CDS search, the initial state is scored at $B=1$. The primary anytime endpoint is dense budget-step hypervolume AUC over all observed unique scorer evaluations, without an artificial $(0,0)$ point. Secondary endpoints include actual-budget Pareto fronts, per-objective best values, bidirectional strict dominance, NED and legal/translation identity. External methods with unordered actual outputs are evaluated only at their actual budgets; missing budgets are null and never zero-filled.
 
-The learned base proposal failed the prespecified G2 gate decisively. All 324 planned runs completed with 100% translation identity and legal reading frames, and all 108 learned runs used CUDA. Hill-climbing was the strongest simple method in every gene in both arms. In the full-token arm, the median relative AUC improvement was −94.28% (95% paired-bootstrap CI [−95.46%, −93.35%]); in the edited-token arm, it was −93.47% ([−95.02%, −92.85%]). Every gene had a negative effect in both arms, and both Holm-adjusted p-values were 1.0. The minimum learned-to-simple NED ratios were 0.133 and 0.163, respectively, below the required 0.70. Thus, non-degenerate synonymous generation did not translate into budget-efficient multi-objective optimization or adequate sequence diversity. An independent Gate rerun reproduced all statistics, NED values, raw-input hashes, and the No-Go decision. Raw Pareto fronts, per-objective best-at-budget, bidirectional non-dominated coverage, and per-run costs are preserved alongside the frozen gate.
+Cache-before requests, unique scorer calls, model forwards, generation time, scoring time, wall-clock, hardware and parallelism are reported separately. Continuous optimization and candidate pruning cannot hide internal costs. Time-matched comparisons use the same hardware and worker count. Genes, proteins or studies—not individual seeds—are the independent statistical units.
 
-### 5.3 Proposal-in-the-loop diagnostic
+### 5.3 Hyperparameters and statistics
 
-We next asked whether the learned single-codon proposals contain useful target preferences when embedded in the same terminal optimizer rather than used as a four-transition open-loop proposal. On three G1 development genes and three seeds per arm, a T=1 learned proposal replaced the random single-codon proposal inside the frozen hill-climbing accept/reject rule. The paired random-hill results, initialization, independent calibration, scorer-cache semantics, and 500-unique-evaluation budget were unchanged. All 18 learned runs completed on CUDA with 100% translation identity and 500 unique legal solutions. The Gate and an independent rerun were byte-identical, and a separate raw-point audit reproduced AUC, NED, paired hashes, and gene-level aggregation.
+Learning rate, weight decay, dropout, token batch, ESM freezing, energy and preference temperatures, trajectory-loss weights, candidate count, block size, early stopping and sampling proportions are selected only on development data using bounded ASHA or small preregistered searches. Functional minimum effects are based on assay noise; design effects and cost margins are preregistered. Final results report paired bootstrap 95% confidence intervals, per-unit directions and Holm correction. Untouched data are never used for hyperparameter repair.
 
-This exploratory diagnostic showed positive but costly associations. FULL changed mean AUC by +0.35%, +45.22%, and +18.03% across the three genes (median +18.03%; 8/9 seeds above paired random-hill); EDIT changed it by +27.00%, +60.41%, and +35.62% (median +35.62%; 9/9 seeds above paired random-hill). Per-gene NED ratios ranged from 0.926 to 1.150 across arms. However, every learned run was slower: median learned-to-random wall-clock ratios were 20.79 for FULL and 2.62 for EDIT. These three repeatedly used development genes do not support independent confirmation, significance, or generalization claims. The diagnostic forms a hypothesis about proposal preferences under terminal selection; it does not reverse G2 or authorize short-rollout experiments.
+## 6. Results
 
-We then evaluated the preregistered replication on the other 15 unique18 development genes (90 learned runs). All 15 genes had positive mean AUC differences in both arms. FULL had a median relative improvement of 59.95% (95% paired-bootstrap CI [40.72%, 104.38%]); EDIT had 68.73% ([50.78%, 104.14%]), with Holm-adjusted p=6.10×10−5 in both arms. Independent Gate reruns were byte-identical and a separate raw audit reproduced AUC, NED, all budgeted objectives, paired hashes, and cost aggregation. The benefit remained costly: median learned-to-random wall-clock ratios were 42.68 for FULL and 2.41 for EDIT, with a maximum FULL ratio of 242.65. FULL met the 70% NED threshold for all 15 genes, whereas EDIT met it for 14 of 15; neither arm satisfied the time requirement. These results support a reproducible development association between learned proposals and anytime quality under terminal selection, but they are not independent confirmation, an external-method comparison, or a demonstration of practical speed advantage.
+### 6.1 Preliminary diagnosis: why the original model was redesigned
 
-### 5.4 Immediate versus short-rollout editing
+The original development models satisfied convergence and non-degeneracy checks, but these checks did not imply optimization ability. G2 completed all 324 planned runs. Relative to the strongest simple search per gene, full-token and edited-token models had median AUC changes of −94.28% and −93.47%, respectively, with negative effects in all 18 genes and Holm-adjusted $p=1.0$. The comparison also differed in terminal feedback: learned paths were open-loop, whereas iterative baselines used objective feedback.
 
-[Not run: G2 No-Go prohibits short-rollout claims.]
+Embedding the learned proposal in the same hill-climbing rule produced positive development associations. On the remaining 15 development genes, full-token and edited-token arms had median AUC changes of +59.95% and +68.73%, but median time ratios of 42.68 and 2.41. These results motivate separating proposal from feedback and do not establish independent generalization, practical speed or external SOTA.
 
-### 5.5 Independent confirmation and external boundaries
+The implementation provides a more fundamental diagnosis. Natural synonymous-corruption cross-entropy does not optimize terminal function, the network reads only codon identifiers, its loss is a simplified masking objective rather than a full CTMC rate loss, and its transition ignores time. Moreover, none of these experiments uses real synonymous-variant function as supervision. The remaining results therefore test a new scientific question rather than attempting to present the old checkpoint as a successful model.
 
-External actual-output recomputation has completed for all 54 inputs (18 records × 3 seeds). Its execution status is `external_reference_complete`, with `scientific_gate_passed=false` and `not_a_method_ranking=true`. The outputs support actual-set Pareto and best-at-actual-budget diagnostics; the legacy `actual_budget_auc` field can assign zero hypervolume at budgets with no observed point and therefore cannot be used as a unified method ranking. The untouched 24-gene confirmation experiment has not been run, and no external SOTA claim is authorized.
+### 6.2 Proxy validity on real synonymous variants
 
-## 6. Discussion
+[Pending RK-G0/G1. Report every assay and OOD split, including cases where simple proxies work.]
 
-The present development evidence rejects the learned base proposal as an effective replacement for iterative simple search under the frozen scorer budget. The result is consistent with insufficient terminal optimization from an objective-blind, four-transition proposal, but does not by itself identify a unique causal mechanism or a model-capacity limit. In an independently recomputed descriptive diagnostic, the median fraction of codons changed from the paired initial sequence was 1.90% for the full-token learned model and 2.63% for the edited-token learned model, versus 38.24% for hill-climbing. Median NED was 0.013 and 0.020 for the learned arms, versus 0.062 for hill-climbing. The learned runs were also slower (median 154 and 143 seconds versus 126 seconds), so the quality deficit is not explained by a favorable time-quality tradeoff. FULL's median learned-minus-hill-climbing gaps in calibration-scale units were −1.30 for CAI, −2.28 for folding, and −1.33 for GC; EDIT showed similar gaps. These associations support a terminal-optimization diagnosis rather than a unique causal or capacity claim. Subsequent work is restricted to training and search-behavior diagnostics; it must not be used to bypass the failed gate. The proposal-in-the-loop result sharpens this interpretation: terminal selection can expose useful preferences in the learned single-codon kernel, but the FULL arm remains computationally expensive and one gene in the initial diagnostic has near-zero mean benefit. Positive associations across all 15 additional development genes strengthen the proposal-quality hypothesis while leaving its speed and independent generalization unresolved. The result therefore motivates separately preregistered tests of proposal quality and cost rather than a claim that the original model has passed its optimization gate. All objectives remain computational proxies and do not support claims about expression, stability, or biological efficacy. Three additional implementation boundaries constrain interpretation. First, the synonymous-corruption cross-entropy objective does not directly optimize terminal CAI/MFE/GC/motif utility, and the inference transition ignores its time argument. Second, after randomized synonymous initialization, the original natural codon sequence is no longer an input; the task is therefore protein-defined search rather than demonstrated natural-codon-conditioned editing. Third, the original G2 comparison varied both the proposal and access to terminal feedback. A8 consequently requires a proposal-by-feedback factorial control, dense budget-step evaluation, and time-matched comparisons before any new architecture or capacity claim.
+### 6.3 Incremental evidence for spatial coupling
 
-## 7. Reproducibility statement
+[Pending RK-G1. Insert matched initiation, velocity, decay and pair-channel ablations with protein/study OOD and uncertainty.]
 
-Every result is linked to its run ID, data and code hashes, dirty-tree status, immutable checkpoint path and SHA256, configuration, seeds, and frozen JSON artifacts. Failed runs, partial outputs, negative results, and unavailable baselines are retained. G1 convergence and non-degeneracy checks do not constitute learned-model optimization evidence.
+### 6.4 Cross-layer structure–translation–decay consistency
 
-## 8. References
+[Pending RK-G1. Connect MAGE fitness, Ribo velocity and Boël mRNA/protein outcomes; distinguish association from causation.]
 
-Chen, T., Holsman, M., Zhao, L., and Chatterjee, P. pCoMole: Pareto-Constrained Molecule Editing with Discrete Flows. *arXiv:2610.01663* (2026). https://arxiv.org/abs/2610.01663
+### 6.5 Task-specific strongest-baseline comparisons
 
-Chen, T., Zhang, Y., and Chatterjee, P. AReUReDi: Annealed Rectified Updates for Refining Discrete Flows with Multi-Objective Guidance. *arXiv:2510.00352* (2025). https://arxiv.org/abs/2510.00352
+[Pending RK-G2. Use separate tables for function, velocity, harmonization, accessibility and multi-objective CDS design. Do not pool incompatible tasks into one rank.]
 
-Chen, T., Zhang, Y., Tang, S., and Chatterjee, P. Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design. *arXiv:2505.07086* (2025). https://arxiv.org/abs/2505.07086
+### 6.6 Mechanistic ablations and failure boundaries
 
-Tang, S., Zhu, Y., Tao, M., and Chatterjee, P. TR2-D2: Tree Search Guided Trajectory-Aware Fine-Tuning for Discrete Diffusion. *arXiv:2509.25171* (2025). https://arxiv.org/abs/2509.25171
+[Pending RK-G2. Require concordance between predictive and generative ablations and retain negative strata.]
 
-Zhang, H., Zhang, L., Lin, A., et al. Algorithm for optimized mRNA design improves stability and immunogenicity. *Nature* (2023). https://doi.org/10.1038/s41586-023-06127-z
+### 6.7 Untouched generalization and time-matched performance
+
+[Pending RK-G3. Report untouched proteins/studies, length/GC/homology strata, available hosts and complete costs.]
+
+### 6.8 Independent functional validation
+
+[Pending. Retrospective held-out measurements first; prospective design–build–test–learn results only when actually completed.]
+
+## 7. Discussion
+
+The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
+
+A computational Pareto improvement is also distinct from biological improvement. Strong performance on CAI, MFE, GC or a learned functional surrogate does not by itself establish expression, stability, safety or efficacy. Claims will therefore be limited to the data layer actually evaluated. Prospective experiments with wild-type and strong algorithmic controls are required for a top-journal functional conclusion.
+
+## 8. Reproducibility Statement
+
+Every result must link to its run ID, code and dirty-diff hash, environment, raw/clean data and split hashes, checkpoint, complete configuration, seeds, original measurements or sequences, evaluation script and artifact hash. Candidate datasets and planned experiments remain explicitly marked. Failed baselines, partial outputs, negative strata and unavailable costs are retained rather than converted to zero or removed.
+
+## 9. References
+
+Bian, B., et al. VeloHARMO: a deep learning framework for mRNA coding sequence generation and design via translation velocity harmonization. *Briefings in Bioinformatics* (2026). https://pmc.ncbi.nlm.nih.gov/articles/PMC13647270/
+
+Boël, G., Letso, R., Neely, H., et al. Codon influence on protein expression in E. coli correlates with mRNA levels. *Nature* (2016). https://doi.org/10.1038/nature16509
+
+Chen, T., Zhang, Y., and Chatterjee, P. Multi-Objective-Guided Discrete Flow Matching for Controllable Biological Sequence Design. *arXiv:2505.07086* (2025).
+
+Chen, T., Zhang, Y., and Chatterjee, P. AReUReDi: Annealed Rectified Updates for Refining Discrete Flows with Multi-Objective Guidance. *arXiv:2510.00352* (2025).
+
+Chen, T., Holsman, M., Zhao, L., and Chatterjee, P. pCoMole: Pareto-Constrained Molecule Editing with Discrete Flows. *arXiv:2610.01663* (2026).
+
+Dai, N., Zhou, T., Tang, W.-Y., et al. EnsembleDesign: messenger RNA design minimizing ensemble free energy via probabilistic lattice parsing. *Bioinformatics* (2025). https://doi.org/10.1093/bioinformatics/btaf245
+
+Fallahpour, A., Gureghian, V., and Filion, G. J. CodonTransformer: a multispecies codon optimizer using context-aware neural networks. *Nature Communications* (2025). https://doi.org/10.1038/s41467-025-58588-7
+
+Kelsic, E. D., Chung, H., Cohen, N., Park, J., Wang, H. H., and Kishony, R. RNA Structural Determinants of Optimal Codons Revealed by MAGE-Seq. *Cell Systems* (2016). https://doi.org/10.1016/j.cels.2016.11.004
+
+Kim, J., Kim, J., Lee, J. W., et al. Enhancing protein expression in humans through codon optimization with transformer and contrastive learning. *Molecular Therapy Nucleic Acids* (2026). https://doi.org/10.1016/j.omtn.2026.102991
+
+Kudla, G., Murray, A. W., Tollervey, D., and Plotkin, J. B. Coding-sequence determinants of gene expression in Escherichia coli. *Science* (2009). https://doi.org/10.1126/science.1170160
+
+Laajil, A., et al. Curriculum-Augmented GFlowNets For mRNA Sequence Generation. *arXiv:2510.03811* (2025; v2 2026). https://arxiv.org/abs/2510.03811
+
+Li, H., Terai, G., Otagaki, T., and Asai, K. Gradient-based optimization for mRNA sequence design. *Bioinformatics* (2026). https://doi.org/10.1093/bioinformatics/btag667
+
+Lin, S., Tan, H., Wang, K., et al. RNARL: reinforcement learning-driven unified generative framework for multi-objective RNA codon design. *Genome Biology* (2026). https://doi.org/10.1186/s13059-026-04203-x
+
+Patel, S., Tang, S., Kim, Y., et al. mRNAutilus: Multi-Objective-Guided Discrete Generation of mRNA with Optimized Therapeutic Properties. *arXiv:2605.31296* (2026).
 
 Rajbanshi, B., and Guruacharya, A. codonGPT: reinforcement learning on a generative language model enables scalable mRNA design. *Nucleic Acids Research* (2025). https://doi.org/10.1093/nar/gkaf1345
 
+Shao, Z., Wang, T., Shen, Y., Huang, T., and Xiao, Y. ProMORNA: An End-to-End Generative Framework for Full-Length mRNA Design. *arXiv:2605.01513v2* (2026).
+
+Theodorou, E., Stadler, M., Gustafsson, C., and Welch, M. Machine learning method for optimizing coding sequences in mammalian cells. *Biology Methods and Protocols* (2026). https://doi.org/10.1093/biomethods/bpag057
+
+Zhang, H., Zhang, L., Lin, A., et al. Algorithm for optimized mRNA design improves stability and immunogenicity. *Nature* (2023). https://doi.org/10.1038/s41586-023-06127-z
+
 Zhang, H., Liu, H., Xu, Y., et al. Deep generative models design mRNA sequences with enhanced translational capacity and stability. *Science* (2025). https://doi.org/10.1126/science.adr8470
-
-Patel, S., Tang, S., Kim, Y., et al. mRNAutilus: Multi-Objective-Guided Discrete Generation of mRNA with Optimized Therapeutic Properties. *arXiv:2605.31296* (2026). https://arxiv.org/abs/2605.31296
-
-Shao, Z., Wang, T., Shen, Y., Huang, T., and Xiao, Y. ProMORNA: An End-to-End Generative Framework for Full-Length mRNA Design. *arXiv:2605.01513* (2026). https://arxiv.org/abs/2605.01513
-
-Li, S., Chauvin, P., Gross, O., Bailey, M., and Jager, S. mRNA-GPT: A Generative Model for Full-Length mRNA Design and Optimization. *bioRxiv* (2026). https://doi.org/10.64898/2026.03.31.715707
-
-Devkota, K., Shonai, D., Mao, J., et al. Miniaturizing and modifying natural proteins with Raygun. *Nature* (2026). https://doi.org/10.1038/s41586-026-10842-8
-
-Baron, E., Amin, A. N., Weitzman, R., Marks, D., and Wilson, A. G. A Diffusion Model to Shrink Proteins While Maintaining Their Function. *arXiv:2511.07390* (2025). https://arxiv.org/abs/2511.07390
-
-Sharp, P. M., and Li, W.-H. The codon adaptation index—a measure of directional synonymous codon usage bias, and its potential applications. *Nucleic Acids Research* (1987). https://doi.org/10.1093/nar/15.3.1281
-
-Lorenz, R., Bernhart, S. H., Höner zu Siederdissen, C., et al. ViennaRNA Package 2.0. *Algorithms for Molecular Biology* (2011). https://doi.org/10.1186/1748-7188-6-26
-
-Vaswani, A., Shazeer, N., Parmar, N., et al. Attention Is All You Need. *arXiv:1706.03762* (2017). https://arxiv.org/abs/1706.03762
-
-Loshchilov, I., and Hutter, F. Decoupled Weight Decay Regularization. *arXiv:1711.05101* (2017). https://arxiv.org/abs/1711.05101
-
-Steinegger, M., and Söding, J. MMseqs2 enables sensitive protein sequence searching for the analysis of massive data sets. *Nature Biotechnology* (2017). https://doi.org/10.1038/nbt.3988
-
-Zitzler, E., and Thiele, L. Multiobjective evolutionary algorithms: a comparative case study and the strength Pareto approach. *IEEE Transactions on Evolutionary Computation* (1999). https://doi.org/10.1109/4235.797969
-
-Wilcoxon, F. Individual Comparisons by Ranking Methods. *Biometrics Bulletin* (1945). https://doi.org/10.2307/3001968
-
-Holm, S. A simple sequentially rejective multiple test procedure. *Scandinavian Journal of Statistics*, 6(2), 65–70 (1979). https://www.jstor.org/stable/4615733

@@ -1,0 +1,136 @@
+{
+  "schema_version": "a8-rk-functional-sources-v1",
+  "frozen_on": "2026-11-18",
+  "scope": "Public real functional evidence only; no simulated labels or text-digitized expression values.",
+  "split_contract": {
+    "entity": "protein family plus recombined construct",
+    "fixed_partition_required": true,
+    "random_row_split_forbidden": true,
+    "note": "Natural non-synonymous Boël proteins are not the same contract as within-protein synonymous libraries."
+  },
+  "sources": [
+    {
+      "source_id": "kudla_2009_gfp",
+      "priority": 1,
+      "citation": "Kudla et al., Science 324:255-258 (2009)",
+      "doi": "10.1126/science.1170160",
+      "pmid": "19359587",
+      "landing_url": "https://www.science.org/doi/10.1126/science.1170160",
+      "expected_design": "154 synonymous EGFP constructs; fluorescence; common protein",
+      "registration_status": "row_level_table_not_listed_on_publisher_page",
+      "license": "Publisher supplementary material; no open reuse license asserted.",
+      "files": [
+        {
+          "file_id": "som_pdf",
+          "url": "https://www.science.org/doi/suppl/10.1126/science.1170160/suppl_file/kudla.som.pdf",
+          "media_type": "application/pdf",
+          "role": "protocol_and_supplement"
+        },
+        {
+          "file_id": "oligos_txt",
+          "url": "https://www.science.org/doi/suppl/10.1126/science.1170160/suppl_file/kudla.som.oligos.txt",
+          "media_type": "text/plain",
+          "role": "degenerate_oligos_not_154_variant_table"
+        }
+      ]
+    },
+    {
+      "source_id": "boel_2016_nesg6348",
+      "priority": 1,
+      "citation": "Boël et al., Nature 529:358-363 (2016)",
+      "doi": "10.1038/nature16509",
+      "pmid": "26760206",
+      "pmcid": "PMC5054687",
+      "landing_url": "https://www.nature.com/articles/nature16509",
+      "expected_design": "6348 non-redundant heterologous proteins; ordinal expression 0-5; not a fixed-protein synonymous library",
+      "registration_status": "publisher_xlsx_verified",
+      "license": "Publisher supplementary material; Europe PMC reports the article is not open access; no CC license asserted.",
+      "files": [
+        {
+          "file_id": "protein_dataset_xlsx",
+          "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature16509/MediaObjects/41586_2016_BFnature16509_MOESM292_ESM.xlsx",
+          "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "role": "sequence_and_expression",
+          "required": true
+        },
+        {
+          "file_id": "supplement_pdf",
+          "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature16509/MediaObjects/41586_2016_BFnature16509_MOESM290_ESM.pdf",
+          "media_type": "application/pdf",
+          "role": "protocol",
+          "required": false
+        }
+      ]
+    },
+    {
+      "source_id": "kelsic_2016_mage_seq",
+      "priority": 1,
+      "citation": "Kelsic et al., Cell Systems 3:563-571.e6 (2016)",
+      "doi": "10.1016/j.cels.2016.11.004",
+      "pmid": "28017610",
+      "pmcid": "PMC5234859",
+      "raw_accession": "E-MTAB-4020",
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5234859/",
+      "expected_design": "infA single-codon, codon-pair and UTR MAGE-seq fitness; 12726 reported in situ codon mutants",
+      "registration_status": "pmc_supplementary_csv_listed",
+      "license": "Author manuscript supplementary material; no open reuse license asserted.",
+      "files": [
+        {
+          "file_id": "data_s1_single_codon_csv",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-1.csv",
+          "media_type": "text/csv",
+          "role": "single_codon_fitness",
+          "required": true
+        },
+        {
+          "file_id": "data_s2_codon_pair_csv",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-2.csv",
+          "media_type": "text/csv",
+          "role": "codon_pair_fitness",
+          "required": true
+        },
+        {
+          "file_id": "data_s3_utr_csv",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-3.csv",
+          "media_type": "text/csv",
+          "role": "utr_fitness",
+          "required": true
+        },
+        {
+          "file_id": "data_s4_genomewide_csv",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/instance/5234859/bin/NIHMS836960-supplement-4.csv",
+          "media_type": "text/csv",
+          "role": "genomewide_structure_context_not_expression",
+          "required": false
+        }
+      ]
+    },
+    {
+      "source_id": "kudla_2006_bicistronic",
+      "priority": 2,
+      "citation": "Kudla et al., PLOS Biology 4:e180 (2006)",
+      "doi": "10.1371/journal.pbio.0040180",
+      "landing_url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.0040180",
+      "registration_status": "candidate_not_downloaded",
+      "license": "PLOS article license must be read from the article before reuse."
+    },
+    {
+      "source_id": "welch_2009_bicistronic",
+      "priority": 2,
+      "citation": "Welch et al., PLOS ONE 4:e7002 (2009)",
+      "doi": "10.1371/journal.pone.0007002",
+      "landing_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0007002",
+      "registration_status": "candidate_not_downloaded",
+      "license": "PLOS article license must be read from the article before reuse."
+    },
+    {
+      "source_id": "fath_2011_bicistronic",
+      "priority": 2,
+      "citation": "Fath et al., PLOS ONE 6:e17596 (2011)",
+      "doi": "10.1371/journal.pone.0017596",
+      "landing_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0017596",
+      "registration_status": "candidate_not_downloaded",
+      "license": "PLOS article license must be read from the article before reuse."
+    }
+  ]
+}
