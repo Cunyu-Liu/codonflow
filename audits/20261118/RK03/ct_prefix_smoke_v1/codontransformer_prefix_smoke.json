@@ -1,0 +1,29 @@
+{
+  "schema_version": "a8-rk03-codontransformer-prefix-smoke-v1",
+  "created_at": "2026-11-18T16:18:48.114666+00:00",
+  "status": "PREFIX_SMOKE_ONLY",
+  "requested_data_rows": 1000,
+  "source_part": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/codontransformer_training/dataset.csv.part",
+  "source_part_bytes_at_read": 1207959552,
+  "full_dataset_bytes_frozen": 4652159854,
+  "full_dataset_sha256_frozen": "b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9",
+  "full_dataset_hash_verified": false,
+  "sample_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/audits/codontransformer_prefix_smoke_1000_v1/raw/dataset.csv",
+  "sample_bytes": 4249785,
+  "sample_sha256": "dc53c7318ef0f169c9f13d61939a1c6425b28c69321173db7915ec1667275486",
+  "summary": {
+    "raw_rows": 1000,
+    "clean_rows": 1000,
+    "raw_organism_count": 1,
+    "clean_organism_count": 1,
+    "exclusion_reason_counts": {},
+    "duplicate_dna_rows_after_first": 0
+  },
+  "independent_verification": {
+    "status": "PASS",
+    "passed_checks": 8,
+    "check_count": 8,
+    "audit": "/home/codonflow-a8-rk/audits/20261118/RK03/ct_prefix_smoke_v1/codontransformer_prefix_smoke_verification.json"
+  },
+  "scope": "Real prefix only; no full row count, organism count, final distribution, functional, OOD, or model claim."
+}
