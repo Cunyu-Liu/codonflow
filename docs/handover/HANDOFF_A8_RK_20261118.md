@@ -495,3 +495,21 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - A8 生成器/verifier 纳入 iXnos 三份冻结 JSON 及哈希、真实 reads、bounded 协议、最终指标、常数 baseline、27/27 与 16/16 核验；A7 未改。A8 v9 SHA256=`51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79`，独立论文核验 **20/20 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。commit=`12d044d69519ffad8127cc9642372624b4c0a153`。
 - 实时 PPT 基线为 76 页、revision 38、末页 `pgG`。候选初次 preflight 7/8 仅由检查器大小写字符串不匹配引起，失败报告保留；修正后 **8/8 PASS**，只追加第 77 页 `pgW`，revision=39。`audits/20261118/RK05/ixnos_ppt_verification.json` 为 **PASS，11/11 checks**：前 76 页 slide ID、顺序与 ID-independent 语义 XML 全部不变，新页生产/独立/常数 baseline 表、KPI、4 段备注、画布边界和科学边界通过。raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ixnos_v1/`；PPT commit=`9b23048267afc808fade89cc08655464b5814467`。
 - 当前在线主稿真实状态为 **77 页、revision 39、末页 `pgW`**。完整 102,187,657-read run、RSEM、333/167-gene 60-epoch、多 replicate、study/功能 OOD、统一成本强 baseline 主矩阵、RK03/RK04/RK06 剩余项、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文均未关闭；遗留 `id3_independent_verification.pid` 不应提交。
+
+## 27. ROSE 官方发布测试集单 checkpoint 推理、A8 v10 与 PPT 第 78 页
+
+### 固定来源、完整数组与独立复核
+
+- 官方 ROSE 固定 commit=`8b86d69d89ca7ef95193729e6d1a4738bc6a4451`，归档 SHA256=`8bd85ae8593de547e6790aefcef311f098de7e3219d69b8b4b898266a8eae73b`，官方 demo SHA256=`9ab4df2c7bfaa022cb731f76588d263e88a8d15dcf3547081435c58726272548`。恢复源码位于 `/home/codonflow-a8-rk-external/rose-8b86d69d89ca7ef95193729e6d1a4738bc6a4451`。本任务固定为 codon-resolution binary ribosome-stalling classification，不是 RiboMIMO/iXnos 的连续速度回归。
+- 每研究只使用一个发布 `best_model_0.caffemodel`，单次完整前向，无训练、无虚构的 64-checkpoint 集成。输入为 183 nt / 61 codons，按官方 ATCG 嵌套顺序编码成 `N×64×1×61 float32`；只改 HDF5 路径、TEST batch size 与 CPU 环境，网络结构和权重未改。Pop14 为 1,902 条、正负各 951、128,834 参数；Battle15 为 9,980 条、正负各 4,990、265,858 参数，共 11,882 条完整发布测试记录。
+- Pop14 的 ROC AUC/AP/accuracy/log loss/Brier=`0.8618886976/0.8592736843/0.7786540484/0.4987314376/0.1550820795`；Battle15=`0.8072302521/0.7940684857/0.7281563126/0.5623744450/0.1860703555`。两套常数 prevalence baseline 均为 ROC AUC=0.5、AP=0.5、log loss=ln(2)、Brier=0.25。以上是作者处理数组上的单 checkpoint 分类输出，不是功能 OOD、统一成本排名或 SOTA。
+- 独立 verifier 不导入生产脚本，独立编码、构建 HDF5/网络路径与 batch 改写并执行第二次 Caffe 前向。v4 **34/34 PASS**：两研究 logits、官方 float32 概率公式及全部生产指标差均为 0；稳定 float64 仅作次级舍入/近并列诊断。finalization **60/60 PASS**、单元测试 **12/12 PASS**。生产报告 SHA256=`03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a`，独立 v4 SHA256=`904d370e0b6c87c86484a74c2b572dca964bdc5289110a1d37d00e4a3d378861`，finalization SHA256=`c1733d1c937af26892fbfebf6385bcd9ca80b9825bd07f7597e7188716d48817`。科学证据 commit=`3a284efef7fab0b911473f1e1647f01bcfedf651`，已推送。
+- v1–v3 失败报告全部保留：v1 对两种概率公式误用 `1e-15` 容差；v2 对 log loss/Brier 的统一 `1e-12` 指标容差过严；v3 的稳定 float64 打破官方 float32 近并列，使 Battle15 AP 差 `3.4728404374e-08`。这些均为 verifier 数值判据问题，不是模型、数据或生产失败；最终 v4 要求生产公式与生产指标完全一致，没有删除失败或改写生产结果。
+- 生产 raw 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/`，独立 raw 位于 `rose_independent_v4/`，v1–v3 独立失败目录均保留。代码/报告在 `/home/codonflow-a8-rk`；完整复现命令见 `audits/20261118/RK05/README.md`。
+
+### A8 v10、PPT 写后验收与当前续作
+
+- A8 生成器/verifier 纳入协议、生产、独立 v4、finalization 与三份失败报告，新增完整数组、参数、分类指标、34/34、60/60、单 checkpoint/无训练和科学边界。A7 未改；A8 v10 SHA256=`4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e`，独立论文核验 **21/21 PASS**，报告 SHA256=`4461070a39fa8d8ec68fa6edc51240be4c7c942344e4fd6f13087380ca31bdc1`，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。commit=`f17f432e3ea58d6d2839bdba6ab05dedc3f4460f`，已推送。
+- 实时 PPT 基线为 77 页、revision 39、末页 `pgW`。候选页独立 preflight **14/14 PASS** 后只追加第 78 页 `pgc`，revision=40。页面展示 Pop14/Battle15 的 ROC AUC、AP、accuracy、log loss 和常数 baseline，明确二分类、单 checkpoint、无训练、非速度回归及 OOD/SOTA 未关闭，并保留 v1–v3 数值判据失败说明。
+- `audits/20261118/RK05/rose_ppt_final_verification_v1.json` 为 **PASS，14/14 checks**：整稿 78 页，前 77 页 slide ID、顺序与 canonical XML 全部不变；新页文本与候选一致，指标由冻结 JSON 复核，4 段备注、画布边界与科学边界通过。raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1/`；PPT 验证代码/报告 commit=`a9de66192f4d3fa2e795d8d93b05e2671248b595`，本地和服务器复跑结果逐字节一致。
+- 当前在线主稿真实状态为 **78 页、revision 40、末页 `pgc`**。本任务只关闭 ROSE 发布测试集单 checkpoint 推理及其论文/PPT 记录；完整训练、100000-iteration 协议、64-checkpoint 集成、连续速度回归、raw-read/P-site 重映射、蛋白/study/功能 OOD、统一成本强 baseline 主矩阵、RK03/RK04/RK06 剩余项、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文均未关闭。遗留 `id3_independent_verification.pid` 不属于本任务，不应提交。

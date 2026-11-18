@@ -686,3 +686,91 @@ python3 scripts/a8_rk05_verify_ixnos_ppt.py \
 ```
 
 The online URL is <https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>. This reporting closes only the bounded iXnos official-training smoke; it does not close the scientific or submission Gates listed above.
+
+---
+
+# ROSE fixed-source complete released-test single-checkpoint inference
+
+## Verified result and scope
+
+`PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE` — the released ROSE checkpoints were loaded and evaluated on both complete author-processed test arrays at fixed commit `8b86d69d89ca7ef95193729e6d1a4738bc6a4451`. Independent second-forward verification passed **34/34 checks**, finalization passed **60/60 checks**, and unit tests passed **12/12**. This closes only released-test binary ribosome-stalling inference; it is not continuous velocity regression, model training, a 64-checkpoint ensemble, functional OOD, a matched-cost main comparison, or SOTA.
+
+- Fixed source: `mlcb-thu/rose`; archive SHA256 `8bd85ae8593de547e6790aefcef311f098de7e3219d69b8b4b898266a8eae73b`; official `script/demo_test.py` SHA256 `9ab4df2c7bfaa022cb731f76588d263e88a8d15dcf3547081435c58726272548`.
+- Each study uses its single released `best_model_0.caffemodel`, one complete forward pass, no training and no ensemble. Input is 183 nt / 61 codons encoded by the official nested ATCG order into `N×64×1×61 float32`. Only HDF5 paths, TEST batch size and CPU execution settings were adapted; the parallel-convolution network and weights were not changed.
+- Pop14 has 1,902 records (951 positive / 951 negative) and 128,834 parameters. Battle15 has 9,980 records (4,990 / 4,990) and 265,858 parameters. The complete arrays contain 11,882 records, not a sampled prefix.
+
+| Study | ROC AUC | AP | Accuracy@0.5 | Log loss | Brier |
+|---|---:|---:|---:|---:|---:|
+| Pop14 | 0.8618886976 | 0.8592736843 | 0.7786540484 | 0.4987314376 | 0.1550820795 |
+| Battle15 | 0.8072302521 | 0.7940684857 | 0.7281563126 | 0.5623744450 | 0.1860703555 |
+
+Both balanced constant-prevalence baselines have ROC AUC=0.5, AP=0.5, accuracy=0.5, log loss=`ln(2)` and Brier=0.25. Pop14/Battle15 complete forward times were 10.769228 / 95.193645 seconds; total production orchestration was 112.826975 seconds. These are CPU single-checkpoint inference timings, not time-matched training or cross-method costs.
+
+## Independent numerical diagnosis and retained failures
+
+The independent verifier does not import the production driver. It uses `itertools.product` for an independent encoder, independently builds HDF5 and network adaptations, and performs a second Caffe forward. In v4, logits, the official float32 two-exponential probability formula and all six production metrics match exactly for both studies (`max_abs_delta=0.0`). Stable float64 logistic probabilities are retained only as a secondary rounding/near-tie diagnostic; their maximum probability differences are `9.6336935984e-08` and `9.8821735905e-08`.
+
+Three failed verifier versions are preserved and are not model/data failures:
+
+- `rose_independent_verification_v1_failed_probability_precision.json`: `FAIL_VERIFIER_FLOAT32_FLOAT64_TOLERANCE`; an inappropriate `1e-15` probability tolerance was applied across different formulas.
+- `rose_independent_verification_v2_failed_metric_precision.json`: `FAIL_VERIFIER_METRIC_PRECISION_TOLERANCE`; exact ROC/threshold metrics coexisted with small log-loss/Brier formula rounding differences.
+- `rose_independent_verification_v3_failed_average_precision_precision.json`: `FAIL_VERIFIER_AVERAGE_PRECISION_FLOAT32_TIES`; stable float64 probabilities broke official float32 near-ties and changed AP by `3.4728404374e-08` for Battle15.
+
+The finalizer independently reopens raw predictions and reports, recomputes sklearn metrics and checks complete arrays, source/artifact hashes, the three retained failure reports and scientific boundaries: **60/60 PASS**. Unit tests: **12/12 PASS**. No failed report was deleted and no production value was rewritten to obtain a pass.
+
+## Evidence and reproduction
+
+- Protocol: `rose_official_single_checkpoint_protocol_v1.json`.
+- Production: `rose_official_single_checkpoint_v1.json`, SHA256 `03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a`.
+- Independent v4: `rose_independent_verification_v4.json`, SHA256 `904d370e0b6c87c86484a74c2b572dca964bdc5289110a1d37d00e4a3d378861`.
+- Finalization: `rose_finalization_v1.json`, SHA256 `c1733d1c937af26892fbfebf6385bcd9ca80b9825bd07f7597e7188716d48817`.
+- Code: `scripts/a8_rk05_rose_official_single_checkpoint.py`, `a8_rk05_verify_rose_single_checkpoint.py`, `a8_rk05_finalize_rose_single_checkpoint.py`, and `test_a8_rk05_rose_official_single_checkpoint.py`.
+- Scientific evidence commit: `3a284efef7fab0b911473f1e1647f01bcfedf651`.
+
+Production raw output is `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/rose_official_single_checkpoint_v1/`; independent v4 raw output is `rose_independent_v4/`. The v1–v3 independent directories and sklearn installation log remain alongside them. Code and reports remain under `/home`; source arrays, weights, HDF5, predictions and logs remain under `/teams`.
+
+From `/home/codonflow-a8-rk`, use new absent/empty output directories and new report paths for a fresh production/independent run:
+
+```bash
+R=audits/20261118/RK05
+python3 scripts/test_a8_rk05_rose_official_single_checkpoint.py
+
+python3 scripts/a8_rk05_rose_official_single_checkpoint.py \
+  --protocol "$R/rose_official_single_checkpoint_protocol_v1.json" \
+  --output-root <NEW_PRODUCTION_RAW_DIR> --report <NEW_PRODUCTION_JSON>
+
+python3 scripts/a8_rk05_verify_rose_single_checkpoint.py \
+  --protocol "$R/rose_official_single_checkpoint_protocol_v1.json" \
+  --production-report <NEW_PRODUCTION_JSON> \
+  --output-root <NEW_INDEPENDENT_RAW_DIR> --report <NEW_INDEPENDENT_JSON>
+
+# Recheck the frozen v1/v4 evidence and write a new finalization report.
+python3 scripts/a8_rk05_finalize_rose_single_checkpoint.py \
+  --root /home/codonflow-a8-rk --report <NEW_FINALIZATION_JSON>
+```
+
+Full training, 100000-iteration reproduction, 64-checkpoint ensembles, continuous velocity regression, raw-read/P-site remapping, protein/study/functional OOD, unified-cost strong-baseline ranking, CodonFlow-RK generation and SOTA remain open.
+
+## A8 v10 and online PPT verification
+
+The A8 generator and independent verifier consume the protocol, production, independent v4, finalization and all three retained failure reports. A8 v10 has SHA256 `4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e`; independent manuscript verification is **21/21 PASS**, report SHA256 `4461070a39fa8d8ec68fa6edc51240be4c7c942344e4fd6f13087380ca31bdc1`. A7 remains unchanged at SHA256 `941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423`. The status remains `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`; manuscript commit is `f17f432e3ea58d6d2839bdba6ab05dedc3f4460f`.
+
+After scientific and manuscript verification, the live deck was read again as 77 slides at revision 39 with last slide `pgW`. Candidate preflight passed **14/14** before any server write. Exactly one ROSE page was appended as slide 78, `slide_id=pgc`, at revision 40. Post-write independent verification passed **14/14**: all 77 previous slide IDs/order and canonical XML were unchanged, no duplicate ROSE result page existed, and the new page's complete-array metrics, constant baseline, notes, geometry and scientific scope matched the frozen JSON.
+
+- Candidate: `rose_ppt_candidate_v1.xml`, SHA256 `54eca61e6eb4f849d39081b8734896958a53182d6b43d846e2f3cf670e8b095c`.
+- Candidate preflight: `rose_ppt_candidate_preflight_v1.json` — 14/14 PASS.
+- Live readback verification: `rose_ppt_final_verification_v1.json` — 14/14 PASS.
+- Verifiers: `scripts/a8_rk05_verify_rose_ppt_candidate.py` and `a8_rk05_verify_rose_ppt_live.py`.
+- Raw candidate, baseline/readback XML, frozen evidence copies and complete responses: `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1/`.
+- PPT evidence commit: `a9de66192f4d3fa2e795d8d93b05e2671248b595`.
+
+To recheck the archived transaction without writing to the deck:
+
+```bash
+ROSE_PPT_WORK_DIR=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1 \
+  python3 scripts/a8_rk05_verify_rose_ppt_candidate.py
+ROSE_PPT_WORK_DIR=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1 \
+  python3 scripts/a8_rk05_verify_rose_ppt_live.py
+```
+
+The online URL is <https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>. The current verified state is 78 slides, revision 40, last slide `pgc`. This reporting closes only the released-test single-checkpoint ROSE inference subtask; the scientific and submission Gates remain open.
