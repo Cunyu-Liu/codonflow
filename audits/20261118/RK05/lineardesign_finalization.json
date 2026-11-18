@@ -1,0 +1,103 @@
+{
+  "protocol": "a8_rk05_lineardesign_finalization_v1",
+  "created_at": "2026-11-18T19:10:17.802833+00:00",
+  "status": "BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED",
+  "check_count": 8,
+  "passed_checks": 8,
+  "checks": [
+    {
+      "name": "fixed_commit",
+      "pass": true,
+      "detail": "f0126ca89a8b853088b4bccfd2cc8c378d3678be"
+    },
+    {
+      "name": "archive_crc_and_hash",
+      "pass": true,
+      "detail": "c27fa2a0beefd6b20359bb9b6a4f2bc43fa70b68aa577f4cd826a4a1051b8944"
+    },
+    {
+      "name": "clean_build_and_official_example",
+      "pass": true,
+      "detail": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688"
+    },
+    {
+      "name": "bounded_execution",
+      "pass": true,
+      "detail": {
+        "record_id": "C01H6.8b.1",
+        "lambdas": [
+          0.0,
+          0.5,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "identity_and_scorers",
+      "pass": true,
+      "detail": {
+        "max_cai_delta": 0.0004413928951978452,
+        "max_mfe_delta": 1.2207031261368684e-05
+      }
+    },
+    {
+      "name": "independent_verification",
+      "pass": true,
+      "detail": {
+        "passed": 10,
+        "total": 10,
+        "max_numeric_delta": 0.0
+      }
+    },
+    {
+      "name": "bounded_costs",
+      "pass": true,
+      "detail": 24.321617373265326
+    },
+    {
+      "name": "scientific_boundaries",
+      "pass": true,
+      "detail": {
+        "official_fixed_source_built": true,
+        "bounded_single_record_smoke_complete": true,
+        "main_baseline_comparison": false,
+        "dense_budget_complete": false,
+        "functional_ood": false,
+        "cdgb_assessed": false,
+        "sota_claim": false
+      }
+    }
+  ],
+  "record_id": "C01H6.8b.1",
+  "run_count": 3,
+  "total_elapsed_s": 24.321617373265326,
+  "unique_output_sequences": 3,
+  "science_flags": {
+    "official_fixed_source_built": true,
+    "bounded_single_record_smoke_complete": true,
+    "main_baseline_comparison": false,
+    "dense_budget_complete": false,
+    "functional_ood": false,
+    "cdgb_assessed": false,
+    "sota_claim": false
+  },
+  "ppt_record_ready": true,
+  "source_artifacts": {
+    "materialization": {
+      "path": "audits/20261118/RK05/lineardesign_materialization.json",
+      "sha256": "509c880d85c56b672cd04744c579016bd1f2addcf44f22f4e61f2aaccbea2bf0"
+    },
+    "build": {
+      "path": "audits/20261118/RK05/lineardesign_build.json",
+      "sha256": "47a8f4c51375165343242c469057350552a85906eea38d61f9aa3a9300eb2777"
+    },
+    "smoke": {
+      "path": "audits/20261118/RK05/lineardesign_official_smoke_v2.json",
+      "sha256": "4b4ee01a1dd9de7453b436d0d115e16c1657b968b032f7adb71abd41f50205a6"
+    },
+    "independent": {
+      "path": "audits/20261118/RK05/lineardesign_independent_verification_v2.json",
+      "sha256": "928d9cabaa906737cfffa2caa6125e67b65baccd21028c56947b5a53e5be469e"
+    }
+  }
+}

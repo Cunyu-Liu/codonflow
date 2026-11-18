@@ -78,6 +78,10 @@ def main() -> None:
         "id3": repo / "audits/20261118/RK05/id3_official_quick_test.json",
         "id3_verify": repo / "audits/20261118/RK05/id3_official_quick_test_independent.json",
         "id3_final": repo / "audits/20261118/RK05/id3_official_quick_test_finalization.json",
+        "ld_smoke": repo / "audits/20261118/RK05/lineardesign_official_smoke_v2.json",
+        "ld_verify": repo / "audits/20261118/RK05/lineardesign_independent_verification_v2.json",
+        "ld_final": repo / "audits/20261118/RK05/lineardesign_finalization.json",
+        "ld_v1_failure": repo / "audits/20261118/RK05/lineardesign_official_smoke_v1_failure.json",
         "rnarl_smoke": repo / "audits/20261118/RK05/rnarl_official_contract_smoke_v2.json",
         "rnarl_verify": repo / "audits/20261118/RK05/rnarl_official_independent_verification.json",
         "rnarl_qc": repo / "audits/20261118/RK03/rnarl_qc.json",
@@ -104,6 +108,10 @@ def main() -> None:
     id3 = data["id3"]
     id3v = data["id3_verify"]
     id3f = data["id3_final"]
+    ld = data["ld_smoke"]
+    ldv = data["ld_verify"]
+    ldf = data["ld_final"]
+    ld_fail = data["ld_v1_failure"]
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarlq = data["rnarl_qc"]
@@ -134,6 +142,11 @@ def main() -> None:
     require(id3f["status"] == "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT" and id3f["science_flags"]["ppt_record_ready"], "ID3 finalization not ready")
     require(id3f["checks_passed"] == id3f["checks_total"] == 11, "ID3 finalization checks failed")
     require(not id3f["science_flags"]["main_baseline_comparison"] and not id3f["science_flags"]["sota_claim"], "ID3 scope exceeded")
+    require(ld["status"] == "BOUNDED_OFFICIAL_EXECUTION_COMPLETE" and ld["run_count"] == len(ld["runs"]) == 3, "LinearDesign bounded execution incomplete")
+    require(ldv["status"] == "PASS" and ldv["passed_checks"] == ldv["check_count"] == 10 and ldv["max_numeric_delta"] == 0.0, "LinearDesign independent verification failed")
+    require(ldf["status"] == "BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED" and ldf["passed_checks"] == ldf["check_count"] == 8, "LinearDesign finalization failed")
+    require(ld_fail["status"] == "FAIL_INDEPENDENT_SCORER_CONVENTION_MISMATCH" and not ld_fail["production_report_written"], "LinearDesign v1 failure was not preserved")
+    require(not ldf["science_flags"]["main_baseline_comparison"] and not ldf["science_flags"]["sota_claim"], "LinearDesign scope exceeded")
     require(rnalrv["status"] == "PASS_NEGATIVE_REPRODUCIBILITY_AUDIT" and all(rnalrv["checks"].values()), "RNARL negative audit not verified")
     require(not rnarl["official_full_training_executed"] and not rnarl["paper_metrics_reproduced"], "RNARL availability scope exceeded")
     require(rnarlqv["status"] == "PASS" and rnarlqv["passed_checks"] == rnarlqv["check_count"] == 8 and rnarlqv["max_numeric_delta"] == 0.0, "RNARL full independent QC failed")
@@ -159,6 +172,7 @@ def main() -> None:
     id3_summary = next(c["detail"] for c in id3["checks"] if c["name"] == "summary_12_total")
     id3_pass_count = sum(bool(c["pass"]) for c in id3v["checks"])
     id3_check_count = len(id3v["checks"])
+    ld_rows = "\n".join(f"| {r['lambda']:.1f} | {r['official_mfe_kcal_mol']:.2f} | {r['official_cai']:.3f} | {r['elapsed_s']:.3f} |" for r in ld["runs"])
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -204,6 +218,14 @@ The independent verifier recomputed all **{rk07v['checks'][2]['details']['rows']
 
 This is a smoke result, not the separate full-12×12 protocol and not a main comparison. Four checks were retained as failures: `CodonProfileConstraint.forward()` omits `beta` when calling `CodonPsiFunction.forward()`, and the `beta == 1.0` runner branch records a soft-path accessibility value as a discrete score. Consequently, CPC×1 initial/best/improvement/trajectory fields and affected summary aggregates are excluded. Only the bounded final sequences and final scores are retained.
 
+**LinearDesign bounded official execution.** The clean codeload archive at commit `{ld['commit']}` was built from source, and the official README example matched its documented sequence. On frozen 135-aa protein `{ld['record_id']}`, the official binary produced three unique synonymous outputs for λ = 0/0.5/1 in **{ld['total_elapsed_s']:.3f} s total**:
+
+| λ | Official MFE (kcal/mol) | Official CAI | Wall time (s) |
+|---:|---:|---:|---:|
+{ld_rows}
+
+Independent raw-output verification passed **{ldv['passed_checks']}/{ldv['check_count']} checks** with maximum numeric delta **{ldv['max_numeric_delta']:.1f}**, and finalization passed **{ldf['passed_checks']}/{ldf['check_count']} checks**. Official MFE matched ViennaRNA at 37°C with `dangles=0` (maximum rounding delta {ldf['checks'][4]['detail']['max_mfe_delta']:.6f}); default `dangles=2` values were also retained. The earlier default-dangles v1 failure is preserved as `{ld_fail['status']}` rather than erased. This remains a single-record, three-λ bounded smoke, not the full seven-λ actual-set matrix, dense-budget comparison, functional OOD evaluation, or SOTA result.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending."""
@@ -215,6 +237,9 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("RiboMIMO independent verifier", source_hashes["ribomimo_verify"]),
         ("CodonTransformer raw table", ct["result"]["raw_sha256"]),
         ("ID3 independent verifier v2", source_hashes["id3_verify"]),
+        ("LinearDesign independent verifier v2", source_hashes["ld_verify"]),
+        ("LinearDesign finalization", source_hashes["ld_final"]),
+        ("LinearDesign v1 retained failure", source_hashes["ld_v1_failure"]),
         ("RNARL negative audit", source_hashes["rnarl_verify"]),
         ("RNARL full QC finalization", source_hashes["rnarl_final"]),
         ("RNARL corrected independent verifier", source_hashes["rnarl_qc_verify"]),
@@ -246,12 +271,13 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("### 6.2 Proxy validity: bounded cross-protein diagnostic\n\nRK07 evaluated" in text, "RK07 section insertion failed")
     require("RNARL official 21-file pair table contains" in text, "RNARL full QC result missing")
     require("five-species processed matrices are not available" in text, "VeloHARMO missing-species boundary missing")
+    require("LinearDesign bounded official execution" in text, "LinearDesign bounded result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v2",
+        "schema_version": "a8-rk-paper-sync-v3",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -264,6 +290,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
         "scientific_scope": {
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
+            "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
             "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open",

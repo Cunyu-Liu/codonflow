@@ -136,3 +136,80 @@ The materialization script intentionally refuses to overwrite an existing source
 The bounded result was recorded only after the independent and finalization reports passed their scope checks. One slide was appended to the existing online deck as slide 68, `pgC`, revision 30. It retains `12/12` official runs, `112/116` independent checks, `11/11` finalization checks, all four CPC saved-to-recomputed values, the final summary statistics, the fixed-source root cause, and the exclusion boundary.
 
 `audits/20261118/RK05/id3_ppt_verification.json` records the server readback: 68 slides, all previous 67 slide IDs and semantic XML unchanged, all required values present, five speaker-note paragraphs, and the quick-test-only boundary. Evidence and reproduction documentation were pushed in `51fcda9f95a7770cf1a4ee0f1e8b2956eab719a1`; the PPT/handoff record does not promote the smoke to a main baseline comparison.
+
+---
+
+# LinearDesign fixed-source bounded official execution (2026-11-18)
+
+## Result and retained v1 failure
+
+`BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED` — the fixed official source was cleanly built, its README example passed, and one frozen protein was executed at three λ values. Independent raw-output verification passed **10/10 checks** with `max_numeric_delta=0.0`; finalization passed **8/8 checks**. This is not a full actual-set baseline matrix or model ranking.
+
+- Fixed source: `LinearDesignSoftware/LinearDesign`, commit `f0126ca89a8b853088b4bccfd2cc8c378d3678be`.
+- Clean codeload ZIP: 174,011 bytes, 32 members, CRC PASS, SHA256 `c27fa2a0beefd6b20359bb9b6a4f2bc43fa70b68aa577f4cd826a4a1051b8944`.
+- Compiler: `g++ 9.4.0`; built binary SHA256 `f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688`.
+- Official README example `MNDTEAI`: `AUGAACGAUACGGAGGCGAUC`, MFE `-1.10 kcal/mol`, CAI `0.695`, matching the official documentation.
+- Frozen input: `C01H6.8b.1`, 135 aa, from the verified unique18 FASTA. The three λ outputs are unique, amino-acid preserving, and contain no stop codon; `TAA` is appended only for the disclosed cross-method evaluation convention.
+
+| λ | official MFE (kcal/mol) | official CAI | wall time (s) | independent CAI | default-dangles2 MFE |
+|---:|---:|---:|---:|---:|---:|
+| 0.0 | -270.60 | 0.761 | 8.06250987527892 | 0.7614413928951979 | -274.29998779296875 |
+| 0.5 | -269.20 | 0.791 | 8.108563175890595 | 0.7912732411920935 | -272.3999938964844 |
+| 1.0 | -265.20 | 0.820 | 8.150544322095811 | 0.8196140735200668 | -268.3999938964844 |
+
+Total official wall time is **24.321617373265326 s**. All three independently recomputed structures exactly match the official structures. Official CAI was independently reconstructed from the pinned codon table as `exp2(mean(log2(frequency / synonymous_max_frequency)))`; maximum absolute difference from the rounded official printout is `0.0004413928951978452`.
+
+The first v1 run is retained as `lineardesign_official_smoke_v1_failure.json`. Its official λ=0 execution succeeded, but the production scorer gate failed because v1 incorrectly compared the official MFE against ViennaRNA's default `dangles=2`. The official structure and default-Vienna structure are identical, while explicit `dangles=0` gives `-270.6000061035156`, matching the official `-270.60`; default `dangles=2` gives `-274.29998779296875`. Version 2 therefore uses `dangles=0` only for official-convention consistency and also reports default `dangles=2`. No tolerance was relaxed, and the failed raw stdout/stderr remain in the separate v1 output directory.
+
+## Evidence
+
+- `lineardesign_materialization.json`
+- `lineardesign_build.json` and `lineardesign_build.log`
+- `lineardesign_official_smoke_v1_failure.json`
+- `lineardesign_official_smoke_v2.json`
+- `lineardesign_independent_verification_v2.json`
+- `lineardesign_finalization.json`
+- `scripts/a8_rk05_lineardesign_official_smoke.py`
+- `scripts/a8_rk05_verify_lineardesign_official_smoke.py`
+- `scripts/a8_rk05_finalize_lineardesign_official_smoke.py`
+- `tests/test_a8_rk05_lineardesign_official_smoke.py` (11/11 PASS)
+
+The fixed archive and all raw official outputs remain under `/teams`; scripts, reports, and Git commits remain under `/home`. CDGB remains unassessed: no verified official repository, commit, build, or execution artifact was established in this bounded task. That absence is not a claim that the CDGB method is invalid or has no implementation.
+
+## Reproduction
+
+From `/home/codonflow-a8-rk`, using the verified fixed materialization and **new** output/audit paths:
+
+```bash
+/root/miniconda3/envs/codonflow/bin/python -m unittest \
+  tests.test_a8_rk05_lineardesign_official_smoke -v
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_lineardesign_official_smoke.py \
+  --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta \
+  --record-id C01H6.8b.1 \
+  --source-dir /home/codonflow-a8-rk-external/LinearDesign-f0126ca89a8b853088b4bccfd2cc8c378d3678be \
+  --materialization audits/20261118/RK05/lineardesign_materialization.json \
+  --build-report audits/20261118/RK05/lineardesign_build.json \
+  --output-dir <NEW_OFFICIAL_OUTPUT_DIR> \
+  --audit <NEW_SMOKE_JSON> \
+  --lambdas 0 0.5 1 --timeout-s 1800
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_verify_lineardesign_official_smoke.py \
+  --report <NEW_SMOKE_JSON> \
+  --materialization audits/20261118/RK05/lineardesign_materialization.json \
+  --build-report audits/20261118/RK05/lineardesign_build.json \
+  --source-dir /home/codonflow-a8-rk-external/LinearDesign-f0126ca89a8b853088b4bccfd2cc8c378d3678be \
+  --output <NEW_INDEPENDENT_JSON>
+
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_finalize_lineardesign_official_smoke.py \
+  --materialization audits/20261118/RK05/lineardesign_materialization.json \
+  --build audits/20261118/RK05/lineardesign_build.json \
+  --smoke <NEW_SMOKE_JSON> \
+  --independent <NEW_INDEPENDENT_JSON> \
+  --output <NEW_FINALIZATION_JSON>
+```
+
+The unified seven-λ actual-set matrix, dense candidate-budget comparison, functional OOD evaluation, CDGB assessment, main-baseline ranking, and SOTA assessment remain pending.

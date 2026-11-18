@@ -1,0 +1,27 @@
+{
+  "protocol": "a8_rk05_lineardesign_build_v1",
+  "created_at": "2026-11-18T19:03:34.597781+00:00",
+  "commit": "f0126ca89a8b853088b4bccfd2cc8c378d3678be",
+  "source_dir": "/home/codonflow-a8-rk-external/LinearDesign-f0126ca89a8b853088b4bccfd2cc8c378d3678be",
+  "command": "make",
+  "returncode": 0,
+  "compiler": "g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0",
+  "binary": "/home/codonflow-a8-rk-external/LinearDesign-f0126ca89a8b853088b4bccfd2cc8c378d3678be/bin/LinearDesign_2D",
+  "binary_bytes": 340056,
+  "binary_sha256": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688",
+  "build_log": "/home/codonflow-a8-rk/audits/20261118/RK05/lineardesign_build.log",
+  "official_example": {
+    "input": "MNDTEAI",
+    "command": [
+      "/home/codonflow-a8-rk-external/LinearDesign-f0126ca89a8b853088b4bccfd2cc8c378d3678be/bin/LinearDesign_2D",
+      "0",
+      "0",
+      "codon_usage_freq_table_human.csv"
+    ],
+    "returncode": 0,
+    "stdout": "j=0\nj=1\nj=2\nj=3\nj=4\nj=5\nj=6\nj=7\nj=8\nj=9\nj=10\nj=11\nj=12\nj=13\nj=14\nj=15\nj=16\nj=17\nj=18\nj=19\nj=20\nj=21\nmRNA sequence:  AUGAACGAUACGGAGGCGAUC\nmRNA structure: ......(((.((....)))))\nmRNA folding free energy: -1.10 kcal/mol; mRNA CAI: 0.695\n\n",
+    "stderr": "",
+    "expected_sequence": "AUGAACGAUACGGAGGCGAUC",
+    "pass": true
+  }
+}

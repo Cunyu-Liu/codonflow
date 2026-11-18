@@ -7,7 +7,7 @@
     "8.1"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "f7ea820b98ab946f9f12b6fc28f2095907fd88b4c7346e77870ec87552735e7a",
+  "output_sha256": "d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -19,9 +19,10 @@
     "OOD",
     "wet-lab validation"
   ],
-  "schema_version": "a8-rk-paper-sync-v2",
+  "schema_version": "a8-rk-paper-sync-v3",
   "scientific_scope": {
     "id3": "official bounded quick-test only; CPC STE defects retained",
+    "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
     "rk07": "bounded cross-protein diagnostic only",
     "rnarl_code": "negative public-snapshot reproducibility only",
     "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
@@ -34,6 +35,10 @@
     "id3": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test.json",
     "id3_final": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test_finalization.json",
     "id3_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/id3_official_quick_test_independent.json",
+    "ld_final": "/home/codonflow-a8-rk/audits/20261118/RK05/lineardesign_finalization.json",
+    "ld_smoke": "/home/codonflow-a8-rk/audits/20261118/RK05/lineardesign_official_smoke_v2.json",
+    "ld_v1_failure": "/home/codonflow-a8-rk/audits/20261118/RK05/lineardesign_official_smoke_v1_failure.json",
+    "ld_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/lineardesign_independent_verification_v2.json",
     "ribomimo": "/home/codonflow-a8-rk/audits/20261118/RK03/ribomimo_qc_summary.json",
     "ribomimo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/ribomimo_independent_verification.json",
     "rk02": "/home/codonflow-a8-rk/audits/20261118/RK02/audit_summary.json",
@@ -56,6 +61,10 @@
     "id3": "b0a10e1af4b80cac6fa2cab34df860b5ba506283e37fd9967b55a16aa2036743",
     "id3_final": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",
     "id3_verify": "03980d217794fcb57511be368a7f90e5f34ac0209cc4f3294ad3818ffcd3c7ae",
+    "ld_final": "9a5e7e92c9578e4eda1f18774a8a21de2c8abc6bfda076f3ccafcc0a8fe61f79",
+    "ld_smoke": "4b4ee01a1dd9de7453b436d0d115e16c1657b968b032f7adb71abd41f50205a6",
+    "ld_v1_failure": "6825a4a0326fe171cf18906acf2ecb0d6b224d10f91d6cd4d6a1e7f08195c4ca",
+    "ld_verify": "928d9cabaa906737cfffa2caa6125e67b65baccd21028c56947b5a53e5be469e",
     "ribomimo": "1f9c5bc42bdc4fde937b2b091967fc50f27d6e09dbc22c69189e54456a977b8b",
     "ribomimo_verify": "256bf64fd5c51fd3c66b078339bb425fd718a3476afcf3b09de6dfea5de78ba7",
     "rk02": "59a6fd378b4e023dca88e952ecb66a33a21e971d956000ae2c661db1ff27119c",

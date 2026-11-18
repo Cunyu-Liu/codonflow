@@ -162,6 +162,20 @@ def main() -> None:
     ]
     check("id3_bounded_execution_and_retained_defects", all(s in text for s in id3_strings) and not id3v["science_flags"]["all_payload_metrics_independently_verified"], {"expected_strings": len(id3_strings)})
 
+    ld = data["ld_smoke"]
+    ldv = data["ld_verify"]
+    ldf = data["ld_final"]
+    ld_fail = data["ld_v1_failure"]
+    ld_strings = [
+        ld["commit"], ld["record_id"],
+        f"**{ld['total_elapsed_s']:.3f} s total**",
+        f"**{ldv['passed_checks']}/{ldv['check_count']} checks**",
+        f"**{ldf['passed_checks']}/{ldf['check_count']} checks**",
+        "dangles=0", "dangles=2", ld_fail["status"],
+        "single-record, three-λ bounded smoke",
+    ] + [f"| {r['lambda']:.1f} | {r['official_mfe_kcal_mol']:.2f} | {r['official_cai']:.3f} | {r['elapsed_s']:.3f} |" for r in ld["runs"]]
+    check("lineardesign_official_smoke_and_scorer_convention", all(s in text for s in ld_strings) and ldv["max_numeric_delta"] == 0.0 and not ldf["science_flags"]["main_baseline_comparison"] and not ldf["science_flags"]["sota_claim"], {"expected_strings": len(ld_strings)})
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -188,7 +202,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v2",
+        "schema_version": "a8-rk-paper-independent-verification-v3",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

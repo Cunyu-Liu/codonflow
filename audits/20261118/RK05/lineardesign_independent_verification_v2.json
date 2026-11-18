@@ -1,0 +1,127 @@
+{
+  "protocol": "a8_rk05_lineardesign_independent_verification_v2",
+  "created_at": "2026-11-18T19:10:17.715614+00:00",
+  "status": "PASS",
+  "source_report": "audits/20261118/RK05/lineardesign_official_smoke_v2.json",
+  "source_report_sha256": "4b4ee01a1dd9de7453b436d0d115e16c1657b968b032f7adb71abd41f50205a6",
+  "independent_production_import": false,
+  "check_count": 10,
+  "passed_checks": 10,
+  "checks": [
+    {
+      "name": "fixed_source_archive_binary",
+      "pass": true,
+      "detail": {
+        "commit": "f0126ca89a8b853088b4bccfd2cc8c378d3678be",
+        "archive_sha256": "c27fa2a0beefd6b20359bb9b6a4f2bc43fa70b68aa577f4cd826a4a1051b8944",
+        "binary_sha256": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688"
+      }
+    },
+    {
+      "name": "frozen_input_identity",
+      "pass": true,
+      "detail": {
+        "record_id": "C01H6.8b.1",
+        "protein_length_aa": 135
+      }
+    },
+    {
+      "name": "bounded_lambda_grid",
+      "pass": true,
+      "detail": {
+        "lambdas": [
+          0.0,
+          0.5,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "raw_output_hashes_and_exit",
+      "pass": true,
+      "detail": {
+        "runs": 3
+      }
+    },
+    {
+      "name": "synonymous_identity_and_stop_policy",
+      "pass": true,
+      "detail": {
+        "stop_policy": "official output has no stop; append TAA only for disclosed cross-method evaluation"
+      }
+    },
+    {
+      "name": "per_run_payload_consistency",
+      "pass": true,
+      "detail": {
+        "runs": 3
+      }
+    },
+    {
+      "name": "independent_cai",
+      "pass": true,
+      "detail": {
+        "max_production_delta": 0.0,
+        "max_rounded_official_delta": 0.0004413928951978452
+      }
+    },
+    {
+      "name": "independent_mfe",
+      "pass": true,
+      "detail": {
+        "official_convention": "dangles=0",
+        "max_production_delta": 0.0,
+        "default_dangles2_max_production_delta": 0.0,
+        "max_rounded_official_delta": 1.2207031261368684e-05,
+        "vienna_rna_python_version": "2.7.2",
+        "structure_exact_matches": 3
+      }
+    },
+    {
+      "name": "bounded_cost_ledger",
+      "pass": true,
+      "detail": {
+        "total_elapsed_s": 24.321617373265326,
+        "forward_calls": null
+      }
+    },
+    {
+      "name": "scientific_scope_flags",
+      "pass": true,
+      "detail": {
+        "main_baseline_comparison": false,
+        "sota_claim": false
+      }
+    }
+  ],
+  "max_numeric_delta": 0.0,
+  "recomputed": [
+    {
+      "lambda": 0.0,
+      "sequence_sha256": "fae41328c690b2b223884d510da57be55d767a76747caedd4e9712dee3575d81",
+      "cai": 0.7614413928951979,
+      "mfe_dangles0_kcal_mol": -270.6000061035156,
+      "mfe_dangles2_kcal_mol": -274.29998779296875,
+      "structure_matches_official": true,
+      "default_structure_matches_official": true
+    },
+    {
+      "lambda": 0.5,
+      "sequence_sha256": "48ed270ae4f2baf5e8097b38a5fb211cf873250dfaf414dd6b24258b76764dea",
+      "cai": 0.7912732411920935,
+      "mfe_dangles0_kcal_mol": -269.20001220703125,
+      "mfe_dangles2_kcal_mol": -272.3999938964844,
+      "structure_matches_official": true,
+      "default_structure_matches_official": true
+    },
+    {
+      "lambda": 1.0,
+      "sequence_sha256": "cace4486ee27793cde624cd1dbd010615258498d2874b64782499c7d4289d2b0",
+      "cai": 0.8196140735200668,
+      "mfe_dangles0_kcal_mol": -265.20001220703125,
+      "mfe_dangles2_kcal_mol": -268.3999938964844,
+      "structure_matches_official": true,
+      "default_structure_matches_official": true
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "protocol": "a8_rk05_lineardesign_failed_v1_postmortem_v1",
+  "created_at": "2026-11-18T19:09:34.099989+00:00",
+  "status": "FAIL_INDEPENDENT_SCORER_CONVENTION_MISMATCH",
+  "production_report_written": false,
+  "observed_exception": "ValueError: independent MFE exceeds official rounding tolerance",
+  "exit_code": 1,
+  "output_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/lineardesign_official_smoke_f0126_cpu_v1",
+  "files": [
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/lineardesign_official_smoke_f0126_cpu_v1/lambda_0.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/lineardesign_official_smoke_f0126_cpu_v1/lambda_0.stdout.txt",
+      "bytes": 3486,
+      "sha256": "116af75fe1190fcaa37985c25e2edade61df1bd578bcdd82a8f8183ddf08af4e"
+    }
+  ],
+  "diagnostic": {
+    "lambda": 0.0,
+    "official_mfe_kcal_mol": -270.6,
+    "default_dangles2_mfe_kcal_mol": -274.29998779296875,
+    "explicit_dangles0_mfe_kcal_mol": -270.6000061035156,
+    "default_dangles2_abs_delta": 3.6999877929687273,
+    "explicit_dangles0_abs_delta": 6.1035156022626325e-06,
+    "official_structure_equals_dangles0": true,
+    "official_structure_equals_dangles2": true
+  },
+  "root_cause": "official LinearDesign energy convention matches ViennaRNA dangles=0; production v1 incorrectly used default dangles=2 for the official rounding gate",
+  "resolution": "v2 retains both conventions; dangles=0 is used for official consistency and dangles=2 remains reported"
+}

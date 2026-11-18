@@ -347,3 +347,25 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 在线主稿第 69 页 `pgx` 记录 VeloHARMO，revision=31；第 70 页 `pgf` 记录 RNARL，revision=32。每次回读均确认此前所有 slide ID 与语义 XML 不变，新页关键数值、边界和备注完整。验证报告分别为 `veloharmo_ppt_verification.json`、`rnarl_ppt_verification.json`。
 - A8 生成器/verifier 升级为 v2，新增 RNARL 全量 QC 与 VeloHARMO 证据锚点，A7 不变；A8 SHA256=`f7ea820b98ab946f9f12b6fc28f2095907fd88b4c7346e77870ec87552735e7a`，独立 **13/13 PASS**，仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
 - 下一步不能把上述数据 QC 写成机制/模型闭环。RK03 仍需 UTR–CDS/raw-read/P-site 和缺失维度报告；RK05 仍需 LinearDesign/CDGB/GEMORNA/codonGPT 等强 baseline 真实矩阵；RK06 仍需 dense 轨迹和统一成本；RK04 长度/GC OOD、RK-G0–G4、生成器、完整 Fig.1–7 和前瞻湿实验仍未关闭。
+
+## 20. LinearDesign 固定官方源码 bounded smoke
+
+### 真实执行与独立复核
+
+- 固定 `LinearDesignSoftware/LinearDesign` commit=`f0126ca89a8b853088b4bccfd2cc8c378d3678be`；codeload ZIP 为 174,011 bytes、32 members、CRC PASS，SHA256=`c27fa2a0beefd6b20359bb9b6a4f2bc43fa70b68aa577f4cd826a4a1051b8944`。
+- 在隔离源码目录用 `g++ 9.4.0` 干净构建，binary SHA256=`f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688`；官方 README `MNDTEAI` 样例的 sequence/MFE/CAI 与文档一致。没有回退旧主工作树的修改源码或二进制。
+- 冻结 C01H6.8b.1（135 aa），λ=`0/0.5/1` 产生 3 条唯一同义 CDS。官方 MFE=`-270.60/-269.20/-265.20 kcal/mol`、CAI=`0.761/0.791/0.820`，逐次 wall time=`8.06250987527892/8.108563175890595/8.150544322095811 s`，总耗时 `24.321617373265326 s`。
+- 独立 verifier 从 raw stdout 重算翻译、CAI、MFE、结构、成本和科学边界，最终 **10/10 PASS、max_numeric_delta=0.0**；finalization **8/8 PASS**。官方三位小数 CAI 的最大 rounding delta=`0.0004413928951978452`，两位小数 MFE 最大 rounding delta=`1.2207031261368684e-05`。
+
+### v1 失败保留与 v2 双口径
+
+- v1 的 λ=0 官方执行成功，但生产在独立 MFE gate 真实失败；λ=0.5/1 未执行，production report 未写出。默认 ViennaRNA `dangles=2` 得 `-274.29998779296875`，显式 `dangles=0` 得 `-270.6000061035156`，与官方 `-270.60` 一致；两种口径的 structure 与官方 structure 完全一致。
+- `lineardesign_official_smoke_v1_failure.json` 和独立 v1 raw stdout/stderr 原样保留。v2 改用独立 output dir，以 `dangles=0` 核对官方 MFE，同时记录默认 `dangles=2` MFE/structure；没有放宽容差、覆盖失败或把 v1 写成完整三 λ 结果。
+
+### 证据、复现与边界
+
+- 生产报告：`audits/20261118/RK05/lineardesign_official_smoke_v2.json`；独立报告：`lineardesign_independent_verification_v2.json`；finalization：`lineardesign_finalization.json`。
+- 物化/构建报告：`lineardesign_materialization.json`、`lineardesign_build.json`、`lineardesign_build.log`；完整复现命令见 `audits/20261118/RK05/README.md`。生产、独立 verifier、finalizer 和 11 个测试均在 `scripts/`、`tests/`。
+- 固定归档和 raw official outputs 留在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`；代码、报告与提交留在 `/home`。
+- 状态仅为 `BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED`。统一 actual-set 七 λ、dense budget、主 baseline、功能 OOD 与 SOTA 均未完成；CDGB 尚未建立可核验的官方来源/commit/build/execution artifact，通用搜索未命中不等于方法或实现不存在。
+- A8 生成器/verifier 已升级为 v3，新增 LinearDesign 固定源码、三 λ 指标、双 dangles 和 v1 retained failure；A7 未改。A8 SHA256=`d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd`，独立 **14/14 PASS**，仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
