@@ -525,3 +525,68 @@ $PY scripts/a8_rk05_verify_veloharmo_ppt.py \
 ```
 
 This closes only the bounded official smoke. Five-species processed matrices, formal training/cross-validation, the complete strong-baseline matrix, matched cost, functional OOD, CodonFlow-RK generation and SOTA remain open.
+
+---
+
+# RiboMIMO fixed-source bounded official training smoke
+
+## Verified result and scope
+
+`CLOSED_BOUNDED_OFFICIAL_SMOKE` — the official training/cross-validation entry point was executed on a deliberately bounded 20-record Mohammad16 subset. Finalization passed **13/13 checks**; independent retraining and checkpoint-level recomputation passed **17/17 checks**; unit tests passed **10/10** without skips. This is not the full 10-fold × 100-epoch protocol, publication-performance reproduction, homology/protein/study/functional OOD, a main-baseline comparison, or a SOTA result.
+
+- Fixed official source: `tiantz17/RiboMIMO`, commit `094c693d4df45f4b29f5a3209b31c452a39092a5`; codeload archive SHA256 `0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162`.
+- Mohammad16 matrix SHA256 `d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc`. The shortest-20 eligible unique-name subset has SHA256 `bd2bcd2566d7d02271c35548c18695a8ec151377568c6422a24a0f60b864998b`; selection requires at least 15 codons, aligned lengths, ATCG codons, finite nonnegative counts, a positive count above 0.5 and strict coverage above 0.6.
+- Bounded protocol: 20 genes, one repeat × two folds, two epochs, batch size 4, seed 20261118, official random gene split (`sim=-1`), 97 input dimensions, hidden size 256, depth 2, CPU with one Torch thread. Each fold has 9 train / 1 validation / 10 test genes. Author-provided prediction pickles were not used as newly trained outputs.
+- Two best-validation checkpoints each contain 22 parameter tensors and **1,860,356 parameters**. Validation R² selects the checkpoint; test values follow the official best-validation checkpoint logic.
+
+| Bounded test metric | Mean across two folds | Population SD |
+|---|---:|---:|
+| R² | -0.047131 | 0.043792 |
+| MSE | 2.298945 | 0.296874 |
+| Pearson | 0.015289 | 0.007515 |
+
+Independent checkpoint reload produced fold-0 R²/MSE/Pearson `-0.0909230222 / 2.5958190157 / 0.0077743819` (163 positive masked positions) and fold-1 `-0.0033395900 / 2.0020711321 / 0.0228037406` (185 positions). Independent retraining produced exactly matching checkpoint tensors (`max_abs_delta=0.0`); the overall `max_numeric_delta=4.099541271911436e-07` is consistent with the official log's six-decimal rounding. These small-subset values are execution diagnostics, not evidence of useful prediction performance or a method ranking.
+
+## Compatibility evidence and retained iterations
+
+The unmodified entry point fails in NumPy 2.2.6 while constructing inhomogeneous arrays. Five `dtype=object` replacements preserve ragged arrays, but evaluation then fails when the padding routine returns `numpy.object_` for `torch.Tensor`. The final runtime therefore uses exactly **six compatibility replacements**: five ragged-array constructions plus `np.array(data_pad, dtype=float)` after padding. The model, optimizer, split and training logic are unchanged. An exploratory `torch.LongTensor(length)` replacement was found unnecessary in the fixed Torch 2.11 runtime and is excluded from the final runtime.
+
+The final raw output is `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/`; independent raw output is `ribomimo_independent_v1/`. Earlier v1/v2/v3 raw directories and driver logs are retained separately: they record the missing numeric-padding diagnosis, the unnecessary-length-patch experiment, and the successful run whose parent-process environment field was superseded. The latter preliminary report is preserved as `ribomimo_official_smoke_v1_superseded_environment_capture.json`; the authoritative production report is v2, whose environment is read from the actual training process (`torch_num_threads=1`, deterministic algorithms enabled, no visible GPU). The initial unit log with one source-path skip is retained as `ribomimo_unit_tests_v1.log`; v2 is the complete 10/10 run.
+
+## Evidence and reproduction
+
+- `ribomimo_official_smoke_v2.json`, SHA256 `ce79120bef6f25aefcd9e3b5e440c764a300f78c6da3d6cecd01c9f55bf4a9b6`
+- `ribomimo_independent_verification_v1.json`, SHA256 `d97874904cca4b4e1589ee4eb4daac482450762c7b9d8dee840c0756eb443195`
+- `ribomimo_finalization_v1.json`, SHA256 `69c532e20612b7d8de83486f7c2ced7961ac416f7c3e5218946f2804956407d8`
+- `ribomimo_unit_tests_v2.log`
+- `scripts/a8_rk05_ribomimo_official_smoke.py`, `a8_rk05_verify_ribomimo_official_smoke.py`, `a8_rk05_finalize_ribomimo_official_smoke.py`, and `test_a8_rk05_ribomimo_official_smoke.py`
+
+From `/home/codonflow-a8-rk`, use new absent/empty output directories and new report paths; do not overwrite frozen evidence:
+
+```bash
+PY=/root/miniconda3/envs/llr_env/bin/python
+SRC=/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5
+ART=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05
+R=audits/20261118/RK05
+
+RIBOMIMO_SOURCE_DIR="$SRC/src" $PY scripts/test_a8_rk05_ribomimo_official_smoke.py
+
+$PY scripts/a8_rk05_ribomimo_official_smoke.py \
+  --source-dir "$SRC" \
+  --source-archive /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip \
+  --matrix /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt \
+  --qc-summary audits/20261118/RK03/ribomimo_qc_summary.json \
+  --output-dir <NEW_RAW_OUTPUT_DIR> --report <NEW_PRODUCTION_JSON>
+
+$PY scripts/a8_rk05_verify_ribomimo_official_smoke.py \
+  --source-dir "$SRC" \
+  --matrix /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt \
+  --production-report <NEW_PRODUCTION_JSON> \
+  --output-dir <NEW_INDEPENDENT_RAW_DIR> --output <NEW_INDEPENDENT_JSON>
+
+$PY scripts/a8_rk05_finalize_ribomimo_official_smoke.py \
+  --production-report <NEW_PRODUCTION_JSON> \
+  --independent-report <NEW_INDEPENDENT_JSON> --output <NEW_FINALIZATION_JSON>
+```
+
+Code and commits remain under `/home`; source archives, matrices, runtime copies, checkpoints, logs and other raw artifacts remain under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`. The unified strong-baseline matrix, full-budget training, homology/study OOD, functional OOD, CodonFlow-RK generation and SOTA assessment remain open.

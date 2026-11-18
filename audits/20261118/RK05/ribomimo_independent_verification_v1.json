@@ -1,0 +1,256 @@
+{
+  "schema_version": "a8-rk05-ribomimo-independent-verification-v1",
+  "task": "RK-05",
+  "status": "PASS",
+  "production_module_imported": false,
+  "source_commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+  "check_count": 17,
+  "passed_checks": 17,
+  "checks": [
+    {
+      "name": "fixed_source_identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "matrix_identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent_selection_and_subset_hash",
+      "pass": true,
+      "detail": {
+        "records": 20
+      }
+    },
+    {
+      "name": "official_unmodified_failure_retained",
+      "pass": true,
+      "detail": "codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/src/model.py\", line 101, in __init__\n    self.load_data(use_median)\n  File \"/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/src/model.py\", line 144, in load_data\n    list_seq = np.array(list_seq)\nValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (20,) + inhomogeneous part.\n"
+    },
+    {
+      "name": "ragged_only_failure_retained",
+      "pass": true,
+      "detail": "aluate\n    x_input, length, density, mask_density, level, batch_index = self.get_data_batch(index)\n  File \"/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/src/runRiboMIMO.py\", line 166, in get_data_batch\n    x_input = torch.Tensor(x_input)\nTypeError: can't convert np.ndarray of type numpy.object_. The only supported types are: float64, float32, float16, complex64, complex128, int64, int32, int16, int8, uint64, uint32, uint16, uint8, and bool.\n"
+    },
+    {
+      "name": "six_compatibility_edits_reproduced",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent_training_completed",
+      "pass": true,
+      "detail": {
+        "returncode": 0,
+        "wall_seconds": 5.825472831726074,
+        "runtime_environment": {
+          "device": "cpu",
+          "torch_num_threads": 1,
+          "deterministic_algorithms_in_driver": true,
+          "gpu_visible_to_training": false,
+          "cuda_visible_devices_after_official_args": "-1"
+        }
+      }
+    },
+    {
+      "name": "independent_checkpoints_present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent_retraining_aggregate_match",
+      "pass": true,
+      "detail": {
+        "production": [
+          -0.047131,
+          0.043792,
+          2.298945,
+          0.296874,
+          0.015289,
+          0.007515
+        ],
+        "independent": [
+          -0.047131,
+          0.043792,
+          2.298945,
+          0.296874,
+          0.015289,
+          0.007515
+        ],
+        "delta": 0.0
+      }
+    },
+    {
+      "name": "retrained_checkpoint_tensors_match",
+      "pass": true,
+      "detail": {
+        "max_abs_delta": 0.0
+      }
+    },
+    {
+      "name": "fold_0_checkpoint_metrics_match",
+      "pass": true,
+      "detail": {
+        "independent": {
+          "fold": 0,
+          "repeat_seed": 136,
+          "test_genes": [
+            "lcl|NC_000913.3_cds_YP_025303.1_1646",
+            "lcl|NC_000913.3_cds_NP_417758.1_3277",
+            "lcl|NC_000913.3_cds_YP_001165321.1_1680",
+            "lcl|NC_000913.3_cds_YP_001165325.1_2482",
+            "lcl|NC_000913.3_cds_YP_002791260.1_3834",
+            "lcl|NC_000913.3_cds_YP_002791246.1_2028",
+            "lcl|NC_000913.3_cds_YP_004831120.1_4067",
+            "lcl|NC_000913.3_cds_YP_002791250.1_2395",
+            "lcl|NC_000913.3_cds_NP_414542.1_1",
+            "lcl|NC_000913.3_cds_NP_417089.1_2609"
+          ],
+          "valid_genes": [
+            "lcl|NC_000913.3_cds_NP_414617.1_76"
+          ],
+          "train_genes": [
+            "lcl|NC_000913.3_cds_YP_001165319.1_1548",
+            "lcl|NC_000913.3_cds_YP_003933616.1_4196",
+            "lcl|NC_000913.3_cds_YP_588444.1_732",
+            "lcl|NC_000913.3_cds_YP_009518827.1_3759",
+            "lcl|NC_000913.3_cds_NP_418128.1_3654",
+            "lcl|NC_000913.3_cds_YP_002791245.1_1929",
+            "lcl|NC_000913.3_cds_YP_588460.1_2142",
+            "lcl|NC_000913.3_cds_NP_418215.1_3744",
+            "lcl|NC_000913.3_cds_YP_002791243.1_1817"
+          ],
+          "positive_masked_positions": 163,
+          "r2": -0.09092302223280013,
+          "mse": 2.5958190156805796,
+          "pearson": 0.007774381898343563
+        },
+        "official_log_rounded": {
+          "r2": -0.090923,
+          "mse": 2.595819,
+          "pearson": 0.007774
+        },
+        "delta": 3.8189834356341934e-07
+      }
+    },
+    {
+      "name": "fold_1_checkpoint_metrics_match",
+      "pass": true,
+      "detail": {
+        "independent": {
+          "fold": 1,
+          "repeat_seed": 136,
+          "test_genes": [
+            "lcl|NC_000913.3_cds_NP_414617.1_76",
+            "lcl|NC_000913.3_cds_YP_001165319.1_1548",
+            "lcl|NC_000913.3_cds_YP_003933616.1_4196",
+            "lcl|NC_000913.3_cds_YP_588444.1_732",
+            "lcl|NC_000913.3_cds_YP_009518827.1_3759",
+            "lcl|NC_000913.3_cds_NP_418128.1_3654",
+            "lcl|NC_000913.3_cds_YP_002791245.1_1929",
+            "lcl|NC_000913.3_cds_YP_588460.1_2142",
+            "lcl|NC_000913.3_cds_NP_418215.1_3744",
+            "lcl|NC_000913.3_cds_YP_002791243.1_1817"
+          ],
+          "valid_genes": [
+            "lcl|NC_000913.3_cds_YP_025303.1_1646"
+          ],
+          "train_genes": [
+            "lcl|NC_000913.3_cds_NP_417758.1_3277",
+            "lcl|NC_000913.3_cds_YP_001165321.1_1680",
+            "lcl|NC_000913.3_cds_YP_001165325.1_2482",
+            "lcl|NC_000913.3_cds_YP_002791260.1_3834",
+            "lcl|NC_000913.3_cds_YP_002791246.1_2028",
+            "lcl|NC_000913.3_cds_YP_004831120.1_4067",
+            "lcl|NC_000913.3_cds_YP_002791250.1_2395",
+            "lcl|NC_000913.3_cds_NP_414542.1_1",
+            "lcl|NC_000913.3_cds_NP_417089.1_2609"
+          ],
+          "positive_masked_positions": 185,
+          "r2": -0.003339590045872809,
+          "mse": 2.0020711320563462,
+          "pearson": 0.022803740575909615
+        },
+        "official_log_rounded": {
+          "r2": -0.00334,
+          "mse": 2.002071,
+          "pearson": 0.022804
+        },
+        "delta": 4.099541271911436e-07
+      }
+    },
+    {
+      "name": "checkpoint_aggregate_recomputed",
+      "pass": true,
+      "detail": {
+        "checkpoint_recompute": [
+          -0.04713130613933647,
+          0.04379171609346366,
+          2.298945073868463,
+          0.2968739418121167,
+          0.015289061237126589,
+          0.007514679338783026
+        ],
+        "official_log_rounded": [
+          -0.047131,
+          0.043792,
+          2.298945,
+          0.296874,
+          0.015289,
+          0.007515
+        ],
+        "delta": 3.2066121697423705e-07
+      }
+    },
+    {
+      "name": "model_contract_and_parameter_count",
+      "pass": true,
+      "detail": 1860356
+    },
+    {
+      "name": "production_artifact_hashes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "environment_protocol",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bounded_scope_and_no_overclaim",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "max_numeric_delta": 4.099541271911436e-07,
+  "independent_training": {
+    "returncode": 0,
+    "wall_seconds": 5.825472831726074,
+    "log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/independent_training.log",
+    "log_sha256": "48e8225a61fa119f9a77268c9757449dd2a0c0bfda9e5ade260d4ea8633503a5",
+    "result_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053502",
+    "runtime_environment_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/official_bounded/src/runtime_environment.json",
+    "runtime_environment": {
+      "device": "cpu",
+      "torch_num_threads": 1,
+      "deterministic_algorithms_in_driver": true,
+      "gpu_visible_to_training": false,
+      "cuda_visible_devices_after_official_args": "-1"
+    },
+    "checkpoints": {
+      "0": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053502/best_model_0_0.pth",
+        "sha256": "969f3f24758103d4b5961c9977e39513b3d4f8a28cda92a25dbbfd02b322d34b"
+      },
+      "1": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053502/best_model_0_1.pth",
+        "sha256": "4c8ab3babb7aed0f60451318171ed65c75a87dd5318ba939cf5466c118c5515c"
+      }
+    }
+  },
+  "checkpoint_metrics_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_independent_v1/independent_checkpoint_test_metrics.json",
+  "scope": "Bounded 20-record, two-fold, two-epoch CPU official training verification only; no publication, OOD, functional, main-matrix or SOTA claim."
+}

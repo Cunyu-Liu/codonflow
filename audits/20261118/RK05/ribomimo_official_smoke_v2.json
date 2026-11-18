@@ -1,0 +1,421 @@
+{
+  "schema_version": "a8-rk05-ribomimo-official-smoke-v2",
+  "task": "RK-05",
+  "status": "BOUNDED_OFFICIAL_TRAINING_COMPLETE",
+  "source": {
+    "repository": "https://github.com/tiantz17/RiboMIMO",
+    "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "path": "/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "file_sha256": {
+      "runRiboMIMO.py": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490",
+      "model.py": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7",
+      "utils.py": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b",
+      "getSaliency.py": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    },
+    "archive_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip",
+    "archive_sha256": "0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162"
+  },
+  "matrix": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt",
+    "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+    "dataset": "Mohammad16"
+  },
+  "subset": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/input_subset.txt",
+    "sha256": "bd2bcd2566d7d02271c35548c18695a8ec151377568c6422a24a0f60b864998b",
+    "records": [
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_417089.1_2609",
+        "source_index": 642,
+        "n_codons": 16,
+        "coverage": 0.8125,
+        "mean_positive_count": 11.153846153846153
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_003933616.1_4196",
+        "source_index": 312,
+        "n_codons": 18,
+        "coverage": 0.8333333333333334,
+        "mean_positive_count": 13.066666666666668
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_001165325.1_2482",
+        "source_index": 1016,
+        "n_codons": 20,
+        "coverage": 0.95,
+        "mean_positive_count": 33.85964912280702
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_002791246.1_2028",
+        "source_index": 1182,
+        "n_codons": 21,
+        "coverage": 1.0,
+        "mean_positive_count": 74.5873015873016
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_414542.1_1",
+        "source_index": 478,
+        "n_codons": 22,
+        "coverage": 1.0,
+        "mean_positive_count": 115.16666666666669
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_002791250.1_2395",
+        "source_index": 295,
+        "n_codons": 24,
+        "coverage": 0.75,
+        "mean_positive_count": 11.703703703703704
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_002791243.1_1817",
+        "source_index": 234,
+        "n_codons": 25,
+        "coverage": 0.8,
+        "mean_positive_count": 11.01666666666667
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_414617.1_76",
+        "source_index": 1290,
+        "n_codons": 29,
+        "coverage": 0.8275862068965517,
+        "mean_positive_count": 8.527777777777777
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_002791245.1_1929",
+        "source_index": 1720,
+        "n_codons": 29,
+        "coverage": 0.9310344827586207,
+        "mean_positive_count": 21.59259259259259
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_001165321.1_1680",
+        "source_index": 1327,
+        "n_codons": 30,
+        "coverage": 0.8333333333333334,
+        "mean_positive_count": 26.54666666666667
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_004831120.1_4067",
+        "source_index": 522,
+        "n_codons": 30,
+        "coverage": 0.6333333333333333,
+        "mean_positive_count": 9.035087719298247
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_001165319.1_1548",
+        "source_index": 301,
+        "n_codons": 32,
+        "coverage": 0.625,
+        "mean_positive_count": 6.016666666666667
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_418128.1_3654",
+        "source_index": 1322,
+        "n_codons": 33,
+        "coverage": 0.8484848484848485,
+        "mean_positive_count": 11.25
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_418215.1_3744",
+        "source_index": 600,
+        "n_codons": 33,
+        "coverage": 1.0,
+        "mean_positive_count": 17.1010101010101
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_009518827.1_3759",
+        "source_index": 351,
+        "n_codons": 34,
+        "coverage": 0.7647058823529411,
+        "mean_positive_count": 4.705128205128206
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_588460.1_2142",
+        "source_index": 515,
+        "n_codons": 36,
+        "coverage": 0.8888888888888888,
+        "mean_positive_count": 14.177083333333336
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_002791260.1_3834",
+        "source_index": 1401,
+        "n_codons": 37,
+        "coverage": 0.918918918918919,
+        "mean_positive_count": 25.852941176470587
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_588444.1_732",
+        "source_index": 390,
+        "n_codons": 38,
+        "coverage": 0.9210526315789473,
+        "mean_positive_count": 14.161904761904763
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_NP_417758.1_3277",
+        "source_index": 1348,
+        "n_codons": 39,
+        "coverage": 0.9743589743589743,
+        "mean_positive_count": 395.39473684210526
+      },
+      {
+        "record_id": "lcl|NC_000913.3_cds_YP_025303.1_1646",
+        "source_index": 92,
+        "n_codons": 42,
+        "coverage": 0.6428571428571429,
+        "mean_positive_count": 4.975308641975309
+      }
+    ],
+    "rule": "shortest 20 unique-name records with >=15 codons, aligned lengths, ATCG codons, finite nonnegative counts, positive count >0.5 and strict official coverage >0.6; ties by record ID/source index"
+  },
+  "protocol": {
+    "input_dims": 97,
+    "rnn_hidden_dims": 256,
+    "rnn_depth": 2,
+    "num_repeat": 1,
+    "num_fold": 2,
+    "max_epoch": 2,
+    "early_stop": 2,
+    "batch_size": 4,
+    "seed": 20261118,
+    "split": "official random gene split, sim=-1",
+    "add_nt": true,
+    "add_aa": true,
+    "device": "cpu",
+    "selection_metric": "validation R2; reported test values follow the official best-validation checkpoint logic"
+  },
+  "runs": {
+    "official_unmodified": {
+      "returncode": 1,
+      "wall_seconds": 2.919488675892353,
+      "log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log",
+      "log_sha256": "9de66e66fddaaf336340bd10028fe3e56f76eb502c6569281617115a4ca6bbb9",
+      "returncode_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log.returncode.txt",
+      "command": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log.command.json",
+      "command_sha256": "407bc7493195a27c19097c49e2f6b91e8aaa7f39f4ff9a9787b7c5c6e9ea981c",
+      "applied_replacements": []
+    },
+    "ragged_only": {
+      "returncode": 1,
+      "wall_seconds": 4.571753508877009,
+      "log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log",
+      "log_sha256": "e7dfa98a649f87b1ce244f780e88f7717dfcaa21ffb728cb01fb1e794fb1841b",
+      "returncode_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log.returncode.txt",
+      "command": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log.command.json",
+      "command_sha256": "951a3afa50b32f58a45a1a598718de65d1a83acdf4c7c6a9ce0665ca8d8b567e",
+      "applied_replacements": [
+        {
+          "file": "model.py",
+          "old": "list_seq = np.array(list_seq)",
+          "new": "list_seq = np.array(list_seq, dtype=object)",
+          "reason": "NumPy >=2 rejects ragged codon lists"
+        },
+        {
+          "file": "model.py",
+          "old": "list_density = np.array(list_density)",
+          "new": "list_density = np.array(list_density, dtype=object)",
+          "reason": "NumPy >=2 rejects ragged density lists"
+        },
+        {
+          "file": "model.py",
+          "old": "self.density = np.array(density)",
+          "new": "self.density = np.array(density, dtype=object)",
+          "reason": "evaluation/training densities are ragged before padding"
+        },
+        {
+          "file": "model.py",
+          "old": "self.x_input = np.array(x_input)",
+          "new": "self.x_input = np.array(x_input, dtype=object)",
+          "reason": "model inputs are ragged before padding"
+        },
+        {
+          "file": "model.py",
+          "old": "self.density_level = np.array(density_level)",
+          "new": "self.density_level = np.array(density_level, dtype=object)",
+          "reason": "classification targets are ragged before padding"
+        }
+      ]
+    },
+    "official_bounded": {
+      "returncode": 0,
+      "wall_seconds": 6.580791904125363,
+      "log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log",
+      "log_sha256": "d7cd1338c7738cfc8b3ba6b5ba073ba83e8198274bdd31ad1cdd8b213f4c2b0d",
+      "returncode_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log.returncode.txt",
+      "command": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log.command.json",
+      "command_sha256": "6570dff8075bb41e675efe738b5d2c3bd87c1d78cc10718456bf793628750404",
+      "applied_replacements": [
+        {
+          "file": "model.py",
+          "old": "list_seq = np.array(list_seq)",
+          "new": "list_seq = np.array(list_seq, dtype=object)",
+          "reason": "NumPy >=2 rejects ragged codon lists"
+        },
+        {
+          "file": "model.py",
+          "old": "list_density = np.array(list_density)",
+          "new": "list_density = np.array(list_density, dtype=object)",
+          "reason": "NumPy >=2 rejects ragged density lists"
+        },
+        {
+          "file": "model.py",
+          "old": "self.density = np.array(density)",
+          "new": "self.density = np.array(density, dtype=object)",
+          "reason": "evaluation/training densities are ragged before padding"
+        },
+        {
+          "file": "model.py",
+          "old": "self.x_input = np.array(x_input)",
+          "new": "self.x_input = np.array(x_input, dtype=object)",
+          "reason": "model inputs are ragged before padding"
+        },
+        {
+          "file": "model.py",
+          "old": "self.density_level = np.array(density_level)",
+          "new": "self.density_level = np.array(density_level, dtype=object)",
+          "reason": "classification targets are ragged before padding"
+        },
+        {
+          "file": "runRiboMIMO.py",
+          "old": "data_pad = np.array(data_pad)",
+          "new": "data_pad = np.array(data_pad, dtype=float)",
+          "reason": "ragged compatibility containers require explicit numeric dtype after padding"
+        }
+      ]
+    }
+  },
+  "compatibility": {
+    "replacement_count": 6,
+    "replacements_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/compatibility_replacements.json",
+    "diff_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_to_bounded.diff",
+    "diff_sha256": "7246b568df5e640c4da4484688ff9673750858774c4337551b001578a390d9f6",
+    "algorithm_changed": false,
+    "bounded_cpu_only": true
+  },
+  "official_result": {
+    "result_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440",
+    "config": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/config",
+    "logging_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/logging.log",
+    "metrics": {
+      "r2_mean": -0.047131,
+      "r2_std": 0.043792,
+      "mse_mean": 2.298945,
+      "mse_std": 0.296874,
+      "pearson_mean": 0.015289,
+      "pearson_std": 0.007515,
+      "aggregation": "mean and population std across two fold-level best-validation checkpoint test scores"
+    },
+    "checkpoints": {
+      "0": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/best_model_0_0.pth",
+        "bytes": 7448997,
+        "sha256": "969f3f24758103d4b5961c9977e39513b3d4f8a28cda92a25dbbfd02b322d34b"
+      },
+      "1": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/best_model_0_1.pth",
+        "bytes": 7448997,
+        "sha256": "4c8ab3babb7aed0f60451318171ed65c75a87dd5318ba939cf5466c118c5515c"
+      }
+    },
+    "checkpoint_parameter_tensors": 22,
+    "checkpoint_parameter_count": 1860356
+  },
+  "environment": {
+    "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "device": "cpu",
+    "torch_num_threads": 1,
+    "deterministic_algorithms_in_driver": true,
+    "gpu_visible_to_training": false,
+    "cuda_visible_devices_after_official_args": "-1",
+    "runtime_environment_artifact": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/src/runtime_environment.json"
+  },
+  "artifacts": {
+    "input_subset.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/input_subset.txt",
+      "sha256": "bd2bcd2566d7d02271c35548c18695a8ec151377568c6422a24a0f60b864998b"
+    },
+    "official_to_bounded.diff": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_to_bounded.diff",
+      "sha256": "7246b568df5e640c4da4484688ff9673750858774c4337551b001578a390d9f6"
+    },
+    "compatibility_replacements.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/compatibility_replacements.json",
+      "sha256": "f6d202a9ba6b70f2bbdb78365d97d44a579fec87ff864438ab74687f766f7bdc"
+    },
+    "environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/environment.json",
+      "sha256": "f140670c687b7740227ee6b4e863ac5803c9976f11c1817e2739f24760eae3a7"
+    },
+    "pip_freeze.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/pip_freeze.txt",
+      "sha256": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    },
+    "final_result_logging.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/logging.log",
+      "sha256": "0d8a7f07880f3a2eedea98684556b76b7c60cd88983118b024749f5a220c2c45"
+    },
+    "config": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/results/RiboMIMO_RiboBounded20_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_4_cv_1x2_train_20261119_053440/config",
+      "sha256": "83a83cbbaab834bb1d9098cb32edc23594d5d3924b5c92e7ae2c86ed11704f9b"
+    },
+    "runtime_environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/src/runtime_environment.json",
+      "sha256": "f08e5107a2e1de98be956bad90bb1e256bdce71687e3ba37c5737e195ff570e3"
+    },
+    "official_unmodified:log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log",
+      "sha256": "9de66e66fddaaf336340bd10028fe3e56f76eb502c6569281617115a4ca6bbb9"
+    },
+    "official_unmodified:returncode_path": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log.returncode.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "official_unmodified:command": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_unmodified/official_unmodified.log.command.json",
+      "sha256": "407bc7493195a27c19097c49e2f6b91e8aaa7f39f4ff9a9787b7c5c6e9ea981c"
+    },
+    "ragged_only:log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log",
+      "sha256": "e7dfa98a649f87b1ce244f780e88f7717dfcaa21ffb728cb01fb1e794fb1841b"
+    },
+    "ragged_only:returncode_path": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log.returncode.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "ragged_only:command": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/ragged_only/ragged_only.log.command.json",
+      "sha256": "951a3afa50b32f58a45a1a598718de65d1a83acdf4c7c6a9ce0665ca8d8b567e"
+    },
+    "official_bounded:log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log",
+      "sha256": "d7cd1338c7738cfc8b3ba6b5ba073ba83e8198274bdd31ad1cdd8b213f4c2b0d"
+    },
+    "official_bounded:returncode_path": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log.returncode.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "official_bounded:command": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_official_smoke_094c_v4/official_bounded/official_bounded.log.command.json",
+      "sha256": "6570dff8075bb41e675efe738b5d2c3bd87c1d78cc10718456bf793628750404"
+    }
+  },
+  "published_prediction_pickles_used": false,
+  "full_official_10fold_100epoch_reproduced": false,
+  "homology_aware_split": false,
+  "protein_ood": false,
+  "study_ood": false,
+  "functional_ood": false,
+  "main_baseline_comparison": false,
+  "publication_metrics_reproduced": false,
+  "sota_claim": false,
+  "limitations": [
+    "Twenty shortest eligible Mohammad16 records and two epochs/two folds are a bounded interface/training diagnostic, not publication performance.",
+    "Official random gene splitting is not homology-, protein- or study-OOD; no test/untouched functional claim is authorized.",
+    "Five ragged-array replacements plus one numeric-padding dtype patch are compatibility-only; the exploratory LongTensor patch is not required in the fixed torch runtime and is excluded; CUDA execution is not validated.",
+    "Author-provided prediction pickles were not used as newly trained model outputs."
+  ]
+}

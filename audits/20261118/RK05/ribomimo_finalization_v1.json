@@ -1,0 +1,93 @@
+{
+  "schema_version": "a8-rk05-ribomimo-finalization-v1",
+  "task": "RK-05",
+  "status": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+  "check_count": 13,
+  "passed_checks": 13,
+  "checks": [
+    {
+      "name": "production_schema_and_required_fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fixed_source_matrix_and_subset",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "unmodified_and_staged_failures_retained",
+      "pass": true,
+      "detail": {
+        "official_unmodified": 1,
+        "ragged_only": 1
+      }
+    },
+    {
+      "name": "six_item_compatibility_patch",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bounded_protocol_and_finite_metrics",
+      "pass": true,
+      "detail": {
+        "r2_mean": -0.047131,
+        "r2_std": 0.043792,
+        "mse_mean": 2.298945,
+        "mse_std": 0.296874,
+        "pearson_mean": 0.015289,
+        "pearson_std": 0.007515,
+        "aggregation": "mean and population std across two fold-level best-validation checkpoint test scores"
+      }
+    },
+    {
+      "name": "two_best_validation_checkpoints",
+      "pass": true,
+      "detail": 1860356
+    },
+    {
+      "name": "independent_verification_fully_passed",
+      "pass": true,
+      "detail": "17/17"
+    },
+    {
+      "name": "independent_raw_artifacts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "numeric_recompute_delta",
+      "pass": true,
+      "detail": 4.099541271911436e-07
+    },
+    {
+      "name": "cpu_deterministic_environment",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production_artifact_hashes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "bounded_scope_gate_and_no_overclaim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bounded_ready_not_full_rk05_or_rkg0",
+      "pass": true,
+      "detail": {
+        "RK05": "not closed",
+        "RK-G0": "not closed"
+      }
+    }
+  ],
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_official_smoke_v2.json",
+  "production_report_sha256": "ce79120bef6f25aefcd9e3b5e440c764a300f78c6da3d6cecd01c9f55bf4a9b6",
+  "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_independent_verification_v1.json",
+  "independent_report_sha256": "d97874904cca4b4e1589ee4eb4daac482450762c7b9d8dee840c0756eb443195",
+  "scope": "Only the bounded official RiboMIMO training smoke is closed. Full CV, homology/study OOD, functional OOD, main baseline matrix and SOTA remain open."
+}
