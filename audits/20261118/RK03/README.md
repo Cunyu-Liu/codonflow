@@ -125,8 +125,8 @@ $PY -m scripts.a8_rk03_verify_ribomimo \
 
 ## 8. 尚未完成
 
-- VeloHARMO 官方仓库/论文没有给出五物种完整可下载矩阵，Pseudomonas、Drosophila、human 等来源仍未闭合；不能宣称五物种数据齐全。
-- RNARL 21 文件最终 MD5 manifest 未完成；Zenodo 描述、论文 Methods 与实际单 CDS 列之间的来源口径矛盾未解决，当前不能作为已验证天然 CDS 分布证据。
+- VeloHARMO E. coli processed matrix 与官方 loader 已完成 bounded 验收，见第 11 节；Pseudomonas、Drosophila、human、yeast processed matrices 仍缺失，不能宣称五物种数据齐全。
+- RNARL 21 文件全量行级 QC 与 finalization 已完成，见第 10 节；Zenodo 描述、论文 Methods 与实际 pair-table 列的来源口径仍不支持天然 CDS、lambda 或功能标签声明。
 - CodonTransformer 全量自然序列 QC 已完成，见第 9 节；该子项仍不提供功能标签、功能训练/OOD 或模型性能授权。
 - UTR–CDS 映射、raw-read/P-site 独立重比对、长度/GC/CAI/MFE/EFE/宿主/蛋白簇完整分布报告仍 pending。
 - 本结果不授权功能训练，不构成功能 OOD、机制增量、生成器、SOTA 或前瞻湿实验结论。
@@ -172,3 +172,66 @@ $PY scripts/a8_rk03_verify_codontransformer.py \
 ```
 
 production 会写同名输出；复核时保留冻结 artifact，只运行独立 verifier，新实验必须使用新目录。大型 raw/all-QC/clean 均在 `/teams`，Git 只提交小型审计与 manifest。
+
+## 10. RNARL 全量 pair-table QC（bounded 完成）
+
+固定 Zenodo 记录 <https://zenodo.org/records/15486992>，21 个 final 文件精确合计 714,327,390 bytes。正式生产目录为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/rnarl_v2`。
+
+- raw/clean=`260,754/256,578` rows，clean pairs=128,289；pair groups=130,377，pair-structure-pass groups=130,287，pair-pass groups=128,311。clean pair 数比 pair-pass groups 少 22，对应 raw 跨 split exact-CDS 22 keys/44 rows 的整对排除。
+- raw protein ID/protein sequence overlap=0；clean exact CDS/protein sequence overlap=0。
+- 首次独立 verifier 按原始 CSV 行序 zip，与生产按 protein-pair 组输出不一致，真实 FAIL 6/8；recovery v3 FAIL。两份失败均保留。v2 改用唯一 `record_id` 精确连接、clean 精确 ID 集合和 `1e-9` 分布容差，独立 **8/8 PASS、max_numeric_delta=0.0**。
+- `rnarl_finalization_recovery_v4.json` 为 **10/10 PASS**，重算 raw bytes/MD5、两份 manifest、生产计数、v2 报告、artifact hashes，并流式重扫 clean pairs 和跨 split overlap。
+- 证据 commit=`d3f18124f97fc7c9f3bf9c9fcb929b5350939971`。只授权 publisher-provided LinearDesign-like pair table QC；天然 CDS、lambda、UTR/raw-read、功能训练/OOD、官方模型和 SOTA 均未授权。
+- 在线主稿第 70 页=`pgf`，revision=32；`rnarl_ppt_verification.json` 确认前 69 页 slide ID 与语义 XML 不变。
+
+复核命令（production 会写同名输出，常规复核只运行 verifier/finalizer）：
+
+```bash
+cd /home/codonflow-a8-rk
+PY=/root/miniconda3/envs/codonflow/bin/python
+BASE=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03
+AUD=/home/codonflow-a8-rk/audits/20261118/RK03
+
+$PY scripts/a8_rk03_verify_rnarl.py \
+  --config configs/a8_rk03_sources.json \
+  --raw-dir "$BASE/raw/rnarl_v1" \
+  --qc-dir "$BASE/clean/rnarl_v2" \
+  --audit "$AUD/rnarl_independent_verification_v2.json" \
+  --production-script scripts/a8_rk03_rnarl_qc.py
+
+$PY scripts/a8_rk03_finalize_rnarl_recovery.py \
+  --repo /home/codonflow-a8-rk \
+  --data-root "$BASE" \
+  --output "$AUD/rnarl_finalization_recovery_v4.json"
+```
+
+## 11. VeloHARMO E. coli matrix 与官方 loader（bounded 完成）
+
+固定 commit=`38b48079856aeb9d33a1b10844d77aa8f6640032`，外层 ZIP SHA256=`68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef`。payload 根目录为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032`，source 为 `/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032`。
+
+- E. coli 矩阵 38,906,084 bytes，SHA256=`71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f`；raw=clean=1,170、excluded=0、duplicate gene IDs=0、numeric feature dimension=6。
+- 独立 verifier 不导入生产模块，从固定 ZIP 重新解压并逐记录重算，**7/7 PASS、max_numeric_delta=0.0**；finalization **8/8 PASS**。
+- 官方 loader 在 `/root/miniconda3/envs/llr_env/bin/python` 成功，torch=2.11.0+cu128；x=`[1170,1520,111]`、density=`[1170,1520,1]`、length=`[1170,1]`，length min/max=16/1520，density min/max=0/77.14354705810547，x/density 全 finite。
+- 证据 commit=`34286ad4fa2cf74aaee40d7f9f1597052b6a8f1a`。只有 E. coli 矩阵和 E. coli/yeast 权重；Pseudomonas、Drosophila、human、yeast processed matrices 缺失。没有训练、交叉验证、论文指标、功能 OOD 或 SOTA。
+- 在线主稿第 69 页=`pgx`，revision=31；`veloharmo_ppt_verification.json` 确认前 68 页 slide ID 与语义 XML 不变。
+
+复核命令：
+
+```bash
+cd /home/codonflow-a8-rk
+PY=/root/miniconda3/envs/codonflow/bin/python
+BASE=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03
+ARC="$BASE/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032.zip"
+PAY="$BASE/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032"
+SRC=/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032
+AUD=/home/codonflow-a8-rk/audits/20261118/RK03
+
+$PY scripts/a8_rk03_verify_veloharmo.py \
+  --archive "$ARC" --source-dir "$SRC" --payload-dir "$PAY" --audit-dir "$AUD"
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk03_veloharmo_loader_smoke.py \
+  --source-dir "$SRC" --output "$AUD/veloharmo_official_loader_smoke_reproduction.json"
+$PY scripts/a8_rk03_finalize_veloharmo.py \
+  --archive "$ARC" --source-dir "$SRC" --payload-dir "$PAY" --audit-dir "$AUD"
+```
+
+loader 的 `codonflow` 环境首次缺 `sklearn` 失败作为环境事实保留，未修改官方源码；复用已有 `llr_env` 只证明 processed-matrix loader 可运行。

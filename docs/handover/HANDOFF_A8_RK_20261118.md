@@ -326,3 +326,24 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 同步只引用冻结 JSON，不手工新写性能数字。RK07 明确为 bounded cross-protein diagnostic；ID3 保留 112/116 与 CPC 排除范围；RNARL 公开代码负审计与 21 文件正式 QC pending 分开陈述；主 baseline、功能 OOD、生成器、SOTA 和湿实验均未宣称完成。
 - `scripts/a8_rk_verify_paper.py` 不导入生产模块，独立重算 13 份来源 JSON SHA、A7/A8 SHA、关键数字字符串、四个 ID3 retained failures 和 pending/no-SOTA 边界。`paper/a8_rk_paper_independent_verification.json` 为 **PASS，11/11 checks**；同步审计为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
 - 生成器、独立 verifier、A8 稿及两份报告以 commit=`b2661456d14eca0f08c70d9a0d71a489e5b2dde7` 推送。A8 仍是不可提交 working manuscript；Fig.1–7、机制、模型、主 baseline、OOD 和前瞻湿实验未闭合。本轮没有因工作稿生成而新增 PPT 页面。
+
+## 19. RNARL 全量 QC、VeloHARMO E. coli 与 A8 v2 同步
+
+### RNARL 正式 pair-table QC 已闭环，科学边界未扩大
+
+- 正式生产 QC 完成 21 文件、260,754 raw rows、256,578 clean rows、128,289 clean pairs。raw 跨 split exact CDS 为 22 keys / 44 rows，protein ID/protein sequence overlap 均为 0；生产按 protein pair 整对排除，clean 独立重扫 exact CDS/protein sequence 均为 0。
+- 首次独立 verifier 因把 protein-pair 组写出的 all_qc 错按原始 CSV 行序 zip，真实 FAIL 6/8、max_numeric_delta=0.1337448559670782；recovery v3 同步 FAIL。两份失败报告均保留，未改写历史。
+- v2 verifier 改用唯一 `record_id` 精确连接、clean 精确 ID 集合、重复 ID/集合完整性和 `1e-9` 分布容差；不导入生产模块，最终 **PASS 8/8、max_numeric_delta=0.0**。专用 recovery v4 finalizer 重算 21 raw bytes/MD5、download/reverify manifests、生产计数、独立报告和 artifact hashes，并流式重扫 clean，最终 **10/10 PASS**。
+- 代码、生产/独立报告、official file sizes 和历史失败以 commit=`d3f18124f97fc7c9f3bf9c9fcb929b5350939971` 推送。状态仅为 `PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY`；天然 CDS、lambda 标签/分层、UTR/raw-read、功能训练/OOD、官方模型、主比较和 SOTA 均未授权。
+
+### VeloHARMO 仅闭环 E. coli processed matrix 与 loader
+
+- 固定 commit=`38b48079856aeb9d33a1b10844d77aa8f6640032` 的外层 ZIP SHA256=`68b029b667029827d9c7213249eebcac32e6152d80ef7c0e24e53d8437d5a0ef`。E. coli 矩阵 38,906,084 bytes，SHA256=`71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f`。
+- 生产/独立 QC 为 1,170 raw=clean、0 excluded、0 duplicate gene IDs、modal numeric feature dimension=6；独立 7/7 PASS、max_numeric_delta=0.0，finalization 8/8 PASS。官方 `load_data` 输出 x=`[1170,1520,111]`、density=`[1170,1520,1]`、length=`[1170,1]`，x/density 全 finite；复现报告除 `created_at` 外语义一致。
+- 代码与证据 commit=`34286ad4fa2cf74aaee40d7f9f1597052b6a8f1a`。仅物化 E. coli 矩阵与 E. coli/yeast 权重，Pseudomonas、Drosophila、human、yeast processed matrices 缺失；五物种、raw-read 重比对、训练、交叉验证、论文指标、功能 OOD 和 SOTA 未闭合。
+
+### PPT、A8 v2 与当前续作
+
+- 在线主稿第 69 页 `pgx` 记录 VeloHARMO，revision=31；第 70 页 `pgf` 记录 RNARL，revision=32。每次回读均确认此前所有 slide ID 与语义 XML 不变，新页关键数值、边界和备注完整。验证报告分别为 `veloharmo_ppt_verification.json`、`rnarl_ppt_verification.json`。
+- A8 生成器/verifier 升级为 v2，新增 RNARL 全量 QC 与 VeloHARMO 证据锚点，A7 不变；A8 SHA256=`f7ea820b98ab946f9f12b6fc28f2095907fd88b4c7346e77870ec87552735e7a`，独立 **13/13 PASS**，仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
+- 下一步不能把上述数据 QC 写成机制/模型闭环。RK03 仍需 UTR–CDS/raw-read/P-site 和缺失维度报告；RK05 仍需 LinearDesign/CDGB/GEMORNA/codonGPT 等强 baseline 真实矩阵；RK06 仍需 dense 轨迹和统一成本；RK04 长度/GC OOD、RK-G0–G4、生成器、完整 Fig.1–7 和前瞻湿实验仍未关闭。

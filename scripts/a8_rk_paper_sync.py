@@ -80,6 +80,13 @@ def main() -> None:
         "id3_final": repo / "audits/20261118/RK05/id3_official_quick_test_finalization.json",
         "rnarl_smoke": repo / "audits/20261118/RK05/rnarl_official_contract_smoke_v2.json",
         "rnarl_verify": repo / "audits/20261118/RK05/rnarl_official_independent_verification.json",
+        "rnarl_qc": repo / "audits/20261118/RK03/rnarl_qc.json",
+        "rnarl_qc_verify": repo / "audits/20261118/RK03/rnarl_independent_verification_v2.json",
+        "rnarl_final": repo / "audits/20261118/RK03/rnarl_finalization_recovery_v4.json",
+        "velo_qc": repo / "audits/20261118/RK03/veloharmo_ecoli_qc.json",
+        "velo_verify": repo / "audits/20261118/RK03/veloharmo_ecoli_independent_verification.json",
+        "velo_loader": repo / "audits/20261118/RK03/veloharmo_official_loader_smoke.json",
+        "velo_final": repo / "audits/20261118/RK03/veloharmo_finalization.json",
         "rk07": args.rk07_dir / "final_results.json",
         "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
     }
@@ -99,6 +106,13 @@ def main() -> None:
     id3f = data["id3_final"]
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
+    rnarlq = data["rnarl_qc"]
+    rnarlqv = data["rnarl_qc_verify"]
+    rnalrf = data["rnarl_final"]
+    veloq = data["velo_qc"]
+    velov = data["velo_verify"]
+    velol = data["velo_loader"]
+    velof = data["velo_final"]
     rk07 = data["rk07"]
     rk07v = data["rk07_verify"]
 
@@ -122,6 +136,19 @@ def main() -> None:
     require(not id3f["science_flags"]["main_baseline_comparison"] and not id3f["science_flags"]["sota_claim"], "ID3 scope exceeded")
     require(rnalrv["status"] == "PASS_NEGATIVE_REPRODUCIBILITY_AUDIT" and all(rnalrv["checks"].values()), "RNARL negative audit not verified")
     require(not rnarl["official_full_training_executed"] and not rnarl["paper_metrics_reproduced"], "RNARL availability scope exceeded")
+    require(rnarlqv["status"] == "PASS" and rnarlqv["passed_checks"] == rnarlqv["check_count"] == 8 and rnarlqv["max_numeric_delta"] == 0.0, "RNARL full independent QC failed")
+    require(not rnarlqv["independent_production_import"], "RNARL verifier imported production code")
+    require(rnalrf["status"] == "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY" and rnalrf["passed_checks"] == rnalrf["check_count"] == 10, "RNARL finalization failed")
+    require(rnarlq["total_rows"] == rnalrf["raw_rows"] == 260754 and rnarlq["clean_rows"] == rnalrf["clean_rows"] == 256578 and rnarlq["clean_pairs"] == rnalrf["clean_pairs"] == 128289, "RNARL full counts changed")
+    require(rnalrf["raw_cross_split_overlap_keys"]["exact_cds"] == 22 and rnalrf["raw_cross_split_exact_cds_rows"] == 44, "RNARL raw leakage record changed")
+    require(rnalrf["clean_cross_split_exact_cds_keys"] == 0 and rnalrf["clean_cross_split_protein_sequence_keys"] == 0, "RNARL clean leakage guard failed")
+    require(not rnalrf["science_flags"]["natural_cds_source_validated"] and not rnalrf["science_flags"]["functional_training_authorized"] and not rnalrf["science_flags"]["official_model_reproduced"], "RNARL data scope exceeded")
+    require(velov["status"] == "PASS" and velov["passed_checks"] == velov["check_count"] == 7 and velov["max_numeric_delta"] == 0.0, "VeloHARMO independent QC failed")
+    require(not velov["independent_production_import"], "VeloHARMO verifier imported production code")
+    require(velof["status"] == "ECOLI_QC_VERIFIED_FIVE_SPECIES_NOT_AVAILABLE" and velof["passed_checks"] == velof["check_count"] == 8, "VeloHARMO finalization failed")
+    require(veloq["raw_records"] == veloq["clean_records"] == 1170 and veloq["excluded_records"] == 0 and veloq["duplicate_gene_ids"] == 0 and veloq["modal_feature_numeric_dim"] == 6, "VeloHARMO E. coli counts changed")
+    require(velol["pass"] and velol["x_all_finite"] and velol["density_all_finite"] and not velol["training_performed"] and not velol["publication_metrics_reproduced"], "VeloHARMO loader scope changed")
+    require(not velof["science_flags"]["five_species_data_closed"] and not velof["science_flags"]["official_cross_validation_reproduced"] and not velof["science_flags"]["sota_claim"], "VeloHARMO scientific scope exceeded")
 
     split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
     test = rk07["split_metrics"]["test"]
@@ -141,7 +168,9 @@ CodonTransformer training-table QC read **{ct['result']['rows']:,} raw rows** an
 
 The functional long table contains **{rk02['functional_long_rows']:,} rows** and has SHA256 `{rk02['clean_artifacts']['functional_long']['sha256']}`. It comprises the verified Boël cross-protein records and MAGE construct-assay rows. The row-level Kudla 154-variant sequence–expression table remains unavailable; supporting methods and degenerate oligos are not substitutes for that table.
 
-RNARL full-data QC remains pending until the official 21-file manifest, independent verification, and finalization all pass. Partial-prefix smoke counts and downloader unit tests are not reported as formal dataset results."""
+The RNARL official 21-file pair table contains **{rnalrf['raw_rows']:,} raw rows**, **{rnalrf['clean_rows']:,} clean rows**, and **{rnalrf['clean_pairs']:,} clean pairs**. Raw cross-split exact-CDS overlap comprised **{rnalrf['raw_cross_split_overlap_keys']['exact_cds']} keys / {rnalrf['raw_cross_split_exact_cds_rows']} rows**; production QC excluded the whole protein pairs, and independent clean-table rescanning found zero exact-CDS and zero protein-sequence cross-split keys. The corrected independent verifier passed **{rnarlqv['passed_checks']}/{rnarlqv['check_count']} checks** with maximum numeric delta **{rnarlqv['max_numeric_delta']:.1f}**, and recovery finalization passed **{rnalrf['passed_checks']}/{rnalrf['check_count']} checks**. The initial order-based verifier failure and recovery failure remain preserved. This is only a publisher-provided LinearDesign-like pair table: it does not establish natural-CDS provenance, lambda strata, UTR/raw-read remapping, functional training, functional OOD, official-model reproduction, or a baseline ranking.
+
+VeloHARMO was audited at fixed commit `{velof['commit']}`. Its processed E. coli matrix has **{veloq['raw_records']:,} raw = {veloq['clean_records']:,} clean records**, **{veloq['duplicate_gene_ids']} duplicate gene IDs**, and **{veloq['modal_feature_numeric_dim']} numeric features**. Independent verification passed **{velov['passed_checks']}/{velov['check_count']} checks** with maximum numeric delta **{velov['max_numeric_delta']:.1f}**, and finalization passed **{velof['passed_checks']}/{velof['check_count']} checks**. The official `VeloGRU/VeloGRU_data.py::load_data` returned finite tensors `x={velol['x_shape']}`, `density={velol['density_shape']}`, and `length={velol['length_shape']}`. Only the processed E. coli matrix plus E. coli/yeast weights were materialized; **five-species processed matrices are not available** because Pseudomonas, Drosophila, human, and yeast matrices are missing. No five-species dataset closure, raw-read remapping, training, cross-validation, publication-metric, functional-OOD, or SOTA claim is authorized."""
 
     split_addition = f"""**RK04 frozen operational split.** MMseqs2 clustering used identity **{rk04['protocol']['identity']:.2f}**, bidirectional coverage **{rk04['protocol']['bidirectional_coverage']:.2f}**, and seed **{rk04['protocol']['seed']}**. The Boël rows were assigned to train/dev/test = **{split_counts['train']:,}/{split_counts['dev']:,}/{split_counts['test']:,}**, while **{split_counts['functional_untouched']:,} MAGE rows** remained untouched. Independent verification passed **{len(rk04v['checks'])}/{len(rk04v['checks'])} checks**, including zero overlap for exact CDS, exact protein/derived infA, source protein ID, operational cluster, construct-signature group, and nonblank mutation signature. These are operational MMseqs2 clusters, not curated protein families. The split is leakage-controlled but is not itself training-ready evidence: MAGE was not evaluated, and no generator or SOTA claim is authorized."""
 
@@ -187,6 +216,11 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("CodonTransformer raw table", ct["result"]["raw_sha256"]),
         ("ID3 independent verifier v2", source_hashes["id3_verify"]),
         ("RNARL negative audit", source_hashes["rnarl_verify"]),
+        ("RNARL full QC finalization", source_hashes["rnarl_final"]),
+        ("RNARL corrected independent verifier", source_hashes["rnarl_qc_verify"]),
+        ("VeloHARMO E. coli matrix", veloq["matrix_sha256"]),
+        ("VeloHARMO finalization", source_hashes["velo_final"]),
+        ("VeloHARMO independent verifier", source_hashes["velo_verify"]),
     ]
     evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
     reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
@@ -210,13 +244,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     text = append_to_section(text, "## 9. References", reproducibility_addition)
 
     require("### 6.2 Proxy validity: bounded cross-protein diagnostic\n\nRK07 evaluated" in text, "RK07 section insertion failed")
-    require("RNARL full-data QC remains pending" in text, "RNARL pending boundary missing")
+    require("RNARL official 21-file pair table contains" in text, "RNARL full QC result missing")
+    require("five-species processed matrices are not available" in text, "VeloHARMO missing-species boundary missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v1",
+        "schema_version": "a8-rk-paper-sync-v2",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -225,11 +260,13 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
         "source_paths": {name: str(path) for name, path in paths.items()},
         "source_sha256": source_hashes,
         "generated_sections": ["3.1", "3.2 RK04 addition", "6.2", "6.5", "8.1"],
-        "pending_preserved": ["RNARL full 21-file QC", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
+        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
         "scientific_scope": {
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
             "rnarl_code": "negative public-snapshot reproducibility only",
+            "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
+            "veloharmo": "processed E. coli matrix and official loader only; five-species data and model evidence open",
             "sota": False,
             "submittable": False,
         },

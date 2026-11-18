@@ -70,6 +70,41 @@ def main() -> None:
     ]
     check("data_counts_and_hashes_rendered_from_json", all(s in text for s in expected_data), {"expected_strings": len(expected_data)})
 
+    rnarlq = data["rnarl_qc"]
+    rnarlqv = data["rnarl_qc_verify"]
+    rnalrf = data["rnarl_final"]
+    rnarl_data_strings = [
+        f"**{rnalrf['raw_rows']:,} raw rows**",
+        f"**{rnalrf['clean_rows']:,} clean rows**",
+        f"**{rnalrf['clean_pairs']:,} clean pairs**",
+        f"**{rnalrf['raw_cross_split_overlap_keys']['exact_cds']} keys / {rnalrf['raw_cross_split_exact_cds_rows']} rows**",
+        f"**{rnarlqv['passed_checks']}/{rnarlqv['check_count']} checks**",
+        f"**{rnalrf['passed_checks']}/{rnalrf['check_count']} checks**",
+        "zero exact-CDS and zero protein-sequence cross-split keys",
+        "publisher-provided LinearDesign-like pair table",
+        sha256(Path(audit["source_paths"]["rnarl_final"])),
+    ]
+    check("rnarl_full_qc_and_pair_exclusion", all(s in text for s in rnarl_data_strings) and rnarlq["total_rows"] == rnalrf["raw_rows"] and rnarlqv["max_numeric_delta"] == 0.0 and rnalrf["clean_cross_split_exact_cds_keys"] == 0 and rnalrf["clean_cross_split_protein_sequence_keys"] == 0, {"expected_strings": len(rnarl_data_strings)})
+
+    veloq = data["velo_qc"]
+    velov = data["velo_verify"]
+    velol = data["velo_loader"]
+    velof = data["velo_final"]
+    velo_strings = [
+        velof["commit"],
+        f"**{veloq['raw_records']:,} raw = {veloq['clean_records']:,} clean records**",
+        f"**{veloq['duplicate_gene_ids']} duplicate gene IDs**",
+        f"**{veloq['modal_feature_numeric_dim']} numeric features**",
+        f"**{velov['passed_checks']}/{velov['check_count']} checks**",
+        f"**{velof['passed_checks']}/{velof['check_count']} checks**",
+        f"`x={velol['x_shape']}`",
+        f"`density={velol['density_shape']}`",
+        f"`length={velol['length_shape']}`",
+        "five-species processed matrices are not available",
+        veloq["matrix_sha256"],
+    ]
+    check("veloharmo_matrix_loader_and_missing_species", all(s in text for s in velo_strings) and velov["max_numeric_delta"] == 0.0 and not velol["training_performed"] and not velof["science_flags"]["five_species_data_closed"], {"expected_strings": len(velo_strings)})
+
     rk04 = data["rk04"]
     rk04v = data["rk04_verify"]
     c = rk04["counts"]
@@ -139,7 +174,8 @@ def main() -> None:
     check("rnarl_negative_reproducibility_scope", all(s in text for s in rnarl_strings) and not rnarl["official_full_training_executed"], None)
 
     pending = [
-        "RNARL full-data QC remains pending",
+        "five-species processed matrices are not available",
+        "does not establish natural-CDS provenance, lambda strata, UTR/raw-read remapping, functional training, functional OOD",
         "[Pending RK-G1.",
         "[Pending RK-G2.",
         "[Pending RK-G3.",
@@ -152,7 +188,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v1",
+        "schema_version": "a8-rk-paper-independent-verification-v2",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

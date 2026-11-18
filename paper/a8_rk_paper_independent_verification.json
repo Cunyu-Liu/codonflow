@@ -1,9 +1,9 @@
 {
-  "check_count": 11,
+  "check_count": 13,
   "checks": [
     {
       "detail": {
-        "sources": 13
+        "sources": 20
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "fcbb7f3a823fe5d91a678f3ffd5ff708f0772423feefe1232690fa01a24aae80",
+      "detail": "f7ea820b98ab946f9f12b6fc28f2095907fd88b4c7346e77870ec87552735e7a",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -23,6 +23,20 @@
         "expected_strings": 11
       },
       "name": "data_counts_and_hashes_rendered_from_json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 9
+      },
+      "name": "rnarl_full_qc_and_pair_exclusion",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 11
+      },
+      "name": "veloharmo_matrix_loader_and_missing_species",
       "pass": true
     },
     {
@@ -62,7 +76,7 @@
     },
     {
       "detail": {
-        "required_boundaries": 7
+        "required_boundaries": 8
       },
       "name": "pending_and_no_sota_boundaries_preserved",
       "pass": true
@@ -74,12 +88,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "fcbb7f3a823fe5d91a678f3ffd5ff708f0772423feefe1232690fa01a24aae80",
-  "passed_checks": 11,
+  "paper_sha256": "f7ea820b98ab946f9f12b6fc28f2095907fd88b4c7346e77870ec87552735e7a",
+  "passed_checks": 13,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v1",
+  "schema_version": "a8-rk-paper-independent-verification-v2",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "0834058b008d8a99924ac7c9208a8a26e7fc047d46bf16c3fc183c97ee1ae639"
+  "sync_audit_sha256": "694c535447ede03e2f10fdec1d8d81ddf4255fcaba6f0c6e03248b2831742a25"
 }
