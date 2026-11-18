@@ -79,10 +79,11 @@ def finalize_rnarl(steps):
             raise RuntimeError(f"RNARL final failed MD5 gate: {path}")
     run_step(steps, "freeze_exact_bytes", [PYTHON, REPO / "scripts/a8_rk03_freeze_rnarl_bytes.py",
         "--config", CONFIG, "--raw-dir", raw, "--output", AUDITS / "rnarl_official_file_sizes_final.json", "--write-config"])
+    reverify_manifest_path = AUDITS / "rnarl_reverify_download_manifest.json"
     run_step(steps, "reverify_download_with_bytes", [PYTHON, REPO / "scripts/a8_rk03_download.py",
-        "--config", CONFIG, "--data-root", DATA, "--manifest", manifest_path, "--source-id", "rnarl_v1",
+        "--config", CONFIG, "--data-root", DATA, "--manifest", reverify_manifest_path, "--source-id", "rnarl_v1",
         "--timeout", "120", "--retries", "3", "--workers", "3"])
-    require_complete_manifest(manifest_path, "rnarl_v1", 21)
+    require_complete_manifest(reverify_manifest_path, "rnarl_v1", 21)
     qc_dir = DATA / "clean/rnarl_v2"
     run_step(steps, "full_rnarl_qc", [PYTHON, REPO / "scripts/a8_rk03_rnarl_qc.py",
         "--config", CONFIG, "--raw-dir", raw, "--output-dir", qc_dir, "--audit", AUDITS / "rnarl_qc.json"])
@@ -97,7 +98,9 @@ def finalize_rnarl(steps):
             "natural_distribution_eligible": summary["natural_distribution_eligible"], "functional_training_authorized": False,
             "raw_split_overlap_detected": summary["raw_split_overlap_detected"], "verification_status": verification["status"],
             "verification_checks": f"{verification['passed_checks']}/{verification['check_count']}",
-            "config_sha256": sha256(CONFIG), "qc_summary_sha256": sha256(qc_dir / "qc_summary.json")}
+            "config_sha256": sha256(CONFIG), "qc_summary_sha256": sha256(qc_dir / "qc_summary.json"),
+            "recovery_download_manifest_sha256": sha256(manifest_path),
+            "reverify_download_manifest_sha256": sha256(reverify_manifest_path)}
 
 
 def finalize_codontransformer(steps):

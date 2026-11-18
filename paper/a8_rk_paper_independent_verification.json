@@ -1,0 +1,85 @@
+{
+  "check_count": 11,
+  "checks": [
+    {
+      "detail": {
+        "sources": 13
+      },
+      "name": "all_frozen_source_hashes",
+      "pass": true
+    },
+    {
+      "detail": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+      "name": "a7_template_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "fcbb7f3a823fe5d91a678f3ffd5ff708f0772423feefe1232690fa01a24aae80",
+      "name": "a8_output_hash_matches_sync",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 11
+      },
+      "name": "data_counts_and_hashes_rendered_from_json",
+      "pass": true
+    },
+    {
+      "detail": [
+        "**5,079/635/634**",
+        "**19,072 MAGE rows**",
+        "**33/33 checks**",
+        "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+      ],
+      "name": "rk04_split_counts_and_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 15,
+        "min_holm": 0.17982017982017984
+      },
+      "name": "rk07_every_reported_metric_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk07_scientific_boundary",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 9
+      },
+      "name": "id3_bounded_execution_and_retained_defects",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rnarl_negative_reproducibility_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "required_boundaries": 7
+      },
+      "name": "pending_and_no_sota_boundaries_preserved",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "production_module_not_imported",
+      "pass": true
+    }
+  ],
+  "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+  "paper_sha256": "fcbb7f3a823fe5d91a678f3ffd5ff708f0772423feefe1232690fa01a24aae80",
+  "passed_checks": 11,
+  "production_module_imported": false,
+  "schema_version": "a8-rk-paper-independent-verification-v1",
+  "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
+  "status": "PASS",
+  "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
+  "sync_audit_sha256": "0834058b008d8a99924ac7c9208a8a26e7fc047d46bf16c3fc183c97ee1ae639"
+}

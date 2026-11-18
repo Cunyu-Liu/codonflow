@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""Generate the A8-RK working manuscript from verified evidence only.
+
+The A7 manuscript is read-only. Every new numeric claim below is rendered from
+frozen JSON artifacts; incomplete RNARL, mechanism, model, OOD, and wet-lab
+results remain explicitly pending.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+from typing import Any
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(8 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def load(path: Path) -> dict[str, Any]:
+    with path.open(encoding="utf-8") as handle:
+        value = json.load(handle)
+    if not isinstance(value, dict):
+        raise ValueError(f"expected JSON object: {path}")
+    return value
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def replace_section(text: str, heading: str, next_heading: str, body: str) -> str:
+    start = text.index(heading)
+    end = text.index(next_heading, start + len(heading))
+    return text[:start] + body.rstrip() + "\n\n" + text[end:]
+
+
+def append_to_section(text: str, next_heading: str, addition: str) -> str:
+    end = text.index(next_heading)
+    return text[:end].rstrip() + "\n\n" + addition.strip() + "\n\n" + text[end:]
+
+
+def atomic_write(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + f".tmp-{os.getpid()}")
+    tmp.write_text(content, encoding="utf-8")
+    os.replace(tmp, path)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--repo", type=Path, default=Path("/home/codonflow-a8-rk"))
+    parser.add_argument("--template", type=Path)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--audit", type=Path)
+    parser.add_argument("--rk07-dir", type=Path, default=Path("/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/final"))
+    args = parser.parse_args()
+    repo = args.repo.resolve()
+    template = args.template or repo / "paper/CodonFlow_preprint_A7.md"
+    output = args.output or repo / "paper/CodonFlow_preprint_A8.md"
+    audit_path = args.audit or repo / "paper/a8_rk_paper_sync_audit.json"
+    require(template.resolve() != output.resolve(), "A7 template must not be overwritten")
+
+    paths = {
+        "rk02": repo / "audits/20261118/RK02/audit_summary.json",
+        "rk04": repo / "audits/20261118/RK04/split_summary.json",
+        "rk04_verify": repo / "audits/20261118/RK04/independent_split_verification.json",
+        "ribomimo": repo / "audits/20261118/RK03/ribomimo_qc_summary.json",
+        "ribomimo_verify": repo / "audits/20261118/RK03/ribomimo_independent_verification.json",
+        "ct_final": repo / "audits/20261118/RK03/codontransformer_finalization.json",
+        "id3": repo / "audits/20261118/RK05/id3_official_quick_test.json",
+        "id3_verify": repo / "audits/20261118/RK05/id3_official_quick_test_independent.json",
+        "id3_final": repo / "audits/20261118/RK05/id3_official_quick_test_finalization.json",
+        "rnarl_smoke": repo / "audits/20261118/RK05/rnarl_official_contract_smoke_v2.json",
+        "rnarl_verify": repo / "audits/20261118/RK05/rnarl_official_independent_verification.json",
+        "rk07": args.rk07_dir / "final_results.json",
+        "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
+    }
+    missing = [str(path) for path in paths.values() if not path.is_file()]
+    require(not missing, f"missing frozen evidence: {missing}")
+    data = {name: load(path) for name, path in paths.items()}
+    source_hashes = {name: sha256(path) for name, path in paths.items()}
+
+    rk02 = data["rk02"]
+    rk04 = data["rk04"]
+    rk04v = data["rk04_verify"]
+    ribo = data["ribomimo"]
+    ribov = data["ribomimo_verify"]
+    ct = data["ct_final"]
+    id3 = data["id3"]
+    id3v = data["id3_verify"]
+    id3f = data["id3_final"]
+    rnarl = data["rnarl_smoke"]
+    rnalrv = data["rnarl_verify"]
+    rk07 = data["rk07"]
+    rk07v = data["rk07_verify"]
+
+    require(rk02["functional_long_rows"] == 25420, "unexpected RK02 row count")
+    require(rk04["status"] == "PASS_WITH_SCIENTIFIC_BOUNDARIES", "RK04 not finalized")
+    require(rk04v["status"] == "PASS" and all(c["status"] == "PASS" for c in rk04v["checks"]), "RK04 verification failed")
+    require(rk04["leakage"]["all_pairwise_overlaps_zero"], "RK04 leakage guard failed")
+    require(not rk04["functional_untouched_evaluated"], "untouched MAGE was evaluated")
+    require(ribov["status"] == "PASS" and all(c["pass"] for c in ribov["checks"]), "RiboMIMO verification failed")
+    require(ct["status"] == "PASS" and ct["result"]["verification_status"] == "PASS", "CodonTransformer not finalized")
+    require(ct["result"]["bounded_natural_sequence_distribution_ready"], "CodonTransformer scope changed")
+    require(not ct["result"]["functional_training_authorized"], "CodonTransformer functional scope exceeded")
+    require(rk07v["status"] == "PASS" and all(c["pass"] for c in rk07v["checks"]), "RK07 verification failed")
+    require(rk07["dev_baseline_exact_match"] and not rk07["forbidden_split_used"], "RK07 freeze guard failed")
+    require(id3["status"] == "PASS_OFFICIAL_QUICK_TEST_SMOKE", "ID3 execution not complete")
+    require(id3v["status"] == "BOUNDED_OFFICIAL_EXECUTION_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT", "ID3 independent status changed")
+    require(id3v["science_flags"]["all_final_sequence_scores_independently_verified"], "ID3 final scores not verified")
+    require(not id3v["science_flags"]["all_payload_metrics_independently_verified"], "ID3 CPC defect boundary changed")
+    require(id3f["status"] == "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT" and id3f["science_flags"]["ppt_record_ready"], "ID3 finalization not ready")
+    require(id3f["checks_passed"] == id3f["checks_total"] == 11, "ID3 finalization checks failed")
+    require(not id3f["science_flags"]["main_baseline_comparison"] and not id3f["science_flags"]["sota_claim"], "ID3 scope exceeded")
+    require(rnalrv["status"] == "PASS_NEGATIVE_REPRODUCIBILITY_AUDIT" and all(rnalrv["checks"].values()), "RNARL negative audit not verified")
+    require(not rnarl["official_full_training_executed"] and not rnarl["paper_metrics_reproduced"], "RNARL availability scope exceeded")
+
+    split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
+    test = rk07["split_metrics"]["test"]
+    points = {name: test["models"][name]["point"] for name in test["models"]}
+    gc_delta = test["paired_comparisons"]["gc_fraction"]
+    min_holm = min(v["spearman_p_holm"] for v in test["paired_comparisons"].values())
+    quick = id3["source_preset_contract"]["quick_test"]
+    id3_summary = next(c["detail"] for c in id3["checks"] if c["name"] == "summary_12_total")
+    id3_pass_count = sum(bool(c["pass"]) for c in id3v["checks"])
+    id3_check_count = len(id3v["checks"])
+
+    section_31 = f"""### 3.1 External data and verified availability
+
+The A8-RK audit separates verified data artifacts from model evidence. RiboMIMO contributes **{ribo['total_records']:,} raw records** and **{ribo['total_clean_records']:,} clean records** across four author-processed codon-level A-site-count datasets; the independent verifier passed **{len(ribov['checks'])}/{len(ribov['checks'])} checks**. These files do not contain UTRs or raw reads, so they do not authorize an independent P-site remapping analysis. The clean rule requires aligned lengths, canonical CDS translation, finite nonnegative counts, strict coverage, and exact translated-reference protein matching.
+
+CodonTransformer training-table QC read **{ct['result']['rows']:,} raw rows** and retained **{ct['result']['clean_rows']:,} clean rows**; organism counts changed from **{ct['result']['raw_organisms']} raw** to **{ct['result']['clean_organisms']} clean**. Finalization passed with **{ct['result']['verification_checks']} independent checks**. The raw-table SHA256 is `{ct['result']['raw_sha256']}`. This artifact supports only a bounded natural DNA–protein sequence-distribution corpus; it does not provide host-matched functional labels, a trained model, functional OOD evidence, or a baseline ranking.
+
+The functional long table contains **{rk02['functional_long_rows']:,} rows** and has SHA256 `{rk02['clean_artifacts']['functional_long']['sha256']}`. It comprises the verified Boël cross-protein records and MAGE construct-assay rows. The row-level Kudla 154-variant sequence–expression table remains unavailable; supporting methods and degenerate oligos are not substitutes for that table.
+
+RNARL full-data QC remains pending until the official 21-file manifest, independent verification, and finalization all pass. Partial-prefix smoke counts and downloader unit tests are not reported as formal dataset results."""
+
+    split_addition = f"""**RK04 frozen operational split.** MMseqs2 clustering used identity **{rk04['protocol']['identity']:.2f}**, bidirectional coverage **{rk04['protocol']['bidirectional_coverage']:.2f}**, and seed **{rk04['protocol']['seed']}**. The Boël rows were assigned to train/dev/test = **{split_counts['train']:,}/{split_counts['dev']:,}/{split_counts['test']:,}**, while **{split_counts['functional_untouched']:,} MAGE rows** remained untouched. Independent verification passed **{len(rk04v['checks'])}/{len(rk04v['checks'])} checks**, including zero overlap for exact CDS, exact protein/derived infA, source protein ID, operational cluster, construct-signature group, and nonblank mutation signature. These are operational MMseqs2 clusters, not curated protein families. The split is leakage-controlled but is not itself training-ready evidence: MAGE was not evaluated, and no generator or SOTA claim is authorized."""
+
+    model_labels = [
+        ("cai", "CAI"),
+        ("gc_fraction", "GC fraction (direction selected on train)"),
+        ("full_cds_mfe_kcal_mol", "Full-CDS MFE"),
+        ("full_cds_mfe_per_nt", "Full-CDS MFE per nt"),
+        ("mfe_5prime_48_kcal_mol", "5′ 48-nt MFE"),
+        ("combined_logistic", "Combined logistic"),
+    ]
+    rows = "\n".join(f"| {label} | {points[key]['spearman']:.4f} |" for key, label in model_labels)
+    section_62 = f"""### 6.2 Proxy validity: bounded cross-protein diagnostic
+
+RK07 evaluated whether simple sequence-derived scores carry signal across different proteins in Boël et al. It is **not** a fixed-protein synonymous-library experiment. The combined model used train-only preprocessing and convex logistic fitting with the frozen feature set `{', '.join(rk07['combined_model']['feature_names'])}`; development results were frozen before test evaluation, and `functional_untouched` was not used.
+
+On the frozen test set (**n = {test['n']:,}**), Spearman correlations were:
+
+| Predictor | Test Spearman |
+|---|---:|
+{rows}
+
+The combined model had Pearson **{points['combined_logistic']['pearson']:.4f}** and RMSE **{points['combined_logistic']['rmse']:.4f}**. Its point estimate exceeded the strongest single-proxy Spearman (directional GC) by **Δρ = {gc_delta['spearman_point_difference']:.4f}**, but the paired 95% bootstrap interval was **[{gc_delta['spearman_difference'][0]:.4f}, {gc_delta['spearman_difference'][1]:.4f}]** and the Holm-adjusted p-value was **{gc_delta['spearman_p_holm']:.4f}**. No paired Spearman comparison survived Holm correction on test (minimum adjusted **p = {min_holm:.4f}**). CAI alone was effectively uncorrelated (**ρ = {points['cai']['spearman']:.4f}**).
+
+The independent verifier recomputed all **{rk07v['checks'][2]['details']['rows']:,}** CAI/GC/MFE rows, model predictions, **{rk07v['checks'][6]['details']['bootstrap_replicates_per_split']:,} bootstrap replicates per split**, stratified metrics, and Holm correction; **{rk07v['passed_checks']}/{rk07v['check_count']} checks passed**. The supported conclusion is therefore **limited and unstable cross-protein signal**, not a decisive failure of within-protein proxies. This diagnostic does not validate a fixed-protein synonymous mechanism, functional OOD gain, generator, or external-baseline ranking."""
+
+    missing_methods = len(rnalrv["independent_ast_findings"]["grpo_missing_called_methods"])
+    section_65 = f"""### 6.5 Baseline execution and reproducibility status
+
+**ID3 bounded official execution.** The fixed ID3 commit `{id3['source']['id3_commit']}` and DeepRaccess commit `{id3['source']['deepraccess_commit']}` were materialized, and the official `cpu_v4` quick-test preset was executed. The actual protocol was **{len(quick['proteins'])} protein × {len(quick['constraints'])} constraints × {len(quick['variants'])} variants = {id3_summary['total_experiments']} runs**, **{quick['iterations']} iterations**, **{quick['seeds']} seed**, and `enable_cai={str(quick['enable_cai']).lower()}`. The official summary recorded **{id3_summary['successful']} successful / {id3_summary['failed']} failed** runs in **{id3_summary['total_time']:.3f} s**. Independent verification finished at **{id3_pass_count}/{id3_check_count} checks**, and finalization passed **{id3f['checks_passed']}/{id3f['checks_total']} finalization checks** with final-sequence evidence ready for recording.
+
+This is a smoke result, not the separate full-12×12 protocol and not a main comparison. Four checks were retained as failures: `CodonProfileConstraint.forward()` omits `beta` when calling `CodonPsiFunction.forward()`, and the `beta == 1.0` runner branch records a soft-path accessibility value as a discrete score. Consequently, CPC×1 initial/best/improvement/trajectory fields and affected summary aggregates are excluded. Only the bounded final sequences and final scores are retained.
+
+**RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
+
+The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending."""
+
+    evidence_rows = [
+        ("RK02 functional long table", rk02["clean_artifacts"]["functional_long"]["sha256"]),
+        ("RK04 split assignment table", rk04["artifacts"]["functional_long_split"]["sha256"]),
+        ("RK07 frozen result", source_hashes["rk07"]),
+        ("RiboMIMO independent verifier", source_hashes["ribomimo_verify"]),
+        ("CodonTransformer raw table", ct["result"]["raw_sha256"]),
+        ("ID3 independent verifier v2", source_hashes["id3_verify"]),
+        ("RNARL negative audit", source_hashes["rnarl_verify"]),
+    ]
+    evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
+    reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
+
+The working-manuscript values above were rendered from the following frozen artifacts. Large CSV, prediction, and weight files remain outside Git under the project artifact root; their report-level hashes are recorded here.
+
+| Evidence | SHA256 |
+|---|---|
+{evidence_table}
+
+A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete."""
+
+    text = template.read_text(encoding="utf-8")
+    old_status = next(line for line in text.splitlines() if line.startswith("**Status:") or line.startswith("> **Status:"))
+    new_status = "> **Status: A8-RK working manuscript — not for submission.** Verified data, operational split, bounded cross-protein diagnostic, and bounded baseline-execution audits are recorded; core mechanism, model, main baseline matrix, OOD, generator, and wet-lab closure remain incomplete. No SOTA claim."
+    text = text.replace(old_status, new_status, 1)
+    text = replace_section(text, "### 3.1 Natural, mechanistic and functional data", "### 3.2 Leakage-controlled generalization tasks", section_31)
+    text = append_to_section(text, "### 3.3 Task-specific comparisons", split_addition)
+    text = replace_section(text, "### 6.2 Proxy validity on real synonymous variants", "### 6.3 Incremental evidence for spatial coupling", section_62)
+    text = replace_section(text, "### 6.5 Task-specific strongest-baseline comparisons", "### 6.6 Mechanistic ablations and failure boundaries", section_65)
+    text = append_to_section(text, "## 9. References", reproducibility_addition)
+
+    require("### 6.2 Proxy validity: bounded cross-protein diagnostic\n\nRK07 evaluated" in text, "RK07 section insertion failed")
+    require("RNARL full-data QC remains pending" in text, "RNARL pending boundary missing")
+    require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
+    require("No SOTA claim." in text, "working-manuscript boundary missing")
+    atomic_write(output, text)
+
+    audit = {
+        "schema_version": "a8-rk-paper-sync-v1",
+        "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
+        "template": str(template),
+        "template_sha256": sha256(template),
+        "output": str(output),
+        "output_sha256": sha256(output),
+        "source_paths": {name: str(path) for name, path in paths.items()},
+        "source_sha256": source_hashes,
+        "generated_sections": ["3.1", "3.2 RK04 addition", "6.2", "6.5", "8.1"],
+        "pending_preserved": ["RNARL full 21-file QC", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
+        "scientific_scope": {
+            "rk07": "bounded cross-protein diagnostic only",
+            "id3": "official bounded quick-test only; CPC STE defects retained",
+            "rnarl_code": "negative public-snapshot reproducibility only",
+            "sota": False,
+            "submittable": False,
+        },
+    }
+    atomic_write(audit_path, json.dumps(audit, indent=2, sort_keys=True) + "\n")
+    print(json.dumps({"status": audit["status"], "output": str(output), "output_sha256": audit["output_sha256"], "audit": str(audit_path)}, indent=2))
+
+
+if __name__ == "__main__":
+    main()
