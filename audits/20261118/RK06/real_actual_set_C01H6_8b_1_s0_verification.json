@@ -1,0 +1,355 @@
+{
+  "audit_id": "rk06_real_actual_set_C01H6_8b_1_s0_v1",
+  "status": "FAIL",
+  "scope": "one frozen external record; independent raw-CDS recompute and cross-run consistency; not a method ranking or SOTA result",
+  "record_id": "C01H6.8b.1",
+  "seed": 0,
+  "actual_sha256": "171d0768136f318a580449be9fb367479b0ca38af4137171b06e9fc20029c718",
+  "legacy_sha256": "8277ce0e959d1d3fc4ca64d0712006753596c9592079ef25793dba77c9871de1",
+  "original_sha256": "caeb26c4af2d31b739bea4b14810168257bad2f7e55ecfb1d8980a0b07fd3576",
+  "scorer_code_commit": "56a62b4415c7e0e442ff064bb6002a4aed00798a",
+  "scorer_code_dirty": false,
+  "reanalysis_elapsed_s_not_generation_cost": 57.6413584430702,
+  "methods": {
+    "cai_greedy": {
+      "status": "PASS",
+      "n_actual_outputs": 1,
+      "n_unique_objective_vectors": 1,
+      "n_pareto_points": 1,
+      "hypervolume_normalized": 6.392971645631434,
+      "max_abs_difference_vs_a7_recompute": 0.0,
+      "max_abs_difference_vs_original_reported": 0.0,
+      "dense_budget_step_auc_v2": null,
+      "checks": {
+        "counts": true,
+        "sequences_exact": true,
+        "objectives_repeat_a7": true,
+        "objectives_match_original_reported": true,
+        "dense_metrics_null": true,
+        "actual_set_repeat": true,
+        "identity_and_finite_hv": true,
+        "legacy_cost_preserved": true
+      }
+    },
+    "codongpt": {
+      "status": "FAIL",
+      "n_actual_outputs": 100,
+      "n_unique_objective_vectors": 100,
+      "n_pareto_points": 14,
+      "hypervolume_normalized": 8.355045028892423,
+      "max_abs_difference_vs_a7_recompute": 0.0,
+      "max_abs_difference_vs_original_reported": 13.897058823529411,
+      "dense_budget_step_auc_v2": null,
+      "checks": {
+        "counts": true,
+        "sequences_exact": true,
+        "objectives_repeat_a7": true,
+        "objectives_match_original_reported": false,
+        "dense_metrics_null": true,
+        "actual_set_repeat": true,
+        "identity_and_finite_hv": true,
+        "legacy_cost_preserved": true
+      }
+    },
+    "gemorna": {
+      "status": "FAIL",
+      "n_actual_outputs": 80,
+      "n_unique_objective_vectors": 80,
+      "n_pareto_points": 19,
+      "hypervolume_normalized": 9.722951986735865,
+      "max_abs_difference_vs_a7_recompute": 0.0,
+      "max_abs_difference_vs_original_reported": 8.933823529411764,
+      "dense_budget_step_auc_v2": null,
+      "checks": {
+        "counts": true,
+        "sequences_exact": true,
+        "objectives_repeat_a7": true,
+        "objectives_match_original_reported": false,
+        "dense_metrics_null": true,
+        "actual_set_repeat": true,
+        "identity_and_finite_hv": true,
+        "legacy_cost_preserved": true
+      }
+    },
+    "lineardesign_scan": {
+      "status": "PASS",
+      "n_actual_outputs": 5,
+      "n_unique_objective_vectors": 5,
+      "n_pareto_points": 4,
+      "hypervolume_normalized": 13.549239755432692,
+      "max_abs_difference_vs_a7_recompute": 0.0,
+      "max_abs_difference_vs_original_reported": 0.0,
+      "dense_budget_step_auc_v2": null,
+      "checks": {
+        "counts": true,
+        "sequences_exact": true,
+        "objectives_repeat_a7": true,
+        "objectives_match_original_reported": true,
+        "dense_metrics_null": true,
+        "actual_set_repeat": true,
+        "identity_and_finite_hv": true,
+        "legacy_cost_preserved": true
+      }
+    },
+    "uniform_synonymous": {
+      "status": "FAIL",
+      "n_actual_outputs": 100,
+      "n_unique_objective_vectors": 100,
+      "n_pareto_points": 11,
+      "hypervolume_normalized": 1.7268344275974543,
+      "max_abs_difference_vs_a7_recompute": 0.0,
+      "max_abs_difference_vs_original_reported": 21.83823529411765,
+      "dense_budget_step_auc_v2": null,
+      "checks": {
+        "counts": true,
+        "sequences_exact": true,
+        "objectives_repeat_a7": true,
+        "objectives_match_original_reported": false,
+        "dense_metrics_null": true,
+        "actual_set_repeat": true,
+        "identity_and_finite_hv": true,
+        "legacy_cost_preserved": true
+      }
+    }
+  },
+  "n_checks": 44,
+  "n_passed": 41,
+  "checks": [
+    {
+      "check": "protocol_and_identity",
+      "pass": true,
+      "observed": {
+        "protocol": "a8_rk06_actual_set_v1",
+        "record_id": "C01H6.8b.1",
+        "seed": 0
+      }
+    },
+    {
+      "check": "fixed_clean_scorer",
+      "pass": true,
+      "observed": {
+        "commit": "56a62b4415c7e0e442ff064bb6002a4aed00798a",
+        "dirty": false
+      }
+    },
+    {
+      "check": "method_coverage",
+      "pass": true,
+      "observed": [
+        "cai_greedy",
+        "codongpt",
+        "gemorna",
+        "lineardesign_scan",
+        "uniform_synonymous"
+      ]
+    },
+    {
+      "check": "raw_not_stored_objectives",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.counts",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.sequences_exact",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.objectives_repeat_a7",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.objectives_match_original_reported",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.dense_metrics_null",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.actual_set_repeat",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.identity_and_finite_hv",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "cai_greedy.legacy_cost_preserved",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.counts",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.sequences_exact",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.objectives_repeat_a7",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.objectives_match_original_reported",
+      "pass": false,
+      "observed": false
+    },
+    {
+      "check": "codongpt.dense_metrics_null",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.actual_set_repeat",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.identity_and_finite_hv",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "codongpt.legacy_cost_preserved",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.counts",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.sequences_exact",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.objectives_repeat_a7",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.objectives_match_original_reported",
+      "pass": false,
+      "observed": false
+    },
+    {
+      "check": "gemorna.dense_metrics_null",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.actual_set_repeat",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.identity_and_finite_hv",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "gemorna.legacy_cost_preserved",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.counts",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.sequences_exact",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.objectives_repeat_a7",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.objectives_match_original_reported",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.dense_metrics_null",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.actual_set_repeat",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.identity_and_finite_hv",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "lineardesign_scan.legacy_cost_preserved",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.counts",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.sequences_exact",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.objectives_repeat_a7",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.objectives_match_original_reported",
+      "pass": false,
+      "observed": false
+    },
+    {
+      "check": "uniform_synonymous.dense_metrics_null",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.actual_set_repeat",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.identity_and_finite_hv",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "check": "uniform_synonymous.legacy_cost_preserved",
+      "pass": true,
+      "observed": true
+    }
+  ],
+  "not_a_method_ranking": true,
+  "scientific_gate_passed": false,
+  "model_improvement_claim": false
+}

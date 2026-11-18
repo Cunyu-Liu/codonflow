@@ -11,7 +11,7 @@
 - 下一位执行者提示词：`docs/handover/PROMPT_NEXT_AGENT_A8_RK.md`
 - 预印本工作稿：`paper/CodonFlow_preprint_A7.md`
 
-A8-RK 的实际执行位于隔离工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`。RK-01 commit=`5ad3393a4f90c4a743cf7e0725b45ea62e395172`；RK-02 commit=`087b8822e14dcb15710dc2f40d8db5650b8687a4`；RK-04 代码与审计 commit=`99df1d96e041e1f78b67e69210276df66d7b5f6f`，均已推送 GitHub。原主工作树 `/home/codonflow` 的 `main` 及其既有未推送提交未被改写或推送。大型资产沿用 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。不得在交接、日志或提示词中记录服务器密码。
+A8-RK 的实际执行位于隔离工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`。RK-01 commit=`5ad3393a4f90c4a743cf7e0725b45ea62e395172`；RK-02 commit=`087b8822e14dcb15710dc2f40d8db5650b8687a4`；RK-04 代码与审计 commit=`99df1d96e041e1f78b67e69210276df66d7b5f6f`；RK-06a 评价器 commit=`db3e1667dc593b4e4e9b3605bb0eee6fc249f000`；RK-06b raw-CDS scorer commit=`56a62b4415c7e0e442ff064bb6002a4aed00798a`，均已推送 GitHub。原主工作树 `/home/codonflow` 的 `main` 及其既有未推送提交未被改写或推送。大型资产沿用 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。不得在交接、日志或提示词中记录服务器密码。
 
 ## 2. 本轮讨论的关键结论
 
@@ -174,3 +174,30 @@ RK-01、RK-02 已完成；RK-G0 尚未关闭。RK-02 之后先完成蛋白 opera
 ### 当前下一步
 
 RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 官方强 baseline smoke 矩阵、RK-06 dense B=1 评价器/actual-set schema/独立 scorer/统一成本协议。legacy sparse `anytime_curve` 不得改名冒充 dense-v2；`fixed_dna_folding.py` 在两个工作树的 `src` 下均未找到，不能假设存在。没有功能 OOD 机制增量、CodonFlow-RK 生成器、强 baseline 主结果、untouched 最终评估、time-matched SOTA 或前瞻湿实验结果。
+
+## 13. RK-06 bounded 评价器与真实 actual-set 完成记录
+
+### dense-v2 与 actual-set 评价器
+
+- RK-06a commit=`db3e1667dc593b4e4e9b3605bb0eee6fc249f000`，已推送。新增 `dense_budget_step_auc_v2` 与 `summarize_actual_set`，未改名或修改 legacy sparse `anytime_curve`。
+- dense-v2 要求从 B=1 开始每个整数预算都有真实有限向量，面积为 `sum(HV_b, b=1…Bmax−1)/(Bmax−1)`；B=500 时分母 499，Bmax 仅保留为 endpoint。缺失、重复、零预算、非整数、越界、NaN 和错误维度均拒绝。
+- actual set 只报告真实输出 Pareto/HV，`curve/area/dense_budget_step_auc_v2=null`；不把外部实际集合伪造成 500 点曲线，重复目标向量不增加 Pareto 点。
+- 18 passed + 8 subtests，独立 synthetic 审计 10/10 PASS。手算 `(B,HV)=(1,1),(2,2),(3,3)` 的 dense area=4、AUC=2；旧 sparse 显式同预算时仍由隐含原点得到 area=5.5。该审计只验证协议，不是模型结果。
+
+### C01H6.8b.1 seed0 真实 raw-CDS 复核
+
+- RK-06b scorer commit=`56a62b4415c7e0e442ff064bb6002a4aed00798a`，已推送；真实运行记录 `scorer_code_commit` 相同且 `scorer_code_dirty=false`。scorer/tests 与评价器组合为 22 passed + 8 subtests。
+- 原始记录：`/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/a6_baselines/unique18_s0/C01H6.8b.1_s0.json`；A7 raw recompute：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_external_actual_budget/C01H6.8b.1/C01H6.8b.1_s0.json`。
+- 正确 RSCU=`/home/codonflow-a8-rk/configs/cai_ref_v4train.json`，SHA256=`80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f`。第一次误传 D5 RSCU 时在评分前被哈希闸门拒绝，未生成输出；没有把该次尝试记为实验结果。
+- 真实输出：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a8_rk06_actual_set/C01H6.8b.1_s0.json`，SHA256=`171d0768136f318a580449be9fb367479b0ca38af4137171b06e9fc20029c718`。五方法 LinearDesign/codonGPT/GEMORNA/CAI greedy/uniform synonymous 输出数为 5/100/80/1/100，总计 286 条唯一 CDS；Pareto 点数为 4/14/19/1/11。
+- 独立 verifier=`scripts/a8_rk06_verify_actual_set.py`。初版 41/44，差异只在 motif 第四维：A6 保存 raw count，RK06/A7 保存 per-codon penalty。v2 对每条 CDS 独立乘以密码子数还原 legacy raw count，其余三维不变；最终 `audits/20261118/RK06/real_actual_set_C01H6_8b_1_s0_verification_v2.json` 为 44/44 PASS，五方法全 PASS。v1 失败审计保留用于诊断，未删除。
+- 所有序列与原始 payload 完全一致；与 A7 raw recompute 的 CAI/MFE/GC/motif 最大绝对差异均为 0；legacy motif 口径还原后与原始报告最大差异也为 0。actual-set HV 独立重算一致，dense 指标均为 null。
+- legacy generation seconds 单独保留；未知 wall-clock、hardware、parallelism 为 null，二次复核耗时 `reanalysis_elapsed_s_not_generation_cost` 不冒充生成成本。该结果只是单记录 actual-set smoke，不是方法排名、dense 主结果、功能提升或 SOTA。
+
+### PPT、证据与续作边界
+
+- 真实结果通过后才写入在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>。在 60 页 revision 22 基线上只追加第 61–62 页，slide IDs=`pgw/pgl`，最终 revision=24。
+- 第 61 页记录 dense-v2 公式、真实整数预算、actual-set null 口径和 10/10、18+8 验证；第 62 页记录 286 条 raw CDS、44/44 PASS、与 A7 最大差异 0、scorer commit 和五方法 actual-set 表，并显式标注 single-record、非排名、非 SOTA。
+- `audits/20261118/RK06/ppt_verification_v2.json` 为 PASS：整稿 62 页，前 60 页 slide ID 和语义 XML 不变；原第 60 页仅末尾空白差异；新页文本、备注、公式、表格和画布边界检查通过。
+- 完整复现命令、输入/输出 SHA、失败轨迹和剩余 gate 见 `audits/20261118/RK06/README.md`；大型真实输出留在 `/teams`，未提交 Git。
+- **当前下一步**：RK-G0 仍不关闭。RK-03 机制/自然数据 QC、RK-05 官方强 baseline smoke、长度/GC OOD 与 train-only 校准仍 pending；RK-06 还需真实 dense B=1…500 轨迹、完整 actual-set baseline 矩阵和统一成本协议。当前没有功能 OOD 机制增量、CodonFlow-RK 生成器、强 baseline 主结果、untouched 最终评估、time-matched SOTA、前瞻湿实验或论文闭环。
