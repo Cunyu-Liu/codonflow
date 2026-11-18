@@ -1,0 +1,31 @@
+test_density_formula (__main__.VeloHarmoSmokeTests) ... ok
+test_deterministic_short_record_selection (__main__.VeloHarmoSmokeTests) ... ERROR
+test_dual_devices_and_negative_optimization_retained (__main__.VeloHarmoSmokeTests) ... ok
+test_exact_seven_item_ga_patch (__main__.VeloHarmoSmokeTests) ... ok
+test_frozen_reports_reconcile (__main__.VeloHarmoSmokeTests) ... ok
+test_no_overwrite_finalizer (__main__.VeloHarmoSmokeTests) ... ok
+test_official_float32_pearson_aggregation (__main__.VeloHarmoSmokeTests) ... ok
+test_official_metric_reconciliation (__main__.VeloHarmoSmokeTests) ... ok
+test_scope_gate (__main__.VeloHarmoSmokeTests) ... ok
+test_synonymous_and_native_stop_contract (__main__.VeloHarmoSmokeTests) ... ERROR
+
+======================================================================
+ERROR: test_deterministic_short_record_selection (__main__.VeloHarmoSmokeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/test_a8_rk05_veloharmo_official_smoke.py", line 47, in test_deterministic_short_record_selection
+    selected = self.production_module.select_records(records, 7)
+AttributeError: module 'veloharmo_production' has no attribute 'select_records'
+
+======================================================================
+ERROR: test_synonymous_and_native_stop_contract (__main__.VeloHarmoSmokeTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/test_a8_rk05_veloharmo_official_smoke.py", line 35, in test_synonymous_and_native_stop_contract
+    self.assertTrue(self.production_module.synonymous_with_same_stop_contract("ATGAAGTAA", "ATGAAATAA"))
+AttributeError: module 'veloharmo_production' has no attribute 'synonymous_with_same_stop_contract'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.014s
+
+FAILED (errors=2)

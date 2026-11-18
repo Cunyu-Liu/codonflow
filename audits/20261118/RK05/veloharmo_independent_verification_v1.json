@@ -1,0 +1,308 @@
+{
+  "schema_version": "a8-rk05-veloharmo-independent-verification-v1",
+  "created_at": "2026-11-18T21:07:23.540902+00:00",
+  "status": "PASS",
+  "check_count": 17,
+  "passed_checks": 17,
+  "checks": [
+    {
+      "name": "fixed_source_weights_matrix_identity",
+      "pass": true,
+      "detail": [
+        {
+          "file": "Genetic_algorithm/E.coli.fold_0_best_network.pth",
+          "match": true
+        },
+        {
+          "file": "Genetic_algorithm/ga_velocity_pattern.add.time.pearson.ss.py",
+          "match": true
+        },
+        {
+          "file": "Genetic_algorithm/yeast.fold_0_best_network.pth",
+          "match": true
+        },
+        {
+          "file": "README.md",
+          "match": true
+        },
+        {
+          "file": "VeloBERT/E.coli.summary.add.pro.SS.txt.zip",
+          "match": true
+        },
+        {
+          "file": "VeloBERT/dataset.py",
+          "match": true
+        },
+        {
+          "file": "VeloBERT/train.py",
+          "match": true
+        },
+        {
+          "file": "VeloBERT/utils.py",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/E.coli.summary.add.pro.SS.txt.zip",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/VeloGRU_data.py",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/VeloGRU_train.py",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/models.py",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/run.py",
+          "match": true
+        },
+        {
+          "file": "VeloGRU/utils.py",
+          "match": true
+        }
+      ]
+    },
+    {
+      "name": "seven_record_selection_and_subset_identity",
+      "pass": true,
+      "detail": {
+        "records": [
+          "A5A616",
+          "P03061",
+          "P62522",
+          "P0ADF3",
+          "P0DSF5",
+          "Q2EES6",
+          "C1P620"
+        ],
+        "sha256": "ba42db8a99b3d35e87c5c8c57d9333a7c01d62eff85aa8b3309c1bbdefef93ac"
+      }
+    },
+    {
+      "name": "unmodified_official_velogru_test_success",
+      "pass": true,
+      "detail": {
+        "feature_dimension": 105,
+        "mean": 0.6044025421142578,
+        "std": 0.17268328368663788,
+        "device": "cuda:0"
+      }
+    },
+    {
+      "name": "unmodified_ga_entrypoint_failure_retained",
+      "pass": true,
+      "detail": {
+        "returncode": 1
+      }
+    },
+    {
+      "name": "ga_runtime_patch_exact_and_no_hidden_edits",
+      "pass": true,
+      "detail": {
+        "patch_items": 7,
+        "runtime_sha256": "2a2e7497a7635aed2bd65e0130999ada8b3fa9e107cfcc8849babb20d7c436d0"
+      }
+    },
+    {
+      "name": "independent_ga_sequence_reexecution_exact",
+      "pass": true,
+      "detail": {
+        "start_sha256": "b8800b0a9da0d4cefb70f0421d902fd2337874a1bfa74d9223417fa857f22c84",
+        "best_sha256": "b8800b0a9da0d4cefb70f0421d902fd2337874a1bfa74d9223417fa857f22c84"
+      }
+    },
+    {
+      "name": "ga_cache_and_zero_iteration_improvement_preserved",
+      "pass": true,
+      "detail": {
+        "hits": 16,
+        "misses": 12,
+        "maxsize": null,
+        "currsize": 12
+      }
+    },
+    {
+      "name": "ga_fitness_recomputation_exact",
+      "pass": true,
+      "detail": {
+        "native": -0.02560763992369175,
+        "start": 0.34598612785339355,
+        "best": 0.34598612785339355
+      }
+    },
+    {
+      "name": "native_start_best_synonymous_stop_contract",
+      "pass": true,
+      "detail": {
+        "native": true,
+        "start": true,
+        "best": true
+      }
+    },
+    {
+      "name": "ga_dual_model_velocity_arrays_exact",
+      "pass": true,
+      "detail": {
+        "native:ecoli_prediction": 0.0,
+        "native:yeast_prediction": 0.0,
+        "start:ecoli_prediction": 0.0,
+        "start:yeast_prediction": 0.0,
+        "best:ecoli_prediction": 0.0,
+        "best:yeast_prediction": 0.0
+      }
+    },
+    {
+      "name": "official_gpu_native_prediction_arrays_exact",
+      "pass": true,
+      "detail": {
+        "A5A616": 0.0,
+        "P03061": 0.0,
+        "P62522": 0.0,
+        "P0ADF3": 0.0,
+        "P0DSF5": 0.0,
+        "Q2EES6": 0.0,
+        "C1P620": 0.0
+      }
+    },
+    {
+      "name": "official_float32_metric_reconciliation",
+      "pass": true,
+      "detail": {
+        "mean": 0.6044025421142578,
+        "std": 0.17268326878547668,
+        "delta_to_official_log": 1.4901161193847656e-08
+      }
+    },
+    {
+      "name": "dual_device_environment_and_parameter_reconciliation",
+      "pass": true,
+      "detail": {
+        "torch": "2.11.0+cu128",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "parameters_per_model": 477185
+      }
+    },
+    {
+      "name": "native_start_best_fasta_identity",
+      "pass": true,
+      "detail": {
+        "records": [
+          "best",
+          "native",
+          "start"
+        ]
+      }
+    },
+    {
+      "name": "all_production_artifacts_immutable_after_reexecution",
+      "pass": true,
+      "detail": [
+        {
+          "name": "input_subset.txt",
+          "match": true
+        },
+        {
+          "name": "official_velogru_test.log",
+          "match": true
+        },
+        {
+          "name": "official_velogru_test.command.json",
+          "match": true
+        },
+        {
+          "name": "bounded_ecoli_0.6_test_relationship_result.jpg",
+          "match": true
+        },
+        {
+          "name": "official_ga_unmodified_attempt1.log",
+          "match": true
+        },
+        {
+          "name": "official_ga_unmodified_attempt1.returncode.txt",
+          "match": true
+        },
+        {
+          "name": "ga_velocity_pattern.bounded_runtime.py",
+          "match": true
+        },
+        {
+          "name": "ga_bounded_runtime.diff",
+          "match": true
+        },
+        {
+          "name": "bounded_ga_execution.log",
+          "match": true
+        },
+        {
+          "name": "bounded_ga_velocity_pattern.jpg",
+          "match": true
+        },
+        {
+          "name": "velogru_native_predictions.json",
+          "match": true
+        },
+        {
+          "name": "ga_native_start_best_predictions.json",
+          "match": true
+        },
+        {
+          "name": "ga_trace.json",
+          "match": true
+        },
+        {
+          "name": "ga_native_start_best.fasta",
+          "match": true
+        },
+        {
+          "name": "environment.json",
+          "match": true
+        },
+        {
+          "name": "pip_freeze.txt",
+          "match": true
+        }
+      ]
+    },
+    {
+      "name": "bounded_scope_and_negative_flags",
+      "pass": true,
+      "detail": {
+        "model_training": false,
+        "publication_metrics_reproduced": false,
+        "held_out_performance": false,
+        "main_baseline_comparison": false,
+        "dense_budget_complete": false,
+        "matched_cost_comparison": false,
+        "five_species_processed_matrices_complete": false,
+        "functional_ood": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "production_status_reconciled",
+      "pass": true,
+      "detail": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE"
+    }
+  ],
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_official_smoke_v1.json",
+  "production_report_sha256": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+  "max_numeric_delta": 0.0,
+  "official_metric_delta": 1.4901161193847656e-08,
+  "ga_start_to_best_improved": false,
+  "ga_best_equals_start": true,
+  "official_test_device": "cuda:0",
+  "ga_device": "cpu",
+  "independent_artifacts": {
+    "runtime": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_independent_v1/ga_velocity_pattern.independent_runtime.py",
+    "log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_independent_v1/independent_ga_execution.log",
+    "plot": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_independent_v1/independent_ga_velocity_pattern.jpg"
+  },
+  "main_baseline_comparison": false,
+  "functional_ood": false,
+  "sota_claim": false
+}

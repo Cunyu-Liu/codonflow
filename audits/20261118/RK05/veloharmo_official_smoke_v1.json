@@ -1,0 +1,296 @@
+{
+  "schema_version": "a8-rk05-veloharmo-official-smoke-v1",
+  "created_at": "2026-11-18T21:05:45.367755+00:00",
+  "status": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+  "source_commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+  "materialization": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_materialization.json",
+  "materialization_sha256": "807362f0d055bc0340f333ad58e1eb21c10a468a475629f105d0e391eb1f439f",
+  "source_file_sha256": {
+    "Genetic_algorithm/E.coli.fold_0_best_network.pth": "a22badecac33e6c34f736dbf18274982b734ebb293cf1d632aff65ac6af9f35d",
+    "Genetic_algorithm/ga_velocity_pattern.add.time.pearson.ss.py": "9631c15d7d373584e519966eb9382db34dba191ca21c1fedf599e4c4407299af",
+    "Genetic_algorithm/yeast.fold_0_best_network.pth": "b73691027121c1cadb3a4ed3b45c04ab4ca477163b0e39b5b4e3bdfdc52c5ddc",
+    "README.md": "0beff232498b735738480697f6256a1ebab19ce09a73394a3801a92616b452b7",
+    "VeloBERT/E.coli.summary.add.pro.SS.txt.zip": "bc801327526eaddc00b71a5b041112ffaa6c6255da7d2ca860155f35481fc38b",
+    "VeloBERT/dataset.py": "c2d3e437c3738b9b4c91326361e4bfcdaa7f79a841b9523f7e10e135f1d4366f",
+    "VeloBERT/train.py": "e0106619cf26d5490cfc22f86025d9e6eb4929587b7494812d41f1a0fc61d0bb",
+    "VeloBERT/utils.py": "9922aa9f91e04a9b7ab711d169a2b68e74749c7e495bc9c48489914516ea646c",
+    "VeloGRU/E.coli.summary.add.pro.SS.txt.zip": "bc801327526eaddc00b71a5b041112ffaa6c6255da7d2ca860155f35481fc38b",
+    "VeloGRU/VeloGRU_data.py": "1e1f62564c9392180e7d42ebffc04e9a8782f126d3bac456caf8889bc9cdcd3b",
+    "VeloGRU/VeloGRU_train.py": "14d002ed5ee8dcc8aa2ae4156c5ac17f8b336e891dded4a518e1097ac72b04d9",
+    "VeloGRU/models.py": "12e4be166197f465120c8573ec81ac2267b023c96444fc6d5063f9a2c379b3c7",
+    "VeloGRU/run.py": "96c8909a5f627b4043fac4f22e38dde7b3af98b2b7c8a04a6210046b2111a1fc",
+    "VeloGRU/utils.py": "105c92e83134235b421a9f0c14e13b5696f1f9a560504e71b1b271dabba4fecb"
+  },
+  "matrix": "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/VeloGRU/E.coli.summary.add.pro.SS.txt",
+  "matrix_sha256": "71008f948597daff282ccb3e124dd7e4c5b35aa92e2dbe4af43d5725d6fa740f",
+  "environment": {
+    "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "matplotlib": "3.10.9",
+    "ga_device": "cpu",
+    "official_test_device": "cuda:0",
+    "gpu_name": "NVIDIA GeForce RTX 5090",
+    "cuda_visible_devices": "0",
+    "torch_threads": 1,
+    "ga_deterministic_algorithms": true,
+    "official_test_deterministic_algorithms": false,
+    "weights_only_load": false,
+    "weights_only_mechanism": "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1",
+    "source_commit": "38b48079856aeb9d33a1b10844d77aa8f6640032"
+  },
+  "selected_records": [
+    {
+      "record_id": "A5A616",
+      "source_index": 519,
+      "codons": 31,
+      "coverage_fraction": 0.8064516129032258
+    },
+    {
+      "record_id": "P03061",
+      "source_index": 354,
+      "codons": 32,
+      "coverage_fraction": 0.84375
+    },
+    {
+      "record_id": "P62522",
+      "source_index": 1008,
+      "codons": 32,
+      "coverage_fraction": 0.90625
+    },
+    {
+      "record_id": "P0ADF3",
+      "source_index": 786,
+      "codons": 33,
+      "coverage_fraction": 0.7575757575757576
+    },
+    {
+      "record_id": "P0DSF5",
+      "source_index": 709,
+      "codons": 33,
+      "coverage_fraction": 0.8181818181818182
+    },
+    {
+      "record_id": "Q2EES6",
+      "source_index": 953,
+      "codons": 35,
+      "coverage_fraction": 0.7428571428571429
+    },
+    {
+      "record_id": "C1P620",
+      "source_index": 200,
+      "codons": 36,
+      "coverage_fraction": 0.8055555555555556
+    }
+  ],
+  "selection_rule": "Seven shortest records with >=30 codons, aligned finite features/counts, nonconstant counts and >=1 count >0.5; ties by record ID/source index; GA uses original hardcoded subset index 6.",
+  "official_velogru_test": {
+    "unmodified_entrypoint": "VeloGRU/run.py test",
+    "command": [
+      "/root/miniconda3/envs/llr_env/bin/python",
+      "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/VeloGRU/run.py",
+      "test",
+      "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/Genetic_algorithm/E.coli.fold_0_best_network.pth",
+      "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/input_subset.txt",
+      "--nt",
+      "--aa",
+      "--ss",
+      "--gene_filter",
+      "0.6",
+      "--name",
+      "bounded_ecoli"
+    ],
+    "returncode": 0,
+    "wall_seconds": 4.6736052692867815,
+    "device": "cuda:0",
+    "feature_dimension": 105,
+    "mean_pearson": 0.6044025421142578,
+    "std_pearson": 0.17268328368663788,
+    "recomputed_mean_pearson": 0.6044025421142578,
+    "recomputed_std_pearson": 0.17268326878547668,
+    "metric_delta": 1.4901161193847656e-08,
+    "records": 7,
+    "model_parameter_count": 477185,
+    "diagnostic_only_not_held_out": true
+  },
+  "official_ga_unmodified": {
+    "returncode": 1,
+    "expected_missing_module_failure": true,
+    "executed_successfully": false
+  },
+  "bounded_ga": {
+    "compatibility_patch_required": true,
+    "patch": [
+      {
+        "label": "missing_import",
+        "old": "from Mimo_data import load_data",
+        "new": "from VeloGRU_data import load_data",
+        "occurrences": 1
+      },
+      {
+        "label": "matrix_path",
+        "old": "datafile,index=\"/Your/work/path/E.coli.summary.add.pro.SS.txt\",0",
+        "new": "datafile,index='/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/input_subset.txt',0",
+        "occurrences": 1
+      },
+      {
+        "label": "ecoli_weight_path",
+        "old": "'/Your/work/path/E.coli.fold_0_best_network.pth'",
+        "new": "'/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/Genetic_algorithm/E.coli.fold_0_best_network.pth'",
+        "occurrences": 1
+      },
+      {
+        "label": "yeast_weight_path",
+        "old": "'/Your/work/path/yeast.fold_0_best_network.pth'",
+        "new": "'/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/Genetic_algorithm/yeast.fold_0_best_network.pth'",
+        "occurrences": 1
+      },
+      {
+        "label": "bounded_population",
+        "old": "POPULATION_SIZE = 100",
+        "new": "POPULATION_SIZE = 8",
+        "occurrences": 1
+      },
+      {
+        "label": "bounded_generations",
+        "old": "MAX_GENERATIONS = 1000",
+        "new": "MAX_GENERATIONS = 2",
+        "occurrences": 1
+      },
+      {
+        "label": "plot_path",
+        "old": "'P60595.velocity_pattern_mutation_rate0.01_300generation.1000size.ss.pearson.jpg'",
+        "new": "'/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/bounded_ga_velocity_pattern.jpg'",
+        "occurrences": 1
+      }
+    ],
+    "algorithm_source": "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032/Genetic_algorithm/ga_velocity_pattern.add.time.pearson.ss.py",
+    "algorithm_source_sha256": "9631c15d7d373584e519966eb9382db34dba191ca21c1fedf599e4c4407299af",
+    "population_size": 8,
+    "generations": 2,
+    "seed": 20261118,
+    "wall_seconds": 1.2729171668179333,
+    "device": "cpu",
+    "target_record": "C1P620",
+    "target_codons": 36,
+    "native_sequence": "ATGCTGGAATCAATAATTAATCTGGTATCGAGTGGCGCAGTTGACAGCCACACACCGCAAACTGCCGTTGCTGCCGTGCTGTGTGCCGCAATGATTGGGCTGTTTAGC",
+    "native_terminal_stop": false,
+    "start_sequence": "ATGTTGGAATCCATTATCAACCTGGTGAGTAGCGGGGCTGTCGACAGTCATACGCCACAGACCGCGGTAGCAGCTGTTCTCTGTGCCGCGATGATAGGCCTATTTTCT",
+    "best_sequence": "ATGTTGGAATCCATTATCAACCTGGTGAGTAGCGGGGCTGTCGACAGTCATACGCCACAGACCGCGGTAGCAGCTGTTCTCTGTGCCGCGATGATAGGCCTATTTTCT",
+    "fitness": {
+      "native": -0.02560763992369175,
+      "start": 0.34598612785339355,
+      "best": 0.34598612785339355
+    },
+    "best_minus_start": 0.0,
+    "best_minus_native": 0.3715937677770853,
+    "start_to_best_improved": false,
+    "legal_synonymous_count": 2,
+    "candidate_count": 2,
+    "unique_sequence_count": 2,
+    "cache_info_after_ga": {
+      "hits": 16,
+      "misses": 12,
+      "maxsize": null,
+      "currsize": 12
+    },
+    "objective": "Pearson similarity between native E. coli-model reference pattern and yeast-model candidate pattern; predicted patterns, not experimental function."
+  },
+  "artifacts": {
+    "input_subset.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/input_subset.txt",
+      "bytes": 26105,
+      "sha256": "ba42db8a99b3d35e87c5c8c57d9333a7c01d62eff85aa8b3309c1bbdefef93ac"
+    },
+    "official_velogru_test.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/official_velogru_test.log",
+      "bytes": 508,
+      "sha256": "16e8b2915995a9cfcd03d05bf068501dd15d452e67502ac07fe53005947aec9a"
+    },
+    "official_velogru_test.command.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/official_velogru_test.command.json",
+      "bytes": 600,
+      "sha256": "7fe252f756cb6e0afc8a443df87abea61b63fb5b1035b13444ad78badf9e14bb"
+    },
+    "bounded_ecoli_0.6_test_relationship_result.jpg": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/bounded_ecoli_0.6_test_relationship_result.jpg",
+      "bytes": 23679,
+      "sha256": "7b4218e59f294e35998b24d390eaaeaceec4e1c4b4c2e785ac8769082b7cd3fe"
+    },
+    "official_ga_unmodified_attempt1.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/official_ga_unmodified_attempt1.log",
+      "bytes": 293,
+      "sha256": "510024576d1fca1cd0a9bdd108d3d30d2a9cb3e012e12ebb780e908a7b69f4e8"
+    },
+    "official_ga_unmodified_attempt1.returncode.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/official_ga_unmodified_attempt1.returncode.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "ga_velocity_pattern.bounded_runtime.py": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/ga_velocity_pattern.bounded_runtime.py",
+      "bytes": 8819,
+      "sha256": "2a2e7497a7635aed2bd65e0130999ada8b3fa9e107cfcc8849babb20d7c436d0"
+    },
+    "ga_bounded_runtime.diff": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/ga_bounded_runtime.diff",
+      "bytes": 2537,
+      "sha256": "58701f41c08ad18e12030e44cb186e5ec97255c4f705396ab02468dab9c3b71e"
+    },
+    "bounded_ga_execution.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/bounded_ga_execution.log",
+      "bytes": 1618,
+      "sha256": "40338a674e613cae7016d1c4ccba366551fcc50dc375f82da9ad8d5db5192bf8"
+    },
+    "bounded_ga_velocity_pattern.jpg": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/bounded_ga_velocity_pattern.jpg",
+      "bytes": 823521,
+      "sha256": "dda4844367cfc3e7502984afb3dd0719fa8fb9e1cda2477b6ed90b0d1ca86e1b"
+    },
+    "velogru_native_predictions.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/velogru_native_predictions.json",
+      "bytes": 20043,
+      "sha256": "fff916890483a55ceef40f24296b0d65f71943f80297861a1253505b21f1c296"
+    },
+    "ga_native_start_best_predictions.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/ga_native_start_best_predictions.json",
+      "bytes": 8898,
+      "sha256": "3c65e96089170b9f2c81e41b45d9e9ee94ffc95650003fb19a7145c4e17eb10d"
+    },
+    "ga_trace.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/ga_trace.json",
+      "bytes": 1133,
+      "sha256": "caf60288437c0cace0069d1606f98dd1378c0296eab762f7cfd2ea014df291d1"
+    },
+    "ga_native_start_best.fasta": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/ga_native_start_best.fasta",
+      "bytes": 369,
+      "sha256": "d0f7563de51b4a075ab814c813cbf28882b7bfda7741ee58f36997f12194ca60"
+    },
+    "environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/environment.json",
+      "bytes": 610,
+      "sha256": "84c5adaac0b4876bc17a2de808951363d96f81552ec44e9e630c9080dc8aec23"
+    },
+    "pip_freeze.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/veloharmo_official_smoke_38b480_v1/pip_freeze.txt",
+      "bytes": 1886,
+      "sha256": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    }
+  },
+  "official_test_unmodified": true,
+  "ga_compatibility_patch": true,
+  "model_training": false,
+  "publication_metrics_reproduced": false,
+  "held_out_performance": false,
+  "main_baseline_comparison": false,
+  "dense_budget_complete": false,
+  "matched_cost_comparison": false,
+  "five_species_processed_matrices_complete": false,
+  "functional_ood": false,
+  "sota_claim": false,
+  "scope": "Unmodified official VeloGRU test on seven length-selected records plus a seeded CPU execution of the official GA algorithm after only import/path/plot and population/generation compatibility edits; not held-out performance, a full harmonization benchmark, functional OOD, or SOTA."
+}

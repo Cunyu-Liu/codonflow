@@ -1,0 +1,236 @@
+{
+  "schema_version": "a8-rk05-veloharmo-finalization-v1",
+  "created_at": "2026-11-18T21:09:53.086909+00:00",
+  "status": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+  "check_count": 13,
+  "passed_checks": 13,
+  "checks": [
+    {
+      "name": "production_schema_and_required_fields",
+      "pass": true,
+      "detail": [
+        "status",
+        "source_commit",
+        "matrix_sha256",
+        "selected_records",
+        "official_velogru_test",
+        "official_ga_unmodified",
+        "bounded_ga",
+        "environment",
+        "artifacts",
+        "model_training",
+        "publication_metrics_reproduced",
+        "held_out_performance",
+        "main_baseline_comparison",
+        "dense_budget_complete",
+        "matched_cost_comparison",
+        "five_species_processed_matrices_complete",
+        "functional_ood",
+        "sota_claim"
+      ]
+    },
+    {
+      "name": "pinned_source_materialization_loader_identity",
+      "pass": true,
+      "detail": {
+        "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+        "loader_status": "PASS_OFFICIAL_LOADER_ONLY"
+      }
+    },
+    {
+      "name": "official_test_raw_metrics_and_device",
+      "pass": true,
+      "detail": {
+        "mean": 0.6044025421142578,
+        "std": 0.17268328368663788,
+        "metric_delta": 1.4901161193847656e-08
+      }
+    },
+    {
+      "name": "unmodified_failure_and_seven_item_bounded_patch",
+      "pass": true,
+      "detail": {
+        "population": 8,
+        "generations": 2,
+        "patch_items": 7
+      }
+    },
+    {
+      "name": "bounded_sequence_identity_and_native_stop_contract",
+      "pass": true,
+      "detail": {
+        "codons": 36,
+        "legal": "2/2",
+        "unique": 2,
+        "native_terminal_stop": false
+      }
+    },
+    {
+      "name": "zero_iteration_improvement_not_hidden",
+      "pass": true,
+      "detail": {
+        "native": -0.02560763992369175,
+        "start": 0.34598612785339355,
+        "best": 0.34598612785339355
+      }
+    },
+    {
+      "name": "independent_verification_fully_passed",
+      "pass": true,
+      "detail": {
+        "checks": "17/17",
+        "max_numeric_delta": 0.0
+      }
+    },
+    {
+      "name": "raw_and_independent_artifact_hashes_present",
+      "pass": true,
+      "detail": [
+        {
+          "name": "input_subset.txt",
+          "match": true
+        },
+        {
+          "name": "official_velogru_test.log",
+          "match": true
+        },
+        {
+          "name": "official_velogru_test.command.json",
+          "match": true
+        },
+        {
+          "name": "bounded_ecoli_0.6_test_relationship_result.jpg",
+          "match": true
+        },
+        {
+          "name": "official_ga_unmodified_attempt1.log",
+          "match": true
+        },
+        {
+          "name": "official_ga_unmodified_attempt1.returncode.txt",
+          "match": true
+        },
+        {
+          "name": "ga_velocity_pattern.bounded_runtime.py",
+          "match": true
+        },
+        {
+          "name": "ga_bounded_runtime.diff",
+          "match": true
+        },
+        {
+          "name": "bounded_ga_execution.log",
+          "match": true
+        },
+        {
+          "name": "bounded_ga_velocity_pattern.jpg",
+          "match": true
+        },
+        {
+          "name": "velogru_native_predictions.json",
+          "match": true
+        },
+        {
+          "name": "ga_native_start_best_predictions.json",
+          "match": true
+        },
+        {
+          "name": "ga_trace.json",
+          "match": true
+        },
+        {
+          "name": "ga_native_start_best.fasta",
+          "match": true
+        },
+        {
+          "name": "environment.json",
+          "match": true
+        },
+        {
+          "name": "pip_freeze.txt",
+          "match": true
+        },
+        {
+          "name": "independent:runtime",
+          "match": true
+        },
+        {
+          "name": "independent:log",
+          "match": true
+        },
+        {
+          "name": "independent:plot",
+          "match": true
+        }
+      ]
+    },
+    {
+      "name": "runtime_and_dual_device_environment_reconciled",
+      "pass": true,
+      "detail": {
+        "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+        "python": "3.10.22",
+        "torch": "2.11.0+cu128",
+        "numpy": "2.2.6",
+        "scipy": "1.15.3",
+        "sklearn": "1.7.2",
+        "matplotlib": "3.10.9",
+        "ga_device": "cpu",
+        "official_test_device": "cuda:0",
+        "gpu_name": "NVIDIA GeForce RTX 5090",
+        "cuda_visible_devices": "0",
+        "torch_threads": 1,
+        "ga_deterministic_algorithms": true,
+        "official_test_deterministic_algorithms": false,
+        "weights_only_load": false,
+        "weights_only_mechanism": "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1",
+        "source_commit": "38b48079856aeb9d33a1b10844d77aa8f6640032"
+      }
+    },
+    {
+      "name": "bounded_scope_gate_and_no_overclaim",
+      "pass": true,
+      "detail": {
+        "failures": []
+      }
+    },
+    {
+      "name": "production_report_immutable",
+      "pass": true,
+      "detail": {
+        "sha256": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5"
+      }
+    },
+    {
+      "name": "failure_history_paths_preserved_in_handoff_scope",
+      "pass": true,
+      "detail": {
+        "note": "Earlier failed attempt directories remain under /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ and are not rewritten."
+      }
+    },
+    {
+      "name": "task14_bounded_ready_not_full_rk05_or_rkg0",
+      "pass": true,
+      "detail": {
+        "task14_scope": "bounded official baseline smoke",
+        "RK05": "not closed",
+        "RK-G0": "not closed"
+      }
+    }
+  ],
+  "production_report": "audits/20261118/RK05/veloharmo_official_smoke_v1.json",
+  "production_report_sha256": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+  "independent_report": "audits/20261118/RK05/veloharmo_independent_verification_v1.json",
+  "independent_report_sha256": "ca18a827ceab5b36fc76904e2b64c98e545cc0e699024bbe0fdae2ddc192c873",
+  "official_test_device": "cuda:0",
+  "ga_device": "cpu",
+  "ga_best_equals_start": true,
+  "main_baseline_comparison": false,
+  "functional_ood": false,
+  "sota_claim": false,
+  "main_matrix_complete": false,
+  "five_species_processed_matrices_complete": false,
+  "task14_status": "bounded_closed_only",
+  "RK05_status": "open",
+  "RK-G0_status": "open"
+}
