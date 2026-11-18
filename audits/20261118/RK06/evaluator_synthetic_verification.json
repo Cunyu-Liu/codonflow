@@ -1,0 +1,138 @@
+{
+  "audit_id": "rk06_dense_actual_synthetic_v1",
+  "status": "PASS",
+  "scope": "synthetic evaluator verification only; no model or baseline performance evaluated",
+  "formula": "sum(HV_b for b=1..Bmax-1)/(Bmax-1)",
+  "checks": [
+    {
+      "check": "dense_real_budget_curve",
+      "pass": true,
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "observed": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "check": "hand_hv_values",
+      "pass": true,
+      "expected": [
+        1.0,
+        3.0,
+        3.0
+      ],
+      "observed": [
+        1.0,
+        3.0,
+        3.0
+      ]
+    },
+    {
+      "check": "hand_auc_formula",
+      "pass": true,
+      "expected": {
+        "area": 4.0,
+        "auc": 2.0,
+        "denominator": 2
+      },
+      "observed": {
+        "area": 4.0,
+        "auc": 2.0,
+        "denominator": 2
+      }
+    },
+    {
+      "check": "b500_denominator_499",
+      "pass": true,
+      "expected": {
+        "denominator": 499,
+        "area": 998.0,
+        "auc": 2.0
+      },
+      "observed": {
+        "denominator": 499,
+        "area": 998.0,
+        "auc": 2.0
+      }
+    },
+    {
+      "check": "endpoint_excluded_from_auc",
+      "pass": true,
+      "expected": {
+        "used_in_auc": false,
+        "endpoint_hv": 3.0
+      },
+      "observed": {
+        "used_in_auc": false,
+        "endpoint_hv": 3.0
+      }
+    },
+    {
+      "check": "missing_budget_rejected_not_zero_filled",
+      "pass": true,
+      "expected": true,
+      "observed": {
+        "rejected": true,
+        "message": "dense trajectory has 1 missing real-scorer budgets: [2]; missing budgets are not zero-filled"
+      }
+    },
+    {
+      "check": "no_synthetic_origin",
+      "pass": true,
+      "expected": true,
+      "observed": {
+        "synthetic_origin_added": false,
+        "first_budget": 1
+      }
+    },
+    {
+      "check": "actual_set_hand_hv",
+      "pass": true,
+      "expected": {
+        "hv": 4.0,
+        "pareto_ids": [
+          "c"
+        ]
+      },
+      "observed": {
+        "hv": 4.0,
+        "pareto_ids": [
+          "c"
+        ]
+      }
+    },
+    {
+      "check": "actual_set_dense_metrics_null",
+      "pass": true,
+      "expected": true,
+      "observed": {
+        "dense_budget_step_auc_v2": null,
+        "curve": null,
+        "area": null
+      }
+    },
+    {
+      "check": "legacy_sparse_behavior_preserved_not_reused",
+      "pass": true,
+      "expected": {
+        "first_budget": 1,
+        "first_hv": 1.0,
+        "area_with_implicit_origin_trapezoids": 5.5
+      },
+      "observed": {
+        "first_budget": 1,
+        "first_hv": 1.0,
+        "area_with_implicit_origin_trapezoids": 5.5
+      }
+    }
+  ],
+  "n_checks": 10,
+  "n_passed": 10,
+  "model_results_evaluated": false,
+  "untouched_functional_data_used": false
+}
