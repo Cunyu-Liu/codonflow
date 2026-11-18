@@ -1,0 +1,95 @@
+{
+  "schema_version": "a8-rk03-sources-v1",
+  "frozen_on": "2026-11-18",
+  "scope": "Source registration and integrity gates only; availability requires verified local files and independent QC.",
+  "sources": [
+    {
+      "source_id": "veloharmo_official",
+      "evidence_class": "code_only_no_ribosome_matrices",
+      "repository": "https://github.com/BianBian2021/VeloHARMO",
+      "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+      "article": "https://academic.oup.com/bib/article/27/5/bbag558/8885519",
+      "status": "official_repository_tree_audited_no_published_five_species_matrices",
+      "source_references": ["Mohammad 2016", "Grady 2017", "Pop 2014", "Dunn 2013", "Battle 2015"],
+      "files": []
+    },
+    {
+      "source_id": "velopro_official",
+      "evidence_class": "pipeline_only_no_bulk_ribosome_matrices",
+      "repository": "https://github.com/ytksailab-org/VeloPro",
+      "commit": "69a4293742b552ae8d85f58558a3ab6cec21f1a5",
+      "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10989810/",
+      "status": "official_pipeline_and_small_yeast_reference_only",
+      "files": []
+    },
+    {
+      "source_id": "ribomimo_official",
+      "evidence_class": "experimental_codon_resolved_ribosome_density",
+      "repository": "https://github.com/tiantz17/RiboMIMO",
+      "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+      "article": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008842",
+      "normalization_boundary": "Official processed matrices; retain raw counts and independently recompute coverage and normalization.",
+      "files": [
+        {"file_id": "mohammad16", "filename": "Mohammad16.txt", "source_repo_path": "data/Mohammad16.txt", "organism": "Escherichia coli", "raw_accession": "GSE72899"},
+        {"file_id": "mohammad19_1", "filename": "Mohammad19-1.txt", "source_repo_path": "data/Mohammad19-1.txt", "organism": "Escherichia coli", "raw_accession": "GSE119104/GSM3358140"},
+        {"file_id": "mohammad19_2", "filename": "Mohammad19-2.txt", "source_repo_path": "data/Mohammad19-2.txt", "organism": "Escherichia coli", "raw_accession": "GSE119104/GSM3358142"},
+        {"file_id": "subtelny14", "filename": "Subtelny14.txt", "source_repo_path": "data/Subtelny14.txt", "organism": "Saccharomyces cerevisiae", "raw_accession": "GSE53268/GSM1289257"}
+      ]
+    },
+    {
+      "source_id": "rnarl_v1",
+      "evidence_class": "protein_cds_pairs_origin_requires_row_level_audit",
+      "natural_distribution_eligible": false,
+      "record": "https://zenodo.org/records/15486992",
+      "doi": "10.5281/zenodo.15486992",
+      "version": "v1",
+      "license": "CC-BY-4.0",
+      "repository_commit": "88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5",
+      "source_caveat": "Zenodo describes two LinearDesign lambda=0/1 CDS per protein, while the inspected test CSV contains one CDS_Sequence and no natural/design/lambda provenance column; do not call these natural CDS without row-level source reconciliation.",
+      "files": [
+        {"file_id": "arabidopsis_test", "filename": "Arabidopsis_thaliana_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_test.csv?download=1", "media_type": "text/csv", "expected_md5": "bda51e8464933741254b5fb8330bd315"},
+        {"file_id": "arabidopsis_train", "filename": "Arabidopsis_thaliana_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_train.csv?download=1", "media_type": "text/csv", "expected_md5": "7553e31ac05a0b41fc5c15a2f4e1f8f6"},
+        {"file_id": "arabidopsis_val", "filename": "Arabidopsis_thaliana_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Arabidopsis_thaliana_val.csv?download=1", "media_type": "text/csv", "expected_md5": "707faaf69c3f67b68ae5f03ace9817ec"},
+        {"file_id": "chlamydomonas_test", "filename": "Chlamydomonas_reinhardtii_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_test.csv?download=1", "media_type": "text/csv", "expected_md5": "2f9057ac87a5eac4194246505897f2cd"},
+        {"file_id": "chlamydomonas_train", "filename": "Chlamydomonas_reinhardtii_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_train.csv?download=1", "media_type": "text/csv", "expected_md5": "d7d6f3255d99d0087abea92497d78210"},
+        {"file_id": "chlamydomonas_val", "filename": "Chlamydomonas_reinhardtii_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Chlamydomonas_reinhardtii_val.csv?download=1", "media_type": "text/csv", "expected_md5": "5b0a60706df48f57db39f2015b34e600"},
+        {"file_id": "ecoli_test", "filename": "Escherichia_coli_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_test.csv?download=1", "media_type": "text/csv", "expected_md5": "2ea037be84380774570d9dc0fa108539"},
+        {"file_id": "ecoli_train", "filename": "Escherichia_coli_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_train.csv?download=1", "media_type": "text/csv", "expected_md5": "23894f9cf1523b1d3263704fe0c2a9d3"},
+        {"file_id": "ecoli_val", "filename": "Escherichia_coli_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Escherichia_coli_val.csv?download=1", "media_type": "text/csv", "expected_md5": "fa745751ddd8418021111fc795f90aef"},
+        {"file_id": "human_circrna_test", "filename": "Homo_sapiens_circRNA_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_test.csv?download=1", "media_type": "text/csv", "expected_md5": "eadfad0947fd50f525531e7d810fa225"},
+        {"file_id": "human_circrna_train", "filename": "Homo_sapiens_circRNA_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_train.csv?download=1", "media_type": "text/csv", "expected_md5": "1688a3e35f429a9347b9f885bd99deb0"},
+        {"file_id": "human_circrna_val", "filename": "Homo_sapiens_circRNA_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_circRNA_val.csv?download=1", "media_type": "text/csv", "expected_md5": "7fc71582d6e118c8eef5844cdd6c4ac7"},
+        {"file_id": "human_test", "filename": "Homo_sapiens_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_test.csv?download=1", "media_type": "text/csv", "expected_md5": "eb6e7104640e1a22cdacc0f182b7cef1"},
+        {"file_id": "human_train", "filename": "Homo_sapiens_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_train.csv?download=1", "media_type": "text/csv", "expected_md5": "bd7e5db39008ba84dc72b74d1f7bfa1b"},
+        {"file_id": "human_val", "filename": "Homo_sapiens_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Homo_sapiens_val.csv?download=1", "media_type": "text/csv", "expected_md5": "3f9d2ac4578ddd68c0e6a66f57fe219e"},
+        {"file_id": "penicillium_test", "filename": "Penicillium chrysogenum_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_test.csv?download=1", "media_type": "text/csv", "expected_md5": "ba2f36b49f4d2f89e6c24aa58ce1cccb"},
+        {"file_id": "penicillium_train", "filename": "Penicillium chrysogenum_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_train.csv?download=1", "media_type": "text/csv", "expected_md5": "e27f9f4910276249729123ef17ff77bf"},
+        {"file_id": "penicillium_val", "filename": "Penicillium chrysogenum_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Penicillium%20chrysogenum_val.csv?download=1", "media_type": "text/csv", "expected_md5": "d438224dd2123af989e7600bf3bcad8f"},
+        {"file_id": "thermococcus_test", "filename": "Thermococcus_kodakarensis_KOD1_test.csv", "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_test.csv?download=1", "media_type": "text/csv", "expected_md5": "a845351eb3c165d8d2031085ecf06380"},
+        {"file_id": "thermococcus_train", "filename": "Thermococcus_kodakarensis_KOD1_train.csv", "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_train.csv?download=1", "media_type": "text/csv", "expected_md5": "71743b8c967e597e3caecdb611dfc751"},
+        {"file_id": "thermococcus_val", "filename": "Thermococcus_kodakarensis_KOD1_val.csv", "download_url": "https://zenodo.org/records/15486992/files/Thermococcus_kodakarensis_KOD1_val.csv?download=1", "media_type": "text/csv", "expected_md5": "be9f1c989d4cdb0e3f6a7c4244c4b734"}
+      ]
+    },
+    {
+      "source_id": "codontransformer_training",
+      "evidence_class": "ncbi_derived_natural_dna_protein_pairs_pending_row_level_qc",
+      "natural_distribution_eligible": false,
+      "record": "https://zenodo.org/records/12509224",
+      "mirror_dataset": "https://hf-mirror.com/datasets/adibvafa/CodonTransformer",
+      "mirror_commit": "29e564325d09a650b59f061a4e69a13d8e3ea1e4",
+      "license": "CC-BY-4.0",
+      "reported_scope": "1001197 DNA-protein pairs and 164 organisms; these are publisher-reported values until independently counted.",
+      "files": [
+        {
+          "file_id": "dataset_csv",
+          "filename": "dataset.csv",
+          "download_url": "https://hf-mirror.com/datasets/adibvafa/CodonTransformer/resolve/29e564325d09a650b59f061a4e69a13d8e3ea1e4/dataset.csv",
+          "canonical_url": "https://huggingface.co/datasets/adibvafa/CodonTransformer/resolve/29e564325d09a650b59f061a4e69a13d8e3ea1e4/dataset.csv",
+          "media_type": "text/csv",
+          "expected_bytes": 4652159854,
+          "expected_sha256": "b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9"
+        }
+      ]
+    }
+  ]
+}
