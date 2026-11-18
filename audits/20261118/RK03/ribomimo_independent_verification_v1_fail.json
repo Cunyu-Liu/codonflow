@@ -1,0 +1,453 @@
+{
+  "task": "RK-03",
+  "status": "FAIL",
+  "verification": "independent raw-source recompute without importing the production QC module",
+  "production_code_git_commit": "81c0cddf3b742a50b7f6901836ab01cba984b7d9",
+  "production_script_sha256": "d547e4e4a6a363a438eaa28f2281f610143c9c45e54dbeb5bfdadb98e3571792",
+  "checks": [
+    {
+      "name": "raw_source_sha256",
+      "pass": true,
+      "details": {
+        "Mohammad16": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+        "Mohammad19-1": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5",
+        "Mohammad19-2": "e11f552ef958a381d1aec9a6d12f8e850d050fe001c31243491e08865b65cef1",
+        "Subtelny14": "d982f6d8c14ba309ce26e29c8d81793df190b11d063c1333878d3dc6c0efa118"
+      }
+    },
+    {
+      "name": "unique_output_record_ids",
+      "pass": true,
+      "details": {
+        "all_rows": 15669,
+        "all_unique": 15669,
+        "clean_rows": 8109,
+        "clean_unique": 8109
+      }
+    },
+    {
+      "name": "clean_subset_of_all_qc",
+      "pass": true,
+      "details": {
+        "unexpected_clean_ids": []
+      }
+    },
+    {
+      "name": "raw_recompute_Mohammad16",
+      "pass": true,
+      "details": {
+        "records": 1761,
+        "clean_records": 1175,
+        "coverage_gt_0_6_records": 1179,
+        "reference_exact_translation_records": 1756,
+        "alternative_start_records": 167,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 582,
+          "missing_source_key": 1,
+          "noncanonical_start": 4,
+          "reference_id_not_found": 1,
+          "translation_mismatch": 4
+        },
+        "clean_n_codons": {
+          "count": 1175,
+          "min": 16.0,
+          "q1": 153.0,
+          "median": 248.0,
+          "q3": 377.0,
+          "max": 1521.0,
+          "mean": 292.251914893617
+        },
+        "clean_gc_fraction": {
+          "count": 1175,
+          "min": 0.2988505747126437,
+          "q1": 0.500932400932401,
+          "median": 0.522273425499232,
+          "q3": 0.5385612271885745,
+          "max": 0.6030927835051546,
+          "mean": 0.5171312595946511
+        },
+        "clean_coverage": {
+          "count": 1175,
+          "min": 0.6011080332409973,
+          "q1": 0.6993538868538869,
+          "median": 0.7978947368421052,
+          "q3": 0.911542730299667,
+          "max": 1.0,
+          "mean": 0.8042394158602674
+        }
+      }
+    },
+    {
+      "name": "raw_recompute_Mohammad19-1",
+      "pass": true,
+      "details": {
+        "records": 4147,
+        "clean_records": 1423,
+        "coverage_gt_0_6_records": 1427,
+        "reference_exact_translation_records": 4138,
+        "alternative_start_records": 387,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 2720,
+          "duplicate_source_key": 2,
+          "internal_stop": 3,
+          "missing_terminal_stop": 1,
+          "no_positive_or_nonfinite_normalizer": 81,
+          "noncanonical_start": 5,
+          "translation_mismatch": 9
+        },
+        "clean_n_codons": {
+          "count": 1423,
+          "min": 15.0,
+          "q1": 156.0,
+          "median": 249.0,
+          "q3": 370.0,
+          "max": 1521.0,
+          "mean": 290.3232607167955
+        },
+        "clean_gc_fraction": {
+          "count": 1423,
+          "min": 0.2755255255255255,
+          "q1": 0.4994578776171879,
+          "median": 0.5214007782101168,
+          "q3": 0.5381441018310531,
+          "max": 0.6030927835051546,
+          "mean": 0.5152080714621657
+        },
+        "clean_coverage": {
+          "count": 1423,
+          "min": 0.6009389671361502,
+          "q1": 0.7450980392156863,
+          "median": 0.8761904761904762,
+          "q3": 0.9683375104427736,
+          "max": 1.0,
+          "mean": 0.8498426679257088
+        }
+      }
+    },
+    {
+      "name": "raw_recompute_Mohammad19-2",
+      "pass": true,
+      "details": {
+        "records": 4147,
+        "clean_records": 1595,
+        "coverage_gt_0_6_records": 1599,
+        "reference_exact_translation_records": 4138,
+        "alternative_start_records": 387,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 2548,
+          "duplicate_source_key": 2,
+          "internal_stop": 3,
+          "missing_terminal_stop": 1,
+          "no_positive_or_nonfinite_normalizer": 68,
+          "noncanonical_start": 5,
+          "translation_mismatch": 9
+        },
+        "clean_n_codons": {
+          "count": 1595,
+          "min": 16.0,
+          "q1": 160.0,
+          "median": 261.0,
+          "q3": 391.0,
+          "max": 1521.0,
+          "mean": 300.90909090909093
+        },
+        "clean_gc_fraction": {
+          "count": 1595,
+          "min": 0.26816239316239315,
+          "q1": 0.5,
+          "median": 0.5216741405082213,
+          "q3": 0.5383119388327722,
+          "max": 0.6030927835051546,
+          "mean": 0.5152670088052863
+        },
+        "clean_coverage": {
+          "count": 1595,
+          "min": 0.6007905138339921,
+          "q1": 0.7388466116060158,
+          "median": 0.8663793103448276,
+          "q3": 0.9629629629629629,
+          "max": 1.0,
+          "mean": 0.8448298663567698
+        }
+      }
+    },
+    {
+      "name": "raw_recompute_Subtelny14",
+      "pass": true,
+      "details": {
+        "records": 5614,
+        "clean_records": 3916,
+        "coverage_gt_0_6_records": 3921,
+        "reference_exact_translation_records": 5609,
+        "alternative_start_records": 0,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 1693,
+          "internal_stop": 5,
+          "translation_mismatch": 5
+        },
+        "clean_n_codons": {
+          "count": 3916,
+          "min": 26.0,
+          "q1": 231.0,
+          "median": 385.5,
+          "q3": 597.0,
+          "max": 4911.0,
+          "mean": 471.01889683350356
+        },
+        "clean_gc_fraction": {
+          "count": 3916,
+          "min": 0.30971128608923887,
+          "q1": 0.38161543774672785,
+          "median": 0.40031560569433255,
+          "q3": 0.42398535784510244,
+          "max": 0.5615615615615616,
+          "mean": 0.4051001132549148
+        },
+        "clean_coverage": {
+          "count": 3916,
+          "min": 0.6001357773251867,
+          "q1": 0.7625570776255708,
+          "median": 0.8688030120884258,
+          "q3": 0.936672416725382,
+          "max": 0.992914979757085,
+          "mean": 0.842891946926088
+        }
+      }
+    },
+    {
+      "name": "all_qc_row_level_recompute",
+      "pass": true,
+      "details": {
+        "error_count": 0,
+        "first_errors": [],
+        "expected_rows": 15669,
+        "actual_rows": 15669
+      }
+    },
+    {
+      "name": "exact_clean_set",
+      "pass": true,
+      "details": {
+        "expected": 8109,
+        "actual": 8109,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "name": "clean_row_values_and_reference_translation",
+      "pass": true,
+      "details": {
+        "error_count": 0,
+        "first_errors": []
+      }
+    },
+    {
+      "name": "replicate_metrics_recompute",
+      "pass": false,
+      "details": [
+        "replicate.all.log1p_total_count_pearson: 0.9831574589558024 != 0.9830817693122613"
+      ]
+    },
+    {
+      "name": "artifact_sha256",
+      "pass": true,
+      "details": {
+        "all_qc_jsonl_gz": {
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/ribomimo_v2/ribomimo_all_qc.jsonl.gz",
+          "sha256": "e8a159490e1277fdb67119c0df55eb4e5b086f619cb37ecb1036047b16ccdd5f"
+        },
+        "clean_jsonl_gz": {
+          "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/ribomimo_v2/ribomimo_clean.jsonl.gz",
+          "sha256": "4ea56f898d4126b8a258ffb4f0d75f6272199bcb338b9c22f877329c2cf0a902"
+        }
+      }
+    },
+    {
+      "name": "source_and_boundary_metadata",
+      "pass": true,
+      "details": {
+        "source_commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+        "utr_status": "not_provided_by_ribomimo_source",
+        "source_semantics": "author-processed codon-level ribosomal A-site counts; raw reads/P-site remapping unavailable in these files"
+      }
+    }
+  ],
+  "totals": {
+    "raw_records": 15669,
+    "clean_records": 8109,
+    "per_dataset": {
+      "Mohammad16": {
+        "records": 1761,
+        "clean_records": 1175,
+        "coverage_gt_0_6_records": 1179,
+        "reference_exact_translation_records": 1756,
+        "alternative_start_records": 167,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 582,
+          "missing_source_key": 1,
+          "noncanonical_start": 4,
+          "reference_id_not_found": 1,
+          "translation_mismatch": 4
+        },
+        "clean_n_codons": {
+          "count": 1175,
+          "min": 16.0,
+          "q1": 153.0,
+          "median": 248.0,
+          "q3": 377.0,
+          "max": 1521.0,
+          "mean": 292.251914893617
+        },
+        "clean_gc_fraction": {
+          "count": 1175,
+          "min": 0.2988505747126437,
+          "q1": 0.500932400932401,
+          "median": 0.522273425499232,
+          "q3": 0.5385612271885745,
+          "max": 0.6030927835051546,
+          "mean": 0.5171312595946511
+        },
+        "clean_coverage": {
+          "count": 1175,
+          "min": 0.6011080332409973,
+          "q1": 0.6993538868538869,
+          "median": 0.7978947368421052,
+          "q3": 0.911542730299667,
+          "max": 1.0,
+          "mean": 0.8042394158602674
+        }
+      },
+      "Mohammad19-1": {
+        "records": 4147,
+        "clean_records": 1423,
+        "coverage_gt_0_6_records": 1427,
+        "reference_exact_translation_records": 4138,
+        "alternative_start_records": 387,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 2720,
+          "duplicate_source_key": 2,
+          "internal_stop": 3,
+          "missing_terminal_stop": 1,
+          "no_positive_or_nonfinite_normalizer": 81,
+          "noncanonical_start": 5,
+          "translation_mismatch": 9
+        },
+        "clean_n_codons": {
+          "count": 1423,
+          "min": 15.0,
+          "q1": 156.0,
+          "median": 249.0,
+          "q3": 370.0,
+          "max": 1521.0,
+          "mean": 290.3232607167955
+        },
+        "clean_gc_fraction": {
+          "count": 1423,
+          "min": 0.2755255255255255,
+          "q1": 0.4994578776171879,
+          "median": 0.5214007782101168,
+          "q3": 0.5381441018310531,
+          "max": 0.6030927835051546,
+          "mean": 0.5152080714621657
+        },
+        "clean_coverage": {
+          "count": 1423,
+          "min": 0.6009389671361502,
+          "q1": 0.7450980392156863,
+          "median": 0.8761904761904762,
+          "q3": 0.9683375104427736,
+          "max": 1.0,
+          "mean": 0.8498426679257088
+        }
+      },
+      "Mohammad19-2": {
+        "records": 4147,
+        "clean_records": 1595,
+        "coverage_gt_0_6_records": 1599,
+        "reference_exact_translation_records": 4138,
+        "alternative_start_records": 387,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 2548,
+          "duplicate_source_key": 2,
+          "internal_stop": 3,
+          "missing_terminal_stop": 1,
+          "no_positive_or_nonfinite_normalizer": 68,
+          "noncanonical_start": 5,
+          "translation_mismatch": 9
+        },
+        "clean_n_codons": {
+          "count": 1595,
+          "min": 16.0,
+          "q1": 160.0,
+          "median": 261.0,
+          "q3": 391.0,
+          "max": 1521.0,
+          "mean": 300.90909090909093
+        },
+        "clean_gc_fraction": {
+          "count": 1595,
+          "min": 0.26816239316239315,
+          "q1": 0.5,
+          "median": 0.5216741405082213,
+          "q3": 0.5383119388327722,
+          "max": 0.6030927835051546,
+          "mean": 0.5152670088052863
+        },
+        "clean_coverage": {
+          "count": 1595,
+          "min": 0.6007905138339921,
+          "q1": 0.7388466116060158,
+          "median": 0.8663793103448276,
+          "q3": 0.9629629629629629,
+          "max": 1.0,
+          "mean": 0.8448298663567698
+        }
+      },
+      "Subtelny14": {
+        "records": 5614,
+        "clean_records": 3916,
+        "coverage_gt_0_6_records": 3921,
+        "reference_exact_translation_records": 5609,
+        "alternative_start_records": 0,
+        "exclusion_reason_counts": {
+          "coverage_not_strictly_gt_0_6": 1693,
+          "internal_stop": 5,
+          "translation_mismatch": 5
+        },
+        "clean_n_codons": {
+          "count": 3916,
+          "min": 26.0,
+          "q1": 231.0,
+          "median": 385.5,
+          "q3": 597.0,
+          "max": 4911.0,
+          "mean": 471.01889683350356
+        },
+        "clean_gc_fraction": {
+          "count": 3916,
+          "min": 0.30971128608923887,
+          "q1": 0.38161543774672785,
+          "median": 0.40031560569433255,
+          "q3": 0.42398535784510244,
+          "max": 0.5615615615615616,
+          "mean": 0.4051001132549148
+        },
+        "clean_coverage": {
+          "count": 3916,
+          "min": 0.6001357773251867,
+          "q1": 0.7625570776255708,
+          "median": 0.8688030120884258,
+          "q3": 0.936672416725382,
+          "max": 0.992914979757085,
+          "mean": 0.842891946926088
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Author-processed A-site count matrices; no independent raw-read alignment or P-site remapping was performed.",
+    "The source matrices do not provide UTRs.",
+    "Clean is a reference- and coverage-qualified mechanism table, not authorization for functional-model training or a functional OOD result."
+  ]
+}

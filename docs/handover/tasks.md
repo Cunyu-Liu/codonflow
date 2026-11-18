@@ -15,6 +15,7 @@
 - [x] RK-02：8 份官方原始附件完成 SHA 登记，生成 25,420 行统一长表；11/11 测试及独立 39/39 检查通过。Kudla 逐条序列—表达表未获得，实际为 0 行并记录 `unavailable`；RK-02 时点未创建 split 或训练。
 - [x] RK-04 核心功能 split：Boël 按 5,554 个 operational homology clusters 划分 train/dev/test=5,079/635/634 行；全部 19,072 个 MAGE rows 与 13,569 个 construct-signature groups 冻结为 untouched。六类跨 split 重叠均为 0，独立 33/33 checks、组合 19/19 tests 通过；commit `99df1d96e041e1f78b67e69210276df66d7b5f6f` 已推送。长度/GC OOD 与 train-only 归一化/校准仍 pending，未授权功能训练。
 - [x] RK-06 bounded 子项：dense-v2/actual-set 评价器与 synthetic 10/10 审计；C01H6.8b.1 seed0 五方法 286 条 raw CDS 复核，最终 44/44 PASS，与 A7 最大差异 0。代码 `db3e1667` / `56a62b44` 已推送，第 61–62 页 PPT 已记录。真实 dense 轨迹、全记录矩阵和统一成本主比较仍 pending。
+- [x] RK-03 bounded RiboMIMO 子项：四份固定官方矩阵与五份参考 FASTA 完整核验，43/43 个缺失版本化蛋白精确补回；v2 production 共 15,669 raw / 8,109 clean，独立 raw-source recompute 13/13 PASS。生产修复 commit `81c0cddf` 已推送，第 63 页 PPT 已记录。该子项只验收作者处理后的 A-site count 与参考蛋白 QC，不覆盖 raw-read/P-site 重比对、UTR 或功能 OOD。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
 
@@ -39,6 +40,7 @@
 - **任务**：获取 VeloHARMO 五物种 Ribo-seq 来源、RNARL Zenodo `15486992`、CodonTransformer 可用数据；保留 D4/D5。
 - **输出**：UTR–CDS/蛋白映射、Ribo QC、自然数据分布报告与 SHA。
 - **验收**：覆盖/映射/重复 QC 完整；长度/GC/CAI/MFE/EFE/宿主/蛋白簇分布可复算。
+- **当前进展（2026-11-18）**：RiboMIMO 官方 commit `094c693d…` 的 Mohammad16、Mohammad19-1/2、Subtelny14 四份矩阵已通过 blob/SHA 完整性核验；修复 NP/YP/WP 解析并补回 43 个版本化蛋白后，v2 all-QC/clean 为 15,669/8,109 条，独立 verifier 不导入生产 QC 模块，13/13 PASS。Mohammad19 两个不同 GSM 样本的 1,385 对双 clean 配对，profile Pearson/Spearman 中位数为 0.6146/0.5835，仅作重现性诊断。v1 的 YP 误排已修复，诊断 artifact 未验收。RNARL 21 文件 manifest、CodonTransformer 4,652,159,854-byte 文件及行级 QC、VeloHARMO 其余物种矩阵、UTR–CDS、raw-read/P-site 重比对和完整自然分布报告仍 pending；RK-03 与 RK-G0 不关闭。
 
 ### RK-04 建立无泄漏功能与 OOD 划分
 

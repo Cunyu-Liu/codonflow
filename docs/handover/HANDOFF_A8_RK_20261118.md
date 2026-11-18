@@ -201,3 +201,28 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK06/ppt_verification_v2.json` 为 PASS：整稿 62 页，前 60 页 slide ID 和语义 XML 不变；原第 60 页仅末尾空白差异；新页文本、备注、公式、表格和画布边界检查通过。
 - 完整复现命令、输入/输出 SHA、失败轨迹和剩余 gate 见 `audits/20261118/RK06/README.md`；大型真实输出留在 `/teams`，未提交 Git。
 - **当前下一步**：RK-G0 仍不关闭。RK-03 机制/自然数据 QC、RK-05 官方强 baseline smoke、长度/GC OOD 与 train-only 校准仍 pending；RK-06 还需真实 dense B=1…500 轨迹、完整 actual-set baseline 矩阵和统一成本协议。当前没有功能 OOD 机制增量、CodonFlow-RK 生成器、强 baseline 主结果、untouched 最终评估、time-matched SOTA、前瞻湿实验或论文闭环。
+
+## 14. RK-03 RiboMIMO bounded 数据 QC 完成记录
+
+### 来源、完整性与生产修复
+
+- 下载器 commit=`1264f1a577c1c6d2bae1612d7022569828998a7d`、`8b6365f4be7456f089e53bf3089c0ef75c3f06cb`；首版 QC commit=`4b551c850e61791cd7895a2968b23c4d9fe5ca3a`；NP/YP/WP 与 supplement 修复 commit=`81c0cddf3b742a50b7f6901836ab01cba984b7d9`，均已推送。下载器/QC 合计 11/11 tests PASS。
+- RiboMIMO 官方仓库固定为 `https://github.com/tiantz17/RiboMIMO` commit `094c693d4df45f4b29f5a3209b31c452a39092a5`。四份真实 CDS–A-site count 矩阵均逐文件匹配固定 commit blob ID；来源对应 Mohammad16=`GSE72899`，Mohammad19-1/2=`GSE119104` 的 `GSM3358140/GSM3358142`，Subtelny14=`GSE53268/GSM1289257`。两个 GSM 是不同样本，不在来源证据不足时推断其技术或生物学重复属性。
+- 数据是作者处理后的密码子级 A-site counts，不含 raw reads 或 UTR。官方 positive 过滤为 count>0.5，严格 coverage 为>0.6，归一化均值为 positive positions 的 count mean；不得把该表称为已独立完成 read-level P-site 重比对。
+- 首版 v1 把直接 `YP_...` header 误标为 missing key，Mohammad19 每批 223 条受影响；v1 仅保留诊断，不验收。v2 支持 NP/YP/WP 与真实 lcl header，并通过 NCBI E-utilities 精确补回 43/43 个缺失版本化蛋白，unresolved=0；supplement SHA256=`cab89eeb1533ce53aef6091e3996356432cd3cd8972929bf081144749e475325`。
+- Mohammad19 两个批次都保留重复 key `NP_417367.1` 的两条不同 source-index CDS 于 all-QC，并从唯一映射 clean 表排除；没有字典静默覆盖。
+
+### v2 结果与独立复核
+
+- production 目录：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/ribomimo_v2`。Mohammad16 raw/clean=1,761/1,175，Mohammad19-1=4,147/1,423，Mohammad19-2=4,147/1,595，Subtelny14=5,614/3,916；合计 15,669/8,109。严格 coverage pass 分别为 1,179/1,427/1,599/3,921，参考蛋白精确翻译分别为 1,756/4,138/4,138/5,609。
+- all-QC SHA256=`e8a159490e1277fdb67119c0df55eb4e5b086f619cb37ecb1036047b16ccdd5f`；clean SHA256=`4ea56f898d4126b8a258ffb4f0d75f6272199bcb338b9c22f877329c2cf0a902`；QC summary SHA256=`1f9c5bc42bdc4fde937b2b091967fc50f27d6e09dbc22c69189e54456a977b8b`。
+- 独立 verifier=`scripts/a8_rk03_verify_ribomimo.py`，不导入生产 QC 模块，从 raw 与参考 FASTA 重算 accession、翻译、终端/内部 stop、coverage、positive-mean density、全部排除原因、clean 集合、replicate 统计和 artifact hash。最终 `audits/20261118/RK03/ribomimo_independent_verification.json` 为 13/13 PASS，覆盖 15,669 条 raw 与 8,109 条精确 clean 集合。
+- verifier 初版把 log1p total-count 相关性也限制在有效 profile 配对，和生产的全有限 total-count 配对分母不同；最终显式分离两种配对口径后 PASS，未放宽容差。失败报告保留为 `ribomimo_independent_verification_v1_fail.json`。
+- Mohammad19 shared unique keys=4,145，identical CDS pairs=4,145，both-clean pairs=1,385。双 clean 的 profile Pearson 中位数=0.6146305006、Spearman 中位数=0.5834616124、log1p total-count Pearson=0.9837482972；全部 identical pairs 的 log1p total-count Pearson=0.9831574590。以上是不同 GSM 样本的重现性诊断，不是模型性能或技术/生物学重复因果结论。
+
+### PPT、证据与未关闭边界
+
+- 结果通过后才写入在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>。实时基线为 62 页 revision 24，只追加第 63 页 `pgN`，写入后 revision=25。新页记录四批 raw/coverage/reference-exact/clean、13/13 PASS、43/43 蛋白补回和 paired-clean 相关性，并显式标注 processed A-site counts、无 raw-read remapping/UTR、mechanism QC only。
+- `audits/20261118/RK03/ppt_verification.json` 为 PASS：最终 63 页，前 62 页 slide ID、标签、属性、文字和递归子元素顺序不变；第 62 页仅末尾空白序列化差异。新页所有关键文字和数字回读齐全。
+- 复现命令、raw/reference SHA、失败修正和边界见 `audits/20261118/RK03/README.md`。大型 raw、reference、all-QC、clean 和 supplement 均在 `/teams`，未提交 Git。
+- **RK-03 整体与 RK-G0 仍未关闭。** VeloHARMO 官方仓库/论文未提供五物种完整可下载矩阵，不能宣称五物种齐全；RNARL 21 文件最终 manifest 未完成，且 Zenodo 描述与论文 Methods、实际单 CDS 列的来源口径矛盾未解决；CodonTransformer 最终 byte/SHA、1,001,197 pairs/164 organisms 与行级 CDS QC 未验收。UTR–CDS、raw-read/P-site 独立重比对、长度/GC/CAI/MFE/EFE/宿主/蛋白簇完整分布报告仍 pending。当前没有功能训练授权、功能 OOD 机制增量、生成器或 SOTA 结果。
