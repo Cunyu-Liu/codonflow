@@ -1,0 +1,68 @@
+{
+  "schema_version": "a8-rk03-codontransformer-independent-verification-v1",
+  "created_at": "2026-11-18T17:29:58.540495+00:00",
+  "status": "PASS",
+  "check_count": 8,
+  "passed_checks": 8,
+  "checks": [
+    {
+      "name": "raw_hash_header_translation",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "all_qc_exact_rows",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "clean_artifact_exact_set",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "summary_counts_and_duplicates",
+      "pass": true,
+      "detail": {}
+    },
+    {
+      "name": "independent_distributions",
+      "pass": true,
+      "detail": {
+        "mismatches": [],
+        "max_numeric_delta": 0.0
+      }
+    },
+    {
+      "name": "publisher_scope_reconciliation",
+      "pass": true,
+      "detail": {
+        "applicable": true,
+        "raw_rows": 1001197,
+        "organisms": 164
+      }
+    },
+    {
+      "name": "scientific_scope_flags",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "artifact_manifest_sha256",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "recomputed": {
+    "raw_rows": 1001197,
+    "clean_rows": 449655,
+    "raw_organisms": 164,
+    "clean_organisms": 40
+  },
+  "max_numeric_delta": 0.0,
+  "production_script_sha256": "1287aa6e4f1c88296c3a6aacfb881b7f2b082a452563d359ae8298c42a6dc826",
+  "bounded_natural_sequence_distribution_ready": true,
+  "functional_training_authorized": false,
+  "functional_ood_claim_authorized": false,
+  "provenance_boundary": "Independent row checks do not re-download every NCBI accession."
+}

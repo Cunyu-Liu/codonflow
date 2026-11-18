@@ -1,0 +1,59 @@
+{
+  "schema_version": "a8-rk03-finalization-v1",
+  "mode": "codontransformer",
+  "download_pid": 3421735,
+  "started_at": "2026-11-18T16:27:06.456558+00:00",
+  "status": "PASS",
+  "steps": [
+    {
+      "name": "full_codontransformer_qc",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_codontransformer_qc.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--raw",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/codontransformer_training/dataset.csv",
+        "--output-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/codontransformer_v1",
+        "--audit",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/codontransformer_qc.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 536.2976241111755
+    },
+    {
+      "name": "independent_codontransformer_verifier",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_verify_codontransformer.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--raw",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/codontransformer_training/dataset.csv",
+        "--qc-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/codontransformer_v1",
+        "--audit",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/codontransformer_independent_verification.json",
+        "--production-script",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_codontransformer_qc.py"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 343.28269815444946
+    }
+  ],
+  "result": {
+    "rows": 1001197,
+    "clean_rows": 449655,
+    "raw_organisms": 164,
+    "clean_organisms": 40,
+    "publisher_scope_matches": true,
+    "bounded_natural_sequence_distribution_ready": true,
+    "functional_training_authorized": false,
+    "verification_status": "PASS",
+    "verification_checks": "8/8",
+    "raw_sha256": "b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9",
+    "qc_summary_sha256": "2943c0c99a717db20232ddf7234f7a91b083841b074e3024508b144df8bf7c27"
+  },
+  "finished_at": "2026-11-18T17:30:14.179821+00:00"
+}

@@ -1,6 +1,6 @@
-# RK-03 RiboMIMO v2：来源、QC 与独立复核
+# RK-03 机制与自然序列数据：来源、QC 与独立复核
 
-日期：2026-11-18。本文只验收 RiboMIMO 的 bounded 机制数据子项；RK-03 整体与 RK-G0 尚未关闭。
+日期：2026-11-18。本文验收 RiboMIMO 机制数据与 CodonTransformer 自然序列两个 bounded 子项；RK-03 整体与 RK-G0 尚未关闭。
 
 ## 1. 权威代码与科学边界
 
@@ -127,6 +127,46 @@ $PY -m scripts.a8_rk03_verify_ribomimo \
 
 - VeloHARMO 官方仓库/论文没有给出五物种完整可下载矩阵，Pseudomonas、Drosophila、human 等来源仍未闭合；不能宣称五物种数据齐全。
 - RNARL 21 文件最终 MD5 manifest 未完成；Zenodo 描述、论文 Methods 与实际单 CDS 列之间的来源口径矛盾未解决，当前不能作为已验证天然 CDS 分布证据。
-- CodonTransformer 最终 byte/SHA、1,001,197 pairs/164 organisms 和行级 CDS QC 未验收；任何残片都不是有效训练数据。
+- CodonTransformer 全量自然序列 QC 已完成，见第 9 节；该子项仍不提供功能标签、功能训练/OOD 或模型性能授权。
 - UTR–CDS 映射、raw-read/P-site 独立重比对、长度/GC/CAI/MFE/EFE/宿主/蛋白簇完整分布报告仍 pending。
 - 本结果不授权功能训练，不构成功能 OOD、机制增量、生成器、SOTA 或前瞻湿实验结论。
+
+## 9. CodonTransformer 全量自然序列 QC（bounded 完成）
+
+固定来源为 Zenodo <https://zenodo.org/records/12509224> 与 HF mirror commit `29e564325d09a650b59f061a4e69a13d8e3ea1e4`。最终 raw 为 4,652,159,854 bytes，SHA256=`b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9`；`codontransformer_download_manifest.json` 为 complete，1 record、0 failure。
+
+全量结果：
+
+- raw/clean rows=`1,001,197 / 449,655`；raw/clean organisms=`164 / 40`，publisher-reported 1,001,197 rows 与 164 organisms 精确一致。
+- 排除原因计数：accession/coordinates missing=546,395，invalid GeneID=34,929，start not ATG=56,137，accession coordinate length mismatch=70。原因可在同一行重叠，不可相加解释净排除数。
+- fine_tuned True/False=`45,875 / 955,322`；duplicate DNA rows after first=18,366、keys=14,844，全部为跨 organism 重复，未静默删除。
+- clean protein length 中位数=427 aa（含 stop），GC 中位数=`0.48171368861024033`。
+- 生产目录：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/codontransformer_v1/`。
+- all-QC/clean/QC summary SHA256 分别为 `3f675500147820efa53718e5896f4580ecd50639ecbe98557a01bb5c39656b2a`、`4ce3999f10319d858c8d1c11402d74253393cf22f6e8eeb9fe519cdadb97f694`、`2943c0c99a717db20232ddf7234f7a91b083841b074e3024508b144df8bf7c27`。
+
+`codontransformer_independent_verification.json` 为 **8/8 PASS**，不导入生产模块，从 raw 逐行重算翻译、token、accession 坐标、clean 精确集合、计数、重复、分布和 artifact SHA；最大数值差=0。`codontransformer_finalization.json` 为 **PASS**，确认 `bounded_natural_sequence_distribution_ready=true`、`functional_training_authorized=false`、`functional_ood_claim_authorized=false`。
+
+报告中的 `config_sha256=01a20b19…` 是全量运行时的配置快照；后续 commit `895458f1` 只激活 RNARL 21 文件的 expected_bytes，未改变 CodonTransformer source record、raw bytes 或 raw SHA。独立行级 QC 不等于重新下载并核对每一条 NCBI accession。
+
+复现命令：
+
+```bash
+cd /home/codonflow-a8-rk
+PY=/root/miniconda3/envs/codonflow/bin/python
+BASE=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03
+
+$PY scripts/a8_rk03_codontransformer_qc.py \
+  --config configs/a8_rk03_sources.json \
+  --raw "$BASE/raw/codontransformer_training/dataset.csv" \
+  --output-dir "$BASE/clean/codontransformer_v1" \
+  --audit audits/20261118/RK03/codontransformer_qc.json
+
+$PY scripts/a8_rk03_verify_codontransformer.py \
+  --config configs/a8_rk03_sources.json \
+  --raw "$BASE/raw/codontransformer_training/dataset.csv" \
+  --qc-dir "$BASE/clean/codontransformer_v1" \
+  --audit audits/20261118/RK03/codontransformer_independent_verification.json \
+  --production-script scripts/a8_rk03_codontransformer_qc.py
+```
+
+production 会写同名输出；复核时保留冻结 artifact，只运行独立 verifier，新实验必须使用新目录。大型 raw/all-QC/clean 均在 `/teams`，Git 只提交小型审计与 manifest。

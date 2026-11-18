@@ -258,12 +258,12 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 
 - RNA-aware v2 生产 QC、独立 verifier 和下载修复以 `99f7ca1d`、`747b33e9`、`09b4d814` 推送。真实记录使用 `ACGU/AUG/UGA/UAA/UAG` 和蛋白终端 `*`；`Protein_Length` 包含 `*`。保存原始 `source_cds_rna`，canonical `cds_dna` 只供翻译和泄漏审计。任一成员的 Protein_ID、蛋白序列或 exact CDS 跨 split 重合时整对排除。
 - clean-pair 授权以全量文件处理、非空 clean pairs 和整对泄漏排除为前提；raw overlap 仍如实报告，不能把 LinearDesign 生成对称为天然 CDS，也不能恢复 CSV 中不存在的 lambda 身份或授权功能训练/OOD。
-- 官方 21 文件精确字节报告 `audits/20261118/RK03/rnarl_official_file_sizes.json` 合计 `714,327,390` bytes，commit=`218c6de4`；持久 finalizer commit=`42ee3984`。已知错误 Arabidopsis test final 保留在 quarantine，expected MD5 未改。
+- 官方 21 文件精确字节报告 `audits/20261118/RK03/rnarl_official_file_sizes.json` 合计 `714,327,390` bytes，commit=`218c6de4`；持久 finalizer commit=`42ee3984`。精确字节已在无网络激活工具中写回 21 文件配置，合成 21/21 与远端独立 21/21 复核通过，commit=`895458f1`。已知错误 Arabidopsis test final 保留在 quarantine，expected MD5 未改；全量下载、finalization/QC 仍未完成。
 - v2 partial smoke 仅覆盖当时已验收的 15 文件：33,924 raw、33,510 clean、16,755 clean pairs；pair-structure 不满足 12 组，2 个 exact CDS overlap pairs 整对排除。它不是 21 文件正式结果，既有 partial 的 bounded-ready 字段也不用于否定后续授权逻辑。
 
 ### CodonTransformer 与 VeloHARMO（严格限定来源范围）
 
-- CodonTransformer 流式生产 QC/独立 verifier commit=`1fd6cf02`，真实 1,000 行 prefix smoke/审计 commit=`81ba6525`。prefix 为 1,000/1,000 clean、无排除原因/重复、独立 8/8 PASS；读取时 full hash 未验证，故不证明 publisher-reported 1,001,197 pairs、164 organisms 或最终分布。正式 final bytes/SHA、全量行级 QC 和独立报告通过前不得写成训练就绪。
+- CodonTransformer 流式生产 QC/独立 verifier commit=`1fd6cf02`，真实 1,000 行 prefix smoke/审计 commit=`81ba6525`。此后固定 raw 已完整验收：4,652,159,854 bytes，SHA256=`b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9`；下载 manifest complete。全量生产 QC 为 1,001,197 raw rows / 164 organisms、449,655 clean rows / 40 organisms，publisher scope 一致；独立 raw-source verifier **8/8 PASS**，finalization **PASS**。all-QC/clean SHA256 分别为 `3f675500…`、`4ce3999f…`。该子项只授权有边界自然序列分布使用，不授权功能训练/OOD、宿主匹配 CAI、模型或 SOTA 结论；prefix 仍保留为历史 smoke，不替代全量报告。
 - VeloHARMO 固定 commit=`38b48079856aeb9d33a1b10844d77aa8f6640032` 的树审计 commit=`dd61dbf1`：14 个 tree entries，仅列两份 E. coli ZIP 条目，没有 yeast/Pseudomonas/Drosophila/human 处理后矩阵。`PASS_SOURCE_TREE_AUDIT_ONLY` 不表示 ZIP 已下载、解压或 QC；五物种完整性、模型训练和 SOTA 均未授权。
 
 ### RNARL 官方 baseline 负向可复现性审计（bounded 完成）
