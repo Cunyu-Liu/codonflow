@@ -1,0 +1,106 @@
+{
+  "baseline_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ribomimo_v1/ribomimo-baseline-v01.xml",
+  "baseline_xml_sha256": "863fb78d364a05b21a9ceceb133f72aa8751d404643d8f9b58b877953164ae12",
+  "check_count": 11,
+  "checks": [
+    {
+      "detail": {
+        "finalization": "13/13",
+        "independent": "17/17"
+      },
+      "name": "frozen_scientific_evidence",
+      "pass": true
+    },
+    {
+      "detail": "pgG",
+      "name": "add_response_slide_id",
+      "pass": true
+    },
+    {
+      "detail": {
+        "revision": 37,
+        "slides": 75
+      },
+      "name": "baseline_identity",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 76,
+        "before": 75
+      },
+      "name": "exactly_one_slide_appended",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "previous_slide_ids_and_order_unchanged",
+      "pass": true
+    },
+    {
+      "detail": {
+        "changed_slide_ids": []
+      },
+      "name": "previous_semantic_xml_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pgG",
+      "name": "new_slide_is_last_and_matches_response",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 38,
+        "before": 37
+      },
+      "name": "revision_advanced",
+      "pass": true
+    },
+    {
+      "detail": {
+        "required_strings": 30
+      },
+      "name": "readback_values_match_frozen_json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "note_paragraphs": 4
+      },
+      "name": "readback_notes_bounds_and_page",
+      "pass": true
+    },
+    {
+      "detail": [
+        "Bounded official training only",
+        "no full 10-fold/100-epoch",
+        "OOD",
+        "main matrix",
+        "SOTA",
+        "Negative R-squared and near-zero Pearson are diagnostics",
+        "max metric delta 4.10e-07"
+      ],
+      "name": "readback_scope_preserved",
+      "pass": true
+    }
+  ],
+  "evidence_commit": "a6e119650c4dd52110849b43aa377cbbd1e422b0",
+  "mode": "post_write_server_readback",
+  "new_slide_id": "pgG",
+  "paper_commit": "56f9c4d559dc29f94b295f2500f7c0a3af1410e4",
+  "passed_checks": 11,
+  "production_module_imported": false,
+  "readback_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ribomimo_v1/ribomimo-readback-v01.xml",
+  "readback_xml_sha256": "a76c1ac85967e59b1697e6332b8478a6124112eff1d581d14f5ae9fb24851ed4",
+  "revision_id": 38,
+  "schema_version": "a8-rk05-ribomimo-ppt-independent-verification-v1",
+  "scope": "Bounded RiboMIMO official training record only; no full protocol, OOD, main matrix or SOTA closure.",
+  "slide_count": 76,
+  "source_sha256": {
+    "finalization": "69c532e20612b7d8de83486f7c2ced7961ac416f7c3e5218946f2804956407d8",
+    "independent": "d97874904cca4b4e1589ee4eb4daac482450762c7b9d8dee840c0756eb443195",
+    "production": "ce79120bef6f25aefcd9e3b5e440c764a300f78c6da3d6cecd01c9f55bf4a9b6"
+  },
+  "status": "PASS"
+}
