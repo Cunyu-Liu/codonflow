@@ -1,9 +1,9 @@
 {
-  "check_count": 15,
+  "check_count": 16,
   "checks": [
     {
       "detail": {
-        "sources": 27
+        "sources": 32
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59",
+      "detail": "505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -78,6 +78,11 @@
     },
     {
       "detail": null,
+      "name": "ensembledesign_bounded_execution_and_scope",
+      "pass": true
+    },
+    {
+      "detail": null,
       "name": "rnarl_negative_reproducibility_scope",
       "pass": true
     },
@@ -102,12 +107,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59",
-  "passed_checks": 15,
+  "paper_sha256": "505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca",
+  "passed_checks": 16,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v4",
+  "schema_version": "a8-rk-paper-independent-verification-v5",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "491950e89dbb2271946cf163a227183bcedf5444b21c021f32d9da8f6fdb85df"
+  "sync_audit_sha256": "14c9f10b39b0b89508b0fd0f1d29b6794e6d844675816a7ff5f03b98dd004165"
 }

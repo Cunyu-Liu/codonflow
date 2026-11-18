@@ -1,0 +1,184 @@
+{
+  "protocol": "a8_rk05_ensembledesign_finalization_v1",
+  "created_at": "2026-11-18T19:49:24.473934+00:00",
+  "status": "PASS",
+  "scope": "bounded_official_example_and_single_c01_smoke_closed_not_main_comparison",
+  "task_completion_authorized": true,
+  "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+  "check_count": 11,
+  "passed_checks": 11,
+  "checks": [
+    {
+      "name": "required_evidence_present",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "name": "fixed_official_source_and_build",
+      "pass": true,
+      "detail": {
+        "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+        "archive_sha256": "0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2",
+        "archive_crc_pass": true,
+        "unsafe_members": 0,
+        "symlink_members": 0,
+        "build_reporting_recovery": {
+          "initial_make_executed": true,
+          "initial_report_generated": false,
+          "error": "PackageNotFoundError while reading python-gflags metadata without target sys.path in the reporting process",
+          "initial_logs_preserved": true,
+          "confirmation_make_executed": true
+        }
+      }
+    },
+    {
+      "name": "failed_stop_contract_v1_preserved",
+      "pass": true,
+      "detail": {
+        "v1_status": "FAILED",
+        "official_returncode": 0,
+        "error": "ValueError('non-synonymous or stop-contract failure: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_official_example_cd9324_cpu_v1/seq1/run_1.txt')"
+      }
+    },
+    {
+      "name": "bounded_protocol_complete",
+      "pass": true,
+      "detail": {
+        "parameters": {
+          "beam_size": 100,
+          "lr": 0.03,
+          "epsilon": 0.5,
+          "num_iters": 3,
+          "num_runs": 2,
+          "num_threads": 4
+        },
+        "example_runs": 6,
+        "c01_runs": 2
+      }
+    },
+    {
+      "name": "official_example_exact",
+      "pass": true,
+      "detail": {
+        "best_efe": {
+          "seq1": -18.0,
+          "seq2": -43.71,
+          "seq3": -70.29
+        },
+        "elapsed_s": 8.044502989854664
+      }
+    },
+    {
+      "name": "c01_bounded_execution",
+      "pass": true,
+      "detail": {
+        "record_id": "C01H6.8b.1",
+        "protein_length_aa": 135,
+        "best_efe": -269.97,
+        "elapsed_s": 52.65070143900812
+      }
+    },
+    {
+      "name": "independent_raw_and_scorer_verification",
+      "pass": true,
+      "detail": {
+        "example": "13/13",
+        "c01": "13/13",
+        "example_max_production_delta": 0.0,
+        "c01_max_production_delta": 0.0
+      }
+    },
+    {
+      "name": "aggregate_cost_ledger",
+      "pass": true,
+      "detail": {
+        "example_elapsed_s": 8.044502989854664,
+        "c01_elapsed_s": 52.65070143900812,
+        "per_run_elapsed_s": null
+      }
+    },
+    {
+      "name": "unit_tests",
+      "pass": true,
+      "detail": {
+        "test_count": 11
+      }
+    },
+    {
+      "name": "no_credentials_in_code",
+      "pass": true,
+      "detail": {
+        "checked_files": [
+          "production",
+          "independent_verifier",
+          "unit_tests"
+        ]
+      }
+    },
+    {
+      "name": "scientific_scope",
+      "pass": true,
+      "detail": {
+        "bounded_official_smoke_closed": true,
+        "main_baseline_matrix_closed": false,
+        "matched_lineardesign_comparison": false,
+        "sota_claim": false
+      }
+    }
+  ],
+  "artifacts": {
+    "production": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk05_ensembledesign_official_smoke.py",
+      "sha256": "d42c9b4deddb11f5188067250de5c4c9b79a1295509fdd27edfd091a53da7913"
+    },
+    "independent_verifier": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk05_verify_ensembledesign_official_smoke.py",
+      "sha256": "ceecfc580c784f406b65cffe37912e46334bc859db0cdbdbfad7199a14636d35"
+    },
+    "finalizer": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk05_finalize_ensembledesign_official_smoke.py",
+      "sha256": "c142caa97838573e867424d131f863eeaa45453d09ce3881bfe9277b58c21acb"
+    },
+    "unit_tests": {
+      "path": "/home/codonflow-a8-rk/tests/test_a8_rk05_ensembledesign_official_smoke.py",
+      "sha256": "34f654b7438293a11a6b105647c20383a1cc400f04f2ba788ecc9496786283c4"
+    },
+    "unit_test_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_unit_tests.txt",
+      "sha256": "8798c4e29628594b026064566cd46b0f45a0ce1957f55544f8ac701f94383cb2"
+    },
+    "materialization": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_materialization.json",
+      "sha256": "a2d46b40c1f0a651e0933e001556559c4fd9567868b4aa3fc535ba71026036b6"
+    },
+    "build": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_build.json",
+      "sha256": "2927fefab9e44eef2c27187f245e99747041b2610e711f4771b0068332e8b1b5"
+    },
+    "example_failed_v1": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_official_example_smoke.json",
+      "sha256": "e537626406226e84e9181211b77dd4e86ee0e7b620e4302aa05480fc23076e8d"
+    },
+    "example": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_official_example_smoke_v2.json",
+      "sha256": "eb86291b020da35c2338715d37803882f1a05e9fe0631077e3cd20159e023e18"
+    },
+    "example_independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_official_example_independent_v2.json",
+      "sha256": "b6c24a7f94ef5786cd3fe11a2c802bde79ea3318539279f88fb4335b4fe2a1d7"
+    },
+    "c01": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_c01_smoke_v1.json",
+      "sha256": "b72d17ee16f4afe148430f735ee65cecbf8728fb7b98ddac23469937ee0a98b9"
+    },
+    "c01_independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ensembledesign_c01_independent_v1.json",
+      "sha256": "bf73ff5156526f55e5882e94d16f511293db4421b23afca7cb38c816cbab34dd"
+    }
+  },
+  "main_baseline_matrix_closed": false,
+  "functional_ood_closed": false,
+  "sota_claim": false
+}

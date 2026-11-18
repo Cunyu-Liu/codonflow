@@ -1,0 +1,211 @@
+{
+  "protocol": "a8_rk05_ensembledesign_independent_verification_v2",
+  "created_at": "2026-11-18T19:46:47.534584+00:00",
+  "status": "PASS",
+  "source_report": "audits/20261118/RK05/ensembledesign_official_example_smoke_v2.json",
+  "source_report_sha256": "eb86291b020da35c2338715d37803882f1a05e9fe0631077e3cd20159e023e18",
+  "independent_production_import": false,
+  "check_count": 13,
+  "passed_checks": 13,
+  "checks": [
+    {
+      "name": "fixed_source_archive_and_key_files",
+      "pass": true,
+      "detail": {
+        "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+        "archive_sha256": "0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2",
+        "official_source_unmodified_after_run": true
+      }
+    },
+    {
+      "name": "confirmation_build_and_binary_hashes",
+      "pass": true,
+      "detail": {
+        "builds": [
+          {
+            "name": "EnsembleDesign",
+            "returncode": 0
+          },
+          {
+            "name": "LinearPartition",
+            "returncode": 0
+          },
+          {
+            "name": "LinearDesign",
+            "returncode": 0
+          }
+        ],
+        "reporting_recovery": {
+          "initial_make_executed": true,
+          "initial_report_generated": false,
+          "error": "PackageNotFoundError while reading python-gflags metadata without target sys.path in the reporting process",
+          "initial_logs_preserved": true,
+          "confirmation_make_executed": true
+        }
+      }
+    },
+    {
+      "name": "frozen_input_identity",
+      "pass": true,
+      "detail": {
+        "records": [
+          "seq1",
+          "seq2",
+          "seq3"
+        ],
+        "benchmark_record": null
+      }
+    },
+    {
+      "name": "official_process_exit_and_raw_hashes",
+      "pass": true,
+      "detail": {
+        "returncode": 0,
+        "run_count": 6
+      }
+    },
+    {
+      "name": "bounded_protocol_and_run_counts",
+      "pass": true,
+      "detail": {
+        "parameters": {
+          "beam_size": 100,
+          "lr": 0.03,
+          "epsilon": 0.5,
+          "num_iters": 3,
+          "num_runs": 2,
+          "num_threads": 4
+        },
+        "run_count": 6
+      }
+    },
+    {
+      "name": "raw_run_and_results_consistency",
+      "pass": true,
+      "detail": {
+        "records": 3,
+        "runs": 6
+      }
+    },
+    {
+      "name": "synonymous_identity_and_no_appended_stop",
+      "pass": true,
+      "detail": {
+        "terminal_stop_policy": "official EnsembleDesign output has no appended stop; append TAA only for disclosed cross-method evaluation"
+      }
+    },
+    {
+      "name": "independent_linearpartition_efe",
+      "pass": true,
+      "detail": {
+        "max_abs_delta": 0.0,
+        "convention": "-V -d0 -b0"
+      }
+    },
+    {
+      "name": "independent_vienna_partition_efe",
+      "pass": true,
+      "detail": {
+        "max_production_delta": 0.0,
+        "max_rounded_official_delta": 0.002760620117186363,
+        "vienna_rna_python_version": "2.7.2"
+      }
+    },
+    {
+      "name": "best_selection_and_stdout",
+      "pass": true,
+      "detail": {
+        "records": 3
+      }
+    },
+    {
+      "name": "official_readme_example_exact",
+      "pass": true,
+      "detail": {
+        "records": 3,
+        "expected_efe": {
+          "seq1": -18.0,
+          "seq2": -43.71,
+          "seq3": -70.29
+        }
+      }
+    },
+    {
+      "name": "aggregate_cost_ledger",
+      "pass": true,
+      "detail": {
+        "total_elapsed_s": 8.044502989854664,
+        "generator_and_scorer_calls": 6,
+        "per_run_elapsed_s": null
+      }
+    },
+    {
+      "name": "scientific_scope_flags",
+      "pass": true,
+      "detail": {
+        "main_baseline_comparison": false,
+        "matched_lineardesign_comparison": false,
+        "sota_claim": false
+      }
+    }
+  ],
+  "max_numeric_delta": 0.0,
+  "max_linearpartition_rounded_delta": 0.0,
+  "max_vienna_official_rounded_delta": 0.002760620117186363,
+  "recomputed": [
+    {
+      "record_id": "seq1",
+      "run_id": 1,
+      "sequence_sha256": "d3e5237dea991bf1ba666752d89968a505457f60f66dcf1f4ed33797b9ba70f7",
+      "official_efe": -18.0,
+      "rerun_linearpartition_efe": -18.0,
+      "vienna_efe": -18.002363204956055,
+      "protein_identity_pass": true
+    },
+    {
+      "record_id": "seq1",
+      "run_id": 2,
+      "sequence_sha256": "d3e5237dea991bf1ba666752d89968a505457f60f66dcf1f4ed33797b9ba70f7",
+      "official_efe": -18.0,
+      "rerun_linearpartition_efe": -18.0,
+      "vienna_efe": -18.002363204956055,
+      "protein_identity_pass": true
+    },
+    {
+      "record_id": "seq2",
+      "run_id": 1,
+      "sequence_sha256": "255c5e359693bcbf0cbc1decf09cd1a2c06011d25b00cc15727d75d89b8da530",
+      "official_efe": -43.71,
+      "rerun_linearpartition_efe": -43.71,
+      "vienna_efe": -43.71085739135742,
+      "protein_identity_pass": true
+    },
+    {
+      "record_id": "seq2",
+      "run_id": 2,
+      "sequence_sha256": "255c5e359693bcbf0cbc1decf09cd1a2c06011d25b00cc15727d75d89b8da530",
+      "official_efe": -43.71,
+      "rerun_linearpartition_efe": -43.71,
+      "vienna_efe": -43.71085739135742,
+      "protein_identity_pass": true
+    },
+    {
+      "record_id": "seq3",
+      "run_id": 1,
+      "sequence_sha256": "78a441807ffde698db2da99abf3b23712bccb0f12ab560a3d7736b4e20584e07",
+      "official_efe": -70.28,
+      "rerun_linearpartition_efe": -70.28,
+      "vienna_efe": -70.28276062011719,
+      "protein_identity_pass": true
+    },
+    {
+      "record_id": "seq3",
+      "run_id": 2,
+      "sequence_sha256": "94c9676496d3838b1227c9c4e58144ec5fd538d751c53ad05c3df9b51ca021b5",
+      "official_efe": -70.29,
+      "rerun_linearpartition_efe": -70.29,
+      "vienna_efe": -70.2922134399414,
+      "protein_identity_pass": true
+    }
+  ]
+}

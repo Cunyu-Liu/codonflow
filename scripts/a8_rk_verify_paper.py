@@ -46,6 +46,10 @@ def main() -> None:
     def check(name: str, passed: bool, detail: Any = None) -> None:
         checks.append({"name": name, "pass": bool(passed), "detail": detail})
 
+    def source_is(name: str, relative_path: str) -> bool:
+        path = repo / relative_path
+        return Path(audit["source_paths"][name]) == path and sha256(path) == audit["source_sha256"][name]
+
     recomputed_hashes = {name: sha256(Path(path)) for name, path in audit["source_paths"].items()}
     check("all_frozen_source_hashes", recomputed_hashes == audit["source_sha256"], {"sources": len(recomputed_hashes)})
     check("a7_template_unchanged", sha256(Path(audit["template"])) == audit["template_sha256"], audit["template_sha256"])
@@ -176,6 +180,28 @@ def main() -> None:
     ] + [f"| {r['lambda']:.1f} | {r['official_mfe_kcal_mol']:.2f} | {r['official_cai']:.3f} | {r['elapsed_s']:.3f} |" for r in ld["runs"]]
     check("lineardesign_official_smoke_and_scorer_convention", all(s in text for s in ld_strings) and ldv["max_numeric_delta"] == 0.0 and not ldf["science_flags"]["main_baseline_comparison"] and not ldf["science_flags"]["sota_claim"], {"expected_strings": len(ld_strings)})
 
+    ed = data["ed_example"]
+    edc = data["ed_c01"]
+    edv = data["ed_example_verify"]
+    edcv = data["ed_c01_verify"]
+    edf = data["ed_final"]
+    check("ensembledesign_bounded_execution_and_scope", {
+        "three_example_records_six_runs_four_unique": ed["input_record_count"] == 3 and ed["run_count"] == 6 and ed["unique_output_sequences"] == 4 and ed["official_example"]["pass"],
+        "example_efe_values": [r["best_official_efe_kcal_mol"] for r in ed["records"]] == [-18.0, -43.71, -70.29],
+        "c01_one_record_two_runs_two_unique": edc["input_record_count"] == 1 and edc["run_count"] == 2 and edc["unique_output_sequences"] == 2 and edc["records"][0]["best_official_efe_kcal_mol"] == -269.97 and edc["records"][0]["runs"][0]["sequence_length_nt"] == 405,
+        "bounded_elapsed_values": "8.045 s" in text and "52.651 s" in text,
+        "independent_checks": edv["status"] == edcv["status"] == "PASS" and edv["passed_checks"] == edv["check_count"] == 13 and edcv["passed_checks"] == edcv["check_count"] == 13 and edv["max_numeric_delta"] == edcv["max_numeric_delta"] == 0.0 and not edv["independent_production_import"] and not edcv["independent_production_import"],
+        "finalization": edf["status"] == "PASS" and edf["passed_checks"] == edf["check_count"] == 11 and edf["task_completion_authorized"],
+        "science_boundaries": not edf["main_baseline_matrix_closed"] and not edf["functional_ood_closed"] and not edf["sota_claim"] and not ed["matched_lineardesign_comparison"] and not edc["matched_lineardesign_comparison"] and "EFE is not LinearDesign MFE" in text and "No matched LinearDesign comparison, dense-budget evaluation, functional OOD result, or SOTA claim was produced." in text,
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "ed_example": "ensembledesign_official_example_smoke_v2.json",
+            "ed_c01": "ensembledesign_c01_smoke_v1.json",
+            "ed_example_verify": "ensembledesign_official_example_independent_v2.json",
+            "ed_c01_verify": "ensembledesign_c01_independent_v1.json",
+            "ed_final": "ensembledesign_finalization.json",
+        }.items()),
+    })
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -230,7 +256,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v4",
+        "schema_version": "a8-rk-paper-independent-verification-v5",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),

@@ -1,0 +1,116 @@
+{
+  "protocol": "a8_rk05_ensembledesign_build_v1",
+  "created_at": "2026-11-18T19:41:00.839904+00:00",
+  "status": "BUILD_COMPLETE",
+  "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+  "source_dir": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+  "archive_sha256": "0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2",
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "compiler": "g++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0",
+  "python_gflags_version": "3.1.2",
+  "python_deps": "/home/codonflow-a8-rk-smoke/ensembledesign_python_deps",
+  "reporting_recovery": {
+    "initial_make_executed": true,
+    "initial_report_generated": false,
+    "error": "PackageNotFoundError while reading python-gflags metadata without target sys.path in the reporting process",
+    "initial_logs_preserved": true,
+    "confirmation_make_executed": true
+  },
+  "initial_logs": [
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/ensembledesign.stdout.log",
+      "sha256": "c7a9f07f8cbeed8a49361ac96563e5e90ae87bd52f6743734ccd50bde917f396",
+      "bytes": 631
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/ensembledesign.stderr.log",
+      "sha256": "6928c91eb70844f074b85e2672df045350e118b5a81393de9f876410039f887a",
+      "bytes": 36
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/linearpartition.stdout.log",
+      "sha256": "31b25ff6e57f16518e53fa0bc1231bb169fd7fbcd1d75a2e87f1ccfab33e301f",
+      "bytes": 181
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/linearpartition.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/lineardesign.stdout.log",
+      "sha256": "85d803adc871c2366449e23f6fedd00b72cafbedc61e5066a2c8fc45b39b1eb5",
+      "bytes": 832
+    },
+    {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/lineardesign.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "builds": [
+    {
+      "name": "EnsembleDesign",
+      "cwd": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+      "command": [
+        "make"
+      ],
+      "returncode": 0,
+      "elapsed_s": 0.006781274918466806,
+      "stdout_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/ensembledesign.confirm.stdout.log",
+      "stdout_sha256": "68c5f548009ee20966e380682cc0b78f39bea9c8895af0403577a7204fef2e99",
+      "stderr_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/ensembledesign.confirm.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "LinearPartition",
+      "cwd": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition",
+      "command": [
+        "make"
+      ],
+      "returncode": 0,
+      "elapsed_s": 6.813863326795399,
+      "stdout_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/linearpartition.confirm.stdout.log",
+      "stdout_sha256": "31b25ff6e57f16518e53fa0bc1231bb169fd7fbcd1d75a2e87f1ccfab33e301f",
+      "stderr_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/linearpartition.confirm.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "LinearDesign",
+      "cwd": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearDesign",
+      "command": [
+        "make"
+      ],
+      "returncode": 0,
+      "elapsed_s": 13.154704769607633,
+      "stdout_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/lineardesign.confirm.stdout.log",
+      "stdout_sha256": "85d803adc871c2366449e23f6fedd00b72cafbedc61e5066a2c8fc45b39b1eb5",
+      "stderr_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_build_cd9324_v1/lineardesign.confirm.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "binaries": [
+    {
+      "path": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/bin/EnsembleDesign",
+      "bytes": 368000,
+      "sha256": "c0638e10911113ee8a3814859ef84d681d9e73387d2077d99d3418fec4e5d0c5"
+    },
+    {
+      "path": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_v",
+      "bytes": 346512,
+      "sha256": "31f17813b1531035c6058ca01b5085a654d83f4bcac73f8a129e375d3ec2ea15"
+    },
+    {
+      "path": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_c",
+      "bytes": 329632,
+      "sha256": "499ba056da02df78d71425d6a98b61746ef84e95ee087c84b1b23fd75c80266f"
+    },
+    {
+      "path": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearDesign/bin/LinearDesign_2D",
+      "bytes": 340056,
+      "sha256": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688"
+    }
+  ],
+  "missing_binaries": [],
+  "source_setup_sha256": "f770636c105ad58b1da1665641e6b68e60bd3692e15d363faef2ad9275a85345"
+}

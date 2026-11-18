@@ -1,0 +1,83 @@
+{
+  "protocol": "a8_rk05_ensembledesign_official_smoke_v1",
+  "created_at": "2026-11-18T19:42:37.342888+00:00",
+  "status": "FAILED",
+  "scope": "official_readme_example_bounded_smoke_not_main_comparison",
+  "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+  "official_repository": "https://github.com/LinearFold/EnsembleDesign",
+  "paper_doi": "10.1093/bioinformatics/btaf245",
+  "source_url": "https://codeload.github.com/LinearFold/EnsembleDesign/zip/cd9324f9574a754063d421e76670bc9fd7555324",
+  "source_dir": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+  "archive_sha256": "0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2",
+  "binary_sha256": {
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/bin/EnsembleDesign": "c0638e10911113ee8a3814859ef84d681d9e73387d2077d99d3418fec4e5d0c5",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_v": "31f17813b1531035c6058ca01b5085a654d83f4bcac73f8a129e375d3ec2ea15",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_c": "499ba056da02df78d71425d6a98b61746ef84e95ee087c84b1b23fd75c80266f",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearDesign/bin/LinearDesign_2D": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688"
+  },
+  "input_fasta": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/data/examples.fasta",
+  "input_fasta_sha256": "43332d8bd92565a81de9d14c1c16434d674aea90d0f62ddb2918004ff86a9fd0",
+  "input_record_count": 3,
+  "input_proteins": [
+    {
+      "record_id": "seq1",
+      "length_aa": 17,
+      "sha256": "5a06abf9469a9e5a2e7e4732d2169cf4a1ed306606dd1e0893d4d1c771b32dfd"
+    },
+    {
+      "record_id": "seq2",
+      "length_aa": 27,
+      "sha256": "9382008703821f3d8c57116931bdf0539123f3895c916e8b357f7b69318371bc"
+    },
+    {
+      "record_id": "seq3",
+      "length_aa": 33,
+      "sha256": "c147565a22b76a5cdbd05a6e29dd89d76ad0cdf32ed16cc073f67f333e745582"
+    }
+  ],
+  "benchmark": null,
+  "parameters": {
+    "beam_size": 100,
+    "lr": 0.03,
+    "epsilon": 0.5,
+    "num_iters": 3,
+    "num_runs": 2,
+    "num_threads": 4
+  },
+  "command": [
+    "/root/miniconda3/envs/codonflow/bin/python",
+    "EnsembleDesign.py",
+    "--fasta",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/data/examples.fasta",
+    "--output_dir",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_official_example_cd9324_cpu_v1",
+    "--beam_size",
+    "100",
+    "--lr",
+    "0.03",
+    "--epsilon",
+    "0.5",
+    "--num_iters",
+    "3",
+    "--num_runs",
+    "2",
+    "--num_threads",
+    "4"
+  ],
+  "cwd": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "vienna_rna_python_version": "2.7.2",
+  "efe_scorer_convention": "ViennaRNA partition function at 37 C with dangles=0; official LinearPartition -V -d0 -b0",
+  "terminal_stop_policy": "official EnsembleDesign output includes exactly one terminal stop; do not append another stop",
+  "forward_calls": null,
+  "per_run_elapsed_s": null,
+  "cost_note": "one aggregate wall time includes threaded generation, per-run LinearDesign initialization and LinearPartition scoring; no per-run wall time is fabricated",
+  "records": [],
+  "returncode": 0,
+  "total_elapsed_s": 7.958995095919818,
+  "stdout_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_official_example_cd9324_cpu_v1/official.stdout.txt",
+  "stdout_sha256": "3b9897cc5b471951f18aa57202154c27a003df429bb7b93a6c7ba9e89d7e27c1",
+  "stderr_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_official_example_cd9324_cpu_v1/official.stderr.txt",
+  "stderr_sha256": "6a2a4da654e851e581645211387fa21c1c9f85163037f57a3b2c7a656a62538c",
+  "error": "ValueError('non-synonymous or stop-contract failure: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_official_example_cd9324_cpu_v1/seq1/run_1.txt')"
+}

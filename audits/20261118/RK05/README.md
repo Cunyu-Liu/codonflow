@@ -304,3 +304,65 @@ Reproduce the readback verification with the preserved XML snapshots:
   --evidence-commit ea806ff10f331ae2831cef9c9d15ddb2c3252902 \
   --output audits/20261118/RK05/cdgb_ppt_verification.json
 ```
+
+---
+
+# EnsembleDesign official bounded execution (2026-11-18)
+
+Fixed official commit: `cd9324f9574a754063d421e76670bc9fd7555324`; paper DOI: `10.1093/bioinformatics/btaf245`. The codeload ZIP contains 75 members and has SHA256 `0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2`. CRC, member paths, symlinks, and key-file hashes are frozen in `ensembledesign_materialization.json`. Code remains under `/home`; the archive, build logs, and raw outputs remain under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`.
+
+The official `setup.sh` calls three `make` commands without fail-fast, so each component's return code and log were recorded separately. A first reporting pass failed while reading the isolated `python-gflags==3.1.2` metadata; the original logs were retained and three confirmation builds were recorded. Final status is `BUILD_COMPLETE`, with hashes for EnsembleDesign, both LinearPartition binaries, and the bundled LinearDesign binary in `ensembledesign_build.json`. The official source was not modified.
+
+The bounded protocol used `beam_size=100`, `lr=0.03`, `epsilon=0.5`, `num_iters=3`, `num_runs=2`, and `num_threads=4`. It is not the default dense 30-iteration × 20-run protocol.
+
+| Input | Records | Runs | Unique CDSs | Aggregate wall time | Best official EFE |
+|---|---:|---:|---:|---:|---|
+| Official README example | 3 | 6 | 4 | 8.044503 s | seq1 `-18.00`, seq2 `-43.71`, seq3 `-70.29` kcal/mol |
+| C01H6.8b.1, 135 aa | 1 | 2 | 2 | 52.650701 s | run 1, `-269.97` kcal/mol |
+
+The three README example sequences and EFE values matched exactly. C01 produced a 405-nt best CDS encoding the 135-aa input. Official outputs contain no extra terminal stop; `TAA` may be added only for an explicitly disclosed cross-method evaluation. EFE was independently recomputed with official LinearPartition `-V -d0 -b0` and ViennaRNA 2.7.2 at 37°C with `dangles=0`. Maximum ViennaRNA differences from rounded official EFE were 0.0027606201 (example) and 0.0045483398 (C01). **EFE is not LinearDesign MFE; no direct ranking is authorized.**
+
+The initial example wrapper v1 incorrectly required an extra terminal stop and was marked `FAILED` even though the official process returned zero. Its raw output and report are retained. Protocol v2 corrected only that wrapper contract; source, bounded parameters, and scorer tolerance were unchanged. Independent verification passed **13/13 example checks** and **13/13 C01 checks**, unit tests passed **11/11**, and finalization passed **11/11 checks** with `task_completion_authorized=true` for the bounded smoke only. No matched LinearDesign comparison, dense-budget result, main-baseline ranking, functional OOD result, or SOTA claim was produced.
+
+From `/home/codonflow-a8-rk`:
+
+```bash
+PY=/root/miniconda3/envs/codonflow/bin/python
+SRC=/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324
+DEPS=/home/codonflow-a8-rk-smoke/ensembledesign_python_deps
+R=audits/20261118/RK05
+ART=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05
+
+$PY scripts/a8_rk05_ensembledesign_official_smoke.py \
+  --input-fasta "$SRC/data/examples.fasta" --source-dir "$SRC" \
+  --materialization "$R/ensembledesign_materialization.json" \
+  --build-report "$R/ensembledesign_build.json" --python-deps "$DEPS" \
+  --output-dir <NEW_EXAMPLE_OUTPUT_DIR> \
+  --audit <NEW_EXAMPLE_AUDIT_JSON>
+
+$PY scripts/a8_rk05_ensembledesign_official_smoke.py \
+  --benchmark-fasta /teams/HoulabData_1788502323/liucunyu/codonflow1031/codonflow/corpora/a6_benchmark/unique18.fasta \
+  --record-id C01H6.8b.1 --source-dir "$SRC" \
+  --materialization "$R/ensembledesign_materialization.json" \
+  --build-report "$R/ensembledesign_build.json" --python-deps "$DEPS" \
+  --output-dir <NEW_C01_OUTPUT_DIR> \
+  --audit <NEW_C01_AUDIT_JSON>
+
+$PY scripts/a8_rk05_verify_ensembledesign_official_smoke.py \
+  --report "$R/ensembledesign_official_example_smoke_v2.json" \
+  --materialization "$R/ensembledesign_materialization.json" \
+  --build-report "$R/ensembledesign_build.json" --source-dir "$SRC" \
+  --python-deps "$DEPS" --output "$R/ensembledesign_official_example_independent_v2.json"
+
+$PY scripts/a8_rk05_verify_ensembledesign_official_smoke.py \
+  --report "$R/ensembledesign_c01_smoke_v1.json" \
+  --materialization "$R/ensembledesign_materialization.json" \
+  --build-report "$R/ensembledesign_build.json" --source-dir "$SRC" \
+  --python-deps "$DEPS" --output "$R/ensembledesign_c01_independent_v1.json"
+
+$PY scripts/a8_rk05_finalize_ensembledesign_official_smoke.py \
+  --output <NEW_FINALIZATION_JSON>
+$PY -m unittest discover -s tests -p 'test_a8_rk05_ensembledesign_official_smoke.py' -v
+```
+
+Evidence: `ensembledesign_materialization.json`, `ensembledesign_build.json`, retained `ensembledesign_official_example_smoke.json` (v1 failure), `ensembledesign_official_example_smoke_v2.json`, `ensembledesign_c01_smoke_v1.json`, both independent reports, `ensembledesign_finalization.json`, and `ensembledesign_unit_tests.txt`. The two independent-verifier commands above verify the frozen production reports. Use new output and audit paths for every fresh execution because the official entry point deletes a same-named record subdirectory; do not overwrite the frozen v1/v2 evidence.

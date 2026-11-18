@@ -1,0 +1,131 @@
+{
+  "protocol": "a8_rk05_ensembledesign_official_smoke_v2",
+  "created_at": "2026-11-18T19:44:06.944703+00:00",
+  "status": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+  "scope": "bounded_single_record_official_baseline_smoke_not_main_comparison",
+  "commit": "cd9324f9574a754063d421e76670bc9fd7555324",
+  "official_repository": "https://github.com/LinearFold/EnsembleDesign",
+  "paper_doi": "10.1093/bioinformatics/btaf245",
+  "source_url": "https://codeload.github.com/LinearFold/EnsembleDesign/zip/cd9324f9574a754063d421e76670bc9fd7555324",
+  "source_dir": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+  "archive_sha256": "0179bde9afb45b891c51c4577ee5c5895b1991528f3a1ac7e626450c5be474a2",
+  "binary_sha256": {
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/bin/EnsembleDesign": "c0638e10911113ee8a3814859ef84d681d9e73387d2077d99d3418fec4e5d0c5",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_v": "31f17813b1531035c6058ca01b5085a654d83f4bcac73f8a129e375d3ec2ea15",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearPartition/bin/linearpartition_c": "499ba056da02df78d71425d6a98b61746ef84e95ee087c84b1b23fd75c80266f",
+    "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324/tools/LinearDesign/bin/LinearDesign_2D": "f1f22901967cb3e0f569ff2332c326800ac355727ab58e377b14514db4fe9688"
+  },
+  "input_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/input_protein.fasta",
+  "input_fasta_sha256": "ea613c66d94ef54041c0b631c17e9c499986ef23a47a2f08b6344126b8fbd733",
+  "input_record_count": 1,
+  "input_proteins": [
+    {
+      "record_id": "C01H6.8b.1",
+      "length_aa": 135,
+      "sha256": "e8848a30f6c222d4fe7367c272bc90a8f898232d420fb8b9979a233f00ccd4c8"
+    }
+  ],
+  "benchmark": {
+    "benchmark_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta",
+    "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+    "record_id": "C01H6.8b.1",
+    "source_cds_sha256": "c6001dc87303c56617b4b19bfc99f34a5cfb1a6e338732a1192533824ff5efaa",
+    "derived_protein_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/input_protein.fasta",
+    "derived_protein_fasta_sha256": "ea613c66d94ef54041c0b631c17e9c499986ef23a47a2f08b6344126b8fbd733"
+  },
+  "parameters": {
+    "beam_size": 100,
+    "lr": 0.03,
+    "epsilon": 0.5,
+    "num_iters": 3,
+    "num_runs": 2,
+    "num_threads": 4
+  },
+  "command": [
+    "/root/miniconda3/envs/codonflow/bin/python",
+    "EnsembleDesign.py",
+    "--fasta",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/input_protein.fasta",
+    "--output_dir",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1",
+    "--beam_size",
+    "100",
+    "--lr",
+    "0.03",
+    "--epsilon",
+    "0.5",
+    "--num_iters",
+    "3",
+    "--num_runs",
+    "2",
+    "--num_threads",
+    "4"
+  ],
+  "cwd": "/home/codonflow-a8-rk-external/EnsembleDesign-cd9324f9574a754063d421e76670bc9fd7555324",
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "vienna_rna_python_version": "2.7.2",
+  "efe_scorer_convention": "ViennaRNA partition function at 37 C with dangles=0; official LinearPartition -V -d0 -b0",
+  "terminal_stop_policy": "official EnsembleDesign output has no appended stop; append TAA only for disclosed cross-method evaluation",
+  "stop_contract_correction": "v1 incorrectly assumed an official terminal stop and failed; v2 verifies exact input-protein identity without changing official source, parameters or scorer tolerance",
+  "forward_calls": null,
+  "per_run_elapsed_s": null,
+  "cost_note": "one aggregate wall time includes threaded generation, per-run LinearDesign initialization and LinearPartition scoring; no per-run wall time is fabricated",
+  "records": [
+    {
+      "record_id": "C01H6.8b.1",
+      "protein_length_aa": 135,
+      "best_run_id": 1,
+      "best_sequence_rna": "AUGAAGUUCUAUCUUCUCAUCUCGGUGGUGUCCUUCAUAAGCUUCACGGACAGCUGUUCGCCGGACGUGAAGUUUGAGAAGGACCACCACCGACGUGAGAAGCAUGAGGACUACCUCCGUAAGUUCGAGAGCCCUCGGACGUGGUCCGAGACGUUCUCGAAGUAUACGGGGGACGCCUUCGGCCGCCUUCUGUUUAAUGGGCUUUGGGGCGCUAUCGUGCUGCUCCUCCCGUUGCUGAUCCGCCCGUUCCAGCGUCGUUGGCUCACAGCUCUUCGAGGUGGGGAUGGCCCCACCAUCGAAGAGGUGACUGAGUCCGACGACGAUGGAAUGCGGAUCAGCAACGAGGAGGUGCGGCAGAUCUUGGAUAGCGAGAAGAAGCCCAAGCGGAAGGCGGUGAAGGCGGAG",
+      "best_official_efe_kcal_mol": -269.97,
+      "stdout_sequence_rna": "AUGAAGUUCUAUCUUCUCAUCUCGGUGGUGUCCUUCAUAAGCUUCACGGACAGCUGUUCGCCGGACGUGAAGUUUGAGAAGGACCACCACCGACGUGAGAAGCAUGAGGACUACCUCCGUAAGUUCGAGAGCCCUCGGACGUGGUCCGAGACGUUCUCGAAGUAUACGGGGGACGCCUUCGGCCGCCUUCUGUUUAAUGGGCUUUGGGGCGCUAUCGUGCUGCUCCUCCCGUUGCUGAUCCGCCCGUUCCAGCGUCGUUGGCUCACAGCUCUUCGAGGUGGGGAUGGCCCCACCAUCGAAGAGGUGACUGAGUCCGACGACGAUGGAAUGCGGAUCAGCAACGAGGAGGUGCGGCAGAUCUUGGAUAGCGAGAAGAAGCCCAAGCGGAAGGCGGUGAAGGCGGAG",
+      "stdout_official_efe_kcal_mol": -269.97,
+      "runs": [
+        {
+          "run_id": 1,
+          "sequence_rna": "AUGAAGUUCUAUCUUCUCAUCUCGGUGGUGUCCUUCAUAAGCUUCACGGACAGCUGUUCGCCGGACGUGAAGUUUGAGAAGGACCACCACCGACGUGAGAAGCAUGAGGACUACCUCCGUAAGUUCGAGAGCCCUCGGACGUGGUCCGAGACGUUCUCGAAGUAUACGGGGGACGCCUUCGGCCGCCUUCUGUUUAAUGGGCUUUGGGGCGCUAUCGUGCUGCUCCUCCCGUUGCUGAUCCGCCCGUUCCAGCGUCGUUGGCUCACAGCUCUUCGAGGUGGGGAUGGCCCCACCAUCGAAGAGGUGACUGAGUCCGACGACGAUGGAAUGCGGAUCAGCAACGAGGAGGUGCGGCAGAUCUUGGAUAGCGAGAAGAAGCCCAAGCGGAAGGCGGUGAAGGCGGAG",
+          "official_efe_kcal_mol": -269.97,
+          "run_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/C01H6.8b.1/run_1.txt",
+          "run_file_sha256": "580d157b2eca827e6703da8bd41cf1f5652de933560b0115617b458e1d15c14f",
+          "results_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/C01H6.8b.1/results.txt",
+          "results_file_sha256": "5704f160ded96ca4b88f6dd5ac71cbce4bd28fa20549f8a6c6a7a1bf5a78b1e5",
+          "sequence_length_nt": 405,
+          "protein_identity_pass": true,
+          "vienna_efe_kcal_mol": -269.97454833984375,
+          "efe_abs_delta_from_rounded_official": 0.004548339843722715
+        },
+        {
+          "run_id": 2,
+          "sequence_rna": "AUGAAGUUCUAUCUUCUCAUCUCGGUGGUGUCCUUCAUAAGCUUCACGGACAGCUGUUCGCCGGACGUGAAGUUUGAGAAGGACCACCACCGACGUGAGAAGCAUGAGGACUACCUCCGUAAGUUCGAGAGCCCUCGGACGUGGUCCGAGACGUUCUCGAAGUAUACGGGGGACGCCUUCGGCCGCCUUCUGUUUAAUGGGCUUUGGGGCGCUAUCGUGCUGCUCCUCCCGUUGCUGAUCCGCCCGUUCCAGCGUCGUUGGCUCACAGCUCUUCGAGGUGGGGACGGCCCCACCAUCGAAGAGGUGACUGAGAGUGACGACGAUGGAAUGCGGAUCAGCAACGAGGAGGUGCGGCAGAUCCUCGAUAGCGAGAAGAAGCCCAAGCGGAAGGCGGUGAAGGCGGAG",
+          "official_efe_kcal_mol": -266.74,
+          "run_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/C01H6.8b.1/run_2.txt",
+          "run_file_sha256": "de7bca72392d3b27b11af95ac3c2d9685d3deef7c7a392aa8c4ee3197e25115f",
+          "results_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/C01H6.8b.1/results.txt",
+          "results_file_sha256": "5704f160ded96ca4b88f6dd5ac71cbce4bd28fa20549f8a6c6a7a1bf5a78b1e5",
+          "sequence_length_nt": 405,
+          "protein_identity_pass": true,
+          "vienna_efe_kcal_mol": -266.742431640625,
+          "efe_abs_delta_from_rounded_official": 0.002431640624990905
+        }
+      ]
+    }
+  ],
+  "returncode": 0,
+  "total_elapsed_s": 52.65070143900812,
+  "stdout_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/official.stdout.txt",
+  "stdout_sha256": "da448271d4b12e6c65a5d3aa9cf507cd21106cba918c5a2f78a942636c529a42",
+  "stderr_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ensembledesign_c01_cd9324_cpu_v1/official.stderr.txt",
+  "stderr_sha256": "35f717d815e14c70a55bd40b656591871fad52411f9eba96a1f0636232b13210",
+  "run_count": 2,
+  "official_generator_run_count": 2,
+  "lineardesign_initialization_call_count": 2,
+  "linearpartition_scoring_call_count": 2,
+  "unique_output_sequences": 2,
+  "max_efe_abs_delta_from_rounded_official": 0.004548339843722715,
+  "all_payload_metrics_verified": true,
+  "official_source_unmodified": true,
+  "main_baseline_comparison": false,
+  "matched_lineardesign_comparison": false,
+  "dense_budget_complete": false,
+  "functional_ood": false,
+  "sota_claim": false
+}

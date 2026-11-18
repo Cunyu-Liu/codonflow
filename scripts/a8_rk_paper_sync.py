@@ -82,6 +82,11 @@ def main() -> None:
         "ld_verify": repo / "audits/20261118/RK05/lineardesign_independent_verification_v2.json",
         "ld_final": repo / "audits/20261118/RK05/lineardesign_finalization.json",
         "ld_v1_failure": repo / "audits/20261118/RK05/lineardesign_official_smoke_v1_failure.json",
+        "ed_example": repo / "audits/20261118/RK05/ensembledesign_official_example_smoke_v2.json",
+        "ed_c01": repo / "audits/20261118/RK05/ensembledesign_c01_smoke_v1.json",
+        "ed_example_verify": repo / "audits/20261118/RK05/ensembledesign_official_example_independent_v2.json",
+        "ed_c01_verify": repo / "audits/20261118/RK05/ensembledesign_c01_independent_v1.json",
+        "ed_final": repo / "audits/20261118/RK05/ensembledesign_finalization.json",
         "cdgb_audit": repo / "audits/20261118/RK05/cdgb_source_audit.json",
         "cdgb_verify": repo / "audits/20261118/RK05/cdgb_source_independent_verification.json",
         "cdgb_final": repo / "audits/20261118/RK05/cdgb_source_finalization.json",
@@ -115,6 +120,11 @@ def main() -> None:
     ldv = data["ld_verify"]
     ldf = data["ld_final"]
     ld_fail = data["ld_v1_failure"]
+    ed = data["ed_example"]
+    edc = data["ed_c01"]
+    edv = data["ed_example_verify"]
+    edcv = data["ed_c01_verify"]
+    edf = data["ed_final"]
     cdgb = data["cdgb_audit"]
     cdgbv = data["cdgb_verify"]
     cdgbf = data["cdgb_final"]
@@ -153,6 +163,13 @@ def main() -> None:
     require(ldf["status"] == "BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED" and ldf["passed_checks"] == ldf["check_count"] == 8, "LinearDesign finalization failed")
     require(ld_fail["status"] == "FAIL_INDEPENDENT_SCORER_CONVENTION_MISMATCH" and not ld_fail["production_report_written"], "LinearDesign v1 failure was not preserved")
     require(not ldf["science_flags"]["main_baseline_comparison"] and not ldf["science_flags"]["sota_claim"], "LinearDesign scope exceeded")
+    require(ed["status"] == edc["status"] == "BOUNDED_OFFICIAL_EXECUTION_COMPLETE", "EnsembleDesign bounded execution incomplete")
+    require(ed["run_count"] == 6 and ed["input_record_count"] == 3 and edc["run_count"] == 2 and edc["input_record_count"] == 1, "EnsembleDesign bounded run contract changed")
+    require(ed["official_example"]["pass"] and ed["unique_output_sequences"] == 4 and edc["unique_output_sequences"] == 2, "EnsembleDesign output identity contract changed")
+    require(edv["status"] == edcv["status"] == "PASS" and edv["passed_checks"] == edv["check_count"] == 13 and edcv["passed_checks"] == edcv["check_count"] == 13, "EnsembleDesign independent verification failed")
+    require(edv["max_numeric_delta"] == edcv["max_numeric_delta"] == 0.0 and not edv["independent_production_import"] and not edcv["independent_production_import"], "EnsembleDesign independent recomputation contract changed")
+    require(edf["status"] == "PASS" and edf["passed_checks"] == edf["check_count"] == 11 and edf["task_completion_authorized"], "EnsembleDesign finalization failed")
+    require(not edf["main_baseline_matrix_closed"] and not edf["functional_ood_closed"] and not edf["sota_claim"] and not ed["matched_lineardesign_comparison"] and not edc["matched_lineardesign_comparison"], "EnsembleDesign scientific scope exceeded")
     require(cdgb["status"] == "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED" and cdgb["query_count_succeeded"] == cdgb["query_count_expected"] == 9, "CDGB source audit incomplete")
     require(cdgb["candidate_doi_identity"]["conflict"] and not cdgb["candidate_doi_identity"]["resolved"], "CDGB candidate DOI conflict missing")
     require(cdgbv["status"] == "PASS" and cdgbv["checks_passed"] == cdgbv["checks_total"] == 8 and not cdgbv["independent_production_import"], "CDGB independent verification failed")
@@ -185,6 +202,8 @@ def main() -> None:
     id3_pass_count = sum(bool(c["pass"]) for c in id3v["checks"])
     id3_check_count = len(id3v["checks"])
     ld_rows = "\n".join(f"| {r['lambda']:.1f} | {r['official_mfe_kcal_mol']:.2f} | {r['official_cai']:.3f} | {r['elapsed_s']:.3f} |" for r in ld["runs"])
+    ed_rows = "\n".join(f"| {r['record_id']} | {r['protein_length_aa']} | {r['best_run_id']} | {r['best_official_efe_kcal_mol']:.2f} |" for r in ed["records"])
+    ed_c01_record = edc["records"][0]
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -238,6 +257,14 @@ This is a smoke result, not the separate full-12×12 protocol and not a main com
 
 Independent raw-output verification passed **{ldv['passed_checks']}/{ldv['check_count']} checks** with maximum numeric delta **{ldv['max_numeric_delta']:.1f}**, and finalization passed **{ldf['passed_checks']}/{ldf['check_count']} checks**. Official MFE matched ViennaRNA at 37°C with `dangles=0` (maximum rounding delta {ldf['checks'][4]['detail']['max_mfe_delta']:.6f}); default `dangles=2` values were also retained. The earlier default-dangles v1 failure is preserved as `{ld_fail['status']}` rather than erased. This remains a single-record, three-λ bounded smoke, not the full seven-λ actual-set matrix, dense-budget comparison, functional OOD evaluation, or SOTA result.
 
+**EnsembleDesign bounded official execution.** The fixed official commit `{ed['commit']}` was built without source modification. The README example completed **{ed['input_record_count']} records × {ed['parameters']['num_runs']} runs = {ed['run_count']} runs** with **{ed['unique_output_sequences']} unique CDSs** in **{ed['total_elapsed_s']:.3f} s**; the official sequences and reported EFE values matched:
+
+| Record | Protein length (aa) | Best run | Official EFE (kcal/mol) |
+|---|---:|---:|---:|
+{ed_rows}
+
+The same bounded protocol then executed `{edc['benchmark']['record_id']}` ({ed_c01_record['protein_length_aa']} aa) for **{edc['run_count']} runs**, producing **{edc['unique_output_sequences']} unique CDSs** in **{edc['total_elapsed_s']:.3f} s**. Best run {ed_c01_record['best_run_id']} had official EFE **{ed_c01_record['best_official_efe_kcal_mol']:.2f} kcal/mol** and CDS length **{ed_c01_record['runs'][0]['sequence_length_nt']} nt**; no extra terminal stop was appended. Independent raw-output and scorer verification passed **{edv['passed_checks']}/{edv['check_count']}** example checks and **{edcv['passed_checks']}/{edcv['check_count']}** C01 checks, both with maximum numeric delta **0.0**; finalization passed **{edf['passed_checks']}/{edf['check_count']} checks**. The initial stop-contract wrapper failure remains preserved. EFE is not LinearDesign MFE, so these values do not authorize a direct cross-method ranking. No matched LinearDesign comparison, dense-budget evaluation, functional OOD result, or SOTA claim was produced.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -254,6 +281,11 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("LinearDesign independent verifier v2", source_hashes["ld_verify"]),
         ("LinearDesign finalization", source_hashes["ld_final"]),
         ("LinearDesign v1 retained failure", source_hashes["ld_v1_failure"]),
+        ("EnsembleDesign example production", source_hashes["ed_example"]),
+        ("EnsembleDesign C01 production", source_hashes["ed_c01"]),
+        ("EnsembleDesign example independent verifier", source_hashes["ed_example_verify"]),
+        ("EnsembleDesign C01 independent verifier", source_hashes["ed_c01_verify"]),
+        ("EnsembleDesign finalization", source_hashes["ed_final"]),
         ("CDGB source audit", source_hashes["cdgb_audit"]),
         ("CDGB independent verifier", source_hashes["cdgb_verify"]),
         ("CDGB finalization", source_hashes["cdgb_final"]),
@@ -289,13 +321,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("RNARL official 21-file pair table contains" in text, "RNARL full QC result missing")
     require("five-species processed matrices are not available" in text, "VeloHARMO missing-species boundary missing")
     require("LinearDesign bounded official execution" in text, "LinearDesign bounded result missing")
+    require("EnsembleDesign bounded official execution" in text and "EFE is not LinearDesign MFE" in text and "No matched LinearDesign comparison" in text, "EnsembleDesign bounded result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v4",
+        "schema_version": "a8-rk-paper-sync-v5",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -309,6 +342,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
             "lineardesign": "official single-record three-lambda bounded smoke only; both dangling-end conventions retained",
+            "ensembledesign": "official README example and single-C01 bounded smoke only; EFE is not MFE; no matched comparison or ranking",
             "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
