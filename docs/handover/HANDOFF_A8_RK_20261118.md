@@ -9,7 +9,7 @@
 - 执行合同：`docs/handover/spec.md`
 - 文件级任务：`docs/handover/tasks.md`
 - 下一位执行者提示词：`docs/handover/PROMPT_NEXT_AGENT_A8_RK.md`
-- 预印本工作稿：`paper/CodonFlow_preprint_A7.md`
+- 当前预印本工作稿：`paper/CodonFlow_preprint_A8.md`；历史快照 `paper/CodonFlow_preprint_A7.md` 保留未改
 
 A8-RK 的实际执行位于隔离工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`。RK-01 commit=`5ad3393a4f90c4a743cf7e0725b45ea62e395172`；RK-02 commit=`087b8822e14dcb15710dc2f40d8db5650b8687a4`；RK-04 代码与审计 commit=`99df1d96e041e1f78b67e69210276df66d7b5f6f`；RK-06a 评价器 commit=`db3e1667dc593b4e4e9b3605bb0eee6fc249f000`；RK-06b raw-CDS scorer commit=`56a62b4415c7e0e442ff064bb6002a4aed00798a`，均已推送 GitHub。原主工作树 `/home/codonflow` 的 `main` 及其既有未推送提交未被改写或推送。大型资产沿用 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。不得在交接、日志或提示词中记录服务器密码。
 
@@ -309,3 +309,20 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 权威脚本及测试已部署 `/home/codonflow-a8-rk`，项目模块方式运行 10/10 PASS。补丁、测试与 `rnarl_download_recovery_patch.json` 以 commit=`f0db530b2564dbc172ed78eebd610479c4ef7a06` 推送；进行中的 `rnarl_download_manifest.json` 未提交。
 - 该审计状态仅为 `PASS_PATCH_TESTS__FORMAL_DATA_COMPLETION_PENDING`。没有启动第二个并发下载器，旧进程已加载的代码不会因磁盘补丁原地改变。正式恢复必须依据唯一 patched downloader 的真实 final manifest、raw/quarantine 实物、21 文件全量 QC、独立 verifier 和 finalization；10/10 工程测试与 15 文件 partial smoke 均不能替代这些证据。
 - 后续 pre-recovery 实物审计逐文件重算 bytes/MD5/SHA：18 个已存在 final 全部 verified、0 个 invalid final、3 个 missing final、3 个 part，报告为 `rnarl_pre_final_recovery_audit.json`。为覆盖防御性边界，final 也采用与 part 相同的唯一命名隔离和重试路径，成功记录新增 `quarantined_destinations`；权威 final+part 补丁 11/11 tests PASS，代码与 `rnarl_download_final_recovery_patch.json` 已部署。该 11/11 仍仅是工程验收，不是正式数据完成或 PPT 结果。
+
+## 18. RNARL 下载闭环与 A8 bounded 工作稿
+
+### RNARL 21 文件下载完成，行级验收仍在进行
+
+- patched downloader 已正常结束，主 recovery manifest 为 complete、21 records、0 failures，合计 **714,327,390 bytes**；19 个文件为 `reused_verified`、2 个为 `downloaded_verified`。raw 实物为 21 个 final、0 个活动 part、2 个 `.part.rejected-*`。
+- finalizer 的二次全量复用核验写入独立 `rnarl_reverify_download_manifest.json`，没有覆盖首次 recovery manifest；其状态同为 complete、21 records、0 failures。首次恢复记录中的两份 quarantine 信息仍保留，reverify 不带 quarantine 属预期行为。
+- 新独立 `scripts/a8_rk03_verify_download.py` 不依赖生产 QC，逐文件重算 21 个 final 的 bytes/MD5/SHA256，并核对 config、recovery/reverify manifests、final 集合、活动 part 和两份坏残片。报告 `rnarl_download_independent_verification.json` 为 **PASS_DOWNLOAD_ONLY_QC_PENDING，8/8 PASS**；两份坏 part 的 MD5 均与官方期望不同，SHA256 也不同于正式 final。
+- 旧 `rnarl_finalization.json` 的真实 FAIL 原样保留；新 finalizer 目标为 `rnarl_finalization_recovery_v3.json`。截至本次提交，全量行级 QC、独立 QC verifier、clean-pair 授权和新 finalization 尚未完成，不能把 21/21 下载或 8/8 下载复核写成正式 clean 数据、天然 CDS、功能训练/OOD 或模型结果。
+- 上述下载器 finalizer 保留修复、独立下载 verifier、两份 complete manifests、旧 FAIL finalization 和下载独立报告以 commit=`b2661456d14eca0f08c70d9a0d71a489e5b2dde7` 推送。PPT 尚未追加 RNARL 下载页，待正式 QC 与 finalization 验收后再记录。
+
+### A8 工作稿由冻结证据生成并通过独立复核
+
+- `scripts/a8_rk_paper_sync.py` 以远端 A7 为模板生成独立 `paper/CodonFlow_preprint_A8.md`，A7 SHA256 保持 `941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d423`。新增/更新第 3.1 数据事实、3.2 RK04 split、6.2 RK07、6.5 ID3/RNARL baseline 状态和 8.1 证据哈希；A8 SHA256=`fcbb7f3a823fe5d91a678f3ffd5ff708f0772423feefe1232690fa01a24aae80`。
+- 同步只引用冻结 JSON，不手工新写性能数字。RK07 明确为 bounded cross-protein diagnostic；ID3 保留 112/116 与 CPC 排除范围；RNARL 公开代码负审计与 21 文件正式 QC pending 分开陈述；主 baseline、功能 OOD、生成器、SOTA 和湿实验均未宣称完成。
+- `scripts/a8_rk_verify_paper.py` 不导入生产模块，独立重算 13 份来源 JSON SHA、A7/A8 SHA、关键数字字符串、四个 ID3 retained failures 和 pending/no-SOTA 边界。`paper/a8_rk_paper_independent_verification.json` 为 **PASS，11/11 checks**；同步审计为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
+- 生成器、独立 verifier、A8 稿及两份报告以 commit=`b2661456d14eca0f08c70d9a0d71a489e5b2dde7` 推送。A8 仍是不可提交 working manuscript；Fig.1–7、机制、模型、主 baseline、OOD 和前瞻湿实验未闭合。本轮没有因工作稿生成而新增 PPT 页面。
