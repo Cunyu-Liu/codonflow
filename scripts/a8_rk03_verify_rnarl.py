@@ -79,7 +79,8 @@ def independent_row(raw: Mapping[str, str], filename: str, row_number: int, lamb
     organism, split = identity(filename)
     pid = str(raw.get("Protein_ID", "")).strip()
     protein = str(raw.get("Protein_Sequence", "")).strip().upper()
-    cds = str(raw.get("CDS_Sequence", "")).strip().upper()
+    source_cds = str(raw.get("CDS_Sequence", "")).strip().upper()
+    cds = source_cds.replace("U", "T")
     structure = str(raw.get("CDS_Structure", "")).strip()
     target = protein[:-1] if protein.endswith("*") else protein
     plen = parse_int(raw.get("Protein_Length"))
@@ -89,11 +90,13 @@ def independent_row(raw: Mapping[str, str], filename: str, row_number: int, lamb
     reasons = []
     if not pid: reasons.append("missing_protein_id")
     if not target: reasons.append("missing_protein_sequence")
-    if not cds: reasons.append("missing_cds")
-    if set(cds) - set("ACGT"): reasons.append("non_acgt_cds")
+    if not protein.endswith("*"): reasons.append("missing_protein_terminal_stop_symbol")
+    if "*" in target: reasons.append("internal_protein_stop_symbol")
+    if not source_cds: reasons.append("missing_cds")
+    if set(source_cds) - set("ACGU"): reasons.append("non_acgu_cds")
     if len(cds) % 3: reasons.append("cds_length_not_divisible_by_3")
     if plen is None: reasons.append("invalid_reported_protein_length")
-    elif plen != len(target): reasons.append("protein_length_mismatch")
+    elif plen != len(protein): reasons.append("protein_length_mismatch")
     if clen is None: reasons.append("invalid_reported_cds_length")
     elif clen != len(cds): reasons.append("cds_length_mismatch")
     if mfe is None: reasons.append("invalid_mfe")
@@ -103,7 +106,7 @@ def independent_row(raw: Mapping[str, str], filename: str, row_number: int, lamb
     if not valid_structure(structure): reasons.append("structure_unbalanced_or_unsupported")
     start = terminal = internal = False
     translated = None
-    if cds and len(cds) % 3 == 0 and not set(cds) - set("ACGT"):
+    if source_cds and len(source_cds) % 3 == 0 and not set(source_cds) - set("ACGU"):
         codons = [cds[i:i + 3] for i in range(0, len(cds), 3)]
         start = codons[0] == "ATG"
         terminal = codons[-1] in STOPS
@@ -119,6 +122,8 @@ def independent_row(raw: Mapping[str, str], filename: str, row_number: int, lamb
         "record_id": f"{filename}:{row_number:06d}", "source_file": filename,
         "source_row_number": row_number, "organism": organism, "split": split,
         "protein_id": pid, "protein_sequence": protein, "protein_length": len(target),
+        "protein_terminal_stop_symbol": protein.endswith("*"),
+        "source_cds_rna": source_cds, "source_alphabet": "RNA",
         "cds_dna": cds, "cds_length_nt": len(cds), "cds_structure": structure,
         "reported_protein_length": plen, "reported_cds_length": clen,
         "reported_mfe_kcal_mol": mfe, "reported_cai": cai,
@@ -204,7 +209,7 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
                     if not same: pair_reasons.append("pair_protein_sequence_mismatch")
                     if not distinct: pair_reasons.append("pair_identical_cds")
                     if not base_pass: pair_reasons.append("pair_member_base_qc_failed")
-                    row.update({"pair_member_index": member, "pair_group_size": len(rows),
+                    row.update({"pair_id": filename + ":" + text_hash(key)[:24], "pair_member_index": member, "pair_group_size": len(rows),
                                 "pair_same_protein_sequence": same, "pair_distinct_cds": distinct,
                                 "pair_structure_pass": structure_pass, "pair_lambda_01_recoverable": lambda01,
                                 "pair_pass": structure_pass and base_pass,
@@ -233,16 +238,27 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
         if row["protein_id"]: pid_index[(row["organism"], row["protein_id"])].add(row["split"])
         if row["protein_sequence"]: protein_index[(row["organism"], row["protein_sequence"])].add(row["split"])
         if row["cds_dna"]: cds_index[row["cds_dna"]].add(row["split"])
-    expected_clean_ids = []
-    clean_values = {name: defaultdict(list) for name in expected_files}
-    for row in expected:
-        flags = (
+    def overlap_flags(row):
+        return (
             bool(row["protein_id"]) and len(pid_index[(row["organism"], row["protein_id"])]) > 1,
             bool(row["protein_sequence"]) and len(protein_index[(row["organism"], row["protein_sequence"])]) > 1,
             bool(row["cds_dna"]) and len(cds_index[row["cds_dna"]]) > 1,
         )
+    pair_flags = {}
+    for groups in groups_by_file.values():
+        for rows in groups.values():
+            flags = [overlap_flags(row) for row in rows]
+            pair_flags[rows[0]["pair_id"]] = tuple(any(flag[index] for flag in flags) for index in range(3))
+    expected_clean_ids = []
+    clean_values = {name: defaultdict(list) for name in expected_files}
+    for row in expected:
+        flags = overlap_flags(row)
+        pair_overlap = pair_flags[row["pair_id"]]
         overlap_reasons = [label for flag, label in zip(flags, ("cross_split_protein_id", "cross_split_protein_sequence", "cross_split_exact_cds")) if flag]
-        row["clean_eligible"] = row["pair_pass"] and not any(flags)
+        if any(pair_overlap) and not any(flags):
+            overlap_reasons.append("pair_member_cross_split_overlap")
+        row["pair_cross_split_overlap"] = any(pair_overlap)
+        row["clean_eligible"] = row["pair_pass"] and not any(pair_overlap)
         row["expected_reasons"] = set(row["base_exclusion_reasons"] + row["pair_exclusion_reasons"] + overlap_reasons)
         if row["clean_eligible"]:
             expected_clean_ids.append(row["record_id"])
@@ -257,11 +273,12 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
 
     max_delta = 0.0; row_errors = []; actual_ids = []
     direct_fields = ["record_id", "source_file", "source_row_number", "organism", "split", "protein_id",
-                     "protein_sequence", "protein_length", "cds_dna", "cds_length_nt", "cds_structure",
+                     "protein_sequence", "protein_length", "protein_terminal_stop_symbol", "source_cds_rna", "source_alphabet",
+                     "cds_dna", "cds_length_nt", "cds_structure",
                      "reported_protein_length", "reported_cds_length", "reported_mfe_kcal_mol", "reported_cai",
                      "reported_lambda", "translated_protein", "start_atg", "terminal_stop", "internal_stop",
                      "protein_sha256", "cds_sha256", "base_qc_pass", "pair_group_size", "pair_structure_pass",
-                     "pair_lambda_01_recoverable", "pair_pass", "clean_eligible"]
+                     "pair_lambda_01_recoverable", "pair_pass", "pair_cross_split_overlap", "clean_eligible"]
     try:
         with gzip.open(qc_dir / "rnarl_all_qc.jsonl.gz", "rt", encoding="utf-8") as handle:
             actual = [json.loads(line) for line in handle]

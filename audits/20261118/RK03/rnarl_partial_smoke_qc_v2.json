@@ -1,0 +1,1455 @@
+{
+  "schema_version": "a8-rk03-rnarl-qc-v2",
+  "created_at": "2026-11-18T16:10:04.703979+00:00",
+  "status": "PARTIAL_SMOKE_ONLY",
+  "config_path": "configs/a8_rk03_sources.json",
+  "config_sha256": "01a20b190e1152fd169d9a48b87b13dbc59871482fa9d872b86a4ac9e51839bd",
+  "raw_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/rnarl_v1",
+  "output_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/audits/rnarl_partial_smoke_v2",
+  "source_record": "https://zenodo.org/records/15486992",
+  "license": "CC-BY-4.0",
+  "repository_commit": "88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5",
+  "expected_file_count": 21,
+  "processed_file_count": 15,
+  "total_rows": 33924,
+  "clean_rows": 33510,
+  "clean_pairs": 16755,
+  "pair_groups": 16962,
+  "pair_structure_pass_groups": 16950,
+  "pair_pass_groups": 16757,
+  "long_format_two_distinct_cds_pattern_observed": false,
+  "lambda_label_recoverable": false,
+  "row_order_or_mfe_lambda_assignment_allowed": false,
+  "lineardesign_provenance_independently_validated": false,
+  "natural_cds_source_validated": false,
+  "natural_distribution_eligible": false,
+  "bounded_lineardesign_pair_table_ready_pending_verifier": false,
+  "lambda_stratified_analysis_ready": false,
+  "functional_training_authorized": false,
+  "functional_ood_claim_authorized": false,
+  "split_overlaps": {
+    "protein_id": {
+      "overlapping_keys": 0,
+      "examples": []
+    },
+    "protein_sequence": {
+      "overlapping_keys": 0,
+      "examples": []
+    },
+    "exact_cds": {
+      "overlapping_keys": 2,
+      "examples": [
+        {
+          "identity": {
+            "cds_sha256": "d53e1c65df21b07f1babb25e9493762dd03c511f9e80989f9187b371428b5245"
+          },
+          "locations": {
+            "test": [
+              [
+                "Homo_sapiens_circRNA_test.csv",
+                818
+              ]
+            ],
+            "val": [
+              [
+                "Homo_sapiens_val.csv",
+                3031
+              ]
+            ]
+          }
+        },
+        {
+          "identity": {
+            "cds_sha256": "189d3adf6ef698871de1b96e16bdb9c6c71c0fbf55dacdb5059eaf1b02e5b073"
+          },
+          "locations": {
+            "test": [
+              [
+                "Homo_sapiens_circRNA_test.csv",
+                1273
+              ]
+            ],
+            "val": [
+              [
+                "Homo_sapiens_val.csv",
+                3837
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "overlap_row_counts": {
+    "cross_split_exact_cds": 4
+  },
+  "files": [
+    {
+      "filename": "Arabidopsis_thaliana_test.csv",
+      "status": "failed",
+      "error": "QCError: MD5 mismatch: expected=bda51e8464933741254b5fb8330bd315, actual=2db5e40887c7a55f319dab31813c307c"
+    },
+    {
+      "filename": "Arabidopsis_thaliana_train.csv",
+      "status": "failed",
+      "error": "QCError: missing raw file"
+    },
+    {
+      "filename": "Arabidopsis_thaliana_val.csv",
+      "organism": "Arabidopsis_thaliana",
+      "split": "val",
+      "status": "processed",
+      "bytes": 8332202,
+      "md5": "707faaf69c3f67b68ae5f03ace9817ec",
+      "sha256": "ce4e2fd3686b10163c3cc29587961b9ab94c313f9fa1574693cc3354fabbe6e8",
+      "rows": 3128,
+      "base_qc_pass_rows": 3103,
+      "pair_groups": 1564,
+      "pair_structure_pass_groups": 1564,
+      "pair_pass_groups": 1543,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 1564
+      },
+      "clean_rows": 3086,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 3086,
+          "min": 31.0,
+          "p25": 186.25,
+          "median": 322.0,
+          "p75": 499.0,
+          "max": 1274.0,
+          "mean": 373.5184705119896
+        },
+        "cds_length_nt": {
+          "n": 3086,
+          "min": 96.0,
+          "p25": 561.75,
+          "median": 969.0,
+          "p75": 1500.0,
+          "max": 3825.0,
+          "mean": 1123.555411535969
+        },
+        "gc_fraction_full_cds": {
+          "n": 3086,
+          "min": 0.4084507042253521,
+          "p25": 0.5112531936823157,
+          "median": 0.5404496892391437,
+          "p75": 0.5695339746855285,
+          "max": 0.786774628879892,
+          "mean": 0.5412974577872876
+        },
+        "reported_cai": {
+          "n": 3086,
+          "min": 0.506,
+          "p25": 0.65,
+          "median": 0.688,
+          "p75": 0.729,
+          "max": 0.861,
+          "mean": 0.6892096565132858
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 3086,
+          "min": -3199.8,
+          "p25": -1001.9000000000001,
+          "median": -642.55,
+          "p75": -368.6,
+          "max": -36.3,
+          "mean": -745.5149384316268
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 1564,
+          "min": 0.0,
+          "p25": 8.5,
+          "median": 15.900000000000091,
+          "p75": 25.82499999999996,
+          "max": 86.90000000000009,
+          "mean": 18.996675191815857
+        },
+        "absolute_cai_difference": {
+          "n": 1564,
+          "min": 0.01200000000000001,
+          "p25": 0.06399999999999995,
+          "median": 0.07600000000000007,
+          "p75": 0.08999999999999997,
+          "max": 0.17300000000000004,
+          "mean": 0.07716815856777491
+        }
+      }
+    },
+    {
+      "filename": "Chlamydomonas_reinhardtii_test.csv",
+      "organism": "Chlamydomonas_reinhardtii",
+      "split": "test",
+      "status": "processed",
+      "bytes": 5347535,
+      "md5": "2f9057ac87a5eac4194246505897f2cd",
+      "sha256": "f47cd68fd58e3d9dc72f38fa3f8bcbe51d2fd941c7b003ac55faac80df6cdbe5",
+      "rows": 1518,
+      "base_qc_pass_rows": 1496,
+      "pair_groups": 759,
+      "pair_structure_pass_groups": 759,
+      "pair_pass_groups": 737,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 759
+      },
+      "clean_rows": 1474,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 1474,
+          "min": 54.0,
+          "p25": 230.0,
+          "median": 426.0,
+          "p75": 679.0,
+          "max": 1293.0,
+          "mean": 489.59565807327
+        },
+        "cds_length_nt": {
+          "n": 1474,
+          "min": 165.0,
+          "p25": 693.0,
+          "median": 1281.0,
+          "p75": 2040.0,
+          "max": 3882.0,
+          "mean": 1471.78697421981
+        },
+        "gc_fraction_full_cds": {
+          "n": 1474,
+          "min": 0.5243055555555556,
+          "p25": 0.6585713887960798,
+          "median": 0.7015175630899827,
+          "p75": 0.7391293891293892,
+          "max": 0.8506944444444444,
+          "mean": 0.6968964762288781
+        },
+        "reported_cai": {
+          "n": 1474,
+          "min": 0.375,
+          "p25": 0.515,
+          "median": 0.6685000000000001,
+          "p75": 0.7857500000000001,
+          "max": 0.926,
+          "mean": 0.6504118046132972
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 1474,
+          "min": -3751.3,
+          "p25": -1651.0249999999999,
+          "median": -971.5,
+          "p75": -512.9499999999999,
+          "max": -95.5,
+          "mean": -1181.3844165535957
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 759,
+          "min": 0.5,
+          "p25": 38.400000000000034,
+          "median": 69.20000000000005,
+          "p75": 112.25000000000011,
+          "max": 255.69999999999982,
+          "mean": 80.15779973649538
+        },
+        "absolute_cai_difference": {
+          "n": 759,
+          "min": 0.05600000000000005,
+          "p25": 0.24,
+          "median": 0.269,
+          "p75": 0.29800000000000004,
+          "max": 0.485,
+          "mean": 0.2692832674571805
+        }
+      }
+    },
+    {
+      "filename": "Chlamydomonas_reinhardtii_train.csv",
+      "status": "failed",
+      "error": "QCError: missing raw file"
+    },
+    {
+      "filename": "Chlamydomonas_reinhardtii_val.csv",
+      "organism": "Chlamydomonas_reinhardtii",
+      "split": "val",
+      "status": "processed",
+      "bytes": 5224383,
+      "md5": "5b0a60706df48f57db39f2015b34e600",
+      "sha256": "dace3785ebe2fd4146ba8b5463a41c9f88aa4c2d567e4385f8c0b527d6ad445a",
+      "rows": 1518,
+      "base_qc_pass_rows": 1506,
+      "pair_groups": 759,
+      "pair_structure_pass_groups": 759,
+      "pair_pass_groups": 747,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 759
+      },
+      "clean_rows": 1494,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 1494,
+          "min": 54.0,
+          "p25": 207.5,
+          "median": 411.0,
+          "p75": 690.75,
+          "max": 1304.0,
+          "mean": 478.2704149933066
+        },
+        "cds_length_nt": {
+          "n": 1494,
+          "min": 165.0,
+          "p25": 625.5,
+          "median": 1236.0,
+          "p75": 2075.25,
+          "max": 3915.0,
+          "mean": 1437.8112449799196
+        },
+        "gc_fraction_full_cds": {
+          "n": 1494,
+          "min": 0.5047619047619047,
+          "p25": 0.6598127988957979,
+          "median": 0.6989682056632757,
+          "p75": 0.7383558178063968,
+          "max": 0.8876404494382022,
+          "mean": 0.6971796122609056
+        },
+        "reported_cai": {
+          "n": 1494,
+          "min": 0.353,
+          "p25": 0.514,
+          "median": 0.685,
+          "p75": 0.783,
+          "max": 0.964,
+          "mean": 0.6509149933065596
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 1494,
+          "min": -3799.0,
+          "p25": -1640.6499999999999,
+          "median": -927.6500000000001,
+          "p75": -449.05,
+          "max": -83.9,
+          "mean": -1149.2783801874164
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 759,
+          "min": 2.700000000000003,
+          "p25": 32.650000000000006,
+          "median": 65.60000000000002,
+          "p75": 109.39999999999986,
+          "max": 261.7000000000003,
+          "mean": 76.76218708827405
+        },
+        "absolute_cai_difference": {
+          "n": 759,
+          "min": 0.10099999999999998,
+          "p25": 0.239,
+          "median": 0.266,
+          "p75": 0.29300000000000004,
+          "max": 0.485,
+          "mean": 0.2659947299077734
+        }
+      }
+    },
+    {
+      "filename": "Escherichia_coli_test.csv",
+      "organism": "Escherichia_coli",
+      "split": "test",
+      "status": "processed",
+      "bytes": 818614,
+      "md5": "2ea037be84380774570d9dc0fa108539",
+      "sha256": "e1678c1f8eb217c82347325028cb7294b7c664a581b36bc529840fe3bb2312ce",
+      "rows": 418,
+      "base_qc_pass_rows": 417,
+      "pair_groups": 209,
+      "pair_structure_pass_groups": 209,
+      "pair_pass_groups": 208,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 209
+      },
+      "clean_rows": 416,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 416,
+          "min": 14.0,
+          "p25": 127.0,
+          "median": 247.0,
+          "p75": 378.0,
+          "max": 1246.0,
+          "mean": 273.15865384615387
+        },
+        "cds_length_nt": {
+          "n": 416,
+          "min": 45.0,
+          "p25": 384.0,
+          "median": 744.0,
+          "p75": 1137.0,
+          "max": 3741.0,
+          "mean": 822.4759615384615
+        },
+        "gc_fraction_full_cds": {
+          "n": 416,
+          "min": 0.32142857142857145,
+          "p25": 0.54803506148222,
+          "median": 0.5761506809409366,
+          "p75": 0.5989097078146611,
+          "max": 0.6926406926406926,
+          "mean": 0.5705281961672786
+        },
+        "reported_cai": {
+          "n": 416,
+          "min": 0.615,
+          "p25": 0.695,
+          "median": 0.741,
+          "p75": 0.786,
+          "max": 0.873,
+          "mean": 0.740358173076923
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 416,
+          "min": -2613.2,
+          "p25": -793.125,
+          "median": -512.8,
+          "p75": -262.475,
+          "max": -18.7,
+          "mean": -562.9269230769231
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 209,
+          "min": 0.0,
+          "p25": 4.299999999999997,
+          "median": 9.5,
+          "p75": 15.899999999999864,
+          "max": 42.5,
+          "mean": 11.396650717703345
+        },
+        "absolute_cai_difference": {
+          "n": 209,
+          "min": 0.039000000000000035,
+          "p25": 0.07700000000000007,
+          "median": 0.08899999999999997,
+          "p75": 0.1060000000000001,
+          "max": 0.19899999999999995,
+          "mean": 0.09195215311004788
+        }
+      }
+    },
+    {
+      "filename": "Escherichia_coli_train.csv",
+      "organism": "Escherichia_coli",
+      "split": "train",
+      "status": "processed",
+      "bytes": 16408126,
+      "md5": "23894f9cf1523b1d3263704fe0c2a9d3",
+      "sha256": "0373ef44a3d3c9bc40987e4e4f133d87ec6b0cd5a3730e67bf10ef5d7665072b",
+      "rows": 7528,
+      "base_qc_pass_rows": 7509,
+      "pair_groups": 3764,
+      "pair_structure_pass_groups": 3763,
+      "pair_pass_groups": 3744,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 3764
+      },
+      "clean_rows": 7488,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 7488,
+          "min": 14.0,
+          "p25": 157.0,
+          "median": 269.5,
+          "p75": 400.25,
+          "max": 1295.0,
+          "mean": 303.7419871794872
+        },
+        "cds_length_nt": {
+          "n": 7488,
+          "min": 45.0,
+          "p25": 474.0,
+          "median": 811.5,
+          "p75": 1203.75,
+          "max": 3888.0,
+          "mean": 914.2259615384615
+        },
+        "gc_fraction_full_cds": {
+          "n": 7488,
+          "min": 0.26666666666666666,
+          "p25": 0.5487360909530721,
+          "median": 0.5751633986928104,
+          "p75": 0.5980392156862745,
+          "max": 0.7183098591549296,
+          "mean": 0.5702978819317794
+        },
+        "reported_cai": {
+          "n": 7488,
+          "min": 0.551,
+          "p25": 0.696,
+          "median": 0.741,
+          "p75": 0.787,
+          "max": 0.967,
+          "mean": 0.7408145032051282
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 7488,
+          "min": -2941.6,
+          "p25": -835.425,
+          "median": -554.8499999999999,
+          "p75": -310.55,
+          "max": -7.6,
+          "mean": -625.0893563034188
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 3764,
+          "min": 0.0,
+          "p25": 5.7000000000000455,
+          "median": 10.899999999999977,
+          "p75": 17.799999999999955,
+          "max": 77.09999999999991,
+          "mean": 12.997077577045696
+        },
+        "absolute_cai_difference": {
+          "n": 3764,
+          "min": 0.0,
+          "p25": 0.07600000000000007,
+          "median": 0.09000000000000008,
+          "p75": 0.10499999999999998,
+          "max": 0.38,
+          "mean": 0.09236052072263552
+        }
+      }
+    },
+    {
+      "filename": "Escherichia_coli_val.csv",
+      "organism": "Escherichia_coli",
+      "split": "val",
+      "status": "processed",
+      "bytes": 888753,
+      "md5": "fa745751ddd8418021111fc795f90aef",
+      "sha256": "150485ba34ea69503be429935333b818b45a99b20e0f26eb9f55ddbeb4b8617a",
+      "rows": 420,
+      "base_qc_pass_rows": 419,
+      "pair_groups": 210,
+      "pair_structure_pass_groups": 210,
+      "pair_pass_groups": 209,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 210
+      },
+      "clean_rows": 418,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 418,
+          "min": 33.0,
+          "p25": 157.0,
+          "median": 261.0,
+          "p75": 393.0,
+          "max": 935.0,
+          "mean": 295.0047846889952
+        },
+        "cds_length_nt": {
+          "n": 418,
+          "min": 102.0,
+          "p25": 474.0,
+          "median": 786.0,
+          "p75": 1182.0,
+          "max": 2808.0,
+          "mean": 888.0143540669857
+        },
+        "gc_fraction_full_cds": {
+          "n": 418,
+          "min": 0.4015151515151515,
+          "p25": 0.5482950479461859,
+          "median": 0.5744057297715834,
+          "p75": 0.5997289972899729,
+          "max": 0.6597402597402597,
+          "mean": 0.5710522778078149
+        },
+        "reported_cai": {
+          "n": 418,
+          "min": 0.612,
+          "p25": 0.69625,
+          "median": 0.7404999999999999,
+          "p75": 0.787,
+          "max": 0.896,
+          "mean": 0.7409665071770335
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 418,
+          "min": -2184.2,
+          "p25": -834.55,
+          "median": -530.8499999999999,
+          "p75": -305.27500000000003,
+          "max": -32.7,
+          "mean": -608.0224880382775
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 210,
+          "min": 0.09999999999999432,
+          "p25": 5.425000000000026,
+          "median": 10.400000000000006,
+          "p75": 18.54999999999997,
+          "max": 43.0,
+          "mean": 12.712857142857137
+        },
+        "absolute_cai_difference": {
+          "n": 210,
+          "min": 0.04300000000000004,
+          "p25": 0.07599999999999998,
+          "median": 0.08850000000000002,
+          "p75": 0.10399999999999998,
+          "max": 0.262,
+          "mean": 0.09221904761904764
+        }
+      }
+    },
+    {
+      "filename": "Homo_sapiens_circRNA_test.csv",
+      "organism": "Homo_sapiens_circRNA",
+      "split": "test",
+      "status": "processed",
+      "bytes": 3178499,
+      "md5": "eadfad0947fd50f525531e7d810fa225",
+      "sha256": "1f37d7dfea04392fba6cb51c3041f3423ff1ef106672bcc00f4a5b5c35137c7c",
+      "rows": 2392,
+      "base_qc_pass_rows": 2386,
+      "pair_groups": 1196,
+      "pair_structure_pass_groups": 1190,
+      "pair_pass_groups": 1184,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 1196
+      },
+      "clean_rows": 2366,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 2366,
+          "min": 30.0,
+          "p25": 61.25,
+          "median": 122.0,
+          "p75": 224.75,
+          "max": 1285.0,
+          "mean": 182.53085376162298
+        },
+        "cds_length_nt": {
+          "n": 2366,
+          "min": 93.0,
+          "p25": 186.75,
+          "median": 369.0,
+          "p75": 677.25,
+          "max": 3858.0,
+          "mean": 550.592561284869
+        },
+        "gc_fraction_full_cds": {
+          "n": 2366,
+          "min": 0.4148148148148148,
+          "p25": 0.5518886479130787,
+          "median": 0.5792265398367402,
+          "p75": 0.61025441949355,
+          "max": 0.8071895424836601,
+          "mean": 0.5851924112529464
+        },
+        "reported_cai": {
+          "n": 2366,
+          "min": 0.489,
+          "p25": 0.752,
+          "median": 0.797,
+          "p75": 0.842,
+          "max": 0.976,
+          "mean": 0.7940169061707524
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 2366,
+          "min": -2684.4,
+          "p25": -446.475,
+          "median": -237.05,
+          "p75": -119.9,
+          "max": -36.4,
+          "mean": -362.282831783601
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 1196,
+          "min": 0.0,
+          "p25": 2.400000000000002,
+          "median": 5.5,
+          "p75": 10.825000000000003,
+          "max": 64.10000000000036,
+          "mean": 8.438963210702342
+        },
+        "absolute_cai_difference": {
+          "n": 1196,
+          "min": 0.0,
+          "p25": 0.05999999999999994,
+          "median": 0.08299999999999996,
+          "p75": 0.10925000000000007,
+          "max": 0.264,
+          "mean": 0.08846321070234112
+        }
+      }
+    },
+    {
+      "filename": "Homo_sapiens_circRNA_train.csv",
+      "status": "failed",
+      "error": "QCError: missing raw file"
+    },
+    {
+      "filename": "Homo_sapiens_circRNA_val.csv",
+      "organism": "Homo_sapiens_circRNA",
+      "split": "val",
+      "status": "processed",
+      "bytes": 3317906,
+      "md5": "7fc71582d6e118c8eef5844cdd6c4ac7",
+      "sha256": "4c2f62e36e82d92b8f8dd55b15daab6e983a31be145f2fdf62481a1284fc3d2b",
+      "rows": 2394,
+      "base_qc_pass_rows": 2391,
+      "pair_groups": 1197,
+      "pair_structure_pass_groups": 1193,
+      "pair_pass_groups": 1190,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 1197
+      },
+      "clean_rows": 2380,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 2380,
+          "min": 30.0,
+          "p25": 67.0,
+          "median": 126.0,
+          "p75": 227.0,
+          "max": 1265.0,
+          "mean": 192.16638655462185
+        },
+        "cds_length_nt": {
+          "n": 2380,
+          "min": 93.0,
+          "p25": 204.0,
+          "median": 381.0,
+          "p75": 684.0,
+          "max": 3798.0,
+          "mean": 579.4991596638655
+        },
+        "gc_fraction_full_cds": {
+          "n": 2380,
+          "min": 0.3902439024390244,
+          "p25": 0.5515873015873016,
+          "median": 0.5781451821234823,
+          "p75": 0.6126398894738462,
+          "max": 0.8148148148148148,
+          "mean": 0.58443622273812
+        },
+        "reported_cai": {
+          "n": 2380,
+          "min": 0.538,
+          "p25": 0.754,
+          "median": 0.8015000000000001,
+          "p75": 0.842,
+          "max": 0.982,
+          "mean": 0.7953697478991597
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 2380,
+          "min": -2958.1,
+          "p25": -444.40000000000003,
+          "median": -251.4,
+          "p75": -125.57499999999999,
+          "max": -37.9,
+          "mean": -380.668487394958
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 1197,
+          "min": 0.0,
+          "p25": 2.5999999999999943,
+          "median": 5.400000000000034,
+          "p75": 10.699999999999989,
+          "max": 72.5,
+          "mean": 8.612781954887218
+        },
+        "absolute_cai_difference": {
+          "n": 1197,
+          "min": 0.0,
+          "p25": 0.061000000000000054,
+          "median": 0.08399999999999996,
+          "p75": 0.10699999999999998,
+          "max": 0.267,
+          "mean": 0.08821303258145362
+        }
+      }
+    },
+    {
+      "filename": "Homo_sapiens_test.csv",
+      "organism": "Homo_sapiens",
+      "split": "test",
+      "status": "processed",
+      "bytes": 13779874,
+      "md5": "eb6e7104640e1a22cdacc0f182b7cef1",
+      "sha256": "8adf90f3c0bba11aafa81534343bd15b562d3eb04d96b5b3b77c641e1aeb99c5",
+      "rows": 4238,
+      "base_qc_pass_rows": 4212,
+      "pair_groups": 2119,
+      "pair_structure_pass_groups": 2118,
+      "pair_pass_groups": 2092,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 2119
+      },
+      "clean_rows": 4184,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 4184,
+          "min": 33.0,
+          "p25": 241.0,
+          "median": 380.5,
+          "p75": 609.5,
+          "max": 1304.0,
+          "mean": 456.61759082217975
+        },
+        "cds_length_nt": {
+          "n": 4184,
+          "min": 102.0,
+          "p25": 726.0,
+          "median": 1144.5,
+          "p75": 1831.5,
+          "max": 3915.0,
+          "mean": 1372.8527724665391
+        },
+        "gc_fraction_full_cds": {
+          "n": 4184,
+          "min": 0.45098039215686275,
+          "p25": 0.5714285714285714,
+          "median": 0.5966106649435368,
+          "p75": 0.6261506854082649,
+          "max": 0.8128908128908129,
+          "mean": 0.6013037516419785
+        },
+        "reported_cai": {
+          "n": 4184,
+          "min": 0.64,
+          "p25": 0.749,
+          "median": 0.795,
+          "p75": 0.836,
+          "max": 0.915,
+          "mean": 0.7920666826003824
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 4184,
+          "min": -3047.2,
+          "p25": -1268.05,
+          "median": -792.3,
+          "p75": -499.0,
+          "max": -58.6,
+          "mean": -949.5416802103251
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 2119,
+          "min": 0.0,
+          "p25": 10.100000000000023,
+          "median": 17.799999999999955,
+          "p75": 28.649999999999977,
+          "max": 86.40000000000009,
+          "mean": 21.390471920717317
+        },
+        "absolute_cai_difference": {
+          "n": 2119,
+          "min": 0.0,
+          "p25": 0.06999999999999995,
+          "median": 0.08599999999999997,
+          "p75": 0.10099999999999998,
+          "max": 0.23199999999999998,
+          "mean": 0.08576498348277488
+        }
+      }
+    },
+    {
+      "filename": "Homo_sapiens_train.csv",
+      "status": "failed",
+      "error": "QCError: missing raw file"
+    },
+    {
+      "filename": "Homo_sapiens_val.csv",
+      "organism": "Homo_sapiens",
+      "split": "val",
+      "status": "processed",
+      "bytes": 14149694,
+      "md5": "3f9d2ac4578ddd68c0e6a66f57fe219e",
+      "sha256": "50f3c5124110ecc5c9848febcbca754a9aa03faf1b96352e254b1a8d9f7f27a9",
+      "rows": 4238,
+      "base_qc_pass_rows": 4202,
+      "pair_groups": 2119,
+      "pair_structure_pass_groups": 2119,
+      "pair_pass_groups": 2083,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 2119
+      },
+      "clean_rows": 4164,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 4164,
+          "min": 42.0,
+          "p25": 241.0,
+          "median": 380.5,
+          "p75": 625.0,
+          "max": 1304.0,
+          "mean": 466.48366954851105
+        },
+        "cds_length_nt": {
+          "n": 4164,
+          "min": 129.0,
+          "p25": 726.0,
+          "median": 1144.5,
+          "p75": 1878.0,
+          "max": 3915.0,
+          "mean": 1402.4510086455332
+        },
+        "gc_fraction_full_cds": {
+          "n": 4164,
+          "min": 0.3892543859649123,
+          "p25": 0.5703834789471296,
+          "median": 0.595455425552513,
+          "p75": 0.625487796225344,
+          "max": 0.8473895582329317,
+          "mean": 0.60142031279085
+        },
+        "reported_cai": {
+          "n": 4164,
+          "min": 0.605,
+          "p25": 0.75,
+          "median": 0.7955000000000001,
+          "p75": 0.836,
+          "max": 0.952,
+          "mean": 0.791690441882805
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 4164,
+          "min": -3308.0,
+          "p25": -1296.1000000000001,
+          "median": -795.0,
+          "p75": -497.1,
+          "max": -68.1,
+          "mean": -968.3606868395773
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 2119,
+          "min": 0.0,
+          "p25": 9.899999999999977,
+          "median": 18.0,
+          "p75": 29.5,
+          "max": 91.90000000000009,
+          "mean": 21.73912222746579
+        },
+        "absolute_cai_difference": {
+          "n": 2119,
+          "min": 0.016999999999999904,
+          "p25": 0.06999999999999995,
+          "median": 0.08499999999999996,
+          "p75": 0.09999999999999998,
+          "max": 0.19999999999999996,
+          "mean": 0.08545681925436525
+        }
+      }
+    },
+    {
+      "filename": "Penicillium chrysogenum_test.csv",
+      "organism": "Penicillium chrysogenum",
+      "split": "test",
+      "status": "processed",
+      "bytes": 3487697,
+      "md5": "ba2f36b49f4d2f89e6c24aa58ce1cccb",
+      "sha256": "39d30fd7d39d7848b35219dadb9ad33ab2011aa15759a1676d052d1463bdf6c6",
+      "rows": 1154,
+      "base_qc_pass_rows": 1125,
+      "pair_groups": 577,
+      "pair_structure_pass_groups": 577,
+      "pair_pass_groups": 557,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 577
+      },
+      "clean_rows": 1114,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 1114,
+          "min": 59.0,
+          "p25": 232.0,
+          "median": 383.0,
+          "p75": 549.0,
+          "max": 1277.0,
+          "mean": 419.4290843806104
+        },
+        "cds_length_nt": {
+          "n": 1114,
+          "min": 180.0,
+          "p25": 699.0,
+          "median": 1152.0,
+          "p75": 1650.0,
+          "max": 3834.0,
+          "mean": 1261.2872531418313
+        },
+        "gc_fraction_full_cds": {
+          "n": 1114,
+          "min": 0.5024154589371981,
+          "p25": 0.5896280896280897,
+          "median": 0.6067696016088402,
+          "p75": 0.6238189465388602,
+          "max": 0.7417840375586855,
+          "mean": 0.6072925219848835
+        },
+        "reported_cai": {
+          "n": 1114,
+          "min": 0.654,
+          "p25": 0.774,
+          "median": 0.802,
+          "p75": 0.828,
+          "max": 0.92,
+          "mean": 0.8004201077199282
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 1114,
+          "min": -2755.5,
+          "p25": -1144.375,
+          "median": -798.0999999999999,
+          "p75": -486.5,
+          "max": -113.8,
+          "mean": -880.7871633752244
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 577,
+          "min": 0.0,
+          "p25": 5.2999999999999545,
+          "median": 9.5,
+          "p75": 15.299999999999955,
+          "max": 40.100000000000364,
+          "mean": 10.88734835355286
+        },
+        "absolute_cai_difference": {
+          "n": 577,
+          "min": 0.0050000000000000044,
+          "p25": 0.039999999999999925,
+          "median": 0.050999999999999934,
+          "p75": 0.06299999999999994,
+          "max": 0.10799999999999998,
+          "mean": 0.05202946273830153
+        }
+      }
+    },
+    {
+      "filename": "Penicillium chrysogenum_train.csv",
+      "status": "failed",
+      "error": "QCError: missing raw file"
+    },
+    {
+      "filename": "Penicillium chrysogenum_val.csv",
+      "organism": "Penicillium chrysogenum",
+      "split": "val",
+      "status": "processed",
+      "bytes": 3402173,
+      "md5": "d438224dd2123af989e7600bf3bcad8f",
+      "sha256": "6bebb707539a1d12fdbfc61e0ef5cb700167bfa522dfdddb15cc8743fbcb4b71",
+      "rows": 1154,
+      "base_qc_pass_rows": 1131,
+      "pair_groups": 577,
+      "pair_structure_pass_groups": 577,
+      "pair_pass_groups": 560,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 577
+      },
+      "clean_rows": 1120,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 1120,
+          "min": 59.0,
+          "p25": 232.5,
+          "median": 373.5,
+          "p75": 538.25,
+          "max": 1276.0,
+          "mean": 413.6125
+        },
+        "cds_length_nt": {
+          "n": 1120,
+          "min": 180.0,
+          "p25": 700.5,
+          "median": 1123.5,
+          "p75": 1617.75,
+          "max": 3831.0,
+          "mean": 1243.8375
+        },
+        "gc_fraction_full_cds": {
+          "n": 1120,
+          "min": 0.5,
+          "p25": 0.5882716948165405,
+          "median": 0.6057639066359997,
+          "p75": 0.6238132557098075,
+          "max": 0.7540983606557377,
+          "mean": 0.6065308442257026
+        },
+        "reported_cai": {
+          "n": 1120,
+          "min": 0.663,
+          "p25": 0.777,
+          "median": 0.803,
+          "p75": 0.83,
+          "max": 0.904,
+          "mean": 0.8027044642857143
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 1120,
+          "min": -2908.5,
+          "p25": -1125.8500000000001,
+          "median": -770.55,
+          "p75": -480.57500000000005,
+          "max": -105.6,
+          "mean": -866.5851785714286
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 577,
+          "min": 0.19999999999998863,
+          "p25": 4.7000000000000455,
+          "median": 9.100000000000023,
+          "p75": 14.5,
+          "max": 40.69999999999982,
+          "mean": 10.48024263431543
+        },
+        "absolute_cai_difference": {
+          "n": 577,
+          "min": 0.0050000000000000044,
+          "p25": 0.039999999999999925,
+          "median": 0.04999999999999993,
+          "p75": 0.05999999999999994,
+          "max": 0.15800000000000003,
+          "mean": 0.05118717504332752
+        }
+      }
+    },
+    {
+      "filename": "Thermococcus_kodakarensis_KOD1_test.csv",
+      "organism": "Thermococcus_kodakarensis_KOD1",
+      "split": "test",
+      "status": "processed",
+      "bytes": 367574,
+      "md5": "a845351eb3c165d8d2031085ecf06380",
+      "sha256": "57679aaa76d328c7ecb9a0679666d27017b87bbadc85e0767f09d2459e498178",
+      "rows": 192,
+      "base_qc_pass_rows": 192,
+      "pair_groups": 96,
+      "pair_structure_pass_groups": 96,
+      "pair_pass_groups": 96,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 96
+      },
+      "clean_rows": 192,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 192,
+          "min": 51.0,
+          "p25": 145.25,
+          "median": 244.5,
+          "p75": 364.5,
+          "max": 732.0,
+          "mean": 266.8229166666667
+        },
+        "cds_length_nt": {
+          "n": 192,
+          "min": 156.0,
+          "p25": 438.75,
+          "median": 736.5,
+          "p75": 1096.5,
+          "max": 2199.0,
+          "mean": 803.46875
+        },
+        "gc_fraction_full_cds": {
+          "n": 192,
+          "min": 0.4825174825174825,
+          "p25": 0.5655092592592593,
+          "median": 0.5890130970617866,
+          "p75": 0.6049851091678207,
+          "max": 0.6729957805907173,
+          "mean": 0.5853089066424688
+        },
+        "reported_cai": {
+          "n": 192,
+          "min": 0.535,
+          "p25": 0.653,
+          "median": 0.734,
+          "p75": 0.78325,
+          "max": 0.867,
+          "mean": 0.7218802083333333
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 192,
+          "min": -1430.1,
+          "p25": -724.3499999999999,
+          "median": -475.5,
+          "p75": -265.9,
+          "max": -81.8,
+          "mean": -522.2489583333333
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 96,
+          "min": 0.700000000000017,
+          "p25": 10.5,
+          "median": 17.400000000000034,
+          "p75": 28.07499999999999,
+          "max": 64.09999999999991,
+          "mean": 19.918750000000006
+        },
+        "absolute_cai_difference": {
+          "n": 96,
+          "min": 0.050000000000000044,
+          "p25": 0.10499999999999998,
+          "median": 0.1245,
+          "p75": 0.1445,
+          "max": 0.20900000000000007,
+          "mean": 0.12430208333333333
+        }
+      }
+    },
+    {
+      "filename": "Thermococcus_kodakarensis_KOD1_train.csv",
+      "organism": "Thermococcus_kodakarensis_KOD1",
+      "split": "train",
+      "status": "processed",
+      "bytes": 6747903,
+      "md5": "71743b8c967e597e3caecdb611dfc751",
+      "sha256": "d4a44cba5b403b7a799335e7b2c7384d9f6607a5a9125f1d9b608b89b0089188",
+      "rows": 3440,
+      "base_qc_pass_rows": 3431,
+      "pair_groups": 1720,
+      "pair_structure_pass_groups": 1720,
+      "pair_pass_groups": 1711,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 1720
+      },
+      "clean_rows": 3422,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 3422,
+          "min": 38.0,
+          "p25": 141.0,
+          "median": 236.0,
+          "p75": 363.75,
+          "max": 1256.0,
+          "mean": 273.24021040327295
+        },
+        "cds_length_nt": {
+          "n": 3422,
+          "min": 117.0,
+          "p25": 426.0,
+          "median": 711.0,
+          "p75": 1094.25,
+          "max": 3771.0,
+          "mean": 822.7206312098189
+        },
+        "gc_fraction_full_cds": {
+          "n": 3422,
+          "min": 0.4583333333333333,
+          "p25": 0.5698924731182796,
+          "median": 0.5896613557823676,
+          "p75": 0.6081381381381381,
+          "max": 0.7371794871794872,
+          "mean": 0.5882628553916098
+        },
+        "reported_cai": {
+          "n": 3422,
+          "min": 0.503,
+          "p25": 0.66,
+          "median": 0.73,
+          "p75": 0.784,
+          "max": 0.945,
+          "mean": 0.7225867913500876
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 3422,
+          "min": -2469.8,
+          "p25": -731.975,
+          "median": -464.1,
+          "p75": -270.32500000000005,
+          "max": -54.1,
+          "mean": -540.556487434249
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 1720,
+          "min": 0.0,
+          "p25": 9.600000000000023,
+          "median": 17.649999999999977,
+          "p75": 28.0,
+          "max": 105.40000000000009,
+          "mean": 20.53377906976744
+        },
+        "absolute_cai_difference": {
+          "n": 1720,
+          "min": 0.02400000000000002,
+          "p25": 0.10099999999999998,
+          "median": 0.122,
+          "p75": 0.14300000000000002,
+          "max": 0.31499999999999995,
+          "mean": 0.12341337209302326
+        }
+      }
+    },
+    {
+      "filename": "Thermococcus_kodakarensis_KOD1_val.csv",
+      "organism": "Thermococcus_kodakarensis_KOD1",
+      "split": "val",
+      "status": "processed",
+      "bytes": 385412,
+      "md5": "be9f1c989d4cdb0e3f6a7c4244c4b734",
+      "sha256": "f552a9687ac375b51709b9e5624130d7011bf0242af66f744e4db105048cceb2",
+      "rows": 192,
+      "base_qc_pass_rows": 192,
+      "pair_groups": 96,
+      "pair_structure_pass_groups": 96,
+      "pair_pass_groups": 96,
+      "lambda_label_column": null,
+      "lambda_01_pairs": 0,
+      "rows_per_protein_group_distribution": {
+        "2": 96
+      },
+      "clean_rows": 192,
+      "clean_pair_rows_even": true,
+      "clean_distributions": {
+        "protein_length": {
+          "n": 192,
+          "min": 44.0,
+          "p25": 147.25,
+          "median": 219.0,
+          "p75": 376.5,
+          "max": 1157.0,
+          "mean": 280.09375
+        },
+        "cds_length_nt": {
+          "n": 192,
+          "min": 135.0,
+          "p25": 444.75,
+          "median": 660.0,
+          "p75": 1132.5,
+          "max": 3474.0,
+          "mean": 843.28125
+        },
+        "gc_fraction_full_cds": {
+          "n": 192,
+          "min": 0.5188679245283019,
+          "p25": 0.5691143565553942,
+          "median": 0.5889188713415179,
+          "p75": 0.6049240368963645,
+          "max": 0.6619718309859155,
+          "mean": 0.5870151974142985
+        },
+        "reported_cai": {
+          "n": 192,
+          "min": 0.543,
+          "p25": 0.659,
+          "median": 0.729,
+          "p75": 0.784,
+          "max": 0.865,
+          "mean": 0.7224427083333333
+        },
+        "reported_mfe_kcal_mol": {
+          "n": 192,
+          "min": -2380.0,
+          "p25": -757.875,
+          "median": -455.75,
+          "p75": -276.35,
+          "max": -78.9,
+          "mean": -548.4515625
+        }
+      },
+      "pair_delta_distributions": {
+        "absolute_mfe_difference": {
+          "n": 96,
+          "min": 2.0,
+          "p25": 8.924999999999997,
+          "median": 18.200000000000045,
+          "p75": 27.200000000000045,
+          "max": 83.40000000000009,
+          "mean": 20.50937500000001
+        },
+        "absolute_cai_difference": {
+          "n": 96,
+          "min": 0.03200000000000003,
+          "p25": 0.09849999999999998,
+          "median": 0.119,
+          "p75": 0.139,
+          "max": 0.2370000000000001,
+          "mean": 0.12078125
+        }
+      }
+    }
+  ],
+  "unavailable_source_metadata": [
+    "natural_CDS_accession",
+    "explicit_lambda_per_row",
+    "UTR",
+    "vector",
+    "host",
+    "promoter",
+    "chemical_modification",
+    "assay_batch",
+    "experimental_function",
+    "EFE"
+  ],
+  "scope": "QC of publisher-provided LinearDesign-like pair table; not natural-CDS validation, functional training, OOD, or SOTA evidence.",
+  "artifacts": {
+    "all_qc": "rnarl_all_qc.jsonl.gz",
+    "clean": "rnarl_clean.jsonl.gz"
+  }
+}

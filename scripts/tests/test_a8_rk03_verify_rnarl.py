@@ -25,9 +25,9 @@ def build_dataset(tmp):
     for organism_index in range(1, 8):
         for split in ("train", "val", "test"):
             index += 1
-            protein = "M" + "L" * index
-            left = "ATG" + "CTG" * index + "TAA"
-            right = "ATG" + "CTT" * index + "TAA"
+            protein = "M" + "L" * index + "*"
+            left = "AUG" + "CUG" * index + "UAA"
+            right = "AUG" + "CUU" * index + "UAA"
             name = f"Org{organism_index}_{split}.csv"
             path = raw / name
             with path.open("w", newline="", encoding="utf-8") as handle:

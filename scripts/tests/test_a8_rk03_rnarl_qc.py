@@ -21,7 +21,7 @@ BASE_COLUMNS = [
 ]
 
 
-def make_row(pid="p1", protein="ML", cds="ATGCTGTAA", mfe="-2.5", cai="0.8",
+def make_row(pid="p1", protein="ML*", cds="AUGCUGUAA", mfe="-2.5", cai="0.8",
              structure=None, lambda_value=None):
     row = {
         "Protein_ID": pid, "Protein_Sequence": protein, "Protein_Length": str(len(protein)),
@@ -60,7 +60,7 @@ def make_config(tmp, raw, filenames):
     return path
 
 
-def valid_pair(pid="p1", protein="ML", left="ATGCTGTAA", right="ATGCTTTAA"):
+def valid_pair(pid="p1", protein="ML*", left="AUGCUGUAA", right="AUGCUUUAA"):
     return [make_row(pid, protein, left), make_row(pid, protein, right)]
 
 
@@ -76,9 +76,13 @@ class RNARLQCTests(unittest.TestCase):
         self.assertTrue(record["base_qc_pass"], record["base_exclusion_reasons"])
         self.assertEqual(record["translated_protein"], "ML")
         self.assertTrue(record["terminal_stop"])
+        self.assertEqual(record["source_cds_rna"], "AUGCUGUAA")
+        self.assertEqual(record["cds_dna"], "ATGCTGTAA")
+        self.assertEqual(record["protein_length"], 2)
+        self.assertEqual(record["reported_protein_length"], 3)
 
     def test_internal_stop_and_translation_mismatch_are_retained(self):
-        record = qc_row(make_row(cds="ATGTGATAA"), "Toy_train.csv", "Toy", "train", 1, None)
+        record = qc_row(make_row(cds="AUGUGAUAA"), "Toy_train.csv", "Toy", "train", 1, None)
         self.assertIn("internal_stop", record["base_exclusion_reasons"])
         self.assertIn("translation_protein_mismatch", record["base_exclusion_reasons"])
         self.assertFalse(record["base_qc_pass"])
@@ -98,7 +102,7 @@ class RNARLQCTests(unittest.TestCase):
             tmp = Path(directory)
             raw = tmp / "raw"; raw.mkdir()
             write_csv(raw / "Toy_train.csv", valid_pair())
-            write_csv(raw / "Toy_val.csv", valid_pair("p2", "MK", "ATGAAATAG", "ATGAAGTAA"))
+            write_csv(raw / "Toy_val.csv", valid_pair("p2", "MK*", "AUGAAAUAG", "AUGAAGUAA"))
             config = make_config(tmp, raw, ["Toy_train.csv", "Toy_val.csv"])
             summary = run_qc(config, raw, tmp / "out", tmp / "audit.json")
             self.assertEqual(summary["status"], "COMPLETE_QC_PENDING_INDEPENDENT_VERIFICATION")
@@ -137,10 +141,25 @@ class RNARLQCTests(unittest.TestCase):
             self.assertEqual(summary["split_overlaps"]["exact_cds"]["overlapping_keys"], 2)
             self.assertFalse(summary["bounded_lineardesign_pair_table_ready_pending_verifier"])
 
+    def test_one_member_cds_overlap_excludes_the_whole_pair(self):
+        with tempfile.TemporaryDirectory() as directory:
+            tmp = Path(directory); raw = tmp / "raw"; raw.mkdir()
+            write_csv(raw / "Toy_train.csv", valid_pair("p1"))
+            write_csv(raw / "Other_test.csv", valid_pair("p2", left="AUGCUGUAA", right="AUGUUGUAA"))
+            config = make_config(tmp, raw, ["Toy_train.csv", "Other_test.csv"])
+            summary = run_qc(config, raw, tmp / "out")
+            self.assertEqual(summary["clean_rows"], 0)
+            self.assertEqual(summary["split_overlaps"]["exact_cds"]["overlapping_keys"], 1)
+            self.assertEqual(summary["split_overlaps"]["protein_sequence"]["overlapping_keys"], 0)
+            with gzip.open(tmp / "out" / "rnarl_all_qc.jsonl.gz", "rt") as handle:
+                rows = [json.loads(line) for line in handle]
+            self.assertTrue(all(row["pair_cross_split_overlap"] for row in rows))
+            self.assertEqual(sum("pair_member_cross_split_overlap" in row["exclusion_reasons"] for row in rows), 2)
+
     def test_explicit_lambda_column_is_required_for_lambda_recovery(self):
         with tempfile.TemporaryDirectory() as directory:
             tmp = Path(directory); raw = tmp / "raw"; raw.mkdir()
-            rows = [make_row(lambda_value=0), make_row(cds="ATGCTTTAA", lambda_value=1)]
+            rows = [make_row(lambda_value=0), make_row(cds="AUGCUUUAA", lambda_value=1)]
             write_csv(raw / "Toy_train.csv", rows, include_lambda=True)
             config = make_config(tmp, raw, ["Toy_train.csv"])
             summary = run_qc(config, raw, tmp / "out")

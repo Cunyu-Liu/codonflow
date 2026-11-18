@@ -132,7 +132,8 @@ def _finite_float(value: object) -> Optional[float]:
 def qc_row(raw: Mapping[str, str], filename: str, organism: str, split: str, row_number: int,
            lambda_column: Optional[str]) -> Dict[str, object]:
     protein = str(raw.get("Protein_Sequence", "")).strip().upper()
-    cds = str(raw.get("CDS_Sequence", "")).strip().upper()
+    source_cds = str(raw.get("CDS_Sequence", "")).strip().upper()
+    cds = source_cds.replace("U", "T")
     structure = str(raw.get("CDS_Structure", "")).strip()
     protein_id = str(raw.get("Protein_ID", "")).strip()
     protein_for_comparison = protein[:-1] if protein.endswith("*") else protein
@@ -141,17 +142,21 @@ def qc_row(raw: Mapping[str, str], filename: str, organism: str, split: str, row
         reasons.append("missing_protein_id")
     if not protein_for_comparison:
         reasons.append("missing_protein_sequence")
-    if not cds:
+    if not protein.endswith("*"):
+        reasons.append("missing_protein_terminal_stop_symbol")
+    if "*" in protein_for_comparison:
+        reasons.append("internal_protein_stop_symbol")
+    if not source_cds:
         reasons.append("missing_cds")
-    if set(cds) - set("ACGT"):
-        reasons.append("non_acgt_cds")
+    if set(source_cds) - set("ACGU"):
+        reasons.append("non_acgu_cds")
     if len(cds) % 3:
         reasons.append("cds_length_not_divisible_by_3")
     reported_protein_length = _integer(raw.get("Protein_Length"))
     reported_cds_length = _integer(raw.get("CDS_Length"))
     if reported_protein_length is None:
         reasons.append("invalid_reported_protein_length")
-    elif reported_protein_length != len(protein_for_comparison):
+    elif reported_protein_length != len(protein):
         reasons.append("protein_length_mismatch")
     if reported_cds_length is None:
         reasons.append("invalid_reported_cds_length")
@@ -174,7 +179,7 @@ def qc_row(raw: Mapping[str, str], filename: str, organism: str, split: str, row
     internal_stop = False
     start_atg = False
     translated: Optional[str] = None
-    if cds and not set(cds) - set("ACGT") and len(cds) % 3 == 0:
+    if source_cds and not set(source_cds) - set("ACGU") and len(source_cds) % 3 == 0:
         codons = [cds[i:i + 3] for i in range(0, len(cds), 3)]
         start_atg = codons[0] == "ATG"
         terminal_stop = codons[-1] in STOP_CODONS
@@ -199,6 +204,7 @@ def qc_row(raw: Mapping[str, str], filename: str, organism: str, split: str, row
         "protein_sequence": protein,
         "protein_length": len(protein_for_comparison),
         "protein_terminal_stop_symbol": protein.endswith("*"),
+        "source_cds_rna": source_cds, "source_alphabet": "RNA",
         "cds_dna": cds, "cds_length_nt": len(cds),
         "cds_structure": structure,
         "reported_protein_length": reported_protein_length,
@@ -387,6 +393,23 @@ def run_qc(config_path: Path, raw_dir: Path, output_dir: Path, audit_path: Optio
         "protein_sequence": overlap_summary(protein_sequences, "protein_sequence"),
         "exact_cds": overlap_summary(exact_cds, "exact_cds"),
     }
+    def record_overlap_flags(record: Mapping[str, object]) -> Tuple[bool, bool, bool]:
+        id_key = (record["organism"], record["protein_id"])
+        protein_key = (record["organism"], record["protein_sequence"])
+        return (
+            bool(record["protein_id"]) and is_cross_split(protein_ids, id_key),
+            bool(record["protein_sequence"]) and is_cross_split(protein_sequences, protein_key),
+            bool(record["cds_dna"]) and is_cross_split(exact_cds, record["cds_dna"]),
+        )
+
+    pair_overlap_flags: Dict[str, Tuple[bool, bool, bool]] = {}
+    for file_groups in groups_by_file.values():
+        for records in file_groups.values():
+            own = [record_overlap_flags(record) for record in records]
+            pair_overlap_flags[str(records[0]["pair_id"])] = tuple(
+                any(flags[index] for flags in own) for index in range(3)
+            )
+
     clean_values: Dict[str, Dict[str, List[float]]] = {
         item["filename"]: defaultdict(list) for item in processed
     }
@@ -399,21 +422,21 @@ def run_qc(config_path: Path, raw_dir: Path, output_dir: Path, audit_path: Optio
             gzip.open(clean_path, "wt", encoding="utf-8", compresslevel=5) as clean_handle:
         for line in source_handle:
             record = json.loads(line)
-            id_key = (record["organism"], record["protein_id"])
-            protein_key = (record["organism"], record["protein_sequence"])
-            id_overlap = bool(record["protein_id"]) and is_cross_split(protein_ids, id_key)
-            protein_overlap = bool(record["protein_sequence"]) and is_cross_split(protein_sequences, protein_key)
-            cds_overlap = bool(record["cds_dna"]) and is_cross_split(exact_cds, record["cds_dna"])
+            id_overlap, protein_overlap, cds_overlap = record_overlap_flags(record)
+            pair_flags = pair_overlap_flags[str(record["pair_id"])]
             reasons = list(record["base_exclusion_reasons"]) + list(record["pair_exclusion_reasons"])
             for flag, label in ((id_overlap, "cross_split_protein_id"), (protein_overlap, "cross_split_protein_sequence"), (cds_overlap, "cross_split_exact_cds")):
                 if flag:
                     reasons.append(label)
                     overlap_rows[label] += 1
-            clean = bool(record["pair_pass"]) and not (id_overlap or protein_overlap or cds_overlap)
+            if any(pair_flags) and not any((id_overlap, protein_overlap, cds_overlap)):
+                reasons.append("pair_member_cross_split_overlap")
+            clean = bool(record["pair_pass"]) and not any(pair_flags)
             record.update({
                 "cross_split_protein_id": id_overlap,
                 "cross_split_protein_sequence": protein_overlap,
                 "cross_split_exact_cds": cds_overlap,
+                "pair_cross_split_overlap": any(pair_flags),
                 "exclusion_reasons": reasons, "clean_eligible": clean,
                 "natural_cds_source_validated": False,
                 "lambda_identity_inferred_from_order_or_mfe": False,
@@ -451,7 +474,7 @@ def run_qc(config_path: Path, raw_dir: Path, output_dir: Path, audit_path: Optio
     bounded_pair_table_ready = full_source and clean_rows > 0 and not any_overlap
     status = "COMPLETE_QC_PENDING_INDEPENDENT_VERIFICATION" if full_source else "PARTIAL_SMOKE_ONLY"
     summary: Dict[str, object] = {
-        "schema_version": "a8-rk03-rnarl-qc-v1", "created_at": utc_now(), "status": status,
+        "schema_version": "a8-rk03-rnarl-qc-v2", "created_at": utc_now(), "status": status,
         "config_path": str(config_path), "config_sha256": digest_file(config_path),
         "raw_dir": str(raw_dir), "output_dir": str(output_dir),
         "source_record": source["record"], "license": source["license"],
