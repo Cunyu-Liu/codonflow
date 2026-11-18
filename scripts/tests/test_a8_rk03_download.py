@@ -122,12 +122,18 @@ class DownloadTests(unittest.TestCase):
             config.write_text(json.dumps({"sources": [{
                 "source_id": "toy",
                 "evidence_class": "synthetic_test_only",
-                "files": [dict(self.spec, file_id="toy_csv", filename="toy.csv", download_url=self.url)],
+                "files": [
+                    dict(self.spec, file_id="toy_csv", filename="toy.csv", download_url=self.url),
+                    dict(self.spec, file_id="toy_csv_2", filename="toy2.csv", download_url=self.url),
+                ],
             }]}), encoding="utf-8")
-            manifest = download_config(config, root / "data", retries=1)
+            manifest = download_config(config, root / "data", retries=1, workers=2)
             self.assertEqual(manifest["status"], "complete")
+            self.assertEqual(manifest["workers"], 2)
+            self.assertEqual(len(manifest["records"]), 2)
             self.assertEqual(manifest["records"][0]["bytes"], len(RangeHandler.payload))
             self.assertTrue((root / "data/raw/toy/toy.csv").is_file())
+            self.assertTrue((root / "data/raw/toy/toy2.csv").is_file())
 
 
 if __name__ == "__main__":

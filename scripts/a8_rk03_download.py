@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
@@ -130,11 +131,13 @@ def download_config(
     source_ids: Optional[Sequence[str]] = None,
     timeout: float = 120.0,
     retries: int = 3,
+    workers: int = 1,
 ) -> Dict[str, object]:
+    if workers < 1:
+        raise DataValidationError("workers must be >= 1")
     config = json.loads(config_path.read_text(encoding="utf-8"))
     selected = set(source_ids or [])
-    records: List[Dict[str, object]] = []
-    failures: List[Dict[str, object]] = []
+    jobs = []
     for source in config["sources"]:
         source_id = str(source["source_id"])
         if selected and source_id not in selected:
@@ -146,32 +149,38 @@ def download_config(
             name = Path(str(file_spec["filename"])).name
             if name != file_spec["filename"] or name in {"", ".", ".."}:
                 raise DataValidationError(f"unsafe output filename: {file_spec['filename']!r}")
-            relative = Path("raw") / source_id / name
-            destination = data_root / relative
-            record: Dict[str, object] = {
-                "source_id": source_id,
-                "file_id": file_spec["file_id"],
-                "filename": name,
-                "url": url,
-                "path": str(destination),
-                "role": file_spec.get("role", ""),
-                "evidence_class": source.get("evidence_class", "unclassified"),
-            }
-            try:
-                result = download_verified(
-                    str(url), destination, file_spec, timeout=timeout, retries=retries
-                )
-                record.update(result)
-            except Exception as exc:
-                record.update({
-                    "status": "failed",
-                    "error": f"{type(exc).__name__}: {exc}",
-                    "resumable_part": str(_part_path(destination)),
-                })
-                failures.append(dict(record))
-            records.append(record)
-    if not records:
+            destination = data_root / "raw" / source_id / name
+            jobs.append((source, file_spec, str(url), destination))
+    if not jobs:
         raise DataValidationError("no downloadable files selected")
+
+    def run_job(job):
+        source, file_spec, url, destination = job
+        record: Dict[str, object] = {
+            "source_id": source["source_id"],
+            "file_id": file_spec["file_id"],
+            "filename": destination.name,
+            "url": url,
+            "path": str(destination),
+            "role": file_spec.get("role", ""),
+            "evidence_class": source.get("evidence_class", "unclassified"),
+        }
+        try:
+            record.update(download_verified(
+                url, destination, file_spec, timeout=timeout, retries=retries
+            ))
+        except Exception as exc:
+            record.update({
+                "status": "failed",
+                "error": f"{type(exc).__name__}: {exc}",
+                "resumable_part": str(_part_path(destination)),
+            })
+        return record
+
+    # executor.map preserves source/file order while independent files download concurrently.
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        records = list(executor.map(run_job, jobs))
+    failures = [dict(record) for record in records if record.get("status") == "failed"]
     return {
         "schema_version": "a8-rk03-download-manifest-v1",
         "created_at": utc_now(),
@@ -179,6 +188,7 @@ def download_config(
         "config_sha256": sha256_file(config_path),
         "data_root": str(data_root),
         "selected_source_ids": sorted(selected),
+        "workers": workers,
         "records": records,
         "failures": failures,
         "status": "partial" if failures else "complete",
@@ -202,9 +212,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--source-id", action="append", dest="source_ids")
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--retries", type=int, default=3)
+    parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args(argv)
     manifest = download_config(
-        args.config, args.data_root, args.source_ids, args.timeout, args.retries
+        args.config, args.data_root, args.source_ids, args.timeout, args.retries,
+        workers=args.workers,
     )
     write_manifest(manifest, args.manifest)
     print(json.dumps({
