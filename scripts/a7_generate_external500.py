@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 from concurrent.futures import ThreadPoolExecutor
@@ -69,7 +70,8 @@ def main():
                             "--rscu-json", args.rscu_json, "--out-dir", args.out_root,
                             "--methods", "codongpt", "gemorna", "--n-solutions", "500",
                             "--record-id", record, "--seed", str(seed)],
-                           stdout=log, stderr=subprocess.STDOUT, check=True)
+                           stdout=log, stderr=subprocess.STDOUT, check=True,
+                           env={**os.environ, "CODONFLOW_GEMORNA_PERSISTENT": "0"})
         out = root / f"{record}_s{seed}.json"
         payload = json.loads(out.read_text())
         if payload["status"] != "done":
