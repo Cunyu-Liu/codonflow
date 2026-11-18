@@ -1,9 +1,9 @@
 {
-  "check_count": 20,
+  "check_count": 21,
   "checks": [
     {
       "detail": {
-        "sources": 45
+        "sources": 52
       },
       "name": "all_frozen_source_hashes",
       "pass": true
@@ -14,7 +14,7 @@
       "pass": true
     },
     {
-      "detail": "51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79",
+      "detail": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
       "name": "a8_output_hash_matches_sync",
       "pass": true
     },
@@ -146,6 +146,20 @@
       "pass": true
     },
     {
+      "detail": {
+        "finalization_and_unit_tests": true,
+        "frozen_sources": true,
+        "independent": true,
+        "rendered_from_frozen_json": true,
+        "retained_precision_failures": true,
+        "scope": true,
+        "single_checkpoint_no_training": true,
+        "source_and_complete_arrays": true
+      },
+      "name": "rose_released_test_single_checkpoint_and_scope",
+      "pass": true
+    },
+    {
       "detail": null,
       "name": "rnarl_negative_reproducibility_scope",
       "pass": true
@@ -159,7 +173,7 @@
     },
     {
       "detail": {
-        "required_boundaries": 11
+        "required_boundaries": 14
       },
       "name": "pending_and_no_sota_boundaries_preserved",
       "pass": true
@@ -171,12 +185,12 @@
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79",
-  "passed_checks": 20,
+  "paper_sha256": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
+  "passed_checks": 21,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v9",
+  "schema_version": "a8-rk-paper-independent-verification-v10",
   "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "79b85618276d043117c7733fcb9c201e881b518f2cb624690be94576e86ca139"
+  "sync_audit_sha256": "e29aa17c511b275ce3997750ace4271980d80a1d1d93854ea54aed4aec4993c3"
 }

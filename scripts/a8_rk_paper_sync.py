@@ -112,6 +112,13 @@ def main() -> None:
         "ixnos_official": repo / "audits/20261118/RK05/ixnos_official_smoke_v1.json",
         "ixnos_official_verify": repo / "audits/20261118/RK05/ixnos_independent_verification_v1.json",
         "ixnos_official_final": repo / "audits/20261118/RK05/ixnos_finalization_v1.json",
+        "rose_protocol": repo / "audits/20261118/RK05/rose_official_single_checkpoint_protocol_v1.json",
+        "rose_official": repo / "audits/20261118/RK05/rose_official_single_checkpoint_v1.json",
+        "rose_official_verify": repo / "audits/20261118/RK05/rose_independent_verification_v4.json",
+        "rose_official_final": repo / "audits/20261118/RK05/rose_finalization_v1.json",
+        "rose_failure_v1": repo / "audits/20261118/RK05/rose_independent_verification_v1_failed_probability_precision.json",
+        "rose_failure_v2": repo / "audits/20261118/RK05/rose_independent_verification_v2_failed_metric_precision.json",
+        "rose_failure_v3": repo / "audits/20261118/RK05/rose_independent_verification_v3_failed_average_precision_precision.json",
         "rk07": args.rk07_dir / "final_results.json",
         "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
     }
@@ -163,6 +170,10 @@ def main() -> None:
     ixnos = data["ixnos_official"]
     ixnosv = data["ixnos_official_verify"]
     ixnosf = data["ixnos_official_final"]
+    rosep = data["rose_protocol"]
+    rose = data["rose_official"]
+    rosev = data["rose_official_verify"]
+    rosef = data["rose_official_final"]
     rk07 = data["rk07"]
     rk07v = data["rk07_verify"]
 
@@ -243,6 +254,12 @@ def main() -> None:
     require(ixnosv["status"] == "PASS" and ixnosv["checks_passed"] == ixnosv["checks_total"] == 27 and ixnosv["max_prediction_abs_delta"] <= 1e-12 and ixnosv["max_checkpoint_abs_delta"] == 0.0, "iXnos independent verification failed")
     require(ixnosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ixnosf["checks_passed"] == ixnosf["checks_total"] == 16, "iXnos finalization failed")
     require(ixnos["scope_flags"]["real_ribosome_profiling_reads"] and ixnos["scope_flags"]["simple_mapping_weights_used"] and not ixnos["scope_flags"]["rsem_used"] and not ixnos["scope_flags"]["full_SRR1049521_used"] and not ixnos["scope_flags"]["paper_protocol_reproduced"] and not ixnos["scope_flags"]["best_test_epoch_selected"] and not ixnos["scope_flags"]["sota_claim"], "iXnos scientific scope exceeded")
+    require(rose["status"] == "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE" and rosep["source"]["commit"] == "8b86d69d89ca7ef95193729e6d1a4738bc6a4451", "ROSE released-test inference incomplete")
+    require(rose["studies"]["Pop14"]["records"] == 1902 and rose["studies"]["Pop14"]["parameter_count"] == 128834 and rose["studies"]["Battle15"]["records"] == 9980 and rose["studies"]["Battle15"]["parameter_count"] == 265858, "ROSE released array/model contract changed")
+    require(rosev["status"] == "PASS" and rosev["passed_count"] == rosev["check_count"] == 34 and not rosev["production_driver_imported"], "ROSE independent verification failed")
+    require(rosef["status"] == "PASS" and rosef["passed_count"] == rosef["check_count"] == 60, "ROSE finalization failed")
+    require(all(rose["studies"][name]["training"] is False and rose["studies"][name]["checkpoint_count"] == 1 and rose["studies"][name]["forward_passes"] == 1 for name in ("Pop14", "Battle15")), "ROSE single-checkpoint/no-training protocol changed")
+    require(all(rose["scientific_scope"][key] for key in ("not_continuous_velocity_regression", "not_training", "not_64_checkpoint_ensemble", "not_protein_or_study_or_functional_ood", "not_matched_cost_or_sota", "not_raw_read_or_psite_remapping", "not_codonflow_rk")), "ROSE scientific scope exceeded")
 
     split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
     test = rk07["split_metrics"]["test"]
@@ -259,6 +276,10 @@ def main() -> None:
     ct_rows = "\n".join(f"| {r['record_id']} | {r['mode']} | {r['qc']['protein_aa']} | {r['qc']['dna_nt']} | {'PASS' if r['qc']['legal_synonymous_cds'] else 'FAIL'} |" for r in cts["runs"])
     ribom = ribos["official_result"]["metrics"]
     ixm = ixnos["training"]["test_metrics"]
+    rose_rows = "\n".join(
+        f"| {name} | {rose['studies'][name]['records']:,} ({rose['studies'][name]['metrics']['confusion_matrix_at_0.5']['tp'] + rose['studies'][name]['metrics']['confusion_matrix_at_0.5']['fn']:,}/{rose['studies'][name]['metrics']['confusion_matrix_at_0.5']['tn'] + rose['studies'][name]['metrics']['confusion_matrix_at_0.5']['fp']:,}) | {rose['studies'][name]['parameter_count']:,} | {rose['studies'][name]['metrics']['roc_auc']:.6f} | {rose['studies'][name]['metrics']['average_precision']:.6f} | {rose['studies'][name]['metrics']['accuracy_at_0.5']:.6f} | {rose['studies'][name]['metrics']['log_loss']:.6f} | {rose['studies'][name]['timing_seconds']['single_full_forward']:.3f} |"
+        for name in ("Pop14", "Battle15")
+    )
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -334,6 +355,14 @@ The official-example default output matched the README sequence exactly. Default
 
 **iXnos bounded official prefix-read training.** At fixed commit `{ixnos['config']['source_commit']}`, the first **{ixnos['prefix_qc']['records']:,} complete reads** of ENA run `SRR1049521` (all 40 nt; a prefix, not a random sample) were processed with the official Weinberg linker trimmer, rRNA/noncoding-RNA filters, Bowtie transcriptome mapping, length/frame-specific P-site offsets, and simple uniform multimapping weights rather than RSEM. Trimming retained **{ixnos['trimmed_qc']['records']:,} reads**; **756,168** entered transcriptome mapping and **723,724** had at least one alignment. A total of **1,238 genes** met the bounded thresholds (minimum 50 counts and 20 codons with data); seed **{ixnos['config']['seed']}** selected **20 train / 10 test genes**. The official 760-feature tanh network with 200 hidden units ran for two epochs and produced **{ixnos['training']['train_shape'][0]:,} train / {ixnos['training']['test_shape'][0]:,} test codons** and **{ixnos['training']['parameter_count']:,} parameters**. At the prespecified final epoch, test R² was **{ixm['r2']:.6f}**, MSE **{ixm['mse']:.6f}**, Pearson **{ixm['pearson']:.6f}**, and Spearman **{ixm['spearman']:.6f}**; the train-mean constant baseline had MSE **{ixnos['training']['train_mean_baseline_metrics']['mse']:.6f}** and R² approximately zero. Independent reprocessing/retraining passed **{ixnosv['checks_passed']}/{ixnosv['checks_total']} checks** with exact targets and checkpoint tensors, prefix/trimmed FASTQs were byte-identical and Bowtie alignment multisets matched after canonical sorting (run-specific PG metadata excluded), finalization passed **{ixnosf['checks_passed']}/{ixnosf['checks_total']} checks**, and unit tests passed **10/10**. The initial headless-backend import failure is retained. These bounded values are execution diagnostics, not paper-performance estimates. This is not the full 102,187,657-read run, RSEM workflow, 333/167-gene 60-epoch protocol, functional OOD, main-baseline comparison, or SOTA result.
 
+**ROSE complete released-test single-checkpoint inference.** At fixed commit `{rosep['source']['commit']}`, the two released `best_model_0.caffemodel` checkpoints were loaded without training into the official parallel-convolution networks. Each study used one full-array CPU forward pass over the author-processed 183-nt/61-codon test tensors, with the official ATCG nested codon encoding and official float32 two-exponent probability formula. Only HDF5 paths, TEST batch sizes and CPU execution settings were adapted; network weights and algorithms were unchanged.
+
+| Study | Records (+/−) | Parameters | ROC AUC | AP | Accuracy@0.5 | Log loss | Full forward (s) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+{rose_rows}
+
+Independent codon encoding, HDF5 construction, network adaptation and second Caffe forward passed **{rosev['passed_count']}/{rosev['check_count']} checks**: logits and independently recomputed official-formula probabilities were exactly equal, and every primary production metric had zero delta. Finalization passed **{rosef['passed_count']}/{rosef['check_count']} checks**, and unit tests passed **12/12**. Stable float64 probabilities were used only as a secondary rounding/near-tie robustness check. Three earlier verifier failures caused by overly strict float64 probability/metric tolerances are retained; they did not change the scientific outputs. These are complete released-array **binary ribosome-stalling classification** results, not continuous velocity regression, 100000-iteration training, a 64-checkpoint ensemble, raw-read/P-site remapping, protein/study/functional OOD, a matched-cost baseline comparison, or a SOTA result.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -377,6 +406,13 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("iXnos bounded official production", source_hashes["ixnos_official"]),
         ("iXnos bounded independent verifier", source_hashes["ixnos_official_verify"]),
         ("iXnos bounded finalization", source_hashes["ixnos_official_final"]),
+        ("ROSE frozen single-checkpoint protocol", source_hashes["rose_protocol"]),
+        ("ROSE complete released-test production", source_hashes["rose_official"]),
+        ("ROSE independent verifier v4", source_hashes["rose_official_verify"]),
+        ("ROSE finalization", source_hashes["rose_official_final"]),
+        ("ROSE retained verifier failure v1", source_hashes["rose_failure_v1"]),
+        ("ROSE retained verifier failure v2", source_hashes["rose_failure_v2"]),
+        ("ROSE retained verifier failure v3", source_hashes["rose_failure_v3"]),
     ]
     evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
     reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
@@ -408,13 +444,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("VeloHARMO bounded official execution" in text and "no iterative improvement occurred" in text and "best − start = 0.000000" in text and "not five-species closure" in text, "VeloHARMO bounded result or scope missing")
     require("RiboMIMO bounded official training" in text and "20 shortest eligible Mohammad16 genes" in text and "small-subset values are execution diagnostics" in text and "not the full 10-fold × 100-epoch protocol" in text, "RiboMIMO bounded result or scope missing")
     require("iXnos bounded official prefix-read training" in text and "simple uniform multimapping weights rather than RSEM" in text and "not the full 102,187,657-read run" in text and "execution diagnostics, not paper-performance estimates" in text, "iXnos bounded result or scope missing")
+    require("ROSE complete released-test single-checkpoint inference" in text and "binary ribosome-stalling classification" in text and "not continuous velocity regression" in text and "64-checkpoint ensemble" in text and "matched-cost baseline comparison" in text, "ROSE released-test result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v9",
+        "schema_version": "a8-rk-paper-sync-v10",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -423,7 +460,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
         "source_paths": {name: str(path) for name, path in paths.items()},
         "source_sha256": source_hashes,
         "generated_sections": ["3.1", "3.2 RK04 addition", "6.2", "6.5", "8.1"],
-        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "RiboMIMO full 10-fold × 100-epoch protocol and homology/study OOD", "iXnos full-run RSEM and 333/167-gene 60-epoch protocol", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
+        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "RiboMIMO full 10-fold × 100-epoch protocol and homology/study OOD", "iXnos full-run RSEM and 333/167-gene 60-epoch protocol", "ROSE training, 64-checkpoint ensemble, continuous velocity regression and raw-read/P-site remapping", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
         "scientific_scope": {
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
@@ -436,6 +473,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
             "ribomimo_official": "bounded 20-gene two-fold two-epoch official training only; six NumPy compatibility replacements; negative R-squared and near-zero Pearson are execution diagnostics; full protocol, OOD, main matrix and SOTA open",
             "ixnos_official": "bounded first-one-million-read official Weinberg processing and 20/10-gene two-epoch training only; simple mapping weights, final epoch only; full run, RSEM, paper protocol, OOD, main matrix and SOTA open",
+            "rose_official": "complete author-processed Pop14/Battle15 released-test arrays, one released checkpoint per study and one full forward; binary stalling classification only; training, 64-checkpoint ensemble, continuous velocity regression, raw-read/P-site remapping, OOD, matched-cost ranking and SOTA open",
             "sota": False,
             "submittable": False,
         },

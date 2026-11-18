@@ -345,6 +345,53 @@ def main() -> None:
     }
     check("ixnos_bounded_official_training_and_scope", all(ixnos_checks.values()), ixnos_checks)
 
+    rosep = data["rose_protocol"]
+    rose = data["rose_official"]
+    rosev = data["rose_official_verify"]
+    rosef = data["rose_official_final"]
+    rose_unit_log = (repo / "audits/20261118/RK05/rose_unit_tests_v1.log").read_text(encoding="utf-8")
+    rose_strings = [
+        rosep["source"]["commit"], "ROSE complete released-test single-checkpoint inference",
+        "183-nt/61-codon", "official float32 two-exponent probability formula",
+        "binary ribosome-stalling classification", "not continuous velocity regression",
+        "100000-iteration training", "64-checkpoint ensemble", "raw-read/P-site remapping",
+        "matched-cost baseline comparison", "Three earlier verifier failures",
+        f"**{rosev['passed_count']}/{rosev['check_count']} checks**",
+        f"**{rosef['passed_count']}/{rosef['check_count']} checks**", "unit tests passed **12/12**",
+        sha256(Path(audit["source_paths"]["rose_protocol"])),
+        sha256(Path(audit["source_paths"]["rose_official"])),
+        sha256(Path(audit["source_paths"]["rose_official_verify"])),
+        sha256(Path(audit["source_paths"]["rose_official_final"])),
+        sha256(Path(audit["source_paths"]["rose_failure_v1"])),
+        sha256(Path(audit["source_paths"]["rose_failure_v2"])),
+        sha256(Path(audit["source_paths"]["rose_failure_v3"])),
+    ]
+    for name in ("Pop14", "Battle15"):
+        study = rose["studies"][name]
+        spec = rosep["studies"][name]
+        rose_strings.append(
+            f"| {name} | {study['records']:,} ({spec['expected_positive']:,}/{spec['expected_negative']:,}) | {study['parameter_count']:,} | {study['metrics']['roc_auc']:.6f} | {study['metrics']['average_precision']:.6f} | {study['metrics']['accuracy_at_0.5']:.6f} | {study['metrics']['log_loss']:.6f} | {study['timing_seconds']['single_full_forward']:.3f} |"
+        )
+    rose_checks = {
+        "rendered_from_frozen_json": all(s in text for s in rose_strings),
+        "source_and_complete_arrays": rosep["source"]["commit"] == "8b86d69d89ca7ef95193729e6d1a4738bc6a4451" and rose["studies"]["Pop14"]["records"] == 1902 and rose["studies"]["Pop14"]["parameter_count"] == 128834 and rose["studies"]["Battle15"]["records"] == 9980 and rose["studies"]["Battle15"]["parameter_count"] == 265858,
+        "single_checkpoint_no_training": all(rose["studies"][name]["training"] is False and rose["studies"][name]["checkpoint_count"] == 1 and rose["studies"][name]["forward_passes"] == 1 for name in ("Pop14", "Battle15")),
+        "independent": rosev["status"] == "PASS" and rosev["passed_count"] == rosev["check_count"] == 34 and not rosev["production_driver_imported"] and all(rosev["studies"][name]["logit_max_abs_delta"] == 0.0 and rosev["studies"][name]["production_float32_formula_max_abs_delta"] == 0.0 and all(delta == 0.0 for delta in rosev["studies"][name]["metric_abs_deltas"].values()) for name in ("Pop14", "Battle15")),
+        "finalization_and_unit_tests": rosef["status"] == "PASS" and rosef["passed_count"] == rosef["check_count"] == 60 and "Ran 12 tests" in rose_unit_log and "OK\n" in rose_unit_log,
+        "retained_precision_failures": [data["rose_failure_v1"]["status"], data["rose_failure_v2"]["status"], data["rose_failure_v3"]["status"]] == ["FAIL_VERIFIER_FLOAT32_FLOAT64_TOLERANCE", "FAIL_VERIFIER_METRIC_PRECISION_TOLERANCE", "FAIL_VERIFIER_AVERAGE_PRECISION_FLOAT32_TIES"] and all(data[name]["scientific_result_changed"] is False for name in ("rose_failure_v1", "rose_failure_v2", "rose_failure_v3")),
+        "scope": all(rose["scientific_scope"][key] for key in ("not_continuous_velocity_regression", "not_training", "not_64_checkpoint_ensemble", "not_protein_or_study_or_functional_ood", "not_matched_cost_or_sota", "not_raw_read_or_psite_remapping", "not_codonflow_rk")),
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "rose_protocol": "rose_official_single_checkpoint_protocol_v1.json",
+            "rose_official": "rose_official_single_checkpoint_v1.json",
+            "rose_official_verify": "rose_independent_verification_v4.json",
+            "rose_official_final": "rose_finalization_v1.json",
+            "rose_failure_v1": "rose_independent_verification_v1_failed_probability_precision.json",
+            "rose_failure_v2": "rose_independent_verification_v2_failed_metric_precision.json",
+            "rose_failure_v3": "rose_independent_verification_v3_failed_average_precision_precision.json",
+        }.items()),
+    }
+    check("rose_released_test_single_checkpoint_and_scope", all(rose_checks.values()), rose_checks)
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -393,6 +440,7 @@ def main() -> None:
         "not the full 10-fold × 100-epoch protocol",
         "not the full 102,187,657-read run",
         "333/167-gene 60-epoch protocol",
+        "64-checkpoint ensemble", "not continuous velocity regression", "raw-read/P-site remapping",
         "The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending.",
         "non-submittable working manuscript",
         "No SOTA claim.",
@@ -402,7 +450,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v9",
+        "schema_version": "a8-rk-paper-independent-verification-v10",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),
