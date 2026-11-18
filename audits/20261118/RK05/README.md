@@ -383,3 +383,77 @@ $PY scripts/a8_rk05_verify_ensembledesign_ppt.py \
   --add-response "$PPT/ensembledesign-add-response-v01.json" \
   --evidence-dir "$R" --output <NEW_PPT_VERIFICATION_JSON>
 ```
+
+---
+
+# CodonTransformer official bounded execution (2026-11-19)
+
+Fixed official source commit: `4a447b01dab860feb81b647ff1ff88ad598517f4`. Fixed Hugging Face model revision: `9744dcc920d813066391fc828d7a590207f148e8`. All eight model files match the API byte counts; `model.safetensors` is 358,342,232 bytes with SHA256 `23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd`. The fixed codeload ZIP has 45 members, 554,315 bytes, SHA256 `85fe55a10ad061b62034aaed90bce06d4be3eb9a2e25d40030db359b0d1fd132`, and passed CRC/path/symlink checks. `codontransformer_materialization.json` freezes the source, model files, and benchmark hashes.
+
+Official inference used `predict_dna_sequence` with `deterministic=True`, `attention_type="original_full"`, and organism `Escherichia coli general`. The isolated environment is `/home/codonflow-a8-rk-smoke/codontransformer_venv` on an NVIDIA GeForce RTX 5090; final official import passed. Incorrect `CAI-PyPI==1.0.4` installation attempts, the missing scikit-learn import failure, and the first output-directory pre-creation failure are retained. The working dependency is `CAI-PyPI==2.0.1`, with `scikit-learn==1.4.2`.
+
+| Input | Mode | Legal synonymous CDS | Output length | Unique within the bounded run |
+|---|---|---:|---:|---:|
+| Official README example | `official_default` | 1/1 | 213 nt, 70 aa | 1 |
+| Official README example | `match_protein=True` | 1/1 | 213 nt, 70 aa | same as default |
+| C01H6.8b.1 | `official_default` | 1/1 | 408 nt, 135 aa | 1 |
+| C01H6.8b.1 | `match_protein=True` | 1/1 | 408 nt, 135 aa | same as default |
+
+The official example default sequence matched the README exactly. All four outputs passed ACGT/length/single-terminal-stop/no-internal-stop/exact-translation checks: 4/4 legal synonymous CDS and 2 unique CDS overall. Default and constrained outputs are identical for each protein; this bounded run does **not** demonstrate a benefit from `match_protein=True`. Model loading took 4.438656704965979 s and the four inferences took 2.0327787059359252 s in total, including first-call warm-up; these are not time-matched performance estimates.
+
+The independent verifier does not import the production module. It reloads the same fixed model, recomputes source/model/input/raw/FASTA hashes and translation QC, and re-executes all four deterministic inferences. All sequences match exactly: **13/13 PASS**, `max_numeric_delta=0.0`. Unit tests passed **8/8**, and finalization passed **10/10** with status `CLOSED_BOUNDED_OFFICIAL_SMOKE`. No matched MFE/EFE comparison, dense-budget result, main-baseline ranking, functional OOD result, or SOTA claim is authorized.
+
+From `/home/codonflow-a8-rk`, using a new empty raw-output directory and new report paths:
+
+```bash
+PY=/home/codonflow-a8-rk-smoke/codontransformer_venv/bin/python
+PY_STD=/root/miniconda3/envs/codonflow/bin/python
+SRC=/home/codonflow-a8-rk-external/CodonTransformer-4a447b01dab860feb81b647ff1ff88ad598517f4
+MODEL=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/codontransformer_model_9744dcc920d813066391fc828d7a590207f148e8
+BENCH=/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta
+R=audits/20261118/RK05
+ART=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05
+
+$PY scripts/a8_rk05_codontransformer_official_smoke.py \
+  --source-dir "$SRC" --model-dir "$MODEL" \
+  --materialization "$R/codontransformer_materialization.json" \
+  --benchmark "$BENCH" --record-id C01H6.8b.1 \
+  --output-dir <NEW_RAW_OUTPUT_DIR> --report <NEW_PRODUCTION_JSON> --device cuda
+
+$PY scripts/a8_rk05_verify_codontransformer_official_smoke.py \
+  --source-dir "$SRC" --model-dir "$MODEL" \
+  --materialization "$R/codontransformer_materialization.json" \
+  --benchmark "$BENCH" --record-id C01H6.8b.1 \
+  --production-report "$R/codontransformer_official_smoke_v1.json" \
+  --output <NEW_INDEPENDENT_VERIFICATION_JSON> --device cuda
+
+$PY_STD -m unittest discover -s tests \
+  -p 'test_a8_rk05_codontransformer_official_smoke.py' -v
+$PY_STD scripts/a8_rk05_finalize_codontransformer_official_smoke.py \
+  --materialization "$R/codontransformer_materialization.json" \
+  --production "$R/codontransformer_official_smoke_v1.json" \
+  --verification "$R/codontransformer_independent_verification_v1.json" \
+  --unit-log "$R/codontransformer_unit_tests.txt" \
+  --env-dir "$ART/codontransformer_env_v1" --output <NEW_FINALIZATION_JSON>
+```
+
+The production wrapper requires the output directory to be absent or empty. Do not pre-create a log inside it, and do not overwrite the frozen reports or raw outputs. Code and commits remain under `/home`; the model, source archive, environment logs, raw JSON/FASTA outputs, and execution logs remain under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/`.
+
+## A8 v6 and online PPT verification
+
+A8 v6 was generated from the frozen evidence rather than hand-edited result numbers. It adds the four-run table, fixed source/model/materialization evidence, 13/13 independent re-execution, 10/10 finalization, unchanged default/constrained outputs, and bounded-scope guards. A7 is unchanged. A8 SHA256 is `1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35`; independent paper verification passed **17/17** and remains `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`. Scientific evidence is in commit `210d2f4c13cddc7144d1939d0ae76162d2016c8a`; A8 v6 generator/verifier evidence is in commit `f479955fefa034c5a5fde84c5f7ab37d85cf0044`.
+
+The verified result was appended to the existing online deck as slide 74, `pgU`, revision 36. Candidate v01 failed preflight 7/8 because two table mode labels did not match the frozen JSON; it was retained and not written. Candidate v02 corrected both labels to `official_default`, passed preflight **8/8**, and was written once. Independent post-write verification passed **10/10 checks**: exactly one slide was appended, all previous 73 slide IDs/order and semantic XML remained unchanged, and the four-row table, KPI values, speaker notes, page bounds, and scientific boundaries were recomputed from the frozen reports. PPT evidence is in commit `0c33d35580c02ae06932083200bc6fbd5dd3882c`.
+
+Reproduce the readback audit without changing the online deck:
+
+```bash
+PPT=$ART/ppt_codontransformer_v1
+$PY_STD scripts/a8_rk05_verify_codontransformer_ppt.py \
+  --baseline-xml "$PPT/codontransformer-baseline-v01.xml" \
+  --baseline-response "$PPT/codontransformer-baseline-response-v01.json" \
+  --readback-xml "$PPT/codontransformer-readback-v02.xml" \
+  --readback-response "$PPT/codontransformer-readback-response-v02.json" \
+  --add-response "$PPT/codontransformer-add-response-v01.json" \
+  --evidence-dir "$R" --output <NEW_PPT_VERIFICATION_JSON>
+```

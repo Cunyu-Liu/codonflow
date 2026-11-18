@@ -414,3 +414,24 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK05/ensembledesign_ppt_verification.json` 为 **PASS，10/10 checks**：整稿 73 页，前 72 页 slide ID 与 ID-independent 语义 XML 全部不变；新页表格由冻结 JSON 重算，4 段备注、页码、画布边界与科学边界通过。baseline/readback XML、候选页和完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ensembledesign_v1/`。
 - PPT verifier 与验证报告以 commit=`9986974ac46cc65aaf0708e509e9ad5ff2cfb2af` 推送，本地与 GitHub `a8-rk` HEAD 一致。当前在线主稿真实状态为 **73 页、revision 35、末页 `pgO`**。
 - 本任务只关闭官方 example + 单 C01 的 bounded smoke。没有 matched LinearDesign comparison、dense budget、完整强 baseline 主矩阵、功能 OOD 或 SOTA；RK03 剩余机制维度、RK06 dense/full matrix、CodonFlow-RK 生成器、完整 Fig.1–7 和前瞻湿实验仍未关闭。
+
+## 23. CodonTransformer 官方 bounded smoke、A8 v6 与 PPT 第 74 页
+
+### 固定来源、真实 GPU 执行与独立复核
+
+- 官方 `Adibvafa/CodonTransformer` 固定源码 commit=`4a447b01dab860feb81b647ff1ff88ad598517f4`，模型固定 Hugging Face revision=`9744dcc920d813066391fc828d7a590207f148e8`。8 个模型文件全部按 API bytes 核对；`model.safetensors` 为 358,342,232 bytes，SHA256=`23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd`。固定源码 ZIP SHA256=`85fe55a10ad061b62034aaed90bce06d4be3eb9a2e25d40030db359b0d1fd132`，CRC/path/symlink 安全断言通过。
+- 官方执行使用隔离环境 `/home/codonflow-a8-rk-smoke/codontransformer_venv`：Python 3.10.22、torch 2.14.1+cu132、transformers 4.40.2、NumPy 1.26.4，GPU=NVIDIA GeForce RTX 5090。错误 `CAI-PyPI==1.0.4` 安装尝试、缺失 scikit-learn 的导入失败和首次输出目录保护失败日志均保留；正确版本为 `CAI-PyPI==2.0.1`，最终 `OFFICIAL_IMPORT_PASS CodonTransformer.CodonPrediction`。
+- 生产包装器调用官方 `predict_dna_sequence`，`deterministic=True`、`attention_type="original_full"`、organism=`Escherichia coli general`。官方 README example 与 C01H6.8b.1 分别执行 default 和 `match_protein=True`，共 4 次真实推理。4/4 输出为合法同义 CDS，仅一个 terminal stop、无 internal stop；default 与 constrained 各 2/2 legal，总计 2 unique CDS。官方 example default 与 README 序列逐碱基一致；两种模式对每个蛋白输出相同，因此不能声称约束模式带来收益。
+- 模型加载=`4.438656704965979 s`，四次推理合计=`2.0327787059359252 s`，首次 example 含 warm-up，不是 time-matched 成本。独立 verifier 不导入生产模块，重新加载同一固定权重并逐条重跑四次推理，所有序列精确一致，**13/13 PASS、max_numeric_delta=0.0**；单元测试 **8/8 PASS**，finalization **10/10 PASS**，状态仅为 `CLOSED_BOUNDED_OFFICIAL_SMOKE`。科学证据、脚本和报告以 commit=`210d2f4c13cddc7144d1939d0ae76162d2016c8a` 推送并核对 GitHub HEAD。
+
+### A8 v6 与证据边界
+
+- A8 生成器/verifier 升级为 v6，新增 materialization、production、independent、finalization 四份冻结来源及哈希，写入四次推理表、固定源码/模型、4/4 legal、2 unique、双模式相同输出、13/13 独立复核和 10/10 finalization。A7 未改；A8 v6 SHA256=`1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35`，独立 **17/17 PASS**。论文同步同时修正了旧 verifier 将 EnsembleDesign 检查字典直接转为布尔值的问题。commit=`f479955fefa034c5a5fde84c5f7ab37d85cf0044`。
+- 本结果仍只是官方 example + 单 C01 的 bounded smoke；没有 matched MFE/EFE、dense budget、完整强 baseline 主矩阵、功能 OOD 或 SOTA。default/constrained 输出相同不等于约束选项无效，也不证明性能提升；短推理耗时含 warm-up，不得直接用于公平速度排名。
+
+### PPT 写后验收与当前续作
+
+- 结果经独立验收后写入既有在线主稿。候选页首版因两处模式名与冻结 JSON 不一致得到 preflight 7/8 FAIL，保留为 v01；修正为 `official_default` 后 v02 preflight **8/8 PASS**。在 73 页 revision 35 基线上只追加第 74 页，slide ID=`pgU`，写入后 revision=36。
+- `audits/20261118/RK05/codontransformer_ppt_independent_verification.json` 为 **PASS，10/10 checks**：整稿 74 页，前 73 页 slide ID、顺序与 ID-independent 语义 XML 全部不变；新页四行表由冻结 JSON 重算，4 段备注、页码、画布边界和科学边界通过。baseline/readback XML、两个候选版本、preflight 和完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_codontransformer_v1/`。
+- PPT verifier/preflight 与验证报告以 commit=`0c33d35580c02ae06932083200bc6fbd5dd3882c` 推送，本地与 GitHub `a8-rk` HEAD 一致。当前在线主稿真实状态为 **74 页、revision 36、末页 `pgU`**。本 handoff、REGISTRY、tasks 和 RK05 README 随后续文档提交推送。
+- RK-05 强 baseline 主矩阵仍未关闭；RK03 剩余机制维度、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA 和前瞻湿实验仍未关闭。未跟踪的 `audits/20261118/RK05/id3_independent_verification.pid` 不是科学结果，不应提交。
