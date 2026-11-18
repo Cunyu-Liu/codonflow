@@ -1,0 +1,140 @@
+{
+  "schema_version": "a8-rk03-rnarl-byte-activation-v1",
+  "created_at": "2026-11-18T17:27:59.247272+00:00",
+  "status": "PASS",
+  "network_io_performed": false,
+  "source_report": "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_official_file_sizes.json",
+  "source_report_sha256": "441518ba405ee5c59dd421cd738c2fbefa20f6361741ad47c35a26623bb987d0",
+  "config_sha256_before": "01a20b190e1152fd169d9a48b87b13dbc59871482fa9d872b86a4ac9e51839bd",
+  "config_sha256_after": "955c2997eb9a285f91b3a45675f4a508b422ec8badb66c24920f0b0083513efa",
+  "changed_file_count": 21,
+  "files": [
+    {
+      "file_id": "arabidopsis_test",
+      "expected_bytes": 8310481,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "arabidopsis_train",
+      "expected_bytes": 150805006,
+      "previous_expected_bytes": null,
+      "byte_source": "official_head_content_length"
+    },
+    {
+      "file_id": "arabidopsis_val",
+      "expected_bytes": 8332202,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "chlamydomonas_test",
+      "expected_bytes": 5347535,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "chlamydomonas_train",
+      "expected_bytes": 94637924,
+      "previous_expected_bytes": null,
+      "byte_source": "official_head_content_length"
+    },
+    {
+      "file_id": "chlamydomonas_val",
+      "expected_bytes": 5224383,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "ecoli_test",
+      "expected_bytes": 818614,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "ecoli_train",
+      "expected_bytes": 16408126,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "ecoli_val",
+      "expected_bytes": 888753,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "human_circrna_test",
+      "expected_bytes": 3178499,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "human_circrna_train",
+      "expected_bytes": 57602053,
+      "previous_expected_bytes": null,
+      "byte_source": "official_head_content_length"
+    },
+    {
+      "file_id": "human_circrna_val",
+      "expected_bytes": 3317906,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "human_test",
+      "expected_bytes": 13779874,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "human_train",
+      "expected_bytes": 255575152,
+      "previous_expected_bytes": null,
+      "byte_source": "official_head_content_length"
+    },
+    {
+      "file_id": "human_val",
+      "expected_bytes": 14149694,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "penicillium_test",
+      "expected_bytes": 3487697,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "penicillium_train",
+      "expected_bytes": 61560429,
+      "previous_expected_bytes": null,
+      "byte_source": "official_head_content_length"
+    },
+    {
+      "file_id": "penicillium_val",
+      "expected_bytes": 3402173,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "thermococcus_test",
+      "expected_bytes": 367574,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "thermococcus_train",
+      "expected_bytes": 6747903,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    },
+    {
+      "file_id": "thermococcus_val",
+      "expected_bytes": 385412,
+      "previous_expected_bytes": null,
+      "byte_source": "verified_local_final_md5_matched"
+    }
+  ],
+  "note": "Exact byte counts were previously obtained from verified local MD5-matched finals or official HEAD HTTP 200 Content-Length; activation lets resumable downloads promote complete parts and detect truncation."
+}
