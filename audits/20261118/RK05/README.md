@@ -656,3 +656,33 @@ Raw production output is `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk
 From `/home/codonflow-a8-rk`, use new absent/empty run directories. The production orchestrator requires the verified fixed source archive, source root, Python 2.7 driver and isolated site-packages. Run unit tests first, then the orchestrator, independent verifier and finalizer with their `--help`-listed path arguments. Preserve `MPLBACKEND=Agg`, `THEANO_FLAGS=device=cpu,floatX=float64`, `PYTHONHASHSEED=0`, one OpenBLAS/OMP/MKL thread, and an empty `CUDA_VISIBLE_DEVICES` for the bounded CPU contract.
 
 The full 102,187,657-read run, RSEM, 333/167-gene 60-epoch protocol, replicate analysis, study/functional OOD, matched-cost strong-baseline matrix, CodonFlow-RK generation and SOTA assessment remain open.
+
+## A8 v9 and online PPT verification
+
+The A8 generator and independent manuscript verifier consume the production, independent and finalization JSON reports. A8 v9 has SHA256 `51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79`; independent verification is **20/20 PASS**, and the status remains `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`. A7 is unchanged at SHA256 `941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423`. The manuscript and audits were pushed in commit `12d044d69519ffad8127cc9642372624b4c0a153`.
+
+After scientific and manuscript verification, the transaction baseline was read again as 76 slides at revision 38 with last slide `pgG`. Candidate preflight initially reported **7/8** only because the verifier used lowercase `final epoch only` while the visible page used `Final epoch only`; both failed reports are retained. The corrected verifier passed **8/8**, and the page was appended once as slide 77, `slide_id=pgW`, at revision 39. Post-write independent verification passed **11/11 checks**: exactly one slide was appended, all previous 76 slide IDs/order and ID-independent semantic XML were unchanged, and the production/independent/constant-baseline table, KPIs, notes, bounds and scientific scope matched the frozen evidence.
+
+- Candidate verification: `audits/20261118/RK05/ixnos_ppt_candidate_verification.json`
+- Final readback verification: `audits/20261118/RK05/ixnos_ppt_verification.json`
+- Independent verifier: `scripts/a8_rk05_verify_ixnos_ppt.py`
+- Raw candidate, baseline/readback XML, responses and retained preflight failures: `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ixnos_v1/`
+- PPT evidence commit: `9b23048267afc808fade89cc08655464b5814467`
+
+To recheck the archived server readback without importing production modules:
+
+```bash
+R=audits/20261118/RK05
+PPT=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ixnos_v1
+python3 scripts/a8_rk05_verify_ixnos_ppt.py \
+  --evidence-dir "$R" \
+  --paper-report paper/a8_rk_paper_independent_verification.json \
+  --baseline-xml "$PPT/ixnos-baseline-v01.xml" \
+  --baseline-response "$PPT/ixnos-baseline-response-v01.json" \
+  --readback-xml "$PPT/ixnos-readback-v02.xml" \
+  --readback-response "$PPT/ixnos-readback-response-v02.json" \
+  --add-response "$PPT/ixnos-slide77-add-response-v01.json" \
+  --expected-new-slide-id pgW --output <NEW_PPT_VERIFICATION_JSON>
+```
+
+The online URL is <https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>. This reporting closes only the bounded iXnos official-training smoke; it does not close the scientific or submission Gates listed above.

@@ -481,3 +481,17 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 结果和 A8 v8 经独立验收后才写入既有在线主稿。实时基线为 75 页、revision 37、末页 `pgh`；候选页 preflight **8/8 PASS** 后只追加第 76 页，slide ID=`pgG`，写入后 revision=38。页面展示两折与汇总 R²/MSE/Pearson、20 genes、1,860,356 参数、17/17 独立 PASS、13/13 finalization，并显式标注 bounded、非完整协议、非 OOD、非主矩阵、非 SOTA。
 - `audits/20261118/RK05/ribomimo_ppt_verification.json` 为 **PASS，11/11 checks**：整稿 76 页，前 75 页 slide ID、顺序与 ID-independent 语义 XML 全部不变；新页数值、四行表、4 段备注、画布边界和科学边界通过。候选、baseline/readback XML 与完整响应位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ribomimo_v1/`。PPT verifier/report commit=`c317eb6755a6d6f6543b6297a0fdbc417186aa4d`，已推送并核对 GitHub 远端。
 - 当前在线主稿真实状态为 **76 页、revision 38、末页 `pgG`**。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK04 长度/GC OOD 与 train-only 校准、RK06 dense/full matrix、真实功能 OOD、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文仍未关闭；遗留 `id3_independent_verification.pid` 不属于本任务，不应提交。
+
+## 26. iXnos 官方 bounded prefix-read training、A8 v9 与 PPT 第 77 页
+
+### 固定来源、真实 reads、训练与独立复核
+
+- 官方 iXnos 固定 commit=`1ea2337dd24d1e6fa3859f08573e99f02512810f`，归档 SHA256=`523e6105acdf52d792d96c272594655b2765a9c369892f78bac9452f7d20c1c8`。真实输入为 ENA `SRR1049521` 的前 **1,000,000 条完整 reads**，不是随机抽样或完整 run；官方 trimming 后 864,464 条，756,168 条进入转录组比对，723,724 条至少一个 alignment。使用官方 P-site offsets、paralog filtering 和 simple uniform multimapping weights，未复现 RSEM。
+- bounded 协议为 seed=20261118、20/10 train/test genes、min counts=50、min codons=20、2 epochs、只使用预先指定的最终 epoch；官方 760-feature tanh 网络含 152,401 参数，train/test codons=`3816/1963`。最终 R²/MSE/Pearson/Spearman=`0.0282723404/0.9106269870/0.1952275552/0.2159973420`；train-mean baseline MSE=`0.9371216081`、R² 约为零。以上只说明 bounded 流程可训练，不是论文性能、主 baseline 排名或 SOTA。
+- 独立 verifier 不导入生产 driver，重新处理并重训，**27/27 PASS**，target/prediction/checkpoint tensors 最大差均为 0；finalization **16/16 PASS**、单元测试 **10/10 PASS**。首次 `_tkinter` 失败保留，成功运行只增加 `MPLBACKEND=Agg`。独立 verifier 未重跑 Bowtie；另一次生产重跑确认 prefix/trimmed 字节一致，1,255,357 条完整比对记录 canonical sort 后一致，raw SAM 顺序与 run-specific PG 路径差异仍保留。科学证据 commit=`645bc22f179dabc35f74f43144f0462de8f4a228`。
+
+### A8 v9、PPT 写后验收与当前续作
+
+- A8 生成器/verifier 纳入 iXnos 三份冻结 JSON 及哈希、真实 reads、bounded 协议、最终指标、常数 baseline、27/27 与 16/16 核验；A7 未改。A8 v9 SHA256=`51b049bd9e0062d013f76b49f13b0312eb9ab204e153b4c994ad17e99abb3b79`，独立论文核验 **20/20 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。commit=`12d044d69519ffad8127cc9642372624b4c0a153`。
+- 实时 PPT 基线为 76 页、revision 38、末页 `pgG`。候选初次 preflight 7/8 仅由检查器大小写字符串不匹配引起，失败报告保留；修正后 **8/8 PASS**，只追加第 77 页 `pgW`，revision=39。`audits/20261118/RK05/ixnos_ppt_verification.json` 为 **PASS，11/11 checks**：前 76 页 slide ID、顺序与 ID-independent 语义 XML 全部不变，新页生产/独立/常数 baseline 表、KPI、4 段备注、画布边界和科学边界通过。raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_ixnos_v1/`；PPT commit=`9b23048267afc808fade89cc08655464b5814467`。
+- 当前在线主稿真实状态为 **77 页、revision 39、末页 `pgW`**。完整 102,187,657-read run、RSEM、333/167-gene 60-epoch、多 replicate、study/功能 OOD、统一成本强 baseline 主矩阵、RK03/RK04/RK06 剩余项、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文均未关闭；遗留 `id3_independent_verification.pid` 不应提交。
