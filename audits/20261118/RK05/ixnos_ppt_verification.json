@@ -1,0 +1,109 @@
+{
+  "baseline_xml": "ixnos-baseline-v01.xml",
+  "baseline_xml_sha256": "a76c1ac85967e59b1697e6332b8478a6124112eff1d581d14f5ae9fb24851ed4",
+  "check_count": 11,
+  "checks": [
+    {
+      "detail": {
+        "canonical_sam": true,
+        "finalization": "16/16",
+        "independent": "27/27",
+        "paper": "20/20"
+      },
+      "name": "frozen_scientific_evidence",
+      "pass": true
+    },
+    {
+      "detail": "pgW",
+      "name": "add_response_slide_id",
+      "pass": true
+    },
+    {
+      "detail": {
+        "revision": 38,
+        "slides": 76
+      },
+      "name": "baseline_identity",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 77,
+        "before": 76
+      },
+      "name": "exactly_one_slide_appended",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "previous_slide_ids_and_order_unchanged",
+      "pass": true
+    },
+    {
+      "detail": {
+        "changed_slide_ids": []
+      },
+      "name": "previous_semantic_xml_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pgW",
+      "name": "new_slide_is_last_and_matches_response",
+      "pass": true
+    },
+    {
+      "detail": {
+        "after": 39,
+        "before": 38
+      },
+      "name": "revision_advanced",
+      "pass": true
+    },
+    {
+      "detail": {
+        "required_strings": 28
+      },
+      "name": "readback_values_match_frozen_json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "note_paragraphs": 4
+      },
+      "name": "readback_notes_bounds_and_page",
+      "pass": true
+    },
+    {
+      "detail": [
+        "Bounded official training only",
+        "no full run",
+        "RSEM",
+        "OOD",
+        "main matrix",
+        "SOTA",
+        "bounded metrics are not paper performance"
+      ],
+      "name": "readback_scope_preserved",
+      "pass": true
+    }
+  ],
+  "evidence_commit": "645bc22f179dabc35f74f43144f0462de8f4a228",
+  "mode": "post_write_server_readback",
+  "new_slide_id": "pgW",
+  "paper_commit": "12d044d69519ffad8127cc9642372624b4c0a153",
+  "paper_report_sha256": "67455b86ee3f873b135cb2fd905828f9f6cebebebf390c042686df02a61ca852",
+  "passed_checks": 11,
+  "production_module_imported": false,
+  "readback_xml": "ixnos-readback-v02.xml",
+  "readback_xml_sha256": "cf62c7d994916d5cfed9e52fecbf0de0c40476901628d257a3fcfc720d84a982",
+  "revision_id": 39,
+  "schema_version": "a8-rk05-ixnos-ppt-independent-verification-v1",
+  "scope": "Bounded iXnos official training record only; no full run, RSEM, paper protocol, OOD, main matrix or SOTA closure.",
+  "slide_count": 77,
+  "source_sha256": {
+    "finalization": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28",
+    "independent": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+    "production": "5393c5d4738031518c57c1f889b0db70109c7a626b9a6ebf8d11b2ec703bdd30"
+  },
+  "status": "PASS"
+}

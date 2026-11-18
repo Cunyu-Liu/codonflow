@@ -1,0 +1,83 @@
+{
+  "candidate": "ixnos-slide77-candidate-v01.xml",
+  "candidate_sha256": "f6b681bb153fe788476274839ba9194e310c211171e2f7217d79fb135cd1a800",
+  "check_count": 8,
+  "checks": [
+    {
+      "detail": {
+        "canonical_sam": true,
+        "finalization": "16/16",
+        "independent": "27/27",
+        "paper": "20/20"
+      },
+      "name": "frozen_scientific_evidence",
+      "pass": true
+    },
+    {
+      "detail": {
+        "missing": [],
+        "required_strings": 28
+      },
+      "name": "candidate_values_match_frozen_json",
+      "pass": true
+    },
+    {
+      "detail": [
+        "Bounded official training only",
+        "no full run",
+        "RSEM",
+        "OOD",
+        "main matrix",
+        "SOTA",
+        "bounded metrics are not paper performance"
+      ],
+      "name": "candidate_scope_and_no_overclaim",
+      "pass": true
+    },
+    {
+      "detail": {
+        "columns": 6,
+        "rows": 4
+      },
+      "name": "candidate_table_structure",
+      "pass": true
+    },
+    {
+      "detail": {
+        "paragraphs": 4
+      },
+      "name": "candidate_speaker_notes",
+      "pass": true
+    },
+    {
+      "detail": {
+        "height": 540,
+        "width": 960
+      },
+      "name": "candidate_canvas_bounds",
+      "pass": true
+    },
+    {
+      "detail": "77",
+      "name": "candidate_page_number",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "candidate_no_handwritten_ids",
+      "pass": true
+    }
+  ],
+  "mode": "candidate_only_no_server_write",
+  "paper_report_sha256": "67455b86ee3f873b135cb2fd905828f9f6cebebebf390c042686df02a61ca852",
+  "passed_checks": 8,
+  "production_module_imported": false,
+  "schema_version": "a8-rk05-ixnos-ppt-candidate-verification-v1",
+  "scope": "Bounded iXnos official training record only; no full run, RSEM, paper protocol, OOD, main matrix or SOTA closure.",
+  "source_sha256": {
+    "finalization": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28",
+    "independent": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+    "production": "5393c5d4738031518c57c1f889b0db70109c7a626b9a6ebf8d11b2ec703bdd30"
+  },
+  "status": "PASS"
+}
