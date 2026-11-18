@@ -106,6 +106,9 @@ def main() -> None:
         "velo_official": repo / "audits/20261118/RK05/veloharmo_official_smoke_v1.json",
         "velo_official_verify": repo / "audits/20261118/RK05/veloharmo_independent_verification_v1.json",
         "velo_official_final": repo / "audits/20261118/RK05/veloharmo_finalization_v1.json",
+        "ribo_official": repo / "audits/20261118/RK05/ribomimo_official_smoke_v2.json",
+        "ribo_official_verify": repo / "audits/20261118/RK05/ribomimo_independent_verification_v1.json",
+        "ribo_official_final": repo / "audits/20261118/RK05/ribomimo_finalization_v1.json",
         "rk07": args.rk07_dir / "final_results.json",
         "rk07_verify": repo / "audits/20261118/RK07/final_independent_verification.json",
     }
@@ -151,6 +154,9 @@ def main() -> None:
     velos = data["velo_official"]
     velosv = data["velo_official_verify"]
     velosf = data["velo_official_final"]
+    ribos = data["ribo_official"]
+    ribosv = data["ribo_official_verify"]
+    ribosf = data["ribo_official_final"]
     rk07 = data["rk07"]
     rk07v = data["rk07_verify"]
 
@@ -219,6 +225,13 @@ def main() -> None:
     require(velosv["status"] == "PASS" and velosv["passed_checks"] == velosv["check_count"] == 17 and velosv["max_numeric_delta"] == 0.0, "VeloHARMO official independent verification failed")
     require(velosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and velosf["passed_checks"] == velosf["check_count"] == 13, "VeloHARMO official finalization failed")
     require(not velos["main_baseline_comparison"] and not velos["functional_ood"] and not velos["sota_claim"] and not velos["five_species_processed_matrices_complete"], "VeloHARMO official scope exceeded")
+    require(ribos["status"] == "BOUNDED_OFFICIAL_TRAINING_COMPLETE" and ribos["source"]["commit"] == "094c693d4df45f4b29f5a3209b31c452a39092a5", "RiboMIMO bounded official training incomplete")
+    require(len(ribos["subset"]["records"]) == 20 and ribos["protocol"]["num_fold"] == 2 and ribos["protocol"]["max_epoch"] == 2 and ribos["protocol"]["batch_size"] == 4 and ribos["environment"]["torch_num_threads"] == 1, "RiboMIMO bounded protocol changed")
+    require(ribos["runs"]["official_unmodified"]["returncode"] != 0 and ribos["runs"]["ragged_only"]["returncode"] != 0 and ribos["runs"]["official_bounded"]["returncode"] == 0 and ribos["compatibility"]["replacement_count"] == 6, "RiboMIMO failure or compatibility history changed")
+    require(len(ribos["official_result"]["checkpoints"]) == 2 and ribos["official_result"]["checkpoint_parameter_count"] == 1860356, "RiboMIMO checkpoint contract changed")
+    require(ribosv["status"] == "PASS" and ribosv["passed_checks"] == ribosv["check_count"] == 17 and ribosv["max_numeric_delta"] <= 5e-7 and not ribosv["production_module_imported"], "RiboMIMO independent verification failed")
+    require(ribosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ribosf["passed_checks"] == ribosf["check_count"] == 13, "RiboMIMO finalization failed")
+    require(not ribos["main_baseline_comparison"] and not ribos["study_ood"] and not ribos["functional_ood"] and not ribos["sota_claim"] and not ribos["full_official_10fold_100epoch_reproduced"], "RiboMIMO scientific scope exceeded")
 
     split_counts = {k: rk04["counts"][k]["rows"] for k in ("train", "dev", "test", "functional_untouched")}
     test = rk07["split_metrics"]["test"]
@@ -233,6 +246,7 @@ def main() -> None:
     ed_rows = "\n".join(f"| {r['record_id']} | {r['protein_length_aa']} | {r['best_run_id']} | {r['best_official_efe_kcal_mol']:.2f} |" for r in ed["records"])
     ed_c01_record = edc["records"][0]
     ct_rows = "\n".join(f"| {r['record_id']} | {r['mode']} | {r['qc']['protein_aa']} | {r['qc']['dna_nt']} | {'PASS' if r['qc']['legal_synonymous_cds'] else 'FAIL'} |" for r in cts["runs"])
+    ribom = ribos["official_result"]["metrics"]
 
     section_31 = f"""### 3.1 External data and verified availability
 
@@ -304,6 +318,8 @@ The official-example default output matched the README sequence exactly. Default
 
 **VeloHARMO bounded official execution.** At fixed commit `{velos['source_commit']}`, the unmodified `VeloGRU/run.py test` used the official 105-dimensional feature path and E. coli fold-0 weights on seven deterministically selected short processed-matrix records. On CUDA it reported mean Pearson **{velos['official_velogru_test']['mean_pearson']:.6f}** with population SD **{velos['official_velogru_test']['std_pearson']:.6f}**; direct native-prediction recomputation agreed within **{velos['official_velogru_test']['metric_delta']:.2e}**. These are length-selected diagnostics, not held-out or OOD performance. The unmodified GA entry point failed on the missing `Mimo_data` import; an exact seven-item compatibility patch changed only the import, data/weight/plot paths, population, and generation budget. On `{velos['bounded_ga']['target_record']}` ({velos['bounded_ga']['target_codons']} codons), the CPU GA ran with population **{velos['bounded_ga']['population_size']}**, generations **{velos['bounded_ga']['generations']}**, and seed **{velos['bounded_ga']['seed']}**. Start and best sequences were **{velos['bounded_ga']['legal_synonymous_count']}/{velos['bounded_ga']['candidate_count']} legal synonymous CDSs** under the native terminal-stop contract. Predicted-profile fitness was native **{velos['bounded_ga']['fitness']['native']:.6f}**, start **{velos['bounded_ga']['fitness']['start']:.6f}**, and best **{velos['bounded_ga']['fitness']['best']:.6f}**; thus `best == start`, `best − start = {velos['bounded_ga']['best_minus_start']:.6f}`, and **no iterative improvement occurred**. The start-to-native difference is only an initial-population/model-objective contrast, not experimental functional gain. Independent re-execution passed **{velosv['passed_checks']}/{velosv['check_count']} checks** with maximum numeric delta **{velosv['max_numeric_delta']:.1f}**, unit tests passed **10/10**, and finalization passed **{velosf['passed_checks']}/{velosf['check_count']} checks**. This is not five-species closure, a full-budget harmonization result, main baseline comparison, functional OOD evidence, or SOTA claim.
 
+**RiboMIMO bounded official training.** At fixed commit `{ribos['source']['commit']}`, the official training/cross-validation entry point ran on **20 shortest eligible Mohammad16 genes** with one repeat × two folds, two epochs, batch size 4, seed **{ribos['protocol']['seed']}**, and CPU single-thread execution. Exactly six compatibility replacements preserve ragged arrays and restore numeric padding dtype; the model, optimizer, random gene split and training logic are unchanged. Across the two best-validation checkpoint test folds, R² was **{ribom['r2_mean']:.6f} ± {ribom['r2_std']:.6f}**, MSE was **{ribom['mse_mean']:.6f} ± {ribom['mse_std']:.6f}**, and Pearson was **{ribom['pearson_mean']:.6f} ± {ribom['pearson_std']:.6f}** (mean ± population SD). Both checkpoints contain **{ribos['official_result']['checkpoint_parameter_count']:,} parameters**. Independent retraining exactly matched checkpoint tensors, while checkpoint-level metric recomputation passed **{ribosv['passed_checks']}/{ribosv['check_count']} checks** with maximum numeric delta **{ribosv['max_numeric_delta']:.2e}** from six-decimal log rounding; finalization passed **{ribosf['passed_checks']}/{ribosf['check_count']} checks**, and unit tests passed **10/10**. The unmodified NumPy ragged failure and post-ragged object-to-Tensor failure are retained. These small-subset values are execution diagnostics, not evidence of predictive utility or a method ranking. This is not the full 10-fold × 100-epoch protocol, homology/protein/study/functional OOD, a main-baseline comparison, or a SOTA result.
+
 **RNARL fixed-source availability audit.** At public commit `{rnarl['commit']}`, exact entry-point smoke and independent AST checks passed **{rnalrv['pass_count']}/{rnalrv['total']} checks for a negative reproducibility result**. Actor and reward constructors do not match their public entry calls, the actor lacks the called evaluation method, and GRPO lacks **{missing_methods} called methods** plus its main globals. No full training, generation, paper metric, or baseline comparison was produced. This finding concerns the current public snapshot's direct executability; it does not show that the RNARL scientific method is invalid.
 
 **CDGB source-identity audit.** The candidate title `{cdgb['candidate']['title']}` was assessed through **{cdgb['query_count_succeeded']}/{cdgb['query_count_expected']} frozen scholarly/repository API queries** across Crossref, OpenAlex, Europe PMC, and GitHub; no exact scholarly title match was found. The DOI embedded in the candidate URL, `{cdgb['candidate']['doi_embedded_in_url']}`, instead resolves to `{cdgb['candidate_doi_identity']['crossref_title']}` in Briefings in Bioinformatics volume {cdgb['candidate_doi_identity']['crossref_volume']} issue {cdgb['candidate_doi_identity']['crossref_issue']}. The exact GitHub CDGB+codon and CDGB+protein-representation repository queries each returned zero records; the broader codon-deoptimization query returned {cdgb['query_summaries']['github_codon_deoptimization']['total_count_reported_by_github']} unrelated candidates and does not establish official ownership. Independent verification passed **{cdgbv['checks_passed']}/{cdgbv['checks_total']} checks**, and finalization passed **{cdgbf['checks_passed']}/{cdgbf['checks_total']} checks**. No official CDGB repository, immutable commit, build, execution, output sequence, or performance result was established. This bounded source audit is not evidence that the CDGB method is invalid or that no implementation exists.
@@ -341,6 +357,9 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
         ("VeloHARMO bounded official production", source_hashes["velo_official"]),
         ("VeloHARMO bounded independent verifier", source_hashes["velo_official_verify"]),
         ("VeloHARMO bounded finalization", source_hashes["velo_official_final"]),
+        ("RiboMIMO bounded official production", source_hashes["ribo_official"]),
+        ("RiboMIMO bounded independent verifier", source_hashes["ribo_official_verify"]),
+        ("RiboMIMO bounded finalization", source_hashes["ribo_official_final"]),
     ]
     evidence_table = "\n".join(f"| {name} | `{digest}` |" for name, digest in evidence_rows)
     reproducibility_addition = f"""### 8.1 A8-RK evidence anchors
@@ -370,13 +389,14 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
     require("EnsembleDesign bounded official execution" in text and "EFE is not LinearDesign MFE" in text and "No matched LinearDesign comparison" in text, "EnsembleDesign bounded result or scope missing")
     require("CodonTransformer bounded official execution" in text and "2/2 legal synonymous CDSs" in text and "not a matched MFE/EFE comparison" in text, "CodonTransformer bounded result or scope missing")
     require("VeloHARMO bounded official execution" in text and "no iterative improvement occurred" in text and "best − start = 0.000000" in text and "not five-species closure" in text, "VeloHARMO bounded result or scope missing")
+    require("RiboMIMO bounded official training" in text and "20 shortest eligible Mohammad16 genes" in text and "small-subset values are execution diagnostics" in text and "not the full 10-fold × 100-epoch protocol" in text, "RiboMIMO bounded result or scope missing")
     require("CDGB source-identity audit" in text and "not evidence that the CDGB method is invalid or that no implementation exists" in text, "CDGB bounded source result missing")
     require("The unified main-baseline matrix" in text, "baseline pending boundary missing")
     require("No SOTA claim." in text, "working-manuscript boundary missing")
     atomic_write(output, text)
 
     audit = {
-        "schema_version": "a8-rk-paper-sync-v7",
+        "schema_version": "a8-rk-paper-sync-v8",
         "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
         "template": str(template),
         "template_sha256": sha256(template),
@@ -385,7 +405,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
         "source_paths": {name: str(path) for name, path in paths.items()},
         "source_sha256": source_hashes,
         "generated_sections": ["3.1", "3.2 RK04 addition", "6.2", "6.5", "8.1"],
-        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
+        "pending_preserved": ["RNARL natural-CDS provenance and UTR/raw-read remapping", "VeloHARMO five-species matrices and official cross-validation", "RiboMIMO full 10-fold × 100-epoch protocol and homology/study OOD", "Q2 empirical MFE", "Q3 mechanistic increments", "Q4–Q6 model and proxy failure", "dense candidate-budget comparison", "main baseline matrix", "OOD", "wet-lab validation"],
         "scientific_scope": {
             "rk07": "bounded cross-protein diagnostic only",
             "id3": "official bounded quick-test only; CPC STE defects retained",
@@ -396,6 +416,7 @@ A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-su
             "rnarl_code": "negative public-snapshot reproducibility only",
             "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
             "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
+            "ribomimo_official": "bounded 20-gene two-fold two-epoch official training only; six NumPy compatibility replacements; negative R-squared and near-zero Pearson are execution diagnostics; full protocol, OOD, main matrix and SOTA open",
             "sota": False,
             "submittable": False,
         },

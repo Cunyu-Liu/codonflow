@@ -272,6 +272,42 @@ def main() -> None:
     }
     check("veloharmo_bounded_official_execution_and_scope", all(velo_official_checks.values()), velo_official_checks)
 
+    ribos = data["ribo_official"]
+    ribosv = data["ribo_official_verify"]
+    ribosf = data["ribo_official_final"]
+    ribom = ribos["official_result"]["metrics"]
+    tensor_check = next(c for c in ribosv["checks"] if c["name"] == "retrained_checkpoint_tensors_match")
+    unit_log = (repo / "audits/20261118/RK05/ribomimo_unit_tests_v2.log").read_text(encoding="utf-8")
+    ribo_official_strings = [
+        ribos["source"]["commit"], "**20 shortest eligible Mohammad16 genes**",
+        f"R² was **{ribom['r2_mean']:.6f} ± {ribom['r2_std']:.6f}**",
+        f"MSE was **{ribom['mse_mean']:.6f} ± {ribom['mse_std']:.6f}**",
+        f"Pearson was **{ribom['pearson_mean']:.6f} ± {ribom['pearson_std']:.6f}**",
+        f"**{ribos['official_result']['checkpoint_parameter_count']:,} parameters**",
+        "Exactly six compatibility replacements", "Independent retraining exactly matched checkpoint tensors",
+        f"**{ribosv['passed_checks']}/{ribosv['check_count']} checks**", f"**{ribosv['max_numeric_delta']:.2e}**",
+        f"**{ribosf['passed_checks']}/{ribosf['check_count']} checks**", "unit tests passed **10/10**",
+        "small-subset values are execution diagnostics", "not the full 10-fold × 100-epoch protocol",
+        sha256(Path(audit["source_paths"]["ribo_official"])),
+        sha256(Path(audit["source_paths"]["ribo_official_verify"])),
+        sha256(Path(audit["source_paths"]["ribo_official_final"])),
+    ]
+    ribo_official_checks = {
+        "rendered_from_frozen_json": all(s in text for s in ribo_official_strings),
+        "bounded_protocol": len(ribos["subset"]["records"]) == 20 and ribos["protocol"]["num_fold"] == 2 and ribos["protocol"]["max_epoch"] == 2 and ribos["protocol"]["batch_size"] == 4 and ribos["environment"]["torch_num_threads"] == 1 and not ribos["environment"]["gpu_visible_to_training"],
+        "retained_failures_and_six_edits": ribos["runs"]["official_unmodified"]["returncode"] != 0 and ribos["runs"]["ragged_only"]["returncode"] != 0 and ribos["runs"]["official_bounded"]["returncode"] == 0 and ribos["compatibility"]["replacement_count"] == 6,
+        "checkpoint_contract": len(ribos["official_result"]["checkpoints"]) == 2 and ribos["official_result"]["checkpoint_parameter_count"] == 1860356 and tensor_check["detail"]["max_abs_delta"] == 0.0,
+        "independent": ribosv["status"] == "PASS" and ribosv["passed_checks"] == ribosv["check_count"] == 17 and ribosv["max_numeric_delta"] <= 5e-7 and not ribosv["production_module_imported"],
+        "finalization_and_unit_tests": ribosf["status"] == "CLOSED_BOUNDED_OFFICIAL_SMOKE" and ribosf["passed_checks"] == ribosf["check_count"] == 13 and "Ran 10 tests" in unit_log and "OK\n" in unit_log,
+        "scope": not ribos["main_baseline_comparison"] and not ribos["study_ood"] and not ribos["functional_ood"] and not ribos["sota_claim"] and not ribos["full_official_10fold_100epoch_reproduced"],
+        "frozen_sources": all(source_is(name, "audits/20261118/RK05/" + filename) for name, filename in {
+            "ribo_official": "ribomimo_official_smoke_v2.json",
+            "ribo_official_verify": "ribomimo_independent_verification_v1.json",
+            "ribo_official_final": "ribomimo_finalization_v1.json",
+        }.items()),
+    }
+    check("ribomimo_bounded_official_training_and_scope", all(ribo_official_checks.values()), ribo_official_checks)
+
     rnarl = data["rnarl_smoke"]
     rnalrv = data["rnarl_verify"]
     rnarl_strings = [
@@ -317,6 +353,7 @@ def main() -> None:
         "[Pending RK-G1.",
         "[Pending RK-G2.",
         "[Pending RK-G3.",
+        "not the full 10-fold × 100-epoch protocol",
         "The unified main-baseline matrix, dense candidate-budget comparison, functional OOD evaluation, and SOTA assessment remain pending.",
         "non-submittable working manuscript",
         "No SOTA claim.",
@@ -326,7 +363,7 @@ def main() -> None:
 
     passed = sum(c["pass"] for c in checks)
     report = {
-        "schema_version": "a8-rk-paper-independent-verification-v7",
+        "schema_version": "a8-rk-paper-independent-verification-v8",
         "status": "PASS" if passed == len(checks) else "FAIL",
         "paper": str(paper_path),
         "paper_sha256": sha256(paper_path),
