@@ -120,6 +120,9 @@ A7 `anytime_curve` 只在 B=50/100/500 计算 HV，额外从 `(0,0)` 做梯形�
 每组使用相同 paired initial、目标权重、calibration、独立 cache 和 500 唯一 scorer。主对比为 feedback=on 内 learned vs random；off 组及交互用于识别机制。不得再拿 learned-off 直接对比 random-on 后宣称架构无效。
 
 ### 5.4 统计
+### T3.8 开发集复现（已完成）
+
+90/90 learned-hill分片完成，全部真实CUDA、identity=100%、500唯一解。统一Gate与独立重跑逐字节一致，SHA256=`835ffe644098a75a6cfcec2f9440dd9f84a004cd4eb9ce95ac0fe1cba0a0bdf5`；独立原始点审计SHA256=`3d3c1c4055e39a9cefff9524dfb52d0239d8e09f3e09e945494bb331f78addcc`。15/15新开发基因均正向：FULL中位AUC+59.95%、EDIT+68.73%，CI下界为正、Holm p=6.1e-5；FULL/EDIT耗时比中位42.68×/2.41×，最大FULL 242.65×。支持学习提议在终端选择中有用，但不是独立确认或外部SOTA；不改变原G2 No-Go，不进入G3。
 
 基因为独立单位，seed 先在基因内聚合。报告中位相对效应、10,000 次基因级 paired bootstrap 95% CI、双侧效应方向、预注册单侧 Wilcoxon、FULL/EDIT 或多臂 Holm 校正。确认集不做模型选择。开发集显著不等于独立确认。
 
