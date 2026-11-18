@@ -281,3 +281,26 @@ From `/home/codonflow-a8-rk`, use new output paths for a repeat audit; never ove
 ```
 
 A repeat query reflects the then-current APIs and need not reproduce the same hit counts. The frozen v1 responses and byte hashes are the authoritative evidence for this report. Before any future CDGB execution, obtain an authoritative citation whose title and authors match CDGB, an author/publisher-linked official repository and immutable commit, and official build instructions with a documented minimal input.
+
+## PPT record and independent readback
+
+The existing online deck advanced from **71 slides at revision 33** to **72 slides at revision 34** by appending only slide `pgR`. `cdgb_ppt_verification.json` is **PASS, 10/10 checks**: all previous 71 slide IDs and ID-independent semantic XML are unchanged; the new page contains the frozen KPI values, DOI conflict title, exact 4×3 evidence table, boundary statements, page number 72, and four speaker-note paragraphs. All new-page objects lie inside the 960×540 canvas. Baseline/readback XML and their complete responses are preserved under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/`.
+
+Operational note: the first local slide-only preflight command referenced a non-existent local evidence-JSON relative path and did not complete, while the subsequent add request in the same shell returned `pgR`. No duplicate slide was appended. Acceptance therefore uses the independent server readback and the authoritative frozen reports in `/home`, not the incomplete local preflight.
+
+Reproduce the readback verification with the preserved XML snapshots:
+
+```bash
+/root/miniconda3/envs/codonflow/bin/python \
+  scripts/a8_rk05_verify_cdgb_ppt.py \
+  --baseline-xml /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/cdgb-baseline-v01.xml \
+  --baseline-response /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/cdgb-baseline-response-v01.json \
+  --readback-xml /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/cdgb-readback-v01.xml \
+  --readback-response /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/cdgb-readback-response-v01.json \
+  --audit audits/20261118/RK05/cdgb_source_audit.json \
+  --verification audits/20261118/RK05/cdgb_source_independent_verification.json \
+  --finalization audits/20261118/RK05/cdgb_source_finalization.json \
+  --expected-new-slide-id pgR \
+  --evidence-commit ea806ff10f331ae2831cef9c9d15ddb2c3252902 \
+  --output audits/20261118/RK05/cdgb_ppt_verification.json
+```

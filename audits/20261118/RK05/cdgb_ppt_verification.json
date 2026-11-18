@@ -1,0 +1,103 @@
+{
+  "schema_version": "a8-rk05-cdgb-ppt-verification-v1",
+  "status": "PASS",
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline_revision": 33,
+  "readback_revision": 34,
+  "baseline_slide_count": 71,
+  "readback_slide_count": 72,
+  "new_slide_id": "pgR",
+  "new_slide_number": 72,
+  "previous_slide_ids_unchanged": true,
+  "previous_semantic_xml_differences": [],
+  "evidence_commit": "ea806ff10f331ae2831cef9c9d15ddb2c3252902",
+  "checks_passed": 10,
+  "checks_total": 10,
+  "checks": {
+    "page_count_exactly_one_added": {
+      "pass": true,
+      "detail": {
+        "before": 71,
+        "after": 72
+      }
+    },
+    "revision_advanced": {
+      "pass": true,
+      "detail": {
+        "before": 33,
+        "after": 34
+      }
+    },
+    "previous_slide_ids_unchanged": {
+      "pass": true,
+      "detail": {
+        "previous_count": 71
+      }
+    },
+    "previous_semantic_xml_unchanged": {
+      "pass": true,
+      "detail": {
+        "different_pages": []
+      }
+    },
+    "new_slide_identity": {
+      "pass": true,
+      "detail": {
+        "expected": "pgR",
+        "observed": "pgR"
+      }
+    },
+    "frozen_source_boundaries": {
+      "pass": true,
+      "detail": {
+        "queries": "9/9",
+        "independent": "8/8",
+        "finalization": "6/6",
+        "sequence_outputs": 0,
+        "performance_results": 0
+      }
+    },
+    "new_page_required_text": {
+      "pass": true,
+      "detail": {
+        "required_count": 14,
+        "missing": []
+      }
+    },
+    "evidence_table_exact": {
+      "pass": true,
+      "detail": {
+        "rows": 4,
+        "expected_rows": 4
+      }
+    },
+    "speaker_notes_complete": {
+      "pass": true,
+      "detail": {
+        "paragraphs": 4
+      }
+    },
+    "new_page_canvas_bounds": {
+      "pass": true,
+      "detail": {
+        "canvas": [
+          960,
+          540
+        ],
+        "out_of_bounds": []
+      }
+    }
+  },
+  "artifact_sha256": {
+    "baseline_xml": "6938d5ae18b61941d8200328bd1467c8e9cd616ccf43cb9884bd6e41ebd5f1fe",
+    "baseline_response": "38513fceb1c343e82f036341f7263035927acb79135fcd09de1cc3b586d6602e",
+    "readback_xml": "34c34bbf8ef37e1ab21f2a22d73e606a4bf18b335d60a5f9db48c962f01962d9",
+    "readback_response": "bdd9f9decef36ef1d19a4c3da4158876694cbe5fa6efa0bd81a67afec17891b6",
+    "audit": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691",
+    "verification": "964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980",
+    "finalization": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2"
+  },
+  "new_slide_text_sha256": "178713bdc4f8ee87d22794f841ba3d8c7e5f645c7ceda857a7ba3422414a3b43",
+  "scientific_scope": "Negative source-identity audit only; no CDGB execution, sequence output, performance result, main-baseline, OOD, or SOTA claim.",
+  "created_at": "2026-11-18T19:31:58.201296+00:00"
+}

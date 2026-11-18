@@ -370,3 +370,25 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 状态仅为 `BOUNDED_LINEARDESIGN_OFFICIAL_SMOKE_VERIFIED`。统一 actual-set 七 λ、dense budget、主 baseline、功能 OOD 与 SOTA 均未完成；CDGB 尚未建立可核验的官方来源/commit/build/execution artifact，通用搜索未命中不等于方法或实现不存在。
 - A8 生成器/verifier 已升级为 v3，新增 LinearDesign 固定源码、三 λ 指标、双 dangles 和 v1 retained failure；A7 未改。A8 SHA256=`d779ad4dd3d9d971378aa82fc1366e6eaa7e53a74a49bce1a5b227e609b088dd`，独立 **14/14 PASS**，仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
 - 代码、独立报告、A8 v3 和复现文档已以 commit=`8be5369081b614beede261b7430f1230e0783e37` 推送。既有在线主稿随后追加第 71 页 `pgB`、revision=33；回读确认前 70 页 slide ID 与语义 XML 全部不变，新页数值、边界和 4 段备注完整。PPT 验证报告为 `audits/20261118/RK05/lineardesign_ppt_verification.json`。
+
+## 21. CDGB 来源身份负向审计、A8 v4 与 PPT 第 72 页
+
+### 来源审计结论与冻结证据
+
+- 候选题名为 `CDGB: a deep learning framework for codon de-optimization directed by the protein representation model`，候选 URL 中的 DOI 为 `10.1093/bib/bbaf332`。Crossref 直接 DOI 查询与 OpenAlex 均把该 DOI 映射到 **Multimodal zero-shot learning of previously unseen epitranscriptomes from RNA-seq data**（ExpressRM），Briefings in Bioinformatics volume=26、issue=4，而不是 CDGB；候选身份存在直接冲突。
+- 九条 API 查询全部完成并冻结原始 JSON、bytes 和 SHA256：Crossref candidate-title=20、Crossref CDGB title=3、OpenAlex CDGB title=7、Europe PMC CDGB title=4、Europe PMC codon-deoptimization title=2，学术精确候选题名匹配总数=0；GitHub CDGB+codon=0、CDGB+protein-representation=0，宽 codon-deoptimization=14 个其他项目，不能建立官方所有权。第九个响应是直接 Crossref DOI 冲突证据。
+- raw responses 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_source_audit_v1/`。生产报告 `cdgb_source_audit.json` SHA256=`dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691`；独立报告 `cdgb_source_independent_verification.json` SHA256=`964e782264c8101dc55cced708be3834f66b02488f3bc0e838b8724ce4598980`；finalization `cdgb_source_finalization.json` SHA256=`dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2`。
+- 独立 verifier 不导入生产模块，从冻结 raw responses 重算题名归一化、DOI 冲突、学术精确匹配、GitHub 计数和科学边界，最终 **8/8 PASS**；finalization **6/6 PASS**，单元测试 **8/8 PASS**。状态为 `SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED`。
+- 未建立官方 repository、immutable commit、source build 或 execution；official sequence-output count=0、performance-result count=0。该负向结果不证明 CDGB 方法无效或实现不存在，也不授权主 baseline、功能 OOD 或 SOTA。未来执行前必须获得权威文献身份、作者/出版方链接的官方仓库、固定 commit、官方构建说明和最小输入。
+
+### A8 v4 与 Git 证据
+
+- A8 生成器/verifier 升级为 v4，新增 CDGB 三份冻结证据及第 6.5 节来源身份段落；A7 SHA256 仍为 `941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d423`。A8 v4 SHA256=`cc74dee890b1cf813ece45b9d62f32948046b68272915747f13c7d23fbc8df59`，独立 **15/15 PASS**，状态仍为 `PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE`。
+- 生产/独立/finalization 脚本、测试、三份报告、RK05 README、A8 v4 和同步审计以 commit=`ea806ff10f331ae2831cef9c9d15ddb2c3252902` 推送。完整复现命令见 `audits/20261118/RK05/README.md`；raw API 响应不提交 Git。
+
+### PPT 写后验收与当前续作
+
+- 在线主稿在 71 页 revision 33 基线上只追加第 72 页，slide ID=`pgR`，写入后 revision=34。页面包含 9/9 查询、0 个学术精确题名匹配、8/8 独立 PASS、6/6 finalization、Crossref/scholarly/GitHub 三行证据表、实际 DOI 题名和零执行边界；没有性能图或方法排名。
+- `audits/20261118/RK05/cdgb_ppt_verification.json` 为 **PASS，10/10 checks**：整稿 72 页，前 71 页 slide ID 与 ID-independent 语义 XML 全部不变；新页关键文本、精确 4×3 表格、4 段演讲者备注、页码和画布边界全部通过。baseline/readback XML 与完整响应保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cdgb_ppt_verification_v1/`。
+- 操作记录：第一次本地 slide-only preflight 因本地证据 JSON 相对路径不存在而未完成，但同一 shell 的后续 add 请求已返回 `pgR`；没有重复追加。最终验收不依赖该 incomplete preflight，而依赖远端冻结报告与独立整稿写后复核。
+- 当前在线主稿真实状态为 **72 页、revision 34、末页 `pgR`**。本 PPT 验证报告、REGISTRY/tasks 和本 handoff 更新随后续文档提交推送。RK-05 强 baseline 主矩阵、RK03 剩余机制维度、RK06 dense/full matrix、功能 OOD、生成器、SOTA 和湿实验仍未关闭。
