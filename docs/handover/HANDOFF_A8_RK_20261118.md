@@ -226,3 +226,28 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `audits/20261118/RK03/ppt_verification.json` 为 PASS：最终 63 页，前 62 页 slide ID、标签、属性、文字和递归子元素顺序不变；第 62 页仅末尾空白序列化差异。新页所有关键文字和数字回读齐全。
 - 复现命令、raw/reference SHA、失败修正和边界见 `audits/20261118/RK03/README.md`。大型 raw、reference、all-QC、clean 和 supplement 均在 `/teams`，未提交 Git。
 - **RK-03 整体与 RK-G0 仍未关闭。** VeloHARMO 官方仓库/论文未提供五物种完整可下载矩阵，不能宣称五物种齐全；RNARL 21 文件最终 manifest 未完成，且 Zenodo 描述与论文 Methods、实际单 CDS 列的来源口径矛盾未解决；CodonTransformer 最终 byte/SHA、1,001,197 pairs/164 organisms 与行级 CDS QC 未验收。UTR–CDS、raw-read/P-site 独立重比对、长度/GC/CAI/MFE/EFE/宿主/蛋白簇完整分布报告仍 pending。当前没有功能训练授权、功能 OOD 机制增量、生成器或 SOTA 结果。
+
+## 15. RK-07 Boël 跨蛋白代理诊断完成记录（bounded）
+
+### 冻结协议、数据与复现
+
+- production commit=`a7250465d5705ae7b72a844d181701eb55582136`；独立 verifier、最终审计和复现 README commit=`e59cc5b651959844cfeb074d564046aac648350a`，均已推送。提交前契约测试再次为 10/10 PASS。
+- RK04 的 Boël train/dev/test=`5,079/635/634`，全量特征 6,348 行；19,072 条 MAGE `functional_untouched` 未用于拟合、调参或本次评价。Boël 是跨蛋白天然非同义表达池，本诊断不是固定蛋白同义功能文库 E1。
+- 特征为 CAI、GC、全 CDS MFE、MFE/nt、5′前48 nt MFE；ViennaRNA 2.7.2，18°C。full MFE 包含终端 stop，CAI/GC 排除终端 stop，local48 不含 5′UTR。外部 CAI 参考为固定 SHA 的 4,297 条 MG1655 RefSeq CDS，不是 BL21(DE3) 菌株匹配或表达加权参考。
+- 组合模型是 train-only 均值/标准差标准化的多项 logistic expected score，L2=0.01、max_iter=2000，无 dev/test 超参搜索；41 次迭代收敛，gradient max abs=`1.1256659202376132e-07`。paired Spearman 按 operational protein cluster 做 1,000 次 bootstrap、95% percentile CI 和五比较 Holm，seed=20261118。
+- 复现命令、环境、完整指标与 SHA：`audits/20261118/RK07/README.md`。full feature SHA256=`aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b`；final result SHA256=`2ba7b1dc084172e891c8d5775790b7c94ddbca8788d8a88bbb0876f6fd289838`；final predictions SHA256=`f8827eb7aa52d2908e7c00f04dbcd3c926aada654a6f0b16025b14d2d317b7f5`。大型 artifacts 均在 `/teams`，未提交 Git。
+
+### frozen dev/test 结果与负向边界
+
+- dev Spearman：combined=`0.2128696756`，CAI=`-0.0201141125`，GC=`0.1164536224`，full MFE=`0.1014646455`，MFE/nt=`0.1201580570`，local48=`0.1906588302`。combined−local48 点差=`0.0222108453`，95% CI=`[-0.0225304443,0.0669856004]`，Holm p=`0.3276723277`。
+- test Spearman：combined=`0.1232386696`，CAI=`0.0026147695`，GC=`0.0963938616`，full MFE=`0.0463484098`，MFE/nt=`0.0949879049`，local48=`0.0776541915`。combined−local48 点差=`0.0455844781`，95% CI=`[-0.0072460994,0.1005014863]`，Holm p=`0.3516483516`。
+- **test 五个 paired Spearman 比较经 Holm 后均不显著。** combined−CAI 点差=`0.1206239001`、CI=`[0.0101856517,0.2311940143]`，但 Holm p=`0.1798201798`；CI 下界大于 0 与多重校正不通过必须同时保留，不能称稳健胜出。
+- test top10 E=5 enrichment：combined=`1.0319010417`，local48=`0.9803059896`，CAI=`0.7223305086`；combined−local48 的差值 CI=`[-0.378745,0.502100]`，跨 0。GC-high 中 combined/local48=`0.170224/0.195923`；GC-low 中 combined/local48/CAI=`0.070855/-0.079237/0.207418`，不同区域由不同代理占优，失败分层未删除。
+- 科学结论仅为：**跨蛋白信号有限且不稳定，组合模型点估计较高但未稳健超过最强单代理。** 没有证明简单代理失效，也不构成固定蛋白同义机制、功能 OOD、SOTA 或 CodonFlow-RK 生成器授权。
+
+### 独立验收与当前续作
+
+- 独立 verifier=`scripts/a8_rk07_verify_proxy.py`，不导入生产模块，逐项核验 protocol/feature/prediction/dev SHA，独立构建参考 RSCU，重算全部 6,348 条 CDS 翻译、CAI、GC、18°C MFE、模型预测、train-only 标准化、univariate fit、logistic 梯度、点指标、1,000 次 bootstrap、Holm、长度/GC 分层和 dev 冻结。
+- `audits/20261118/RK07/final_independent_verification.json` 为 **PASS，9/9 checks**，SHA256=`1dab1cf3405a7158bcc0a2d395dbb2882395b7a252ba671c49197b9158cfa815`。raw feature 最大差=0，prediction 最大差约 `1.3322676295501878e-15`，paired CI 最大差约 `2.23e-16`，stratum metric 最大差约 `4.45e-16`，p_raw/p_Holm/optimizer_gradient 差异均为 0。
+- final artifact 与 pre-test dev baseline 完全一致，`forbidden_split_used=false`；verifier 和生产代码未因 test 结果而修改。E1 固定蛋白同义任务、RK-G0/G1、长度/GC OOD、完整 baseline、生成器和论文门槛仍未关闭。
+- PPT：独立验收已通过，待追加结果页并另行记录服务端回读。

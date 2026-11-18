@@ -86,7 +86,7 @@ GC 的 raw Spearman 与 OLS 方向相反：train/dev/test 分别为 -0.081455/-0
 | GC | 0.026845 | [-0.062697, 0.114032] | 0.943057 |
 | 5′前48 nt MFE | 0.045584 | [-0.007246, 0.100501] | 0.351648 |
 
-所有 test paired Spearman 比较均未通过 Holm；CAI 比较虽然 percentile CI 下界大于零，但 Holm 不通过，仍不能称为稳健胜出。Dev 上组合模型相对 5′局部 MFE 的 ΔSpearman=`0.022211`，95% CI=`[-0.022530, 0.067986]`，Holm p=`0.327672`，同样未显著。
+所有 test paired Spearman 比较均未通过 Holm；CAI 比较虽然 percentile CI 下界大于零，但 Holm 不通过，仍不能称为稳健胜出。Dev 上组合模型相对 5′局部 MFE 的 ΔSpearman=`0.022211`，95% CI=`[-0.022530, 0.066986]`，Holm p=`0.327672`，同样未显著。
 
 Frozen-test top-10% E=5 enrichment：combined=`1.031901`、5′局部 MFE=`0.980306`、CAI=`0.722331`；combined−5′局部 MFE 的差值 95% CI=`[-0.378745, 0.502100]`，未证明 top-k 优势。
 
