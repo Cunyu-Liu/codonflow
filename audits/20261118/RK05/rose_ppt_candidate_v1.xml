@@ -1,0 +1,80 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(255, 255, 255, 1)"/></fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="47" topLeftY="28" width="864" height="38">
+      <content textType="title" fontSize="26" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" bold="true" wrap="false">
+        <p>RK-05 | ROSE Released-Test Inference Verified</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="48" topLeftY="73" width="860" height="24">
+      <content fontSize="13" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)" wrap="false">
+        <p>Fixed 8b86d69 · complete released arrays · one checkpoint per study · CPU single thread</p>
+      </content>
+    </shape>
+    <line startX="47" startY="107" endX="911" endY="107"><border color="rgba(218, 225, 232, 1)" width="1"/></line>
+
+    <shape type="round-rect" topLeftX="47" topLeftY="124" width="198" height="96" presetHandlers="16"><fill><fillColor color="rgba(242, 247, 251, 1)"/></fill></shape>
+    <shape type="round-rect" topLeftX="269" topLeftY="124" width="198" height="96" presetHandlers="16"><fill><fillColor color="rgba(242, 247, 251, 1)"/></fill></shape>
+    <shape type="round-rect" topLeftX="491" topLeftY="124" width="198" height="96" presetHandlers="16"><fill><fillColor color="rgba(242, 247, 251, 1)"/></fill></shape>
+    <shape type="round-rect" topLeftX="713" topLeftY="124" width="198" height="96" presetHandlers="16"><fill><fillColor color="rgba(242, 247, 251, 1)"/></fill></shape>
+    <shape type="text" topLeftX="61" topLeftY="139" width="176" height="34"><content fontSize="25" fontFamily="思源黑体" color="rgba(32, 103, 174, 1)" bold="true" wrap="false"><p>0.861889</p></content></shape>
+    <shape type="text" topLeftX="61" topLeftY="181" width="176" height="28"><content fontSize="12" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" wrap="false"><p>Pop14 ROC AUC · n=1,902</p></content></shape>
+    <shape type="text" topLeftX="283" topLeftY="139" width="176" height="34"><content fontSize="25" fontFamily="思源黑体" color="rgba(32, 103, 174, 1)" bold="true" wrap="false"><p>0.807230</p></content></shape>
+    <shape type="text" topLeftX="283" topLeftY="181" width="176" height="28"><content fontSize="12" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" wrap="false"><p>Battle15 ROC AUC · n=9,980</p></content></shape>
+    <shape type="text" topLeftX="505" topLeftY="139" width="176" height="34"><content fontSize="25" fontFamily="思源黑体" color="rgba(32, 103, 174, 1)" bold="true" wrap="false"><p>34/34</p></content></shape>
+    <shape type="text" topLeftX="505" topLeftY="181" width="176" height="28"><content fontSize="12" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" wrap="false"><p>independent checks PASS</p></content></shape>
+    <shape type="text" topLeftX="727" topLeftY="139" width="176" height="34"><content fontSize="25" fontFamily="思源黑体" color="rgba(29, 133, 120, 1)" bold="true" wrap="false"><p>60/60</p></content></shape>
+    <shape type="text" topLeftX="727" topLeftY="181" width="176" height="28"><content fontSize="12" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" wrap="false"><p>finalization checks PASS</p></content></shape>
+
+    <shape type="text" topLeftX="50" topLeftY="233" width="850" height="24"><content fontSize="15" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" bold="true" wrap="false"><p>Complete released arrays reproduced; binary stalling is not velocity regression</p></content></shape>
+    <table topLeftX="50" topLeftY="263" width="860" height="126">
+      <colgroup><col width="120"/><col width="160"/><col width="130"/><col width="130"/><col width="150"/><col width="170"/></colgroup>
+      <tr height="34">
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Study</p></content></td>
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>n (+/−)</p></content></td>
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>ROC AUC</p></content></td>
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>AP</p></content></td>
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Accuracy@0.5</p></content></td>
+        <td><fill><fillColor color="rgba(32, 103, 174, 1)"/></fill><content fontSize="11" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Log loss</p></content></td>
+      </tr>
+      <tr height="31">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" bold="true"><p>Pop14</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>1,902 (951/951)</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.861889</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.859274</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.778654</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.498731</p></content></td>
+      </tr>
+      <tr height="31">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" bold="true"><p>Battle15</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>9,980 (4,990/4,990)</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.807230</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.794068</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.728156</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"><p>0.562374</p></content></td>
+      </tr>
+      <tr height="30">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" bold="true"><p>Constant prevalence</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)"><p>balanced · both</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(122, 32, 44, 1)" bold="true"><p>0.500000</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)"><p>0.500000</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)"><p>0.500000</p></content></td>
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)"><p>0.693147</p></content></td>
+      </tr>
+    </table>
+    <shape type="text" topLeftX="50" topLeftY="404" width="860" height="22"><content fontSize="11" fontFamily="思源黑体" color="rgba(32, 103, 174, 1)" bold="true" wrap="false"><p>PROTOCOL | 183 nt / 61 codons · 128,834 / 265,858 parameters · single full forward</p></content></shape>
+    <shape type="text" topLeftX="50" topLeftY="432" width="860" height="22"><content fontSize="11" fontFamily="思源黑体" color="rgba(122, 32, 44, 1)" bold="true" wrap="false"><p>BOUNDARY | Binary stalling only | no training, 64-model ensemble, velocity regression, OOD or SOTA</p></content></shape>
+    <shape type="text" topLeftX="50" topLeftY="458" width="860" height="20"><content fontSize="10" fontFamily="思源黑体" color="rgba(90, 102, 114, 1)" wrap="false"><p>Official float32 metrics exact · stable float64 is secondary · verifier v1–v3 precision failures retained</p></content></shape>
+    <line startX="47" startY="490" endX="911" endY="490"><border color="rgba(218, 225, 232, 1)" width="1"/></line>
+    <shape type="text" topLeftX="50" topLeftY="501" width="790" height="20"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 110, 120, 1)" wrap="false"><p>Evidence: GitHub 3a284efe | rose_finalization_v1.json + tests 12/12 | A8 v10 f17f432e</p></content></shape>
+    <shape type="text" topLeftX="866" topLeftY="501" width="45" height="20"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(100, 110, 120, 1)" textAlign="right" wrap="false"><p>78</p></content></shape>
+  </data>
+  <note><content>
+    <p>ROSE 固定官方源码 8b86d69，使用作者发布的 Pop14 和 Battle15 完整测试数组，每套研究只加载一个 best_model_0.caffemodel，不训练、不虚构 64 模型集成。输入为 183 nt、61 个密码子，按官方 ATCG 嵌套顺序编码，CPU 单线程各执行一次完整前向。</p>
+    <p>Pop14 的 ROC AUC 为 0.861889、AP 为 0.859274、准确率 0.778654、log loss 0.498731；Battle15 对应为 0.807230、0.794068、0.728156 和 0.562374。两套数据均正负各半，常数 prevalence baseline 的 ROC AUC、AP 和准确率均为 0.5，log loss 为 ln(2)。</p>
+    <p>独立 verifier 不导入生产脚本，重新编码、构建 HDF5 并执行第二次 Caffe 前向，34/34 通过；logits、官方 float32 概率公式及全部生产指标完全一致。最终核验 60/60、单元测试 12/12、A8 v10 独立论文核验 21/21 均通过。此前三次失败只来自过严的 float64 概率和指标容差，现场完整保留。</p>
+    <p>本页只证明官方发布单 checkpoint 可在作者处理测试数组上复现二分类停滞预测，不关闭完整训练、64-checkpoint 集成、连续速度回归、raw-read 或 P-site 重映射、蛋白/study/功能 OOD、统一成本主矩阵、CodonFlow-RK 或 SOTA。</p>
+  </content></note>
+</slide>

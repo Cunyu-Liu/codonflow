@@ -1,0 +1,87 @@
+{
+  "schema_version": "rose-ppt-candidate-independent-preflight-v1",
+  "status": "PASS",
+  "check_count": 14,
+  "passed_count": 14,
+  "candidate": "rose_candidate_v1.xml",
+  "candidate_sha256": "54eca61e6eb4f849d39081b8734896958a53182d6b43d846e2f3cf670e8b095c",
+  "production_report_sha256": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a",
+  "independent_report_sha256": "904d370e0b6c87c86484a74c2b572dca964bdc5289110a1d37d00e4a3d378861",
+  "finalization_report_sha256": "c1733d1c937af26892fbfebf6385bcd9ca80b9825bd07f7597e7188716d48817",
+  "a8_verification_sha256": "4461070a39fa8d8ec68fa6edc51240be4c7c942344e4fd6f13087380ca31bdc1",
+  "checks": {
+    "production_and_a8_status": {
+      "passed": true,
+      "details": null
+    },
+    "fixed_source": {
+      "passed": true,
+      "details": null
+    },
+    "Pop14_complete_single_checkpoint": {
+      "passed": true,
+      "details": {
+        "records": 1902,
+        "parameters": 128834
+      }
+    },
+    "Battle15_complete_single_checkpoint": {
+      "passed": true,
+      "details": {
+        "records": 9980,
+        "parameters": 265858
+      }
+    },
+    "all_metric_strings_from_frozen_json": {
+      "passed": true,
+      "details": [
+        "1,902 (951/951)",
+        "0.861889",
+        "0.859274",
+        "0.778654",
+        "0.498731",
+        "9,980 (4,990/4,990)",
+        "0.807230",
+        "0.794068",
+        "0.728156",
+        "0.562374"
+      ]
+    },
+    "parameter_and_input_protocol": {
+      "passed": true,
+      "details": null
+    },
+    "independent_exact_reproduction": {
+      "passed": true,
+      "details": null
+    },
+    "finalization": {
+      "passed": true,
+      "details": null
+    },
+    "constant_baseline": {
+      "passed": true,
+      "details": null
+    },
+    "precision_failures_retained": {
+      "passed": true,
+      "details": null
+    },
+    "scientific_boundaries": {
+      "passed": true,
+      "details": null
+    },
+    "github_evidence_links": {
+      "passed": true,
+      "details": null
+    },
+    "canvas_and_notes": {
+      "passed": true,
+      "details": null
+    },
+    "single_page_number": {
+      "passed": true,
+      "details": null
+    }
+  }
+}
