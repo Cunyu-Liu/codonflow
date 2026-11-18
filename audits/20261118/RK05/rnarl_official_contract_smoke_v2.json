@@ -1,0 +1,188 @@
+{
+  "schema_version": "a8-rk05-rnarl-official-contract-smoke-v1",
+  "created_at": "2026-11-18T16:54:26.559058+00:00",
+  "status": "FAIL_OFFICIAL_SOURCE_CONTRACTS",
+  "repository": "https://github.com/ShenggengLin/RNARL",
+  "local_clone_remote_origin": "git@github.com:xlab-BioAI/RNARL.git",
+  "commit": "88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5",
+  "source_files_verified_against_commit": 10,
+  "source_records": [
+    {
+      "path": "README.md",
+      "blob_id": "1cb01946170a4c3c469460360b8f88fe12d8d8d0",
+      "bytes": 6342,
+      "sha256": "c042d48feebbdd811dc4091c4b99268d8af6fdb3ef106ef8856e64bc2e5448c2"
+    },
+    {
+      "path": "environment.yml",
+      "blob_id": "baeebcfc1582d5148162cd13a4f7555dce67010e",
+      "bytes": 5969,
+      "sha256": "e06a94b44f917026f80754528afb9a15953e8d01a195e1a91d2f9abefba20e2e"
+    },
+    {
+      "path": "example_data/example_test.csv",
+      "blob_id": "5e915ce7e3679f59041d0d67966e65ae32d29821",
+      "bytes": 23191,
+      "sha256": "e043bb655f04f251aac76ef935309e830015ea9fbdbe4842ff95a90a129e5cb7",
+      "data_rows": 9,
+      "columns": [
+        "Protein_ID",
+        "Protein_Sequence",
+        "Protein_Length",
+        "CDS_Sequence",
+        "CDS_Length",
+        "CDS_Structure",
+        "CDS_MFE",
+        "CDS_CAI"
+      ]
+    },
+    {
+      "path": "example_data/example_train.csv",
+      "blob_id": "89028e74855685099de73911b3b47a7756315448",
+      "bytes": 26125,
+      "sha256": "d01c312a196965a2552659c969bc87310640f53f25f15c8a86a7e6f87d5f8c9e",
+      "data_rows": 9,
+      "columns": [
+        "Protein_ID",
+        "Protein_Sequence",
+        "Protein_Length",
+        "CDS_Sequence",
+        "CDS_Length",
+        "CDS_Structure",
+        "CDS_MFE",
+        "CDS_CAI"
+      ]
+    },
+    {
+      "path": "example_data/example_val.csv",
+      "blob_id": "f5748519d3f9c6ee03158a9f37a6d5dc02d11d47",
+      "bytes": 35861,
+      "sha256": "bfe78505722d4f08058e475522c8387584c4aaa3300c963b22e601969fa659ee",
+      "data_rows": 9,
+      "columns": [
+        "Protein_ID",
+        "Protein_Sequence",
+        "Protein_Length",
+        "CDS_Sequence",
+        "CDS_Length",
+        "CDS_Structure",
+        "CDS_MFE",
+        "CDS_CAI"
+      ]
+    },
+    {
+      "path": "scripts/actor_train.py",
+      "blob_id": "8480c7e0f7391c0f2c4cedcc4067587358d1bae7",
+      "bytes": 11162,
+      "sha256": "488fff695a2c196b77ded25119100e84d53228c30f3c77feeb9004b5c05d0384"
+    },
+    {
+      "path": "scripts/grpo_train.py",
+      "blob_id": "1a43b9c47b76a4b723da38d22770b9133112a1bb",
+      "bytes": 12285,
+      "sha256": "24274b9e7ec11adfffb78126aee73630bb86b03ab754a7e6f91483e812050696"
+    },
+    {
+      "path": "scripts/reward_train.py",
+      "blob_id": "7637969f82216c28352c41a8d83a550ee3325a14",
+      "bytes": 11365,
+      "sha256": "5d73b6f89a1bc60e1923b178ad4c04c3882332cf7a25b7f77390b7f7c6ed9804"
+    },
+    {
+      "path": "scripts/transformer_encoder_MoE.py",
+      "blob_id": "b948a2776ff6338b65597e8fe29869199eaff98b",
+      "bytes": 15737,
+      "sha256": "a49be7920a897d78989a167c04dd5f37da62a013b8143437ed2d0ab228f71154"
+    },
+    {
+      "path": "scripts/utils.py",
+      "blob_id": "d57b1467ef026eed124e0c2a0cd6c99d370a85a8",
+      "bytes": 31716,
+      "sha256": "e4b8aabc810a1e95a541b6f44be550e21f3dee972ccde1a0392aa445b9b89945"
+    }
+  ],
+  "environment": {
+    "torch": "2.11.0+cu128",
+    "transformers": "4.46.3",
+    "pandas": "2.2.2",
+    "numpy": "2.2.6"
+  },
+  "python": "3.10.22 (main, Oct  1 2026, 20:14:04) [GCC 14.3.0]",
+  "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+  "sys_path": [
+    "/home/codonflow-a8-rk-smoke/rnarl_88428e5d/scripts",
+    "/home/codonflow-a8-rk/scripts",
+    "/home/codonflow-a8-rk-smoke/rnarl_python_deps",
+    "/root/miniconda3/envs/llr_env/lib/python310.zip",
+    "/root/miniconda3/envs/llr_env/lib/python3.10",
+    "/root/miniconda3/envs/llr_env/lib/python3.10/lib-dynload",
+    "/root/miniconda3/envs/llr_env/lib/python3.10/site-packages"
+  ],
+  "imports": {},
+  "contracts": {
+    "actor_import": {
+      "status": "PASS"
+    },
+    "actor_exact_main_constructor": {
+      "source_lines": "actor_train.py:232-236",
+      "executed": true,
+      "error_type": "TypeError",
+      "error": "ActorModel_encoder_esm2.__init__() missing 2 required positional arguments: 'esm2_dim' and 'device'",
+      "status": "FAIL"
+    },
+    "actor_training_evaluate_method": {
+      "present": false,
+      "status": "FAIL"
+    },
+    "reward_import": {
+      "status": "PASS"
+    },
+    "reward_exact_main_constructor": {
+      "source_lines": "reward_train.py:273-280",
+      "executed": true,
+      "error_type": "TypeError",
+      "error": "RewardModel_encoder.__init__() missing 1 required positional argument: 'device'",
+      "status": "FAIL"
+    },
+    "grpo_import": {
+      "status": "PASS"
+    },
+    "grpo_called_methods_defined": {
+      "required": [
+        "update_old_policy",
+        "get_esm_embeddings",
+        "sample_actions",
+        "calculate_rewards",
+        "compute_advantages",
+        "calculate_log_probs",
+        "calculate_policy_loss",
+        "calculate_kl_divergence",
+        "log_batch_stats"
+      ],
+      "missing": [
+        "update_old_policy",
+        "get_esm_embeddings",
+        "sample_actions",
+        "calculate_rewards",
+        "compute_advantages",
+        "calculate_log_probs",
+        "calculate_policy_loss",
+        "calculate_kl_divergence",
+        "log_batch_stats"
+      ],
+      "status": "FAIL"
+    },
+    "grpo_main_globals_defined": {
+      "missing": [
+        "load_and_preprocess_data",
+        "save_model"
+      ],
+      "status": "FAIL"
+    }
+  },
+  "official_full_training_executed": false,
+  "official_generation_output_produced": false,
+  "paper_metrics_reproduced": false,
+  "baseline_main_comparison_authorized": false,
+  "scope": "Read-only fixed-source export; actual imports and exact public-entry constructor/global contracts only. No ESM-2 weights, official checkpoint, full training, generation, or scientific comparison was claimed."
+}

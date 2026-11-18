@@ -1,0 +1,56 @@
+{
+  "schema_version": "a8-rk05-rnarl-official-independent-verification-v1",
+  "created_at": "2026-11-18T16:54:40.884423+00:00",
+  "status": "PASS_NEGATIVE_REPRODUCIBILITY_AUDIT",
+  "commit": "88428e5d24fb2a16c29cc4dfbbfef51bd990a3d5",
+  "checks": {
+    "fixed_head": true,
+    "fixed_source_bytes": true,
+    "official_examples_9_each": true,
+    "v1_environment_failures_preserved": true,
+    "v2_imports_unblocked": true,
+    "actor_missing_args_ast": true,
+    "actor_runtime_matches_ast": true,
+    "actor_evaluate_absent": true,
+    "reward_missing_arg_ast": true,
+    "reward_runtime_matches_ast": true,
+    "grpo_missing_methods_ast": true,
+    "grpo_missing_globals_ast": true,
+    "grpo_undefined_rewards_load": true,
+    "declared_transformers_overlay": true,
+    "declared_hub_overlay": true,
+    "negative_scientific_scope": true
+  },
+  "pass_count": 16,
+  "total": 16,
+  "independent_ast_findings": {
+    "actor_missing_constructor_args": [
+      "esm2_dim",
+      "device"
+    ],
+    "reward_missing_constructor_args": [
+      "device"
+    ],
+    "actor_evaluate_present": false,
+    "grpo_missing_called_methods": [
+      "calculate_kl_divergence",
+      "calculate_log_probs",
+      "calculate_policy_loss",
+      "calculate_rewards",
+      "compute_advantages",
+      "get_esm_embeddings",
+      "log_batch_stats",
+      "sample_actions",
+      "update_old_policy"
+    ],
+    "grpo_missing_main_globals": [
+      "load_and_preprocess_data",
+      "save_model"
+    ],
+    "grpo_rewards_load_without_local_store": true
+  },
+  "smoke_v1_sha256": "489c876f8d0e33f8239c5a178d8fbf4fa9aafb5f16d5ddf81ba36fc0a5d35f1c",
+  "smoke_v2_sha256": "14a4b4fd05bf8c06637fc5434aa16fe97f309dee93befe01a4d46a9347f10981",
+  "huggingface_hub_verified": "0.27.0",
+  "scope": "PASS verifies a negative availability/reproducibility result only; it does not validate RNARL science, full training, generation, paper metrics, or baseline ranking."
+}
