@@ -1,0 +1,149 @@
+{
+  "schema_version": "a8-rk03-rnarl-recovery-finalization-v1",
+  "created_at": "2026-11-18T18:51:31.413155+00:00",
+  "status": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+  "checks": [
+    {
+      "name": "raw_21_files_exact_bytes_md5",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "download_and_reverify_manifests_complete",
+      "pass": true,
+      "detail": {
+        "rnarl_download_manifest.json": true,
+        "rnarl_reverify_download_manifest.json": true
+      }
+    },
+    {
+      "name": "production_counts",
+      "pass": true,
+      "detail": {
+        "processed_file_count": 21,
+        "total_rows": 260754,
+        "clean_rows": 256578,
+        "clean_pairs": 128289
+      }
+    },
+    {
+      "name": "corrected_independent_verifier",
+      "pass": true,
+      "detail": {
+        "status": "PASS",
+        "checks": "8/8",
+        "max_numeric_delta": 0.0,
+        "comparison_contract": "Join all_qc by unique record_id and compare clean exact ID sets; production protein-pair grouping order is not raw CSV order. Numeric distributions must match within 1e-9."
+      }
+    },
+    {
+      "name": "independent_counts_and_raw_overlap",
+      "pass": true,
+      "detail": {
+        "rows": 260754,
+        "clean_rows": 256578,
+        "clean_pairs": 128289,
+        "overlap_keys": {
+          "protein_id": 0,
+          "protein_sequence": 0,
+          "exact_cds": 22
+        }
+      }
+    },
+    {
+      "name": "artifact_manifest_hashes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "clean_pairs_and_leakage_exclusion",
+      "pass": true,
+      "detail": {
+        "clean_rows": 256578,
+        "clean_pairs": 128289,
+        "malformed_pairs": 0,
+        "clean_exact_cds_cross_split_keys": 0,
+        "clean_protein_sequence_cross_split_keys": 0,
+        "scope_violations": 0
+      }
+    },
+    {
+      "name": "bounded_scientific_scope",
+      "pass": true,
+      "detail": {
+        "pair_table_only": true,
+        "natural_distribution_eligible": false,
+        "lambda_stratified_analysis_ready": false,
+        "functional_training_authorized": false,
+        "functional_ood_claim_authorized": false
+      }
+    },
+    {
+      "name": "historical_failures_preserved",
+      "pass": true,
+      "detail": {
+        "independent_v1": "FAIL 6/8",
+        "recovery_v3": "FAIL",
+        "interpretation": "Historical comparison-contract failure retained; corrected record_id-join verifier is separate v2 evidence."
+      }
+    },
+    {
+      "name": "home_code_teams_data_layout",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "passed_checks": 10,
+  "check_count": 10,
+  "raw_files": 21,
+  "raw_rows": 260754,
+  "clean_rows": 256578,
+  "clean_pairs": 128289,
+  "raw_cross_split_overlap_keys": {
+    "protein_id": 0,
+    "protein_sequence": 0,
+    "exact_cds": 22
+  },
+  "raw_cross_split_exact_cds_rows": 44,
+  "clean_cross_split_exact_cds_keys": 0,
+  "clean_cross_split_protein_sequence_keys": 0,
+  "independent_verification": {
+    "report": "rnarl_independent_verification_v2.json",
+    "status": "PASS",
+    "checks": "8/8",
+    "max_numeric_delta": 0.0,
+    "comparison_contract": "Join all_qc by unique record_id and compare clean exact ID sets; production protein-pair grouping order is not raw CSV order. Numeric distributions must match within 1e-9."
+  },
+  "historical_failures_preserved": [
+    "rnarl_independent_verification.json",
+    "rnarl_finalization_recovery_v3.json"
+  ],
+  "science_flags": {
+    "ppt_record_ready": true,
+    "bounded_lineardesign_pair_table_ready": true,
+    "long_format_two_distinct_cds_pattern_observed": false,
+    "lambda_label_recoverable": false,
+    "lambda_stratified_analysis_ready": false,
+    "natural_cds_source_validated": false,
+    "natural_distribution_eligible": false,
+    "raw_read_or_psite_remapping_complete": false,
+    "functional_training_authorized": false,
+    "functional_ood_claim_authorized": false,
+    "official_model_reproduced": false,
+    "main_baseline_comparison": false,
+    "sota_claim": false
+  },
+  "scope": "Publisher-provided LinearDesign-like pair table QC only. Raw exact-CDS cross-split overlaps were excluded as whole protein pairs. No natural-CDS distribution, lambda stratification, functional training/OOD, official model reproduction or SOTA authorization.",
+  "artifacts": {
+    "configs/a8_rk03_sources.json": "955c2997eb9a285f91b3a45675f4a508b422ec8badb66c24920f0b0083513efa",
+    "audits/20261118/RK03/rnarl_qc.json": "f86d75268be2a9321260c8e4d6e1be859f0eeb3b54c63d187e07de80aa0b8ede",
+    "audits/20261118/RK03/rnarl_independent_verification_v2.json": "a4064edc98a29379d7412b7e5aa73dba038efc722f6b831e3342948db8ca881c",
+    "audits/20261118/RK03/rnarl_independent_verification.json": "91f9b483cb9e10aadea5b852bb451fa43dce0cd422b754b4d80af92a384713fe",
+    "audits/20261118/RK03/rnarl_finalization_recovery_v3.json": "5f9b53b619fdfc612ffb7498f9254b1de2c83a53f0bd60482949cf11e17c886c",
+    "audits/20261118/RK03/rnarl_official_file_sizes_final.json": "2b5803dffd8537d564deac474c695039dc92c7c05fd163c2be1a0a56fd10252c",
+    "audits/20261118/RK03/rnarl_download_manifest.json": "4ff0f809e24b9faecf53ec138bf8a39ffc87339642ee436d2eed8d260e9e8d1e",
+    "audits/20261118/RK03/rnarl_reverify_download_manifest.json": "c04e57623e22ad352255e903eefceb2d2399a72df9f67cc3f67c4a6d30f8be6d",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/rnarl_v2/qc_summary.json": "f86d75268be2a9321260c8e4d6e1be859f0eeb3b54c63d187e07de80aa0b8ede",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/rnarl_v2/artifact_manifest.json": "d21a031fd5304c4f4f7d185b63266e4e428f58ee4e336055b1d19a8ad53e5762"
+  }
+}

@@ -278,23 +278,35 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
                      "reported_protein_length", "reported_cds_length", "reported_mfe_kcal_mol", "reported_cai",
                      "reported_lambda", "translated_protein", "start_atg", "terminal_stop", "internal_stop",
                      "protein_sha256", "cds_sha256", "base_qc_pass", "pair_group_size", "pair_structure_pass",
-                     "pair_lambda_01_recoverable", "pair_pass", "pair_cross_split_overlap", "clean_eligible"]
+                     "pair_lambda_01_recoverable", "pair_pass", "pair_cross_split_overlap", "clean_eligible",
+                     "pair_id", "pair_member_index", "pair_same_protein_sequence", "pair_distinct_cds"]
     try:
         with gzip.open(qc_dir / "rnarl_all_qc.jsonl.gz", "rt", encoding="utf-8") as handle:
             actual = [json.loads(line) for line in handle]
+        actual_ids = [row.get("record_id") for row in actual]
         if len(actual) != len(expected): row_errors.append(f"row count {len(actual)} != {len(expected)}")
-        for index, (want, got) in enumerate(zip(expected, actual)):
-            actual_ids.append(got.get("record_id"))
+        if len(set(actual_ids)) != len(actual_ids): row_errors.append("duplicate actual record_id values")
+        actual_by_id = {row.get("record_id"): row for row in actual}
+        expected_ids = {row["record_id"] for row in expected}
+        if set(actual_by_id) != expected_ids: row_errors.append("actual record_id set differs")
+        for index, want in enumerate(expected):
+            got = actual_by_id.get(want["record_id"])
+            if got is None:
+                row_errors.append(f"{want['record_id']}:missing")
+                continue
             for field in direct_fields:
                 if want[field] != got.get(field):
-                    row_errors.append(f"{index}:{field}: {got.get(field)!r} != {want[field]!r}")
+                    row_errors.append(f"{want['record_id']}:{field}: {got.get(field)!r} != {want[field]!r}")
                     break
             for metric in ("gc_fraction_full_cds", "gc_fraction_coding"):
                 left, right = want[metric], got.get(metric)
-                if (left is None) != (right is None): row_errors.append(f"{index}:{metric}:null mismatch")
-                elif left is not None: max_delta = max(max_delta, abs(left - right))
+                if (left is None) != (right is None): row_errors.append(f"{want['record_id']}:{metric}:null mismatch")
+                elif left is not None:
+                    delta = abs(left - right)
+                    max_delta = max(max_delta, delta)
+                    if delta > 1e-12: row_errors.append(f"{want['record_id']}:{metric}:delta={delta}")
             if set(got.get("exclusion_reasons", [])) != want["expected_reasons"]:
-                row_errors.append(f"{index}:exclusion reasons differ")
+                row_errors.append(f"{want['record_id']}:exclusion reasons differ")
             if len(row_errors) >= 100: break
     except Exception as exc:
         row_errors.append(f"{type(exc).__name__}: {exc}")
@@ -305,7 +317,9 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
         with gzip.open(qc_dir / "rnarl_clean.jsonl.gz", "rt", encoding="utf-8") as handle:
             clean_actual = [json.loads(line) for line in handle]
         clean_ids = [row["record_id"] for row in clean_actual]
-        if clean_ids != expected_clean_ids: clean_errors.append("clean ordered record IDs differ")
+        if len(set(clean_ids)) != len(clean_ids): clean_errors.append("duplicate clean record_id values")
+        if set(clean_ids) != set(expected_clean_ids): clean_errors.append("clean exact record_id set differs")
+        if len(clean_ids) != len(expected_clean_ids): clean_errors.append("clean row count differs")
         if any(not row.get("clean_eligible") for row in clean_actual): clean_errors.append("ineligible clean row")
     except Exception as exc:
         clean_errors.append(f"{type(exc).__name__}: {exc}")
@@ -323,6 +337,7 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
     }
     count_errors = [f"{key}: {summary.get(key)} != {value}" for key, value in count_expectations.items() if summary.get(key) != value]
     file_errors = []
+    distribution_errors = []
     compare_file_fields = ["bytes", "md5", "sha256", "rows", "base_qc_pass_rows", "pair_groups",
                            "pair_structure_pass_groups", "pair_pass_groups", "lambda_label_column",
                            "lambda_01_pairs", "clean_rows", "clean_pair_rows_even",
@@ -338,13 +353,18 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
                 for statistic, value in values.items():
                     other = target.get(statistic)
                     if value is None or other is None:
-                        if value != other: file_errors.append(f"{name}:{section}:{metric}:{statistic}")
+                        if value != other: distribution_errors.append(f"{name}:{section}:{metric}:{statistic}")
                     elif isinstance(value, int):
-                        if value != other: file_errors.append(f"{name}:{section}:{metric}:{statistic}")
+                        if value != other: distribution_errors.append(f"{name}:{section}:{metric}:{statistic}")
                     else:
-                        max_delta = max(max_delta, abs(value - other))
-    add("summary_counts_and_file_lineage", not count_errors and not file_errors,
-        {"count_errors": count_errors, "file_errors": file_errors[:100], "max_numeric_delta": max_delta})
+                        delta = abs(value - other)
+                        max_delta = max(max_delta, delta)
+                        if delta > 1e-9:
+                            distribution_errors.append(f"{name}:{section}:{metric}:{statistic}:{value}!={other}:delta={delta}")
+    add("summary_counts_and_file_lineage", not count_errors and not file_errors and not distribution_errors,
+        {"count_errors": count_errors, "file_errors": file_errors[:100],
+         "distribution_errors": distribution_errors[:100], "max_numeric_delta": max_delta,
+         "float_tolerance": 1e-9})
 
     expected_overlaps = {
         "protein_id": sum(len(value) > 1 for value in pid_index.values()),
@@ -389,7 +409,8 @@ def verify(config_path: Path, raw_dir: Path, qc_dir: Path, audit_path: Path,
     add("expected_21_file_completion", len(expected_files) == len(source["files"]) == 21,
         {"verified": len(expected_files), "registered": len(source["files"])})
     report = {
-        "schema_version": "a8-rk03-rnarl-independent-verification-v1",
+        "schema_version": "a8-rk03-rnarl-independent-verification-v2",
+        "comparison_contract": "Join all_qc by unique record_id and compare clean exact ID sets; production protein-pair grouping order is not raw CSV order. Numeric distributions must match within 1e-9.",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "status": "PASS" if all(check["pass"] for check in checks) else "FAIL",
         "independent_production_import": False,

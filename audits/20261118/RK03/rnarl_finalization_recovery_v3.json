@@ -1,0 +1,86 @@
+{
+  "schema_version": "a8-rk03-finalization-v1",
+  "mode": "rnarl",
+  "download_pid": 3528051,
+  "started_at": "2026-11-18T18:21:57.021630+00:00",
+  "status": "FAIL",
+  "steps": [
+    {
+      "name": "freeze_exact_bytes",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_freeze_rnarl_bytes.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--raw-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/rnarl_v1",
+        "--output",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_official_file_sizes_final.json",
+        "--write-config"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 3.0768306255340576
+    },
+    {
+      "name": "reverify_download_with_bytes",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_download.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--data-root",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03",
+        "--manifest",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_reverify_download_manifest.json",
+        "--source-id",
+        "rnarl_v1",
+        "--timeout",
+        "120",
+        "--retries",
+        "3",
+        "--workers",
+        "3"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.039170503616333
+    },
+    {
+      "name": "full_rnarl_qc",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_rnarl_qc.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--raw-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/rnarl_v1",
+        "--output-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/rnarl_v2",
+        "--audit",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_qc.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 512.1023228168488
+    },
+    {
+      "name": "independent_rnarl_verifier",
+      "arguments": [
+        "/root/miniconda3/envs/codonflow/bin/python",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_verify_rnarl.py",
+        "--config",
+        "/home/codonflow-a8-rk/configs/a8_rk03_sources.json",
+        "--raw-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/rnarl_v1",
+        "--qc-dir",
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/rnarl_v2",
+        "--audit",
+        "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_independent_verification.json",
+        "--production-script",
+        "/home/codonflow-a8-rk/scripts/a8_rk03_rnarl_qc.py"
+      ],
+      "returncode": 1,
+      "elapsed_seconds": 161.83506321907043
+    }
+  ],
+  "error": "RuntimeError: step failed: independent_rnarl_verifier: 1",
+  "finished_at": "2026-11-18T18:42:22.321517+00:00"
+}

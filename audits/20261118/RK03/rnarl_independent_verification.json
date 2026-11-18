@@ -1,0 +1,179 @@
+{
+  "schema_version": "a8-rk03-rnarl-independent-verification-v1",
+  "created_at": "2026-11-18T18:42:19.223939+00:00",
+  "status": "FAIL",
+  "independent_production_import": false,
+  "checks": [
+    {
+      "name": "raw_hash_header_translation",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "all_qc_independent_recompute",
+      "pass": false,
+      "detail": [
+        "1:record_id: 'Arabidopsis_thaliana_test.csv:002691' != 'Arabidopsis_thaliana_test.csv:000002'",
+        "2:record_id: 'Arabidopsis_thaliana_test.csv:000002' != 'Arabidopsis_thaliana_test.csv:000003'",
+        "3:record_id: 'Arabidopsis_thaliana_test.csv:002032' != 'Arabidopsis_thaliana_test.csv:000004'",
+        "4:record_id: 'Arabidopsis_thaliana_test.csv:000003' != 'Arabidopsis_thaliana_test.csv:000005'",
+        "5:record_id: 'Arabidopsis_thaliana_test.csv:001131' != 'Arabidopsis_thaliana_test.csv:000006'",
+        "6:record_id: 'Arabidopsis_thaliana_test.csv:000004' != 'Arabidopsis_thaliana_test.csv:000007'",
+        "7:record_id: 'Arabidopsis_thaliana_test.csv:000863' != 'Arabidopsis_thaliana_test.csv:000008'",
+        "8:record_id: 'Arabidopsis_thaliana_test.csv:000005' != 'Arabidopsis_thaliana_test.csv:000009'",
+        "9:record_id: 'Arabidopsis_thaliana_test.csv:001691' != 'Arabidopsis_thaliana_test.csv:000010'",
+        "10:record_id: 'Arabidopsis_thaliana_test.csv:000006' != 'Arabidopsis_thaliana_test.csv:000011'",
+        "10:exclusion reasons differ",
+        "11:record_id: 'Arabidopsis_thaliana_test.csv:002500' != 'Arabidopsis_thaliana_test.csv:000012'",
+        "12:record_id: 'Arabidopsis_thaliana_test.csv:000007' != 'Arabidopsis_thaliana_test.csv:000013'",
+        "13:record_id: 'Arabidopsis_thaliana_test.csv:002938' != 'Arabidopsis_thaliana_test.csv:000014'",
+        "14:record_id: 'Arabidopsis_thaliana_test.csv:000008' != 'Arabidopsis_thaliana_test.csv:000015'",
+        "15:record_id: 'Arabidopsis_thaliana_test.csv:000251' != 'Arabidopsis_thaliana_test.csv:000016'",
+        "16:record_id: 'Arabidopsis_thaliana_test.csv:000009' != 'Arabidopsis_thaliana_test.csv:000017'",
+        "17:record_id: 'Arabidopsis_thaliana_test.csv:001925' != 'Arabidopsis_thaliana_test.csv:000018'",
+        "18:record_id: 'Arabidopsis_thaliana_test.csv:000010' != 'Arabidopsis_thaliana_test.csv:000019'",
+        "19:record_id: 'Arabidopsis_thaliana_test.csv:000964' != 'Arabidopsis_thaliana_test.csv:000020'",
+        "20:record_id: 'Arabidopsis_thaliana_test.csv:000011' != 'Arabidopsis_thaliana_test.csv:000021'",
+        "20:exclusion reasons differ",
+        "21:record_id: 'Arabidopsis_thaliana_test.csv:001581' != 'Arabidopsis_thaliana_test.csv:000022'",
+        "21:exclusion reasons differ",
+        "22:record_id: 'Arabidopsis_thaliana_test.csv:000012' != 'Arabidopsis_thaliana_test.csv:000023'",
+        "23:record_id: 'Arabidopsis_thaliana_test.csv:000790' != 'Arabidopsis_thaliana_test.csv:000024'",
+        "24:record_id: 'Arabidopsis_thaliana_test.csv:000013' != 'Arabidopsis_thaliana_test.csv:000025'",
+        "25:record_id: 'Arabidopsis_thaliana_test.csv:002677' != 'Arabidopsis_thaliana_test.csv:000026'",
+        "26:record_id: 'Arabidopsis_thaliana_test.csv:000014' != 'Arabidopsis_thaliana_test.csv:000027'",
+        "27:record_id: 'Arabidopsis_thaliana_test.csv:001025' != 'Arabidopsis_thaliana_test.csv:000028'",
+        "28:record_id: 'Arabidopsis_thaliana_test.csv:000015' != 'Arabidopsis_thaliana_test.csv:000029'",
+        "29:record_id: 'Arabidopsis_thaliana_test.csv:000570' != 'Arabidopsis_thaliana_test.csv:000030'",
+        "30:record_id: 'Arabidopsis_thaliana_test.csv:000016' != 'Arabidopsis_thaliana_test.csv:000031'",
+        "31:record_id: 'Arabidopsis_thaliana_test.csv:001716' != 'Arabidopsis_thaliana_test.csv:000032'",
+        "32:record_id: 'Arabidopsis_thaliana_test.csv:000017' != 'Arabidopsis_thaliana_test.csv:000033'",
+        "33:record_id: 'Arabidopsis_thaliana_test.csv:000954' != 'Arabidopsis_thaliana_test.csv:000034'",
+        "34:record_id: 'Arabidopsis_thaliana_test.csv:000018' != 'Arabidopsis_thaliana_test.csv:000035'",
+        "35:record_id: 'Arabidopsis_thaliana_test.csv:002667' != 'Arabidopsis_thaliana_test.csv:000036'",
+        "36:record_id: 'Arabidopsis_thaliana_test.csv:000019' != 'Arabidopsis_thaliana_test.csv:000037'",
+        "37:record_id: 'Arabidopsis_thaliana_test.csv:001617' != 'Arabidopsis_thaliana_test.csv:000038'",
+        "38:record_id: 'Arabidopsis_thaliana_test.csv:000020' != 'Arabidopsis_thaliana_test.csv:000039'",
+        "39:record_id: 'Arabidopsis_thaliana_test.csv:003123' != 'Arabidopsis_thaliana_test.csv:000040'",
+        "40:record_id: 'Arabidopsis_thaliana_test.csv:000021' != 'Arabidopsis_thaliana_test.csv:000041'",
+        "41:record_id: 'Arabidopsis_thaliana_test.csv:000653' != 'Arabidopsis_thaliana_test.csv:000042'",
+        "42:record_id: 'Arabidopsis_thaliana_test.csv:000022' != 'Arabidopsis_thaliana_test.csv:000043'",
+        "43:record_id: 'Arabidopsis_thaliana_test.csv:000732' != 'Arabidopsis_thaliana_test.csv:000044'",
+        "44:record_id: 'Arabidopsis_thaliana_test.csv:000023' != 'Arabidopsis_thaliana_test.csv:000045'",
+        "45:record_id: 'Arabidopsis_thaliana_test.csv:001930' != 'Arabidopsis_thaliana_test.csv:000046'",
+        "46:record_id: 'Arabidopsis_thaliana_test.csv:000024' != 'Arabidopsis_thaliana_test.csv:000047'",
+        "47:record_id: 'Arabidopsis_thaliana_test.csv:003088' != 'Arabidopsis_thaliana_test.csv:000048'",
+        "48:record_id: 'Arabidopsis_thaliana_test.csv:000025' != 'Arabidopsis_thaliana_test.csv:000049'",
+        "49:record_id: 'Arabidopsis_thaliana_test.csv:001018' != 'Arabidopsis_thaliana_test.csv:000050'",
+        "50:record_id: 'Arabidopsis_thaliana_test.csv:000026' != 'Arabidopsis_thaliana_test.csv:000051'",
+        "51:record_id: 'Arabidopsis_thaliana_test.csv:002354' != 'Arabidopsis_thaliana_test.csv:000052'",
+        "52:record_id: 'Arabidopsis_thaliana_test.csv:000027' != 'Arabidopsis_thaliana_test.csv:000053'",
+        "53:record_id: 'Arabidopsis_thaliana_test.csv:001321' != 'Arabidopsis_thaliana_test.csv:000054'",
+        "54:record_id: 'Arabidopsis_thaliana_test.csv:000028' != 'Arabidopsis_thaliana_test.csv:000055'",
+        "55:record_id: 'Arabidopsis_thaliana_test.csv:000419' != 'Arabidopsis_thaliana_test.csv:000056'",
+        "56:record_id: 'Arabidopsis_thaliana_test.csv:000029' != 'Arabidopsis_thaliana_test.csv:000057'",
+        "57:record_id: 'Arabidopsis_thaliana_test.csv:002578' != 'Arabidopsis_thaliana_test.csv:000058'",
+        "58:record_id: 'Arabidopsis_thaliana_test.csv:000030' != 'Arabidopsis_thaliana_test.csv:000059'",
+        "59:record_id: 'Arabidopsis_thaliana_test.csv:000271' != 'Arabidopsis_thaliana_test.csv:000060'",
+        "60:record_id: 'Arabidopsis_thaliana_test.csv:000031' != 'Arabidopsis_thaliana_test.csv:000061'",
+        "61:record_id: 'Arabidopsis_thaliana_test.csv:002343' != 'Arabidopsis_thaliana_test.csv:000062'",
+        "62:record_id: 'Arabidopsis_thaliana_test.csv:000032' != 'Arabidopsis_thaliana_test.csv:000063'",
+        "63:record_id: 'Arabidopsis_thaliana_test.csv:001755' != 'Arabidopsis_thaliana_test.csv:000064'",
+        "64:record_id: 'Arabidopsis_thaliana_test.csv:000033' != 'Arabidopsis_thaliana_test.csv:000065'",
+        "65:record_id: 'Arabidopsis_thaliana_test.csv:001846' != 'Arabidopsis_thaliana_test.csv:000066'",
+        "66:record_id: 'Arabidopsis_thaliana_test.csv:000034' != 'Arabidopsis_thaliana_test.csv:000067'",
+        "67:record_id: 'Arabidopsis_thaliana_test.csv:001880' != 'Arabidopsis_thaliana_test.csv:000068'",
+        "68:record_id: 'Arabidopsis_thaliana_test.csv:000035' != 'Arabidopsis_thaliana_test.csv:000069'",
+        "69:record_id: 'Arabidopsis_thaliana_test.csv:001186' != 'Arabidopsis_thaliana_test.csv:000070'",
+        "70:record_id: 'Arabidopsis_thaliana_test.csv:000036' != 'Arabidopsis_thaliana_test.csv:000071'",
+        "71:record_id: 'Arabidopsis_thaliana_test.csv:002615' != 'Arabidopsis_thaliana_test.csv:000072'",
+        "72:record_id: 'Arabidopsis_thaliana_test.csv:000037' != 'Arabidopsis_thaliana_test.csv:000073'",
+        "73:record_id: 'Arabidopsis_thaliana_test.csv:001361' != 'Arabidopsis_thaliana_test.csv:000074'",
+        "74:record_id: 'Arabidopsis_thaliana_test.csv:000038' != 'Arabidopsis_thaliana_test.csv:000075'",
+        "75:record_id: 'Arabidopsis_thaliana_test.csv:002948' != 'Arabidopsis_thaliana_test.csv:000076'",
+        "75:exclusion reasons differ",
+        "76:record_id: 'Arabidopsis_thaliana_test.csv:000039' != 'Arabidopsis_thaliana_test.csv:000077'",
+        "77:record_id: 'Arabidopsis_thaliana_test.csv:001941' != 'Arabidopsis_thaliana_test.csv:000078'",
+        "78:record_id: 'Arabidopsis_thaliana_test.csv:000040' != 'Arabidopsis_thaliana_test.csv:000079'",
+        "79:record_id: 'Arabidopsis_thaliana_test.csv:000373' != 'Arabidopsis_thaliana_test.csv:000080'",
+        "80:record_id: 'Arabidopsis_thaliana_test.csv:000041' != 'Arabidopsis_thaliana_test.csv:000081'",
+        "81:record_id: 'Arabidopsis_thaliana_test.csv:001325' != 'Arabidopsis_thaliana_test.csv:000082'",
+        "82:record_id: 'Arabidopsis_thaliana_test.csv:000042' != 'Arabidopsis_thaliana_test.csv:000083'",
+        "83:record_id: 'Arabidopsis_thaliana_test.csv:002532' != 'Arabidopsis_thaliana_test.csv:000084'",
+        "84:record_id: 'Arabidopsis_thaliana_test.csv:000043' != 'Arabidopsis_thaliana_test.csv:000085'",
+        "85:record_id: 'Arabidopsis_thaliana_test.csv:000733' != 'Arabidopsis_thaliana_test.csv:000086'",
+        "86:record_id: 'Arabidopsis_thaliana_test.csv:000044' != 'Arabidopsis_thaliana_test.csv:000087'",
+        "87:record_id: 'Arabidopsis_thaliana_test.csv:003115' != 'Arabidopsis_thaliana_test.csv:000088'",
+        "88:record_id: 'Arabidopsis_thaliana_test.csv:000045' != 'Arabidopsis_thaliana_test.csv:000089'",
+        "89:record_id: 'Arabidopsis_thaliana_test.csv:002333' != 'Arabidopsis_thaliana_test.csv:000090'",
+        "90:record_id: 'Arabidopsis_thaliana_test.csv:000046' != 'Arabidopsis_thaliana_test.csv:000091'",
+        "91:record_id: 'Arabidopsis_thaliana_test.csv:001279' != 'Arabidopsis_thaliana_test.csv:000092'",
+        "92:record_id: 'Arabidopsis_thaliana_test.csv:000047' != 'Arabidopsis_thaliana_test.csv:000093'",
+        "93:record_id: 'Arabidopsis_thaliana_test.csv:002225' != 'Arabidopsis_thaliana_test.csv:000094'",
+        "94:record_id: 'Arabidopsis_thaliana_test.csv:000048' != 'Arabidopsis_thaliana_test.csv:000095'",
+        "95:record_id: 'Arabidopsis_thaliana_test.csv:000319' != 'Arabidopsis_thaliana_test.csv:000096'",
+        "96:record_id: 'Arabidopsis_thaliana_test.csv:000049' != 'Arabidopsis_thaliana_test.csv:000097'"
+      ]
+    },
+    {
+      "name": "clean_artifact_exact_set",
+      "pass": false,
+      "detail": [
+        "clean ordered record IDs differ"
+      ]
+    },
+    {
+      "name": "summary_counts_and_file_lineage",
+      "pass": true,
+      "detail": {
+        "count_errors": [],
+        "file_errors": [],
+        "max_numeric_delta": 0.1337448559670782
+      }
+    },
+    {
+      "name": "split_overlap_recompute",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "scientific_scope_and_lambda_boundary",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "artifact_manifest_sha256",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "expected_21_file_completion",
+      "pass": true,
+      "detail": {
+        "verified": 21,
+        "registered": 21
+      }
+    }
+  ],
+  "passed_checks": 6,
+  "check_count": 8,
+  "max_numeric_delta": 0.1337448559670782,
+  "recomputed": {
+    "rows": 260754,
+    "clean_rows": 256578,
+    "clean_pairs": 128289,
+    "overlap_keys": {
+      "protein_id": 0,
+      "protein_sequence": 0,
+      "exact_cds": 22
+    }
+  },
+  "artifacts": {
+    "rnarl_all_qc.jsonl.gz": "9287cceae2c3e591feec9a134e6dc202b83439c9d9c2dfd13b221aa25f859930",
+    "rnarl_clean.jsonl.gz": "10fb07432670cd5ec6b31a64d84f90adf9ba82cada077e5e12f4fc7934e316aa",
+    "qc_summary.json": "f86d75268be2a9321260c8e4d6e1be859f0eeb3b54c63d187e07de80aa0b8ede",
+    "artifact_manifest.json": "d21a031fd5304c4f4f7d185b63266e4e428f58ee4e336055b1d19a8ad53e5762"
+  },
+  "production_script_sha256": "a65e51d5c562829f68167e187477815f710de645fea39da84878a8595996058a",
+  "scope": "Independent QC only; no natural-CDS, lambda-order, functional-OOD, or SOTA authorization."
+}
