@@ -1,0 +1,38 @@
+{
+  "development_failures_corrected": [
+    "smoke label join initially rejected unsampled train/dev rows",
+    "paired point-difference dictionary key typo"
+  ],
+  "evaluation_rows": {
+    "dev": 100,
+    "train": 100
+  },
+  "feature_file_sha256": "23ad8df24b80276e4ecccff98f3a0f5a4d3726bc3fd8198d72be099fda86a57e",
+  "feature_rows": 300,
+  "feature_split_counts": {
+    "dev": 100,
+    "test": 100,
+    "train": 100
+  },
+  "optimizer": {
+    "gradient_max_abs": 1.7127243522908897e-07,
+    "iterations": 51,
+    "l2": 0.01,
+    "max_iter": 2000,
+    "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "objective": 1.2781341384859444,
+    "success": true
+  },
+  "prediction_file_sha256": "e3b329757a0b2d9b27488befc2b9b38841191e6d938b79cf6629b359408a19a2",
+  "prohibited_claims": [
+    "fixed-protein synonymous mechanism validation",
+    "functional OOD mechanism increment",
+    "CodonFlow-RK generator evidence",
+    "SOTA or external baseline ranking",
+    "use of MAGE functional_untouched for fitting, tuning, or this evaluation"
+  ],
+  "scientific_scope": "Boel 2016 cross-protein nonsynonymous expression diagnostics only; not a fixed-protein synonymous-library mechanism test and not SOTA evidence",
+  "status": "PASS_SMOKE_ONLY",
+  "synthetic_tests": "10/10 PASS",
+  "test_metrics_computed": false
+}

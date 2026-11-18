@@ -1,0 +1,82 @@
+{
+  "protocol_id": "a8_rk07_boel_cross_protein_proxy_v1",
+  "scientific_scope": "Boel 2016 cross-protein nonsynonymous expression diagnostics only; not a fixed-protein synonymous-library mechanism test and not SOTA evidence",
+  "split_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+  "split_sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+  "source_id": "boel_2016_nesg6348",
+  "expected_rows": {
+    "train": 5079,
+    "dev": 635,
+    "test": 634,
+    "total": 6348
+  },
+  "allowed_splits": ["train", "dev", "test"],
+  "forbidden_split": "functional_untouched",
+  "label_field": "expression_value",
+  "label_classes": [0, 1, 2, 3, 4, 5],
+  "reference_cds": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/reference/ecoli_cds.fna.gz",
+  "reference_cds_sha256": "8b7b48b7b905313082141db4b77807b7aafebca7a5c40bbd42832baacd1cfd9b",
+  "reference_scope": "E. coli K-12 MG1655 RefSeq CDS; external codon-usage proxy for BL21(DE3), not a strain-matched or expression-weighted CAI reference",
+  "reference_exclude_pseudo": true,
+  "gc_excludes_terminal_stop": true,
+  "cai_excludes_terminal_stop": true,
+  "full_mfe_includes_terminal_stop": true,
+  "fold_temperature_c": 18.0,
+  "local_window_nt": 48,
+  "local_window_scope": "first 48 nt of CDS; no 5'UTR is available",
+  "primary_proxies": [
+    "cai",
+    "gc_fraction",
+    "full_cds_mfe_kcal_mol",
+    "full_cds_mfe_per_nt",
+    "mfe_5prime_48_kcal_mol"
+  ],
+  "combined_features": [
+    "cai",
+    "gc_fraction",
+    "full_cds_mfe_per_nt",
+    "mfe_5prime_48_kcal_mol",
+    "log_length_nt"
+  ],
+  "combined_model": {
+    "type": "multinomial_logistic_expected_score",
+    "l2": 0.01,
+    "max_iter": 2000,
+    "fit_split": "train",
+    "standardization": "train mean and sample standard deviation (ddof=0); no dev/test fitting",
+    "optimizer": "scipy.optimize.minimize L-BFGS-B",
+    "selection": "fixed a priori; no dev or test hyperparameter search"
+  },
+  "univariate_model": "ordinary least squares on train, separately for each proxy; raw Spearman is also retained",
+  "top_k_fraction": 0.1,
+  "top_k_positive_label": 5,
+  "stratification": {
+    "variables": ["length_nt", "gc_fraction"],
+    "thresholds": "train-only terciles",
+    "scope": "diagnostic strata, not length/GC OOD splits"
+  },
+  "bootstrap": {
+    "unit": "operational_protein_cluster",
+    "replicates": 1000,
+    "seed": 20261118,
+    "interval": "paired percentile 95% CI",
+    "primary_effect": "combined minus univariate fitted-prediction Spearman",
+    "multiple_testing": "Holm across five primary proxy comparisons within each evaluation split",
+    "p_value": "two-sided sign-tail bootstrap probability with plus-one correction"
+  },
+  "evaluation_order": [
+    "compute sequence features without expression labels",
+    "train/dev implementation and convergence check",
+    "freeze code and protocol",
+    "one-shot test evaluation",
+    "independent raw-source and metric verification",
+    "only then PPT reporting"
+  ],
+  "prohibited_claims": [
+    "fixed-protein synonymous mechanism validation",
+    "functional OOD mechanism increment",
+    "CodonFlow-RK generator evidence",
+    "SOTA or external baseline ranking",
+    "use of MAGE functional_untouched for fitting, tuning, or this evaluation"
+  ]
+}
