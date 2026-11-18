@@ -1,0 +1,125 @@
+{
+  "schema_version": "a8-rk05-codontransformer-finalization-v1",
+  "created_at": "2026-11-18T20:36:51.963286+00:00",
+  "status": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+  "check_count": 10,
+  "passed_checks": 10,
+  "checks": [
+    {
+      "name": "official_source_and_model_materialized",
+      "pass": true,
+      "detail": {
+        "source_commit": "4a447b01dab860feb81b647ff1ff88ad598517f4",
+        "model_commit": "9744dcc920d813066391fc828d7a590207f148e8",
+        "model_files": 8
+      }
+    },
+    {
+      "name": "official_bounded_execution_complete",
+      "pass": true,
+      "detail": {
+        "status": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+        "runs": 4
+      }
+    },
+    {
+      "name": "raw_outputs_and_fasta_immutable_identity",
+      "pass": true,
+      "detail": {
+        "raw_count": 4,
+        "fasta_sha256": "519dc1e21a8a6b43ed795202b9e302f3f483e89fb9332a65b991cc902cfc60f2"
+      }
+    },
+    {
+      "name": "independent_reexecution_and_verification_pass",
+      "pass": true,
+      "detail": {
+        "checks": "13/13"
+      }
+    },
+    {
+      "name": "eight_helper_contract_tests_pass",
+      "pass": true,
+      "detail": {
+        "log": "audits/20261118/RK05/codontransformer_unit_tests.txt",
+        "sha256": "250239513476826f349cce0fd038b7bff4257af60e6de05231f58181bb51272f"
+      }
+    },
+    {
+      "name": "match_protein_translation_contract_closed",
+      "pass": true,
+      "detail": {
+        "legal": 2,
+        "total": 2
+      }
+    },
+    {
+      "name": "official_default_behavior_preserved",
+      "pass": true,
+      "detail": {
+        "default_legal_count": 2,
+        "default_run_count": 2
+      }
+    },
+    {
+      "name": "isolated_inference_environment_frozen",
+      "pass": true,
+      "detail": {
+        "freeze": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/codontransformer_env_v1/pip_freeze.txt",
+        "freeze_sha256": "9a0ded28df76b71dafe9d56bca9b79321be7551a826af9f96bdeb27928765a99",
+        "torch": "2.14.1+cu132",
+        "transformers": "4.40.2",
+        "gpu": "NVIDIA GeForce RTX 5090"
+      }
+    },
+    {
+      "name": "bounded_scope_not_promoted",
+      "pass": true,
+      "detail": {
+        "main_baseline_comparison": false,
+        "dense_budget_complete": false,
+        "matched_lineardesign_or_ensembledesign_comparison": false,
+        "functional_ood": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "reproduction_scripts_present_and_hashed",
+      "pass": true,
+      "detail": [
+        {
+          "path": "/home/codonflow-a8-rk/scripts/a8_rk05_finalize_codontransformer_official_smoke.py",
+          "sha256": "e15a424399cb2ae5c2ec77ad4288fadacd487707869fbcb8b0f59181d842a5f4"
+        },
+        {
+          "path": "/home/codonflow-a8-rk/scripts/a8_rk05_codontransformer_official_smoke.py",
+          "sha256": "c0a62a052045c11315f17cb198f4cc1ad527b767bbc0ca9309142204b236188d"
+        },
+        {
+          "path": "/home/codonflow-a8-rk/scripts/a8_rk05_verify_codontransformer_official_smoke.py",
+          "sha256": "66ee5b9c40513611258a8fd50f4ece3089a0b5ae844c267f9bb2dea7fe911698"
+        },
+        {
+          "path": "/home/codonflow-a8-rk/tests/test_a8_rk05_codontransformer_official_smoke.py",
+          "sha256": "1f2b97059394ca4572588cf4f4b4418513a29909b877f1d9fdd50dcbb4f6b2ae"
+        }
+      ]
+    }
+  ],
+  "production": "audits/20261118/RK05/codontransformer_official_smoke_v1.json",
+  "production_sha256": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+  "verification": "audits/20261118/RK05/codontransformer_independent_verification_v1.json",
+  "verification_sha256": "c9fb748bacafe6e57a548dcb0f93e882962c8605757d526b404d27e620e64d31",
+  "materialization": "audits/20261118/RK05/codontransformer_materialization.json",
+  "materialization_sha256": "91ab29709fadcb3b75e78d779c5b03be9bb093b1e337f981a63cba7cefa90501",
+  "unit_log": "audits/20261118/RK05/codontransformer_unit_tests.txt",
+  "unit_log_sha256": "250239513476826f349cce0fd038b7bff4257af60e6de05231f58181bb51272f",
+  "official_example_exact": true,
+  "default_legal": "2/2",
+  "constrained_legal": "2/2",
+  "main_baseline_comparison": false,
+  "dense_budget_complete": false,
+  "functional_ood": false,
+  "sota_claim": false,
+  "next_gate": "Do not interpret this bounded official-example/C01 smoke as a main baseline result; full baseline, dense-budget and functional-OOD tasks remain open."
+}

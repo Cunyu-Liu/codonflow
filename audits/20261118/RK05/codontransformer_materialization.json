@@ -1,0 +1,99 @@
+{
+  "schema_version": "a8-rk05-codontransformer-materialization-v1",
+  "created_at": "2026-11-18T20:28:24.593275+00:00",
+  "status": "COMPLETE",
+  "source": {
+    "repository": "https://github.com/Adibvafa/CodonTransformer",
+    "commit": "4a447b01dab860feb81b647ff1ff88ad598517f4",
+    "archive_url": "https://codeload.github.com/Adibvafa/CodonTransformer/zip/4a447b01dab860feb81b647ff1ff88ad598517f4",
+    "archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/codontransformer_4a447b01dab860feb81b647ff1ff88ad598517f4.zip",
+    "archive_bytes": 554315,
+    "archive_sha256": "85fe55a10ad061b62034aaed90bce06d4be3eb9a2e25d40030db359b0d1fd132",
+    "zip_crc_pass": true,
+    "members": 45,
+    "uncompressed_bytes": 718864,
+    "path_safety_pass": true,
+    "source_dir": "/home/codonflow-a8-rk-external/CodonTransformer-4a447b01dab860feb81b647ff1ff88ad598517f4",
+    "key_file_sha256": {
+      "README.md": "cc1b23b45bacecd8df93311c11c46354212dd74bef4631cf22bfae58ab9165a3",
+      "requirements.txt": "e3ccd13bb98f0c9388fb143f91e9cb5c41e1ecbe84bec1dd72b445cf335ac504",
+      "CodonTransformer/CodonPrediction.py": "089f32718a5c1c10ae08de968d96dfc1a9f6c34377192cb1d13561180bd6a0f9",
+      "CodonTransformer/CodonUtils.py": "052ea69b3f635b4bbfdd26e86334b16f68f8151839fb937afb947079680d91fb"
+    }
+  },
+  "model": {
+    "repository": "https://huggingface.co/adibvafa/CodonTransformer",
+    "commit": "9744dcc920d813066391fc828d7a590207f148e8",
+    "api_url": "https://hf-mirror.com/api/models/adibvafa/CodonTransformer?blobs=true",
+    "api_raw": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/codontransformer_model_9744dcc920d813066391fc828d7a590207f148e8/model_api_blobs.json",
+    "api_sha256": "dfc8fb8faaae3521d93f005e7218b50c65f1317fa2f8b762c0181a6af85ffa72",
+    "model_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/codontransformer_model_9744dcc920d813066391fc828d7a590207f148e8",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/.gitattributes",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/.gitattributes",
+        "bytes": 1519,
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "README.md",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/README.md",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/README.md",
+        "bytes": 4603,
+        "sha256": "7788e26c48ef50df04eec6e4043c1ddd8210fb3f0cf531b838d1b0999eb4c10e",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "config.json",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/config.json",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/config.json",
+        "bytes": 786,
+        "sha256": "669ad8f2f97469569e67d43ce47049a5423d01e3c064d9426985035008ac49e7",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "generation_config.json",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/generation_config.json",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/generation_config.json",
+        "bytes": 139,
+        "sha256": "b9b2aa8011a700847d8956b689b9fe4b2689d86e396830f0c3b139d1110a495a",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "model.safetensors",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/model.safetensors",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/model.safetensors",
+        "bytes": 358342232,
+        "sha256": "23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd",
+        "expected_lfs_sha256": "23994e1e7324e78c9d9da71040e8677c0a635287cf1c7c9ea5096b7eadc44dfd"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/special_tokens_map.json",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/special_tokens_map.json",
+        "bytes": 182,
+        "sha256": "e4a7a265361e1a1cf7986b728af2b14a3816a9b25c5e06465fc048e703263e09",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "tokenizer.json",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/tokenizer.json",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/tokenizer.json",
+        "bytes": 4444,
+        "sha256": "ed67da0846097c8ea4425c4b84fb31c18cbfb52fde30813109a0d8d32a40217b",
+        "expected_lfs_sha256": null
+      },
+      {
+        "name": "tokenizer_config.json",
+        "url": "https://hf-mirror.com/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/tokenizer_config.json",
+        "canonical_url": "https://huggingface.co/adibvafa/CodonTransformer/resolve/9744dcc920d813066391fc828d7a590207f148e8/tokenizer_config.json",
+        "bytes": 1238,
+        "sha256": "ca1eac71db28162f532126ada424f0e0a9c7bd8010e76dbceb4a4e29f89dc818",
+        "expected_lfs_sha256": null
+      }
+    ]
+  },
+  "scope": "Fixed source and model artifacts only; no inference, performance, OOD, or SOTA claim."
+}

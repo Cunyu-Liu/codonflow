@@ -1,0 +1,225 @@
+{
+  "schema_version": "a8-rk05-codontransformer-independent-verification-v1",
+  "created_at": "2026-11-18T20:36:41.839550+00:00",
+  "status": "PASS",
+  "check_count": 13,
+  "passed_checks": 13,
+  "checks": [
+    {
+      "name": "fixed_source_model_identity_and_hashes",
+      "pass": true,
+      "detail": {
+        "source": [
+          {
+            "file": "README.md",
+            "match": true
+          },
+          {
+            "file": "requirements.txt",
+            "match": true
+          },
+          {
+            "file": "CodonTransformer/CodonPrediction.py",
+            "match": true
+          },
+          {
+            "file": "CodonTransformer/CodonUtils.py",
+            "match": true
+          }
+        ],
+        "model": [
+          {
+            "file": ".gitattributes",
+            "match": true
+          },
+          {
+            "file": "README.md",
+            "match": true
+          },
+          {
+            "file": "config.json",
+            "match": true
+          },
+          {
+            "file": "generation_config.json",
+            "match": true
+          },
+          {
+            "file": "model.safetensors",
+            "match": true
+          },
+          {
+            "file": "special_tokens_map.json",
+            "match": true
+          },
+          {
+            "file": "tokenizer.json",
+            "match": true
+          },
+          {
+            "file": "tokenizer_config.json",
+            "match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "benchmark_identity_and_translation",
+      "pass": true,
+      "detail": {
+        "record": "C01H6.8b.1",
+        "protein_aa": 135,
+        "cds_nt": 408
+      }
+    },
+    {
+      "name": "four_raw_outputs_and_report_identity",
+      "pass": true,
+      "detail": {
+        "runs": 4
+      }
+    },
+    {
+      "name": "independent_translation_and_raw_qc",
+      "pass": true,
+      "detail": [
+        {
+          "record": "official_example",
+          "mode": "official_default",
+          "legal": true,
+          "translation": "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGG*",
+          "reported_legal": true
+        },
+        {
+          "record": "official_example",
+          "mode": "match_protein",
+          "legal": true,
+          "translation": "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGG*",
+          "reported_legal": true
+        },
+        {
+          "record": "C01H6.8b.1",
+          "mode": "official_default",
+          "legal": true,
+          "translation": "MKFYLLISVVSFISFTDSCSPDVKFEKDHHRREKHEDYLRKFESPRTWSETFSKYTGDAFGRLLFNGLWGAIVLLLPLLIRPFQRRWLTALRGGDGPTIEEVTESDDDGMRISNEEVRQILDSEKKPKRKAVKAE*",
+          "reported_legal": true
+        },
+        {
+          "record": "C01H6.8b.1",
+          "mode": "match_protein",
+          "legal": true,
+          "translation": "MKFYLLISVVSFISFTDSCSPDVKFEKDHHRREKHEDYLRKFESPRTWSETFSKYTGDAFGRLLFNGLWGAIVLLLPLLIRPFQRRWLTALRGGDGPTIEEVTESDDDGMRISNEEVRQILDSEKKPKRKAVKAE*",
+          "reported_legal": true
+        }
+      ]
+    },
+    {
+      "name": "official_readme_example_exact",
+      "pass": true,
+      "detail": {
+        "expected_sha256": "45ee26c2808e09d2ccba2ae0fbd267204c17a041444de7874775f28032aa9424",
+        "observed_sha256": "45ee26c2808e09d2ccba2ae0fbd267204c17a041444de7874775f28032aa9424"
+      }
+    },
+    {
+      "name": "match_protein_runs_all_legal",
+      "pass": true,
+      "detail": {
+        "legal": 2,
+        "total": 2
+      }
+    },
+    {
+      "name": "default_behavior_retained_not_overwritten",
+      "pass": true,
+      "detail": {
+        "legal": 2,
+        "total": 2
+      }
+    },
+    {
+      "name": "fasta_sequence_identity",
+      "pass": true,
+      "detail": {
+        "records": 4
+      }
+    },
+    {
+      "name": "aggregate_cost_reconciliation",
+      "pass": true,
+      "detail": {
+        "recomputed_inference_seconds": 2.0327787059359252,
+        "model_load_seconds": 4.438656704965979
+      }
+    },
+    {
+      "name": "independent_deterministic_reexecution_exact",
+      "pass": true,
+      "detail": [
+        {
+          "record": "official_example",
+          "mode": "official_default",
+          "exact": true,
+          "seconds": 1.819753588642925,
+          "dna_sha256": "45ee26c2808e09d2ccba2ae0fbd267204c17a041444de7874775f28032aa9424"
+        },
+        {
+          "record": "official_example",
+          "mode": "match_protein",
+          "exact": true,
+          "seconds": 0.014889142010360956,
+          "dna_sha256": "45ee26c2808e09d2ccba2ae0fbd267204c17a041444de7874775f28032aa9424"
+        },
+        {
+          "record": "C01H6.8b.1",
+          "mode": "official_default",
+          "exact": true,
+          "seconds": 0.014109785668551922,
+          "dna_sha256": "3a864331c3cffe5f5b7288c33e6aa6a18353f2dfee4bbd1877600d06f5485d10"
+        },
+        {
+          "record": "C01H6.8b.1",
+          "mode": "match_protein",
+          "exact": true,
+          "seconds": 0.014665993861854076,
+          "dna_sha256": "3a864331c3cffe5f5b7288c33e6aa6a18353f2dfee4bbd1877600d06f5485d10"
+        }
+      ]
+    },
+    {
+      "name": "environment_and_model_parameter_reconciliation",
+      "pass": true,
+      "detail": {
+        "torch": "2.14.1+cu132",
+        "transformers": "4.40.2",
+        "parameters": 89579610
+      }
+    },
+    {
+      "name": "scientific_scope_flags",
+      "pass": true,
+      "detail": {
+        "main_baseline_comparison": false,
+        "dense_budget_complete": false,
+        "matched_lineardesign_or_ensembledesign_comparison": false,
+        "functional_ood": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "production_status_reconciled",
+      "pass": true,
+      "detail": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE"
+    }
+  ],
+  "production_report": "audits/20261118/RK05/codontransformer_official_smoke_v1.json",
+  "production_report_sha256": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+  "max_numeric_delta": 0.0,
+  "default_legal_count": 2,
+  "default_run_count": 2,
+  "constrained_legal_count": 2,
+  "constrained_run_count": 2,
+  "main_baseline_comparison": false,
+  "functional_ood": false,
+  "sota_claim": false
+}
