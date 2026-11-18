@@ -618,3 +618,41 @@ $PY scripts/a8_rk05_verify_ribomimo_ppt.py \
 ```
 
 The online URL is <https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>. This record closes only the bounded RiboMIMO official-training smoke and its reporting; it does not close the scientific or submission Gates listed above.
+
+---
+
+# iXnos fixed-source bounded official prefix-read training smoke
+
+## Verified result and scope
+
+`CLOSED_BOUNDED_OFFICIAL_SMOKE` — real Weinberg ribosome-profiling reads were processed and used to train the official iXnos model at fixed commit `1ea2337dd24d1e6fa3859f08573e99f02512810f`. Independent reprocessing/retraining passed **27/27 checks**, finalization passed **16/16 checks**, and unit tests passed **10/10**. This is not the full run, the paper protocol, functional OOD, a main-baseline comparison, or a SOTA result.
+
+- Fixed source: `lareaulab/iXnos`; codeload archive SHA256 `523e6105acdf52d792d96c272594655b2765a9c369892f78bac9452f7d20c1c8`.
+- ENA `SRR1049521` contains 102,187,657 reads according to the frozen metadata. Only the first **1,000,000 complete reads** were used (prefix, not random sample; all 40 nt; SHA256 `389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909`). The full 3.7 GB FASTQ was not downloaded or locally MD5-verified.
+- Official trimming retained **864,464 reads**. After rRNA/noncoding-RNA filters, **756,168 reads** entered transcriptome mapping and **723,724** had at least one alignment. Processing used official length/frame-specific P-site offsets, paralog filtering, and simple uniform multimapping weights; RSEM was not used.
+- Bounded protocol: seed 20261118, 20 train / 10 test genes from 1,238 eligible genes, minimum 50 counts and 20 codons with data, 27–31 nt footprints, 20-codon truncations at both ends, two epochs, final epoch only. The official model has 760 input features, one 200-unit tanh hidden layer, Nesterov momentum, and **152,401 parameters**.
+- Data shapes are **3,816 × 760 train** and **1,963 × 760 test**. Final test R² is **0.0282723404**, MSE **0.9106269870**, Pearson **0.1952275552**, and Spearman **0.2159973420**. The train-mean constant baseline has MSE **0.9371216081** and R² approximately zero. The small improvement is an execution diagnostic only.
+- The official object evaluates the test set each epoch and has no separate validation split. The result is fixed to epoch 2 in advance; no best-test checkpoint selection was used. Official test loss and independently recomputed MSE agree to floating-point precision.
+
+Independent reprocessing produced byte-identical count, output, train-bound and test-bound matrices. Independent seeded retraining produced exactly matching targets, predictions and four checkpoint tensors (`max_abs_delta=0.0`); independently recomputed production metrics also had `max_abs_delta=0.0`. The verifier did **not** rerun Bowtie mapping; this boundary is explicit. A separate repeated production run did rerun download, trimming and mapping.
+
+## Retained failures and Bowtie reproducibility diagnosis
+
+The first production directory, `ixnos_official_smoke_1ea_v1`, is retained. Its download, trimming and mapping completed, but official processing stopped because the default Matplotlib backend imported unavailable `_tkinter`. The successful v2 run set only `MPLBACKEND=Agg`; official algorithms were not patched. Python 2.7, Theano 1.0.5, Lasagne 0.2.dev1, NumPy 1.16.6, SciPy 1.2.3 and CPU single-thread execution were recorded from the actual training process.
+
+The v1/v2 prefix and trimmed FASTQ files are byte-identical. Raw Bowtie SAM bytes differ because multithreaded alignment order and run-specific `@PG` paths differ. This initially caused the preserved finalization report `ixnos_finalization_v0_failed_raw_sam_order.json` to fail **15/16 checks**. A stricter diagnosis compared all 1,255,357 complete alignment records after lexical sorting, all 5,895 non-PG headers, and PG commands after replacing only run-directory paths. Both runs have canonical SHA256 `a98d9a4fd74954a11f6aba7a360e2722381d939eaba285e9f9c8018d3f3b1269` and identical normalized PG hashes. No mismatch was ignored: raw-byte nonidentity remains recorded, while canonical scientific content is verified.
+
+## Evidence and reproduction
+
+- `ixnos_official_smoke_v1.json`
+- `ixnos_independent_verification_v1.json` — 27/27 PASS
+- `ixnos_finalization_v0_failed_raw_sam_order.json` — retained 15/16 failure
+- `ixnos_finalization_v1.json` — 16/16 PASS, SHA256 `a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28`
+- `ixnos_unit_tests_v2.log` — 10/10 PASS; the earlier warning-containing log remains under `/teams`
+- `scripts/a8_rk05_ixnos_official_smoke.py`, `a8_rk05_ixnos_py27_driver.py`, `a8_rk05_verify_ixnos_official_smoke.py`, `a8_rk05_finalize_ixnos_official_smoke.py`, and `test_a8_rk05_ixnos_official_smoke.py`
+
+Raw production output is `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/`; independent output is `ixnos_independent_v1/`; the isolated Python 2.7 packages are in `ixnos_py27_v1/site-packages`. Source archives, reads, SAMs, processed matrices, predictions, checkpoints and logs remain under `/teams`; code, reports and commits remain under `/home`.
+
+From `/home/codonflow-a8-rk`, use new absent/empty run directories. The production orchestrator requires the verified fixed source archive, source root, Python 2.7 driver and isolated site-packages. Run unit tests first, then the orchestrator, independent verifier and finalizer with their `--help`-listed path arguments. Preserve `MPLBACKEND=Agg`, `THEANO_FLAGS=device=cpu,floatX=float64`, `PYTHONHASHSEED=0`, one OpenBLAS/OMP/MKL thread, and an empty `CUDA_VISIBLE_DEVICES` for the bounded CPU contract.
+
+The full 102,187,657-read run, RSEM, 333/167-gene 60-epoch protocol, replicate analysis, study/functional OOD, matched-cost strong-baseline matrix, CodonFlow-RK generation and SOTA assessment remain open.

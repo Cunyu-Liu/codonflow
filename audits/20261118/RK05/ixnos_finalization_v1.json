@@ -1,0 +1,246 @@
+{
+  "checks": [
+    {
+      "details": "27/27",
+      "name": "independent_verification_all_pass",
+      "passed": true
+    },
+    {
+      "details": {
+        "best_test_epoch_selected": false,
+        "codonflow_comparison": false,
+        "full_60_epoch_training_reproduced": false,
+        "full_SRR1049521_used": false,
+        "functional_ood": false,
+        "official_ixnos_source_used": true,
+        "paper_protocol_reproduced": false,
+        "real_ribosome_profiling_reads": true,
+        "rsem_used": false,
+        "simple_mapping_weights_used": true,
+        "sota_claim": false
+      },
+      "name": "strict_bounded_scope",
+      "passed": true
+    },
+    {
+      "details": [],
+      "name": "production_artifacts_intact",
+      "passed": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_independent_v1/test_predictions.npz",
+      "name": "independent_artifact_independent_predictions",
+      "passed": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_independent_v1/weinberg/lasagne_nn/independent_cod_n5p4_nt_n15p14_seed20261118/epoch2/weights.pkl",
+      "name": "independent_artifact_independent_weights",
+      "passed": true
+    },
+    {
+      "details": {
+        "max_abs_delta": 8.326672684688674e-17,
+        "mse": 0.9106269870113916,
+        "pearson": 0.19522755517704224,
+        "r2": 0.02827234035482662
+      },
+      "name": "final_metric_recalculation",
+      "passed": true
+    },
+    {
+      "details": {
+        "checkpoint": 0.0,
+        "prediction": 0.0,
+        "target": 0.0
+      },
+      "name": "independent_retrain_exact",
+      "passed": true
+    },
+    {
+      "details": {
+        "test": 10,
+        "train": 20
+      },
+      "name": "gene_split_contract",
+      "passed": true
+    },
+    {
+      "details": [
+        1.8095013094291108,
+        0.9933594958962345,
+        0.9106269870113923
+      ],
+      "name": "final_epoch_not_test_selected",
+      "passed": true
+    },
+    {
+      "details": {
+        "cuda_visible_devices": "",
+        "lasagne_version": "0.2.dev1",
+        "matplotlib_backend": "agg",
+        "matplotlib_version": "2.2.5",
+        "mkl_num_threads": "1",
+        "numpy_version": "1.16.6",
+        "omp_num_threads": "1",
+        "openblas_num_threads": "1",
+        "platform": "Linux-5.15.0-161-generic-x86_64-with-Ubuntu-20.04-focal",
+        "python_executable": "/usr/bin/python2",
+        "python_version": "2.7.18 (default, Dec  9 2024, 19:35:20) \n[GCC 9.4.0]",
+        "pythonhashseed": "0",
+        "scipy_version": "1.2.3",
+        "seed": 20261118,
+        "sklearn_version": "0.20.4",
+        "theano_device": "cpu",
+        "theano_floatX": "float64",
+        "theano_version": "1.0.5"
+      },
+      "name": "runtime_cpu_single_thread_headless",
+      "passed": true
+    },
+    {
+      "details": {
+        "parameter_count": 152401,
+        "test_shape": [
+          1963,
+          760
+        ],
+        "train_shape": [
+          3816,
+          760
+        ]
+      },
+      "name": "model_and_data_nonempty",
+      "passed": true
+    },
+    {
+      "details": {
+        "records": 1000000,
+        "sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909"
+      },
+      "name": "real_prefix_integrity",
+      "passed": true
+    },
+    {
+      "details": {
+        "lengths": {
+          "12": 2,
+          "13": 1,
+          "15": 1,
+          "16": 4,
+          "17": 3,
+          "18": 4,
+          "19": 13,
+          "20": 26,
+          "21": 61,
+          "22": 93,
+          "23": 281,
+          "24": 517,
+          "25": 1469,
+          "26": 8133,
+          "27": 59722,
+          "28": 291672,
+          "29": 277779,
+          "30": 145749,
+          "31": 78934
+        },
+        "records": 864464
+      },
+      "name": "real_trimming_integrity",
+      "passed": true
+    },
+    {
+      "details": {
+        "process_log_sha256": "492dcc43b6b872e424156177f628d5943bfb300c7e064cb19d22e1ecef80afae"
+      },
+      "name": "first_failure_preserved",
+      "passed": true
+    },
+    {
+      "details": {
+        "footprints_sam": {
+          "canonical_content_identical": true,
+          "failed_run": {
+            "alignment_records": 1255357,
+            "canonical_sorted_alignment_sha256": "a98d9a4fd74954a11f6aba7a360e2722381d939eaba285e9f9c8018d3f3b1269",
+            "non_pg_headers": 5895,
+            "normalized_pg_sha256": "cd39defa4a749ba309f38f0b2a5177a2cc136d23a0a4a0299b29936441e24cbf",
+            "pg_records": 1,
+            "raw_sha256": "903674e1a3e70f0e8b98c73357f3e16e2f90e48e65fba1b731ec59fd98a55191"
+          },
+          "normalization": "non-PG headers plus lexicographically sorted complete alignment records; PG command hashed after replacing run-specific directory paths",
+          "production_run": {
+            "alignment_records": 1255357,
+            "canonical_sorted_alignment_sha256": "a98d9a4fd74954a11f6aba7a360e2722381d939eaba285e9f9c8018d3f3b1269",
+            "non_pg_headers": 5895,
+            "normalized_pg_sha256": "cd39defa4a749ba309f38f0b2a5177a2cc136d23a0a4a0299b29936441e24cbf",
+            "pg_records": 1,
+            "raw_sha256": "b3f4fe396b02791b337c05b915e6cb1b8252db6393bb898737190a8daca6ad78"
+          },
+          "raw_byte_identical": false
+        },
+        "prefix": {
+          "byte_identical": true,
+          "failed_run_sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909",
+          "production_sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909"
+        },
+        "trimmed": {
+          "byte_identical": true,
+          "failed_run_sha256": "ce3cc433e886d29464be341ae67c41b415e3e5ff198fc87f80315d10288d24db",
+          "production_sha256": "ce3cc433e886d29464be341ae67c41b415e3e5ff198fc87f80315d10288d24db"
+        }
+      },
+      "name": "independent_pipeline_rerun_content_identity_before_training",
+      "passed": true
+    },
+    {
+      "details": "raw prefix, trimming, Bowtie logs, weighted SAM and all downstream processing/training verified; Bowtie mapping itself was not rerun",
+      "name": "mapping_verification_boundary_explicit",
+      "passed": true
+    }
+  ],
+  "checks_passed": 16,
+  "checks_total": 16,
+  "created_utc": "2026-11-18T22:07:08Z",
+  "failed_run_retained": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v1",
+  "independent_report_sha256": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+  "parameter_count": 152401,
+  "prefix_sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909",
+  "production_report_sha256": "5393c5d4738031518c57c1f889b0db70109c7a626b9a6ebf8d11b2ec703bdd30",
+  "production_run": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2",
+  "schema_version": "ixnos-finalization-v1",
+  "scope": "Closed only as a bounded, real-prefix, official iXnos workflow smoke. Not full SRR1049521, not RSEM, not the full 333/167 60-epoch paper protocol, not functional OOD, not a CodonFlow comparison, and not SOTA.",
+  "source_archive_sha256": "523e6105acdf52d792d96c272594655b2765a9c369892f78bac9452f7d20c1c8",
+  "source_commit": "1ea2337dd24d1e6fa3859f08573e99f02512810f",
+  "source_repository": "https://github.com/lareaulab/iXnos",
+  "status": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+  "test_metrics": {
+    "mse": 0.9106269870113916,
+    "n": 1963,
+    "pearson": 0.19522755517704216,
+    "r2": 0.02827234035482662,
+    "spearman": 0.21599734199068685,
+    "sse": 1787.5607755033616,
+    "sst": 1839.5697166386
+  },
+  "test_shape": [
+    1963,
+    760
+  ],
+  "train_mean_baseline_metrics": {
+    "mse": 0.9371216080685685,
+    "n": 1963,
+    "pearson": null,
+    "r2": 1.1102230246251565e-16,
+    "spearman": null,
+    "sse": 1839.5697166385999,
+    "sst": 1839.5697166386
+  },
+  "train_shape": [
+    3816,
+    760
+  ],
+  "trimmed_sha256": "ce3cc433e886d29464be341ae67c41b415e3e5ff198fc87f80315d10288d24db",
+  "verification_run": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_independent_v1",
+  "weighted_sam": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/weinberg.footprints.mapped.simple_wts.sam",
+  "weights": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/lasagne_nn/bounded_cod_n5p4_nt_n15p14_seed20261118/epoch2/weights.pkl"
+}

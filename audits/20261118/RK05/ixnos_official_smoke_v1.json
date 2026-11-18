@@ -1,0 +1,273 @@
+{
+  "artifacts": {
+    "raw/SRR1049521.first_1000000.fastq": {
+      "bytes": 135345733,
+      "sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909"
+    },
+    "test_predictions.npz": {
+      "bytes": 32118,
+      "sha256": "a33f7bff33af83eb0c5cfc1113add4c5aac6a34d4ea5d2219f172143edfad1e3"
+    },
+    "weinberg/lasagne_nn/bounded_cod_n5p4_nt_n15p14_seed20261118/epoch2/weights.pkl": {
+      "bytes": 3574409,
+      "sha256": "2c1cf61a2bd816f4b3a8a0b6d77f7390561184251cfa350ec5c2452f14255d8a"
+    },
+    "weinberg/process/SRR1049521.trimmed.fastq": {
+      "bytes": 97696129,
+      "sha256": "ce3cc433e886d29464be341ae67c41b415e3e5ff198fc87f80315d10288d24db"
+    },
+    "weinberg/process/cts_by_codon.size.27.31.txt": {
+      "bytes": 7068658,
+      "sha256": "41d3066f8c43087c9dbd0ad9e070abb8864ebfb568c3466c9f56e487af3472de"
+    },
+    "weinberg/process/outputs.size.27.31.txt": {
+      "bytes": 13594556,
+      "sha256": "75e193b0b4c746ae6ddac71841cb6b41c74642d7fac723e1eed248d26314d5b9"
+    },
+    "weinberg/process/te_set_bounds.size.27.31.trunc.20.20.min_cts.50.min_cod.20.top.30.txt": {
+      "bytes": 151,
+      "sha256": "c35c72d89433e13fc18a40cef8aa7c19deff7833fdc676064a667281ac93821c"
+    },
+    "weinberg/process/tr_set_bounds.size.27.31.trunc.20.20.min_cts.50.min_cod.20.top.30.txt": {
+      "bytes": 297,
+      "sha256": "ddec2eb0c6265808103324b0a88a7d635b4201216e9cb57fc009cdf0c84bf806"
+    },
+    "weinberg/process/weinberg.footprints.mapped.simple_wts.sam": {
+      "bytes": 174716408,
+      "sha256": "498eb9a0ac91ce35a08987f0909c2ae204eea05d8fb54950adc596bddfb36d8d"
+    },
+    "weinberg/process/weinberg.footprints.sam": {
+      "bytes": 169359930,
+      "sha256": "b3f4fe396b02791b337c05b915e6cb1b8252db6393bb898737190a8daca6ad78"
+    }
+  },
+  "config": {
+    "bowtie_threads": 4,
+    "driver": "/home/codonflow-a8-rk/scripts/a8_rk05_ixnos_py27_driver.py",
+    "epochs": 2,
+    "feature_window": "codons -5..4 and nucleotides -15..14",
+    "final_epoch_rule": "last epoch only; official test loss is logged each epoch but no best-test checkpoint is selected",
+    "mapping_weights": "official simple uniform multimapping weights; RSEM not used",
+    "min_codons": 20,
+    "min_counts": 50,
+    "model": "official FeedforwardMLP tanh [200], Nesterov, nonnegative output",
+    "prefix_reads": 1000000,
+    "py27_site_packages": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_py27_v1/site-packages",
+    "run_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2",
+    "scientific_scope": "bounded real-data prefix smoke only; not full-run, not paper-performance reproduction, not OOD, not CodonFlow comparison",
+    "seed": 20261118,
+    "source_archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/sources/ixnos_1ea2337dd24d1e6fa3859f08573e99f02512810f.zip",
+    "source_archive_sha256": "523e6105acdf52d792d96c272594655b2765a9c369892f78bac9452f7d20c1c8",
+    "source_commit": "1ea2337dd24d1e6fa3859f08573e99f02512810f",
+    "source_repository": "https://github.com/lareaulab/iXnos",
+    "source_root": "/home/codonflow-a8-rk-external/iXnos-1ea2337dd24d1e6fa3859f08573e99f02512810f",
+    "task": "RK05 iXnos bounded official prefix-read training smoke",
+    "test_genes": 10,
+    "train_genes": 20
+  },
+  "created_utc": "2026-11-18T22:02:33Z",
+  "host_platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "pipeline_wall_seconds_including_download_mapping_training": 221.239413022995,
+  "prefix_qc": {
+    "bytes": 135345733,
+    "download_wall_seconds": 76.42543292045593,
+    "http_content_length_header": "3722342425",
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/raw/SRR1049521.first_1000000.fastq",
+    "prefix_strategy": "first N complete FASTQ records from the ENA gzip stream; no random sampling claim",
+    "read_length_counts": {
+      "40": 1000000
+    },
+    "records": 1000000,
+    "run_accession": "SRR1049521",
+    "sha256": "389cab4c099b7cbe05879117ad090e17939db1f176292b264c992fa658b25909",
+    "source_full_fastq_bytes_from_ena": "3722342425",
+    "source_full_fastq_md5_from_ena_not_computed_here": "b5db90892becba13c733fed27ee82263",
+    "source_full_read_count_from_ena": "102187657",
+    "source_url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR104/001/SRR1049521/SRR1049521.fastq.gz",
+    "unique_read_names": 1000000
+  },
+  "schema_version": "ixnos-bounded-official-smoke-v1",
+  "scope_flags": {
+    "best_test_epoch_selected": false,
+    "codonflow_comparison": false,
+    "full_60_epoch_training_reproduced": false,
+    "full_SRR1049521_used": false,
+    "functional_ood": false,
+    "official_ixnos_source_used": true,
+    "paper_protocol_reproduced": false,
+    "real_ribosome_profiling_reads": true,
+    "rsem_used": false,
+    "simple_mapping_weights_used": true,
+    "sota_claim": false
+  },
+  "status": "BOUNDED_OFFICIAL_SMOKE_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "training": {
+    "compile_and_initial_prediction_seconds": 36.245331048965454,
+    "counts_by_codon": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/cts_by_codon.size.27.31.txt",
+    "environment": {
+      "cuda_visible_devices": "",
+      "lasagne_version": "0.2.dev1",
+      "matplotlib_backend": "agg",
+      "matplotlib_version": "2.2.5",
+      "mkl_num_threads": "1",
+      "numpy_version": "1.16.6",
+      "omp_num_threads": "1",
+      "openblas_num_threads": "1",
+      "platform": "Linux-5.15.0-161-generic-x86_64-with-Ubuntu-20.04-focal",
+      "python_executable": "/usr/bin/python2",
+      "python_version": "2.7.18 (default, Dec  9 2024, 19:35:20) \n[GCC 9.4.0]",
+      "pythonhashseed": "0",
+      "scipy_version": "1.2.3",
+      "seed": 20261118,
+      "sklearn_version": "0.20.4",
+      "theano_device": "cpu",
+      "theano_floatX": "float64",
+      "theano_version": "1.0.5"
+    },
+    "model_name": "bounded_cod_n5p4_nt_n15p14_seed20261118",
+    "model_source": "official iXnos FeedforwardMLP via interface.make_lasagne_feedforward_nn",
+    "official_final_test_loss": 0.9106269870113923,
+    "official_test_loss_including_initial": [
+      1.8095013094291108,
+      0.9933594958962345,
+      0.9106269870113923
+    ],
+    "official_train_loss_including_initial": [
+      1.8958382122352537,
+      1.4005804143132259,
+      1.0442719789111639
+    ],
+    "outputs": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/outputs.size.27.31.txt",
+    "parameter_count": 152401,
+    "parameter_tensors": [
+      [
+        760,
+        200
+      ],
+      [
+        200
+      ],
+      [
+        200,
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "predictions": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/test_predictions.npz",
+    "process_wall_seconds": 30.820091009140015,
+    "run_epochs_wall_seconds": 1.7680211067199707,
+    "selection_rule": "final epoch only; no best-test checkpoint selection",
+    "source_file_sha256": {
+      "iXnos/interface.py": "47685fb94f6d35a2bb7a8dcf03fe8f33319ae8d79aca9b0ee45b66750d999e5a",
+      "iXnos/lasagnenn.py": "5b5950d6716f85b0aa02e5b0bb1d4b685ed553268e87bafa470b13e6dc4423ef",
+      "iXnos/process.py": "1c0a77a9b2161a095627003dc61417295ad55c5e69977928340cbe7322196253",
+      "reproduce_scripts/feat_neighborhood_nn_series.py": "b4735f6347e82d5277982eb690d10cd74950bc1c617f5b22fa842ee3562b4f8b",
+      "reproduce_scripts/process_data.py": "378aa37849bbb459662ae8e54ce8dd4001ab43bcef1252fe1a847955ee72a96c"
+    },
+    "status": "TRAIN_COMPLETE",
+    "test_bounds": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/te_set_bounds.size.27.31.trunc.20.20.min_cts.50.min_cod.20.top.30.txt",
+    "test_genes": [
+      "YAL038W",
+      "YBL092W",
+      "YDR050C",
+      "YDR064W",
+      "YFR032C-A",
+      "YLR075W",
+      "YLR109W",
+      "YLR110C",
+      "YOL086C",
+      "YOR063W"
+    ],
+    "test_metrics": {
+      "mse": 0.9106269870113916,
+      "n": 1963,
+      "pearson": 0.19522755517704216,
+      "r2": 0.02827234035482662,
+      "spearman": 0.21599734199068685,
+      "sse": 1787.5607755033616,
+      "sst": 1839.5697166386
+    },
+    "test_set_use_limitation": "official implementation reports test loss after every epoch; bounded run uses last epoch and does not select on test",
+    "test_shape": [
+      1963,
+      760
+    ],
+    "test_target_shape": [
+      1963,
+      1
+    ],
+    "train_bounds": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/tr_set_bounds.size.27.31.trunc.20.20.min_cts.50.min_cod.20.top.30.txt",
+    "train_genes": [
+      "YAL003W",
+      "YBR118W",
+      "YCR012W",
+      "YDR524C-B",
+      "YGL103W",
+      "YGR027C",
+      "YGR192C",
+      "YHR174W",
+      "YJR123W",
+      "YKL060C",
+      "YKL152C",
+      "YLR044C",
+      "YLR061W",
+      "YLR167W",
+      "YLR325C",
+      "YNL178W",
+      "YOL040C",
+      "YOL127W",
+      "YOR182C",
+      "YPR043W"
+    ],
+    "train_mean": 1.0000000000000075,
+    "train_mean_baseline_metrics": {
+      "mse": 0.9371216080685685,
+      "n": 1963,
+      "pearson": null,
+      "r2": 1.1102230246251565e-16,
+      "spearman": null,
+      "sse": 1839.5697166385999,
+      "sst": 1839.5697166386
+    },
+    "train_shape": [
+      3816,
+      760
+    ],
+    "train_target_shape": [
+      3816,
+      1
+    ],
+    "weighted_sam": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/weinberg.footprints.mapped.simple_wts.sam",
+    "weights": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/lasagne_nn/bounded_cod_n5p4_nt_n15p14_seed20261118/epoch2/weights.pkl"
+  },
+  "trimmed_qc": {
+    "bytes": 97696129,
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ixnos_official_smoke_1ea_v2/weinberg/process/SRR1049521.trimmed.fastq",
+    "read_length_counts": {
+      "12": 2,
+      "13": 1,
+      "15": 1,
+      "16": 4,
+      "17": 3,
+      "18": 4,
+      "19": 13,
+      "20": 26,
+      "21": 61,
+      "22": 93,
+      "23": 281,
+      "24": 517,
+      "25": 1469,
+      "26": 8133,
+      "27": 59722,
+      "28": 291672,
+      "29": 277779,
+      "30": 145749,
+      "31": 78934
+    },
+    "records": 864464,
+    "sha256": "ce3cc433e886d29464be341ae67c41b415e3e5ff198fc87f80315d10288d24db",
+    "unique_read_names": 864464
+  }
+}
