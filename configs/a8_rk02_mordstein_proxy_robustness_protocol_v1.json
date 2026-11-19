@@ -1,0 +1,35 @@
+{
+  "schema": "a8-rk02-mordstein-proxy-robustness-protocol-v1",
+  "protocol_id": "a8_rk02_mordstein_proxy_robustness_v1_frozen_after_primary_before_sensitivity",
+  "analysis_status": "POST_HOC_EXPLORATORY_NOT_PRIMARY_NOT_A_NEW_GATE",
+  "primary_production": "audits/20261118/RK02/mordstein_proxy_diagnostics_v1.json",
+  "primary_independent": "audits/20261118/RK02/mordstein_proxy_diagnostics_independent_v1.json",
+  "primary_finalization": "audits/20261118/RK02/mordstein_proxy_diagnostics_finalization_v1.json",
+  "support_thresholds": [1000, 2000, 5000, 10000, 20000, 50000, 100000],
+  "features": ["gc3_observed_5prime", "gc_observed_5prime"],
+  "endpoint": "flowseq_score_r1_only",
+  "depth_covariate": "log10(total_assigned_reads)",
+  "analyses": {
+    "support_sensitivity": "Spearman correlation and paired-variant bootstrap 95% percentile CI at every threshold; no new significance gate",
+    "depth_associations": "Spearman of depth with score and each GC feature, with bootstrap CI and two-sided permutation p; exploratory and unadjusted",
+    "partial_spearman": "Pearson correlation of rank residuals after regressing each ranked feature and ranked score on ranked depth; paired-variant bootstrap CI; descriptive only"
+  },
+  "bootstrap_resamples": 20000,
+  "permutation_resamples": 20000,
+  "seed": 30261119,
+  "seed_stride": 100000,
+  "output": {
+    "production": "audits/20261118/RK02/mordstein_proxy_robustness_v1.json",
+    "independent": "audits/20261118/RK02/mordstein_proxy_robustness_independent_v1.json",
+    "finalization": "audits/20261118/RK02/mordstein_proxy_robustness_finalization_v1.json"
+  },
+  "boundaries": {
+    "changes_primary_analysis": false,
+    "protein_ood_evaluation": false,
+    "causal_inference": false,
+    "mechanism_model_comparison": false,
+    "complete_cds_analysis": false,
+    "generator_training_authorized": false,
+    "sota_claim": false
+  }
+}

@@ -1,0 +1,20 @@
+.F.                                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_partial_rank_removes_shared_depth_component _______________
+
+    def test_partial_rank_removes_shared_depth_component():
+        depth = np.asarray([1., 2., 3., 4., 5., 6.])
+        residual = np.asarray([0., 1., -1., 0., 1., -1.])
+        x = depth + residual
+        y = 3 * depth - 2 * residual
+>       assert production.partial_rank(x, y, depth) == pytest.approx(-1.0)
+E       assert -0.19597614485097112 == -1.0 ± 1.0e-06
+E         
+E         comparison failed
+E         Obtained: -0.19597614485097112
+E         Expected: -1.0 ± 1.0e-06
+
+scripts/tests/test_a8_rk02_mordstein_proxy_robustness.py:32: AssertionError
+=========================== short test summary info ============================
+FAILED scripts/tests/test_a8_rk02_mordstein_proxy_robustness.py::test_partial_rank_removes_shared_depth_component
+1 failed, 2 passed in 0.94s
