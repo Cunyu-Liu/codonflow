@@ -1,0 +1,1697 @@
+{
+  "checkpoint_pairs_bitwise_identical": 40,
+  "complete_training_runs": 8,
+  "datasets": {
+    "Mohammad16": {
+      "aggregate": {
+        "mse_mean": 1.5914698481559753,
+        "mse_std": 0.10036149796034986,
+        "pearson_mean": 0.6906800389289856,
+        "pearson_std": 0.008882063883968961,
+        "r2_mean": 0.4728736639022827,
+        "r2_std": 0.01527406277177084
+      },
+      "best_epochs": [
+        11,
+        18,
+        7,
+        8,
+        12,
+        9,
+        11,
+        15,
+        9,
+        11
+      ],
+      "constant_train_mean_baseline_aggregate": {
+        "mse_mean": 3.0219910621643065,
+        "mse_std": 0.2138610314364213,
+        "r2_mean": -1.1086463928222657e-06,
+        "r2_std": 1.8087235454835693e-06
+      },
+      "eligible_genes": 1179,
+      "finalization_checks": "425/425",
+      "finalization_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_finalization_v1.json",
+      "finalization_report_sha256": "890ef31a7bc716a9307ded9430de12b935629b8836a378ad571fa79c00624965",
+      "folds": [
+        {
+          "best_epoch": 11,
+          "constant_train_mean_baseline": {
+            "mse": 3.0661568641662598,
+            "r2": -1.1920928955078125e-06,
+            "train_mean": 0.9978624582290649
+          },
+          "fold": 0,
+          "mse": 1.5825139284133911,
+          "pearson": 0.6962685585021973,
+          "r2": 0.48387646675109863,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 26884
+        },
+        {
+          "best_epoch": 18,
+          "constant_train_mean_baseline": {
+            "mse": 2.8538453578948975,
+            "r2": 0.0,
+            "train_mean": 0.9977477192878723
+          },
+          "fold": 1,
+          "mse": 1.52266263961792,
+          "pearson": 0.684214174747467,
+          "r2": 0.46645230054855347,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 28424
+        },
+        {
+          "best_epoch": 7,
+          "constant_train_mean_baseline": {
+            "mse": 2.8872132301330566,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 0.997672438621521
+          },
+          "fold": 2,
+          "mse": 1.5785189867019653,
+          "pearson": 0.6740016341209412,
+          "r2": 0.45327234268188477,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 25191
+        },
+        {
+          "best_epoch": 8,
+          "constant_train_mean_baseline": {
+            "mse": 2.914280891418457,
+            "r2": -5.960464477539062e-07,
+            "train_mean": 0.9976083040237427
+          },
+          "fold": 3,
+          "mse": 1.4730720520019531,
+          "pearson": 0.7035099267959595,
+          "r2": 0.4945330023765564,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 27030
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 3.5151925086975098,
+            "r2": -1.6689300537109375e-06,
+            "train_mean": 0.9979868531227112
+          },
+          "fold": 4,
+          "mse": 1.8486347198486328,
+          "pearson": 0.6894029974937439,
+          "r2": 0.47410058975219727,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 24784
+        },
+        {
+          "best_epoch": 9,
+          "constant_train_mean_baseline": {
+            "mse": 3.0853936672210693,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 0.9978496432304382
+          },
+          "fold": 5,
+          "mse": 1.6329784393310547,
+          "pearson": 0.6914423704147339,
+          "r2": 0.47073888778686523,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 27297
+        },
+        {
+          "best_epoch": 11,
+          "constant_train_mean_baseline": {
+            "mse": 2.7188031673431396,
+            "r2": 0.0,
+            "train_mean": 0.9977471232414246
+          },
+          "fold": 6,
+          "mse": 1.5192692279815674,
+          "pearson": 0.6784631609916687,
+          "r2": 0.44119924306869507,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 25435
+        },
+        {
+          "best_epoch": 15,
+          "constant_train_mean_baseline": {
+            "mse": 2.9817922115325928,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 0.9978421330451965
+          },
+          "fold": 7,
+          "mse": 1.5594958066940308,
+          "pearson": 0.6931653618812561,
+          "r2": 0.4769936800003052,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 26537
+        },
+        {
+          "best_epoch": 9,
+          "constant_train_mean_baseline": {
+            "mse": 2.948906660079956,
+            "r2": -5.960464477539062e-07,
+            "train_mean": 0.9978753924369812
+          },
+          "fold": 8,
+          "mse": 1.537436604499817,
+          "pearson": 0.6968674063682556,
+          "r2": 0.4786415100097656,
+          "train_valid_test_sizes": {
+            "test": 118,
+            "train": 955,
+            "valid": 106
+          },
+          "valid_masked_codons": 28225
+        },
+        {
+          "best_epoch": 11,
+          "constant_train_mean_baseline": {
+            "mse": 3.248326063156128,
+            "r2": -6.318092346191406e-06,
+            "train_mean": 0.9972240924835205
+          },
+          "fold": 9,
+          "mse": 1.6601160764694214,
+          "pearson": 0.6994647979736328,
+          "r2": 0.4889286160469055,
+          "train_valid_test_sizes": {
+            "test": 117,
+            "train": 956,
+            "valid": 106
+          },
+          "valid_masked_codons": 27801
+        }
+      ],
+      "independent_checks": "94/94",
+      "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_independent_v1.json",
+      "independent_report_sha256": "4bf2371923622ca247e4b51ccb3857a9512897f8a6dcae4b11ac3c96a3c01f4e",
+      "matrix_sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+      "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_v2.json",
+      "production_report_sha256": "47e1a2c44e007c6413eb66efa9bd83a352745241ddcc9823b2c508ac1d292340",
+      "raw_records": 1761,
+      "retrain_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_retrain_v1.json",
+      "retrain_report_sha256": "f75fe699c25a31d1297a8b1f871d6e3819d74e10d0d91d0d8da1ce0e2a3db028",
+      "two_training_runs_bitwise_identical": true,
+      "valid_masked_codons": 267608
+    },
+    "Mohammad19-1": {
+      "aggregate": {
+        "mse_mean": 0.4330842912197113,
+        "mse_std": 0.015036765510075493,
+        "pearson_mean": 0.6820753216743469,
+        "pearson_std": 0.008264280912499603,
+        "r2_mean": 0.461594831943512,
+        "r2_std": 0.01171762864521089
+      },
+      "best_epochs": [
+        16,
+        16,
+        14,
+        14,
+        16,
+        15,
+        15,
+        14,
+        13,
+        13
+      ],
+      "constant_train_mean_baseline_aggregate": {
+        "mse_mean": 0.8043353140354157,
+        "mse_std": 0.019444874203311414,
+        "r2_mean": -5.340576171875e-06,
+        "r2_std": 4.263894826146729e-06
+      },
+      "eligible_genes": 1426,
+      "finalization_checks": "424/424",
+      "finalization_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_finalization_v1.json",
+      "finalization_report_sha256": "d556413566c19f1012a4bea147045e1b28fb106cfc3a80e81a7248f3792850ea",
+      "folds": [
+        {
+          "best_epoch": 16,
+          "constant_train_mean_baseline": {
+            "mse": 0.8151386380195618,
+            "r2": -3.4570693969726562e-06,
+            "train_mean": 1.001563549041748
+          },
+          "fold": 0,
+          "mse": 0.4132770299911499,
+          "pearson": 0.7038984894752502,
+          "r2": 0.4929961562156677,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 34505
+        },
+        {
+          "best_epoch": 16,
+          "constant_train_mean_baseline": {
+            "mse": 0.8091704845428467,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 1.001561164855957
+          },
+          "fold": 1,
+          "mse": 0.4324875771999359,
+          "pearson": 0.6845223307609558,
+          "r2": 0.46551722288131714,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 36630
+        },
+        {
+          "best_epoch": 14,
+          "constant_train_mean_baseline": {
+            "mse": 0.7624092102050781,
+            "r2": -4.0531158447265625e-06,
+            "train_mean": 1.0018054246902466
+          },
+          "fold": 2,
+          "mse": 0.4102665185928345,
+          "pearson": 0.6858279705047607,
+          "r2": 0.46187931299209595,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 32385
+        },
+        {
+          "best_epoch": 14,
+          "constant_train_mean_baseline": {
+            "mse": 0.8075199127197266,
+            "r2": -7.867813110351562e-06,
+            "train_mean": 1.0013427734375
+          },
+          "fold": 3,
+          "mse": 0.4386647045612335,
+          "pearson": 0.6767793893814087,
+          "r2": 0.4567711353302002,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 34518
+        },
+        {
+          "best_epoch": 16,
+          "constant_train_mean_baseline": {
+            "mse": 0.8196751475334167,
+            "r2": -1.0609626770019531e-05,
+            "train_mean": 1.0013084411621094
+          },
+          "fold": 4,
+          "mse": 0.44869866967201233,
+          "pearson": 0.6780005097389221,
+          "r2": 0.45258384943008423,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 33066
+        },
+        {
+          "best_epoch": 15,
+          "constant_train_mean_baseline": {
+            "mse": 0.7992043495178223,
+            "r2": -6.079673767089844e-06,
+            "train_mean": 1.0018774271011353
+          },
+          "fold": 5,
+          "mse": 0.43201395869255066,
+          "pearson": 0.6786154508590698,
+          "r2": 0.4594416618347168,
+          "train_valid_test_sizes": {
+            "test": 143,
+            "train": 1155,
+            "valid": 128
+          },
+          "valid_masked_codons": 36334
+        },
+        {
+          "best_epoch": 15,
+          "constant_train_mean_baseline": {
+            "mse": 0.8377219438552856,
+            "r2": -1.9073486328125e-06,
+            "train_mean": 1.0014913082122803
+          },
+          "fold": 6,
+          "mse": 0.4594824016094208,
+          "pearson": 0.6719653606414795,
+          "r2": 0.4515085816383362,
+          "train_valid_test_sizes": {
+            "test": 142,
+            "train": 1156,
+            "valid": 128
+          },
+          "valid_masked_codons": 32050
+        },
+        {
+          "best_epoch": 14,
+          "constant_train_mean_baseline": {
+            "mse": 0.7825155854225159,
+            "r2": -9.5367431640625e-07,
+            "train_mean": 1.0017120838165283
+          },
+          "fold": 7,
+          "mse": 0.4168078303337097,
+          "pearson": 0.6839293837547302,
+          "r2": 0.4673483371734619,
+          "train_valid_test_sizes": {
+            "test": 142,
+            "train": 1156,
+            "valid": 128
+          },
+          "valid_masked_codons": 34074
+        },
+        {
+          "best_epoch": 13,
+          "constant_train_mean_baseline": {
+            "mse": 0.8018592596054077,
+            "r2": -1.4424324035644531e-05,
+            "train_mean": 1.0020233392715454
+          },
+          "fold": 8,
+          "mse": 0.43599116802215576,
+          "pearson": 0.6790168881416321,
+          "r2": 0.4562668800354004,
+          "train_valid_test_sizes": {
+            "test": 142,
+            "train": 1156,
+            "valid": 128
+          },
+          "valid_masked_codons": 36776
+        },
+        {
+          "best_epoch": 13,
+          "constant_train_mean_baseline": {
+            "mse": 0.8081386089324951,
+            "r2": -3.814697265625e-06,
+            "train_mean": 1.0014395713806152
+          },
+          "fold": 9,
+          "mse": 0.44315305352211,
+          "pearson": 0.67819744348526,
+          "r2": 0.4516351819038391,
+          "train_valid_test_sizes": {
+            "test": 142,
+            "train": 1156,
+            "valid": 128
+          },
+          "valid_masked_codons": 31859
+        }
+      ],
+      "independent_checks": "94/94",
+      "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_independent_v1.json",
+      "independent_report_sha256": "89dda7f90bb4ba75bfef5083e1435c2c423701d58481dfbf9d7e3dbb5b0ffb2a",
+      "matrix_sha256": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5",
+      "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_v1.json",
+      "production_report_sha256": "cabd7f1ff81946d7841fbc6855a887d28a938b96188384de8a85a90c0b6adc66",
+      "raw_records": 4147,
+      "retrain_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_retrain_v1.json",
+      "retrain_report_sha256": "fc0205d97de8ad902b88364f3e6cf5a183f5de15aab24dfdf66617d9eda64a49",
+      "two_training_runs_bitwise_identical": true,
+      "valid_masked_codons": 342197
+    },
+    "Mohammad19-2": {
+      "aggregate": {
+        "mse_mean": 0.44286317229270933,
+        "mse_std": 0.05439620012776182,
+        "pearson_mean": 0.6962580919265747,
+        "pearson_std": 0.02199767578454241,
+        "r2_mean": 0.484536212682724,
+        "r2_std": 0.030081143638931402
+      },
+      "best_epochs": [
+        12,
+        13,
+        12,
+        12,
+        11,
+        12,
+        13,
+        13,
+        12,
+        15
+      ],
+      "constant_train_mean_baseline_aggregate": {
+        "mse_mean": 0.8565754890441895,
+        "mse_std": 0.05888191588663342,
+        "r2_mean": -2.8729438781738283e-06,
+        "r2_std": 2.483704878467254e-06
+      },
+      "eligible_genes": 1598,
+      "finalization_checks": "424/424",
+      "finalization_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_finalization_v1.json",
+      "finalization_report_sha256": "97cf23283c5cafecff00759fb8801d3bc7d74c3a4534939ed0b8b20e9a231662",
+      "folds": [
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.8026853203773499,
+            "r2": -3.4570693969726562e-06,
+            "train_mean": 1.0004560947418213
+          },
+          "fold": 0,
+          "mse": 0.4045824110507965,
+          "pearson": 0.7043943405151367,
+          "r2": 0.49596214294433594,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 38643
+        },
+        {
+          "best_epoch": 13,
+          "constant_train_mean_baseline": {
+            "mse": 0.8462810516357422,
+            "r2": -2.1457672119140625e-06,
+            "train_mean": 1.0005598068237305
+          },
+          "fold": 1,
+          "mse": 0.4192868173122406,
+          "pearson": 0.7121145725250244,
+          "r2": 0.5045526027679443,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 40031
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.8890897631645203,
+            "r2": -7.987022399902344e-06,
+            "train_mean": 1.0007086992263794
+          },
+          "fold": 2,
+          "mse": 0.48223963379859924,
+          "pearson": 0.6766080260276794,
+          "r2": 0.45759862661361694,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 40135
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.8075404167175293,
+            "r2": -9.5367431640625e-07,
+            "train_mean": 1.000315546989441
+          },
+          "fold": 3,
+          "mse": 0.3965093791484833,
+          "pearson": 0.7137722969055176,
+          "r2": 0.5089908242225647,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 38422
+        },
+        {
+          "best_epoch": 11,
+          "constant_train_mean_baseline": {
+            "mse": 0.8685703277587891,
+            "r2": -7.152557373046875e-07,
+            "train_mean": 1.0003254413604736
+          },
+          "fold": 4,
+          "mse": 0.48116835951805115,
+          "pearson": 0.6685788035392761,
+          "r2": 0.4460222125053406,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 40109
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.8318573832511902,
+            "r2": -2.1457672119140625e-06,
+            "train_mean": 1.0002527236938477
+          },
+          "fold": 5,
+          "mse": 0.38896307349205017,
+          "pearson": 0.7306227684020996,
+          "r2": 0.5324151515960693,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 41157
+        },
+        {
+          "best_epoch": 13,
+          "constant_train_mean_baseline": {
+            "mse": 0.8173477053642273,
+            "r2": -5.960464477539062e-07,
+            "train_mean": 1.0003403425216675
+          },
+          "fold": 6,
+          "mse": 0.4090390205383301,
+          "pearson": 0.7073851227760315,
+          "r2": 0.4995529055595398,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 35472
+        },
+        {
+          "best_epoch": 13,
+          "constant_train_mean_baseline": {
+            "mse": 0.810536801815033,
+            "r2": -6.079673767089844e-06,
+            "train_mean": 1.0006718635559082
+          },
+          "fold": 7,
+          "mse": 0.4207078814506531,
+          "pearson": 0.6937090754508972,
+          "r2": 0.4809483289718628,
+          "train_valid_test_sizes": {
+            "test": 160,
+            "train": 1295,
+            "valid": 143
+          },
+          "valid_masked_codons": 41661
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 1.0084524154663086,
+            "r2": -4.5299530029296875e-06,
+            "train_mean": 1.0001875162124634
+          },
+          "fold": 8,
+          "mse": 0.5763300061225891,
+          "pearson": 0.654653012752533,
+          "r2": 0.42849797010421753,
+          "train_valid_test_sizes": {
+            "test": 159,
+            "train": 1296,
+            "valid": 143
+          },
+          "valid_masked_codons": 38011
+        },
+        {
+          "best_epoch": 15,
+          "constant_train_mean_baseline": {
+            "mse": 0.8833937048912048,
+            "r2": -1.1920928955078125e-07,
+            "train_mean": 1.0003691911697388
+          },
+          "fold": 9,
+          "mse": 0.4498051404953003,
+          "pearson": 0.7007429003715515,
+          "r2": 0.49082136154174805,
+          "train_valid_test_sizes": {
+            "test": 159,
+            "train": 1296,
+            "valid": 143
+          },
+          "valid_masked_codons": 40226
+        }
+      ],
+      "independent_checks": "93/93",
+      "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_independent_v1.json",
+      "independent_report_sha256": "9f44aa9809e3117a15e6a91413094809385e787e20ef592ab63783ab09ba33b6",
+      "matrix_sha256": "e11f552ef958a381d1aec9a6d12f8e850d050fe001c31243491e08865b65cef1",
+      "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_v1.json",
+      "production_report_sha256": "5b64a26b1cf4127285223227b979d8e3c639f064bc31e8039c8490d1b1d569e7",
+      "raw_records": 4147,
+      "retrain_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_retrain_v1.json",
+      "retrain_report_sha256": "a0f181adf7652b1903241fcac72605659006cfcbeae60afbd9e61f0db1c36267",
+      "two_training_runs_bitwise_identical": true,
+      "valid_masked_codons": 393867
+    },
+    "Subtelny14": {
+      "aggregate": {
+        "mse_mean": 0.5926200211048126,
+        "mse_std": 0.020861567386962158,
+        "pearson_mean": 0.6318479597568512,
+        "pearson_std": 0.010285295173059868,
+        "r2_mean": 0.3974511682987213,
+        "r2_std": 0.012482780498037502
+      },
+      "best_epochs": [
+        10,
+        10,
+        9,
+        12,
+        12,
+        10,
+        9,
+        10,
+        11,
+        10
+      ],
+      "constant_train_mean_baseline_aggregate": {
+        "mse_mean": 0.9833295285701752,
+        "mse_std": 0.019585118713296643,
+        "r2_mean": -5.245208740234375e-07,
+        "r2_std": 5.493983565236527e-07
+      },
+      "eligible_genes": 3921,
+      "finalization_checks": "424/424",
+      "finalization_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_subtelny14_finalization_v1.json",
+      "finalization_report_sha256": "b839e0b3e8129c4f342c8eb505296e382798549bdcac9301cb4e8b1107edd957",
+      "folds": [
+        {
+          "best_epoch": 10,
+          "constant_train_mean_baseline": {
+            "mse": 1.000292181968689,
+            "r2": -5.960464477539062e-07,
+            "train_mean": 0.9919421076774597
+          },
+          "fold": 0,
+          "mse": 0.5963074564933777,
+          "pearson": 0.6384897232055664,
+          "r2": 0.40386641025543213,
+          "train_valid_test_sizes": {
+            "test": 393,
+            "train": 3176,
+            "valid": 352
+          },
+          "valid_masked_codons": 145103
+        },
+        {
+          "best_epoch": 10,
+          "constant_train_mean_baseline": {
+            "mse": 0.978803277015686,
+            "r2": -1.1920928955078125e-07,
+            "train_mean": 0.9919599890708923
+          },
+          "fold": 1,
+          "mse": 0.5973056554794312,
+          "pearson": 0.6254166960716248,
+          "r2": 0.3897591233253479,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 156998
+        },
+        {
+          "best_epoch": 9,
+          "constant_train_mean_baseline": {
+            "mse": 0.9523929357528687,
+            "r2": -3.5762786865234375e-07,
+            "train_mean": 0.9920454621315002
+          },
+          "fold": 2,
+          "mse": 0.5788457989692688,
+          "pearson": 0.6278144121170044,
+          "r2": 0.3922193646430969,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 153181
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.9747224450111389,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 0.991935133934021
+          },
+          "fold": 3,
+          "mse": 0.5728908181190491,
+          "pearson": 0.6425588726997375,
+          "r2": 0.41225218772888184,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 157505
+        },
+        {
+          "best_epoch": 12,
+          "constant_train_mean_baseline": {
+            "mse": 0.9838165044784546,
+            "r2": -1.3113021850585938e-06,
+            "train_mean": 0.9921137094497681
+          },
+          "fold": 4,
+          "mse": 0.5806349515914917,
+          "pearson": 0.6404232978820801,
+          "r2": 0.40981292724609375,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 151913
+        },
+        {
+          "best_epoch": 10,
+          "constant_train_mean_baseline": {
+            "mse": 1.0085594654083252,
+            "r2": -1.1920928955078125e-07,
+            "train_mean": 0.9920291304588318
+          },
+          "fold": 5,
+          "mse": 0.6328586935997009,
+          "pearson": 0.6112730503082275,
+          "r2": 0.37251222133636475,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 155123
+        },
+        {
+          "best_epoch": 9,
+          "constant_train_mean_baseline": {
+            "mse": 1.015099048614502,
+            "r2": -4.76837158203125e-07,
+            "train_mean": 0.9920639395713806
+          },
+          "fold": 6,
+          "mse": 0.6279714107513428,
+          "pearson": 0.6175728440284729,
+          "r2": 0.3813689947128296,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 149468
+        },
+        {
+          "best_epoch": 10,
+          "constant_train_mean_baseline": {
+            "mse": 0.9596517086029053,
+            "r2": -2.384185791015625e-07,
+            "train_mean": 0.9919600486755371
+          },
+          "fold": 7,
+          "mse": 0.5751767158508301,
+          "pearson": 0.6373876333236694,
+          "r2": 0.40064001083374023,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 154239
+        },
+        {
+          "best_epoch": 11,
+          "constant_train_mean_baseline": {
+            "mse": 0.9684200286865234,
+            "r2": -1.7881393432617188e-06,
+            "train_mean": 0.9918408393859863
+          },
+          "fold": 8,
+          "mse": 0.5721147060394287,
+          "pearson": 0.6414364576339722,
+          "r2": 0.40922772884368896,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 151158
+        },
+        {
+          "best_epoch": 10,
+          "constant_train_mean_baseline": {
+            "mse": 0.9915376901626587,
+            "r2": 0.0,
+            "train_mean": 0.9919671416282654
+          },
+          "fold": 9,
+          "mse": 0.5920940041542053,
+          "pearson": 0.6361066102981567,
+          "r2": 0.40285271406173706,
+          "train_valid_test_sizes": {
+            "test": 392,
+            "train": 3177,
+            "valid": 352
+          },
+          "valid_masked_codons": 141820
+        }
+      ],
+      "independent_checks": "93/93",
+      "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_subtelny14_independent_v1.json",
+      "independent_report_sha256": "59a5797c1b497659eefbf3e4edaf4823f8328b8fbf7102777341016ac062bbf5",
+      "matrix_sha256": "d982f6d8c14ba309ce26e29c8d81793df190b11d063c1333878d3dc6c0efa118",
+      "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_subtelny14_v1.json",
+      "production_report_sha256": "41797891a9da5a497e71c165e7bcd38f219ed9eddd3d1ebefdf76173ff738d7e",
+      "raw_records": 5614,
+      "retrain_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_subtelny14_retrain_v1.json",
+      "retrain_report_sha256": "d1f1a2d843113b561fee390cf1c2dfaea251e9c8a0337cec4099c57579163758",
+      "two_training_runs_bitwise_identical": true,
+      "valid_masked_codons": 1516508
+    }
+  },
+  "folds": [
+    {
+      "best_epoch": 11,
+      "constant_train_mean_baseline": {
+        "mse": 3.0661568641662598,
+        "r2": -1.1920928955078125e-06,
+        "train_mean": 0.9978624582290649
+      },
+      "dataset": "Mohammad16",
+      "fold": 0,
+      "mse": 1.5825139284133911,
+      "pearson": 0.6962685585021973,
+      "r2": 0.48387646675109863,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 26884
+    },
+    {
+      "best_epoch": 18,
+      "constant_train_mean_baseline": {
+        "mse": 2.8538453578948975,
+        "r2": 0.0,
+        "train_mean": 0.9977477192878723
+      },
+      "dataset": "Mohammad16",
+      "fold": 1,
+      "mse": 1.52266263961792,
+      "pearson": 0.684214174747467,
+      "r2": 0.46645230054855347,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 28424
+    },
+    {
+      "best_epoch": 7,
+      "constant_train_mean_baseline": {
+        "mse": 2.8872132301330566,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 0.997672438621521
+      },
+      "dataset": "Mohammad16",
+      "fold": 2,
+      "mse": 1.5785189867019653,
+      "pearson": 0.6740016341209412,
+      "r2": 0.45327234268188477,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 25191
+    },
+    {
+      "best_epoch": 8,
+      "constant_train_mean_baseline": {
+        "mse": 2.914280891418457,
+        "r2": -5.960464477539062e-07,
+        "train_mean": 0.9976083040237427
+      },
+      "dataset": "Mohammad16",
+      "fold": 3,
+      "mse": 1.4730720520019531,
+      "pearson": 0.7035099267959595,
+      "r2": 0.4945330023765564,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 27030
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 3.5151925086975098,
+        "r2": -1.6689300537109375e-06,
+        "train_mean": 0.9979868531227112
+      },
+      "dataset": "Mohammad16",
+      "fold": 4,
+      "mse": 1.8486347198486328,
+      "pearson": 0.6894029974937439,
+      "r2": 0.47410058975219727,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 24784
+    },
+    {
+      "best_epoch": 9,
+      "constant_train_mean_baseline": {
+        "mse": 3.0853936672210693,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 0.9978496432304382
+      },
+      "dataset": "Mohammad16",
+      "fold": 5,
+      "mse": 1.6329784393310547,
+      "pearson": 0.6914423704147339,
+      "r2": 0.47073888778686523,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 27297
+    },
+    {
+      "best_epoch": 11,
+      "constant_train_mean_baseline": {
+        "mse": 2.7188031673431396,
+        "r2": 0.0,
+        "train_mean": 0.9977471232414246
+      },
+      "dataset": "Mohammad16",
+      "fold": 6,
+      "mse": 1.5192692279815674,
+      "pearson": 0.6784631609916687,
+      "r2": 0.44119924306869507,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 25435
+    },
+    {
+      "best_epoch": 15,
+      "constant_train_mean_baseline": {
+        "mse": 2.9817922115325928,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 0.9978421330451965
+      },
+      "dataset": "Mohammad16",
+      "fold": 7,
+      "mse": 1.5594958066940308,
+      "pearson": 0.6931653618812561,
+      "r2": 0.4769936800003052,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 26537
+    },
+    {
+      "best_epoch": 9,
+      "constant_train_mean_baseline": {
+        "mse": 2.948906660079956,
+        "r2": -5.960464477539062e-07,
+        "train_mean": 0.9978753924369812
+      },
+      "dataset": "Mohammad16",
+      "fold": 8,
+      "mse": 1.537436604499817,
+      "pearson": 0.6968674063682556,
+      "r2": 0.4786415100097656,
+      "train_valid_test_sizes": {
+        "test": 118,
+        "train": 955,
+        "valid": 106
+      },
+      "valid_masked_codons": 28225
+    },
+    {
+      "best_epoch": 11,
+      "constant_train_mean_baseline": {
+        "mse": 3.248326063156128,
+        "r2": -6.318092346191406e-06,
+        "train_mean": 0.9972240924835205
+      },
+      "dataset": "Mohammad16",
+      "fold": 9,
+      "mse": 1.6601160764694214,
+      "pearson": 0.6994647979736328,
+      "r2": 0.4889286160469055,
+      "train_valid_test_sizes": {
+        "test": 117,
+        "train": 956,
+        "valid": 106
+      },
+      "valid_masked_codons": 27801
+    },
+    {
+      "best_epoch": 10,
+      "constant_train_mean_baseline": {
+        "mse": 1.000292181968689,
+        "r2": -5.960464477539062e-07,
+        "train_mean": 0.9919421076774597
+      },
+      "dataset": "Subtelny14",
+      "fold": 0,
+      "mse": 0.5963074564933777,
+      "pearson": 0.6384897232055664,
+      "r2": 0.40386641025543213,
+      "train_valid_test_sizes": {
+        "test": 393,
+        "train": 3176,
+        "valid": 352
+      },
+      "valid_masked_codons": 145103
+    },
+    {
+      "best_epoch": 10,
+      "constant_train_mean_baseline": {
+        "mse": 0.978803277015686,
+        "r2": -1.1920928955078125e-07,
+        "train_mean": 0.9919599890708923
+      },
+      "dataset": "Subtelny14",
+      "fold": 1,
+      "mse": 0.5973056554794312,
+      "pearson": 0.6254166960716248,
+      "r2": 0.3897591233253479,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 156998
+    },
+    {
+      "best_epoch": 9,
+      "constant_train_mean_baseline": {
+        "mse": 0.9523929357528687,
+        "r2": -3.5762786865234375e-07,
+        "train_mean": 0.9920454621315002
+      },
+      "dataset": "Subtelny14",
+      "fold": 2,
+      "mse": 0.5788457989692688,
+      "pearson": 0.6278144121170044,
+      "r2": 0.3922193646430969,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 153181
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.9747224450111389,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 0.991935133934021
+      },
+      "dataset": "Subtelny14",
+      "fold": 3,
+      "mse": 0.5728908181190491,
+      "pearson": 0.6425588726997375,
+      "r2": 0.41225218772888184,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 157505
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.9838165044784546,
+        "r2": -1.3113021850585938e-06,
+        "train_mean": 0.9921137094497681
+      },
+      "dataset": "Subtelny14",
+      "fold": 4,
+      "mse": 0.5806349515914917,
+      "pearson": 0.6404232978820801,
+      "r2": 0.40981292724609375,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 151913
+    },
+    {
+      "best_epoch": 10,
+      "constant_train_mean_baseline": {
+        "mse": 1.0085594654083252,
+        "r2": -1.1920928955078125e-07,
+        "train_mean": 0.9920291304588318
+      },
+      "dataset": "Subtelny14",
+      "fold": 5,
+      "mse": 0.6328586935997009,
+      "pearson": 0.6112730503082275,
+      "r2": 0.37251222133636475,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 155123
+    },
+    {
+      "best_epoch": 9,
+      "constant_train_mean_baseline": {
+        "mse": 1.015099048614502,
+        "r2": -4.76837158203125e-07,
+        "train_mean": 0.9920639395713806
+      },
+      "dataset": "Subtelny14",
+      "fold": 6,
+      "mse": 0.6279714107513428,
+      "pearson": 0.6175728440284729,
+      "r2": 0.3813689947128296,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 149468
+    },
+    {
+      "best_epoch": 10,
+      "constant_train_mean_baseline": {
+        "mse": 0.9596517086029053,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 0.9919600486755371
+      },
+      "dataset": "Subtelny14",
+      "fold": 7,
+      "mse": 0.5751767158508301,
+      "pearson": 0.6373876333236694,
+      "r2": 0.40064001083374023,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 154239
+    },
+    {
+      "best_epoch": 11,
+      "constant_train_mean_baseline": {
+        "mse": 0.9684200286865234,
+        "r2": -1.7881393432617188e-06,
+        "train_mean": 0.9918408393859863
+      },
+      "dataset": "Subtelny14",
+      "fold": 8,
+      "mse": 0.5721147060394287,
+      "pearson": 0.6414364576339722,
+      "r2": 0.40922772884368896,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 151158
+    },
+    {
+      "best_epoch": 10,
+      "constant_train_mean_baseline": {
+        "mse": 0.9915376901626587,
+        "r2": 0.0,
+        "train_mean": 0.9919671416282654
+      },
+      "dataset": "Subtelny14",
+      "fold": 9,
+      "mse": 0.5920940041542053,
+      "pearson": 0.6361066102981567,
+      "r2": 0.40285271406173706,
+      "train_valid_test_sizes": {
+        "test": 392,
+        "train": 3177,
+        "valid": 352
+      },
+      "valid_masked_codons": 141820
+    },
+    {
+      "best_epoch": 16,
+      "constant_train_mean_baseline": {
+        "mse": 0.8151386380195618,
+        "r2": -3.4570693969726562e-06,
+        "train_mean": 1.001563549041748
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 0,
+      "mse": 0.4132770299911499,
+      "pearson": 0.7038984894752502,
+      "r2": 0.4929961562156677,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 34505
+    },
+    {
+      "best_epoch": 16,
+      "constant_train_mean_baseline": {
+        "mse": 0.8091704845428467,
+        "r2": -2.384185791015625e-07,
+        "train_mean": 1.001561164855957
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 1,
+      "mse": 0.4324875771999359,
+      "pearson": 0.6845223307609558,
+      "r2": 0.46551722288131714,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 36630
+    },
+    {
+      "best_epoch": 14,
+      "constant_train_mean_baseline": {
+        "mse": 0.7624092102050781,
+        "r2": -4.0531158447265625e-06,
+        "train_mean": 1.0018054246902466
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 2,
+      "mse": 0.4102665185928345,
+      "pearson": 0.6858279705047607,
+      "r2": 0.46187931299209595,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 32385
+    },
+    {
+      "best_epoch": 14,
+      "constant_train_mean_baseline": {
+        "mse": 0.8075199127197266,
+        "r2": -7.867813110351562e-06,
+        "train_mean": 1.0013427734375
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 3,
+      "mse": 0.4386647045612335,
+      "pearson": 0.6767793893814087,
+      "r2": 0.4567711353302002,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 34518
+    },
+    {
+      "best_epoch": 16,
+      "constant_train_mean_baseline": {
+        "mse": 0.8196751475334167,
+        "r2": -1.0609626770019531e-05,
+        "train_mean": 1.0013084411621094
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 4,
+      "mse": 0.44869866967201233,
+      "pearson": 0.6780005097389221,
+      "r2": 0.45258384943008423,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 33066
+    },
+    {
+      "best_epoch": 15,
+      "constant_train_mean_baseline": {
+        "mse": 0.7992043495178223,
+        "r2": -6.079673767089844e-06,
+        "train_mean": 1.0018774271011353
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 5,
+      "mse": 0.43201395869255066,
+      "pearson": 0.6786154508590698,
+      "r2": 0.4594416618347168,
+      "train_valid_test_sizes": {
+        "test": 143,
+        "train": 1155,
+        "valid": 128
+      },
+      "valid_masked_codons": 36334
+    },
+    {
+      "best_epoch": 15,
+      "constant_train_mean_baseline": {
+        "mse": 0.8377219438552856,
+        "r2": -1.9073486328125e-06,
+        "train_mean": 1.0014913082122803
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 6,
+      "mse": 0.4594824016094208,
+      "pearson": 0.6719653606414795,
+      "r2": 0.4515085816383362,
+      "train_valid_test_sizes": {
+        "test": 142,
+        "train": 1156,
+        "valid": 128
+      },
+      "valid_masked_codons": 32050
+    },
+    {
+      "best_epoch": 14,
+      "constant_train_mean_baseline": {
+        "mse": 0.7825155854225159,
+        "r2": -9.5367431640625e-07,
+        "train_mean": 1.0017120838165283
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 7,
+      "mse": 0.4168078303337097,
+      "pearson": 0.6839293837547302,
+      "r2": 0.4673483371734619,
+      "train_valid_test_sizes": {
+        "test": 142,
+        "train": 1156,
+        "valid": 128
+      },
+      "valid_masked_codons": 34074
+    },
+    {
+      "best_epoch": 13,
+      "constant_train_mean_baseline": {
+        "mse": 0.8018592596054077,
+        "r2": -1.4424324035644531e-05,
+        "train_mean": 1.0020233392715454
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 8,
+      "mse": 0.43599116802215576,
+      "pearson": 0.6790168881416321,
+      "r2": 0.4562668800354004,
+      "train_valid_test_sizes": {
+        "test": 142,
+        "train": 1156,
+        "valid": 128
+      },
+      "valid_masked_codons": 36776
+    },
+    {
+      "best_epoch": 13,
+      "constant_train_mean_baseline": {
+        "mse": 0.8081386089324951,
+        "r2": -3.814697265625e-06,
+        "train_mean": 1.0014395713806152
+      },
+      "dataset": "Mohammad19-1",
+      "fold": 9,
+      "mse": 0.44315305352211,
+      "pearson": 0.67819744348526,
+      "r2": 0.4516351819038391,
+      "train_valid_test_sizes": {
+        "test": 142,
+        "train": 1156,
+        "valid": 128
+      },
+      "valid_masked_codons": 31859
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.8026853203773499,
+        "r2": -3.4570693969726562e-06,
+        "train_mean": 1.0004560947418213
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 0,
+      "mse": 0.4045824110507965,
+      "pearson": 0.7043943405151367,
+      "r2": 0.49596214294433594,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 38643
+    },
+    {
+      "best_epoch": 13,
+      "constant_train_mean_baseline": {
+        "mse": 0.8462810516357422,
+        "r2": -2.1457672119140625e-06,
+        "train_mean": 1.0005598068237305
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 1,
+      "mse": 0.4192868173122406,
+      "pearson": 0.7121145725250244,
+      "r2": 0.5045526027679443,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 40031
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.8890897631645203,
+        "r2": -7.987022399902344e-06,
+        "train_mean": 1.0007086992263794
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 2,
+      "mse": 0.48223963379859924,
+      "pearson": 0.6766080260276794,
+      "r2": 0.45759862661361694,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 40135
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.8075404167175293,
+        "r2": -9.5367431640625e-07,
+        "train_mean": 1.000315546989441
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 3,
+      "mse": 0.3965093791484833,
+      "pearson": 0.7137722969055176,
+      "r2": 0.5089908242225647,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 38422
+    },
+    {
+      "best_epoch": 11,
+      "constant_train_mean_baseline": {
+        "mse": 0.8685703277587891,
+        "r2": -7.152557373046875e-07,
+        "train_mean": 1.0003254413604736
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 4,
+      "mse": 0.48116835951805115,
+      "pearson": 0.6685788035392761,
+      "r2": 0.4460222125053406,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 40109
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 0.8318573832511902,
+        "r2": -2.1457672119140625e-06,
+        "train_mean": 1.0002527236938477
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 5,
+      "mse": 0.38896307349205017,
+      "pearson": 0.7306227684020996,
+      "r2": 0.5324151515960693,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 41157
+    },
+    {
+      "best_epoch": 13,
+      "constant_train_mean_baseline": {
+        "mse": 0.8173477053642273,
+        "r2": -5.960464477539062e-07,
+        "train_mean": 1.0003403425216675
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 6,
+      "mse": 0.4090390205383301,
+      "pearson": 0.7073851227760315,
+      "r2": 0.4995529055595398,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 35472
+    },
+    {
+      "best_epoch": 13,
+      "constant_train_mean_baseline": {
+        "mse": 0.810536801815033,
+        "r2": -6.079673767089844e-06,
+        "train_mean": 1.0006718635559082
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 7,
+      "mse": 0.4207078814506531,
+      "pearson": 0.6937090754508972,
+      "r2": 0.4809483289718628,
+      "train_valid_test_sizes": {
+        "test": 160,
+        "train": 1295,
+        "valid": 143
+      },
+      "valid_masked_codons": 41661
+    },
+    {
+      "best_epoch": 12,
+      "constant_train_mean_baseline": {
+        "mse": 1.0084524154663086,
+        "r2": -4.5299530029296875e-06,
+        "train_mean": 1.0001875162124634
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 8,
+      "mse": 0.5763300061225891,
+      "pearson": 0.654653012752533,
+      "r2": 0.42849797010421753,
+      "train_valid_test_sizes": {
+        "test": 159,
+        "train": 1296,
+        "valid": 143
+      },
+      "valid_masked_codons": 38011
+    },
+    {
+      "best_epoch": 15,
+      "constant_train_mean_baseline": {
+        "mse": 0.8833937048912048,
+        "r2": -1.1920928955078125e-07,
+        "train_mean": 1.0003691911697388
+      },
+      "dataset": "Mohammad19-2",
+      "fold": 9,
+      "mse": 0.4498051404953003,
+      "pearson": 0.7007429003715515,
+      "r2": 0.49082136154174805,
+      "train_valid_test_sizes": {
+        "test": 159,
+        "train": 1296,
+        "valid": 143
+      },
+      "valid_masked_codons": 40226
+    }
+  ],
+  "folds_per_dataset": 10,
+  "functional_ood": false,
+  "homology_aware_split": false,
+  "independent_forward_passes": 80,
+  "independent_two_forward_passes_per_fold": true,
+  "macro_average_of_dataset_fold_means_descriptive_only": {
+    "mse_mean": 0.7650093331933022,
+    "mse_std": 0.04766400774628733,
+    "pearson_mean": 0.6752153530716896,
+    "pearson_std": 0.01235732893851771,
+    "r2_mean": 0.45411396920680996,
+    "r2_std": 0.01738890388848766
+  },
+  "official_random_gene_cv_complete_all_four": true,
+  "preflight_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_loader_preflight_v1.json",
+  "preflight_report_sha256": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+  "protein_ood": false,
+  "publication_metrics_reproduced": false,
+  "rk03_clean_qc_count_not_interchanged": 8109,
+  "schema_version": "a8-rk05-ribomimo-full-four-matrix-summary-v1",
+  "scope": "Four author-processed matrices completed the official random-gene 1x10-fold/max100/early-stop5 protocol twice with independent inference and finalization. This is not OOD, publication-metric reproduction, unified-cost ranking or SOTA.",
+  "sota_claim": false,
+  "source_commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+  "status": "PASS_COMPLETE_FOUR_MATRIX_OFFICIAL_CV",
+  "study_ood": false,
+  "total_official_loader_eligible_genes": 8124,
+  "total_raw_records": 15669,
+  "total_valid_masked_test_codons": 2520180,
+  "unified_cost_baseline_matrix": false
+}

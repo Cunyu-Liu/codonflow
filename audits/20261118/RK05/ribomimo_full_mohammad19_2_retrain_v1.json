@@ -1,0 +1,391 @@
+{
+  "schema_version": "a8-rk05-ribomimo-full-official-v1",
+  "task": "RK-05",
+  "status": "PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD19-2",
+  "source": {
+    "archive_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip",
+    "archive_sha256": "0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162",
+    "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "file_sha256": {
+      "getSaliency.py": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8",
+      "model.py": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7",
+      "runRiboMIMO.py": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490",
+      "utils.py": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    "path": "/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "repository": "https://github.com/tiantz17/RiboMIMO"
+  },
+  "matrix": {
+    "official_loader_eligible_records": 1598,
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad19-2.txt",
+    "raw_records": 4147,
+    "sha256": "e11f552ef958a381d1aec9a6d12f8e850d050fe001c31243491e08865b65cef1",
+    "runtime_copy": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/data/Mohammad19-2.txt",
+    "runtime_copy_sha256": "e11f552ef958a381d1aec9a6d12f8e850d050fe001c31243491e08865b65cef1"
+  },
+  "loader_preflight": {
+    "observed_warnings": "NumPy mean-of-empty-slice and invalid-scalar-divide warnings occurred while the official loader computed means for raw records with no count >0.5; such records have zero coverage and do not enter the official >0.6 eligible set.",
+    "report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_loader_preflight_v1.json",
+    "sha256": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+    "status": "PASS"
+  },
+  "protocol": {
+    "RNN_depth": 2,
+    "RNN_hidden_dims": 256,
+    "RNN_model": "RiboMIMO",
+    "add_aa": true,
+    "add_nt": true,
+    "alpha": 3.0,
+    "batch_size": 16,
+    "early_stop": 5,
+    "gpu": "0",
+    "info": "train",
+    "learning_rate": 0.001,
+    "max_epoch": 100,
+    "num_fold": 10,
+    "num_repeat": 1,
+    "seed": 1234,
+    "sim": -1.0,
+    "threshold": "0,2",
+    "use_median": false,
+    "weight_decay": 1e-06,
+    "protocol_path": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_protocol_v1.json",
+    "protocol_sha256": "907ba6b6d284c120167253126936f5c5c147271efed0e9e8a70a8fdc35521afb"
+  },
+  "execution": {
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "device": "cuda:0",
+    "published_prediction_pickle_used": false,
+    "python": "/root/miniconda3/envs/llr_env/bin/python",
+    "selection_metric": "validation R2; test values follow the official best-validation checkpoint logic",
+    "timeout_seconds": null,
+    "torch_num_threads": 1,
+    "wall_seconds": 2997.7793737999164,
+    "returncode": 0
+  },
+  "compatibility": {
+    "algorithm_changed": false,
+    "description": "Five NumPy ragged-array dtype replacements, one numeric-padding dtype replacement, and one pack_padded_sequence lengths.cpu() compatibility replacement required by modern PyTorch; a separate driver only fixes seeds/determinism and records the environment.",
+    "replacement_count": 7,
+    "replacements_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/compatibility_replacements.json",
+    "diff_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/official_to_full.diff",
+    "diff_sha256": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+  },
+  "official_result": {
+    "result_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036",
+    "config": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/config",
+    "logging_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/logging.log",
+    "aggregate": {
+      "r2_mean": 0.484536,
+      "r2_std": 0.030081,
+      "mse_mean": 0.442863,
+      "mse_std": 0.054396,
+      "pearson_mean": 0.696258,
+      "pearson_std": 0.021998,
+      "aggregation": "mean and population std across fold-level best-validation-checkpoint test scores"
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "best_valid_r2": 0.513231,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.495962,
+          "mse": 0.404582,
+          "pearson": 0.704394,
+          "auc": 0.83919,
+          "aupr": 0.621362,
+          "classification_loss": 0.520811
+        }
+      },
+      {
+        "fold": 1,
+        "best_valid_r2": 0.482603,
+        "epochs_logged": 18,
+        "best_epoch": 13,
+        "test_at_best_validation": {
+          "r2": 0.504553,
+          "mse": 0.419287,
+          "pearson": 0.712115,
+          "auc": 0.851261,
+          "aupr": 0.64754,
+          "classification_loss": 0.522444
+        }
+      },
+      {
+        "fold": 2,
+        "best_valid_r2": 0.490214,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.457599,
+          "mse": 0.48224,
+          "pearson": 0.676608,
+          "auc": 0.857779,
+          "aupr": 0.64268,
+          "classification_loss": 0.519368
+        }
+      },
+      {
+        "fold": 3,
+        "best_valid_r2": 0.487785,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.508991,
+          "mse": 0.396509,
+          "pearson": 0.713772,
+          "auc": 0.85226,
+          "aupr": 0.637787,
+          "classification_loss": 0.519745
+        }
+      },
+      {
+        "fold": 4,
+        "best_valid_r2": 0.487474,
+        "epochs_logged": 16,
+        "best_epoch": 11,
+        "test_at_best_validation": {
+          "r2": 0.446022,
+          "mse": 0.481168,
+          "pearson": 0.668579,
+          "auc": 0.851651,
+          "aupr": 0.620119,
+          "classification_loss": 0.528169
+        }
+      },
+      {
+        "fold": 5,
+        "best_valid_r2": 0.488291,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.532415,
+          "mse": 0.388963,
+          "pearson": 0.730623,
+          "auc": 0.855857,
+          "aupr": 0.647883,
+          "classification_loss": 0.503577
+        }
+      },
+      {
+        "fold": 6,
+        "best_valid_r2": 0.493747,
+        "epochs_logged": 18,
+        "best_epoch": 13,
+        "test_at_best_validation": {
+          "r2": 0.499553,
+          "mse": 0.409039,
+          "pearson": 0.707385,
+          "auc": 0.852856,
+          "aupr": 0.630761,
+          "classification_loss": 0.529177
+        }
+      },
+      {
+        "fold": 7,
+        "best_valid_r2": 0.489792,
+        "epochs_logged": 18,
+        "best_epoch": 13,
+        "test_at_best_validation": {
+          "r2": 0.480948,
+          "mse": 0.420708,
+          "pearson": 0.693709,
+          "auc": 0.852767,
+          "aupr": 0.632795,
+          "classification_loss": 0.531028
+        }
+      },
+      {
+        "fold": 8,
+        "best_valid_r2": 0.488047,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.428498,
+          "mse": 0.57633,
+          "pearson": 0.654653,
+          "auc": 0.865941,
+          "aupr": 0.651011,
+          "classification_loss": 0.516105
+        }
+      },
+      {
+        "fold": 9,
+        "best_valid_r2": 0.486124,
+        "epochs_logged": 20,
+        "best_epoch": 15,
+        "test_at_best_validation": {
+          "r2": 0.490821,
+          "mse": 0.449805,
+          "pearson": 0.700743,
+          "auc": 0.871065,
+          "aupr": 0.651226,
+          "classification_loss": 0.512486
+        }
+      }
+    ],
+    "recomputed_from_fold_logs": {
+      "r2_mean": 0.4845362,
+      "r2_std": 0.030081144089944455,
+      "mse_mean": 0.4428631,
+      "mse_std": 0.05439625507413171,
+      "pearson_mean": 0.6962581,
+      "pearson_std": 0.02199768325733416
+    },
+    "rounding_deltas": {
+      "r2_mean": 1.9999999995023998e-07,
+      "r2_std": 1.4408994445519463e-07,
+      "mse_mean": 1.0000000000287557e-07,
+      "mse_std": 2.55074131712274e-07,
+      "pearson_mean": 9.999999994736442e-08,
+      "pearson_std": 3.16742665838754e-07
+    },
+    "checkpoints": {
+      "0": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_0.pth",
+        "bytes": 7446252,
+        "sha256": "b1739d5fdbc98081cdd136828ba157d58b86f1e9d2c64bdee50b9732bb3f0319"
+      },
+      "1": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_1.pth",
+        "bytes": 7446252,
+        "sha256": "d0987b2267040ab2bf457c79f00645d15d729555f67f7ed0a886bf0ee78a00b7"
+      },
+      "2": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_2.pth",
+        "bytes": 7446252,
+        "sha256": "fd34323d6af30602e95e4a11e936c05326a04c3b24f5b6f2e57936d825679c79"
+      },
+      "3": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_3.pth",
+        "bytes": 7446252,
+        "sha256": "f898e43f93a69acd4c0a707edd111e096a6157f2b27d0ac6f3168480e1f3a088"
+      },
+      "4": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_4.pth",
+        "bytes": 7446252,
+        "sha256": "b9a05993b8e2471bbed4742282ff5d6a5d1025e66e9da5e1e925412ae830435b"
+      },
+      "5": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_5.pth",
+        "bytes": 7446252,
+        "sha256": "8eb45fcb69eacfa8e7c49af08c7d63f2d72399cee3a93acc9a058043f414473c"
+      },
+      "6": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_6.pth",
+        "bytes": 7446252,
+        "sha256": "8a2512753e34ad7fb23358b50172b5b87c471a4ab1e1d4f1a2651c1e97ce1e28"
+      },
+      "7": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_7.pth",
+        "bytes": 7446252,
+        "sha256": "72b3eede420c1ca3df2934cf7e10a5e015b6b67c34cd8e8d82d4c50062e81bdd"
+      },
+      "8": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_8.pth",
+        "bytes": 7446252,
+        "sha256": "0d1ff8076cb9022b0f4fcc12c3bc2b797ec4aaea59b72787ee9cd6bcb49422f1"
+      },
+      "9": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/best_model_0_9.pth",
+        "bytes": 7446252,
+        "sha256": "9b86028bd0e22075c2fb2dbeda5a1377a6d9f613fb0e057211848fd555982f2a"
+      }
+    },
+    "checkpoint_parameter_tensors": 22,
+    "checkpoint_parameter_count": 1860356
+  },
+  "environment": {
+    "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "runtime_environment_artifact": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/src/runtime_environment.json",
+    "cuda_available": true,
+    "cuda_device_count_after_official_args": 1,
+    "cuda_visible_devices_after_official_args": "0",
+    "torch_num_threads": 1,
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "gpu_names": [
+      "NVIDIA GeForce RTX 5090"
+    ]
+  },
+  "artifacts": {
+    "ribomimo_full_mohammad19_2_protocol_v1.json": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_2_protocol_v1.json",
+      "sha256": "907ba6b6d284c120167253126936f5c5c147271efed0e9e8a70a8fdc35521afb"
+    },
+    "driver.py": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/driver.py",
+      "sha256": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    "Mohammad19-2.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/data/Mohammad19-2.txt",
+      "sha256": "e11f552ef958a381d1aec9a6d12f8e850d050fe001c31243491e08865b65cef1"
+    },
+    "official_to_full.diff": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/official_to_full.diff",
+      "sha256": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+    },
+    "compatibility_replacements.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/compatibility_replacements.json",
+      "sha256": "8a416108cee22e37629f6ddb497aa5b3aad3e6c010843694abce9db6f4c7cd4b"
+    },
+    "training.command.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/training.command.json",
+      "sha256": "9c8b2df3b3163d3063a01bd6ce3c41775bbbd2571d6c07c2da693cc4cb9b8878"
+    },
+    "training.console.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/training.console.log",
+      "sha256": "38d9e2e62c6a1b9f5662869b39350bbe9891d49dcb968c8b30f4e27b8cd03976"
+    },
+    "training.returncode.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/training.returncode.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "official_result_logging.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/logging.log",
+      "sha256": "612820b49c8262095dd6261eabc62ce9b8c4d8718e76f330488c01d02559e182"
+    },
+    "config": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/results/RiboMIMO_Mohammad19-2_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_165036/config",
+      "sha256": "b345b2a6fe53085a7927db4b3eb7cf3f375c011231d6a859c914065a0b0ffa38"
+    },
+    "runtime_environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/src/runtime_environment.json",
+      "sha256": "12fb0269b7913ebb3e53d98930c1b875c22885a8f95d3bcbad05cbd8a1796d8d"
+    },
+    "environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/environment.json",
+      "sha256": "7a6d9a728db40d2ce721f244002300a984b33a98b242567bb593f056e448d14c"
+    },
+    "pip_freeze.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_2_retrain_v1/pip_freeze.txt",
+      "sha256": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    }
+  },
+  "published_prediction_pickles_used": false,
+  "official_default_1x10fold_max100_protocol_executed": true,
+  "all_four_datasets_reproduced": false,
+  "homology_aware_split": false,
+  "protein_ood": false,
+  "study_ood": false,
+  "functional_ood": false,
+  "main_baseline_comparison": false,
+  "publication_metrics_reproduced": false,
+  "sota_claim": false,
+  "limitations": [
+    "This is one complete author-processed matrix under the official random-gene 1x10-fold/max-100-epoch/early-stop-5 protocol; folds may stop before epoch 100.",
+    "Modern NumPy compatibility patches and deterministic CUDA execution do not reproduce the original Python/CUDA environment or prove publication-number identity.",
+    "Official random gene CV is not homology-, protein-, study- or functional-OOD and is not a unified-cost main baseline comparison.",
+    "Author-provided prediction pickles were not used as newly trained outputs; publication metric identity remains separately unverified."
+  ]
+}

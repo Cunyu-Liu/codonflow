@@ -1,0 +1,215 @@
+{
+  "analytic_oracle": {
+    "max_abs_backward_normalization_error": 1.1102230246251565e-15,
+    "max_abs_forward_target_error": 2.6020852139652106e-18,
+    "max_abs_residual": 0.0
+  },
+  "backward_logits_bitwise_equal": true,
+  "biological_reward_measured": false,
+  "checks": [
+    {
+      "detail": "PASS",
+      "name": "production_pass",
+      "pass": true
+    },
+    {
+      "detail": "PASS",
+      "name": "retrain_pass",
+      "pass": true
+    },
+    {
+      "detail": "PASS",
+      "name": "independent_pass",
+      "pass": true
+    },
+    {
+      "detail": "38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434",
+      "name": "protocol_identity",
+      "pass": true
+    },
+    {
+      "detail": "9c098fd4380c48daaa696ac1d4d2bdcbad1b521a41fdafc4a43330348ff905dc",
+      "name": "training_implementation_identity",
+      "pass": true
+    },
+    {
+      "detail": "644f568116a3fc69a93fbd06de0b3130ad7d07c8c5f216ad56a3227062c52e13",
+      "name": "independent_implementation_identity",
+      "pass": true
+    },
+    {
+      "detail": "48b2255dcdcbcc9fca2b93a0033d7e209f55afe63bf1bbb87389ca6c02f22d80",
+      "name": "production_checkpoint_hash",
+      "pass": true
+    },
+    {
+      "detail": "48b2255dcdcbcc9fca2b93a0033d7e209f55afe63bf1bbb87389ca6c02f22d80",
+      "name": "retrain_checkpoint_hash",
+      "pass": true
+    },
+    {
+      "detail": "64af5c02e05932a37611c4863c7b67ef97bfd88a1cb27d893ba0ce766a20c76f",
+      "name": "independent_production_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "production": [
+          0.7,
+          -0.25,
+          0.45000000000000007,
+          -0.14999999999999988
+        ],
+        "retrain": [
+          0.7,
+          -0.25,
+          0.45000000000000007,
+          -0.14999999999999988
+        ]
+      },
+      "name": "theta_bitwise_equal",
+      "pass": true
+    },
+    {
+      "detail": {
+        "shape": [
+          3721,
+          121
+        ]
+      },
+      "name": "backward_bitwise_equal",
+      "pass": true
+    },
+    {
+      "detail": {
+        "production_rows": 42,
+        "retrain_rows": 42
+      },
+      "name": "history_identical",
+      "pass": true
+    },
+    {
+      "detail": {
+        "backward_normalization_error": 4.440892098500626e-16,
+        "forward_endpoint_mass_error": 4.440892098500626e-16,
+        "forward_target_kl": -4.373238853807092e-17,
+        "loss": 1.6066016304815333e-29,
+        "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_path_residual": 2.4868995751603507e-14,
+        "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+      },
+      "name": "production_independent_metrics",
+      "pass": true
+    },
+    {
+      "detail": {
+        "backward_normalization_error": 4.440892098500626e-16,
+        "forward_endpoint_mass_error": 4.440892098500626e-16,
+        "forward_target_kl": -4.373238853807092e-17,
+        "loss": 1.6066016304815333e-29,
+        "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_path_residual": 2.4868995751603507e-14,
+        "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+      },
+      "name": "retrain_report_metrics",
+      "pass": true
+    },
+    {
+      "detail": {
+        "backward_normalization_error": 4.440892098500626e-16,
+        "forward_endpoint_mass_error": 4.440892098500626e-16,
+        "forward_target_kl": -4.373238853807092e-17,
+        "loss": 1.6066016304815333e-29,
+        "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_path_residual": 2.4868995751603507e-14,
+        "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+      },
+      "name": "retrain_independent_metrics",
+      "pass": true
+    },
+    {
+      "detail": {
+        "backward_normalization_error": 4.440892098500626e-16,
+        "forward_endpoint_mass_error": 4.440892098500626e-16,
+        "forward_target_kl": -4.373238853807092e-17,
+        "loss": 1.6066016304815333e-29,
+        "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_path_residual": 2.4868995751603507e-14,
+        "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+      },
+      "name": "retrain_acceptance",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_backward_normalization_error": 1.1102230246251565e-15,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_residual": 0.0
+      },
+      "name": "analytic_oracle",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK10/exact_tb_unit_tests.console.log",
+      "name": "unit_tests",
+      "pass": true
+    },
+    {
+      "detail": {
+        "minimum_endpoint_paths": 2,
+        "paths": 14641
+      },
+      "name": "geometry_and_paths",
+      "pass": true
+    },
+    {
+      "detail": "small_state_exact_conditional_trajectory_balance_optimization_only",
+      "name": "mathematical_scope_only",
+      "pass": true
+    }
+  ],
+  "checks_passed": 20,
+  "checks_total": 20,
+  "expensive_generation_authorized": false,
+  "full_neural_model_trained": false,
+  "functional_or_generation_performance_evaluated": false,
+  "independent_report": "/home/codonflow-a8-rk/audits/20261118/RK10/exact_tb_independent_v1.json",
+  "independent_report_sha256": "b65b299faff58dbd4214b858c0aafc76da75ab915b88fa9eca6ff31d25e8628a",
+  "production_checkpoint_sha256": "48b2255dcdcbcc9fca2b93a0033d7e209f55afe63bf1bbb87389ca6c02f22d80",
+  "production_metrics": {
+    "backward_normalization_error": 4.440892098500626e-16,
+    "forward_endpoint_mass_error": 4.440892098500626e-16,
+    "forward_target_kl": -4.373238853807092e-17,
+    "loss": 1.6066016304815333e-29,
+    "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+    "max_abs_forward_target_error": 2.6020852139652106e-18,
+    "max_abs_path_residual": 2.4868995751603507e-14,
+    "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+  },
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK10/exact_tb_v1.json",
+  "production_report_sha256": "64af5c02e05932a37611c4863c7b67ef97bfd88a1cb27d893ba0ce766a20c76f",
+  "protocol_sha256": "38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434",
+  "retrain_checkpoint_sha256": "48b2255dcdcbcc9fca2b93a0033d7e209f55afe63bf1bbb87389ca6c02f22d80",
+  "retrain_metrics": {
+    "backward_normalization_error": 4.440892098500626e-16,
+    "forward_endpoint_mass_error": 4.440892098500626e-16,
+    "forward_target_kl": -4.373238853807092e-17,
+    "loss": 1.6066016304815333e-29,
+    "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+    "max_abs_forward_target_error": 2.6020852139652106e-18,
+    "max_abs_path_residual": 2.4868995751603507e-14,
+    "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+  },
+  "retrain_report": "/home/codonflow-a8-rk/audits/20261118/RK10/exact_tb_retrain_v1.json",
+  "retrain_report_sha256": "44b50177f0693c562a593b844abdf8313915991a9c5d4407ccc91a6f12207390",
+  "rk_g1_gate_modified": false,
+  "schema_version": "a8-rk10-exact-trajectory-balance-finalization-v1",
+  "scope": "small_state_exact_conditional_trajectory_balance_optimization_only",
+  "sota_claimed": false,
+  "status": "PASS_COMPLETE_WITH_INDEPENDENT_RETRAIN_AND_ANALYTIC_ORACLE",
+  "theta_bitwise_equal": true
+}

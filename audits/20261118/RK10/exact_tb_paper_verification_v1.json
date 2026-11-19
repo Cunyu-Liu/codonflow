@@ -1,0 +1,186 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "all_pass": true,
+  "audit_sha256": "3d043632834108ceccb47ed3ab48fd928233beae18a55e49ca7c7988621d8569",
+  "checks": [
+    {
+      "detail": "snapshot matches update input",
+      "id": "v15_paper_gate",
+      "pass": true
+    },
+    {
+      "detail": "v15 audit matched",
+      "id": "v15_audit_gate",
+      "pass": true
+    },
+    {
+      "detail": "v16 paper hash agrees",
+      "id": "paper_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "v16 audit hash matched",
+      "id": "audit_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "A7 unchanged",
+      "id": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "11/11",
+      "id": "production_complete",
+      "pass": true
+    },
+    {
+      "detail": "11/11",
+      "id": "retrain_complete",
+      "pass": true
+    },
+    {
+      "detail": "25/25",
+      "id": "independent_complete",
+      "pass": true
+    },
+    {
+      "detail": "20/20",
+      "id": "finalization_complete",
+      "pass": true
+    },
+    {
+      "detail": "one exact Section 6.12",
+      "id": "single_rk10_section",
+      "pass": true
+    },
+    {
+      "detail": "removing only authorized section and evidence restores v15",
+      "id": "exact_paper_delta",
+      "pass": true
+    },
+    {
+      "detail": {
+        "actions_per_state": 121,
+        "codons": 61,
+        "paths": 14641,
+        "states": 3721
+      },
+      "id": "geometry_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "backward_normalization_error": 4.440892098500626e-16,
+        "forward_endpoint_mass_error": 4.440892098500626e-16,
+        "forward_target_kl": -4.373238853807092e-17,
+        "loss": 1.6066016304815333e-29,
+        "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_path_residual": 2.4868995751603507e-14,
+        "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+      },
+      "id": "metrics_exact",
+      "pass": true
+    },
+    {
+      "detail": 1.1102230246251565e-16,
+      "id": "weight_error_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_backward_normalization_error": 1.1102230246251565e-15,
+        "max_abs_forward_target_error": 2.6020852139652106e-18,
+        "max_abs_residual": 0.0
+      },
+      "id": "analytic_oracle_exact",
+      "pass": true
+    },
+    {
+      "detail": "both tensors bitwise equal",
+      "id": "bitwise_retrain_visible",
+      "pass": true
+    },
+    {
+      "detail": "all counts visible",
+      "id": "verification_counts_visible",
+      "pass": true
+    },
+    {
+      "detail": "initial failure retained",
+      "id": "failure_history_visible",
+      "pass": true
+    },
+    {
+      "detail": "scientific boundary visible",
+      "id": "bounded_scope_visible",
+      "pass": true
+    },
+    {
+      "detail": "seven RK10 source hashes",
+      "id": "evidence_hashes",
+      "pass": true
+    },
+    {
+      "detail": "all evidence hashes in paper",
+      "id": "evidence_rows",
+      "pass": true
+    },
+    {
+      "detail": "schema advanced to v16",
+      "id": "audit_schema",
+      "pass": true
+    },
+    {
+      "detail": "exactly two records appended",
+      "id": "generated_sections_delta",
+      "pass": true
+    },
+    {
+      "detail": "pre-v16 source hashes unchanged",
+      "id": "old_source_hashes_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pre-v16 source paths unchanged",
+      "id": "old_source_paths_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pre-v16 scientific boundaries unchanged",
+      "id": "old_scientific_scope_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pending work retained",
+      "id": "pending_preserved",
+      "pass": true
+    },
+    {
+      "detail": "v15 snapshot verified",
+      "id": "snapshot_integrity",
+      "pass": true
+    },
+    {
+      "detail": "working manuscript only",
+      "id": "non_submittable_retained",
+      "pass": true
+    },
+    {
+      "detail": "no gate or SOTA change",
+      "id": "authorization_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "final unit-test log present",
+      "id": "unit_tests_finalized",
+      "pass": true
+    }
+  ],
+  "checks_passed": 31,
+  "checks_total": 31,
+  "paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625",
+  "paper_update_module_imported": false,
+  "schema": "a8-rk10-exact-tb-paper-verification-v16",
+  "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE"
+}

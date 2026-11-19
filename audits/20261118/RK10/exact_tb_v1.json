@@ -1,0 +1,382 @@
+{
+  "biological_reward_measured": false,
+  "checkpoint": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk10/exact_trajectory_balance_v1/run_v1/final_checkpoint.npz",
+  "checkpoint_sha256": "48b2255dcdcbcc9fca2b93a0033d7e209f55afe63bf1bbb87389ca6c02f22d80",
+  "checks": [
+    {
+      "detail": {
+        "actions": 121,
+        "paths": 14641,
+        "states": 3721
+      },
+      "name": "frozen_dimensions",
+      "pass": true
+    },
+    {
+      "detail": {
+        "history_rows": 42,
+        "steps": 4000
+      },
+      "name": "fixed_step_optimization",
+      "pass": true
+    },
+    {
+      "detail": {
+        "final": 1.6066016304815333e-29,
+        "initial": 0.15096942402409294
+      },
+      "name": "loss_decreased",
+      "pass": true
+    },
+    {
+      "detail": 1.6066016304815333e-29,
+      "name": "final_loss",
+      "pass": true
+    },
+    {
+      "detail": 2.4868995751603507e-14,
+      "name": "path_residual",
+      "pass": true
+    },
+    {
+      "detail": 5.204170427930421e-18,
+      "name": "endpoint_reconstruction",
+      "pass": true
+    },
+    {
+      "detail": 2.6020852139652106e-18,
+      "name": "forward_target",
+      "pass": true
+    },
+    {
+      "detail": -4.373238853807092e-17,
+      "name": "forward_target_kl",
+      "pass": true
+    },
+    {
+      "detail": 4.440892098500626e-16,
+      "name": "backward_normalization",
+      "pass": true
+    },
+    {
+      "detail": true,
+      "name": "finite_tensors",
+      "pass": true
+    },
+    {
+      "detail": {
+        "biological_reward_measured": false,
+        "expensive_generation_authorized": false,
+        "full_neural_model_trained": false,
+        "functional_or_generation_performance_evaluated": false,
+        "rk_g1_gate_modified": false,
+        "sota_claimed": false
+      },
+      "name": "mathematical_scope_only",
+      "pass": true
+    }
+  ],
+  "checks_passed": 11,
+  "checks_total": 11,
+  "deterministic_algorithms": true,
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 5090",
+  "dtype": "float64",
+  "expensive_generation_authorized": false,
+  "full_neural_model_trained": false,
+  "functional_or_generation_performance_evaluated": false,
+  "geometry": {
+    "actions_per_state": 121,
+    "codons": 61,
+    "paths": 14641,
+    "states": 3721
+  },
+  "history": [
+    {
+      "loss": 0.15096942402409294,
+      "lr": 0.05,
+      "max_abs_residual": 1.188936451304592,
+      "step": 0
+    },
+    {
+      "loss": 0.15096942402409294,
+      "lr": 0.05,
+      "max_abs_residual": 1.188936451304592,
+      "step": 1
+    },
+    {
+      "loss": 3.936870897325317e-06,
+      "lr": 0.04900975243810953,
+      "max_abs_residual": 0.029591609879426883,
+      "step": 100
+    },
+    {
+      "loss": 4.949578503193833e-10,
+      "lr": 0.0480095023755939,
+      "max_abs_residual": 0.001270621444916742,
+      "step": 200
+    },
+    {
+      "loss": 2.5344450212863694e-08,
+      "lr": 0.04700925231307827,
+      "max_abs_residual": 0.006306231444602517,
+      "step": 300
+    },
+    {
+      "loss": 7.298700548546725e-08,
+      "lr": 0.04600900225056264,
+      "max_abs_residual": 0.006469229971074242,
+      "step": 400
+    },
+    {
+      "loss": 8.258569261101249e-08,
+      "lr": 0.045008752188047015,
+      "max_abs_residual": 0.005971373135357894,
+      "step": 500
+    },
+    {
+      "loss": 1.4194127181960516e-07,
+      "lr": 0.04400850212553138,
+      "max_abs_residual": 0.005135116933029593,
+      "step": 600
+    },
+    {
+      "loss": 1.5242773826027279e-07,
+      "lr": 0.043008252063015756,
+      "max_abs_residual": 0.0060047288871309945,
+      "step": 700
+    },
+    {
+      "loss": 1.970796633195052e-07,
+      "lr": 0.04200800200050013,
+      "max_abs_residual": 0.009129234584239754,
+      "step": 800
+    },
+    {
+      "loss": 1.992109445670614e-07,
+      "lr": 0.0410077519379845,
+      "max_abs_residual": 0.005640715049571199,
+      "step": 900
+    },
+    {
+      "loss": 2.3678564192469209e-07,
+      "lr": 0.04000750187546887,
+      "max_abs_residual": 0.00567937072557001,
+      "step": 1000
+    },
+    {
+      "loss": 1.835708611214989e-07,
+      "lr": 0.03900725181295324,
+      "max_abs_residual": 0.002878355982234737,
+      "step": 1100
+    },
+    {
+      "loss": 3.8396396051976316e-07,
+      "lr": 0.03800700175043761,
+      "max_abs_residual": 0.0042726334791147735,
+      "step": 1200
+    },
+    {
+      "loss": 8.943863199933327e-07,
+      "lr": 0.03700675168792199,
+      "max_abs_residual": 0.005629344879523046,
+      "step": 1300
+    },
+    {
+      "loss": 2.344813191845968e-07,
+      "lr": 0.036006501625406355,
+      "max_abs_residual": 0.005443120755895592,
+      "step": 1400
+    },
+    {
+      "loss": 8.621027162178153e-08,
+      "lr": 0.03500625156289072,
+      "max_abs_residual": 0.0029198228260671755,
+      "step": 1500
+    },
+    {
+      "loss": 2.081892685785463e-08,
+      "lr": 0.034006001500375097,
+      "max_abs_residual": 0.002214066025512551,
+      "step": 1600
+    },
+    {
+      "loss": 1.8783302899323544e-08,
+      "lr": 0.03300575143785947,
+      "max_abs_residual": 0.0028493274872616325,
+      "step": 1700
+    },
+    {
+      "loss": 7.329824415288665e-08,
+      "lr": 0.03200550137534384,
+      "max_abs_residual": 0.0029742858334778077,
+      "step": 1800
+    },
+    {
+      "loss": 9.180587268790825e-09,
+      "lr": 0.03100525131282821,
+      "max_abs_residual": 0.0019101910185064241,
+      "step": 1900
+    },
+    {
+      "loss": 1.5661131929490213e-06,
+      "lr": 0.03000500125031258,
+      "max_abs_residual": 0.0037626959735614918,
+      "step": 2000
+    },
+    {
+      "loss": 1.4450038684136032e-08,
+      "lr": 0.029004751187796954,
+      "max_abs_residual": 0.0031029051591850987,
+      "step": 2100
+    },
+    {
+      "loss": 3.9202249910745177e-08,
+      "lr": 0.028004501125281325,
+      "max_abs_residual": 0.0023205040774492147,
+      "step": 2200
+    },
+    {
+      "loss": 1.2666041870824734e-07,
+      "lr": 0.027004251062765692,
+      "max_abs_residual": 0.002644499321416305,
+      "step": 2300
+    },
+    {
+      "loss": 5.611100623767869e-09,
+      "lr": 0.026004001000250063,
+      "max_abs_residual": 0.0029968256805652516,
+      "step": 2400
+    },
+    {
+      "loss": 1.8291964614928815e-08,
+      "lr": 0.025003750937734433,
+      "max_abs_residual": 0.0022901816452840507,
+      "step": 2500
+    },
+    {
+      "loss": 1.0703510352809426e-08,
+      "lr": 0.024003500875218808,
+      "max_abs_residual": 0.0007704490874154146,
+      "step": 2600
+    },
+    {
+      "loss": 3.597614203491685e-10,
+      "lr": 0.02300325081270318,
+      "max_abs_residual": 0.0005153080081878869,
+      "step": 2700
+    },
+    {
+      "loss": 4.940574023342078e-10,
+      "lr": 0.02200300075018755,
+      "max_abs_residual": 0.0005133039438547371,
+      "step": 2800
+    },
+    {
+      "loss": 1.767877164942959e-10,
+      "lr": 0.02100275068767192,
+      "max_abs_residual": 0.0003174165438846188,
+      "step": 2900
+    },
+    {
+      "loss": 1.1080875772085783e-14,
+      "lr": 0.02000250062515629,
+      "max_abs_residual": 4.246018821874031e-06,
+      "step": 3000
+    },
+    {
+      "loss": 1.0824712423855417e-19,
+      "lr": 0.019002250562640665,
+      "max_abs_residual": 1.3942457854909662e-08,
+      "step": 3100
+    },
+    {
+      "loss": 2.6395063837362316e-24,
+      "lr": 0.018002000500125036,
+      "max_abs_residual": 5.723421736547607e-11,
+      "step": 3200
+    },
+    {
+      "loss": 2.474114785890744e-28,
+      "lr": 0.017001750437609403,
+      "max_abs_residual": 2.1316282072803006e-13,
+      "step": 3300
+    },
+    {
+      "loss": 8.615087390935337e-29,
+      "lr": 0.016001500375093777,
+      "max_abs_residual": 5.684341886080802e-14,
+      "step": 3400
+    },
+    {
+      "loss": 5.780446845639426e-29,
+      "lr": 0.015001250312578145,
+      "max_abs_residual": 5.684341886080802e-14,
+      "step": 3500
+    },
+    {
+      "loss": 3.88909881041013e-29,
+      "lr": 0.014001000250062519,
+      "max_abs_residual": 3.197442310920451e-14,
+      "step": 3600
+    },
+    {
+      "loss": 3.4192844842599264e-29,
+      "lr": 0.013000750187546886,
+      "max_abs_residual": 3.197442310920451e-14,
+      "step": 3700
+    },
+    {
+      "loss": 2.593989746369667e-29,
+      "lr": 0.01200050012503126,
+      "max_abs_residual": 2.6645352591003757e-14,
+      "step": 3800
+    },
+    {
+      "loss": 2.0157683345487665e-29,
+      "lr": 0.011000250062515628,
+      "max_abs_residual": 2.3092638912203256e-14,
+      "step": 3900
+    },
+    {
+      "loss": 1.4448746382602787e-29,
+      "lr": 0.010000000000000002,
+      "max_abs_residual": 1.7763568394002505e-14,
+      "step": 4000
+    }
+  ],
+  "implementation_sha256": "9c098fd4380c48daaa696ac1d4d2bdcbad1b521a41fdafc4a43330348ff905dc",
+  "initial_loss": 0.15096942402409294,
+  "initial_max_abs_residual": 1.188936451304592,
+  "metrics": {
+    "backward_normalization_error": 4.440892098500626e-16,
+    "forward_endpoint_mass_error": 4.440892098500626e-16,
+    "forward_target_kl": -4.373238853807092e-17,
+    "loss": 1.6066016304815333e-29,
+    "max_abs_endpoint_reconstruction_error": 5.204170427930421e-18,
+    "max_abs_forward_target_error": 2.6020852139652106e-18,
+    "max_abs_path_residual": 2.4868995751603507e-14,
+    "reconstructed_endpoint_mass_error": 3.3306690738754696e-16
+  },
+  "protocol": "configs/a8_rk10_exact_tb_protocol_v1.json",
+  "protocol_sha256": "38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434",
+  "rk_g1_gate_modified": false,
+  "schema_version": "a8-rk10-exact-trajectory-balance-training-v1",
+  "scope": "small_state_exact_conditional_trajectory_balance_optimization_only",
+  "sota_claimed": false,
+  "source_commit_at_start": "759f9bf9f5418159ef195cdc74b2d90304d8aef0",
+  "status": "PASS",
+  "target_weights": [
+    0.7,
+    -0.25,
+    0.45,
+    -0.15
+  ],
+  "theta": [
+    0.7,
+    -0.25,
+    0.45000000000000007,
+    -0.14999999999999988
+  ],
+  "wall_time_seconds": 37.31494665145874
+}

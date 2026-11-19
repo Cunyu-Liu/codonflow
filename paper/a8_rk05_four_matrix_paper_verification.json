@@ -1,0 +1,122 @@
+{
+  "checks": [
+    {
+      "detail": {
+        "paper_sha256": "e698949c6150c3144e326de137363aa36200be5875acacc484f7809a875bda2f",
+        "schema": "a8-rk-paper-sync-v15"
+      },
+      "name": "v15_audit_and_paper_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/a8_rk_paper_sync_audit_v14_snapshot.json",
+        "audit_sha256": "729766fc16596beac48e63738012c586eba4c184b08911d0a1b323b6a0a2ad7b",
+        "original_audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/a8_rk_paper_sync_audit_v14_original.json",
+        "original_audit_sha256": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
+        "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/CodonFlow_preprint_A8_v14.md",
+        "paper_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23"
+      },
+      "name": "v14_snapshot_integrity",
+      "pass": true
+    },
+    {
+      "detail": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
+      "name": "v14_snapshot_audit_binding",
+      "pass": true
+    },
+    {
+      "detail": true,
+      "name": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": 34020,
+      "name": "section_removal_delta",
+      "pass": true
+    },
+    {
+      "detail": true,
+      "name": "pending_sentence_delta",
+      "pass": true
+    },
+    {
+      "detail": 17,
+      "name": "evidence_delta",
+      "pass": true
+    },
+    {
+      "detail": {
+        "reconstructed_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23",
+        "snapshot_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23"
+      },
+      "name": "exact_v14_reconstruction",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 13
+      },
+      "name": "four_matrix_results_rendered",
+      "pass": true
+    },
+    {
+      "detail": "39/39",
+      "name": "summary_verified",
+      "pass": true
+    },
+    {
+      "detail": 40,
+      "name": "four_matrix_execution_counts",
+      "pass": true
+    },
+    {
+      "detail": {
+        "eligible": 8124,
+        "raw": 15669
+      },
+      "name": "four_matrix_totals",
+      "pass": true
+    },
+    {
+      "detail": {
+        "ribomimo_full_four_matrix_summary": "6ff6456f3cb196586dd2fae8910f6424a1077e9d5caf7e9a85287549dbc36967",
+        "ribomimo_full_four_matrix_summary_verification": "80829018aba54ad0d66b81de8d19e9879757db4d58f54354a4d3ecd382d32507",
+        "ribomimo_full_mohammad19_1_finalization": "d556413566c19f1012a4bea147045e1b28fb106cfc3a80e81a7248f3792850ea",
+        "ribomimo_full_mohammad19_1_independent": "89dda7f90bb4ba75bfef5083e1435c2c423701d58481dfbf9d7e3dbb5b0ffb2a",
+        "ribomimo_full_mohammad19_1_production": "cabd7f1ff81946d7841fbc6855a887d28a938b96188384de8a85a90c0b6adc66",
+        "ribomimo_full_mohammad19_1_protocol": "39213ac1783309903f8bdac918f12f09ef32168b9d1b32868298e7057afbbdf2",
+        "ribomimo_full_mohammad19_1_retrain": "fc0205d97de8ad902b88364f3e6cf5a183f5de15aab24dfdf66617d9eda64a49",
+        "ribomimo_full_mohammad19_2_finalization": "97cf23283c5cafecff00759fb8801d3bc7d74c3a4534939ed0b8b20e9a231662",
+        "ribomimo_full_mohammad19_2_independent": "9f44aa9809e3117a15e6a91413094809385e787e20ef592ab63783ab09ba33b6",
+        "ribomimo_full_mohammad19_2_production": "5b64a26b1cf4127285223227b979d8e3c639f064bc31e8039c8490d1b1d569e7",
+        "ribomimo_full_mohammad19_2_protocol": "907ba6b6d284c120167253126936f5c5c147271efed0e9e8a70a8fdc35521afb",
+        "ribomimo_full_mohammad19_2_retrain": "a0f181adf7652b1903241fcac72605659006cfcbeae60afbd9e61f0db1c36267",
+        "ribomimo_full_subtelny14_finalization": "b839e0b3e8129c4f342c8eb505296e382798549bdcac9301cb4e8b1107edd957",
+        "ribomimo_full_subtelny14_independent": "59a5797c1b497659eefbf3e4edaf4823f8328b8fbf7102777341016ac062bbf5",
+        "ribomimo_full_subtelny14_production": "41797891a9da5a497e71c165e7bcd38f219ed9eddd3d1ebefdf76173ff738d7e",
+        "ribomimo_full_subtelny14_protocol": "e8ffe1d9646162dcbe9ca40733f0866cf65796446dcd956825cf0b5ba051fc7c",
+        "ribomimo_full_subtelny14_retrain": "d1f1a2d843113b561fee390cf1c2dfaea251e9c8a0337cec4099c57579163758"
+      },
+      "name": "audit_source_hashes",
+      "pass": true
+    },
+    {
+      "detail": "Four author-processed matrices completed the official random-gene 1x10-fold/max100/early-stop5 protocol twice with independent inference and finalization. This is not OOD, publication-metric reproduction, unified-cost ranking or SOTA.",
+      "name": "four_matrix_scope",
+      "pass": true
+    }
+  ],
+  "checks_passed": 14,
+  "checks_total": 14,
+  "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+  "paper_sha256": "e698949c6150c3144e326de137363aa36200be5875acacc484f7809a875bda2f",
+  "paper_update_module_imported": false,
+  "schema_version": "a8-rk05-four-matrix-paper-verification-v15",
+  "scope": "Four-matrix official random-gene CV closed; A8 remains non-submittable because mechanism, model, OOD, unified-cost main matrix, SOTA and wet-lab validation remain open.",
+  "status": "PASS",
+  "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
+  "sync_audit_sha256": "98bd879e6c9f7e19b9888d70acba6ba4b7815f28af223feb454a230d168cf34e",
+  "v14_snapshot": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/CodonFlow_preprint_A8_v14.md",
+  "v14_snapshot_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23"
+}

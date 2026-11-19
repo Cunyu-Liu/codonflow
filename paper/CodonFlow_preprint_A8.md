@@ -207,7 +207,18 @@ The official-example default output matched the README sequence exactly. Default
 | 9 | 9 | 0.478642 | 1.537437 | 0.696867 |
 | 10 | 11 | 0.488929 | 1.660116 | 0.699465 |
 
-Across the ten best-validation checkpoint test folds, R² was **0.472874 ± 0.015274**, MSE was **1.591470 ± 0.100361**, and Pearson was **0.690680 ± 0.008882** (mean ± population SD). An independent post-hoc constant predictor using only each training fold's mean density gave R² **-0.000001 ± 0.000002** and MSE **3.021991 ± 0.213861**; this is a train-only reference, not an official output or a unified baseline matrix. Every eligible gene occurred in exactly one test fold. A second complete deterministic 10-fold training run produced bitwise-identical checkpoint tensors for all ten folds and identical six-decimal metrics. Independent two-pass checkpoint inference passed **94/94 checks**, finalization passed **425/425 checks**, and unit tests passed **10/10**. This closes only the official random-gene CV protocol on Mohammad16. Full training on Subtelny14, Mohammad19-1 and Mohammad19-2, homology/protein/study/functional OOD, publication-metric reproduction, the unified-cost baseline matrix, CodonFlow-RK comparison and SOTA assessment remain pending.
+Across the ten best-validation checkpoint test folds, R² was **0.472874 ± 0.015274**, MSE was **1.591470 ± 0.100361**, and Pearson was **0.690680 ± 0.008882** (mean ± population SD). An independent post-hoc constant predictor using only each training fold's mean density gave R² **-0.000001 ± 0.000002** and MSE **3.021991 ± 0.213861**; this is a train-only reference, not an official output or a unified baseline matrix. Every eligible gene occurred in exactly one test fold. A second complete deterministic 10-fold training run produced bitwise-identical checkpoint tensors for all ten folds and identical six-decimal metrics. Independent two-pass checkpoint inference passed **94/94 checks**, finalization passed **425/425 checks**, and unit tests passed **10/10**. This closes only the official random-gene CV protocol on Mohammad16. The three remaining matrices are completed in the four-matrix extension below. Homology/protein/study/functional OOD, publication-metric reproduction, the unified-cost baseline matrix, CodonFlow-RK comparison and SOTA assessment remain pending.
+
+**RiboMIMO complete four-matrix official cross-validation.** All four author-processed matrices have now completed the same official **1×10-fold / maximum 100 epochs / early-stop 5** random-gene protocol. The combined input is **15,669 raw records / 8,124 official-loader-eligible genes**, with **2,520,180 valid masked test codons**. The eligible count remains distinct from RK03 clean QC=8,109.
+
+| Dataset | Raw / eligible genes | R² mean ± SD | MSE mean ± SD | Pearson mean ± SD | Train-mean baseline R² / MSE |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Subtelny14 | 5,614 / 3,921 | 0.397451 ± 0.012483 | 0.592620 ± 0.020862 | 0.631848 ± 0.010285 | -0.000001 / 0.983330 |
+| Mohammad19-1 | 4,147 / 1,426 | 0.461595 ± 0.011718 | 0.433084 ± 0.015037 | 0.682075 ± 0.008264 | -0.000005 / 0.804335 |
+| Mohammad19-2 | 4,147 / 1,598 | 0.484536 ± 0.030081 | 0.442863 ± 0.054396 | 0.696258 ± 0.021998 | -0.000003 / 0.856575 |
+| Mohammad16 | 1,761 / 1,179 | 0.472874 ± 0.015274 | 1.591470 ± 0.100361 | 0.690680 ± 0.008882 | -0.000001 / 3.021991 |
+
+Each dataset was trained twice from the frozen protocol: **8 complete training runs, 40 bitwise-identical fold-checkpoint pairs, and 80 independent forward passes**. The independent four-matrix summary passed **39/39 checks**. Train-mean baselines use training-fold density only and are post-hoc references, not a unified strong-baseline matrix. This closes official random-gene CV on the four released matrices only; homology/protein/study/functional OOD, publication-metric reproduction, unified-cost baseline ranking, CodonFlow-RK, SOTA and wet-lab validation remain open.
 
 **iXnos bounded official prefix-read training.** At fixed commit `1ea2337dd24d1e6fa3859f08573e99f02512810f`, the first **1,000,000 complete reads** of ENA run `SRR1049521` (all 40 nt; a prefix, not a random sample) were processed with the official Weinberg linker trimmer, rRNA/noncoding-RNA filters, Bowtie transcriptome mapping, length/frame-specific P-site offsets, and simple uniform multimapping weights rather than RSEM. Trimming retained **864,464 reads**; **756,168** entered transcriptome mapping and **723,724** had at least one alignment. A total of **1,238 genes** met the bounded thresholds (minimum 50 counts and 20 codons with data); seed **20261118** selected **20 train / 10 test genes**. The official 760-feature tanh network with 200 hidden units ran for two epochs and produced **3,816 train / 1,963 test codons** and **152,401 parameters**. At the prespecified final epoch, test R² was **0.028272**, MSE **0.910627**, Pearson **0.195228**, and Spearman **0.215997**; the train-mean constant baseline had MSE **0.937122** and R² approximately zero. Independent reprocessing/retraining passed **27/27 checks** with exact targets and checkpoint tensors, prefix/trimmed FASTQs were byte-identical and Bowtie alignment multisets matched after canonical sorting (run-specific PG metadata excluded), finalization passed **16/16 checks**, and unit tests passed **10/10**. The initial headless-backend import failure is retained. These bounded values are execution diagnostics, not paper-performance estimates. This is not the full 102,187,657-read run, RSEM workflow, 333/167-gene 60-epoch protocol, functional OOD, main-baseline comparison, or SOTA result.
 
@@ -292,6 +303,14 @@ For the length-three path example, all **14,641 paths** and **3,721 endpoints** 
 
 This is a **mathematical-kernel verification only**. It is not trained CodonFlow-RK, functional or generation performance, a mechanistic increment, RK-G1 closure, SOTA, or authorization for expensive generation training.
 
+### 6.12 Exact preference-conditioned trajectory-balance optimization
+
+We next tested optimization on the frozen synthetic two-step system with **3,721 endpoint states**, **121 legal actions per state**, and **14,641 enumerated paths**. The target is the exact endpoint law induced by the frozen oracle energy-tilted conditional, not a naive random-walk endpoint approximation. The first reverse step deterministically returns to the unique fixed start; the second reverse step is normalized only over legal parents reachable from that start. This construction preserves all state-dependent forward normalizers and the true time support.
+
+The fixed protocol used float64 CUDA, Adam for **4,000 steps without checkpoint selection**, and a linear learning-rate schedule from 0.05 to 0.01. The independently recomputed final path-residual loss was **1.607e-29**, maximum absolute path residual **2.487e-14**, maximum forward–target endpoint error **2.602e-18**, forward–target KL **-4.373e-17**, and maximum endpoint-reconstruction error **5.204e-18**. The learned four weights differed from the frozen oracle weights by at most **1.110e-16**. Production and a separately executed retraining had bitwise-identical weight and backward-logit tensors and identical optimization histories. A separate NumPy implementation passed **25/25 checks**, finalization passed **20/20**, and **10 unit tests** passed. The analytic oracle independently gave maximum path residual **0.000e+00**, forward–target error **2.602e-18**, and backward-normalization error **1.110e-15**. The earlier incorrect target/shared-backward version failed 2 of 10 tests and is retained rather than hidden.
+
+This is an **exact synthetic trajectory-balance optimization check**, not biological reward learning, a trained neural CodonFlow-RK generator, functional or generation performance, physical mechanism validation, RK-G1 closure, SOTA, or authorization for expensive generation training.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -348,6 +367,23 @@ The working-manuscript values above were rendered from the following frozen arti
 | RiboMIMO full Mohammad16 deterministic retrain | `f75fe699c25a31d1297a8b1f871d6e3819d74e10d0d91d0d8da1ce0e2a3db028` |
 | RiboMIMO full Mohammad16 independent inference | `4bf2371923622ca247e4b51ccb3857a9512897f8a6dcae4b11ac3c96a3c01f4e` |
 | RiboMIMO full Mohammad16 finalization | `890ef31a7bc716a9307ded9430de12b935629b8836a378ad571fa79c00624965` |
+| RiboMIMO full subtelny14 frozen protocol | `e8ffe1d9646162dcbe9ca40733f0866cf65796446dcd956825cf0b5ba051fc7c` |
+| RiboMIMO full subtelny14 production | `41797891a9da5a497e71c165e7bcd38f219ed9eddd3d1ebefdf76173ff738d7e` |
+| RiboMIMO full subtelny14 deterministic retrain | `d1f1a2d843113b561fee390cf1c2dfaea251e9c8a0337cec4099c57579163758` |
+| RiboMIMO full subtelny14 independent inference | `59a5797c1b497659eefbf3e4edaf4823f8328b8fbf7102777341016ac062bbf5` |
+| RiboMIMO full subtelny14 finalization | `b839e0b3e8129c4f342c8eb505296e382798549bdcac9301cb4e8b1107edd957` |
+| RiboMIMO full mohammad19_1 frozen protocol | `39213ac1783309903f8bdac918f12f09ef32168b9d1b32868298e7057afbbdf2` |
+| RiboMIMO full mohammad19_1 production | `cabd7f1ff81946d7841fbc6855a887d28a938b96188384de8a85a90c0b6adc66` |
+| RiboMIMO full mohammad19_1 deterministic retrain | `fc0205d97de8ad902b88364f3e6cf5a183f5de15aab24dfdf66617d9eda64a49` |
+| RiboMIMO full mohammad19_1 independent inference | `89dda7f90bb4ba75bfef5083e1435c2c423701d58481dfbf9d7e3dbb5b0ffb2a` |
+| RiboMIMO full mohammad19_1 finalization | `d556413566c19f1012a4bea147045e1b28fb106cfc3a80e81a7248f3792850ea` |
+| RiboMIMO full mohammad19_2 frozen protocol | `907ba6b6d284c120167253126936f5c5c147271efed0e9e8a70a8fdc35521afb` |
+| RiboMIMO full mohammad19_2 production | `5b64a26b1cf4127285223227b979d8e3c639f064bc31e8039c8490d1b1d569e7` |
+| RiboMIMO full mohammad19_2 deterministic retrain | `a0f181adf7652b1903241fcac72605659006cfcbeae60afbd9e61f0db1c36267` |
+| RiboMIMO full mohammad19_2 independent inference | `9f44aa9809e3117a15e6a91413094809385e787e20ef592ab63783ab09ba33b6` |
+| RiboMIMO full mohammad19_2 finalization | `97cf23283c5cafecff00759fb8801d3bc7d74c3a4534939ed0b8b20e9a231662` |
+| RiboMIMO full four-matrix summary | `6ff6456f3cb196586dd2fae8910f6424a1077e9d5caf7e9a85287549dbc36967` |
+| RiboMIMO full four-matrix summary verification | `80829018aba54ad0d66b81de8d19e9879757db4d58f54354a4d3ecd382d32507` |
 | iXnos bounded official production | `5393c5d4738031518c57c1f889b0db70109c7a626b9a6ebf8d11b2ec703bdd30` |
 | iXnos bounded independent verifier | `2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc` |
 | iXnos bounded finalization | `a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28` |
@@ -389,6 +425,13 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK09 minimal-kernel finalization | `a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0` |
 | RK09 retained initial production failure | `6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede` |
 | RK09 retained initial independent failure | `d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df` |
+| RK10 exact trajectory-balance protocol | `38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434` |
+| RK10 exact trajectory-balance production | `64af5c02e05932a37611c4863c7b67ef97bfd88a1cb27d893ba0ce766a20c76f` |
+| RK10 exact trajectory-balance retrain | `44b50177f0693c562a593b844abdf8313915991a9c5d4407ccc91a6f12207390` |
+| RK10 independent NumPy and analytic-oracle verification | `b65b299faff58dbd4214b858c0aafc76da75ab915b88fa9eca6ff31d25e8628a` |
+| RK10 exact trajectory-balance finalization | `e5109116088e5cfe76b0b9b3328e320e95ec4027253b20ba7f8d4291012fe4ea` |
+| RK10 final unit-test log | `7f6b969142a2d530b443885024e3b22b4bd5368889f18288cba94af528f9d739` |
+| RK10 retained initial failed unit-test log | `acb2c82cd461e7336b3ae0c25d97bf95e1caaf255ebf28d8ed1135cd5730c394` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

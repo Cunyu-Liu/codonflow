@@ -1,0 +1,35 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "evidence_rows": "| RK10 exact trajectory-balance protocol | `38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434` |\n| RK10 exact trajectory-balance production | `64af5c02e05932a37611c4863c7b67ef97bfd88a1cb27d893ba0ce766a20c76f` |\n| RK10 exact trajectory-balance retrain | `44b50177f0693c562a593b844abdf8313915991a9c5d4407ccc91a6f12207390` |\n| RK10 independent NumPy and analytic-oracle verification | `b65b299faff58dbd4214b858c0aafc76da75ab915b88fa9eca6ff31d25e8628a` |\n| RK10 exact trajectory-balance finalization | `e5109116088e5cfe76b0b9b3328e320e95ec4027253b20ba7f8d4291012fe4ea` |\n| RK10 final unit-test log | `7f6b969142a2d530b443885024e3b22b4bd5368889f18288cba94af528f9d739` |\n| RK10 retained initial failed unit-test log | `acb2c82cd461e7336b3ae0c25d97bf95e1caaf255ebf28d8ed1135cd5730c394` |\n",
+  "evidence_sha256": {
+    "rk10_finalization": "e5109116088e5cfe76b0b9b3328e320e95ec4027253b20ba7f8d4291012fe4ea",
+    "rk10_independent": "b65b299faff58dbd4214b858c0aafc76da75ab915b88fa9eca6ff31d25e8628a",
+    "rk10_initial_failure": "acb2c82cd461e7336b3ae0c25d97bf95e1caaf255ebf28d8ed1135cd5730c394",
+    "rk10_production": "64af5c02e05932a37611c4863c7b67ef97bfd88a1cb27d893ba0ce766a20c76f",
+    "rk10_protocol": "38d4c782c18e79ead595d28dc0075512afeb7ea74fc99bcf521e8e6028e2c434",
+    "rk10_retrain": "44b50177f0693c562a593b844abdf8313915991a9c5d4407ccc91a6f12207390",
+    "rk10_unit_tests": "7f6b969142a2d530b443885024e3b22b4bd5368889f18288cba94af528f9d739"
+  },
+  "input_audit_sha256": "98bd879e6c9f7e19b9888d70acba6ba4b7815f28af223feb454a230d168cf34e",
+  "input_paper_sha256": "e698949c6150c3144e326de137363aa36200be5875acacc484f7809a875bda2f",
+  "output_audit_sha256": "3d043632834108ceccb47ed3ab48fd928233beae18a55e49ca7c7988621d8569",
+  "output_paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625",
+  "schema": "a8-rk10-exact-tb-paper-update-v16",
+  "scientific_scope_unchanged": {
+    "biological_reward_measured": false,
+    "expensive_generation_authorized": false,
+    "full_neural_model_trained": false,
+    "functional_or_generation_performance_evaluated": false,
+    "rk_g1_gate_modified": false,
+    "sota_claimed": false
+  },
+  "section": "### 6.12 Exact preference-conditioned trajectory-balance optimization\n\nWe next tested optimization on the frozen synthetic two-step system with **3,721 endpoint states**, **121 legal actions per state**, and **14,641 enumerated paths**. The target is the exact endpoint law induced by the frozen oracle energy-tilted conditional, not a naive random-walk endpoint approximation. The first reverse step deterministically returns to the unique fixed start; the second reverse step is normalized only over legal parents reachable from that start. This construction preserves all state-dependent forward normalizers and the true time support.\n\nThe fixed protocol used float64 CUDA, Adam for **4,000 steps without checkpoint selection**, and a linear learning-rate schedule from 0.05 to 0.01. The independently recomputed final path-residual loss was **1.607e-29**, maximum absolute path residual **2.487e-14**, maximum forward\u2013target endpoint error **2.602e-18**, forward\u2013target KL **-4.373e-17**, and maximum endpoint-reconstruction error **5.204e-18**. The learned four weights differed from the frozen oracle weights by at most **1.110e-16**. Production and a separately executed retraining had bitwise-identical weight and backward-logit tensors and identical optimization histories. A separate NumPy implementation passed **25/25 checks**, finalization passed **20/20**, and **10 unit tests** passed. The analytic oracle independently gave maximum path residual **0.000e+00**, forward\u2013target error **2.602e-18**, and backward-normalization error **1.110e-15**. The earlier incorrect target/shared-backward version failed 2 of 10 tests and is retained rather than hidden.\n\nThis is an **exact synthetic trajectory-balance optimization check**, not biological reward learning, a trained neural CodonFlow-RK generator, functional or generation performance, physical mechanism validation, RK-G1 closure, SOTA, or authorization for expensive generation training.\n\n",
+  "snapshot": {
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk10/exact_trajectory_balance_v1/paper_v16/v15_snapshot/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk10/exact_trajectory_balance_v1/paper_v16/v15_snapshot/a8_rk_paper_sync_audit_v15.json",
+    "audit_sha256": "98bd879e6c9f7e19b9888d70acba6ba4b7815f28af223feb454a230d168cf34e",
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk10/exact_trajectory_balance_v1/paper_v16/v15_snapshot/CodonFlow_preprint_A8_v15.md",
+    "paper_sha256": "e698949c6150c3144e326de137363aa36200be5875acacc484f7809a875bda2f"
+  }
+}
