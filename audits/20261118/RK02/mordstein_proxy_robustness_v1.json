@@ -1,0 +1,254 @@
+{
+  "analysis_status": "POST_HOC_EXPLORATORY_NOT_PRIMARY_NOT_A_NEW_GATE",
+  "boundaries": {
+    "causal_inference": false,
+    "changes_primary_analysis": false,
+    "complete_cds_analysis": false,
+    "generator_training_authorized": false,
+    "mechanism_model_comparison": false,
+    "protein_ood_evaluation": false,
+    "sota_claim": false
+  },
+  "code_commit": "fc585908750c4d465d9d7b9f457fb7a94c4e54fe",
+  "depth_associations": {
+    "flowseq_score_r1_only": {
+      "bootstrap_resamples": 20000,
+      "ci95_percentile": [
+        -0.3621035603249684,
+        -0.05463939775616266
+      ],
+      "metric": "spearman",
+      "observed": -0.21381707092038627,
+      "permutation_p_two_sided": 0.007799610019499025,
+      "permutation_resamples": 20000,
+      "seed": 30961119
+    },
+    "gc3_observed_5prime": {
+      "bootstrap_resamples": 20000,
+      "ci95_percentile": [
+        -0.21228253760215995,
+        0.1176059332056953
+      ],
+      "metric": "spearman",
+      "observed": -0.04709049728097736,
+      "permutation_p_two_sided": 0.5627218639068047,
+      "permutation_resamples": 20000,
+      "seed": 30971119
+    },
+    "gc_observed_5prime": {
+      "bootstrap_resamples": 20000,
+      "ci95_percentile": [
+        -0.2110583619304366,
+        0.11538466297105895
+      ],
+      "metric": "spearman",
+      "observed": -0.04755914817007794,
+      "permutation_p_two_sided": 0.5582720863956803,
+      "permutation_resamples": 20000,
+      "seed": 30981119
+    }
+  },
+  "partial_spearman_controlling_depth": {
+    "gc3_observed_5prime": {
+      "bootstrap_resamples": 20000,
+      "ci95_percentile": [
+        0.19869366419725318,
+        0.49880364490166956
+      ],
+      "observed": 0.35448753657982895,
+      "seed": 31261119
+    },
+    "gc_observed_5prime": {
+      "bootstrap_resamples": 20000,
+      "ci95_percentile": [
+        0.20076347927157098,
+        0.49884851686200055
+      ],
+      "observed": 0.35665745579340974,
+      "seed": 31271119
+    }
+  },
+  "positive_ci_all_thresholds": {
+    "gc3_observed_5prime": false,
+    "gc_observed_5prime": false
+  },
+  "primary_finalization_sha256": "5f1946a4e3d4664feba7d8d68502082938e0020813d2c2d01ec0edb9c5b1ce2f",
+  "primary_independent_sha256": "897292a17e06b07c7b76d3d73f8a7815efcb7673fccef86a1a6c931840e027c8",
+  "primary_production_sha256": "d991aded0e735f700882f4490d34c55af98763064156ede1da1a558f2177f952",
+  "protocol_id": "a8_rk02_mordstein_proxy_robustness_v1_frozen_after_primary_before_sensitivity",
+  "protocol_sha256": "e59f9ee37e5e90e4df1f32662cb32716a10cdd6a1be9292e11d7f04956a57660",
+  "schema": "a8.rk02.mordstein_proxy_robustness.v1",
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "support_sensitivity": [
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.20069684307125288,
+            0.4951890096676269
+          ],
+          "observed": 0.35597414568308205,
+          "seed": 30261119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.20338896381072263,
+            0.4974643255854335
+          ],
+          "observed": 0.35818400073883144,
+          "seed": 30271119
+        }
+      },
+      "n": 152,
+      "threshold": 1000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.19970358526859086,
+            0.5014387714530345
+          ],
+          "observed": 0.3573728797868353,
+          "seed": 30361119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.20426969837804226,
+            0.49991792430669546
+          ],
+          "observed": 0.3603207490732841,
+          "seed": 30371119
+        }
+      },
+      "n": 147,
+      "threshold": 2000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.20419851816066426,
+            0.5226411881797232
+          ],
+          "observed": 0.3698252311512665,
+          "seed": 30461119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.21046136812265592,
+            0.5241364263996836
+          ],
+          "observed": 0.37619836805694695,
+          "seed": 30471119
+        }
+      },
+      "n": 132,
+      "threshold": 5000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.24735367977784764,
+            0.5882192069790009
+          ],
+          "observed": 0.43168197413704357,
+          "seed": 30561119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.2572397222921752,
+            0.5939059607262377
+          ],
+          "observed": 0.43706569330933653,
+          "seed": 30571119
+        }
+      },
+      "n": 112,
+      "threshold": 10000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.2545624725233524,
+            0.6255142730174466
+          ],
+          "observed": 0.4568355363863273,
+          "seed": 30661119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.26680675015409844,
+            0.6333783009072277
+          ],
+          "observed": 0.46535029922010807,
+          "seed": 30671119
+        }
+      },
+      "n": 82,
+      "threshold": 20000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.24882417334789855,
+            0.7116042205602676
+          ],
+          "observed": 0.5053080088282279,
+          "seed": 30761119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            0.26352320387084893,
+            0.7109126275173743
+          ],
+          "observed": 0.5137748417547002,
+          "seed": 30771119
+        }
+      },
+      "n": 51,
+      "threshold": 50000
+    },
+    {
+      "features": {
+        "gc3_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            -0.08964819400684308,
+            0.7322050862235621
+          ],
+          "observed": 0.3679527022499255,
+          "seed": 30861119
+        },
+        "gc_observed_5prime": {
+          "bootstrap_resamples": 20000,
+          "ci95_percentile": [
+            -0.054917979038844586,
+            0.7388508250717847
+          ],
+          "observed": 0.391003507978017,
+          "seed": 30871119
+        }
+      },
+      "n": 23,
+      "threshold": 100000
+    }
+  ],
+  "tracked_tree_clean_at_launch": true,
+  "wall_elapsed_s": 137.8655607989058
+}

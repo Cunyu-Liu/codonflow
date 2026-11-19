@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "finite_resampling_and_population": true,
+    "positive_threshold_flags_recompute": true,
+    "primary_pass_and_hashes": true,
+    "protocol_hash_and_posthoc_status": true,
+    "scope_not_upgraded": true,
+    "seven_support_strata_recompute": true,
+    "three_depth_associations_recompute": true,
+    "two_partial_spearman_recompute": true
+  },
+  "checks_passed": 8,
+  "checks_total": 8,
+  "failed_checks": [],
+  "max_abs_delta": 1.1102230246251565e-16,
+  "production_sha256": "6bfd1381d1bd65b80a42238724b651e6ccce7b7f1c1d5c693568ebce25f55f40",
+  "protocol_sha256": "e59f9ee37e5e90e4df1f32662cb32716a10cdd6a1be9292e11d7f04956a57660",
+  "schema": "a8.rk02.mordstein_proxy_robustness_independent.v1",
+  "scientific_gate": "POST_HOC_ROBUSTNESS_ONLY_NOT_CAUSAL_NOT_OOD_NOT_SOTA",
+  "status": "PASS",
+  "support_only_max_abs_delta_before_depth": 1.1102230246251565e-16
+}

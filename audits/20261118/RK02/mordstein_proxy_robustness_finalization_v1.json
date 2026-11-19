@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "code_commit_and_tracked_tree": true,
+    "independent_8_of_8_pass": true,
+    "no_causal_ood_generator_or_sota_upgrade": true,
+    "posthoc_not_new_primary_gate": true,
+    "primary_finalization_unchanged": true,
+    "production_and_protocol_hashes": true,
+    "production_pending": true,
+    "three_contract_tests": true
+  },
+  "checks_passed": 8,
+  "checks_total": 8,
+  "code_commit": "fc585908750c4d465d9d7b9f457fb7a94c4e54fe",
+  "failed_checks": [],
+  "independent_sha256": "abee78c8f5b8aff87af9ef25674a98ccfc2eb9532775ce2a6f8b89e468f23688",
+  "next_gate": "Report as post-hoc robustness alongside the finalized fixed-GFP observed-end association; no causal/OOD/generator upgrade",
+  "production_sha256": "6bfd1381d1bd65b80a42238724b651e6ccce7b7f1c1d5c693568ebce25f55f40",
+  "schema": "a8.rk02.mordstein_proxy_robustness_finalization.v1",
+  "status": "PASS",
+  "tests_log_sha256": "ae8006a7882a04bac2d72250e383391cda4fefa362c459d0a98ea0c42e5c90de",
+  "tests_passed": 3
+}

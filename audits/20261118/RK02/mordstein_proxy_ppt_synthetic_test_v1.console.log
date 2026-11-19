@@ -1,0 +1,90 @@
+{
+  "schema": "a8-rk02-mordstein-proxy-ppt-readback-verification-v1",
+  "created_utc": "2026-11-19T14:13:24.088680+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "PASS",
+  "checks_passed": 13,
+  "checks_total": 13,
+  "baseline_slide_count": 93,
+  "readback_slide_count": 94,
+  "new_slide_id": "pgSynthetic94",
+  "slide94_add_revision": 1,
+  "baseline_sha256": "a8f866185422c88134f59fc5092516e6641ec2b7496f721d258060f1be040dd9",
+  "readback_sha256": "4246e92cd95802d370b9a4352ceac3119cc4e4eba5da497220629b60ec05b7ef",
+  "candidate94_sha256": "325d62f6eb944dccf4c554ddcd90863f6f2e64a87182d0ff2ffdceebcf43d906",
+  "primary_sha256": "d991aded0e735f700882f4490d34c55af98763064156ede1da1a558f2177f952",
+  "primary_independent_sha256": "897292a17e06b07c7b76d3d73f8a7815efcb7673fccef86a1a6c931840e027c8",
+  "primary_finalization_sha256": "5f1946a4e3d4664feba7d8d68502082938e0020813d2c2d01ec0edb9c5b1ce2f",
+  "robustness_sha256": "6bfd1381d1bd65b80a42238724b651e6ccce7b7f1c1d5c693568ebce25f55f40",
+  "robustness_independent_sha256": "abee78c8f5b8aff87af9ef25674a98ccfc2eb9532775ce2a6f8b89e468f23688",
+  "robustness_finalization_sha256": "fd49cc491e92fd3a4a6555a6c3a0ee0b3cae6a5f2fb95f09706e4a9a61389d61",
+  "changed_baseline_pages": [],
+  "checks": [
+    {
+      "name": "baseline_93",
+      "pass": true,
+      "evidence": 93
+    },
+    {
+      "name": "readback_94",
+      "pass": true,
+      "evidence": 94
+    },
+    {
+      "name": "first_93_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_93_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "new_page_id_present_distinct",
+      "pass": true,
+      "evidence": "pgSynthetic94"
+    },
+    {
+      "name": "slide94_candidate_semantics",
+      "pass": true,
+      "evidence": "325d62f6eb944dccf4c554ddcd90863f6f2e64a87182d0ff2ffdceebcf43d906"
+    },
+    {
+      "name": "slide94_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide94_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide94_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide94_id_matches",
+      "pass": true,
+      "evidence": "pgSynthetic94"
+    },
+    {
+      "name": "primary_values_visible",
+      "pass": true,
+      "evidence": "GC3/GC/n"
+    },
+    {
+      "name": "scientific_boundaries_visible",
+      "pass": true,
+      "evidence": "four boundaries"
+    },
+    {
+      "name": "finalized_evidence_hash_binding",
+      "pass": true,
+      "evidence": "primary and robustness"
+    }
+  ],
+  "scientific_boundary": "PPT readback verifies presentation fidelity only; fixed-GFP observed-end association is not causal, protein OOD, mechanism increment or SOTA evidence."
+}
