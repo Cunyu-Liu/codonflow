@@ -1,0 +1,132 @@
+{
+  "code": [
+    {
+      "path": "scripts/a8_rk02_mordstein_reference_recovery.py",
+      "sha256": "d3326a4d9655d642fec26c4fb10c1f7c623a2f5331b858d6add11c29180ae75e"
+    },
+    {
+      "path": "scripts/a8_rk02_verify_mordstein_recovery_v2.py",
+      "sha256": "26b530dd506c65d5c1a4775a45d319c45b2338cbabf5124ec44179fc26c9e0d9"
+    },
+    {
+      "path": "scripts/tests/test_a8_rk02_mordstein_reference_recovery.py",
+      "sha256": "96aac3bd13fc06e21765355cf6520845bbc69ba91d00ebb931888fbf2efdfe48"
+    }
+  ],
+  "equivalent_artifacts": [
+    {
+      "byte_identical_to_original": true,
+      "bytes": 75094,
+      "name": "variant_counts.csv",
+      "sha256": "aa4516881f5cf972f36b0347d309566b878477471683a65c0bf9fd0c446a17a8"
+    },
+    {
+      "byte_identical_to_original": true,
+      "bytes": 39412,
+      "name": "references_r1.fasta",
+      "sha256": "9d4bd9f817ed249dcd0e88adb5c24897d402ce6c993f1a022d60a624eef20dd3"
+    },
+    {
+      "byte_identical_to_original": true,
+      "bytes": 90909,
+      "name": "references_paired_ends.fasta",
+      "sha256": "744fb749eb80f6e79dc6c1a9b26468d33c6d26a56ec541e6effd943a3c4e7c2c"
+    }
+  ],
+  "exact_cache_files": [
+    {
+      "bytes": 55443,
+      "exact_reads": 61523,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r1.exact_counts.tsv.gz",
+      "run": "SRR10714562",
+      "sha256": "c6e4f8872cedb996f49117395366b2a4827eabb997802a9d3d7b75373b243960",
+      "unique_sequences": 6387
+    },
+    {
+      "bytes": 29163,
+      "exact_reads": 26576,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r2.exact_counts.tsv.gz",
+      "run": "SRR10714562",
+      "sha256": "9eee2931b0199652ba2be00abbb283c4926f09852434c3b206e55d5fef06a7e2",
+      "unique_sequences": 2856
+    }
+  ],
+  "finalization": {
+    "passed": 11,
+    "sha256": "5b28106aef7c0823abca7b93beade9b66233f7e4d776970968d0e20f866a14f3",
+    "status": "PASS",
+    "total": 11
+  },
+  "independent": {
+    "passed": 39,
+    "sha256": "df545085b9928c5c5fb39c6f308272de6406555f8152ca2caa67c3e71a27d281",
+    "status": "PASS",
+    "total": 39
+  },
+  "input_sha256_matches": true,
+  "mutual_best_links": 42,
+  "new_artifacts": [
+    {
+      "bytes": 47692,
+      "name": "all_r1_centroids.fasta",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2/all_r1_centroids.fasta",
+      "sha256": "81a1a165a44f8a4eeb61f75f3a5cd6471260796ffb6d32f9bf55e7a296b8559c"
+    },
+    {
+      "bytes": 14538,
+      "name": "all_r2_centroids.fasta",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2/all_r2_centroids.fasta",
+      "sha256": "12b100a77609404013cda45dfe58bb8f0033c1529ff9265ec915d657be796cf6"
+    },
+    {
+      "bytes": 63987,
+      "name": "read_assignment_audit_sample.csv",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2/read_assignment_audit_sample.csv",
+      "sha256": "bc4474c98ec73b56594c9815d2e6edc6474c5872eeb3fe347a6b026e1e8a56d8"
+    },
+    {
+      "bytes": 4558,
+      "name": "summary.json",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2/summary.json",
+      "sha256": "c3060f836e3f0de32c4bd19b034b85547b2494af2b307d0f83967ec821372e23"
+    }
+  ],
+  "parameters": {
+    "assignment_cache_max_per_mate": 50000,
+    "audit_sample_per_run": 100,
+    "max_error_nt": 8,
+    "max_reads_per_run": 100000,
+    "min_seed": 10,
+    "min_variant_support": 50
+  },
+  "prior_v1_mismatch": {
+    "reason": "Default thresholds min_seed=20 and min_variant_support=1000 differed from frozen smoke thresholds 10 and 50; not an external-merge error.",
+    "variants_retained": 22
+  },
+  "r1_centroids": 133,
+  "r2_centroids": 43,
+  "run_metrics": [
+    {
+      "bin": 1,
+      "both_assigned": 69747,
+      "library_name": "CM5d_Bin1",
+      "pairs_scanned": 100000,
+      "r1_assigned": 88459,
+      "r1_assignment_fraction": 0.88459,
+      "r2_assigned": 70612,
+      "r2_assignment_fraction": 0.70612,
+      "run": "SRR10714562"
+    }
+  ],
+  "schema": "a8.rk02.mordstein_external_smoke_equivalence.v2",
+  "scope": "single-bin engineering smoke only; not complete 217-library recovery",
+  "status": "PASS",
+  "unit_tests": {
+    "console_log": "mordstein_external_smoke_unit_tests.console.log",
+    "passed": 7,
+    "total": 7
+  },
+  "variants_retained": 118
+}

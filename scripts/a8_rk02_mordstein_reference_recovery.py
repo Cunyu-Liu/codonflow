@@ -10,8 +10,11 @@ import csv
 import datetime
 import gzip
 import hashlib
+import heapq
+import itertools
 import json
 from pathlib import Path
+import random
 import re
 
 import numpy as np
@@ -180,6 +183,74 @@ def collect_exact(runs, max_reads, allow_truncated, r2_protein):
     return r1_exact, r2_exact, per_run
 
 
+def write_exact_cache(counter, path):
+    """Write one run's exact counts sorted by sequence for an external merge."""
+    with gzip.open(path, "wt") as handle:
+        for seq in sorted(counter):
+            handle.write(f"{seq}\t{counter[seq]}\n")
+    return {"path": str(path), "bytes": path.stat().st_size, "sha256": sha256(path),
+            "unique_sequences": len(counter), "exact_reads": sum(counter.values())}
+
+
+def iter_exact_cache(path):
+    with gzip.open(path, "rt") as handle:
+        for line in handle:
+            seq, count = line.rstrip("\n").split("\t")
+            yield seq, int(count)
+
+
+def merge_exact_caches(paths, top_n):
+    """Merge sorted per-run caches exactly while retaining only the global top N."""
+    iterators = [iter_exact_cache(path) for path in paths]
+    merged = heapq.merge(*iterators, key=lambda item: item[0])
+    def aggregate():
+        for seq, group in itertools.groupby(merged, key=lambda item: item[0]):
+            yield seq, sum(item[1] for item in group)
+    selected = heapq.nsmallest(top_n, aggregate(), key=lambda item: (-item[1], item[0]))
+    return dict(selected)
+
+
+def collect_exact_external(runs, max_reads, allow_truncated, r2_protein, cache_dir, top_n):
+    """Bound peak memory with per-run caches, then compute exact global top counts."""
+    cache_dir.mkdir(parents=True, exist_ok=False)
+    per_run = []
+    cache_records = []
+    for run in runs:
+        first = collections.Counter()
+        second = collections.Counter()
+        total = 0
+        for _, seq1, seq2 in paired_records(run["r1"], run["r2"], allow_truncated):
+            if len(seq1) == R1_LENGTH and translate(seq1) == R1_PROTEIN:
+                first[seq1] += 1
+            if seq2 is not None and len(seq2) == 300:
+                coding = r2_coding(seq2)
+                if translate(coding) == r2_protein:
+                    second[coding] += 1
+            total += 1
+            if max_reads and total >= max_reads:
+                break
+        per_run.append({"run": run["run"], "reads_scanned": total,
+                        "r1_orf_valid_reads": sum(first.values()),
+                        "r2_orf_valid_reads": sum(second.values())})
+        print(json.dumps({"phase": "exact_external", **per_run[-1]}), flush=True)
+        for mate, counter in [("r1", first), ("r2", second)]:
+            path = cache_dir / f"{run['run']}_{mate}.exact_counts.tsv.gz"
+            record = write_exact_cache(counter, path)
+            record.update({"run": run["run"], "mate": mate})
+            cache_records.append(record)
+        del first, second
+    r1_exact = merge_exact_caches([Path(row["path"]) for row in cache_records if row["mate"] == "r1"], top_n)
+    r2_exact = merge_exact_caches([Path(row["path"]) for row in cache_records if row["mate"] == "r2"], top_n)
+    return r1_exact, r2_exact, per_run, cache_records
+
+
+def hamming_to_centroid(assigner, seq, centroid_id):
+    if centroid_id is None:
+        return None
+    query = np.frombuffer(seq.encode(), dtype=np.uint8)
+    return int((assigner.matrix[centroid_id] != query).sum())
+
+
 def choose_centroids(exact, length, top_n, min_seed, max_error):
     items = sorted(exact.items(), key=lambda item: (-item[1], item[0]))[:top_n]
     centroids = []
@@ -231,51 +302,79 @@ class SeedAssigner:
         return ids[int(distances.argmin())]
 
 
-def assign_reads(runs, max_reads, allow_truncated, r1_assigner, r2_assigner):
+def assign_reads(runs, max_reads, allow_truncated, r1_assigner, r2_assigner,
+                 assignment_cache_max=0, audit_sample_per_run=0, audit_seed=20261119):
     n_runs = len(runs)
     r1_counts = np.zeros((len(r1_assigner.centroids), n_runs), dtype=np.int64)
     r2_counts = np.zeros((len(r2_assigner.centroids), n_runs), dtype=np.int64)
     pair_counts = collections.Counter()
     caches = [{"r1": {}, "r2": {}} for _ in runs]
     metrics = []
+    audit_samples = []
     for run_index, run in enumerate(runs):
         total = 0
         a1 = a2 = both = 0
-        for _, seq1, seq2 in paired_records(run["r1"], run["r2"], allow_truncated):
+        reservoir = []
+        rng = random.Random(audit_seed + run_index)
+        for header, seq1, seq2 in paired_records(run["r1"], run["r2"], allow_truncated):
             cache = caches[run_index]
             if seq1 not in cache["r1"]:
+                if assignment_cache_max and len(cache["r1"]) >= assignment_cache_max:
+                    cache["r1"].clear()
                 cache["r1"][seq1] = r1_assigner.assign(seq1)
             id1 = cache["r1"][seq1]
+            coding2 = r2_coding(seq2) if seq2 is not None and len(seq2) == 300 else ""
             id2 = None
             if id1 is not None:
                 r1_counts[id1, run_index] += 1
                 a1 += 1
             if seq2 is not None:
-                coding = r2_coding(seq2) if len(seq2) == 300 else ""
-                if coding not in cache["r2"]:
-                    cache["r2"][coding] = r2_assigner.assign(coding)
-                id2 = cache["r2"][coding]
+                if coding2 not in cache["r2"]:
+                    if assignment_cache_max and len(cache["r2"]) >= assignment_cache_max:
+                        cache["r2"].clear()
+                    cache["r2"][coding2] = r2_assigner.assign(coding2)
+                id2 = cache["r2"][coding2]
                 if id2 is not None:
                     r2_counts[id2, run_index] += 1
                     a2 += 1
             if id1 is not None and id2 is not None:
                 pair_counts[(id1, id2)] += 1
                 both += 1
+            read_index = total + 1
+            if audit_sample_per_run:
+                record = {
+                    "run": run["run"], "library_name": run["library_name"], "bin": run["bin"],
+                    "read_index": read_index, "read_id": header.split()[0],
+                    "r1_centroid_index": id1, "r2_centroid_index": id2,
+                    "r1_sequence": seq1, "r2_coding_sequence": coding2,
+                }
+                if len(reservoir) < audit_sample_per_run:
+                    reservoir.append(record)
+                else:
+                    selected = rng.randrange(read_index)
+                    if selected < audit_sample_per_run:
+                        reservoir[selected] = record
             total += 1
             if max_reads and total >= max_reads:
                 break
+        for record in reservoir:
+            record["r1_distance_nt"] = hamming_to_centroid(
+                r1_assigner, record["r1_sequence"], record["r1_centroid_index"])
+            record["r2_distance_nt"] = hamming_to_centroid(
+                r2_assigner, record["r2_coding_sequence"], record["r2_centroid_index"])
+        audit_samples.extend(sorted(reservoir, key=lambda row: row["read_index"]))
         metrics.append({"run": run["run"], "library_name": run["library_name"], "bin": run["bin"],
                         "pairs_scanned": total, "r1_assigned": a1, "r2_assigned": a2,
                         "both_assigned": both,
                         "r1_assignment_fraction": a1 / total if total else None,
                         "r2_assignment_fraction": a2 / total if total else None})
         print(json.dumps({"phase": "assign", **metrics[-1]}), flush=True)
-    return r1_counts, r2_counts, pair_counts, metrics
+    return r1_counts, r2_counts, pair_counts, metrics, audit_samples
 
 
 def write_outputs(args, runs, r1_centroids, r2_centroids, r1_seed_counts, r2_seed_counts,
                   r1_counts, r2_counts, pair_counts, metrics, exact_metrics,
-                  r2_protein, r2_provenance, input_files):
+                  r2_protein, r2_provenance, input_files, exact_cache_records, audit_samples):
     r1_totals = r1_counts.sum(axis=1)
     r2_totals = r2_counts.sum(axis=1)
     selected = [cid for cid, total in enumerate(r1_totals) if total >= args.min_variant_support]
@@ -335,6 +434,20 @@ def write_outputs(args, runs, r1_centroids, r2_centroids, r1_seed_counts, r2_see
             if row["sequence_3prime_279nt"]:
                 seq = "ATG" + row["sequence_5prime_300nt"] + "N" * GAP_LENGTH + row["sequence_3prime_279nt"]
                 handle.write(f">{row['variant_id']} observed=CDS_4_303,CDS_442_720 gap_nt=138\n{seq}\n")
+    with (args.output / "all_r1_centroids.fasta").open("w") as handle:
+        for cid, seq in enumerate(r1_centroids):
+            handle.write(f">r1_centroid_{cid:04d} seed_exact_reads={r1_seed_counts[cid]} assigned_reads={int(r1_totals[cid])}\n{seq}\n")
+    with (args.output / "all_r2_centroids.fasta").open("w") as handle:
+        for cid, seq in enumerate(r2_centroids):
+            handle.write(f">r2_centroid_{cid:04d} seed_exact_reads={r2_seed_counts[cid]} assigned_reads={int(r2_totals[cid])}\n{seq}\n")
+    if args.audit_sample_per_run:
+        audit_fields = ["run", "library_name", "bin", "read_index", "read_id",
+                        "r1_centroid_index", "r1_distance_nt", "r2_centroid_index", "r2_distance_nt",
+                        "r1_sequence", "r2_coding_sequence"]
+        with (args.output / "read_assignment_audit_sample.csv").open("w", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=audit_fields)
+            writer.writeheader()
+            writer.writerows(audit_samples)
     sensitivity = {str(threshold): int((r1_totals >= threshold).sum())
                    for threshold in [20, 50, 100, 200, 500, 1000, 2000, 5000]}
     full = len(runs) == 8 and {row["bin"] for row in runs} == set(range(1, 9))
@@ -361,13 +474,19 @@ def write_outputs(args, runs, r1_centroids, r2_centroids, r1_seed_counts, r2_see
         "runs": [{key: (str(value) if isinstance(value, Path) else value) for key, value in run.items()
                   if key not in {"urls", "md5s"}} for run in runs],
         "input_files": input_files, "exact_collection": exact_metrics, "run_metrics": metrics,
+        "exact_collection_mode": "per_run_disk_cache_exact_merge" if args.exact_cache else "in_memory_global_counter",
+        "exact_cache_files": exact_cache_records,
         "r1_protein_reference": R1_PROTEIN, "r2_protein_reference": r2_protein,
         "r2_protein_provenance": r2_provenance,
         "parameters": {"max_error_nt": args.max_error, "top_exact": args.top_exact,
                        "min_centroid_seed_reads": args.min_seed,
                        "min_variant_support": args.min_variant_support,
-                       "max_reads_per_run": args.max_reads},
+                       "max_reads_per_run": args.max_reads,
+                       "assignment_cache_max_per_mate": args.assignment_cache_max,
+                       "audit_sample_per_run": args.audit_sample_per_run,
+                       "audit_seed": args.audit_seed},
         "r1_centroids": len(r1_centroids), "r2_centroids": len(r2_centroids),
+        "read_assignment_audit_rows": len(audit_samples),
         "variants_retained": len(rows), "mutual_best_links": mutual,
         "support_threshold_sensitivity": sensitivity,
         "selected_r1_assigned_reads": int(sum(row["r1_assigned_reads"] for row in rows)),
@@ -391,11 +510,21 @@ def main():
     parser.add_argument("--min-seed", type=int, default=20)
     parser.add_argument("--min-variant-support", type=int, default=1000)
     parser.add_argument("--max-error", type=int, default=8)
+    parser.add_argument("--exact-cache", type=Path, default=None,
+                        help="New directory for per-run sorted exact-count caches; bounds global counter memory")
+    parser.add_argument("--assignment-cache-max", type=int, default=0,
+                        help="Maximum cached sequences per mate per run; 0 preserves unlimited smoke behavior")
+    parser.add_argument("--audit-sample-per-run", type=int, default=0)
+    parser.add_argument("--audit-seed", type=int, default=20261119)
     args = parser.parse_args()
     if args.max_error != 8:
         raise ValueError("The nine-segment exact-seed proof is frozen at max_error=8")
+    if args.assignment_cache_max < 0 or args.audit_sample_per_run < 0:
+        raise ValueError("Cache and audit sizes must be nonnegative")
     if args.output.exists():
         raise FileExistsError(f"Refusing to overwrite existing output: {args.output}")
+    if args.exact_cache is not None and args.exact_cache.exists():
+        raise FileExistsError(f"Refusing to overwrite existing exact cache: {args.exact_cache}")
     selected = {value for value in args.runs.split(",") if value}
     runs = read_runs(args.metadata, args.raw_root, selected)
     input_files = []
@@ -410,8 +539,13 @@ def main():
         r2_protein, r2_provenance = derive_r2_protein(r2_run, min(args.max_reads or 50000, 50000), args.allow_truncated)
     else:
         r2_protein, r2_provenance = None, {"status": "NO_R2"}
-    r1_exact, r2_exact, exact_metrics = collect_exact(
-        runs, args.max_reads, args.allow_truncated, r2_protein)
+    exact_cache_records = []
+    if args.exact_cache is not None:
+        r1_exact, r2_exact, exact_metrics, exact_cache_records = collect_exact_external(
+            runs, args.max_reads, args.allow_truncated, r2_protein, args.exact_cache, args.top_exact)
+    else:
+        r1_exact, r2_exact, exact_metrics = collect_exact(
+            runs, args.max_reads, args.allow_truncated, r2_protein)
     r1_centroids, r1_seed_counts = choose_centroids(r1_exact, R1_LENGTH, args.top_exact, args.min_seed, args.max_error)
     r2_centroids, r2_seed_counts = choose_centroids(r2_exact, R2_LENGTH, args.top_exact, args.min_seed, args.max_error)
     if not r1_centroids:
@@ -421,11 +555,13 @@ def main():
     print(json.dumps({"phase": "centroids", "r1": len(r1_centroids), "r2": len(r2_centroids)}), flush=True)
     r1_assigner = SeedAssigner(r1_centroids, args.max_error)
     r2_assigner = SeedAssigner(r2_centroids, args.max_error)
-    r1_counts, r2_counts, pair_counts, metrics = assign_reads(
-        runs, args.max_reads, args.allow_truncated, r1_assigner, r2_assigner)
+    r1_counts, r2_counts, pair_counts, metrics, audit_samples = assign_reads(
+        runs, args.max_reads, args.allow_truncated, r1_assigner, r2_assigner,
+        assignment_cache_max=args.assignment_cache_max,
+        audit_sample_per_run=args.audit_sample_per_run, audit_seed=args.audit_seed)
     write_outputs(args, runs, r1_centroids, r2_centroids, r1_seed_counts, r2_seed_counts,
                   r1_counts, r2_counts, pair_counts, metrics, exact_metrics,
-                  r2_protein, r2_provenance, input_files)
+                  r2_protein, r2_provenance, input_files, exact_cache_records, audit_samples)
 
 
 if __name__ == "__main__":

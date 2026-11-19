@@ -1,0 +1,102 @@
+{
+  "artifact_hashes": {
+    "all_r1_centroids.fasta": {
+      "matches_independent": true,
+      "sha256": "81a1a165a44f8a4eeb61f75f3a5cd6471260796ffb6d32f9bf55e7a296b8559c"
+    },
+    "all_r2_centroids.fasta": {
+      "matches_independent": true,
+      "sha256": "12b100a77609404013cda45dfe58bb8f0033c1529ff9265ec915d657be796cf6"
+    },
+    "read_assignment_audit_sample.csv": {
+      "matches_independent": true,
+      "sha256": "bc4474c98ec73b56594c9815d2e6edc6474c5872eeb3fe347a6b026e1e8a56d8"
+    },
+    "references_paired_ends.fasta": {
+      "matches_independent": true,
+      "sha256": "744fb749eb80f6e79dc6c1a9b26468d33c6d26a56ec541e6effd943a3c4e7c2c"
+    },
+    "references_r1.fasta": {
+      "matches_independent": true,
+      "sha256": "9d4bd9f817ed249dcd0e88adb5c24897d402ce6c993f1a022d60a624eef20dd3"
+    },
+    "summary.json": {
+      "matches_independent": true,
+      "sha256": "c3060f836e3f0de32c4bd19b034b85547b2494af2b307d0f83967ec821372e23"
+    },
+    "variant_counts.csv": {
+      "matches_independent": true,
+      "sha256": "aa4516881f5cf972f36b0347d309566b878477471683a65c0bf9fd0c446a17a8"
+    }
+  },
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_preserved",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "production_internal_checks",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_pass",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_all_checks",
+      "status": "PASS"
+    },
+    {
+      "details": "{\"phase\": \"assign\", \"run\": \"TEST\", \"library_name\": \"Bin1\", \"bin\": 1, \"pairs_scanned\": 40, \"r1_assigned\": 40, \"r2_assigned\": 0, \"both_assigned\": 0, \"r1_assignment_fraction\": 1.0, \"r2_assignment_fraction\": 0.0}\n{\"phase\": \"assign\", \"run\": \"TEST\", \"library_name\": \"Bin1\", \"bin\": 1, \"pairs_scanned\": 40, \"r1_assigned\": 40, \"r2_assigned\": 0, \"both_assigned\": 0, \"r1_assignment_fraction\": 1.0, \"r2_assignment_fraction\": 0.0}\n.......\n----------------------------------------------------------------------\nRan 7 tests in 0.007s\n\nOK",
+      "name": "unit_tests",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "scope_matches",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "no_complete_cds_claim",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_id_disclaimer",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "smoke_100k_pairs",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "artifact_hashes_match_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "input_hashes_match_independent",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T02:46:41.066803+00:00",
+  "independent_sha256": "df545085b9928c5c5fb39c6f308272de6406555f8152ca2caa67c3e71a27d281",
+  "next_gate": "full eight-bin recovery and independent verification",
+  "passed": 11,
+  "schema": "a8.rk02.mordstein_recovery_finalization.v1",
+  "scope": "smoke",
+  "status": "PASS",
+  "summary_sha256": "c3060f836e3f0de32c4bd19b034b85547b2494af2b307d0f83967ec821372e23",
+  "test_command": [
+    "scripts/tests/test_a8_rk02_mordstein_reference_recovery.py"
+  ],
+  "test_returncode": 0,
+  "total": 11
+}

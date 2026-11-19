@@ -1,0 +1,132 @@
+{
+  "checks": {
+    "gap_is_138nt": true,
+    "r1_centroids_nonempty": true,
+    "r1_length_is_300": true,
+    "r2_length_is_279_when_linked": true,
+    "reconstructed_ids_not_author_ids": true,
+    "scores_in_1_to_8": true,
+    "support_threshold_respected": true
+  },
+  "created_utc": "2026-11-19T02:44:05.987189+00:00",
+  "exact_cache_files": [
+    {
+      "bytes": 55443,
+      "exact_reads": 61523,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r1.exact_counts.tsv.gz",
+      "run": "SRR10714562",
+      "sha256": "c6e4f8872cedb996f49117395366b2a4827eabb997802a9d3d7b75373b243960",
+      "unique_sequences": 6387
+    },
+    {
+      "bytes": 29163,
+      "exact_reads": 26576,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r2.exact_counts.tsv.gz",
+      "run": "SRR10714562",
+      "sha256": "9eee2931b0199652ba2be00abbb283c4926f09852434c3b206e55d5fef06a7e2",
+      "unique_sequences": 2856
+    }
+  ],
+  "exact_collection": [
+    {
+      "r1_orf_valid_reads": 61523,
+      "r2_orf_valid_reads": 26576,
+      "reads_scanned": 100000,
+      "run": "SRR10714562"
+    }
+  ],
+  "exact_collection_mode": "per_run_disk_cache_exact_merge",
+  "input_files": [
+    {
+      "bytes": 21694441,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_1.fastq.gz",
+      "run": "SRR10714562",
+      "sha256": "22a9718bc9e6eef4079235fa4a7d4a24f39b9ccb40ad3d4f64ca0165de51e385"
+    },
+    {
+      "bytes": 24602224,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_2.fastq.gz",
+      "run": "SRR10714562",
+      "sha256": "55d5124722cf14e1a1df091584f0c3c9c2cf80f8b8a9d5b3bcaf108f3b2f7c34"
+    }
+  ],
+  "library_recovery_status": "SMOKE_PARTIAL_LIBRARY",
+  "mutual_best_links": 42,
+  "parameters": {
+    "assignment_cache_max_per_mate": 50000,
+    "audit_sample_per_run": 100,
+    "audit_seed": 20261119,
+    "max_error_nt": 8,
+    "max_reads_per_run": 100000,
+    "min_centroid_seed_reads": 10,
+    "min_variant_support": 50,
+    "top_exact": 20000
+  },
+  "prohibited_claims": [
+    "complete CDS recovered",
+    "author GFP_### identity recovered",
+    "SOTA",
+    "generator ready"
+  ],
+  "r1_centroids": 133,
+  "r1_protein_reference": "VSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTLTYGVQCFSRYPDHMKQHDFFKSAMPEGYVQERTIFF",
+  "r2_centroids": 43,
+  "r2_protein_provenance": {
+    "consensus_protein": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK*",
+    "differences_from_seed": [
+      {
+        "codon_1based": 232,
+        "observed": "L",
+        "seed": "H"
+      }
+    ],
+    "reads_used": 26598,
+    "seed_protein": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITHGMDELYK*",
+    "source_run": "SRR10714562",
+    "status": "PASS"
+  },
+  "r2_protein_reference": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK*",
+  "read_assignment_audit_rows": 100,
+  "run_metrics": [
+    {
+      "bin": 1,
+      "both_assigned": 69747,
+      "library_name": "CM5d_Bin1",
+      "pairs_scanned": 100000,
+      "r1_assigned": 88459,
+      "r1_assignment_fraction": 0.88459,
+      "r2_assigned": 70612,
+      "r2_assignment_fraction": 0.70612,
+      "run": "SRR10714562"
+    }
+  ],
+  "runs": [
+    {
+      "bin": 1,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HeLa cells",
+      "library_name": "CM5d_Bin1",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_2.fastq.gz",
+      "run": "SRR10714562"
+    }
+  ],
+  "schema": "a8.rk02.mordstein_observed_end_recovery.v1",
+  "scope": "Observed 5'/3' GFP ends and R1-based Flow-seq counts; central 138 nt unobserved",
+  "selected_r1_assigned_reads": 87969,
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "support_threshold_sensitivity": {
+    "100": 103,
+    "1000": 22,
+    "20": 131,
+    "200": 70,
+    "2000": 9,
+    "50": 118,
+    "500": 36,
+    "5000": 2
+  },
+  "variants_retained": 118
+}

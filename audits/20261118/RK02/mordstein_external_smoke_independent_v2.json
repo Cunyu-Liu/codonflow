@@ -1,0 +1,292 @@
+{
+  "artifacts": {
+    "all_r1_centroids.fasta": {
+      "bytes": 47692,
+      "sha256": "81a1a165a44f8a4eeb61f75f3a5cd6471260796ffb6d32f9bf55e7a296b8559c"
+    },
+    "all_r2_centroids.fasta": {
+      "bytes": 14538,
+      "sha256": "12b100a77609404013cda45dfe58bb8f0033c1529ff9265ec915d657be796cf6"
+    },
+    "read_assignment_audit_sample.csv": {
+      "bytes": 63987,
+      "sha256": "bc4474c98ec73b56594c9815d2e6edc6474c5872eeb3fe347a6b026e1e8a56d8"
+    },
+    "references_paired_ends.fasta": {
+      "bytes": 90909,
+      "sha256": "744fb749eb80f6e79dc6c1a9b26468d33c6d26a56ec541e6effd943a3c4e7c2c"
+    },
+    "references_r1.fasta": {
+      "bytes": 39412,
+      "sha256": "9d4bd9f817ed249dcd0e88adb5c24897d402ce6c993f1a022d60a624eef20dd3"
+    },
+    "summary.json": {
+      "bytes": 4558,
+      "sha256": "c3060f836e3f0de32c4bd19b034b85547b2494af2b307d0f83967ec821372e23"
+    },
+    "variant_counts.csv": {
+      "bytes": 75094,
+      "sha256": "aa4516881f5cf972f36b0347d309566b878477471683a65c0bf9fd0c446a17a8"
+    }
+  },
+  "audit_rows_reassigned": 100,
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "scope_matches",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "recovery_status_declared",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "smoke_not_complete_library",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "central_gap_138",
+      "status": "PASS"
+    },
+    {
+      "details": 118,
+      "name": "row_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "mutual_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_ids_only",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "support_threshold",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "counts_bin1"
+      ],
+      "name": "eight_count_columns_when_full",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "counts_sum_to_assigned_total",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "pair_purity_bounds",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_count",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_count",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r1_matches_all_centroids",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r2_matches_all_centroids",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_matches_table",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r2_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_gap_and_lengths",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "frozen_input_hashes",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "exact_cache_hashes",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "external_exact_mode",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 100,
+        "seen": 100
+      },
+      "name": "audit_rows_seen_SRR10714562",
+      "status": "PASS"
+    },
+    {
+      "details": 100000,
+      "name": "raw_pairs_SRR10714562",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 61523,
+        "r2": 26576
+      },
+      "name": "raw_orf_SRR10714562",
+      "status": "PASS"
+    },
+    {
+      "details": 100,
+      "name": "audit_sample_size",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "audit_sample_unique",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "audit_rows_match_raw_reads",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_audit_reassignment",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "audit_distances",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r1_exact_seed_counts",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r2_exact_seed_counts",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T02:46:40.370538+00:00",
+  "exact_cache_hashes": [
+    {
+      "actual_sha256": "c6e4f8872cedb996f49117395366b2a4827eabb997802a9d3d7b75373b243960",
+      "expected_sha256": "c6e4f8872cedb996f49117395366b2a4827eabb997802a9d3d7b75373b243960",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "9eee2931b0199652ba2be00abbb283c4926f09852434c3b206e55d5fef06a7e2",
+      "expected_sha256": "9eee2931b0199652ba2be00abbb283c4926f09852434c3b206e55d5fef06a7e2",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_external_smoke_v2_cache/SRR10714562_r2.exact_counts.tsv.gz"
+    }
+  ],
+  "input_hashes": [
+    {
+      "actual_sha256": "22a9718bc9e6eef4079235fa4a7d4a24f39b9ccb40ad3d4f64ca0165de51e385",
+      "expected_sha256": "22a9718bc9e6eef4079235fa4a7d4a24f39b9ccb40ad3d4f64ca0165de51e385",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "55d5124722cf14e1a1df091584f0c3c9c2cf80f8b8a9d5b3bcaf108f3b2f7c34",
+      "expected_sha256": "55d5124722cf14e1a1df091584f0c3c9c2cf80f8b8a9d5b3bcaf108f3b2f7c34",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_2.fastq.gz"
+    }
+  ],
+  "linked_variants": 117,
+  "passed": 39,
+  "prohibited_claims": [
+    "complete CDS recovered",
+    "author GFP_### identity recovered",
+    "SOTA",
+    "generator ready"
+  ],
+  "raw_pairs_recounted": 100000,
+  "raw_run_metrics": [
+    {
+      "audit_rows_expected": 100,
+      "audit_rows_seen": 100,
+      "orf_r1": 61523,
+      "orf_r2": 26576,
+      "pairs": 100000,
+      "run": "SRR10714562"
+    }
+  ],
+  "schema": "a8.rk02.mordstein_recovery_independent.v2",
+  "scientific_library_gate": "SMOKE_ONLY",
+  "scope": "smoke",
+  "status": "PASS",
+  "total": 39,
+  "variants": 118
+}
