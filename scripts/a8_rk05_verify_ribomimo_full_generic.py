@@ -31,6 +31,12 @@ REPLACEMENTS = [
     ("runRiboMIMO.py", "data_pad = np.array(data_pad)", "data_pad = np.array(data_pad, dtype=float)"),
     ("model.py", "x = pack_padded_sequence(x, length, batch_first=True)", "x = pack_padded_sequence(x, length.cpu(), batch_first=True)"),
 ]
+LOGGED_METRIC_ABS_TOL = 1e-6
+METRIC_COMPARISON_POLICY = {
+    "rule": "absolute delta <= 1e-6 for R2, MSE, Pearson, AUC and AUPR",
+    "reason": "Production logs expose six-decimal float32 metrics; independent float64 recomputation can cross a decimal rounding boundary. This is a log-quantization comparison tolerance, not a scientific performance margin.",
+    "introduced_after": "Mohammad19-1 fold-0 Pearson rounded to 0.703898 in float64 versus logged 0.703899; double-forward predictions were bitwise identical and the absolute delta was 5.105247498082832e-07.",
+}
 
 
 def sha256(path: str | Path) -> str:
@@ -133,6 +139,12 @@ def main() -> None:
             check("failed_v1_log_retained", sha256(previous_data["log"]) == previous_data["log_sha256"], previous_data["log_sha256"])
         else:
             check("no_previous_failed_attempt_required", True, "First full attempt for this dataset; runtime compatibility is fixed in the frozen protocol.")
+        prior_verifier_failure = report_path.with_name(report_path.stem + "_failed.json")
+        if prior_verifier_failure.exists():
+            prior_data = json.loads(prior_verifier_failure.read_text())
+            failed_metric_rows = [row for row in prior_data["checks"] if row["name"].startswith(("independent_metrics:", "independent_aggregate")) and not row["pass"]]
+            rounding_only = bool(failed_metric_rows) and all(all(float(value) <= LOGGED_METRIC_ABS_TOL for value in row["detail"]["deltas"].values()) for row in failed_metric_rows)
+            check("prior_metric_rounding_failure_retained", prior_data["status"] == "FAIL" and rounding_only, {"path": str(prior_verifier_failure), "failed_metric_checks": len(failed_metric_rows)})
 
         sys.path.insert(0, str(independent_src))
         import model as model_module
@@ -261,9 +273,9 @@ def main() -> None:
             metrics["aupr"] = float(average_precision_score(onehot, first["pred_cls"]))
             production_fold = production["official_result"]["folds"][fold]
             production_metrics = production_fold["test_at_best_validation"]
-            rounded_match = all(round(metrics[key], 6) == round(float(production_metrics[key]), 6) for key in ("r2", "mse", "pearson", "auc", "aupr"))
             deltas = {key: abs(metrics[key] - float(production_metrics[key])) for key in ("r2", "mse", "pearson", "auc", "aupr")}
-            check(f"independent_metrics:{fold}", rounded_match, {"metrics": metrics, "production": production_metrics, "deltas": deltas})
+            tolerance_match = all(deltas[key] <= LOGGED_METRIC_ABS_TOL for key in deltas)
+            check(f"independent_metrics:{fold}", tolerance_match, {"metrics": metrics, "production": production_metrics, "deltas": deltas, "absolute_tolerance": LOGGED_METRIC_ABS_TOL})
             prediction_file = output / f"fold_{fold}_test_predictions.npz"
             np.savez_compressed(
                 prediction_file,
@@ -303,13 +315,13 @@ def main() -> None:
             "mse_std": float(np.std([row["constant_train_mean_baseline"]["mse"] for row in fold_results])),
         }
         aggregate_deltas = {key: abs(independent_aggregate[key] - production_aggregate[key]) for key in independent_aggregate}
-        aggregate_match = all(round(independent_aggregate[key], 6) == round(production_aggregate[key], 6) for key in independent_aggregate)
-        check("independent_aggregate", aggregate_match, {"independent": independent_aggregate, "production": production_aggregate, "deltas": aggregate_deltas})
+        aggregate_match = all(aggregate_deltas[key] <= LOGGED_METRIC_ABS_TOL for key in independent_aggregate)
+        check("independent_aggregate", aggregate_match, {"independent": independent_aggregate, "production": production_aggregate, "deltas": aggregate_deltas, "absolute_tolerance": LOGGED_METRIC_ABS_TOL})
         for boundary in ("homology_aware_split", "protein_ood", "study_ood", "functional_ood", "main_baseline_comparison", "publication_metrics_reproduced", "sota_claim"):
             check(f"scope:{boundary}", production[boundary] is False, production[boundary])
 
         report = {
-            "schema_version": "a8-rk05-ribomimo-full-independent-v1",
+            "schema_version": "a8-rk05-ribomimo-full-independent-v2-log-tolerance",
             "status": "PASS",
             "production_report": str(production_path), "production_report_sha256": sha256(production_path),
             "production_root": str(production_root), "output_dir": str(output),
@@ -321,6 +333,8 @@ def main() -> None:
             "aggregate_deltas": aggregate_deltas,
             "checks": checks, "checks_passed": sum(row["pass"] for row in checks), "checks_total": len(checks),
             "production_driver_imported": False,
+            "metric_comparison_policy": METRIC_COMPARISON_POLICY,
+            "prior_verifier_failure": str(prior_verifier_failure) if prior_verifier_failure.exists() else None,
             "full_training_rerun": False,
             "two_forward_passes_per_fold": True,
             "homology_aware_split": False, "protein_ood": False, "study_ood": False,
@@ -332,7 +346,7 @@ def main() -> None:
         print(json.dumps({"status": "PASS", "checks": f"{len(checks)}/{len(checks)}", "report": str(report_path), "report_sha256": sha256(report_path)}, indent=2))
     except Exception:
         failure = {
-            "schema_version": "a8-rk05-ribomimo-full-independent-v1",
+            "schema_version": "a8-rk05-ribomimo-full-independent-v2-log-tolerance",
             "status": "FAIL",
             "production_report": str(production_path),
             "output_dir": str(output),

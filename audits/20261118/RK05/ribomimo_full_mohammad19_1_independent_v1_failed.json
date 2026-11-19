@@ -1,0 +1,296 @@
+{
+  "schema_version": "a8-rk05-ribomimo-full-independent-v1",
+  "status": "FAIL",
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_v1.json",
+  "output_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_1_independent_v1",
+  "checks": [
+    {
+      "name": "production_status",
+      "pass": true,
+      "detail": "PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD19-1"
+    },
+    {
+      "name": "dataset",
+      "pass": true,
+      "detail": "Mohammad19-1"
+    },
+    {
+      "name": "protocol_identity",
+      "pass": true,
+      "detail": "39213ac1783309903f8bdac918f12f09ef32168b9d1b32868298e7057afbbdf2"
+    },
+    {
+      "name": "production_report_identity",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_v1.json"
+    },
+    {
+      "name": "production_driver",
+      "pass": true,
+      "detail": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    {
+      "name": "artifact_hash:ribomimo_full_mohammad19_1_protocol_v1.json",
+      "pass": true,
+      "detail": "39213ac1783309903f8bdac918f12f09ef32168b9d1b32868298e7057afbbdf2"
+    },
+    {
+      "name": "artifact_hash:driver.py",
+      "pass": true,
+      "detail": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    {
+      "name": "artifact_hash:Mohammad19-1.txt",
+      "pass": true,
+      "detail": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5"
+    },
+    {
+      "name": "artifact_hash:official_to_full.diff",
+      "pass": true,
+      "detail": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+    },
+    {
+      "name": "artifact_hash:compatibility_replacements.json",
+      "pass": true,
+      "detail": "8a416108cee22e37629f6ddb497aa5b3aad3e6c010843694abce9db6f4c7cd4b"
+    },
+    {
+      "name": "artifact_hash:training.command.json",
+      "pass": true,
+      "detail": "67b8094776b72e26d006de70e70815c6555681d6ea2f841ad4ad212e99f847e7"
+    },
+    {
+      "name": "artifact_hash:training.console.log",
+      "pass": true,
+      "detail": "50e5f70b97cef11324d87c5812283ab704d101407c57478c699c562902998f99"
+    },
+    {
+      "name": "artifact_hash:training.returncode.txt",
+      "pass": true,
+      "detail": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "name": "artifact_hash:official_result_logging.log",
+      "pass": true,
+      "detail": "4b0cceb9a79d027f1efc731368e9cd41154a4ee97e62e5bfee38f281dd4302ca"
+    },
+    {
+      "name": "artifact_hash:config",
+      "pass": true,
+      "detail": "2d901034ef439786f7bf3a628dcc1e91b79609719130213eccb7d0d5a1c90871"
+    },
+    {
+      "name": "artifact_hash:runtime_environment.json",
+      "pass": true,
+      "detail": "12fb0269b7913ebb3e53d98930c1b875c22885a8f95d3bcbad05cbd8a1796d8d"
+    },
+    {
+      "name": "artifact_hash:environment.json",
+      "pass": true,
+      "detail": "ccd5d517b0823e588066d677a01dcedd20e4c1c8c0027402e80ab6c11eda2cec"
+    },
+    {
+      "name": "artifact_hash:pip_freeze.txt",
+      "pass": true,
+      "detail": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    },
+    {
+      "name": "checkpoint_hash:0",
+      "pass": true,
+      "detail": "291161271448c777ed7bd252189a2b57e3f59b61b3e09249becb3952eee1c0a6"
+    },
+    {
+      "name": "checkpoint_hash:1",
+      "pass": true,
+      "detail": "e7c9b3e71f314a8639a3e2bff3fdc792bd24a25b08db38355a1099b0f052150e"
+    },
+    {
+      "name": "checkpoint_hash:2",
+      "pass": true,
+      "detail": "bed469e04f5b70bb1d86c553058332c416bbc5bbbacd4d0b0dcc855aec40ded8"
+    },
+    {
+      "name": "checkpoint_hash:3",
+      "pass": true,
+      "detail": "6b25e20553c893e9a47972ccaf7b4a0b1349654caae16e7a8a026dff02b0cab5"
+    },
+    {
+      "name": "checkpoint_hash:4",
+      "pass": true,
+      "detail": "a50011dfcaa0a44ef3ee4ed1d0611d3b882fcbae602b8512662d3f1b869b68a5"
+    },
+    {
+      "name": "checkpoint_hash:5",
+      "pass": true,
+      "detail": "bfae9616dfd01fe4527edf62b145ee699af8d991a4173b5f2b368bfb834bbd83"
+    },
+    {
+      "name": "checkpoint_hash:6",
+      "pass": true,
+      "detail": "6a28ec660e0bfd6b285208353807ce87da5aa01aad19357c0aa2b0462d4faa6d"
+    },
+    {
+      "name": "checkpoint_hash:7",
+      "pass": true,
+      "detail": "c6636d6136f78ed3261b84b34369d7f0819df4e6e5a972dd0e9ccfc435cb2f42"
+    },
+    {
+      "name": "checkpoint_hash:8",
+      "pass": true,
+      "detail": "b798e74d547e361a16c8ea242fe5b498feefc012a395937a3555e538ba8c506e"
+    },
+    {
+      "name": "checkpoint_hash:9",
+      "pass": true,
+      "detail": "5f356502a9bba660cb6709c36b224ee0c1b440e896bb5f3e550c3b46354e6e4f"
+    },
+    {
+      "name": "official_source:getSaliency.py",
+      "pass": true,
+      "detail": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    },
+    {
+      "name": "official_source:model.py",
+      "pass": true,
+      "detail": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7"
+    },
+    {
+      "name": "official_source:runRiboMIMO.py",
+      "pass": true,
+      "detail": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490"
+    },
+    {
+      "name": "official_source:utils.py",
+      "pass": true,
+      "detail": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    {
+      "name": "independent_runtime:runRiboMIMO.py",
+      "pass": true,
+      "detail": "e513d89fdc6493441a637568973cd781804b0cd9a95b204821a8230059eb00fc"
+    },
+    {
+      "name": "independent_runtime:model.py",
+      "pass": true,
+      "detail": "2f5b6d0a40860adf62188e2366f10c4ab2a888636d613d89dc5c0ea05431acf1"
+    },
+    {
+      "name": "independent_runtime:utils.py",
+      "pass": true,
+      "detail": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    {
+      "name": "independent_runtime:getSaliency.py",
+      "pass": true,
+      "detail": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    },
+    {
+      "name": "full_matrix",
+      "pass": true,
+      "detail": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5"
+    },
+    {
+      "name": "independent_matrix_copy",
+      "pass": true,
+      "detail": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5"
+    },
+    {
+      "name": "no_previous_failed_attempt_required",
+      "pass": true,
+      "detail": "First full attempt for this dataset; runtime compatibility is fixed in the frozen protocol."
+    },
+    {
+      "name": "eligible_count",
+      "pass": true,
+      "detail": 1426
+    },
+    {
+      "name": "eligible_unique",
+      "pass": true,
+      "detail": 1426
+    },
+    {
+      "name": "official_split_seed",
+      "pass": true,
+      "detail": 815
+    },
+    {
+      "name": "ten_folds",
+      "pass": true,
+      "detail": 10
+    },
+    {
+      "name": "test_gene_union",
+      "pass": true,
+      "detail": 1426
+    },
+    {
+      "name": "logged_fold_size_count",
+      "pass": true,
+      "detail": 10
+    },
+    {
+      "name": "fold_sizes:0",
+      "pass": true,
+      "detail": {
+        "independent": [
+          1155,
+          128,
+          143
+        ],
+        "production": [
+          1155,
+          128,
+          143
+        ]
+      }
+    },
+    {
+      "name": "fold_disjoint:0",
+      "pass": true,
+      "detail": [
+        1155,
+        128,
+        143
+      ]
+    },
+    {
+      "name": "second_forward:0",
+      "pass": true,
+      "detail": {
+        "pred": 0.0,
+        "class": 0.0,
+        "target": 0.0
+      }
+    },
+    {
+      "name": "independent_metrics:0",
+      "pass": false,
+      "detail": {
+        "metrics": {
+          "r2": 0.4929961562156677,
+          "mse": 0.4132770299911499,
+          "pearson": 0.7038984894752502,
+          "auc": 0.8441650469081465,
+          "aupr": 0.6356059766415522
+        },
+        "production": {
+          "r2": 0.492996,
+          "mse": 0.413277,
+          "pearson": 0.703899,
+          "auc": 0.844165,
+          "aupr": 0.635606,
+          "classification_loss": 0.532506
+        },
+        "deltas": {
+          "r2": 1.5621566773482698e-07,
+          "mse": 2.9991149896879676e-08,
+          "pearson": 5.105247498082832e-07,
+          "auc": 4.6908146478230606e-08,
+          "aupr": 2.3358447842625196e-08
+        }
+      }
+    }
+  ],
+  "traceback": "Traceback (most recent call last):\n  File \"/home/codonflow-a8-rk/scripts/a8_rk05_verify_ribomimo_full_generic.py\", line 266, in main\n    check(f\"independent_metrics:{fold}\", rounded_match, {\"metrics\": metrics, \"production\": production_metrics, \"deltas\": deltas})\n  File \"/home/codonflow-a8-rk/scripts/a8_rk05_verify_ribomimo_full_generic.py\", line 89, in check\n    raise AssertionError(f\"{name}: {detail}\")\nAssertionError: independent_metrics:0: {'metrics': {'r2': 0.4929961562156677, 'mse': 0.4132770299911499, 'pearson': 0.7038984894752502, 'auc': 0.8441650469081465, 'aupr': 0.6356059766415522}, 'production': {'r2': 0.492996, 'mse': 0.413277, 'pearson': 0.703899, 'auc': 0.844165, 'aupr': 0.635606, 'classification_loss': 0.532506}, 'deltas': {'r2': 1.5621566773482698e-07, 'mse': 2.9991149896879676e-08, 'pearson': 5.105247498082832e-07, 'auc': 4.6908146478230606e-08, 'aupr': 2.3358447842625196e-08}}\n"
+}

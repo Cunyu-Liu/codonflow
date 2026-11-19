@@ -13,6 +13,11 @@ import numpy as np
 import torch
 from scipy.stats import pearsonr
 from sklearn.metrics import average_precision_score, mean_squared_error, r2_score, roc_auc_score
+LOGGED_METRIC_ABS_TOL = 1e-6
+METRIC_COMPARISON_POLICY = {
+    "rule": "absolute delta <= 1e-6 against six-decimal production logs",
+    "reason": "Log-quantization tolerance only; retained prediction arrays and independent metric identities continue to use 1e-7 recalculation gates. No model-performance margin is relaxed.",
+}
 
 
 def sha256(path: str | Path) -> str:
@@ -148,7 +153,8 @@ def main() -> None:
         baseline_deltas = {key: abs(baseline_recomputed[key] - fold_row["constant_train_mean_baseline"][key]) for key in baseline_recomputed}
         check(f"constant_baseline_recalculation:{fold}", bool(np.all(row["constant_train_mean_pred"] == row["constant_train_mean_pred"][0])) and max(baseline_deltas.values()) <= 1e-7, baseline_deltas)
         production_logged = production["official_result"]["folds"][fold]["test_at_best_validation"]
-        check(f"prediction_matches_production_log:{fold}", all(round(recomputed[key], 6) == round(production_logged[key], 6) for key in recomputed), {"recomputed": recomputed, "production": production_logged})
+        production_deltas = {key: abs(recomputed[key] - float(production_logged[key])) for key in recomputed}
+        check(f"prediction_matches_production_log:{fold}", all(value <= LOGGED_METRIC_ABS_TOL for value in production_deltas.values()), {"recomputed": recomputed, "production": production_logged, "deltas": production_deltas, "absolute_tolerance": LOGGED_METRIC_ABS_TOL})
         fold_recalculation.append({"fold": fold, "metrics": recomputed, "deltas_to_independent": deltas, "constant_train_mean_baseline": baseline_recomputed, "constant_baseline_deltas_to_independent": baseline_deltas})
     check("all_eligible_tested_once", len(all_test_genes) == len(set(all_test_genes)) == production["matrix"]["official_loader_eligible_records"], len(all_test_genes))
     recomputed_aggregate = {
@@ -159,7 +165,8 @@ def main() -> None:
         "pearson_mean": float(np.mean([row["metrics"]["pearson"] for row in fold_recalculation])),
         "pearson_std": float(np.std([row["metrics"]["pearson"] for row in fold_recalculation])),
     }
-    check("final_aggregate_matches_production", all(round(recomputed_aggregate[key], 6) == round(production["official_result"]["aggregate"][key], 6) for key in recomputed_aggregate), {"recomputed": recomputed_aggregate, "production": production["official_result"]["aggregate"]})
+    production_aggregate_deltas = {key: abs(recomputed_aggregate[key] - float(production["official_result"]["aggregate"][key])) for key in recomputed_aggregate}
+    check("final_aggregate_matches_production", all(value <= LOGGED_METRIC_ABS_TOL for value in production_aggregate_deltas.values()), {"recomputed": recomputed_aggregate, "production": production["official_result"]["aggregate"], "deltas": production_aggregate_deltas, "absolute_tolerance": LOGGED_METRIC_ABS_TOL})
     recomputed_baseline_aggregate = {
         "r2_mean": float(np.mean([row["constant_train_mean_baseline"]["r2"] for row in fold_recalculation])),
         "r2_std": float(np.std([row["constant_train_mean_baseline"]["r2"] for row in fold_recalculation])),
@@ -188,7 +195,7 @@ def main() -> None:
         check(f"scope:{boundary}", production[boundary] is False and retrain[boundary] is False and independent[boundary] is False, production[boundary])
 
     report = {
-        "schema_version": "a8-rk05-ribomimo-full-finalization-v1",
+        "schema_version": "a8-rk05-ribomimo-full-finalization-v2-log-tolerance",
         "status": "PASS_COMPLETE_WITH_INDEPENDENT_RETRAIN_AND_INFERENCE",
         "dataset": dataset,
         "production_report": str(production_path), "production_report_sha256": sha256(production_path),
@@ -200,6 +207,7 @@ def main() -> None:
         "fold_recalculation": fold_recalculation,
         "retrain_checkpoint_max_abs_delta": checkpoint_deltas,
         "all_checkpoints_bitwise_equal": all(value == 0.0 for value in checkpoint_deltas.values()),
+        "metric_comparison_policy": METRIC_COMPARISON_POLICY,
         "unit_tests": {"ran": 10, "status": "PASS", "log": str(output / "unit_tests.log"), "log_sha256": sha256(output / "unit_tests.log")},
         "checks": checks, "checks_passed": sum(row["pass"] for row in checks), "checks_total": len(checks),
         "official_default_1x10fold_max100_protocol_executed_twice": True,

@@ -1,0 +1,31 @@
+CONFIRMED PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD19-1: /home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_v1.json
+CONFIRMED PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD19-1: /home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_retrain_v1.json
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/numpy/_core/_methods.py:145: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+{"fold": 0, "metrics": {"r2": 0.4929961562156677, "mse": 0.4132770299911499, "pearson": 0.7038984894752502, "auc": 0.8441650469081465, "aupr": 0.6356059766415522}, "second_forward_delta": 0.0}
+{"fold": 1, "metrics": {"r2": 0.46551722288131714, "mse": 0.4324875771999359, "pearson": 0.6845223307609558, "auc": 0.8094052217933391, "aupr": 0.5854398808499278}, "second_forward_delta": 0.0}
+{"fold": 2, "metrics": {"r2": 0.46187931299209595, "mse": 0.4102665185928345, "pearson": 0.6858279705047607, "auc": 0.8255072729199479, "aupr": 0.5980750827817808}, "second_forward_delta": 0.0}
+{"fold": 3, "metrics": {"r2": 0.4567711353302002, "mse": 0.4386647045612335, "pearson": 0.6767793893814087, "auc": 0.8512244472464383, "aupr": 0.624912805147186}, "second_forward_delta": 0.0}
+{"fold": 4, "metrics": {"r2": 0.45258384943008423, "mse": 0.44869866967201233, "pearson": 0.6780005097389221, "auc": 0.8501071040060116, "aupr": 0.6151213535861696}, "second_forward_delta": 0.0}
+{"fold": 5, "metrics": {"r2": 0.4594416618347168, "mse": 0.43201395869255066, "pearson": 0.6786154508590698, "auc": 0.8139809041786902, "aupr": 0.588031538732108}, "second_forward_delta": 0.0}
+{"fold": 6, "metrics": {"r2": 0.4515085816383362, "mse": 0.4594824016094208, "pearson": 0.6719653606414795, "auc": 0.8164118924694349, "aupr": 0.5960007424929462}, "second_forward_delta": 0.0}
+{"fold": 7, "metrics": {"r2": 0.4673483371734619, "mse": 0.4168078303337097, "pearson": 0.6839293837547302, "auc": 0.8493649113327252, "aupr": 0.6053482325938221}, "second_forward_delta": 0.0}
+{"fold": 8, "metrics": {"r2": 0.4562668800354004, "mse": 0.43599116802215576, "pearson": 0.6790168881416321, "auc": 0.8466700892342337, "aupr": 0.6284512747702254}, "second_forward_delta": 0.0}
+{"fold": 9, "metrics": {"r2": 0.4516351819038391, "mse": 0.44315305352211, "pearson": 0.67819744348526, "auc": 0.8600608680580436, "aupr": 0.6274139410089025}, "second_forward_delta": 0.0}
+{
+  "status": "PASS",
+  "checks": "94/94",
+  "report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_independent_v1.json",
+  "report_sha256": "89dda7f90bb4ba75bfef5083e1435c2c423701d58481dfbf9d7e3dbb5b0ffb2a"
+}
+CONFIRMED PASS: /home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad19_1_independent_v1.json
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk05_finalize_ribomimo_full_generic.py", line 219, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk05_finalize_ribomimo_full_generic.py", line 151, in main
+    check(f"prediction_matches_production_log:{fold}", all(round(recomputed[key], 6) == round(production_logged[key], 6) for key in recomputed), {"recomputed": recomputed, "production": production_logged})
+  File "/home/codonflow-a8-rk/scripts/a8_rk05_finalize_ribomimo_full_generic.py", line 69, in check
+    raise AssertionError(f"{name}: {detail}")
+AssertionError: prediction_matches_production_log:0: {'recomputed': {'r2': 0.4929961562156677, 'mse': 0.4132770299911499, 'pearson': 0.7038984894752502, 'auc': 0.8441650469081465, 'aupr': 0.6356059766415522}, 'production': {'r2': 0.492996, 'mse': 0.413277, 'pearson': 0.703899, 'auc': 0.844165, 'aupr': 0.635606, 'classification_loss': 0.532506}}
