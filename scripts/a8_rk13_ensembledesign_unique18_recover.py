@@ -9,10 +9,14 @@ import hashlib
 import json
 import os
 import platform
+import sys
 import time
 from pathlib import Path
 
 import RNA
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO))
 
 from scripts import a8_rk13_ensembledesign_unique18 as base
 
