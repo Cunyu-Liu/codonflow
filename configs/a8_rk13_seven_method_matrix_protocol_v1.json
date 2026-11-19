@@ -1,0 +1,49 @@
+{
+  "schema": "a8-rk13-seven-method-actual-set-matrix-v1",
+  "protocol_id": "a8_rk13_seven_method_matrix_v1_frozen_before_ensembledesign_scoring",
+  "status": "FROZEN_BEFORE_ENSEMBLEDESIGN_GENERATION",
+  "created_date": "2026-11-19",
+  "population": "the same 18 unique development records as RK-12; no untouched24 or functional untouched",
+  "benchmark_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta",
+  "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+  "base_matrix": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk12/actual_set_matrix_v1/unique18_actual_set_matrix.json",
+  "base_matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+  "base_independent": "/home/codonflow-a8-rk/audits/20261118/RK12/actual_set_matrix_independent_v2.json",
+  "base_independent_sha256": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+  "base_finalization": "/home/codonflow-a8-rk/audits/20261118/RK12/rk12_finalization_v1.json",
+  "base_finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+  "calibration_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18",
+  "calibration_acceptance": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18_acceptance.json",
+  "calibration_acceptance_sha256": "e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c",
+  "rscu_json": "/home/codonflow-a8-rk/configs/cai_ref_v4train.json",
+  "rscu_sha256": "80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f",
+  "reference_method": "lineardesign_lambda11",
+  "added_method": "ensembledesign_11run",
+  "method_order": ["lineardesign_lambda11", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous", "lineardesign_scan", "ensembledesign_11run"],
+  "primary_comparators": ["codongpt", "gemorna", "cai_greedy", "uniform_synonymous", "lineardesign_scan", "ensembledesign_11run"],
+  "primary_effects": [
+    {"metric": "hypervolume_normalized", "direction": "LinearDesign-11 minus comparator; positive means higher normalized hypervolume"},
+    {"metric": "pairwise_ned", "direction": "LinearDesign-11 minus comparator; positive means higher diversity, not better functional performance"}
+  ],
+  "statistics": {
+    "unit": "one record",
+    "n_records": 18,
+    "paired_bootstrap_resamples": 20000,
+    "bootstrap_seed": 20261119,
+    "ci_level": 0.95,
+    "ci_method": "percentile paired bootstrap over record indices",
+    "multiplicity": "Holm over 12 primary comparisons: six comparators x two metrics",
+    "p_value": "two-sided sign-tail bootstrap p with plus-one correction, capped at 1",
+    "selection": "reference, comparators, metrics and correction frozen before EnsembleDesign generation; no per-record oracle comparator"
+  },
+  "cost": {
+    "lineardesign": "sum of 11 measured single-worker official-process wall clocks per record; inherited from the frozen RK-12 grid",
+    "ensembledesign": "one measured official-process wall clock per record with four internal threads, including 11 runs and internal EFE scoring",
+    "other_methods": "legacy fields retained; no uniform hardware/parallelism/end-to-end cost is inferred",
+    "time_matched_comparison": false,
+    "forward_call_comparison": false
+  },
+  "decision_boundary": "development seven-method actual-output comparison only; descriptive method ranking and paired effects do not establish CodonFlow-RK improvement, dense AUC, unified time-matched cost, functional OOD or SOTA",
+  "scientific_gate_passed": false,
+  "sota_claim": false
+}
