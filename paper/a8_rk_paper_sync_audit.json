@@ -31,10 +31,14 @@
     "6.12 RK10 exact preference-conditioned trajectory-balance optimization",
     "8.1 RK10 exact trajectory-balance evidence anchors",
     "6.13 RK-11 minimal neural legal-kernel synthetic CUDA contract",
-    "8.1 RK-11 synthetic neural evidence anchors"
+    "8.1 RK-11 synthetic neural evidence anchors",
+    "6.14 RK-12 unique18 LinearDesign and external actual-set matrix",
+    "8.1 RK-12 evidence anchors",
+    "6.15 Mordstein full eight-bin observed-end recovery",
+    "8.1 RK02 Mordstein observed-end evidence anchors"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+  "output_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -43,12 +47,13 @@
     "ROSE training, 64-checkpoint ensemble, continuous velocity regression and raw-read/P-site remapping",
     "Q2 empirical MFE",
     "Q3 mechanistic increments",
-    "Q4\u2013Q6 model and proxy failure",
+    "Q4–Q6 model and proxy failure",
     "dense candidate-budget comparison",
-    "main baseline matrix",
+    "main CodonFlow-RK model baseline matrix and dense/time-matched comparison",
     "OOD",
     "wet-lab validation",
-    "physical velocity assays, functional velocity transfer and homology-cluster velocity OOD"
+    "physical velocity assays, functional velocity transfer and homology-cluster velocity OOD",
+    "Mordstein 217-candidate recovery and author-variant identity mapping remain unresolved"
   ],
   "pre_histgb_snapshot": {
     "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A7_pre_histgb.md",
@@ -346,5 +351,59 @@
     "original_audit_sha256": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/CodonFlow_preprint_A8_v14.md",
     "paper_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23"
+  },
+  "base_v17_audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+  "base_v17_paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+  "pre_rk12_snapshot": {
+    "paper": "paper/snapshots/rk12_v18/CodonFlow_preprint_A8_v17.md",
+    "paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+    "audit": "paper/snapshots/rk12_v18/a8_rk_paper_sync_audit_v17.json",
+    "audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+    "a7": "paper/snapshots/rk12_v18/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+  },
+  "rk12": {
+    "grid_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
+    "grid_independent_sha256": "851c3134c13be682adf58b47c2350c92c11b51dcb47a9ecb9629656514daeded",
+    "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+    "matrix_independent_sha256": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+    "finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+    "run_count": 198,
+    "record_count": 18,
+    "generation_seconds": 5459.871640930884,
+    "scope": "development actual-set external-method matrix only",
+    "sota_claim": false
+  },
+  "pre_rk02_full_snapshot": {
+    "paper": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A8_v18.md",
+    "paper_sha256": "be95ddca3b08145b3f1adaea73a440d2fb25e2b653069527c6208e0d4c74e181",
+    "audit": "paper/snapshots/mordstein_v19/a8_rk_paper_sync_audit_v18.json",
+    "audit_sha256": "20ed8999b327d538ed35582ad69084c979e3e9f92f2aa7d3be1f78145e2922d6",
+    "a7": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+  },
+  "rk02_mordstein_full": {
+    "download_finalization_sha256": "c60a269c31ac49580dded3f98dc14bc1a22b95db3d0f146c20278597da2d62b7",
+    "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+    "independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+    "finalization_sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+    "raw_pairs": 14929515,
+    "variants_retained": 152,
+    "mutual_best_links": 17,
+    "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217",
+    "central_unobserved_nt": 138,
+    "author_identity_recovered": false,
+    "complete_cds_recovered": false,
+    "sota_claim": false
+  },
+  "last_increment": {
+    "section": "6.17 Frozen MAGE synonymous-mechanism development gate",
+    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+    "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+    "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+    "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
+    "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
+    "scientific_scope": "frozen MAGE dev no-go only; test untouched; no universal mechanism/SOTA claim",
+    "submittable": false
   }
 }

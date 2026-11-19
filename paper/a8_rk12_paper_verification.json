@@ -1,0 +1,195 @@
+{
+  "schema": "a8-rk12-paper-independent-verification-v1",
+  "created_at": "2026-11-19T14:48:31.707224+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "snapshot_paper",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "snapshot_audit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "snapshot_a7",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "current_output_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "update_hashes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "section_once",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "section_before_discussion",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "generated_sections",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "finalization_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "run_count_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "unique_sequence_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "generation_cost_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "grid_verifier_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_verifier_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "finalizer_and_tests_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-12 official unique18 grid",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-12 independent grid verification",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-12 full actual-set matrix",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-12 independent actual-set matrix verification",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-12 finalization",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_rk12_hashes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "pending_main_model_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "pending_ood_and_wetlab_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "non_submittable",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "scientific_boundaries",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "a7_unchanged",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "checks_passed": 36,
+  "checks_total": 36,
+  "paper_sha256": "be95ddca3b08145b3f1adaea73a440d2fb25e2b653069527c6208e0d4c74e181",
+  "audit_sha256": "20ed8999b327d538ed35582ad69084c979e3e9f92f2aa7d3be1f78145e2922d6",
+  "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+  "finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+  "production_paper_script_imported": false,
+  "scope": "exact RK-12 increment, provenance and scientific boundaries; not a full manuscript review"
+}

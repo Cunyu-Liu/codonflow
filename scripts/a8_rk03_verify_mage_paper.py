@@ -73,7 +73,10 @@ def main() -> None:
     check("only_section_and_anchors_added_to_paper", stripped == base_paper.read_text())
     base_audit_obj = json.loads(base_audit.read_text())
     reduced_audit = dict(audit)
-    reduced_audit.pop("last_increment", None)
+    if "last_increment" in base_audit_obj:
+        reduced_audit["last_increment"] = base_audit_obj["last_increment"]
+    else:
+        reduced_audit.pop("last_increment", None)
     reduced_audit["output_sha256"] = base_audit_obj["output_sha256"]
     check("only_output_and_last_increment_changed_in_audit", reduced_audit == base_audit_obj)
     increment = audit.get("last_increment", {})

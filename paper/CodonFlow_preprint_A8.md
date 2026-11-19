@@ -319,6 +319,85 @@ The fixed smoke used float64 CUDA, Adam for **40 steps without checkpoint select
 
 This is a **synthetic neural contract and CUDA backward smoke**, not biological mechanism validation, functional or velocity performance, full-generator training, generation quality, RK-G1 passage, OOD, SOTA, or authorization for expensive generation training.
 
+### 6.14 RK-12 unique18 LinearDesign and external actual-set matrix
+
+I expanded the fixed-source LinearDesign executable from the C01 smoke to the frozen unique18 development panel at lambda = 0.0, 0.1, ..., 1.0. The formal run comprised **198 official CPU processes** (18 records x 11 lambdas) with one worker and preserved raw stdout/stderr. It produced 131 distinct record-sequence pairs and required 5459.872 s of summed official-process wall clock; independent scoring time is reported separately. All 198 outputs were protein-identical. The independent grid verifier passed 35/35 checks with zero CAI/MFE recomputation error, and the three overlapping C01 sequences were exactly identical to the earlier official smoke.
+
+For cross-method comparison, all raw CDS outputs were rescored using the same v4-train RSCU, frozen per-record calibration and four objectives. LinearDesign outputs received the disclosed terminal TAA before evaluation. The actual-set matrix contains 18 development records and six method columns; the primary comparator set and four paired tests were frozen before full-panel scoring. Mean values below are descriptive over 18 records, not a dense-budget or SOTA ranking.
+
+| Method | Actual outputs | Mean normalized HV | Mean pairwise NED | Minimum identity |
+|---|---:|---:|---:|---:|
+| lineardesign_lambda11 | 131 | 29.972887 | 0.071289 | 1.000 |
+| gemorna | 1427 | 20.015288 | 0.163751 | 1.000 |
+| codongpt | 1800 | 14.537219 | 0.230018 | 1.000 |
+| cai_greedy | 18 | 11.523556 | 0.000000 | 1.000 |
+| uniform_synonymous | 1800 | 1.718763 | 0.240783 | 1.000 |
+| lineardesign_scan | 103 | 29.855894 | 0.079248 | 1.000 |
+
+| Comparator | Effect (LinearDesign - comparator) | Mean delta | Paired-bootstrap 95% CI | Holm p (4 tests) |
+|---|---|---:|---:|---:|
+| gemorna | hypervolume_normalized | 9.957599 | [3.848852, 16.976281] | 0.000499975 |
+| gemorna | ned | -0.092461 | [-0.115715, -0.069694] | 0.00039998 |
+| codongpt | hypervolume_normalized | 15.435668 | [7.587008, 24.698096] | 0.00039998 |
+| codongpt | ned | -0.158729 | [-0.175079, -0.142412] | 0.00039998 |
+
+The independent matrix verifier recomputed every raw objective, NED, Pareto/HV value and paired interval without importing the production matrix module (139/139 PASS); finalization passed 15/15 checks and the contract tests passed 10/10. Lambda is an objective weight, not a real scorer budget, so `dense_budget_step_auc_v2` remains null. Legacy baseline cost fields are not time-matched to the new single-worker measurements. This section contains no CodonFlow-RK generator result, untouched evaluation, functional OOD, wet-lab result or SOTA claim.
+
+### 6.15 Mordstein full eight-bin observed-end recovery
+
+I completed the authorized full eight-bin HEK293 Flow-seq recovery only after all 16 ENA mates passed exact byte-size and MD5 gates. The calculation used `max_reads=0`, retained every scanned pair, and separately preserved exact-count caches, centroid references, variant counts and a frozen 200-read audit sample per bin. The resulting evidence is an **observed-end recovery**, not a complete-CDS or author-variant identity reconstruction.
+
+| Quantity | Verified value |
+|---|---:|
+| Verified input | 8 runs / 16 mates / 5,613,006,000 bytes |
+| Raw mate pairs recounted | 14,929,515 |
+| ORF-valid R1 / R2 reads | 1,356,615 / 12,521 |
+| R1 / R2 centroids | 162 / 17 |
+| R1 variants retained at support >= 1,000 | 152 |
+| Mutual-best R1-R2 links | 17 |
+| R1 reads assigned to retained variants | 9,037,593 |
+| Raw-read audit rows independently reassigned | 1,600 |
+
+The independent verifier re-read every raw mate pair, recounted ORF-valid reads, checked all input and cache hashes, validated the centroid/reference/table relationships and independently reassigned all 1,600 raw-read audit rows. It passed 60/60 checks; finalization passed 11/11 checks and reran the 7 contract tests. These passes establish computational consistency, not library completeness.
+
+At the frozen support threshold of 1,000 assigned R1 reads, **152 R1 variants** were retained and **17 mutual-best R1-R2 links** were formed. The scientific library status therefore remains `REVIEW_REQUIRED_COUNT_NOT_217`; it is not evidence that 217 candidates were recovered. Support-threshold sensitivity (threshold: retained R1 variants) was 20: 162, 50: 162, 100: 162, 200: 161, 500: 156, 1000: 152, 2000: 147, 5000: 132. Only the observed 5′ 300-nt and linked 3′ 279-nt ends are supported directly. The central **138 nt / 46 codons** remain unobserved and are represented by Ns in paired-end references. Reconstructed `CF_MORD_*` identifiers are not author `GFP_###` identities. This result supplies no complete-CDS claim, independent functional validation, generator-readiness claim or SOTA claim.
+
+### 6.16 Fixed-GFP observed-end proxy associations and robustness
+
+I next asked whether the recovered observed ends contain any simple sequence signal at all. The frozen primary analysis used the 152 R1 variants passing the original total-read support threshold of at least 1,000 and the R1-assigned HEK293 intronless Flow-seq score, defined as the read-count-weighted mean of fluorescence-bin indices 1–8. The feature window was observed CDS 4–303 only. Two primary hypotheses tested Spearman associations for GC3 and GC, using 20,000 paired-variant bootstraps for percentile 95% CIs, 20,000 label permutations for two-sided p values, and Holm correction across exactly those two hypotheses. Pearson correlations and CpG density were secondary.
+
+| Feature / metric | Correlation | 95% CI | Multiplicity |
+|---|---:|---:|---:|
+| GC3 / Spearman | 0.355974146 | [0.200764350, 0.498474931] | Holm p=9.99950002e-05 |
+| GC3 / Pearson | 0.343495820 | [0.192066273, 0.482747188] | secondary |
+| GC / Spearman | 0.358184001 | [0.204755397, 0.499192256] | Holm p=9.99950002e-05 |
+| GC / Pearson | 0.341083543 | [0.192869026, 0.478265126] | secondary |
+| CpG density / Spearman | 0.372594586 | [0.222352063, 0.509056593] | secondary; unadjusted |
+
+Both primary associations were positive with CIs excluding zero. Thus, within this fixed-GFP observed-end dataset, GC3 and GC are **not uninformative proxies**. This is an association result, not evidence that a mechanism model adds predictive value beyond GC/GC3, CAI, folding or other simple features; no such incremental model comparison was performed here.
+
+A separately frozen **post-hoc** robustness analysis repeated the Spearman estimates at total-read thresholds 1000, 2000, 5000, 10000, 20000, 50000, 100000. The corresponding sample sizes were 152, 147, 132, 112, 82, 51, 23. It also quantified the association between log10(total reads) and score (Spearman=-0.213817071, 95% CI [-0.362103560, -0.054639398]) and computed descriptive partial Spearman correlations after rank-residual adjustment for read depth.
+
+| Feature | Observed Spearman range across 7 support thresholds | All 7 CI lower bounds > 0 | Depth-adjusted partial Spearman [95% CI] |
+|---|---:|---:|---:|
+| GC3 | 0.355974146 to 0.505308009 | false | 0.354487537 [0.198693664, 0.498803645] |
+| GC | 0.358184001 to 0.513774842 | false | 0.356657456 [0.200763479, 0.498848517] |
+
+The robustness analysis did not alter the primary endpoints or create a new acceptance gate. All results remain limited to recovered observed ends from one GFP library: they do not establish complete CDS sequence, author `GFP_###` identity, causality, protein/study OOD transfer, functional generation quality or SOTA. They do not close RK-G1 or authorize expensive generator training. Independent recomputation passed 18/18 primary checks and 8/8 robustness checks; finalization passed 12/12 and 8/8, respectively.
+
+### 6.17 Frozen MAGE synonymous-mechanism development gate
+
+I evaluated the prespecified synonymous-mechanism increment on the fixed infA MAGE data. From 179 eligible constructs across all positions, the primary rich-medium analysis retained 164 constructs at positions 10–71. The SHA256-ordered split, frozen before model fitting, assigned 98/33/33 constructs to train/dev/test. Four sparse ridge feature sets were compared over the same alpha grid, with alpha selected only by dev RMSE. RCS was treated as the published supervised structure score, not as an unsupervised physical ground truth.
+
+| Feature set | Selected alpha | Dev RMSE | Dev Spearman |
+|---|---:|---:|---:|
+| intrinsic | 1 | 0.023268023767 | 0.632115745255 |
+| local_mfe | 1 | 0.024321948639 | 0.617738079534 |
+| rcs_only | 1 | 0.024482257578 | 0.635793752765 |
+| full_mechanism | 1 | 0.025468752399 | 0.618239626013 |
+
+The full mechanism model did not achieve the frozen requirement of strictly lower dev RMSE than both the intrinsic and local-MFE feature sets. The test split was therefore not authorized: no test predictions, test metrics, paired test intervals, minimal-medium transport or N-terminal transport were generated. The formal state is `DEV_NO_GO_TEST_UNTOUCHED`; this is a development-gate result, not a claim that mechanism is universally falsified. Independent raw-data and model-matrix reconstruction passed 39/39 checks with maximum numeric delta 4.83724171829e-13, and finalization passed 12/12 checks. This result does not close RK-G1 or authorize generator-training claims.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -451,6 +530,31 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK-11 first independent failure | `01d4e0bb3dd35a37d700a4fbcbab0283e044fbd20f3d6536987aa6350ef9b3f0` |
 | RK-11 second independent failure | `a906fcc8d0eecf05838974b6e255e32358069c4c0c26f411d26074b12f2d27e4` |
 | RK-11 development CUDA smoke | `b21808814c3a02f6bff4df52c32ff00907a50ea40321b43d495f8a0ca729cae1` |
+
+| RK-12 frozen LinearDesign grid protocol | `030248d286b668101e274a937f83e7acc30b2ea46d929f8a225777d3d2500b99` |
+| RK-12 official unique18 grid | `f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6` |
+| RK-12 independent grid verification | `851c3134c13be682adf58b47c2350c92c11b51dcb47a9ecb9629656514daeded` |
+| RK-12 frozen actual-set matrix protocol | `3b9c3d31f996a56b66fe7df6572bd4af00eea660fc43ceb979e708adccdd3709` |
+| RK-12 full actual-set matrix | `09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6` |
+| RK-12 independent actual-set matrix verification | `27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a` |
+| RK-12 finalization | `0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6` |
+
+| RK02 Mordstein complete 16-file download finalization | `c60a269c31ac49580dded3f98dc14bc1a22b95db3d0f146c20278597da2d62b7` |
+| RK02 Mordstein full observed-end production summary | `95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177` |
+| RK02 Mordstein full observed-end independent verification | `bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190` |
+| RK02 Mordstein full observed-end finalization | `026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889` |
+
+| RK02 fixed-GFP proxy primary production | `d991aded0e735f700882f4490d34c55af98763064156ede1da1a558f2177f952` |
+| RK02 fixed-GFP proxy primary independent verification | `897292a17e06b07c7b76d3d73f8a7815efcb7673fccef86a1a6c931840e027c8` |
+| RK02 fixed-GFP proxy primary finalization | `5f1946a4e3d4664feba7d8d68502082938e0020813d2c2d01ec0edb9c5b1ce2f` |
+| RK02 fixed-GFP proxy robustness production | `6bfd1381d1bd65b80a42238724b651e6ccce7b7f1c1d5c693568ebce25f55f40` |
+| RK02 fixed-GFP proxy robustness independent verification | `abee78c8f5b8aff87af9ef25674a98ccfc2eb9532775ce2a6f8b89e468f23688` |
+| RK02 fixed-GFP proxy robustness finalization | `fd49cc491e92fd3a4a6555a6c3a0ee0b3cae6a5f2fb95f09706e4a9a61389d61` |
+
+| RK03 MAGE frozen protocol | `ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116` |
+| RK03 MAGE dev production | `16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b` |
+| RK03 MAGE independent verification | `b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489` |
+| RK03 MAGE finalization | `05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
