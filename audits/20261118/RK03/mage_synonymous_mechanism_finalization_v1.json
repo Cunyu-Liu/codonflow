@@ -1,0 +1,87 @@
+{
+  "schema": "a8-rk03-mage-synonymous-finalization-v1",
+  "status": "PASS",
+  "checks_passed": 12,
+  "checks_total": 12,
+  "checks": [
+    {
+      "check": "protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_production_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_pass",
+      "pass": true,
+      "evidence": {
+        "passed": 39,
+        "total": 39
+      }
+    },
+    {
+      "check": "all_independent_checks_true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "numeric_tolerance",
+      "pass": true,
+      "evidence": 4.837241718291807e-13
+    },
+    {
+      "check": "dev_no_go_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "test_not_authorized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_test_or_secondary_metrics",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_test_artifacts",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "artifact_hash:split_assignments.csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "artifact_hash:dev_predictions.csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "frozen_dev_comparison",
+      "pass": true,
+      "evidence": {
+        "full_mechanism": 0.02546875239936016,
+        "intrinsic": 0.02326802376694232,
+        "local_mfe": 0.024321948638571855
+      }
+    }
+  ],
+  "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+  "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+  "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
+  "production_script_sha256": "b85e127f028e2e3b95e8548b7474d19bb0e70508274a4e10b5a2b78447745040",
+  "independent_script_sha256": "989471c7e0a10b8d084228115d194a1feaa6fa56f62152c6a2c60f452445f5d0",
+  "code_commit": "87266b5b6cd9bebafda32d14965511d9211bba94",
+  "verified_result_recordable": true,
+  "verified_scope": "frozen rich-medium positions-10-71 dev selection only; full mechanism did not beat intrinsic/local-MFE baselines",
+  "test_result_available": false,
+  "test_untouched": true,
+  "sota_claim": false,
+  "causal_claim": false
+}
