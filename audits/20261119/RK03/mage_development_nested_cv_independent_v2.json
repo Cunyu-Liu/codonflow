@@ -1,0 +1,547 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "source_hash_csv",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_codon_module",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_v1_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_v1_report",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_v1_split_assignments",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "protocol_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_script_nonempty",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v1_no_go_retained",
+      "pass": true
+    },
+    {
+      "detail": {
+        "common": 4599,
+        "eligible": 179,
+        "primary": 164,
+        "source_rows": 9344
+      },
+      "name": "raw_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_excluded_from_records",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v1_split_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "prediction_artifact_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fold_artifact_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "prediction_ids_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "prediction_has_no_test",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fold_rows_complete",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "prediction_split_position_outcome",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261119_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261119_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261119_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261119_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261119_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261119_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261119_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261119_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261119_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261119_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261119_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261119_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261119_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261119_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261119_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261119_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261120_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261120_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261120_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261120_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261120_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261120_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261120_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261120_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261121_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261121_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261121_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261121_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "outer_folds_40261121_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "alpha_selection_40261121_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_rmse_40261121_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "predictions_40261121_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fold_artifact_exact",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_metrics_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_metrics_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_metrics_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_metrics_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_inference_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "primary_inference_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "holm_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "holm_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261120_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261120_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_effect_40261120_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_effect_40261120_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261121_rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_metrics_40261121_full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_effect_40261121_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "sensitivity_effect_40261121_local_mfe",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "primary_gate_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sensitivity_gate_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_gate_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "status_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_readout_absent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "original_gate_not_modified",
+      "pass": true
+    },
+    {
+      "detail": {
+        "inference": 0.0,
+        "inner_rmse": 0.0,
+        "metric": 0.0,
+        "prediction": 0.0
+      },
+      "name": "all_numeric_deltas_within_tolerance",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "unit_tests_12_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "initial_failure_preserved",
+      "pass": true
+    }
+  ],
+  "checks_passed": 96,
+  "checks_total": 96,
+  "development_go_recomputed": false,
+  "elapsed_s": 96.3914588149637,
+  "git_head_at_verification": "b6f9f09c9873cab7af4d8b321f2bd9a452fbb8d7",
+  "max_numeric_deltas": {
+    "inference": 0.0,
+    "inner_rmse": 0.0,
+    "metric": 0.0,
+    "prediction": 0.0
+  },
+  "primary_development_ok_recomputed": false,
+  "production_report_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
+  "production_script_sha256": "2ad1ff1bbc7a08db6009b3928ef4ff18c7786e987328a30f1d54c8938c5fad9d",
+  "protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
+  "recomputed_primary_comparisons": {
+    "full_mechanism_minus_intrinsic": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": 9.492841319608952e-05,
+      "delta_rmse_ci95": [
+        -0.0014175669474227434,
+        0.0014564023955950885
+      ],
+      "delta_spearman": 0.022899062089363098,
+      "delta_spearman_ci95": [
+        -0.03790577728252063,
+        0.09011639336438297
+      ],
+      "permutation_p_rmse": 0.9038548072596371,
+      "permutation_p_spearman": 0.46897655117244136,
+      "permutation_replicates": 20000
+    },
+    "full_mechanism_minus_local_mfe": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": -0.00015564541667982545,
+      "delta_rmse_ci95": [
+        -0.00099939487224795,
+        0.0006002852277178957
+      ],
+      "delta_spearman": 0.008032557452424038,
+      "delta_spearman_ci95": [
+        -0.028646738585894137,
+        0.0488584816334765
+      ],
+      "permutation_p_rmse": 0.7005649717514124,
+      "permutation_p_spearman": 0.6765161741912904,
+      "permutation_replicates": 20000
+    }
+  },
+  "schema": "a8-rk03-mage-development-nested-cv-independent-v2",
+  "sensitivity_signs_ok_recomputed": false,
+  "status": "PASS",
+  "test_untouched": true
+}

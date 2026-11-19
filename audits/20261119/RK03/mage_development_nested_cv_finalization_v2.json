@@ -1,0 +1,278 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "protocol_hash_production",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "protocol_hash_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_hash_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_pass",
+      "pass": true
+    },
+    {
+      "detail": "96/96",
+      "name": "independent_all_checks",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_no_go",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_no_go",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "primary_gate_not_met",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sensitivity_not_stable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_predictions_absent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_metrics_absent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_untouched_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v1_gate_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "mechanism_not_passed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "generator_not_authorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_n",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_original_splits",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_n_excluded",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_ids_not_emitted",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "prediction_tolerance",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "metric_tolerance",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inference_tolerance",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "inner_selection_tolerance",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "unit_tests_12_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "initial_test_failure_preserved",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_commit_recorded",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "primary_comparisons_complete",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "two_sensitivity_repeats",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bootstrap_replicates",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "permutation_replicates",
+      "pass": true
+    }
+  ],
+  "checks_passed": 30,
+  "checks_total": 30,
+  "conclusion": "Nested development CV did not support a stable full-mechanism increment over intrinsic or local-MFE baselines. The original v1 NO-GO stands, the 33-construct test remains untouched, and no generator training is authorized.",
+  "development_go": false,
+  "development_n": 131,
+  "evidence": {
+    "independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK03/mage_development_nested_cv_independent_v2.json",
+      "sha256": "3ffe88f6174f415902645c2a649a44ee2e72c1b889aa4933cec9b93c1e3917b7"
+    },
+    "production": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK03/mage_development_nested_cv_v2.json",
+      "sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c"
+    },
+    "production_script_sha256": "2ad1ff1bbc7a08db6009b3928ef4ff18c7786e987328a30f1d54c8938c5fad9d",
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/configs/a8_rk03_mage_development_nested_cv_protocol_v2.json",
+      "sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd"
+    }
+  },
+  "expensive_generation_authorized": false,
+  "functional_untouched_evaluated": false,
+  "git_head_at_independent_verification": "b6f9f09c9873cab7af4d8b321f2bd9a452fbb8d7",
+  "manuscript_submittable": false,
+  "primary_comparisons": {
+    "full_mechanism_minus_intrinsic": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": 9.492841319608952e-05,
+      "delta_rmse_ci95": [
+        -0.0014175669474227434,
+        0.0014564023955950885
+      ],
+      "delta_spearman": 0.022899062089363098,
+      "delta_spearman_ci95": [
+        -0.03790577728252063,
+        0.09011639336438297
+      ],
+      "holm_p_rmse": 1.0,
+      "holm_p_spearman": 1.0,
+      "permutation_p_rmse": 0.9038548072596371,
+      "permutation_p_spearman": 0.46897655117244136,
+      "permutation_replicates": 20000
+    },
+    "full_mechanism_minus_local_mfe": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": -0.00015564541667982545,
+      "delta_rmse_ci95": [
+        -0.00099939487224795,
+        0.0006002852277178957
+      ],
+      "delta_spearman": 0.008032557452424038,
+      "delta_spearman_ci95": [
+        -0.028646738585894137,
+        0.0488584816334765
+      ],
+      "holm_p_rmse": 1.0,
+      "holm_p_spearman": 1.0,
+      "permutation_p_rmse": 0.7005649717514124,
+      "permutation_p_spearman": 0.6765161741912904,
+      "permutation_replicates": 20000
+    }
+  },
+  "primary_models": {
+    "full_mechanism": {
+      "mae": 0.0222595186439585,
+      "mean_prediction": 0.9672249693719108,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03422820302559988,
+      "spearman": 0.6352981456298568
+    },
+    "intrinsic": {
+      "mae": 0.022187896273263757,
+      "mean_prediction": 0.9673925630140914,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03413327461240379,
+      "spearman": 0.6123990835404937
+    },
+    "local_mfe": {
+      "mae": 0.022317182950456392,
+      "mean_prediction": 0.9672812577069033,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03438384844227971,
+      "spearman": 0.6272655881774327
+    },
+    "rcs_only": {
+      "mae": 0.021816612746170472,
+      "mean_prediction": 0.9673068108614218,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.034152773868486606,
+      "spearman": 0.6163526287671603
+    }
+  },
+  "rk_g1_pass": false,
+  "schema": "a8-rk03-mage-development-nested-cv-finalization-v2",
+  "scientific_outcome": "MAGE_DEVELOPMENT_MECHANISM_INCREMENT_NOT_SUPPORTED",
+  "scope": "fixed_infA_synonymous_development_nested_cv_only",
+  "sensitivity_comparisons": {
+    "40261120": {
+      "full_mechanism_minus_intrinsic": {
+        "delta_rmse": -0.0005171209147919673,
+        "delta_spearman": 0.014893199743128527
+      },
+      "full_mechanism_minus_local_mfe": {
+        "delta_rmse": 0.0003740157291418217,
+        "delta_spearman": -0.0153069738890661
+      }
+    },
+    "40261121": {
+      "full_mechanism_minus_intrinsic": {
+        "delta_rmse": 0.0001331645349880728,
+        "delta_spearman": 0.0241190284422238
+      },
+      "full_mechanism_minus_local_mfe": {
+        "delta_rmse": 0.0007287508793300049,
+        "delta_spearman": -0.00937265178313762
+      }
+    }
+  },
+  "status": "PASS",
+  "test_n_untouched": 33
+}

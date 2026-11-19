@@ -513,3 +513,17 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 实时 PPT 基线为 77 页、revision 39、末页 `pgW`。候选页独立 preflight **14/14 PASS** 后只追加第 78 页 `pgc`，revision=40。页面展示 Pop14/Battle15 的 ROC AUC、AP、accuracy、log loss 和常数 baseline，明确二分类、单 checkpoint、无训练、非速度回归及 OOD/SOTA 未关闭，并保留 v1–v3 数值判据失败说明。
 - `audits/20261118/RK05/rose_ppt_final_verification_v1.json` 为 **PASS，14/14 checks**：整稿 78 页，前 77 页 slide ID、顺序与 canonical XML 全部不变；新页文本与候选一致，指标由冻结 JSON 复核，4 段备注、画布边界与科学边界通过。raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1/`；PPT 验证代码/报告 commit=`a9de66192f4d3fa2e795d8d93b05e2671248b595`，本地和服务器复跑结果逐字节一致。
 - 当前在线主稿真实状态为 **78 页、revision 40、末页 `pgc`**。本任务只关闭 ROSE 发布测试集单 checkpoint 推理及其论文/PPT 记录；完整训练、100000-iteration 协议、64-checkpoint 集成、连续速度回归、raw-read/P-site 重映射、蛋白/study/功能 OOD、统一成本强 baseline 主矩阵、RK03/RK04/RK06 剩余项、CodonFlow-RK 生成器、完整 Fig.1–7、SOTA、前瞻湿实验与可投稿论文均未关闭。遗留 `id3_independent_verification.pid` 不属于本任务，不应提交。
+
+## 28. MAGE 固定 infA 同义机制 nested-development 诊断与 A8 v26
+
+### 冻结协议、生产结果与独立复核
+
+- v2 协议在拟合前冻结，只复用 v1 的 train+dev=131 constructs（98/33），保持四组特征、分类/数值变量、StandardScaler、OneHotEncoder、ridge solver 与 alpha grid 不变。5-fold outer/4-fold inner nested CV 仅以 inner OOF RMSE 选 alpha；primary seed=`40261119`，敏感性 seeds=`40261120/40261121`。原 33 个 test constructs 在记录表、fold、特征矩阵、拟合、预测和指标中完全排除。协议/生产器/12 项测试已以 commit=`b6f9f09c9873cab7af4d8b321f2bd9a452fbb8d7` 推送。
+- 主 seed 的 intrinsic/local-MFE/RCS-only/full-mechanism RMSE 分别为 `0.034133275/0.034383848/0.034152774/0.034228203`，Spearman 分别为 `0.612399084/0.627265588/0.616352629/0.635298146`。full−intrinsic ΔSpearman=`0.022899062`，95% CI=`[-0.037905777,0.090116393]`，ΔRMSE=`+0.000094928`，95% CI=`[-0.001417567,0.001456402]`；full−local-MFE ΔSpearman=`0.008032557`，95% CI=`[-0.028646739,0.048858482]`，ΔRMSE=`−0.000155645`，95% CI=`[-0.000999395,0.000600285]`。20,000 bootstrap、20,000 paired sign-flip 后四项 Holm p=1.0。
+- 两个敏感性重复未满足所有方向一致性，最终为 `DEV_NO_GO_TEST_UNTOUCHED`。这只说明当前固定 infA、rich medium、positions 10–71 的开发设计下 full-mechanism 增量小且不稳定，不证明 RNA 结构普遍无效；RCS 是外部监督结构评分。独立 raw-source 复核 **96/96 PASS**，prediction/metric/inference/inner-RMSE 最大差均为 0；finalization **30/30 PASS**。生产报告、独立报告和 finalization 位于 `audits/20261119/RK03/`，大型 OOF/fold artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/`。
+
+### A8 v26、复现与后续边界
+
+- A8 在 v25 后以 append-only 方式新增 6.22 和证据锚点，A7 未改；v25 SHA256=`f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b`，v26 SHA256=`88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5`。论文独立核验 **54/54 PASS**，其中候选事实 **29/29 PASS**；v25 可由更新记录逐字恢复，快照保存在 `paper/snapshots/rk03_mage_development_nested_cv_v26/`。
+- 完整生产、独立复核、finalization 和论文核验命令见根目录 `README.md`；run 已登记 `experiments/REGISTRY.md`。初次 `FileNotFoundError` 工程失败与最终 12/12 测试日志均保留。
+- 本项没有读取或评价 33 个 mechanism-test constructs，没有 minimal-medium、rich-to-minimal 或 N-terminal transport，没有使用 RK04 的 19,072 个 functional-untouched MAGE assay rows。RK-G1=false，昂贵生成训练未授权；真实功能 OOD、主模型、完整 baseline、统一成本、生成器、SOTA、前瞻湿实验和可投稿论文仍未关闭。

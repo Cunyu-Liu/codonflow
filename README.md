@@ -19,6 +19,47 @@ python scripts/gpu_queue.py              # GPU 排队守护（60s 轮询）
 python scripts/gpu_heartbeat.py          # 30min 心跳采样
 ```
 
+## A8-RK：MAGE 固定 infA 同义机制 nested-development 复现
+
+本项只复算已用于 v1 的 train+dev 共 131 个 constructs；原 33 个 test constructs 不得进入记录表、fold、特征、拟合、预测或指标。v1 的 `DEV_NO_GO_TEST_UNTOUCHED` 不改写，本项也不是独立确认、功能 untouched、protein OOD 或生成器实验。
+
+```bash
+cd /home/codonflow-a8-rk
+export PYTHONDONTWRITEBYTECODE=1
+PY=/root/miniconda3/bin/python
+CFG=configs/a8_rk03_mage_development_nested_cv_protocol_v2.json
+A=audits/20261119/RK03
+
+$PY -m unittest scripts.tests.test_a8_rk03_mage_development_nested_cv -v
+
+$PY scripts/a8_rk03_mage_development_nested_cv.py \
+  --config "$CFG" --output "$A/mage_development_nested_cv_v2.json"
+
+$PY scripts/a8_rk03_verify_mage_development_nested_cv.py \
+  --config "$CFG" \
+  --report "$A/mage_development_nested_cv_v2.json" \
+  --production-script scripts/a8_rk03_mage_development_nested_cv.py \
+  --output "$A/mage_development_nested_cv_independent_v2.json"
+
+$PY scripts/a8_rk03_finalize_mage_development_nested_cv.py \
+  --config "$CFG" \
+  --production "$A/mage_development_nested_cv_v2.json" \
+  --independent "$A/mage_development_nested_cv_independent_v2.json" \
+  --output "$A/mage_development_nested_cv_finalization_v2.json"
+
+$PY scripts/a8_rk03_mage_development_verify_paper.py \
+  --paper paper/CodonFlow_preprint_A8.md \
+  --a7 paper/CodonFlow_preprint_A7.md \
+  --sync-audit paper/a8_rk_paper_sync_audit.json \
+  --update-record paper/a8_rk03_mage_development_nested_cv_paper_update.json \
+  --production "$A/mage_development_nested_cv_v2.json" \
+  --independent "$A/mage_development_nested_cv_independent_v2.json" \
+  --finalization "$A/mage_development_nested_cv_finalization_v2.json" \
+  --output "$A/mage_development_nested_cv_paper_verification_v2.json"
+```
+
+预期验收为 12/12 unit tests、独立 96/96 PASS、finalization 30/30 PASS、论文 54/54 PASS；科学结果为 `DEV_NO_GO_TEST_UNTOUCHED`。大型 OOF/fold 文件由冻结协议写入 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/`：`development_oof_predictions.csv`（131 constructs × 3 seeds 的模型预测记录）和 `development_fold_assignments.csv`（393 行）。初次测试路径失败日志与最终日志均保留在 `audits/20261119/RK03/`，不得删除。
+
 ## 目录
 
 ```

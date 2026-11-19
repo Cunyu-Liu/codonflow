@@ -22,6 +22,8 @@
   "base_v23_paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
   "base_v24_audit_sha256": "2f85860916dc3e8e322e7135230ce157136b41566e18d70b87bb2a837ffae0d4",
   "base_v24_paper_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
+  "base_v25_audit_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
+  "base_v25_paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
   "generated_sections": [
     "3.1",
     "3.2 RK04 addition",
@@ -53,23 +55,23 @@
     "6.20 Fixed-GFP observed-R1 structure increment: development no-go",
     "8.1 RK02 structure-increment evidence anchors",
     "6.21 RiboMIMO cross-study transfer: ridge was stronger on both frozen endpoints",
-    "8.1 RK05 RiboMIMO study-OOD evidence anchors"
+    "8.1 RK05 RiboMIMO study-OOD evidence anchors",
+    "6.22 MAGE nested development CV",
+    "8.1 RK03 MAGE nested-development evidence anchors"
   ],
   "last_increment": {
-    "finalization_sha256": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e",
-    "independent_retrain_sha256": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035",
-    "independent_sha256": "5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1",
-    "paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
-    "production_sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239",
-    "protocol_sha256": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5",
-    "scientific_scope": "Mohammad16-to-Subtelny14 occupancy-derived study-OOD baseline; ridge significantly better on both frozen primary endpoints; not globally untouched, physical velocity, functional/homology OOD, RK-G1 closure, generator authorization or SOTA",
-    "section": "6.21 RiboMIMO cross-study transfer: ridge was stronger on both frozen endpoints",
-    "submittable": false,
-    "training_record_sha256": "b8692e0e9811533c78864aaf10abf70cae0f9963b2800abf53a9fd055156a95e"
+    "finalization_sha256": "846d79183f1f7a02f7b0f7c9569f33597fd6caaf067adf1d446c7cb82f251599",
+    "independent_sha256": "3ffe88f6174f415902645c2a649a44ee2e72c1b889aa4933cec9b93c1e3917b7",
+    "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
+    "production_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
+    "protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
+    "scientific_scope": "fixed-infA synonymous development nested-CV NO-GO; test untouched; no RK-G1, generator or SOTA claim",
+    "section": "6.22 MAGE nested development CV: mechanism increments were small and unstable",
+    "submittable": false
   },
   "manuscript_version": "v25",
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
+  "output_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -109,6 +111,14 @@
     "audit_sha256": "5f546a314961b87470cb81ae073eec45023d28542741a04be87b91ff271bb143",
     "paper": "/home/codonflow-a8-rk/paper/snapshots/rk02_structure_v24/CodonFlow_preprint_A8_v23.md",
     "paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2"
+  },
+  "pre_rk03_mage_development_snapshot": {
+    "a7": "paper/snapshots/rk03_mage_development_nested_cv_v26/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "paper/snapshots/rk03_mage_development_nested_cv_v26/a8_rk_paper_sync_audit_v25.json",
+    "audit_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
+    "paper": "paper/snapshots/rk03_mage_development_nested_cv_v26/CodonFlow_preprint_A8_v25.md",
+    "paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b"
   },
   "pre_rk05_cagfn_snapshot": {
     "a7": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/CodonFlow_preprint_A7.md",
@@ -198,6 +208,17 @@
     "scientific_result": "FIXED_GFP_OBSERVED_R1_STRUCTURE_INCREMENT_NO_GO_DEVELOPMENT_ONLY",
     "sota_claim": false,
     "structure_increment_pass": false
+  },
+  "rk03_mage_development_nested_cv": {
+    "development_n": 131,
+    "finalization_checks": "30/30",
+    "generator_training_authorized": false,
+    "independent_checks": "96/96",
+    "max_numeric_delta": 0.0,
+    "rk_g1_pass": false,
+    "sota_claim": false,
+    "status": "DEV_NO_GO_TEST_UNTOUCHED",
+    "test_n_untouched": 33
   },
   "rk05_cagfn_v23": {
     "finalization_sha256": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",

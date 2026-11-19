@@ -1,0 +1,284 @@
+{
+  "candidate_facts_passed": 29,
+  "candidate_facts_total": 29,
+  "checks": [
+    {
+      "detail": null,
+      "name": "paper_hash_record",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_hash_record",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "snapshot_paper_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "snapshot_audit_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v25_exactly_recoverable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v25_snapshot_byte_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_present_once",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "previous_section_preserved",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_before_discussion",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_no_go",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_96_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "finalization_30_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "zero_independent_deltas",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_still_untouched",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "generator_not_authorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "non_submittable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_output_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_increment_hashes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_scope",
+      "pass": true
+    },
+    {
+      "detail": "131 constructs",
+      "name": "paper_fact_development_n",
+      "pass": true
+    },
+    {
+      "detail": "98 train and 33 development",
+      "name": "paper_fact_original_train_dev",
+      "pass": true
+    },
+    {
+      "detail": "33 test constructs",
+      "name": "paper_fact_test_n",
+      "pass": true
+    },
+    {
+      "detail": "Five-fold outer cross-validation",
+      "name": "paper_fact_outer_inner",
+      "pass": true
+    },
+    {
+      "detail": "four-fold inner cross-validation",
+      "name": "paper_fact_inner_folds",
+      "pass": true
+    },
+    {
+      "detail": "20,000 construct bootstraps",
+      "name": "paper_fact_resampling",
+      "pass": true
+    },
+    {
+      "detail": "20,000 paired sign-flip permutations",
+      "name": "paper_fact_permutation",
+      "pass": true
+    },
+    {
+      "detail": "40261119",
+      "name": "paper_fact_primary_seed",
+      "pass": true
+    },
+    {
+      "detail": "40261120 and 40261121",
+      "name": "paper_fact_sensitivity_seeds",
+      "pass": true
+    },
+    {
+      "detail": "0.034133275",
+      "name": "paper_fact_model_intrinsic_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.612399084",
+      "name": "paper_fact_model_intrinsic_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.034383848",
+      "name": "paper_fact_model_local_mfe_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.627265588",
+      "name": "paper_fact_model_local_mfe_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.034152774",
+      "name": "paper_fact_model_rcs_only_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.616352629",
+      "name": "paper_fact_model_rcs_only_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.034228203",
+      "name": "paper_fact_model_full_mechanism_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.635298146",
+      "name": "paper_fact_model_full_mechanism_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.000094928",
+      "name": "paper_fact_intrinsic_delta_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.022899062",
+      "name": "paper_fact_intrinsic_delta_spearman",
+      "pass": true
+    },
+    {
+      "detail": "-0.000155645",
+      "name": "paper_fact_local_delta_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.008032557",
+      "name": "paper_fact_local_delta_spearman",
+      "pass": true
+    },
+    {
+      "detail": "[-0.001417567, 0.001456402]",
+      "name": "paper_fact_intrinsic_rmse_ci",
+      "pass": true
+    },
+    {
+      "detail": "[-0.000999395, 0.000600285]",
+      "name": "paper_fact_local_rmse_ci",
+      "pass": true
+    },
+    {
+      "detail": "all four Holm-adjusted p values were 1.0",
+      "name": "paper_fact_holm_all_one",
+      "pass": true
+    },
+    {
+      "detail": "full-minus-local-MFE Spearman was negative in both sensitivity repeats",
+      "name": "paper_fact_sensitivity_negative",
+      "pass": true
+    },
+    {
+      "detail": "do not show that RNA structure is universally uninformative",
+      "name": "paper_fact_no_universal_structure_claim",
+      "pass": true
+    },
+    {
+      "detail": "96/96 checks",
+      "name": "paper_fact_independent_count",
+      "pass": true
+    },
+    {
+      "detail": "30/30 checks",
+      "name": "paper_fact_finalization_count",
+      "pass": true
+    },
+    {
+      "detail": "No test prediction, test metric, minimal-medium transport, N-terminal transport or generator authorization was generated",
+      "name": "paper_fact_no_test_readout",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_finalization",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_production",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_unit_tests",
+      "pass": true
+    }
+  ],
+  "checks_passed": 54,
+  "checks_total": 54,
+  "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
+  "schema": "a8-rk03-mage-development-nested-cv-paper-verification-v26",
+  "status": "PASS",
+  "submittable": false,
+  "sync_audit_sha256": "b39a8374365c48b8af3d2e64559814ce57148ece28d0b1eb2e66a9b04bbfc0cd",
+  "v25_recovery_verified": true
+}

@@ -500,6 +500,39 @@ Both intervals excluded zero in the direction favoring ridge, with Holm p=0.0009
 
 Independent verification reparsed both raw three-line matrices, recomputed eligibility, normalization, masks, source splits, ridge fitting, target metrics and paired inference, and retrained all three seeds in separate output directories. It passed 203/203 checks; maximum absolute production-versus-independent differences were 0 for model predictions and 1.51e-07 for ridge predictions. Finalization passed 30/30 checks. The shared-GPU wall times are retained in the training record but are not time-matched cost evidence. This experiment does not close homology/protein OOD, functional OOD, RK-G1, generator authorization or the full baseline program.
 
+### 6.22 MAGE nested development CV: mechanism increments were small and unstable
+
+We asked whether the original single-split MAGE development NO-GO was sensitive to the particular 33-construct development assignment. The new diagnostic used only the 131 constructs already assigned to train or development in v1 (98 train and 33 development). The 33 test constructs were excluded before constructing any development record table, fold, feature matrix, prediction or metric. Thus v1 remains **DEV_NO_GO_TEST_UNTOUCHED**, and the present analysis is a development-only diagnostic rather than an independent confirmation.
+
+The four original feature sets and alpha grid were unchanged. Five-fold outer cross-validation produced one out-of-fold prediction per construct; four-fold inner cross-validation selected ridge alpha separately within each outer-training partition and feature set. All scaling and categorical encoding were fitted within the corresponding training partition. The primary outer seed was 40261119, with seeds 40261120 and 40261121 used only for sensitivity. Primary inference used 20,000 construct bootstraps, 20,000 paired sign-flip permutations and Holm correction across four tests (two references and two metrics).
+
+| Feature set | Development OOF RMSE | Development OOF Spearman |
+|---|---:|---:|
+| intrinsic | 0.034133275 | 0.612399084 |
+| local_mfe | 0.034383848 | 0.627265588 |
+| rcs_only | 0.034152774 | 0.616352629 |
+| full_mechanism | 0.034228203 | 0.635298146 |
+
+| Contrast | Metric | Observed | Paired-bootstrap 95% CI | Holm p |
+|---|---|---:|---:|---:|
+| full minus intrinsic | delta Spearman | 0.022899062 | [-0.037905777, 0.090116393] | 1.000000 |
+| full minus intrinsic | delta RMSE | 0.000094928 | [-0.001417567, 0.001456402] | 1.000000 |
+| full minus local-MFE | delta Spearman | 0.008032557 | [-0.028646739, 0.048858482] | 1.000000 |
+| full minus local-MFE | delta RMSE | -0.000155645 | [-0.000999395, 0.000600285] | 1.000000 |
+
+The full-mechanism model did not improve RMSE relative to intrinsic features: the observed difference was +0.000094928, and its interval crossed zero. Its small RMSE decrease relative to local-MFE was also uncertain, with a 95% CI of [-0.000999395, 0.000600285]. Both Spearman point differences were positive, but both intervals crossed zero and all four Holm-adjusted p values were 1.0. No primary comparison met the frozen direction and multiplicity requirements.
+
+| Sensitivity seed | Contrast | Delta Spearman | Delta RMSE |
+|---:|---|---:|---:|
+| 40261120 | full minus intrinsic | 0.014893200 | -0.000517121 |
+| 40261120 | full minus local_mfe | -0.015306974 | 0.000374016 |
+| 40261121 | full minus intrinsic | 0.024119028 | 0.000133165 |
+| 40261121 | full minus local_mfe | -0.009372652 | 0.000728751 |
+
+The sensitivity analyses did not resolve the result in favor of the mechanism model. In particular, full-minus-local-MFE Spearman was negative in both sensitivity repeats, and the RMSE direction changed across references and repeats. The prespecified sensitivity sign-consistency requirement therefore failed in addition to the primary inferential gate. These results do not show that RNA structure is universally uninformative; they show that the current full-mechanism feature set did not yield a stable increment over intrinsic or local-MFE baselines in this fixed-infA development design. RCS remains a published supervised structure score, not an unsupervised physical ground truth.
+
+Independent raw-source verification reconstructed all 131 development records, all nested folds and alpha selections, all OOF predictions, the primary intervals and permutations, and both sensitivity repeats. It passed **96/96 checks**, with zero maximum discrepancy for predictions, metrics, inference and inner RMSE. Finalization passed **30/30 checks**. No test prediction, test metric, minimal-medium transport, N-terminal transport or generator authorization was generated. The original v1 NO-GO and all previous negative results remain unchanged; RK-G1 remains open and the manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -690,6 +723,12 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK05 RiboMIMO study-OOD independent verification | `5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1` |
 | RK05 RiboMIMO study-OOD finalization | `1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e` |
 | RK05 RiboMIMO study-OOD training record | `b8692e0e9811533c78864aaf10abf70cae0f9963b2800abf53a9fd055156a95e` |
+
+| RK03 MAGE nested-development frozen protocol v2 | `e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd` |
+| RK03 MAGE nested-development production | `bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c` |
+| RK03 MAGE nested-development independent verification | `3ffe88f6174f415902645c2a649a44ee2e72c1b889aa4933cec9b93c1e3917b7` |
+| RK03 MAGE nested-development finalization | `846d79183f1f7a02f7b0f7c9569f33597fd6caaf067adf1d446c7cb82f251599` |
+| RK03 MAGE nested-development unit tests | `f6ccd8a8f65c2925285e86cae8b55a1e72f3e6cf7f9a5b119334cd42c6c2a3eb` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
