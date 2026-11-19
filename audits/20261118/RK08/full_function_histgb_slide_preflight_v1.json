@@ -1,0 +1,177 @@
+{
+  "protocol": "a8_rk08_histgb_slide_preflight_v1",
+  "status": "PASS",
+  "presentation": "WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline_revision": 47,
+  "baseline_pages": 85,
+  "source_sha256": "b41a3d5bce01bac3ca5b3031ce58866076fb2beebdadd4bf8cd7c85323e76cb3",
+  "candidate_sha256": "2c75fdcab28efab1d31f0276a80d2b6f96358a441e2f42af5016fd8c4b73c203",
+  "checks": [
+    {
+      "name": "live_source_ok",
+      "pass": true,
+      "detail": 47
+    },
+    {
+      "name": "baseline_85_pages",
+      "pass": true,
+      "detail": 85
+    },
+    {
+      "name": "new_page_not_duplicate",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "candidate_single_slide",
+      "pass": true,
+      "detail": "{https://www.larkoffice.com/sml/2.0}slide"
+    },
+    {
+      "name": "no_manual_ids",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "independent_84",
+      "pass": true,
+      "detail": "84/84"
+    },
+    {
+      "name": "finalization_33",
+      "pass": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "paper_35",
+      "pass": true,
+      "detail": "35/35"
+    },
+    {
+      "name": "negative_gate",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "title",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "retrospective",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "uncertainty",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "no_generator",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "spearman_value",
+      "pass": true,
+      "detail": -0.027288932055146098
+    },
+    {
+      "name": "spearman_ci",
+      "pass": true,
+      "detail": [
+        -0.09052031538665149,
+        0.03262608168264779,
+        0.405
+      ]
+    },
+    {
+      "name": "mse_value",
+      "pass": true,
+      "detail": 0.09879506417228656
+    },
+    {
+      "name": "mse_ci",
+      "pass": true,
+      "detail": [
+        -0.05097148051778395,
+        0.2520572152648539,
+        0.396
+      ]
+    },
+    {
+      "name": "metric:4.0887",
+      "pass": true,
+      "detail": "4.0887"
+    },
+    {
+      "name": "metric:0.1921",
+      "pass": true,
+      "detail": "0.1921"
+    },
+    {
+      "name": "metric:0.0103",
+      "pass": true,
+      "detail": "0.0103"
+    },
+    {
+      "name": "metric:3.9900",
+      "pass": true,
+      "detail": "3.9900"
+    },
+    {
+      "name": "metric:0.2194",
+      "pass": true,
+      "detail": "0.2194"
+    },
+    {
+      "name": "metric:0.0324",
+      "pass": true,
+      "detail": "0.0324"
+    },
+    {
+      "name": "metric:4.1143",
+      "pass": true,
+      "detail": "4.1143"
+    },
+    {
+      "name": "metric:0.2179",
+      "pass": true,
+      "detail": "0.2179"
+    },
+    {
+      "name": "metric:0.0117",
+      "pass": true,
+      "detail": "0.0117"
+    },
+    {
+      "name": "verification_badge",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "github_reference",
+      "pass": true,
+      "detail": "3742a843df63cf5783ea75a68dccf0fe3c63760f"
+    },
+    {
+      "name": "speaker_note",
+      "pass": true,
+      "detail": 3
+    },
+    {
+      "name": "no_external_media",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "canvas_bounds",
+      "pass": true,
+      "detail": "960x540"
+    }
+  ],
+  "checks_passed": 31,
+  "checks_total": 31,
+  "failures": []
+}
