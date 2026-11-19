@@ -51,7 +51,7 @@ def main() -> None:
         )
     record("prior_c01_smoke_bitwise_sequence_compatibility", len(compatibility) == 3 and all(compatibility), compatibility)
     record("matrix_complete", matrix["status"] == "COMPLETE_UNIQUE18_ACTUAL_SET_MATRIX_DEVELOPMENT_ONLY" and len(matrix["records"]) == 18)
-    record("matrix_independent", matrix_independent["status"] == "PASS" and matrix_independent["checks_passed"] == matrix_independent["checks_total"] == 139 and matrix_independent["matrix_sha256"] == sha256(args.matrix), matrix_independent["checks_total"])
+    record("matrix_independent", matrix_independent["status"] == "PASS" and matrix_independent["checks_passed"] == matrix_independent["checks_total"] == 661 and matrix_independent["matrix_sha256"] == sha256(args.matrix), matrix_independent["checks_total"])
     record("matrix_numeric_recompute", matrix_independent["max_objective_recompute_delta"] <= 1e-9 and matrix_independent["max_hypervolume_recompute_delta"] <= 1e-9 and matrix_independent["max_ned_recompute_delta"] <= 1e-9, {"objective": matrix_independent["max_objective_recompute_delta"], "hv": matrix_independent["max_hypervolume_recompute_delta"], "ned": matrix_independent["max_ned_recompute_delta"]})
     record("matrix_clean_scorer_provenance", matrix["scorer_tracked_dirty"] is False and matrix["scorer_script_tracked"] is True and matrix["development_uncommitted_allowed"] is False, matrix["scorer_code_commit"])
     record("matrix_identity", all(summary["min_identity_rate"] == 1.0 for summary in matrix["method_summary"].values()))
