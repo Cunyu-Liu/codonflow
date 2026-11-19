@@ -12,10 +12,12 @@
     "6.5 RiboMIMO full Mohammad16",
     "8.1 full Mohammad16 evidence anchors",
     "6.9 RK08 occupancy-derived velocity proxy OOD",
-    "8.1 RK08 velocity evidence anchors"
+    "8.1 RK08 velocity evidence anchors",
+    "6.8 RK08 retrospective HistGB fairness diagnostic",
+    "8.1 RK08 HistGB evidence anchors"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
+  "output_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -39,7 +41,7 @@
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/paper_v12/pre_velocity_snapshot/CodonFlow_preprint_A8_pre_velocity.md",
     "paper_sha256": "36e59a069cf978d21c3231a34d26c729e6637f00c4a326cd5e3c79c0d369cac8"
   },
-  "schema_version": "a8-rk-paper-sync-v12",
+  "schema_version": "a8-rk-paper-sync-v13",
   "scientific_scope": {
     "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
     "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
@@ -56,7 +58,8 @@
     "rose_official": "complete author-processed Pop14/Battle15 released-test arrays, one released checkpoint per study and one full forward; binary stalling classification only; training, 64-checkpoint ensemble, continuous velocity regression, raw-read/P-site remapping, OOD, matched-cost ranking and SOTA open",
     "sota": false,
     "submittable": false,
-    "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open"
+    "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
+    "rk08_histgb": "Retrospective paired fairness diagnostic on frozen predictions: HistGB had better sequence-OOD point estimates but both intervals crossed zero; no mechanism superiority, resolved HistGB win, new preregistered gate or generator authorization."
   },
   "source_paths": {
     "cdgb_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_audit.json",
@@ -123,7 +126,10 @@
     "velo_official_final": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_finalization_v1.json",
     "velo_official_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_independent_verification_v1.json",
     "velo_qc": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_qc.json",
-    "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json"
+    "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json",
+    "rk08_histgb_summary": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_summary_v1.json",
+    "rk08_histgb_independent": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_verification_v1.json",
+    "rk08_histgb_finalization": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_finalization_v1.json"
   },
   "source_sha256": {
     "cdgb_audit": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691",
@@ -190,9 +196,22 @@
     "velo_official_final": "c056cc6207a15d74403926c676010a0fae50d7f7a215cb0ab19ce1fd40e609c5",
     "velo_official_verify": "ca18a827ceab5b36fc76904e2b64c98e545cc0e699024bbe0fdae2ddc192c873",
     "velo_qc": "0cebea3aa272e72625356a23096cb5888e0311bf8290d688672f61d36660d2fb",
-    "velo_verify": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a"
+    "velo_verify": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a",
+    "rk08_histgb_summary": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a",
+    "rk08_histgb_independent": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce",
+    "rk08_histgb_finalization": "3a48f0571dfae2f4c7edbbf955cdc1ff9e3d061bac3b6747269e9c28817e68b9"
   },
   "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
   "template": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A7.md",
-  "template_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+  "template_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "base_v12_paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
+  "base_v12_audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
+  "pre_histgb_snapshot": {
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A8_pre_histgb.md",
+    "paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/a8_rk_paper_sync_audit_pre_histgb.json",
+    "audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A7_pre_histgb.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+  }
 }

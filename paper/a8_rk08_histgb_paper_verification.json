@@ -1,0 +1,194 @@
+{
+  "protocol": "a8_rk08_histgb_paper_verification_v1",
+  "status": "PASS",
+  "paper_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d",
+  "audit_sha256": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef",
+  "checks": [
+    {
+      "name": "paper_hash",
+      "pass": true,
+      "detail": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d"
+    },
+    {
+      "name": "audit_hash",
+      "pass": true,
+      "detail": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef"
+    },
+    {
+      "name": "schema_v13",
+      "pass": true,
+      "detail": "a8-rk-paper-sync-v13"
+    },
+    {
+      "name": "pre_paper_snapshot",
+      "pass": true,
+      "detail": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e"
+    },
+    {
+      "name": "pre_audit_snapshot",
+      "pass": true,
+      "detail": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9"
+    },
+    {
+      "name": "a7_unchanged",
+      "pass": true,
+      "detail": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+    },
+    {
+      "name": "independent_complete",
+      "pass": true,
+      "detail": "84/84"
+    },
+    {
+      "name": "finalization_complete",
+      "pass": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "negative_gate",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "non_submittable",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "heading_order",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "retrospective_label",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "uncertainty_language",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "original_gate_language",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "verification_counts",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "number:spearman:point_delta",
+      "pass": true,
+      "detail": "-0.027289"
+    },
+    {
+      "name": "number:spearman:ci95_low",
+      "pass": true,
+      "detail": "-0.090520"
+    },
+    {
+      "name": "number:spearman:ci95_high",
+      "pass": true,
+      "detail": "+0.032626"
+    },
+    {
+      "name": "holm:spearman",
+      "pass": true,
+      "detail": 0.405
+    },
+    {
+      "name": "number:cluster_balanced_mse:point_delta",
+      "pass": true,
+      "detail": "+0.098795"
+    },
+    {
+      "name": "number:cluster_balanced_mse:ci95_low",
+      "pass": true,
+      "detail": "-0.050971"
+    },
+    {
+      "name": "number:cluster_balanced_mse:ci95_high",
+      "pass": true,
+      "detail": "+0.252057"
+    },
+    {
+      "name": "holm:cluster_balanced_mse",
+      "pass": true,
+      "detail": 0.396
+    },
+    {
+      "name": "evidence:RK08 HistGB diagnostic summary",
+      "pass": true,
+      "detail": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a"
+    },
+    {
+      "name": "evidence:RK08 HistGB diagnostic independent verifier",
+      "pass": true,
+      "detail": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce"
+    },
+    {
+      "name": "evidence:RK08 HistGB diagnostic finalization",
+      "pass": true,
+      "detail": "3a48f0571dfae2f4c7edbbf955cdc1ff9e3d061bac3b6747269e9c28817e68b9"
+    },
+    {
+      "name": "audit_source:rk08_histgb_summary",
+      "pass": true,
+      "detail": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a"
+    },
+    {
+      "name": "audit_source:rk08_histgb_independent",
+      "pass": true,
+      "detail": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce"
+    },
+    {
+      "name": "audit_source:rk08_histgb_finalization",
+      "pass": true,
+      "detail": "3a48f0571dfae2f4c7edbbf955cdc1ff9e3d061bac3b6747269e9c28817e68b9"
+    },
+    {
+      "name": "generated_sections",
+      "pass": true,
+      "detail": [
+        "6.8 RK08 retrospective HistGB fairness diagnostic",
+        "8.1 RK08 HistGB evidence anchors"
+      ]
+    },
+    {
+      "name": "pending_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "old_sources_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "old_scope_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "only_authorized_paper_delta",
+      "pass": true,
+      "detail": {
+        "reconstructed_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
+        "pre_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e"
+      }
+    },
+    {
+      "name": "single_diagnostic",
+      "pass": true,
+      "detail": true
+    }
+  ],
+  "checks_passed": 35,
+  "checks_total": 35,
+  "failures": [],
+  "original_rk_g1_pass": false,
+  "submittable": false
+}
