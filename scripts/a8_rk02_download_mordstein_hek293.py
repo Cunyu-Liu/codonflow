@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import subprocess
 import threading
+import time
 
 TITLE = "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells"
 RUN_RE = re.compile(r"^SRR\d+$")
@@ -54,7 +55,22 @@ def read_jobs(metadata, root):
     return sorted(jobs, key=lambda job: (job["mate"], job["run"]))
 
 
-def download(job):
+def select_jobs(jobs, only):
+    """Select run or run_mate tokens without changing the canonical job order."""
+    tokens = set(only or [])
+    if not tokens:
+        return jobs
+    selected = [job for job in jobs if job["run"] in tokens or f"{job['run']}_{job['mate']}" in tokens]
+    if not selected:
+        raise ValueError("The --only filter selected no jobs")
+    known = {job["run"] for job in jobs} | {f"{job['run']}_{job['mate']}" for job in jobs}
+    unknown = tokens - known
+    if unknown:
+        raise ValueError(f"Unknown --only tokens: {sorted(unknown)}")
+    return selected
+
+
+def download(job, max_rounds=100, retry_delay=5):
     path = job["path"]
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists():
@@ -64,19 +80,37 @@ def download(job):
             raise RuntimeError(f"Existing file fails size/MD5 verification: {path}")
     else:
         part = path.with_suffix(path.suffix + ".part")
-        if part.exists() and part.stat().st_size > job["bytes"]:
-            raise RuntimeError(f"Partial file exceeds expected size: {part}")
-        command = [
-            "curl", "-L", "--fail", "--retry", "8", "--retry-delay", "5",
-            "--connect-timeout", "30", "--continue-at", "-", "--output", str(part), job["url"],
-        ]
-        subprocess.run(command, check=True)
-        if part.stat().st_size != job["bytes"]:
-            raise RuntimeError(f"Size mismatch for {part}: {part.stat().st_size} != {job['bytes']}")
-        if digest(part, "md5") != job["md5"]:
-            raise RuntimeError(f"MD5 mismatch for {part}")
-        part.replace(path)
         status = "downloaded_verified"
+        last_error = "download did not start"
+        for attempt in range(1, max_rounds + 1):
+            if part.exists():
+                partial_bytes = part.stat().st_size
+                if partial_bytes > job["bytes"]:
+                    raise RuntimeError(f"Partial file exceeds expected size: {part}")
+                if partial_bytes == job["bytes"]:
+                    if digest(part, "md5") != job["md5"]:
+                        raise RuntimeError(f"MD5 mismatch for complete partial file {part}")
+                    part.replace(path)
+                    break
+            command = [
+                "curl", "-L", "--fail", "--silent", "--show-error",
+                "--retry", "2", "--retry-all-errors", "--retry-delay", "5",
+                "--connect-timeout", "30", "--speed-limit", "1024", "--speed-time", "60",
+                "--continue-at", "-", "--output", str(part), job["url"],
+            ]
+            completed = subprocess.run(command, check=False)
+            partial_bytes = part.stat().st_size if part.exists() else 0
+            if completed.returncode == 0 and partial_bytes == job["bytes"]:
+                continue
+            last_error = f"curl exit={completed.returncode}; partial={partial_bytes}/{job['bytes']}"
+            print(json.dumps({
+                "status": "resume_retry", "run": job["run"], "mate": job["mate"],
+                "attempt": attempt, "max_rounds": max_rounds, "error": last_error,
+            }, sort_keys=True), flush=True)
+            if attempt < max_rounds:
+                time.sleep(min(retry_delay * attempt, 30))
+        else:
+            raise RuntimeError(f"Exhausted {max_rounds} resume rounds for {part}: {last_error}")
     return {
         "run": job["run"], "mate": job["mate"], "url": job["url"], "path": str(path),
         "bytes": path.stat().st_size, "md5": job["md5"], "sha256": digest(path, "sha256"),
@@ -90,14 +124,16 @@ def main():
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--only", nargs="*", default=[], help="Optional run or run_mate tokens")
+    parser.add_argument("--max-rounds", type=int, default=100)
     args = parser.parse_args()
-    jobs = read_jobs(args.metadata, args.root)
+    jobs = select_jobs(read_jobs(args.metadata, args.root), args.only)
     records = []
     failures = []
     lock = threading.Lock()
     def guarded(job):
         try:
-            record = download(job)
+            record = download(job, max_rounds=args.max_rounds)
             with lock:
                 records.append(record)
                 print(json.dumps(record, sort_keys=True), flush=True)
@@ -112,9 +148,10 @@ def main():
         "schema": "a8.rk02.mordstein_hek293_download.v1",
         "created_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "source_metadata": str(args.metadata), "output_root": str(args.root),
-        "expected_runs": 8, "expected_files": 16,
+        "requested_only": args.only, "max_rounds": args.max_rounds,
+        "expected_runs": len({job["run"] for job in jobs}), "expected_files": len(jobs),
         "passed_files": len(records), "failures": failures,
-        "status": "PASS" if not failures and len(records) == 16 else "FAIL",
+        "status": "PASS" if not failures and len(records) == len(jobs) else "FAIL",
         "files": sorted(records, key=lambda row: (row["run"], row["mate"])),
     }
     args.report.parent.mkdir(parents=True, exist_ok=True)
