@@ -1,0 +1,59 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style><fill><fillColor color="rgba(248, 250, 252, 1)"/></fill></style>
+  <data>
+    <shape type="text" topLeftX="56" topLeftY="25" width="660" height="20">
+      <content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(37, 99, 235, 1)" bold="true" letterSpacing="1.1" wrap="false"><p>RK08 · RIBOKINETIC BACKBONE · REAL-DATA SMOKE</p></content>
+    </shape>
+    <shape type="round-rect" topLeftX="736" topLeftY="24" width="168" height="30" presetHandlers="15"><fill><fillColor color="rgba(220, 252, 231, 1)"/></fill></shape>
+    <shape type="text" topLeftX="744" topLeftY="29" width="152" height="20">
+      <content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" textAlign="center" wrap="false"><p>37/37 · FINALIZED</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="51" width="848" height="39">
+      <content textType="headline" fontSize="25" fontFamily="思源黑体" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>RK08 机制预测骨干通过真实数据工程闭环</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="94" width="848" height="40">
+      <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.25">
+        <p>Boël train/dev/test = 8/8/8 · 2 epochs · functional untouched 显式排除</p>
+        <p>独立 31/31 · finalization 37/37 · CPU bitwise retrain + RTX 5090 CUDA</p>
+      </content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="142" width="272" height="96" presetHandlers="12"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(191, 219, 254, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="72" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>SHARED MECHANISM CHANNELS</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false"><p>4 paths · 1 backbone</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>消融仅门控信息流，不删除通路参数</p></content></shape>
+
+    <shape type="round-rect" topLeftX="344" topLeftY="142" width="272" height="96" presetHandlers="12"><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><border color="rgba(147, 197, 253, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="360" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>CONTRACT TESTS</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false"><p>12/12 PASS</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>合法 CDS · NaN+mask · train-only fit</p></content></shape>
+
+    <shape type="round-rect" topLeftX="632" topLeftY="142" width="272" height="96" presetHandlers="12"><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><border color="rgba(147, 197, 253, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="648" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>CUDA FORWARD MAX ERROR</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false"><p>4.77e-7</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>独立逐行前向 · CPU 重训参数逐位一致</p></content></shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="258" width="848" height="114" presetHandlers="12"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="72" topLeftY="267" width="816" height="16"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>ONE ARCHITECTURE · AUDITABLE INFORMATION GATES</p></content></shape>
+    <shape type="round-rect" topLeftX="76" topLeftY="292" width="184" height="40" presetHandlers="8"><fill><fillColor color="rgba(219, 234, 254, 1)"/></fill></shape>
+    <shape type="text" topLeftX="86" topLeftY="299" width="164" height="26"><content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center"><p>initiation</p><p><span fontSize="9" bold="false">position-gated head</span></p></content></shape>
+    <shape type="round-rect" topLeftX="276" topLeftY="292" width="184" height="40" presetHandlers="8"><fill><fillColor color="rgba(219, 234, 254, 1)"/></fill></shape>
+    <shape type="text" topLeftX="286" topLeftY="299" width="164" height="26"><content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center"><p>velocity</p><p><span fontSize="9" bold="false">masked per-codon head</span></p></content></shape>
+    <shape type="round-rect" topLeftX="476" topLeftY="292" width="184" height="40" presetHandlers="8"><fill><fillColor color="rgba(219, 234, 254, 1)"/></fill></shape>
+    <shape type="text" topLeftX="486" topLeftY="299" width="164" height="26"><content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center"><p>decay</p><p><span fontSize="9" bold="false">masked per-codon head</span></p></content></shape>
+    <shape type="round-rect" topLeftX="676" topLeftY="292" width="184" height="40" presetHandlers="8"><fill><fillColor color="rgba(220, 252, 231, 1)"/></fill></shape>
+    <shape type="text" topLeftX="686" topLeftY="299" width="164" height="26"><content fontSize="11" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" textAlign="center"><p>pair channel</p><p><span fontSize="9" bold="false">legal base-pair bias</span></p></content></shape>
+    <shape type="text" topLeftX="76" topLeftY="342" width="784" height="18"><content fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" textAlign="center" wrap="false"><p>Shared codon Transformer → multi-task heads → function mean / log-scale / 95% interval</p></content></shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="386" width="410" height="54" presetHandlers="10"><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill></shape>
+    <shape type="text" topLeftX="70" topLeftY="394" width="382" height="38"><content fontSize="10" fontFamily="思源黑体" color="rgba(22, 101, 52, 1)" lineSpacing="multiple:1.2"><p><strong>已证实</strong> · 真实 CPU/CUDA 训练与复现链路成立</p><p>dev 选轮次；test 仅在 checkpoint 冻结后评价</p></content></shape>
+    <shape type="round-rect" topLeftX="486" topLeftY="386" width="418" height="54" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill></shape>
+    <shape type="text" topLeftX="500" topLeftY="394" width="390" height="38"><content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)" lineSpacing="multiple:1.2"><p><strong>未关闭</strong> · 机制增量、paired CI、功能/速度 OOD</p><p>小样本性能不作结论；未赢 baseline，不宣称 SOTA</p></content></shape>
+    <shape type="round-rect" topLeftX="56" topLeftY="452" width="848" height="26" presetHandlers="8"><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill></shape>
+    <shape type="text" topLeftX="70" topLeftY="457" width="820" height="16"><content fontSize="10" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center" wrap="false"><p>RK-G1 仍未通过 · 不启动昂贵生成训练 · pair bias 不是精确 partition function</p></content></shape>
+
+    <shape type="text" topLeftX="56" topLeftY="486" width="700" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>Evidence: independent 31/31 + finalization 37/37 + unit 12/12 · GitHub c8128b3b</p></content></shape>
+    <shape type="text" topLeftX="776" topLeftY="486" width="128" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" textAlign="right"><p>RK08 · 2026-11-19</p></content></shape>
+  </data>
+  <note><content><p>这一页只报告 RK08 的工程与复现闭环。模型在同一骨干中保留四条机制通路，消融只门控信息流，因此模型存在和测试通过不等于机制有效。真实数据 smoke 使用 train、dev、test 各八条，functional untouched 没有参与。两次 CPU 训练的指标、预测和参数张量逐位一致，CUDA 前向也经独立复核。功能与速度 OOD、paired CI、强 baseline 和生成器仍未关闭。</p></content></note>
+</slide>
