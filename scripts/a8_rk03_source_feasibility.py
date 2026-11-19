@@ -124,7 +124,7 @@ def main():
  add('source_tree_audit_sha',sha(tree_path)==v['source_tree_audit_sha256'])
  add('materialization_audit_sha',sha(mat_path)==v['materialization_audit_sha256'])
  add('pinned_repository_commit',commit==v['pinned_commit']==tree['commit'],commit)
- add('fixed_tree_entry_and_blob_counts',tree['tree_entry_count']==14 and len(files)==13,{'tree_entries':tree['tree_entry_count'],'materialized_blobs':len(files)})
+ add('fixed_tree_entry_and_blob_counts',tree['tree_entry_count']==14 and len(files)==14,{'tree_entries':tree['tree_entry_count'],'materialized_blobs':len(files)})
  add('only_ecoli_harmonized_matrix_archives',zips==['VeloBERT/E.coli.summary.add.pro.SS.txt.zip','VeloGRU/E.coli.summary.add.pro.SS.txt.zip'],zips)
  add('ecoli_and_yeast_ga_checkpoints_only',checkpoints==['Genetic_algorithm/E.coli.fold_0_best_network.pth','Genetic_algorithm/yeast.fold_0_best_network.pth'],checkpoints)
  add('all_materialized_file_hashes',all(x['current_sha256']==x['sha256'] and x['current_bytes']==x['bytes'] for x in files))

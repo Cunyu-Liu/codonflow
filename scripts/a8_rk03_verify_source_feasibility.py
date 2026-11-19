@@ -37,6 +37,9 @@ def main():
   geo_ind[acc]={'sra_relations':relations,'bioproject_relations':projects,'run_count':0,'size_mb':0}
   eq(acc+'_title',title,g['title']); eq(acc+'_samples',samples,g['series_sample_count']); eq(acc+'_relations',relations,g['sra_relations']); eq(acc+'_builds',builds,g['genome_builds'])
   for evidence in g['site_assignment_evidence']: add(acc+'_site_evidence_'+hashlib.sha256(evidence.encode()).hexdigest()[:12],evidence in text)
+ add('dunn13_drosophila_title','stop codon readthrough' in prod['geo_evidence']['GSE49197']['title'].lower() and 'drosophila' in prod['geo_evidence']['GSE49197']['title'].lower())
+ add('pop14_yeast_title','causal signals between codon bias' in prod['geo_evidence']['GSE63789']['title'].lower())
+ add('subtelny_bioproject_relation',prod['geo_evidence']['GSE53268']['bioproject_relations']==['PRJNA231671'])
  # Independent RunInfo recomputation.
  run_ind={}
  for acc,r in prod['runinfo_evidence'].items():
@@ -47,7 +50,7 @@ def main():
  # Independently rehash the frozen materialized source/payload inventory.
  v=protocol['veloharmo']; mat_path=Path(v['materialization_audit']); tree_path=Path(v['source_tree_audit']); mat=json.loads(mat_path.read_text()); tree=json.loads(tree_path.read_text())
  add('materialization_sha',sha(mat_path)==v['materialization_audit_sha256']); add('source_tree_sha',sha(tree_path)==v['source_tree_audit_sha256'])
- eq('repository_commit',mat['commit'],prod['pinned_repository']['commit']); add('source_tree_commit',tree['commit']==mat['commit']==v['pinned_commit'])
+ eq('repository_commit',mat['commit'],prod['pinned_repository']['commit']); add('source_tree_commit',tree['commit']==mat['commit']==v['pinned_commit']); add('tree_and_blob_counts',tree['tree_entry_count']==14 and len(mat['files'])==14)
  for rec in mat['files']:
   base=Path(v['payload_dir']) if rec['storage']=='teams' else Path(v['source_dir']); f=base/rec['path']; current=sha(f) if f.exists() else None
   add('materialized_file_'+rec['path'],current==rec['sha256'] and f.stat().st_size==rec['bytes'])
