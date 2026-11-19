@@ -82,6 +82,8 @@ def main() -> None:
 
 I added the fixed-source EnsembleDesign baseline to the same unique18 development panel. The frozen protocol used 18 per-record official CPU processes and **198 generator runs** (11 per protein), with four internal threads per process, beam size 100, learning rate 0.03, epsilon 0.5 and three iterations. The raw runs yielded {record_pairs} unique record-sequence pairs after within-record deduplication and required {ensemble['total_generation_elapsed_s']:.3f} s of summed official-process wall clock. Every official CDS was protein-identical before the disclosed terminal TAA used only for shared evaluation. The independent raw-file verifier passed with a maximum official-versus-ViennaRNA EFE discrepancy of {ensemble_independent['max_efe_abs_delta_from_rounded_official']:.6g} kcal/mol.
 
+The first verification attempt was stopped when unscaled ViennaRNA `pf()` returned its `100000.0` failure sentinel for `C41G7.2.1`; the failed report and all raw files were preserved unchanged. A separately frozen recovery applied MFE-based fold-compound rescaling consistently to every selected output and reexecuted `C41G7.2.1` plus the six not-yet-run records in a new output root. The selected evidence therefore contains 18 official processes and 198 generator runs, while 25 official processes and 209 generator runs were executed across the failed and recovery attempts. The EFE tolerance was not changed.
+
 The seven-method matrix preserves all six RK-12 method fields exactly, binds their prior 139/139 independent PASS by hash, and recomputes only the new EnsembleDesign objectives from raw CDS using the same RSCU, per-record calibration and four objectives. The reference, six comparators, two metrics and Holm family of 12 paired tests were frozen before EnsembleDesign generation. Mean values remain descriptive over 18 development records. For NED, a positive LinearDesign-minus-comparator effect means greater sequence diversity, not better functional performance.
 
 | Method | Actual outputs | Mean normalized HV | Mean pairwise NED | Minimum identity |
@@ -100,6 +102,8 @@ For the direct EnsembleDesign comparison, LinearDesign-minus-EnsembleDesign norm
         raise ValueError("Discussion insertion marker missing")
     text = text.replace(marker, section + marker, 1)
     anchors = f"""| RK-13 frozen EnsembleDesign unique18 protocol | `{sha256(Path('/home/codonflow-a8-rk/configs/a8_rk13_ensembledesign_unique18_protocol_v1.json'))}` |
+| RK-13 frozen recovery protocol | `{ensemble['recovery']['recovery_protocol_sha256']}` |
+| RK-13 preserved failed v1 report | `{ensemble['recovery']['failed_report_sha256']}` |
 | RK-13 official EnsembleDesign unique18 report | `{sha256(args.ensemble)}` |
 | RK-13 independent EnsembleDesign verification | `{sha256(args.ensemble_independent)}` |
 | RK-13 frozen seven-method matrix protocol | `{sha256(Path('/home/codonflow-a8-rk/configs/a8_rk13_seven_method_matrix_protocol_v1.json'))}` |
@@ -123,6 +127,10 @@ For the direct EnsembleDesign comparison, LinearDesign-minus-EnsembleDesign norm
     audit["rk13"] = {
         "ensemble_sha256": sha256(args.ensemble),
         "ensemble_independent_sha256": sha256(args.ensemble_independent),
+        "recovery_protocol_sha256": ensemble["recovery"]["recovery_protocol_sha256"],
+        "failed_v1_report_sha256": ensemble["recovery"]["failed_report_sha256"],
+        "total_official_processes_across_attempts": 25,
+        "total_generator_runs_across_attempts": 209,
         "matrix_sha256": sha256(args.matrix),
         "matrix_independent_sha256": sha256(args.matrix_independent),
         "finalization_sha256": sha256(args.finalization),

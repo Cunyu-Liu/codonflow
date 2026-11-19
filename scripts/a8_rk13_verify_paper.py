@@ -58,6 +58,7 @@ def main() -> None:
     record("unique_sequence_text", f"yielded {record_pairs} unique record-sequence pairs" in text)
     record("generation_cost_text", f"{ensemble['total_generation_elapsed_s']:.3f} s of summed official-process wall clock" in text)
     record("ensemble_verifier_text", f"{ensemble_independent['max_efe_abs_delta_from_rounded_official']:.6g} kcal/mol" in text)
+    record("recovery_disclosure_text", "100000.0` failure sentinel" in text and "25 official processes and 209 generator runs" in text and "EFE tolerance was not changed" in text and "MFE-based fold-compound rescaling" in text)
     record("matrix_verifier_text", f"{matrix_independent['checks_passed']}/{matrix_independent['checks_total']} checks" in text)
     for name, item in matrix["method_summary"].items():
         expected = f"| {name} | {item['total_actual_outputs']} | {item['mean_hypervolume_normalized']:.6f} | {item['mean_ned']:.6f} | {item['min_identity_rate']:.3f} |"
@@ -68,6 +69,8 @@ def main() -> None:
     direct = matrix["primary_comparisons"]["lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized"]
     record("direct_effect_text", f"was {direct['mean_effect']:.6f} (95% CI [{direct['ci95'][0]:.6f}, {direct['ci95'][1]:.6f}], Holm p={direct['holm_p_twelve_primary']:.6g})" in text)
     for label, value in [
+        ("RK-13 frozen recovery protocol", ensemble["recovery"]["recovery_protocol_sha256"]),
+        ("RK-13 preserved failed v1 report", ensemble["recovery"]["failed_report_sha256"]),
         ("RK-13 official EnsembleDesign unique18 report", sha256(args.ensemble)),
         ("RK-13 independent EnsembleDesign verification", sha256(args.ensemble_independent)),
         ("RK-13 seven-method actual-set matrix", sha256(args.matrix)),
@@ -76,6 +79,7 @@ def main() -> None:
     ]:
         record(f"anchor:{label}", f"| {label} | `{value}` |" in text)
     record("audit_rk13_hashes", audit["rk13"]["matrix_sha256"] == sha256(args.matrix) and audit["rk13"]["ensemble_sha256"] == sha256(args.ensemble) and audit["rk13"]["finalization_sha256"] == sha256(args.finalization) and audit["rk13"]["run_count"] == 198)
+    record("audit_recovery_hashes", audit["rk13"]["recovery_protocol_sha256"] == ensemble["recovery"]["recovery_protocol_sha256"] and audit["rk13"]["failed_v1_report_sha256"] == ensemble["recovery"]["failed_report_sha256"] and audit["rk13"]["total_official_processes_across_attempts"] == 25 and audit["rk13"]["total_generator_runs_across_attempts"] == 209)
     record("pending_main_model_preserved", "main CodonFlow-RK model baseline matrix and dense/time-matched comparison" in audit["pending_preserved"])
     record("pending_ood_and_wetlab_preserved", "OOD" in audit["pending_preserved"] and "wet-lab validation" in audit["pending_preserved"])
     record("non_submittable", "non-submittable working manuscript" in text and update["non_submittable_preserved"] is True)

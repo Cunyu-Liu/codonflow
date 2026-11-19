@@ -139,20 +139,20 @@ def main() -> None:
             ["Check", "Scale", "Observed"],
             ["Official runs", "18 × 11", f"{ensemble['run_count']}/198 complete"],
             ["Protein identity", "all official outputs", "198/198"],
-            ["Independent EFE", "ViennaRNA raw CDS", f"max |Δ| {max_efe:.6g}"],
+            ["Independent EFE", "MFE-rescaled ViennaRNA", f"max |Δ| {max_efe:.6g}"],
             ["Source + payload", "fixed official commit", "unmodified · verified"],
             ["Verification", "science finalization", f"{final['checks_passed']}/{final['checks_total']} PASS"],
         ], [24, 24, 24, 24, 24, 22], 9),
         card(632, 252, 272, 170),
         text(648, 263, 240, 18, "MEASURED CONTRACT", 9, BODY, True, "left", True, 1.0, "caption"),
-        text(648, 290, 240, 110, ["official CPU implementation", "TAA appended only for evaluation", "11 runs are not scorer budgets", "dense budget-step AUC = null", "EFE is not LinearDesign MFE"], 9, BLUE),
+        text(648, 290, 240, 110, ["official CPU implementation", "v1 pf() sentinel failure preserved", "7 records reexecuted under frozen recovery", "25 processes / 209 runs across attempts", "TAA appended only for evaluation", "11 runs are not scorer budgets", "dense budget-step AUC = null", "EFE is not LinearDesign MFE"], 8, BLUE),
         bottom_cards(["结论 · 官方生成与原始文件核验已闭合", f"{record_pairs} 个唯一记录–序列对 · identity = 1.000"], ["边界 · 不是主模型或 SOTA 证据", "dense AUC、功能、OOD 与等时间比较未闭合"]),
         footer(f"Evidence: raw independent PASS + finalization {final['checks_passed']}/{final['checks_total']} · GitHub {short_commit}"),
     ])
     notes96 = [
         f"这一页记录固定来源 EnsembleDesign 在 unique18 上的正式生成，共 {ensemble['run_count']} 个 generator runs。",
         f"记录内去重后形成 {record_pairs} 个唯一记录–序列对，官方端到端生成 wall-clock 合计 {seconds:.3f} 秒。",
-        f"独立核验从原始 CDS 重算 EFE，最大差为 {max_efe:.6g} kcal/mol，所有输出保持蛋白身份。",
+        f"首次未缩放 pf() 返回失败哨兵的证据已保留；冻结恢复对七条记录重跑并统一采用 MFE-rescaled EFE，最大差为 {max_efe:.6g} kcal/mol。",
         "十一次独立运行不是连续 scorer budget，因此不构造 dense budget-step AUC，也不作功能或 SOTA 结论。",
     ]
 

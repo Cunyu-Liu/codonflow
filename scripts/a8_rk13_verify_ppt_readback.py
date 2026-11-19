@@ -123,6 +123,7 @@ def main() -> None:
     check("slide96_unique_pairs", str(record_pairs) in texts[96], record_pairs)
     check("slide96_generation_seconds", f"{ensemble['total_generation_elapsed_s']:.3f} s" in texts[96], ensemble["total_generation_elapsed_s"])
     check("slide96_efe_delta", f"max |Δ| {ensemble_ind['max_efe_abs_delta_from_rounded_official']:.6g}" in texts[96], ensemble_ind["max_efe_abs_delta_from_rounded_official"])
+    check("slide96_recovery_disclosure", "v1 pf() sentinel failure preserved" in texts[96] and "25 processes / 209 runs across attempts" in texts[96] and "MFE-rescaled ViennaRNA" in texts[96], "preserved failure and frozen recovery")
     check("slide96_finalization", f"{final['checks_passed']}/{final['checks_total']} PASS" in texts[96], f"{final['checks_passed']}/{final['checks_total']}")
     for name, item in matrix["method_summary"].items():
         for value in (str(item["total_actual_outputs"]), f"{item['mean_hypervolume_normalized']:.6f}", f"{item['mean_ned']:.6f}"):
@@ -134,8 +135,8 @@ def main() -> None:
     costs = matrix["generation_cost_descriptive_not_time_matched"]
     check("slide98_lineardesign_cost", f"{costs['lineardesign_lambda11']['total_seconds']:.3f} s" in texts[98], costs["lineardesign_lambda11"]["total_seconds"])
     check("slide98_ensemble_cost", f"{costs['ensembledesign_11run']['total_seconds']:.3f} s" in texts[98], costs["ensembledesign_11run"]["total_seconds"])
-    check("slide98_scorer_cost", f"{matrix['added_method_scoring_elapsed_s']:.3f} s" in texts[98], matrix["reanalysis_elapsed_s_not_generation_cost"])
-    check("scientific_boundaries", "不构成 SOTA" in texts[97] and "dense AUC" in texts[96] and "time-matched" in texts[98] and "功能 OOD" in texts[97], "explicit limitations")
+    check("slide98_scorer_cost", f"{matrix['reanalysis_elapsed_s_not_generation_cost']:.3f} s" in texts[98], matrix["reanalysis_elapsed_s_not_generation_cost"])
+    check("scientific_boundaries", "不等于 SOTA" in texts[97] and "dense AUC" in texts[96] and "time-matched" in texts[98] and "功能 OOD" in texts[97], "explicit limitations")
     check("matrix_independent_badge", f"{matrix_ind['checks_passed']}/{matrix_ind['checks_total']}" in texts[97] and f"{matrix_ind['checks_passed']}/{matrix_ind['checks_total']}" in texts[98], matrix_ind["checks_passed"])
     report = {"schema": "a8-rk13-ppt-readback-verification-v1", "created_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
               "status": "PASS" if all(item["pass"] for item in checks) else "FAIL", "checks_passed": sum(item["pass"] for item in checks), "checks_total": len(checks),
