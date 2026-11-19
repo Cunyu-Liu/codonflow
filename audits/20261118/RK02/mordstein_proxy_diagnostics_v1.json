@@ -1,0 +1,3018 @@
+{
+  "associations": {
+    "cpg_per_100nt_observed_5prime": {
+      "spearman": {
+        "bootstrap_resamples": 20000,
+        "ci95_percentile": [
+          0.22235206256020576,
+          0.5090565934923014
+        ],
+        "feature": "cpg_per_100nt_observed_5prime",
+        "metric": "spearman",
+        "multiplicity": "secondary descriptive; not included in the two-primary Holm family",
+        "observed": 0.3725945856636456,
+        "permutation_p_two_sided": 4.999750012499375e-05,
+        "permutation_resamples": 20000,
+        "seed": 20461119
+      }
+    },
+    "gc3_observed_5prime": {
+      "pearson": {
+        "bootstrap_resamples": 20000,
+        "ci95_percentile": [
+          0.19206627279720817,
+          0.48274718776807723
+        ],
+        "feature": "gc3_observed_5prime",
+        "metric": "pearson",
+        "observed": 0.3434958196516572,
+        "permutation_p_two_sided": 4.999750012499375e-05,
+        "permutation_resamples": 20000,
+        "seed": 20261121
+      },
+      "spearman": {
+        "bootstrap_resamples": 20000,
+        "ci95_percentile": [
+          0.20076435013017954,
+          0.4984749313558387
+        ],
+        "feature": "gc3_observed_5prime",
+        "holm_p": 9.99950002499875e-05,
+        "metric": "spearman",
+        "observed": 0.35597414568308205,
+        "permutation_p_two_sided": 4.999750012499375e-05,
+        "permutation_resamples": 20000,
+        "positive_gate": true,
+        "seed": 20261119
+      }
+    },
+    "gc_observed_5prime": {
+      "pearson": {
+        "bootstrap_resamples": 20000,
+        "ci95_percentile": [
+          0.19286902577696186,
+          0.47826512596542103
+        ],
+        "feature": "gc_observed_5prime",
+        "metric": "pearson",
+        "observed": 0.34108354346575287,
+        "permutation_p_two_sided": 9.99950002499875e-05,
+        "permutation_resamples": 20000,
+        "seed": 20361121
+      },
+      "spearman": {
+        "bootstrap_resamples": 20000,
+        "ci95_percentile": [
+          0.20475539664299355,
+          0.4991922555156672
+        ],
+        "feature": "gc_observed_5prime",
+        "holm_p": 9.99950002499875e-05,
+        "metric": "spearman",
+        "observed": 0.35818400073883144,
+        "permutation_p_two_sided": 4.999750012499375e-05,
+        "permutation_resamples": 20000,
+        "positive_gate": true,
+        "seed": 20361119
+      }
+    }
+  },
+  "code_commit": "37bbcb1b57e4c40c2ae35e9819a648296093c538",
+  "diff_sha256_at_launch": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "environment": {
+    "numpy": "2.2.6",
+    "python": "3.10.22",
+    "scipy": "1.15.3"
+  },
+  "n_variants": 152,
+  "primary_gates": {
+    "gc3_observed_5prime": true,
+    "gc_observed_5prime": true
+  },
+  "protocol_id": "a8_rk02_mordstein_observed_end_proxy_v1_frozen_before_association_analysis",
+  "protocol_sha256": "f431e145554702d6f45793622d02fe7fc5f713ddf6f97fbea6ce35e45002b8cd",
+  "recovery_finalization_sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+  "recovery_independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+  "recovery_summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+  "references_r1_sha256": "8dacbe7f970918e55a8f62c7184898001001901a6a0e05ce562c6d5c361dd205",
+  "schema": "a8.rk02.mordstein_observed_end_proxy_diagnostics.v1",
+  "scientific_interpretation": {
+    "association_only": true,
+    "author_identity_mapping": false,
+    "complete_cds_analysis": false,
+    "generator_training_authorized": false,
+    "mechanism_model_superiority_supported": false,
+    "note": "Positive GC/GC3 associations would reproduce a simple-proxy association on recovered observed ends, not test incremental mechanism value.",
+    "protein_ood_evaluation": false,
+    "simple_proxy_failure_supported": false,
+    "sota_claim": false
+  },
+  "score_summary": {
+    "max": 7.152916620894211,
+    "mean": 4.841659361356802,
+    "min": 1.2259613143789327,
+    "sd_sample": 1.4956090137244413
+  },
+  "source_article": {
+    "doi": "10.1016/j.cels.2020.03.001",
+    "title": "Codon Usage and Splicing Jointly Influence mRNA Localization",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7181179/"
+  },
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "total_assigned_reads": 9037593,
+  "tracked_tree_clean_at_launch": true,
+  "variant_counts_sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef",
+  "variant_metrics": [
+    {
+      "counts_bin1_to_8": [
+        50682,
+        61042,
+        93119,
+        128589,
+        120679,
+        59875,
+        43031,
+        47640
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 4.318913036647223,
+      "gc3_observed_5prime": 0.58,
+      "gc_observed_5prime": 0.5,
+      "sequence_sha256": "5c9f8924222356b3ef7eba490aa3beaacd4fd1b506984bcf4d8c4bff7efaa02b",
+      "total_assigned_reads": 604657,
+      "variant_id": "CF_MORD_0001"
+    },
+    {
+      "counts_bin1_to_8": [
+        79763,
+        152560,
+        58882,
+        70622,
+        70134,
+        37674,
+        26742,
+        13854
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 3.3685859934029883,
+      "gc3_observed_5prime": 0.85,
+      "gc_observed_5prime": 0.59,
+      "sequence_sha256": "58b2dcc158e8e1f67a0225d89e261e6a47f467a78ff32ef9e87da67446ea1344",
+      "total_assigned_reads": 510231,
+      "variant_id": "CF_MORD_0002"
+    },
+    {
+      "counts_bin1_to_8": [
+        39682,
+        149721,
+        124316,
+        61084,
+        22297,
+        11772,
+        18321,
+        15706
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 3.1438770464598025,
+      "gc3_observed_5prime": 0.28,
+      "gc_observed_5prime": 0.4033333333333333,
+      "sequence_sha256": "7fac3e1e12052ac52bfc2c573da1d0a074174ae3df172d39c9921787637ae52c",
+      "total_assigned_reads": 442899,
+      "variant_id": "CF_MORD_0003"
+    },
+    {
+      "counts_bin1_to_8": [
+        99575,
+        76761,
+        87162,
+        87746,
+        40099,
+        13353,
+        6358,
+        1379
+      ],
+      "cpg_per_100nt_observed_5prime": 1.6722408026755853,
+      "flowseq_score_r1_only": 2.913729017804104,
+      "gc3_observed_5prime": 0.34,
+      "gc_observed_5prime": 0.42333333333333334,
+      "sequence_sha256": "bdf4864b8808536d097f8a7f2428e894015124db5ff4a83c3ec7a7e9860e2d70",
+      "total_assigned_reads": 412433,
+      "variant_id": "CF_MORD_0004"
+    },
+    {
+      "counts_bin1_to_8": [
+        13876,
+        10831,
+        6771,
+        14006,
+        27277,
+        47272,
+        74305,
+        82318
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 6.18302512867966,
+      "gc3_observed_5prime": 0.89,
+      "gc_observed_5prime": 0.61,
+      "sequence_sha256": "4bb42586e79b46250a5ffe894f88be632a262dcb7e172ea15e65466a3c83c6bd",
+      "total_assigned_reads": 276656,
+      "variant_id": "CF_MORD_0005"
+    },
+    {
+      "counts_bin1_to_8": [
+        11934,
+        7563,
+        8953,
+        21679,
+        52863,
+        68384,
+        69437,
+        20916
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 5.611304058778355,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5133333333333333,
+      "sequence_sha256": "885debfefd069d97c5596bde15924556b281e73ee2baa555f7c50c24e63e4373",
+      "total_assigned_reads": 261729,
+      "variant_id": "CF_MORD_0006"
+    },
+    {
+      "counts_bin1_to_8": [
+        14935,
+        8626,
+        4448,
+        6418,
+        18646,
+        52934,
+        94357,
+        57854
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 6.217103377766073,
+      "gc3_observed_5prime": 0.8,
+      "gc_observed_5prime": 0.57,
+      "sequence_sha256": "6a590e47aba3dc1f45212984c094d28a9cc35d94d5de8adb24b184269f93711c",
+      "total_assigned_reads": 258218,
+      "variant_id": "CF_MORD_0007"
+    },
+    {
+      "counts_bin1_to_8": [
+        52828,
+        56296,
+        27668,
+        36556,
+        34264,
+        33685,
+        12233,
+        2628
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 3.414818198143333,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.48,
+      "sequence_sha256": "8c2d01b93845ef73b6b09f5631ac53c320d65fd450021b15feeb26b178ad1c10",
+      "total_assigned_reads": 256158,
+      "variant_id": "CF_MORD_0008"
+    },
+    {
+      "counts_bin1_to_8": [
+        13789,
+        32630,
+        43806,
+        51402,
+        36358,
+        27233,
+        19536,
+        10891
+      ],
+      "cpg_per_100nt_observed_5prime": 3.678929765886288,
+      "flowseq_score_r1_only": 4.180623395361667,
+      "gc3_observed_5prime": 0.56,
+      "gc_observed_5prime": 0.49333333333333335,
+      "sequence_sha256": "6e93e708e1e99923fe86e5fa76d805a79fda00bdb38f9b0caf10860666b0fab3",
+      "total_assigned_reads": 235645,
+      "variant_id": "CF_MORD_0009"
+    },
+    {
+      "counts_bin1_to_8": [
+        39520,
+        121984,
+        25996,
+        6639,
+        2618,
+        991,
+        1614,
+        4346
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 2.224429084768394,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.51,
+      "sequence_sha256": "b417a884436ea3d2c78b3b4dd7497de4013d66475ad4af5b9706a2ee25d5712c",
+      "total_assigned_reads": 203708,
+      "variant_id": "CF_MORD_0010"
+    },
+    {
+      "counts_bin1_to_8": [
+        4600,
+        6361,
+        6600,
+        12631,
+        24090,
+        27460,
+        46162,
+        69135
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 6.339201883891007,
+      "gc3_observed_5prime": 0.94,
+      "gc_observed_5prime": 0.6266666666666667,
+      "sequence_sha256": "cc957dba59a466a81e497d59271cc883a32942a3e50cbd3ced4e08248c04a5bd",
+      "total_assigned_reads": 197039,
+      "variant_id": "CF_MORD_0011"
+    },
+    {
+      "counts_bin1_to_8": [
+        68243,
+        87748,
+        22370,
+        5342,
+        2598,
+        1066,
+        1269,
+        559
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 1.9290044662913925,
+      "gc3_observed_5prime": 0.81,
+      "gc_observed_5prime": 0.5766666666666667,
+      "sequence_sha256": "b640fd8cf608e698e65b2e70d490ca6f9887776855e2ca943384815629579b31",
+      "total_assigned_reads": 189195,
+      "variant_id": "CF_MORD_0012"
+    },
+    {
+      "counts_bin1_to_8": [
+        2997,
+        9145,
+        19558,
+        42765,
+        53883,
+        36750,
+        14265,
+        2988
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 4.741926285021743,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.5266666666666666,
+      "sequence_sha256": "a6e38a08bdadb85213974c59d15ee5f2a56ec72b2de3f5b70640a7179a30cdc6",
+      "total_assigned_reads": 182351,
+      "variant_id": "CF_MORD_0013"
+    },
+    {
+      "counts_bin1_to_8": [
+        87762,
+        28616,
+        17655,
+        11467,
+        5407,
+        4103,
+        4053,
+        1530
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 2.092812264544532,
+      "gc3_observed_5prime": 0.48,
+      "gc_observed_5prime": 0.45666666666666667,
+      "sequence_sha256": "be9cf14dc745f35fbd0c70ab397d78267c4f3016cbae05579935356bebd6f805",
+      "total_assigned_reads": 160593,
+      "variant_id": "CF_MORD_0014"
+    },
+    {
+      "counts_bin1_to_8": [
+        4364,
+        11362,
+        13062,
+        17572,
+        17456,
+        10949,
+        14378,
+        63562
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.885059428309486,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5066666666666667,
+      "sequence_sha256": "b7d4e83397120453064c8892613485aff25a592584560aef1ab443042954cf37",
+      "total_assigned_reads": 152705,
+      "variant_id": "CF_MORD_0015"
+    },
+    {
+      "counts_bin1_to_8": [
+        44707,
+        12491,
+        3007,
+        3082,
+        7037,
+        19417,
+        33662,
+        21166
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 4.4801236779669225,
+      "gc3_observed_5prime": 0.74,
+      "gc_observed_5prime": 0.5533333333333333,
+      "sequence_sha256": "5c342cf586827443952dd2e2405b8a8cd598396d1959aa03427d44a1e73b7e49",
+      "total_assigned_reads": 144569,
+      "variant_id": "CF_MORD_0016"
+    },
+    {
+      "counts_bin1_to_8": [
+        5539,
+        9805,
+        33466,
+        33100,
+        18135,
+        16605,
+        12287,
+        11579
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 4.461363830453472,
+      "gc3_observed_5prime": 0.83,
+      "gc_observed_5prime": 0.59,
+      "sequence_sha256": "a2b45e8682bb66cdc8a9637880bf2f86402d2f47b111aeaf606a9b14847e3526",
+      "total_assigned_reads": 140516,
+      "variant_id": "CF_MORD_0017"
+    },
+    {
+      "counts_bin1_to_8": [
+        11080,
+        45693,
+        35753,
+        23383,
+        6525,
+        1831,
+        800,
+        524
+      ],
+      "cpg_per_100nt_observed_5prime": 2.3411371237458196,
+      "flowseq_score_r1_only": 2.839898398745113,
+      "gc3_observed_5prime": 0.33,
+      "gc_observed_5prime": 0.42,
+      "sequence_sha256": "2ee032e281901bd3121820141a2c2f72d3081f17253335e7293d5b6bdad5f001",
+      "total_assigned_reads": 125589,
+      "variant_id": "CF_MORD_0018"
+    },
+    {
+      "counts_bin1_to_8": [
+        1665,
+        3717,
+        13249,
+        27994,
+        30039,
+        28038,
+        13777,
+        4491
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 4.97366837440026,
+      "gc3_observed_5prime": 0.6,
+      "gc_observed_5prime": 0.5066666666666667,
+      "sequence_sha256": "407af08875774a56207ed6dec74080116f7f49362117b94325839cb3bf1047f4",
+      "total_assigned_reads": 122970,
+      "variant_id": "CF_MORD_0019"
+    },
+    {
+      "counts_bin1_to_8": [
+        8358,
+        24204,
+        44005,
+        26695,
+        11801,
+        4552,
+        2042,
+        643
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 3.2814063777596076,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5233333333333333,
+      "sequence_sha256": "0af855cbfc92afffcf30c0965ed82250e460629d59b39241540f07c66e6c85d4",
+      "total_assigned_reads": 122300,
+      "variant_id": "CF_MORD_0020"
+    },
+    {
+      "counts_bin1_to_8": [
+        82161,
+        28745,
+        6642,
+        1735,
+        885,
+        480,
+        938,
+        312
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 1.5003035324615663,
+      "gc3_observed_5prime": 0.77,
+      "gc_observed_5prime": 0.5633333333333334,
+      "sequence_sha256": "45e1c80df3d21b858d43ed9ea950a415d49666380bce2795a879dcaa4aec282f",
+      "total_assigned_reads": 121898,
+      "variant_id": "CF_MORD_0021"
+    },
+    {
+      "counts_bin1_to_8": [
+        1415,
+        10181,
+        25696,
+        27561,
+        22151,
+        10293,
+        7939,
+        6920
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 4.391695495559756,
+      "gc3_observed_5prime": 0.49,
+      "gc_observed_5prime": 0.4633333333333333,
+      "sequence_sha256": "ea09450bc6b97b9de2115b8e812f8184f7a9e9ec192299e64d637f12ae1870fc",
+      "total_assigned_reads": 112156,
+      "variant_id": "CF_MORD_0022"
+    },
+    {
+      "counts_bin1_to_8": [
+        17727,
+        52660,
+        21349,
+        11881,
+        3998,
+        1354,
+        946,
+        964
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 2.498814022492988,
+      "gc3_observed_5prime": 0.61,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "26d8d177a543ad21582a6696d709714fdcadaa0851099b056c1c7f2518bda4ae",
+      "total_assigned_reads": 110879,
+      "variant_id": "CF_MORD_0023"
+    },
+    {
+      "counts_bin1_to_8": [
+        1622,
+        4631,
+        7318,
+        10902,
+        9152,
+        7543,
+        17062,
+        40476
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 6.187121350272527,
+      "gc3_observed_5prime": 0.8,
+      "gc_observed_5prime": 0.58,
+      "sequence_sha256": "8130ae794fa94032cf6b00582305b2436cbfdbf036c92eac7bf83e85f991bfa4",
+      "total_assigned_reads": 98706,
+      "variant_id": "CF_MORD_0024"
+    },
+    {
+      "counts_bin1_to_8": [
+        2864,
+        4660,
+        5964,
+        5053,
+        6997,
+        9704,
+        21935,
+        38544
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 6.324568276553734,
+      "gc3_observed_5prime": 0.49,
+      "gc_observed_5prime": 0.4633333333333333,
+      "sequence_sha256": "50213d0ab6b51c7d84c1f76172a378298a3cae7ae0eb9f892d594323316ae529",
+      "total_assigned_reads": 95721,
+      "variant_id": "CF_MORD_0025"
+    },
+    {
+      "counts_bin1_to_8": [
+        2184,
+        10903,
+        10119,
+        8189,
+        4717,
+        4452,
+        15119,
+        39985
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 5.886116569803905,
+      "gc3_observed_5prime": 0.67,
+      "gc_observed_5prime": 0.53,
+      "sequence_sha256": "1a3251ff33f20f084f984ac79d87d9741e1fe441ea6ed0ec89db151852e98730",
+      "total_assigned_reads": 95668,
+      "variant_id": "CF_MORD_0026"
+    },
+    {
+      "counts_bin1_to_8": [
+        1324,
+        3967,
+        6875,
+        15924,
+        23282,
+        20684,
+        14758,
+        4175
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 5.174240842299619,
+      "gc3_observed_5prime": 0.68,
+      "gc_observed_5prime": 0.5333333333333333,
+      "sequence_sha256": "6460ce29f4125344d80297eeca00510988e6b718a0d2002ffa2dba5736a67932",
+      "total_assigned_reads": 90989,
+      "variant_id": "CF_MORD_0027"
+    },
+    {
+      "counts_bin1_to_8": [
+        12581,
+        14390,
+        19596,
+        21030,
+        11631,
+        5624,
+        2107,
+        474
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 3.370683837910171,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "5e6a87f039fb5d21661daf3b1248dd37ef5c1371bf34da733455646181eaa40c",
+      "total_assigned_reads": 87433,
+      "variant_id": "CF_MORD_0028"
+    },
+    {
+      "counts_bin1_to_8": [
+        77474,
+        4521,
+        1079,
+        694,
+        745,
+        383,
+        732,
+        192
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 1.2259613143789327,
+      "gc3_observed_5prime": 0.38,
+      "gc_observed_5prime": 0.43333333333333335,
+      "sequence_sha256": "05b39cffe3ea0c6ad26689d600383b455942de740a6184ce2fda7fc4bba8a00f",
+      "total_assigned_reads": 85820,
+      "variant_id": "CF_MORD_0029"
+    },
+    {
+      "counts_bin1_to_8": [
+        77255,
+        1871,
+        1067,
+        925,
+        1107,
+        623,
+        722,
+        248
+      ],
+      "cpg_per_100nt_observed_5prime": 3.678929765886288,
+      "flowseq_score_r1_only": 1.2432771003841656,
+      "gc3_observed_5prime": 0.53,
+      "gc_observed_5prime": 0.48333333333333334,
+      "sequence_sha256": "7c9d9835f9f5eac34bf6f0af7b4d1c88ac039efec713a944ba3c863be4acecf2",
+      "total_assigned_reads": 83818,
+      "variant_id": "CF_MORD_0030"
+    },
+    {
+      "counts_bin1_to_8": [
+        4048,
+        2866,
+        3380,
+        11132,
+        17051,
+        22557,
+        18285,
+        3754
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 5.333525935021005,
+      "gc3_observed_5prime": 0.79,
+      "gc_observed_5prime": 0.5766666666666667,
+      "sequence_sha256": "71a460b85352b149d1efef083101bfbbe3df9abe9b13ec18435a0447d72a46bc",
+      "total_assigned_reads": 83073,
+      "variant_id": "CF_MORD_0031"
+    },
+    {
+      "counts_bin1_to_8": [
+        6793,
+        3474,
+        2805,
+        2673,
+        2512,
+        3488,
+        10966,
+        48568
+      ],
+      "cpg_per_100nt_observed_5prime": 9.364548494983278,
+      "flowseq_score_r1_only": 6.540951537297457,
+      "gc3_observed_5prime": 0.91,
+      "gc_observed_5prime": 0.6133333333333333,
+      "sequence_sha256": "0beb203a29f63bee995ca5d74be578bab4ac04673e1b2e9d8bf7d7fbbbf9ca4d",
+      "total_assigned_reads": 81279,
+      "variant_id": "CF_MORD_0032"
+    },
+    {
+      "counts_bin1_to_8": [
+        3515,
+        14665,
+        18432,
+        23202,
+        12862,
+        4827,
+        2462,
+        836
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 3.6898429474882737,
+      "gc3_observed_5prime": 0.41,
+      "gc_observed_5prime": 0.44333333333333336,
+      "sequence_sha256": "86513a03c01b806fd163f460a7bd586d90e015920108f00647bb7e13b066e24a",
+      "total_assigned_reads": 80801,
+      "variant_id": "CF_MORD_0033"
+    },
+    {
+      "counts_bin1_to_8": [
+        2977,
+        8995,
+        23423,
+        24468,
+        12635,
+        4181,
+        1981,
+        1221
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 3.768155130757001,
+      "gc3_observed_5prime": 0.57,
+      "gc_observed_5prime": 0.49666666666666665,
+      "sequence_sha256": "6975dd2366206ac03107091118126842aa3b80823156afab81f2bd2c834376d5",
+      "total_assigned_reads": 79881,
+      "variant_id": "CF_MORD_0034"
+    },
+    {
+      "counts_bin1_to_8": [
+        1352,
+        1885,
+        3227,
+        10574,
+        19125,
+        19298,
+        12862,
+        3218
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 5.3716050935827,
+      "gc3_observed_5prime": 0.81,
+      "gc_observed_5prime": 0.5766666666666667,
+      "sequence_sha256": "bddd6b99354e452ac87e144092937047798abc432cd72ce87a6fcdb757f04a00",
+      "total_assigned_reads": 71541,
+      "variant_id": "CF_MORD_0035"
+    },
+    {
+      "counts_bin1_to_8": [
+        2629,
+        5422,
+        3060,
+        2636,
+        2955,
+        3250,
+        5386,
+        45649
+      ],
+      "cpg_per_100nt_observed_5prime": 4.013377926421405,
+      "flowseq_score_r1_only": 6.626086466536126,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "037e27512ef9e3bea47e9e50529d328d4c3b4367c6ee491c1cec044b7d658811",
+      "total_assigned_reads": 70987,
+      "variant_id": "CF_MORD_0036"
+    },
+    {
+      "counts_bin1_to_8": [
+        3958,
+        3660,
+        6438,
+        15940,
+        17216,
+        14899,
+        6598,
+        842
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 4.640450892151083,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "8b55f1390f6df747e27d610b6e372447e6e3f633eaa15f991d0d10e470a8fac4",
+      "total_assigned_reads": 69551,
+      "variant_id": "CF_MORD_0037"
+    },
+    {
+      "counts_bin1_to_8": [
+        12171,
+        4576,
+        4677,
+        3662,
+        3208,
+        4528,
+        10724,
+        24986
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 5.372176501488356,
+      "gc3_observed_5prime": 0.82,
+      "gc_observed_5prime": 0.58,
+      "sequence_sha256": "83e2ced913805878aa35f0e1837c9d37fa46d2c55a67069da6d11ca89c19738d",
+      "total_assigned_reads": 68532,
+      "variant_id": "CF_MORD_0038"
+    },
+    {
+      "counts_bin1_to_8": [
+        2833,
+        3345,
+        7363,
+        10601,
+        14704,
+        12491,
+        10038,
+        4469
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 4.989065062875889,
+      "gc3_observed_5prime": 0.77,
+      "gc_observed_5prime": 0.57,
+      "sequence_sha256": "07c179755a813b5ea00a05c03acc614d0a43ed5feb70a29ecc87bc463dc61ca1",
+      "total_assigned_reads": 65844,
+      "variant_id": "CF_MORD_0039"
+    },
+    {
+      "counts_bin1_to_8": [
+        932,
+        3331,
+        8042,
+        14968,
+        18871,
+        11408,
+        6521,
+        1344
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 4.750966874054145,
+      "gc3_observed_5prime": 0.5,
+      "gc_observed_5prime": 0.4666666666666667,
+      "sequence_sha256": "661a2907d3058850c4576543132431035a220141b991ce76d29185cd0e60cdf3",
+      "total_assigned_reads": 65417,
+      "variant_id": "CF_MORD_0040"
+    },
+    {
+      "counts_bin1_to_8": [
+        2769,
+        9736,
+        5356,
+        4231,
+        3277,
+        2497,
+        5077,
+        31711
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.812896340520308,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "0af09cd44af25e6b96d4e634253d558df67767eeed94a84df5fe6f2c21603827",
+      "total_assigned_reads": 64654,
+      "variant_id": "CF_MORD_0041"
+    },
+    {
+      "counts_bin1_to_8": [
+        3593,
+        4363,
+        10292,
+        14970,
+        13413,
+        10563,
+        4180,
+        1229
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 4.354583646151143,
+      "gc3_observed_5prime": 0.46,
+      "gc_observed_5prime": 0.46,
+      "sequence_sha256": "150b28580c2c663f0b5c579917ffe6ea9d7616368049dc5bab734bf938e93d93",
+      "total_assigned_reads": 62603,
+      "variant_id": "CF_MORD_0042"
+    },
+    {
+      "counts_bin1_to_8": [
+        1187,
+        1991,
+        1763,
+        3717,
+        9585,
+        11118,
+        15687,
+        17471
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 6.230681872710696,
+      "gc3_observed_5prime": 0.65,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "09711f3676d5964d0286cd00d6a95877b38d3d128153685787ba1dca616b2222",
+      "total_assigned_reads": 62519,
+      "variant_id": "CF_MORD_0043"
+    },
+    {
+      "counts_bin1_to_8": [
+        12744,
+        3618,
+        3341,
+        2765,
+        2739,
+        5495,
+        11218,
+        20366
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 5.2850078669363905,
+      "gc3_observed_5prime": 0.56,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "660378f1b1191077691772cd826071579b4a8e5beb09d40bf4c6e3661da24005",
+      "total_assigned_reads": 62286,
+      "variant_id": "CF_MORD_0044"
+    },
+    {
+      "counts_bin1_to_8": [
+        17841,
+        10795,
+        5103,
+        8932,
+        8894,
+        5275,
+        1923,
+        419
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 3.09893210773546,
+      "gc3_observed_5prime": 0.45,
+      "gc_observed_5prime": 0.45666666666666667,
+      "sequence_sha256": "f15b77b2467c22e14289a8b77b722b9b187f85de703491a95a2b8a4e23dcbae7",
+      "total_assigned_reads": 59182,
+      "variant_id": "CF_MORD_0045"
+    },
+    {
+      "counts_bin1_to_8": [
+        1575,
+        2126,
+        2834,
+        13964,
+        10741,
+        11791,
+        11325,
+        4364
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 5.25924727520436,
+      "gc3_observed_5prime": 0.88,
+      "gc_observed_5prime": 0.6066666666666667,
+      "sequence_sha256": "a2b922756248abd57514fa0929ae291f5fdd08839b14a87be36cd3242a875bf1",
+      "total_assigned_reads": 58720,
+      "variant_id": "CF_MORD_0046"
+    },
+    {
+      "counts_bin1_to_8": [
+        528,
+        1463,
+        2227,
+        6865,
+        16266,
+        14741,
+        11294,
+        3741
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 5.537978118161925,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5133333333333333,
+      "sequence_sha256": "b25911c9e88a426be3ae80ad4faef6c96e5ad5429bbda99c63d77308e35ed283",
+      "total_assigned_reads": 57125,
+      "variant_id": "CF_MORD_0047"
+    },
+    {
+      "counts_bin1_to_8": [
+        18900,
+        13789,
+        3245,
+        3655,
+        4428,
+        5384,
+        3426,
+        2509
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 3.0600513228278157,
+      "gc3_observed_5prime": 0.27,
+      "gc_observed_5prime": 0.39,
+      "sequence_sha256": "1b710c3fef89e3269a6bbae745068d9efbc8900a3d6524bfe1935a8a2c7041a5",
+      "total_assigned_reads": 55336,
+      "variant_id": "CF_MORD_0048"
+    },
+    {
+      "counts_bin1_to_8": [
+        28835,
+        2521,
+        3393,
+        4999,
+        5204,
+        2979,
+        3125,
+        3822
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 2.9227923758154453,
+      "gc3_observed_5prime": 0.61,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "44b62758e265c74cc315038df22226c6277b5e465f55da89c7bdf6ad348ffbf8",
+      "total_assigned_reads": 54878,
+      "variant_id": "CF_MORD_0049"
+    },
+    {
+      "counts_bin1_to_8": [
+        1206,
+        16052,
+        17877,
+        11500,
+        5138,
+        1135,
+        1033,
+        351
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 3.2321520666028145,
+      "gc3_observed_5prime": 0.48,
+      "gc_observed_5prime": 0.4666666666666667,
+      "sequence_sha256": "d6ed7edc69d89207292158d0bbbc458d679c9afc9b632d9563004e11e806e7fd",
+      "total_assigned_reads": 54292,
+      "variant_id": "CF_MORD_0050"
+    },
+    {
+      "counts_bin1_to_8": [
+        6454,
+        5032,
+        8920,
+        9361,
+        7953,
+        5974,
+        5289,
+        2297
+      ],
+      "cpg_per_100nt_observed_5prime": 2.3411371237458196,
+      "flowseq_score_r1_only": 4.128900156006241,
+      "gc3_observed_5prime": 0.34,
+      "gc_observed_5prime": 0.42,
+      "sequence_sha256": "1bd9b8539fb1e105651fb5db82aa151d9d3c861de5c14e8cb1c8a8d22a103199",
+      "total_assigned_reads": 51280,
+      "variant_id": "CF_MORD_0051"
+    },
+    {
+      "counts_bin1_to_8": [
+        1753,
+        5487,
+        3677,
+        4984,
+        6083,
+        5118,
+        5224,
+        17624
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 5.653193193193193,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.51,
+      "sequence_sha256": "480a9c48e4356dca28fe0a8b0d7377e463f82dc9cbf6285ac3aee3e773c7e7b2",
+      "total_assigned_reads": 49950,
+      "variant_id": "CF_MORD_0052"
+    },
+    {
+      "counts_bin1_to_8": [
+        541,
+        2325,
+        4544,
+        11617,
+        14062,
+        9503,
+        4612,
+        1673
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 4.875237841929742,
+      "gc3_observed_5prime": 0.81,
+      "gc_observed_5prime": 0.5766666666666667,
+      "sequence_sha256": "b141aad0e07e4638e40317782b1d1c732957d22f8a5ce6221dc392cf000dbe2e",
+      "total_assigned_reads": 48877,
+      "variant_id": "CF_MORD_0053"
+    },
+    {
+      "counts_bin1_to_8": [
+        2726,
+        4971,
+        3661,
+        7216,
+        9431,
+        7483,
+        5346,
+        6331
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 4.932428707728188,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.51,
+      "sequence_sha256": "f551b5c04c63aa817d0c2d3e9ac184d5d15779a012e2aa277963063e1fbaabb9",
+      "total_assigned_reads": 47165,
+      "variant_id": "CF_MORD_0054"
+    },
+    {
+      "counts_bin1_to_8": [
+        743,
+        2871,
+        4149,
+        9539,
+        11597,
+        7900,
+        5459,
+        4042
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 5.032872570194384,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "e7034d949c32ba6b20bfc60dcb05cf0abcb9cc43e96a0c85c8f1f80692041781",
+      "total_assigned_reads": 46300,
+      "variant_id": "CF_MORD_0055"
+    },
+    {
+      "counts_bin1_to_8": [
+        4096,
+        2384,
+        1978,
+        3705,
+        6681,
+        8455,
+        10687,
+        7750
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 5.478441490292111,
+      "gc3_observed_5prime": 0.55,
+      "gc_observed_5prime": 0.49,
+      "sequence_sha256": "8f38d9b8c8fab7e27da3a4cae15e3fd60fec6668b61f7d9d8cd84bce31ffda9e",
+      "total_assigned_reads": 45736,
+      "variant_id": "CF_MORD_0056"
+    },
+    {
+      "counts_bin1_to_8": [
+        2345,
+        3043,
+        4851,
+        11285,
+        11775,
+        6903,
+        3051,
+        886
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 4.460046670744693,
+      "gc3_observed_5prime": 0.44,
+      "gc_observed_5prime": 0.4533333333333333,
+      "sequence_sha256": "d6cf57a5c871c177dcf92ece39bb57519e4fce8ecca9a1230857be6dcc8147ab",
+      "total_assigned_reads": 44139,
+      "variant_id": "CF_MORD_0057"
+    },
+    {
+      "counts_bin1_to_8": [
+        2256,
+        1020,
+        768,
+        3162,
+        2172,
+        4176,
+        10506,
+        18925
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 6.51636617424683,
+      "gc3_observed_5prime": 0.76,
+      "gc_observed_5prime": 0.56,
+      "sequence_sha256": "6aef149f4ea4aa4e0d00c31628ab7a0225439d9eff6310f3c135a4fb660f02be",
+      "total_assigned_reads": 42985,
+      "variant_id": "CF_MORD_0058"
+    },
+    {
+      "counts_bin1_to_8": [
+        2992,
+        1130,
+        1952,
+        3842,
+        7533,
+        11171,
+        10577,
+        3482
+      ],
+      "cpg_per_100nt_observed_5prime": 3.678929765886288,
+      "flowseq_score_r1_only": 5.460812108999742,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.48,
+      "sequence_sha256": "239e7dc097d2d4f6bcfda23411b172e76644390d72aa8c2da62e2bb7ca8c95e2",
+      "total_assigned_reads": 42679,
+      "variant_id": "CF_MORD_0059"
+    },
+    {
+      "counts_bin1_to_8": [
+        30396,
+        2610,
+        1458,
+        1678,
+        1079,
+        900,
+        1710,
+        503
+      ],
+      "cpg_per_100nt_observed_5prime": 3.678929765886288,
+      "flowseq_score_r1_only": 1.822060792383597,
+      "gc3_observed_5prime": 0.4,
+      "gc_observed_5prime": 0.44333333333333336,
+      "sequence_sha256": "cba3c7a0bed49fe36af24f5b9e9bbf9a25ef9c134526414e63f88da4b09b9885",
+      "total_assigned_reads": 40334,
+      "variant_id": "CF_MORD_0060"
+    },
+    {
+      "counts_bin1_to_8": [
+        32038,
+        1399,
+        496,
+        418,
+        623,
+        1072,
+        2350,
+        1858
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 1.9589854424405029,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.49666666666666665,
+      "sequence_sha256": "fd66bd87faeebb8af65f75ce5a6da593966e124934ebb63f1bd9b905c5c90214",
+      "total_assigned_reads": 40254,
+      "variant_id": "CF_MORD_0061"
+    },
+    {
+      "counts_bin1_to_8": [
+        3962,
+        17234,
+        5411,
+        4145,
+        3888,
+        2107,
+        1660,
+        1307
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 3.1576018532507426,
+      "gc3_observed_5prime": 0.57,
+      "gc_observed_5prime": 0.49666666666666665,
+      "sequence_sha256": "9f0ecd3942dde2a40368134e43c2d229be9e8f7b9acd5991cddec1e09255bba7",
+      "total_assigned_reads": 39714,
+      "variant_id": "CF_MORD_0062"
+    },
+    {
+      "counts_bin1_to_8": [
+        384,
+        2051,
+        3991,
+        6654,
+        8565,
+        5451,
+        5501,
+        6013
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 5.315125615125615,
+      "gc3_observed_5prime": 0.6,
+      "gc_observed_5prime": 0.5066666666666667,
+      "sequence_sha256": "93c4671bcfb469e20021f628eaaf916b07d82235b43f5fdf9239673626bc95a9",
+      "total_assigned_reads": 38610,
+      "variant_id": "CF_MORD_0063"
+    },
+    {
+      "counts_bin1_to_8": [
+        630,
+        2105,
+        4576,
+        8157,
+        11038,
+        5815,
+        2914,
+        2746
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 4.835101761407019,
+      "gc3_observed_5prime": 0.57,
+      "gc_observed_5prime": 0.49666666666666665,
+      "sequence_sha256": "ac42c4bbb632e765b036baf37ab6fba31daadbd2bce31836b9571262bf00f7fd",
+      "total_assigned_reads": 37981,
+      "variant_id": "CF_MORD_0064"
+    },
+    {
+      "counts_bin1_to_8": [
+        583,
+        1444,
+        1671,
+        3841,
+        7556,
+        6427,
+        6803,
+        8773
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 5.876192786673136,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.5266666666666666,
+      "sequence_sha256": "525ba805daaf4420319a5a09d8b906ee2215e4086e0579121dad0833522d8cdd",
+      "total_assigned_reads": 37098,
+      "variant_id": "CF_MORD_0065"
+    },
+    {
+      "counts_bin1_to_8": [
+        997,
+        845,
+        733,
+        859,
+        1082,
+        1404,
+        6320,
+        24743
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 7.147608360598112,
+      "gc3_observed_5prime": 0.58,
+      "gc_observed_5prime": 0.5,
+      "sequence_sha256": "8099abe8cb6631fed893acaee613ce3a1f7b616f81ea074c3f273f47a3e66190",
+      "total_assigned_reads": 36983,
+      "variant_id": "CF_MORD_0066"
+    },
+    {
+      "counts_bin1_to_8": [
+        2342,
+        3006,
+        7707,
+        6854,
+        6177,
+        2843,
+        1909,
+        1776
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 4.121082970503465,
+      "gc3_observed_5prime": 0.49,
+      "gc_observed_5prime": 0.47,
+      "sequence_sha256": "9d4bedf0a45a3d27d2f0613be42beee73d7283b26eb07697dd07cb5b13b1f6d7",
+      "total_assigned_reads": 32614,
+      "variant_id": "CF_MORD_0067"
+    },
+    {
+      "counts_bin1_to_8": [
+        593,
+        2539,
+        4056,
+        8741,
+        8604,
+        4971,
+        2220,
+        526
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 4.508434108527132,
+      "gc3_observed_5prime": 0.67,
+      "gc_observed_5prime": 0.53,
+      "sequence_sha256": "6d4bbf6f1c540a5570895107a8ff3adc4eb77d26cc923ae70e5e70b53b3bf43f",
+      "total_assigned_reads": 32250,
+      "variant_id": "CF_MORD_0068"
+    },
+    {
+      "counts_bin1_to_8": [
+        2193,
+        10751,
+        3428,
+        4098,
+        1741,
+        1681,
+        3543,
+        2717
+      ],
+      "cpg_per_100nt_observed_5prime": 2.0066889632107023,
+      "flowseq_score_r1_only": 3.83719156274874,
+      "gc3_observed_5prime": 0.32,
+      "gc_observed_5prime": 0.4166666666666667,
+      "sequence_sha256": "925a81fbaf8bc86391de2b4d33b2135336f16fbde5f668347c89cd1d292c78d5",
+      "total_assigned_reads": 30152,
+      "variant_id": "CF_MORD_0069"
+    },
+    {
+      "counts_bin1_to_8": [
+        1180,
+        5427,
+        6602,
+        5856,
+        2962,
+        1452,
+        2073,
+        3212
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 4.136872479488249,
+      "gc3_observed_5prime": 0.71,
+      "gc_observed_5prime": 0.55,
+      "sequence_sha256": "57fbd59a747662c36b08ffeac048c96c7c1f2147fca4bb38e41e665458b4f09f",
+      "total_assigned_reads": 28764,
+      "variant_id": "CF_MORD_0070"
+    },
+    {
+      "counts_bin1_to_8": [
+        22123,
+        1333,
+        328,
+        471,
+        668,
+        455,
+        541,
+        893
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 1.6655974936595555,
+      "gc3_observed_5prime": 0.76,
+      "gc_observed_5prime": 0.56,
+      "sequence_sha256": "eeb2ee9793d83788d3b7db0be59f3aa5affcdb9dcc3e42c7ab6d54c320c9613e",
+      "total_assigned_reads": 26812,
+      "variant_id": "CF_MORD_0071"
+    },
+    {
+      "counts_bin1_to_8": [
+        1379,
+        1717,
+        1476,
+        2635,
+        3336,
+        2783,
+        3872,
+        9189
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 5.827680297116004,
+      "gc3_observed_5prime": 0.8,
+      "gc_observed_5prime": 0.5733333333333334,
+      "sequence_sha256": "78274f213c959b41940f6897f6f4f1e7027a7c39027f013a663ddcfe40cb5d1b",
+      "total_assigned_reads": 26387,
+      "variant_id": "CF_MORD_0072"
+    },
+    {
+      "counts_bin1_to_8": [
+        1082,
+        1210,
+        694,
+        1232,
+        2612,
+        3561,
+        6334,
+        9427
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 6.29749158764148,
+      "gc3_observed_5prime": 0.65,
+      "gc_observed_5prime": 0.5233333333333333,
+      "sequence_sha256": "a38b3b23d234fc29bd668c9f02cff73c602022250470c42d353658ef6bd35f2a",
+      "total_assigned_reads": 26152,
+      "variant_id": "CF_MORD_0073"
+    },
+    {
+      "counts_bin1_to_8": [
+        1128,
+        826,
+        543,
+        422,
+        1482,
+        2295,
+        7227,
+        11858
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 6.699895271711726,
+      "gc3_observed_5prime": 0.82,
+      "gc_observed_5prime": 0.5866666666666667,
+      "sequence_sha256": "07322661c101551b7bfd3a7c5d226403cbe4ec636fe69b072392b05383fed7e7",
+      "total_assigned_reads": 25781,
+      "variant_id": "CF_MORD_0074"
+    },
+    {
+      "counts_bin1_to_8": [
+        397,
+        1547,
+        2033,
+        3879,
+        6209,
+        4749,
+        3767,
+        1544
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 5.113616580310881,
+      "gc3_observed_5prime": 0.48,
+      "gc_observed_5prime": 0.4666666666666667,
+      "sequence_sha256": "978ed91fb22b017b4ccf4c23d75e093aa97fe48d3b2d3af9cd65fb1e34314960",
+      "total_assigned_reads": 24125,
+      "variant_id": "CF_MORD_0075"
+    },
+    {
+      "counts_bin1_to_8": [
+        2838,
+        11778,
+        5827,
+        1767,
+        675,
+        527,
+        271,
+        33
+      ],
+      "cpg_per_100nt_observed_5prime": 3.678929765886288,
+      "flowseq_score_r1_only": 2.514800134930005,
+      "gc3_observed_5prime": 0.55,
+      "gc_observed_5prime": 0.48333333333333334,
+      "sequence_sha256": "4c6051a1dd462254144f438d524724c05cfb716d7400c343c3ace73d1adc95e5",
+      "total_assigned_reads": 23716,
+      "variant_id": "CF_MORD_0076"
+    },
+    {
+      "counts_bin1_to_8": [
+        643,
+        1563,
+        4224,
+        5679,
+        5343,
+        2608,
+        1032,
+        2554
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 4.617102258310074,
+      "gc3_observed_5prime": 0.6,
+      "gc_observed_5prime": 0.5066666666666667,
+      "sequence_sha256": "1780a20390fd3acfe3df34b986e27e9446627bf4f9b54d8f8e640b89b65d650c",
+      "total_assigned_reads": 23646,
+      "variant_id": "CF_MORD_0077"
+    },
+    {
+      "counts_bin1_to_8": [
+        3203,
+        4211,
+        1445,
+        821,
+        1042,
+        993,
+        3799,
+        7828
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 5.1250535515380005,
+      "gc3_observed_5prime": 0.81,
+      "gc_observed_5prime": 0.5833333333333334,
+      "sequence_sha256": "7408f1600dd3f106130d92495b8fe1224e11a5847b1592ceaec098f8bcd9a8c7",
+      "total_assigned_reads": 23342,
+      "variant_id": "CF_MORD_0078"
+    },
+    {
+      "counts_bin1_to_8": [
+        567,
+        3291,
+        4222,
+        6067,
+        4607,
+        2373,
+        1269,
+        303
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 4.08225031939733,
+      "gc3_observed_5prime": 0.72,
+      "gc_observed_5prime": 0.5466666666666666,
+      "sequence_sha256": "75d4cc71a238ae927751491074832e4381503d5f0f671d505002458bf27ccd56",
+      "total_assigned_reads": 22699,
+      "variant_id": "CF_MORD_0079"
+    },
+    {
+      "counts_bin1_to_8": [
+        251,
+        1299,
+        3405,
+        5048,
+        5946,
+        3707,
+        1976,
+        639
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 4.677472946881595,
+      "gc3_observed_5prime": 0.52,
+      "gc_observed_5prime": 0.47333333333333333,
+      "sequence_sha256": "92864778e72779889f467611d72b7d6eb0cdb703dfa5cc53d846c2d1834ac888",
+      "total_assigned_reads": 22271,
+      "variant_id": "CF_MORD_0080"
+    },
+    {
+      "counts_bin1_to_8": [
+        432,
+        1408,
+        2488,
+        4144,
+        5415,
+        3695,
+        2436,
+        1865
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 4.958415208152447,
+      "gc3_observed_5prime": 0.65,
+      "gc_observed_5prime": 0.5233333333333333,
+      "sequence_sha256": "99f8f71bec340483eb20fa09d86c4c267dca654419cedd51b59eb7edf21882e1",
+      "total_assigned_reads": 21883,
+      "variant_id": "CF_MORD_0081"
+    },
+    {
+      "counts_bin1_to_8": [
+        623,
+        596,
+        1110,
+        3303,
+        4968,
+        4912,
+        3330,
+        1512
+      ],
+      "cpg_per_100nt_observed_5prime": 4.013377926421405,
+      "flowseq_score_r1_only": 5.309767121941633,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.5266666666666666,
+      "sequence_sha256": "42f5c3000b9811ce3019b69d3c7060a106a7477f174e5b858752118545779260",
+      "total_assigned_reads": 20354,
+      "variant_id": "CF_MORD_0082"
+    },
+    {
+      "counts_bin1_to_8": [
+        587,
+        456,
+        240,
+        225,
+        311,
+        1184,
+        4409,
+        11649
+      ],
+      "cpg_per_100nt_observed_5prime": 8.695652173913043,
+      "flowseq_score_r1_only": 7.12622632600598,
+      "gc3_observed_5prime": 0.93,
+      "gc_observed_5prime": 0.6233333333333333,
+      "sequence_sha256": "c77bed490c5d348bf86fccf5e9a951d9215ec2e18d3bb592a1c32205d81a1f0f",
+      "total_assigned_reads": 19061,
+      "variant_id": "CF_MORD_0083"
+    },
+    {
+      "counts_bin1_to_8": [
+        1187,
+        1431,
+        2158,
+        4694,
+        4996,
+        2850,
+        1375,
+        341
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 4.399537620849096,
+      "gc3_observed_5prime": 0.51,
+      "gc_observed_5prime": 0.4766666666666667,
+      "sequence_sha256": "555dfad10026326728df60c169e6e2b572e62482de0f3aeb9ea9ab6b5937471c",
+      "total_assigned_reads": 19032,
+      "variant_id": "CF_MORD_0084"
+    },
+    {
+      "counts_bin1_to_8": [
+        188,
+        726,
+        357,
+        435,
+        1571,
+        2536,
+        5530,
+        6914
+      ],
+      "cpg_per_100nt_observed_5prime": 9.364548494983278,
+      "flowseq_score_r1_only": 6.65739168538095,
+      "gc3_observed_5prime": 0.82,
+      "gc_observed_5prime": 0.58,
+      "sequence_sha256": "355c5634d2d8b0f774ea3f70b669a1dfe3a62ef60baf16205cfa01c74fa6ccb3",
+      "total_assigned_reads": 18257,
+      "variant_id": "CF_MORD_0085"
+    },
+    {
+      "counts_bin1_to_8": [
+        250,
+        377,
+        358,
+        823,
+        2844,
+        4013,
+        5891,
+        3569
+      ],
+      "cpg_per_100nt_observed_5prime": 8.02675585284281,
+      "flowseq_score_r1_only": 6.259696551724138,
+      "gc3_observed_5prime": 0.77,
+      "gc_observed_5prime": 0.5633333333333334,
+      "sequence_sha256": "aff108439b15c20df022f3cbaca9b04c266efe66f72f8d555215176bcf275cb3",
+      "total_assigned_reads": 18125,
+      "variant_id": "CF_MORD_0086"
+    },
+    {
+      "counts_bin1_to_8": [
+        570,
+        506,
+        560,
+        640,
+        1377,
+        1999,
+        3837,
+        8622
+      ],
+      "cpg_per_100nt_observed_5prime": 8.361204013377927,
+      "flowseq_score_r1_only": 6.655402793882171,
+      "gc3_observed_5prime": 0.88,
+      "gc_observed_5prime": 0.6,
+      "sequence_sha256": "fbc9f7bec7ebf358c7ad4e46f5173b8e762b66830ebedd7dac07ff243703516a",
+      "total_assigned_reads": 18111,
+      "variant_id": "CF_MORD_0087"
+    },
+    {
+      "counts_bin1_to_8": [
+        655,
+        705,
+        295,
+        314,
+        358,
+        501,
+        2004,
+        12346
+      ],
+      "cpg_per_100nt_observed_5prime": 8.695652173913043,
+      "flowseq_score_r1_only": 7.090348119687973,
+      "gc3_observed_5prime": 0.96,
+      "gc_observed_5prime": 0.6233333333333333,
+      "sequence_sha256": "807f2ff5af54527a4d7d2bcb206d6ceea853276636d0ef54c981f3c640538f6c",
+      "total_assigned_reads": 17178,
+      "variant_id": "CF_MORD_0088"
+    },
+    {
+      "counts_bin1_to_8": [
+        339,
+        843,
+        680,
+        1187,
+        3235,
+        4010,
+        4266,
+        2425
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 5.7880482778922575,
+      "gc3_observed_5prime": 0.68,
+      "gc_observed_5prime": 0.5333333333333333,
+      "sequence_sha256": "2af477c5b2360ca8b0c21d840568dac7d4462daf9af5ced884dc686532d1dd60",
+      "total_assigned_reads": 16985,
+      "variant_id": "CF_MORD_0089"
+    },
+    {
+      "counts_bin1_to_8": [
+        101,
+        1145,
+        2489,
+        3887,
+        5133,
+        2294,
+        1052,
+        761
+      ],
+      "cpg_per_100nt_observed_5prime": 8.02675585284281,
+      "flowseq_score_r1_only": 4.642806310046258,
+      "gc3_observed_5prime": 0.74,
+      "gc_observed_5prime": 0.5533333333333333,
+      "sequence_sha256": "291dfaaa16cc63e7057cc25f9369c1579413c1e55441a155a13ab55c3bf47749",
+      "total_assigned_reads": 16862,
+      "variant_id": "CF_MORD_0090"
+    },
+    {
+      "counts_bin1_to_8": [
+        384,
+        487,
+        239,
+        842,
+        1022,
+        1069,
+        2521,
+        9821
+      ],
+      "cpg_per_100nt_observed_5prime": 4.013377926421405,
+      "flowseq_score_r1_only": 6.9076594446139765,
+      "gc3_observed_5prime": 0.46,
+      "gc_observed_5prime": 0.46,
+      "sequence_sha256": "ad6869d1886f8e98c7cfa2de0538728eebc19e06f02680c4b9a53fc271120208",
+      "total_assigned_reads": 16385,
+      "variant_id": "CF_MORD_0091"
+    },
+    {
+      "counts_bin1_to_8": [
+        370,
+        361,
+        764,
+        463,
+        1568,
+        1806,
+        3102,
+        7831
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 6.656870581002152,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "f856436dae0eafcf81a85db0ccc4446ea936d0871ecb1d65d8f37246083b52e8",
+      "total_assigned_reads": 16265,
+      "variant_id": "CF_MORD_0092"
+    },
+    {
+      "counts_bin1_to_8": [
+        1196,
+        838,
+        2127,
+        2767,
+        2261,
+        2455,
+        2632,
+        1657
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 4.8977593673507815,
+      "gc3_observed_5prime": 0.51,
+      "gc_observed_5prime": 0.47,
+      "sequence_sha256": "ce85a21bed269f4d016785b491510114c9f17284c9352d6499f1422dfa9a2f97",
+      "total_assigned_reads": 15933,
+      "variant_id": "CF_MORD_0093"
+    },
+    {
+      "counts_bin1_to_8": [
+        1158,
+        5254,
+        3992,
+        2403,
+        696,
+        377,
+        377,
+        821
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 3.1969094044302957,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "2a1c2f164b682d86ac37640ef1332c0151920ebb64ac0f6b15bedafc3f3bdcc0",
+      "total_assigned_reads": 15078,
+      "variant_id": "CF_MORD_0094"
+    },
+    {
+      "counts_bin1_to_8": [
+        2423,
+        886,
+        701,
+        616,
+        515,
+        639,
+        1246,
+        7755
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 5.813747378391178,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "769dddaecd678aa4843aeeec00c8c253fc82d78e7446a783f1d3163d40c9d52e",
+      "total_assigned_reads": 14781,
+      "variant_id": "CF_MORD_0095"
+    },
+    {
+      "counts_bin1_to_8": [
+        213,
+        1119,
+        1714,
+        2588,
+        3412,
+        2321,
+        1302,
+        838
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 4.793736581032057,
+      "gc3_observed_5prime": 0.71,
+      "gc_observed_5prime": 0.5433333333333333,
+      "sequence_sha256": "e011f204e0fe40de9ef7fa4fc1fd78d2460eb2beb3c203fa23916ebd9a1ebbd9",
+      "total_assigned_reads": 13507,
+      "variant_id": "CF_MORD_0096"
+    },
+    {
+      "counts_bin1_to_8": [
+        182,
+        408,
+        687,
+        1424,
+        3094,
+        2711,
+        1946,
+        2591
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 5.738020394081117,
+      "gc3_observed_5prime": 0.67,
+      "gc_observed_5prime": 0.53,
+      "sequence_sha256": "4c26b7851500586368a7d08abc6e16f5a0117d58a541dfb21858f36bab1e4024",
+      "total_assigned_reads": 13043,
+      "variant_id": "CF_MORD_0097"
+    },
+    {
+      "counts_bin1_to_8": [
+        233,
+        352,
+        187,
+        107,
+        833,
+        1056,
+        2272,
+        7865
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 7.07098024021697,
+      "gc3_observed_5prime": 0.65,
+      "gc_observed_5prime": 0.5233333333333333,
+      "sequence_sha256": "0231db4fe74219a6e9e992dd7fbb170f68dd11ed78a20f8ee3c2861794ce4252",
+      "total_assigned_reads": 12905,
+      "variant_id": "CF_MORD_0098"
+    },
+    {
+      "counts_bin1_to_8": [
+        3002,
+        3646,
+        629,
+        598,
+        1242,
+        1562,
+        1230,
+        623
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 3.490983083306735,
+      "gc3_observed_5prime": 0.73,
+      "gc_observed_5prime": 0.55,
+      "sequence_sha256": "4efab1de973cd4526fde0c1fcea25743f61433124d287e56eb62bf69e44cc186",
+      "total_assigned_reads": 12532,
+      "variant_id": "CF_MORD_0099"
+    },
+    {
+      "counts_bin1_to_8": [
+        968,
+        386,
+        391,
+        708,
+        1094,
+        2117,
+        3987,
+        2841
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 5.968139609349984,
+      "gc3_observed_5prime": 0.41,
+      "gc_observed_5prime": 0.44666666666666666,
+      "sequence_sha256": "e9bd63d3d7e8446ddf0e28dfd66e54edf134029bed875fc4bbd88f13be659b89",
+      "total_assigned_reads": 12492,
+      "variant_id": "CF_MORD_0100"
+    },
+    {
+      "counts_bin1_to_8": [
+        653,
+        300,
+        249,
+        184,
+        581,
+        362,
+        1754,
+        8312
+      ],
+      "cpg_per_100nt_observed_5prime": 8.02675585284281,
+      "flowseq_score_r1_only": 6.985639370713997,
+      "gc3_observed_5prime": 0.8,
+      "gc_observed_5prime": 0.57,
+      "sequence_sha256": "b3ab3454b1232f5e9a49666723bdada49037bf990d79f20f70e4394c6ba1a167",
+      "total_assigned_reads": 12395,
+      "variant_id": "CF_MORD_0101"
+    },
+    {
+      "counts_bin1_to_8": [
+        1403,
+        1520,
+        677,
+        698,
+        787,
+        630,
+        981,
+        5344
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 5.53156146179402,
+      "gc3_observed_5prime": 0.79,
+      "gc_observed_5prime": 0.57,
+      "sequence_sha256": "6fbb383eaf64a2d1124aa3bdac814a9942730178552891ca2bcb4af632c5e634",
+      "total_assigned_reads": 12040,
+      "variant_id": "CF_MORD_0102"
+    },
+    {
+      "counts_bin1_to_8": [
+        116,
+        602,
+        250,
+        469,
+        971,
+        1233,
+        2880,
+        4795
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 6.602951572993991,
+      "gc3_observed_5prime": 0.74,
+      "gc_observed_5prime": 0.5533333333333333,
+      "sequence_sha256": "08897fe290fa5c88b7a85462676691cbf53ff35b6dc43e28870789c8f47e026f",
+      "total_assigned_reads": 11316,
+      "variant_id": "CF_MORD_0103"
+    },
+    {
+      "counts_bin1_to_8": [
+        146,
+        394,
+        184,
+        298,
+        730,
+        953,
+        2026,
+        6578
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 6.97249977893713,
+      "gc3_observed_5prime": 0.5,
+      "gc_observed_5prime": 0.47333333333333333,
+      "sequence_sha256": "accf37245d3a0197709225de01fa88760e104004514439057b5e5ba4695af97b",
+      "total_assigned_reads": 11309,
+      "variant_id": "CF_MORD_0104"
+    },
+    {
+      "counts_bin1_to_8": [
+        280,
+        465,
+        756,
+        855,
+        933,
+        1419,
+        3163,
+        2994
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 6.090197883110907,
+      "gc3_observed_5prime": 0.55,
+      "gc_observed_5prime": 0.49333333333333335,
+      "sequence_sha256": "60ca7a992b23de78624de721d979cc4bf141a09d2f0e1301220c2ada2d2fe970",
+      "total_assigned_reads": 10865,
+      "variant_id": "CF_MORD_0105"
+    },
+    {
+      "counts_bin1_to_8": [
+        680,
+        455,
+        174,
+        38,
+        208,
+        252,
+        1086,
+        7899
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 7.0061156412157155,
+      "gc3_observed_5prime": 0.6,
+      "gc_observed_5prime": 0.5,
+      "sequence_sha256": "34c963211c08c330d31e0a164198bca697fcdf501692dc5c28166f5eef491af1",
+      "total_assigned_reads": 10792,
+      "variant_id": "CF_MORD_0106"
+    },
+    {
+      "counts_bin1_to_8": [
+        368,
+        368,
+        223,
+        370,
+        895,
+        1412,
+        2880,
+        4160
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 6.52304233795429,
+      "gc3_observed_5prime": 0.83,
+      "gc_observed_5prime": 0.59,
+      "sequence_sha256": "884072700370584156ec4a3cd5d82f3d6914004fdcb79a67033f3620f12bff10",
+      "total_assigned_reads": 10676,
+      "variant_id": "CF_MORD_0107"
+    },
+    {
+      "counts_bin1_to_8": [
+        5235,
+        1004,
+        1204,
+        667,
+        696,
+        488,
+        538,
+        819
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 2.840015022063656,
+      "gc3_observed_5prime": 0.46,
+      "gc_observed_5prime": 0.46,
+      "sequence_sha256": "8c3546dec40b0af2906b20b809366b91339e253532e6290400f4be30e92c080b",
+      "total_assigned_reads": 10651,
+      "variant_id": "CF_MORD_0108"
+    },
+    {
+      "counts_bin1_to_8": [
+        716,
+        537,
+        1525,
+        1956,
+        2175,
+        1906,
+        735,
+        992
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 4.703187250996016,
+      "gc3_observed_5prime": 0.55,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "710660b6c5f330a56e28c10c19006b4148c79e5c76d3064686b0a433c74e3dde",
+      "total_assigned_reads": 10542,
+      "variant_id": "CF_MORD_0109"
+    },
+    {
+      "counts_bin1_to_8": [
+        178,
+        688,
+        613,
+        1862,
+        2447,
+        2396,
+        1610,
+        598
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 5.148768283294842,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "1ad4070bebe1ad0dba555a986283c5ff728e6bf14f476925798b4555f86bfc7a",
+      "total_assigned_reads": 10392,
+      "variant_id": "CF_MORD_0110"
+    },
+    {
+      "counts_bin1_to_8": [
+        222,
+        377,
+        360,
+        120,
+        586,
+        523,
+        1853,
+        6095
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 6.939127861089187,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5133333333333333,
+      "sequence_sha256": "859e6d1ac140c8ec38a77fccf682229cc1a41dff26379aba88852c2997a45a93",
+      "total_assigned_reads": 10136,
+      "variant_id": "CF_MORD_0111"
+    },
+    {
+      "counts_bin1_to_8": [
+        624,
+        353,
+        242,
+        552,
+        1242,
+        2804,
+        3073,
+        1215
+      ],
+      "cpg_per_100nt_observed_5prime": 7.6923076923076925,
+      "flowseq_score_r1_only": 5.79208312716477,
+      "gc3_observed_5prime": 0.79,
+      "gc_observed_5prime": 0.57,
+      "sequence_sha256": "26e580cf436793c4981c22b943ad7554e3719dfe988ac149e8bcd4953e4d2e7d",
+      "total_assigned_reads": 10105,
+      "variant_id": "CF_MORD_0112"
+    },
+    {
+      "counts_bin1_to_8": [
+        2619,
+        552,
+        128,
+        156,
+        176,
+        232,
+        782,
+        5109
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.469448431412753,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.52,
+      "sequence_sha256": "d89f1265230c931d80d7f764e1cf1e6677c2ba48c5ed373132e6ef47a5735cb5",
+      "total_assigned_reads": 9754,
+      "variant_id": "CF_MORD_0113"
+    },
+    {
+      "counts_bin1_to_8": [
+        1347,
+        2310,
+        953,
+        652,
+        1027,
+        516,
+        497,
+        2274
+      ],
+      "cpg_per_100nt_observed_5prime": 5.351170568561873,
+      "flowseq_score_r1_only": 4.316624895572264,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.49666666666666665,
+      "sequence_sha256": "255b4db4fc0ea4c92d23baf20fd09aed95288364c253b13020a194e9fc268e27",
+      "total_assigned_reads": 9576,
+      "variant_id": "CF_MORD_0114"
+    },
+    {
+      "counts_bin1_to_8": [
+        1665,
+        5223,
+        1023,
+        367,
+        221,
+        391,
+        286,
+        203
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 2.529587376052884,
+      "gc3_observed_5prime": 0.46,
+      "gc_observed_5prime": 0.4633333333333333,
+      "sequence_sha256": "e0065bd0a180fe2f06b855d16209420f99024310e8f58219c4e9cf612254e4df",
+      "total_assigned_reads": 9379,
+      "variant_id": "CF_MORD_0115"
+    },
+    {
+      "counts_bin1_to_8": [
+        272,
+        307,
+        202,
+        174,
+        292,
+        429,
+        525,
+        6902
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 7.152916620894211,
+      "gc3_observed_5prime": 0.56,
+      "gc_observed_5prime": 0.49333333333333335,
+      "sequence_sha256": "c7ec682e01c01bd501416e8ee4866a42d1f3d8d38708478203ae78d8ffd3c19a",
+      "total_assigned_reads": 9103,
+      "variant_id": "CF_MORD_0116"
+    },
+    {
+      "counts_bin1_to_8": [
+        778,
+        689,
+        408,
+        523,
+        489,
+        622,
+        1742,
+        3362
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 5.890978753047719,
+      "gc3_observed_5prime": 0.64,
+      "gc_observed_5prime": 0.5133333333333333,
+      "sequence_sha256": "30a708a53f403d037441d6239718cadf9a71394b7f8ba14904643245a821d575",
+      "total_assigned_reads": 8613,
+      "variant_id": "CF_MORD_0117"
+    },
+    {
+      "counts_bin1_to_8": [
+        203,
+        245,
+        190,
+        457,
+        602,
+        1068,
+        3144,
+        2623
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 6.5050398499765585,
+      "gc3_observed_5prime": 0.68,
+      "gc_observed_5prime": 0.5333333333333333,
+      "sequence_sha256": "f3f821e6904529153ba8fec768e557a08a7d0a77648ae9691d9b69b2acc758c0",
+      "total_assigned_reads": 8532,
+      "variant_id": "CF_MORD_0118"
+    },
+    {
+      "counts_bin1_to_8": [
+        116,
+        337,
+        266,
+        577,
+        674,
+        1055,
+        2376,
+        2660
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 6.389777943183228,
+      "gc3_observed_5prime": 0.69,
+      "gc_observed_5prime": 0.5366666666666666,
+      "sequence_sha256": "686c9cf8bd533a9df4ce4b5cf05f821363421a7bb7dd883e58aeb9876e64c905",
+      "total_assigned_reads": 8061,
+      "variant_id": "CF_MORD_0119"
+    },
+    {
+      "counts_bin1_to_8": [
+        258,
+        513,
+        1518,
+        1792,
+        1710,
+        1033,
+        463,
+        657
+      ],
+      "cpg_per_100nt_observed_5prime": 2.6755852842809364,
+      "flowseq_score_r1_only": 4.563318227593152,
+      "gc3_observed_5prime": 0.42,
+      "gc_observed_5prime": 0.44666666666666666,
+      "sequence_sha256": "3e529cf5324a12c2491f8528faa9b69c0af49003c1985859f6d6096a9e47d434",
+      "total_assigned_reads": 7944,
+      "variant_id": "CF_MORD_0120"
+    },
+    {
+      "counts_bin1_to_8": [
+        3704,
+        3239,
+        226,
+        199,
+        59,
+        128,
+        150,
+        24
+      ],
+      "cpg_per_100nt_observed_5prime": 6.354515050167224,
+      "flowseq_score_r1_only": 1.8063138827791434,
+      "gc3_observed_5prime": 0.65,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "86b99a7235322444c0f526c15cf241157d505bccad8aabf2850c379c45c41d3e",
+      "total_assigned_reads": 7729,
+      "variant_id": "CF_MORD_0121"
+    },
+    {
+      "counts_bin1_to_8": [
+        3198,
+        803,
+        457,
+        487,
+        294,
+        529,
+        652,
+        744
+      ],
+      "cpg_per_100nt_observed_5prime": 10.033444816053512,
+      "flowseq_score_r1_only": 3.25,
+      "gc3_observed_5prime": 0.9,
+      "gc_observed_5prime": 0.6166666666666667,
+      "sequence_sha256": "f215882c751572b0041fa1f209ce38756a9dad1af601df62d1bddca4e2549605",
+      "total_assigned_reads": 7164,
+      "variant_id": "CF_MORD_0122"
+    },
+    {
+      "counts_bin1_to_8": [
+        728,
+        668,
+        1196,
+        1629,
+        1508,
+        840,
+        452,
+        67
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 4.013544018058691,
+      "gc3_observed_5prime": 0.55,
+      "gc_observed_5prime": 0.49,
+      "sequence_sha256": "5ebcda483b240ba204650b254221745227869f72be1fb53e9c0e4f2e0225398a",
+      "total_assigned_reads": 7088,
+      "variant_id": "CF_MORD_0123"
+    },
+    {
+      "counts_bin1_to_8": [
+        526,
+        3300,
+        1922,
+        888,
+        221,
+        70,
+        115,
+        32
+      ],
+      "cpg_per_100nt_observed_5prime": 1.6722408026755853,
+      "flowseq_score_r1_only": 2.6901328809725755,
+      "gc3_observed_5prime": 0.27,
+      "gc_observed_5prime": 0.4,
+      "sequence_sha256": "cfc4fd275b5979783933a4d23891e8b302d44777a8dd219db77cc7b30489c373",
+      "total_assigned_reads": 7074,
+      "variant_id": "CF_MORD_0124"
+    },
+    {
+      "counts_bin1_to_8": [
+        197,
+        272,
+        188,
+        369,
+        772,
+        1559,
+        2636,
+        928
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 6.049848287819679,
+      "gc3_observed_5prime": 0.56,
+      "gc_observed_5prime": 0.49333333333333335,
+      "sequence_sha256": "23029ac457dd897f69936bb4492c9d6c75f1a2cdfd42440a6c3fb2d0ddb024ed",
+      "total_assigned_reads": 6921,
+      "variant_id": "CF_MORD_0125"
+    },
+    {
+      "counts_bin1_to_8": [
+        98,
+        265,
+        303,
+        430,
+        503,
+        726,
+        1708,
+        2857
+      ],
+      "cpg_per_100nt_observed_5prime": 4.013377926421405,
+      "flowseq_score_r1_only": 6.522496371552975,
+      "gc3_observed_5prime": 0.58,
+      "gc_observed_5prime": 0.5,
+      "sequence_sha256": "c7bde237528bead0bcfbe1695533408347325d66b2de88b7984e6c0d9b7a6a2b",
+      "total_assigned_reads": 6890,
+      "variant_id": "CF_MORD_0126"
+    },
+    {
+      "counts_bin1_to_8": [
+        221,
+        1299,
+        1037,
+        614,
+        495,
+        345,
+        514,
+        2351
+      ],
+      "cpg_per_100nt_observed_5prime": 3.0100334448160537,
+      "flowseq_score_r1_only": 5.139179755671902,
+      "gc3_observed_5prime": 0.29,
+      "gc_observed_5prime": 0.4033333333333333,
+      "sequence_sha256": "5c20606fa0d953ae384243afa56f92a6d92593a69b20f7619edd21affe58f4c9",
+      "total_assigned_reads": 6876,
+      "variant_id": "CF_MORD_0127"
+    },
+    {
+      "counts_bin1_to_8": [
+        102,
+        588,
+        360,
+        348,
+        518,
+        221,
+        458,
+        4190
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 6.542667649226234,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "c8e8b1e680177b4913b1cfe768622849f75111084b79cdeec5bba75c855e127c",
+      "total_assigned_reads": 6785,
+      "variant_id": "CF_MORD_0128"
+    },
+    {
+      "counts_bin1_to_8": [
+        86,
+        363,
+        907,
+        504,
+        816,
+        1203,
+        1547,
+        900
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.51312045526399,
+      "gc3_observed_5prime": 0.53,
+      "gc_observed_5prime": 0.48333333333333334,
+      "sequence_sha256": "097a5bf59318ae69b96a7fc3446c50218e23f466b5c80eb3d1de89c93d15e609",
+      "total_assigned_reads": 6326,
+      "variant_id": "CF_MORD_0129"
+    },
+    {
+      "counts_bin1_to_8": [
+        43,
+        175,
+        850,
+        321,
+        629,
+        827,
+        1734,
+        1257
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 5.916381082933516,
+      "gc3_observed_5prime": 0.43,
+      "gc_observed_5prime": 0.45,
+      "sequence_sha256": "07bcd1fced14c368f707f7fd448eaa16f1f83555d207339ae398e55d4afbf97d",
+      "total_assigned_reads": 5836,
+      "variant_id": "CF_MORD_0130"
+    },
+    {
+      "counts_bin1_to_8": [
+        205,
+        2186,
+        1968,
+        588,
+        270,
+        113,
+        193,
+        54
+      ],
+      "cpg_per_100nt_observed_5prime": 8.02675585284281,
+      "flowseq_score_r1_only": 2.9844002151694458,
+      "gc3_observed_5prime": 0.77,
+      "gc_observed_5prime": 0.5633333333333334,
+      "sequence_sha256": "0e18a1a53956ff84cdc53137458541f300dd260ddd7a855832f672644934cf65",
+      "total_assigned_reads": 5577,
+      "variant_id": "CF_MORD_0131"
+    },
+    {
+      "counts_bin1_to_8": [
+        295,
+        161,
+        249,
+        207,
+        438,
+        1097,
+        1582,
+        1142
+      ],
+      "cpg_per_100nt_observed_5prime": 7.6923076923076925,
+      "flowseq_score_r1_only": 6.02862115644943,
+      "gc3_observed_5prime": 0.81,
+      "gc_observed_5prime": 0.5766666666666667,
+      "sequence_sha256": "255ef73d06f7b0ed1589f6d29db5d8a4c12c174741a5ba9460464627e8386266",
+      "total_assigned_reads": 5171,
+      "variant_id": "CF_MORD_0132"
+    },
+    {
+      "counts_bin1_to_8": [
+        70,
+        132,
+        416,
+        877,
+        683,
+        600,
+        557,
+        1236
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 5.664406038066069,
+      "gc3_observed_5prime": 0.51,
+      "gc_observed_5prime": 0.4766666666666667,
+      "sequence_sha256": "26606e8d4c394001a7428baf170de252bef9cc7b0ee1b1e73a50cb1ca773f024",
+      "total_assigned_reads": 4571,
+      "variant_id": "CF_MORD_0133"
+    },
+    {
+      "counts_bin1_to_8": [
+        205,
+        157,
+        289,
+        637,
+        838,
+        1002,
+        761,
+        560
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.3816587997302765,
+      "gc3_observed_5prime": 0.63,
+      "gc_observed_5prime": 0.5166666666666667,
+      "sequence_sha256": "a895547ed68915565d4edf4b1d1791ef6a646df9d1743c470993ee6f9956fa40",
+      "total_assigned_reads": 4449,
+      "variant_id": "CF_MORD_0134"
+    },
+    {
+      "counts_bin1_to_8": [
+        475,
+        793,
+        213,
+        752,
+        354,
+        211,
+        292,
+        1310
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 4.833636363636364,
+      "gc3_observed_5prime": 0.73,
+      "gc_observed_5prime": 0.55,
+      "sequence_sha256": "b626ae80d2202b629a034df1716ec32ac0f491e8fb9741a3209d1c66151f64d6",
+      "total_assigned_reads": 4400,
+      "variant_id": "CF_MORD_0135"
+    },
+    {
+      "counts_bin1_to_8": [
+        175,
+        231,
+        72,
+        3,
+        65,
+        94,
+        491,
+        2568
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 6.9572857529061904,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.52,
+      "sequence_sha256": "93863fdfcd43629e00b3823919e61aab61646238918435ea060bd0ebe946eb03",
+      "total_assigned_reads": 3699,
+      "variant_id": "CF_MORD_0136"
+    },
+    {
+      "counts_bin1_to_8": [
+        867,
+        847,
+        455,
+        456,
+        209,
+        95,
+        214,
+        421
+      ],
+      "cpg_per_100nt_observed_5prime": 4.3478260869565215,
+      "flowseq_score_r1_only": 3.4318181818181817,
+      "gc3_observed_5prime": 0.6,
+      "gc_observed_5prime": 0.5066666666666667,
+      "sequence_sha256": "9593e9ada53f3cb34c39f067c86543735b74e650834ef4bbc97203ef7bd0a133",
+      "total_assigned_reads": 3564,
+      "variant_id": "CF_MORD_0137"
+    },
+    {
+      "counts_bin1_to_8": [
+        111,
+        186,
+        98,
+        173,
+        319,
+        475,
+        744,
+        1388
+      ],
+      "cpg_per_100nt_observed_5prime": 9.03010033444816,
+      "flowseq_score_r1_only": 6.361190612478534,
+      "gc3_observed_5prime": 0.84,
+      "gc_observed_5prime": 0.5866666666666667,
+      "sequence_sha256": "c9dccebc72d5b15d37b245cbd68c9f37cfe4c3481d8df7537b703932039941cc",
+      "total_assigned_reads": 3494,
+      "variant_id": "CF_MORD_0138"
+    },
+    {
+      "counts_bin1_to_8": [
+        162,
+        598,
+        555,
+        559,
+        607,
+        497,
+        173,
+        199
+      ],
+      "cpg_per_100nt_observed_5prime": 7.023411371237458,
+      "flowseq_score_r1_only": 4.2026865671641795,
+      "gc3_observed_5prime": 0.54,
+      "gc_observed_5prime": 0.4866666666666667,
+      "sequence_sha256": "dabe2b89bcc98d848f28089eca6e1b6160cbd2d98529328a5256fa7b06d013d9",
+      "total_assigned_reads": 3350,
+      "variant_id": "CF_MORD_0139"
+    },
+    {
+      "counts_bin1_to_8": [
+        239,
+        585,
+        299,
+        280,
+        260,
+        300,
+        383,
+        748
+      ],
+      "cpg_per_100nt_observed_5prime": 7.6923076923076925,
+      "flowseq_score_r1_only": 4.909825468648998,
+      "gc3_observed_5prime": 0.89,
+      "gc_observed_5prime": 0.6033333333333334,
+      "sequence_sha256": "a9e9bf75ade65cd773c73aede1838957f8d5b1902c53f985d0369ead756980a5",
+      "total_assigned_reads": 3094,
+      "variant_id": "CF_MORD_0140"
+    },
+    {
+      "counts_bin1_to_8": [
+        591,
+        711,
+        238,
+        59,
+        357,
+        497,
+        388,
+        163
+      ],
+      "cpg_per_100nt_observed_5prime": 6.688963210702341,
+      "flowseq_score_r1_only": 3.911451398135819,
+      "gc3_observed_5prime": 0.76,
+      "gc_observed_5prime": 0.56,
+      "sequence_sha256": "cf1abfb43cb544968cc327a8a0e1341c64976b1df0879a67fe17ce6730d26d39",
+      "total_assigned_reads": 3004,
+      "variant_id": "CF_MORD_0141"
+    },
+    {
+      "counts_bin1_to_8": [
+        314,
+        172,
+        217,
+        27,
+        104,
+        321,
+        398,
+        1303
+      ],
+      "cpg_per_100nt_observed_5prime": 9.03010033444816,
+      "flowseq_score_r1_only": 5.977941176470588,
+      "gc3_observed_5prime": 0.77,
+      "gc_observed_5prime": 0.5633333333333334,
+      "sequence_sha256": "b7ad6ea990a45de0831e7e19cb85c5c0d6115a8127b4ebf29608ad59ce871d83",
+      "total_assigned_reads": 2856,
+      "variant_id": "CF_MORD_0142"
+    },
+    {
+      "counts_bin1_to_8": [
+        2088,
+        465,
+        94,
+        3,
+        5,
+        59,
+        33,
+        1
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 1.4301310043668123,
+      "gc3_observed_5prime": 0.71,
+      "gc_observed_5prime": 0.5433333333333333,
+      "sequence_sha256": "48eae8276f711f4d27e12de287451356066e96294f3417edc4731ece9acaa16c",
+      "total_assigned_reads": 2748,
+      "variant_id": "CF_MORD_0143"
+    },
+    {
+      "counts_bin1_to_8": [
+        693,
+        357,
+        144,
+        251,
+        241,
+        135,
+        250,
+        573
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 4.2329803328290465,
+      "gc3_observed_5prime": 0.59,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "dcb5d85c7edcfed594e1b6814651acf47528277efeb79af0e91f2f5d9e7830cd",
+      "total_assigned_reads": 2644,
+      "variant_id": "CF_MORD_0144"
+    },
+    {
+      "counts_bin1_to_8": [
+        23,
+        161,
+        118,
+        375,
+        554,
+        478,
+        488,
+        220
+      ],
+      "cpg_per_100nt_observed_5prime": 5.016722408026756,
+      "flowseq_score_r1_only": 5.38394704178734,
+      "gc3_observed_5prime": 0.66,
+      "gc_observed_5prime": 0.5266666666666666,
+      "sequence_sha256": "4c12a2b10fa122ce01b73f1125925d51ad33ee1b0bdf6b69268a98d2a56f7148",
+      "total_assigned_reads": 2417,
+      "variant_id": "CF_MORD_0145"
+    },
+    {
+      "counts_bin1_to_8": [
+        947,
+        1134,
+        202,
+        13,
+        32,
+        0,
+        73,
+        1
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 1.8950874271440465,
+      "gc3_observed_5prime": 0.53,
+      "gc_observed_5prime": 0.48333333333333334,
+      "sequence_sha256": "c5d2a05c570f5f557a3db37a6c7a1b76a374a04c907c016787103a728466947f",
+      "total_assigned_reads": 2402,
+      "variant_id": "CF_MORD_0146"
+    },
+    {
+      "counts_bin1_to_8": [
+        104,
+        84,
+        184,
+        301,
+        315,
+        302,
+        439,
+        333
+      ],
+      "cpg_per_100nt_observed_5prime": 7.357859531772576,
+      "flowseq_score_r1_only": 5.408341416100873,
+      "gc3_observed_5prime": 0.88,
+      "gc_observed_5prime": 0.6066666666666667,
+      "sequence_sha256": "e1f22fa9bd00fa73dd83bc11e1e00b1738b6b894a1ce190473570c11ab1d9d60",
+      "total_assigned_reads": 2062,
+      "variant_id": "CF_MORD_0147"
+    },
+    {
+      "counts_bin1_to_8": [
+        92,
+        180,
+        124,
+        176,
+        141,
+        193,
+        258,
+        771
+      ],
+      "cpg_per_100nt_observed_5prime": 7.6923076923076925,
+      "flowseq_score_r1_only": 5.873385012919897,
+      "gc3_observed_5prime": 0.74,
+      "gc_observed_5prime": 0.5533333333333333,
+      "sequence_sha256": "e9423042d8e6ba4ad9b5a0407d6ab0974e1616bb2c63a9870ba3c3016f7c883a",
+      "total_assigned_reads": 1935,
+      "variant_id": "CF_MORD_0148"
+    },
+    {
+      "counts_bin1_to_8": [
+        42,
+        119,
+        219,
+        177,
+        239,
+        230,
+        336,
+        521
+      ],
+      "cpg_per_100nt_observed_5prime": 4.682274247491639,
+      "flowseq_score_r1_only": 5.703664365374403,
+      "gc3_observed_5prime": 0.61,
+      "gc_observed_5prime": 0.5033333333333333,
+      "sequence_sha256": "9c037efae3e14587ddb5f0e6ed5b0d9e7cdbb3c5ab5a74af818b664ac3d3b0d1",
+      "total_assigned_reads": 1883,
+      "variant_id": "CF_MORD_0149"
+    },
+    {
+      "counts_bin1_to_8": [
+        10,
+        20,
+        51,
+        1449,
+        4,
+        61,
+        39,
+        143
+      ],
+      "cpg_per_100nt_observed_5prime": 6.0200668896321075,
+      "flowseq_score_r1_only": 4.39054586381542,
+      "gc3_observed_5prime": 0.72,
+      "gc_observed_5prime": 0.55,
+      "sequence_sha256": "d34dd1e4cf5b4ccadb5b608ca752fd26e48370b20aeac7543c5b8abccd6fcbdf",
+      "total_assigned_reads": 1777,
+      "variant_id": "CF_MORD_0150"
+    },
+    {
+      "counts_bin1_to_8": [
+        6,
+        0,
+        10,
+        645,
+        41,
+        75,
+        78,
+        316
+      ],
+      "cpg_per_100nt_observed_5prime": 5.68561872909699,
+      "flowseq_score_r1_only": 5.418445772843723,
+      "gc3_observed_5prime": 0.62,
+      "gc_observed_5prime": 0.5133333333333333,
+      "sequence_sha256": "0d1a23080733265ac040c0d8170e91ca8f45c55ffc86c4dd2dddcb78b78fa953",
+      "total_assigned_reads": 1171,
+      "variant_id": "CF_MORD_0151"
+    },
+    {
+      "counts_bin1_to_8": [
+        79,
+        158,
+        241,
+        79,
+        109,
+        177,
+        201,
+        96
+      ],
+      "cpg_per_100nt_observed_5prime": 3.3444816053511706,
+      "flowseq_score_r1_only": 4.575438596491228,
+      "gc3_observed_5prime": 0.42,
+      "gc_observed_5prime": 0.44666666666666666,
+      "sequence_sha256": "1b1d5673babf98dabe6423c884fa5c1e4cda3f1cd5947d934855ccfa25aea068",
+      "total_assigned_reads": 1140,
+      "variant_id": "CF_MORD_0152"
+    }
+  ],
+  "variant_metrics_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/proxy_diagnostics_v1/variant_metrics.csv",
+  "variant_metrics_csv_sha256": "6528c2fab10b0a5cdf52a028c4bd003cc6476e4381595605dce418f385ff35b0",
+  "wall_elapsed_s": 48.964328323025256
+}

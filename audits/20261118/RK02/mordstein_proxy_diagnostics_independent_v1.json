@@ -1,0 +1,65 @@
+{
+  "checks": {
+    "all_bootstrap_permutation_and_holm_values_match": true,
+    "counts_support_and_row_alignment": true,
+    "feature_formula_max_abs_delta_le_1e_12": true,
+    "flowseq_formula_max_abs_delta_le_1e_12": true,
+    "metrics_csv_hash_and_rows": true,
+    "no_forced_217_or_author_identity": true,
+    "population_152_unique_reconstructed_ids": true,
+    "prerequisite_hashes": true,
+    "production_pending_independent": true,
+    "protocol_hash": true,
+    "protocol_identity": true,
+    "recovery_finalization_pass": true,
+    "recovery_independent_pass": true,
+    "scientific_boundaries_preserved": true,
+    "score_summary_recompute": true,
+    "sequence_fasta_and_hash_match": true,
+    "source_formula_and_population_contract": true,
+    "total_reads_conservation": true
+  },
+  "checks_passed": 18,
+  "checks_total": 18,
+  "details": {
+    "max_association_delta": 2.220446049250313e-16,
+    "max_feature_delta": 0.0,
+    "max_score_delta": 0.0,
+    "recomputed_cpg_spearman": {
+      "ci95_percentile": [
+        0.2223520625602058,
+        0.5090565934923014
+      ],
+      "observed": 0.37259458566364556,
+      "permutation_p_two_sided": 4.999750012499375e-05
+    },
+    "recomputed_primary": [
+      {
+        "ci95_percentile": [
+          0.20076435013017951,
+          0.4984749313558387
+        ],
+        "feature": "gc3_observed_5prime",
+        "holm_p": 9.99950002499875e-05,
+        "observed": 0.35597414568308205,
+        "permutation_p_two_sided": 4.999750012499375e-05
+      },
+      {
+        "ci95_percentile": [
+          0.20475539664299355,
+          0.49919225551566726
+        ],
+        "feature": "gc_observed_5prime",
+        "holm_p": 9.99950002499875e-05,
+        "observed": 0.35818400073883144,
+        "permutation_p_two_sided": 4.999750012499375e-05
+      }
+    ]
+  },
+  "failed_checks": [],
+  "production_sha256": "d991aded0e735f700882f4490d34c55af98763064156ede1da1a558f2177f952",
+  "protocol_sha256": "f431e145554702d6f45793622d02fe7fc5f713ddf6f97fbea6ce35e45002b8cd",
+  "schema": "a8.rk02.mordstein_observed_end_proxy_diagnostics_independent.v1",
+  "scientific_gate": "OBSERVED_END_ASSOCIATION_ONLY_NOT_PROTEIN_OOD_NOT_GENERATOR_AUTHORIZATION",
+  "status": "PASS"
+}
