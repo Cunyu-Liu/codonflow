@@ -6,11 +6,15 @@ import argparse
 import datetime as dt
 import json
 import math
+import sys
 import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 import numpy as np
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO))
 
 from scripts.a8_rk12_verify_actual_set_matrix import (
     bootstrap,
