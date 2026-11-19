@@ -41,9 +41,10 @@ def visible_text(elem):
     return "\n".join("".join(p.itertext()) for p in elem.iter() if p.tag.rsplit("}", 1)[-1] == "p")
 def all_checks_pass(report):
     checks = report.get("checks")
-    return isinstance(checks, list) and bool(checks) and all(c.get("passed") is True for c in checks)
+    return report.get("overall_pass") is True and isinstance(checks, list) and bool(checks) and all(c.get("pass") is True for c in checks)
 
 def build_slide(claims, finalization, paper, commit, ind_count, final_count, paper_count):
+    method_summary = {row["method"]: row for row in claims["method_summary"]}
     slide = E("slide")
     style = S(slide, "style"); fill(style, "rgba(248, 250, 252, 1)")
     data = S(slide, "data")
@@ -80,12 +81,12 @@ def build_slide(claims, finalization, paper, commit, ind_count, final_count, pap
         c = S(td, "content", fontSize=8, fontFamily="思源黑体", color="rgba(255, 255, 255, 1)", bold="true", lineSpacing="multiple:1", textAlign="center")
         p = S(c, "p"); p.text = h
     supported = 0
-    for t in claims["inference"]["primary_tests"]:
+    for t in claims["primary_tests"]:
         tr = S(table, "tr", height=22)
-        passed = float(t["ci_low"]) > 0 and float(t["holm_p"]) < 0.05
+        passed = bool(t["supported_advantage"])
         supported += int(passed)
-        values = [SHORT[t["method"]], "dense AUC" if t["endpoint"] == "dense_auc" else "HV@500",
-                  fmt(t["effect"]), f"[{fmt(t['ci_low'])}, {fmt(t['ci_high'])}]", p_fmt(t["holm_p"]),
+        values = [SHORT[t["method"]], "dense AUC" if t["endpoint"] == "dense_budget_step_auc_v2" else "HV@500",
+                  fmt(t["effect"]), f"[{fmt(t['ci95'][0])}, {fmt(t['ci95'][1])}]", p_fmt(t["holm_p"]),
                   "SUPPORTED" if passed else "NOT SUPPORTED"]
         for j, value in enumerate(values):
             td = S(tr, "td")
@@ -97,9 +98,9 @@ def build_slide(claims, finalization, paper, commit, ind_count, final_count, pap
     text(data, 688, 259, 200, 18, "SEED-AVERAGED METHOD MEANS", 9, "rgba(71, 85, 105, 1)", True, "left", True, "multiple:1", "caption")
     lines = []
     for m in METHODS:
-        r = claims["method_summary"][m]
-        lines.append(f"{SHORT[m]}  AUC {fmt(r['dense_auc_mean'])}")
-        lines.append(f"  HV500 {fmt(r['hv_b500_mean'])}")
+        r = method_summary[m]
+        lines.append(f"{SHORT[m]}  AUC {fmt(r['mean_dense_auc'])}")
+        lines.append(f"  HV500 {fmt(r['mean_hv_B500'])}")
     lines += ["Δ = method − uniform", "paired across the same records", "AUC excludes B500 · HV unclipped"]
     text(data, 688, 284, 200, 136, "\n".join(lines), 8, "rgba(71, 85, 105, 1)", False, "left", True, "multiple:1.2")
 
@@ -120,9 +121,9 @@ def build_slide(claims, finalization, paper, commit, ind_count, final_count, pap
     note = S(slide, "note"); nc = S(note, "content")
     paragraphs = [
         "本页只报告 unique18 开发集上的真实 dense-budget 简单搜索证据。冻结设计为 18 records × 3 seeds × 4 methods × B=1…500，共 216 runs 和 108,000 次唯一同义 proxy-scorer 调用。dense AUC 使用 B=1…499 的 HV 算术平均，B500 只作端点；normalized HV 使用冻结 calibration reference/scale，且不截断到 [0,1]。",
-        "四方法的 seed-averaged means：" + "；".join(f"{SHORT[m]} dense AUC={claims['method_summary'][m]['dense_auc_mean']!r}, HV500={claims['method_summary'][m]['hv_b500_mean']!r}" for m in METHODS) + "。",
+        "四方法的 seed-averaged means：" + "；".join(f"{SHORT[m]} dense AUC={method_summary[m]['mean_dense_auc']!r}, HV500={method_summary[m]['mean_hv_B500']!r}" for m in METHODS) + "。",
         "六个 primary paired tests（非 uniform 减 uniform；先对三 seed 取算术平均，再以 record 为配对单位）：" + "；".join(
-            f"{t['method']} / {t['endpoint']}: effect={t['effect']!r}, 95% CI=[{t['ci_low']!r}, {t['ci_high']!r}], Holm p={t['holm_p']!r}" for t in claims["inference"]["primary_tests"]) + "。",
+            f"{t['method']} / {t['endpoint']}: effect={t['effect']!r}, 95% CI=[{t['ci95'][0]!r}, {t['ci95'][1]!r}], Holm p={t['holm_p']!r}" for t in claims["primary_tests"]) + "。",
         f"正式 production 为 216/216 runs；独立复核 {ind_count}/{ind_count} PASS，finalization {final_count}/{final_count} PASS，论文精确增量与事实核验 {paper_count}/{paper_count} PASS。科学代码与论文提交为 {commit}。",
         "外部 LinearDesign/EnsembleDesign 输出是乱序 actual sets，dense budget-step AUC 仍为 null，不能用插值或零填充伪造。当前结果只描述固定 proxy 下的开发集搜索行为，不是表达适应度、湿实验或 SOTA 证据；未访问 untouched/功能标签，未训练生成器，不关闭 RK-G1，也不使 manuscript 可提交。"
     ]
@@ -132,13 +133,17 @@ def build_slide(claims, finalization, paper, commit, ind_count, final_count, pap
 
 def main():
     ap = argparse.ArgumentParser()
-    for name in ["claims", "finalization", "paper-verification", "baseline-xml", "baseline-response", "output", "report"]:
+    for name in ["claims", "finalization", "independent", "paper-verification", "baseline-xml", "baseline-response", "output", "report"]:
         ap.add_argument("--" + name, required=True)
     ap.add_argument("--git-commit", required=True)
     a = ap.parse_args()
-    claims, final, paper = load(a.claims), load(a.finalization), load(a.paper_verification)
-    if not all_checks_pass(claims) or not all_checks_pass(final) or not all_checks_pass(paper):
-        raise SystemExit("Refusing PPT: claims/finalization/paper verification has a failed or missing check")
+    claims, final, independent, paper = load(a.claims), load(a.finalization), load(a.independent), load(a.paper_verification)
+    if not all_checks_pass(final) or not all_checks_pass(independent) or not all_checks_pass(paper):
+        raise SystemExit("Refusing PPT: finalization/independent/paper verification has a failed or missing check")
+    if not claims.get("finalization_overall_pass") or claims.get("finalization_sha256") != sha(a.finalization):
+        raise SystemExit("Refusing PPT: claims do not bind the passing finalization")
+    if not all(f.get("pass") is True for f in paper.get("candidate_facts", [])):
+        raise SystemExit("Refusing PPT: paper candidate facts are not all passing")
     if not re.fullmatch(r"[0-9a-f]{40}", a.git_commit): raise SystemExit("Invalid Git commit")
     base_response = load(a.baseline_response)
     if not base_response.get("ok"): raise SystemExit("Baseline response is not ok")
@@ -148,8 +153,10 @@ def main():
     pages = [e for e in list(root) if e.tag.rsplit("}", 1)[-1] == "slide"]
     existing = visible_text(root)
     if MARKER in existing: raise SystemExit("Refusing duplicate RK06 page")
-    slide, supported = build_slide(claims, final, paper, a.git_commit, len(claims["independent"]["checks"]),
-                                   len(final["checks"]), len(paper["checks"]))
+    ind_total = independent["check_counts"]["total"]
+    final_total = final["check_counts"]["total"]
+    paper_total = len(paper["checks"]) + len(paper.get("candidate_facts", []))
+    slide, supported = build_slide(claims, final, paper, a.git_commit, ind_total, final_total, paper_total)
     ET.indent(slide, space="  ")
     out = Path(a.output); out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(ET.tostring(slide, encoding="utf-8", xml_declaration=False) + b"\n")
@@ -184,8 +191,13 @@ def main():
             if ix * iy > 0.01: overlaps.append([x1, y1, w1, h1, x2, y2, w2, h2])
     check("no_text_text_overlap", not overlaps, overlaps)
     check("six_primary_rows", len([e for e in data.iter() if e.tag.rsplit("}", 1)[-1] == "tr"]) == 7)
-    for t in claims["inference"]["primary_tests"]:
-        for label, value in [("effect", fmt(t["effect"])), ("ci_low", fmt(t["ci_low"])), ("ci_high", fmt(t["ci_high"])), ("holm_p", p_fmt(t["holm_p"]))]:
+    for row in claims["method_summary"]:
+        check(f"visible_{row['method']}_mean_dense_auc", fmt(row["mean_dense_auc"]) in texts)
+        check(f"visible_{row['method']}_mean_hv_B500", fmt(row["mean_hv_B500"]) in texts)
+    for t in claims["primary_tests"]:
+        expected_support = float(t["effect"]) > 0 and float(t["ci95"][0]) > 0 and float(t["holm_p"]) < 0.05
+        check(f"frozen_gate_{t['method']}_{t['endpoint']}", bool(t["supported_advantage"]) == expected_support)
+        for label, value in [("effect", fmt(t["effect"])), ("ci_low", fmt(t["ci95"][0])), ("ci_high", fmt(t["ci95"][1])), ("holm_p", p_fmt(t["holm_p"]))]:
             check(f"visible_{t['method']}_{t['endpoint']}_{label}", value in texts, value)
     check("negative_or_positive_gate_count_exact", str(supported) + "/6" in texts)
     check("dense_scope_visible", all(s in texts for s in ["B=1…499", "B500 endpoint only", "unclipped", "external dense AUC 仍为 null"]))
@@ -196,7 +208,8 @@ def main():
               "baseline_slide_count": len(pages), "baseline_revision_id": base_response.get("data", {}).get("revision_id"),
               "baseline_last_slide_id": pages[-1].attrib.get("id"), "git_commit": a.git_commit,
               "supported_proxy_comparisons": supported, "claims_sha256": sha(a.claims),
-              "finalization_sha256": sha(a.finalization), "paper_verification_sha256": sha(a.paper_verification),
+              "finalization_sha256": sha(a.finalization), "independent_sha256": sha(a.independent),
+              "paper_verification_sha256": sha(a.paper_verification),
               "checks": checks}
     Path(a.report).write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     print(json.dumps({"status": report["status"], "candidate_sha256": report["candidate_sha256"], "checks": len(checks),
