@@ -1,0 +1,441 @@
+{
+  "schema": "a8_rk03_source_feasibility_ppt_verification_v1",
+  "mode": "post",
+  "status": "FAIL",
+  "check_counts": {
+    "total": 47,
+    "passed": 46,
+    "failed": 1
+  },
+  "checks": [
+    {
+      "name": "production_74_of_74",
+      "pass": true,
+      "detail": {
+        "total": 74,
+        "passed": 74,
+        "failed": 0
+      }
+    },
+    {
+      "name": "production_terminal_state",
+      "pass": true,
+      "detail": "SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED"
+    },
+    {
+      "name": "independent_169_of_169",
+      "pass": true,
+      "detail": {
+        "total": 169,
+        "passed": 169,
+        "failed": 0
+      }
+    },
+    {
+      "name": "independent_numeric_delta_zero",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "finalization_47_of_47",
+      "pass": true,
+      "detail": {
+        "total": 47,
+        "passed": 47,
+        "failed": 0
+      }
+    },
+    {
+      "name": "bounded_audit_closed_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_61_of_61",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_30_of_30_facts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "manuscript_remains_non_submittable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_read_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_102_pages",
+      "pass": true,
+      "detail": 102
+    },
+    {
+      "name": "baseline_last_pages_preserved",
+      "pass": true,
+      "detail": [
+        "pgI",
+        "pgj"
+      ]
+    },
+    {
+      "name": "baseline_title_not_already_present",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "computed_veloharmo_totals",
+      "pass": true,
+      "detail": [
+        5,
+        125,
+        143663
+      ]
+    },
+    {
+      "name": "computed_ribomimo_extra_totals",
+      "pass": true,
+      "detail": [
+        2,
+        13,
+        9236
+      ]
+    },
+    {
+      "name": "computed_distinct_runinfo_totals",
+      "pass": true,
+      "detail": [
+        7,
+        138,
+        152899
+      ]
+    },
+    {
+      "name": "no_large_reads_downloaded",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "utr_cds_not_constructed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "raw_remapping_not_performed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rk_g1_open",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_generator_training_authorization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "correct_repository_and_commit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fixed_tree_14_files",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fixed_files_current_hashes_match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "two_identical_ecoli_zips",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "only_ecoli_matrix_released",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "only_ecoli_and_yeast_ga",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "four_non_ecoli_matrices_absent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "subtelny_bioproject_fallback",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dunn_pop_mapping_correct",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_table_exactly_matches_production",
+      "pass": true,
+      "detail": {
+        "expected": [
+          [
+            "Study",
+            "Organism",
+            "Source",
+            "RunInfo",
+            "Runs",
+            "MB",
+            "Velo release"
+          ],
+          [
+            "Mohammad16",
+            "E. coli",
+            "GSE72899",
+            "SRP063562",
+            "5",
+            "3,594",
+            "matrix + GA"
+          ],
+          [
+            "Grady17",
+            "P. aeruginosa",
+            "PRJNA379630",
+            "PRJNA379630",
+            "24",
+            "58,639",
+            "none"
+          ],
+          [
+            "Dunn13",
+            "D. melanogaster",
+            "GSE49197",
+            "SRP028243",
+            "14",
+            "34,020",
+            "none"
+          ],
+          [
+            "Pop14",
+            "S. cerevisiae",
+            "GSE63789",
+            "SRP050443",
+            "10",
+            "13,780",
+            "yeast GA"
+          ],
+          [
+            "Battle15",
+            "human",
+            "GSE61742",
+            "SRP047476",
+            "72",
+            "33,630",
+            "none"
+          ],
+          [
+            "Mohammad19",
+            "E. coli",
+            "GSE119104",
+            "SRP158945",
+            "10",
+            "5,202",
+            "n/a"
+          ],
+          [
+            "Subtelny14",
+            "S. cerevisiae",
+            "GSE53268",
+            "PRJNA231671",
+            "3",
+            "4,034",
+            "n/a"
+          ]
+        ],
+        "actual": [
+          [
+            "Study",
+            "Organism",
+            "Source",
+            "RunInfo",
+            "Runs",
+            "MB",
+            "Velo release"
+          ],
+          [
+            "Mohammad16",
+            "E. coli",
+            "GSE72899",
+            "SRP063562",
+            "5",
+            "3,594",
+            "matrix + GA"
+          ],
+          [
+            "Grady17",
+            "P. aeruginosa",
+            "PRJNA379630",
+            "PRJNA379630",
+            "24",
+            "58,639",
+            "none"
+          ],
+          [
+            "Dunn13",
+            "D. melanogaster",
+            "GSE49197",
+            "SRP028243",
+            "14",
+            "34,020",
+            "none"
+          ],
+          [
+            "Pop14",
+            "S. cerevisiae",
+            "GSE63789",
+            "SRP050443",
+            "10",
+            "13,780",
+            "yeast GA"
+          ],
+          [
+            "Battle15",
+            "human",
+            "GSE61742",
+            "SRP047476",
+            "72",
+            "33,630",
+            "none"
+          ],
+          [
+            "Mohammad19",
+            "E. coli",
+            "GSE119104",
+            "SRP158945",
+            "10",
+            "5,202",
+            "n/a"
+          ],
+          [
+            "Subtelny14",
+            "S. cerevisiae",
+            "GSE53268",
+            "PRJNA231671",
+            "3",
+            "4,034",
+            "n/a"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "candidate_required_facts_and_boundaries",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "candidate_has_five_note_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_has_no_external_images",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_elements_within_canvas",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "write_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "post_read_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "post_103_pages",
+      "pass": true,
+      "detail": 103
+    },
+    {
+      "name": "post_revision_advanced",
+      "pass": true,
+      "detail": 65
+    },
+    {
+      "name": "previous_page_ids_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "previous_102_pages_semantically_unchanged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "new_page_id_matches_write_response",
+      "pass": true,
+      "detail": "pgM"
+    },
+    {
+      "name": "new_page_id_is_distinct",
+      "pass": true,
+      "detail": "pgM"
+    },
+    {
+      "name": "new_page_content_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_table_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_semantics_preserved_ignoring_assigned_ids",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "name": "title_appears_exactly_once",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "input_sha256": {
+    "candidate": "da3758e2e18fbd6900937c4d5bd016ceaff84f184dcd1caf80042324c58a3537",
+    "baseline_xml": "aefab6fc7d79b9313abf5779fbadec11d9be4aa8bcea58d5ee407b4ea24d2b87",
+    "baseline_response": "4f5c6f07f4bb2a185367ab76b92c5860ff7e42f63cbb400eaef57078d4491137",
+    "production": "bc66f985ad6e579f34ac4d03ea04738531788072134ba2c94fac59e512b1441c",
+    "independent": "d74484ae5d65c094c9a3d274d96eefa88b293f460c20799235c94d2f823bfdcd",
+    "finalization": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41",
+    "paper_verification": "f92d5e1dc3a85adc7f72abe6a9a7c0e8d0606f6df907c5bcccc97ba90969f235",
+    "post_xml": "54136348f2bd8e633a5d14330c917443e79402d4994ffac138381a50c6820e71",
+    "post_response": "175ff31db2d5f831c725dcb36284c95f016bc75d05c27678554c9d0304961c67",
+    "write_response": "07e36d755306f7ba5fe05e0d9365c76d27f645710c8ac780b5fe6869bc607667"
+  },
+  "scientific_scope": "Metadata-only source feasibility; no read download, UTR-CDS construction, P-site remapping, mechanism validation or model result.",
+  "postwrite": {
+    "new_slide_id": "pgM",
+    "new_page_number": 103,
+    "revision_id": 65
+  }
+}
