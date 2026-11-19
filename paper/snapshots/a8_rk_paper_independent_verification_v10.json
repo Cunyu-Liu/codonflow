@@ -1,0 +1,196 @@
+{
+  "check_count": 21,
+  "checks": [
+    {
+      "detail": {
+        "sources": 52
+      },
+      "name": "all_frozen_source_hashes",
+      "pass": true
+    },
+    {
+      "detail": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+      "name": "a7_template_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
+      "name": "a8_output_hash_matches_sync",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 11
+      },
+      "name": "data_counts_and_hashes_rendered_from_json",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 9
+      },
+      "name": "rnarl_full_qc_and_pair_exclusion",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 11
+      },
+      "name": "veloharmo_matrix_loader_and_missing_species",
+      "pass": true
+    },
+    {
+      "detail": [
+        "**5,079/635/634**",
+        "**19,072 MAGE rows**",
+        "**33/33 checks**",
+        "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+      ],
+      "name": "rk04_split_counts_and_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 15,
+        "min_holm": 0.17982017982017984
+      },
+      "name": "rk07_every_reported_metric_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk07_scientific_boundary",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 9
+      },
+      "name": "id3_bounded_execution_and_retained_defects",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 12
+      },
+      "name": "lineardesign_official_smoke_and_scorer_convention",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bounded_elapsed_values": true,
+        "c01_one_record_two_runs_two_unique": true,
+        "example_efe_values": true,
+        "finalization": true,
+        "frozen_sources": true,
+        "independent_checks": true,
+        "science_boundaries": true,
+        "three_example_records_six_runs_four_unique": true
+      },
+      "name": "ensembledesign_bounded_execution_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "finalization": true,
+        "four_default_and_constrained_runs": true,
+        "frozen_sources": true,
+        "independent_reexecution": true,
+        "materialization": true,
+        "official_example_exact": true,
+        "rendered_from_frozen_json": true,
+        "scope": true,
+        "translation_and_unique_outputs": true
+      },
+      "name": "codontransformer_bounded_execution_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "finalization": true,
+        "frozen_sources": true,
+        "independent": true,
+        "legal_and_negative_result": true,
+        "official_test": true,
+        "rendered_from_frozen_json": true,
+        "scope": true,
+        "unmodified_failure_and_patch": true
+      },
+      "name": "veloharmo_bounded_official_execution_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bounded_protocol": true,
+        "checkpoint_contract": true,
+        "finalization_and_unit_tests": true,
+        "frozen_sources": true,
+        "independent": true,
+        "rendered_from_frozen_json": true,
+        "retained_failures_and_six_edits": true,
+        "scope": true
+      },
+      "name": "ribomimo_bounded_official_training_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "finalization_and_unit_tests": true,
+        "frozen_sources": true,
+        "independent": true,
+        "real_prefix_and_model_contract": true,
+        "rendered_from_frozen_json": true,
+        "scope": true
+      },
+      "name": "ixnos_bounded_official_training_and_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "finalization_and_unit_tests": true,
+        "frozen_sources": true,
+        "independent": true,
+        "rendered_from_frozen_json": true,
+        "retained_precision_failures": true,
+        "scope": true,
+        "single_checkpoint_no_training": true,
+        "source_and_complete_arrays": true
+      },
+      "name": "rose_released_test_single_checkpoint_and_scope",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rnarl_negative_reproducibility_scope",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 11
+      },
+      "name": "cdgb_source_identity_and_no_execution",
+      "pass": true
+    },
+    {
+      "detail": {
+        "required_boundaries": 14
+      },
+      "name": "pending_and_no_sota_boundaries_preserved",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "production_module_not_imported",
+      "pass": true
+    }
+  ],
+  "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+  "paper_sha256": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
+  "passed_checks": 21,
+  "production_module_imported": false,
+  "schema_version": "a8-rk-paper-independent-verification-v10",
+  "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
+  "status": "PASS",
+  "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
+  "sync_audit_sha256": "e29aa17c511b275ce3997750ace4271980d80a1d1d93854ea54aed4aec4993c3"
+}

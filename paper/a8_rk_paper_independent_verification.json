@@ -1,42 +1,46 @@
 {
-  "check_count": 21,
+  "base_v10_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v11/base_v10_verification.log",
+  "base_v10_log_sha256": "bf1f0c2924c2c093f786559f0498feb2d8d3c4db715230fe929426634a0ec11d",
+  "base_v10_verification": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v11/base_v10_verification.json",
+  "base_v10_verification_sha256": "cce35e101c24f5c7984b593063d709ab72a32084b58236723389c1f7a1aa0e99",
+  "check_count": 34,
   "checks": [
     {
       "detail": {
-        "sources": 52
+        "sources": 59
       },
-      "name": "all_frozen_source_hashes",
+      "name": "base_v10:all_frozen_source_hashes",
       "pass": true
     },
     {
       "detail": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
-      "name": "a7_template_unchanged",
+      "name": "base_v10:a7_template_unchanged",
       "pass": true
     },
     {
-      "detail": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
-      "name": "a8_output_hash_matches_sync",
+      "detail": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05",
+      "name": "base_v10:a8_output_hash_matches_sync",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 11
       },
-      "name": "data_counts_and_hashes_rendered_from_json",
+      "name": "base_v10:data_counts_and_hashes_rendered_from_json",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 9
       },
-      "name": "rnarl_full_qc_and_pair_exclusion",
+      "name": "base_v10:rnarl_full_qc_and_pair_exclusion",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 11
       },
-      "name": "veloharmo_matrix_loader_and_missing_species",
+      "name": "base_v10:veloharmo_matrix_loader_and_missing_species",
       "pass": true
     },
     {
@@ -46,7 +50,7 @@
         "**33/33 checks**",
         "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
       ],
-      "name": "rk04_split_counts_and_hash",
+      "name": "base_v10:rk04_split_counts_and_hash",
       "pass": true
     },
     {
@@ -54,26 +58,26 @@
         "expected_strings": 15,
         "min_holm": 0.17982017982017984
       },
-      "name": "rk07_every_reported_metric_recomputed",
+      "name": "base_v10:rk07_every_reported_metric_recomputed",
       "pass": true
     },
     {
       "detail": null,
-      "name": "rk07_scientific_boundary",
+      "name": "base_v10:rk07_scientific_boundary",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 9
       },
-      "name": "id3_bounded_execution_and_retained_defects",
+      "name": "base_v10:id3_bounded_execution_and_retained_defects",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 12
       },
-      "name": "lineardesign_official_smoke_and_scorer_convention",
+      "name": "base_v10:lineardesign_official_smoke_and_scorer_convention",
       "pass": true
     },
     {
@@ -87,7 +91,7 @@
         "science_boundaries": true,
         "three_example_records_six_runs_four_unique": true
       },
-      "name": "ensembledesign_bounded_execution_and_scope",
+      "name": "base_v10:ensembledesign_bounded_execution_and_scope",
       "pass": true
     },
     {
@@ -102,7 +106,7 @@
         "scope": true,
         "translation_and_unique_outputs": true
       },
-      "name": "codontransformer_bounded_execution_and_scope",
+      "name": "base_v10:codontransformer_bounded_execution_and_scope",
       "pass": true
     },
     {
@@ -116,7 +120,7 @@
         "scope": true,
         "unmodified_failure_and_patch": true
       },
-      "name": "veloharmo_bounded_official_execution_and_scope",
+      "name": "base_v10:veloharmo_bounded_official_execution_and_scope",
       "pass": true
     },
     {
@@ -130,7 +134,7 @@
         "retained_failures_and_six_edits": true,
         "scope": true
       },
-      "name": "ribomimo_bounded_official_training_and_scope",
+      "name": "base_v10:ribomimo_bounded_official_training_and_scope",
       "pass": true
     },
     {
@@ -142,7 +146,7 @@
         "rendered_from_frozen_json": true,
         "scope": true
       },
-      "name": "ixnos_bounded_official_training_and_scope",
+      "name": "base_v10:ixnos_bounded_official_training_and_scope",
       "pass": true
     },
     {
@@ -156,41 +160,164 @@
         "single_checkpoint_no_training": true,
         "source_and_complete_arrays": true
       },
-      "name": "rose_released_test_single_checkpoint_and_scope",
+      "name": "base_v10:rose_released_test_single_checkpoint_and_scope",
       "pass": true
     },
     {
       "detail": null,
-      "name": "rnarl_negative_reproducibility_scope",
+      "name": "base_v10:rnarl_negative_reproducibility_scope",
       "pass": true
     },
     {
       "detail": {
         "expected_strings": 11
       },
-      "name": "cdgb_source_identity_and_no_execution",
+      "name": "base_v10:cdgb_source_identity_and_no_execution",
       "pass": true
     },
     {
       "detail": {
         "required_boundaries": 14
       },
-      "name": "pending_and_no_sota_boundaries_preserved",
+      "name": "base_v10:pending_and_no_sota_boundaries_preserved",
       "pass": true
     },
     {
       "detail": false,
-      "name": "production_module_not_imported",
+      "name": "base_v10:production_module_not_imported",
+      "pass": true
+    },
+    {
+      "detail": {
+        "passed": 21,
+        "returncode": 0,
+        "total": 21
+      },
+      "name": "base_v10:all_21_checks",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected_strings": 23
+      },
+      "name": "full_results_rendered_from_frozen_json",
+      "pass": true
+    },
+    {
+      "detail": 1,
+      "name": "full_section_unique",
+      "pass": true
+    },
+    {
+      "detail": "PASS",
+      "name": "four_matrix_preflight",
+      "pass": true
+    },
+    {
+      "detail": {
+        "RNN_depth": 2,
+        "RNN_hidden_dims": 256,
+        "RNN_model": "RiboMIMO",
+        "add_aa": true,
+        "add_nt": true,
+        "alpha": 3.0,
+        "batch_size": 16,
+        "early_stop": 5,
+        "gpu": "0",
+        "info": "train",
+        "learning_rate": 0.001,
+        "max_epoch": 100,
+        "num_fold": 10,
+        "num_repeat": 1,
+        "protocol_path": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_protocol_v2.json",
+        "protocol_sha256": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7",
+        "seed": 1234,
+        "sim": -1.0,
+        "threshold": "0,2",
+        "use_median": false,
+        "weight_decay": 1e-06
+      },
+      "name": "full_protocol",
+      "pass": true
+    },
+    {
+      "detail": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0,
+        "6": 0.0,
+        "7": 0.0,
+        "8": 0.0,
+        "9": 0.0
+      },
+      "name": "two_complete_training_runs",
+      "pass": true
+    },
+    {
+      "detail": "94/94",
+      "name": "independent_inference",
+      "pass": true
+    },
+    {
+      "detail": "425/425",
+      "name": "finalization_and_tests",
+      "pass": true
+    },
+    {
+      "detail": "3257cd9fab340ce07167c7559527721c460c9c1b82ddaef81b64b23937760ade",
+      "name": "failed_v1_retained",
+      "pass": true
+    },
+    {
+      "detail": {
+        "ribomimo_full_failure_v1": "8da5d10b71bd81e6c55cd0d58cce339d3b4d41541bbe0b87948de4a6bd3cbaee",
+        "ribomimo_full_finalization": "890ef31a7bc716a9307ded9430de12b935629b8836a378ad571fa79c00624965",
+        "ribomimo_full_independent": "4bf2371923622ca247e4b51ccb3857a9512897f8a6dcae4b11ac3c96a3c01f4e",
+        "ribomimo_full_preflight": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+        "ribomimo_full_production": "47e1a2c44e007c6413eb66efa9bd83a352745241ddcc9823b2c508ac1d292340",
+        "ribomimo_full_protocol": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7",
+        "ribomimo_full_retrain": "f75fe699c25a31d1297a8b1f871d6e3819d74e10d0d91d0d8da1ce0e2a3db028"
+      },
+      "name": "full_evidence_hashes",
+      "pass": true
+    },
+    {
+      "detail": [
+        "Full training on Subtelny14, Mohammad19-1 and Mohammad19-2",
+        "homology/protein/study/functional OOD",
+        "publication-metric reproduction",
+        "unified-cost baseline matrix",
+        "SOTA assessment remain pending",
+        "non-submittable working manuscript",
+        "No SOTA claim."
+      ],
+      "name": "full_scope_and_pending",
+      "pass": true
+    },
+    {
+      "detail": {
+        "audit_sha256": "216b9a0215ff22b8c364b3d4ec7d3428b69cebe2f26ee6706200d9acd538a413",
+        "paper_sha256": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05"
+      },
+      "name": "audit_and_template",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "production_module_not_imported_v11",
       "pass": true
     }
   ],
   "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "paper_sha256": "4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e",
-  "passed_checks": 21,
+  "paper_sha256": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05",
+  "passed_checks": 34,
   "production_module_imported": false,
-  "schema_version": "a8-rk-paper-independent-verification-v10",
-  "scope": "Verification of a non-submittable A8 working manuscript only; no mechanism, model, main baseline, OOD, SOTA, or wet-lab closure is implied.",
+  "schema_version": "a8-rk-paper-independent-verification-v11",
+  "scope": "A8 remains non-submittable; only Mohammad16 full random-gene CV is newly closed. Other datasets, mechanism, model, OOD, main matrix, SOTA and wet-lab validation remain open.",
   "status": "PASS",
   "sync_audit": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
-  "sync_audit_sha256": "e29aa17c511b275ce3997750ace4271980d80a1d1d93854ea54aed4aec4993c3"
+  "sync_audit_sha256": "216b9a0215ff22b8c364b3d4ec7d3428b69cebe2f26ee6706200d9acd538a413"
 }
