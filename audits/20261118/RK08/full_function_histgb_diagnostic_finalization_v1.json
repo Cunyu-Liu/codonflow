@@ -1,0 +1,276 @@
+{
+  "protocol": "a8_rk08_histgb_diagnostic_finalization_v1",
+  "status": "PASS_COMPLETE_RETROSPECTIVE_HISTGB_DIAGNOSTIC",
+  "checks": [
+    {
+      "name": "analysis_status",
+      "pass": true,
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "independent_status",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "name": "independent_counts",
+      "pass": true,
+      "detail": "84/84"
+    },
+    {
+      "name": "original_gate",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "original_finalization",
+      "pass": true,
+      "detail": "PASS 48/48"
+    },
+    {
+      "name": "diagnostic_negative_or_uncertain",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "retrospective_not_preregistered",
+      "pass": true,
+      "detail": "retrospective_after_unpaired_metric_readout_not_preregistered"
+    },
+    {
+      "name": "no_fitting_or_selection",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "generator_remains_blocked",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_sota_or_fixed_protein_claim",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "summary_verification_hash",
+      "pass": true,
+      "detail": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a"
+    },
+    {
+      "name": "bootstrap_recomputation",
+      "pass": true,
+      "detail": 9.974659986866641e-17
+    },
+    {
+      "name": "all_bootstrap_valid",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "four_comparisons",
+      "pass": true,
+      "detail": 4
+    },
+    {
+      "name": "sequence_spearman_interval",
+      "pass": true,
+      "detail": {
+        "partition": "sequence_ood",
+        "left": "ribokinetic_all",
+        "right": "histgb_all",
+        "metric": "spearman",
+        "point_delta": -0.027288932055146098,
+        "ci95_low": -0.09052031538665149,
+        "ci95_high": 0.03262608168264779,
+        "sign_pvalue": 0.405,
+        "bootstrap_valid": 2000,
+        "bootstrap_requested": 2000,
+        "holm_pvalue_within_partition": 0.405
+      }
+    },
+    {
+      "name": "sequence_mse_interval",
+      "pass": true,
+      "detail": {
+        "partition": "sequence_ood",
+        "left": "ribokinetic_all",
+        "right": "histgb_all",
+        "metric": "cluster_balanced_mse",
+        "point_delta": 0.09879506417228656,
+        "ci95_low": -0.05097148051778395,
+        "ci95_high": 0.2520572152648539,
+        "sign_pvalue": 0.198,
+        "bootstrap_valid": 2000,
+        "bootstrap_requested": 2000,
+        "holm_pvalue_within_partition": 0.396
+      }
+    },
+    {
+      "name": "sequence_direction_not_mechanism_win",
+      "pass": true,
+      "detail": {
+        "spearman": -0.027288932055146098,
+        "cluster_balanced_mse": 0.09879506417228656
+      }
+    },
+    {
+      "name": "sequence_metrics_finite",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "sequence_row_and_cluster_counts",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "original_metrics_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact:comparison_summary",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/comparison_summary.json"
+    },
+    {
+      "name": "artifact:paired_comparisons",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paired_comparisons.csv"
+    },
+    {
+      "name": "artifact:metrics",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/metrics.csv"
+    },
+    {
+      "name": "artifact:bootstrap_deltas",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/bootstrap_deltas.csv.gz"
+    },
+    {
+      "name": "artifact:independent_verification",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/independent_verification.json"
+    },
+    {
+      "name": "artifact:original_summary",
+      "pass": true,
+      "detail": "audits/20261118/RK08/full_function_comparison_summary_v1.json"
+    },
+    {
+      "name": "artifact:original_finalization",
+      "pass": true,
+      "detail": "audits/20261118/RK08/full_function_finalization_v1.json"
+    },
+    {
+      "name": "artifact:protocol",
+      "pass": true,
+      "detail": "configs/a8_rk08_histgb_diagnostic_protocol_v1.json"
+    },
+    {
+      "name": "artifact:analysis_script",
+      "pass": true,
+      "detail": "scripts/a8_rk08_compare_histgb_diagnostic.py"
+    },
+    {
+      "name": "artifact:verification_script",
+      "pass": true,
+      "detail": "scripts/a8_rk08_verify_histgb_diagnostic.py"
+    },
+    {
+      "name": "artifact:finalization_script",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/scripts/a8_rk08_finalize_histgb_diagnostic.py"
+    },
+    {
+      "name": "audit_summary_copy",
+      "pass": true,
+      "detail": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a"
+    },
+    {
+      "name": "audit_verification_copy",
+      "pass": true,
+      "detail": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce"
+    }
+  ],
+  "checks_passed": 33,
+  "checks_total": 33,
+  "failures": [],
+  "conclusion": "The mechanism model does not outperform the frozen HistGB feature baseline on sequence-OOD; both paired confidence intervals include zero, and the original RK-G1 remains false.",
+  "original_rk_g1_pass": false,
+  "diagnostic_favors_ribokinetic_all": false,
+  "expensive_generation_authorized": false,
+  "sota_claimed": false,
+  "fixed_protein_synonymous_mechanism_supported": false,
+  "functional_untouched_accessed": false,
+  "artifacts": {
+    "comparison_summary": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/comparison_summary.json",
+      "sha256": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a",
+      "bytes": 5852
+    },
+    "paired_comparisons": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paired_comparisons.csv",
+      "sha256": "4feb1a4c1db6dc276daa7ea888000db10c22a40fcd843e4130466bcd9036bcd9",
+      "bytes": 670
+    },
+    "metrics": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/metrics.csv",
+      "sha256": "c98b13cc1dfaf61b0c983b6e7a8d3ecb136d51c0d3a2ecc79a7350c715b9e923",
+      "bytes": 844
+    },
+    "bootstrap_deltas": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/bootstrap_deltas.csv.gz",
+      "sha256": "75b3772cf2fcb24fb10bb65132fbdadf477b56e39acdf7e2994ad397090cfd38",
+      "bytes": 105367
+    },
+    "independent_verification": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/independent_verification.json",
+      "sha256": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce",
+      "bytes": 14252
+    },
+    "original_summary": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_comparison_summary_v1.json",
+      "sha256": "ff97cc8ae4093ac24fe475d30bce2db6707c2635d9de572286c1f69d9f8579cb",
+      "bytes": 12074
+    },
+    "original_finalization": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_finalization_v1.json",
+      "sha256": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2",
+      "bytes": 2680
+    },
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/configs/a8_rk08_histgb_diagnostic_protocol_v1.json",
+      "sha256": "18e509cdee07585e256cd9613efd5f148ac4d116101f41674e09e11c93a575b1",
+      "bytes": 2152
+    },
+    "analysis_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk08_compare_histgb_diagnostic.py",
+      "sha256": "f241379162ecaf85c8aa00cfaa232a7b067d0444548c3efed3fb95fdd1f47aeb",
+      "bytes": 11985
+    },
+    "verification_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk08_verify_histgb_diagnostic.py",
+      "sha256": "6fc05325204ef5feb49af60e7f46f5392ae4dbcbbb45f847422fe3b89464e336",
+      "bytes": 13516
+    },
+    "finalization_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk08_finalize_histgb_diagnostic.py",
+      "sha256": "efede551e9a98b0d06c1c75f1a2cfaf8071d63b13f3011bb4b7fc57fe2f524c3",
+      "bytes": 8287
+    }
+  },
+  "audit_copies": {
+    "summary": "audits/20261118/RK08/full_function_histgb_diagnostic_summary_v1.json",
+    "verification": "audits/20261118/RK08/full_function_histgb_diagnostic_verification_v1.json"
+  },
+  "limitations": [
+    "Retrospective diagnostic; it does not become a preregistered gate by using frozen predictions.",
+    "Cross-protein nonsynonymous Bo\u00ebl prediction does not test fixed-protein synonymous design.",
+    "No external method ranking, functional untouched evaluation, physical velocity measurement or generator result is provided."
+  ],
+  "next_action": "Retain HistGB as a required internal feature baseline in future preregistered comparisons and continue mechanism/data diagnosis before any generator training.",
+  "elapsed_seconds": 0.04279518127441406
+}

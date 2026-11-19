@@ -1,0 +1,34 @@
+{
+  "protocol_id": "a8_rk08_histgb_diagnostic_v1_retrospective_after_unpaired_metric_readout",
+  "status_before_analysis": "frozen_before_paired_delta_readout",
+  "reason": "The frozen full-function report computed histgb_all predictions and unpaired metrics but omitted ribokinetic_all versus histgb_all from paired comparisons. histgb_all had the best sequence-OOD point estimates among the three non-neural feature baselines.",
+  "scientific_scope": "Retrospective fairness diagnostic on cross-protein nonsynonymous Boël function prediction; not fixed-protein synonymous mechanism evidence and not a new preregistered RK-G1 gate.",
+  "allowed_actions": [
+    "Reuse frozen source data, split assignments, ribokinetic_all predictions and histgb_all predictions.",
+    "Recompute aligned point metrics and paired operational-protein-cluster bootstrap deltas.",
+    "Report sequence-OOD and retained-test diagnostics with two metrics per partition."
+  ],
+  "forbidden_actions": [
+    "No model fitting, checkpoint selection, feature selection, hyperparameter search or data-split change.",
+    "No access to functional untouched data.",
+    "No replacement of the original preregistered comparison or retroactive claim of preregistration.",
+    "No generator training, SOTA claim or fixed-protein mechanism claim."
+  ],
+  "comparison": "ribokinetic_all minus histgb_all",
+  "primary_diagnostic_partition": "sequence_ood",
+  "secondary_descriptive_partition": "test",
+  "metrics": [
+    "row_spearman",
+    "cluster_balanced_mse"
+  ],
+  "bootstrap": {
+    "unit": "operational_protein_cluster",
+    "replicates": 2000,
+    "seed": 20261119,
+    "confidence_interval": "percentile_95",
+    "p_value": "two_sided_empirical_sign",
+    "multiplicity": "Holm_within_partition_across_two_metrics"
+  },
+  "decision_rule": "A diagnostic favors ribokinetic_all only when Spearman delta CI is entirely above zero and cluster-balanced MSE delta CI is entirely below zero with Holm p<0.05. Failure favors neither a new mechanism claim nor generator authorization.",
+  "original_gate_handling": "Preserve original rk_g1_pass=false regardless of this diagnostic."
+}

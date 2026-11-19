@@ -1,0 +1,586 @@
+{
+  "protocol": "a8_rk08_histgb_diagnostic_independent_v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "summary_pending",
+      "pass": true,
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "retrospective_label",
+      "pass": true,
+      "detail": "retrospective_after_unpaired_metric_readout_not_preregistered"
+    },
+    {
+      "name": "protocol_id",
+      "pass": true,
+      "detail": "a8_rk08_histgb_diagnostic_v1_retrospective_after_unpaired_metric_readout"
+    },
+    {
+      "name": "original_gate_false",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "original_gate_unchanged",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_fitting",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_selection",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_generator_authorization",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_sota",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "no_fixed_protein_claim",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "input_data_sha256",
+      "pass": true,
+      "detail": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6"
+    },
+    {
+      "name": "input_all_predictions_sha256",
+      "pass": true,
+      "detail": "76e14fec371e7cb94030eead8940efc97960180cafcb71b326f272bfc4046aa7"
+    },
+    {
+      "name": "input_baseline_predictions_sha256",
+      "pass": true,
+      "detail": "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75"
+    },
+    {
+      "name": "input_original_summary_sha256",
+      "pass": true,
+      "detail": "ff97cc8ae4093ac24fe475d30bce2db6707c2635d9de572286c1f69d9f8579cb"
+    },
+    {
+      "name": "input_protocol_sha256",
+      "pass": true,
+      "detail": "18e509cdee07585e256cd9613efd5f148ac4d116101f41674e09e11c93a575b1"
+    },
+    {
+      "name": "input_analysis_script_sha256",
+      "pass": true,
+      "detail": "f241379162ecaf85c8aa00cfaa232a7b067d0444548c3efed3fb95fdd1f47aeb"
+    },
+    {
+      "name": "original_data",
+      "pass": true,
+      "detail": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6"
+    },
+    {
+      "name": "original_all_predictions",
+      "pass": true,
+      "detail": "76e14fec371e7cb94030eead8940efc97960180cafcb71b326f272bfc4046aa7"
+    },
+    {
+      "name": "original_baseline",
+      "pass": true,
+      "detail": "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75"
+    },
+    {
+      "name": "source_rows",
+      "pass": true,
+      "detail": 6348
+    },
+    {
+      "name": "source_unique",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "split_counts",
+      "pass": true,
+      "detail": {
+        "train": 4019,
+        "sequence_ood": 1336,
+        "dev": 503,
+        "test": 490
+      }
+    },
+    {
+      "name": "no_untouched_split",
+      "pass": true,
+      "detail": [
+        "dev",
+        "sequence_ood",
+        "test",
+        "train"
+      ]
+    },
+    {
+      "name": "model_prediction_rows",
+      "pass": true,
+      "detail": 6348
+    },
+    {
+      "name": "baseline_prediction_rows",
+      "pass": true,
+      "detail": 6348
+    },
+    {
+      "name": "raw_alignment",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "finite_predictions",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "metric:dev:ribokinetic_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.23162331852245086,
+        "reported": 0.2316233185224509
+      }
+    },
+    {
+      "name": "metric:dev:ribokinetic_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 3.761769367012571,
+        "reported": 3.761769367012571
+      }
+    },
+    {
+      "name": "rows:dev:ribokinetic_all",
+      "pass": true,
+      "detail": 503
+    },
+    {
+      "name": "clusters:dev:ribokinetic_all",
+      "pass": true,
+      "detail": 447
+    },
+    {
+      "name": "metric:dev:histgb_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.24375270573066135,
+        "reported": 0.24375270573066135
+      }
+    },
+    {
+      "name": "metric:dev:histgb_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 3.7635590828453087,
+        "reported": 3.7635590828453087
+      }
+    },
+    {
+      "name": "rows:dev:histgb_all",
+      "pass": true,
+      "detail": 503
+    },
+    {
+      "name": "clusters:dev:histgb_all",
+      "pass": true,
+      "detail": 447
+    },
+    {
+      "name": "metric:test:ribokinetic_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.2168052484825118,
+        "reported": 0.21680524848251176
+      }
+    },
+    {
+      "name": "metric:test:ribokinetic_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 4.2534637267769,
+        "reported": 4.2534637267769
+      }
+    },
+    {
+      "name": "rows:test:ribokinetic_all",
+      "pass": true,
+      "detail": 490
+    },
+    {
+      "name": "clusters:test:ribokinetic_all",
+      "pass": true,
+      "detail": 436
+    },
+    {
+      "name": "metric:test:histgb_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.20307644175384384,
+        "reported": 0.20307644175384384
+      }
+    },
+    {
+      "name": "metric:test:histgb_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 4.207757635047566,
+        "reported": 4.207757635047566
+      }
+    },
+    {
+      "name": "rows:test:histgb_all",
+      "pass": true,
+      "detail": 490
+    },
+    {
+      "name": "clusters:test:histgb_all",
+      "pass": true,
+      "detail": 436
+    },
+    {
+      "name": "bootstrap_rows:test:spearman",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "bootstrap_values:test:spearman",
+      "pass": true,
+      "detail": 9.93129189996722e-17
+    },
+    {
+      "name": "bootstrap_rows:test:cluster_balanced_mse",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "bootstrap_values:test:cluster_balanced_mse",
+      "pass": true,
+      "detail": 9.974659986866641e-17
+    },
+    {
+      "name": "metric:sequence_ood:ribokinetic_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.1920940268665813,
+        "reported": 0.1920940268665813
+      }
+    },
+    {
+      "name": "metric:sequence_ood:ribokinetic_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 4.088745560141716,
+        "reported": 4.088745560141716
+      }
+    },
+    {
+      "name": "rows:sequence_ood:ribokinetic_all",
+      "pass": true,
+      "detail": 1336
+    },
+    {
+      "name": "clusters:sequence_ood:ribokinetic_all",
+      "pass": true,
+      "detail": 1110
+    },
+    {
+      "name": "metric:sequence_ood:histgb_all:row_spearman",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.2193829589217274,
+        "reported": 0.2193829589217274
+      }
+    },
+    {
+      "name": "metric:sequence_ood:histgb_all:cluster_balanced_mse",
+      "pass": true,
+      "detail": {
+        "recomputed": 3.98995049596943,
+        "reported": 3.98995049596943
+      }
+    },
+    {
+      "name": "rows:sequence_ood:histgb_all",
+      "pass": true,
+      "detail": 1336
+    },
+    {
+      "name": "clusters:sequence_ood:histgb_all",
+      "pass": true,
+      "detail": 1110
+    },
+    {
+      "name": "bootstrap_rows:sequence_ood:spearman",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "bootstrap_values:sequence_ood:spearman",
+      "pass": true,
+      "detail": 9.974659986866641e-17
+    },
+    {
+      "name": "bootstrap_rows:sequence_ood:cluster_balanced_mse",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "bootstrap_values:sequence_ood:cluster_balanced_mse",
+      "pass": true,
+      "detail": 9.936712910829648e-17
+    },
+    {
+      "name": "comparison:test:spearman:point_delta",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.013728806728667942,
+        "reported": 0.013728806728667914
+      }
+    },
+    {
+      "name": "comparison:test:spearman:ci95_low",
+      "pass": true,
+      "detail": {
+        "recomputed": -0.08161752898076176,
+        "reported": -0.08161752898076176
+      }
+    },
+    {
+      "name": "comparison:test:spearman:ci95_high",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.1137888709025282,
+        "reported": 0.1137888709025282
+      }
+    },
+    {
+      "name": "comparison:test:spearman:sign_pvalue",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.838,
+        "reported": 0.838
+      }
+    },
+    {
+      "name": "comparison:test:spearman:holm_pvalue_within_partition",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "reported": 1.0
+      }
+    },
+    {
+      "name": "comparison:test:spearman:bootstrap_valid",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:point_delta",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.045706091729334375,
+        "reported": 0.045706091729334375
+      }
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:ci95_low",
+      "pass": true,
+      "detail": {
+        "recomputed": -0.14284694720082164,
+        "reported": -0.14284694720082164
+      }
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:ci95_high",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.24043540294822363,
+        "reported": 0.24043540294822363
+      }
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:sign_pvalue",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.601,
+        "reported": 0.601
+      }
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:holm_pvalue_within_partition",
+      "pass": true,
+      "detail": {
+        "recomputed": 1.0,
+        "reported": 1.0
+      }
+    },
+    {
+      "name": "comparison:test:cluster_balanced_mse:bootstrap_valid",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:point_delta",
+      "pass": true,
+      "detail": {
+        "recomputed": -0.027288932055146098,
+        "reported": -0.027288932055146098
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:ci95_low",
+      "pass": true,
+      "detail": {
+        "recomputed": -0.09052031538665149,
+        "reported": -0.09052031538665149
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:ci95_high",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.03262608168264779,
+        "reported": 0.03262608168264779
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:sign_pvalue",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.405,
+        "reported": 0.405
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:holm_pvalue_within_partition",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.405,
+        "reported": 0.405
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:spearman:bootstrap_valid",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:point_delta",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.09879506417228656,
+        "reported": 0.09879506417228656
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:ci95_low",
+      "pass": true,
+      "detail": {
+        "recomputed": -0.05097148051778395,
+        "reported": -0.05097148051778395
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:ci95_high",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.2520572152648539,
+        "reported": 0.2520572152648539
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:sign_pvalue",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.198,
+        "reported": 0.198
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:holm_pvalue_within_partition",
+      "pass": true,
+      "detail": {
+        "recomputed": 0.396,
+        "reported": 0.396
+      }
+    },
+    {
+      "name": "comparison:sequence_ood:cluster_balanced_mse:bootstrap_valid",
+      "pass": true,
+      "detail": 2000
+    },
+    {
+      "name": "diagnostic_decision",
+      "pass": true,
+      "detail": false
+    }
+  ],
+  "checks_passed": 84,
+  "checks_total": 84,
+  "failures": [],
+  "recomputed_comparisons": [
+    {
+      "partition": "test",
+      "metric": "spearman",
+      "point_delta": 0.013728806728667942,
+      "ci95_low": -0.08161752898076176,
+      "ci95_high": 0.1137888709025282,
+      "sign_pvalue": 0.838,
+      "bootstrap_valid": 2000,
+      "holm_pvalue_within_partition": 1.0
+    },
+    {
+      "partition": "test",
+      "metric": "cluster_balanced_mse",
+      "point_delta": 0.045706091729334375,
+      "ci95_low": -0.14284694720082164,
+      "ci95_high": 0.24043540294822363,
+      "sign_pvalue": 0.601,
+      "bootstrap_valid": 2000,
+      "holm_pvalue_within_partition": 1.0
+    },
+    {
+      "partition": "sequence_ood",
+      "metric": "spearman",
+      "point_delta": -0.027288932055146098,
+      "ci95_low": -0.09052031538665149,
+      "ci95_high": 0.03262608168264779,
+      "sign_pvalue": 0.405,
+      "bootstrap_valid": 2000,
+      "holm_pvalue_within_partition": 0.405
+    },
+    {
+      "partition": "sequence_ood",
+      "metric": "cluster_balanced_mse",
+      "point_delta": 0.09879506417228656,
+      "ci95_low": -0.05097148051778395,
+      "ci95_high": 0.2520572152648539,
+      "sign_pvalue": 0.198,
+      "bootstrap_valid": 2000,
+      "holm_pvalue_within_partition": 0.396
+    }
+  ],
+  "max_bootstrap_abs_delta": 9.974659986866641e-17,
+  "analysis_summary_sha256": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a",
+  "production_analysis_imported": false,
+  "model_training_rerun": false,
+  "original_gate_modified": false,
+  "expensive_generation_authorized": false,
+  "sota_claimed": false,
+  "fixed_protein_synonymous_mechanism_supported": false,
+  "elapsed_seconds": 4.306978225708008
+}
