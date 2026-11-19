@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd /home/codonflow-a8-rk
+PY=/root/miniconda3/envs/codonflow/bin/python
 export PYTHONPATH=/home/codonflow-a8-rk
 BASE=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020
 META="$BASE/metadata"
@@ -18,7 +19,7 @@ for path in "$SUMMARY" "$IND" "$FIN"; do
   fi
 done
 for ((i=0; i<5040; i++)); do
-  if [[ -f "$GATE" ]] && python3 - "$GATE" <<'PY'
+  if [[ -f "$GATE" ]] && "$PY" - "$GATE" <<'PY'
 import json, sys
 try:
     report = json.load(open(sys.argv[1]))
@@ -36,8 +37,8 @@ PY
   sleep 120
 done
 mkdir -p "$ART" "$AUD"
-python3 -m pytest -q scripts/tests/test_a8_rk02_mordstein_reference_recovery.py | tee "$ART/unit_tests.console.log"
-python3 scripts/a8_rk02_mordstein_reference_recovery.py \
+"$PY" -m pytest -q scripts/tests/test_a8_rk02_mordstein_reference_recovery.py | tee "$ART/unit_tests.console.log"
+"$PY" scripts/a8_rk02_mordstein_reference_recovery.py \
   --metadata "$META/PRJNA596086.read_run.tsv" \
   --raw-root "$BASE/raw" \
   --output "$ART" \
@@ -51,12 +52,12 @@ python3 scripts/a8_rk02_mordstein_reference_recovery.py \
   --audit-sample-per-run 200 \
   --audit-seed 20261119
 cp "$ART/summary.json" "$SUMMARY"
-python3 scripts/a8_rk02_verify_mordstein_recovery_v2.py \
+"$PY" scripts/a8_rk02_verify_mordstein_recovery_v2.py \
   --artifacts "$ART" --scope full --report "$IND"
-python3 scripts/a8_rk02_finalize_mordstein_recovery.py \
+"$PY" scripts/a8_rk02_finalize_mordstein_recovery.py \
   --artifacts "$ART" --independent "$IND" \
   --tests scripts/tests/test_a8_rk02_mordstein_reference_recovery.py --scope full --report "$FIN"
-python3 - "$SUMMARY" "$IND" "$FIN" <<'PY'
+"$PY" - "$SUMMARY" "$IND" "$FIN" <<'PY'
 import json, sys
 summary, independent, finalization = [json.load(open(path)) for path in sys.argv[1:]]
 assert summary["status"] == "PASS_PENDING_INDEPENDENT_VERIFICATION"
