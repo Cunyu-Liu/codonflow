@@ -56,9 +56,14 @@ $PY scripts/a8_rk03_mage_development_verify_paper.py \
   --independent "$A/mage_development_nested_cv_independent_v2.json" \
   --finalization "$A/mage_development_nested_cv_finalization_v2.json" \
   --output "$A/mage_development_nested_cv_paper_verification_v2.json"
+
+# 核验已写入的在线 PPT 证据（不修改在线稿）
+$PY scripts/a8_rk03_verify_mage_development_ppt.py
 ```
 
 预期验收为 12/12 unit tests、独立 96/96 PASS、finalization 30/30 PASS、论文 54/54 PASS；科学结果为 `DEV_NO_GO_TEST_UNTOUCHED`。大型 OOF/fold 文件由冻结协议写入 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/`：`development_oof_predictions.csv`（131 constructs × 3 seeds 的模型预测记录）和 `development_fold_assignments.csv`（393 行）。初次测试路径失败日志与最终日志均保留在 `audits/20261119/RK03/`，不得删除。
+
+MAGE 结果已写入在线主稿第 102 页（`pgj`，revision 64）。候选页写前 **52/52 PASS**，整稿写后 **79/79 PASS**；前 101 页语义 XML 完全不变，新页与候选语义一致。候选、响应、失败调用、整稿 XML 与回读证据位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_development_nested_cv_v1/`，小型核验报告位于 `audits/20261119/RK03/`。PPT 记录不是新科学实验，不改变 test untouched、RK-G1=false 或 non-submittable 状态。
 
 ## 目录
 

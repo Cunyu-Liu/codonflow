@@ -38,6 +38,7 @@
 - [x] CF-A8-RK05-ENSEMBLEDESIGN-PPT：既有在线主稿追加第 73 页 `pgO`、revision=35，记录固定源码、example/C01 EFE、bounded 参数、双 13/13 独立 PASS、11/11 finalization、v1 retained failure 和 EFE≠LinearDesign MFE。独立写后验证 **10/10 PASS**，前 72 页 slide ID 与语义 XML 全部不变。commit `9986974ac46cc65aaf0708e509e9ad5ff2cfb2af`。
 - [x] CF-A8-RK03-MAGE-DEVELOPMENT-NESTED-CV：固定 infA、rich medium、positions 10–71 的原 train+dev=131 constructs 完成 5-fold outer/4-fold inner nested CV，原 33 test constructs 在记录表、fold、特征、拟合、预测和指标中完全排除。full−intrinsic ΔRMSE=`+0.000094928`，95% CI=`[-0.001417567,0.001456402]`；full−local-MFE ΔRMSE=`−0.000155645`，95% CI=`[-0.000999395,0.000600285]`；四项 Holm p=1.0，两个敏感性 seeds 未满足方向一致性。最终 `DEV_NO_GO_TEST_UNTOUCHED`，独立 raw-source **96/96 PASS**、全部数值差 0，finalization **30/30 PASS**；v1 NO-GO 不改写，无 test/transport/RK-G1/生成器授权。A8 v26 新增 6.22，论文核验 **54/54 PASS**（候选事实 29/29），v25 可逐字恢复；生产协议与生产器 commit=`b6f9f09c9873cab7af4d8b321f2bd9a452fbb8d7`。
 - [ ] RK03-REMAINING：完成 UTR–CDS 映射/raw read 或 P-site 独立重比对可行性报告、VeloHARMO 其余物种真实可获得性追踪；不得把 processed-matrix QC 写成机制或模型闭环。
+- [x] CF-A8-RK03-MAGE-DEVELOPMENT-PPT：既有在线主稿追加第 **102 页 `pgj`（revision 64）**，以三 KPI、四行主对比、设计与独立复核侧栏记录 nested-development NO-GO、敏感性方向失败和 test/protein-OOD/普遍证伪边界。候选写前 **52/52 PASS**，整稿写后 **79/79 PASS**；前 101 页语义 XML 完全不变，新页与候选语义一致。`--index` 参数拒绝、标题/徽章 3 px 交叠 lint 和初版字段映射 78/79 均保留并修正；未绕过 lint。PPT 仅记录已核验结果，不产生 test/transport/RK-G1/生成器结论。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
 

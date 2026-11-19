@@ -1,0 +1,431 @@
+{
+  "schema": "a8-rk03-mage-development-ppt-verification-v1",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "presentation_revision_id": 64,
+  "slide_count": 102,
+  "new_slide_number": 102,
+  "new_slide_id": "pgj",
+  "previous_slide_count": 101,
+  "previous_last_slide_id": "pgI",
+  "first_101_pages_semantically_unchanged": true,
+  "candidate_online_semantic_equal_ignoring_ids": true,
+  "scientific_status": "DEV_NO_GO_TEST_UNTOUCHED",
+  "scientific_conclusion": "Nested development CV did not support a stable full-mechanism increment over intrinsic or local-MFE baselines. The original v1 NO-GO stands, the 33-construct test remains untouched, and no generator training is authorized.",
+  "test_n_untouched": 33,
+  "rk_g1_pass": false,
+  "generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
+  "source_sha256": {
+    "mage-v26-baseline.xml": "fd30f7e157fe9feed03182490f99ca8842c3b4e9f3e5c55bc11044d60b185208",
+    "mage-v26-precommit.xml": "fd30f7e157fe9feed03182490f99ca8842c3b4e9f3e5c55bc11044d60b185208",
+    "mage-v26-candidate.xml": "9531e20f1ad144e6ecd05c4e580fc0118ef488ed71b868e676120e1ee5c90299",
+    "mage-v26-add-response.json": "7cbe21a7c0a7b26bbb093f66e554f9a57ad3245cce2415b09991a93ae88df9ef",
+    "mage-v26-post.xml": "aefab6fc7d79b9313abf5779fbadec11d9be4aa8bcea58d5ee407b4ea24d2b87",
+    "mage-v26-post-response.json": "0b80ad6838707b6a28340f354a2affd4739eef4756aa62fc04c70c2e4342f273"
+  },
+  "checks": [
+    {
+      "name": "scientific_finalization_30_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_independent_96_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_54_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_candidate_facts_29_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_non_submittable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "development_no_go",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rk_g1_remains_open",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "generator_not_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "functional_untouched_not_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mechanism_test_33_untouched",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_preflight_52_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_preflight_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_101_revision_63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "precommit_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "precommit_byte_identical_to_baseline",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_response_page_and_revision",
+      "pass": true,
+      "detail": {
+        "revision_id": 64,
+        "slide_id": "pgj",
+        "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g"
+      }
+    },
+    {
+      "name": "post_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "post_slide_count_102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_102_pgJ",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "first_101_pages_semantically_unchanged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "ribomimo_page_101_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_online_semantic_equal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_has_no_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_new_page_has_server_id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_20_text_shapes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_table_6_by_5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_5_note_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_elements_inside_canvas",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "title_badge_overlap_fixed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_full_mechanism_rmse",
+      "pass": true,
+      "detail": 0.03422820302559988
+    },
+    {
+      "name": "online_full_mechanism_spearman",
+      "pass": true,
+      "detail": 0.6352981456298568
+    },
+    {
+      "name": "online_intrinsic_rmse",
+      "pass": true,
+      "detail": 0.03413327461240379
+    },
+    {
+      "name": "online_intrinsic_spearman",
+      "pass": true,
+      "detail": 0.6123990835404937
+    },
+    {
+      "name": "online_local_mfe_rmse",
+      "pass": true,
+      "detail": 0.03438384844227971
+    },
+    {
+      "name": "online_local_mfe_spearman",
+      "pass": true,
+      "detail": 0.6272655881774327
+    },
+    {
+      "name": "online_rcs_only_rmse",
+      "pass": true,
+      "detail": 0.034152773868486606
+    },
+    {
+      "name": "online_rcs_only_spearman",
+      "pass": true,
+      "detail": 0.6163526287671603
+    },
+    {
+      "name": "online_full_mechanism_minus_intrinsic_delta_spearman",
+      "pass": true,
+      "detail": 0.022899062089363098
+    },
+    {
+      "name": "online_full_mechanism_minus_intrinsic_delta_rmse",
+      "pass": true,
+      "detail": 9.492841319608952e-05
+    },
+    {
+      "name": "online_full_mechanism_minus_intrinsic_delta_spearman_ci95",
+      "pass": true,
+      "detail": "[−0.037906, +0.090116]"
+    },
+    {
+      "name": "online_full_mechanism_minus_intrinsic_delta_rmse_ci95",
+      "pass": true,
+      "detail": "[−0.001418, +0.001456]"
+    },
+    {
+      "name": "online_full_mechanism_minus_intrinsic_both_holm_one",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_full_mechanism_minus_local_mfe_delta_spearman",
+      "pass": true,
+      "detail": 0.008032557452424038
+    },
+    {
+      "name": "online_full_mechanism_minus_local_mfe_delta_rmse",
+      "pass": true,
+      "detail": -0.00015564541667982545
+    },
+    {
+      "name": "online_full_mechanism_minus_local_mfe_delta_spearman_ci95",
+      "pass": true,
+      "detail": "[−0.028647, +0.048858]"
+    },
+    {
+      "name": "online_full_mechanism_minus_local_mfe_delta_rmse_ci95",
+      "pass": true,
+      "detail": "[−0.000999, +0.000600]"
+    },
+    {
+      "name": "online_full_mechanism_minus_local_mfe_both_holm_one",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "required_text_title",
+      "pass": true,
+      "detail": "MAGE 同义机制增量：nested CV 仍未通过开发门禁"
+    },
+    {
+      "name": "required_text_verification_badge",
+      "pass": true,
+      "detail": "96/96 + 30/30 · VERIFIED"
+    },
+    {
+      "name": "required_text_development_design",
+      "pass": true,
+      "detail": "131 development = 98 train + 33 dev"
+    },
+    {
+      "name": "required_text_test_excluded",
+      "pass": true,
+      "detail": "33 test excluded"
+    },
+    {
+      "name": "required_text_nested_folds",
+      "pass": true,
+      "detail": "5-fold outer / 4-fold inner"
+    },
+    {
+      "name": "required_text_resamples",
+      "pass": true,
+      "detail": "20,000 bootstrap + 20,000 sign flips"
+    },
+    {
+      "name": "required_text_holm_scope",
+      "pass": true,
+      "detail": "Holm across 4"
+    },
+    {
+      "name": "required_text_frozen_decision",
+      "pass": true,
+      "detail": "NO-GO"
+    },
+    {
+      "name": "required_text_all_cis_cross_zero",
+      "pass": true,
+      "detail": "四个区间均跨零"
+    },
+    {
+      "name": "required_text_sensitivity_failed",
+      "pass": true,
+      "detail": "敏感性方向不一致"
+    },
+    {
+      "name": "required_text_intrinsic_rmse_worse",
+      "pass": true,
+      "detail": "intrinsic RMSE 反而更高"
+    },
+    {
+      "name": "required_text_development_only",
+      "pass": true,
+      "detail": "development-only"
+    },
+    {
+      "name": "required_text_test_untouched",
+      "pass": true,
+      "detail": "33 test untouched"
+    },
+    {
+      "name": "required_text_not_protein_ood",
+      "pass": true,
+      "detail": "非蛋白 OOD"
+    },
+    {
+      "name": "required_text_not_universal_structure_falsification",
+      "pass": true,
+      "detail": "非普遍结构证伪"
+    },
+    {
+      "name": "required_text_rcs_supervised",
+      "pass": true,
+      "detail": "RCS is supervised"
+    },
+    {
+      "name": "required_text_frozen_status",
+      "pass": true,
+      "detail": "DEV_NO_GO_TEST_UNTOUCHED"
+    },
+    {
+      "name": "required_text_independent_count",
+      "pass": true,
+      "detail": "independent 96/96"
+    },
+    {
+      "name": "required_text_finalization_count",
+      "pass": true,
+      "detail": "finalization 30/30"
+    },
+    {
+      "name": "required_text_paper_count",
+      "pass": true,
+      "detail": "paper 54/54"
+    },
+    {
+      "name": "required_text_paper_facts_count",
+      "pass": true,
+      "detail": "候选事实 29/29"
+    },
+    {
+      "name": "required_text_github_short",
+      "pass": true,
+      "detail": "85feef400ec1"
+    },
+    {
+      "name": "required_text_github_full",
+      "pass": true,
+      "detail": "85feef400ec1bd477c817416cfe5928108eef8da"
+    },
+    {
+      "name": "required_text_sensitivity_seed_120",
+      "pass": true,
+      "detail": "40261120"
+    },
+    {
+      "name": "required_text_sensitivity_seed_121",
+      "pass": true,
+      "detail": "40261121"
+    },
+    {
+      "name": "required_text_rcs_not_physical_truth",
+      "pass": true,
+      "detail": "不是无监督物理真值"
+    },
+    {
+      "name": "required_text_rk_g1_not_closed",
+      "pass": true,
+      "detail": "不关闭 RK-G1 或授权生成器训练"
+    },
+    {
+      "name": "no_old_fixed_gfp_text",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_old_ribomimo_text",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_test_predictions_or_metrics_claim",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "checks_passed": 79,
+  "checks_total": 79,
+  "status": "PASS"
+}

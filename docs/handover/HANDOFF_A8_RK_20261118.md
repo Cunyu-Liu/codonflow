@@ -527,3 +527,11 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - A8 在 v25 后以 append-only 方式新增 6.22 和证据锚点，A7 未改；v25 SHA256=`f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b`，v26 SHA256=`88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5`。论文独立核验 **54/54 PASS**，其中候选事实 **29/29 PASS**；v25 可由更新记录逐字恢复，快照保存在 `paper/snapshots/rk03_mage_development_nested_cv_v26/`。
 - 完整生产、独立复核、finalization 和论文核验命令见根目录 `README.md`；run 已登记 `experiments/REGISTRY.md`。初次 `FileNotFoundError` 工程失败与最终 12/12 测试日志均保留。
 - 本项没有读取或评价 33 个 mechanism-test constructs，没有 minimal-medium、rich-to-minimal 或 N-terminal transport，没有使用 RK04 的 19,072 个 functional-untouched MAGE assay rows。RK-G1=false，昂贵生成训练未授权；真实功能 OOD、主模型、完整 baseline、统一成本、生成器、SOTA、前瞻湿实验和可投稿论文仍未关闭。
+
+## 29. MAGE nested-development 在线 PPT 记录与写后验收
+
+- 写前实时基线为 **101 页、revision 63**，末页 RiboMIMO=`pgI`；再次 precommit 回读与基线 SHA256 完全一致。候选页复用第 100 页的学术 NO-GO 版式，以三张 KPI、四行 full-minus-reference 主对比表、设计/独立复核侧栏、结论和边界卡记录 MAGE v2；数值由 finalization/independent/paper JSON 程序化生成，不手写科学结果。
+- 候选最终 **52/52 PASS**，覆盖全部模型/对比值、四项 Holm、敏感性失败、33 test untouched、development-only、RCS supervised、非蛋白 OOD/非普遍结构证伪、论文和 GitHub 事实，以及画布和保守单行宽度。初次 `--index` 参数在发送前被本机 CLI 拒绝；第一次正式提交被服务端 lint 拦截，原因是标题框与右上角验证徽章存在 3 px 几何交叠。两次均未写入，原始错误保留；随后将标题下移到徽章下方并保持原底线，不使用 `--no-lint`。
+- 成功追加后在线主稿为 **102 页、revision 64**，新页为第 **102 页 `pgj`**。完整 XML 回读确认前 101 页在忽略元素 ID 后的语义 XML 全部不变，RiboMIMO 第 101 页保留；新页与候选在忽略元素 ID 后语义完全一致。新页含 20 个文本框、6×5 表格和 5 段备注，主数值、敏感性 seeds、RCS/test/protein-OOD/RK-G1/生成器边界均完整。
+- 独立写后核验 `audits/20261119/RK03/mage_development_nested_cv_ppt_verification.json` 为 **79/79 PASS**；候选核验为 **52/52 PASS**。核验器初版把 finalization 的英文 `conclusion` 误认为冻结状态字符串，得到 78/79；该报告保留在大型证据目录，修正为从 production `status` 读取 `DEV_NO_GO_TEST_UNTOUCHED` 后全部通过。科学报告和在线页面未因该工程映射修正而改变。
+- 候选、候选失败版本、写前/写后整稿 XML、add/readback 响应、CLI 错误、控制台日志和页面文本位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_development_nested_cv_v1/`。科学证据来源 commit=`85feef400ec1bd477c817416cfe5928108eef8da`；本次新增仅为 PPT 核验代码、报告和交接文档。PPT 记录不读取 33 个 test constructs，不产生 test/transport/functional-untouched 结果，不关闭 RK-G1，不授权生成器训练，也不使 manuscript 变为可提交。

@@ -1,0 +1,305 @@
+{
+  "schema": "a8-rk03-mage-development-ppt-candidate-preflight-v1",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline_revision_id": 63,
+  "baseline_slide_count": 101,
+  "candidate": "mage-v26-candidate.xml",
+  "candidate_sha256": "9531e20f1ad144e6ecd05c4e580fc0118ef488ed71b868e676120e1ee5c90299",
+  "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
+  "github_head": "85feef400ec1bd477c817416cfe5928108eef8da",
+  "scientific_status": "Nested development CV did not support a stable full-mechanism increment over intrinsic or local-MFE baselines. The original v1 NO-GO stands, the 33-construct test remains untouched, and no generator training is authorized.",
+  "test_n_untouched": 33,
+  "generator_training_authorized": false,
+  "rk_g1_closed": false,
+  "checks": [
+    {
+      "name": "finalization_30_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_96_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_54_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_candidate_facts_29_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_v26_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_remains_non_submittable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "github_head",
+      "pass": true,
+      "detail": "85feef400ec1bd477c817416cfe5928108eef8da"
+    },
+    {
+      "name": "baseline_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_revision_63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_slide_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_element_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real_namespace",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "layout_20_text_shapes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "title_badge_no_geometric_overlap",
+      "pass": true,
+      "detail": {
+        "title_y": "56",
+        "badge_bottom": 54.0
+      }
+    },
+    {
+      "name": "table_6_rows_5_columns",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "speaker_notes_5_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all_elements_inside_canvas",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "visible_or_note_full_mechanism_rmse",
+      "pass": true,
+      "detail": 0.03422820302559988
+    },
+    {
+      "name": "visible_or_note_full_mechanism_spearman",
+      "pass": true,
+      "detail": 0.6352981456298568
+    },
+    {
+      "name": "visible_or_note_intrinsic_rmse",
+      "pass": true,
+      "detail": 0.03413327461240379
+    },
+    {
+      "name": "visible_or_note_intrinsic_spearman",
+      "pass": true,
+      "detail": 0.6123990835404937
+    },
+    {
+      "name": "visible_or_note_local_mfe_rmse",
+      "pass": true,
+      "detail": 0.03438384844227971
+    },
+    {
+      "name": "visible_or_note_local_mfe_spearman",
+      "pass": true,
+      "detail": 0.6272655881774327
+    },
+    {
+      "name": "visible_or_note_rcs_only_rmse",
+      "pass": true,
+      "detail": 0.034152773868486606
+    },
+    {
+      "name": "visible_or_note_rcs_only_spearman",
+      "pass": true,
+      "detail": 0.6163526287671603
+    },
+    {
+      "name": "candidate_full_mechanism_minus_intrinsic_delta_spearman",
+      "pass": true,
+      "detail": 0.022899062089363098
+    },
+    {
+      "name": "candidate_full_mechanism_minus_intrinsic_delta_rmse",
+      "pass": true,
+      "detail": 9.492841319608952e-05
+    },
+    {
+      "name": "candidate_full_mechanism_minus_intrinsic_delta_spearman_ci95",
+      "pass": true,
+      "detail": [
+        -0.03790577728252063,
+        0.09011639336438297
+      ]
+    },
+    {
+      "name": "candidate_full_mechanism_minus_intrinsic_delta_rmse_ci95",
+      "pass": true,
+      "detail": [
+        -0.0014175669474227434,
+        0.0014564023955950885
+      ]
+    },
+    {
+      "name": "candidate_full_mechanism_minus_local_mfe_delta_spearman",
+      "pass": true,
+      "detail": 0.008032557452424038
+    },
+    {
+      "name": "candidate_full_mechanism_minus_local_mfe_delta_rmse",
+      "pass": true,
+      "detail": -0.00015564541667982545
+    },
+    {
+      "name": "candidate_full_mechanism_minus_local_mfe_delta_spearman_ci95",
+      "pass": true,
+      "detail": [
+        -0.028646738585894137,
+        0.0488584816334765
+      ]
+    },
+    {
+      "name": "candidate_full_mechanism_minus_local_mfe_delta_rmse_ci95",
+      "pass": true,
+      "detail": [
+        -0.00099939487224795,
+        0.0006002852277178957
+      ]
+    },
+    {
+      "name": "all_holm_one",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visible_holm_one",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visible_four_cis_cross_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visible_sensitivity_fail",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test_33_untouched_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "development_only_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "not_protein_ood_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_universal_structure_claim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_supervised_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_test_results",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_generator_authorization_claim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "frozen_status_in_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_and_final_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_and_facts_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "github_short_and_full_head",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_old_gfp_content",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_ribomimo_content",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "conservative_single_line_fit",
+      "pass": true,
+      "detail": {
+        "text": "96/96 + 30/30 · VERIFIED",
+        "estimated_width": 131.2,
+        "box_width": 152.0,
+        "ratio": 0.863
+      }
+    }
+  ],
+  "checks_passed": 52,
+  "checks_total": 52,
+  "status": "PASS",
+  "font_fit_worst": {
+    "text": "96/96 + 30/30 · VERIFIED",
+    "estimated_width": 131.2,
+    "box_width": 152.0,
+    "ratio": 0.863
+  }
+}
