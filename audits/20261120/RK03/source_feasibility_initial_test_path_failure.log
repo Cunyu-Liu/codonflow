@@ -1,0 +1,10 @@
+Initial remote test failure before production (2026-11-20 CST).
+The local suite passed 14/14; the first remote invocation used the test directory as the production-script directory and failed before any source retrieval.
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk03_source_feasibility.py", line 6, in <module>
+    m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+  File "<frozen importlib._bootstrap_external>", line 846, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 883, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1039, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/home/codonflow-a8-rk/scripts/tests/a8_rk03_source_feasibility.py'
+Resolution: locate the production script and frozen protocol relative to the repository layout; rerun both local and remote suites before production.

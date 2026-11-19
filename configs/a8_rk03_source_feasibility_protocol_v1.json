@@ -1,0 +1,55 @@
+{
+  "protocol_id": "a8_rk03_source_feasibility_v1_frozen_before_production",
+  "frozen_before_production": true,
+  "purpose": "Metadata-only feasibility audit for UTR-CDS/raw-read/P-site remapping and VeloHARMO five-organism source recovery; no model fitting and no large FASTQ download.",
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/source_feasibility_v1",
+  "audit_root": "/home/codonflow-a8-rk/audits/20261120/RK03",
+  "veloharmo": {
+    "repository": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/sources/VeloHARMO",
+    "pinned_commit": "c19676a3ce9da365c08f7d035a15696d784a1562",
+    "github_tree_url": "https://api.github.com/repos/CU-Boulder-ESIL/VeloHARMO/git/trees/main?recursive=1",
+    "article_url": "https://academic.oup.com/bib/article/27/5/bbag558/8885519",
+    "article_doi": "10.1093/bib/bbag558",
+    "live_publisher_and_github_fetch_optional": true,
+    "pinned_local_mirror_is_release_evidence": true,
+    "organisms": ["Escherichia coli", "Pseudomonas aeruginosa", "Drosophila melanogaster", "Saccharomyces cerevisiae", "Homo sapiens"],
+    "expected_released_harmonized_matrix_organisms": ["Ecoli"],
+    "expected_released_ga_checkpoint_organisms": ["Ecoli", "yeast"],
+    "references": [
+      {"organism": "Escherichia coli", "label": "Mohammad16", "doi": "10.1016/j.celrep.2015.12.073", "pmcid": "PMC4835026", "accession": "GSE72899"},
+      {"organism": "Pseudomonas aeruginosa", "label": "Grady17", "doi": "10.1186/s12864-017-3708-4", "pmcid": "PMC5410065", "accession": "PRJNA379630"},
+      {"organism": "Drosophila melanogaster", "label": "Pop14", "doi": "10.15252/msb.20145524", "pmcid": "PMC4300493", "accession": "GSE49197"},
+      {"organism": "Saccharomyces cerevisiae", "label": "Dunn13", "doi": "10.7554/eLife.01179", "pmcid": "PMC3840789", "accession": "GSE63789"},
+      {"organism": "Homo sapiens", "label": "Battle15", "doi": "10.1126/science.1260793", "pmcid": "PMC4507520", "accession": "GSE61742"}
+    ]
+  },
+  "ribomimo_geo_accessions": ["GSE72899", "GSE119104", "GSE53268"],
+  "additional_veloharmo_geo_accessions": ["GSE63789", "GSE49197", "GSE61742"],
+  "direct_bioproject_accessions": ["PRJNA379630"],
+  "geo_url_template": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={accession}&targ=all&form=text&view=full",
+  "pmc_url_template": "https://pmc.ncbi.nlm.nih.gov/articles/{pmcid}/",
+  "runinfo_url_template": "https://trace.ncbi.nlm.nih.gov/Traces/sra-db-be/runinfo?acc={accession}",
+  "network_policy": {
+    "timeout_seconds": 90,
+    "retries": 3,
+    "backoff_seconds": 2,
+    "user_agent": "CodonFlow-source-feasibility-audit/1.0",
+    "metadata_only": true,
+    "download_fastq": false,
+    "download_bam": false,
+    "download_large_supplement": false
+  },
+  "required_boundaries": {
+    "processed_matrix_is_not_raw_read_remapping": true,
+    "runinfo_is_not_downloaded_fastq": true,
+    "public_raw_source_is_not_released_harmonized_matrix": true,
+    "no_global_p_site_offset": true,
+    "utr_cds_mapping_completed": false,
+    "raw_read_remapping_completed": false,
+    "model_training_or_evaluation": false,
+    "rk_g1_closed": false,
+    "expensive_generator_training_authorized": false,
+    "manuscript_submittable": false
+  },
+  "expected_terminal_status": "SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED"
+}
