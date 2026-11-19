@@ -37,12 +37,16 @@ stage=actual_set_matrix
 write_status RUNNING
 PYTHONPATH=src $PY scripts/a8_rk12_score_actual_set_matrix.py \
   --protocol configs/a8_rk12_actual_set_matrix_protocol_v1.json \
+  --grid-protocol configs/a8_rk12_lineardesign_unique18_protocol_v1.json \
+  --grid-report "$GRID" \
   --output "$MATRIX" \
+  --audit "$AUDIT/actual_set_matrix_v1.json" \
   > "$AUDIT/actual_set_matrix_v1.console.log" 2>&1
 stage=matrix_independent
 write_status RUNNING
 PYTHONPATH=src $PY scripts/a8_rk12_verify_actual_set_matrix.py \
   --protocol configs/a8_rk12_actual_set_matrix_protocol_v1.json \
+  --grid-report "$GRID" \
   --matrix "$MATRIX" --output "$MATRIX_IND" \
   > "$AUDIT/actual_set_matrix_independent_v1.console.log" 2>&1
 stage=finalization
