@@ -1,0 +1,62 @@
+.......FF.                                                               [100%]
+=================================== FAILURES ===================================
+______________ test_08_true_energy_forward_endpoint_equals_target ______________
+
+    def test_08_true_energy_forward_endpoint_equals_target() -> None:
+        cfg = protocol()
+        features = independent.reference_features()
+        edges, reverse = independent.reference_geometry()
+        paths = independent.reference_paths(edges, reverse)
+        weights = np.asarray(cfg["features"]["target_weights"])
+        counts = np.bincount(paths["end"], minlength=3721)
+        raw = np.log(counts / counts.sum()) + 0.75 * (features @ weights)
+        target = raw - np.log(np.exp(raw).sum())
+        energy = features @ weights
+        logq = independent.log_softmax_rows(0.75 * (energy[edges] - energy[:, None]))
+        forward = logq[paths["start"], paths["a0"]] + logq[paths["mid"], paths["a1"]]
+        endpoint = np.bincount(paths["end"], weights=np.exp(forward), minlength=3721)
+>       assert np.max(np.abs(endpoint - np.exp(target))) <= 1e-12
+E       AssertionError: assert np.float64(0.00016661933348079486) <= 1e-12
+E        +  where np.float64(0.00016661933348079486) = <function max at 0x7f3f6e918bb0>(array([1.66619333e-04, 1.00827615e-04, 1.02458547e-04, ...,\n       4.54336355e-06, 1.08879953e-05, 1.44920380e-05], shape=(3721,)))
+E        +    where <function max at 0x7f3f6e918bb0> = np.max
+E        +    and   array([1.66619333e-04, 1.00827615e-04, 1.02458547e-04, ...,\n       4.54336355e-06, 1.08879953e-05, 1.44920380e-05], shape=(3721,)) = <ufunc 'absolute'>((array([8.64809211e-03, 5.28282590e-03, 5.36827800e-03, ...,\n       1.07243352e-04, 9.77993122e-05, 7.49415751e-05], shape=(3721,)) - array([8.81471144e-03, 5.38365351e-03, 5.47073655e-03, ...,\n       1.11786715e-04, 1.08687307e-04, 8.94336131e-05], shape=(3721,))))
+E        +      where <ufunc 'absolute'> = np.abs
+E        +      and   array([8.81471144e-03, 5.38365351e-03, 5.47073655e-03, ...,\n       1.11786715e-04, 1.08687307e-04, 8.94336131e-05], shape=(3721,)) = <ufunc 'exp'>(array([-4.7313332 , -5.22438804, -5.20834202, ..., -9.09891783,\n       -9.12703554, -9.32201396], shape=(3721,)))
+E        +        where <ufunc 'exp'> = np.exp
+
+scripts/tests/test_a8_rk10_exact_tb.py:112: AssertionError
+___________ test_09_analytic_backward_normalizes_for_every_endpoint ____________
+
+    def test_09_analytic_backward_normalizes_for_every_endpoint() -> None:
+        cfg = protocol()
+        features = independent.reference_features()
+        edges, reverse = independent.reference_geometry()
+        paths = independent.reference_paths(edges, reverse)
+        weights = np.asarray(cfg["features"]["target_weights"])
+        counts = np.bincount(paths["end"], minlength=3721)
+        raw = np.log(counts / counts.sum()) + 0.75 * (features @ weights)
+        target = raw - np.log(np.exp(raw).sum())
+        energy = features @ weights
+        logq = independent.log_softmax_rows(0.75 * (energy[edges] - energy[:, None]))
+        forward = logq[paths["start"], paths["a0"]] + logq[paths["mid"], paths["a1"]]
+        backward = forward - target[paths["end"]]
+        mass = np.bincount(paths["end"], weights=np.exp(backward), minlength=3721)
+>       assert np.max(np.abs(mass - 1)) <= 1e-12
+E       AssertionError: assert np.float64(0.33495341789078104) <= 1e-12
+E        +  where np.float64(0.33495341789078104) = <function max at 0x7f3f6e918bb0>(array([0.01890241, 0.01872847, 0.01872847, ..., 0.04064314, 0.10017725,\n       0.16204241], shape=(3721,)))
+E        +    where <function max at 0x7f3f6e918bb0> = np.max
+E        +    and   array([0.01890241, 0.01872847, 0.01872847, ..., 0.04064314, 0.10017725,\n       0.16204241], shape=(3721,)) = <ufunc 'absolute'>((array([0.98109759, 0.98127153, 0.98127153, ..., 0.95935686, 0.89982275,\n       0.83795759], shape=(3721,)) - 1))
+E        +      where <ufunc 'absolute'> = np.abs
+
+scripts/tests/test_a8_rk10_exact_tb.py:129: AssertionError
+=============================== warnings summary ===============================
+scripts/tests/test_a8_rk10_exact_tb.py::test_10_one_exact_cpu_optimization_step_is_finite_and_improves
+  /home/codonflow-a8-rk/scripts/tests/test_a8_rk10_exact_tb.py:154: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+  Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+    assert float(final) < float(initial)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED scripts/tests/test_a8_rk10_exact_tb.py::test_08_true_energy_forward_endpoint_equals_target
+FAILED scripts/tests/test_a8_rk10_exact_tb.py::test_09_analytic_backward_normalizes_for_every_endpoint
+2 failed, 8 passed, 1 warning in 19.34s

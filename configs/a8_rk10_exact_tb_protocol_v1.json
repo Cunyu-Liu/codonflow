@@ -1,0 +1,66 @@
+{
+  "schema_version": "a8-rk10-exact-trajectory-balance-protocol-v1",
+  "protocol_id": "a8_rk10_exact_tb_v1_frozen_before_optimization",
+  "scope": "small_state_exact_conditional_trajectory_balance_optimization_only",
+  "state_space": {
+    "sense_codons": 61,
+    "internal_positions": 2,
+    "terminal_stop_index": 63,
+    "states": 3721,
+    "start": [0, 0, 63],
+    "actions_per_state": 121,
+    "steps": 2,
+    "paths": 14641,
+    "legal_edits": "no-op or one internal sense-codon replacement; terminal stop is fixed"
+  },
+  "conditional_kernel": {
+    "base": "uniform over legal one-step destinations",
+    "energy_tilt": "exp(beta * (phi(y) - phi(x)))",
+    "beta": 0.75,
+    "phi": "linear in four frozen synthetic state features; no biological potency claim"
+  },
+  "features": {
+    "codon_order": "standard 61 sense codons in lexicographic DNA order",
+    "codon_scalar": "sin((index+1)*0.37) + 0.25*cos((index+1)*0.11)",
+    "columns": [
+      "mean_codon_scalar",
+      "absolute_codon_scalar_difference",
+      "gc_nucleotide_fraction",
+      "identical_internal_codon_indicator"
+    ],
+    "target_weights": [0.7, -0.25, 0.45, -0.15],
+    "initial_trainable_weights": [0.0, 0.0, 0.0, 0.0]
+  },
+  "target_endpoint": "exact two-step endpoint distribution induced by the frozen oracle weights under the same normalized legal conditional kernel; this preserves state-dependent per-step normalizers",
+  "backward": "time-specific reverse kernel: step 1 deterministically returns to the unique fixed start; step 2 has an independent trainable logit for every legal reversed edge and is normalized only over parents reachable from that fixed start in one legal step; all other parents are masked",
+  "optimization": {
+    "seed": 20261119,
+    "device": "cuda",
+    "dtype": "float64",
+    "optimizer": "Adam",
+    "learning_rate_initial": 0.05,
+    "learning_rate_final": 0.01,
+    "linear_lr_decay_steps": 4000,
+    "fixed_steps": 4000,
+    "history_every": 100,
+    "loss": "unweighted mean squared log trajectory-balance residual over all 14641 paths",
+    "model_selection": "none; final fixed-step checkpoint only"
+  },
+  "acceptance": {
+    "final_loss_max": 1e-10,
+    "max_abs_path_residual_max": 0.0001,
+    "max_abs_endpoint_reconstruction_error_max": 1e-6,
+    "max_abs_forward_target_error_max": 1e-6,
+    "forward_target_kl_max": 1e-8,
+    "backward_normalization_error_max": 1e-12,
+    "retrain_tensor_bitwise_equal": true
+  },
+  "boundaries": {
+    "biological_reward_measured": false,
+    "functional_or_generation_performance_evaluated": false,
+    "full_neural_model_trained": false,
+    "rk_g1_gate_modified": false,
+    "expensive_generation_authorized": false,
+    "sota_claimed": false
+  }
+}
