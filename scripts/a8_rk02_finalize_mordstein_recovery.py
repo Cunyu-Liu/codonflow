@@ -26,7 +26,8 @@ def main():
     args = parser.parse_args()
     summary = json.loads((args.artifacts / "summary.json").read_text())
     independent = json.loads(args.independent.read_text())
-    test = subprocess.run(["/root/miniconda3/envs/llr_env/bin/python", str(args.tests)], capture_output=True, text=True)
+    test_command = ["/root/miniconda3/envs/llr_env/bin/python", "-m", "pytest", "-q", str(args.tests)]
+    test = subprocess.run(test_command, capture_output=True, text=True)
     checks = []
     def check(name, condition, details=None):
         checks.append({"name": name, "status": "PASS" if condition else "FAIL", "details": details})
@@ -57,7 +58,7 @@ def main():
         "schema": "a8.rk02.mordstein_recovery_finalization.v1",
         "created_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "status": status, "scope": args.scope, "summary_sha256": sha256(args.artifacts / "summary.json"),
-        "independent_sha256": sha256(args.independent), "test_command": [str(args.tests)],
+        "independent_sha256": sha256(args.independent), "test_command": test_command,
         "test_returncode": test.returncode, "artifact_hashes": artifact_hashes,
         "checks": checks, "passed": sum(row["status"] == "PASS" for row in checks), "total": len(checks),
         "next_gate": "full eight-bin recovery and independent verification" if args.scope == "smoke" else "paper/PPT reporting after result review",

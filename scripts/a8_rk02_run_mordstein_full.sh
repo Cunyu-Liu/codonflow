@@ -24,7 +24,7 @@ try:
     report = json.load(open(sys.argv[1]))
 except Exception:
     raise SystemExit(1)
-raise SystemExit(0 if report.get("status") == "PASS" and report.get("passed") == 16 else 1)
+raise SystemExit(0 if report.get("status") == "PASS" and report.get("passed_files") == 16 else 1)
 PY
   then
     break
@@ -55,7 +55,7 @@ python3 scripts/a8_rk02_verify_mordstein_recovery_v2.py \
   --artifacts "$ART" --scope full --report "$IND"
 python3 scripts/a8_rk02_finalize_mordstein_recovery.py \
   --artifacts "$ART" --independent "$IND" \
-  --tests "$ART/unit_tests.console.log" --scope full --report "$FIN"
+  --tests scripts/tests/test_a8_rk02_mordstein_reference_recovery.py --scope full --report "$FIN"
 python3 - "$SUMMARY" "$IND" "$FIN" <<'PY'
 import json, sys
 summary, independent, finalization = [json.load(open(path)) for path in sys.argv[1:]]
