@@ -1,0 +1,10 @@
+{
+  "schema": "a8.rk02.mordstein_proxy_development_interface_failure.v1",
+  "status": "FAIL_BEFORE_SCIENTIFIC_PRODUCTION",
+  "stage": "pytest_collection",
+  "exit_code": 2,
+  "error": "FileNotFoundError: /home/codonflow-a8-rk/scripts/scripts/a8_rk02_mordstein_proxy_diagnostics.py",
+  "root_cause": "The test repository root used parents[1] from scripts/tests and therefore resolved to scripts instead of the repository root.",
+  "correction": "Use parents[2]; no protocol, data, statistical hypothesis, or production result was changed.",
+  "scientific_production_started": false
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "a8-rk02-mordstein-observed-end-proxy-protocol-v1",
+  "protocol_id": "a8_rk02_mordstein_observed_end_proxy_v1_frozen_before_association_analysis",
+  "created_before_production": true,
+  "scope": "Fixed-GFP HEK293 intronless Flow-seq observed 5-prime CDS 4-303 association diagnostic only",
+  "source_article": {
+    "title": "Codon Usage and Splicing Jointly Influence mRNA Localization",
+    "doi": "10.1016/j.cels.2020.03.001",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7181179/"
+  },
+  "prerequisites": {
+    "recovery_summary": "audits/20261118/RK02/mordstein_recovery_full_summary_v1.json",
+    "recovery_independent": "audits/20261118/RK02/mordstein_recovery_full_independent_v1.json",
+    "recovery_finalization": "audits/20261118/RK02/mordstein_recovery_full_finalization_v1.json",
+    "variant_counts": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/variant_counts.csv",
+    "references_r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/references_r1.fasta"
+  },
+  "analysis_population": {
+    "selection": "all rows in the finalized variant_counts table",
+    "expected_rows": 152,
+    "minimum_total_assigned_reads_per_variant": 1000,
+    "no_author_identity_mapping": true,
+    "no_complete_cds_imputation": true
+  },
+  "endpoint": {
+    "name": "flowseq_score_r1_only",
+    "formula": "sum_{i=1..8} i * counts_bin_i / sum_{i=1..8} counts_bin_i",
+    "interpretation": "R1-assigned HEK293 intronless Flow-seq weighted fluorescence-bin score, not a direct RFU or universal expression measurement"
+  },
+  "features": {
+    "gc3_observed_5prime": "GC fraction at observed codon third positions; sequence indices 2,5,...,299 because CDS 4 is codon-2 position 1",
+    "gc_observed_5prime": "(G+C)/300 over observed CDS 4-303",
+    "cpg_per_100nt_observed_5prime": "100 * CG dinucleotide count / 299 over observed CDS 4-303"
+  },
+  "statistics": {
+    "primary_features": ["gc3_observed_5prime", "gc_observed_5prime"],
+    "primary_metric": "Spearman rank correlation with Flow-seq score",
+    "secondary_metrics": ["Pearson correlation for primary features", "Spearman correlation for CpG density"],
+    "bootstrap_resamples": 20000,
+    "permutation_resamples": 20000,
+    "confidence_level": 0.95,
+    "bootstrap": "paired variant resampling with replacement; percentile interval",
+    "permutation_p": "two-sided absolute correlation; (1 + exceedances)/(B+1)",
+    "multiplicity": "Holm across exactly two primary Spearman hypotheses",
+    "seed": 20261119,
+    "seed_stride": 100000,
+    "primary_positive_gate": "Spearman 95% CI lower bound > 0 and Holm-adjusted permutation p < 0.05"
+  },
+  "output": {
+    "directory": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/proxy_diagnostics_v1",
+    "audit": "audits/20261118/RK02/mordstein_proxy_diagnostics_v1.json",
+    "independent": "audits/20261118/RK02/mordstein_proxy_diagnostics_independent_v1.json",
+    "finalization": "audits/20261118/RK02/mordstein_proxy_diagnostics_finalization_v1.json"
+  },
+  "boundaries": {
+    "association_only": true,
+    "protein_ood_evaluation": false,
+    "study_ood_evaluation": false,
+    "mechanism_model_comparison": false,
+    "simple_proxy_failure_test": false,
+    "complete_cds_analysis": false,
+    "author_identity_mapping": false,
+    "generator_training_authorized": false,
+    "sota_claim": false
+  }
+}

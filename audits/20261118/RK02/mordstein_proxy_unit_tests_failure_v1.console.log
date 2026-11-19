@@ -1,0 +1,19 @@
+...F..                                                                   [100%]
+=================================== FAILURES ===================================
+_______________ test_correlation_direction_and_ties_match_scipy ________________
+
+    def test_correlation_direction_and_ties_match_scipy():
+        x = np.asarray([1.0, 2.0, 2.0, 4.0, 5.0])
+        y = np.asarray([2.0, 3.0, 3.0, 7.0, 9.0])
+        assert production.correlation("spearman", x, y) == pytest.approx(1.0)
+>       assert production.correlation("pearson", x, -y) == pytest.approx(-1.0)
+E       assert -0.9931832879575959 == -1.0 ± 1.0e-06
+E         
+E         comparison failed
+E         Obtained: -0.9931832879575959
+E         Expected: -1.0 ± 1.0e-06
+
+scripts/tests/test_a8_rk02_mordstein_proxy.py:58: AssertionError
+=========================== short test summary info ============================
+FAILED scripts/tests/test_a8_rk02_mordstein_proxy.py::test_correlation_direction_and_ties_match_scipy
+1 failed, 5 passed in 1.09s
