@@ -1,0 +1,90 @@
+{
+  "artifact_hashes": {
+    "references_paired_ends.fasta": {
+      "matches_independent": true,
+      "sha256": "744fb749eb80f6e79dc6c1a9b26468d33c6d26a56ec541e6effd943a3c4e7c2c"
+    },
+    "references_r1.fasta": {
+      "matches_independent": true,
+      "sha256": "9d4bd9f817ed249dcd0e88adb5c24897d402ce6c993f1a022d60a624eef20dd3"
+    },
+    "summary.json": {
+      "matches_independent": true,
+      "sha256": "2c09d57fe75367a6828564fedd2dec1823c9efc74626e2483cb9b55f93ab290c"
+    },
+    "variant_counts.csv": {
+      "matches_independent": true,
+      "sha256": "aa4516881f5cf972f36b0347d309566b878477471683a65c0bf9fd0c446a17a8"
+    }
+  },
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_preserved",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "production_internal_checks",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_pass",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_all_checks",
+      "status": "PASS"
+    },
+    {
+      "details": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.002s\n\nOK",
+      "name": "unit_tests",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "scope_matches",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "no_complete_cds_claim",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_id_disclaimer",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "smoke_100k_pairs",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "artifact_hashes_match_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "input_hashes_match_independent",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T01:46:38.565444+00:00",
+  "independent_sha256": "e846a8d1a4aeb0e7f252adb4d3a2b28613c2a81abb02c9badac09a3258b7653c",
+  "next_gate": "full eight-bin recovery and independent verification",
+  "passed": 11,
+  "schema": "a8.rk02.mordstein_recovery_finalization.v1",
+  "scope": "smoke",
+  "status": "PASS",
+  "summary_sha256": "2c09d57fe75367a6828564fedd2dec1823c9efc74626e2483cb9b55f93ab290c",
+  "test_command": [
+    "/home/codonflow-a8-rk/scripts/tests/test_a8_rk02_mordstein_reference_recovery.py"
+  ],
+  "test_returncode": 0,
+  "total": 11
+}

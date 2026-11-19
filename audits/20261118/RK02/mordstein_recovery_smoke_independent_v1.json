@@ -1,0 +1,160 @@
+{
+  "artifacts": {
+    "references_paired_ends.fasta": {
+      "bytes": 90909,
+      "sha256": "744fb749eb80f6e79dc6c1a9b26468d33c6d26a56ec541e6effd943a3c4e7c2c"
+    },
+    "references_r1.fasta": {
+      "bytes": 39412,
+      "sha256": "9d4bd9f817ed249dcd0e88adb5c24897d402ce6c993f1a022d60a624eef20dd3"
+    },
+    "summary.json": {
+      "bytes": 3544,
+      "sha256": "2c09d57fe75367a6828564fedd2dec1823c9efc74626e2483cb9b55f93ab290c"
+    },
+    "variant_counts.csv": {
+      "bytes": 75094,
+      "sha256": "aa4516881f5cf972f36b0347d309566b878477471683a65c0bf9fd0c446a17a8"
+    }
+  },
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "smoke_scope_not_complete_library",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "central_gap_138",
+      "status": "PASS"
+    },
+    {
+      "details": 118,
+      "name": "row_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "mutual_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_ids_only",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "support_threshold",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "counts_sum_to_assigned_total",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "pair_purity_bounds",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_matches_table",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r2_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_gap_and_lengths",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r1_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r2_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "frozen_input_hashes",
+      "status": "PASS"
+    },
+    {
+      "details": 100000,
+      "name": "raw_read_pair_count",
+      "status": "PASS"
+    },
+    {
+      "details": 61523,
+      "name": "raw_r1_orf_count",
+      "status": "PASS"
+    },
+    {
+      "details": 26576,
+      "name": "raw_r2_orf_count",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r1_exact_seed_counts",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r2_exact_seed_counts",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T01:46:14.258285+00:00",
+  "input_hashes": [
+    {
+      "actual_sha256": "22a9718bc9e6eef4079235fa4a7d4a24f39b9ccb40ad3d4f64ca0165de51e385",
+      "expected_sha256": "22a9718bc9e6eef4079235fa4a7d4a24f39b9ccb40ad3d4f64ca0165de51e385",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "55d5124722cf14e1a1df091584f0c3c9c2cf80f8b8a9d5b3bcaf108f3b2f7c34",
+      "expected_sha256": "55d5124722cf14e1a1df091584f0c3c9c2cf80f8b8a9d5b3bcaf108f3b2f7c34",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/smoke_raw/SRR10714562/SRR10714562_2.fastq.gz"
+    }
+  ],
+  "linked_variants": 117,
+  "passed": 23,
+  "raw_pairs_recounted": 100000,
+  "schema": "a8.rk02.mordstein_recovery_independent.v1",
+  "scope": "single-bin smoke; not complete 217-library recovery",
+  "status": "PASS",
+  "total": 23,
+  "variants": 118
+}
