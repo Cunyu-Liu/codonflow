@@ -75,6 +75,7 @@
 - **输出**：序列—测量长表、协议表、下载失败清单、raw/clean SHA。
 - **验收**：样本数与论文对账；翻译、突变位置、重复、批次、单位、检出限和缺失原因明确；无法获得者保持 `unavailable`。
 - **禁止**：从摘要/图中猜数值；把不公开 Dasher 数据写成训练集。
+- **当前进展（2026-11-19，Mordstein 固定蛋白恢复门禁）**：Mordstein 正文将文库组成写为 22+137+58=217，STAR Methods 写为 138+59+22=219，和共同声明的 217 文库存在未解决的内部口径冲突；不得强行选定分解或把恢复表凑成 217 行，详见 `audits/20261118/RK02/mordstein_library_count_reconciliation_v1.json`。真实 reads 仅支持 CDS 4–303 与 442–720 的 observed ends，中央 138 nt/46 codons 仍无直接覆盖，不能声称完整 CDS 或作者 `GFP_###` 映射。新增独立 HEK293 下载验收器，以 16 个正式 FASTQ 的 ENA size+MD5 全通过为唯一恢复门禁并记录 SHA256；4/4 tests PASS，commit=`b7004f820feda67162a4826cc653cc48d73fb664`。完整下载、八 bin 恢复与 217 对账仍未完成，RK-02/RK-G0 不关闭。
 
 ### RK-03 下载并审计机制/自然数据
 

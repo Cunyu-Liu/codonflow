@@ -1,0 +1,61 @@
+{
+  "schema": "a8.rk02.mordstein_library_count_reconciliation.v1",
+  "audit_date": "2026-11-19",
+  "status": "REVIEW_REQUIRED_INTERNAL_PUBLICATION_COUNT_CONFLICT",
+  "article": {
+    "title": "Codon Usage and Splicing Jointly Influence mRNA Localization",
+    "pmc_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7181179/",
+    "doi": "10.1016/j.cels.2020.03.001",
+    "raw_sequencing_accession": "PRJNA596086"
+  },
+  "declared_library_size": 217,
+  "results_section": {
+    "components": {
+      "previously_studied_synthetic_variants": 22,
+      "variants_from_earlier_study": 137,
+      "additional_variants": 58
+    },
+    "arithmetic_total": 217,
+    "source_excerpt": "We assembled a pool of 217 synonymous variants of GFP that included the 22 variants studied above, 137 variants from our earlier study (Kudla et al., 2009) and 58 additional variants."
+  },
+  "star_methods_section": {
+    "components": {
+      "variants_from_earlier_study": 138,
+      "new_pcr_assembled_variants": 59,
+      "designed_in_silico_variants": 22
+    },
+    "arithmetic_total": 219,
+    "source_excerpt": "The library of 217 synonymous GFP variants used here consists of 138 variants from an earlier study (Kudla et al., 2009), 59 new variants assembled using the PCR-based method described in (Kudla et al., 2009), and 22 variants that were designed in silico and ordered as synthetic gene fragments (gBlocks) from Integrated DNA Technologies (IDT) (Mittal et al., 2018)."
+  },
+  "results_minus_methods_component_differences": {
+    "earlier_study": -1,
+    "additional_or_new": -1,
+    "designed_in_silico": 0,
+    "total": -2
+  },
+  "reconciliation": {
+    "resolved": false,
+    "rule": "Do not silently select either decomposition and do not force the reconstructed table to 217 rows.",
+    "possible_explanations_not_assumed": [
+      "typographical error",
+      "post-library QC exclusion",
+      "differences between constructed and quantified variants"
+    ],
+    "required_evidence_for_closure": "Author reference library with stable GFP identifiers or an independent per-variant mapping that explains every inclusion and exclusion."
+  },
+  "sequence_recovery_boundary": {
+    "r1_observed_cds_positions_1_based": "4-303",
+    "r2_observed_cds_positions_1_based_after_reverse_complement": "442-720",
+    "central_unobserved_nt": 138,
+    "central_unobserved_codons": 46,
+    "complete_cds_recovery_supported": false,
+    "author_gfp_identity_mapping_supported": false
+  },
+  "download_engineering_gate": {
+    "script": "/home/codonflow-a8-rk/scripts/a8_rk02_finalize_mordstein_downloads.py",
+    "tests": "4/4 PASS",
+    "code_commit": "b7004f820feda67162a4826cc653cc48d73fb664",
+    "acceptance_rule": "All 16 formal FASTQ files must freshly match ENA byte size and MD5; SHA256 is recorded before observed-end recovery.",
+    "complete_download_or_full_library_claimed_by_this_audit": false
+  }
+}
