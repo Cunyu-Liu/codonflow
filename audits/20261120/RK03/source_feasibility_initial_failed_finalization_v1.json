@@ -1,0 +1,205 @@
+{
+  "overall_pass": false,
+  "status": "FINALIZATION_FAILED",
+  "scientific_outcome": "UNRESOLVED",
+  "check_counts": {
+    "total": 46,
+    "passed": 45,
+    "failed": 1
+  },
+  "checks": [
+    {
+      "check": "production_pass",
+      "pass": true
+    },
+    {
+      "check": "independent_pass",
+      "pass": true
+    },
+    {
+      "check": "all_production_checks",
+      "pass": true
+    },
+    {
+      "check": "all_independent_checks",
+      "pass": true
+    },
+    {
+      "check": "numeric_recomputation_exact",
+      "pass": true
+    },
+    {
+      "check": "independent_offline",
+      "pass": true
+    },
+    {
+      "check": "independent_no_production_import",
+      "pass": true
+    },
+    {
+      "check": "terminal_status",
+      "pass": true
+    },
+    {
+      "check": "unit_tests_14_pass",
+      "pass": true
+    },
+    {
+      "check": "source_feasibility_initial_test_path_failure.log_retained",
+      "pass": true
+    },
+    {
+      "check": "source_feasibility_initial_missing_time_utility.console.log_retained",
+      "pass": true
+    },
+    {
+      "check": "source_feasibility_initial_wrong_repository_path.console.log_retained",
+      "pass": false
+    },
+    {
+      "check": "protocol_correction_record_retained",
+      "pass": true
+    },
+    {
+      "check": "initial_failed_mapping_preserved",
+      "pass": true
+    },
+    {
+      "check": "initial_failed_mapping_log_preserved",
+      "pass": true
+    },
+    {
+      "check": "second_failed_blob_count_preserved",
+      "pass": true
+    },
+    {
+      "check": "fourteen_tree_and_blob_records",
+      "pass": true
+    },
+    {
+      "check": "dunn_pop_mapping_corrected",
+      "pass": true
+    },
+    {
+      "check": "subtelny_bioproject_fallback",
+      "pass": true
+    },
+    {
+      "check": "five_veloharmo_organisms",
+      "pass": true
+    },
+    {
+      "check": "five_source_accessions_verified",
+      "pass": true
+    },
+    {
+      "check": "five_raw_sources_public",
+      "pass": true
+    },
+    {
+      "check": "only_ecoli_matrix_released",
+      "pass": true
+    },
+    {
+      "check": "four_harmonized_matrices_not_released",
+      "pass": true
+    },
+    {
+      "check": "ecoli_and_yeast_checkpoints_only",
+      "pass": true
+    },
+    {
+      "check": "two_ecoli_archives_only",
+      "pass": true
+    },
+    {
+      "check": "materialization_audit_hash",
+      "pass": true
+    },
+    {
+      "check": "source_tree_audit_hash",
+      "pass": true
+    },
+    {
+      "check": "pinned_commit",
+      "pass": true
+    },
+    {
+      "check": "three_ribomimo_raw_sources",
+      "pass": true
+    },
+    {
+      "check": "three_ribomimo_raw_public",
+      "pass": true
+    },
+    {
+      "check": "runinfo_not_fastq",
+      "pass": true
+    },
+    {
+      "check": "no_utr_cds_mapping",
+      "pass": true
+    },
+    {
+      "check": "no_raw_remapping",
+      "pass": true
+    },
+    {
+      "check": "reference_versions_required",
+      "pass": true
+    },
+    {
+      "check": "sample_site_calibration_required",
+      "pass": true
+    },
+    {
+      "check": "no_global_offset",
+      "pass": true
+    },
+    {
+      "check": "processed_matrix_not_raw_remap",
+      "pass": true
+    },
+    {
+      "check": "public_raw_not_harmonized_release",
+      "pass": true
+    },
+    {
+      "check": "no_model_training",
+      "pass": true
+    },
+    {
+      "check": "rk_g1_open",
+      "pass": true
+    },
+    {
+      "check": "generator_unauthorized",
+      "pass": true
+    },
+    {
+      "check": "manuscript_not_submittable",
+      "pass": true
+    },
+    {
+      "check": "publisher_access_recorded",
+      "pass": true
+    },
+    {
+      "check": "live_github_access_recorded",
+      "pass": true
+    },
+    {
+      "check": "optional_access_not_substituted_for_mirror",
+      "pass": true
+    }
+  ],
+  "bounded_source_feasibility_closed": false,
+  "utr_cds_mapping_completed": false,
+  "raw_read_or_p_site_remapping_completed": false,
+  "four_non_ecoli_harmonized_matrices_generated": false,
+  "full_natural_distribution_report_completed": false,
+  "rk_g1_closed": false,
+  "expensive_generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "conclusion": "The source-feasibility subtask is closed at metadata level: all five VeloHARMO source studies and three RiboMIMO studies have public run-level records, while only the E. coli harmonized matrix is present in the pinned repository. This does not complete UTR-CDS mapping, independent raw/P-site remapping, four-organism harmonization, a natural-distribution report, mechanism validation, model training, RK-G1, or a submittable manuscript."
+}
