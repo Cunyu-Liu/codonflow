@@ -1,0 +1,88 @@
+{
+  "attempt": "full-official-first-attempt-with-seven-runtime-compatibility-fixes",
+  "compatibility": {
+    "algorithm_changed": false,
+    "description": "Five NumPy ragged-array dtype replacements, one numeric-padding dtype replacement, and one pack_padded_sequence lengths.cpu() compatibility replacement required by modern PyTorch; a separate driver only fixes seeds/determinism and records the environment.",
+    "replacement_count": 7
+  },
+  "dataset": "Mohammad19-1",
+  "execution": {
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "device": "cuda:0",
+    "published_prediction_pickle_used": false,
+    "python": "/root/miniconda3/envs/llr_env/bin/python",
+    "selection_metric": "validation R2; test values follow the official best-validation checkpoint logic",
+    "timeout_seconds": null,
+    "torch_num_threads": 1
+  },
+  "loader_preflight": {
+    "observed_warnings": "NumPy mean-of-empty-slice and invalid-scalar-divide warnings occurred while the official loader computed means for raw records with no count >0.5; such records have zero coverage and do not enter the official >0.6 eligible set.",
+    "report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_loader_preflight_v1.json",
+    "sha256": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+    "status": "PASS"
+  },
+  "matrix": {
+    "official_loader_eligible_records": 1426,
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad19-1.txt",
+    "raw_records": 4147,
+    "sha256": "acc8c3adc9290611a6dc84049c10345428f752f0f62ed7069ed1ac3e9105f9a5"
+  },
+  "official_arguments": {
+    "RNN_depth": 2,
+    "RNN_hidden_dims": 256,
+    "RNN_model": "RiboMIMO",
+    "add_aa": true,
+    "add_nt": true,
+    "alpha": 3.0,
+    "batch_size": 16,
+    "early_stop": 5,
+    "gpu": "0",
+    "info": "train",
+    "learning_rate": 0.001,
+    "max_epoch": 100,
+    "num_fold": 10,
+    "num_repeat": 1,
+    "seed": 1234,
+    "sim": -1.0,
+    "threshold": "0,2",
+    "use_median": false,
+    "weight_decay": 1e-06
+  },
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad19_1_v1",
+  "previous_attempt": null,
+  "protocol_lineage": {
+    "four_matrix_preflight": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_loader_preflight_v1.json",
+    "four_matrix_preflight_sha256": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+    "mohammad16_v2_protocol": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_protocol_v2.json",
+    "mohammad16_v2_protocol_sha256": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7",
+    "reason": "Reuse the validated seven runtime-only replacements; do not repeat the known CUDA-length failure."
+  },
+  "schema_version": "a8-rk05-ribomimo-full-official-protocol-v2",
+  "scope": {
+    "all_four_datasets_reproduced_by_this_protocol": false,
+    "complete_official_random_gene_cv": true,
+    "functional_ood": false,
+    "homology_aware_split": false,
+    "protein_ood": false,
+    "publication_metrics_reproduced": false,
+    "sota_claim": false,
+    "study_ood": false
+  },
+  "source": {
+    "archive_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip",
+    "archive_sha256": "0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162",
+    "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "file_sha256": {
+      "getSaliency.py": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8",
+      "model.py": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7",
+      "runRiboMIMO.py": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490",
+      "utils.py": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    "path": "/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "repository": "https://github.com/tiantz17/RiboMIMO"
+  },
+  "status": "FROZEN_BEFORE_TRAINING",
+  "task": "RK-05"
+}
