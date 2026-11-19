@@ -1,0 +1,91 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style><fill><fillColor color="rgb(248,250,252)"/></fill></style>
+  <data>
+    <shape type="text" topLeftX="56" topLeftY="25" width="640" height="20">
+      <content textType="caption" fontSize="10" color="rgba(37,99,235,1)" bold="true" letterSpacing="1.1" wrap="false"><p>RK05 · RIBOMIMO FULL OFFICIAL REPRODUCTION</p></content>
+    </shape>
+    <shape type="round-rect" topLeftX="736" topLeftY="24" width="168" height="30" presetHandlers="15">
+      <fill><fillColor color="rgba(220,252,231,1)"/></fill>
+    </shape>
+    <shape type="text" topLeftX="744" topLeftY="29" width="152" height="20">
+      <content textType="caption" fontSize="10" color="rgba(21,128,61,1)" bold="true" textAlign="center" wrap="false"><p>FULL CV · VERIFIED</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="51" width="848" height="39">
+      <content textType="headline" fontSize="25" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>Mohammad16：完整 1×10-fold 复现通过独立核验</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="94" width="848" height="40">
+      <content textType="body" fontSize="11" color="rgba(71,85,105,1)" lineSpacing="multiple:1.25">
+        <p>Official 094c693 · raw 1,761 / eligible 1,179 · max 100 epochs · early stop 5 · batch 16 · RTX 5090</p>
+        <p>QC 口径：四矩阵 eligible 8,124；RK03 clean 8,109，未混用</p>
+      </content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="142" width="272" height="100" presetHandlers="12">
+      <fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(191,219,254,1)" width="1"/>
+    </shape>
+    <shape type="text" topLeftX="72" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" color="rgba(71,85,105,1)" bold="true"><p>R-SQUARED</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="20" color="rgba(30,64,175,1)" bold="true" wrap="false"><p>0.472874 ± 0.015274</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" color="rgba(100,116,139,1)"><p>mean ± population SD · 10 folds</p></content></shape>
+
+    <shape type="round-rect" topLeftX="344" topLeftY="142" width="272" height="100" presetHandlers="12">
+      <fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(191,219,254,1)" width="1"/>
+    </shape>
+    <shape type="text" topLeftX="360" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" color="rgba(71,85,105,1)" bold="true"><p>MEAN SQUARED ERROR</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="20" color="rgba(30,64,175,1)" bold="true" wrap="false"><p>1.591470 ± 0.100361</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" color="rgba(100,116,139,1)"><p>best-validation checkpoint test folds</p></content></shape>
+
+    <shape type="round-rect" topLeftX="632" topLeftY="142" width="272" height="100" presetHandlers="12">
+      <fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(191,219,254,1)" width="1"/>
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="153" width="240" height="18"><content textType="caption" fontSize="10" color="rgba(71,85,105,1)" bold="true"><p>PEARSON CORRELATION</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="177" width="240" height="31"><content textType="headline" fontSize="20" color="rgba(30,64,175,1)" bold="true" wrap="false"><p>0.690680 ± 0.008882</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="216" width="240" height="15"><content textType="caption" fontSize="9" color="rgba(100,116,139,1)"><p>official aggregate · independently recalculated</p></content></shape>
+
+    <table topLeftX="56" topLeftY="264" width="572" height="188">
+      <colgroup><col width="148"/><col width="310"/><col width="114"/></colgroup>
+      <tr height="30">
+        <td><fill><fillColor color="rgba(30,64,175,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="left"><p>核验项</p></content></td>
+        <td><fill><fillColor color="rgba(30,64,175,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="left"><p>结果</p></content></td>
+        <td><fill><fillColor color="rgba(30,64,175,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>判定</p></content></td>
+      </tr>
+      <tr height="38">
+        <td><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>第二次完整训练</p></content></td>
+        <td><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>10/10 checkpoint tensors bitwise equal</p></content></td>
+        <td><content textType="body" fontSize="10" bold="true" color="rgba(21,128,61,1)" textAlign="center"><p>PASS</p></content></td>
+      </tr>
+      <tr height="38">
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>独立 checkpoint 前向</p></content></td>
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>2 passes × 10 folds；94/94 checks</p></content></td>
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(21,128,61,1)" textAlign="center"><p>PASS</p></content></td>
+      </tr>
+      <tr height="38">
+        <td><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>最终交叉核验</p></content></td>
+        <td><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>425/425 checks；unit tests 10/10</p></content></td>
+        <td><content textType="body" fontSize="10" bold="true" color="rgba(21,128,61,1)" textAlign="center"><p>PASS</p></content></td>
+      </tr>
+      <tr height="44">
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,23,42,1)" textAlign="left"><p>训练折常数参考</p></content></td>
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="9" color="rgba(15,23,42,1)" textAlign="left" lineSpacing="multiple:1.1"><p>MSE 3.021991 ± 0.213861</p><p>R-squared -0.000001 ± 0.000002</p></content></td>
+        <td><fill><fillColor color="rgba(239,246,255,1)"/></fill><content textType="body" fontSize="9" color="rgba(71,85,105,1)" textAlign="center"><p>非官方基线</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="652" topLeftY="264" width="252" height="188" presetHandlers="12">
+      <fill><fillColor color="rgba(255,247,237,1)"/></fill><border color="rgba(253,186,116,1)" width="1"/>
+    </shape>
+    <shape type="text" topLeftX="670" topLeftY="278" width="216" height="24"><content textType="sub-headline" fontSize="14" color="rgba(154,52,18,1)" bold="true"><p>结论边界</p></content></shape>
+    <shape type="text" topLeftX="670" topLeftY="310" width="216" height="126">
+      <content textType="body" fontSize="11" color="rgba(124,45,18,1)" lineSpacing="multiple:1.3">
+        <p>• 仅关闭 Mohammad16 官方随机基因 CV</p>
+        <p>• 其余三矩阵另行验收，本页不作结论</p>
+        <p>• OOD、统一成本主矩阵与 SOTA 未关闭</p>
+        <p>• A8 仍为 non-submittable manuscript</p>
+      </content>
+    </shape>
+
+    <line startX="56" startY="476" endX="904" endY="476"><border color="rgba(203,213,225,1)" width="1"/></line>
+    <shape type="text" topLeftX="56" topLeftY="486" width="700" height="18"><content textType="caption" fontSize="9" color="rgba(100,116,139,1)" wrap="false"><p>Evidence: production + retrain + independent + finalization · A8 v11 · GitHub a3122b80</p></content></shape>
+    <shape type="text" topLeftX="776" topLeftY="486" width="128" height="18"><content textType="caption" fontSize="9" color="rgba(100,116,139,1)" textAlign="right" wrap="false"><p>RK05 · 2026-11-19</p></content></shape>
+  </data>
+  <note><content textType="body" fontSize="12"><p>本页只报告 Mohammad16 官方完整随机基因交叉验证。两次完整训练得到完全一致的 checkpoint 张量，独立前向与最终核验均通过。常数均值仅是训练折内参考，不是官方输出或统一强 baseline。其余矩阵、OOD、统一成本比较和 SOTA 仍需单独验收。</p></content></note>
+</slide>
