@@ -1,0 +1,482 @@
+{
+  "schema": "a8.rk05.cagfn_paper_verification.v1",
+  "status": "PASS",
+  "checks_passed": 91,
+  "checks_total": 91,
+  "checks": [
+    {
+      "name": "parent_v22_hash",
+      "pass": true,
+      "detail": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419"
+    },
+    {
+      "name": "parent_audit_hash",
+      "pass": true,
+      "detail": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92"
+    },
+    {
+      "name": "a7_unchanged",
+      "pass": true,
+      "detail": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+    },
+    {
+      "name": "independent_33_pass",
+      "pass": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "finalization_22_pass",
+      "pass": true,
+      "detail": "22/22"
+    },
+    {
+      "name": "single_619_section",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "seven_evidence_anchors",
+      "pass": true,
+      "detail": [
+        "| RK05 CAGFN v4 frozen protocol | `8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa` |",
+        "| RK05 CAGFN retained v1 failure | `4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3` |",
+        "| RK05 CAGFN retained v2 failure | `7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4` |",
+        "| RK05 CAGFN retained v3 failure | `f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a` |",
+        "| RK05 CAGFN official bounded production | `c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d` |",
+        "| RK05 CAGFN independent raw-output verification | `d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab` |",
+        "| RK05 CAGFN finalization | `1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb` |"
+      ]
+    },
+    {
+      "name": "all_prior_manuscript_text_exact",
+      "pass": true,
+      "detail": {
+        "current_sha": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
+        "parent_sha": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419"
+      }
+    },
+    {
+      "name": "section_phrase_952ccf9682988ef88cf1251877e918b85fbee9e9",
+      "pass": true,
+      "detail": "952ccf9682988ef88cf1251877e918b85fbee9e9"
+    },
+    {
+      "name": "section_phrase_1fab00a1f388aba902b5c9c1b778f4d0ae6e18a0",
+      "pass": true,
+      "detail": "1fab00a1f388aba902b5c9c1b778f4d0ae6e18a0"
+    },
+    {
+      "name": "section_phrase_TorchGFN 2.1.0",
+      "pass": true,
+      "detail": "TorchGFN 2.1.0"
+    },
+    {
+      "name": "section_phrase_two iterations",
+      "pass": true,
+      "detail": "two iterations"
+    },
+    {
+      "name": "section_phrase_20 samples",
+      "pass": true,
+      "detail": "20 samples"
+    },
+    {
+      "name": "section_phrase_33-codon",
+      "pass": true,
+      "detail": "33-codon"
+    },
+    {
+      "name": "section_phrase_MLP override",
+      "pass": true,
+      "detail": "MLP override"
+    },
+    {
+      "name": "section_phrase_20 / 20",
+      "pass": true,
+      "detail": "20 / 20"
+    },
+    {
+      "name": "section_phrase_99 nt",
+      "pass": true,
+      "detail": "99 nt"
+    },
+    {
+      "name": "section_phrase_33/33",
+      "pass": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "section_phrase_22/22",
+      "pass": true,
+      "detail": "22/22"
+    },
+    {
+      "name": "section_phrase_bounded dependency-recovery smoke",
+      "pass": true,
+      "detail": "bounded dependency-recovery smoke"
+    },
+    {
+      "name": "section_phrase_not a converged model",
+      "pass": true,
+      "detail": "not a converged model"
+    },
+    {
+      "name": "section_phrase_not time-matched costs",
+      "pass": true,
+      "detail": "not time-matched costs"
+    },
+    {
+      "name": "section_phrase_no functional, OOD, wet-lab or SOTA claim",
+      "pass": true,
+      "detail": "no functional, OOD, wet-lab or SOTA claim"
+    },
+    {
+      "name": "numeric_wall",
+      "pass": true,
+      "detail": "47.556746 s"
+    },
+    {
+      "name": "numeric_training",
+      "pass": true,
+      "detail": "11.01 s"
+    },
+    {
+      "name": "numeric_inference",
+      "pass": true,
+      "detail": "6.68 s"
+    },
+    {
+      "name": "numeric_gc",
+      "pass": true,
+      "detail": "47.575758"
+    },
+    {
+      "name": "numeric_mfe",
+      "pass": true,
+      "detail": "-26.760000"
+    },
+    {
+      "name": "numeric_cai",
+      "pass": true,
+      "detail": "0.456632"
+    },
+    {
+      "name": "numeric_ned",
+      "pass": true,
+      "detail": "0.252632"
+    },
+    {
+      "name": "source_status_rejected",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "mfe_not_vienna",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "cai_reference_boundary",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "not_in_seven_method_matrix",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "no_pretrained_weights",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "three_failures_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "non_submittable_retained",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "laajil_reference_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "anchor_hash_a8_rk05_cagfn_official_smoke_protocol_v4.json",
+      "pass": true,
+      "detail": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_v1.json",
+      "pass": true,
+      "detail": "4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_v2.json",
+      "pass": true,
+      "detail": "7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_v3.json",
+      "pass": true,
+      "detail": "f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_v4.json",
+      "pass": true,
+      "detail": "c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_independent_v4.json",
+      "pass": true,
+      "detail": "d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab"
+    },
+    {
+      "name": "anchor_hash_cagfn_official_smoke_finalization_v1.json",
+      "pass": true,
+      "detail": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb"
+    },
+    {
+      "name": "audit_preserved_base_pre_velocity_paper_sha256",
+      "pass": true,
+      "detail": "base_pre_velocity_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v10_audit_sha256",
+      "pass": true,
+      "detail": "base_v10_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v11_audit_sha256",
+      "pass": true,
+      "detail": "base_v11_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v11_declared_output_sha256",
+      "pass": true,
+      "detail": "base_v11_declared_output_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v12_audit_sha256",
+      "pass": true,
+      "detail": "base_v12_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v12_paper_sha256",
+      "pass": true,
+      "detail": "base_v12_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v13_audit_sha256",
+      "pass": true,
+      "detail": "base_v13_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v13_paper_sha256",
+      "pass": true,
+      "detail": "base_v13_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v14_audit_sha256",
+      "pass": true,
+      "detail": "base_v14_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v15_audit_sha256",
+      "pass": true,
+      "detail": "base_v15_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v15_paper_sha256",
+      "pass": true,
+      "detail": "base_v15_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v16_audit_sha256",
+      "pass": true,
+      "detail": "base_v16_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v16_paper_sha256",
+      "pass": true,
+      "detail": "base_v16_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_output",
+      "pass": true,
+      "detail": "output"
+    },
+    {
+      "name": "audit_preserved_pending_preserved",
+      "pass": true,
+      "detail": "pending_preserved"
+    },
+    {
+      "name": "audit_preserved_pre_histgb_snapshot",
+      "pass": true,
+      "detail": "pre_histgb_snapshot"
+    },
+    {
+      "name": "audit_preserved_pre_rk09_snapshot",
+      "pass": true,
+      "detail": "pre_rk09_snapshot"
+    },
+    {
+      "name": "audit_preserved_pre_rk10_snapshot",
+      "pass": true,
+      "detail": "pre_rk10_snapshot"
+    },
+    {
+      "name": "audit_preserved_pre_rk11_snapshot",
+      "pass": true,
+      "detail": "pre_rk11_snapshot"
+    },
+    {
+      "name": "audit_preserved_pre_velocity_snapshot",
+      "pass": true,
+      "detail": "pre_velocity_snapshot"
+    },
+    {
+      "name": "audit_preserved_source_sha256",
+      "pass": true,
+      "detail": "source_sha256"
+    },
+    {
+      "name": "audit_preserved_status",
+      "pass": true,
+      "detail": "status"
+    },
+    {
+      "name": "audit_preserved_template",
+      "pass": true,
+      "detail": "template"
+    },
+    {
+      "name": "audit_preserved_template_sha256",
+      "pass": true,
+      "detail": "template_sha256"
+    },
+    {
+      "name": "audit_preserved_v14_snapshot",
+      "pass": true,
+      "detail": "v14_snapshot"
+    },
+    {
+      "name": "audit_preserved_base_v17_audit_sha256",
+      "pass": true,
+      "detail": "base_v17_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v17_paper_sha256",
+      "pass": true,
+      "detail": "base_v17_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_pre_rk12_snapshot",
+      "pass": true,
+      "detail": "pre_rk12_snapshot"
+    },
+    {
+      "name": "audit_preserved_rk12",
+      "pass": true,
+      "detail": "rk12"
+    },
+    {
+      "name": "audit_preserved_pre_rk02_full_snapshot",
+      "pass": true,
+      "detail": "pre_rk02_full_snapshot"
+    },
+    {
+      "name": "audit_preserved_rk02_mordstein_full",
+      "pass": true,
+      "detail": "rk02_mordstein_full"
+    },
+    {
+      "name": "audit_preserved_last_increment",
+      "pass": true,
+      "detail": "last_increment"
+    },
+    {
+      "name": "audit_preserved_base_v21_audit_sha256",
+      "pass": true,
+      "detail": "base_v21_audit_sha256"
+    },
+    {
+      "name": "audit_preserved_base_v21_paper_sha256",
+      "pass": true,
+      "detail": "base_v21_paper_sha256"
+    },
+    {
+      "name": "audit_preserved_pre_rk13_snapshot",
+      "pass": true,
+      "detail": "pre_rk13_snapshot"
+    },
+    {
+      "name": "audit_preserved_rk13",
+      "pass": true,
+      "detail": "rk13"
+    },
+    {
+      "name": "audit_old_sections_prefix",
+      "pass": true,
+      "detail": 25
+    },
+    {
+      "name": "audit_two_new_sections",
+      "pass": true,
+      "detail": [
+        "6.19 CAGFN official-source bounded train-generate-audit chain",
+        "8.1 RK05 CAGFN evidence anchors"
+      ]
+    },
+    {
+      "name": "audit_schema_v18",
+      "pass": true,
+      "detail": "a8-rk-paper-sync-v18"
+    },
+    {
+      "name": "audit_parent_hashes",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "audit_output_hash",
+      "pass": true,
+      "detail": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2"
+    },
+    {
+      "name": "audit_source_paths_old_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "audit_scope_old_preserved",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "audit_no_sota_submission",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "audit_snapshot_hashes",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "update_report_hashes",
+      "pass": true,
+      "detail": true
+    }
+  ],
+  "paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
+  "audit_sha256": "5f546a314961b87470cb81ae073eec45023d28542741a04be87b91ff271bb143",
+  "parent_paper_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
+  "parent_audit_sha256": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92",
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+}

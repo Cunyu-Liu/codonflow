@@ -433,6 +433,25 @@ The seven-method matrix preserves all six RK-12 method fields exactly, binds the
 
 For the direct EnsembleDesign comparison, LinearDesign-minus-EnsembleDesign normalized HV was 13.278905 (95% CI [6.905804, 20.778993], Holm p=0.00119994). The descriptive highest mean-HV method was `lineardesign_lambda11`; this is not a SOTA designation. The independent matrix verifier passed 218/218 checks, recomputed all new raw objectives, HV, NED, Pareto counts and 12 paired intervals, and confirmed exact preservation of the six base-method fields. Measured generation time was 5459.872 s for the single-worker LinearDesign grid and 6001.057 s for EnsembleDesign with four internal threads; these costs are reported but are not unified or time-matched. Independent runs are not successive real-scorer budget checkpoints, so `dense_budget_step_auc_v2` remains null. This section contains no CodonFlow-RK main-generator result, functional OOD, wet-lab result or SOTA claim.
 
+### 6.19 CAGFN official-source bounded train-generate-audit chain
+
+I evaluated the public CAGFN source tree (Laajil et al., 2025) at commit `952ccf9682988ef88cf1251877e918b85fbee9e9`. The public tree contained no pretrained weights, so a real training run was required. The associated OpenReview page is marked rejected and is not treated as peer-reviewed acceptance. The published environment declared TorchGFN 1.1.1, but that version lacks the imported `MLP` class; versions 1.2 and 2.0.1 also failed the disclosed import or estimator checks. I therefore retained the unmodified CAGFN source and used TorchGFN 2.1.0 at commit `1fab00a1f388aba902b5c9c1b778f4d0ae6e18a0` as a dependency-compatibility recovery, not as the original author environment or an author-endorsed correction.
+
+The successful process executed the official unconditional `main.py` on the 33-codon small-protein configuration with an explicit MLP override, two iterations, 20 samples, batch size 16, seed 42 and one CPU thread. Three earlier bounded attempts were retained unchanged: a wrapper interpreter-path failure, an unconditional estimator assertion under TorchGFN 2.0.1, and a conditional-entry import failure under TorchGFN 2.0.1. The recovered process completed in 47.556746 s of total wall clock, including 11.01 s reported for training and 6.68 s for sampling, and saved a real checkpoint with two finite loss and reward entries.
+
+Independent raw-output verification passed 33/33 checks. All 20 sequences were unique, 99 nt long, protein-identical, AUG-initiated and free of internal stops. Direct CAI and bundled-RNAFolder recomputation, rather than the upstream exception-to-zero utilities, reproduced every printed value within two-decimal rounding error; no MFE or CAI value was zero. Finalization passed 22/22 checks.
+
+| Bounded CAGFN smoke quantity | Independently recomputed value |
+|---|---:|
+| Unique / total sequences | 20 / 20 |
+| Protein identity | 20 / 20 |
+| Mean GC (%) | 47.575758 |
+| Mean bundled-RNAFolder MFE (kcal/mol) | -26.760000 |
+| Mean CAI using the source's human reference set | 0.456632 |
+| Mean pairwise normalized edit distance | 0.252632 |
+
+This is a bounded dependency-recovery smoke, not a converged model, full CAGFN reproduction or comparative performance result. Its MFE uses CAGFN's bundled `RNAFolder`, not the ViennaRNA-based scorer used for LinearDesign and EnsembleDesign; its CAI uses the hard-coded human reference set, not each target's natural mRNA. The MLP override also differs from the architecture named in the small-protein YAML. Accordingly, these descriptive values are not entered into the seven-method matrix, and the measured times are not time-matched costs. This section contains no functional, OOD, wet-lab or SOTA claim.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -600,6 +619,14 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK-13 seven-method actual-set matrix | `29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877` |
 | RK-13 independent seven-method matrix verification | `e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b` |
 | RK-13 finalization | `cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b` |
+
+| RK05 CAGFN v4 frozen protocol | `8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa` |
+| RK05 CAGFN retained v1 failure | `4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3` |
+| RK05 CAGFN retained v2 failure | `7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4` |
+| RK05 CAGFN retained v3 failure | `f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a` |
+| RK05 CAGFN official bounded production | `c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d` |
+| RK05 CAGFN independent raw-output verification | `d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab` |
+| RK05 CAGFN finalization | `1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

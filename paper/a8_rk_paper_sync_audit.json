@@ -12,6 +12,12 @@
   "base_v15_paper_sha256": "e698949c6150c3144e326de137363aa36200be5875acacc484f7809a875bda2f",
   "base_v16_audit_sha256": "3d043632834108ceccb47ed3ab48fd928233beae18a55e49ca7c7988621d8569",
   "base_v16_paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625",
+  "base_v17_audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+  "base_v17_paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+  "base_v21_audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
+  "base_v21_paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+  "base_v22_audit_sha256": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92",
+  "base_v22_paper_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
   "generated_sections": [
     "3.1",
     "3.2 RK04 addition",
@@ -37,10 +43,22 @@
     "6.15 Mordstein full eight-bin observed-end recovery",
     "8.1 RK02 Mordstein observed-end evidence anchors",
     "6.18 RK-13 EnsembleDesign and seven-method actual-set comparison",
-    "8.1 RK-13 evidence anchors"
+    "8.1 RK-13 evidence anchors",
+    "6.19 CAGFN official-source bounded train-generate-audit chain",
+    "8.1 RK05 CAGFN evidence anchors"
   ],
+  "last_increment": {
+    "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
+    "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
+    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+    "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+    "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+    "scientific_scope": "frozen MAGE dev no-go only; test untouched; no universal mechanism/SOTA claim",
+    "section": "6.17 Frozen MAGE synonymous-mechanism development gate",
+    "submittable": false
+  },
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
+  "output_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -64,6 +82,22 @@
     "audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A8_pre_histgb.md",
     "paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e"
+  },
+  "pre_rk02_full_snapshot": {
+    "a7": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "paper/snapshots/mordstein_v19/a8_rk_paper_sync_audit_v18.json",
+    "audit_sha256": "20ed8999b327d538ed35582ad69084c979e3e9f92f2aa7d3be1f78145e2922d6",
+    "paper": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A8_v18.md",
+    "paper_sha256": "be95ddca3b08145b3f1adaea73a440d2fb25e2b653069527c6208e0d4c74e181"
+  },
+  "pre_rk05_cagfn_snapshot": {
+    "a7": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/a8_rk_paper_sync_audit_v22.json",
+    "audit_sha256": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92",
+    "paper": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/CodonFlow_preprint_A8_v22.md",
+    "paper_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419"
   },
   "pre_rk09_snapshot": {
     "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/CodonFlow_preprint_A7.md",
@@ -89,6 +123,22 @@
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk11/minimal_neural_contract_v1/paper_v17/v16_snapshot/CodonFlow_preprint_A8_v16.md",
     "paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625"
   },
+  "pre_rk12_snapshot": {
+    "a7": "paper/snapshots/rk12_v18/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "paper/snapshots/rk12_v18/a8_rk_paper_sync_audit_v17.json",
+    "audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+    "paper": "paper/snapshots/rk12_v18/CodonFlow_preprint_A8_v17.md",
+    "paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae"
+  },
+  "pre_rk13_snapshot": {
+    "a7": "paper/snapshots/rk13_v22/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "paper/snapshots/rk13_v22/a8_rk_paper_sync_audit_v21.json",
+    "audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
+    "paper": "paper/snapshots/rk13_v22/CodonFlow_preprint_A8_v21.md",
+    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e"
+  },
   "pre_velocity_snapshot": {
     "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/paper_v12/pre_velocity_snapshot/a8_rk_paper_sync_audit_pre_velocity_snapshot.json",
     "audit_sha256": "256b3981218c07c48cf0adf8243078c31fff5e6321ef2185d6887e1f3ab1b298",
@@ -97,8 +147,58 @@
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/paper_v12/pre_velocity_snapshot/CodonFlow_preprint_A8_pre_velocity.md",
     "paper_sha256": "36e59a069cf978d21c3231a34d26c729e6637f00c4a326cd5e3c79c0d369cac8"
   },
-  "schema_version": "a8-rk-paper-sync-v17",
+  "rk02_mordstein_full": {
+    "author_identity_recovered": false,
+    "central_unobserved_nt": 138,
+    "complete_cds_recovered": false,
+    "download_finalization_sha256": "c60a269c31ac49580dded3f98dc14bc1a22b95db3d0f146c20278597da2d62b7",
+    "finalization_sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+    "independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+    "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217",
+    "mutual_best_links": 17,
+    "raw_pairs": 14929515,
+    "sota_claim": false,
+    "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+    "variants_retained": 152
+  },
+  "rk05_cagfn_v23": {
+    "finalization_sha256": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
+    "independent_sha256": "d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab",
+    "paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
+    "production_sha256": "c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d",
+    "protocol_sha256": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa"
+  },
+  "rk12": {
+    "finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+    "generation_seconds": 5459.871640930884,
+    "grid_independent_sha256": "851c3134c13be682adf58b47c2350c92c11b51dcb47a9ecb9629656514daeded",
+    "grid_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
+    "matrix_independent_sha256": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+    "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+    "record_count": 18,
+    "run_count": 198,
+    "scope": "development actual-set external-method matrix only",
+    "sota_claim": false
+  },
+  "rk13": {
+    "ensemble_independent_sha256": "288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e",
+    "ensemble_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+    "failed_v1_report_sha256": "7414d314823568765bf3b48b936829e314eceebbba6683786339461a0334be96",
+    "finalization_sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+    "generation_seconds": 6001.057458210271,
+    "matrix_independent_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b",
+    "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+    "record_count": 18,
+    "recovery_protocol_sha256": "3e9a12347ceb9b498e5f099ca43c49ca9fdb47587d39590f7d539c9672465f52",
+    "run_count": 198,
+    "scope": "development seven-method actual-set matrix only",
+    "sota_claim": false,
+    "total_generator_runs_across_attempts": 209,
+    "total_official_processes_across_attempts": 25
+  },
+  "schema_version": "a8-rk-paper-sync-v18",
   "scientific_scope": {
+    "cagfn_official_smoke": "Official unmodified main.py bounded MLP smoke with TorchGFN 2.1.0 compatibility recovery; two iterations and 20 samples on one 33-codon protein; real checkpoint and 20 independently verified protein-identical unique sequences; no convergence, full reproduction, matched performance, OOD or SOTA claim.",
     "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
     "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
     "ensembledesign": "official README example and single-C01 bounded smoke only; EFE is not MFE; no matched comparison or ranking",
@@ -122,6 +222,10 @@
     "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open"
   },
   "source_paths": {
+    "cagfn_finalization_v1": "/home/codonflow-a8-rk/audits/20261118/RK05/cagfn_official_smoke_finalization_v1.json",
+    "cagfn_independent_v4": "/home/codonflow-a8-rk/audits/20261118/RK05/cagfn_official_smoke_independent_v4.json",
+    "cagfn_production_v4": "/home/codonflow-a8-rk/audits/20261118/RK05/cagfn_official_smoke_v4.json",
+    "cagfn_protocol_v4": "/home/codonflow-a8-rk/configs/a8_rk05_cagfn_official_smoke_protocol_v4.json",
     "cdgb_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_audit.json",
     "cdgb_final": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_finalization.json",
     "cdgb_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_independent_verification.json",
@@ -353,85 +457,5 @@
     "original_audit_sha256": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/paper_v15/v14_snapshot/CodonFlow_preprint_A8_v14.md",
     "paper_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23"
-  },
-  "base_v17_audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
-  "base_v17_paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
-  "pre_rk12_snapshot": {
-    "paper": "paper/snapshots/rk12_v18/CodonFlow_preprint_A8_v17.md",
-    "paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
-    "audit": "paper/snapshots/rk12_v18/a8_rk_paper_sync_audit_v17.json",
-    "audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
-    "a7": "paper/snapshots/rk12_v18/CodonFlow_preprint_A7.md",
-    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
-  },
-  "rk12": {
-    "grid_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
-    "grid_independent_sha256": "851c3134c13be682adf58b47c2350c92c11b51dcb47a9ecb9629656514daeded",
-    "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
-    "matrix_independent_sha256": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
-    "finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
-    "run_count": 198,
-    "record_count": 18,
-    "generation_seconds": 5459.871640930884,
-    "scope": "development actual-set external-method matrix only",
-    "sota_claim": false
-  },
-  "pre_rk02_full_snapshot": {
-    "paper": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A8_v18.md",
-    "paper_sha256": "be95ddca3b08145b3f1adaea73a440d2fb25e2b653069527c6208e0d4c74e181",
-    "audit": "paper/snapshots/mordstein_v19/a8_rk_paper_sync_audit_v18.json",
-    "audit_sha256": "20ed8999b327d538ed35582ad69084c979e3e9f92f2aa7d3be1f78145e2922d6",
-    "a7": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A7.md",
-    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
-  },
-  "rk02_mordstein_full": {
-    "download_finalization_sha256": "c60a269c31ac49580dded3f98dc14bc1a22b95db3d0f146c20278597da2d62b7",
-    "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
-    "independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
-    "finalization_sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
-    "raw_pairs": 14929515,
-    "variants_retained": 152,
-    "mutual_best_links": 17,
-    "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217",
-    "central_unobserved_nt": 138,
-    "author_identity_recovered": false,
-    "complete_cds_recovered": false,
-    "sota_claim": false
-  },
-  "last_increment": {
-    "section": "6.17 Frozen MAGE synonymous-mechanism development gate",
-    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
-    "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
-    "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
-    "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
-    "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
-    "scientific_scope": "frozen MAGE dev no-go only; test untouched; no universal mechanism/SOTA claim",
-    "submittable": false
-  },
-  "base_v21_audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
-  "base_v21_paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
-  "pre_rk13_snapshot": {
-    "paper": "paper/snapshots/rk13_v22/CodonFlow_preprint_A8_v21.md",
-    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
-    "audit": "paper/snapshots/rk13_v22/a8_rk_paper_sync_audit_v21.json",
-    "audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
-    "a7": "paper/snapshots/rk13_v22/CodonFlow_preprint_A7.md",
-    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
-  },
-  "rk13": {
-    "ensemble_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
-    "ensemble_independent_sha256": "288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e",
-    "recovery_protocol_sha256": "3e9a12347ceb9b498e5f099ca43c49ca9fdb47587d39590f7d539c9672465f52",
-    "failed_v1_report_sha256": "7414d314823568765bf3b48b936829e314eceebbba6683786339461a0334be96",
-    "total_official_processes_across_attempts": 25,
-    "total_generator_runs_across_attempts": 209,
-    "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
-    "matrix_independent_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b",
-    "finalization_sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
-    "run_count": 198,
-    "record_count": 18,
-    "generation_seconds": 6001.057458210271,
-    "scope": "development seven-method actual-set matrix only",
-    "sota_claim": false
   }
 }
