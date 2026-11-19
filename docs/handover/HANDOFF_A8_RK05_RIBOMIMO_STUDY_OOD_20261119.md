@@ -29,6 +29,7 @@ Primary TB-MSE delta (RiboMIMO-ridge)=1.179641679102, 95% CI=[1.162686548692, 1.
 - Finalization: 30/30 PASS (`ribomimo_study_ood_finalization_v1.json`).
 - Training record: `ribomimo_study_ood_training_record_v1.json` and `.md`; full per-epoch histories and official logs are retained.
 - Manuscript: A8 v25, still non-submittable; paper verification 44/44 PASS and candidate facts 20/20 PASS.
+- Online PPT: candidate facts 33/33 PASS; page 101 (`pgI`), revision 63; full readback 206/206 PASS with all 100 prior slides semantically unchanged. The six strict XML differences are only declared server defaults (five table-column `span=1` attributes and speaker-note body style removal).
 - Shared-GPU timings are observed wall times only, not unified single-worker/time-matched cost evidence.
 
 ## Reproduction
@@ -64,4 +65,4 @@ This result does not close RK-G0/G1/G2/G3/G4, functional untouched evaluation, h
 
 ## Resume pointer
 
-Use the frozen protocol and production/independent/finalization JSON reports listed above. The next scientific priority remains mechanism-supported real functional OOD, not further generator scaling. Online PPT page ID and revision are appended after the slide write/readback closes.
+Use the frozen protocol and production/independent/finalization JSON reports listed above. The next scientific priority remains mechanism-supported real functional OOD, not further generator scaling. Online PPT evidence is closed at page 101 (`pgI`), revision 63: candidate 33/33 PASS and online readback 206/206 PASS; all 100 prior slides are semantically unchanged.

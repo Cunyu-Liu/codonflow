@@ -1,0 +1,238 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-ppt-candidate-v1",
+  "status": "PASS_RK05_RIBOMIMO_STUDY_OOD_PPT_CANDIDATE",
+  "n_checks": 33,
+  "n_passed": 33,
+  "checks": [
+    {
+      "name": "finalization_30_of_30",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_203_of_203",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "paper_44_and_20",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "scientific_outcome",
+      "pass": true,
+      "evidence": "RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE"
+    },
+    {
+      "name": "primary_seed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "sensitivity_seeds",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "direction_and_sizes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "cds_disjoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "resampling_and_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_decision_badge",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_element_ids_in_candidate",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "native_table",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "candidate_geometry",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_tiny_visible_type",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_mse_effect",
+      "pass": true,
+      "evidence": {
+        "metric": "transcript_balanced_mse",
+        "direction": "negative_favors_ribomimo",
+        "n_pairs": 3921,
+        "point_delta_ribomimo_minus_ridge": 1.179641679101714,
+        "ci95_low": 1.1626865486921758,
+        "ci95_high": 1.1962882037490148,
+        "bootstrap_requested": 2000,
+        "bootstrap_valid": 2000,
+        "sign_flip_pvalue": 0.0004997501249375312,
+        "nonzero_pairs": 3921,
+        "mean_absolute_pair_difference": 1.1799290706417822,
+        "holm_pvalue": 0.0009995002498750624
+      }
+    },
+    {
+      "name": "primary_correlation_effect",
+      "pass": true,
+      "evidence": {
+        "metric": "mean_transcript_pearson",
+        "direction": "positive_favors_ribomimo",
+        "n_pairs": 3921,
+        "point_delta_ribomimo_minus_ridge": -0.03850771646224459,
+        "ci95_low": -0.04140616194511709,
+        "ci95_high": -0.03553605212612245,
+        "bootstrap_requested": 2000,
+        "bootstrap_valid": 2000,
+        "sign_flip_pvalue": 0.0004997501249375312,
+        "nonzero_pairs": 3921,
+        "mean_absolute_pair_difference": 0.07854430959382137,
+        "holm_pvalue": 0.0009995002498750624
+      }
+    },
+    {
+      "name": "direction_favors_ridge",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "notes_full_precision_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "notes_full_precision_correlation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "notes_holm_precision",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_row",
+      "pass": true,
+      "evidence": [
+        "Seed 1234",
+        "2.186608",
+        "1.006967",
+        "constant 0.966916",
+        "10/15"
+      ]
+    },
+    {
+      "name": "seed_2345_row",
+      "pass": true,
+      "evidence": [
+        "Seed 2345",
+        "2.074145",
+        "1.006788",
+        "constant 0.966910",
+        "10/15"
+      ]
+    },
+    {
+      "name": "seed_3456_row",
+      "pass": true,
+      "evidence": [
+        "Seed 3456",
+        "2.040441",
+        "1.005552",
+        "constant 0.966907",
+        "13/18"
+      ]
+    },
+    {
+      "name": "primary_kpis",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_correlation_ranges",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "constant_baseline_caution",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "official_and_training_boundary",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_retrain_badge",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "paper_badge",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "commit_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "bounded_claims",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "negative_result_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_empty_paragraphs",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "candidate_sha256": "aaa3fab4355bdaedea1bafae3e05aaa36117a6473cf497f85708c5a842236ffb",
+  "commit": "ee580a7f9bbc8104b37341b7749403338e9e6257",
+  "inputs": {
+    "production": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_production_v1.json",
+      "sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239"
+    },
+    "independent": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_independent_v1.json",
+      "sha256": "5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1"
+    },
+    "finalization": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_finalization_v1.json",
+      "sha256": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e"
+    },
+    "paper_verification": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_paper_verification_v1.json",
+      "sha256": "103e7171040ef835111d110470a81280d64a053362da717df7368ca3578d19b1"
+    }
+  },
+  "generated_at": "2026-11-19T20:25:52.745175+00:00"
+}

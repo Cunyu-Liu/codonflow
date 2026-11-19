@@ -1,0 +1,1279 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-ppt-online-readback-v1",
+  "status": "PASS_RK05_RIBOMIMO_STUDY_OOD_PPT_ONLINE_READBACK",
+  "n_checks": 206,
+  "n_passed": 206,
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline_revision": 62,
+  "final_revision": 63,
+  "baseline_pages": 100,
+  "final_pages": 101,
+  "new_slide_id": "pgI",
+  "new_slide_number": 101,
+  "prior_slides_semantic_xml_unchanged": 100,
+  "candidate_sha256": "aaa3fab4355bdaedea1bafae3e05aaa36117a6473cf497f85708c5a842236ffb",
+  "baseline_xml_sha256": "d6f613b840dc6a6d8bf85bb48de5b65ebcc9781c049f9e8764821e30c8f62947",
+  "readback_xml_sha256": "fd30f7e157fe9feed03182490f99ca8842c3b4e9f3e5c55bc11044d60b185208",
+  "add_response_sha256": "b2684e249c5e6bade710675db759571d5c5d742ee59381d4652cf687bcb794eb",
+  "readback_response_sha256": "612b36c93fd2b1c1c1c093dc552cac016bb1ba1d15a1dbfa777391189a3d90dc",
+  "candidate_fact_check_sha256": "6662dd64b28f43ebdd47e95fe38eefbe6a3dc1ad640995f3d3778cd3fe9bf9a4",
+  "production_sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239",
+  "independent_sha256": "5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1",
+  "finalization_sha256": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e",
+  "scientific_outcome": "RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE",
+  "strict_candidate_comparison": {
+    "semantic_equal_excluding_server_ids": false,
+    "differences": [
+      {
+        "path": "/slide[1]/data[18]/table[0]/colgroup[0]/col",
+        "kind": "attributes",
+        "candidate": {
+          "width": "98"
+        },
+        "online": {
+          "span": "1",
+          "width": "98"
+        }
+      },
+      {
+        "path": "/slide[1]/data[18]/table[0]/colgroup[1]/col",
+        "kind": "attributes",
+        "candidate": {
+          "width": "110"
+        },
+        "online": {
+          "span": "1",
+          "width": "110"
+        }
+      },
+      {
+        "path": "/slide[1]/data[18]/table[0]/colgroup[2]/col",
+        "kind": "attributes",
+        "candidate": {
+          "width": "88"
+        },
+        "online": {
+          "span": "1",
+          "width": "88"
+        }
+      },
+      {
+        "path": "/slide[1]/data[18]/table[0]/colgroup[3]/col",
+        "kind": "attributes",
+        "candidate": {
+          "width": "156"
+        },
+        "online": {
+          "span": "1",
+          "width": "156"
+        }
+      },
+      {
+        "path": "/slide[1]/data[18]/table[0]/colgroup[4]/col",
+        "kind": "attributes",
+        "candidate": {
+          "width": "92"
+        },
+        "online": {
+          "span": "1",
+          "width": "92"
+        }
+      },
+      {
+        "path": "/slide[2]/note[0]/content",
+        "kind": "attributes",
+        "candidate": {
+          "textType": "body",
+          "fontSize": "12",
+          "fontFamily": "思源黑体"
+        },
+        "online": {}
+      }
+    ],
+    "interpretation": "The strict comparison retains the observed 205/206 engineering failure: six non-content server defaults differ. The normalized 206/206 comparison permits only these declared defaults and no other semantic difference."
+  },
+  "scope": "One online page appended after live baseline and 33/33 candidate fact verification; all 100 prior slides required to remain semantically unchanged.",
+  "server_normalization": {
+    "table_columns": "A missing candidate span and the server-returned span=1 are treated as the same default.",
+    "speaker_notes": "The candidate note body textType=body, fontSize=12 and fontFamily=思源黑体 are removed by the server; the note paragraphs and text are unchanged.",
+    "other_semantic_differences_allowed": false
+  },
+  "checks": [
+    {
+      "name": "baseline_read_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_revision_62",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "baseline_page_count_100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_revision_63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_slide_id_pgI",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readback_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readback_revision_63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readback_page_count_101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_is_last",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_structure_slide_kept_at_100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_cagfn_slide_kept_at_99",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_rk13_slides_kept_at_96_98",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "slide_ids_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_fact_check_33_of_33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_hash_matches_fact_check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_production_complete",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_independent_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_finalization_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_outcome_bound",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_commit_bound",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_001_ppP_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_002_ppX_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_003_ppO_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_004_ppe_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_005_ppQ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_006_pps_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_007_ppS_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_008_ppt_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_009_ppR_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_010_ppq_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_011_ppF_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_012_ppV_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_013_ppz_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_014_ppZ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_015_ppN_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_016_ppB_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_017_ppD_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_018_ppb_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_019_ppJ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_020_ppM_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_021_ppg_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_022_ppl_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_023_ppf_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_024_ppc_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_025_ppd_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_026_ppm_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_027_ppj_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_028_ppp_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_029_ppw_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_030_ppx_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_031_ppW_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_032_ppH_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_033_ppK_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_034_ppI_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_035_ppo_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_036_ppC_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_037_ppG_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_038_ppr_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_039_ppE_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_040_ppv_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_041_ppn_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_042_ppy_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_043_pph_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_044_ppA_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_045_ppk_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_046_ppY_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_047_ppi_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_048_ppL_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_049_ppU_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_050_ppa_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_051_ppu_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_052_ppT_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_053_pgp_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_054_pgg_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_055_pgZ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_056_pgS_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_057_pgP_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_058_pgi_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_059_pgn_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_060_pgo_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_061_pgw_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_062_pgl_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_063_pgN_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_064_pgt_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_065_pgX_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_066_pgL_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_067_pgy_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_068_pgC_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_069_pgx_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_070_pgf_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_071_pgB_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_072_pgR_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_073_pgO_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_074_pgU_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_075_pgh_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_076_pgG_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_077_pgW_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_078_pgc_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_079_pgD_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_080_pgq_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_081_pge_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_082_pga_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_083_pgA_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_084_pgr_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_085_pgH_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_086_pgd_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_087_pgb_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_088_pgF_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_089_pgQ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_090_pgu_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_091_pgk_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_092_pgE_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_093_pgK_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_094_pgm_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_095_pgJ_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_096_pgV_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_097_pgs_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_098_pgT_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_099_pgY_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_slide_100_pgv_semantic_xml_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_online_semantic_xml_equal_excluding_server_ids_and_declared_defaults",
+      "pass": true,
+      "detail": {
+        "server_normalization": [
+          "table col span=1",
+          "speaker-note body default textType/fontSize/fontFamily removed"
+        ]
+      }
+    },
+    {
+      "name": "new_slide_required_text_01",
+      "pass": true,
+      "detail": "203/203 + 30/30 · VERIFIED"
+    },
+    {
+      "name": "new_slide_required_text_02",
+      "pass": true,
+      "detail": "RK05 · RIBOMIMO CROSS-STUDY TRANSFER"
+    },
+    {
+      "name": "new_slide_required_text_03",
+      "pass": true,
+      "detail": "RiboMIMO 跨研究迁移：ridge 两项主终点均更优"
+    },
+    {
+      "name": "new_slide_required_text_04",
+      "pass": true,
+      "detail": "Mohammad16 → Subtelny14 · source 1,062/117 · target 3,921 · exact CDS overlap = 0"
+    },
+    {
+      "name": "new_slide_required_text_05",
+      "pass": true,
+      "detail": "primary seed 1234 · sensitivity 2345/3456 · 2,000 bootstrap + 2,000 sign flips · Holm across 2"
+    },
+    {
+      "name": "new_slide_required_text_06",
+      "pass": true,
+      "detail": "2.186608"
+    },
+    {
+      "name": "new_slide_required_text_07",
+      "pass": true,
+      "detail": "1.006967"
+    },
+    {
+      "name": "new_slide_required_text_08",
+      "pass": true,
+      "detail": "TB-MSE · mean r = −0.001008"
+    },
+    {
+      "name": "new_slide_required_text_09",
+      "pass": true,
+      "detail": "TB-MSE · mean r = +0.037500"
+    },
+    {
+      "name": "new_slide_required_text_10",
+      "pass": true,
+      "detail": "RIDGE 2/2"
+    },
+    {
+      "name": "new_slide_required_text_11",
+      "pass": true,
+      "detail": "constant TB-MSE = 0.966916"
+    },
+    {
+      "name": "new_slide_required_text_12",
+      "pass": true,
+      "detail": "delta +1.179642"
+    },
+    {
+      "name": "new_slide_required_text_13",
+      "pass": true,
+      "detail": "[+1.162687, +1.196288]"
+    },
+    {
+      "name": "new_slide_required_text_14",
+      "pass": true,
+      "detail": "delta −0.038508"
+    },
+    {
+      "name": "new_slide_required_text_15",
+      "pass": true,
+      "detail": "[−0.041406, −0.035536]"
+    },
+    {
+      "name": "new_slide_required_text_16",
+      "pass": true,
+      "detail": "2.074145"
+    },
+    {
+      "name": "new_slide_required_text_17",
+      "pass": true,
+      "detail": "1.006788"
+    },
+    {
+      "name": "new_slide_required_text_18",
+      "pass": true,
+      "detail": "constant 0.966910"
+    },
+    {
+      "name": "new_slide_required_text_19",
+      "pass": true,
+      "detail": "2.040441"
+    },
+    {
+      "name": "new_slide_required_text_20",
+      "pass": true,
+      "detail": "1.005552"
+    },
+    {
+      "name": "new_slide_required_text_21",
+      "pass": true,
+      "detail": "constant 0.966907"
+    },
+    {
+      "name": "new_slide_required_text_22",
+      "pass": true,
+      "detail": "official 094c693d · target readout last"
+    },
+    {
+      "name": "new_slide_required_text_23",
+      "pass": true,
+      "detail": "source-only early stop · alpha = 100 all seeds"
+    },
+    {
+      "name": "new_slide_required_text_24",
+      "pass": true,
+      "detail": "RiboMIMO r range −0.001008…+0.011053"
+    },
+    {
+      "name": "new_slide_required_text_25",
+      "pass": true,
+      "detail": "ridge r range +0.037489…+0.038321"
+    },
+    {
+      "name": "new_slide_required_text_26",
+      "pass": true,
+      "detail": "model/checkpoint exact · ridge max 1.51e−7"
+    },
+    {
+      "name": "new_slide_required_text_27",
+      "pass": true,
+      "detail": "3/3 retrains · paper 44/44 + facts 20/20"
+    },
+    {
+      "name": "new_slide_required_text_28",
+      "pass": true,
+      "detail": "结论 · ridge 两项主终点均显著优于 RiboMIMO"
+    },
+    {
+      "name": "new_slide_required_text_29",
+      "pass": true,
+      "detail": "常数 MSE 更低 · 不能解释为强绝对迁移"
+    },
+    {
+      "name": "new_slide_required_text_30",
+      "pass": true,
+      "detail": "边界 · occupancy-derived study-OOD · 非全局 untouched"
+    },
+    {
+      "name": "new_slide_required_text_31",
+      "pass": true,
+      "detail": "非物理速度/功能或蛋白 OOD · RK-G1 未关闭"
+    },
+    {
+      "name": "new_slide_required_text_32",
+      "pass": true,
+      "detail": "Evidence: independent 203/203 · finalization 30/30 · paper 44/44 · GitHub ee580a7f9bbc"
+    },
+    {
+      "name": "new_slide_required_text_33",
+      "pass": true,
+      "detail": "RK05 · 2026-11-20"
+    },
+    {
+      "name": "new_slide_avoids_stale_text_01",
+      "pass": true,
+      "detail": "12/12 + 21/21"
+    },
+    {
+      "name": "new_slide_avoids_stale_text_02",
+      "pass": true,
+      "detail": "18/18 + 8/8"
+    },
+    {
+      "name": "new_slide_avoids_stale_text_03",
+      "pass": true,
+      "detail": "NO-GO"
+    },
+    {
+      "name": "new_slide_avoids_stale_text_04",
+      "pass": true,
+      "detail": "FIXED_GFP_OBSERVED_R1_STRUCTURE_INCREMENT_NO_GO_DEVELOPMENT_ONLY"
+    },
+    {
+      "name": "new_slide_has_one_native_table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_has_six_rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_1_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_2_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_3_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_4_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_5_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_table_row_6_has_five_cells",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_has_speaker_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_have_four_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_full_mse_effect",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_full_mse_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_full_correlation_effect",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_full_correlation_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_full_holm_p",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_ridge_tolerance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_rk_g1_open",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_no_generation_or_sota",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_has_no_undefined_objects",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_bToJ_within_canvas",
+      "pass": true,
+      "detail": [
+        736.0,
+        24.0,
+        168.0,
+        30.0
+      ]
+    },
+    {
+      "name": "new_slide_bToe_within_canvas",
+      "pass": true,
+      "detail": [
+        744.0,
+        29.0,
+        152.0,
+        20.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcH_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        25.0,
+        660.0,
+        20.0
+      ]
+    },
+    {
+      "name": "new_slide_bToO_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        51.0,
+        848.0,
+        39.0
+      ]
+    },
+    {
+      "name": "new_slide_bTod_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        94.0,
+        848.0,
+        40.0
+      ]
+    },
+    {
+      "name": "new_slide_bTop_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        142.0,
+        272.0,
+        90.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcg_within_canvas",
+      "pass": true,
+      "detail": [
+        72.0,
+        152.0,
+        240.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bToM_within_canvas",
+      "pass": true,
+      "detail": [
+        72.0,
+        174.0,
+        240.0,
+        31.0
+      ]
+    },
+    {
+      "name": "new_slide_bToX_within_canvas",
+      "pass": true,
+      "detail": [
+        72.0,
+        210.0,
+        240.0,
+        15.0
+      ]
+    },
+    {
+      "name": "new_slide_bToN_within_canvas",
+      "pass": true,
+      "detail": [
+        344.0,
+        142.0,
+        272.0,
+        90.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcq_within_canvas",
+      "pass": true,
+      "detail": [
+        360.0,
+        152.0,
+        240.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bToL_within_canvas",
+      "pass": true,
+      "detail": [
+        360.0,
+        174.0,
+        240.0,
+        31.0
+      ]
+    },
+    {
+      "name": "new_slide_bToS_within_canvas",
+      "pass": true,
+      "detail": [
+        360.0,
+        210.0,
+        240.0,
+        15.0
+      ]
+    },
+    {
+      "name": "new_slide_bToP_within_canvas",
+      "pass": true,
+      "detail": [
+        632.0,
+        142.0,
+        272.0,
+        90.0
+      ]
+    },
+    {
+      "name": "new_slide_bTce_within_canvas",
+      "pass": true,
+      "detail": [
+        648.0,
+        152.0,
+        240.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bTok_within_canvas",
+      "pass": true,
+      "detail": [
+        648.0,
+        174.0,
+        240.0,
+        31.0
+      ]
+    },
+    {
+      "name": "new_slide_bTot_within_canvas",
+      "pass": true,
+      "detail": [
+        648.0,
+        210.0,
+        240.0,
+        15.0
+      ]
+    },
+    {
+      "name": "new_slide_bTov_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        253.0,
+        544.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcp_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        280.0,
+        544.0,
+        142.0
+      ]
+    },
+    {
+      "name": "new_slide_bToR_within_canvas",
+      "pass": true,
+      "detail": [
+        632.0,
+        252.0,
+        272.0,
+        170.0
+      ]
+    },
+    {
+      "name": "new_slide_bTol_within_canvas",
+      "pass": true,
+      "detail": [
+        648.0,
+        263.0,
+        240.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bToj_within_canvas",
+      "pass": true,
+      "detail": [
+        648.0,
+        288.0,
+        240.0,
+        116.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcN_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        436.0,
+        410.0,
+        44.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcv_within_canvas",
+      "pass": true,
+      "detail": [
+        70.0,
+        443.0,
+        382.0,
+        31.0
+      ]
+    },
+    {
+      "name": "new_slide_bToa_within_canvas",
+      "pass": true,
+      "detail": [
+        486.0,
+        436.0,
+        418.0,
+        44.0
+      ]
+    },
+    {
+      "name": "new_slide_bTof_within_canvas",
+      "pass": true,
+      "detail": [
+        500.0,
+        443.0,
+        390.0,
+        31.0
+      ]
+    },
+    {
+      "name": "new_slide_bToF_within_canvas",
+      "pass": true,
+      "detail": [
+        56.0,
+        496.0,
+        700.0,
+        18.0
+      ]
+    },
+    {
+      "name": "new_slide_bTcP_within_canvas",
+      "pass": true,
+      "detail": [
+        776.0,
+        496.0,
+        128.0,
+        18.0
+      ]
+    }
+  ]
+}
