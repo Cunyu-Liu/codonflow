@@ -1,0 +1,42 @@
+{
+  "schema": "a8-rk02-mordstein-observed-end-full-protocol-v1",
+  "protocol_id": "a8_rk02_mordstein_observed_end_full_v1_frozen_before_complete_download",
+  "created_before_production": true,
+  "scope": "All eight HEK293 bins, paired-end observed 5-prime/3-prime GFP ends only; central 138 nt remains unobserved.",
+  "download_gate": {
+    "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/metadata/hek293_download_finalization_v1.json",
+    "required_status": "PASS",
+    "required_fresh_fastq_pairs": 8,
+    "required_fresh_fastq_files": 16,
+    "acceptance": "Fresh ENA byte size and MD5 equality for every formal FASTQ, with SHA256 recorded; worker reports are provenance only."
+  },
+  "metadata": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/metadata/PRJNA596086.read_run.tsv",
+  "raw_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw",
+  "output": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1",
+  "parameters": {
+    "runs": "all eight runs from metadata",
+    "max_reads": 0,
+    "allow_truncated": false,
+    "top_exact": 20000,
+    "min_seed": 20,
+    "min_variant_support": 1000,
+    "max_error": 8,
+    "exact_cache": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache",
+    "assignment_cache_max": 0,
+    "audit_sample_per_run": 200,
+    "audit_seed": 20261119
+  },
+  "verification": {
+    "independent_scope": "full",
+    "tests": "scripts/tests/test_a8_rk02_mordstein_reference_recovery.py",
+    "finalization_requires_independent_pass": true
+  },
+  "prohibited_claims": [
+    "complete CDS recovered",
+    "author GFP_### identity recovered",
+    "central 138 nt directly observed",
+    "wet-lab expression validation",
+    "functional model ready",
+    "SOTA"
+  ]
+}
