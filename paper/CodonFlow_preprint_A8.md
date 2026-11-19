@@ -533,6 +533,26 @@ The sensitivity analyses did not resolve the result in favor of the mechanism mo
 
 Independent raw-source verification reconstructed all 131 development records, all nested folds and alpha selections, all OOF predictions, the primary intervals and permutations, and both sensitivity repeats. It passed **96/96 checks**, with zero maximum discrepancy for predictions, metrics, inference and inner RMSE. Finalization passed **30/30 checks**. No test prediction, test metric, minimal-medium transport, N-terminal transport or generator authorization was generated. The original v1 NO-GO and all previous negative results remain unchanged; RK-G1 remains open and the manuscript remains non-submittable.
 
+### 6.23 Metadata-only recovery of Ribo-seq sources and VeloHARMO release scope
+
+We audited whether the processed Ribo-seq evidence and the five-organism VeloHARMO comparison could be connected to public raw sources without treating processed matrices as completed remapping. The audit froze `BianBian2021/VeloHARMO` at commit `38b48079856aeb9d33a1b10844d77aa8f6640032` and retained official PMC, GEO SOFT and SRA RunInfo responses with file hashes. It did not download FASTQ, BAM or SRA reads, construct UTR–CDS annotations, align reads or fit a model.
+
+All five VeloHARMO source studies had public run-level records. Official titles and full text map Dunn13 to *Drosophila melanogaster* and GSE49197, and Pop14 to *Saccharomyces cerevisiae* and GSE63789. The five studies comprised 125 runs and 143,663 MB in RunInfo metadata. These sizes describe the public archives, not data transferred by this audit.
+
+| Source study | Organism | Study accession | RunInfo accession | Runs | RunInfo size (MB) | Pinned release |
+|---|---|---|---|---:|---:|---|
+| Mohammad16 | Escherichia coli | GSE72899 | SRP063562 | 5 | 3,594 | matrix + GA |
+| Grady17 | Pseudomonas aeruginosa | PRJNA379630 | PRJNA379630 | 24 | 58,639 | neither |
+| Dunn13 | Drosophila melanogaster | GSE49197 | SRP028243 | 14 | 34,020 | neither |
+| Pop14 | Saccharomyces cerevisiae | GSE63789 | SRP050443 | 10 | 13,780 | GA only |
+| Battle15 | Homo sapiens | GSE61742 | SRP047476 | 72 | 33,630 | neither |
+
+The pinned repository contained 14 tree entries and 14 materialized blob files, all with matching current SHA-256 and byte counts. Its two E. coli matrix archives were byte-identical; E. coli and yeast genetic-algorithm checkpoints were present. No harmonized matrix archive for *P. aeruginosa*, *D. melanogaster*, *S. cerevisiae* or human was present in that snapshot. Thus a public raw source and a released checkpoint must not be interpreted as a released harmonized matrix.
+
+For the RiboMIMO source layer, Mohammad19/GSE119104 contributed 10 runs and 5,202 MB, while Subtelny14/GSE53268 contributed 3 runs and 4,034 MB through its current BioProject relation PRJNA231671. Together with the shared Mohammad16 archive, the seven distinct RunInfo accessions contained 138 runs and 152,899 MB. The additional RiboMIMO archives beyond Mohammad16 therefore contributed 13 runs and 9,236 MB.
+
+Independent offline verification reparsed every required response, rechecked the study mappings and recomputed all run counts, sizes and materialized-file hashes. It passed **169/169 checks**, with maximum numeric discrepancy 0. Finalization passed **47/47 checks**. This closes only the bounded metadata-feasibility subtask. UTR–CDS construction, independent raw-read/P-site remapping, four non-E. coli harmonized matrices, the full natural-distribution report, mechanism validation and model training remain unperformed. Any future remapping must freeze reference versions per study and assess read length and end assignment per sample; no global P-site offset is licensed. RK-G1 remains open and the manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -729,6 +749,13 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK03 MAGE nested-development independent verification | `3ffe88f6174f415902645c2a649a44ee2e72c1b889aa4933cec9b93c1e3917b7` |
 | RK03 MAGE nested-development finalization | `846d79183f1f7a02f7b0f7c9569f33597fd6caaf067adf1d446c7cb82f251599` |
 | RK03 MAGE nested-development unit tests | `f6ccd8a8f65c2925285e86cae8b55a1e72f3e6cf7f9a5b119334cd42c6c2a3eb` |
+
+| RK03 source-feasibility frozen protocol | `788f60af14a5b38f5a110cf859017943a0641d388485b017db68ec5254bd93ca` |
+| RK03 source-feasibility production | `bc66f985ad6e579f34ac4d03ea04738531788072134ba2c94fac59e512b1441c` |
+| RK03 source-feasibility independent verification | `d74484ae5d65c094c9a3d274d96eefa88b293f460c20799235c94d2f823bfdcd` |
+| RK03 source-feasibility finalization | `d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41` |
+| RK03 source-feasibility unit tests | `b9e965dc0529c60f882a5c950ded3a24ea8cc009d968cf3ec12f9b3ddbbbca87` |
+| RK03 source-feasibility artifact manifest | `4bc61c4243ae5e350801bd89d691b239f15a456596220f3fe7522b3285c1bf7d` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

@@ -1,0 +1,319 @@
+{
+  "candidate_facts_passed": 30,
+  "candidate_facts_total": 30,
+  "checks": [
+    {
+      "detail": null,
+      "name": "paper_hash_record",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_hash_record",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "snapshot_paper_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "snapshot_audit_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v26_exactly_recoverable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "v26_snapshot_byte_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_present_once",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "previous_section_preserved",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_before_discussion",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_74_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_169_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "finalization_47_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "zero_independent_delta",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bounded_scope_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "non_submittable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_output_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_scope",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sync_increment_hashes",
+      "pass": true
+    },
+    {
+      "detail": "| Mohammad16 | Escherichia coli | GSE72899 | SRP063562 | 5 | 3,594 |",
+      "name": "paper_fact_Mohammad16_accession",
+      "pass": true
+    },
+    {
+      "detail": "| Grady17 | Pseudomonas aeruginosa | PRJNA379630 | PRJNA379630 | 24 | 58,639 |",
+      "name": "paper_fact_Grady17_accession",
+      "pass": true
+    },
+    {
+      "detail": "| Dunn13 | Drosophila melanogaster | GSE49197 | SRP028243 | 14 | 34,020 |",
+      "name": "paper_fact_Dunn13_accession",
+      "pass": true
+    },
+    {
+      "detail": "| Pop14 | Saccharomyces cerevisiae | GSE63789 | SRP050443 | 10 | 13,780 |",
+      "name": "paper_fact_Pop14_accession",
+      "pass": true
+    },
+    {
+      "detail": "| Battle15 | Homo sapiens | GSE61742 | SRP047476 | 72 | 33,630 |",
+      "name": "paper_fact_Battle15_accession",
+      "pass": true
+    },
+    {
+      "detail": "Dunn13 to *Drosophila melanogaster* and GSE49197",
+      "name": "paper_fact_dunn_mapping",
+      "pass": true
+    },
+    {
+      "detail": "Pop14 to *Saccharomyces cerevisiae* and GSE63789",
+      "name": "paper_fact_pop_mapping",
+      "pass": true
+    },
+    {
+      "detail": "125 runs",
+      "name": "paper_fact_velo_runs",
+      "pass": true
+    },
+    {
+      "detail": "143,663 MB",
+      "name": "paper_fact_velo_size",
+      "pass": true
+    },
+    {
+      "detail": "138 runs",
+      "name": "paper_fact_total_runs",
+      "pass": true
+    },
+    {
+      "detail": "152,899 MB",
+      "name": "paper_fact_total_size",
+      "pass": true
+    },
+    {
+      "detail": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+      "name": "paper_fact_repository_commit",
+      "pass": true
+    },
+    {
+      "detail": "14 tree entries and 14 materialized blob files",
+      "name": "paper_fact_tree_blob_counts",
+      "pass": true
+    },
+    {
+      "detail": "two E. coli matrix archives were byte-identical",
+      "name": "paper_fact_identical_ecoli_archives",
+      "pass": true
+    },
+    {
+      "detail": "E. coli and yeast genetic-algorithm checkpoints were present",
+      "name": "paper_fact_ecoli_yeast_checkpoints",
+      "pass": true
+    },
+    {
+      "detail": "No harmonized matrix archive for *P. aeruginosa*, *D. melanogaster*, *S. cerevisiae* or human was present",
+      "name": "paper_fact_four_matrices_absent",
+      "pass": true
+    },
+    {
+      "detail": "Subtelny14/GSE53268 contributed 3 runs and 4,034 MB through its current BioProject relation PRJNA231671",
+      "name": "paper_fact_subtelny_bioproject",
+      "pass": true
+    },
+    {
+      "detail": "Mohammad19/GSE119104 contributed 10 runs and 5,202 MB",
+      "name": "paper_fact_mohammad19",
+      "pass": true
+    },
+    {
+      "detail": "13 runs and 9,236 MB",
+      "name": "paper_fact_extra_ribo",
+      "pass": true
+    },
+    {
+      "detail": "did not download FASTQ, BAM or SRA reads",
+      "name": "paper_fact_no_read_download",
+      "pass": true
+    },
+    {
+      "detail": "did not download FASTQ, BAM or SRA reads, construct UTR–CDS annotations, align reads or fit a model",
+      "name": "paper_fact_no_utr_or_alignment",
+      "pass": true
+    },
+    {
+      "detail": "not data transferred by this audit",
+      "name": "paper_fact_runinfo_not_download",
+      "pass": true
+    },
+    {
+      "detail": "a public raw source and a released checkpoint must not be interpreted as a released harmonized matrix",
+      "name": "paper_fact_raw_not_matrix",
+      "pass": true
+    },
+    {
+      "detail": "169/169 checks",
+      "name": "paper_fact_independent_count",
+      "pass": true
+    },
+    {
+      "detail": "47/47 checks",
+      "name": "paper_fact_finalization_count",
+      "pass": true
+    },
+    {
+      "detail": "no global P-site offset is licensed",
+      "name": "paper_fact_no_global_offset",
+      "pass": true
+    },
+    {
+      "detail": "freeze reference versions per study",
+      "name": "paper_fact_reference_freeze",
+      "pass": true
+    },
+    {
+      "detail": "assess read length and end assignment per sample",
+      "name": "paper_fact_sample_assignment",
+      "pass": true
+    },
+    {
+      "detail": "UTR–CDS construction, independent raw-read/P-site remapping, four non-E. coli harmonized matrices, the full natural-distribution report, mechanism validation and model training remain unperformed",
+      "name": "paper_fact_remaining_unperformed",
+      "pass": true
+    },
+    {
+      "detail": "RK-G1 remains open",
+      "name": "paper_fact_rk_g1_open",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_artifact_manifest",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_finalization",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_production",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_unit_tests",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_UTR–CDS mapping was completed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_raw-read remapping was completed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_all five harmonized matrices are released",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_RK-G1 is closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_manuscript is submittable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "forbidden_claim_SOTA",
+      "pass": true
+    }
+  ],
+  "checks_passed": 61,
+  "checks_total": 61,
+  "paper_sha256": "c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952",
+  "schema": "a8-rk03-source-feasibility-paper-verification-v27",
+  "status": "PASS",
+  "submittable": false,
+  "sync_audit_sha256": "dad44a85e3545bd9bfe069170a8f25ebc599d4d8c9c0804283240250ceec0128",
+  "v26_recovery_verified": true
+}

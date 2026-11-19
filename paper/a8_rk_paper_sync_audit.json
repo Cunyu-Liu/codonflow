@@ -24,6 +24,8 @@
   "base_v24_paper_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
   "base_v25_audit_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
   "base_v25_paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
+  "base_v26_audit_sha256": "b39a8374365c48b8af3d2e64559814ce57148ece28d0b1eb2e66a9b04bbfc0cd",
+  "base_v26_paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
   "generated_sections": [
     "3.1",
     "3.2 RK04 addition",
@@ -57,21 +59,23 @@
     "6.21 RiboMIMO cross-study transfer: ridge was stronger on both frozen endpoints",
     "8.1 RK05 RiboMIMO study-OOD evidence anchors",
     "6.22 MAGE nested development CV",
-    "8.1 RK03 MAGE nested-development evidence anchors"
+    "8.1 RK03 MAGE nested-development evidence anchors",
+    "6.23 Metadata-only recovery of Ribo-seq sources and VeloHARMO release scope",
+    "8.1 RK03 source-feasibility evidence anchors"
   ],
   "last_increment": {
-    "finalization_sha256": "846d79183f1f7a02f7b0f7c9569f33597fd6caaf067adf1d446c7cb82f251599",
-    "independent_sha256": "3ffe88f6174f415902645c2a649a44ee2e72c1b889aa4933cec9b93c1e3917b7",
-    "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
-    "production_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
-    "protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
-    "scientific_scope": "fixed-infA synonymous development nested-CV NO-GO; test untouched; no RK-G1, generator or SOTA claim",
-    "section": "6.22 MAGE nested development CV: mechanism increments were small and unstable",
+    "finalization_sha256": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41",
+    "independent_sha256": "d74484ae5d65c094c9a3d274d96eefa88b293f460c20799235c94d2f823bfdcd",
+    "paper_sha256": "c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952",
+    "production_sha256": "bc66f985ad6e579f34ac4d03ea04738531788072134ba2c94fac59e512b1441c",
+    "protocol_sha256": "788f60af14a5b38f5a110cf859017943a0641d388485b017db68ec5254bd93ca",
+    "scientific_scope": "metadata-only public source recovery; no UTR-CDS mapping, raw/P-site remapping, harmonization, model result or RK-G1 closure",
+    "section": "6.23 Metadata-only recovery of Ribo-seq sources and VeloHARMO release scope",
     "submittable": false
   },
   "manuscript_version": "v25",
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5",
+  "output_sha256": "c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -119,6 +123,14 @@
     "audit_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
     "paper": "paper/snapshots/rk03_mage_development_nested_cv_v26/CodonFlow_preprint_A8_v25.md",
     "paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b"
+  },
+  "pre_rk03_source_feasibility_snapshot": {
+    "a7": "paper/snapshots/rk03_source_feasibility_v27/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "paper/snapshots/rk03_source_feasibility_v27/a8_rk_paper_sync_audit_v26.json",
+    "audit_sha256": "b39a8374365c48b8af3d2e64559814ce57148ece28d0b1eb2e66a9b04bbfc0cd",
+    "paper": "paper/snapshots/rk03_source_feasibility_v27/CodonFlow_preprint_A8_v26.md",
+    "paper_sha256": "88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5"
   },
   "pre_rk05_cagfn_snapshot": {
     "a7": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/CodonFlow_preprint_A7.md",
@@ -219,6 +231,21 @@
     "sota_claim": false,
     "status": "DEV_NO_GO_TEST_UNTOUCHED",
     "test_n_untouched": 33
+  },
+  "rk03_source_feasibility": {
+    "finalization_checks": "47/47",
+    "generator_training_authorized": false,
+    "independent_checks": "169/169",
+    "max_numeric_delta": 0,
+    "production_checks": "74/74",
+    "raw_remapping_completed": false,
+    "rk_g1_pass": false,
+    "runs": 138,
+    "size_mb": 152899,
+    "sota_claim": false,
+    "status": "SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED",
+    "unique_runinfo_accessions": 7,
+    "utr_cds_mapping_completed": false
   },
   "rk05_cagfn_v23": {
     "finalization_sha256": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
