@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd /home/codonflow-a8-rk
+export PYTHONPATH=/home/codonflow-a8-rk${PYTHONPATH:+:$PYTHONPATH}
 PY=/root/miniconda3/envs/codonflow/bin/python
 AUDIT=audits/20261118/RK12
 GRID=$AUDIT/lineardesign_unique18_grid_v1.json
