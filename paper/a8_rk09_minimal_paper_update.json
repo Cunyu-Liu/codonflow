@@ -1,0 +1,33 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "evidence_rows": "| RK09 minimal-kernel protocol | `4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822` |\n| RK09 minimal-kernel production | `dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd` |\n| RK09 minimal-kernel independent verifier | `0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960` |\n| RK09 minimal-kernel finalization | `a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0` |\n| RK09 retained initial production failure | `6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede` |\n| RK09 retained initial independent failure | `d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df` |\n",
+  "evidence_sha256": {
+    "rk09_finalization": "a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0",
+    "rk09_independent": "0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960",
+    "rk09_initial_independent_failure": "d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df",
+    "rk09_initial_production_failure": "6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede",
+    "rk09_production": "dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd",
+    "rk09_protocol": "4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822"
+  },
+  "input_audit_sha256": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef",
+  "input_paper_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d",
+  "output_audit_sha256": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
+  "output_paper_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23",
+  "schema": "a8-rk09-minimal-paper-update-v14",
+  "scientific_scope_unchanged": {
+    "expensive_generation_authorized": false,
+    "functional_or_generation_performance": false,
+    "rk_g1_gate_modified": false,
+    "sota_claimed": false,
+    "trained_model": false
+  },
+  "section": "### 6.11 Minimal CodonFlow-RK mathematical kernel: exact small-state verification\n\nBefore any model training, we froze and tested the legal codon simplex and conditional kernels. A state has 64 slots per position, index 63 is the terminal stop, and internal positions may use only the 61 sense-codon indices. A feasible transition is either a no-op or one internal sense-codon replacement. The base conditional is uniform over its feasible support; preference and remaining-budget terms only reweight or mask that support. On the frozen length-four example, exhaustive enumeration produced **226,981 valid states**, **181 one-step targets**, and **10,981 states reachable within two transitions**. Exhaustive rejection recovers the exactly uniform feasible-set distribution, whereas the naive two-step random walk has total-variation distance **0.324196450320** from that uniform endpoint reference.\n\nFor the length-three path example, all **14,641 paths** and **3,721 endpoints** were enumerated. Including the target endpoint mass in the backward path law makes the forward/backward log-probability ratio telescope to `log U(end) - log q_T(end)`. Maximum backward-normalization, path-telescoping and endpoint-reconstruction errors were **2.665e-15**, **8.882e-16**, and **5.963e-19**, respectively. The event-time transform `t = 1 - u^(1/kappa)` was checked against its inverse CDF; its analytic mean is `1/(kappa+1)`, not `kappa/(kappa+1)`. Production checks passed **22/22**, an independent implementation that did not import the production module passed **16/16**, finalization passed **14/14**, and **10 unit tests** passed. The initial 19/22 production failure (missing endpoint mass and reversed event-mean formula) and the independent 15/16 mask failure are retained with the corrected reports.\n\nThis is a **mathematical-kernel verification only**. It is not trained CodonFlow-RK, functional or generation performance, a mechanistic increment, RK-G1 closure, SOTA, or authorization for expensive generation training.\n\n",
+  "snapshot": {
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/a8_rk_paper_sync_audit_v13.json",
+    "audit_sha256": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef",
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/CodonFlow_preprint_A8_v13.md",
+    "paper_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d"
+  }
+}

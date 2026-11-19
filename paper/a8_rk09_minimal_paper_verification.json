@@ -1,0 +1,162 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "all_pass": true,
+  "audit_sha256": "50e13df408f0aadf0479800920c08bf662aeff2e302a1c9431ea150b9fedf970",
+  "checks": [
+    {
+      "detail": "actual v13 paper hash matched",
+      "id": "v13_paper_gate",
+      "pass": true
+    },
+    {
+      "detail": "actual v13 audit hash matched",
+      "id": "v13_audit_gate",
+      "pass": true
+    },
+    {
+      "detail": "v14 paper hash agrees everywhere",
+      "id": "paper_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "v14 audit hash matched",
+      "id": "audit_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "A7 remains byte-identical",
+      "id": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "22/22 production",
+      "id": "rk09_production_complete",
+      "pass": true
+    },
+    {
+      "detail": "16/16 independent",
+      "id": "rk09_independent_complete",
+      "pass": true
+    },
+    {
+      "detail": "14/14 finalization",
+      "id": "rk09_finalization_complete",
+      "pass": true
+    },
+    {
+      "detail": "one exact Section 6.11 insertion",
+      "id": "single_rk09_section",
+      "pass": true
+    },
+    {
+      "detail": "removing only the authorized section and evidence rows restores v13 byte-for-byte",
+      "id": "exact_paper_delta",
+      "pass": true
+    },
+    {
+      "detail": "valid and reachable state counts rendered from production",
+      "id": "state_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": "naive random-walk TV rendered exactly",
+      "id": "naive_tv_exact",
+      "pass": true
+    },
+    {
+      "detail": "14,641 paths and 3,721 endpoints present",
+      "id": "path_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": "all three numerical errors present",
+      "id": "telescope_errors_exact",
+      "pass": true
+    },
+    {
+      "detail": "correct analytic event-time mean and retained correction",
+      "id": "event_mean_corrected",
+      "pass": true
+    },
+    {
+      "detail": "both initial failures retained and cited",
+      "id": "failure_history_visible",
+      "pass": true
+    },
+    {
+      "detail": "all verification counts present",
+      "id": "verification_counts_visible",
+      "pass": true
+    },
+    {
+      "detail": "no training/function/generation/gate claim",
+      "id": "bounded_scope_visible",
+      "pass": true
+    },
+    {
+      "detail": "six RK09 source hashes independently recomputed",
+      "id": "evidence_hashes",
+      "pass": true
+    },
+    {
+      "detail": "all six evidence hashes appear in the paper",
+      "id": "evidence_rows",
+      "pass": true
+    },
+    {
+      "detail": "schema advanced only to v14",
+      "id": "audit_schema",
+      "pass": true
+    },
+    {
+      "detail": "exactly two generated-section records appended",
+      "id": "generated_sections_delta",
+      "pass": true
+    },
+    {
+      "detail": "every pre-v14 source hash unchanged",
+      "id": "old_source_hashes_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "every pre-v14 source path unchanged",
+      "id": "old_source_paths_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "every pre-v14 scientific boundary unchanged",
+      "id": "old_scientific_scope_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pending functional and other scientific work retained",
+      "id": "pending_preserved",
+      "pass": true
+    },
+    {
+      "detail": "v13 paper, audit and A7 snapshot hashes verified",
+      "id": "snapshot_integrity",
+      "pass": true
+    },
+    {
+      "detail": "manuscript remains non-submittable",
+      "id": "non_submittable_retained",
+      "pass": true
+    },
+    {
+      "detail": "no model, function, generation, gate, SOTA or expensive-training authorization",
+      "id": "authorization_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "10-test evidence is present in finalization",
+      "id": "unit_tests_finalized",
+      "pass": true
+    }
+  ],
+  "checks_passed": 30,
+  "checks_total": 30,
+  "paper_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23",
+  "schema": "a8-rk09-minimal-paper-verification-v14",
+  "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE"
+}

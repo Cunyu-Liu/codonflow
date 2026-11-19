@@ -3,6 +3,10 @@
   "base_v10_audit_sha256": "e29aa17c511b275ce3997750ace4271980d80a1d1d93854ea54aed4aec4993c3",
   "base_v11_audit_sha256": "216b9a0215ff22b8c364b3d4ec7d3428b69cebe2f26ee6706200d9acd538a413",
   "base_v11_declared_output_sha256": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05",
+  "base_v12_audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
+  "base_v12_paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
+  "base_v13_audit_sha256": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef",
+  "base_v13_paper_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d",
   "generated_sections": [
     "3.1",
     "3.2 RK04 addition",
@@ -14,10 +18,12 @@
     "6.9 RK08 occupancy-derived velocity proxy OOD",
     "8.1 RK08 velocity evidence anchors",
     "6.8 RK08 retrospective HistGB fairness diagnostic",
-    "8.1 RK08 HistGB evidence anchors"
+    "8.1 RK08 HistGB evidence anchors",
+    "6.11 RK09 minimal CodonFlow-RK mathematical kernel",
+    "8.1 RK09 mathematical-kernel evidence anchors"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d",
+  "output_sha256": "963e0d7dbc9b891a127bbe61c0d25fa68276bfe7c63e6d41ccd37845b8c36c23",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -33,6 +39,22 @@
     "wet-lab validation",
     "physical velocity assays, functional velocity transfer and homology-cluster velocity OOD"
   ],
+  "pre_histgb_snapshot": {
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A7_pre_histgb.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/a8_rk_paper_sync_audit_pre_histgb.json",
+    "audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A8_pre_histgb.md",
+    "paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e"
+  },
+  "pre_rk09_snapshot": {
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/a8_rk_paper_sync_audit_v13.json",
+    "audit_sha256": "4b562b630bb0344a0b862fcdb03894f96ac4c533bf2aaa1cc1d5a259f0d911ef",
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk09/minimal_codonflow_kernel_v1/paper_v14/pre_rk09_snapshot/CodonFlow_preprint_A8_v13.md",
+    "paper_sha256": "cd2c74ef1b093bb0ce5d3bfce5d0bb26939367c6d0fa5269361096c7f5aa8f0d"
+  },
   "pre_velocity_snapshot": {
     "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/paper_v12/pre_velocity_snapshot/a8_rk_paper_sync_audit_pre_velocity_snapshot.json",
     "audit_sha256": "256b3981218c07c48cf0adf8243078c31fff5e6321ef2185d6887e1f3ab1b298",
@@ -41,7 +63,7 @@
     "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/paper_v12/pre_velocity_snapshot/CodonFlow_preprint_A8_pre_velocity.md",
     "paper_sha256": "36e59a069cf978d21c3231a34d26c729e6637f00c4a326cd5e3c79c0d369cac8"
   },
-  "schema_version": "a8-rk-paper-sync-v13",
+  "schema_version": "a8-rk-paper-sync-v14",
   "scientific_scope": {
     "cdgb": "bounded source-identity audit only; unresolved candidate identity; no official repository, execution, sequence, or performance result",
     "codontransformer": "official README example and single-C01 deterministic bounded smoke only; default and match_protein outputs retained; no matched comparison or ranking",
@@ -52,14 +74,15 @@
     "ribomimo_full_mohammad16": "Complete official 1x10-fold/max100/early-stop5 random-gene CV on all 1,179 eligible Mohammad16 genes, executed twice with bitwise-identical checkpoints and independently recomputed predictions; other three datasets, OOD, publication-metric reproduction, main matrix and SOTA open",
     "ribomimo_official": "Bounded 20-gene two-fold two-epoch official training retained as a diagnostic; full Mohammad16 is reported separately; other datasets, OOD, main matrix and SOTA open",
     "rk07": "bounded cross-protein diagnostic only",
+    "rk08_histgb": "Retrospective paired fairness diagnostic on frozen predictions: HistGB had better sequence-OOD point estimates but both intervals crossed zero; no mechanism superiority, resolved HistGB win, new preregistered gate or generator authorization.",
     "rk08_velocity": "Reproducible negative occupancy-derived velocity-proxy experiment: within-study gains did not transfer to the preregistered Subtelny14 primary endpoint; ridge was superior on both primary criteria; no RK-G1, functional transfer, physical velocity, homology OOD or generator claim",
+    "rk09_minimal_kernel": "Exact small-state legal-simplex, feasible-kernel, rejection/random-walk, path-telescoping and event-time verification only; no trained model, functional/generation performance, RK-G1 closure, SOTA or expensive-generation authorization.",
     "rnarl_code": "negative public-snapshot reproducibility only",
     "rnarl_data": "bounded publisher-provided LinearDesign-like pair table only",
     "rose_official": "complete author-processed Pop14/Battle15 released-test arrays, one released checkpoint per study and one full forward; binary stalling classification only; training, 64-checkpoint ensemble, continuous velocity regression, raw-read/P-site remapping, OOD, matched-cost ranking and SOTA open",
     "sota": false,
     "submittable": false,
-    "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open",
-    "rk08_histgb": "Retrospective paired fairness diagnostic on frozen predictions: HistGB had better sequence-OOD point estimates but both intervals crossed zero; no mechanism superiority, resolved HistGB win, new preregistered gate or generator authorization."
+    "veloharmo": "processed E. coli matrix/loader plus bounded official VeloGRU test and seven-item-patched CPU GA smoke; best equals start; five-species data, full budgets, main matrix, OOD and SOTA open"
   },
   "source_paths": {
     "cdgb_audit": "/home/codonflow-a8-rk/audits/20261118/RK05/cdgb_source_audit.json",
@@ -102,12 +125,21 @@
     "rk04_verify": "/home/codonflow-a8-rk/audits/20261118/RK04/independent_split_verification.json",
     "rk07": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/final/final_results.json",
     "rk07_verify": "/home/codonflow-a8-rk/audits/20261118/RK07/final_independent_verification.json",
+    "rk08_histgb_finalization": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_finalization_v1.json",
+    "rk08_histgb_independent": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_verification_v1.json",
+    "rk08_histgb_summary": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_summary_v1.json",
     "rk08_velocity_data": "/home/codonflow-a8-rk/audits/20261118/RK08/velocity_data_v1.json",
     "rk08_velocity_finalization": "/home/codonflow-a8-rk/audits/20261118/RK08/velocity_finalization_v1.json",
     "rk08_velocity_independent": "/home/codonflow-a8-rk/audits/20261118/RK08/velocity_verification_v1.json",
     "rk08_velocity_production": "/home/codonflow-a8-rk/audits/20261118/RK08/velocity_run_summary_v1.json",
     "rk08_velocity_protocol": "/home/codonflow-a8-rk/configs/a8_rk08_velocity_v1.json",
     "rk08_velocity_retrain": "/home/codonflow-a8-rk/audits/20261118/RK08/velocity_retrain_summary_v1.json",
+    "rk09_finalization": "audits/20261118/RK09/minimal_codonflow_finalization_v1.json",
+    "rk09_independent": "audits/20261118/RK09/minimal_codonflow_independent_v1.json",
+    "rk09_initial_independent_failure": "audits/20261118/RK09/minimal_codonflow_independent_v1_initial_failure.json",
+    "rk09_initial_production_failure": "audits/20261118/RK09/minimal_codonflow_kernel_v1_initial_failure.json",
+    "rk09_production": "audits/20261118/RK09/minimal_codonflow_kernel_v1.json",
+    "rk09_protocol": "configs/a8_rk09_minimal_protocol_v1.json",
     "rnarl_final": "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_finalization_recovery_v4.json",
     "rnarl_qc": "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_qc.json",
     "rnarl_qc_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/rnarl_independent_verification_v2.json",
@@ -126,10 +158,7 @@
     "velo_official_final": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_finalization_v1.json",
     "velo_official_verify": "/home/codonflow-a8-rk/audits/20261118/RK05/veloharmo_independent_verification_v1.json",
     "velo_qc": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_qc.json",
-    "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json",
-    "rk08_histgb_summary": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_summary_v1.json",
-    "rk08_histgb_independent": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_verification_v1.json",
-    "rk08_histgb_finalization": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_histgb_diagnostic_finalization_v1.json"
+    "velo_verify": "/home/codonflow-a8-rk/audits/20261118/RK03/veloharmo_ecoli_independent_verification.json"
   },
   "source_sha256": {
     "cdgb_audit": "dd8f0a8840bbf655d2731a60b7c5e7fb296665a29f4e7eb229edbc43e1e3f691",
@@ -172,12 +201,21 @@
     "rk04_verify": "18e53b5a256f188962391b1c99f033cd2bc4c9489a750ddd2ea7b2cb288d9956",
     "rk07": "2ba7b1dc084172e891c8d5775790b7c94ddbca8788d8a88bbb0876f6fd289838",
     "rk07_verify": "1dab1cf3405a7158bcc0a2d395dbb2882395b7a252ba671c49197b9158cfa815",
+    "rk08_histgb_finalization": "3a48f0571dfae2f4c7edbbf955cdc1ff9e3d061bac3b6747269e9c28817e68b9",
+    "rk08_histgb_independent": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce",
+    "rk08_histgb_summary": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a",
     "rk08_velocity_data": "61ced22f2f077fa4e89b25c5b48ddf4730630e9f1bd01a58b22463879f1d89d9",
     "rk08_velocity_finalization": "ac8b87ae2bf56c2deba7ac7078d62c737df469228189cf931e25b6db3ce87062",
     "rk08_velocity_independent": "a1e2e5ea78f3fe9d5bbaf3081dd0957045491388dbcf033ea7673f06bc361340",
     "rk08_velocity_production": "235201ea570fb5fccaf99c51259247a0e4428e4e9ea11a09946a0b491f3f9ddc",
     "rk08_velocity_protocol": "cd5dc89ef5865e11cc11e7378a0d016e8dd0e791015355e3af556850a271298e",
     "rk08_velocity_retrain": "cc0559be2a84d1556c24a389cd56d7321f4fa7ee4acc653af0eefdfba1161495",
+    "rk09_finalization": "a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0",
+    "rk09_independent": "0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960",
+    "rk09_initial_independent_failure": "d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df",
+    "rk09_initial_production_failure": "6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede",
+    "rk09_production": "dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd",
+    "rk09_protocol": "4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822",
     "rnarl_final": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767",
     "rnarl_qc": "f86d75268be2a9321260c8e4d6e1be859f0eeb3b54c63d187e07de80aa0b8ede",
     "rnarl_qc_verify": "a4064edc98a29379d7412b7e5aa73dba038efc722f6b831e3342948db8ca881c",
@@ -196,22 +234,9 @@
     "velo_official_final": "c056cc6207a15d74403926c676010a0fae50d7f7a215cb0ab19ce1fd40e609c5",
     "velo_official_verify": "ca18a827ceab5b36fc76904e2b64c98e545cc0e699024bbe0fdae2ddc192c873",
     "velo_qc": "0cebea3aa272e72625356a23096cb5888e0311bf8290d688672f61d36660d2fb",
-    "velo_verify": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a",
-    "rk08_histgb_summary": "0b321d71dfa4ff183b0d013531b5bfdbe168cf39d4e847b21f504d3ac6ee401a",
-    "rk08_histgb_independent": "c20899713fb4dba7865dca481bda2d8b58356eb6d411b65d5ee7705a541884ce",
-    "rk08_histgb_finalization": "3a48f0571dfae2f4c7edbbf955cdc1ff9e3d061bac3b6747269e9c28817e68b9"
+    "velo_verify": "d3bf3b05fabc58ceb745e803e64baa464c4eaafae808defa64010f07e20b528a"
   },
   "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE",
   "template": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A7.md",
-  "template_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
-  "base_v12_paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
-  "base_v12_audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
-  "pre_histgb_snapshot": {
-    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A8_pre_histgb.md",
-    "paper_sha256": "c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e",
-    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/a8_rk_paper_sync_audit_pre_histgb.json",
-    "audit_sha256": "aef0e9e84a91234f8eb9d5004985021ef1916a05ae1e85934122aee970d624d9",
-    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_histgb_diagnostic_v1/paper_v13/pre_histgb_snapshot/CodonFlow_preprint_A7_pre_histgb.md",
-    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
-  }
+  "template_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
 }

@@ -284,6 +284,14 @@ Two complete training runs produced bitwise-identical checkpoints and prediction
 
 [Pending. Retrospective held-out measurements first; prospective design–build–test–learn results only when actually completed.]
 
+### 6.11 Minimal CodonFlow-RK mathematical kernel: exact small-state verification
+
+Before any model training, we froze and tested the legal codon simplex and conditional kernels. A state has 64 slots per position, index 63 is the terminal stop, and internal positions may use only the 61 sense-codon indices. A feasible transition is either a no-op or one internal sense-codon replacement. The base conditional is uniform over its feasible support; preference and remaining-budget terms only reweight or mask that support. On the frozen length-four example, exhaustive enumeration produced **226,981 valid states**, **181 one-step targets**, and **10,981 states reachable within two transitions**. Exhaustive rejection recovers the exactly uniform feasible-set distribution, whereas the naive two-step random walk has total-variation distance **0.324196450320** from that uniform endpoint reference.
+
+For the length-three path example, all **14,641 paths** and **3,721 endpoints** were enumerated. Including the target endpoint mass in the backward path law makes the forward/backward log-probability ratio telescope to `log U(end) - log q_T(end)`. Maximum backward-normalization, path-telescoping and endpoint-reconstruction errors were **2.665e-15**, **8.882e-16**, and **5.963e-19**, respectively. The event-time transform `t = 1 - u^(1/kappa)` was checked against its inverse CDF; its analytic mean is `1/(kappa+1)`, not `kappa/(kappa+1)`. Production checks passed **22/22**, an independent implementation that did not import the production module passed **16/16**, finalization passed **14/14**, and **10 unit tests** passed. The initial 19/22 production failure (missing endpoint mass and reversed event-mean formula) and the independent 15/16 mask failure are retained with the corrected reports.
+
+This is a **mathematical-kernel verification only**. It is not trained CodonFlow-RK, functional or generation performance, a mechanistic increment, RK-G1 closure, SOTA, or authorization for expensive generation training.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -375,6 +383,12 @@ The working-manuscript values above were rendered from the following frozen arti
 | rk08_velocity_retrain | `cc0559be2a84d1556c24a389cd56d7321f4fa7ee4acc653af0eefdfba1161495` |
 | rk08_velocity_independent | `a1e2e5ea78f3fe9d5bbaf3081dd0957045491388dbcf033ea7673f06bc361340` |
 | rk08_velocity_finalization | `ac8b87ae2bf56c2deba7ac7078d62c737df469228189cf931e25b6db3ce87062` |
+| RK09 minimal-kernel protocol | `4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822` |
+| RK09 minimal-kernel production | `dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd` |
+| RK09 minimal-kernel independent verifier | `0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960` |
+| RK09 minimal-kernel finalization | `a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0` |
+| RK09 retained initial production failure | `6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede` |
+| RK09 retained initial independent failure | `d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
