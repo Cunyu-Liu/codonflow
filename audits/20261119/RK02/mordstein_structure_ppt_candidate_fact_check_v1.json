@@ -1,0 +1,108 @@
+{
+  "schema": "a8.rk02.structure_ppt_candidate_fact_check.v1",
+  "status": "PASS",
+  "checks_passed": 19,
+  "checks_total": 19,
+  "candidate_sha256": "6efcea0f653a1f88eb9ad17c4db58b52e4db2c7b0129563b31d2de73a13bb19b",
+  "production_sha256": "eead79375e43f11b22c968a31d41010f8509f03289b8c5c833ecb571bcb4acc3",
+  "independent_sha256": "5d3868ba037877b5952376c7a4db85fa33df5ed3014abc141b728acc50296170",
+  "finalization_sha256": "c8fca9ae49706dfa7ef1d026cefde922ef461eb1fcfb5a7dab742b370637a1fc",
+  "paper_verification_sha256": "7383f3f93e7708e468bc880c7c858c54a79ab6ba7a7dec2387241c379b2c53db",
+  "checks": [
+    {
+      "name": "simple_spearman",
+      "pass": true,
+      "detail": "+0.413234"
+    },
+    {
+      "name": "simple_rmse_mse",
+      "pass": true,
+      "detail": "RMSE 1.383987; MSE 1.915421"
+    },
+    {
+      "name": "simple_plus_structure_spearman",
+      "pass": true,
+      "detail": "+0.408983"
+    },
+    {
+      "name": "simple_plus_structure_rmse_mse",
+      "pass": true,
+      "detail": "RMSE 1.382025; MSE 1.909992"
+    },
+    {
+      "name": "delta_spearman_estimate",
+      "pass": true,
+      "detail": "−0.004251"
+    },
+    {
+      "name": "delta_spearman_ci",
+      "pass": true,
+      "detail": "[−0.055205, +0.046336]"
+    },
+    {
+      "name": "delta_spearman_holm",
+      "pass": true,
+      "detail": "Holm p=1.0; direction_pass=false"
+    },
+    {
+      "name": "delta_spearman_resamples",
+      "pass": true,
+      "detail": "20,000 + 20,000"
+    },
+    {
+      "name": "delta_mse_estimate",
+      "pass": true,
+      "detail": "−0.005429"
+    },
+    {
+      "name": "delta_mse_ci",
+      "pass": true,
+      "detail": "[−0.089604, +0.076766]"
+    },
+    {
+      "name": "delta_mse_holm",
+      "pass": true,
+      "detail": "Holm p=1.0; direction_pass=false"
+    },
+    {
+      "name": "delta_mse_resamples",
+      "pass": true,
+      "detail": "20,000 + 20,000"
+    },
+    {
+      "name": "independent_status",
+      "pass": true,
+      "detail": "12/12 PASS"
+    },
+    {
+      "name": "finalization_status",
+      "pass": true,
+      "detail": "21/21 PASS"
+    },
+    {
+      "name": "paper_status",
+      "pass": true,
+      "detail": "38/38 PASS"
+    },
+    {
+      "name": "scientific_no_go",
+      "pass": true,
+      "detail": "development no-go"
+    },
+    {
+      "name": "no_overclaim",
+      "pass": true,
+      "detail": "scope and limitations present"
+    },
+    {
+      "name": "independent_feature_delta",
+      "pass": true,
+      "detail": 2.7755575615628914e-16
+    },
+    {
+      "name": "independent_prediction_delta",
+      "pass": true,
+      "detail": 1.0658141036401503e-14
+    }
+  ]
+}
