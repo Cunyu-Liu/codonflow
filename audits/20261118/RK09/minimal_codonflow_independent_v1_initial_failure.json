@@ -1,0 +1,103 @@
+{
+  "all_pass": false,
+  "checks": [
+    {
+      "detail": "protocol hash and ID independently matched",
+      "id": "protocol_identity",
+      "pass": true
+    },
+    {
+      "detail": "implementation SHA256 independently matched",
+      "id": "implementation_identity",
+      "pass": true
+    },
+    {
+      "detail": "22/22 production checks are present and true",
+      "id": "production_check_accounting",
+      "pass": true
+    },
+    {
+      "detail": "independent states=226981",
+      "id": "state_space",
+      "pass": true
+    },
+    {
+      "detail": "one-step=181 two-step=10981",
+      "id": "feasible_and_rejection_support",
+      "pass": true
+    },
+    {
+      "detail": "every accepted proposal is valid; conditional probability is exactly 1/10981",
+      "id": "exhaustive_rejection_reference",
+      "pass": true
+    },
+    {
+      "detail": "independent TV=0.324196450320003",
+      "id": "naive_random_walk_total_variation",
+      "pass": true
+    },
+    {
+      "detail": "paths=14641 endpoints=3721",
+      "id": "path_count_and_support",
+      "pass": true
+    },
+    {
+      "detail": "independent max error=8.882e-16",
+      "id": "independent_path_telescope",
+      "pass": true
+    },
+    {
+      "detail": "independent max endpoint error=5.963e-19",
+      "id": "independent_endpoint_recovery",
+      "pass": true
+    },
+    {
+      "detail": "independent ratio error=1.388e-16",
+      "id": "preference_ratio_reference",
+      "pass": true
+    },
+    {
+      "detail": "retained=103 excluded=78",
+      "id": "remaining_budget_reference",
+      "pass": true
+    },
+    {
+      "detail": "independent internal mask removes the dominant stop logit",
+      "id": "forward_stop_mask_reference",
+      "pass": false
+    },
+    {
+      "detail": "independent max error=1.110e-16",
+      "id": "event_time_inverse_cdf",
+      "pass": true
+    },
+    {
+      "detail": "mean=0.249865008075; integral expectation=1/(kappa+1)=0.250000000000",
+      "id": "event_time_mean_reference",
+      "pass": true
+    },
+    {
+      "detail": "no training, functional, generation, gate or SOTA claim",
+      "id": "bounded_claims",
+      "pass": true
+    }
+  ],
+  "checks_passed": 15,
+  "checks_total": 16,
+  "implementation_sha256": "c3525331748e3cac23127cac2ccdbe362eaeb2b504c9d36becc740fddea74171",
+  "independent_metrics": {
+    "endpoint_count": 3721,
+    "event_time_expected_mean": 0.25,
+    "event_time_monte_carlo_mean": 0.24986500807516873,
+    "max_endpoint_recovery_error": 5.963111948670274e-19,
+    "max_path_telescope_error": 8.881784197001252e-16,
+    "naive_two_step_total_variation": 0.32419645032000277,
+    "path_count": 14641
+  },
+  "production_report_all_pass": true,
+  "production_sha256": "75fae0559a1571a77f985c8c52b6129851fda4c2ecd13aa976228b6ea13ec9db",
+  "protocol_id": "a8_rk09_minimal_codonflow_kernel_v1",
+  "protocol_sha256": "4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822",
+  "schema": "a8-rk09-minimal-codonflow-independent-v1",
+  "scope": "Independent mathematical recomputation only; no trained model, functional result, generation result, RK-G1 decision or SOTA claim."
+}

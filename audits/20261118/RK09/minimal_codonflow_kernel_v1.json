@@ -1,0 +1,228 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "detail": "states=226981",
+      "id": "valid_state_enumeration",
+      "pass": true
+    },
+    {
+      "detail": "internal stop count=0",
+      "id": "internal_stop_forbidden",
+      "pass": true
+    },
+    {
+      "detail": "targets=181 expected=181",
+      "id": "feasible_target_count",
+      "pass": true
+    },
+    {
+      "detail": "no-op or one internal sense edit only",
+      "id": "feasible_target_legality",
+      "pass": true
+    },
+    {
+      "detail": "support=181 mass_error=2.220e-15",
+      "id": "base_simplex",
+      "pass": true
+    },
+    {
+      "detail": "every feasible target has equal probability",
+      "id": "base_uniform",
+      "pass": true
+    },
+    {
+      "detail": "stop logit is removed even when it is maximal",
+      "id": "forward_mask_internal",
+      "pass": true
+    },
+    {
+      "detail": "terminal stop probability=1",
+      "id": "forward_mask_terminal",
+      "pass": true
+    },
+    {
+      "detail": "max_log_ratio_error=2.567e-16",
+      "id": "preference_residual_ratio",
+      "pass": true
+    },
+    {
+      "detail": "retained=103 excluded=78",
+      "id": "remaining_budget_mask",
+      "pass": true
+    },
+    {
+      "detail": "mass_error=2.220e-16",
+      "id": "remaining_budget_simplex",
+      "pass": true
+    },
+    {
+      "detail": "accepted=10981 reachable=10981",
+      "id": "exhaustive_rejection_support",
+      "pass": true
+    },
+    {
+      "detail": "exact_probability=1/10981",
+      "id": "exhaustive_rejection_exact_uniform",
+      "pass": true
+    },
+    {
+      "detail": "two_step_total_variation=0.324196450320",
+      "id": "naive_random_walk_bias_detected",
+      "pass": true
+    },
+    {
+      "detail": "endpoints=3721 paths=14641",
+      "id": "path_support_complete",
+      "pass": true
+    },
+    {
+      "detail": "max_error=2.665e-15",
+      "id": "backward_conditional_simplex",
+      "pass": true
+    },
+    {
+      "detail": "max_error=8.882e-16",
+      "id": "path_logprob_telescope",
+      "pass": true
+    },
+    {
+      "detail": "max_endpoint_error=5.963e-19",
+      "id": "path_endpoint_reconstruction",
+      "pass": true
+    },
+    {
+      "detail": "max_transform_or_cdf_error=1.110e-16",
+      "id": "uniform_event_time_transform",
+      "pass": true
+    },
+    {
+      "detail": "conditional ordered times are Uniform order statistics; joint density=kappa! on the ordered simplex",
+      "id": "ordered_uniform_event_times",
+      "pass": true
+    },
+    {
+      "detail": "mean=0.249865008 expected=0.250000000",
+      "id": "event_time_monte_carlo",
+      "pass": true
+    },
+    {
+      "detail": "no training, functional performance, generation quality, gate change, SOTA or expensive-generation authorization",
+      "id": "bounded_scope",
+      "pass": true
+    }
+  ],
+  "checks_passed": 22,
+  "checks_total": 22,
+  "counts": {
+    "budget_excluded": 78,
+    "budget_retained": 103,
+    "kernel_valid_states": 226981,
+    "one_step_targets": 181,
+    "two_step_paths_for_naive_baseline": 32761,
+    "two_step_reachable_states": 10981
+  },
+  "definitions": {
+    "event_time": "t=1-u**(1/kappa), u~Uniform(0,1)",
+    "path_weight": "log backward path probability - log forward path probability",
+    "preference": "exp(beta*(f(y)-f(x))) over the feasible conditional",
+    "state": "L x 64; index 63 is stop; only the final position may be stop",
+    "transition": "no-op or one internal sense-codon replacement"
+  },
+  "implementation_sha256": "c3525331748e3cac23127cac2ccdbe362eaeb2b504c9d36becc740fddea74171",
+  "interpretation": "PASS certifies only the frozen mathematical kernel and exact small-state implementation. It is not model training, functional performance, generation quality, RK-G1 closure or SOTA evidence.",
+  "metrics": {
+    "event_time_expected_mean": 0.25,
+    "event_time_max_transform_or_cdf_error": 1.1102230246251565e-16,
+    "event_time_monte_carlo_mean": 0.24986500807516712,
+    "event_time_rows": [
+      {
+        "cdf": 0.9,
+        "density": 1.0,
+        "kappa": 1,
+        "t": 0.9,
+        "u": 0.1
+      },
+      {
+        "cdf": 0.5,
+        "density": 1.0,
+        "kappa": 1,
+        "t": 0.5,
+        "u": 0.5
+      },
+      {
+        "cdf": 0.09999999999999998,
+        "density": 1.0,
+        "kappa": 1,
+        "t": 0.09999999999999998,
+        "u": 0.9
+      },
+      {
+        "cdf": 0.8999999999999999,
+        "density": 0.632455532033676,
+        "kappa": 2,
+        "t": 0.683772233983162,
+        "u": 0.1
+      },
+      {
+        "cdf": 0.4999999999999999,
+        "density": 1.4142135623730951,
+        "kappa": 2,
+        "t": 0.2928932188134524,
+        "u": 0.5
+      },
+      {
+        "cdf": 0.10000000000000009,
+        "density": 1.8973665961010275,
+        "kappa": 2,
+        "t": 0.05131670194948623,
+        "u": 0.9
+      },
+      {
+        "cdf": 0.9,
+        "density": 0.7924465962305567,
+        "kappa": 5,
+        "t": 0.36904265551980675,
+        "u": 0.1
+      },
+      {
+        "cdf": 0.5,
+        "density": 2.871745887492587,
+        "kappa": 5,
+        "t": 0.12944943670387588,
+        "u": 0.5
+      },
+      {
+        "cdf": 0.09999999999999998,
+        "density": 4.595830594200608,
+        "kappa": 5,
+        "t": 0.0208516376390232,
+        "u": 0.9
+      }
+    ],
+    "naive_two_step_total_variation_vs_uniform": 0.3241964503200416,
+    "preference_max_log_ratio_error": 2.5673907444456745e-16,
+    "telescope": {
+      "endpoint_count": 3721,
+      "max_backward_normalization_error": 2.6645352591003757e-15,
+      "max_endpoint_reconstruction_error": 5.963111948670274e-19,
+      "max_telescope_error": 8.881784197001252e-16,
+      "pass": true,
+      "path_count": 14641,
+      "recovered_total_mass_error": 5.972999872483342e-14,
+      "tolerance": 1e-12
+    }
+  },
+  "prohibited_claims": {
+    "expensive_generation_authorized": false,
+    "functional_performance_evaluated": false,
+    "generation_quality_evaluated": false,
+    "model_training_executed": false,
+    "rk_g1_gate_modified": false,
+    "sota_claimed": false
+  },
+  "protocol_id": "a8_rk09_minimal_codonflow_kernel_v1",
+  "protocol_sha256": "4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822",
+  "schema": "a8-rk09-minimal-codonflow-kernel-v1",
+  "scope": "mathematical_kernel_and_small_state_exact_verification_only"
+}

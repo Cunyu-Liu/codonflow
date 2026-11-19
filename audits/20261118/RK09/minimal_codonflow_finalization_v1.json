@@ -1,0 +1,94 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "detail": "one frozen protocol across production and independent reports",
+      "id": "protocol_hash",
+      "pass": true
+    },
+    {
+      "detail": "one implementation across production and independent reports",
+      "id": "implementation_hash",
+      "pass": true
+    },
+    {
+      "detail": "22/22 production checks",
+      "id": "production_complete",
+      "pass": true
+    },
+    {
+      "detail": "16/16 independent checks",
+      "id": "independent_complete",
+      "pass": true
+    },
+    {
+      "detail": "independent verifier read the final production report",
+      "id": "production_identity",
+      "pass": true
+    },
+    {
+      "detail": "two-step TV agrees",
+      "id": "naive_bias_reproduced",
+      "pass": true
+    },
+    {
+      "detail": "14,641 paths independently enumerated",
+      "id": "all_paths_reproduced",
+      "pass": true
+    },
+    {
+      "detail": "path telescoping within 1e-12",
+      "id": "telescope_exact",
+      "pass": true
+    },
+    {
+      "detail": "endpoint reconstruction within 1e-12",
+      "id": "endpoint_exact",
+      "pass": true
+    },
+    {
+      "detail": "initial 19/22 report and three failed checks retained",
+      "id": "initial_production_failure_retained",
+      "pass": true
+    },
+    {
+      "detail": "initial independent 15/16 mask failure retained",
+      "id": "initial_independent_failure_retained",
+      "pass": true
+    },
+    {
+      "detail": "10 unittest tests passed",
+      "id": "unit_tests",
+      "pass": true
+    },
+    {
+      "detail": "no training, functional, generation, RK-G1 or SOTA authorization",
+      "id": "scope_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "both failed histories and both corrected final reports coexist",
+      "id": "negative_history_preserved",
+      "pass": true
+    }
+  ],
+  "checks_passed": 14,
+  "checks_total": 14,
+  "evidence_sha256": {
+    "implementation": "c3525331748e3cac23127cac2ccdbe362eaeb2b504c9d36becc740fddea74171",
+    "independent": "0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960",
+    "initial_independent_failure": "d988a3ee7bd773d0eb1d8e653a07633a561e6ee8d9659e188556eee6e3b0a5df",
+    "initial_production_failure": "6cd9e801b792f91694cf34125b29d865c747f1f5682669c6037a0533f784fede",
+    "production": "dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd",
+    "protocol": "4b59194ad55699274a123cd662e6c4eb1d3b583068e0c7b027aabd27b5e15822",
+    "unit_console": "40325d71d1f2dc0d53db786c333c64d3b0984aa688adbfb8dc4ccde4cb0617dc"
+  },
+  "expensive_generation_authorized": false,
+  "functional_or_generation_performance_evaluated": false,
+  "model_training_executed": false,
+  "protocol_id": "a8_rk09_minimal_codonflow_kernel_v1",
+  "rk_g1_gate_modified": false,
+  "schema": "a8-rk09-minimal-codonflow-finalization-v1",
+  "scientific_status": "mathematical_kernel_verified_only",
+  "sota_claimed": false
+}

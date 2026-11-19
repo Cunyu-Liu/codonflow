@@ -1,0 +1,54 @@
+{
+  "protocol_id": "a8_rk09_minimal_codonflow_kernel_v1",
+  "frozen_before_execution": true,
+  "scope": "mathematical_kernel_and_small_state_exact_verification_only",
+  "state": {
+    "codon_slots": 64,
+    "stop_index": 63,
+    "internal_sense_indices": [0, 60],
+    "terminal_stop_required": true,
+    "internal_stop_allowed": false,
+    "kernel_length_including_stop": 4,
+    "path_length_including_stop": 3,
+    "path_steps": 2,
+    "path_start": [0, 0, 63],
+    "kernel_start": [0, 0, 0, 63]
+  },
+  "transition": {
+    "feasible_moves": "no-op or exactly one internal sense-codon replacement",
+    "terminal_position_editable": false,
+    "base_endpoint": "uniform over feasible targets",
+    "preference_form": "exp(beta * (f(y) - f(x)))",
+    "preference_beta": 0.75,
+    "remaining_budget": 0.5,
+    "budget_rule": "f(y) <= f(x) + remaining_budget"
+  },
+  "enumeration": {
+    "rejection_rule": "uniform valid-state proposal; accept iff Hamming distance from kernel start <= 2",
+    "rejection_comparison": "exhaustively enumerate every proposal and normalize the accepted set exactly",
+    "naive_random_walk_steps": 2,
+    "naive_bias_reference": "uniform distribution over every state reachable within two feasible transitions",
+    "telescope_target": "uniform over all valid length-3 states reachable after two transitions",
+    "absolute_tolerance": 1e-12
+  },
+  "event_time": {
+    "kappas": [1, 2, 5],
+    "u_grid": [0.1, 0.5, 0.9],
+    "transform": "t = 1 - u ** (1 / kappa)",
+    "cdf": "F(t) = 1 - (1 - t) ** kappa",
+    "density": "kappa * (1 - t) ** (kappa - 1)",
+    "ordered_times_given_kappa": "order statistics of iid Uniform(0,1), with constant joint density kappa! on the ordered simplex",
+    "monte_carlo_kappa": 3,
+    "monte_carlo_draws": 20000,
+    "monte_carlo_seed": 20261119,
+    "monte_carlo_mean_tolerance": 0.02
+  },
+  "prohibited_claims": {
+    "model_training_executed": false,
+    "functional_performance_evaluated": false,
+    "generation_quality_evaluated": false,
+    "rk_g1_gate_modified": false,
+    "sota_claimed": false,
+    "expensive_generation_authorized": false
+  }
+}
