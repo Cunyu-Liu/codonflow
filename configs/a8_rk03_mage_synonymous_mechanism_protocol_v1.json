@@ -1,0 +1,97 @@
+{
+  "schema": "a8-rk03-mage-synonymous-mechanism-protocol-v1",
+  "protocol_id": "a8_rk03_mage_synonymous_mechanism_v1_frozen_before_model_fitting",
+  "frozen_before_model_fitting": true,
+  "source": {
+    "paper": "RNA Structural Determinants of Optimal Codons Revealed by MAGE-Seq",
+    "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5234859/",
+    "csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/kelsic_2016_mage_seq/single_codon_fitness.csv",
+    "csv_sha256": "83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8",
+    "codon_module": "/home/codonflow-a8-rk/src/codonflow/core/codon.py",
+    "codon_module_sha256": "eb2e6059c30a98d1a8b6f98cecbe04bec1bb426e9f2d850e821c527a802403e7"
+  },
+  "eligibility": {
+    "record_class": "single_codon_variant",
+    "primary_expression_type": "relative_fitness_rich",
+    "secondary_expression_type": "relative_fitness_minimal",
+    "primary_position_min": 10,
+    "primary_position_max": 71,
+    "secondary_n_terminal_positions": [2, 9],
+    "require_wt_not_equal_mutant": true,
+    "require_same_translated_amino_acid": true,
+    "exclude_stop_codons_and_stop_amino_acid": true,
+    "require_finite_expression_and_expression_stdev": true,
+    "require_finite_variant_and_wild_type_features": ["RCS", "mfe_ddG_43nt_sliding"],
+    "require_same_construct_in_both_media": true,
+    "exclusions_are_label_independent_except_finite_outcome": true
+  },
+  "split": {
+    "unit": "construct_id_shared_across_media",
+    "seed": "20261119",
+    "ordering": "sort_by_construct_id_then_order_by_sha256_seed_colon_construct_id",
+    "train_fraction": 0.6,
+    "dev_fraction": 0.2,
+    "test_fraction": 0.2,
+    "rounding": "round_half_to_even_for_dev_and_test_then_train_remainder",
+    "expected_primary_counts": {"train": 98, "dev": 33, "test": 33},
+    "test_is_untouched_until_dev_authorization": true
+  },
+  "features": {
+    "categorical_baseline": ["position", "wt_codon", "mutant_codon", "amino_acid"],
+    "numeric_baseline": ["position_scaled", "wt_gc_fraction", "mutant_gc_fraction", "delta_gc_fraction", "wt_gc3", "mutant_gc3", "nt_changes", "is_transition"],
+    "local_mfe_additions": ["mfe_ddG_43nt_sliding", "delta_mfe_vs_wt", "abs_delta_mfe_vs_wt", "mfe_x_position_scaled"],
+    "rcs_additions": ["RCS", "delta_rcs_vs_wt", "abs_delta_rcs_vs_wt", "rcs_x_position_scaled"],
+    "feature_sets": {
+      "intrinsic": "categorical_baseline + numeric_baseline",
+      "local_mfe": "intrinsic + local_mfe_additions",
+      "rcs_only": "intrinsic + rcs_additions",
+      "full_mechanism": "intrinsic + local_mfe_additions + rcs_additions"
+    },
+    "wt_feature_source": "rich-media wild_type_control at the same position; equality with minimal-media WT features required",
+    "unknown_categoricals": "ignore",
+    "numeric_scaling": "train-only StandardScaler with_mean=false"
+  },
+  "model": {
+    "family": "ridge",
+    "alpha_grid": [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0],
+    "solver": "lsqr",
+    "tolerance": 1e-12,
+    "max_iter": 100000,
+    "fit_intercept": true,
+    "selection": "minimum dev RMSE within each feature set; ties resolved by larger alpha then lexicographic alpha string",
+    "final_fit_before_test_or_transport": "refit each selected-alpha model on train+dev; test remains untouched until after dev authorization",
+    "reference_baseline": "the lower-dev-RMSE of intrinsic and local_mfe",
+    "dev_test_authorization": "full_mechanism dev RMSE must be strictly below both intrinsic and local_mfe dev RMSE",
+    "if_not_authorized": "DEV_NO_GO_TEST_UNTOUCHED; no test predictions or test metrics are produced"
+  },
+  "primary_evaluation_if_authorized": {
+    "medium": "relative_fitness_rich",
+    "positions": [10, 71],
+    "comparison": "full_mechanism minus reference_baseline selected on dev",
+    "metrics": ["Spearman delta (higher is better)", "RMSE delta (lower is better)"],
+    "bootstrap": {"replicates": 20000, "unit": "construct_id", "ci": "two-sided 95% percentile", "seed": 30261219},
+    "paired_permutation": {"replicates": 20000, "scheme": "independently swap model prediction pairs within each test construct", "p": "two-sided absolute-effect plus-one", "seed": 30261220},
+    "multiplicity": "Holm across the two primary metrics",
+    "mechanism_increment_pass": "test authorized AND delta Spearman CI lower > 0 AND delta RMSE CI upper < 0 AND both Holm p < 0.05"
+  },
+  "secondary_if_authorized": [
+    "all four feature sets with paired test predictions and descriptive CIs",
+    "minimal-medium within-condition refit using the same train/dev/test constructs and dev-only alpha selection",
+    "rich-to-minimal transport of the rich-selected models on the same test constructs",
+    "N-terminal positions 2-9 transport from the rich positions-10-71 models; no N-terminal fitting"
+  ],
+  "interpretation": {
+    "rcs_is_external_supervised_structure_feature": "RCS base-pairing correlations were inferred from rich codon-pair data in the source study; it is not an unsupervised physical measurement",
+    "primary_positions_exclude_pair_library_positions_1_3": true,
+    "not_a_new_physics_replication": true,
+    "not_protein_ood": true,
+    "not_physical_velocity": true,
+    "not_generator_training_or_sota": true,
+    "conditional_inference": "test bootstrap is conditional on the frozen train/dev fit; it does not include model-selection variability",
+    "negative_or_inconclusive_results_must_be_retained": true
+  },
+  "artifacts": {
+    "small_reports": "/home/codonflow-a8-rk/audits/20261118/RK03/",
+    "large_artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_synonymous_mechanism_v1/"
+  }
+}

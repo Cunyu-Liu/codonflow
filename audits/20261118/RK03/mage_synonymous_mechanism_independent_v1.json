@@ -1,0 +1,258 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "source_csv_sha256",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "protocol_sha256",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "codon_module_sha256",
+      "pass": true
+    },
+    {
+      "detail": 179,
+      "name": "eligible_all_positions",
+      "pass": true
+    },
+    {
+      "detail": 164,
+      "name": "eligible_primary",
+      "pass": true
+    },
+    {
+      "detail": {
+        "dev": 33,
+        "test": 33,
+        "train": 98
+      },
+      "name": "split_counts",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "split_assignment_hash",
+      "pass": true
+    },
+    {
+      "detail": 1.0,
+      "name": "alpha.intrinsic",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_metrics.intrinsic.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 1.1046719095020308e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_metrics.intrinsic.values",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_grid.intrinsic.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 4.1293357622151916e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_grid.intrinsic.values",
+      "pass": true
+    },
+    {
+      "detail": 1.0,
+      "name": "alpha.local_mfe",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_metrics.local_mfe.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 9.880984919163893e-15,
+        "tolerance": 2e-11
+      },
+      "name": "dev_metrics.local_mfe.values",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_grid.local_mfe.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 3.432670814262906e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_grid.local_mfe.values",
+      "pass": true
+    },
+    {
+      "detail": 1.0,
+      "name": "alpha.rcs_only",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_metrics.rcs_only.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 2.7200464103316335e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_metrics.rcs_only.values",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_grid.rcs_only.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 1.0427769758791783e-13,
+        "tolerance": 2e-11
+      },
+      "name": "dev_grid.rcs_only.values",
+      "pass": true
+    },
+    {
+      "detail": 1.0,
+      "name": "alpha.full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_metrics.full_mechanism.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 3.2529534621517087e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_metrics.full_mechanism.values",
+      "pass": true
+    },
+    {
+      "detail": {
+        "only_independent": [],
+        "only_production": []
+      },
+      "name": "dev_grid.full_mechanism.keys",
+      "pass": true
+    },
+    {
+      "detail": {
+        "max_abs_delta": 9.681144774731365e-14,
+        "tolerance": 2e-11
+      },
+      "name": "dev_grid.full_mechanism.values",
+      "pass": true
+    },
+    {
+      "detail": "intrinsic",
+      "name": "reference_baseline",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "dev_authorization",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "dev_prediction_order",
+      "pass": true
+    },
+    {
+      "detail": 1.5576429035490946e-13,
+      "name": "dev_prediction_values.intrinsic",
+      "pass": true
+    },
+    {
+      "detail": 4.837241718291807e-13,
+      "name": "dev_prediction_values.local_mfe",
+      "pass": true
+    },
+    {
+      "detail": 2.1005419625907962e-13,
+      "name": "dev_prediction_values.rcs_only",
+      "pass": true
+    },
+    {
+      "detail": 3.7114755713218983e-13,
+      "name": "dev_prediction_values.full_mechanism",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "no_go_status",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "no_test_metrics",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "no_test_artifacts",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "artifact_hash.dev_predictions.csv",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "artifact_hash.split_assignments.csv",
+      "pass": true
+    }
+  ],
+  "checks_passed": 39,
+  "checks_total": 39,
+  "max_numeric_delta": 4.837241718291807e-13,
+  "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+  "schema": "a8-rk03-mage-synonymous-independent-v1",
+  "status": "PASS",
+  "tolerance": 2e-11
+}

@@ -1,0 +1,102 @@
+....F                                                                    [100%]
+=================================== FAILURES ===================================
+_________________________ test_unseen_category_is_safe _________________________
+
+X = array([['x', 'x', 'x', 'x', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+       ['x', 'x', 'y', 'x', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]],
+      dtype=object)
+key = ['position', 'wt_codon', 'mutant_codon', 'amino_acid']
+
+    def _get_column_indices(X, key):
+        """Get feature column indices for input data X and key.
+    
+        For accepted values of `key`, see the docstring of
+        :func:`_safe_indexing`.
+        """
+        key_dtype = _determine_key_type(key)
+        if _use_interchange_protocol(X):
+            return _get_column_indices_interchange(X.__dataframe__(), key, key_dtype)
+    
+        n_columns = X.shape[1]
+        if isinstance(key, (list, tuple)) and not key:
+            # we get an empty list
+            return []
+        elif key_dtype in ("bool", "int"):
+            return _get_column_indices_for_bool_or_int(key, n_columns)
+        else:
+            try:
+>               all_columns = X.columns
+E               AttributeError: 'numpy.ndarray' object has no attribute 'columns'
+
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/utils/_indexing.py:420: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+    def test_unseen_category_is_safe():
+        base = {c: "x" for c in mage.CATS}
+        base.update({n: 0.0 for n in mage.INTRINSIC_NUM})
+        base["expression_value"] = "0.1"
+        train = [dict(base), dict(base)]
+        train[1]["mutant_codon"] = "y"
+        test = [dict(base)]
+        test[0]["mutant_codon"] = "never_seen"
+        model = mage.make_pipeline("intrinsic", 1.0)
+        X, y = mage.xy(train, "intrinsic")
+>       model.fit(X, y)
+
+scripts/test_a8_rk03_mage_synonymous_mechanism.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/base.py:1365: in wrapper
+    return fit_method(estimator, *args, **kwargs)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/pipeline.py:655: in fit
+    Xt = self._fit(X, y, routed_params, raw_params=params)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/pipeline.py:589: in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/joblib/memory.py:331: in __call__
+    return self.func(*args, **kwargs)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/pipeline.py:1540: in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/utils/_set_output.py:316: in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/base.py:1365: in wrapper
+    return fit_method(estimator, *args, **kwargs)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:988: in fit_transform
+    self._validate_column_callables(X)
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/compose/_column_transformer.py:541: in _validate_column_callables
+    transformer_to_input_indices[name] = _get_column_indices(X, columns)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+X = array([['x', 'x', 'x', 'x', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+       ['x', 'x', 'y', 'x', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]],
+      dtype=object)
+key = ['position', 'wt_codon', 'mutant_codon', 'amino_acid']
+
+    def _get_column_indices(X, key):
+        """Get feature column indices for input data X and key.
+    
+        For accepted values of `key`, see the docstring of
+        :func:`_safe_indexing`.
+        """
+        key_dtype = _determine_key_type(key)
+        if _use_interchange_protocol(X):
+            return _get_column_indices_interchange(X.__dataframe__(), key, key_dtype)
+    
+        n_columns = X.shape[1]
+        if isinstance(key, (list, tuple)) and not key:
+            # we get an empty list
+            return []
+        elif key_dtype in ("bool", "int"):
+            return _get_column_indices_for_bool_or_int(key, n_columns)
+        else:
+            try:
+                all_columns = X.columns
+            except AttributeError:
+>               raise ValueError(
+                    "Specifying the columns using strings is only supported for dataframes."
+                )
+E               ValueError: Specifying the columns using strings is only supported for dataframes.
+
+/root/miniconda3/envs/llr_env/lib/python3.10/site-packages/sklearn/utils/_indexing.py:422: ValueError
+=========================== short test summary info ============================
+FAILED scripts/test_a8_rk03_mage_synonymous_mechanism.py::test_unseen_category_is_safe
+1 failed, 4 passed in 1.63s
