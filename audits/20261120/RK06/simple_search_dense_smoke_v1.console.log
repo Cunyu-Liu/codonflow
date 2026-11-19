@@ -1,0 +1,26 @@
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/home/cunyuliu/llr_env/lib/python3.10/concurrent/futures/process.py", line 246, in _process_worker
+    r = call_item.fn(*call_item.args, **call_item.kwargs)
+  File "/home/codonflow-a8-rk/scripts/a8_rk06_simple_search_dense_unique18.py", line 147, in execute_job
+    result = SimpleSearch(
+  File "/home/codonflow-a8-rk/src/codonflow/models/simple_search.py", line 182, in run
+    current_objectives = scorer(current)
+  File "/home/codonflow-a8-rk/src/codonflow/models/simple_search.py", line 86, in __call__
+    raise ValueError("objective function returned invalid values")
+ValueError: objective function returned invalid values
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk06_simple_search_dense_unique18.py", line 485, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk06_simple_search_dense_unique18.py", line 450, in main
+    row = future.result()
+  File "/home/cunyuliu/llr_env/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/home/cunyuliu/llr_env/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+ValueError: objective function returned invalid values

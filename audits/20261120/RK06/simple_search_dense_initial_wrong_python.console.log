@@ -1,0 +1,18 @@
+test_a8_rk06_simple_search_dense_unique18 (unittest.loader._FailedTest) ... ERROR
+
+======================================================================
+ERROR: test_a8_rk06_simple_search_dense_unique18 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_a8_rk06_simple_search_dense_unique18
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.9/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk06_simple_search_dense_unique18.py", line 6, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
