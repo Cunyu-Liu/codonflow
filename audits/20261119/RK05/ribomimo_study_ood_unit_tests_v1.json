@@ -1,0 +1,15 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-unit-tests-v1",
+  "status": "PASS",
+  "tests_run": 10,
+  "failures": 0,
+  "errors": 0,
+  "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /root/miniconda3/envs/llr_env/bin/python scripts/tests/test_a8_rk05_ribomimo_study_ood.py",
+  "recorded_utc": "2026-11-19T19:31:49.982025+00:00",
+  "hashes": {
+    "scripts/a8_rk05_ribomimo_study_ood.py": "556172d7f7f84393a16b74dd0ac3eea238edaeeb98ea30bd0b84882bef1112ad",
+    "scripts/tests/test_a8_rk05_ribomimo_study_ood.py": "ec5f9f0b22c2b1dcad121993bef64b840712a43892334eca22f285429c110a1d",
+    "configs/a8_rk05_ribomimo_study_ood_protocol_v1.json": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5"
+  },
+  "scope": "Unit/preflight only; no RiboMIMO target prediction has been produced."
+}

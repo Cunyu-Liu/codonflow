@@ -1,0 +1,135 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-protocol-v1",
+  "status": "FROZEN_BEFORE_TRAINING",
+  "task": "RK-05/RK-13",
+  "frozen_before_ribomimo_target_readout": true,
+  "source": {
+    "repository": "https://github.com/tiantz17/RiboMIMO",
+    "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "path": "/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "archive_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip",
+    "archive_sha256": "0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162",
+    "file_sha256": {
+      "runRiboMIMO.py": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490",
+      "model.py": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7",
+      "utils.py": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b",
+      "getSaliency.py": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    }
+  },
+  "studies": {
+    "source": "Mohammad16",
+    "target": "Subtelny14",
+    "source_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt",
+      "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+      "raw_records": 1761,
+      "official_loader_eligible_records": 1179
+    },
+    "target_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Subtelny14.txt",
+      "sha256": "d982f6d8c14ba309ce26e29c8d81793df190b11d063c1333878d3dc6c0efa118",
+      "raw_records": 5614,
+      "official_loader_eligible_records": 3921
+    },
+    "record_prefix": "study name plus vertical bar",
+    "normalization": "official per-record mean of counts greater than 0.5; density is count divided by that mean at positions with count greater than 0.5",
+    "eligibility": "official valid-CDS loader plus strictly greater than 0.60 fraction of codons with count greater than 0.5",
+    "exact_cds_overlap_required": 0,
+    "homology_ood_claimed": false
+  },
+  "split": {
+    "source_train_fraction": 0.9,
+    "source_validation_fraction": 0.1,
+    "procedure": "for each seed, reproduce official np.random.seed(seed) followed by one randint(0,1024) split seed; shuffle the sorted eligible source IDs with that split seed; first floor(n/10) are validation and the remainder train",
+    "target_use": "all eligible target records are evaluated only after source-validation early stopping and ridge alpha selection are complete; no target epoch-wise evaluation, fitting, calibration or model selection",
+    "primary_seed": 1234,
+    "sensitivity_seeds": [2345, 3456],
+    "seed_selection_from_target_forbidden": true
+  },
+  "official_model": {
+    "add_nt": true,
+    "add_aa": true,
+    "gpu": "0",
+    "num_repeat": 1,
+    "num_fold": 2,
+    "batch_size": 16,
+    "max_epoch": 100,
+    "early_stop": 5,
+    "learning_rate": 0.001,
+    "weight_decay": 0.000001,
+    "sim": -1.0,
+    "use_median": false,
+    "RNN_model": "RiboMIMO",
+    "RNN_hidden_dims": 256,
+    "RNN_depth": 2,
+    "threshold": "0,2",
+    "alpha": 3.0,
+    "selection": "source-validation global R2, identical to the official best-checkpoint rule",
+    "target_evaluated_each_epoch": false
+  },
+  "compatibility": {
+    "replacement_count": 7,
+    "algorithm_changed": false,
+    "description": "Five NumPy ragged-array dtype replacements, one numeric-padding dtype replacement and one pack_padded_sequence lengths.cpu() compatibility replacement; the study-OOD wrapper changes splitting and removes target evaluation from training logs, not the neural architecture, loss, optimizer or source-validation checkpoint rule."
+  },
+  "ridge_baseline": {
+    "type": "source-trained position-wise ridge on normalized density",
+    "features": "64 official codon one-hot features, 20 relative-position-bin one-hot features, one relative-position scalar and one natural-log transcript-length feature divided by 7",
+    "fit_positions": "source-train official masked positions only",
+    "sample_weight": "none, matching official position-wise regression weighting",
+    "fit_intercept": true,
+    "solver": "lsqr",
+    "solver_tolerance": 1e-8,
+    "solver_max_iter": 10000,
+    "alpha_grid": [0.1, 1.0, 10.0, 100.0],
+    "selection": "source-validation transcript-balanced MSE; first grid value breaks exact ties",
+    "constant_baseline": "source-train masked-position mean density"
+  },
+  "evaluation": {
+    "target": "official normalized ribosome density; an occupancy proxy, not a direct physical elongation-rate measurement",
+    "mask": "official get_data_pack mask: first five and last four codons set to zero, followed by density greater than zero",
+    "primary_seed": 1234,
+    "primary_endpoints": [
+      "RiboMIMO minus ridge transcript-balanced MSE; negative favors RiboMIMO",
+      "RiboMIMO minus ridge mean within-transcript Pearson; positive favors RiboMIMO"
+    ],
+    "secondary": "global R2, global MSE, global Pearson, mean within-transcript Spearman, constant baseline and all three seed-specific results",
+    "bootstrap": {
+      "unit": "target transcript",
+      "resamples": 2000,
+      "seed": 52261119,
+      "interval": "two-sided 95th percentile paired bootstrap"
+    },
+    "permutation": {
+      "unit": "paired target-transcript metric difference",
+      "resamples": 2000,
+      "seed": 52261120,
+      "test": "two-sided paired sign-flip with plus-one correction"
+    },
+    "multiplicity": "Holm across exactly two primary endpoints",
+    "target_pearson_rule": "within-transcript correlation requires at least two masked positions and nonconstant target and prediction; all exclusions are reported"
+  },
+  "execution": {
+    "device": "cuda:0",
+    "python": "/root/miniconda3/envs/llr_env/bin/python",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "torch_num_threads": 1,
+    "cpu_numeric_threads": 1,
+    "independent_retrain": "repeat all three seeds in a new artifact directory and compare every target prediction array and checkpoint tensor; separately recompute raw matrices, ridge predictions and statistics without importing the production module",
+    "cost_claim": false,
+    "reason": "the GPU is shared with unrelated processes, so wall time is recorded but is not a unified single-worker time-matched comparison"
+  },
+  "scientific_scope": {
+    "study_ood_baseline_evaluation": true,
+    "new_untouched_scientific_confirmation": false,
+    "prior_target_readout_boundary": "Subtelny14 was previously evaluated for RiboKinetic and its ridge baseline; this protocol is frozen before any RiboMIMO target prediction, but is not represented as a globally untouched dataset.",
+    "physical_velocity_claim": false,
+    "homology_ood_claim": false,
+    "functional_ood_claim": false,
+    "generation_authorized": false,
+    "rk_g1_change_authorized": false,
+    "sota_claim": false
+  }
+}
