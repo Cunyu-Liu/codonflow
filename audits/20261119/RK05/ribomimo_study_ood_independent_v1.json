@@ -1,0 +1,1386 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-independent-v1",
+  "status": "PASS_RK05_RIBOMIMO_STUDY_OOD_INDEPENDENT",
+  "n_checks": 203,
+  "n_passed": 203,
+  "checks": [
+    {
+      "name": "production_status",
+      "pass": true,
+      "evidence": "PASS_STUDY_OOD_PENDING_INDEPENDENT"
+    },
+    {
+      "name": "independent_status",
+      "pass": true,
+      "evidence": "PASS_STUDY_OOD_PENDING_INDEPENDENT"
+    },
+    {
+      "name": "production_protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_driver_hash_production",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_driver_hash_independent",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "driver_identical_across_runs",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_seed_frozen",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "two_primary_endpoints",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_functional_ood_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_homology_ood_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_generation_authorization",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "source_raw_count",
+      "pass": true,
+      "evidence": 1761
+    },
+    {
+      "name": "target_raw_count",
+      "pass": true,
+      "evidence": 5614
+    },
+    {
+      "name": "source_eligible_count",
+      "pass": true,
+      "evidence": 1179
+    },
+    {
+      "name": "target_eligible_count",
+      "pass": true,
+      "evidence": 3921
+    },
+    {
+      "name": "exact_cds_disjoint",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "name": "run_count_three",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_split_seed",
+      "pass": true,
+      "evidence": 815
+    },
+    {
+      "name": "seed1234_split_sizes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_best_epoch_reproduced",
+      "pass": true,
+      "evidence": {
+        "production": 10,
+        "independent": 10
+      }
+    },
+    {
+      "name": "seed1234_epochs_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_best_validation_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_checkpoint_parameter_schema",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_trainable_parameter_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed1234_checkpoint_state_value_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed1234_checkpoint_tensor_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_checkpoint_tensors_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_prediction_array_hashes_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_ridge_alpha_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_constant_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_no_epoch_target_evaluation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_target_after_checkpoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_array_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_record_ids",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_cds_sha256",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_offsets",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_positions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_target",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_model_prediction",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_independent_array_ridge_prediction",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 7.19277748473246e-09,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed1234_record_ids_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_offsets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_targets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_cds_hashes_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_finite_model_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_finite_ridge_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_ridge_alpha_raw_refit",
+      "pass": true,
+      "evidence": 100.0
+    },
+    {
+      "name": "seed1234_ridge_train_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed1234_ridge_predictions_raw_refit_within_solver_tolerance",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 7.19277748473246e-09,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent raw-data LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.1866082212702422,
+        "reported": 2.1866082212702422
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -0.0010075663886172806,
+        "reported": -0.0010075663886172813
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -0.003828943549781862,
+        "reported": -0.00382894354978185
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.015973892071400566,
+        "reported": 0.015973892071400562
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -1.201521216218271,
+        "reported": -1.201521216218271
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.164313536138721,
+        "reported": 2.164313536138721
+      }
+    },
+    {
+      "name": "seed1234_ribomimo_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.0032319084613719306,
+        "reported": 0.0032319084613719284
+      }
+    },
+    {
+      "name": "seed1234_ridge_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ridge_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed1234_ridge_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ridge_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed1234_ridge_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.0069665421685288,
+        "reported": 1.0069665421685288
+      }
+    },
+    {
+      "name": "seed1234_ridge_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.0375001500736273,
+        "reported": 0.0375001500736273
+      }
+    },
+    {
+      "name": "seed1234_ridge_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04091807310012225,
+        "reported": 0.04091807310012226
+      }
+    },
+    {
+      "name": "seed1234_ridge_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04656434113464451,
+        "reported": 0.04656434113464452
+      }
+    },
+    {
+      "name": "seed1234_ridge_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -0.03709517112791971,
+        "reported": -0.03709517112791971
+      }
+    },
+    {
+      "name": "seed1234_ridge_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.019567333987354,
+        "reported": 1.019567333987354
+      }
+    },
+    {
+      "name": "seed1234_ridge_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.046278018157732276,
+        "reported": 0.046278018157732234
+      }
+    },
+    {
+      "name": "seed2345_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_split_seed",
+      "pass": true,
+      "evidence": 80
+    },
+    {
+      "name": "seed2345_split_sizes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_best_epoch_reproduced",
+      "pass": true,
+      "evidence": {
+        "production": 10,
+        "independent": 10
+      }
+    },
+    {
+      "name": "seed2345_epochs_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_best_validation_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_checkpoint_parameter_schema",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_trainable_parameter_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed2345_checkpoint_state_value_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed2345_checkpoint_tensor_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_checkpoint_tensors_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_prediction_array_hashes_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_ridge_alpha_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_constant_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_no_epoch_target_evaluation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_target_after_checkpoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_array_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_record_ids",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_cds_sha256",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_offsets",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_positions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_target",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_model_prediction",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_independent_array_ridge_prediction",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 1.508439275710316e-07,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed2345_record_ids_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_offsets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_targets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_cds_hashes_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_finite_model_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_finite_ridge_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_ridge_alpha_raw_refit",
+      "pass": true,
+      "evidence": 100.0
+    },
+    {
+      "name": "seed2345_ridge_train_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed2345_ridge_predictions_raw_refit_within_solver_tolerance",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 1.508439275710316e-07,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent raw-data LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.074145069341217,
+        "reported": 2.074145069341217
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.004477208440623038,
+        "reported": 0.004477208440623037
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.003169321763520737,
+        "reported": 0.003169321763520725
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.027544332751312385,
+        "reported": 0.027544332751312385
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -1.0741035004135475,
+        "reported": -1.0741035004135475
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.03904929383732,
+        "reported": 2.03904929383732
+      }
+    },
+    {
+      "name": "seed2345_ribomimo_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.00901809385304539,
+        "reported": 0.009018093853045389
+      }
+    },
+    {
+      "name": "seed2345_ridge_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ridge_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed2345_ridge_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ridge_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed2345_ridge_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.0067877535336192,
+        "reported": 1.0067877535336192
+      }
+    },
+    {
+      "name": "seed2345_ridge_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.037488910039918465,
+        "reported": 0.037488910039918465
+      }
+    },
+    {
+      "name": "seed2345_ridge_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.040511770940452024,
+        "reported": 0.04051177094045204
+      }
+    },
+    {
+      "name": "seed2345_ridge_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.045894950600712844,
+        "reported": 0.045894950600712844
+      }
+    },
+    {
+      "name": "seed2345_ridge_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -0.03705679664972461,
+        "reported": -0.03705679664972461
+      }
+    },
+    {
+      "name": "seed2345_ridge_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.0195296080722058,
+        "reported": 1.0195296080722058
+      }
+    },
+    {
+      "name": "seed2345_ridge_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04587120528907993,
+        "reported": 0.04587120528907996
+      }
+    },
+    {
+      "name": "seed3456_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_split_seed",
+      "pass": true,
+      "evidence": 667
+    },
+    {
+      "name": "seed3456_split_sizes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_best_epoch_reproduced",
+      "pass": true,
+      "evidence": {
+        "production": 13,
+        "independent": 13
+      }
+    },
+    {
+      "name": "seed3456_epochs_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_best_validation_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_checkpoint_parameter_schema",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_trainable_parameter_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed3456_checkpoint_state_value_count",
+      "pass": true,
+      "evidence": 1860356
+    },
+    {
+      "name": "seed3456_checkpoint_tensor_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_checkpoint_tensors_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_prediction_array_hashes_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_ridge_alpha_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_constant_reproduced",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_no_epoch_target_evaluation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_target_after_checkpoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_array_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_record_ids",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_cds_sha256",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_offsets",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_positions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_target",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_model_prediction",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_independent_array_ridge_prediction",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 4.96545027317552e-11,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed3456_record_ids_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_offsets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_targets_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_cds_hashes_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_finite_model_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_finite_ridge_predictions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_ridge_alpha_raw_refit",
+      "pass": true,
+      "evidence": 100.0
+    },
+    {
+      "name": "seed3456_ridge_train_positions_raw",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed3456_ridge_predictions_raw_refit_within_solver_tolerance",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 4.96545027317552e-11,
+        "absolute_tolerance": 1e-06,
+        "reason": "independent raw-data LSQR/BLAS floating-point reduction; scientific metrics are recomputed independently"
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.040440713127967,
+        "reported": 2.040440713127967
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.011052601835868665,
+        "reported": 0.011052601835868665
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.008544008859765298,
+        "reported": 0.008544008859765292
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.03031192304457384,
+        "reported": 0.03031192304457384
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -1.056559588234669,
+        "reported": -1.056559588234669
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 2.021801889485342,
+        "reported": 2.021801889485342
+      }
+    },
+    {
+      "name": "seed3456_ribomimo_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.014818620103459752,
+        "reported": 0.014818620103459766
+      }
+    },
+    {
+      "name": "seed3456_ridge_n_transcripts_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ridge_n_masked_positions_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1516508,
+        "reported": 1516508
+      }
+    },
+    {
+      "name": "seed3456_ridge_n_transcripts_with_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ridge_n_transcripts_with_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 3921,
+        "reported": 3921
+      }
+    },
+    {
+      "name": "seed3456_ridge_transcript_balanced_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.005551727919777,
+        "reported": 1.005551727919777
+      }
+    },
+    {
+      "name": "seed3456_ridge_mean_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.038320884126848254,
+        "reported": 0.038320884126848254
+      }
+    },
+    {
+      "name": "seed3456_ridge_median_transcript_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04154122072564704,
+        "reported": 0.041541220725647074
+      }
+    },
+    {
+      "name": "seed3456_ridge_mean_transcript_spearman_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04558493360309624,
+        "reported": 0.04558493360309624
+      }
+    },
+    {
+      "name": "seed3456_ridge_global_r2_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": -0.03557171803509607,
+        "reported": -0.03557171803509607
+      }
+    },
+    {
+      "name": "seed3456_ridge_global_mse_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 1.018069628616095,
+        "reported": 1.018069628616095
+      }
+    },
+    {
+      "name": "seed3456_ridge_global_pearson_raw",
+      "pass": true,
+      "evidence": {
+        "recomputed": 0.04738053983936704,
+        "reported": 0.04738053983936699
+      }
+    },
+    {
+      "name": "primary_inference_recomputed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_transcript_balanced_mse_metric",
+      "pass": true,
+      "evidence": {
+        "reported": "transcript_balanced_mse",
+        "recomputed": "transcript_balanced_mse"
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_direction",
+      "pass": true,
+      "evidence": {
+        "reported": "negative_favors_ribomimo",
+        "recomputed": "negative_favors_ribomimo"
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_n_pairs",
+      "pass": true,
+      "evidence": {
+        "reported": 3921,
+        "recomputed": 3921
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_point_delta_ribomimo_minus_ridge",
+      "pass": true,
+      "evidence": {
+        "reported": 1.179641679101714,
+        "recomputed": 1.179641679101714
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_ci95_low",
+      "pass": true,
+      "evidence": {
+        "reported": 1.1626865486921758,
+        "recomputed": 1.1626865486921758
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_ci95_high",
+      "pass": true,
+      "evidence": {
+        "reported": 1.1962882037490148,
+        "recomputed": 1.1962882037490148
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_sign_flip_pvalue",
+      "pass": true,
+      "evidence": {
+        "reported": 0.0004997501249375312,
+        "recomputed": 0.0004997501249375312
+      }
+    },
+    {
+      "name": "primary_transcript_balanced_mse_holm_pvalue",
+      "pass": true,
+      "evidence": {
+        "reported": 0.0009995002498750624,
+        "recomputed": 0.0009995002498750624
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_metric",
+      "pass": true,
+      "evidence": {
+        "reported": "mean_transcript_pearson",
+        "recomputed": "mean_transcript_pearson"
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_direction",
+      "pass": true,
+      "evidence": {
+        "reported": "positive_favors_ribomimo",
+        "recomputed": "positive_favors_ribomimo"
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_n_pairs",
+      "pass": true,
+      "evidence": {
+        "reported": 3921,
+        "recomputed": 3921
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_point_delta_ribomimo_minus_ridge",
+      "pass": true,
+      "evidence": {
+        "reported": -0.03850771646224459,
+        "recomputed": -0.03850771646224459
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_ci95_low",
+      "pass": true,
+      "evidence": {
+        "reported": -0.04140616194511709,
+        "recomputed": -0.04140616194511709
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_ci95_high",
+      "pass": true,
+      "evidence": {
+        "reported": -0.03553605212612245,
+        "recomputed": -0.03553605212612245
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_sign_flip_pvalue",
+      "pass": true,
+      "evidence": {
+        "reported": 0.0004997501249375312,
+        "recomputed": 0.0004997501249375312
+      }
+    },
+    {
+      "name": "primary_mean_transcript_pearson_holm_pvalue",
+      "pass": true,
+      "evidence": {
+        "reported": 0.0009995002498750624,
+        "recomputed": 0.0009995002498750624
+      }
+    }
+  ],
+  "details": {
+    "seeds": [
+      {
+        "seed": 1234,
+        "trainable_parameter_count": 1860356,
+        "checkpoint_state_value_count": 1860356,
+        "model_independent_max_abs": 0.0,
+        "ridge_independent_max_abs": 7.19277748473246e-09,
+        "ridge_raw_refit_max_abs": 7.19277748473246e-09,
+        "ridge_alpha": 100.0
+      },
+      {
+        "seed": 2345,
+        "trainable_parameter_count": 1860356,
+        "checkpoint_state_value_count": 1860356,
+        "model_independent_max_abs": 0.0,
+        "ridge_independent_max_abs": 1.508439275710316e-07,
+        "ridge_raw_refit_max_abs": 1.508439275710316e-07,
+        "ridge_alpha": 100.0
+      },
+      {
+        "seed": 3456,
+        "trainable_parameter_count": 1860356,
+        "checkpoint_state_value_count": 1860356,
+        "model_independent_max_abs": 0.0,
+        "ridge_independent_max_abs": 4.96545027317552e-11,
+        "ridge_raw_refit_max_abs": 4.96545027317552e-11,
+        "ridge_alpha": 100.0
+      }
+    ],
+    "max_differences": {
+      "model_independent_retrain": 0.0,
+      "ridge_independent_retrain": 1.508439275710316e-07,
+      "ridge_raw_refit": 1.508439275710316e-07,
+      "metrics_raw_recompute": 4.85722573273506e-17,
+      "ridge_independent_absolute_tolerance": 1e-06,
+      "ridge_raw_refit_absolute_tolerance": 1e-06
+    },
+    "numerical_comparison_policy": {
+      "model_predictions_and_checkpoint_tensors": "exact_equality_required",
+      "ridge_predictions": "absolute_tolerance_1e-6_for_independent_LSQR_BLAS_floating_point_reductions",
+      "record_identity_offsets_positions_targets": "exact_equality_required",
+      "primary_statistics": "recomputed_from_raw_predictions_and_compared_with_declared_metric_tolerances"
+    }
+  },
+  "primary_comparisons_recomputed": [
+    {
+      "metric": "transcript_balanced_mse",
+      "direction": "negative_favors_ribomimo",
+      "n_pairs": 3921,
+      "point_delta_ribomimo_minus_ridge": 1.179641679101714,
+      "ci95_low": 1.1626865486921758,
+      "ci95_high": 1.1962882037490148,
+      "sign_flip_pvalue": 0.0004997501249375312,
+      "holm_pvalue": 0.0009995002498750624
+    },
+    {
+      "metric": "mean_transcript_pearson",
+      "direction": "positive_favors_ribomimo",
+      "n_pairs": 3921,
+      "point_delta_ribomimo_minus_ridge": -0.03850771646224459,
+      "ci95_low": -0.04140616194511709,
+      "ci95_high": -0.03553605212612245,
+      "sign_flip_pvalue": 0.0004997501249375312,
+      "holm_pvalue": 0.0009995002498750624
+    }
+  ],
+  "production_report": {
+    "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_production_v1.json",
+    "sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239"
+  },
+  "independent_report": {
+    "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_independent_retrain_v1.json",
+    "sha256": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035"
+  },
+  "protocol": {
+    "path": "/home/codonflow-a8-rk/configs/a8_rk05_ribomimo_study_ood_protocol_v1.json",
+    "sha256": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5"
+  },
+  "driver": {
+    "path": "/home/codonflow-a8-rk/scripts/a8_rk05_ribomimo_study_ood.py",
+    "sha256": "556172d7f7f84393a16b74dd0ac3eea238edaeeb98ea30bd0b84882bef1112ad"
+  },
+  "scientific_scope": "Independent numerical verification of an occupancy-derived cross-study baseline; not physical velocity, functional OOD, homology OOD, generation authorization or SOTA evidence."
+}

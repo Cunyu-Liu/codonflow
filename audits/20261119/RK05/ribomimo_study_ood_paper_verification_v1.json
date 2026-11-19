@@ -1,0 +1,344 @@
+{
+  "candidate_fact_count": 20,
+  "candidate_facts": [
+    {
+      "expected": "| 1234 | 2.186608 | 1.006967 | 0.966916 | -0.001008 | 0.037500 |",
+      "name": "seed_1234_row",
+      "pass": true
+    },
+    {
+      "expected": "| 2345 | 2.074145 | 1.006788 | 0.966910 | 0.004477 | 0.037489 |",
+      "name": "seed_2345_row",
+      "pass": true
+    },
+    {
+      "expected": "| 3456 | 2.040441 | 1.005552 | 0.966907 | 0.011053 | 0.038321 |",
+      "name": "seed_3456_row",
+      "pass": true
+    },
+    {
+      "expected": "| delta TB-MSE | 1.179641679 | [1.162686549, 1.196288204] | 0.000499750 | 0.000999500 |",
+      "name": "primary_transcript_balanced_mse",
+      "pass": true
+    },
+    {
+      "expected": "| delta mean within-transcript Pearson | -0.038507716 | [-0.041406162, -0.035536052] | 0.000499750 | 0.000999500 |",
+      "name": "primary_mean_transcript_pearson",
+      "pass": true
+    },
+    {
+      "expected": "1,062 training and 117 validation transcripts",
+      "name": "source_target_sizes",
+      "pass": true
+    },
+    {
+      "expected": "3,921 target transcripts",
+      "name": "target_size",
+      "pass": true
+    },
+    {
+      "expected": "1,179 source",
+      "name": "source_eligible",
+      "pass": true
+    },
+    {
+      "expected": "Source-target exact CDS overlap was zero",
+      "name": "exact_cds_disjoint",
+      "pass": true
+    },
+    {
+      "expected": "Seed 1234 was primary",
+      "name": "primary_seed",
+      "pass": true
+    },
+    {
+      "expected": "seeds 2345 and 3456 were sensitivity analyses",
+      "name": "sensitivity_seeds",
+      "pass": true
+    },
+    {
+      "expected": "alpha=100 was selected for every seed",
+      "name": "ridge_alpha",
+      "pass": true
+    },
+    {
+      "expected": "the source-train constant also had lower TB-MSE than both learned models for every seed",
+      "name": "constant_caution",
+      "pass": true
+    },
+    {
+      "expected": "2,000 paired-transcript bootstraps, 2,000 paired sign-flip permutations",
+      "name": "resampling",
+      "pass": true
+    },
+    {
+      "expected": "not a globally untouched confirmatory test",
+      "name": "not_globally_untouched",
+      "pass": true
+    },
+    {
+      "expected": "not a physical-velocity measurement",
+      "name": "not_physical_velocity",
+      "pass": true
+    },
+    {
+      "expected": "are not time-matched cost evidence",
+      "name": "not_time_matched",
+      "pass": true
+    },
+    {
+      "expected": "does not close homology/protein OOD, functional OOD, RK-G1, generator authorization or the full baseline program",
+      "name": "open_gates",
+      "pass": true
+    },
+    {
+      "expected": "It passed 203/203 checks",
+      "name": "verification_checks",
+      "pass": true
+    },
+    {
+      "expected": "Finalization passed 30/30 checks",
+      "name": "finalization_checks",
+      "pass": true
+    }
+  ],
+  "candidate_facts_passed": 20,
+  "checks": [
+    {
+      "evidence": null,
+      "name": "input_v24_hash",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "output_v25_hash",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "sync_hash",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "version_v25",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "non_submittable",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "working_manuscript_label",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "single_new_section",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_block_present_once",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "original_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
+        "restored_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5"
+      },
+      "name": "all_v24_bytes_preserved",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "finalization_pass",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "independent_verification_pass",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "training_record_complete",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "primary_endpoints_bound",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "scientific_outcome_bound",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "both_intervals_favor_ridge",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "both_holm_significant",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_seed_1234_row",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_seed_2345_row",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_seed_3456_row",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_primary_transcript_balanced_mse",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_primary_mean_transcript_pearson",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_source_target_sizes",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_target_size",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_source_eligible",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_exact_cds_disjoint",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_primary_seed",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_sensitivity_seeds",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_ridge_alpha",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_constant_caution",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_resampling",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_not_globally_untouched",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_not_physical_velocity",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_not_time_matched",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_open_gates",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_verification_checks",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "fact_finalization_checks",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD finalization",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD frozen protocol",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD independent retrain",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD independent verification",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD production",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD training record",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "anchor_RK05 RiboMIMO study-OOD unit tests",
+      "pass": true
+    }
+  ],
+  "manuscript_version": "v25",
+  "n_checks": 44,
+  "n_passed": 44,
+  "paper": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+  "paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
+  "schema_version": "a8-rk05-ribomimo-study-ood-paper-verify-v1",
+  "scientific_outcome": "RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE",
+  "status": "PASS_RK05_RIBOMIMO_STUDY_OOD_PAPER",
+  "submittable": false,
+  "sync": "/home/codonflow-a8-rk/paper/a8_rk_paper_sync_audit.json",
+  "sync_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
+  "update": "/home/codonflow-a8-rk/paper/a8_rk05_ribomimo_study_ood_paper_update.json",
+  "update_sha256": "ee410c4d2744665a7830967e38627050b18c19316eb3a75e018870fc4dbfb132"
+}

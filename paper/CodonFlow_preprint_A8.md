@@ -475,6 +475,31 @@ The CAI feature used the nine raw `def_refs` strings hard-coded in the frozen CA
 
 Independent verification retranslated every raw R1 sequence, recomputed every external CAI and ViennaRNA feature, regenerated all out-of-fold predictions with a separate penalized-matrix solver, and repeated both resampling analyses. It passed 12/12 checks, with maximum feature and prediction discrepancies of 2.78e-16 and 1.07e-14, respectively; finalization passed 21/21 checks. These results remain restricted to observed CDS 4-303 from one fixed-GFP library. They do not use functional untouched data, impute the central unobserved CDS, establish protein/study OOD transfer or causality, close RK-G1, authorize generator training or support a SOTA claim.
 
+### 6.21 RiboMIMO cross-study transfer: ridge was stronger on both frozen endpoints
+
+We next tested whether the complete official RiboMIMO recipe transferred from Mohammad16 to Subtelny14 under a protocol frozen before target readout. Official-loader eligibility yielded 1,179 source and 3,921 target transcripts. The source was divided into 1,062 training and 117 validation transcripts by the official NumPy random-split logic; all target transcripts were excluded from fitting, checkpoint selection and ridge-alpha selection. Source-target exact CDS overlap was zero. Subtelny14 had already been used in the RiboKinetic/ridge analysis, so this is not a globally untouched confirmatory test.
+
+The official architecture, normalized ribosome-density target, mask, loss, optimizer and source-validation global-R2 checkpoint rule were retained. Seed 1234 was primary; seeds 2345 and 3456 were sensitivity analyses and were not selected by target performance. The ridge baseline used 64 codon one-hot features, 20 relative-position bins, relative position and log(length)/7. Its alpha was selected only by source-validation transcript-balanced MSE; alpha=100 was selected for every seed. Target predictions were evaluated only after source training and baseline selection.
+
+| Seed | RiboMIMO TB-MSE | Ridge TB-MSE | Constant TB-MSE | RiboMIMO mean within-transcript r | Ridge mean within-transcript r |
+|---:|---:|---:|---:|---:|---:|
+| 1234 | 2.186608 | 1.006967 | 0.966916 | -0.001008 | 0.037500 |
+| 2345 | 2.074145 | 1.006788 | 0.966910 | 0.004477 | 0.037489 |
+| 3456 | 2.040441 | 1.005552 | 0.966907 | 0.011053 | 0.038321 |
+
+Across seeds, RiboMIMO TB-MSE ranged from 2.040441 to 2.186608, compared with 1.005552 to 1.006967 for ridge and 0.966907 to 0.966916 for the source-train constant. Mean within-transcript Pearson ranged from -0.001008 to 0.011053 for RiboMIMO and from 0.037489 to 0.038321 for ridge. The ridge advantage over RiboMIMO therefore does not imply strong absolute transfer: the source-train constant also had lower TB-MSE than both learned models for every seed. The constant has undefined within-transcript Pearson and is therefore not a complete ranking baseline.
+
+The two frozen primary contrasts used the primary seed, 2,000 paired-transcript bootstraps, 2,000 paired sign-flip permutations and Holm correction across exactly two hypotheses. Positive delta TB-MSE and negative delta Pearson favor ridge.
+
+| Primary effect: RiboMIMO minus ridge | Observed | Paired-bootstrap 95% CI | Sign-flip p | Holm p |
+|---|---:|---:|---:|---:|
+| delta TB-MSE | 1.179641679 | [1.162686549, 1.196288204] | 0.000499750 | 0.000999500 |
+| delta mean within-transcript Pearson | -0.038507716 | [-0.041406162, -0.035536052] | 0.000499750 | 0.000999500 |
+
+Both intervals excluded zero in the direction favoring ridge, with Holm p=0.000999500 for each endpoint. The finalized result is **RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE**; more directly, ridge significantly outperformed RiboMIMO on both prespecified primary endpoints in this Mohammad16-to-Subtelny14 setup. This is a bounded negative transfer result for an occupancy-derived target, not a physical-velocity measurement, universal assessment of RiboMIMO, functional OOD result or SOTA claim.
+
+Independent verification reparsed both raw three-line matrices, recomputed eligibility, normalization, masks, source splits, ridge fitting, target metrics and paired inference, and retrained all three seeds in separate output directories. It passed 203/203 checks; maximum absolute production-versus-independent differences were 0 for model predictions and 1.51e-07 for ridge predictions. Finalization passed 30/30 checks. The shared-GPU wall times are retained in the training record but are not time-matched cost evidence. This experiment does not close homology/protein OOD, functional OOD, RK-G1, generator authorization or the full baseline program.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -657,6 +682,14 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK02 structure-increment independent verification | `5d3868ba037877b5952376c7a4db85fa33df5ed3014abc141b728acc50296170` |
 | RK02 structure-increment finalization | `c8fca9ae49706dfa7ef1d026cefde922ef461eb1fcfb5a7dab742b370637a1fc` |
 | RK02 structure-increment unit tests and CAI cross-check | `5960def1db264c6ce8fe9161ae6505e4b274d0c67903f3953f12c91e692aa603` |
+
+| RK05 RiboMIMO study-OOD frozen protocol | `99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5` |
+| RK05 RiboMIMO study-OOD unit tests | `cf8bd1cc2db3a0707b13543517dfb2f9bd2ff804422ad5b67aa14d00be2c30a5` |
+| RK05 RiboMIMO study-OOD production | `0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239` |
+| RK05 RiboMIMO study-OOD independent retrain | `d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035` |
+| RK05 RiboMIMO study-OOD independent verification | `5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1` |
+| RK05 RiboMIMO study-OOD finalization | `1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e` |
+| RK05 RiboMIMO study-OOD training record | `b8692e0e9811533c78864aaf10abf70cae0f9963b2800abf53a9fd055156a95e` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

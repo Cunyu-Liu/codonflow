@@ -1,0 +1,51 @@
+{
+  "anchor_lines": [
+    "| RK05 RiboMIMO study-OOD frozen protocol | `99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5` |",
+    "| RK05 RiboMIMO study-OOD unit tests | `cf8bd1cc2db3a0707b13543517dfb2f9bd2ff804422ad5b67aa14d00be2c30a5` |",
+    "| RK05 RiboMIMO study-OOD production | `0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239` |",
+    "| RK05 RiboMIMO study-OOD independent retrain | `d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035` |",
+    "| RK05 RiboMIMO study-OOD independent verification | `5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1` |",
+    "| RK05 RiboMIMO study-OOD finalization | `1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e` |",
+    "| RK05 RiboMIMO study-OOD training record | `b8692e0e9811533c78864aaf10abf70cae0f9963b2800abf53a9fd055156a95e` |"
+  ],
+  "artifacts": {
+    "RK05 RiboMIMO study-OOD finalization": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_finalization_v1.json",
+      "sha256": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e"
+    },
+    "RK05 RiboMIMO study-OOD frozen protocol": {
+      "path": "configs/a8_rk05_ribomimo_study_ood_protocol_v1.json",
+      "sha256": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5"
+    },
+    "RK05 RiboMIMO study-OOD independent retrain": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_independent_retrain_v1.json",
+      "sha256": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035"
+    },
+    "RK05 RiboMIMO study-OOD independent verification": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_independent_v1.json",
+      "sha256": "5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1"
+    },
+    "RK05 RiboMIMO study-OOD production": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_production_v1.json",
+      "sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239"
+    },
+    "RK05 RiboMIMO study-OOD training record": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_training_record_v1.json",
+      "sha256": "b8692e0e9811533c78864aaf10abf70cae0f9963b2800abf53a9fd055156a95e"
+    },
+    "RK05 RiboMIMO study-OOD unit tests": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_unit_tests_v1.json",
+      "sha256": "cf8bd1cc2db3a0707b13543517dfb2f9bd2ff804422ad5b67aa14d00be2c30a5"
+    }
+  },
+  "input_paper_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
+  "input_sync_sha256": "2f85860916dc3e8e322e7135230ce157136b41566e18d70b87bb2a837ffae0d4",
+  "manuscript_version": "v25",
+  "output_paper_sha256": "f399fceead66b231b998e073fa02aab0d4bd830aa7a6d4dffd0bb2bec836c15b",
+  "output_sync_sha256": "9ffed6f1319d57b977bf97a060c18f175c01592e023f4e323573119142a217c9",
+  "schema_version": "a8-rk05-ribomimo-study-ood-paper-update-v1",
+  "scientific_outcome": "RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE",
+  "section": "6.21 RiboMIMO cross-study transfer: ridge was stronger on both frozen endpoints",
+  "status": "PASS_PENDING_INDEPENDENT_PAPER_VERIFY",
+  "submittable": false
+}

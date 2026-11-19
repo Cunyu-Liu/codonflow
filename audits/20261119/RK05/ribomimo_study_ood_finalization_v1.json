@@ -1,0 +1,388 @@
+{
+  "schema_version": "a8-rk05-ribomimo-study-ood-finalization-v1",
+  "status": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+  "n_checks": 30,
+  "n_passed": 30,
+  "checks": [
+    {
+      "name": "unit_tests_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "production_pass_pending_independent",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_retrain_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_verifier_pass",
+      "pass": true,
+      "evidence": {
+        "passed": 203,
+        "total": 203
+      }
+    },
+    {
+      "name": "production_report_hash_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_report_hash_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "protocol_hash_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "driver_hash_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "three_frozen_seeds",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "official_source_commit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seven_compatibility_changes_only",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "source_target_sizes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exact_cds_disjoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "target_not_used_for_epoch_evaluation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "model_predictions_reproduced_exactly",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "ridge_predictions_reproduced_within_declared_solver_tolerance",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 1.508439275710316e-07,
+        "absolute_tolerance": 1e-06
+      }
+    },
+    {
+      "name": "raw_ridge_refit_within_declared_solver_tolerance",
+      "pass": true,
+      "evidence": {
+        "max_abs_difference": 1.508439275710316e-07,
+        "absolute_tolerance": 1e-06
+      }
+    },
+    {
+      "name": "primary_inference_recomputed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "two_primary_endpoints_only",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "production_console_nonempty",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_console_nonempty",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "production_console_no_traceback",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_console_no_traceback",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "driver_frozen_in_git",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "protocol_frozen_in_git",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_rk_g1_change",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_generation_authorization",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_sota_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "no_functional_or_homology_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "not_globally_untouched_confirmation",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "scientific_outcome": "RIBOMIMO_STUDY_OOD_NO_UNIFORM_SIGNIFICANT_ADVANTAGE_OVER_RIDGE",
+  "primary_seed": 1234,
+  "primary_endpoints": [
+    {
+      "metric": "transcript_balanced_mse",
+      "direction": "negative_favors_ribomimo",
+      "n_pairs": 3921,
+      "point_delta_ribomimo_minus_ridge": 1.179641679101714,
+      "ci95_low": 1.1626865486921758,
+      "ci95_high": 1.1962882037490148,
+      "bootstrap_requested": 2000,
+      "bootstrap_valid": 2000,
+      "sign_flip_pvalue": 0.0004997501249375312,
+      "nonzero_pairs": 3921,
+      "mean_absolute_pair_difference": 1.1799290706417822,
+      "holm_pvalue": 0.0009995002498750624
+    },
+    {
+      "metric": "mean_transcript_pearson",
+      "direction": "positive_favors_ribomimo",
+      "n_pairs": 3921,
+      "point_delta_ribomimo_minus_ridge": -0.03850771646224459,
+      "ci95_low": -0.04140616194511709,
+      "ci95_high": -0.03553605212612245,
+      "bootstrap_requested": 2000,
+      "bootstrap_valid": 2000,
+      "sign_flip_pvalue": 0.0004997501249375312,
+      "nonzero_pairs": 3921,
+      "mean_absolute_pair_difference": 0.07854430959382137,
+      "holm_pvalue": 0.0009995002498750624
+    }
+  ],
+  "seed_sensitivity": [
+    {
+      "seed": 1234,
+      "best_epoch": 10,
+      "ridge_alpha": 100.0,
+      "ribomimo": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 2.1866082212702422,
+        "mean_transcript_pearson": -0.0010075663886172813,
+        "median_transcript_pearson": -0.00382894354978185,
+        "mean_transcript_spearman": 0.015973892071400562,
+        "global_r2": -1.201521216218271,
+        "global_mse": 2.164313536138721,
+        "global_pearson": 0.0032319084613719284
+      },
+      "ridge": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 1.0069665421685288,
+        "mean_transcript_pearson": 0.0375001500736273,
+        "median_transcript_pearson": 0.04091807310012226,
+        "mean_transcript_spearman": 0.04656434113464452,
+        "global_r2": -0.03709517112791971,
+        "global_mse": 1.019567333987354,
+        "global_pearson": 0.046278018157732234
+      }
+    },
+    {
+      "seed": 2345,
+      "best_epoch": 10,
+      "ridge_alpha": 100.0,
+      "ribomimo": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 2.074145069341217,
+        "mean_transcript_pearson": 0.004477208440623037,
+        "median_transcript_pearson": 0.003169321763520725,
+        "mean_transcript_spearman": 0.027544332751312385,
+        "global_r2": -1.0741035004135475,
+        "global_mse": 2.03904929383732,
+        "global_pearson": 0.009018093853045389
+      },
+      "ridge": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 1.0067877535336192,
+        "mean_transcript_pearson": 0.037488910039918465,
+        "median_transcript_pearson": 0.04051177094045204,
+        "mean_transcript_spearman": 0.045894950600712844,
+        "global_r2": -0.03705679664972461,
+        "global_mse": 1.0195296080722058,
+        "global_pearson": 0.04587120528907996
+      }
+    },
+    {
+      "seed": 3456,
+      "best_epoch": 13,
+      "ridge_alpha": 100.0,
+      "ribomimo": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 2.040440713127967,
+        "mean_transcript_pearson": 0.011052601835868665,
+        "median_transcript_pearson": 0.008544008859765292,
+        "mean_transcript_spearman": 0.03031192304457384,
+        "global_r2": -1.056559588234669,
+        "global_mse": 2.021801889485342,
+        "global_pearson": 0.014818620103459766
+      },
+      "ridge": {
+        "n_transcripts": 3921,
+        "n_masked_positions": 1516508,
+        "n_transcripts_with_pearson": 3921,
+        "n_transcripts_with_spearman": 3921,
+        "transcript_balanced_mse": 1.005551727919777,
+        "mean_transcript_pearson": 0.038320884126848254,
+        "median_transcript_pearson": 0.041541220725647074,
+        "mean_transcript_spearman": 0.04558493360309624,
+        "global_r2": -0.03557171803509607,
+        "global_mse": 1.018069628616095,
+        "global_pearson": 0.04738053983936699
+      }
+    }
+  ],
+  "closed_scope": "Official RiboMIMO Mohammad16-to-Subtelny14 exact-CDS-disjoint study-OOD evaluation versus source-fitted ridge and constant baselines, with three-seed independent retraining and raw-data/statistical verification.",
+  "open_scope": {
+    "homology_aware_protein_ood": false,
+    "functional_ood": false,
+    "physical_velocity_measurement": false,
+    "time_matched_unified_cost": false,
+    "full_baseline_program": false,
+    "generator_training_authorized": false,
+    "rk_g1_changed": false
+  },
+  "hashes": {
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/configs/a8_rk05_ribomimo_study_ood_protocol_v1.json",
+      "sha256": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5"
+    },
+    "production": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_production_v1.json",
+      "sha256": "0b78fe4cb06294a572928adab63e5f840f13f308274d7a8dbfd0efdb5f85d239"
+    },
+    "independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_independent_retrain_v1.json",
+      "sha256": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035"
+    },
+    "verification": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_independent_v1.json",
+      "sha256": "5cbfcaa35828042a0cb1abda20c7e60e6d6094ad8a0d3407c3f114fd621869e1"
+    },
+    "unit_tests": {
+      "path": "/home/codonflow-a8-rk/audits/20261119/RK05/ribomimo_study_ood_unit_tests_v1.json",
+      "sha256": "cf8bd1cc2db3a0707b13543517dfb2f9bd2ff804422ad5b67aa14d00be2c30a5"
+    },
+    "production_console": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production.console.log",
+      "sha256": "145bcc3eb32c279a1900559d113f1ac86edd8ff947a43ba658a8f96808e7a09c"
+    },
+    "independent_console": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/independent_retrain.console.log",
+      "sha256": "13af1aaa9e04bf3d5155b0a542cc1227610d7f9793ad42d962e29af12c6d0b4b"
+    },
+    "verification_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk05_verify_ribomimo_study_ood.py",
+      "sha256": "756261497170b66babb17eb5eab5e294d3ea41082f344d2a13061c4ab17990f8"
+    },
+    "driver": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk05_ribomimo_study_ood.py",
+      "sha256": "556172d7f7f84393a16b74dd0ac3eea238edaeeb98ea30bd0b84882bef1112ad"
+    }
+  },
+  "verification_script_sha256": "756261497170b66babb17eb5eab5e294d3ea41082f344d2a13061c4ab17990f8",
+  "frozen_code_commit": "5c85e5847dbad0300f2d967dd769b7cce00c2ad3",
+  "artifacts": {
+    "production_combined_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production/data/StudyOOD_Mohammad16_Subtelny14.txt",
+      "sha256": "11ea162075e4c2a7251703e891a3e7a283cecfaab177475890c4859ad4bae2ad"
+    },
+    "independent_combined_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/independent/data/StudyOOD_Mohammad16_Subtelny14.txt",
+      "sha256": "11ea162075e4c2a7251703e891a3e7a283cecfaab177475890c4859ad4bae2ad"
+    },
+    "production_predictions": [
+      {
+        "seed": 1234,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production/predictions/subtelny14_seed1234.npz",
+        "arrays_sha256": "69235b6d2bc32846b624ad221eda772a34580fd161481bd184db5c22b00cc840"
+      },
+      {
+        "seed": 2345,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production/predictions/subtelny14_seed2345.npz",
+        "arrays_sha256": "701bddaba08a62f83155da269528ca7a5ef50825b07238e94bafb508cfcc333a"
+      },
+      {
+        "seed": 3456,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production/predictions/subtelny14_seed3456.npz",
+        "arrays_sha256": "6a469dd6c6fffb097446475b8dd008cf3eba7115ab24be955e4103a5ba30c108"
+      }
+    ],
+    "independent_predictions": [
+      {
+        "seed": 1234,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/independent/predictions/subtelny14_seed1234.npz",
+        "arrays_sha256": "2d551eeadd8ed5fa3b371803a4107469ac901592c6c988209167fbfdc5b3f676"
+      },
+      {
+        "seed": 2345,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/independent/predictions/subtelny14_seed2345.npz",
+        "arrays_sha256": "5ebf6d582c87d5126ae7534654115452a158ea820780448a1e6732f8d9dfdc16"
+      },
+      {
+        "seed": 3456,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/independent/predictions/subtelny14_seed3456.npz",
+        "arrays_sha256": "9e3254d508b97ff55ea35fec33d6ef6e2c8a1c71c79448ddb9e55c0bd9b77798"
+      }
+    ]
+  }
+}

@@ -194,3 +194,10 @@
 4. **Week 4 / RK-G3/G4**：独立与等时间是否重复，论文每个主张是否闭合？
 
 任何未通过项保留为未完成；不得换弱 baseline、重复使用 untouched、删除失败分层或用计划文档宣称 SOTA。
+
+## 2026-11-19 RK05 RiboMIMO cross-study OOD increment
+
+- [x] 冻结并完成 Mohammad16→Subtelny14 RiboMIMO/ridge/constant study-OOD：1,062/117 source train/validation、3,921 target、exact CDS overlap=0，主 seed=1234，敏感性 seeds=2345/3456，target 在 source 训练与 alpha 选择后才评估。10/10 tests、独立 203/203、finalization 30/30 通过。
+- [x] 两项冻结主终点均显著有利于 ridge：ΔTB-MSE=1.179641679，95% CI=[1.162686549,1.196288204]；Δmean-r=-0.038507716，95% CI=[-0.041406162,-0.035536052]；两者 Holm p=0.000999500。常数 baseline 的 TB-MSE 也低于两个学习模型，不能写成强绝对迁移。
+- [x] A8 v25 已写入该负迁移结果并完成 44/44 论文核验；仍为 non-submittable working manuscript。复现说明见 `audits/20261119/RK05/README.md`，新交接见 `docs/handover/HANDOFF_A8_RK05_RIBOMIMO_STUDY_OOD_20261119.md`。
+- [ ] 本实验不关闭全局 untouched、物理速度、功能/homology/protein OOD、RK-G1、生成训练授权、time-matched 成本或完整 baseline 主矩阵；下一优先仍是机制支持的真实功能 OOD。
