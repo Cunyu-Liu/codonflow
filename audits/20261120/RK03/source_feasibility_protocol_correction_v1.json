@@ -1,0 +1,32 @@
+{
+  "schema": "a8-rk03-source-feasibility-protocol-correction-v1",
+  "initial_protocol_commit": "aabea5ea25cd2582b90594a4fdd27e066b5ad554",
+  "reason": "Engineering source-identity/path correction before any successful production report; the initial protocol named a different repository and a nonexistent clone path.",
+  "incorrect_fields": {
+    "repository_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/sources/VeloHARMO",
+    "commit": "c19676a3ce9da365c08f7d035a15696d784a1562",
+    "live_api": "https://api.github.com/repos/CU-Boulder-ESIL/VeloHARMO/git/trees/main?recursive=1"
+  },
+  "corrected_fields": {
+    "repository": "https://github.com/BianBian2021/VeloHARMO",
+    "commit": "38b48079856aeb9d33a1b10844d77aa8f6640032",
+    "source_dir": "/home/codonflow-a8-rk-external/VeloHARMO-38b48079856aeb9d33a1b10844d77aa8f6640032",
+    "payload_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/veloharmo_official_38b48079856aeb9d33a1b10844d77aa8f6640032",
+    "source_tree_audit_sha256": "c912751b97c2cf673a3b76533e49af371576171aacdd7429d11c3d3f848eba88",
+    "materialization_audit_sha256": "807362f0d055bc0340f333ad58e1eb21c10a468a475629f105d0e391eb1f439f"
+  },
+  "unchanged_scientific_design": [
+    "metadata-only official GEO/SRA/PMC retrieval",
+    "the same five VeloHARMO source papers and accessions",
+    "the same three RiboMIMO GEO studies",
+    "no FASTQ/BAM/SRA download",
+    "no UTR-CDS construction or P-site remapping",
+    "no global offset",
+    "no model fitting or RK-G1 closure"
+  ],
+  "failed_production_report_generated": false,
+  "failure_logs_retained": [
+    "audits/20261120/RK03/source_feasibility_initial_missing_time_utility.console.log",
+    "audits/20261120/RK03/source_feasibility_initial_wrong_repository_path.console.log"
+  ]
+}

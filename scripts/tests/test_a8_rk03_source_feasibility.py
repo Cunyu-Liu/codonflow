@@ -46,5 +46,5 @@ class TestSourceFeasibility(unittest.TestCase):
  def test_protocol_has_five_references(self):
   p=json.loads(PROTOCOL.read_text())
   self.assertEqual(len(p['veloharmo']['references']),5)
-  self.assertEqual(p['veloharmo']['expected_released_harmonized_matrix_organisms'],['Ecoli'])
+  self.assertEqual(p['veloharmo']['expected_released_harmonized_matrix_organisms'],['E.coli'])
 if __name__=='__main__': unittest.main()

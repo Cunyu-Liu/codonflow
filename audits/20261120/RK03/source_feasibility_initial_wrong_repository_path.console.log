@@ -1,0 +1,11 @@
+fatal: cannot change to '/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/sources/VeloHARMO': No such file or directory
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk03_source_feasibility.py", line 160, in <module>
+    if __name__=='__main__': main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk03_source_feasibility.py", line 115, in main
+    commit=subprocess.check_output(['git','-C',str(repo),'rev-parse','HEAD'],text=True).strip()
+  File "/root/miniconda3/lib/python3.9/subprocess.py", line 424, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/root/miniconda3/lib/python3.9/subprocess.py", line 528, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', '-C', '/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/sources/VeloHARMO', 'rev-parse', 'HEAD']' returned non-zero exit status 128.
