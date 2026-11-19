@@ -56,6 +56,7 @@
 - [x] CF-A8-RK05-ROSE-RELEASED-TEST：固定官方源码 `8b86d69d89ca7ef95193729e6d1a4738bc6a4451`，每研究一个发布 checkpoint、无训练、无集成，在 Pop14/Battle15 完整 1,902/9,980 条作者处理测试数组上各执行一次 CPU 前向。ROC AUC=`0.861889/0.807230`，AP=`0.859274/0.794068`，accuracy=`0.778654/0.728156`，log loss=`0.498731/0.562374`；只证明二分类停滞预测复现。独立第二次前向 **34/34 PASS**，logits/官方 float32 概率/生产指标差均为 0，finalization **60/60 PASS**、测试 **12/12 PASS**；v1–v3 数值判据失败保留。科学证据 commit `3a284efef7fab0b911473f1e1647f01bcfedf651`；训练、64-checkpoint 集成、速度回归、OOD、主矩阵和 SOTA 未关闭。
 - [x] CF-A8-RK18-WORKING-MANUSCRIPT-V10：A8 生成器纳入 ROSE 协议、生产、独立 v4、finalization 和三份保留失败报告，新增完整数组分类结果、单 checkpoint/无训练及科学边界；A7 未改。A8 SHA256=`4bc071c4f8e6eecb20429e8b9ee044e116105f8a348740254f22a040840f823e`，独立 **21/21 PASS**；commit `f17f432e3ea58d6d2839bdba6ab05dedc3f4460f`。仍为 non-submittable working manuscript。
 - [x] CF-A8-RK05-ROSE-PPT：既有在线主稿追加第 78 页 `pgc`、revision=40，记录 Pop14/Battle15 完整发布测试数组的 ROC AUC/AP/accuracy/log loss、常数 baseline、34/34 独立 PASS、60/60 finalization 和二分类/单 checkpoint 边界。候选 preflight **14/14 PASS**，写后独立验证 **14/14 PASS**，前 77 页 slide ID、顺序与 canonical XML 全部不变；raw artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ppt_rose_v1/`。commit `a9de66192f4d3fa2e795d8d93b05e2671248b595`。
+- [x] CF-A8-RK08-VELOCITY-PROXY：在不访问功能 OOD 的前提下，使用固定 RiboMIMO 官方处理矩阵完成占据衍生速度代理实验；目标为 `-log1p(normalized density)`，首末密码子 mask，8,109 条输入排除 321 条超长记录后保留 7,788 条。Mohammad16 train/dev/test=`933/110/123`，Subtelny14=`3,630` 且与 Mohammad16 任意 split 的精确 CDS 重叠为 0；不声称 homology OOD 或物理速度实测。dev-only 选择 epoch 16；Subtelny14 主终点 model−ridge ΔTB-MSE=`+0.054623`（95% CI `[+0.054046,+0.055192]`），Δmean within-transcript Pearson=`-0.070543`（95% CI `[-0.073248,-0.067765]`），2,000 次 bootstrap 两项均反向显著，`velocity_mechanism_pass=false`。Mohammad16 内部改善与 Mohammad19 的混合结果保留，不替代主终点。两次 checkpoint/预测 bitwise 一致，独立 `26/26 PASS`、finalization `12/12 PASS`，独立前向最大误差 `6.406818248150259e-07`；A8 v12 独立论文核验 `30/30 PASS`。科学代码/报告 commit=`872bed008e5c07d310488641c15e13d471b6166a` 已推送；RK-G1、功能迁移、跨层一致性与生成器授权仍未关闭。
 - [ ] RK03-REMAINING：完成 UTR–CDS 映射/raw read 或 P-site 独立重比对可行性报告、VeloHARMO 其余物种真实可获得性追踪；不得把 processed-matrix QC 或 bounded GA 写成机制、五物种模型或功能闭环。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
@@ -129,6 +130,8 @@
 - **验收**：至少一个机制组合稳定优于简单代理和同骨干无机制模型；每项增量有 paired CI。
 - **当前进展（2026-11-19，工程 smoke 已闭环）**：已实现共享 codon Transformer 的 initiation/velocity/decay/pair 四通路、UTR–CDS 合法配对偏置、功能异方差头与不确定性输出；消融仅门控信息流，不删除通路参数，pair-off 仍使用同形 dense attention。严格 functional/long-velocity loader 保留 NaN+mask，宿主词表和归一化仅拟合 train；契约测试 **12/12 PASS**。冻结 Boël sequence-OOD 表的 train/dev/test 各 8 条仅用于真实端到端 smoke，`functional_untouched` 显式排除；两次 CPU 训练指标、预测及参数张量逐位一致，RTX 5090 CUDA smoke 完成。独立核验 **31/31 PASS**、finalization **37/37 PASS**，CUDA 独立前向最大绝对误差 `4.76837158203125e-07`。这只是工程与复现里程碑，不是机制增量、功能/速度 OOD 主表、SOTA 或生成器就绪证据；RK-G1 仍未通过，昂贵生成训练不得启动。大 artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/`。
 
+- **正式占据衍生速度代理更新（2026-11-19）**：使用直接速度代理监督而不是功能标签间接训练速度头。Subtelny14 主 OOD 上 RiboKinetic/ridge TB-MSE=`0.230569/0.175946`、mean within-transcript Pearson=`-0.008845/0.061698`；model−ridge 两项差值及 95% CI 均指向 ridge 显著更优，故 `velocity_mechanism_pass=false`。Mohammad16 test 的 TB-MSE=`0.193081/0.234951`、Pearson=`0.442167/0.148476`（model/ridge）仅为同研究内部改善；Mohammad19-1/2 的 Pearson 改善伴随 MSE 变差，不构成稳健迁移。独立 26/26、finalization 12/12、论文 30/30 PASS；这是可复现负结果，不是物理速度、homology OOD、功能迁移或 RK-G1 通过证据。
+
 ### RK-09 E3：跨层机制一致性
 
 - **任务**：联合/分别预测 MAGE 适应度、Ribo 速度、Boël mRNA/蛋白层；在适用数据做分层或 mediation。
@@ -137,7 +140,7 @@
 
 - **全量功能 OOD 更新（2026-11-19）**：retained train/dev/test=`4019/503/490`，sequence-OOD=`1336`；all 与 none 均为 4,997 参数，仅通道门控不同，2,000 次 cluster bootstrap。all−none 的 OOD ΔSpearman=`0.199016`，95% CI=`[0.129283,0.266863]`；ΔCB-MSE=`-0.276089`，95% CI=`[-0.377439,-0.180840]`。all−GC-only 两项 CI 也支持 all；但 all−full-proxy ridge 的 ΔSpearman=`-0.025779`，95% CI=`[-0.071103,0.019376]`，ΔCB-MSE=`-0.025572`，95% CI=`[-0.124069,0.076207]`，均不显著。**RK-G1 未通过**，不启动昂贵生成训练。该实验为跨蛋白、功能单监督，不支持固定蛋白机制或速度 OOD；完整重训 bitwise 一致，独立 `224/224 PASS`、finalization `48/48 PASS`。
 
-**RK-G1 状态：未通过**。all 相对同骨干 none 和 GC-only 有增量，但未同时优于 full-proxy ridge；修数据/假设前不得启动昂贵生成训练。
+**RK-G1 状态：未通过**。功能 OOD 上 all 相对同骨干 none 和 GC-only 有增量，但未同时优于 full-proxy ridge；独立速度代理实验的 Subtelny14 主终点也显著落后于 ridge，`velocity_mechanism_pass=false`。修数据/假设前不得启动昂贵生成训练。
 
 ## Phase 2：最小 CodonFlow-RK（Day 8–18，RK-G2）
 
@@ -201,6 +204,8 @@
 - **当前进展（2026-11-19，V5 EnsembleDesign sync）**：生成器纳入五份 EnsembleDesign 冻结来源和哈希，新增 example/C01 EFE 表、bounded 成本、双 13/13 独立复核、11/11 finalization 和 v1 retained failure；明确 EFE≠LinearDesign MFE，未授权 matched comparison/dense/主矩阵/功能 OOD/SOTA。A8 v5 SHA256=`505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca`，独立 16/16 PASS；仍为 non-submittable working manuscript。
 - **当前进展（2026-11-19，V6 CodonTransformer sync）**：生成器纳入四份 CodonTransformer 冻结来源和哈希，新增官方 example/C01 的 default/match_protein 四行结果、4/4 legal、2 unique、README 精确匹配、独立 13/13 与 finalization 10/10；明确两种模式输出相同、约束收益未证实、推理成本含 warm-up，未授权 matched MFE/EFE、dense/主矩阵/功能 OOD/SOTA。A8 v6 SHA256=`1ac702be2b38900346064ebbc56a4b20a461089f317078db1df08c73774e0d35`，独立 **17/17 PASS**，commit=`f479955fefa034c5a5fde84c5f7ab37d85cf0044`；仍为 non-submittable working manuscript。
 - **当前进展（2026-11-18，V7 VeloHARMO sync）**：生成器纳入 VeloHARMO 生产、独立与 finalization 三份冻结来源及哈希，新增 7 条长度选择记录的 CUDA 官方 test 诊断、population=8/generations=2 的 CPU GA、7 项兼容替换、未修改 GA 失败、2/2 合法同义和 best=start 的零迭代提升；明确 best-native 差值不是 GA 或实验功能增益，未授权五物种、正式训练/CV、主矩阵、功能 OOD 或 SOTA。A8 v7 SHA256=`078228450f69c1efe6b31f7bbf7dba0d01d004c9aecdf2f330f4ad32c985fe6d`，独立 **18/18 PASS**，commit=`9948b2ec251ae593ef9a864206cdd20672134923`；仍为 non-submittable working manuscript。
+
+- **当前进展（2026-11-19，V12 RK08 velocity-proxy sync）**：在实际 pre-velocity A8（含既有 RK08 全量功能新增）哈希门禁下保存快照并追加第 6.9 节，保留原始 v11 审计与当前稿件哈希链。新增 7,788 条速度记录、五个分区完整指标、Subtelny14 两项负向 bootstrap、同研究/跨研究边界、26/26 独立核验、12/12 finalization 和六份证据哈希；A7 未改。A8 v12 SHA256=`c9611d12a1c4c4e4deccbb0bb4e3718a2886a7804bc3b01e74ed64699be9ed4e`，独立 **30/30 PASS**；`velocity_mechanism_pass=false`，仍为 non-submittable working manuscript。
 
 ### RK-19 干净复现与交接
 

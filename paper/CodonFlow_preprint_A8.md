@@ -256,9 +256,29 @@ Paired cluster bootstrap with 2,000 resamples supported an increment over the sa
 
 The all-channel model did not outperform the full-proxy ridge on either OOD endpoint. Its Spearman difference was -0.025779 (95% CI [-0.071103, 0.019376]; Holm-adjusted p = 0.522), and its CB-MSE difference was -0.025572 (95% CI [-0.124069, 0.076207]; Holm-adjusted p = 0.595). Thus, the preregistered RK-G1 criterion was not met. The low absolute R² values and the more favorable HistGB point estimates further preclude an SOTA or broad superiority claim.
 
-These results support a limited inductive-bias interpretation: the four channels improved the shared backbone relative to no channels and GC-only regression, but did not establish superiority over the full proxy set. This experiment used cross-protein, nonsynonymous constructs and function-only supervision. It therefore does not validate fixed-protein synonymous mechanisms, and the initiation, velocity, and decay outputs are not validated mechanism-specific estimates. Velocity OOD and generator readiness remain unevaluated, and expensive generation training remains unauthorized. Two complete retraining runs were bitwise identical, while independent verification passed 224 of 224 checks and finalization passed 48 of 48 checks. Clean-environment reproduction remains outstanding.
+These results support a limited inductive-bias interpretation: the four channels improved the shared backbone relative to no channels and GC-only regression, but did not establish superiority over the full proxy set. This experiment used cross-protein, nonsynonymous constructs and function-only supervision. It therefore does not validate fixed-protein synonymous mechanisms, and the initiation, velocity, and decay outputs are not validated mechanism-specific estimates. An independent occupancy-derived velocity-proxy analysis is reported in Section 6.9; it did not pass its preregistered Subtelny14 transfer gate. Neither experiment authorizes expensive generation training. Two complete retraining runs were bitwise identical, while independent verification passed 224 of 224 checks and finalization passed 48 of 48 checks. Clean-environment reproduction remains outstanding.
 
-### 6.9 Independent functional validation
+### 6.9 Occupancy-derived velocity proxy: in-study fit did not transfer to Subtelny14
+
+To test the velocity channel with direct supervision rather than function-only pooling, we used the frozen RiboMIMO author-processed normalized ribosome-density matrices. The target was `-log1p(normalized density)`, an **occupancy-derived elongation-speed proxy**, not a physical velocity measurement. The first codon and stop codon were masked. Of 8,109 clean records, 321 exceeded the frozen 1,002-codon limit, leaving 7,788. Mohammad16 was split by deterministic record-ID hash into 933/110/123 train/dev/test transcripts. Subtelny14 contributed 3,630 transcripts and had zero exact CDS overlap with any Mohammad16 split; this is exact-CDS-disjoint study/species OOD, not homology-cluster OOD.
+
+The 24,933-parameter RiboKinetic model and the codon/relative-position/length ridge used identical observed positions. Checkpoint selection used only Mohammad16 development transcript-balanced MSE and selected epoch 16. Test and all study-OOD partitions were excluded from fitting and selection.
+
+| Partition | Transcripts | RiboKinetic TB-MSE | Ridge TB-MSE | RiboKinetic mean within-transcript r | Ridge mean within-transcript r |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Mohammad16 dev | 110 | 0.191465 | 0.233787 | 0.446130 | 0.144838 |
+| Mohammad16 test | 123 | 0.193081 | 0.234951 | 0.442167 | 0.148476 |
+| Mohammad19-1 study-OOD | 1,412 | 0.214932 | 0.184495 | 0.024393 | -0.089449 |
+| Mohammad19-2 study-OOD | 1,580 | 0.211918 | 0.184970 | 0.057341 | -0.058339 |
+| Subtelny14 study/species-OOD (primary) | 3,630 | 0.230569 | 0.175946 | -0.008845 | 0.061698 |
+
+On the preregistered Subtelny14 primary endpoint, the model was worse than ridge on both criteria. The model-minus-ridge TB-MSE difference was **+0.054623** (95% CI [+0.054046, +0.055192]), and the mean within-transcript Pearson difference was **-0.070543** (95% CI [-0.073248, -0.067765]). Both empirical Holm-adjusted p-values were 0 across 2,000 transcript-bootstrap resamples. Therefore `velocity_mechanism_pass=false`.
+
+The within-study Mohammad16 test improvement is descriptive and does not rescue the primary endpoint: model/ridge TB-MSE was 0.193081/0.234951, and mean within-transcript Pearson was 0.442167/0.148476. On Mohammad19-1/2, the model had higher mean within-transcript Pearson but worse TB-MSE than ridge, so these overlapping-CDS study transfers are not robust wins. The primary negative result is retained without post-hoc model tuning.
+
+Two complete training runs produced bitwise-identical checkpoints and prediction files. Independent raw-source verification passed **26/26 checks**, and finalization passed **12/12 checks**. This closes reproducibility of a negative velocity-proxy experiment only. It does not close RK-G1, functional transfer, cross-head mechanism consistency, physical velocity validation, homology OOD, generator readiness, SOTA or wet-lab validation; expensive generation remains unauthorized.
+
+### 6.10 Independent functional validation
 
 [Pending. Retrospective held-out measurements first; prospective design–build–test–learn results only when actually completed.]
 
@@ -344,6 +364,12 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK08 full artifact manifest | `dce4cbc03c826124de3706222bd844495250fc3da19a2ef42512043124c16f4b` |
 | RK08 all-channel checkpoint | `7e581b2b49fd4f4aba723ce497e6f3369acb7ed54f278c6b377fef37a6417c61` |
 | RK08 no-channel checkpoint | `aa54bfc78ce3a50e70302ae0530a0be29656514988bddab051527a912c73dee7` |
+| rk08_velocity_data | `61ced22f2f077fa4e89b25c5b48ddf4730630e9f1bd01a58b22463879f1d89d9` |
+| rk08_velocity_protocol | `cd5dc89ef5865e11cc11e7378a0d016e8dd0e791015355e3af556850a271298e` |
+| rk08_velocity_production | `235201ea570fb5fccaf99c51259247a0e4428e4e9ea11a09946a0b491f3f9ddc` |
+| rk08_velocity_retrain | `cc0559be2a84d1556c24a389cd56d7321f4fa7ee4acc653af0eefdfba1161495` |
+| rk08_velocity_independent | `a1e2e5ea78f3fe9d5bbaf3081dd0957045491388dbcf033ea7673f06bc361340` |
+| rk08_velocity_finalization | `ac8b87ae2bf56c2deba7ac7078d62c737df469228189cf931e25b6db3ce87062` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
