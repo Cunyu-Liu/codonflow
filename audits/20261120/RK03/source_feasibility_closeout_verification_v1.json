@@ -1,0 +1,417 @@
+{
+  "schema": "a8_rk03_source_feasibility_closeout_verification_v1",
+  "status": "PASS",
+  "overall_pass": true,
+  "network_used": false,
+  "online_ppt_modified": false,
+  "check_counts": {
+    "total": 73,
+    "passed": 73,
+    "failed": 0
+  },
+  "recomputed_totals": {
+    "veloharmo": {
+      "runs": 125,
+      "size_MB": 143663
+    },
+    "ribomimo_extra": {
+      "runs": 13,
+      "size_MB": 9236
+    },
+    "distinct_runinfo": {
+      "accessions": 7,
+      "runs": 138,
+      "size_MB": 152899
+    }
+  },
+  "document_sha256": {
+    "README.md": "db9d9f16febb3aee9f4355399a50a8bd8af96d507ee460b267786d9ad88404d3",
+    "docs/handover/tasks.md": "da889fa9aa4977ad250fe9f9845e521adbe4acfe750279798c05438fc327f17b",
+    "docs/handover/HANDOFF_A8_RK_20261118.md": "2046b3b6866f5f206acfa573e32ed2f543de9583fdafceb99910b3275b3d74e0",
+    "experiments/REGISTRY.md": "81866773305674df5492cdec914f485dba563428b27ba6dccb6f01a38a7e679a"
+  },
+  "paper_sha256": "c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952",
+  "ppt": {
+    "new_slide_id": "pgM",
+    "new_page_number": 103,
+    "revision_id": 65
+  },
+  "scope": "Documentation/registry closeout only; metadata-level source feasibility remains bounded and is not raw-read/P-site remapping, mechanism validation, RK-G1 closure, generator authorization, or a submittable manuscript.",
+  "checks": [
+    {
+      "check": "production_74_of_74",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_169_of_169",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "finalization_47_of_47",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "bounded_only_closed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "rk_g1_remains_open",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "generator_remains_unauthorized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "manuscript_remains_unsubmittable",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_read_download",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_utr_cds",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_raw_remap",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "terminal_scope",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "scientific_outcome",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "veloharmo_totals",
+      "pass": true,
+      "evidence": {
+        "runs": 125,
+        "size_MB": 143663
+      }
+    },
+    {
+      "check": "ribomimo_extra_totals",
+      "pass": true,
+      "evidence": {
+        "runs": 13,
+        "size_MB": 9236
+      }
+    },
+    {
+      "check": "distinct_runinfo_totals",
+      "pass": true,
+      "evidence": {
+        "accessions": 7,
+        "runs": 138,
+        "size_MB": 152899
+      }
+    },
+    {
+      "check": "only_ecoli_matrix",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "four_matrices_absent",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "fourteen_pinned_files",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "dunn13_corrected",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "pop14_corrected",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "paper_61_of_61",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "paper_facts_30_of_30",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "paper_v26_recovery",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "paper_hash_current",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "paper_not_submittable",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_candidate_35_of_35",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_postwrite_47_of_47",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_page_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_write_succeeded",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_initial_failure_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ppt_normalization_bounded",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_74/74 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_169/169 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_47/47 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_61/61 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_35/35 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_pgM",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_revision 65",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_138 runs、152,899 MB",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_不是本轮下载量",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_不关闭四物种 harmonization",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_README.md_a8_rk03_verify_source_feasibility_closeout.py",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_2026-11-20 RK03 Ribo/VeloHARMO source-feasibility increment",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_125 runs、143,663 MB",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_13 runs、9,236 MB",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_138 runs、152,899 MB",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_dc567587aa9b3a1db67be0fcebcd26fdf450e16a",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/tasks.md_不构建 UTR–CDS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_## 30. Ribo/VeloHARMO metadata-only 来源可行性与 A8 v27",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_## 31. Source-feasibility 在线 PPT 第 103 页与写后验收",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_103 页、revision 65、末页 `pgM`",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_不得重复追加本页",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_c0fd2b32a4919734747214ae06336efb67e03dcd",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_c5046b9c25a700f6231f0411b95f4d881dcda5d8",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_docs/handover/HANDOFF_A8_RK_20261118.md_dc567587aa9b3a1db67be0fcebcd26fdf450e16a",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_experiments/REGISTRY.md_CF-A8-RK03-SOURCE-FEASIBILITY",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_experiments/REGISTRY.md_CF-A8-RK18-WORKING-MANUSCRIPT-V27",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_experiments/REGISTRY.md_CF-A8-RK03-SOURCE-FEASIBILITY-PPT",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "documentation_experiments/REGISTRY.md_done_metadata_only_not_remapped_not_rk_g1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "tasks_increment_unique",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "handoff_science_section_unique",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "handoff_ppt_section_unique",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "registry_unique_CF-A8-RK03-SOURCE-FEASIBILITY",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "registry_unique_CF-A8-RK18-WORKING-MANUSCRIPT-V27",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "registry_unique_CF-A8-RK03-SOURCE-FEASIBILITY-PPT",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "mage_handoff_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ribomimo_tasks_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "mage_readme_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "evidence_commit_ancestor_c0fd2b32a4919734747214ae06336efb67e03dcd",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "evidence_commit_ancestor_c5046b9c25a700f6231f0411b95f4d881dcda5d8",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "evidence_commit_ancestor_dc567587aa9b3a1db67be0fcebcd26fdf450e16a",
+      "pass": true,
+      "evidence": null
+    }
+  ]
+}

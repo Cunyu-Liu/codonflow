@@ -204,3 +204,12 @@
 - [x] A8 v25 已写入该负迁移结果并完成 44/44 论文核验；仍为 non-submittable working manuscript。复现说明见 `audits/20261119/RK05/README.md`，新交接见 `docs/handover/HANDOFF_A8_RK05_RIBOMIMO_STUDY_OOD_20261119.md`。
 - [x] 在线 PPT 第 101 页 `pgI`、revision 63：写前候选事实 33/33、写后整稿回读 206/206 通过，前 100 页语义 XML 全部不变；严格 XML 的 6 处差异仅为已披露的服务端默认属性规范化。
 - [ ] 本实验不关闭全局 untouched、物理速度、功能/homology/protein OOD、RK-G1、生成训练授权、time-matched 成本或完整 baseline 主矩阵；下一优先仍是机制支持的真实功能 OOD。
+
+## 2026-11-20 RK03 Ribo/VeloHARMO source-feasibility increment
+
+- [x] 完成 metadata-only 来源可行性审计：五个 VeloHARMO 来源均有公开 run-level records，合计 125 runs、143,663 MB；RiboMIMO 额外 Mohammad19/Subtelny14 合计 13 runs、9,236 MB；七个不同 RunInfo accession 合计 138 runs、152,899 MB。`size_MB` 不是本轮下载量。
+- [x] 纠正并复核 Dunn13=Drosophila/GSE49197、Pop14=yeast/GSE63789；Subtelny14/GSE53268 使用 BioProject PRJNA231671 回退；固定 VeloHARMO 树与物化 payload 均为 14 个逐文件 SHA/bytes 匹配条目。只有 E. coli harmonized matrix 被发布，E. coli/yeast GA checkpoints 不代表其他矩阵存在。
+- [x] 14/14 tests、生产 74/74、离线独立 169/169（最大数值差 0）、finalization 47/47 全部通过；终态为 `SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED`，科学结论为 `PUBLIC_SOURCE_RECOVERY_FEASIBLE_BUT_NOT_REMAPPED`。错误映射、计数和 finalization 的失败报告均保留。
+- [x] A8 v27 新增 6.23 节与六个证据 anchors，论文 61/61、候选事实 30/30 通过，v26 逐字恢复核验通过；仍为 non-submittable working manuscript。科学证据 commit=`c0fd2b32a4919734747214ae06336efb67e03dcd`，论文 commit=`c5046b9c25a700f6231f0411b95f4d881dcda5d8`。
+- [x] 在线 PPT 第 103 页 `pgM`、revision 65：写前 35/35、写后整稿 47/47 通过，前 102 页语义 XML 全部不变；首次 46/47 报告保留，唯一差异为服务端显式化 schema-default `col@span=1`。PPT 证据 commit=`dc567587aa9b3a1db67be0fcebcd26fdf450e16a`。
+- [ ] 本 bounded 子任务不下载 reads、不构建 UTR–CDS、不执行 raw-read/P-site 重比对，也不生成四个非 E. coli harmonized matrices；自然分布报告、机制验证、模型训练、RK-G1、昂贵生成训练授权与可投稿论文仍未关闭。

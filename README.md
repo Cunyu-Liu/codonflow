@@ -65,6 +65,46 @@ $PY scripts/a8_rk03_verify_mage_development_ppt.py
 
 MAGE 结果已写入在线主稿第 102 页（`pgj`，revision 64）。候选页写前 **52/52 PASS**，整稿写后 **79/79 PASS**；前 101 页语义 XML 完全不变，新页与候选语义一致。候选、响应、失败调用、整稿 XML 与回读证据位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_development_nested_cv_v1/`，小型核验报告位于 `audits/20261119/RK03/`。PPT 记录不是新科学实验，不改变 test untouched、RK-G1=false 或 non-submittable 状态。
 
+## A8-RK：Ribo/VeloHARMO 来源可行性（metadata-only）
+
+本项只审计官方 PMC/GEO/SRA RunInfo 元数据与固定 VeloHARMO 发布树，不下载 FASTQ/BAM/SRA，不构建 UTR–CDS，不执行 raw-read/P-site 重比对、模型训练或模型评价。`size_MB` 是公开归档元数据之和，不是本轮下载量；公开 raw source 或 GA checkpoint 不等于已发布 harmonized matrix。
+
+```bash
+cd /home/codonflow-a8-rk
+export PYTHONDONTWRITEBYTECODE=1
+PY=/root/miniconda3/bin/python
+A=audits/20261120/RK03
+
+$PY -m unittest scripts.tests.test_a8_rk03_source_feasibility -v
+
+$PY scripts/a8_rk03_source_feasibility.py \
+  --protocol configs/a8_rk03_source_feasibility_protocol_v1.json \
+  --output "$A/source_feasibility_v1.json"
+
+# 离线独立复核与 finalization 使用协议中的冻结路径
+$PY scripts/a8_rk03_verify_source_feasibility.py
+$PY scripts/a8_rk03_finalize_source_feasibility.py
+
+$PY scripts/a8_rk03_source_feasibility_verify_paper.py \
+  --paper paper/CodonFlow_preprint_A8.md \
+  --a7 paper/CodonFlow_preprint_A7.md \
+  --sync-audit paper/a8_rk_paper_sync_audit.json \
+  --update-record paper/a8_rk03_source_feasibility_paper_update.json \
+  --production "$A/source_feasibility_v1.json" \
+  --independent "$A/source_feasibility_independent_v1.json" \
+  --finalization "$A/source_feasibility_finalization_v1.json" \
+  --output "$A/source_feasibility_paper_verification_v27.json"
+
+# 文档/registry 收尾核验；不访问网络，不修改在线 PPT
+$PY scripts/a8_rk03_verify_source_feasibility_closeout.py
+```
+
+预期验收为 14/14 unit tests、生产 **74/74 PASS**、离线独立复核 **169/169 PASS**（production-versus-independent 最大数值差 0）、finalization **47/47 PASS**、论文 **61/61 PASS**（候选事实 30/30）。终态为 `SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED` / `PUBLIC_SOURCE_RECOVERY_FEASIBLE_BUT_NOT_REMAPPED`。五个 VeloHARMO 来源合计 125 runs、143,663 MB；RiboMIMO 额外两项来源合计 13 runs、9,236 MB；七个不同 RunInfo accession 合计 138 runs、152,899 MB。固定发布树含 14 个文件，仅含 E. coli harmonized matrix，以及 E. coli/yeast GA checkpoints。
+
+A8 v27 SHA256=`c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952`，仍是 non-submittable working manuscript；v26 可按更新记录逐字恢复。官方 raw 响应和大型 PPT XML 分别归档于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/source_feasibility_v1/` 与 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_source_feasibility_v1/`。初次错误仓库/映射、blob 计数、finalization 日志断言和 PPT 默认属性差异的失败报告均保留在 `audits/20261120/RK03/`。
+
+结果已写入在线主稿第 103 页（`pgM`，revision 65）：写前 **35/35 PASS**，整稿写后 **47/47 PASS**，前 102 页语义 XML 全部不变。写后规范化只允许服务端显式化 `col@span=1` 和分配 ID；首次 46/47 失败报告保留。该 bounded 子任务已闭合，但不关闭四物种 harmonization、自然分布报告、机制效度、RK-G1、生成训练授权或 manuscript submittability。
+
 ## 目录
 
 ```

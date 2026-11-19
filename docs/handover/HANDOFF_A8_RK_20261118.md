@@ -535,3 +535,26 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 成功追加后在线主稿为 **102 页、revision 64**，新页为第 **102 页 `pgj`**。完整 XML 回读确认前 101 页在忽略元素 ID 后的语义 XML 全部不变，RiboMIMO 第 101 页保留；新页与候选在忽略元素 ID 后语义完全一致。新页含 20 个文本框、6×5 表格和 5 段备注，主数值、敏感性 seeds、RCS/test/protein-OOD/RK-G1/生成器边界均完整。
 - 独立写后核验 `audits/20261119/RK03/mage_development_nested_cv_ppt_verification.json` 为 **79/79 PASS**；候选核验为 **52/52 PASS**。核验器初版把 finalization 的英文 `conclusion` 误认为冻结状态字符串，得到 78/79；该报告保留在大型证据目录，修正为从 production `status` 读取 `DEV_NO_GO_TEST_UNTOUCHED` 后全部通过。科学报告和在线页面未因该工程映射修正而改变。
 - 候选、候选失败版本、写前/写后整稿 XML、add/readback 响应、CLI 错误、控制台日志和页面文本位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_development_nested_cv_v1/`。科学证据来源 commit=`85feef400ec1bd477c817416cfe5928108eef8da`；本次新增仅为 PPT 核验代码、报告和交接文档。PPT 记录不读取 33 个 test constructs，不产生 test/transport/functional-untouched 结果，不关闭 RK-G1，不授权生成器训练，也不使 manuscript 变为可提交。
+
+## 30. Ribo/VeloHARMO metadata-only 来源可行性与 A8 v27
+
+### 固定协议、真实 RunInfo 与独立验收
+
+- 本项在生产前冻结 `a8_rk03_source_feasibility_v1_frozen_before_production`，只读取官方 PMC 正文、GEO SOFT、SRA/BioProject RunInfo 和既有固定 VeloHARMO source-tree/materialization/E. coli QC 证据。没有实际 FASTQ/BAM/SRA 下载、参考版本冻结、UTR–CDS 构建、比对或模型训练。`size_MB` 是公开归档元数据之和，不是本轮下载量。
+- 初版协议错误写入不存在的 CU-Boulder-ESIL 来源，并交换 Dunn13/Pop14；正式证据纠正为 `BianBian2021/VeloHARMO` commit=`38b48079856aeb9d33a1b10844d77aa8f6640032`，Dunn13=*Drosophila melanogaster*/GSE49197/SRP028243，Pop14=*Saccharomyces cerevisiae*/GSE63789/SRP050443。GSE53268 无 SRA SRP relation，RunInfo 使用 BioProject=`PRJNA231671`。source-tree 与 materialization 均为 14 个文件，不是早期摘要的 13；14 个实时 SHA256/bytes 全部匹配。上述错误及 65/71、73/74、45/46 失败报告均保留。
+- 五项 VeloHARMO 来源为：Mohammad16/GSE72899/SRP063562=5 runs/3,594 MB；Grady17/PRJNA379630=24/58,639；Dunn13/GSE49197/SRP028243=14/34,020；Pop14/GSE63789/SRP050443=10/13,780；Battle15/GSE61742/SRP047476=72/33,630，合计 **125 runs、143,663 MB**。RiboMIMO 额外 Mohammad19/GSE119104/SRP158945=10/5,202，Subtelny14/GSE53268/PRJNA231671=3/4,034，额外合计 **13 runs、9,236 MB**；七个不同 RunInfo accession 合计 **138 runs、152,899 MB**。
+- 固定快照包含两个 byte-identical E. coli harmonized ZIP，以及 E. coli/yeast fold-0 GA checkpoints；只有 E. coli harmonized matrix 被发布。公开 raw source 或 GA checkpoint 不得写成其他四个物种的 harmonized matrix 已发布。
+- 14/14 tests、生产 **74/74 PASS**、离线独立 **169/169 PASS**（不导入生产器、不用网络，最大数值差 0）、finalization **47/47 PASS**。终态为 `SOURCE_METADATA_RECOVERABLE_REMAP_NOT_PERFORMED`，科学结论为 `PUBLIC_SOURCE_RECOVERY_FEASIBLE_BUT_NOT_REMAPPED`。科学报告、独立报告、finalization、日志和 artifact manifest 位于 `audits/20261120/RK03/`，raw responses 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/source_feasibility_v1/`；科学证据 commit=`c0fd2b32a4919734747214ae06336efb67e03dcd`，已推送。
+
+### A8 v27、复现与边界
+
+- A8 以 v26 SHA256=`88cc89ccf83958110fb2fb20454df691ecebdfa164f7e7806fd8797aa6e482c5` 为冻结输入，append-only 新增 6.23 节和六个证据 anchors，A7 未改。v27 SHA256=`c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952`；独立论文核验 **61/61 PASS**，候选事实 **30/30 PASS**，删除新增 section/anchors 可逐字恢复 v26。更新记录、sync audit、快照和核验报告已以 commit=`c5046b9c25a700f6231f0411b95f4d881dcda5d8` 推送。
+- 完整复现命令见根目录 `README.md`，run 已登记 `experiments/REGISTRY.md`。实时 OUP 403、真实 GitHub tree API 404 和旧仓库访问失败只保留为 optional access 记录，不覆盖已固定并重新哈希的 materialized-tree 证据。
+- 该 bounded 子任务只关闭 metadata-level source feasibility。四物种 harmonized matrix 生成、整体自然分布报告、UTR–CDS 实际映射、raw-read/P-site 独立重比对、机制验证、模型结果、RK-G1、昂贵生成训练授权与 manuscript submittability 均未关闭；v27 仍是 non-submittable working manuscript。
+
+## 31. Source-feasibility 在线 PPT 第 103 页与写后验收
+
+- 写前实时基线为 **102 页、revision 64**，末页 MAGE=`pgj`。新页沿用科研数据版式，记录三项总量卡、七项来源表、固定发布范围和“来源可恢复但本轮未重比对”的边界；所有数值由正式 JSON 重新计算。候选写前核验 **35/35 PASS**，随后真实追加第 **103 页 `pgM`**，在线 revision=65。
+- 整稿回读确认 103 页，前 102 页 ID、顺序和语义 XML 全部不变；新页文本、备注、表格与候选一致。首次写后为 **46/47 PASS**，唯一失败是服务端仅在七个 `<col>` 上显式化 schema-default `span=1`；失败报告保留。核验器只规范化该默认属性和服务端分配 ID，文本、数值、表格、几何及其他属性仍严格比较，最终 **47/47 PASS**，远端仓库独立重跑结果相同。
+- 候选 XML、写前/写后报告、首次失败报告、真实写入响应和核验脚本位于 `audits/20261120/RK03/`，大型基线/回读 XML 与完整证据位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_source_feasibility_v1/`。PPT 证据 commit=`dc567587aa9b3a1db67be0fcebcd26fdf450e16a`，已推送。当前在线主稿真实状态为 **103 页、revision 65、末页 `pgM`**，不得重复追加本页。
+- PPT 记录不产生 reads 下载、UTR–CDS、重比对、P-site、机制或模型结果，不关闭 RK-G1，不授权生成器训练，也不使 manuscript 变为可提交。
