@@ -1,0 +1,83 @@
+{
+  "schema": "a8.rk05.cagfn_official_smoke_protocol.v3",
+  "task_id": "RK05.CAGFN_OFFICIAL_CONDITIONAL_BOUNDED_SMOKE_V3",
+  "publication": {
+    "title": "Curriculum-Augmented GFlowNets for mRNA Design: Enhancing Sequence Generation",
+    "arxiv": "https://arxiv.org/abs/2510.03811",
+    "openreview": "https://openreview.net/forum?id=lt7QTLnCaF",
+    "status": "OPENREVIEW_REJECTED_NOT_PEER_REVIEW_ACCEPTED"
+  },
+  "source": {
+    "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+    "commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "source_directory": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "entrypoint": "main_conditional.py",
+    "config": "config.yaml",
+    "source_modification_allowed": false,
+    "pretrained_weights_in_public_tree": false
+  },
+  "observed_dependency_recovery": {
+    "published_environment_torchgfn": "1.1.1",
+    "published_torchgfn_failure": "ImportError: cannot import name MLP from torchgfn.src.gfn.utils.modules",
+    "selected_torchgfn_version": "2.0.1",
+    "selected_torchgfn_commit": "72da54c06fa20e887c2ce24165b820e9290a2f46",
+    "selection_reason": "First installed public release line tested that provides the MLP API imported by unmodified CAGFN source; v1.1.1 and v1.2 do not provide it.",
+    "claim_boundary": "Dependency compatibility recovery, not the exact published environment and not an official author-endorsed correction."
+  },
+  "bounded_run": {
+    "training_iterations": 2,
+    "batch_size": 16,
+    "generated_samples": 20,
+    "seed": 42,
+    "architecture": "MLP",
+    "hidden_dim": 256,
+    "hidden_layers": 4,
+    "embedding_dim": 32,
+    "device": "cpu",
+    "cpu_threads": 1,
+    "wandb_mode": "offline",
+    "command": "CUDA_VISIBLE_DEVICES='' OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 WANDB_MODE=offline python main_conditional.py --config_path config.yaml --arch MLP --n_iterations 2 --n_samples 20 --batch_size 16 --hidden_dim 256 --n_hidden 4 --embedding_dim 32 --seed 42 --run_name bounded_smoke",
+    "working_directory": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v3",
+    "in_progress_file": "/home/codonflow-a8-rk-smoke/cagfn_official_smoke_v3_in_progress.json",
+    "completion_file": "/home/codonflow-a8-rk-smoke/cagfn_official_smoke_v3_done.json"
+  },
+  "required_outputs": [
+    "raw generated sequence text",
+    "trained checkpoint and training history",
+    "experiment configuration summary",
+    "console log and wall-clock record",
+    "independent sequence translation, GC, CAI and MFE verification"
+  ],
+  "claim_boundaries": {
+    "bounded_smoke_only": true,
+    "converged_model_claim": false,
+    "full_cagfn_reproduction_claim": false,
+    "external_sota_claim": false,
+    "functional_or_ood_claim": false,
+    "cross_method_mfe_identity": false,
+    "cross_method_mfe_reason": "CAGFN uses its bundled RNAFolder; LinearDesign comparisons use ViennaRNA-based frozen scorers.",
+    "figure_interpretation": "The supplied paper figures show a protein-legal codon DAG and internal metric distributions/training time. They do not provide same-hardware LinearDesign or EnsembleDesign comparisons, paired confidence intervals, or functional evidence. Conditional-versus-unconditional similarity in a histogram is not an ablation or a significance test.",
+    "unconditional_entrypoint_reproduced": false,
+    "conditional_entrypoint_only": true
+  },
+  "independent_zero_policy": "Never accept an MFE or CAI value of exactly zero as valid without a separate successful fold/CAI computation; upstream utility functions convert exceptions to zero.",
+  "parent_protocol_sha256": "d1191c0114ecc2a68268277ac9b23742ad6dcf9ecfb892ef98a0125223533aae",
+  "wrapper_recovery": {
+    "parent_failure_report": "audits/20261118/RK05/cagfn_official_smoke_v1.json",
+    "parent_failure_console": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v1/console.log",
+    "observed_error": "ModuleNotFoundError: No module named wandb",
+    "root_cause": "The wrapper resolved the venv python symlink to the base interpreter before subprocess launch.",
+    "source_or_scientific_parameters_changed": false,
+    "only_change": "Preserve the absolute venv python path without Path.resolve()."
+  },
+  "parent_protocol_v2_sha256": "a35e4f82f335e60ab99a845871e909400e506c65b5dd2e7851075305dbb89ecf",
+  "official_entrypoint_recovery": {
+    "parent_failure_report": "audits/20261118/RK05/cagfn_official_smoke_v2.json",
+    "parent_failure_console": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v2/console.log",
+    "observed_error": "AssertionError: logF must be a ScalarEstimator or derived",
+    "root_cause": "The unmodified unconditional main.py imports ScalarEstimator from the legacy modules path, while TorchGFN 2.x SubTBGFlowNet uses the estimators interface. The official main_conditional.py already imports the newer interface.",
+    "source_modification": false,
+    "new_entrypoint": "main_conditional.py",
+    "scope": "Conditional CAGFN smoke only; the unconditional entrypoint remains not reproduced."
+  }
+}

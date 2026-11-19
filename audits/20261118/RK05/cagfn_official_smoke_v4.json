@@ -1,0 +1,278 @@
+{
+  "claim_boundaries": {
+    "bounded_smoke_only": true,
+    "conditional_entrypoint_only": false,
+    "converged_model_claim": false,
+    "cross_method_mfe_identity": false,
+    "cross_method_mfe_reason": "CAGFN uses its bundled RNAFolder; LinearDesign comparisons use ViennaRNA-based frozen scorers.",
+    "external_sota_claim": false,
+    "figure_interpretation": "The supplied paper figures show a protein-legal codon DAG and internal metric distributions/training time. They do not provide same-hardware LinearDesign or EnsembleDesign comparisons, paired confidence intervals, or functional evidence. Conditional-versus-unconditional similarity in a histogram is not an ablation or a significance test.",
+    "full_cagfn_reproduction_claim": false,
+    "functional_or_ood_claim": false,
+    "unconditional_entrypoint_reproduced": false
+  },
+  "command": [
+    "/home/codonflow-a8-rk-smoke/cagfn-venv/bin/python",
+    "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/main.py",
+    "--config_path",
+    "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/config.yaml",
+    "--arch",
+    "MLP",
+    "--n_iterations",
+    "2",
+    "--n_samples",
+    "20",
+    "--batch_size",
+    "16",
+    "--hidden_dim",
+    "256",
+    "--n_hidden",
+    "4",
+    "--embedding_dim",
+    "32",
+    "--seed",
+    "42",
+    "--run_name",
+    "bounded_smoke"
+  ],
+  "console_log": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4/console.log",
+    "sha256": "16fb03db323c96d9b75e2dcd56e15da44ed18d1a37a60f53734c6079344aacc5"
+  },
+  "cwd": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4",
+  "dependency_recovery": {
+    "additional_observed_failures": [
+      "v2.0.1 unconditional: AssertionError: logF must be a ScalarEstimator or derived",
+      "v2.0.1 conditional: ModuleNotFoundError: No module named gfn.estimators"
+    ],
+    "claim_boundary": "Dependency compatibility recovery, not the exact published environment and not an official author-endorsed correction.",
+    "published_environment_torchgfn": "1.1.1",
+    "published_torchgfn_failure": "ImportError: cannot import name MLP from torchgfn.src.gfn.utils.modules",
+    "selected_torchgfn_commit": "1fab00a1f388aba902b5c9c1b778f4d0ae6e18a0",
+    "selected_torchgfn_version": "2.1.0",
+    "selection_reason": "TorchGFN 2.1.0 provides MLP and gfn.estimators and preserves modules.ScalarEstimator compatibility. Both unmodified CAGFN entrypoints passed import checks; v1.1.1/v1.2 lack MLP and v2.0.1 lacks gfn.estimators."
+  },
+  "end_time_utc": "2026-11-19T18:46:25Z",
+  "environment_freeze": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4/environment_freeze.txt",
+    "sha256": "d15a175edf4833b64c670721121184de450832d706b05495e92bbf218c0aea49"
+  },
+  "environment_overrides": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "MKL_NUM_THREADS": "1",
+    "MPLBACKEND": "Agg",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "42",
+    "WANDB_MODE": "offline",
+    "WANDB_SILENT": "true"
+  },
+  "output_files": [
+    {
+      "bytes": 17007,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/cai_vs_mfe_2026-11-20_02-46.png",
+      "sha256": "0f3935bb71560eb26ee9c379c74f6483ded1bc4cc6b8ecb96ddaad9dc9587fec"
+    },
+    {
+      "bytes": 2241,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/comprehensive_comparison_2026-11-20_02-46.txt",
+      "sha256": "e36dd7263371b271a8cdcaf3da78fb8a235b1beff40e9c3cbce25c451e822baa"
+    },
+    {
+      "bytes": 106253,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/edit_distance_distribution_2026-11-20_02-46.png",
+      "sha256": "fcef6acebe2ecb3ee339f7f05512faa518fbed535e11fecb983f87882f78faaa"
+    },
+    {
+      "bytes": 261134,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/enhanced_diversity_analysis_2026-11-20_02-46.png",
+      "sha256": "5f233beeff50c54cd9812c6cd138c9505f9a678051c86be21e2b903e8579f61b"
+    },
+    {
+      "bytes": 1157,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/experiment_summary.txt",
+      "sha256": "c0288176572f82d421111ae8e6a01571cdb6a5c1f090560eabfb45066f9e9c06"
+    },
+    {
+      "bytes": 19782,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/gc_vs_mfe_2026-11-20_02-46.png",
+      "sha256": "78ab6fdefbc4a4058ab2b4b2b49b269ffe662171f76f5a982f8ea937f0c86c42"
+    },
+    {
+      "bytes": 3391,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/generated_sequences_2026-11-20_02-46.txt",
+      "sha256": "29316f9e7a36175ba8dc0c572891e9da0e709a0c98165a7129cf4aeadb3216ad"
+    },
+    {
+      "bytes": 132960,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/metric_distributions_2026-11-20_02-46.png",
+      "sha256": "a14d7b62009c6a52e48ac677a2d3ccf88497d489c583d9eb2222d7ea53e5d329"
+    },
+    {
+      "bytes": 1498,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/metrics_summary_2026-11-20_02-46.txt",
+      "sha256": "58c99e78caad6b0839eca83ecbbcdfcea7846708c899f5d1ce2cc12d6ce8e3b7"
+    },
+    {
+      "bytes": 460486,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/pareto_scatter_2026-11-20_02-46.png",
+      "sha256": "6ea9b8620681961c6d3dfca3f0249db180d5ae171ced2dadb9f42fab3fdb9b2f"
+    },
+    {
+      "bytes": 5761897,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/trained_gflownet_bounded_smoke_2026-11-20_02-46.pth",
+      "sha256": "50288622e0bc7094c31962eeb6250a186224e485d20f896d5b9f988971bb0e4b"
+    },
+    {
+      "bytes": 467865,
+      "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/training_curves_2026-11-20_02-46.png",
+      "sha256": "8fe3c27eb75e5f3425b38d2f45412ed43bd9c548d4199e5e4208fde33810222f"
+    },
+    {
+      "bytes": 5795,
+      "path": "protocol_v4.json",
+      "sha256": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa"
+    },
+    {
+      "bytes": 1763,
+      "path": "sequence_analysis/run_20261120_024609_comparison_table.txt",
+      "sha256": "38dde287c06dcb8de06a1c439ac8468f7e5ee870934115891b0827addd96bafb"
+    },
+    {
+      "bytes": 467865,
+      "path": "training_curves.png",
+      "sha256": "8fe3c27eb75e5f3425b38d2f45412ed43bd9c548d4199e5e4208fde33810222f"
+    },
+    {
+      "bytes": 17007,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/CAI vs MFE_4_0f3935bb71560eb26ee9.png",
+      "sha256": "0f3935bb71560eb26ee9c379c74f6483ded1bc4cc6b8ecb96ddaad9dc9587fec"
+    },
+    {
+      "bytes": 261134,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/Enhanced Diversity Analysis_4_5f233beeff50c54cd981.png",
+      "sha256": "5f233beeff50c54cd9812c6cd138c9505f9a678051c86be21e2b903e8579f61b"
+    },
+    {
+      "bytes": 19782,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/GC vs MFE_4_78ab6fdefbc4a4058ab2.png",
+      "sha256": "78ab6fdefbc4a4058ab2b4b2b49b269ffe662171f76f5a982f8ea937f0c86c42"
+    },
+    {
+      "bytes": 460486,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/Pareto Plot_4_6ea9b8620681961c6d3d.png",
+      "sha256": "6ea9b8620681961c6d3dfca3f0249db180d5ae171ced2dadb9f42fab3fdb9b2f"
+    },
+    {
+      "bytes": 132960,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/Reward Metric distributions_4_a14d7b62009c6a52e48a.png",
+      "sha256": "a14d7b62009c6a52e48ac677a2d3ccf88497d489c583d9eb2222d7ea53e5d329"
+    },
+    {
+      "bytes": 106253,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/edit_distance_distribution_4_fcef6acebe2ecb3ee339.png",
+      "sha256": "fcef6acebe2ecb3ee339f7f05512faa518fbed535e11fecb983f87882f78faaa"
+    },
+    {
+      "bytes": 467865,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/images/training_curves_2_8fe3c27eb75e5f3425b3.png",
+      "sha256": "8fe3c27eb75e5f3425b38d2f45412ed43bd9c548d4199e5e4208fde33810222f"
+    },
+    {
+      "bytes": 1680,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/media/table/Top_Sequences_3_97f1f24dd7176dc30522.table.json",
+      "sha256": "97f1f24dd7176dc305224eaca88417082632ce1553a6857cad55bd3dfd9bed54"
+    },
+    {
+      "bytes": 0,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/output.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3053,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/requirements.txt",
+      "sha256": "e3a6752783abb1ec633d960d6a6c2021d7f876b2a7591bacfd71dcf01cfd2b58"
+    },
+    {
+      "bytes": 1311,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/files/wandb-metadata.json",
+      "sha256": "71187bf1e41dbc5b78220c51ad967d2aafbaef617dfe56db4c2c5a23c6a87bdf"
+    },
+    {
+      "bytes": 1847,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/logs/debug-internal.log",
+      "sha256": "776576fff2ff6c2cf27d5d6297ecd44ff5e8719277ff67b7c0cebead3d3bc2d7"
+    },
+    {
+      "bytes": 3986,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/logs/debug.log",
+      "sha256": "c6a3e03ee6fd0d798c2762fe8804c8640d95613d6a2872875b66a4eac47e7f7b"
+    },
+    {
+      "bytes": 22867,
+      "path": "wandb/offline-run-20261120_024545-bmv4svgh/run-bmv4svgh.wandb",
+      "sha256": "662196ec97dbfb528a69cc4b6a51c2a21973c4d2340f3b88f3b634793850dcd9"
+    }
+  ],
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "protocol_sha256": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 23:02:24) [GCC 14.4.0]",
+  "returncode": 0,
+  "schema": "a8.rk05.cagfn_official_smoke_run.v1",
+  "scientific_verification_status": "NOT_YET_RUN",
+  "source": {
+    "commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "config": "config.yaml",
+    "entrypoint": "main.py",
+    "pretrained_weights_in_public_tree": false,
+    "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+    "source_directory": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "source_modification_allowed": false
+  },
+  "source_files": {
+    "Architecture.py": {
+      "bytes": 1495,
+      "sha256": "ff4608450d0e444c44dfb616798e70e5a1d30a9c2c4074557e34371b13d4754f"
+    },
+    "CAI_calculator.py": {
+      "bytes": 14631,
+      "sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a"
+    },
+    "MFE_calculator.py": {
+      "bytes": 27059,
+      "sha256": "e2036ac4a24eea42ffbe649b1762ee59d332bc875861c5570b3826b284f9681c"
+    },
+    "config.yaml": {
+      "bytes": 307,
+      "sha256": "b72e1c9dbf28916a97d648f7d523f35e2af63a4dcf2b9e169501c3d26803f318"
+    },
+    "env.py": {
+      "bytes": 5948,
+      "sha256": "29bca7a5932ebe81cde5848c948c10bd0f173af22e501a96f946b8c416b7d792"
+    },
+    "main.py": {
+      "bytes": 15211,
+      "sha256": "f6023925712b354385eae8b1be2ae725d9c42a10e1ad219a92f84b3957fc208c"
+    },
+    "main_conditional.py": {
+      "bytes": 17154,
+      "sha256": "eb855e32460f69e0df8da408ca3cd90aabf48ba129042d96028e1776e8c5d108"
+    },
+    "preprocessor.py": {
+      "bytes": 955,
+      "sha256": "0c837d0aa5451a4b0883794a7c20c82564760ff60d1718fa4ce1cefd163cc95c"
+    },
+    "reward.py": {
+      "bytes": 1193,
+      "sha256": "5ea1c4d494994144360deccf912976261b5cfef81e7772561b5373f553bd8cd9"
+    },
+    "utils.py": {
+      "bytes": 12482,
+      "sha256": "0278a599b57de36fc79688e23092224c712ac7cce5c5054b993c85e29c654658"
+    }
+  },
+  "start_time_utc": "2026-11-19T18:45:37Z",
+  "status": "COMPLETED_PROCESS",
+  "task_id": "RK05.CAGFN_OFFICIAL_UNCONDITIONAL_BOUNDED_SMOKE_V4",
+  "wall_clock_seconds": 47.556745767593384
+}

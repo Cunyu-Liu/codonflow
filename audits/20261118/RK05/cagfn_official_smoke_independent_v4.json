@@ -1,0 +1,713 @@
+{
+  "schema": "a8.rk05.cagfn_official_smoke_independent.v1",
+  "task_id": "RK05.CAGFN_OFFICIAL_UNCONDITIONAL_BOUNDED_SMOKE_V4",
+  "status": "PASS",
+  "checks_passed": 33,
+  "checks_total": 33,
+  "checks": [
+    {
+      "name": "run_process_completed",
+      "pass": true,
+      "detail": {
+        "status": "COMPLETED_PROCESS",
+        "returncode": 0
+      }
+    },
+    {
+      "name": "protocol_hash_matches",
+      "pass": true,
+      "detail": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa"
+    },
+    {
+      "name": "official_unconditional_entrypoint",
+      "pass": true,
+      "detail": "main.py"
+    },
+    {
+      "name": "source_commit_frozen",
+      "pass": true,
+      "detail": "952ccf9682988ef88cf1251877e918b85fbee9e9"
+    },
+    {
+      "name": "no_source_modification_allowed",
+      "pass": true,
+      "detail": false
+    },
+    {
+      "name": "bounded_two_iterations",
+      "pass": true,
+      "detail": 2
+    },
+    {
+      "name": "bounded_twenty_samples",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "architecture_override_disclosed",
+      "pass": true,
+      "detail": "CLI --arch MLP; bounded smoke, not exact full-paper reproduction"
+    },
+    {
+      "name": "parent_failure_retained_cagfn_official_smoke_v1",
+      "pass": true,
+      "detail": {
+        "path": "audits/20261118/RK05/cagfn_official_smoke_v1.json",
+        "status": "FAILED_PROCESS",
+        "returncode": 1,
+        "sha256": "4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3"
+      }
+    },
+    {
+      "name": "parent_failure_retained_cagfn_official_smoke_v2",
+      "pass": true,
+      "detail": {
+        "path": "audits/20261118/RK05/cagfn_official_smoke_v2.json",
+        "status": "FAILED_PROCESS",
+        "returncode": 1,
+        "sha256": "7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4"
+      }
+    },
+    {
+      "name": "parent_failure_retained_cagfn_official_smoke_v3",
+      "pass": true,
+      "detail": {
+        "path": "audits/20261118/RK05/cagfn_official_smoke_v3.json",
+        "status": "FAILED_PROCESS",
+        "returncode": 1,
+        "sha256": "f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a"
+      }
+    },
+    {
+      "name": "exactly_one_raw_sequence_file",
+      "pass": true,
+      "detail": [
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4/outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/generated_sequences_2026-11-20_02-46.txt"
+      ]
+    },
+    {
+      "name": "twenty_rows_parsed",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "row_indices_unique_ordered",
+      "pass": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "name": "twenty_unique_sequences",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "natural_reference_translation",
+      "pass": true,
+      "detail": "MINTQDSSILPLSNCPQLQCCRHIVPGPLWCS*"
+    },
+    {
+      "name": "all_lengths_99_nt",
+      "pass": true,
+      "detail": [
+        99
+      ]
+    },
+    {
+      "name": "all_protein_identity",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "all_start_augs",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "exactly_one_terminal_stop_each",
+      "pass": true,
+      "detail": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "gc_values_match_rounded_output",
+      "pass": true,
+      "detail": 0.004949494949492816
+    },
+    {
+      "name": "mfe_values_match_rounded_output",
+      "pass": true,
+      "detail": 0.003331680297851136
+    },
+    {
+      "name": "cai_values_match_rounded_output",
+      "pass": true,
+      "detail": 0.0048055060773790625
+    },
+    {
+      "name": "no_silent_zero_mfe",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "no_silent_zero_cai",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "all_metrics_finite",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "exactly_one_checkpoint",
+      "pass": true,
+      "detail": [
+        "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4/outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/trained_gflownet_bounded_smoke_2026-11-20_02-46.pth"
+      ]
+    },
+    {
+      "name": "checkpoint_has_model_state",
+      "pass": true,
+      "detail": 30
+    },
+    {
+      "name": "two_finite_training_losses",
+      "pass": true,
+      "detail": [
+        112.69061279296875,
+        109.23995971679688
+      ]
+    },
+    {
+      "name": "two_finite_training_rewards",
+      "pass": true,
+      "detail": [
+        0.5623848615157493,
+        0.5948220347860995
+      ]
+    },
+    {
+      "name": "raw_hash_matches_run_generated_sequences_2026-11-20_02-46.txt",
+      "pass": true,
+      "detail": {
+        "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/generated_sequences_2026-11-20_02-46.txt",
+        "sha256": "29316f9e7a36175ba8dc0c572891e9da0e709a0c98165a7129cf4aeadb3216ad"
+      }
+    },
+    {
+      "name": "raw_hash_matches_run_trained_gflownet_bounded_smoke_2026-11-20_02-46.pth",
+      "pass": true,
+      "detail": {
+        "path": "outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/trained_gflownet_bounded_smoke_2026-11-20_02-46.pth",
+        "sha256": "50288622e0bc7094c31962eeb6250a186224e485d20f896d5b9f988971bb0e4b"
+      }
+    },
+    {
+      "name": "training_and_inference_times_present",
+      "pass": true,
+      "detail": {
+        "training": 11.01,
+        "inference": 6.68
+      }
+    }
+  ],
+  "run_report_sha256": "c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d",
+  "protocol_sha256": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa",
+  "raw_sequence_file": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v4/outputs/unconditional/small/bounded_smoke_2026-11-20_02-46/generated_sequences_2026-11-20_02-46.txt",
+    "sha256": "29316f9e7a36175ba8dc0c572891e9da0e709a0c98165a7129cf4aeadb3216ad"
+  },
+  "source": {
+    "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+    "commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "source_directory": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "entrypoint": "main.py",
+    "config": "config.yaml",
+    "source_modification_allowed": false,
+    "pretrained_weights_in_public_tree": false
+  },
+  "dependency_recovery": {
+    "published_environment_torchgfn": "1.1.1",
+    "published_torchgfn_failure": "ImportError: cannot import name MLP from torchgfn.src.gfn.utils.modules",
+    "selected_torchgfn_version": "2.1.0",
+    "selected_torchgfn_commit": "1fab00a1f388aba902b5c9c1b778f4d0ae6e18a0",
+    "selection_reason": "TorchGFN 2.1.0 provides MLP and gfn.estimators and preserves modules.ScalarEstimator compatibility. Both unmodified CAGFN entrypoints passed import checks; v1.1.1/v1.2 lack MLP and v2.0.1 lacks gfn.estimators.",
+    "claim_boundary": "Dependency compatibility recovery, not the exact published environment and not an official author-endorsed correction.",
+    "additional_observed_failures": [
+      "v2.0.1 unconditional: AssertionError: logF must be a ScalarEstimator or derived",
+      "v2.0.1 conditional: ModuleNotFoundError: No module named gfn.estimators"
+    ]
+  },
+  "summary": {
+    "n_sequences": 20,
+    "n_unique_sequences": 20,
+    "mean_gc_percent": 47.57575757575758,
+    "mean_official_rnafolder_mfe_kcal_mol": -26.75999994277954,
+    "mean_cai": 0.4566319455356198,
+    "mean_pairwise_normalized_edit_distance": 0.2526315789473684,
+    "min_pairwise_normalized_edit_distance": 0.1717171717171717,
+    "max_pairwise_normalized_edit_distance": 0.32323232323232326,
+    "max_rounding_errors": {
+      "gc_percent": 0.004949494949492816,
+      "mfe": 0.003331680297851136,
+      "cai": 0.0048055060773790625
+    }
+  },
+  "checkpoint": {
+    "bytes": 5761897,
+    "sha256": "50288622e0bc7094c31962eeb6250a186224e485d20f896d5b9f988971bb0e4b",
+    "loss": [
+      112.69061279296875,
+      109.23995971679688
+    ],
+    "reward": [
+      0.5623848615157493,
+      0.5948220347860995
+    ]
+  },
+  "cost": {
+    "total_wall_clock_seconds": 47.556745767593384,
+    "training_seconds": 11.01,
+    "inference_seconds": 6.68,
+    "hardware": "CPU",
+    "threads": 1,
+    "includes": "Whole process includes imports, W&B offline logging, plotting and serialization; training and inference are separately reported.",
+    "time_matched_comparison": false
+  },
+  "rows": [
+    {
+      "index": 1,
+      "sequence": "AUGAUUAACACCCAAGACUCUUCGAUCCUCCCGCUUUCGAAUUGCCCGCAGCUCCAAUGCUGCCGGCAUAUAGUCCCCGGCCCCCUAUGGUGCUCAUGA",
+      "reward_printed": 0.69,
+      "gc_percent_printed": 55.56,
+      "mfe_printed": -33.3,
+      "cai_printed": 0.45,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 55.55555555555556,
+      "mfe_recomputed": -33.29999923706055,
+      "cai_recomputed": 0.45462033301068744,
+      "gc_rounding_abs_error": 0.004444444444445139,
+      "mfe_rounding_abs_error": 7.629394502828291e-07,
+      "cai_rounding_abs_error": 0.004620333010687427
+    },
+    {
+      "index": 2,
+      "sequence": "AUGAUCAACACCCAAGACUCCUCGAUUUUGCCGCUUUCGAAUUGUCCACAGUUGCAGUGUUGCAGGCAUAUCGUGCCCGGUCCACUGUGGUGUUCAUAA",
+      "reward_printed": 0.68,
+      "gc_percent_printed": 49.49,
+      "mfe_printed": -34.5,
+      "cai_printed": 0.55,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 49.494949494949495,
+      "mfe_recomputed": -34.5,
+      "cai_recomputed": 0.5505924231846567,
+      "gc_rounding_abs_error": 0.004949494949492816,
+      "mfe_rounding_abs_error": 0.0,
+      "cai_rounding_abs_error": 0.0005924231846566874
+    },
+    {
+      "index": 3,
+      "sequence": "AUGAUCAAUACUCAGGACUCUUCUAUCCUGCCCUUGAGCAAUUGCCCACAGCUCCAAUGUUGUAGGCAUAUAGUACCUGGACCCUUGUGGUGUAGCUGA",
+      "reward_printed": 0.65,
+      "gc_percent_printed": 47.47,
+      "mfe_printed": -31.3,
+      "cai_printed": 0.61,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 47.474747474747474,
+      "mfe_recomputed": -31.299999237060547,
+      "cai_recomputed": 0.6070601705130247,
+      "gc_rounding_abs_error": 0.004747474747475167,
+      "mfe_rounding_abs_error": 7.629394538355427e-07,
+      "cai_rounding_abs_error": 0.002939829486975243
+    },
+    {
+      "index": 4,
+      "sequence": "AUGAUCAAUACGCAGGACUCAUCCAUACUUCCUUUGUCCAAUUGCCCGCAAUUACAAUGUUGUAGGCACAUAGUCCCAGGCCCUUUGUGGUGCUCAUGA",
+      "reward_printed": 0.59,
+      "gc_percent_printed": 46.46,
+      "mfe_printed": -32.5,
+      "cai_printed": 0.45,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 46.464646464646464,
+      "mfe_recomputed": -32.5,
+      "cai_recomputed": 0.4526480276459046,
+      "gc_rounding_abs_error": 0.004646464646462789,
+      "mfe_rounding_abs_error": 0.0,
+      "cai_rounding_abs_error": 0.002648027645904605
+    },
+    {
+      "index": 5,
+      "sequence": "AUGAUUAACACACAAGAUAGCUCCAUUCUACCUCUGAGUAACUGCCCGCAACUGCAAUGCUGUCGGCAUAUAGUUCCGGGUCCAUUGUGGUGCUCAUAG",
+      "reward_printed": 0.58,
+      "gc_percent_printed": 47.47,
+      "mfe_printed": -31.2,
+      "cai_printed": 0.44,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 47.474747474747474,
+      "mfe_recomputed": -31.200000762939453,
+      "cai_recomputed": 0.43607709853385884,
+      "gc_rounding_abs_error": 0.004747474747475167,
+      "mfe_rounding_abs_error": 7.629394538355427e-07,
+      "cai_rounding_abs_error": 0.00392290146614116
+    },
+    {
+      "index": 6,
+      "sequence": "AUGAUAAACACGCAGGAUUCAAGCAUAUUGCCUCUGUCGAAUUGCCCCCAACUUCAAUGUUGCCGACACAUAGUGCCCGGGCCCCUUUGGUGCAGCUGA",
+      "reward_printed": 0.58,
+      "gc_percent_printed": 51.52,
+      "mfe_printed": -25.8,
+      "cai_printed": 0.45,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 51.515151515151516,
+      "mfe_recomputed": -25.80000114440918,
+      "cai_recomputed": 0.4532734914666516,
+      "gc_rounding_abs_error": 0.004848484848487544,
+      "mfe_rounding_abs_error": 1.1444091789769573e-06,
+      "cai_rounding_abs_error": 0.003273491466651568
+    },
+    {
+      "index": 7,
+      "sequence": "AUGAUCAACACACAAGAUUCCUCAAUACUCCCACUGAGCAAUUGCCCACAACUGCAAUGCUGCCGCCACAUAGUCCCAGGUCCACUUUGGUGUAGCUAA",
+      "reward_printed": 0.57,
+      "gc_percent_printed": 48.48,
+      "mfe_printed": -23.9,
+      "cai_printed": 0.54,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 48.484848484848484,
+      "mfe_recomputed": -23.900001525878906,
+      "cai_recomputed": 0.541047179798082,
+      "gc_rounding_abs_error": 0.004848484848487544,
+      "mfe_rounding_abs_error": 1.5258789076710855e-06,
+      "cai_rounding_abs_error": 0.0010471797980819986
+    },
+    {
+      "index": 8,
+      "sequence": "AUGAUAAAUACACAGGAUUCAUCGAUUCUACCAUUAUCCAACUGCCCCCAACUCCAGUGCUGUAGGCACAUCGUACCGGGACCACUCUGGUGCUCAUAG",
+      "reward_printed": 0.57,
+      "gc_percent_printed": 48.48,
+      "mfe_printed": -27.13,
+      "cai_printed": 0.47,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 48.484848484848484,
+      "mfe_recomputed": -27.133331298828125,
+      "cai_recomputed": 0.46752342030240523,
+      "gc_rounding_abs_error": 0.004848484848487544,
+      "mfe_rounding_abs_error": 0.0033312988281259948,
+      "cai_rounding_abs_error": 0.0024765796975947385
+    },
+    {
+      "index": 9,
+      "sequence": "AUGAUAAAUACCCAAGACUCCUCUAUACUACCGCUAAGCAAUUGCCCCCAACUACAGUGUUGUCGGCAUAUUGUUCCAGGUCCGCUCUGGUGUUCAUGA",
+      "reward_printed": 0.56,
+      "gc_percent_printed": 46.46,
+      "mfe_printed": -31.0,
+      "cai_printed": 0.41,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 46.464646464646464,
+      "mfe_recomputed": -30.999998092651367,
+      "cai_recomputed": 0.41385448939050773,
+      "gc_rounding_abs_error": 0.004646464646462789,
+      "mfe_rounding_abs_error": 1.9073486328125e-06,
+      "cai_rounding_abs_error": 0.0038544893905077537
+    },
+    {
+      "index": 10,
+      "sequence": "AUGAUAAAUACCCAAGACUCAUCUAUAUUGCCCCUGUCUAACUGUCCCCAACUGCAAUGCUGUCGACACAUAGUACCAGGGCCCCUCUGGUGCAGUUAG",
+      "reward_printed": 0.56,
+      "gc_percent_printed": 48.48,
+      "mfe_printed": -25.27,
+      "cai_printed": 0.49,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 48.484848484848484,
+      "mfe_recomputed": -25.26666831970215,
+      "cai_recomputed": 0.4913169493497783,
+      "gc_rounding_abs_error": 0.004848484848487544,
+      "mfe_rounding_abs_error": 0.003331680297851136,
+      "cai_rounding_abs_error": 0.0013169493497783291
+    },
+    {
+      "index": 11,
+      "sequence": "AUGAUCAACACACAAGAUAGUUCAAUUCUGCCAUUGUCUAAUUGUCCCCAAUUGCAGUGCUGCCGACACAUAGUGCCCGGUCCCCUAUGGUGUAGUUAA",
+      "reward_printed": 0.55,
+      "gc_percent_printed": 45.45,
+      "mfe_printed": -26.2,
+      "cai_printed": 0.51,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 45.45454545454545,
+      "mfe_recomputed": -26.200000762939453,
+      "cai_recomputed": 0.5136030609639357,
+      "gc_rounding_abs_error": 0.004545454545450411,
+      "mfe_rounding_abs_error": 7.629394538355427e-07,
+      "cai_rounding_abs_error": 0.0036030609639357003
+    },
+    {
+      "index": 12,
+      "sequence": "AUGAUUAACACACAAGAUUCUAGCAUCCUACCGCUCUCUAACUGUCCCCAACUUCAAUGUUGCAGGCACAUCGUCCCUGGUCCCCUAUGGUGCUCGUAG",
+      "reward_printed": 0.54,
+      "gc_percent_printed": 49.49,
+      "mfe_printed": -21.8,
+      "cai_printed": 0.5,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 49.494949494949495,
+      "mfe_recomputed": -21.80000114440918,
+      "cai_recomputed": 0.49776919501106737,
+      "gc_rounding_abs_error": 0.004949494949492816,
+      "mfe_rounding_abs_error": 1.1444091789769573e-06,
+      "cai_rounding_abs_error": 0.002230804988932633
+    },
+    {
+      "index": 13,
+      "sequence": "AUGAUAAAUACACAAGAUUCGAGCAUACUACCGUUAUCAAACUGUCCGCAGUUACAAUGCUGUAGACACAUAGUGCCGGGCCCGCUCUGGUGCAGCUGA",
+      "reward_printed": 0.53,
+      "gc_percent_printed": 47.47,
+      "mfe_printed": -30.6,
+      "cai_printed": 0.32,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 47.474747474747474,
+      "mfe_recomputed": -30.599998474121094,
+      "cai_recomputed": 0.3197614293569076,
+      "gc_rounding_abs_error": 0.004747474747475167,
+      "mfe_rounding_abs_error": 1.5258789076710855e-06,
+      "cai_rounding_abs_error": 0.00023857064309240616
+    },
+    {
+      "index": 14,
+      "sequence": "AUGAUUAAUACCCAAGACAGCAGUAUAUUACCACUCAGCAACUGUCCGCAACUCCAAUGUUGCCGCCACAUAGUUCCGGGCCCACUCUGGUGUUCUUGA",
+      "reward_printed": 0.52,
+      "gc_percent_printed": 48.48,
+      "mfe_printed": -24.0,
+      "cai_printed": 0.43,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 48.484848484848484,
+      "mfe_recomputed": -24.0,
+      "cai_recomputed": 0.429198016092913,
+      "gc_rounding_abs_error": 0.004848484848487544,
+      "mfe_rounding_abs_error": 0.0,
+      "cai_rounding_abs_error": 0.0008019839070869672
+    },
+    {
+      "index": 15,
+      "sequence": "AUGAUAAACACGCAAGACUCUUCGAUACUGCCACUCUCUAACUGCCCUCAACUUCAAUGCUGUCGCCACAUAGUGCCUGGUCCACUCUGGUGCUCAUAG",
+      "reward_printed": 0.5,
+      "gc_percent_printed": 49.49,
+      "mfe_printed": -18.8,
+      "cai_printed": 0.47,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 49.494949494949495,
+      "mfe_recomputed": -18.80000114440918,
+      "cai_recomputed": 0.4659782084716485,
+      "gc_rounding_abs_error": 0.004949494949492816,
+      "mfe_rounding_abs_error": 1.1444091789769573e-06,
+      "cai_rounding_abs_error": 0.0040217915283514705
+    },
+    {
+      "index": 16,
+      "sequence": "AUGAUUAACACACAAGAUAGUAGCAUACUACCGUUAAGUAAUUGCCCUCAACUACAGUGCUGUCGGCAUAUUGUUCCAGGCCCACUAUGGUGCAGCUAG",
+      "reward_printed": 0.5,
+      "gc_percent_printed": 44.44,
+      "mfe_printed": -26.9,
+      "cai_printed": 0.4,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 44.44444444444444,
+      "mfe_recomputed": -26.899999618530273,
+      "cai_recomputed": 0.4048055060773791,
+      "gc_rounding_abs_error": 0.004444444444445139,
+      "mfe_rounding_abs_error": 3.8146972514141453e-07,
+      "cai_rounding_abs_error": 0.0048055060773790625
+    },
+    {
+      "index": 17,
+      "sequence": "AUGAUAAACACGCAGGACUCUUCUAUUCUCCCUCUCAGCAAUUGUCCCCAACUACAAUGUUGUAGACACAUAGUUCCGGGGCCACUAUGGUGCUCUUAA",
+      "reward_printed": 0.5,
+      "gc_percent_printed": 45.45,
+      "mfe_printed": -24.0,
+      "cai_printed": 0.44,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 45.45454545454545,
+      "mfe_recomputed": -24.000001907348633,
+      "cai_recomputed": 0.4388574698700336,
+      "gc_rounding_abs_error": 0.004545454545450411,
+      "mfe_rounding_abs_error": 1.9073486328125e-06,
+      "cai_rounding_abs_error": 0.0011425301299664015
+    },
+    {
+      "index": 18,
+      "sequence": "AUGAUUAACACCCAGGAUUCUUCCAUUUUGCCCCUUUCGAACUGUCCACAACUACAAUGCUGUCGACACAUAGUACCGGGACCGCUAUGGUGCAGUUGA",
+      "reward_printed": 0.5,
+      "gc_percent_printed": 47.47,
+      "mfe_printed": -23.3,
+      "cai_printed": 0.4,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 47.474747474747474,
+      "mfe_recomputed": -23.299999237060547,
+      "cai_recomputed": 0.3969868184280881,
+      "gc_rounding_abs_error": 0.004747474747475167,
+      "mfe_rounding_abs_error": 7.629394538355427e-07,
+      "cai_rounding_abs_error": 0.003013181571911938
+    },
+    {
+      "index": 19,
+      "sequence": "AUGAUAAACACACAGGAUUCAUCAAUACUCCCGCUCUCAAAUUGUCCCCAAUUGCAAUGUUGUAGGCAUAUAGUUCCAGGACCCCUAUGGUGUUCAUGA",
+      "reward_printed": 0.47,
+      "gc_percent_printed": 42.42,
+      "mfe_printed": -25.3,
+      "cai_printed": 0.41,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 42.42424242424242,
+      "mfe_recomputed": -25.30000114440918,
+      "cai_recomputed": 0.41456045887275206,
+      "gc_rounding_abs_error": 0.004242424242420384,
+      "mfe_rounding_abs_error": 1.1444091789769573e-06,
+      "cai_rounding_abs_error": 0.004560458872752082
+    },
+    {
+      "index": 20,
+      "sequence": "AUGAUAAAUACACAAGACUCAUCGAUUUUACCUCUUUCGAAUUGCCCACAAUUGCAAUGUUGCCGCCAUAUAGUACCUGGACCACUCUGGUGCUCUUAA",
+      "reward_printed": 0.38,
+      "gc_percent_printed": 41.41,
+      "mfe_printed": -18.4,
+      "cai_printed": 0.38,
+      "nt_length": 99,
+      "protein_identity": true,
+      "start_codon_valid": true,
+      "terminal_stop_count": 1,
+      "only_terminal_stop": true,
+      "gc_percent_recomputed": 41.41414141414141,
+      "mfe_recomputed": -18.399995803833008,
+      "cai_recomputed": 0.38310516437211295,
+      "gc_rounding_abs_error": 0.004141414141415112,
+      "mfe_rounding_abs_error": 4.1961669907664145e-06,
+      "cai_rounding_abs_error": 0.003105164372112945
+    }
+  ],
+  "claim_boundaries": {
+    "bounded_smoke_only": true,
+    "official_unconditional_entrypoint_process_completed": true,
+    "source_modified": false,
+    "full_cagfn_reproduction": false,
+    "converged_model_claim": false,
+    "sota_claim": false,
+    "functional_or_ood_claim": false,
+    "main_model_baseline_matrix_closed": false,
+    "time_matched_comparison": false,
+    "mfe_engine": "CAGFN bundled RNAFolder, not ViennaRNA",
+    "zero_policy": "Direct external CAI and RNAFolder calls; no silent exception-to-zero fallback."
+  }
+}

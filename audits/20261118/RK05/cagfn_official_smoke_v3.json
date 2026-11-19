@@ -1,0 +1,134 @@
+{
+  "claim_boundaries": {
+    "bounded_smoke_only": true,
+    "conditional_entrypoint_only": true,
+    "converged_model_claim": false,
+    "cross_method_mfe_identity": false,
+    "cross_method_mfe_reason": "CAGFN uses its bundled RNAFolder; LinearDesign comparisons use ViennaRNA-based frozen scorers.",
+    "external_sota_claim": false,
+    "figure_interpretation": "The supplied paper figures show a protein-legal codon DAG and internal metric distributions/training time. They do not provide same-hardware LinearDesign or EnsembleDesign comparisons, paired confidence intervals, or functional evidence. Conditional-versus-unconditional similarity in a histogram is not an ablation or a significance test.",
+    "full_cagfn_reproduction_claim": false,
+    "functional_or_ood_claim": false,
+    "unconditional_entrypoint_reproduced": false
+  },
+  "command": [
+    "/home/codonflow-a8-rk-smoke/cagfn-venv/bin/python",
+    "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/main_conditional.py",
+    "--config_path",
+    "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/config.yaml",
+    "--arch",
+    "MLP",
+    "--n_iterations",
+    "2",
+    "--n_samples",
+    "20",
+    "--batch_size",
+    "16",
+    "--hidden_dim",
+    "256",
+    "--n_hidden",
+    "4",
+    "--embedding_dim",
+    "32",
+    "--seed",
+    "42",
+    "--run_name",
+    "bounded_smoke"
+  ],
+  "console_log": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v3/console.log",
+    "sha256": "d50a9d2c17ee00fdd203e308c0962ece0a029cc892530d4aa1106e53dbbd84ab"
+  },
+  "cwd": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v3",
+  "dependency_recovery": {
+    "claim_boundary": "Dependency compatibility recovery, not the exact published environment and not an official author-endorsed correction.",
+    "published_environment_torchgfn": "1.1.1",
+    "published_torchgfn_failure": "ImportError: cannot import name MLP from torchgfn.src.gfn.utils.modules",
+    "selected_torchgfn_commit": "72da54c06fa20e887c2ce24165b820e9290a2f46",
+    "selected_torchgfn_version": "2.0.1",
+    "selection_reason": "First installed public release line tested that provides the MLP API imported by unmodified CAGFN source; v1.1.1 and v1.2 do not provide it."
+  },
+  "end_time_utc": "2026-11-19T18:44:19Z",
+  "environment_freeze": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/cagfn_official_smoke_v3/environment_freeze.txt",
+    "sha256": "2d18f193f77b0d157bc26c3b484135a1c044bb7db6c431afd3c28613a176b07a"
+  },
+  "environment_overrides": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "MKL_NUM_THREADS": "1",
+    "MPLBACKEND": "Agg",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "42",
+    "WANDB_MODE": "offline",
+    "WANDB_SILENT": "true"
+  },
+  "output_files": [
+    {
+      "bytes": 5155,
+      "path": "protocol_v3.json",
+      "sha256": "112d7470ff248a3ed164d5fcd5da8762e443c93b24eb8a4fdce31431b3ef5b31"
+    }
+  ],
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "protocol_sha256": "112d7470ff248a3ed164d5fcd5da8762e443c93b24eb8a4fdce31431b3ef5b31",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 23:02:24) [GCC 14.4.0]",
+  "returncode": 1,
+  "schema": "a8.rk05.cagfn_official_smoke_run.v1",
+  "scientific_verification_status": "NOT_YET_RUN",
+  "source": {
+    "commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "config": "config.yaml",
+    "entrypoint": "main_conditional.py",
+    "pretrained_weights_in_public_tree": false,
+    "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+    "source_directory": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "source_modification_allowed": false
+  },
+  "source_files": {
+    "Architecture.py": {
+      "bytes": 1495,
+      "sha256": "ff4608450d0e444c44dfb616798e70e5a1d30a9c2c4074557e34371b13d4754f"
+    },
+    "CAI_calculator.py": {
+      "bytes": 14631,
+      "sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a"
+    },
+    "MFE_calculator.py": {
+      "bytes": 27059,
+      "sha256": "e2036ac4a24eea42ffbe649b1762ee59d332bc875861c5570b3826b284f9681c"
+    },
+    "config.yaml": {
+      "bytes": 307,
+      "sha256": "b72e1c9dbf28916a97d648f7d523f35e2af63a4dcf2b9e169501c3d26803f318"
+    },
+    "env.py": {
+      "bytes": 5948,
+      "sha256": "29bca7a5932ebe81cde5848c948c10bd0f173af22e501a96f946b8c416b7d792"
+    },
+    "main.py": {
+      "bytes": 15211,
+      "sha256": "f6023925712b354385eae8b1be2ae725d9c42a10e1ad219a92f84b3957fc208c"
+    },
+    "main_conditional.py": {
+      "bytes": 17154,
+      "sha256": "eb855e32460f69e0df8da408ca3cd90aabf48ba129042d96028e1776e8c5d108"
+    },
+    "preprocessor.py": {
+      "bytes": 955,
+      "sha256": "0c837d0aa5451a4b0883794a7c20c82564760ff60d1718fa4ce1cefd163cc95c"
+    },
+    "reward.py": {
+      "bytes": 1193,
+      "sha256": "5ea1c4d494994144360deccf912976261b5cfef81e7772561b5373f553bd8cd9"
+    },
+    "utils.py": {
+      "bytes": 12482,
+      "sha256": "0278a599b57de36fc79688e23092224c712ac7cce5c5054b993c85e29c654658"
+    }
+  },
+  "start_time_utc": "2026-11-19T18:44:10Z",
+  "status": "FAILED_PROCESS",
+  "task_id": "RK05.CAGFN_OFFICIAL_CONDITIONAL_BOUNDED_SMOKE_V3",
+  "wall_clock_seconds": 8.807424306869507
+}

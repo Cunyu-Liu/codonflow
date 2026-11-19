@@ -1,0 +1,279 @@
+{
+  "schema": "a8.rk05.cagfn_official_smoke_finalization.v1",
+  "task_id": "RK05.CAGFN_OFFICIAL_BOUNDED_SMOKE",
+  "status": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+  "checks_passed": 22,
+  "checks_total": 22,
+  "checks": [
+    {
+      "name": "official_source_commit",
+      "pass": true,
+      "detail": {
+        "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+        "commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+        "source_directory": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9",
+        "entrypoint": "main.py",
+        "config": "config.yaml",
+        "source_modification_allowed": false,
+        "pretrained_weights_in_public_tree": false
+      }
+    },
+    {
+      "name": "source_hash_Architecture.py",
+      "pass": true,
+      "detail": "ff4608450d0e444c44dfb616798e70e5a1d30a9c2c4074557e34371b13d4754f"
+    },
+    {
+      "name": "source_hash_CAI_calculator.py",
+      "pass": true,
+      "detail": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a"
+    },
+    {
+      "name": "source_hash_MFE_calculator.py",
+      "pass": true,
+      "detail": "e2036ac4a24eea42ffbe649b1762ee59d332bc875861c5570b3826b284f9681c"
+    },
+    {
+      "name": "source_hash_config.yaml",
+      "pass": true,
+      "detail": "b72e1c9dbf28916a97d648f7d523f35e2af63a4dcf2b9e169501c3d26803f318"
+    },
+    {
+      "name": "source_hash_env.py",
+      "pass": true,
+      "detail": "29bca7a5932ebe81cde5848c948c10bd0f173af22e501a96f946b8c416b7d792"
+    },
+    {
+      "name": "source_hash_main.py",
+      "pass": true,
+      "detail": "f6023925712b354385eae8b1be2ae725d9c42a10e1ad219a92f84b3957fc208c"
+    },
+    {
+      "name": "source_hash_main_conditional.py",
+      "pass": true,
+      "detail": "eb855e32460f69e0df8da408ca3cd90aabf48ba129042d96028e1776e8c5d108"
+    },
+    {
+      "name": "source_hash_preprocessor.py",
+      "pass": true,
+      "detail": "0c837d0aa5451a4b0883794a7c20c82564760ff60d1718fa4ce1cefd163cc95c"
+    },
+    {
+      "name": "source_hash_reward.py",
+      "pass": true,
+      "detail": "5ea1c4d494994144360deccf912976261b5cfef81e7772561b5373f553bd8cd9"
+    },
+    {
+      "name": "source_hash_utils.py",
+      "pass": true,
+      "detail": "0278a599b57de36fc79688e23092224c712ac7cce5c5054b993c85e29c654658"
+    },
+    {
+      "name": "no_public_pretrained_weights",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "silent_zero_mfe_hazard_disclosed",
+      "pass": true,
+      "detail": "Upstream compute_mfe_energy catches exceptions and substitutes zero"
+    },
+    {
+      "name": "silent_zero_cai_hazard_disclosed",
+      "pass": true,
+      "detail": "Upstream compute_cai catches exceptions and substitutes zero"
+    },
+    {
+      "name": "official_mfe_engine_not_vienna",
+      "pass": true,
+      "detail": "CAGFN bundled RNAFolder"
+    },
+    {
+      "name": "no_zero_values_in_independent_output",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "run_process_complete",
+      "pass": true,
+      "detail": "COMPLETED_PROCESS"
+    },
+    {
+      "name": "independent_all_pass",
+      "pass": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "twenty_unique_valid_sequences",
+      "pass": true,
+      "detail": {
+        "n_sequences": 20,
+        "n_unique_sequences": 20,
+        "mean_gc_percent": 47.57575757575758,
+        "mean_official_rnafolder_mfe_kcal_mol": -26.75999994277954,
+        "mean_cai": 0.4566319455356198,
+        "mean_pairwise_normalized_edit_distance": 0.2526315789473684,
+        "min_pairwise_normalized_edit_distance": 0.1717171717171717,
+        "max_pairwise_normalized_edit_distance": 0.32323232323232326,
+        "max_rounding_errors": {
+          "gc_percent": 0.004949494949492816,
+          "mfe": 0.003331680297851136,
+          "cai": 0.0048055060773790625
+        }
+      }
+    },
+    {
+      "name": "checkpoint_two_iterations",
+      "pass": true,
+      "detail": {
+        "bytes": 5761897,
+        "sha256": "50288622e0bc7094c31962eeb6250a186224e485d20f896d5b9f988971bb0e4b",
+        "loss": [
+          112.69061279296875,
+          109.23995971679688
+        ],
+        "reward": [
+          0.5623848615157493,
+          0.5948220347860995
+        ]
+      }
+    },
+    {
+      "name": "three_failed_attempts_retained",
+      "pass": true,
+      "detail": [
+        {
+          "version": 1,
+          "path": "audits/20261118/RK05/cagfn_official_smoke_v1.json",
+          "sha256": "4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3",
+          "status": "FAILED_PROCESS",
+          "returncode": 1
+        },
+        {
+          "version": 2,
+          "path": "audits/20261118/RK05/cagfn_official_smoke_v2.json",
+          "sha256": "7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4",
+          "status": "FAILED_PROCESS",
+          "returncode": 1
+        },
+        {
+          "version": 3,
+          "path": "audits/20261118/RK05/cagfn_official_smoke_v3.json",
+          "sha256": "f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a",
+          "status": "FAILED_PROCESS",
+          "returncode": 1
+        }
+      ]
+    },
+    {
+      "name": "no_sota_or_full_reproduction_claim",
+      "pass": true,
+      "detail": {
+        "bounded_smoke_only": true,
+        "official_unconditional_entrypoint_process_completed": true,
+        "source_modified": false,
+        "full_cagfn_reproduction": false,
+        "converged_model_claim": false,
+        "sota_claim": false,
+        "functional_or_ood_claim": false,
+        "main_model_baseline_matrix_closed": false,
+        "time_matched_comparison": false,
+        "mfe_engine": "CAGFN bundled RNAFolder, not ViennaRNA",
+        "zero_policy": "Direct external CAI and RNAFolder calls; no silent exception-to-zero fallback."
+      }
+    }
+  ],
+  "artifacts": {
+    "audits/20261118/RK05/cagfn_official_smoke_v4.json": "c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d",
+    "audits/20261118/RK05/cagfn_official_smoke_independent_v4.json": "d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab",
+    "configs/a8_rk05_cagfn_official_smoke_protocol_v4.json": "8c8013e0deb3b4f23d35012cf3649ed188dd0a613e38d1528249be7dc62156fa",
+    "scripts/a8_rk05_cagfn_run_smoke.py": "f131ec1ed31cc00039e88e1617a62bc4806034393b223b7f111c13a6ee415f97",
+    "scripts/a8_rk05_cagfn_verify_smoke.py": "031ad718c3ddbc78726005f563bf9056bcb80dfa65eae4b0059d82e895fe573b",
+    "configs/a8_rk05_cagfn_official_smoke_protocol_v1.json": "d1191c0114ecc2a68268277ac9b23742ad6dcf9ecfb892ef98a0125223533aae",
+    "configs/a8_rk05_cagfn_official_smoke_protocol_v2.json": "a35e4f82f335e60ab99a845871e909400e506c65b5dd2e7851075305dbb89ecf",
+    "configs/a8_rk05_cagfn_official_smoke_protocol_v3.json": "112d7470ff248a3ed164d5fcd5da8762e443c93b24eb8a4fdce31431b3ef5b31"
+  },
+  "failure_history": [
+    {
+      "version": 1,
+      "path": "audits/20261118/RK05/cagfn_official_smoke_v1.json",
+      "sha256": "4444cdc3f9a24ebebc7e5e1cb77e1628c0304a590a2a2848517157e4528fd0a3",
+      "status": "FAILED_PROCESS",
+      "returncode": 1
+    },
+    {
+      "version": 2,
+      "path": "audits/20261118/RK05/cagfn_official_smoke_v2.json",
+      "sha256": "7e1ef8c75b0b21bb967bbacb3e3d284dfab72ffaf44901954535ebaddc8b86c4",
+      "status": "FAILED_PROCESS",
+      "returncode": 1
+    },
+    {
+      "version": 3,
+      "path": "audits/20261118/RK05/cagfn_official_smoke_v3.json",
+      "sha256": "f70aed80085eb678e391a273cf60505bc2d7041df4201214d7ab31782fb09d2a",
+      "status": "FAILED_PROCESS",
+      "returncode": 1
+    }
+  ],
+  "scientific_result": {
+    "n_sequences": 20,
+    "n_unique_sequences": 20,
+    "mean_gc_percent": 47.57575757575758,
+    "mean_official_rnafolder_mfe_kcal_mol": -26.75999994277954,
+    "mean_cai": 0.4566319455356198,
+    "mean_pairwise_normalized_edit_distance": 0.2526315789473684,
+    "min_pairwise_normalized_edit_distance": 0.1717171717171717,
+    "max_pairwise_normalized_edit_distance": 0.32323232323232326,
+    "max_rounding_errors": {
+      "gc_percent": 0.004949494949492816,
+      "mfe": 0.003331680297851136,
+      "cai": 0.0048055060773790625
+    }
+  },
+  "cost": {
+    "total_wall_clock_seconds": 47.556745767593384,
+    "training_seconds": 11.01,
+    "inference_seconds": 6.68,
+    "hardware": "CPU",
+    "threads": 1,
+    "includes": "Whole process includes imports, W&B offline logging, plotting and serialization; training and inference are separately reported.",
+    "time_matched_comparison": false
+  },
+  "checkpoint": {
+    "bytes": 5761897,
+    "sha256": "50288622e0bc7094c31962eeb6250a186224e485d20f896d5b9f988971bb0e4b",
+    "loss": [
+      112.69061279296875,
+      109.23995971679688
+    ],
+    "reward": [
+      0.5623848615157493,
+      0.5948220347860995
+    ]
+  },
+  "publication_boundary": {
+    "paper": "Curriculum-Augmented GFlowNets for mRNA Design: Enhancing Sequence Generation",
+    "arxiv": "https://arxiv.org/abs/2510.03811",
+    "openreview": "https://openreview.net/forum?id=lt7QTLnCaF",
+    "openreview_status": "rejected",
+    "repository": "https://github.com/ayalaajil/GFN_for_mRNA_design",
+    "source_commit": "952ccf9682988ef88cf1251877e918b85fbee9e9",
+    "pretrained_weights_available": false
+  },
+  "completion": {
+    "bounded_official_smoke_closed": true,
+    "actual_training_completed": true,
+    "actual_generation_completed": true,
+    "actual_checkpoint_saved": true,
+    "independent_raw_output_verification_completed": true,
+    "full_cagfn_reproduction": false,
+    "converged_model_claim": false,
+    "main_model_baseline_matrix_closed": false,
+    "time_matched_comparison": false,
+    "functional_ood_closed": false,
+    "sota_claim": false,
+    "paper_update_authorized": true,
+    "ppt_update_authorized": true
+  }
+}
