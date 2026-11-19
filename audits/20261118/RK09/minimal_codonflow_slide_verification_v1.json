@@ -1,0 +1,141 @@
+{
+  "schema": "a8-rk09-minimal-slide-verification-v1",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pgb",
+  "slide_number": 87,
+  "revision_id": 49,
+  "source_sha256": "7580f3c3416ebbbfa2b5177afb1613acd76152c9049df16cbcab0b3dfb1611e8",
+  "candidate_sha256": "bba4781f00b05b4c7d0f9d1e2387c914d556646a2a758224ebe5647afef37ebf",
+  "readback_sha256": "7f4e07a4b0f5d89b43400fccb9e28d0d19b0337ef8291b4800215ba0967e3b3b",
+  "old_pages_semantically_unchanged": true,
+  "checks": [
+    {
+      "id": "preflight_passed",
+      "pass": true,
+      "detail": "27/27 before write"
+    },
+    {
+      "id": "write_confirmed",
+      "pass": true,
+      "detail": "single successful append, page pgb"
+    },
+    {
+      "id": "readback_ok",
+      "pass": true,
+      "detail": "live readback succeeded"
+    },
+    {
+      "id": "source_baseline",
+      "pass": true,
+      "detail": "86-page source baseline"
+    },
+    {
+      "id": "page_count",
+      "pass": true,
+      "detail": "exactly one page added"
+    },
+    {
+      "id": "revision_advanced",
+      "pass": true,
+      "detail": "revision 49"
+    },
+    {
+      "id": "last_page_id",
+      "pass": true,
+      "detail": "new page is last and matches write response"
+    },
+    {
+      "id": "old_page_ids",
+      "pass": true,
+      "detail": "all 86 old IDs and order unchanged"
+    },
+    {
+      "id": "old_pages_semantically_unchanged",
+      "pass": true,
+      "detail": "semantic XML differences on old pages: []"
+    },
+    {
+      "id": "all_candidate_paragraphs",
+      "pass": true,
+      "detail": "47 visible/note paragraphs reproduced in order"
+    },
+    {
+      "id": "title",
+      "pass": true,
+      "detail": "bounded mathematical-kernel title"
+    },
+    {
+      "id": "state_counts",
+      "pass": true,
+      "detail": "enumeration counts present"
+    },
+    {
+      "id": "naive_tv",
+      "pass": true,
+      "detail": "naive endpoint TV present"
+    },
+    {
+      "id": "path_scale",
+      "pass": true,
+      "detail": "path and endpoint counts present"
+    },
+    {
+      "id": "path_error_bound",
+      "pass": true,
+      "detail": "floating-point errors bounded, never misstated as zero"
+    },
+    {
+      "id": "event_time",
+      "pass": true,
+      "detail": "event-time Monte Carlo and analytic mean"
+    },
+    {
+      "id": "budget",
+      "pass": true,
+      "detail": "preference-budget counts"
+    },
+    {
+      "id": "verification",
+      "pass": true,
+      "detail": "all verification layers present"
+    },
+    {
+      "id": "failure_history",
+      "pass": true,
+      "detail": "initial failure history retained"
+    },
+    {
+      "id": "boundary",
+      "pass": true,
+      "detail": "no unsupported training/function/generation/SOTA claim"
+    },
+    {
+      "id": "no_duplicate_title",
+      "pass": true,
+      "detail": "title occurs on exactly one page"
+    },
+    {
+      "id": "speaker_notes",
+      "pass": true,
+      "detail": "three speaker-note paragraphs"
+    },
+    {
+      "id": "native_structure",
+      "pass": true,
+      "detail": "all native shapes and one table retained"
+    },
+    {
+      "id": "no_external_media",
+      "pass": true,
+      "detail": "no external media or embed"
+    },
+    {
+      "id": "candidate_hash_lock",
+      "pass": true,
+      "detail": "written candidate is the preflighted candidate"
+    }
+  ],
+  "checks_passed": 25,
+  "checks_total": 25,
+  "all_pass": true
+}

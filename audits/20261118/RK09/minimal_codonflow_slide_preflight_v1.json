@@ -1,0 +1,151 @@
+{
+  "schema": "a8-rk09-minimal-slide-preflight-v1",
+  "candidate_sha256": "bba4781f00b05b4c7d0f9d1e2387c914d556646a2a758224ebe5647afef37ebf",
+  "source_revision": 48,
+  "evidence_sha256": {
+    "production": "dfeb60b4139d97e888ebc0f06385ea038c1c6f671d1445110ee3b14874247cbd",
+    "independent": "0c54db32ad2c19bf4b8d3e16b9da955a57555e2ccbf407150d56909fceccc960",
+    "finalization": "a683fc72d123314baa27ffd2d692a8dfed0d2556a7466d90044b3dced9425ef0",
+    "paper": "1440dc36efc39d3c094da5c47b11f41eccf3dafff22ca3e64b3e48c4583fce5e"
+  },
+  "checks": [
+    {
+      "id": "single_slide",
+      "pass": true,
+      "detail": "one complete slide"
+    },
+    {
+      "id": "candidate_namespace",
+      "pass": true,
+      "detail": "SML 2.0 namespace"
+    },
+    {
+      "id": "no_fabricated_ids",
+      "pass": true,
+      "detail": "server assigns all IDs"
+    },
+    {
+      "id": "source_deck_baseline",
+      "pass": true,
+      "detail": "live source deck revision 48"
+    },
+    {
+      "id": "production_gate",
+      "pass": true,
+      "detail": "22/22 production"
+    },
+    {
+      "id": "independent_gate",
+      "pass": true,
+      "detail": "16/16 independent"
+    },
+    {
+      "id": "finalization_gate",
+      "pass": true,
+      "detail": "14/14 finalization"
+    },
+    {
+      "id": "paper_gate",
+      "pass": true,
+      "detail": "30/30 paper verification"
+    },
+    {
+      "id": "title_scope",
+      "pass": true,
+      "detail": "title is a bounded mathematical-kernel claim"
+    },
+    {
+      "id": "legal_state_count",
+      "pass": true,
+      "detail": "226,981 legal states"
+    },
+    {
+      "id": "reachable_count",
+      "pass": true,
+      "detail": "10,981 two-step reachable states"
+    },
+    {
+      "id": "one_step_count",
+      "pass": true,
+      "detail": "181 one-step targets"
+    },
+    {
+      "id": "naive_tv",
+      "pass": true,
+      "detail": "TV rounded to 0.324196"
+    },
+    {
+      "id": "path_count",
+      "pass": true,
+      "detail": "14,641 paths"
+    },
+    {
+      "id": "endpoint_count",
+      "pass": true,
+      "detail": "3,721 endpoints"
+    },
+    {
+      "id": "error_bound_not_zero_claim",
+      "pass": true,
+      "detail": "maximum path error=2.6645352591003757e-15; displayed as bounded, not zero"
+    },
+    {
+      "id": "budget_counts",
+      "pass": true,
+      "detail": "frozen budget counts"
+    },
+    {
+      "id": "event_time",
+      "pass": true,
+      "detail": "Monte Carlo and analytic event means"
+    },
+    {
+      "id": "verification_badges",
+      "pass": true,
+      "detail": "all verification layers visible"
+    },
+    {
+      "id": "failure_history",
+      "pass": true,
+      "detail": "initial failures retained on slide"
+    },
+    {
+      "id": "scientific_boundary",
+      "pass": true,
+      "detail": "training, function, generation, gate and SOTA boundaries explicit"
+    },
+    {
+      "id": "false_flags",
+      "pass": true,
+      "detail": "source report confirms bounded scope"
+    },
+    {
+      "id": "speaker_notes",
+      "pass": true,
+      "detail": "3 note paragraphs"
+    },
+    {
+      "id": "canvas_bounds",
+      "pass": true,
+      "detail": "all primary elements within 960x540"
+    },
+    {
+      "id": "font_unified",
+      "pass": true,
+      "detail": "Source Han Sans throughout"
+    },
+    {
+      "id": "no_external_media",
+      "pass": true,
+      "detail": "native editable elements only"
+    },
+    {
+      "id": "github_reference",
+      "pass": true,
+      "detail": "verified manuscript commit visible"
+    }
+  ],
+  "checks_passed": 27,
+  "checks_total": 27,
+  "all_pass": true
+}
