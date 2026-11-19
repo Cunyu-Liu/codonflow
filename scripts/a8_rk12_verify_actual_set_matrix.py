@@ -9,6 +9,7 @@ import json
 import math
 import re
 import time
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -26,7 +27,7 @@ def motif_penalty(sequence: str) -> float:
     for pattern in MOTIFS:
         count += len(re.findall(f"(?={pattern})", sequence))
     for base in "ACGT":
-        count += len(re.findall(f"{base}{{6,}}", sequence))
+        count += sum(len(run) for run in re.findall(f"{base}{{6,}}", sequence))
     return float(count)
 
 
@@ -65,6 +66,11 @@ def pairwise_ned(sequences: list[str]) -> float:
             total += Levenshtein.distance(left, right) / max(len(left), len(right))
             pairs += 1
     return total / pairs
+
+
+def fold_sequence(sequence: str) -> float:
+    _structure, value = RNA.fold_compound(sequence.replace("T", "U")).mfe()
+    return float(value)
 
 
 def normalized_hv(objectives: np.ndarray, reference: np.ndarray, scale: np.ndarray) -> float:
@@ -116,6 +122,7 @@ def main() -> None:
     parser.add_argument("--grid-report", type=Path, required=True)
     parser.add_argument("--matrix", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--mfe-workers", type=int, default=1)
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError(args.output)
@@ -136,6 +143,18 @@ def main() -> None:
     max_hv_delta = 0.0
     max_ned_delta = 0.0
     mfe_cache = {}
+    if args.mfe_workers < 1:
+        raise ValueError("--mfe-workers must be positive")
+    unique_sequences = sorted({
+        point["sequence"]
+        for record_result in matrix["records"]
+        for method in record_result["methods"].values()
+        for point in method["points"]
+    })
+    if args.mfe_workers > 1:
+        with ProcessPoolExecutor(max_workers=args.mfe_workers) as pool:
+            values = list(pool.map(fold_sequence, unique_sequences, chunksize=8))
+        mfe_cache.update(zip(unique_sequences, values))
 
     def record(name, passed, evidence=None):
         checks.append({"check": name, "pass": bool(passed), "evidence": evidence})
@@ -144,8 +163,7 @@ def main() -> None:
 
     def fold(sequence):
         if sequence not in mfe_cache:
-            structure, value = RNA.fold_compound(sequence.replace("T", "U")).mfe()
-            mfe_cache[sequence] = float(value)
+            mfe_cache[sequence] = fold_sequence(sequence)
         return mfe_cache[sequence]
 
     record("matrix_protocol_hash", matrix["protocol_sha256"] == sha256(args.protocol))
@@ -248,6 +266,8 @@ def main() -> None:
         "max_hypervolume_recompute_delta": max_hv_delta,
         "max_ned_recompute_delta": max_ned_delta,
         "unique_mfe_sequences_recomputed": len(mfe_cache),
+        "mfe_workers": args.mfe_workers,
+        "motif_semantics": "frozen production default: every catalogue occurrence weight 1; homopolymer score is summed run length",
         "matrix_production_module_imported": False,
         "elapsed_s_not_generation_cost": time.perf_counter() - started,
         "scope": "independent raw-CDS development actual-set verification; not dense AUC, time-matched cost, functional OOD or SOTA",

@@ -1,0 +1,1253 @@
+{
+  "schema": "a8-rk12-actual-set-matrix-independent-v1",
+  "created_at": "2026-11-19T14:28:06.343042+00:00",
+  "status": "FAIL",
+  "matrix": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk12/actual_set_matrix_v1/unique18_actual_set_matrix.json",
+  "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+  "protocol_sha256": "3b9c3d31f996a56b66fe7df6572bd4af00eea660fc43ceb979e708adccdd3709",
+  "grid_report_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
+  "checks": [
+    {
+      "check": "matrix_protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_grid_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_order_and_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_rescoring_declaration",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "excluded_claims",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 67.21285388305085,
+        "ned": 0.11940431603352954,
+        "n": 7
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 24.46505428289375,
+        "ned": 0.23200733931070966,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 28.98440991608674,
+        "ned": 0.19823120259339838,
+        "n": 85
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 13.962181616972696,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.4669497705955394,
+        "ned": 0.24372224113797153,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 67.01862925351156,
+        "ned": 0.12846441947565546,
+        "n": 5
+      }
+    },
+    {
+      "check": "new_cost:C31E10.3b.1",
+      "pass": true,
+      "evidence": 127.16318020923063
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 27.408794572427762,
+        "ned": 0.12317460317460319,
+        "n": 5
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 14.260809589799338,
+        "ned": 0.21895847362514015,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 15.608739404373488,
+        "ned": 0.20464701730524643,
+        "n": 79
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 8.43250857485355,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.8927302261946535,
+        "ned": 0.23503350970017492,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 27.017900512252062,
+        "ned": 0.1306878306878307,
+        "n": 4
+      }
+    },
+    {
+      "check": "new_cost:C14A6.7.1",
+      "pass": true,
+      "evidence": 40.581557710655034
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 13.75906337719716,
+        "ned": 0.021895424836601302,
+        "n": 6
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 8.420777834032599,
+        "ned": 0.24206674589027563,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 9.726932250740044,
+        "ned": 0.1725598783817316,
+        "n": 80
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 6.392971645631434,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.7669100235958095,
+        "ned": 0.25271836007130083,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 13.549239755432692,
+        "ned": 0.024509803921568627,
+        "n": 5
+      }
+    },
+    {
+      "check": "new_cost:C01H6.8b.1",
+      "pass": true,
+      "evidence": 88.69267976935953
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 20.983025284320966,
+        "ned": 0.06144927536231883,
+        "n": 5
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 19.205838789435557,
+        "ned": 0.21082008490704562,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 25.83320585527811,
+        "ned": 0.11656314699792587,
+        "n": 77
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 17.607881777873768,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.651255819125365,
+        "ned": 0.21935704874835757,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 20.981596566288278,
+        "ned": 0.0753623188405797,
+        "n": 4
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000027077.3",
+      "pass": true,
+      "evidence": 40.09161023283377
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 8.380456932849953,
+        "ned": 0.10425396825396825,
+        "n": 7
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 7.697115636199434,
+        "ned": 0.23333117845117746,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 7.762230882967349,
+        "ned": 0.13561445783132522,
+        "n": 84
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:cai_greedy",
+      "pass": false,
+      "evidence": {
+        "hv": 0.0,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.880340678084447,
+        "ned": 0.24511622895622875,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 8.324850252605852,
+        "ned": 0.11182222222222221,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000025296.3",
+      "pass": true,
+      "evidence": 64.91836221562698
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 22.411033756777087,
+        "ned": 0.051948051948051945,
+        "n": 4
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 12.94989954340042,
+        "ned": 0.20247890156981138,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 17.16632695770106,
+        "ned": 0.05518444872511838,
+        "n": 77
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 9.436360582384628,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.9168771908793578,
+        "ned": 0.20983995802177766,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 22.404275710590916,
+        "ned": 0.0670995670995671,
+        "n": 3
+      }
+    },
+    {
+      "check": "new_cost:C07E3.9.1",
+      "pass": true,
+      "evidence": 65.74668605439365
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 27.247806713621518,
+        "ned": 0.07719663457368377,
+        "n": 7
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 11.919605856233234,
+        "ned": 0.22770547000055236,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 15.776858949395134,
+        "ned": 0.1477047465841822,
+        "n": 79
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:cai_greedy",
+      "pass": false,
+      "evidence": {
+        "hv": 6.509504254496425,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.2958693233589487,
+        "ned": 0.23611009917020823,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 27.209745199509015,
+        "ned": 0.08621736490588951,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000037188.1",
+      "pass": true,
+      "evidence": 136.2592421802692
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 9.005856072050104,
+        "ned": 0.05158730158730157,
+        "n": 7
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 4.213695591174744,
+        "ned": 0.23800505050505286,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 7.0539595943457165,
+        "ned": 0.13791437320849012,
+        "n": 78
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 3.8323132775462883,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 0.749225539185031,
+        "ned": 0.2457065755595175,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 8.850510253867718,
+        "ned": 0.05637254901960785,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000011420.3",
+      "pass": true,
+      "evidence": 78.85051873000339
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 28.853056068667268,
+        "ned": 0.03348148148148149,
+        "n": 9
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 13.125040839301612,
+        "ned": 0.2118857912457894,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 16.285198632663608,
+        "ned": 0.1965847447447446,
+        "n": 75
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:cai_greedy",
+      "pass": false,
+      "evidence": {
+        "hv": 10.818177662385672,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.7940891129301901,
+        "ned": 0.2264150841750834,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 28.61859757622318,
+        "ned": 0.04284444444444444,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000044901.1",
+      "pass": true,
+      "evidence": 47.89406896661967
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 36.2163693701836,
+        "ned": 0.05330520393811532,
+        "n": 6
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 19.069921444036826,
+        "ned": 0.20284106891701792,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 28.64087040456795,
+        "ned": 0.19447929374644923,
+        "n": 77
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 14.565823533554466,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.5224848060141687,
+        "ned": 0.21128457571495501,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 36.2163693701836,
+        "ned": 0.05330520393811532,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:C47A4.1.1",
+      "pass": true,
+      "evidence": 64.23622389510274
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 62.5887746964979,
+        "ned": 0.025900900900900897,
+        "n": 8
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 23.372536446870154,
+        "ned": 0.23991900991901152,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 41.04418387095541,
+        "ned": 0.1657792164121273,
+        "n": 79
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 40.93221286291272,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.9457238053074315,
+        "ned": 0.25115752115752094,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 62.58196073790028,
+        "ned": 0.027885027885027884,
+        "n": 7
+      }
+    },
+    {
+      "check": "new_cost:C05E11.2.1",
+      "pass": true,
+      "evidence": 112.58578949328512
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 9.992682731584967,
+        "ned": 0.08235701688082638,
+        "n": 9
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 20.119822459620096,
+        "ned": 0.2494128358414067,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 21.630998521615965,
+        "ned": 0.19771341025861952,
+        "n": 80
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:cai_greedy",
+      "pass": false,
+      "evidence": {
+        "hv": 0.0,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 1.2065809803538121,
+        "ned": 0.2646949082663501,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 9.992682731584967,
+        "ned": 0.09278155706727137,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:C41G7.2.1",
+      "pass": true,
+      "evidence": 1889.0896268300712
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 24.581427178923526,
+        "ned": 0.07194004097918687,
+        "n": 11
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 10.729503617510751,
+        "ned": 0.23954096121355867,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 14.76089379295324,
+        "ned": 0.14382260231172356,
+        "n": 79
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:cai_greedy",
+      "pass": false,
+      "evidence": {
+        "hv": 4.256233423941146,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 0.5087789324910852,
+        "ned": 0.24903638999724362,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 24.252683193955008,
+        "ned": 0.08190702140880075,
+        "n": 7
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000001586.4",
+      "pass": true,
+      "evidence": 1369.8278688974679
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 36.67447862180536,
+        "ned": 0.0700063211125158,
+        "n": 8
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 17.14080201190325,
+        "ned": 0.24338577515568835,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 27.037633608832877,
+        "ned": 0.12331748603716702,
+        "n": 71
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 18.833681759850073,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 3.0408108555448097,
+        "ned": 0.2525464080331325,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 36.400079737130675,
+        "ned": 0.087905604719764,
+        "n": 6
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000017935.4",
+      "pass": true,
+      "evidence": 261.12035658350214
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 1.1626075609202293,
+        "ned": 0.022933333333333326,
+        "n": 5
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 2.325608395603503,
+        "ned": 0.24003447811447715,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 2.203534547639354,
+        "ned": 0.22066582278481015,
+        "n": 80
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 0.4334057130209112,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 0.5120865239356256,
+        "ned": 0.24978154882154727,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 1.1626075609202293,
+        "ned": 0.022933333333333326,
+        "n": 5
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000045324.1",
+      "pass": true,
+      "evidence": 66.71076966635883
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 30.937148568035816,
+        "ned": 0.1207936507936508,
+        "n": 8
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 14.825610655241151,
+        "ned": 0.2422433221099896,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 22.082926640658783,
+        "ned": 0.22475361764518412,
+        "n": 84
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 12.902523171456094,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.015431501048877,
+        "ned": 0.25125566778900055,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 30.937148568035816,
+        "ned": 0.13100529100529099,
+        "n": 7
+      }
+    },
+    {
+      "check": "new_cost:C17G10.10.1",
+      "pass": true,
+      "evidence": 93.85175181180239
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:lineardesign_lambda11",
+      "pass": false,
+      "evidence": {
+        "hv": 25.216152560481035,
+        "ned": 0.11546840958605663,
+        "n": 10
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 11.054657030706451,
+        "ned": 0.22803836686189602,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 12.72174164768334,
+        "ned": 0.1444677189278834,
+        "n": 79
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 4.90780941664056,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 0.8416273001213805,
+        "ned": 0.24279065161418112,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:lineardesign_scan",
+      "pass": false,
+      "evidence": {
+        "hv": 25.164786126437626,
+        "ned": 0.12111511271175136,
+        "n": 7
+      }
+    },
+    {
+      "check": "new_cost:C03B1.12.1",
+      "pass": true,
+      "evidence": 230.08616219228134
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:lineardesign_lambda11",
+      "pass": true,
+      "evidence": {
+        "hv": 103.09202421259573,
+        "ned": 0.07611111111111109,
+        "n": 9
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:codongpt",
+      "pass": false,
+      "evidence": {
+        "hv": 33.911092594839324,
+        "ned": 0.2376560606060577,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:gemorna",
+      "pass": false,
+      "evidence": {
+        "hv": 54.554877749363214,
+        "ned": 0.1675062153375402,
+        "n": 84
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:cai_greedy",
+      "pass": true,
+      "evidence": {
+        "hv": 38.65056935138845,
+        "ned": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:uniform_synonymous",
+      "pass": false,
+      "evidence": {
+        "hv": 2.5159381352214774,
+        "ned": 0.24752457912457762,
+        "n": 100
+      }
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:lineardesign_scan",
+      "pass": true,
+      "evidence": {
+        "hv": 103.00393352068168,
+        "ned": 0.08424603174603175,
+        "n": 7
+      }
+    },
+    {
+      "check": "new_cost:ENSACAT00000006494.4",
+      "pass": true,
+      "evidence": 682.1651854920201
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": false,
+      "evidence": {
+        "mean_effect": 10.380449385231636,
+        "ci95": [
+          4.431602230319294,
+          17.2250577607641
+        ],
+        "p": 0.0002999850007499625
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.0924612418859128,
+        "ci95": [
+          -0.11571521600309345,
+          -0.06969377172298163
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": false,
+      "evidence": {
+        "mean_effect": 15.939789974621593,
+        "ci95": [
+          8.40447264280044,
+          24.80040481023464
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.1587291037976345,
+        "ci95": [
+          -0.17507883136905333,
+          -0.14241155813803705
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": 0.00039998000099995
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00039998000099995
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": 0.00039998000099995
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": false,
+      "evidence": 0.00039998000099995
+    }
+  ],
+  "checks_passed": 63,
+  "checks_total": 139,
+  "failed_checks": [
+    "raw_objectives_actual_set:C31E10.3b.1:lineardesign_lambda11",
+    "raw_objectives_actual_set:C31E10.3b.1:codongpt",
+    "raw_objectives_actual_set:C31E10.3b.1:gemorna",
+    "raw_objectives_actual_set:C31E10.3b.1:uniform_synonymous",
+    "raw_objectives_actual_set:C31E10.3b.1:lineardesign_scan",
+    "raw_objectives_actual_set:C14A6.7.1:codongpt",
+    "raw_objectives_actual_set:C14A6.7.1:gemorna",
+    "raw_objectives_actual_set:C14A6.7.1:uniform_synonymous",
+    "raw_objectives_actual_set:C01H6.8b.1:codongpt",
+    "raw_objectives_actual_set:C01H6.8b.1:gemorna",
+    "raw_objectives_actual_set:C01H6.8b.1:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000027077.3:lineardesign_lambda11",
+    "raw_objectives_actual_set:ENSACAT00000027077.3:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000027077.3:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000027077.3:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000027077.3:lineardesign_scan",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:lineardesign_lambda11",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:cai_greedy",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000025296.3:lineardesign_scan",
+    "raw_objectives_actual_set:C07E3.9.1:codongpt",
+    "raw_objectives_actual_set:C07E3.9.1:gemorna",
+    "raw_objectives_actual_set:C07E3.9.1:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000037188.1:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000037188.1:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000037188.1:cai_greedy",
+    "raw_objectives_actual_set:ENSACAT00000037188.1:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000011420.3:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000011420.3:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000011420.3:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000044901.1:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000044901.1:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000044901.1:cai_greedy",
+    "raw_objectives_actual_set:ENSACAT00000044901.1:uniform_synonymous",
+    "raw_objectives_actual_set:C47A4.1.1:codongpt",
+    "raw_objectives_actual_set:C47A4.1.1:gemorna",
+    "raw_objectives_actual_set:C47A4.1.1:uniform_synonymous",
+    "raw_objectives_actual_set:C05E11.2.1:codongpt",
+    "raw_objectives_actual_set:C05E11.2.1:gemorna",
+    "raw_objectives_actual_set:C05E11.2.1:uniform_synonymous",
+    "raw_objectives_actual_set:C41G7.2.1:lineardesign_lambda11",
+    "raw_objectives_actual_set:C41G7.2.1:codongpt",
+    "raw_objectives_actual_set:C41G7.2.1:gemorna",
+    "raw_objectives_actual_set:C41G7.2.1:cai_greedy",
+    "raw_objectives_actual_set:C41G7.2.1:uniform_synonymous",
+    "raw_objectives_actual_set:C41G7.2.1:lineardesign_scan",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:lineardesign_lambda11",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:cai_greedy",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000001586.4:lineardesign_scan",
+    "raw_objectives_actual_set:ENSACAT00000017935.4:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000017935.4:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000017935.4:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000045324.1:lineardesign_lambda11",
+    "raw_objectives_actual_set:ENSACAT00000045324.1:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000045324.1:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000045324.1:uniform_synonymous",
+    "raw_objectives_actual_set:ENSACAT00000045324.1:lineardesign_scan",
+    "raw_objectives_actual_set:C17G10.10.1:codongpt",
+    "raw_objectives_actual_set:C17G10.10.1:gemorna",
+    "raw_objectives_actual_set:C17G10.10.1:uniform_synonymous",
+    "raw_objectives_actual_set:C03B1.12.1:lineardesign_lambda11",
+    "raw_objectives_actual_set:C03B1.12.1:codongpt",
+    "raw_objectives_actual_set:C03B1.12.1:gemorna",
+    "raw_objectives_actual_set:C03B1.12.1:uniform_synonymous",
+    "raw_objectives_actual_set:C03B1.12.1:lineardesign_scan",
+    "raw_objectives_actual_set:ENSACAT00000006494.4:codongpt",
+    "raw_objectives_actual_set:ENSACAT00000006494.4:gemorna",
+    "raw_objectives_actual_set:ENSACAT00000006494.4:uniform_synonymous",
+    "paired_effect:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+    "paired_effect:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+    "holm:lineardesign_lambda11_minus_gemorna:hypervolume_normalized"
+  ],
+  "max_objective_recompute_delta": 0.2380952380952381,
+  "max_hypervolume_recompute_delta": 6.390862189501483,
+  "max_ned_recompute_delta": 0.0,
+  "unique_mfe_sequences_recomputed": 5176,
+  "matrix_production_module_imported": false,
+  "elapsed_s_not_generation_cost": 3764.4159771190025,
+  "scope": "independent raw-CDS development actual-set verification; not dense AUC, time-matched cost, functional OOD or SOTA"
+}
