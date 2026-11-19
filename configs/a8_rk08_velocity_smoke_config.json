@@ -1,0 +1,40 @@
+{
+  "protocol": "a8_rk08_velocity_proxy_v1_preregistered_before_model_readout",
+  "smoke": true,
+  "train_study": "Mohammad16",
+  "primary_ood_study": "Subtelny14",
+  "max_records_per_split": null,
+  "model": {
+    "d_model": 16,
+    "n_layers": 1,
+    "n_heads": 4,
+    "dropout": 0.0,
+    "max_len": 1002,
+    "ff_mult": 2,
+    "initiation_window": 16,
+    "long_range_stride": 16,
+    "pair_strength": 1.0,
+    "allow_wobble": true,
+    "num_hosts": 8
+  },
+  "training": {
+    "epochs": 2,
+    "batch_size": 4,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "seed": 20261119,
+    "gradient_clip": 1.0,
+    "early_stopping_patience": 2,
+    "selection_metric": "dev_transcript_balanced_mse"
+  },
+  "baseline": {
+    "type": "ridge_codon_relative_position_length",
+    "alpha": 10.0,
+    "relative_position_bins": 20
+  },
+  "bootstrap": {
+    "method": "transcript_resampling",
+    "replicates": 20,
+    "seed": 20261120
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "cross_head_consistency_remains_open": true,
+    "formal_uncapped_data": true,
+    "functional_ood_not_accessed": true,
+    "functional_transfer_remains_open": true,
+    "independent_no_failures": true,
+    "independent_verification_pass": true,
+    "mechanism_gate_consistent": true,
+    "no_generator_authorization": true,
+    "no_homology_overclaim": true,
+    "no_rk_g1_overclaim": true,
+    "primary_exact_cds_disjoint": true,
+    "source_hashes_match": true
+  },
+  "checks_passed": 12,
+  "checks_total": 12,
+  "conclusion": "Velocity-proxy training and independent verification are reproducible, but the primary OOD mechanism gate did not pass. The negative or uncertain result is retained; no functional transfer or generator claim is authorized.",
+  "cross_head_consistency_closed": false,
+  "expensive_generation_authorized": false,
+  "failures": [],
+  "functional_transfer_closed": false,
+  "git_head_at_finalization": "ba2079e2acb41ee7f370794db50aac9771986299",
+  "rk_g1_pass": false,
+  "status": "PASS",
+  "velocity_mechanism_pass": false
+}

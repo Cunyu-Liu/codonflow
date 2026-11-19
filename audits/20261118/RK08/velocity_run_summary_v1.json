@@ -1,0 +1,227 @@
+{
+  "baseline": {
+    "alpha": 10.0,
+    "relative_position_bins": 20,
+    "type": "ridge_codon_relative_position_length"
+  },
+  "cross_head_consistency_closed": false,
+  "environment": {
+    "deterministic_algorithms": true,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "python": "3.10.22 (main, Oct  1 2026, 20:14:04) [GCC 14.3.0]",
+    "sdp_backends": "math_only",
+    "torch": "2.11.0+cu128"
+  },
+  "expensive_generation_authorized": false,
+  "functional_transfer_closed": false,
+  "hashes": {
+    "baseline_sha256": "3945403bee7111efedf83e01be2c9a532f7088652ef1e866fc00b1194865c091",
+    "checkpoint_sha256": "35f61a6c5a8c2442a533b9aff756df6b69702fabf892f859ffada002da23101f",
+    "config_sha256": "cd5dc89ef5865e11cc11e7378a0d016e8dd0e791015355e3af556850a271298e",
+    "data_sha256": "b681e74e9e3ca9efe3c7e7b3d0a970116189660d0b16c4de616d2c2979b70f12",
+    "predictions_sha256": "53affd48e861df0716c7a5d825e503561fc0b429c26c4d1b8cc00f35b3ad51aa",
+    "train_script_sha256": "b539a106f0f33eda2225dbc2ab427fcb10065c394315376a6a53a4e86e01b976"
+  },
+  "host_vocabulary": {
+    "Escherichia coli str. K-12 substr. MG1655": 1
+  },
+  "metrics": {
+    "dev": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": 0.4461297605036082,
+        "median_transcript_pearson": 0.4531190429091928,
+        "n_observed_positions": 28217,
+        "n_transcripts": 110,
+        "n_transcripts_with_pearson": 110,
+        "position_mse": 0.18667875203200626,
+        "position_pearson": 0.4545176500426877,
+        "position_spearman": 0.43426649802991235,
+        "transcript_balanced_mse": 0.19146460504821666
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": 0.1448377277077961,
+        "median_transcript_pearson": 0.15059646363368942,
+        "n_observed_positions": 28217,
+        "n_transcripts": 110,
+        "n_transcripts_with_pearson": 110,
+        "position_mse": 0.22907414645729934,
+        "position_pearson": 0.1542337084346086,
+        "position_spearman": 0.1388831181997994,
+        "transcript_balanced_mse": 0.23378677273533974
+      }
+    },
+    "study_ood:Mohammad19-1": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": 0.024392834181721515,
+        "median_transcript_pearson": 0.0262323245912765,
+        "n_observed_positions": 396292,
+        "n_transcripts": 1412,
+        "n_transcripts_with_pearson": 1412,
+        "position_mse": 0.21561367096013406,
+        "position_pearson": 0.039433565181828584,
+        "position_spearman": 0.05378721198508264,
+        "transcript_balanced_mse": 0.21493178629333445
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": -0.08944946998200395,
+        "median_transcript_pearson": -0.0836156260002132,
+        "n_observed_positions": 396292,
+        "n_transcripts": 1412,
+        "n_transcripts_with_pearson": 1412,
+        "position_mse": 0.18229952656261156,
+        "position_pearson": -0.05925416382873193,
+        "position_spearman": -0.04341831341028508,
+        "transcript_balanced_mse": 0.18449493179090987
+      }
+    },
+    "study_ood:Mohammad19-2": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": 0.05734107734126094,
+        "median_transcript_pearson": 0.05921895994588283,
+        "n_observed_positions": 458048,
+        "n_transcripts": 1580,
+        "n_transcripts_with_pearson": 1580,
+        "position_mse": 0.21256992280452958,
+        "position_pearson": 0.06678758939702095,
+        "position_spearman": 0.08090664770725882,
+        "transcript_balanced_mse": 0.21191778682391585
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": -0.058339339502639705,
+        "median_transcript_pearson": -0.05090774716444544,
+        "n_observed_positions": 458048,
+        "n_transcripts": 1580,
+        "n_transcripts_with_pearson": 1580,
+        "position_mse": 0.1828470257569169,
+        "position_pearson": -0.03778379445322497,
+        "position_spearman": -0.01622308418489793,
+        "transcript_balanced_mse": 0.1849696587050379
+      }
+    },
+    "study_ood:Subtelny14": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": -0.00884488119796242,
+        "median_transcript_pearson": -0.00469288483660163,
+        "n_observed_positions": 1444596,
+        "n_transcripts": 3630,
+        "n_transcripts_with_pearson": 3630,
+        "position_mse": 0.23147431322287934,
+        "position_pearson": -0.0013864550255471358,
+        "position_spearman": 0.016093280643339876,
+        "transcript_balanced_mse": 0.23056854005324243
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": 0.061698354230170255,
+        "median_transcript_pearson": 0.06256836552053884,
+        "n_observed_positions": 1444596,
+        "n_transcripts": 3630,
+        "n_transcripts_with_pearson": 3630,
+        "position_mse": 0.17484936966937095,
+        "position_pearson": 0.05626968147405963,
+        "position_spearman": 0.06555830265305325,
+        "transcript_balanced_mse": 0.1759458819436876
+      }
+    },
+    "test": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": 0.4421673109045489,
+        "median_transcript_pearson": 0.44668313886954736,
+        "n_observed_positions": 33353,
+        "n_transcripts": 123,
+        "n_transcripts_with_pearson": 123,
+        "position_mse": 0.1896820562924597,
+        "position_pearson": 0.45203052417691536,
+        "position_spearman": 0.4329865552981471,
+        "transcript_balanced_mse": 0.19308093987806096
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": 0.14847592531925893,
+        "median_transcript_pearson": 0.14381825064731737,
+        "n_observed_positions": 33353,
+        "n_transcripts": 123,
+        "n_transcripts_with_pearson": 123,
+        "position_mse": 0.23254922459986077,
+        "position_pearson": 0.15049522929003933,
+        "position_spearman": 0.12860412738759056,
+        "transcript_balanced_mse": 0.23495089703165334
+      }
+    },
+    "train": {
+      "ribokinetic_velocity": {
+        "mean_transcript_pearson": 0.46416076700314146,
+        "median_transcript_pearson": 0.473728964578233,
+        "n_observed_positions": 267800,
+        "n_transcripts": 933,
+        "n_transcripts_with_pearson": 933,
+        "position_mse": 0.18687110134508023,
+        "position_pearson": 0.47827660475296735,
+        "position_spearman": 0.45338083964836373,
+        "transcript_balanced_mse": 0.1881445869997853
+      },
+      "ridge_codon_position_length": {
+        "mean_transcript_pearson": 0.14890777985477183,
+        "median_transcript_pearson": 0.15400908067160138,
+        "n_observed_positions": 267800,
+        "n_transcripts": 933,
+        "n_transcripts_with_pearson": 933,
+        "position_mse": 0.23609317895856513,
+        "position_pearson": 0.15551715999234722,
+        "position_spearman": 0.14198411605981168,
+        "transcript_balanced_mse": 0.23547490186744227
+      }
+    }
+  },
+  "normalizer": {
+    "fit_split": "train_only",
+    "log1p": false,
+    "mean": -0.4213760561998223,
+    "scale": 0.49187876012786447,
+    "target": "velocity",
+    "train_value_count": 267800
+  },
+  "primary_comparisons": [
+    {
+      "bootstrap_requested": 2000,
+      "bootstrap_valid": 2000,
+      "ci95_high": 0.05519200143473219,
+      "ci95_low": 0.05404594435779176,
+      "holm_pvalue": 0.0,
+      "metric": "transcript_balanced_mse",
+      "point_delta_model_minus_ridge": 0.05462265810955484,
+      "sign_pvalue": 0.0
+    },
+    {
+      "bootstrap_requested": 2000,
+      "bootstrap_valid": 2000,
+      "ci95_high": -0.06776526128770917,
+      "ci95_low": -0.07324810579112143,
+      "holm_pvalue": 0.0,
+      "metric": "mean_transcript_pearson",
+      "point_delta_model_minus_ridge": -0.07054323542813268,
+      "sign_pvalue": 0.0
+    }
+  ],
+  "primary_endpoint": "study_ood:Subtelny14 transcript-balanced MSE and mean transcript Pearson versus ridge",
+  "protocol": "a8_rk08_velocity_proxy_v1_preregistered_before_model_readout",
+  "rk_g1_pass": false,
+  "scientific_scope": "Occupancy-derived elongation-speed proxy; not a physical velocity assay and not functional-OOD evidence.",
+  "selected_epoch": 16,
+  "selection": "Mohammad16 dev transcript-balanced MSE only; test and study-OOD excluded from fitting and checkpoint selection.",
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "training": {
+    "batch_size": 8,
+    "early_stopping_patience": 5,
+    "elapsed_seconds": 175.01525712013245,
+    "epochs": 20,
+    "epochs_completed": 20,
+    "forward_passes": 3594,
+    "gradient_clip": 1.0,
+    "lr": 0.001,
+    "parameter_count": 24933,
+    "seed": 20261119,
+    "selection_metric": "dev_transcript_balanced_mse",
+    "weight_decay": 0.0001
+  },
+  "velocity_mechanism_pass": false
+}

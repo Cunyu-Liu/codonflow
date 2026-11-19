@@ -1,0 +1,66 @@
+{
+  "checks": {
+    "all_primary_metrics_recomputed": true,
+    "bootstrap_and_holm_recomputed": true,
+    "checkpoint_retrain_identical": true,
+    "checkpoint_selected_by_dev_only": true,
+    "config_hash_matches_run": true,
+    "data_hash_matches_audit": true,
+    "data_hash_matches_run": true,
+    "elongation_targets_finite": true,
+    "formal_uncapped_data": true,
+    "independent_double_forward": true,
+    "length_cap_respected": true,
+    "mechanism_gate_matches": true,
+    "no_generator_authorization": true,
+    "prediction_record_count": true,
+    "predictions_retrain_identical": true,
+    "primary_exact_cds_disjoint": true,
+    "raw_hash_matches_audit": true,
+    "raw_prepared_record_count": true,
+    "raw_targets_independently_recomputed": true,
+    "selected_records_cover_all_partitions": true,
+    "split_rule_reproduced": true,
+    "termini_masked": true,
+    "train_dev_test_exact_cds_disjoint": true,
+    "train_only_host_vocabulary": true,
+    "train_only_normalizer": true,
+    "unique_record_ids": true
+  },
+  "checks_passed": 26,
+  "checks_total": 26,
+  "cross_head_consistency_closed": false,
+  "expensive_generation_authorized": false,
+  "failures": [],
+  "functional_transfer_closed": false,
+  "max_double_forward_absolute_error": 6.406818248150259e-07,
+  "primary_comparisons_recomputed": [
+    {
+      "ci95_high": 0.05519200143473219,
+      "ci95_low": 0.05404594435779176,
+      "holm_pvalue": 0.0,
+      "metric": "transcript_balanced_mse",
+      "point_delta_model_minus_ridge": 0.05462265810955484,
+      "sign_pvalue": 0.0
+    },
+    {
+      "ci95_high": -0.06776526128770917,
+      "ci95_low": -0.07324810579112143,
+      "holm_pvalue": 0.0,
+      "metric": "mean_transcript_pearson",
+      "point_delta_model_minus_ridge": -0.07054323542813268,
+      "sign_pvalue": 0.0
+    }
+  ],
+  "rk_g1_pass": false,
+  "source_hashes": {
+    "config_sha256": "cd5dc89ef5865e11cc11e7378a0d016e8dd0e791015355e3af556850a271298e",
+    "data_sha256": "b681e74e9e3ca9efe3c7e7b3d0a970116189660d0b16c4de616d2c2979b70f12",
+    "prepare_script_sha256": "872f430e6f91ee53acc2051e3aed183039ec01372a03514feee4597653fd8741",
+    "raw_sha256": "4ea56f898d4126b8a258ffb4f0d75f6272199bcb338b9c22f877329c2cf0a902",
+    "train_script_sha256": "b539a106f0f33eda2225dbc2ab427fcb10065c394315376a6a53a4e86e01b976",
+    "verify_script_sha256": "e6edbdfda45810f6729ef14b5c2055ee0a5f5b461ab25623d5159004b882f49d"
+  },
+  "status": "PASS",
+  "velocity_mechanism_pass": false
+}

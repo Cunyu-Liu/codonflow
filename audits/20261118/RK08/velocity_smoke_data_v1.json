@@ -1,0 +1,60 @@
+{
+  "counts": {
+    "exact_cds_overlap_dev_test": 0,
+    "exact_cds_overlap_train_dev": 0,
+    "exact_cds_overlap_train_test": 0,
+    "excluded_over_max_codons": 321,
+    "excluded_smoke_cap": 7740,
+    "input_records": 8109,
+    "retained_Mohammad16": 12,
+    "retained_Mohammad19-1": 12,
+    "retained_Mohammad19-2": 12,
+    "retained_Subtelny14": 12,
+    "retained_attempt_Mohammad16": 12,
+    "retained_attempt_Mohammad19-1": 12,
+    "retained_attempt_Mohammad19-2": 12,
+    "retained_attempt_Subtelny14": 12,
+    "retained_records": 48
+  },
+  "exact_cds_overlap_with_mohammad16_train": {
+    "Mohammad19-1": 0,
+    "Mohammad19-2": 0,
+    "Subtelny14": 0
+  },
+  "functional_ood_accessed": false,
+  "homology_ood_claimed": false,
+  "input_jsonl": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/clean/ribomimo_v2/ribomimo_clean.jsonl.gz",
+  "input_sha256": "4ea56f898d4126b8a258ffb4f0d75f6272199bcb338b9c22f877329c2cf0a902",
+  "loss_positions": "codons 1..n-2 in zero-based coordinates; first and terminal-stop codons masked",
+  "max_codons": 1002,
+  "max_records_per_study": 12,
+  "observed_positions_by_split_study": {
+    "dev|Mohammad16": 893,
+    "study_ood|Mohammad19-1": 4014,
+    "study_ood|Mohammad19-2": 4014,
+    "study_ood|Subtelny14": 4705,
+    "train|Mohammad16": 2898
+  },
+  "output_jsonl": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_smoke_v1/velocity_records.jsonl.gz",
+  "output_sha256": "f141c8a83b2fda6d58064cf3b9e5d58e9eddee6a8db06a49deb8fe72dd6f15e2",
+  "primary_ood": "Subtelny14 cross-species/cross-study, exact-CDS-disjoint from all Mohammad16 splits",
+  "protocol": "a8_rk08_velocity_proxy_v1_preregistered_before_model_readout",
+  "records_by_split_study": {
+    "dev|Mohammad16": 3,
+    "study_ood|Mohammad19-1": 12,
+    "study_ood|Mohammad19-2": 12,
+    "study_ood|Subtelny14": 12,
+    "train|Mohammad16": 9
+  },
+  "seed": 20261119,
+  "source_commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+  "status": "SMOKE_DATA_ONLY",
+  "study_ood": [
+    "Mohammad19-1",
+    "Mohammad19-2",
+    "Subtelny14"
+  ],
+  "subtelny14_exact_cds_overlap_with_any_mohammad16_split": 0,
+  "target_semantics": "-log1p(official normalized ribosome density); occupancy-derived speed proxy, not physical velocity",
+  "train_dev_test_source": "Mohammad16 only, deterministic record-hash 80/10/10; not homology-cluster OOD"
+}
