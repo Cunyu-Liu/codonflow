@@ -1,0 +1,264 @@
+{
+  "schema_version": "a8-rk05-ribomimo-full-independent-v1",
+  "status": "FAIL",
+  "production_report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_v2.json",
+  "output_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_independent_v2",
+  "checks": [
+    {
+      "name": "production_status",
+      "pass": true,
+      "detail": "PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD16"
+    },
+    {
+      "name": "dataset",
+      "pass": true,
+      "detail": "Mohammad16"
+    },
+    {
+      "name": "protocol_identity",
+      "pass": true,
+      "detail": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7"
+    },
+    {
+      "name": "production_report_identity",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_v2.json"
+    },
+    {
+      "name": "production_driver",
+      "pass": true,
+      "detail": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    {
+      "name": "artifact_hash:ribomimo_full_mohammad16_protocol_v2.json",
+      "pass": true,
+      "detail": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7"
+    },
+    {
+      "name": "artifact_hash:driver.py",
+      "pass": true,
+      "detail": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    {
+      "name": "artifact_hash:Mohammad16.txt",
+      "pass": true,
+      "detail": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+    },
+    {
+      "name": "artifact_hash:official_to_full.diff",
+      "pass": true,
+      "detail": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+    },
+    {
+      "name": "artifact_hash:compatibility_replacements.json",
+      "pass": true,
+      "detail": "8a416108cee22e37629f6ddb497aa5b3aad3e6c010843694abce9db6f4c7cd4b"
+    },
+    {
+      "name": "artifact_hash:training.command.json",
+      "pass": true,
+      "detail": "0db1f6c390eb624c9c5121b057f179a32940261a8f73331ae2d8d2a9375dfb25"
+    },
+    {
+      "name": "artifact_hash:training.console.log",
+      "pass": true,
+      "detail": "8969b036b1678d7fee4dc784c6b95dc486870ce8b80f0f977c023f33d27f363a"
+    },
+    {
+      "name": "artifact_hash:training.returncode.txt",
+      "pass": true,
+      "detail": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "name": "artifact_hash:official_result_logging.log",
+      "pass": true,
+      "detail": "096fd6463d064c07345d1172d7cfc3e71d80da4351164c8dac42052870092fc9"
+    },
+    {
+      "name": "artifact_hash:config",
+      "pass": true,
+      "detail": "8b97f8d6c35b7db785ddad2c9036c9ce5d28501c158b2e7e0314da3e77f923ae"
+    },
+    {
+      "name": "artifact_hash:runtime_environment.json",
+      "pass": true,
+      "detail": "12fb0269b7913ebb3e53d98930c1b875c22885a8f95d3bcbad05cbd8a1796d8d"
+    },
+    {
+      "name": "artifact_hash:environment.json",
+      "pass": true,
+      "detail": "52a7ae56e7899e64c89895c88ad8ee728d25667e8d8434110220b09a4c087c89"
+    },
+    {
+      "name": "artifact_hash:pip_freeze.txt",
+      "pass": true,
+      "detail": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    },
+    {
+      "name": "checkpoint_hash:0",
+      "pass": true,
+      "detail": "9f2595d2c40e1e3dc6d715bf63a9ff1ad25d85f32a992e02eaad273b7b993600"
+    },
+    {
+      "name": "checkpoint_hash:1",
+      "pass": true,
+      "detail": "3f31ab930c7d36a2c5edee55d5c78684698621db859a9bfd7076575f63f4ed36"
+    },
+    {
+      "name": "checkpoint_hash:2",
+      "pass": true,
+      "detail": "3b68a736ce83df442589dfe0eafd2cfb0c573b7057b34711a98952fb0b339527"
+    },
+    {
+      "name": "checkpoint_hash:3",
+      "pass": true,
+      "detail": "9907a96ea70af74c373333ea7a1a6cf463a66e00e0587142e557b4f51863e7ca"
+    },
+    {
+      "name": "checkpoint_hash:4",
+      "pass": true,
+      "detail": "0662fab9b0b2d969f7d2075f9e709094546dca5b545c5d7b896a9efb956ade6e"
+    },
+    {
+      "name": "checkpoint_hash:5",
+      "pass": true,
+      "detail": "79cc6a9673891afe5f0199436126d40fb6eee81514258994f358a601277ad349"
+    },
+    {
+      "name": "checkpoint_hash:6",
+      "pass": true,
+      "detail": "56fb7cd90a8064244d7f1346701c83a6ce7a41d1a27de2b8d648176ec0f86397"
+    },
+    {
+      "name": "checkpoint_hash:7",
+      "pass": true,
+      "detail": "ccc1831e971c5430d06b3c316190ee8124612368e50759280664630c19a2847e"
+    },
+    {
+      "name": "checkpoint_hash:8",
+      "pass": true,
+      "detail": "e489f4c2be3a5d0a7bcb2e53c8af4ac03274fcc0bbf1e8a44517c8f37f9f0ed2"
+    },
+    {
+      "name": "checkpoint_hash:9",
+      "pass": true,
+      "detail": "a62dd9323b7d7c65376bc3f97a97526158e63649b3af412d29301cca53969719"
+    },
+    {
+      "name": "official_source:runRiboMIMO.py",
+      "pass": true,
+      "detail": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490"
+    },
+    {
+      "name": "official_source:model.py",
+      "pass": true,
+      "detail": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7"
+    },
+    {
+      "name": "official_source:utils.py",
+      "pass": true,
+      "detail": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    {
+      "name": "official_source:getSaliency.py",
+      "pass": true,
+      "detail": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    },
+    {
+      "name": "independent_runtime:runRiboMIMO.py",
+      "pass": true,
+      "detail": "e513d89fdc6493441a637568973cd781804b0cd9a95b204821a8230059eb00fc"
+    },
+    {
+      "name": "independent_runtime:model.py",
+      "pass": true,
+      "detail": "2f5b6d0a40860adf62188e2366f10c4ab2a888636d613d89dc5c0ea05431acf1"
+    },
+    {
+      "name": "independent_runtime:utils.py",
+      "pass": true,
+      "detail": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b"
+    },
+    {
+      "name": "independent_runtime:getSaliency.py",
+      "pass": true,
+      "detail": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    },
+    {
+      "name": "full_matrix",
+      "pass": true,
+      "detail": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+    },
+    {
+      "name": "independent_matrix_copy",
+      "pass": true,
+      "detail": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+    },
+    {
+      "name": "failed_v1_retained",
+      "pass": true,
+      "detail": "Modern PyTorch rejected a CUDA lengths tensor in pack_padded_sequence before completion of epoch 1; no full-fold or full-CV result was produced."
+    },
+    {
+      "name": "failed_v1_log_retained",
+      "pass": true,
+      "detail": "3257cd9fab340ce07167c7559527721c460c9c1b82ddaef81b64b23937760ade"
+    },
+    {
+      "name": "eligible_count",
+      "pass": true,
+      "detail": 1179
+    },
+    {
+      "name": "eligible_unique",
+      "pass": true,
+      "detail": 1179
+    },
+    {
+      "name": "official_split_seed",
+      "pass": true,
+      "detail": 815
+    },
+    {
+      "name": "ten_folds",
+      "pass": true,
+      "detail": 10
+    },
+    {
+      "name": "test_gene_union",
+      "pass": true,
+      "detail": 1179
+    },
+    {
+      "name": "logged_fold_size_count",
+      "pass": true,
+      "detail": 10
+    },
+    {
+      "name": "fold_sizes:0",
+      "pass": true,
+      "detail": {
+        "independent": [
+          955,
+          106,
+          118
+        ],
+        "production": [
+          955,
+          106,
+          118
+        ]
+      }
+    },
+    {
+      "name": "fold_disjoint:0",
+      "pass": true,
+      "detail": [
+        955,
+        106,
+        118
+      ]
+    }
+  ],
+  "traceback": "Traceback (most recent call last):\n  File \"/home/codonflow-a8-rk/scripts/a8_rk05_verify_ribomimo_full.py\", line 197, in main\n    train_mask = np.asarray(train_item[\"mask_density\"])[1:-1].astype(bool)\nIndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices\n"
+}

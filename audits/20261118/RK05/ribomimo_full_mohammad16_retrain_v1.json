@@ -1,0 +1,399 @@
+{
+  "schema_version": "a8-rk05-ribomimo-full-official-v1",
+  "task": "RK-05",
+  "status": "PASS_COMPLETE_OFFICIAL_1X10FOLD_MAX100_MOHAMMAD16",
+  "source": {
+    "repository": "https://github.com/tiantz17/RiboMIMO",
+    "commit": "094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "path": "/home/codonflow-a8-rk-external/RiboMIMO-094c693d4df45f4b29f5a3209b31c452a39092a5",
+    "archive_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ribomimo_official_094c693d4df45f4b29f5a3209b31c452a39092a5.zip",
+    "archive_sha256": "0f46f4469b1f6d06e967ffab39dce0c25b7e52fc4923f60e3ac106dbe811a162",
+    "file_sha256": {
+      "runRiboMIMO.py": "11ebdeb6ea96a6ae88d49297e71f6249b63d115db15bea4718d0a702ca619490",
+      "model.py": "f91dacd9232770156a5e50858eab425f5aa749cebefa947220aa1fab37f566c7",
+      "utils.py": "df5ac6bd17aae72759c123ed709997401d2ef0ab105d1dc281581363c79bcb0b",
+      "getSaliency.py": "8d3c0522a6bd7d60f19abbfc3fadf096b9c2cd5802fc4e18f90ed9ad0affbab8"
+    }
+  },
+  "matrix": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt",
+    "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+    "raw_records": 1761,
+    "official_loader_eligible_records": 1179,
+    "eligible_unique_ids": 1179,
+    "duplicate_eligible_rows": 0,
+    "eligible_total_codons": 344472,
+    "eligible_length_min_median_max": [
+      16,
+      248.0,
+      1521
+    ],
+    "runtime_copy": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/data/Mohammad16.txt",
+    "runtime_copy_sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+  },
+  "loader_preflight": {
+    "report": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_loader_preflight_v1.json",
+    "sha256": "3e9aa641c0db581fceb65075ee6ef3ed2a352fcdf8cfbbd97eb313452414e6e0",
+    "status": "PASS",
+    "observed_warnings": "NumPy mean-of-empty-slice and invalid-scalar-divide warnings occurred while the official loader computed means for raw records with no count >0.5; such records have zero coverage and do not enter the official >0.6 eligible set."
+  },
+  "protocol": {
+    "add_nt": true,
+    "add_aa": true,
+    "gpu": "0",
+    "seed": 1234,
+    "num_repeat": 1,
+    "num_fold": 10,
+    "batch_size": 16,
+    "max_epoch": 100,
+    "early_stop": 5,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-06,
+    "sim": -1.0,
+    "use_median": false,
+    "RNN_model": "RiboMIMO",
+    "RNN_hidden_dims": 256,
+    "RNN_depth": 2,
+    "threshold": "0,2",
+    "alpha": 3.0,
+    "info": "train",
+    "protocol_path": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_protocol_v2.json",
+    "protocol_sha256": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7"
+  },
+  "execution": {
+    "device": "cuda:0",
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "torch_num_threads": 1,
+    "python": "/root/miniconda3/envs/llr_env/bin/python",
+    "timeout_seconds": null,
+    "selection_metric": "validation R2; test values follow the official best-validation checkpoint logic",
+    "published_prediction_pickle_used": false,
+    "wall_seconds": 2302.9850391871296,
+    "returncode": 0
+  },
+  "compatibility": {
+    "replacement_count": 7,
+    "algorithm_changed": false,
+    "description": "Five NumPy ragged-array dtype replacements, one numeric-padding dtype replacement, and one pack_padded_sequence lengths.cpu() compatibility replacement required by modern PyTorch; a separate driver only fixes seeds/determinism and records the environment.",
+    "replacements_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/compatibility_replacements.json",
+    "diff_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/official_to_full.diff",
+    "diff_sha256": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+  },
+  "official_result": {
+    "result_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451",
+    "config": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/config",
+    "logging_log": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/logging.log",
+    "aggregate": {
+      "r2_mean": 0.472874,
+      "r2_std": 0.015274,
+      "mse_mean": 1.59147,
+      "mse_std": 0.100361,
+      "pearson_mean": 0.69068,
+      "pearson_std": 0.008882,
+      "aggregation": "mean and population std across fold-level best-validation-checkpoint test scores"
+    },
+    "folds": [
+      {
+        "fold": 0,
+        "best_valid_r2": 0.47494,
+        "epochs_logged": 16,
+        "best_epoch": 11,
+        "test_at_best_validation": {
+          "r2": 0.483876,
+          "mse": 1.582514,
+          "pearson": 0.696269,
+          "auc": 0.873632,
+          "aupr": 0.673065,
+          "classification_loss": 0.500446
+        }
+      },
+      {
+        "fold": 1,
+        "best_valid_r2": 0.500816,
+        "epochs_logged": 23,
+        "best_epoch": 18,
+        "test_at_best_validation": {
+          "r2": 0.466452,
+          "mse": 1.522663,
+          "pearson": 0.684214,
+          "auc": 0.855628,
+          "aupr": 0.657864,
+          "classification_loss": 0.506672
+        }
+      },
+      {
+        "fold": 2,
+        "best_valid_r2": 0.480909,
+        "epochs_logged": 12,
+        "best_epoch": 7,
+        "test_at_best_validation": {
+          "r2": 0.453272,
+          "mse": 1.578519,
+          "pearson": 0.674002,
+          "auc": 0.838674,
+          "aupr": 0.629391,
+          "classification_loss": 0.524741
+        }
+      },
+      {
+        "fold": 3,
+        "best_valid_r2": 0.483305,
+        "epochs_logged": 13,
+        "best_epoch": 8,
+        "test_at_best_validation": {
+          "r2": 0.494533,
+          "mse": 1.473072,
+          "pearson": 0.70351,
+          "auc": 0.86863,
+          "aupr": 0.667692,
+          "classification_loss": 0.507771
+        }
+      },
+      {
+        "fold": 4,
+        "best_valid_r2": 0.497374,
+        "epochs_logged": 17,
+        "best_epoch": 12,
+        "test_at_best_validation": {
+          "r2": 0.474101,
+          "mse": 1.848635,
+          "pearson": 0.689403,
+          "auc": 0.853888,
+          "aupr": 0.668507,
+          "classification_loss": 0.493392
+        }
+      },
+      {
+        "fold": 5,
+        "best_valid_r2": 0.476324,
+        "epochs_logged": 14,
+        "best_epoch": 9,
+        "test_at_best_validation": {
+          "r2": 0.470739,
+          "mse": 1.632978,
+          "pearson": 0.691442,
+          "auc": 0.837389,
+          "aupr": 0.637621,
+          "classification_loss": 0.510926
+        }
+      },
+      {
+        "fold": 6,
+        "best_valid_r2": 0.487775,
+        "epochs_logged": 16,
+        "best_epoch": 11,
+        "test_at_best_validation": {
+          "r2": 0.441199,
+          "mse": 1.519269,
+          "pearson": 0.678463,
+          "auc": 0.865714,
+          "aupr": 0.661649,
+          "classification_loss": 0.51713
+        }
+      },
+      {
+        "fold": 7,
+        "best_valid_r2": 0.496923,
+        "epochs_logged": 20,
+        "best_epoch": 15,
+        "test_at_best_validation": {
+          "r2": 0.476994,
+          "mse": 1.559496,
+          "pearson": 0.693165,
+          "auc": 0.838745,
+          "aupr": 0.643107,
+          "classification_loss": 0.508288
+        }
+      },
+      {
+        "fold": 8,
+        "best_valid_r2": 0.485773,
+        "epochs_logged": 14,
+        "best_epoch": 9,
+        "test_at_best_validation": {
+          "r2": 0.478642,
+          "mse": 1.537437,
+          "pearson": 0.696867,
+          "auc": 0.864486,
+          "aupr": 0.657611,
+          "classification_loss": 0.511216
+        }
+      },
+      {
+        "fold": 9,
+        "best_valid_r2": 0.495267,
+        "epochs_logged": 16,
+        "best_epoch": 11,
+        "test_at_best_validation": {
+          "r2": 0.488929,
+          "mse": 1.660116,
+          "pearson": 0.699465,
+          "auc": 0.883579,
+          "aupr": 0.676581,
+          "classification_loss": 0.489616
+        }
+      }
+    ],
+    "recomputed_from_fold_logs": {
+      "r2_mean": 0.47287369999999995,
+      "r2_std": 0.015274205053291641,
+      "mse_mean": 1.5914699,
+      "mse_std": 0.10036151591167802,
+      "pearson_mean": 0.6906800000000001,
+      "pearson_std": 0.008882046734846645
+    },
+    "rounding_deltas": {
+      "r2_mean": 3.0000000006413785e-07,
+      "r2_std": 2.050532916415826e-07,
+      "mse_mean": 9.999999983634211e-08,
+      "mse_std": 5.159116780173445e-07,
+      "pearson_mean": 1.1102230246251565e-16,
+      "pearson_std": 4.6734846645413164e-08
+    },
+    "checkpoints": {
+      "0": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_0.pth",
+        "bytes": 7446252,
+        "sha256": "9f2595d2c40e1e3dc6d715bf63a9ff1ad25d85f32a992e02eaad273b7b993600"
+      },
+      "1": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_1.pth",
+        "bytes": 7446252,
+        "sha256": "3f31ab930c7d36a2c5edee55d5c78684698621db859a9bfd7076575f63f4ed36"
+      },
+      "2": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_2.pth",
+        "bytes": 7446252,
+        "sha256": "3b68a736ce83df442589dfe0eafd2cfb0c573b7057b34711a98952fb0b339527"
+      },
+      "3": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_3.pth",
+        "bytes": 7446252,
+        "sha256": "9907a96ea70af74c373333ea7a1a6cf463a66e00e0587142e557b4f51863e7ca"
+      },
+      "4": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_4.pth",
+        "bytes": 7446252,
+        "sha256": "0662fab9b0b2d969f7d2075f9e709094546dca5b545c5d7b896a9efb956ade6e"
+      },
+      "5": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_5.pth",
+        "bytes": 7446252,
+        "sha256": "79cc6a9673891afe5f0199436126d40fb6eee81514258994f358a601277ad349"
+      },
+      "6": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_6.pth",
+        "bytes": 7446252,
+        "sha256": "56fb7cd90a8064244d7f1346701c83a6ce7a41d1a27de2b8d648176ec0f86397"
+      },
+      "7": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_7.pth",
+        "bytes": 7446252,
+        "sha256": "ccc1831e971c5430d06b3c316190ee8124612368e50759280664630c19a2847e"
+      },
+      "8": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_8.pth",
+        "bytes": 7446252,
+        "sha256": "e489f4c2be3a5d0a7bcb2e53c8af4ac03274fcc0bbf1e8a44517c8f37f9f0ed2"
+      },
+      "9": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/best_model_0_9.pth",
+        "bytes": 7446252,
+        "sha256": "a62dd9323b7d7c65376bc3f97a97526158e63649b3af412d29301cca53969719"
+      }
+    },
+    "checkpoint_parameter_tensors": 22,
+    "checkpoint_parameter_count": 1860356
+  },
+  "environment": {
+    "python_executable": "/root/miniconda3/envs/llr_env/bin/python",
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "runtime_environment_artifact": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/src/runtime_environment.json",
+    "cuda_available": true,
+    "cuda_device_count_after_official_args": 1,
+    "cuda_visible_devices_after_official_args": "0",
+    "torch_num_threads": 1,
+    "deterministic_algorithms": true,
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false,
+    "gpu_names": [
+      "NVIDIA GeForce RTX 5090"
+    ]
+  },
+  "artifacts": {
+    "ribomimo_full_mohammad16_protocol_v2.json": {
+      "path": "/home/codonflow-a8-rk/audits/20261118/RK05/ribomimo_full_mohammad16_protocol_v2.json",
+      "sha256": "a608e4280e6dd801ba06bf78df83576d2d359c49c379f94f4f8f5896f5171cc7"
+    },
+    "driver.py": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/driver.py",
+      "sha256": "61335ab07c3407c733f94df7d999493d069b14d0d09623a11927eac6add8aae7"
+    },
+    "Mohammad16.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/data/Mohammad16.txt",
+      "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+    },
+    "official_to_full.diff": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/official_to_full.diff",
+      "sha256": "dc69bb8af899394a8e79f98e47d860664833c9afaaeede9e220c3826fac76298"
+    },
+    "compatibility_replacements.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/compatibility_replacements.json",
+      "sha256": "8a416108cee22e37629f6ddb497aa5b3aad3e6c010843694abce9db6f4c7cd4b"
+    },
+    "training.command.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/training.command.json",
+      "sha256": "b89bfb4843b866c6d9c19d797a865f159b5de665e038d945a223966f13cf2fa3"
+    },
+    "training.console.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/training.console.log",
+      "sha256": "b5e4306150f4dc2c64852f799ee115f212bbd6ac953bb438f058c2ef34a5114c"
+    },
+    "training.returncode.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/training.returncode.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "official_result_logging.log": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/logging.log",
+      "sha256": "daab21e0ec2fcc43e21675d9e18d815179b01a3eafb6d0b5fc46f1c7a37456cc"
+    },
+    "config": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/results/RiboMIMO_Mohammad16_codon_nt_aa_0,2_3_256_2_sim_-1.0_bs_16_cv_1x10_train_20261119_073451/config",
+      "sha256": "8b97f8d6c35b7db785ddad2c9036c9ce5d28501c158b2e7e0314da3e77f923ae"
+    },
+    "runtime_environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/src/runtime_environment.json",
+      "sha256": "12fb0269b7913ebb3e53d98930c1b875c22885a8f95d3bcbad05cbd8a1796d8d"
+    },
+    "environment.json": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/environment.json",
+      "sha256": "d6803fc774b6f560ac4e281887da8bb8613b577882691ff78002a3862957117d"
+    },
+    "pip_freeze.txt": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_full_094c_v1/mohammad16_retrain_v1/pip_freeze.txt",
+      "sha256": "1e755c6f2de47b9898d70d9ee3d73635c5b1e500b4b0f570aa9ddd5b84fdea70"
+    }
+  },
+  "published_prediction_pickles_used": false,
+  "official_default_1x10fold_max100_protocol_executed": true,
+  "all_four_datasets_reproduced": false,
+  "homology_aware_split": false,
+  "protein_ood": false,
+  "study_ood": false,
+  "functional_ood": false,
+  "main_baseline_comparison": false,
+  "publication_metrics_reproduced": false,
+  "sota_claim": false,
+  "limitations": [
+    "This is one complete author-processed matrix under the official random-gene 1x10-fold/max-100-epoch/early-stop-5 protocol; folds may stop before epoch 100.",
+    "Modern NumPy compatibility patches and deterministic CUDA execution do not reproduce the original Python/CUDA environment or prove publication-number identity.",
+    "Official random gene CV is not homology-, protein-, study- or functional-OOD and is not a unified-cost main baseline comparison.",
+    "Author-provided prediction pickles were not used as newly trained outputs; publication metric identity remains separately unverified."
+  ]
+}
