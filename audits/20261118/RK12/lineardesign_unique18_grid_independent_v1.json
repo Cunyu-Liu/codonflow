@@ -1,0 +1,195 @@
+{
+  "schema": "a8-rk12-lineardesign-independent-v1",
+  "created_at": "2026-11-19T12:19:46.800679+00:00",
+  "status": "PASS",
+  "production": "audits/20261118/RK12/lineardesign_unique18_grid_v1.json",
+  "production_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
+  "protocol_sha256": "030248d286b668101e274a937f83e7acc30b2ea46d929f8a225777d3d2500b99",
+  "run_count": 198,
+  "record_count": 18,
+  "checks": [
+    {
+      "check": "protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "benchmark_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "source_commit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "binary_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "table_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "grid_counts",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "single_worker_grid_order",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "untouched_and_sota_exclusions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "dense_auc_null",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_raw_stdout_and_payloads",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_protein_identities",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_official_rounding_gates",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_independent_structures",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "check": "all_generation_and_scoring_times",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "total_generation_cost",
+      "pass": true,
+      "evidence": 5459.871640930884
+    },
+    {
+      "check": "separate_scoring_cost",
+      "pass": true,
+      "evidence": 338.8617600072175
+    },
+    {
+      "check": "unique_sequence_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C31E10.3b.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C14A6.7.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C01H6.8b.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000027077.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000025296.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C07E3.9.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000037188.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000011420.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000044901.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C47A4.1.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C05E11.2.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C41G7.2.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000001586.4",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000017935.4",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000045324.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C17G10.10.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C03B1.12.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:ENSACAT00000006494.4",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "checks_passed": 35,
+  "checks_total": 35,
+  "failed_checks": [],
+  "max_independent_cai_recompute_delta": 0.0,
+  "max_independent_mfe_recompute_delta": 0.0,
+  "structure_mismatch_count": 0,
+  "production_module_imported": false,
+  "scientific_scope": "official development-panel lambda grid and costs only; no dense budget AUC, untouched, cross-method SOTA or biological-function claim"
+}

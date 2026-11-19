@@ -1,0 +1,33 @@
+{
+  "chunk_mib": 4,
+  "created_utc": "2026-11-19T12:19:50.346423+00:00",
+  "expected_files": 1,
+  "expected_runs": 1,
+  "failures": [],
+  "files": [
+    {
+      "bytes": 404887533,
+      "expected_bytes": 404887533,
+      "expected_md5": "233ea8021c7f35c61d8beee092c04355",
+      "mate": 2,
+      "md5": "233ea8021c7f35c61d8beee092c04355",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_2.fastq.gz",
+      "prefix_bytes": 185092871,
+      "run": "SRR10714593",
+      "sha256": "411bf19cbf6d2c34a5c30fbfba3e6a4e101b5e085154780166810012fd93de04",
+      "status": "range_downloaded_verified",
+      "token": "SRR10714593_2",
+      "url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR107/093/SRR10714593/SRR10714593_2.fastq.gz"
+    }
+  ],
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw",
+  "passed_files": 1,
+  "requested_only": [
+    "SRR10714593_2"
+  ],
+  "schema": "a8.rk02.mordstein_hek293_download.v1",
+  "source_metadata": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/metadata/PRJNA596086.read_run.tsv",
+  "status": "PASS",
+  "transport": "parallel_http_ranges_with_complete_file_md5_gate",
+  "workers": 8
+}
