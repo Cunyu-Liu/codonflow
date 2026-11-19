@@ -1,0 +1,531 @@
+{
+  "checks": {
+    "gap_is_138nt": true,
+    "r1_centroids_nonempty": true,
+    "r1_length_is_300": true,
+    "r2_length_is_279_when_linked": true,
+    "reconstructed_ids_not_author_ids": true,
+    "scores_in_1_to_8": true,
+    "support_threshold_respected": true
+  },
+  "created_utc": "2026-11-19T13:33:55.946574+00:00",
+  "exact_cache_files": [
+    {
+      "bytes": 184827,
+      "exact_reads": 186231,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714593_r1.exact_counts.tsv.gz",
+      "run": "SRR10714593",
+      "sha256": "4e9611d8f2e32c79df13162bdd1df7b3c2eb4be8d3b6e986f148027590e964db",
+      "unique_sequences": 22090
+    },
+    {
+      "bytes": 5793,
+      "exact_reads": 1614,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714593_r2.exact_counts.tsv.gz",
+      "run": "SRR10714593",
+      "sha256": "b81bb5aab1e6ce3bc0b19ed2cc50d70b7b204148283f16176fda82c4b3c0ec4b",
+      "unique_sequences": 519
+    },
+    {
+      "bytes": 201232,
+      "exact_reads": 217955,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714592_r1.exact_counts.tsv.gz",
+      "run": "SRR10714592",
+      "sha256": "c3b8df0adc423966a6dcdfdd94754122f1101131d9b1dccd07d53173ec3bdab3",
+      "unique_sequences": 24040
+    },
+    {
+      "bytes": 6758,
+      "exact_reads": 2096,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714592_r2.exact_counts.tsv.gz",
+      "run": "SRR10714592",
+      "sha256": "3f0bbb840ab8e14098e6adb1b66a5f113b6a1373b0f062e924e28d9e14505aaf",
+      "unique_sequences": 649
+    },
+    {
+      "bytes": 175233,
+      "exact_reads": 143469,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714557_r1.exact_counts.tsv.gz",
+      "run": "SRR10714557",
+      "sha256": "22d4dd1cf95ab665e92f858e7529445973f3982d5d4115a472ea1f882632e0b9",
+      "unique_sequences": 20188
+    },
+    {
+      "bytes": 5950,
+      "exact_reads": 1538,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714557_r2.exact_counts.tsv.gz",
+      "run": "SRR10714557",
+      "sha256": "330f62c19b6b18ce9a54e3c93ec639dcbf223dc26e985493004d19b9d1ba7f67",
+      "unique_sequences": 530
+    },
+    {
+      "bytes": 213475,
+      "exact_reads": 204215,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714546_r1.exact_counts.tsv.gz",
+      "run": "SRR10714546",
+      "sha256": "92e445a6ed7acb0b9cebb382d69db7a4babdfa71b42dc1f99642679a19e8cca9",
+      "unique_sequences": 25283
+    },
+    {
+      "bytes": 6581,
+      "exact_reads": 1899,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714546_r2.exact_counts.tsv.gz",
+      "run": "SRR10714546",
+      "sha256": "965c351df3c392923128c0c670ce23b175226aecb35fcaf6e3f0553b8cd54af7",
+      "unique_sequences": 606
+    },
+    {
+      "bytes": 207462,
+      "exact_reads": 176445,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714583_r1.exact_counts.tsv.gz",
+      "run": "SRR10714583",
+      "sha256": "514ac045a312fdf844e0bc8f5d0aa7b7fa5c4bc7c4714cdeeb43d34aaae63d09",
+      "unique_sequences": 24268
+    },
+    {
+      "bytes": 5440,
+      "exact_reads": 1366,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714583_r2.exact_counts.tsv.gz",
+      "run": "SRR10714583",
+      "sha256": "d487e145f6c35a33997cb8a77ebcecf9fc4c5b22739a789dba0d58becf1d619f",
+      "unique_sequences": 474
+    },
+    {
+      "bytes": 171683,
+      "exact_reads": 137012,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714572_r1.exact_counts.tsv.gz",
+      "run": "SRR10714572",
+      "sha256": "fc2721d8eb980777643430be59d99ebf0b08fa1c7565fa83267cbd6e27b7a670",
+      "unique_sequences": 20469
+    },
+    {
+      "bytes": 4988,
+      "exact_reads": 979,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714572_r2.exact_counts.tsv.gz",
+      "run": "SRR10714572",
+      "sha256": "2a6ac50b36dad96f24ded90bbc897d822e98207cddcf419831890b4f550afc76",
+      "unique_sequences": 372
+    },
+    {
+      "bytes": 177299,
+      "exact_reads": 128929,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714537_r1.exact_counts.tsv.gz",
+      "run": "SRR10714537",
+      "sha256": "2a1d7fcfea16d8d092f37b8f342c5866c7bccdc80c8348ead2b56032c482bcac",
+      "unique_sequences": 20895
+    },
+    {
+      "bytes": 5444,
+      "exact_reads": 1404,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714537_r2.exact_counts.tsv.gz",
+      "run": "SRR10714537",
+      "sha256": "211a536760ed93dd57659c20177820b44ed3ab22da62f39f3613a37965d4794a",
+      "unique_sequences": 431
+    },
+    {
+      "bytes": 207982,
+      "exact_reads": 162359,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714526_r1.exact_counts.tsv.gz",
+      "run": "SRR10714526",
+      "sha256": "be103eaa63c6b6eda76ef78c20c66c3a40b8e806ff7966fdd47eb190d4dd1da4",
+      "unique_sequences": 24220
+    },
+    {
+      "bytes": 4897,
+      "exact_reads": 1625,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714526_r2.exact_counts.tsv.gz",
+      "run": "SRR10714526",
+      "sha256": "c844135c2b1ed8d8318d86e7cc33e5ebb08e9afd742e7dabfa55030080fe78b1",
+      "unique_sequences": 461
+    }
+  ],
+  "exact_collection": [
+    {
+      "r1_orf_valid_reads": 186231,
+      "r2_orf_valid_reads": 1614,
+      "reads_scanned": 1991733,
+      "run": "SRR10714593"
+    },
+    {
+      "r1_orf_valid_reads": 217955,
+      "r2_orf_valid_reads": 2096,
+      "reads_scanned": 2092394,
+      "run": "SRR10714592"
+    },
+    {
+      "r1_orf_valid_reads": 143469,
+      "r2_orf_valid_reads": 1538,
+      "reads_scanned": 1800924,
+      "run": "SRR10714557"
+    },
+    {
+      "r1_orf_valid_reads": 204215,
+      "r2_orf_valid_reads": 1899,
+      "reads_scanned": 1866059,
+      "run": "SRR10714546"
+    },
+    {
+      "r1_orf_valid_reads": 176445,
+      "r2_orf_valid_reads": 1366,
+      "reads_scanned": 1846146,
+      "run": "SRR10714583"
+    },
+    {
+      "r1_orf_valid_reads": 137012,
+      "r2_orf_valid_reads": 979,
+      "reads_scanned": 1576535,
+      "run": "SRR10714572"
+    },
+    {
+      "r1_orf_valid_reads": 128929,
+      "r2_orf_valid_reads": 1404,
+      "reads_scanned": 1802684,
+      "run": "SRR10714537"
+    },
+    {
+      "r1_orf_valid_reads": 162359,
+      "r2_orf_valid_reads": 1625,
+      "reads_scanned": 1953040,
+      "run": "SRR10714526"
+    }
+  ],
+  "exact_collection_mode": "per_run_disk_cache_exact_merge",
+  "input_files": [
+    {
+      "bytes": 342295226,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_1.fastq.gz",
+      "run": "SRR10714593",
+      "sha256": "e8f0123b77621a71562600e2a56168c9a7b5fe789d801c55b061c146bf55a8e9"
+    },
+    {
+      "bytes": 404887533,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_2.fastq.gz",
+      "run": "SRR10714593",
+      "sha256": "411bf19cbf6d2c34a5c30fbfba3e6a4e101b5e085154780166810012fd93de04"
+    },
+    {
+      "bytes": 356371634,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_1.fastq.gz",
+      "run": "SRR10714592",
+      "sha256": "8345c48ce670b04b031e29c74edcd021a5cc2706cf6626a405c72e9536bc92e9"
+    },
+    {
+      "bytes": 419061527,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_2.fastq.gz",
+      "run": "SRR10714592",
+      "sha256": "cc4ef06f59f52e7ed66b45781e88591336e61a0fbb03064158eb468cd9344e1a"
+    },
+    {
+      "bytes": 323191792,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_1.fastq.gz",
+      "run": "SRR10714557",
+      "sha256": "715b47646a9d67b5ccdf79e7b56226451e034df7ae1f7b9d484b7158f09ad9fd"
+    },
+    {
+      "bytes": 368299692,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_2.fastq.gz",
+      "run": "SRR10714557",
+      "sha256": "2657f0d492c3a1cdaf1071720436ac4e504e93723f2687758ed2f1f924972149"
+    },
+    {
+      "bytes": 321290828,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_1.fastq.gz",
+      "run": "SRR10714546",
+      "sha256": "9787fa47c52c323286977420c10cebf77244d787dc23bdb0ce1d59510ddc25ca"
+    },
+    {
+      "bytes": 371541812,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_2.fastq.gz",
+      "run": "SRR10714546",
+      "sha256": "cfabce6ce6337ff298e1b7b7753a9ee9fe983b601c727d6077eac05ac73ac9ec"
+    },
+    {
+      "bytes": 320360044,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_1.fastq.gz",
+      "run": "SRR10714583",
+      "sha256": "30a21881cf65c6932c94ace4c93eba6cedab180be1c54e5aa25f50c1d9ef7a5e"
+    },
+    {
+      "bytes": 370299139,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_2.fastq.gz",
+      "run": "SRR10714583",
+      "sha256": "ea50b329acbb509cf298ccaa0fe98f8d6dedfa3b33ef8397ccbe86b46482306c"
+    },
+    {
+      "bytes": 274250334,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_1.fastq.gz",
+      "run": "SRR10714572",
+      "sha256": "9b4a6d9f94bfea3d0c12136a9580ed1a93b6b655b33ceec87adbadb3dcc63f2c"
+    },
+    {
+      "bytes": 317860176,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_2.fastq.gz",
+      "run": "SRR10714572",
+      "sha256": "a5e4605ac151287ac49291d57ee90302e6e45f2d5aaca553cc163589d4542a95"
+    },
+    {
+      "bytes": 318275674,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_1.fastq.gz",
+      "run": "SRR10714537",
+      "sha256": "edb1a2b1910770cdadb96a25c8d6e21cfde5a16f0077ecf4e74934564a629d5d"
+    },
+    {
+      "bytes": 365701854,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_2.fastq.gz",
+      "run": "SRR10714537",
+      "sha256": "c0861bdafe43738e5f48067f36d81da51456cb35141cff74a6f022d8548d0550"
+    },
+    {
+      "bytes": 339369792,
+      "mate": "r1",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_1.fastq.gz",
+      "run": "SRR10714526",
+      "sha256": "a620eee7e817d4593e2a819c716316b08535c00ba9c3009f99e25b437979c11a"
+    },
+    {
+      "bytes": 399948943,
+      "mate": "r2",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_2.fastq.gz",
+      "run": "SRR10714526",
+      "sha256": "fd699c1ba2fe6f52a80dab23ca04d57cabe46f1b3f27cbbd71b8c0c972e16582"
+    }
+  ],
+  "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217",
+  "mutual_best_links": 17,
+  "parameters": {
+    "assignment_cache_max_per_mate": 0,
+    "audit_sample_per_run": 200,
+    "audit_seed": 20261119,
+    "max_error_nt": 8,
+    "max_reads_per_run": 0,
+    "min_centroid_seed_reads": 20,
+    "min_variant_support": 1000,
+    "top_exact": 20000
+  },
+  "prohibited_claims": [
+    "complete CDS recovered",
+    "author GFP_### identity recovered",
+    "SOTA",
+    "generator ready"
+  ],
+  "r1_centroids": 162,
+  "r1_protein_reference": "VSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTLTYGVQCFSRYPDHMKQHDFFKSAMPEGYVQERTIFF",
+  "r2_centroids": 17,
+  "r2_protein_provenance": {
+    "consensus_protein": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK*",
+    "differences_from_seed": [
+      {
+        "codon_1based": 232,
+        "observed": "L",
+        "seed": "H"
+      }
+    ],
+    "reads_used": 1615,
+    "seed_protein": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITHGMDELYK*",
+    "source_run": "SRR10714593",
+    "status": "PASS"
+  },
+  "r2_protein_reference": "SHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK*",
+  "read_assignment_audit_rows": 1600,
+  "run_metrics": [
+    {
+      "bin": 1,
+      "both_assigned": 145601,
+      "library_name": "CM2_Bin1",
+      "pairs_scanned": 1991733,
+      "r1_assigned": 1245918,
+      "r1_assignment_fraction": 0.6255446889718652,
+      "r2_assigned": 160190,
+      "r2_assignment_fraction": 0.08042744685156093,
+      "run": "SRR10714593"
+    },
+    {
+      "bin": 2,
+      "both_assigned": 231970,
+      "library_name": "CM2_Bin2",
+      "pairs_scanned": 2092394,
+      "r1_assigned": 1338755,
+      "r1_assignment_fraction": 0.6398197471413127,
+      "r2_assigned": 253766,
+      "r2_assignment_fraction": 0.1212802177792519,
+      "run": "SRR10714592"
+    },
+    {
+      "bin": 3,
+      "both_assigned": 176972,
+      "library_name": "CM2_Bin3",
+      "pairs_scanned": 1800924,
+      "r1_assigned": 1078334,
+      "r1_assignment_fraction": 0.5987670773447408,
+      "r2_assigned": 198035,
+      "r2_assignment_fraction": 0.10996299677276776,
+      "run": "SRR10714557"
+    },
+    {
+      "bin": 4,
+      "both_assigned": 195355,
+      "library_name": "CM2_Bin4",
+      "pairs_scanned": 1866059,
+      "r1_assigned": 1191531,
+      "r1_assignment_fraction": 0.6385280422537551,
+      "r2_assigned": 214059,
+      "r2_assignment_fraction": 0.1147118070757677,
+      "run": "SRR10714546"
+    },
+    {
+      "bin": 5,
+      "both_assigned": 156965,
+      "library_name": "CM2_Bin5",
+      "pairs_scanned": 1846146,
+      "r1_assigned": 1126096,
+      "r1_assignment_fraction": 0.6099712590445177,
+      "r2_assigned": 176051,
+      "r2_assignment_fraction": 0.09536136361912871,
+      "run": "SRR10714583"
+    },
+    {
+      "bin": 6,
+      "both_assigned": 100130,
+      "library_name": "CM2_Bin6",
+      "pairs_scanned": 1576535,
+      "r1_assigned": 939956,
+      "r1_assignment_fraction": 0.5962163859349776,
+      "r2_assigned": 111925,
+      "r2_assignment_fraction": 0.0709943007925609,
+      "run": "SRR10714572"
+    },
+    {
+      "bin": 7,
+      "both_assigned": 100497,
+      "library_name": "CM2_Bin7",
+      "pairs_scanned": 1802684,
+      "r1_assigned": 979058,
+      "r1_assignment_fraction": 0.5431112718590724,
+      "r2_assigned": 131156,
+      "r2_assignment_fraction": 0.07275595722822192,
+      "run": "SRR10714537"
+    },
+    {
+      "bin": 8,
+      "both_assigned": 139402,
+      "library_name": "CM2_Bin8",
+      "pairs_scanned": 1953040,
+      "r1_assigned": 1142582,
+      "r1_assignment_fraction": 0.58502744439438,
+      "r2_assigned": 156983,
+      "r2_assignment_fraction": 0.08037879408511858,
+      "run": "SRR10714526"
+    }
+  ],
+  "runs": [
+    {
+      "bin": 1,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin1",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_2.fastq.gz",
+      "run": "SRR10714593"
+    },
+    {
+      "bin": 2,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin2",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_2.fastq.gz",
+      "run": "SRR10714592"
+    },
+    {
+      "bin": 3,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin3",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_2.fastq.gz",
+      "run": "SRR10714557"
+    },
+    {
+      "bin": 4,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin4",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_2.fastq.gz",
+      "run": "SRR10714546"
+    },
+    {
+      "bin": 5,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin5",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_2.fastq.gz",
+      "run": "SRR10714583"
+    },
+    {
+      "bin": 6,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin6",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_2.fastq.gz",
+      "run": "SRR10714572"
+    },
+    {
+      "bin": 7,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin7",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_2.fastq.gz",
+      "run": "SRR10714537"
+    },
+    {
+      "bin": 8,
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "library_name": "CM2_Bin8",
+      "r1": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_1.fastq.gz",
+      "r2": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_2.fastq.gz",
+      "run": "SRR10714526"
+    }
+  ],
+  "schema": "a8.rk02.mordstein_observed_end_recovery.v1",
+  "scope": "Observed 5'/3' GFP ends and R1-based Flow-seq counts; central 138 nt unobserved",
+  "selected_r1_assigned_reads": 9037593,
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "support_threshold_sensitivity": {
+    "100": 162,
+    "1000": 152,
+    "20": 162,
+    "200": 161,
+    "2000": 147,
+    "50": 162,
+    "500": 156,
+    "5000": 132
+  },
+  "variants_retained": 152
+}

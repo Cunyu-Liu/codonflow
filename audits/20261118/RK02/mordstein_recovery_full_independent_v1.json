@@ -1,0 +1,670 @@
+{
+  "artifacts": {
+    "all_r1_centroids.fasta": {
+      "bytes": 58569,
+      "sha256": "dc8c7f6521721963f799ea3b382087fc098a8c7e4f02bf0e80294e432a6338bb"
+    },
+    "all_r2_centroids.fasta": {
+      "bytes": 5774,
+      "sha256": "efd9ffa9547a41ea5ce15d6bfad2929fd4bfa211fe8d3c68ba4f4a479bb6b045"
+    },
+    "read_assignment_audit_sample.csv": {
+      "bytes": 1021987,
+      "sha256": "297f20f9aad68fb5559d5883032c76b856297c55bc6d9ecf08aac767df4721f8"
+    },
+    "references_paired_ends.fasta": {
+      "bytes": 97125,
+      "sha256": "cb0e593bd7164406c53bcbc34cd343506410251337546bd49e58ee78d2c1f525"
+    },
+    "references_r1.fasta": {
+      "bytes": 50768,
+      "sha256": "8dacbe7f970918e55a8f62c7184898001001901a6a0e05ce562c6d5c361dd205"
+    },
+    "summary.json": {
+      "bytes": 20660,
+      "sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177"
+    },
+    "variant_counts.csv": {
+      "bytes": 98009,
+      "sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef"
+    }
+  },
+  "audit_rows_reassigned": 1600,
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "scope_matches",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "recovery_status_declared",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "smoke_not_complete_library",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "central_gap_138",
+      "status": "PASS"
+    },
+    {
+      "details": 152,
+      "name": "row_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "mutual_count_matches_summary",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_ids_only",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "support_threshold",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "counts_bin1",
+        "counts_bin2",
+        "counts_bin3",
+        "counts_bin4",
+        "counts_bin5",
+        "counts_bin6",
+        "counts_bin7",
+        "counts_bin8"
+      ],
+      "name": "eight_count_columns_when_full",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "counts_sum_to_assigned_total",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "pair_purity_bounds",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_count",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_count",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r1_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "all_r2_centroids_separated",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r1_matches_all_centroids",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "selected_r2_matches_all_centroids",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_fasta_matches_table",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r1_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_complete",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "r2_translation",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "paired_fasta_gap_and_lengths",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "frozen_input_hashes",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "exact_cache_hashes",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "external_exact_mode",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714593",
+      "status": "PASS"
+    },
+    {
+      "details": 1991733,
+      "name": "raw_pairs_SRR10714593",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 186231,
+        "r2": 1614
+      },
+      "name": "raw_orf_SRR10714593",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714592",
+      "status": "PASS"
+    },
+    {
+      "details": 2092394,
+      "name": "raw_pairs_SRR10714592",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 217955,
+        "r2": 2096
+      },
+      "name": "raw_orf_SRR10714592",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714557",
+      "status": "PASS"
+    },
+    {
+      "details": 1800924,
+      "name": "raw_pairs_SRR10714557",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 143469,
+        "r2": 1538
+      },
+      "name": "raw_orf_SRR10714557",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714546",
+      "status": "PASS"
+    },
+    {
+      "details": 1866059,
+      "name": "raw_pairs_SRR10714546",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 204215,
+        "r2": 1899
+      },
+      "name": "raw_orf_SRR10714546",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714583",
+      "status": "PASS"
+    },
+    {
+      "details": 1846146,
+      "name": "raw_pairs_SRR10714583",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 176445,
+        "r2": 1366
+      },
+      "name": "raw_orf_SRR10714583",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714572",
+      "status": "PASS"
+    },
+    {
+      "details": 1576535,
+      "name": "raw_pairs_SRR10714572",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 137012,
+        "r2": 979
+      },
+      "name": "raw_orf_SRR10714572",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714537",
+      "status": "PASS"
+    },
+    {
+      "details": 1802684,
+      "name": "raw_pairs_SRR10714537",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 128929,
+        "r2": 1404
+      },
+      "name": "raw_orf_SRR10714537",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "expected": 200,
+        "seen": 200
+      },
+      "name": "audit_rows_seen_SRR10714526",
+      "status": "PASS"
+    },
+    {
+      "details": 1953040,
+      "name": "raw_pairs_SRR10714526",
+      "status": "PASS"
+    },
+    {
+      "details": {
+        "r1": 162359,
+        "r2": 1625
+      },
+      "name": "raw_orf_SRR10714526",
+      "status": "PASS"
+    },
+    {
+      "details": 1600,
+      "name": "audit_sample_size",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "audit_sample_unique",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "audit_rows_match_raw_reads",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_audit_reassignment",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "audit_distances",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r1_exact_seed_counts",
+      "status": "PASS"
+    },
+    {
+      "details": [],
+      "name": "independent_r2_exact_seed_counts",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T13:48:32.592232+00:00",
+  "exact_cache_hashes": [
+    {
+      "actual_sha256": "4e9611d8f2e32c79df13162bdd1df7b3c2eb4be8d3b6e986f148027590e964db",
+      "expected_sha256": "4e9611d8f2e32c79df13162bdd1df7b3c2eb4be8d3b6e986f148027590e964db",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714593_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "b81bb5aab1e6ce3bc0b19ed2cc50d70b7b204148283f16176fda82c4b3c0ec4b",
+      "expected_sha256": "b81bb5aab1e6ce3bc0b19ed2cc50d70b7b204148283f16176fda82c4b3c0ec4b",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714593_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "c3b8df0adc423966a6dcdfdd94754122f1101131d9b1dccd07d53173ec3bdab3",
+      "expected_sha256": "c3b8df0adc423966a6dcdfdd94754122f1101131d9b1dccd07d53173ec3bdab3",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714592_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "3f0bbb840ab8e14098e6adb1b66a5f113b6a1373b0f062e924e28d9e14505aaf",
+      "expected_sha256": "3f0bbb840ab8e14098e6adb1b66a5f113b6a1373b0f062e924e28d9e14505aaf",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714592_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "22d4dd1cf95ab665e92f858e7529445973f3982d5d4115a472ea1f882632e0b9",
+      "expected_sha256": "22d4dd1cf95ab665e92f858e7529445973f3982d5d4115a472ea1f882632e0b9",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714557_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "330f62c19b6b18ce9a54e3c93ec639dcbf223dc26e985493004d19b9d1ba7f67",
+      "expected_sha256": "330f62c19b6b18ce9a54e3c93ec639dcbf223dc26e985493004d19b9d1ba7f67",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714557_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "92e445a6ed7acb0b9cebb382d69db7a4babdfa71b42dc1f99642679a19e8cca9",
+      "expected_sha256": "92e445a6ed7acb0b9cebb382d69db7a4babdfa71b42dc1f99642679a19e8cca9",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714546_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "965c351df3c392923128c0c670ce23b175226aecb35fcaf6e3f0553b8cd54af7",
+      "expected_sha256": "965c351df3c392923128c0c670ce23b175226aecb35fcaf6e3f0553b8cd54af7",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714546_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "514ac045a312fdf844e0bc8f5d0aa7b7fa5c4bc7c4714cdeeb43d34aaae63d09",
+      "expected_sha256": "514ac045a312fdf844e0bc8f5d0aa7b7fa5c4bc7c4714cdeeb43d34aaae63d09",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714583_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "d487e145f6c35a33997cb8a77ebcecf9fc4c5b22739a789dba0d58becf1d619f",
+      "expected_sha256": "d487e145f6c35a33997cb8a77ebcecf9fc4c5b22739a789dba0d58becf1d619f",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714583_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "fc2721d8eb980777643430be59d99ebf0b08fa1c7565fa83267cbd6e27b7a670",
+      "expected_sha256": "fc2721d8eb980777643430be59d99ebf0b08fa1c7565fa83267cbd6e27b7a670",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714572_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "2a6ac50b36dad96f24ded90bbc897d822e98207cddcf419831890b4f550afc76",
+      "expected_sha256": "2a6ac50b36dad96f24ded90bbc897d822e98207cddcf419831890b4f550afc76",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714572_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "2a1d7fcfea16d8d092f37b8f342c5866c7bccdc80c8348ead2b56032c482bcac",
+      "expected_sha256": "2a1d7fcfea16d8d092f37b8f342c5866c7bccdc80c8348ead2b56032c482bcac",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714537_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "211a536760ed93dd57659c20177820b44ed3ab22da62f39f3613a37965d4794a",
+      "expected_sha256": "211a536760ed93dd57659c20177820b44ed3ab22da62f39f3613a37965d4794a",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714537_r2.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "be103eaa63c6b6eda76ef78c20c66c3a40b8e806ff7966fdd47eb190d4dd1da4",
+      "expected_sha256": "be103eaa63c6b6eda76ef78c20c66c3a40b8e806ff7966fdd47eb190d4dd1da4",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714526_r1.exact_counts.tsv.gz"
+    },
+    {
+      "actual_sha256": "c844135c2b1ed8d8318d86e7cc33e5ebb08e9afd742e7dabfa55030080fe78b1",
+      "expected_sha256": "c844135c2b1ed8d8318d86e7cc33e5ebb08e9afd742e7dabfa55030080fe78b1",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1_cache/SRR10714526_r2.exact_counts.tsv.gz"
+    }
+  ],
+  "input_hashes": [
+    {
+      "actual_sha256": "e8f0123b77621a71562600e2a56168c9a7b5fe789d801c55b061c146bf55a8e9",
+      "expected_sha256": "e8f0123b77621a71562600e2a56168c9a7b5fe789d801c55b061c146bf55a8e9",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "411bf19cbf6d2c34a5c30fbfba3e6a4e101b5e085154780166810012fd93de04",
+      "expected_sha256": "411bf19cbf6d2c34a5c30fbfba3e6a4e101b5e085154780166810012fd93de04",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714593/SRR10714593_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "8345c48ce670b04b031e29c74edcd021a5cc2706cf6626a405c72e9536bc92e9",
+      "expected_sha256": "8345c48ce670b04b031e29c74edcd021a5cc2706cf6626a405c72e9536bc92e9",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "cc4ef06f59f52e7ed66b45781e88591336e61a0fbb03064158eb468cd9344e1a",
+      "expected_sha256": "cc4ef06f59f52e7ed66b45781e88591336e61a0fbb03064158eb468cd9344e1a",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714592/SRR10714592_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "715b47646a9d67b5ccdf79e7b56226451e034df7ae1f7b9d484b7158f09ad9fd",
+      "expected_sha256": "715b47646a9d67b5ccdf79e7b56226451e034df7ae1f7b9d484b7158f09ad9fd",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "2657f0d492c3a1cdaf1071720436ac4e504e93723f2687758ed2f1f924972149",
+      "expected_sha256": "2657f0d492c3a1cdaf1071720436ac4e504e93723f2687758ed2f1f924972149",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714557/SRR10714557_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "9787fa47c52c323286977420c10cebf77244d787dc23bdb0ce1d59510ddc25ca",
+      "expected_sha256": "9787fa47c52c323286977420c10cebf77244d787dc23bdb0ce1d59510ddc25ca",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "cfabce6ce6337ff298e1b7b7753a9ee9fe983b601c727d6077eac05ac73ac9ec",
+      "expected_sha256": "cfabce6ce6337ff298e1b7b7753a9ee9fe983b601c727d6077eac05ac73ac9ec",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714546/SRR10714546_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "30a21881cf65c6932c94ace4c93eba6cedab180be1c54e5aa25f50c1d9ef7a5e",
+      "expected_sha256": "30a21881cf65c6932c94ace4c93eba6cedab180be1c54e5aa25f50c1d9ef7a5e",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "ea50b329acbb509cf298ccaa0fe98f8d6dedfa3b33ef8397ccbe86b46482306c",
+      "expected_sha256": "ea50b329acbb509cf298ccaa0fe98f8d6dedfa3b33ef8397ccbe86b46482306c",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714583/SRR10714583_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "9b4a6d9f94bfea3d0c12136a9580ed1a93b6b655b33ceec87adbadb3dcc63f2c",
+      "expected_sha256": "9b4a6d9f94bfea3d0c12136a9580ed1a93b6b655b33ceec87adbadb3dcc63f2c",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "a5e4605ac151287ac49291d57ee90302e6e45f2d5aaca553cc163589d4542a95",
+      "expected_sha256": "a5e4605ac151287ac49291d57ee90302e6e45f2d5aaca553cc163589d4542a95",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714572/SRR10714572_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "edb1a2b1910770cdadb96a25c8d6e21cfde5a16f0077ecf4e74934564a629d5d",
+      "expected_sha256": "edb1a2b1910770cdadb96a25c8d6e21cfde5a16f0077ecf4e74934564a629d5d",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "c0861bdafe43738e5f48067f36d81da51456cb35141cff74a6f022d8548d0550",
+      "expected_sha256": "c0861bdafe43738e5f48067f36d81da51456cb35141cff74a6f022d8548d0550",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714537/SRR10714537_2.fastq.gz"
+    },
+    {
+      "actual_sha256": "a620eee7e817d4593e2a819c716316b08535c00ba9c3009f99e25b437979c11a",
+      "expected_sha256": "a620eee7e817d4593e2a819c716316b08535c00ba9c3009f99e25b437979c11a",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_1.fastq.gz"
+    },
+    {
+      "actual_sha256": "fd699c1ba2fe6f52a80dab23ca04d57cabe46f1b3f27cbbd71b8c0c972e16582",
+      "expected_sha256": "fd699c1ba2fe6f52a80dab23ca04d57cabe46f1b3f27cbbd71b8c0c972e16582",
+      "match": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw/SRR10714526/SRR10714526_2.fastq.gz"
+    }
+  ],
+  "linked_variants": 125,
+  "passed": 60,
+  "prohibited_claims": [
+    "complete CDS recovered",
+    "author GFP_### identity recovered",
+    "SOTA",
+    "generator ready"
+  ],
+  "raw_pairs_recounted": 14929515,
+  "raw_run_metrics": [
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 186231,
+      "orf_r2": 1614,
+      "pairs": 1991733,
+      "run": "SRR10714593"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 217955,
+      "orf_r2": 2096,
+      "pairs": 2092394,
+      "run": "SRR10714592"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 143469,
+      "orf_r2": 1538,
+      "pairs": 1800924,
+      "run": "SRR10714557"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 204215,
+      "orf_r2": 1899,
+      "pairs": 1866059,
+      "run": "SRR10714546"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 176445,
+      "orf_r2": 1366,
+      "pairs": 1846146,
+      "run": "SRR10714583"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 137012,
+      "orf_r2": 979,
+      "pairs": 1576535,
+      "run": "SRR10714572"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 128929,
+      "orf_r2": 1404,
+      "pairs": 1802684,
+      "run": "SRR10714537"
+    },
+    {
+      "audit_rows_expected": 200,
+      "audit_rows_seen": 200,
+      "orf_r1": 162359,
+      "orf_r2": 1625,
+      "pairs": 1953040,
+      "run": "SRR10714526"
+    }
+  ],
+  "schema": "a8.rk02.mordstein_recovery_independent.v2",
+  "scientific_library_gate": "NOT_217_REVIEW_REQUIRED",
+  "scope": "full",
+  "status": "PASS",
+  "total": 60,
+  "variants": 152
+}

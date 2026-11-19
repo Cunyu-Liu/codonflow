@@ -1,0 +1,24 @@
+.......                                                                  [100%]
+7 passed in 0.11s
+{"phase": "exact_external", "run": "SRR10714593", "reads_scanned": 1991733, "r1_orf_valid_reads": 186231, "r2_orf_valid_reads": 1614}
+{"phase": "exact_external", "run": "SRR10714592", "reads_scanned": 2092394, "r1_orf_valid_reads": 217955, "r2_orf_valid_reads": 2096}
+{"phase": "exact_external", "run": "SRR10714557", "reads_scanned": 1800924, "r1_orf_valid_reads": 143469, "r2_orf_valid_reads": 1538}
+{"phase": "exact_external", "run": "SRR10714546", "reads_scanned": 1866059, "r1_orf_valid_reads": 204215, "r2_orf_valid_reads": 1899}
+{"phase": "exact_external", "run": "SRR10714583", "reads_scanned": 1846146, "r1_orf_valid_reads": 176445, "r2_orf_valid_reads": 1366}
+{"phase": "exact_external", "run": "SRR10714572", "reads_scanned": 1576535, "r1_orf_valid_reads": 137012, "r2_orf_valid_reads": 979}
+{"phase": "exact_external", "run": "SRR10714537", "reads_scanned": 1802684, "r1_orf_valid_reads": 128929, "r2_orf_valid_reads": 1404}
+{"phase": "exact_external", "run": "SRR10714526", "reads_scanned": 1953040, "r1_orf_valid_reads": 162359, "r2_orf_valid_reads": 1625}
+{"phase": "centroids", "r1": 162, "r2": 17}
+{"phase": "assign", "run": "SRR10714593", "library_name": "CM2_Bin1", "bin": 1, "pairs_scanned": 1991733, "r1_assigned": 1245918, "r2_assigned": 160190, "both_assigned": 145601, "r1_assignment_fraction": 0.6255446889718652, "r2_assignment_fraction": 0.08042744685156093}
+{"phase": "assign", "run": "SRR10714592", "library_name": "CM2_Bin2", "bin": 2, "pairs_scanned": 2092394, "r1_assigned": 1338755, "r2_assigned": 253766, "both_assigned": 231970, "r1_assignment_fraction": 0.6398197471413127, "r2_assignment_fraction": 0.1212802177792519}
+{"phase": "assign", "run": "SRR10714557", "library_name": "CM2_Bin3", "bin": 3, "pairs_scanned": 1800924, "r1_assigned": 1078334, "r2_assigned": 198035, "both_assigned": 176972, "r1_assignment_fraction": 0.5987670773447408, "r2_assignment_fraction": 0.10996299677276776}
+{"phase": "assign", "run": "SRR10714546", "library_name": "CM2_Bin4", "bin": 4, "pairs_scanned": 1866059, "r1_assigned": 1191531, "r2_assigned": 214059, "both_assigned": 195355, "r1_assignment_fraction": 0.6385280422537551, "r2_assignment_fraction": 0.1147118070757677}
+{"phase": "assign", "run": "SRR10714583", "library_name": "CM2_Bin5", "bin": 5, "pairs_scanned": 1846146, "r1_assigned": 1126096, "r2_assigned": 176051, "both_assigned": 156965, "r1_assignment_fraction": 0.6099712590445177, "r2_assignment_fraction": 0.09536136361912871}
+{"phase": "assign", "run": "SRR10714572", "library_name": "CM2_Bin6", "bin": 6, "pairs_scanned": 1576535, "r1_assigned": 939956, "r2_assigned": 111925, "both_assigned": 100130, "r1_assignment_fraction": 0.5962163859349776, "r2_assignment_fraction": 0.0709943007925609}
+{"phase": "assign", "run": "SRR10714537", "library_name": "CM2_Bin7", "bin": 7, "pairs_scanned": 1802684, "r1_assigned": 979058, "r2_assigned": 131156, "both_assigned": 100497, "r1_assignment_fraction": 0.5431112718590724, "r2_assignment_fraction": 0.07275595722822192}
+{"phase": "assign", "run": "SRR10714526", "library_name": "CM2_Bin8", "bin": 8, "pairs_scanned": 1953040, "r1_assigned": 1142582, "r2_assigned": 156983, "both_assigned": 139402, "r1_assignment_fraction": 0.58502744439438, "r2_assignment_fraction": 0.08037879408511858}
+{"status": "PASS_PENDING_INDEPENDENT_VERIFICATION", "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217", "variants_retained": 152, "mutual_best_links": 17, "output": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1"}
+{"status": "PASS", "passed": 60, "total": 60, "scientific_library_gate": "NOT_217_REVIEW_REQUIRED", "report": "/home/codonflow-a8-rk/audits/20261118/RK02/mordstein_recovery_full_independent_v1.json"}
+{"status": "PASS", "passed": 11, "total": 11, "report": "/home/codonflow-a8-rk/audits/20261118/RK02/mordstein_recovery_full_finalization_v1.json"}
+{"status": "PASS_FULL_OBSERVED_END_RECOVERY_VERIFIED", "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217", "variants_retained": 152, "independent": [60, 60], "finalization": [11, 11]}
+scripts/a8_rk02_run_mordstein_full.sh: line 81: .git/a8-rk02-report.lock: Not a directory

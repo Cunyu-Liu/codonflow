@@ -1,0 +1,106 @@
+{
+  "artifact_hashes": {
+    "all_r1_centroids.fasta": {
+      "matches_independent": true,
+      "sha256": "dc8c7f6521721963f799ea3b382087fc098a8c7e4f02bf0e80294e432a6338bb"
+    },
+    "all_r2_centroids.fasta": {
+      "matches_independent": true,
+      "sha256": "efd9ffa9547a41ea5ce15d6bfad2929fd4bfa211fe8d3c68ba4f4a479bb6b045"
+    },
+    "read_assignment_audit_sample.csv": {
+      "matches_independent": true,
+      "sha256": "297f20f9aad68fb5559d5883032c76b856297c55bc6d9ecf08aac767df4721f8"
+    },
+    "references_paired_ends.fasta": {
+      "matches_independent": true,
+      "sha256": "cb0e593bd7164406c53bcbc34cd343506410251337546bd49e58ee78d2c1f525"
+    },
+    "references_r1.fasta": {
+      "matches_independent": true,
+      "sha256": "8dacbe7f970918e55a8f62c7184898001001901a6a0e05ce562c6d5c361dd205"
+    },
+    "summary.json": {
+      "matches_independent": true,
+      "sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177"
+    },
+    "variant_counts.csv": {
+      "matches_independent": true,
+      "sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef"
+    }
+  },
+  "checks": [
+    {
+      "details": null,
+      "name": "production_pending_preserved",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "production_internal_checks",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_pass",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "independent_all_checks",
+      "status": "PASS"
+    },
+    {
+      "details": ".......                                                                  [100%]\n7 passed in 0.18s",
+      "name": "unit_tests",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "scope_matches",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "no_complete_cds_claim",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "reconstructed_id_disclaimer",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "full_eight_bins",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "artifact_hashes_match_independent",
+      "status": "PASS"
+    },
+    {
+      "details": null,
+      "name": "input_hashes_match_independent",
+      "status": "PASS"
+    }
+  ],
+  "created_utc": "2026-11-19T13:48:33.387870+00:00",
+  "independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+  "next_gate": "paper/PPT reporting after result review",
+  "passed": 11,
+  "schema": "a8.rk02.mordstein_recovery_finalization.v1",
+  "scope": "full",
+  "status": "PASS",
+  "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+  "test_command": [
+    "/root/miniconda3/envs/llr_env/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "scripts/tests/test_a8_rk02_mordstein_reference_recovery.py"
+  ],
+  "test_returncode": 0,
+  "total": 11
+}
