@@ -25,11 +25,55 @@ def semantic(element: ET.Element) -> bytes:
 
 
 def canonical(element: ET.Element) -> bytes:
+    """Compare slide semantics while normalizing only known server defaults.
+
+    The Slides service sorts attributes, expands default table/body properties,
+    and inserts an empty default content node into non-text shapes. Scientific
+    text, numerical values, geometry, styling, notes, and element order remain
+    fully bound by this comparison.
+    """
     item = copy.deepcopy(element)
+
+    def local(node: ET.Element) -> str:
+        return node.tag.rsplit("}", 1)[-1]
+
+    for parent in item.iter():
+        if local(parent) == "shape" and parent.attrib.get("type") != "text":
+            for child in list(parent):
+                if (
+                    local(child) == "content"
+                    and not list(child)
+                    and not (child.text or "").strip()
+                    and child.attrib
+                    == {
+                        "fontSize": "16",
+                        "fontFamily": "思源黑体",
+                        "color": "rgba(31, 35, 41, 1)",
+                    }
+                ):
+                    parent.remove(child)
+    parent_map = {child: parent for parent in item.iter() for child in parent}
     for node in item.iter():
         node.attrib.pop("id", None)
         node.text = (node.text or "").strip()
         node.tail = None
+        if local(node) == "content":
+            if node.attrib.get("textType") == "body":
+                node.attrib.pop("textType", None)
+            if node.attrib.get("wrap") == "true":
+                node.attrib.pop("wrap", None)
+            if local(parent_map.get(node, node)) == "td" and node.attrib.get("textAlign") == "center":
+                node.attrib.pop("textAlign", None)
+            spacing = node.attrib.get("lineSpacing")
+            if spacing and ":" in spacing:
+                kind, value = spacing.split(":", 1)
+                try:
+                    node.attrib["lineSpacing"] = f"{kind}:{float(value):.12g}"
+                except ValueError:
+                    pass
+        if local(node) == "col" and node.attrib.get("span") == "1":
+            node.attrib.pop("span", None)
+        node.attrib = dict(sorted(node.attrib.items()))
     ET.register_namespace("", item.tag.split("}")[0][1:])
     return ET.tostring(item, encoding="utf-8")
 

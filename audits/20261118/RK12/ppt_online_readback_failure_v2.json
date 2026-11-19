@@ -1,0 +1,109 @@
+{
+  "schema": "a8-rk12-ppt-readback-verification-v1",
+  "created_utc": "2026-11-19T14:55:38.906752+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "FAIL",
+  "checks_passed": 14,
+  "checks_total": 16,
+  "baseline_slide_count": 90,
+  "readback_slide_count": 92,
+  "new_slide_ids": [
+    "pgk",
+    "pgE"
+  ],
+  "slide91_add_revision": 53,
+  "slide92_add_revision": 54,
+  "baseline_sha256": "ed17e88f45e3afd8a04d527b861ad22f0823cb4ba469fa7af374b808fc7423c4",
+  "readback_sha256": "569aece39c7ed7e3bb7330c614af4d6759c21a6b8816f873b3385c12f2d25bb2",
+  "candidate91_sha256": "3792bdff45f0debc521a1a41c39ed430a94b21c6d2ca1fb56daa61d88c186b9f",
+  "candidate92_sha256": "a2ff40866607b1f22b948427d9d659da21eaafe06044d7879447c5ccb4741f67",
+  "finalization_sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+  "matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+  "changed_baseline_pages": [],
+  "checks": [
+    {
+      "name": "baseline_90",
+      "pass": true,
+      "evidence": 90
+    },
+    {
+      "name": "readback_92",
+      "pass": true,
+      "evidence": 92
+    },
+    {
+      "name": "first_90_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_90_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "new_page_ids_present_distinct",
+      "pass": true,
+      "evidence": [
+        "pgk",
+        "pgE"
+      ]
+    },
+    {
+      "name": "slide91_candidate_semantics",
+      "pass": false,
+      "evidence": "3792bdff45f0debc521a1a41c39ed430a94b21c6d2ca1fb56daa61d88c186b9f"
+    },
+    {
+      "name": "slide92_candidate_semantics",
+      "pass": false,
+      "evidence": "a2ff40866607b1f22b948427d9d659da21eaafe06044d7879447c5ccb4741f67"
+    },
+    {
+      "name": "slide91_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide91_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "slide92_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide92_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide91_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide91_id_matches",
+      "pass": true,
+      "evidence": "pgk"
+    },
+    {
+      "name": "add_slide92_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide92_id_matches",
+      "pass": true,
+      "evidence": "pgE"
+    },
+    {
+      "name": "matrix_hash_matches_finalization",
+      "pass": true,
+      "evidence": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6"
+    }
+  ],
+  "scientific_boundary": "PPT readback verifies presentation fidelity only; scientific acceptance comes from the frozen RK-12 finalization and independent matrix verifier."
+}
