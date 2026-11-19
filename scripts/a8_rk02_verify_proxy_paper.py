@@ -6,7 +6,6 @@ import argparse
 import datetime as dt
 import hashlib
 import json
-import re
 from pathlib import Path
 
 HEADING = "### 6.16 Fixed-GFP observed-end proxy associations and robustness"
@@ -80,7 +79,20 @@ def main() -> None:
     start = stripped.index(HEADING)
     end = stripped.index("## 7. Discussion", start)
     stripped = stripped[:start] + stripped[end:]
-    stripped = re.sub(r"\n\| RK02 fixed-GFP proxy [^|]+ \| `?[0-9a-f]{64}`? \|\n", "\n", stripped)
+    evidence_anchors = [
+        ("primary production", args.primary),
+        ("primary independent verification", args.primary_independent),
+        ("primary finalization", args.primary_finalization),
+        ("robustness production", args.robustness),
+        ("robustness independent verification", args.robustness_independent),
+        ("robustness finalization", args.robustness_finalization),
+    ]
+    anchor_block = "\n" + "".join(
+        f"| RK02 fixed-GFP proxy {label} | `{sha256(path)}` |\n"
+        for label, path in evidence_anchors
+    )
+    check("proxy_evidence_anchor_count", stripped.count(anchor_block) == 1)
+    stripped = stripped.replace(anchor_block, "", 1)
     check("only_section_and_anchors_added_to_paper", stripped == base_paper.read_text())
     base_audit_obj = json.loads(base_audit.read_text())
     reduced_audit = dict(audit)
