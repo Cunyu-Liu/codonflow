@@ -18,6 +18,8 @@
   "base_v21_paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
   "base_v22_audit_sha256": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92",
   "base_v22_paper_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
+  "base_v23_audit_sha256": "5f546a314961b87470cb81ae073eec45023d28542741a04be87b91ff271bb143",
+  "base_v23_paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
   "generated_sections": [
     "3.1",
     "3.2 RK04 addition",
@@ -45,20 +47,22 @@
     "6.18 RK-13 EnsembleDesign and seven-method actual-set comparison",
     "8.1 RK-13 evidence anchors",
     "6.19 CAGFN official-source bounded train-generate-audit chain",
-    "8.1 RK05 CAGFN evidence anchors"
+    "8.1 RK05 CAGFN evidence anchors",
+    "6.20 Fixed-GFP observed-R1 structure increment: development no-go",
+    "8.1 RK02 structure-increment evidence anchors"
   ],
   "last_increment": {
-    "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
-    "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
-    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
-    "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
-    "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
-    "scientific_scope": "frozen MAGE dev no-go only; test untouched; no universal mechanism/SOTA claim",
-    "section": "6.17 Frozen MAGE synonymous-mechanism development gate",
+    "finalization_sha256": "c8fca9ae49706dfa7ef1d026cefde922ef461eb1fcfb5a7dab742b370637a1fc",
+    "independent_sha256": "5d3868ba037877b5952376c7a4db85fa33df5ed3014abc141b728acc50296170",
+    "paper_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
+    "production_sha256": "eead79375e43f11b22c968a31d41010f8509f03289b8c5c833ecb571bcb4acc3",
+    "protocol_sha256": "f3e1911b4c72f34257c998b736b70ca76734c1586f04e40dd48c03f265d9bdb6",
+    "scientific_scope": "fixed-GFP observed-R1 structure increment development no-go; no untouched, complete-CDS, OOD, RK-G1, generator or SOTA claim",
+    "section": "6.20 Fixed-GFP observed-R1 structure increment: development no-go",
     "submittable": false
   },
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
+  "output_sha256": "29c85c3721182acea31e22f9a03e4c0be973c4be46c7b0ed8756eea420b070e5",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -90,6 +94,14 @@
     "audit_sha256": "20ed8999b327d538ed35582ad69084c979e3e9f92f2aa7d3be1f78145e2922d6",
     "paper": "paper/snapshots/mordstein_v19/CodonFlow_preprint_A8_v18.md",
     "paper_sha256": "be95ddca3b08145b3f1adaea73a440d2fb25e2b653069527c6208e0d4c74e181"
+  },
+  "pre_rk02_structure_snapshot": {
+    "a7": "/home/codonflow-a8-rk/paper/snapshots/rk02_structure_v24/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/home/codonflow-a8-rk/paper/snapshots/rk02_structure_v24/a8_rk_paper_sync_audit_v23.json",
+    "audit_sha256": "5f546a314961b87470cb81ae073eec45023d28542741a04be87b91ff271bb143",
+    "paper": "/home/codonflow-a8-rk/paper/snapshots/rk02_structure_v24/CodonFlow_preprint_A8_v23.md",
+    "paper_sha256": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2"
   },
   "pre_rk05_cagfn_snapshot": {
     "a7": "/home/codonflow-a8-rk/paper/snapshots/rk05_cagfn_v23/CodonFlow_preprint_A7.md",
@@ -160,6 +172,17 @@
     "sota_claim": false,
     "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
     "variants_retained": 152
+  },
+  "rk02_mordstein_structure_increment": {
+    "analysis_status": "DEVELOPMENT_ONLY_NOT_CONFIRMATORY_INDEPENDENT_TEST",
+    "complete_cds_closed": false,
+    "full_rk_g1_gate": false,
+    "functional_untouched_used": false,
+    "generator_training_authorized": false,
+    "n_variants": 152,
+    "scientific_result": "FIXED_GFP_OBSERVED_R1_STRUCTURE_INCREMENT_NO_GO_DEVELOPMENT_ONLY",
+    "sota_claim": false,
+    "structure_increment_pass": false
   },
   "rk05_cagfn_v23": {
     "finalization_sha256": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
