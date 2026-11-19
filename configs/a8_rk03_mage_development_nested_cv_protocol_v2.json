@@ -1,0 +1,91 @@
+{
+  "schema": "a8-rk03-mage-development-nested-cv-protocol-v2",
+  "protocol_id": "a8_rk03_mage_development_nested_cv_v2_frozen_before_v2_model_fitting",
+  "frozen_before_v2_model_fitting": true,
+  "scientific_question": "Is the original single-development-split full-mechanism failure stable under construct-level nested cross-validation on the already-used train+dev development data, without reading the frozen test labels?",
+  "source": {
+    "csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/kelsic_2016_mage_seq/single_codon_fitness.csv",
+    "csv_sha256": "83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8",
+    "codon_module": "/home/codonflow-a8-rk/src/codonflow/core/codon.py",
+    "codon_module_sha256": "eb2e6059c30a98d1a8b6f98cecbe04bec1bb426e9f2d850e821c527a802403e7",
+    "v1_protocol": "/home/codonflow-a8-rk/configs/a8_rk03_mage_synonymous_mechanism_protocol_v1.json",
+    "v1_protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+    "v1_report": "/home/codonflow-a8-rk/audits/20261118/RK03/mage_synonymous_mechanism_v1.json",
+    "v1_report_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+    "v1_split_assignments": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_synonymous_mechanism_v1/split_assignments.csv",
+    "v1_split_assignments_sha256": "47c26db6691f2a66b05875b640c5cc26f173fcd4ca82b3a8545f63f6a81ed3f7"
+  },
+  "development_data": {
+    "medium": "relative_fitness_rich",
+    "positions": [10, 71],
+    "original_splits_used": ["train", "dev"],
+    "expected_n_constructs": 131,
+    "expected_original_train_n": 98,
+    "expected_original_dev_n": 33,
+    "frozen_test_n": 33,
+    "frozen_test_labels_used_for_fit_selection_metrics_or_gate": false,
+    "minimal_medium_used": false,
+    "n_terminal_transport_used": false,
+    "original_v1_no_go_is_retained": true,
+    "development_data_reuse_disclosure": "The 33-row original dev split was used in v1. V2 is therefore a development-only diagnostic, not an independent confirmation."
+  },
+  "features_and_models": {
+    "feature_sets": ["intrinsic", "local_mfe", "rcs_only", "full_mechanism"],
+    "definitions_identical_to_v1": true,
+    "categorical_baseline": ["position", "wt_codon", "mutant_codon", "amino_acid"],
+    "numeric_baseline": ["position_scaled", "wt_gc_fraction", "mutant_gc_fraction", "delta_gc_fraction", "wt_gc3", "mutant_gc3", "nt_changes", "is_transition"],
+    "local_mfe_additions": ["mfe_ddG_43nt_sliding", "delta_mfe_vs_wt", "abs_delta_mfe_vs_wt", "mfe_x_position_scaled"],
+    "rcs_additions": ["RCS", "delta_rcs_vs_wt", "abs_delta_rcs_vs_wt", "rcs_x_position_scaled"],
+    "alpha_grid": [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0],
+    "numeric_scaling": "outer-training-only and inner-training-only StandardScaler with_mean=false",
+    "categorical_encoding": "OneHotEncoder handle_unknown=ignore",
+    "solver": "lsqr",
+    "tolerance": 1e-12,
+    "max_iter": 100000,
+    "fit_intercept": true
+  },
+  "nested_cv": {
+    "unit": "construct_id",
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "primary_outer_seed": "40261119",
+    "sensitivity_outer_seeds": ["40261120", "40261121"],
+    "assignment": "sort construct IDs by SHA256(seed + ':' + construct_id), then assign round-robin folds; inner assignment uses seed + ':inner:' + construct_id",
+    "alpha_selection": "minimum inner out-of-fold RMSE separately within each outer-training partition and feature set; ties resolved by larger alpha then lexicographic alpha string",
+    "outer_prediction": "refit on the complete outer-training partition with selected alpha and predict the held-out outer fold",
+    "primary_inference": "the single primary-seed outer-OOF prediction for each of 131 constructs",
+    "sensitivity": "two complete independently assigned nested-CV repetitions; report point effects and require favorable sign consistency for a development GO",
+    "test_partition_role": "excluded from every development record table, fold, feature matrix, fit, prediction and metric"
+  },
+  "primary_comparisons": {
+    "candidate": "full_mechanism",
+    "references": ["intrinsic", "local_mfe"],
+    "metrics": ["Spearman delta (higher is better)", "RMSE delta (lower is better)"],
+    "bootstrap": {"replicates": 20000, "unit": "construct_id", "ci": "two-sided 95% percentile", "seed": 40261219, "seed_derivation": "base seed plus comparison index in reference order intrinsic, local_mfe"},
+    "paired_permutation": {"replicates": 20000, "scheme": "independently swap candidate/reference prediction pairs within each construct", "p": "two-sided absolute-effect plus-one", "seed": 40261220, "seed_derivation": "base seed plus comparison index in reference order intrinsic, local_mfe"},
+    "multiplicity": "Holm across four tests: two references times two metrics",
+    "development_go_requires_all": [
+      "for both references, primary delta Spearman CI lower bound > 0",
+      "for both references, primary delta RMSE CI upper bound < 0",
+      "all four Holm-adjusted p values < 0.05",
+      "both sensitivity repetitions have favorable point-estimate signs for both references and both metrics",
+      "independent raw-source verification passes before any later test protocol is considered"
+    ],
+    "otherwise": "DEV_NO_GO_TEST_UNTOUCHED; no test predictions, test metrics, transport or generator authorization"
+  },
+  "interpretation": {
+    "v1_gate_modified": false,
+    "test_authorized_by_v1": false,
+    "rcs_is_external_supervised_structure_feature": true,
+    "fixed_protein_synonymous_development_only": true,
+    "not_protein_ood": true,
+    "not_physical_velocity": true,
+    "not_functional_untouched_evaluation": true,
+    "not_generator_training_or_sota": true,
+    "negative_or_inconclusive_results_must_be_retained": true
+  },
+  "artifacts": {
+    "small_reports": "/home/codonflow-a8-rk/audits/20261119/RK03/",
+    "large_artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/"
+  }
+}
