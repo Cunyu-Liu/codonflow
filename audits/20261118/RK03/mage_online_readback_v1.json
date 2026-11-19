@@ -1,0 +1,88 @@
+{
+  "schema": "a8-rk03-mage-ppt-readback-verification-v1",
+  "created_utc": "2026-11-19T14:59:25.056738+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "PASS",
+  "checks_passed": 13,
+  "checks_total": 13,
+  "baseline_slide_count": 94,
+  "readback_slide_count": 95,
+  "new_slide_id": "pgJ",
+  "slide95_add_revision": 57,
+  "baseline_sha256": "e4da26f55b0d320de7806d7b970eb4f0bbac1c2e1552593d5cd404290e685569",
+  "readback_sha256": "d842e6085905834e1b7646c088dc1417a8664e8f82e94a407ca1b4c5638e0273",
+  "candidate95_sha256": "43fa810239ddd5c29ef83c74523dbe597281bec73679bb28ab6288752f8ff228",
+  "protocol_sha256": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+  "production_sha256": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+  "independent_sha256": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
+  "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
+  "changed_baseline_pages": [],
+  "checks": [
+    {
+      "name": "baseline_94",
+      "pass": true,
+      "evidence": 94
+    },
+    {
+      "name": "readback_95",
+      "pass": true,
+      "evidence": 95
+    },
+    {
+      "name": "first_94_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_94_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "new_page_id_present_distinct",
+      "pass": true,
+      "evidence": "pgJ"
+    },
+    {
+      "name": "slide95_candidate_semantics",
+      "pass": true,
+      "evidence": "43fa810239ddd5c29ef83c74523dbe597281bec73679bb28ab6288752f8ff228"
+    },
+    {
+      "name": "slide95_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide95_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide95_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide95_id_matches",
+      "pass": true,
+      "evidence": "pgJ"
+    },
+    {
+      "name": "dev_values_visible",
+      "pass": true,
+      "evidence": "full RMSE/gate/n"
+    },
+    {
+      "name": "scientific_boundaries_visible",
+      "pass": true,
+      "evidence": "test and scope"
+    },
+    {
+      "name": "finalized_evidence_hash_binding",
+      "pass": true,
+      "evidence": "protocol/production/independent"
+    }
+  ],
+  "scientific_boundary": "PPT readback verifies fidelity only; the MAGE result is a frozen dev no-go with test untouched, not universal mechanism falsification or SOTA."
+}

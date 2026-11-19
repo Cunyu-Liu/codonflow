@@ -1,0 +1,78 @@
+{
+  "schema": "a8-rk02-mordstein-ppt-readback-verification-v1",
+  "created_utc": "2026-11-19T14:57:24.287727+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "PASS",
+  "checks_passed": 11,
+  "checks_total": 11,
+  "baseline_slide_count": 92,
+  "readback_slide_count": 93,
+  "new_slide_id": "pgK",
+  "slide93_add_revision": 55,
+  "baseline_sha256": "569aece39c7ed7e3bb7330c614af4d6759c21a6b8816f873b3385c12f2d25bb2",
+  "readback_sha256": "a9aecf0899defc974f279fa4a4c5bc8f0720aa7cbbdb6fbd3f2940705ffbe05b",
+  "candidate93_sha256": "bf83434f6b83591cd1d957a2a0906e1139c99a738b874b20057b921b55d5080e",
+  "summary_sha256": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+  "independent_sha256": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+  "finalization_sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+  "changed_baseline_pages": [],
+  "checks": [
+    {
+      "name": "baseline_92",
+      "pass": true,
+      "evidence": 92
+    },
+    {
+      "name": "readback_93",
+      "pass": true,
+      "evidence": 93
+    },
+    {
+      "name": "first_92_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_92_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "new_page_id_present_distinct",
+      "pass": true,
+      "evidence": "pgK"
+    },
+    {
+      "name": "slide93_candidate_semantics",
+      "pass": true,
+      "evidence": "bf83434f6b83591cd1d957a2a0906e1139c99a738b874b20057b921b55d5080e"
+    },
+    {
+      "name": "slide93_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide93_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide93_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide93_id_matches",
+      "pass": true,
+      "evidence": "pgK"
+    },
+    {
+      "name": "scientific_library_gate_preserved",
+      "pass": true,
+      "evidence": "REVIEW_REQUIRED_COUNT_NOT_217"
+    }
+  ],
+  "library_recovery_status": "REVIEW_REQUIRED_COUNT_NOT_217",
+  "scientific_boundary": "PPT readback verifies presentation fidelity only; computational consistency does not establish complete CDS, author identity or 217-candidate recovery."
+}

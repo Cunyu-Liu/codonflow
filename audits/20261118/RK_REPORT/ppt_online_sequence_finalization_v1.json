@@ -1,0 +1,259 @@
+{
+  "schema": "a8-rk-ppt-online-sequence-finalization-v1",
+  "created_utc": "2026-11-19T15:01:11.280195+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "FAIL",
+  "checks_passed": 28,
+  "checks_total": 32,
+  "failed_checks": [
+    "development_not_sota_boundary_visible",
+    "mordstein_217_boundary_visible",
+    "proxy_noncausal_boundary_visible",
+    "mage_untouched_test_boundary_visible"
+  ],
+  "baseline_slide_count": 90,
+  "final_slide_count": 95,
+  "new_slide_ids": [
+    "pgk",
+    "pgE",
+    "pgK",
+    "pgm",
+    "pgJ"
+  ],
+  "add_revisions": [
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "baseline_sha256": "ed17e88f45e3afd8a04d527b861ad22f0823cb4ba469fa7af374b808fc7423c4",
+  "final_readback_sha256": "d842e6085905834e1b7646c088dc1417a8664e8f82e94a407ca1b4c5638e0273",
+  "candidate_sha256": {
+    "91": "3792bdff45f0debc521a1a41c39ed430a94b21c6d2ca1fb56daa61d88c186b9f",
+    "92": "a2ff40866607b1f22b948427d9d659da21eaafe06044d7879447c5ccb4741f67",
+    "93": "bf83434f6b83591cd1d957a2a0906e1139c99a738b874b20057b921b55d5080e",
+    "94": "325d62f6eb944dccf4c554ddcd90863f6f2e64a87182d0ff2ffdceebcf43d906",
+    "95": "43fa810239ddd5c29ef83c74523dbe597281bec73679bb28ab6288752f8ff228"
+  },
+  "online_verification_sha256": {
+    "rk12": "c39068cc6aef99392fc7ebd205ca8dcf11bb949d0a110ef6a2eb51c410e28849",
+    "mordstein": "3971e3d9c85b658bf052e8dc9ce57630c9001bdf81bcc0e43b8621e665449212",
+    "proxy": "9b8a00c502f044b3688305cd0954208d033b982f26af0e46550dff81c60146c5",
+    "mage": "a4e67d09e5fea284106316641b21c993be8777bc99c2583058a949d8892ac042"
+  },
+  "scientific_evidence_sha256": {
+    "rk12_finalization": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+    "rk12_matrix": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+    "mordstein_summary": "95fe458fed4d7e37b69d4ec85a8637650207198e8bf4dcaa9aadf0bc10f80177",
+    "mordstein_independent": "bb7d4e69ec492e550c9e4f58be9ac3c6c93ea2dcdccbd8fad0fcea68ac5b6190",
+    "mordstein_finalization": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+    "proxy_primary": "d991aded0e735f700882f4490d34c55af98763064156ede1da1a558f2177f952",
+    "proxy_primary_independent": "897292a17e06b07c7b76d3d73f8a7815efcb7673fccef86a1a6c931840e027c8",
+    "proxy_primary_finalization": "5f1946a4e3d4664feba7d8d68502082938e0020813d2c2d01ec0edb9c5b1ce2f",
+    "proxy_robustness": "6bfd1381d1bd65b80a42238724b651e6ccce7b7f1c1d5c693568ebce25f55f40",
+    "proxy_robustness_independent": "abee78c8f5b8aff87af9ef25674a98ccfc2eb9532775ce2a6f8b89e468f23688",
+    "proxy_robustness_finalization": "fd49cc491e92fd3a4a6555a6c3a0ee0b3cae6a5f2fb95f09706e4a9a61389d61",
+    "mage_protocol": "ced52285bd70488c6da6955a1d1f16cdb169a5908ff2cf1e3695b8c059157116",
+    "mage_production": "16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b",
+    "mage_independent": "b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489",
+    "mage_finalization": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b"
+  },
+  "checks": [
+    {
+      "name": "baseline_exactly_90",
+      "pass": true,
+      "evidence": 90
+    },
+    {
+      "name": "final_exactly_95",
+      "pass": true,
+      "evidence": 95
+    },
+    {
+      "name": "final_readback_ok",
+      "pass": true,
+      "evidence": 57
+    },
+    {
+      "name": "first_90_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_90_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "five_response_ids_match_final_pages",
+      "pass": true,
+      "evidence": [
+        "pgk",
+        "pgE",
+        "pgK",
+        "pgm",
+        "pgJ"
+      ]
+    },
+    {
+      "name": "all_95_slide_ids_unique",
+      "pass": true,
+      "evidence": 95
+    },
+    {
+      "name": "all_add_responses_ok",
+      "pass": true,
+      "evidence": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "five_revisions_consecutive",
+      "pass": true,
+      "evidence": [
+        53,
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    {
+      "name": "final_readback_revision_matches_last_add",
+      "pass": true,
+      "evidence": 57
+    },
+    {
+      "name": "slide91_candidate_semantics",
+      "pass": true,
+      "evidence": "3792bdff45f0debc521a1a41c39ed430a94b21c6d2ca1fb56daa61d88c186b9f"
+    },
+    {
+      "name": "slide92_candidate_semantics",
+      "pass": true,
+      "evidence": "a2ff40866607b1f22b948427d9d659da21eaafe06044d7879447c5ccb4741f67"
+    },
+    {
+      "name": "slide93_candidate_semantics",
+      "pass": true,
+      "evidence": "bf83434f6b83591cd1d957a2a0906e1139c99a738b874b20057b921b55d5080e"
+    },
+    {
+      "name": "slide94_candidate_semantics",
+      "pass": true,
+      "evidence": "325d62f6eb944dccf4c554ddcd90863f6f2e64a87182d0ff2ffdceebcf43d906"
+    },
+    {
+      "name": "slide95_candidate_semantics",
+      "pass": true,
+      "evidence": "43fa810239ddd5c29ef83c74523dbe597281bec73679bb28ab6288752f8ff228"
+    },
+    {
+      "name": "five_slides_have_four_note_paragraphs",
+      "pass": true,
+      "evidence": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "five_slides_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "rk12_online_report_pass",
+      "pass": true,
+      "evidence": "16/16"
+    },
+    {
+      "name": "rk12_changed_baseline_empty",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "mordstein_online_report_pass",
+      "pass": true,
+      "evidence": "11/11"
+    },
+    {
+      "name": "mordstein_changed_baseline_empty",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "proxy_online_report_pass",
+      "pass": true,
+      "evidence": "13/13"
+    },
+    {
+      "name": "proxy_changed_baseline_empty",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "mage_online_report_pass",
+      "pass": true,
+      "evidence": "13/13"
+    },
+    {
+      "name": "mage_changed_baseline_empty",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "candidate_hashes_match_online_reports",
+      "pass": true,
+      "evidence": "five candidates"
+    },
+    {
+      "name": "readback_hash_chain_exact",
+      "pass": true,
+      "evidence": [
+        "ed17e88f45e3afd8a04d527b861ad22f0823cb4ba469fa7af374b808fc7423c4",
+        "569aece39c7ed7e3bb7330c614af4d6759c21a6b8816f873b3385c12f2d25bb2",
+        "a9aecf0899defc974f279fa4a4c5bc8f0720aa7cbbdb6fbd3f2940705ffbe05b",
+        "e4da26f55b0d320de7806d7b970eb4f0bbac1c2e1552593d5cd404290e685569",
+        "d842e6085905834e1b7646c088dc1417a8664e8f82e94a407ca1b4c5638e0273"
+      ]
+    },
+    {
+      "name": "all_scientific_evidence_hashes_current",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "development_not_sota_boundary_visible",
+      "pass": false,
+      "evidence": "slide 92"
+    },
+    {
+      "name": "mordstein_217_boundary_visible",
+      "pass": false,
+      "evidence": "slide 93"
+    },
+    {
+      "name": "proxy_noncausal_boundary_visible",
+      "pass": false,
+      "evidence": "slide 94"
+    },
+    {
+      "name": "mage_untouched_test_boundary_visible",
+      "pass": false,
+      "evidence": "slide 95"
+    }
+  ],
+  "online_report_sequence_complete": false,
+  "scientific_gate_passed": false,
+  "sota_claim": false,
+  "paper_submittable": false,
+  "scientific_boundary": "This finalizes presentation fidelity only. Full generator training, unified time-matched cost, dense budget AUC, CodonFlow-RK main-model comparisons, complete OOD/ablations and SOTA remain open."
+}
