@@ -398,6 +398,41 @@ I evaluated the prespecified synonymous-mechanism increment on the fixed infA MA
 
 The full mechanism model did not achieve the frozen requirement of strictly lower dev RMSE than both the intrinsic and local-MFE feature sets. The test split was therefore not authorized: no test predictions, test metrics, paired test intervals, minimal-medium transport or N-terminal transport were generated. The formal state is `DEV_NO_GO_TEST_UNTOUCHED`; this is a development-gate result, not a claim that mechanism is universally falsified. Independent raw-data and model-matrix reconstruction passed 39/39 checks with maximum numeric delta 4.83724171829e-13, and finalization passed 12/12 checks. This result does not close RK-G1 or authorize generator-training claims.
 
+### 6.18 RK-13 EnsembleDesign and seven-method actual-set comparison
+
+I added the fixed-source EnsembleDesign baseline to the same unique18 development panel. The frozen protocol used 18 per-record official CPU processes and **198 generator runs** (11 per protein), with four internal threads per process, beam size 100, learning rate 0.03, epsilon 0.5 and three iterations. The raw runs yielded 192 unique record-sequence pairs after within-record deduplication and required 6001.057 s of summed official-process wall clock. Every official CDS was protein-identical before the disclosed terminal TAA used only for shared evaluation. The independent raw-file verifier passed with a maximum official-versus-ViennaRNA EFE discrepancy of 0.00511841 kcal/mol.
+
+The first verification attempt was stopped when unscaled ViennaRNA `pf()` returned its `100000.0` failure sentinel for `C41G7.2.1`; the failed report and all raw files were preserved unchanged. A separately frozen recovery applied MFE-based fold-compound rescaling consistently to every selected output and reexecuted `C41G7.2.1` plus the six not-yet-run records in a new output root. The selected evidence therefore contains 18 official processes and 198 generator runs, while 25 official processes and 209 generator runs were executed across the failed and recovery attempts. The EFE tolerance was not changed.
+
+The seven-method matrix preserves all six RK-12 method fields exactly, binds their prior 139/139 independent PASS by hash, and recomputes only the new EnsembleDesign objectives from raw CDS using the same RSCU, per-record calibration and four objectives. The reference, six comparators, two metrics and Holm family of 12 paired tests were frozen before EnsembleDesign generation. Mean values remain descriptive over 18 development records. For NED, a positive LinearDesign-minus-comparator effect means greater sequence diversity, not better functional performance.
+
+| Method | Actual outputs | Mean normalized HV | Mean pairwise NED | Minimum identity |
+|---|---:|---:|---:|---:|
+| lineardesign_lambda11 | 131 | 29.972887 | 0.071289 | 1.000 |
+| ensembledesign_11run | 192 | 16.693982 | 0.045804 | 1.000 |
+| gemorna | 1427 | 20.015288 | 0.163751 | 1.000 |
+| codongpt | 1800 | 14.537219 | 0.230018 | 1.000 |
+| cai_greedy | 18 | 11.523556 | 0.000000 | 1.000 |
+| uniform_synonymous | 1800 | 1.718763 | 0.240783 | 1.000 |
+| lineardesign_scan | 103 | 29.855894 | 0.079248 | 1.000 |
+
+| Comparator | Effect (LinearDesign - comparator) | Mean delta | Paired-bootstrap 95% CI | Holm p (12 tests) |
+|---|---|---:|---:|---:|
+| codongpt | hypervolume_normalized | 15.435668 | [7.476256, 24.887069] | 0.00119994 |
+| codongpt | ned | -0.158729 | [-0.175127, -0.142600] | 0.00119994 |
+| gemorna | hypervolume_normalized | 9.957599 | [3.944589, 16.891854] | 0.00119994 |
+| gemorna | ned | -0.092461 | [-0.115724, -0.070216] | 0.00119994 |
+| cai_greedy | hypervolume_normalized | 18.449331 | [11.791770, 26.478799] | 0.00119994 |
+| cai_greedy | ned | 0.071289 | [0.056190, 0.086800] | 0.00119994 |
+| uniform_synonymous | hypervolume_normalized | 28.254124 | [18.216800, 40.434737] | 0.00119994 |
+| uniform_synonymous | ned | -0.169494 | [-0.185799, -0.153683] | 0.00119994 |
+| lineardesign_scan | hypervolume_normalized | 0.116993 | [0.059973, 0.179610] | 0.00119994 |
+| lineardesign_scan | ned | -0.007959 | [-0.010177, -0.005775] | 0.00119994 |
+| ensembledesign_11run | hypervolume_normalized | 13.278905 | [6.905804, 20.778993] | 0.00119994 |
+| ensembledesign_11run | ned | 0.025486 | [0.004243, 0.047556] | 0.0176991 |
+
+For the direct EnsembleDesign comparison, LinearDesign-minus-EnsembleDesign normalized HV was 13.278905 (95% CI [6.905804, 20.778993], Holm p=0.00119994). The descriptive highest mean-HV method was `lineardesign_lambda11`; this is not a SOTA designation. The independent matrix verifier passed 218/218 checks, recomputed all new raw objectives, HV, NED, Pareto counts and 12 paired intervals, and confirmed exact preservation of the six base-method fields. Measured generation time was 5459.872 s for the single-worker LinearDesign grid and 6001.057 s for EnsembleDesign with four internal threads; these costs are reported but are not unified or time-matched. Independent runs are not successive real-scorer budget checkpoints, so `dense_budget_step_auc_v2` remains null. This section contains no CodonFlow-RK main-generator result, functional OOD, wet-lab result or SOTA claim.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -555,6 +590,16 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK03 MAGE dev production | `16b9e17628f56bc413faea0e3bd14f69671fef2f5c0527c19d7587f8617e5f7b` |
 | RK03 MAGE independent verification | `b74f4b5365418cc672b60b0bd1e2c8225f4dba32507e02c7513c714b7efe4489` |
 | RK03 MAGE finalization | `05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b` |
+
+| RK-13 frozen EnsembleDesign unique18 protocol | `b449c04d148569d2e626728485a75f6edac21dcbae87ca3c4a48957506e294cd` |
+| RK-13 frozen recovery protocol | `3e9a12347ceb9b498e5f099ca43c49ca9fdb47587d39590f7d539c9672465f52` |
+| RK-13 preserved failed v1 report | `7414d314823568765bf3b48b936829e314eceebbba6683786339461a0334be96` |
+| RK-13 official EnsembleDesign unique18 report | `bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2` |
+| RK-13 independent EnsembleDesign verification | `288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e` |
+| RK-13 frozen seven-method matrix protocol | `f644ed5defa3330b71817387277faf4e2668ffda3f8637638aa1ff7ff8fb313a` |
+| RK-13 seven-method actual-set matrix | `29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877` |
+| RK-13 independent seven-method matrix verification | `e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b` |
+| RK-13 finalization | `cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

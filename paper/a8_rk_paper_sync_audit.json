@@ -35,10 +35,12 @@
     "6.14 RK-12 unique18 LinearDesign and external actual-set matrix",
     "8.1 RK-12 evidence anchors",
     "6.15 Mordstein full eight-bin observed-end recovery",
-    "8.1 RK02 Mordstein observed-end evidence anchors"
+    "8.1 RK02 Mordstein observed-end evidence anchors",
+    "6.18 RK-13 EnsembleDesign and seven-method actual-set comparison",
+    "8.1 RK-13 evidence anchors"
   ],
   "output": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
-  "output_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+  "output_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
   "pending_preserved": [
     "RNARL natural-CDS provenance and UTR/raw-read remapping",
     "VeloHARMO five-species matrices and official cross-validation",
@@ -47,7 +49,7 @@
     "ROSE training, 64-checkpoint ensemble, continuous velocity regression and raw-read/P-site remapping",
     "Q2 empirical MFE",
     "Q3 mechanistic increments",
-    "Q4–Q6 model and proxy failure",
+    "Q4\u2013Q6 model and proxy failure",
     "dense candidate-budget comparison",
     "main CodonFlow-RK model baseline matrix and dense/time-matched comparison",
     "OOD",
@@ -405,5 +407,31 @@
     "finalization_sha256": "05b0fd7cc4dd0a022cb932e2fbd8e7af9e4d15d056b666f936a2779512b8d57b",
     "scientific_scope": "frozen MAGE dev no-go only; test untouched; no universal mechanism/SOTA claim",
     "submittable": false
+  },
+  "base_v21_audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
+  "base_v21_paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+  "pre_rk13_snapshot": {
+    "paper": "paper/snapshots/rk13_v22/CodonFlow_preprint_A8_v21.md",
+    "paper_sha256": "0c38ea11bb5f73d470c456aa2332353f211412e2ae6658ad09154d61f972db9e",
+    "audit": "paper/snapshots/rk13_v22/a8_rk_paper_sync_audit_v21.json",
+    "audit_sha256": "b4584c6715f02d3502da760efe5787cf2a78e615c17ac43afe26ee69c3fd0863",
+    "a7": "paper/snapshots/rk13_v22/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423"
+  },
+  "rk13": {
+    "ensemble_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+    "ensemble_independent_sha256": "288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e",
+    "recovery_protocol_sha256": "3e9a12347ceb9b498e5f099ca43c49ca9fdb47587d39590f7d539c9672465f52",
+    "failed_v1_report_sha256": "7414d314823568765bf3b48b936829e314eceebbba6683786339461a0334be96",
+    "total_official_processes_across_attempts": 25,
+    "total_generator_runs_across_attempts": 209,
+    "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+    "matrix_independent_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b",
+    "finalization_sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+    "run_count": 198,
+    "record_count": 18,
+    "generation_seconds": 6001.057458210271,
+    "scope": "development seven-method actual-set matrix only",
+    "sota_claim": false
   }
 }

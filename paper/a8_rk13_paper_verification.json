@@ -1,0 +1,266 @@
+{
+  "schema": "a8-rk13-paper-independent-verification-v1",
+  "created_at": "2026-11-19T18:23:39.610988+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "snapshot_paper",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "snapshot_audit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "snapshot_a7",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "current_output_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "update_hashes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "section_once",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "section_before_discussion",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "generated_sections",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "finalization_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "official_run_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "unique_sequence_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "generation_cost_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ensemble_verifier_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "recovery_disclosure_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_verifier_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_row:ensembledesign_11run",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_cai_greedy:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_uniform_synonymous:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_lineardesign_scan:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_row:lineardesign_lambda11_minus_ensembledesign_11run:ned",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "direct_effect_text",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 frozen recovery protocol",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 preserved failed v1 report",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 official EnsembleDesign unique18 report",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 independent EnsembleDesign verification",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 seven-method actual-set matrix",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 independent seven-method matrix verification",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "anchor:RK-13 finalization",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_rk13_hashes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_recovery_hashes",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "pending_main_model_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "pending_ood_and_wetlab_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "non_submittable",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "scientific_boundaries",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ned_interpretation",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "a7_unchanged",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "checks_passed": 50,
+  "checks_total": 50,
+  "paper_sha256": "dd87b75d5b3d73e2db5500921a12d0195ad5b0c299b06ea487f341f6cd40b419",
+  "audit_sha256": "b39f57a006b3aeaa9e46bb781dafad76d5901c9c849dcb4f96dafecd4d2a8f92",
+  "ensemble_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+  "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+  "finalization_sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+  "production_paper_script_imported": false,
+  "scope": "exact RK-13 increment, provenance and scientific boundaries; not a full manuscript review"
+}
