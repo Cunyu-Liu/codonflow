@@ -1,0 +1,278 @@
+{
+  "status": "PASS",
+  "checks_passed": 31,
+  "checks_total": 31,
+  "checks": [
+    {
+      "name": "production_pending_preserved",
+      "status": "PASS",
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "smoke_scope",
+      "status": "PASS",
+      "detail": "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION"
+    },
+    {
+      "name": "data_sha256",
+      "status": "PASS",
+      "detail": {
+        "observed": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+        "expected": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6"
+      }
+    },
+    {
+      "name": "config_sha256",
+      "status": "PASS",
+      "detail": {
+        "observed": "fec31f69aa2c6fe1d82e3b5e4dcfa8c929d712d7039e9d7114c4338f02878235",
+        "expected": "fec31f69aa2c6fe1d82e3b5e4dcfa8c929d712d7039e9d7114c4338f02878235"
+      }
+    },
+    {
+      "name": "script_sha256",
+      "status": "PASS",
+      "detail": {
+        "observed": "3cbc2bd10b0c82a3710e89e1f098a3942fb56e28231fa954e842f9cf88d79001",
+        "expected": "3cbc2bd10b0c82a3710e89e1f098a3942fb56e28231fa954e842f9cf88d79001"
+      }
+    },
+    {
+      "name": "checkpoint_sha256",
+      "status": "PASS",
+      "detail": "490c94fddb52adf25c968a9f26335561ed999ece361f189be0e8afadb257ff92"
+    },
+    {
+      "name": "checkpoint_not_generator",
+      "status": "PASS",
+      "detail": "SUPERVISED_RK08_NOT_GENERATOR"
+    },
+    {
+      "name": "no_functional_untouched_rows",
+      "status": "PASS",
+      "detail": {
+        "dev": 8,
+        "test": 8,
+        "train": 8
+      }
+    },
+    {
+      "name": "no_functional_untouched_predictions",
+      "status": "PASS",
+      "detail": 24
+    },
+    {
+      "name": "row_counts",
+      "status": "PASS",
+      "detail": {
+        "observed": {
+          "dev": 8,
+          "test": 8,
+          "train": 8
+        },
+        "expected": {
+          "train": 8,
+          "dev": 8,
+          "test": 8
+        }
+      }
+    },
+    {
+      "name": "host_vocabulary_train_only",
+      "status": "PASS",
+      "detail": {
+        "Escherichia coli BL21(DE3) with pMGK-argU": 1
+      }
+    },
+    {
+      "name": "dev_only_epoch_selection",
+      "status": "PASS",
+      "detail": {
+        "selected": 1,
+        "recomputed": 1
+      }
+    },
+    {
+      "name": "history_has_no_test_metrics",
+      "status": "PASS",
+      "detail": 2
+    },
+    {
+      "name": "recompute_metrics_train",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 10.909704767458914,
+        "rmse": 3.3029842214971166,
+        "mae": 2.7415863189380616,
+        "pearson": -0.11299459268497086,
+        "spearman": -0.14547859349066158,
+        "cluster_balanced_mse": 10.909704767458914,
+        "cluster_count": 8
+      }
+    },
+    {
+      "name": "recompute_metrics_dev",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 15.250867081675953,
+        "rmse": 3.9052358548077417,
+        "mae": 3.6119562659878284,
+        "pearson": 0.1851785452238207,
+        "spearman": 0.038310708317909774,
+        "cluster_balanced_mse": 15.16161819411976,
+        "cluster_count": 7
+      }
+    },
+    {
+      "name": "recompute_metrics_test",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 13.770049131129602,
+        "rmse": 3.710801683077338,
+        "mae": 3.116119755897671,
+        "pearson": 0.6205736657240446,
+        "spearman": 0.5559369874958259,
+        "cluster_balanced_mse": 13.770049131129602,
+        "cluster_count": 8
+      }
+    },
+    {
+      "name": "unique_prediction_ids",
+      "status": "PASS",
+      "detail": 24
+    },
+    {
+      "name": "independent_forward_predictions",
+      "status": "PASS",
+      "detail": {
+        "max_abs_error": 1.862645149230957e-09
+      }
+    },
+    {
+      "name": "retrain_metrics_identical",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "retrain_predictions_identical",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "retrain_state_tensors_bitwise_identical",
+      "status": "PASS",
+      "detail": true
+    },
+    {
+      "name": "cuda_execution_confirmed",
+      "status": "PASS",
+      "detail": {
+        "python": "3.10.22",
+        "torch": "2.11.0+cu128",
+        "device": "cuda",
+        "cuda_available": true,
+        "gpu": "NVIDIA GeForce RTX 5090"
+      }
+    },
+    {
+      "name": "cuda_pending_preserved",
+      "status": "PASS",
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "cuda_input_hashes_match",
+      "status": "PASS",
+      "detail": {
+        "data_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+        "config_sha256": "fec31f69aa2c6fe1d82e3b5e4dcfa8c929d712d7039e9d7114c4338f02878235",
+        "script_sha256": "3cbc2bd10b0c82a3710e89e1f098a3942fb56e28231fa954e842f9cf88d79001",
+        "checkpoint_sha256": "948d5fd504269b323bae2a4ee3544a13eb7dfb6c2e2f3f7ecb71d32dc5158a01"
+      }
+    },
+    {
+      "name": "cuda_checkpoint_hash",
+      "status": "PASS",
+      "detail": "948d5fd504269b323bae2a4ee3544a13eb7dfb6c2e2f3f7ecb71d32dc5158a01"
+    },
+    {
+      "name": "cuda_model_config_match",
+      "status": "PASS",
+      "detail": "same model configuration"
+    },
+    {
+      "name": "cuda_unique_prediction_ids",
+      "status": "PASS",
+      "detail": 24
+    },
+    {
+      "name": "cuda_recompute_metrics_train",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 10.909704763994311,
+        "rmse": 3.302984220972651,
+        "mae": 2.741586319054477,
+        "pearson": -0.11299477636288066,
+        "spearman": -0.14547859349066158,
+        "cluster_balanced_mse": 10.909704763994311,
+        "cluster_count": 8
+      }
+    },
+    {
+      "name": "cuda_recompute_metrics_dev",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 15.250867079365397,
+        "rmse": 3.905235854511914,
+        "mae": 3.611956265871413,
+        "pearson": 0.18517818632585403,
+        "spearman": 0.038310708317909774,
+        "cluster_balanced_mse": 15.161618193069446,
+        "cluster_count": 7
+      }
+    },
+    {
+      "name": "cuda_recompute_metrics_test",
+      "status": "PASS",
+      "detail": {
+        "n": 8,
+        "mse": 13.770049125100568,
+        "rmse": 3.710801682264975,
+        "mae": 3.1161197549663484,
+        "pearson": 0.6205736759975767,
+        "spearman": 0.5559369874958259,
+        "cluster_balanced_mse": 13.770049125100568,
+        "cluster_count": 8
+      }
+    },
+    {
+      "name": "cuda_independent_forward_predictions",
+      "status": "PASS",
+      "detail": {
+        "max_abs_error": 4.76837158203125e-07
+      }
+    }
+  ],
+  "artifact_hashes": {
+    "metrics.json": "ce487cc473c1ca8b8db23ee478cf3ed8fc186b73ce14296cc1f70676056a91ab",
+    "history.json": "eef16878747c7b9cc4e64998503cdf09d1e8d0eb82d7b212d565aa3fc0f62861",
+    "predictions.csv": "81a9f46ed97084802f27590aab88614aebe09b2e37b1bce7fb5031156b7c8b41",
+    "resolved_config.json": "ef8243dc8dd1320b4c9bdd59eae14ed1682be2a6a07eb8dcf4d8495abf27ed61",
+    "best.pt": "490c94fddb52adf25c968a9f26335561ed999ece361f189be0e8afadb257ff92"
+  },
+  "retrain": {
+    "metrics_equal": true,
+    "predictions_equal": true,
+    "state_tensors_bitwise_equal": true
+  },
+  "cuda": {
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "forward_max_abs_error": 4.76837158203125e-07
+  },
+  "scope": "independent verification of a real-data smoke; not mechanism validation or SOTA"
+}

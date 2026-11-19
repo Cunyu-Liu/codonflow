@@ -126,6 +126,7 @@
 - **涉及**：新增 `src/codonflow/models/ribokinetic.py`、功能/速度 dataset 与训练脚本；先不接生成器。
 - **输出**：功能与速度 OOD 主表、预测区间、去组件消融。
 - **验收**：至少一个机制组合稳定优于简单代理和同骨干无机制模型；每项增量有 paired CI。
+- **当前进展（2026-11-19，工程 smoke 已闭环）**：已实现共享 codon Transformer 的 initiation/velocity/decay/pair 四通路、UTR–CDS 合法配对偏置、功能异方差头与不确定性输出；消融仅门控信息流，不删除通路参数，pair-off 仍使用同形 dense attention。严格 functional/long-velocity loader 保留 NaN+mask，宿主词表和归一化仅拟合 train；契约测试 **12/12 PASS**。冻结 Boël sequence-OOD 表的 train/dev/test 各 8 条仅用于真实端到端 smoke，`functional_untouched` 显式排除；两次 CPU 训练指标、预测及参数张量逐位一致，RTX 5090 CUDA smoke 完成。独立核验 **31/31 PASS**、finalization **37/37 PASS**，CUDA 独立前向最大绝对误差 `4.76837158203125e-07`。这只是工程与复现里程碑，不是机制增量、功能/速度 OOD 主表、SOTA 或生成器就绪证据；RK-G1 仍未通过，昂贵生成训练不得启动。大 artifacts 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/`。
 
 ### RK-09 E3：跨层机制一致性
 

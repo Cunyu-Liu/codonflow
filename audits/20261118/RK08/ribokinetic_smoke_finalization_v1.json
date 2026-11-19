@@ -1,0 +1,239 @@
+{
+  "status": "PASS",
+  "checks_passed": 37,
+  "checks_total": 37,
+  "checks": [
+    {
+      "name": "independent_verification",
+      "status": "PASS",
+      "detail": {
+        "passed": 31,
+        "total": 31
+      }
+    },
+    {
+      "name": "unit_tests",
+      "status": "PASS",
+      "detail": {
+        "status": "PASS",
+        "passed": 12,
+        "total": 12,
+        "command": "CUDA_VISIBLE_DEVICES=\"\" PYTHONPATH=src /root/miniconda3/envs/llr_env/bin/python -m pytest -q tests/test_a8_rk08_ribokinetic.py"
+      }
+    },
+    {
+      "name": "cpu_retrain_bitwise",
+      "status": "PASS",
+      "detail": {
+        "metrics_equal": true,
+        "predictions_equal": true,
+        "state_tensors_bitwise_equal": true
+      }
+    },
+    {
+      "name": "real_cuda_execution",
+      "status": "PASS",
+      "detail": {
+        "device": "cuda",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "forward_max_abs_error": 4.76837158203125e-07
+      }
+    },
+    {
+      "name": "cpu_pending_preserved",
+      "status": "PASS",
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "cpu_large_artifacts_on_teams",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1"
+    },
+    {
+      "name": "cpu_scope_not_mechanism_validation",
+      "status": "PASS",
+      "detail": "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION"
+    },
+    {
+      "name": "cpu_checkpoint_hash",
+      "status": "PASS",
+      "detail": "490c94fddb52adf25c968a9f26335561ed999ece361f189be0e8afadb257ff92"
+    },
+    {
+      "name": "cpu_metrics.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1/metrics.json"
+    },
+    {
+      "name": "cpu_history.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1/history.json"
+    },
+    {
+      "name": "cpu_predictions.csv_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1/predictions.csv"
+    },
+    {
+      "name": "cpu_resolved_config.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1/resolved_config.json"
+    },
+    {
+      "name": "retrain_pending_preserved",
+      "status": "PASS",
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "retrain_large_artifacts_on_teams",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain"
+    },
+    {
+      "name": "retrain_scope_not_mechanism_validation",
+      "status": "PASS",
+      "detail": "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION"
+    },
+    {
+      "name": "retrain_checkpoint_hash",
+      "status": "PASS",
+      "detail": "490c94fddb52adf25c968a9f26335561ed999ece361f189be0e8afadb257ff92"
+    },
+    {
+      "name": "retrain_metrics.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain/metrics.json"
+    },
+    {
+      "name": "retrain_history.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain/history.json"
+    },
+    {
+      "name": "retrain_predictions.csv_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain/predictions.csv"
+    },
+    {
+      "name": "retrain_resolved_config.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain/resolved_config.json"
+    },
+    {
+      "name": "cuda_pending_preserved",
+      "status": "PASS",
+      "detail": "PASS_PENDING_INDEPENDENT_VERIFICATION"
+    },
+    {
+      "name": "cuda_large_artifacts_on_teams",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1"
+    },
+    {
+      "name": "cuda_scope_not_mechanism_validation",
+      "status": "PASS",
+      "detail": "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION"
+    },
+    {
+      "name": "cuda_checkpoint_hash",
+      "status": "PASS",
+      "detail": "948d5fd504269b323bae2a4ee3544a13eb7dfb6c2e2f3f7ecb71d32dc5158a01"
+    },
+    {
+      "name": "cuda_metrics.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1/metrics.json"
+    },
+    {
+      "name": "cuda_history.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1/history.json"
+    },
+    {
+      "name": "cuda_predictions.csv_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1/predictions.csv"
+    },
+    {
+      "name": "cuda_resolved_config.json_exists",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1/resolved_config.json"
+    },
+    {
+      "name": "no_untouched_evaluation",
+      "status": "PASS",
+      "detail": {
+        "cpu": {
+          "dev": 8,
+          "test": 8,
+          "train": 8
+        },
+        "retrain": {
+          "dev": 8,
+          "test": 8,
+          "train": 8
+        },
+        "cuda": {
+          "dev": 8,
+          "test": 8,
+          "train": 8
+        }
+      }
+    },
+    {
+      "name": "no_generator_claim",
+      "status": "PASS",
+      "detail": "generator claims remain forbidden"
+    },
+    {
+      "name": "code_exists_src/codonflow/models/ribokinetic.py",
+      "status": "PASS",
+      "detail": "src/codonflow/models/ribokinetic.py"
+    },
+    {
+      "name": "code_exists_src/codonflow/data/ribokinetic.py",
+      "status": "PASS",
+      "detail": "src/codonflow/data/ribokinetic.py"
+    },
+    {
+      "name": "code_exists_scripts/a8_rk08_train_ribokinetic.py",
+      "status": "PASS",
+      "detail": "scripts/a8_rk08_train_ribokinetic.py"
+    },
+    {
+      "name": "code_exists_scripts/a8_rk08_verify_ribokinetic.py",
+      "status": "PASS",
+      "detail": "scripts/a8_rk08_verify_ribokinetic.py"
+    },
+    {
+      "name": "code_exists_scripts/a8_rk08_finalize_ribokinetic.py",
+      "status": "PASS",
+      "detail": "scripts/a8_rk08_finalize_ribokinetic.py"
+    },
+    {
+      "name": "code_exists_tests/test_a8_rk08_ribokinetic.py",
+      "status": "PASS",
+      "detail": "tests/test_a8_rk08_ribokinetic.py"
+    },
+    {
+      "name": "code_exists_configs/a8_rk08_smoke_config.json",
+      "status": "PASS",
+      "detail": "configs/a8_rk08_smoke_config.json"
+    }
+  ],
+  "code_sha256": {
+    "src/codonflow/models/ribokinetic.py": "ad1672f5b95f0ed090b29ef9a79ba9aba89eaf9a38b8f812c920dbfd26fad17d",
+    "src/codonflow/data/ribokinetic.py": "c0e6a2e3456644e881c1a8f3e688b1d379734dfafc076c2fc1d2e60792977c6b",
+    "scripts/a8_rk08_train_ribokinetic.py": "3cbc2bd10b0c82a3710e89e1f098a3942fb56e28231fa954e842f9cf88d79001",
+    "scripts/a8_rk08_verify_ribokinetic.py": "03dfc77dadfa06c54f11f8e61a61e0974c9a34b845e6848ec770e35f5f5acfda",
+    "scripts/a8_rk08_finalize_ribokinetic.py": "04592e9ff0a400cc57b76f2926fc5132532d90407a36c0dd5ad7fc3a2f27f314",
+    "tests/test_a8_rk08_ribokinetic.py": "0d83f295b518fb632fb2b520099df9cd2aeb42ce97ec8b840bf3499a50f52baf",
+    "configs/a8_rk08_smoke_config.json": "fec31f69aa2c6fe1d82e3b5e4dcfa8c929d712d7039e9d7114c4338f02878235"
+  },
+  "artifact_roots": {
+    "cpu": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1",
+    "retrain": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cpu_v1_retrain",
+    "cuda": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/smoke_cuda_v1"
+  },
+  "conclusion": "Real-data CPU/CUDA training smoke is reproducible and independently checked; mechanism efficacy, OOD gains, generator readiness and SOTA remain unvalidated."
+}
