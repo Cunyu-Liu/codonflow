@@ -100,3 +100,71 @@ PYTHONPATH=. /usr/bin/python3 -m unittest scripts.tests.test_a8_rk04_sequence_oo
 - `ppt_verification.json` 为 PASS：整稿 60 页，前 58 页内容与结构保持不变（第 58 页末尾仅有无语义空白差异），新页关键文本和备注齐全，所有带坐标的元素均在 960×540 画布内。
 - 回读 XML SHA256=`b7c5f9651df573723953a4545037fb06f338bf329eca51238dcc482aad8311ef`。
 - sequence-OOD v2 在 revision 41 的 79 页基线上只追加第 80 页，slide ID=`pgq`，写入后 revision=42。候选 XML 先与 finalization 11/11 和真实 counts 核对；写后回读 10/10 PASS，前 79 页 slide IDs 与语义 XML 不变。回读 XML SHA256=`956991838376d9b07f3073aa83ae8064c23c6e1446b866bd41ce663ff0f4206d`。
+
+## 12. Sequence-OOD 功能预测模型（2026-11-19，正式实现 v2）
+
+### 12.1 冻结协议与模型选择
+
+协议：`configs/a8_rk04_sequence_ood_model_protocol.json`，protocol ID=`a8_rk04_sequence_ood_model_v1_dev_cbmse`。只用 retained train 拟合，dev 按 operational-cluster-balanced MSE 为每个家族选一个候选，再冻结 overall primary family；test 与 sequence-OOD 不参与选择。没有在 train+dev 重训。19,072 条 MAGE functional untouched 不读取用于训练或评价。
+
+共 5 个家族、17 个候选：train 加权均值常数、GC-only Ridge、5 个基础序列特征 Ridge、10 个代理特征 Ridge、全代理特征 HistGradientBoosting。Ridge alpha 网格为 0.1/1/10/100；HistGB 为 4 个冻结候选。训练权重为 retained train 内 cluster 行数倒数，归一化沿用冻结 train-only JSON，Gave144 仅用 train observed mean 和 missing indicator。
+
+dev 选择结果：
+
+| family | selected parameters | dev cluster-balanced MSE |
+|---|---|---:|
+| constant | train weighted mean | 3.905366 |
+| ridge_gc | alpha=0.1 | 3.834222 |
+| ridge_basic | alpha=100 | 3.743059 |
+| **ridge_all (primary)** | **alpha=100** | **3.725576** |
+| histgb_all | leaves=7, iter=200, lr=0.05, min_leaf=20, L2=1 | 3.763559 |
+
+### 12.2 最终分区结果
+
+以下为最终冻结指标；CB-MSE=cluster-balanced MSE。常数模型的相关指标无定义，记为 `null`，不补零。
+
+| family | test Spearman | test R² | test CB-MSE | sequence-OOD Spearman | sequence-OOD R² | sequence-OOD CB-MSE |
+|---|---:|---:|---:|---:|---:|---:|
+| constant | null | -0.004095 | 4.400064 | null | -0.057252 | 4.388894 |
+| ridge_gc | 0.119209 | 0.011011 | 4.338435 | 0.071873 | -0.050378 | 4.378262 |
+| ridge_basic | 0.124036 | 0.009743 | 4.292031 | 0.203876 | -0.009653 | 4.211838 |
+| **ridge_all (primary)** | **0.144896** | **0.015979** | **4.257835** | **0.217873** | **0.011709** | **4.114318** |
+| histgb_all | 0.203076 | 0.037747 | 4.207758 | 0.219383 | 0.032386 | 3.989950 |
+
+HistGB 在 retained test 的 Spearman 数值高于 primary，但不能在看到 test 后替换 dev 冻结的 primary；完整非主家族结果保留，避免选择性报告。绝对解释度仍低，不能把 sequence-OOD 排名相关提升包装成强功能预测或机制增益。
+
+dev 冻结 primary `ridge_all` 相对 dev-selected `ridge_gc` 的 paired operational-cluster bootstrap（1000 次，seed=20261119）：
+
+| partition | Δrow Spearman | 95% CI | ΔCB-MSE | 95% CI |
+|---|---:|---|---:|---|
+| retained test | +0.025687 | [-0.066372, 0.119629] | -0.080600 | [-0.233242, 0.078749] |
+| sequence-OOD | +0.146000 | [0.103896, 0.189857] | -0.263944 | [-0.374981, -0.144076] |
+
+因此，retained test 的增量区间跨零；sequence-OOD 上组合代理特征相对 GC 的排名和 CB-MSE 改善区间未跨零。该结果只支持 **Boël nonsynonymous proxy prediction 的有限 sequence-OOD 信号**，不支持固定蛋白同义机制、同骨干 initiation/velocity/decay/pair-channel 增量、CodonFlow-RK 生成器、SOTA、functional untouched 或湿实验声称。
+
+### 12.3 独立复核、失败保留与复现
+
+- 单元测试：`sequence_ood_model_unit_tests.log`，12/12 PASS。
+- 独立验证：`sequence_ood_model_independent_verification.json`，40/40 PASS；独立重算所有分区指标、origin strata、bootstrap 和 dev 选择，逐行加载模型前向，最大预测误差 0.0。
+- 第二次完整训练：`sequence_ood_model_retrain_summary.json`；两次 `predictions.csv.gz`、`metrics.json` 和 `dev_model_selection.csv` SHA256 完全一致。
+- 最终化：`sequence_ood_model_finalization.json`，18/18 PASS；同时确认常数相关修正没有改变模型选择、非恒定模型结果或主比较。
+- 首次 schema 失败保留为 `sequence_ood_model_training_v1_fail.console.log`：真实字段是 `expression_value` 与 `operational_protein_cluster`，代理特征表不含表达标签。
+- 默认 47 线程的小数据超额订阅运行被终止，保留 `sequence_ood_model_training_v2_incomplete_multithread.console.log`；正式运行和复现仅限制数值库为单线程，模型协议不变。
+- 首次完成结果中的常数簇均值出现浮点末位差异，产生伪相关；旧 summary/log 保留为 `*_v1_constant_corr_artifact.*`，旧大文件目录保留为 `sequence_ood_model_v1/`。正式实现 v2 对全局常数预测的所有相关指标明确记 `null`。
+- 独立 verifier 初次遗漏派生 `log_length_nt`，在独立前向阶段停止；修正后 40/40 PASS，生产结果未因此改变。
+
+正式 artifacts：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_model_v2/`；第二次训练：`sequence_ood_model_v2_retrain/`。预测和模型权重不进入 Git；summary、metrics、dev selection、日志和验证报告进入 Git。
+
+```bash
+cd /home/codonflow-a8-rk
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk04_sequence_ood_model.py \
+  --protocol configs/a8_rk04_sequence_ood_model_protocol.json \
+  --output-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_model_v2 \
+  --report audits/20261118/RK04/sequence_ood_model_summary.json
+/root/miniconda3/envs/llr_env/bin/python scripts/a8_rk04_verify_sequence_ood_model.py \
+  --protocol configs/a8_rk04_sequence_ood_model_protocol.json \
+  --summary audits/20261118/RK04/sequence_ood_model_summary.json \
+  --production-script scripts/a8_rk04_sequence_ood_model.py \
+  --output audits/20261118/RK04/sequence_ood_model_independent_verification.json
+```

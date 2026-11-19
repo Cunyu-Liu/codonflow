@@ -1,0 +1,64 @@
+/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py:154: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  value = float(function(y, p).statistic)
+/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py:154: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  value = float(function(y, p).statistic)
+/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py:154: NearConstantInputWarning: An input array is nearly constant; the computed correlation coefficient may be inaccurate.
+  value = float(function(y, p).statistic)
+{
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "primary_family": "ridge_all",
+  "test": {
+    "constant": {
+      "row_spearman": null,
+      "cluster_balanced_mse": 4.400063730446987
+    },
+    "ridge_gc": {
+      "row_spearman": 0.11920943173160552,
+      "cluster_balanced_mse": 4.338435443510913
+    },
+    "ridge_basic": {
+      "row_spearman": 0.12403558196756162,
+      "cluster_balanced_mse": 4.292030734974323
+    },
+    "ridge_all": {
+      "row_spearman": 0.14489601584088516,
+      "cluster_balanced_mse": 4.257835240787258
+    },
+    "histgb_all": {
+      "row_spearman": 0.20307644175384384,
+      "cluster_balanced_mse": 4.207757635047566
+    }
+  },
+  "sequence_ood": {
+    "constant": {
+      "row_spearman": null,
+      "cluster_balanced_mse": 4.3888942967007125
+    },
+    "ridge_gc": {
+      "row_spearman": 0.07187342239270017,
+      "cluster_balanced_mse": 4.378261960057955
+    },
+    "ridge_basic": {
+      "row_spearman": 0.20387555524505765,
+      "cluster_balanced_mse": 4.211838208080061
+    },
+    "ridge_all": {
+      "row_spearman": 0.21787306638008885,
+      "cluster_balanced_mse": 4.114317657190562
+    },
+    "histgb_all": {
+      "row_spearman": 0.2193829589217274,
+      "cluster_balanced_mse": 3.98995049596943
+    }
+  },
+  "primary_comparison": {
+    "test": {
+      "row_spearman_delta": 0.02568658410927964,
+      "cluster_balanced_mse_delta": -0.0806002027236552
+    },
+    "sequence_ood": {
+      "row_spearman_delta": 0.14599964398738868,
+      "cluster_balanced_mse_delta": -0.2639443028673929
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "checks": [
+    {
+      "name": "production_pending",
+      "pass": true
+    },
+    {
+      "name": "independent_pass",
+      "pass": true
+    },
+    {
+      "name": "same_protocol",
+      "pass": true
+    },
+    {
+      "name": "same_production_code",
+      "pass": true
+    },
+    {
+      "name": "independent_summary_identity",
+      "pass": true
+    },
+    {
+      "name": "same_primary_family",
+      "pass": true
+    },
+    {
+      "name": "constant_fix_preserves_selection_and_nonconstant_results",
+      "pass": true
+    },
+    {
+      "name": "constant_correlations_are_null",
+      "pass": true
+    },
+    {
+      "name": "constant_fix_preserves_error_metrics",
+      "pass": true
+    },
+    {
+      "name": "repeat_identical_metrics",
+      "pass": true
+    },
+    {
+      "name": "repeat_identical_dev_model_selection",
+      "pass": true
+    },
+    {
+      "name": "repeat_identical_predictions",
+      "pass": true
+    },
+    {
+      "name": "selected_models_reloaded_with_zero_delta",
+      "pass": true
+    },
+    {
+      "name": "untouched_excluded",
+      "pass": true
+    },
+    {
+      "name": "no_untouched_evaluation",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood_actually_evaluated",
+      "pass": true
+    },
+    {
+      "name": "scope_proxy_only",
+      "pass": true
+    },
+    {
+      "name": "unit_tests_12_pass",
+      "pass": true
+    }
+  ],
+  "checks_passed": 18,
+  "checks_total": 18,
+  "failed": [],
+  "fixed_protein_synonymous_mechanism_claim": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "independent_verification": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_independent_verification.json",
+  "independent_verification_sha256": "ebd1e96d3895f04f9168bbf9f39f72564324c5e853abd3a4c6c74aa7b26d63a6",
+  "primary_family": "ridge_all",
+  "prior_constant_correlation_artifact_summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_summary_v1_constant_corr_artifact.json",
+  "prior_constant_correlation_artifact_summary_sha256": "fcf31c0ac6f29ea3d415e737d5e950f444f8e8c66c358b42d612bb3f1e1e0fa7",
+  "production_summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_summary.json",
+  "production_summary_sha256": "173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979",
+  "protocol_id": "a8_rk04_sequence_ood_model_v1_dev_cbmse",
+  "protocol_sha256": "e52ed045c1fa2cf890d67f752c72a208b90220dd99be2e262501e67a7b81d926",
+  "repeated_run_predictions_metrics_selection_identical": true,
+  "retrain_summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_retrain_summary.json",
+  "retrain_summary_sha256": "d0deb3fbe27c32afcaeb4c7ef04c8cedaab15679690d8b98f1276166328b4501",
+  "schema_version": "a8-rk04-sequence-ood-model-finalization-v1",
+  "scope": "Bo\u00ebl nonsynonymous proxy prediction; retained cluster-disjoint test and sequence-OOD only.",
+  "sequence_ood_evaluated": true,
+  "sota_claim": false,
+  "status": "PASS",
+  "unit_test_log": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_unit_tests.log",
+  "unit_test_log_sha256": "6f8333d18fcb6dc8d2122dba317f5d1f01254ba1318595ce716c6e4cb9715179",
+  "wet_lab_claim": false
+}

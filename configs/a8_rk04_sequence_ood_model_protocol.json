@@ -1,0 +1,56 @@
+{
+  "schema_version": "a8-rk04-sequence-ood-model-protocol-v1",
+  "protocol_id": "a8_rk04_sequence_ood_model_v1_dev_cbmse",
+  "frozen_before_first_model_run": true,
+  "data": {
+    "split_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/functional_long_sequence_ood.csv",
+    "split_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+    "features_csv_gz": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz",
+    "features_sha256": "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b",
+    "normalization_json": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/train_only_normalization.json",
+    "normalization_sha256": "a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db",
+    "allowed_assignments": ["train", "dev", "test", "sequence_ood"],
+    "fit_assignment": "train",
+    "selection_assignment": "dev",
+    "final_assignments": ["test", "sequence_ood"],
+    "untouched_assignment": "functional_untouched",
+    "untouched_label_access": false
+  },
+  "feature_sets": {
+    "gc": ["gc_fraction"],
+    "basic": ["log_length_nt", "gc_fraction", "cai", "full_cds_mfe_per_nt", "mfe_5prime_48_kcal_mol"],
+    "all_proxy": ["log_length_nt", "gc_fraction", "cai", "full_cds_mfe_kcal_mol", "full_cds_mfe_per_nt", "mfe_5prime_48_kcal_mol", "source_Gave48", "source_Gave96", "source_Gave144", "source_Gz48v"]
+  },
+  "missing_indicator_features": ["source_Gave144"],
+  "training_weight": "inverse_retained_train_cluster_row_count",
+  "selection_metric": "dev_cluster_balanced_mse",
+  "selection_scope": "one candidate per model family, then one overall primary family; no test or sequence-OOD selection",
+  "tie_break": "protocol candidate order",
+  "families": [
+    {"family": "constant", "model": "weighted_train_mean", "candidates": [{}]},
+    {"family": "ridge_gc", "model": "ridge", "feature_set": "gc", "candidates": [{"alpha": 0.1}, {"alpha": 1.0}, {"alpha": 10.0}, {"alpha": 100.0}]},
+    {"family": "ridge_basic", "model": "ridge", "feature_set": "basic", "candidates": [{"alpha": 0.1}, {"alpha": 1.0}, {"alpha": 10.0}, {"alpha": 100.0}]},
+    {"family": "ridge_all", "model": "ridge", "feature_set": "all_proxy", "candidates": [{"alpha": 0.1}, {"alpha": 1.0}, {"alpha": 10.0}, {"alpha": 100.0}]},
+    {"family": "histgb_all", "model": "hist_gradient_boosting", "feature_set": "all_proxy", "candidates": [
+      {"learning_rate": 0.05, "max_iter": 200, "max_leaf_nodes": 7, "min_samples_leaf": 20, "l2_regularization": 1.0},
+      {"learning_rate": 0.05, "max_iter": 200, "max_leaf_nodes": 15, "min_samples_leaf": 20, "l2_regularization": 1.0},
+      {"learning_rate": 0.05, "max_iter": 200, "max_leaf_nodes": 15, "min_samples_leaf": 40, "l2_regularization": 10.0},
+      {"learning_rate": 0.03, "max_iter": 300, "max_leaf_nodes": 15, "min_samples_leaf": 20, "l2_regularization": 10.0}
+    ]}
+  ],
+  "histgb_fixed": {"early_stopping": false, "random_state": 20261119},
+  "evaluation": {
+    "primary_partition_metrics": ["row_mse", "row_r2", "row_pearson", "row_spearman", "cluster_balanced_mse", "cluster_mean_pearson", "cluster_mean_spearman", "within_cluster_centered_spearman"],
+    "additional_partitions": ["train", "dev"],
+    "sequence_ood_origin_strata": ["train", "dev", "test"],
+    "bootstrap": {"method": "paired operational-cluster resampling", "replicates": 1000, "seed": 20261119, "ci_percentiles": [2.5, 97.5], "comparison": "overall primary family minus dev-selected ridge_gc", "statistics": ["row_spearman_delta", "cluster_balanced_mse_delta"], "partitions": ["test", "sequence_ood"]}
+  },
+  "scope": {
+    "fixed_protein_synonymous_mechanism_claim": false,
+    "codonflow_rk_generator_claim": false,
+    "functional_untouched_evaluation": false,
+    "sota_claim": false,
+    "wet_lab_claim": false,
+    "description": "Train-only proxy predictors on Boël nonsynonymous variants under cluster-disjoint and sequence-OOD evaluation."
+  }
+}

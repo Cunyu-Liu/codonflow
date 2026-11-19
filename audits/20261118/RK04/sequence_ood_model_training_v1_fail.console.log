@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py", line 417, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py", line 273, in main
+    core, order, untouched_count = read_core(Path(data["split_csv"]), set(data["allowed_assignments"]), data["untouched_assignment"])
+  File "/home/codonflow-a8-rk/scripts/a8_rk04_sequence_ood_model.py", line 75, in read_core
+    expression = finite(raw["expression_label"], "expression_label")
+KeyError: 'expression_label'

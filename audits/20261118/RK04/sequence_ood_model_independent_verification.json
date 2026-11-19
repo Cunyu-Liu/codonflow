@@ -1,0 +1,183 @@
+{
+  "checks": [
+    {
+      "name": "production_pending_status",
+      "pass": true
+    },
+    {
+      "name": "protocol_hash",
+      "pass": true
+    },
+    {
+      "name": "production_script_hash",
+      "pass": true
+    },
+    {
+      "name": "split_csv_hash",
+      "pass": true
+    },
+    {
+      "name": "features_csv_gz_hash",
+      "pass": true
+    },
+    {
+      "name": "normalization_json_hash",
+      "pass": true
+    },
+    {
+      "name": "artifact_hash_dev_model_selection",
+      "pass": true
+    },
+    {
+      "name": "artifact_hash_metrics",
+      "pass": true
+    },
+    {
+      "name": "artifact_hash_predictions",
+      "pass": true
+    },
+    {
+      "name": "artifact_hash_selected_models",
+      "pass": true
+    },
+    {
+      "name": "core_and_untouched_counts",
+      "pass": true
+    },
+    {
+      "name": "prediction_identities_exact",
+      "pass": true
+    },
+    {
+      "name": "prediction_columns_no_untouched",
+      "pass": true
+    },
+    {
+      "name": "prediction_columns_only_expected_families",
+      "pass": true
+    },
+    {
+      "name": "partition_counts",
+      "pass": true
+    },
+    {
+      "name": "all_partition_metrics_recomputed",
+      "pass": true
+    },
+    {
+      "name": "ood_origin_metrics_recomputed",
+      "pass": true
+    },
+    {
+      "name": "ood_origin_counts",
+      "pass": true
+    },
+    {
+      "name": "summary_test_ood_metrics_match",
+      "pass": true
+    },
+    {
+      "name": "selection_candidate_count_17",
+      "pass": true
+    },
+    {
+      "name": "selection_file_has_no_final_metrics",
+      "pass": true
+    },
+    {
+      "name": "one_dev_best_constant",
+      "pass": true
+    },
+    {
+      "name": "one_dev_best_ridge_gc",
+      "pass": true
+    },
+    {
+      "name": "one_dev_best_ridge_basic",
+      "pass": true
+    },
+    {
+      "name": "one_dev_best_ridge_all",
+      "pass": true
+    },
+    {
+      "name": "one_dev_best_histgb_all",
+      "pass": true
+    },
+    {
+      "name": "selected_candidate_indices_match",
+      "pass": true
+    },
+    {
+      "name": "primary_selected_by_dev_only",
+      "pass": true
+    },
+    {
+      "name": "model_normalization_exact",
+      "pass": true
+    },
+    {
+      "name": "independent_model_forward_constant",
+      "pass": true
+    },
+    {
+      "name": "independent_model_forward_ridge_gc",
+      "pass": true
+    },
+    {
+      "name": "independent_model_forward_ridge_basic",
+      "pass": true
+    },
+    {
+      "name": "independent_model_forward_ridge_all",
+      "pass": true
+    },
+    {
+      "name": "independent_model_forward_histgb_all",
+      "pass": true
+    },
+    {
+      "name": "observed_primary_delta_test",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_recomputed_test",
+      "pass": true
+    },
+    {
+      "name": "observed_primary_delta_sequence_ood",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_recomputed_sequence_ood",
+      "pass": true
+    },
+    {
+      "name": "scope_no_generator_or_sota",
+      "pass": true
+    },
+    {
+      "name": "untouched_not_evaluated",
+      "pass": true
+    }
+  ],
+  "checks_passed": 40,
+  "checks_total": 40,
+  "dev_model_selection_sha256": "215e8c9fb8119222ba8d63a4cf78b7a35686075bf71a7ce07a4fde5af79cf632",
+  "failed": [],
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "max_model_prediction_abs_delta": 0.0,
+  "metrics_sha256": "84b3b2068ed68a96bbbe3694509c26c9043a3d66be4d503ee805bca52e83bd34",
+  "predictions_sha256": "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75",
+  "primary_family": "ridge_all",
+  "production_script_sha256": "00cde8b5dfe46fbb5177bc4eb14830e4cca2e1de502f3f1d9c3b27720600da83",
+  "protocol_sha256": "e52ed045c1fa2cf890d67f752c72a208b90220dd99be2e262501e67a7b81d926",
+  "schema_version": "a8-rk04-sequence-ood-model-independent-v1",
+  "sequence_ood_evaluated": true,
+  "sota_claim": false,
+  "status": "PASS",
+  "summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_model_summary.json",
+  "summary_sha256": "173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979",
+  "untouched_rows_excluded": 19072
+}
