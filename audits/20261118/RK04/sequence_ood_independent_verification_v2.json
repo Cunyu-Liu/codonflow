@@ -1,0 +1,208 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "original_split_sha256_matches_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "feature_sha256_matches_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_script_sha256_matches_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "summary_initial_status_pending_independent",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "label_access_declared_false",
+      "pass": true
+    },
+    {
+      "detail": 25420,
+      "name": "original_row_count_25420",
+      "pass": true
+    },
+    {
+      "detail": 25420,
+      "name": "output_row_count_25420",
+      "pass": true
+    },
+    {
+      "detail": 6348,
+      "name": "feature_row_count_6348",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "output_schema_appends_exact_contract",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "all_original_columns_and_row_order_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "thresholds_recomputed_from_original_train_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "threshold_train_rows_5079",
+      "pass": true
+    },
+    {
+      "detail": 19072,
+      "name": "untouched_row_count_19072",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "untouched_copied_without_features_or_ood_reasons",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boel_assignments_recomputed_exactly",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boel_reasons_recomputed_exactly",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boel_length_gc_values_recomputed_exactly",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "every_boel_cluster_has_exactly_one_ood_assignment",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sequence_ood_nonempty",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retained_core_has_no_extreme_row",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "every_sequence_ood_row_has_at_least_one_reason",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "core_rows_have_no_ood_reason",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "assignment_row_counts_match",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "assignment_cluster_counts_match",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "moved_original_split_counts_match",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "reason_counts_match",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "normalization_recomputed_from_retained_train_observed_values",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "normalization_observed_plus_missing_equals_retained_train_rows",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_gave144_total_missing_62_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_gave144_missing_examples_remain_for_nontrain_imputation",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "normalization_scales_positive_finite",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "normalization_forbids_nontrain_fit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "output_csv_sha256_matches_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "normalization_sha256_matches_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "sequence_ood_not_yet_evaluated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "functional_untouched_not_evaluated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "generator_training_not_authorized",
+      "pass": true
+    }
+  ],
+  "checks_passed": 37,
+  "checks_total": 37,
+  "feature_sha256": "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b",
+  "functional_untouched_evaluated": false,
+  "independent_scope": "recomputed from frozen original split and feature table without importing production code",
+  "input_sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+  "normalization_sha256": "a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db",
+  "performance_evaluated": false,
+  "production_script_sha256": "1ae3bfb7ac3dd64712c0c2aae18637b7f82e826941013f0fcfb84eaf4c2274dc",
+  "schema_version": "a8-rk04-sequence-ood-independent-verification-v1",
+  "scientific_boundaries": [
+    "This creates a genuine train-range-excluded length/GC OOD partition, not merely post-hoc strata.",
+    "Boel remains cross-protein nonsynonymous expression data, not a fixed-protein synonymous library.",
+    "Sequence OOD is frozen for one-shot evaluation after model selection; it is not functional untouched MAGE evidence.",
+    "No generator training, SOTA, wet-lab, UTR-CDS, velocity or decay claim is authorized."
+  ],
+  "sequence_ood_csv_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+  "sequence_ood_evaluated": false,
+  "status": "PASS"
+}

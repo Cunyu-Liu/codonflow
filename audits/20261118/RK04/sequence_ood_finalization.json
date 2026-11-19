@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "name": "production_summary_pending_independent_status_preserved",
+      "pass": true
+    },
+    {
+      "name": "independent_verification_pass_37_of_37",
+      "pass": true
+    },
+    {
+      "name": "initial_verifier_assumption_failure_retained",
+      "pass": true
+    },
+    {
+      "name": "unit_tests_13_pass",
+      "pass": true
+    },
+    {
+      "name": "production_script_hash_matches",
+      "pass": true
+    },
+    {
+      "name": "independent_report_production_hash_matches",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood_csv_hash_matches",
+      "pass": true
+    },
+    {
+      "name": "normalization_hash_matches",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood_not_evaluated",
+      "pass": true
+    },
+    {
+      "name": "functional_untouched_not_evaluated",
+      "pass": true
+    },
+    {
+      "name": "generator_not_authorized",
+      "pass": true
+    }
+  ],
+  "checks_passed": 11,
+  "checks_total": 11,
+  "counts": {
+    "boel_clusters_by_ood_assignment": {
+      "dev": 447,
+      "sequence_ood": 1110,
+      "test": 436,
+      "train": 3561
+    },
+    "boel_rows_by_ood_assignment": {
+      "dev": 503,
+      "sequence_ood": 1336,
+      "test": 490,
+      "train": 4019
+    },
+    "functional_untouched_rows_copied_without_feature_calculation": 19072,
+    "sequence_ood_cluster_reason_counts": {
+      "gc_high": 310,
+      "gc_low": 312,
+      "length_high": 277,
+      "length_low": 246
+    },
+    "sequence_ood_rows_from_original_split": {
+      "dev": 132,
+      "test": 144,
+      "train": 1060
+    }
+  },
+  "failed_verification": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_independent_verification.json",
+  "failed_verification_sha256": "ec4b11501c490367cfd631b757638aa3993240cc45b4de9c6bff83377ec0987e",
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "independent_verification": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_independent_verification_v2.json",
+  "independent_verification_sha256": "9607c984fddf3f05126e984ec202040d2ef19f4b0fd604fc28c30228a8d9d72d",
+  "normalization_sha256": "a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db",
+  "performance_evaluated": false,
+  "production_script_sha256": "1ae3bfb7ac3dd64712c0c2aae18637b7f82e826941013f0fcfb84eaf4c2274dc",
+  "schema_version": "a8-rk04-sequence-ood-finalization-v1",
+  "scientific_scope": [
+    "This creates a genuine train-range-excluded length/GC OOD partition, not merely post-hoc strata.",
+    "Boel remains cross-protein nonsynonymous expression data, not a fixed-protein synonymous library.",
+    "Sequence OOD is frozen for one-shot evaluation after model selection; it is not functional untouched MAGE evidence.",
+    "No generator training, SOTA, wet-lab, UTR-CDS, velocity or decay claim is authorized."
+  ],
+  "sequence_ood_csv_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+  "sequence_ood_evaluated": false,
+  "status": "PASS",
+  "summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_summary.json",
+  "summary_sha256": "7acd133f92092a17e6e3373ecf3de78eaa14be42fdbbeb31a559e42245fa3ff3",
+  "unit_test_log": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_unit_tests.log",
+  "unit_test_log_sha256": "0ff9f106b6cdcc73ff7c3cfcc0624308fb709562c0dde1bcfee6f18ee8822c32",
+  "verifier_script_sha256": "6d80bb8af89db74a03d8235dbd0c5ecbc77da0b757977e1e99cbea074805049a"
+}

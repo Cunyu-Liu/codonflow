@@ -1,0 +1,116 @@
+{
+  "artifacts": {
+    "sequence_ood_csv": {
+      "bytes": 35958226,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/functional_long_sequence_ood.csv",
+      "sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6"
+    },
+    "train_only_normalization": {
+      "bytes": 3529,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/train_only_normalization.json",
+      "sha256": "a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db"
+    }
+  },
+  "command": [
+    "/usr/bin/python3",
+    "/home/codonflow-a8-rk/scripts/a8_rk04_build_sequence_ood.py",
+    "--input",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+    "--input-sha256",
+    "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+    "--features",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz",
+    "--features-sha256",
+    "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b",
+    "--output-dir",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2",
+    "--audit-dir",
+    "/home/codonflow-a8-rk/audits/20261118/RK04"
+  ],
+  "counts": {
+    "boel_clusters_by_ood_assignment": {
+      "dev": 447,
+      "sequence_ood": 1110,
+      "test": 436,
+      "train": 3561
+    },
+    "boel_rows_by_ood_assignment": {
+      "dev": 503,
+      "sequence_ood": 1336,
+      "test": 490,
+      "train": 4019
+    },
+    "functional_untouched_rows_copied_without_feature_calculation": 19072,
+    "sequence_ood_cluster_reason_counts": {
+      "gc_high": 310,
+      "gc_low": 312,
+      "length_high": 277,
+      "length_low": 246
+    },
+    "sequence_ood_rows_from_original_split": {
+      "dev": 132,
+      "test": 144,
+      "train": 1060
+    }
+  },
+  "created_at": "2026-11-19T00:35:29.086741+00:00",
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "inputs": {
+    "original_split": {
+      "bytes": 34088815,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+      "sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+    },
+    "proxy_features": {
+      "bytes": 717834,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz",
+      "sha256": "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b"
+    }
+  },
+  "label_access": false,
+  "predictor_development_ready": true,
+  "production_code_sha256": "1ae3bfb7ac3dd64712c0c2aae18637b7f82e826941013f0fcfb84eaf4c2274dc",
+  "protocol_id": "a8_rk04_sequence_ood_v1_train_q005_q095_cluster",
+  "schema_version": "a8-rk04-sequence-ood-v1",
+  "scientific_scope": [
+    "This creates a genuine train-range-excluded length/GC OOD partition, not merely post-hoc strata.",
+    "Boel remains cross-protein nonsynonymous expression data, not a fixed-protein synonymous library.",
+    "Sequence OOD is frozen for one-shot evaluation after model selection; it is not functional untouched MAGE evidence.",
+    "No generator training, SOTA, wet-lab, UTR-CDS, velocity or decay claim is authorized."
+  ],
+  "sequence_ood_evaluated": false,
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "threshold_protocol": {
+    "cluster_rule": "move the entire operational cluster if any member is below lower or above upper for either variable",
+    "core_interval": "closed [lower, upper]",
+    "fit_partition": "original train only",
+    "gc_definition": "feature-table GC fraction excluding terminal stop",
+    "length_definition": "feature-table CDS coding length excluding terminal stop",
+    "quantile_method": "numpy.quantile linear interpolation on row-weighted original-train values",
+    "quantiles": [
+      0.05,
+      0.95
+    ],
+    "variables": [
+      "length_nt",
+      "gc_fraction"
+    ]
+  },
+  "thresholds": {
+    "gc_fraction": {
+      "lower": 0.3294248837430009,
+      "train_max": 0.7823936696340257,
+      "train_min": 0.24888888888888888,
+      "train_rows": 5079,
+      "upper": 0.7093033422956696
+    },
+    "length_nt": {
+      "lower": 276.0,
+      "train_max": 2997.0,
+      "train_min": 168.0,
+      "train_rows": 5079,
+      "upper": 1590.0
+    }
+  }
+}

@@ -60,6 +60,38 @@ export PYTHONPATH=.
 
 生产脚本拒绝覆盖既有输出目录；复现时应使用全新输出与临时目录，并保留本次产物哈希作为对照。
 
+## Sequence-OOD v2 与 train-only 归一化（2026-11-19）
+
+- 原 v1 的 train/dev/test=`5,079/635/634` 保持不变；v2 是追加的 `ood_assignment`，不是覆盖旧 split。
+- 只从 original train 的序列特征计算 q05/q95：长度闭区间 `[276,1590]` nt，GC 闭区间 `[0.3294248837430009,0.7093033422956696]`。长度和 GC 均排除 terminal stop，与冻结特征表一致。
+- 一个 operational cluster 的任一成员低于下限或高于上限，整个簇迁入 `sequence_ood`。因此 retained train/dev/test=`4,019/503/490`，sequence-OOD=`1,336`，分别包含 3,561/447/436/1,110 个 clusters；这不是原 v1 的 post-hoc tercile 分层。
+- sequence-OOD 从原 train/dev/test 分别迁入 1,060/132/144 行；簇级原因计数为 length-low=246、length-high=277、GC-low=312、GC-high=310，原因可重叠。
+- 19,072 条 MAGE functional untouched 仅原样复制，未计算长度/GC 特征、未参与阈值或归一化、未评价。
+- `train_only_normalization.json` 只拟合 retained train 的 observed values；缺失值用 train observed mean 填充并增加 missing indicator，不做静默零填充。全特征表 `source_Gave144` 缺 62 条，retained train 缺 0 条，缺失样例保留在 dev/test/sequence-OOD 供显式 imputation。
+- 单元测试 `13/13 PASS`；独立重算 `37/37 PASS`；finalization `11/11 PASS`。首次 v1 因 62 条缺失在导入阶段失败，空目录保留；首份 verifier 因错误假设 retained train 必有缺失而为 `35/36 FAIL`，报告同样保留，v2 修正核验假设后通过。
+- 数据产物：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/`；`functional_long_sequence_ood.csv` SHA256=`b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6`，`train_only_normalization.json` SHA256=`a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db`。
+- 审计：`sequence_ood_summary.json`、`sequence_ood_independent_verification_v2.json`、`sequence_ood_finalization.json`。当前只授权 predictor 开发；`sequence_ood_evaluated=false`、`functional_untouched_evaluated=false`、`generator_training_authorized=false`，尚无 OOD 性能、功能 OOD、生成器或 SOTA 结论。
+
+复现命令：
+
+```bash
+cd /home/codonflow-a8-rk
+PYTHONPATH=. /usr/bin/python3 scripts/a8_rk04_build_sequence_ood.py \
+  --input /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv \
+  --input-sha256 1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8 \
+  --features /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz \
+  --features-sha256 aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b \
+  --output-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2 \
+  --audit-dir /home/codonflow-a8-rk/audits/20261118/RK04
+PYTHONPATH=. /usr/bin/python3 scripts/a8_rk04_verify_sequence_ood.py \
+  --input /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv \
+  --features /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz \
+  --summary audits/20261118/RK04/sequence_ood_summary.json \
+  --production-script scripts/a8_rk04_build_sequence_ood.py \
+  --output audits/20261118/RK04/sequence_ood_independent_verification_v2.json
+PYTHONPATH=. /usr/bin/python3 -m unittest scripts.tests.test_a8_rk04_sequence_ood -v
+```
+
 ## PPT 记录与回读
 
 - 在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>。
