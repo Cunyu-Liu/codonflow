@@ -1,0 +1,24 @@
+{
+  "compatibility_fix": "Removed --retry-all-errors; outer resume loop handles curl exit 18 and HTTP 416 on curl 7.68.",
+  "console_log": "audits/20261118/RK02/hek293_resume_downloader_tests_v2.console.log",
+  "curl_version": "curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brotli/1.0.7 libidn2/2.2.0 libpsl/0.21.0 (+libidn2/2.2.0) libssh/0.9.3/openssl/zlib nghttp2/1.40.0 librtmp/2.3",
+  "files": [
+    {
+      "bytes": 7258,
+      "path": "scripts/a8_rk02_download_mordstein_hek293.py",
+      "sha256": "0fd8988b1de6c9e4e3eb448720a832525745386338cf7d829ee0187f44e0d997"
+    },
+    {
+      "bytes": 4924,
+      "path": "scripts/tests/test_a8_rk02_download_mordstein_hek293.py",
+      "sha256": "5dd821e5a1596d58de098f47ff8c8c795e21b2b02b9d4b71a6650f9c9a80c422"
+    }
+  ],
+  "network_used_in_tests": false,
+  "prior_failure_log": "audits/20261118/RK02/hek293_resume_downloader_curl768_failure.console.log",
+  "python": "3.10.22",
+  "schema": "a8.rk02.hek293_resume_downloader_tests.v2",
+  "status": "PASS",
+  "tests_passed": 6,
+  "tests_total": 6
+}

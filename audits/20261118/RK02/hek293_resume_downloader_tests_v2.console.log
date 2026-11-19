@@ -1,0 +1,12 @@
+test_complete_partial_after_http_416 (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... ok
+test_complete_partial_md5_mismatch_fails (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... ok
+test_existing_verified_skips_network (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... ok
+test_resume_partial (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... ok
+test_retry_after_partial_transfer (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... {"attempt": 1, "error": "curl exit=18; partial=3/6", "mate": 1, "max_rounds": 3, "run": "SRR10714593", "status": "resume_retry"}
+ok
+test_select_jobs (scripts.tests.test_a8_rk02_download_mordstein_hek293.DownloadTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.006s
+
+OK

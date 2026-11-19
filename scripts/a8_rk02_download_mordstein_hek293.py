@@ -94,7 +94,7 @@ def download(job, max_rounds=100, retry_delay=5):
                     break
             command = [
                 "curl", "-L", "--fail", "--silent", "--show-error",
-                "--retry", "2", "--retry-all-errors", "--retry-delay", "5",
+                "--retry", "2", "--retry-delay", "5",
                 "--connect-timeout", "30", "--speed-limit", "1024", "--speed-time", "60",
                 "--continue-at", "-", "--output", str(part), job["url"],
             ]

@@ -43,7 +43,7 @@ class DownloadTests(unittest.TestCase):
             def fake_run(command, check):
                 calls.append(command)
                 self.assertIn("--continue-at", command)
-                self.assertIn("--retry-all-errors", command)
+                self.assertNotIn("--retry-all-errors", command)  # curl 7.68 compatibility
                 self.assertIn("--speed-time", command)
                 with part.open("ab") as handle:
                     handle.write(b"def")
