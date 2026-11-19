@@ -1,0 +1,45 @@
+{
+  "schema": "a8-rk12-actual-set-matrix-v1",
+  "protocol_id": "a8_rk12_actual_set_matrix_v1_frozen_before_unique18_scoring",
+  "population": "18 unique development records only; no untouched24 or functional untouched",
+  "benchmark_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta",
+  "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+  "a6_payload_root": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/a6_baselines/unique18_s0",
+  "calibration_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18",
+  "calibration_acceptance": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18_acceptance.json",
+  "calibration_acceptance_sha256": "e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c",
+  "rscu_json": "/home/codonflow-a8-rk/configs/cai_ref_v4train.json",
+  "rscu_sha256": "80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f",
+  "new_method": "lineardesign_lambda11",
+  "legacy_methods": ["codongpt", "gemorna", "cai_greedy", "uniform_synonymous"],
+  "secondary_legacy_method_not_in_primary": "lineardesign_scan",
+  "objectives_maximize": ["cai", "negative_mfe", "negative_gc_deviation", "negative_motif_penalty_per_codon"],
+  "terminal_stop": "append TAA to LinearDesign CDS to match the natural source length and disclose the evaluation convention",
+  "actual_set_metrics": ["hypervolume_normalized", "pairwise_ned", "n_actual_outputs", "n_pareto_points", "identity_rate"],
+  "dense_budget_step_auc_v2": null,
+  "primary_comparators": ["gemorna", "codongpt"],
+  "primary_effects": [
+    {"metric": "hypervolume_normalized", "direction": "lineardesign_lambda11 minus comparator; positive favors LinearDesign"},
+    {"metric": "pairwise_ned", "direction": "lineardesign_lambda11 minus comparator; positive favors LinearDesign"}
+  ],
+  "statistics": {
+    "unit": "one record",
+    "n_records": 18,
+    "paired_bootstrap_resamples": 20000,
+    "bootstrap_seed": 20261119,
+    "ci_level": 0.95,
+    "ci_method": "percentile paired bootstrap over record indices",
+    "multiplicity": "Holm over four primary comparisons: two comparators x two metrics",
+    "p_value": "two-sided sign-tail bootstrap p with plus-one correction, capped at 1",
+    "selection": "comparators and metrics frozen before full-panel scoring; no per-record oracle comparator"
+  },
+  "cost": {
+    "new_lineardesign": "measured single-worker end-to-end official process wall clock, summed over 11 lambda calls per record",
+    "legacy": "preserve original generation fields only; hardware, parallelism and end-to-end semantics are incomplete",
+    "time_matched_comparison": false,
+    "forward_call_comparison": false
+  },
+  "decision_boundary": "development actual-output comparison only; not dense AUC, not time-matched, not functional OOD, not CodonFlow-RK improvement and not SOTA",
+  "scientific_gate_passed": false,
+  "sota_claim": false
+}

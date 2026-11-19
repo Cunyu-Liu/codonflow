@@ -1,0 +1,110 @@
+{
+  "schema": "a8-rk12-lineardesign-independent-v1",
+  "created_at": "2026-11-19T10:36:40.492418+00:00",
+  "status": "PASS",
+  "production": "/home/codonflow-a8-rk-smoke/a8_rk12_c01_development_smoke_v2.json",
+  "production_sha256": "fe9a68cac8a50c77885fb49bcefdca3bef1e9004acab88648530a81d47ef2ad7",
+  "protocol_sha256": "7e37ea546b8f8626837c203736aaa438f25c3415fcfe97797722c7bb0f977819",
+  "run_count": 3,
+  "record_count": 1,
+  "checks": [
+    {
+      "check": "protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "benchmark_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "source_commit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "binary_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "table_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "grid_counts",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "single_worker_grid_order",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "untouched_and_sota_exclusions",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "dense_auc_null",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_raw_stdout_and_payloads",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_protein_identities",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_official_rounding_gates",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "all_independent_structures",
+      "pass": true,
+      "evidence": 0
+    },
+    {
+      "check": "all_generation_and_scoring_times",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "total_generation_cost",
+      "pass": true,
+      "evidence": 25.966305990237743
+    },
+    {
+      "check": "separate_scoring_cost",
+      "pass": true,
+      "evidence": 1.4549873797222972
+    },
+    {
+      "check": "unique_sequence_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_summary:C01H6.8b.1",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "checks_passed": 18,
+  "checks_total": 18,
+  "failed_checks": [],
+  "max_independent_cai_recompute_delta": 0.0,
+  "max_independent_mfe_recompute_delta": 0.0,
+  "structure_mismatch_count": 0,
+  "production_module_imported": false,
+  "scientific_scope": "official development-panel lambda grid and costs only; no dense budget AUC, untouched, cross-method SOTA or biological-function claim"
+}
