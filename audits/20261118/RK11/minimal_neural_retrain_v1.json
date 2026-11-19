@@ -1,0 +1,138 @@
+{
+  "schema": "a8-rk11-minimal-neural-production-v1",
+  "protocol_id": "a8_rk11_minimal_neural_contract_v1_frozen_before_training",
+  "protocol_sha256": "6d4a319df4efe2a59b8997a967b7a2c148ea8595b9e150b0fbac112bd2d67725",
+  "run_label": "independent_retrain",
+  "status": "PASS_MINIMAL_NEURAL_SYNTHETIC_CUDA_CONTRACT",
+  "checks": {
+    "real_cuda_execution": true,
+    "history_length_exact": true,
+    "all_history_losses_finite": true,
+    "strict_loss_decrease": true,
+    "strict_unmasked_mse_decrease": true,
+    "candidate_count_exact": true,
+    "all_candidates_legal_single_edit": true,
+    "probability_sum": true,
+    "budget_masked_probability_zero": true,
+    "three_nucleotide_expansion_shape": true,
+    "utr_pair_shape": true,
+    "kernel_gradient_finite": true,
+    "kernel_gradient_nonzero": true,
+    "synthetic_scope_only": true
+  },
+  "checks_passed": 14,
+  "checks_total": 14,
+  "scientific_scope": "Synthetic teacher and exact finite-state neural contracts only; no biological function, generation quality, RK-G1, OOD, or SOTA claim",
+  "forbidden_claims": [
+    "biological mechanism validation",
+    "functional or velocity performance",
+    "generation quality or legal full-sequence sampling benchmark",
+    "RK-G1 passage or generator authorization",
+    "homology/protein/study/functional OOD",
+    "SOTA or strong-baseline superiority"
+  ],
+  "base_commit": "fdf2bc7c2b9789e2a86f424a7d6310634d41df55",
+  "code_sha256": {
+    "training_script": "9be4ea53eac9fad9b35bf99bdb670e7907543c9da0ef1c340feb3eaf77117295",
+    "model_source": "c4c7324bc7baa856f4e7d216119166687686827493a1ae0bbe6987f6cfc05b8d"
+  },
+  "environment": {
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 5090"
+  },
+  "parameter_count": 5273,
+  "initial_eval_loss": 0.15693358078734257,
+  "final_eval_loss": -0.5683438008755156,
+  "initial_unmasked_mse": 0.18564273966732436,
+  "final_unmasked_mse": 0.009694968139957464,
+  "initial_terms": {
+    "total": 0.15693358078734257,
+    "masked_values": 27.0,
+    "weighted_denominator": 29.0,
+    "initiation": 0.025302694319951805,
+    "velocity": 0.07171085587826519,
+    "decay": 0.3929766924310617,
+    "function": 0.14461374683056663
+  },
+  "final_terms": {
+    "total": -0.5683438008755156,
+    "masked_values": 27.0,
+    "weighted_denominator": 29.0,
+    "initiation": 0.011284195472697234,
+    "velocity": 0.00484265971497564,
+    "decay": 0.01234561270372334,
+    "function": -1.8596859471951035
+  },
+  "history_sha256": "6433a663fb580fba3b0bd4556ff0d4476c69f14dcef3ae777bea01b10d42cdef",
+  "checkpoint_sha256": "91affb091f5ee5e8cfc30724e3e37bb284bdfe0d568385052c53174eb4a58a80",
+  "arrays": {
+    "candidates": {
+      "path": "candidates.npy",
+      "sha256": "a5f80f43fc22a4458b4881a844f58e5dbdc97a26f7d6e2946b906bac23d8828a",
+      "shape": [
+        9,
+        4
+      ]
+    },
+    "potentials": {
+      "path": "potentials.npy",
+      "sha256": "8e3ec3d5514fd503761730045d4832c07c0c67511f8f7d959f497a465de04970",
+      "shape": [
+        9,
+        4
+      ]
+    },
+    "cost": {
+      "path": "cost.npy",
+      "sha256": "906bdfb0ca2b4d5dfd74d1a6fe0e0ae5729f5f8b600ef9e50f554ffbfa45317a",
+      "shape": [
+        9
+      ]
+    },
+    "allowed": {
+      "path": "allowed.npy",
+      "sha256": "a3001acf77c8eb7767d02aedfeb2305e071884e8b8578251052d3b19a061472e",
+      "shape": [
+        9
+      ]
+    },
+    "log_probabilities": {
+      "path": "log_probabilities.npy",
+      "sha256": "276035c6a54fa006b28a374388f7877b0503bf42e43a1e1ef78c206d2c7ca79d",
+      "shape": [
+        9
+      ]
+    },
+    "delta_phi": {
+      "path": "delta_phi.npy",
+      "sha256": "2611166562bd3e39cba19530b2c7eef19bd39cc455e87dd5ebd65a73d479ffb1",
+      "shape": [
+        9,
+        4
+      ]
+    },
+    "delta_cost": {
+      "path": "delta_cost.npy",
+      "sha256": "d6edd3db94c35f6e4a0490aa7787edc5e5f7e73fa899bd7bf1e3c0958589301c",
+      "shape": [
+        9
+      ]
+    }
+  },
+  "candidate_count": 9,
+  "budget_allowed": 5,
+  "budget_masked": 4,
+  "probability_sum": 1.0,
+  "masked_probability": 0.0,
+  "kernel_loss_at_noop": 1.6093627717814014,
+  "kernel_gradient_max_abs": 0.017336748394283612,
+  "kernel_gradient_finite": true,
+  "kernel_gradient_nonzero": true,
+  "elapsed_seconds": 5.9501695008948445,
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk11/minimal_neural_contract_v1/retrain",
+  "no_functional_untouched_access": true,
+  "no_biological_training_data": true,
+  "no_full_generator_training": true
+}

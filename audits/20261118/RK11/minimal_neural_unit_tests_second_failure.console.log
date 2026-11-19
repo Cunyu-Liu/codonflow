@@ -1,0 +1,18 @@
+...F......                                                               [100%]
+=================================== FAILURES ===================================
+____________ test_zero_temperature_is_uniform_over_feasible_states _____________
+
+    def test_zero_temperature_is_uniform_over_feasible_states():
+        result = kernel(beta=0.0)
+        expected = -math.log(9)
+>       assert torch.allclose(result["log_probabilities"], torch.full((9,), expected), atol=1e-6)
+E       assert False
+E        +  where False = <built-in method allclose of type object at 0x7fb64dfcaf40>(tensor([-2.1945, -2.1945, -2.2028, -2.2028, -2.1861, -2.1945, -2.1945, -2.2028,\n        -2.2028], grad_fn=<LogSoftmaxBackward0>), tensor([-2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972,\n        -2.1972]), atol=1e-06)
+E        +    where <built-in method allclose of type object at 0x7fb64dfcaf40> = torch.allclose
+E        +    and   tensor([-2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972, -2.1972,\n        -2.1972]) = <built-in method full of type object at 0x7fb64dfcaf40>((9,), -2.1972245773362196)
+E        +      where <built-in method full of type object at 0x7fb64dfcaf40> = torch.full
+
+scripts/tests/test_a8_rk11_minimal_neural.py:77: AssertionError
+=========================== short test summary info ============================
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_zero_temperature_is_uniform_over_feasible_states
+1 failed, 9 passed in 3.74s

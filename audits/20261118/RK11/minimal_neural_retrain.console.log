@@ -1,0 +1,11 @@
+/home/codonflow-a8-rk/scripts/a8_rk11_train_minimal_neural.py:214: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  "kernel_loss_at_noop": float(kernel_loss),
+{
+  "status": "PASS_MINIMAL_NEURAL_SYNTHETIC_CUDA_CONTRACT",
+  "checks": "14/14",
+  "initial_loss": 0.15693358078734257,
+  "final_loss": -0.5683438008755156,
+  "candidates": 9,
+  "elapsed_seconds": 5.9501695008948445
+}

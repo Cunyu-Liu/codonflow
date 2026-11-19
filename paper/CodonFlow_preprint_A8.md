@@ -311,6 +311,14 @@ The fixed protocol used float64 CUDA, Adam for **4,000 steps without checkpoint 
 
 This is an **exact synthetic trajectory-balance optimization check**, not biological reward learning, a trained neural CodonFlow-RK generator, functional or generation performance, physical mechanism validation, RK-G1 closure, SOTA, or authorization for expensive generation training.
 
+### 6.13 Minimal neural legal-kernel synthetic CUDA contract
+
+We implemented a **5,273-parameter** minimal neural potential model by reusing the unchanged RK-08 initiation/velocity/decay/pair backbone and adding explicit codon-to-three-nucleotide expansion, multi-fidelity potential supervision, and an exact no-op/synonymous-single-edit conditional kernel. For the frozen `ATG–CTT–GCT–TGA` state, the core genetic-code table gives **9 unique legal candidates**, including no-op; internal stops are forbidden and terminal TGA is fixed. The remaining-budget rule admits **5 candidates and hard-masks 4**, rather than merely adding a soft cost penalty. UTR–CDS pair tensors and all candidate potentials are auditable.
+
+The fixed smoke used float64 CUDA, Adam for **40 steps without checkpoint selection**, and a synthetic teacher only. The heteroscedastic multi-fidelity objective changed from **0.156933581 to -0.568343801**, while unmasked teacher MSE decreased from **0.185642740 to 0.009694968**. The conditional probabilities summed to **1.0**, total probability on masked states was **0.0**, and the maximum absolute kernel-gradient entry was **1.733675e-02**. Production and a separate retrain each passed **14/14 checks**; independent recomputation passed **27/27**, with zero error for candidates, potentials, cost, deltas, and log-probabilities, and finalization passed **25/25**. Checkpoint bytes, all state tensors, kernel arrays, and deterministic numeric history matched between runs; measured elapsed times were retained rather than forced to match. The initial codon-index implementation failed 6 tests, a subsequent test setup failed 1 test, and two independent verifiers stopped at 24/27 and 25/27 before the exact history and teacher-dtype semantics were corrected; all failures are preserved.
+
+This is a **synthetic neural contract and CUDA backward smoke**, not biological mechanism validation, functional or velocity performance, full-generator training, generation quality, RK-G1 passage, OOD, SOTA, or authorization for expensive generation training.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -432,6 +440,17 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK10 exact trajectory-balance finalization | `e5109116088e5cfe76b0b9b3328e320e95ec4027253b20ba7f8d4291012fe4ea` |
 | RK10 final unit-test log | `7f6b969142a2d530b443885024e3b22b4bd5368889f18288cba94af528f9d739` |
 | RK10 retained initial failed unit-test log | `acb2c82cd461e7336b3ae0c25d97bf95e1caaf255ebf28d8ed1135cd5730c394` |
+| RK-11 frozen synthetic neural protocol | `6d4a319df4efe2a59b8997a967b7a2c148ea8595b9e150b0fbac112bd2d67725` |
+| RK-11 production CUDA contract | `24efa0bb9f2b33a422428539714b38d17e9f85807878228609003482bffee344` |
+| RK-11 independent retrain | `b31bdef74afd94fcbd992242d1af920ba77b4d68a718e72ed2609749a702d628` |
+| RK-11 independent numerical verification | `0cca47dd90b3001215311dea2c8fa5c3f001e69eb1162e38b99f79c798c6a6e0` |
+| RK-11 finalization | `6d690854f42c59491992a7c46c5f5490de212f625f74ca839c68965bc3b8fbd4` |
+| RK-11 final unit tests | `1258d622099e870cbd0972710af0463212e968e58a7fb04bc795e9c977a26aec` |
+| RK-11 initial codon-mapping failure | `17fad64b83149d2aa389d1943cb815a47b4283bd14b69d3577cf5e3dd3bdd9c9` |
+| RK-11 second test-setup failure | `ae55b3d23510df3a9febcbd4a8062e332aa94919d74a59a441750f47f9ee8bf9` |
+| RK-11 first independent failure | `01d4e0bb3dd35a37d700a4fbcbab0283e044fbd20f3d6536987aa6350ef9b3f0` |
+| RK-11 second independent failure | `a906fcc8d0eecf05838974b6e255e32358069c4c0c26f411d26074b12f2d27e4` |
+| RK-11 development CUDA smoke | `b21808814c3a02f6bff4df52c32ff00907a50ea40321b43d495f8a0ca729cae1` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

@@ -1,0 +1,65 @@
+{
+  "schema": "a8-rk11-minimal-neural-synthetic-contract-v1",
+  "protocol_id": "a8_rk11_minimal_neural_contract_v1_frozen_before_training",
+  "created_at": "2026-11-19",
+  "scientific_scope": "Synthetic teacher and exact finite-state neural contracts only; no biological function, generation quality, RK-G1, OOD, or SOTA claim",
+  "seed": 20261119,
+  "device": "cuda",
+  "dtype": "float64",
+  "model": {
+    "d_model": 16,
+    "n_layers": 1,
+    "n_heads": 4,
+    "max_len": 16,
+    "initiation_window": 3,
+    "long_range_stride": 2,
+    "num_hosts": 8,
+    "fidelity_weights": [0.5, 1.0, 2.0]
+  },
+  "training": {
+    "batch_size": 8,
+    "steps": 40,
+    "optimizer": "Adam",
+    "learning_rate": 0.003,
+    "weight_decay": 0.0,
+    "scheduler": "none_fixed_learning_rate",
+    "checkpoint_selection": "none_final_step_only",
+    "gradient_clip_norm": 1.0
+  },
+  "synthetic_batch": {
+    "protein": "MLAF",
+    "terminal_codon": "TGA",
+    "utr_tokens": [0, 1, 2, 3, 4],
+    "teacher": "mean sin/cos/square codon-index features and GC plus frozen host/budget offsets; not biological",
+    "mask_rule": "(batch_index + channel_index) modulo 7 != 0"
+  },
+  "kernel": {
+    "source_codons": ["ATG", "CTT", "GCT", "TGA"],
+    "expected_candidates_including_noop": 9,
+    "host_id": 1,
+    "model_budget": 0.5,
+    "remaining_budget": 0.42,
+    "preferences": [0.7, -0.25, 0.45, -0.15],
+    "beta": 0.75,
+    "beta_cost": 0.1,
+    "base_policy": "uniform over no-op and legal synonymous single-edit states before budget mask"
+  },
+  "acceptance": {
+    "loss_decrease_strict": true,
+    "probability_sum_abs_tolerance": 1e-12,
+    "independent_numeric_abs_tolerance": 1e-10,
+    "required_legal_fraction": 1.0,
+    "required_terminal_stop_fraction": 1.0,
+    "required_finite_kernel_gradient": true,
+    "required_nonzero_kernel_gradient": true,
+    "production_retrain_tensors_bitwise_equal": true
+  },
+  "forbidden_claims": [
+    "biological mechanism validation",
+    "functional or velocity performance",
+    "generation quality or legal full-sequence sampling benchmark",
+    "RK-G1 passage or generator authorization",
+    "homology/protein/study/functional OOD",
+    "SOTA or strong-baseline superiority"
+  ]
+}

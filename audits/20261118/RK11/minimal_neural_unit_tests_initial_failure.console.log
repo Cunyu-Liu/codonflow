@@ -1,0 +1,98 @@
+FFFFF...F.                                                               [100%]
+=================================== FAILURES ===================================
+_________ test_single_edit_states_are_unique_synonymous_and_stop_safe __________
+
+    def test_single_edit_states_are_unique_synonymous_and_stop_safe():
+        x = source()
+        candidates = enumerate_legal_single_edit(x)
+>       assert candidates.shape == (9, 4)
+E       assert torch.Size([8, 4]) == (9, 4)
+E         
+E         At index 0 diff: 8 != 9
+E         Use -v to get more diff
+
+scripts/tests/test_a8_rk11_minimal_neural.py:42: AssertionError
+_________________ test_terminal_stop_and_internal_stop_guards __________________
+
+    def test_terminal_stop_and_internal_stop_guards():
+        bad = source().clone(); bad[-1] = CODON_TO_INDEX["TAA"]
+        try:
+            enumerate_legal_single_edit(bad)
+            assert False, "wrong terminal stop accepted"
+        except ValueError:
+            pass
+        bad = source().clone(); bad[1] = CODON_TO_INDEX["TAG"]
+        try:
+            enumerate_legal_single_edit(bad)
+>           assert False, "internal stop accepted"
+E           AssertionError: internal stop accepted
+E           assert False
+
+scripts/tests/test_a8_rk11_minimal_neural.py:62: AssertionError
+_____________ test_three_nucleotide_expansion_and_utr_pair_shapes ______________
+
+    def test_three_nucleotide_expansion_and_utr_pair_shapes():
+        result = kernel()
+>       assert result["nucleotide_hidden"].shape == (9, 4, 3, 16)
+E       assert torch.Size([8, 4, 3, 16]) == (9, 4, 3, 16)
+E         
+E         At index 0 diff: 8 != 9
+E         Use -v to get more diff
+
+scripts/tests/test_a8_rk11_minimal_neural.py:69: AssertionError
+____________ test_zero_temperature_is_uniform_over_feasible_states _____________
+
+    def test_zero_temperature_is_uniform_over_feasible_states():
+        result = kernel(beta=0.0)
+        expected = -math.log(9)
+>       assert torch.allclose(result["log_probabilities"], torch.full((9,), expected), atol=1e-6)
+E       RuntimeError: The size of tensor a (8) must match the size of tensor b (9) at non-singleton dimension 0
+
+scripts/tests/test_a8_rk11_minimal_neural.py:77: RuntimeError
+________________ test_budget_is_a_hard_mask_not_a_soft_penalty _________________
+
+    def test_budget_is_a_hard_mask_not_a_soft_penalty():
+        result = kernel(remaining=0.42)
+        assert bool(result["allowed"][0])
+>       assert (~result["allowed"]).any()
+E       assert tensor(False)
+E        +  where tensor(False) = <built-in method any of Tensor object at 0x7f3c3e493380>()
+E        +    where <built-in method any of Tensor object at 0x7f3c3e493380> = ~tensor([True, True, True, True, True, True, True, True]).any
+
+scripts/tests/test_a8_rk11_minimal_neural.py:84: AssertionError
+________ test_length_five_contract_without_length_generalization_claim _________
+
+    def test_length_five_contract_without_length_generalization_claim():
+        m = model()
+        x = torch.tensor([CODON_TO_INDEX[c] for c in ["ATG", "CTT", "GCT", "TTT"]] + [FIXED_TERMINAL_STOP])
+>       candidates = enumerate_legal_single_edit(x)
+
+scripts/tests/test_a8_rk11_minimal_neural.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+codon_ids = tensor([14, 31, 39, 63, 63])
+
+    def enumerate_legal_single_edit(codon_ids: torch.Tensor) -> torch.Tensor:
+        """Enumerate no-op plus every synonymous one-codon edit, with fixed stop.
+    
+        The input and output use the 64-codon vocabulary. Internal stop codons and
+        slots 61/62 are never emitted; slot 63 is fixed at the terminal position.
+        """
+        if codon_ids.ndim != 1 or codon_ids.numel() < 2:
+            raise ValueError("expected one CDS [L] with at least one sense codon and stop")
+        source = [int(x) for x in codon_ids.detach().cpu().tolist()]
+        if source[-1] != FIXED_TERMINAL_STOP:
+            raise ValueError("the terminal codon must be fixed at index 63")
+        if any(index < 0 or index > SENSE_STOP_INDEX for index in source[:-1]):
+>           raise ValueError("internal positions must use sense-codon indices 0..60")
+E           ValueError: internal positions must use sense-codon indices 0..60
+
+src/codonflow/models/minimal_neural.py:48: ValueError
+=========================== short test summary info ============================
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_single_edit_states_are_unique_synonymous_and_stop_safe
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_terminal_stop_and_internal_stop_guards
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_three_nucleotide_expansion_and_utr_pair_shapes
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_zero_temperature_is_uniform_over_feasible_states
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_budget_is_a_hard_mask_not_a_soft_penalty
+FAILED scripts/tests/test_a8_rk11_minimal_neural.py::test_length_five_contract_without_length_generalization_claim
+6 failed, 4 passed in 3.90s

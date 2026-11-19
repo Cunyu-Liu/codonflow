@@ -1,0 +1,39 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "evidence_rows": "| RK-11 frozen synthetic neural protocol | `6d4a319df4efe2a59b8997a967b7a2c148ea8595b9e150b0fbac112bd2d67725` |\n| RK-11 production CUDA contract | `24efa0bb9f2b33a422428539714b38d17e9f85807878228609003482bffee344` |\n| RK-11 independent retrain | `b31bdef74afd94fcbd992242d1af920ba77b4d68a718e72ed2609749a702d628` |\n| RK-11 independent numerical verification | `0cca47dd90b3001215311dea2c8fa5c3f001e69eb1162e38b99f79c798c6a6e0` |\n| RK-11 finalization | `6d690854f42c59491992a7c46c5f5490de212f625f74ca839c68965bc3b8fbd4` |\n| RK-11 final unit tests | `1258d622099e870cbd0972710af0463212e968e58a7fb04bc795e9c977a26aec` |\n| RK-11 initial codon-mapping failure | `17fad64b83149d2aa389d1943cb815a47b4283bd14b69d3577cf5e3dd3bdd9c9` |\n| RK-11 second test-setup failure | `ae55b3d23510df3a9febcbd4a8062e332aa94919d74a59a441750f47f9ee8bf9` |\n| RK-11 first independent failure | `01d4e0bb3dd35a37d700a4fbcbab0283e044fbd20f3d6536987aa6350ef9b3f0` |\n| RK-11 second independent failure | `a906fcc8d0eecf05838974b6e255e32358069c4c0c26f411d26074b12f2d27e4` |\n| RK-11 development CUDA smoke | `b21808814c3a02f6bff4df52c32ff00907a50ea40321b43d495f8a0ca729cae1` |\n",
+  "evidence_sha256": {
+    "rk11_development": "b21808814c3a02f6bff4df52c32ff00907a50ea40321b43d495f8a0ca729cae1",
+    "rk11_finalization": "6d690854f42c59491992a7c46c5f5490de212f625f74ca839c68965bc3b8fbd4",
+    "rk11_independent": "0cca47dd90b3001215311dea2c8fa5c3f001e69eb1162e38b99f79c798c6a6e0",
+    "rk11_independent_initial_failure": "01d4e0bb3dd35a37d700a4fbcbab0283e044fbd20f3d6536987aa6350ef9b3f0",
+    "rk11_independent_second_failure": "a906fcc8d0eecf05838974b6e255e32358069c4c0c26f411d26074b12f2d27e4",
+    "rk11_initial_failure": "17fad64b83149d2aa389d1943cb815a47b4283bd14b69d3577cf5e3dd3bdd9c9",
+    "rk11_production": "24efa0bb9f2b33a422428539714b38d17e9f85807878228609003482bffee344",
+    "rk11_protocol": "6d4a319df4efe2a59b8997a967b7a2c148ea8595b9e150b0fbac112bd2d67725",
+    "rk11_retrain": "b31bdef74afd94fcbd992242d1af920ba77b4d68a718e72ed2609749a702d628",
+    "rk11_second_failure": "ae55b3d23510df3a9febcbd4a8062e332aa94919d74a59a441750f47f9ee8bf9",
+    "rk11_unit_tests": "1258d622099e870cbd0972710af0463212e968e58a7fb04bc795e9c977a26aec"
+  },
+  "input_audit_sha256": "3d043632834108ceccb47ed3ab48fd928233beae18a55e49ca7c7988621d8569",
+  "input_paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625",
+  "output_audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+  "output_paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+  "schema": "a8-rk11-minimal-neural-paper-update-v17",
+  "scientific_scope_unchanged": {
+    "biological_mechanism_validated": false,
+    "expensive_generation_authorized": false,
+    "full_generator_trained": false,
+    "functional_or_generation_performance_evaluated": false,
+    "rk_g1_gate_modified": false,
+    "sota_claimed": false
+  },
+  "section": "### 6.13 Minimal neural legal-kernel synthetic CUDA contract\n\nWe implemented a **5,273-parameter** minimal neural potential model by reusing the unchanged RK-08 initiation/velocity/decay/pair backbone and adding explicit codon-to-three-nucleotide expansion, multi-fidelity potential supervision, and an exact no-op/synonymous-single-edit conditional kernel. For the frozen `ATG\u2013CTT\u2013GCT\u2013TGA` state, the core genetic-code table gives **9 unique legal candidates**, including no-op; internal stops are forbidden and terminal TGA is fixed. The remaining-budget rule admits **5 candidates and hard-masks 4**, rather than merely adding a soft cost penalty. UTR\u2013CDS pair tensors and all candidate potentials are auditable.\n\nThe fixed smoke used float64 CUDA, Adam for **40 steps without checkpoint selection**, and a synthetic teacher only. The heteroscedastic multi-fidelity objective changed from **0.156933581 to -0.568343801**, while unmasked teacher MSE decreased from **0.185642740 to 0.009694968**. The conditional probabilities summed to **1.0**, total probability on masked states was **0.0**, and the maximum absolute kernel-gradient entry was **1.733675e-02**. Production and a separate retrain each passed **14/14 checks**; independent recomputation passed **27/27**, with zero error for candidates, potentials, cost, deltas, and log-probabilities, and finalization passed **25/25**. Checkpoint bytes, all state tensors, kernel arrays, and deterministic numeric history matched between runs; measured elapsed times were retained rather than forced to match. The initial codon-index implementation failed 6 tests, a subsequent test setup failed 1 test, and two independent verifiers stopped at 24/27 and 25/27 before the exact history and teacher-dtype semantics were corrected; all failures are preserved.\n\nThis is a **synthetic neural contract and CUDA backward smoke**, not biological mechanism validation, functional or velocity performance, full-generator training, generation quality, RK-G1 passage, OOD, SOTA, or authorization for expensive generation training.\n\n",
+  "snapshot": {
+    "a7": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk11/minimal_neural_contract_v1/paper_v17/v16_snapshot/CodonFlow_preprint_A7.md",
+    "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+    "audit": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk11/minimal_neural_contract_v1/paper_v17/v16_snapshot/a8_rk_paper_sync_audit_v16.json",
+    "audit_sha256": "3d043632834108ceccb47ed3ab48fd928233beae18a55e49ca7c7988621d8569",
+    "paper": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk11/minimal_neural_contract_v1/paper_v17/v16_snapshot/CodonFlow_preprint_A8_v16.md",
+    "paper_sha256": "14567dd97f1208a8170b8ba9d5f66e48e5005fea95273d8ed16532068eaa4625"
+  }
+}

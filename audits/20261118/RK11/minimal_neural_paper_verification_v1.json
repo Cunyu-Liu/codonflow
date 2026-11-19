@@ -1,0 +1,184 @@
+{
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "all_pass": true,
+  "audit_sha256": "1799f411b124f177e9f7e04278b7c7a842ede1a01aed481a7ac42e1928c8279e",
+  "checks": [
+    {
+      "detail": "snapshot matches update input",
+      "id": "v16_paper_gate",
+      "pass": true
+    },
+    {
+      "detail": "v16 audit matched",
+      "id": "v16_audit_gate",
+      "pass": true
+    },
+    {
+      "detail": "v17 paper hash agrees",
+      "id": "paper_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "v17 audit hash matched",
+      "id": "audit_output_hash",
+      "pass": true
+    },
+    {
+      "detail": "A7 unchanged",
+      "id": "a7_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "14/14",
+      "id": "production_complete",
+      "pass": true
+    },
+    {
+      "detail": "14/14",
+      "id": "retrain_complete",
+      "pass": true
+    },
+    {
+      "detail": "27/27",
+      "id": "independent_complete",
+      "pass": true
+    },
+    {
+      "detail": "25/25",
+      "id": "finalization_complete",
+      "pass": true
+    },
+    {
+      "detail": "one exact Section 6.13",
+      "id": "single_rk11_section",
+      "pass": true
+    },
+    {
+      "detail": "removing authorized additions restores v16",
+      "id": "exact_paper_delta",
+      "pass": true
+    },
+    {
+      "detail": "architecture and state counts visible",
+      "id": "parameter_and_candidates_exact",
+      "pass": true
+    },
+    {
+      "detail": "teacher loss and MSE exact",
+      "id": "loss_metrics_exact",
+      "pass": true
+    },
+    {
+      "detail": "normalization, mask and gradient visible",
+      "id": "kernel_metrics_exact",
+      "pass": true
+    },
+    {
+      "detail": {
+        "cost": 0.0,
+        "delta_cost": 0.0,
+        "delta_phi": 0.0,
+        "log_probabilities": 0.0,
+        "potentials": 0.0
+      },
+      "id": "zero_independent_errors",
+      "pass": true
+    },
+    {
+      "detail": "bitwise state and numeric history",
+      "id": "bitwise_retrain_visible",
+      "pass": true
+    },
+    {
+      "detail": "all counts visible",
+      "id": "verification_counts_visible",
+      "pass": true
+    },
+    {
+      "detail": "unit failures retained",
+      "id": "unit_failure_history_visible",
+      "pass": true
+    },
+    {
+      "detail": "independent failures retained",
+      "id": "independent_failure_history_visible",
+      "pass": true
+    },
+    {
+      "detail": "scientific boundary visible",
+      "id": "bounded_scope_visible",
+      "pass": true
+    },
+    {
+      "detail": "eleven RK-11 source hashes",
+      "id": "evidence_hashes",
+      "pass": true
+    },
+    {
+      "detail": "all evidence hashes in paper",
+      "id": "evidence_rows",
+      "pass": true
+    },
+    {
+      "detail": "schema advanced to v17",
+      "id": "audit_schema",
+      "pass": true
+    },
+    {
+      "detail": "exactly two records appended",
+      "id": "generated_sections_delta",
+      "pass": true
+    },
+    {
+      "detail": "pre-v17 source hashes unchanged",
+      "id": "old_source_hashes_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pre-v17 source paths unchanged",
+      "id": "old_source_paths_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pre-v17 scientific boundaries unchanged",
+      "id": "old_scientific_scope_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "pending work retained",
+      "id": "pending_preserved",
+      "pass": true
+    },
+    {
+      "detail": "v16 snapshot verified",
+      "id": "snapshot_integrity",
+      "pass": true
+    },
+    {
+      "detail": "working manuscript only",
+      "id": "non_submittable_retained",
+      "pass": true
+    },
+    {
+      "detail": "no gate or SOTA change",
+      "id": "authorization_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "final unit-test log present",
+      "id": "unit_tests_finalized",
+      "pass": true
+    },
+    {
+      "detail": "development smoke retained",
+      "id": "development_complete",
+      "pass": true
+    }
+  ],
+  "checks_passed": 33,
+  "checks_total": 33,
+  "paper_sha256": "b3816b8d9940917ef14c3d246c2ed45509ed465f7e33e95e92385c4e36c274ae",
+  "paper_update_module_imported": false,
+  "schema": "a8-rk11-minimal-neural-paper-verification-v17",
+  "status": "PASS_WORKING_MANUSCRIPT_NOT_SUBMITTABLE"
+}
