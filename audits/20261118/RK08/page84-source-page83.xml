@@ -1,0 +1,217 @@
+<ns0:slide xmlns:ns0="https://www.larkoffice.com/sml/2.0" id="pgA">
+    <ns0:style>
+      <ns0:fill id="fgA">
+        <ns0:fillColor color="rgba(248, 250, 252, 1)" />
+      </ns0:fill>
+    </ns0:style>
+    <ns0:data>
+      <ns0:shape width="660" height="20" topLeftX="56" topLeftY="25" type="text" id="bEO">
+        <ns0:content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(37, 99, 235, 1)" bold="true" letterSpacing="1.1" wrap="false">
+          <ns0:p>RK08 · RIBOKINETIC BACKBONE · REAL-DATA SMOKE</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="168" height="30" topLeftX="736" topLeftY="24" presetHandlers="15" type="round-rect" id="bbs">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(220, 252, 231, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="152" height="20" topLeftX="744" topLeftY="29" type="text" id="bbg">
+        <ns0:content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" textAlign="center" wrap="false">
+          <ns0:p>37/37 · FINALIZED</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="848" height="39" topLeftX="56" topLeftY="51" type="text" id="bbn">
+        <ns0:content textType="headline" fontSize="25" fontFamily="思源黑体" color="rgba(15, 23, 42, 1)" bold="true" wrap="false">
+          <ns0:p>RK08 机制预测骨干通过真实数据工程闭环</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="848" height="40" topLeftX="56" topLeftY="94" type="text" id="bEM">
+        <ns0:content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.25">
+          <ns0:p>Boël train/dev/test = 8/8/8 · 2 epochs · functional untouched 显式排除</ns0:p>
+          <ns0:p>独立 31/31 · finalization 37/37 · CPU bitwise retrain + RTX 5090 CUDA</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="272" height="96" topLeftX="56" topLeftY="142" presetHandlers="12" type="round-rect" id="bbW">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(255, 255, 255, 1)" />
+        </ns0:fill>
+        <ns0:border color="rgba(191, 219, 254, 1)" width="1" />
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="240" height="18" topLeftX="72" topLeftY="153" type="text" id="bbq">
+        <ns0:content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true">
+          <ns0:p>SHARED MECHANISM CHANNELS</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="31" topLeftX="72" topLeftY="177" type="text" id="bbe">
+        <ns0:content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false">
+          <ns0:p>4 paths · 1 backbone</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="15" topLeftX="72" topLeftY="216" type="text" id="bbA">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)">
+          <ns0:p>消融仅门控信息流，不删除通路参数</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="272" height="96" topLeftX="344" topLeftY="142" presetHandlers="12" type="round-rect" id="bEL">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(239, 246, 255, 1)" />
+        </ns0:fill>
+        <ns0:border color="rgba(147, 197, 253, 1)" width="1" />
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="240" height="18" topLeftX="360" topLeftY="153" type="text" id="bbz">
+        <ns0:content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true">
+          <ns0:p>CONTRACT TESTS</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="31" topLeftX="360" topLeftY="177" type="text" id="bbP">
+        <ns0:content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false">
+          <ns0:p>12/12 PASS</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="15" topLeftX="360" topLeftY="216" type="text" id="bbp">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)">
+          <ns0:p>合法 CDS · NaN+mask · train-only fit</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="272" height="96" topLeftX="632" topLeftY="142" presetHandlers="12" type="round-rect" id="bbr">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(239, 246, 255, 1)" />
+        </ns0:fill>
+        <ns0:border color="rgba(147, 197, 253, 1)" width="1" />
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="240" height="18" topLeftX="648" topLeftY="153" type="text" id="bEk">
+        <ns0:content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true">
+          <ns0:p>CUDA FORWARD MAX ERROR</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="31" topLeftX="648" topLeftY="177" type="text" id="bbI">
+        <ns0:content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" wrap="false">
+          <ns0:p>4.77e-7</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="240" height="15" topLeftX="648" topLeftY="216" type="text" id="bbv">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)">
+          <ns0:p>独立逐行前向 · CPU 重训参数逐位一致</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="848" height="114" topLeftX="56" topLeftY="258" presetHandlers="12" type="round-rect" id="bbN">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(255, 255, 255, 1)" />
+        </ns0:fill>
+        <ns0:border color="rgba(226, 232, 240, 1)" width="1" />
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="816" height="16" topLeftX="72" topLeftY="267" type="text" id="bbQ">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true">
+          <ns0:p>ONE ARCHITECTURE · AUDITABLE INFORMATION GATES</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="184" height="40" topLeftX="76" topLeftY="292" presetHandlers="8" type="round-rect" id="bER">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(219, 234, 254, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="164" height="26" topLeftX="86" topLeftY="299" type="text" id="bbV">
+        <ns0:content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center">
+          <ns0:p>initiation</ns0:p>
+          <ns0:p><ns0:span fontSize="9" bold="false">position-gated head</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="184" height="40" topLeftX="276" topLeftY="292" presetHandlers="8" type="round-rect" id="bbj">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(219, 234, 254, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="164" height="26" topLeftX="286" topLeftY="299" type="text" id="bbb">
+        <ns0:content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center">
+          <ns0:p>velocity</ns0:p>
+          <ns0:p><ns0:span fontSize="9" bold="false">masked per-codon head</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="184" height="40" topLeftX="476" topLeftY="292" presetHandlers="8" type="round-rect" id="bEa">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(219, 234, 254, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="164" height="26" topLeftX="486" topLeftY="299" type="text" id="bEm">
+        <ns0:content fontSize="11" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center">
+          <ns0:p>decay</ns0:p>
+          <ns0:p><ns0:span fontSize="9" bold="false">masked per-codon head</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="184" height="40" topLeftX="676" topLeftY="292" presetHandlers="8" type="round-rect" id="bbZ">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(220, 252, 231, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="164" height="26" topLeftX="686" topLeftY="299" type="text" id="bbF">
+        <ns0:content fontSize="11" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" textAlign="center">
+          <ns0:p>pair channel</ns0:p>
+          <ns0:p><ns0:span fontSize="9" bold="false">legal base-pair bias</ns0:span></ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="784" height="18" topLeftX="76" topLeftY="342" type="text" id="bEh">
+        <ns0:content fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" textAlign="center" wrap="false">
+          <ns0:p>Shared codon Transformer → multi-task heads → function mean / log-scale / 95% interval</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="410" height="54" topLeftX="56" topLeftY="386" presetHandlers="10" type="round-rect" id="bEG">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(240, 253, 244, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="382" height="38" topLeftX="70" topLeftY="394" type="text" id="bbY">
+        <ns0:content fontSize="10" fontFamily="思源黑体" color="rgba(22, 101, 52, 1)" lineSpacing="multiple:1.2">
+          <ns0:p><ns0:strong>已证实</ns0:strong> · 真实 CPU/CUDA 训练与复现链路成立</ns0:p>
+          <ns0:p>dev 选轮次；test 仅在 checkpoint 冻结后评价</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="418" height="54" topLeftX="486" topLeftY="386" presetHandlers="10" type="round-rect" id="bbE">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(255, 247, 237, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="390" height="38" topLeftX="500" topLeftY="394" type="text" id="bbH">
+        <ns0:content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)" lineSpacing="multiple:1.2">
+          <ns0:p><ns0:strong>未关闭</ns0:strong> · 机制增量、paired CI、功能/速度 OOD</ns0:p>
+          <ns0:p>小样本性能不作结论；未赢 baseline，不宣称 SOTA</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="848" height="26" topLeftX="56" topLeftY="452" presetHandlers="8" type="round-rect" id="bEK">
+        <ns0:fill>
+          <ns0:fillColor color="rgba(239, 246, 255, 1)" />
+        </ns0:fill>
+        <ns0:content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </ns0:shape>
+      <ns0:shape width="820" height="16" topLeftX="70" topLeftY="457" type="text" id="bED">
+        <ns0:content fontSize="10" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" textAlign="center" wrap="false">
+          <ns0:p>RK-G1 仍未通过 · 不启动昂贵生成训练 · pair bias 不是精确 partition function</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="700" height="18" topLeftX="56" topLeftY="486" type="text" id="bbJ">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)">
+          <ns0:p>Evidence: independent 31/31 + finalization 37/37 + unit 12/12 · GitHub c8128b3b</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+      <ns0:shape width="128" height="18" topLeftX="776" topLeftY="486" type="text" id="bbu">
+        <ns0:content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" textAlign="right">
+          <ns0:p>RK08 · 2026-11-19</ns0:p>
+        </ns0:content>
+      </ns0:shape>
+    </ns0:data>
+    <ns0:note id="bET">
+      <ns0:content>
+        <ns0:p>这一页只报告 RK08 的工程与复现闭环。模型在同一骨干中保留四条机制通路，消融只门控信息流，因此模型存在和测试通过不等于机制有效。真实数据 smoke 使用 train、dev、test 各八条，functional untouched 没有参与。两次 CPU 训练的指标、预测和参数张量逐位一致，CUDA 前向也经独立复核。功能与速度 OOD、paired CI、强 baseline 和生成器仍未关闭。</ns0:p>
+      </ns0:content>
+    </ns0:note>
+  </ns0:slide>

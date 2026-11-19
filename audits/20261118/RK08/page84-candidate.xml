@@ -1,0 +1,91 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(248, 250, 252, 1)"/></fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="56" topLeftY="25" width="660" height="20">
+      <content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(37, 99, 235, 1)" bold="true" letterSpacing="1.1" wrap="false"><p>RK08 · FULL RETAINED + SEQUENCE-OOD · 2,000 CLUSTER BOOTSTRAPS</p></content>
+    </shape>
+    <shape type="round-rect" topLeftX="736" topLeftY="24" width="168" height="30" presetHandlers="15">
+      <fill><fillColor color="rgba(220, 252, 231, 1)"/></fill><content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="744" topLeftY="29" width="152" height="20">
+      <content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" textAlign="center" wrap="false"><p>48/48 · FINALIZED</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="51" width="848" height="39">
+      <content textType="headline" fontSize="25" fontFamily="思源黑体" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>机制通路有同骨干增量，但未赢完整代理</p></content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="94" width="848" height="40">
+      <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" lineSpacing="multiple:1.25"><p>retained train/dev/test = 4019/503/490 · sequence-OOD = 1336 constructs / 1110 clusters</p><p>all vs none · 4,997 parameters · 6 epochs · dev-only selection · RTX 5090</p></content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="142" width="272" height="90" presetHandlers="12">
+      <fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><border color="rgba(134, 239, 172, 1)" width="1"/><content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="72" topLeftY="152" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>ALL−NONE · SPEARMAN</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="174" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" wrap="false"><p>+0.1990</p></content></shape>
+    <shape type="text" topLeftX="72" topLeftY="210" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>95% CI [0.1293, 0.2669]</p></content></shape>
+
+    <shape type="round-rect" topLeftX="344" topLeftY="142" width="272" height="90" presetHandlers="12">
+      <fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><border color="rgba(134, 239, 172, 1)" width="1"/><content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="360" topLeftY="152" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>ALL−NONE · CB-MSE</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="174" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" wrap="false"><p>−0.2761</p></content></shape>
+    <shape type="text" topLeftX="360" topLeftY="210" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>95% CI [−0.3774, −0.1808]</p></content></shape>
+
+    <shape type="round-rect" topLeftX="632" topLeftY="142" width="272" height="90" presetHandlers="12">
+      <fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/><content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="152" width="240" height="18"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>ALL−RIDGE_ALL · SPEARMAN</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="174" width="240" height="31"><content textType="headline" fontSize="22" fontFamily="思源黑体" color="rgba(194, 65, 12, 1)" bold="true" wrap="false"><p>−0.0258</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="210" width="240" height="15"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)"><p>95% CI [−0.0711, 0.0194] · Holm p=0.522</p></content></shape>
+
+    <shape type="text" topLeftX="56" topLeftY="253" width="544" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true"><p>SEQUENCE-OOD · SAME 1336 CONSTRUCTS · LOWER CB-MSE IS BETTER</p></content></shape>
+    <table topLeftX="56" topLeftY="280" width="544" height="120">
+      <colgroup><col width="220"/><col width="108"/><col width="108"/><col width="108"/></colgroup>
+      <tr height="20">
+        <td><fill><fillColor color="rgba(30, 64, 175, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(255,255,255,1)" textAlign="left"><p>Model</p></content></td>
+        <td><fill><fillColor color="rgba(30, 64, 175, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>CB-MSE</p></content></td>
+        <td><fill><fillColor color="rgba(30, 64, 175, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(30, 64, 175, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>Row R2</p></content></td>
+      </tr>
+      <tr height="20">
+        <td><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(22,101,52,1)" textAlign="left"><p>RiboKinetic all</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(22,101,52,1)" textAlign="center"><p>4.0887</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(22,101,52,1)" textAlign="center"><p>0.1921</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(22,101,52,1)" textAlign="center"><p>0.0103</p></content></td>
+      </tr>
+      <tr height="20">
+        <td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="left"><p>RiboKinetic none</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>4.3648</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>−0.0069</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>−0.0523</p></content></td>
+      </tr>
+      <tr height="20">
+        <td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="left"><p>GC-only ridge</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>4.3783</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>0.0719</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>−0.0504</p></content></td>
+      </tr>
+      <tr height="20">
+        <td><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(30,64,175,1)" textAlign="left"><p>Full-proxy ridge · primary</p></content></td><td><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(30,64,175,1)" textAlign="center"><p>4.1143</p></content></td><td><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(30,64,175,1)" textAlign="center"><p>0.2179</p></content></td><td><fill><fillColor color="rgba(239, 246, 255, 1)"/></fill><content textType="body" fontSize="10" fontFamily="思源黑体" bold="true" color="rgba(30,64,175,1)" textAlign="center"><p>0.0117</p></content></td>
+      </tr>
+      <tr height="20">
+        <td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="left"><p>Full-proxy HistGB · descriptive</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>3.9900</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>0.2194</p></content></td><td><content textType="body" fontSize="10" fontFamily="思源黑体" color="rgba(71,85,105,1)" textAlign="center"><p>0.0324</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="632" topLeftY="252" width="272" height="160" presetHandlers="12">
+      <fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/><content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="263" width="240" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(71,85,105,1)" bold="true"><p>PRE-REGISTERED RK-G1</p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="289" width="240" height="28"><content fontSize="10" fontFamily="思源黑体" color="rgba(21,128,61,1)" lineSpacing="multiple:1.15"><p><strong>PASS · all vs none</strong></p><p><span fontSize="9" color="rgba(100,116,139,1)">2/2 OOD CI 排除零</span></p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="322" width="240" height="28"><content fontSize="10" fontFamily="思源黑体" color="rgba(21,128,61,1)" lineSpacing="multiple:1.15"><p><strong>PASS · all vs GC-only</strong></p><p><span fontSize="9" color="rgba(100,116,139,1)">2/2 OOD CI 排除零</span></p></content></shape>
+    <shape type="text" topLeftX="648" topLeftY="355" width="240" height="31"><content fontSize="10" fontFamily="思源黑体" color="rgba(194,65,12,1)" lineSpacing="multiple:1.15"><p><strong>FAIL · all vs ridge_all</strong></p><p><span fontSize="9" color="rgba(100,116,139,1)">两项 CI 跨零 · Holm p=.522/.595</span></p></content></shape>
+    <shape type="round-rect" topLeftX="648" topLeftY="389" width="240" height="17" presetHandlers="7"><fill><fillColor color="rgba(254, 226, 226, 1)"/></fill><content fontSize="16" fontFamily="思源黑体" color="rgba(31,35,41,1)"/></shape>
+    <shape type="text" topLeftX="656" topLeftY="390" width="224" height="15"><content textType="caption" fontSize="10" fontFamily="思源黑体" color="rgba(185,28,28,1)" bold="true" textAlign="center" wrap="false"><p>RK-G1 = FALSE</p></content></shape>
+
+    <shape type="round-rect" topLeftX="56" topLeftY="426" width="410" height="44" presetHandlers="10"><fill><fillColor color="rgba(240, 253, 244, 1)"/></fill><content fontSize="16" fontFamily="思源黑体" color="rgba(31,35,41,1)"/></shape>
+    <shape type="text" topLeftX="70" topLeftY="433" width="382" height="31"><content fontSize="10" fontFamily="思源黑体" color="rgba(22,101,52,1)" lineSpacing="multiple:1.2"><p><strong>支持 · 同骨干与 GC-only 增量</strong></p><p>功能单监督；不解释为已验证机制</p></content></shape>
+    <shape type="round-rect" topLeftX="486" topLeftY="426" width="418" height="44" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><content fontSize="16" fontFamily="思源黑体" color="rgba(31,35,41,1)"/></shape>
+    <shape type="text" topLeftX="500" topLeftY="433" width="390" height="31"><content fontSize="10" fontFamily="思源黑体" color="rgba(154,52,18,1)" lineSpacing="multiple:1.2"><p><strong>未关闭 · full-proxy 优势、速度 OOD、SOTA</strong></p><p>不启动昂贵生成训练 · clean-env 复现未完成</p></content></shape>
+
+    <shape type="text" topLeftX="56" topLeftY="486" width="700" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100,116,139,1)"><p>Evidence: independent 224/224 + finalization 48/48 + unit 7/7 · GitHub 15e0277c</p></content></shape>
+    <shape type="text" topLeftX="776" topLeftY="486" width="128" height="18"><content textType="caption" fontSize="9" fontFamily="思源黑体" color="rgba(100,116,139,1)" textAlign="right"><p>RK08 · 2026-11-19</p></content></shape>
+  </data>
+  <note><content><p>这一页报告完整 retained 与 sequence-OOD 的真实功能实验，不再是小样本 smoke。all 相对同骨干 none 的 Spearman 增量为 0.199016，CB-MSE 差为 −0.276089，两个聚类 bootstrap 区间均不跨零；相对 GC-only 也成立。相对完整代理 ridge_all，Spearman 差为 −0.025779，95% CI 为 [−0.071103, 0.019376]，CB-MSE 差为 −0.025572，95% CI 为 [−0.124069, 0.076207]，所以 RK-G1 未通过。该实验只有功能监督，不能宣称固定蛋白同义机制、速度 OOD、SOTA 或生成器就绪。</p></content></note>
+</slide>
