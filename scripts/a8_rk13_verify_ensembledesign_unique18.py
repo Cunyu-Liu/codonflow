@@ -58,12 +58,16 @@ def efe(sequence: str) -> float:
     md = RNA.md()
     md.temperature = 37.0
     md.dangles = 0
-    return float(RNA.fold_compound(sequence, md).pf()[1])
+    fc = RNA.fold_compound(sequence, md)
+    _, mfe = fc.mfe()
+    fc.exp_params_rescale(mfe)
+    return float(fc.pf()[1])
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
+    parser.add_argument("--recovery-protocol", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--materialization", type=Path, required=True)
     parser.add_argument("--build-report", type=Path, required=True)
@@ -72,7 +76,9 @@ def main() -> None:
     if args.audit.exists():
         raise FileExistsError("refusing to overwrite independent audit")
     protocol = json.loads(args.protocol.read_text())
+    recovery_protocol = json.loads(args.recovery_protocol.read_text())
     report = json.loads(args.report.read_text())
+    recovery = report.get("recovery", {})
     materialization = json.loads(args.materialization.read_text())
     build = json.loads(args.build_report.read_text())
     failures = []
@@ -85,6 +91,21 @@ def main() -> None:
 
     require(protocol["schema"] == "a8-rk13-ensembledesign-unique18-v1", "protocol schema")
     require(report["protocol_sha256"] == sha256(args.protocol), "report protocol hash")
+    require(recovery_protocol["schema"] == "a8-rk13-ensembledesign-unique18-recovery-v1", "recovery protocol schema")
+    require(recovery_protocol["status"] == "FROZEN_BEFORE_RECOVERY", "recovery pre-frozen status")
+    require(recovery_protocol["parent_protocol_sha256"] == sha256(args.protocol), "recovery parent protocol hash")
+    require(recovery.get("recovery_protocol_sha256") == sha256(args.recovery_protocol), "report recovery protocol hash")
+    require(recovery.get("failed_report_sha256") == recovery_protocol["failed_report_sha256"], "report failed report hash")
+    require(sha256(Path(recovery_protocol["failed_report"])) == recovery_protocol["failed_report_sha256"], "preserved failed report")
+    require(sha256(Path(recovery_protocol["failed_console_log"])) == recovery_protocol["failed_console_log_sha256"], "preserved failed console log")
+    require(json.loads(Path(recovery_protocol["failed_report"]).read_text())["status"] == "FAILED", "failed attempt remains failed")
+    for failed_name, failed_hash in recovery_protocol["failed_record_files"].items():
+        require(sha256(Path(failed_name)) == failed_hash, f"preserved failed raw {failed_name}")
+    require(recovery.get("failed_attempt_preserved") is True and recovery.get("failed_outputs_overwritten") is False, "failure preservation flags")
+    require(recovery.get("tolerance_changed") is False, "EFE tolerance unchanged")
+    require(recovery.get("selected_records_reexecuted") == recovery_protocol["reexecute_record_order"], "reexecuted record list")
+    require(recovery.get("total_official_process_count_including_failed_attempt") == 25, "total attempts disclosed")
+    require(recovery.get("total_generator_run_count_including_failed_attempt") == 209, "total attempted runs disclosed")
     require(report["status"] == "COMPLETE_UNIQUE18_OFFICIAL_ENSEMBLEDESIGN_11RUN", "production completion status")
     require(report["commit"] == protocol["source_commit"] == materialization["commit"] == build["commit"], "source commit chain")
     require(build["status"] == "BUILD_COMPLETE", "build status")
@@ -160,6 +181,7 @@ def main() -> None:
                 require(translate(run["sequence_rna"]) == protein, f"{record_id} run {run['run_id']} synonymous identity")
                 require(len(run["sequence_rna"]) == 3 * len(protein), f"{record_id} run {run['run_id']} raw length")
                 independent = efe(run["sequence_rna"])
+                require(run.get("independent_efe_method") == "mfe_then_exp_params_rescale_then_pf", f"{record_id} run {run['run_id']} stable EFE method")
                 delta = abs(independent - run["official_efe_kcal_mol"])
                 max_efe_delta = max(max_efe_delta, delta)
                 record_max_delta = max(record_max_delta, delta)
@@ -196,6 +218,9 @@ def main() -> None:
         "created_at": dt.datetime.now(dt.timezone.utc).isoformat(),
         "status": "PASS" if not failures else "FAIL",
         "protocol_sha256": sha256(args.protocol),
+        "recovery_protocol_sha256": sha256(args.recovery_protocol),
+        "failed_report_sha256": recovery_protocol["failed_report_sha256"],
+        "independent_efe_method": "mfe_then_exp_params_rescale_then_pf",
         "report": str(args.report),
         "report_sha256": sha256(args.report),
         "record_count": len(report["records"]),
