@@ -30,6 +30,13 @@ def test_cai_rejects_invalid_weight():
         m.cai_from_weights("AAG", {"AAG": 0.0})
 
 
+def test_raw_cai_reference_chunking_retains_embedded_whitespace():
+    weights = m.reference_weights(["AAA GAA  "])
+    assert weights["AAG"] == pytest.approx(0.5)
+    with pytest.raises(ValueError):
+        m.reference_weights(["AAA GAA"])
+
+
 def test_flowseq_score_and_count_validation():
     assert m.flowseq_score([1, 0, 0, 0, 0, 0, 0, 1]) == 4.5
     with pytest.raises(ValueError):
@@ -96,7 +103,7 @@ def test_holm_is_monotone():
 
 
 def test_protocol_does_not_authorize_untouched_or_generator():
-    protocol = json.loads((Path(__file__).resolve().parents[2] / "configs" / "a8_rk02_mordstein_structure_increment_protocol_v1.json").read_text())
+    protocol = json.loads((Path(__file__).resolve().parents[2] / "configs" / "a8_rk02_mordstein_structure_increment_protocol_v2.json").read_text())
     assert protocol["confirmatory_independent_test"] is False
     assert protocol["boundaries"]["functional_untouched_evaluation"] is False
     assert protocol["boundaries"]["generator_training_authorized"] is False

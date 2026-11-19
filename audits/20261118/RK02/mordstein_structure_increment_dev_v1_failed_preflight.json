@@ -1,0 +1,18 @@
+{
+  "cause": "First raw CAGFN def_refs string contains embedded space/newline; v1 incorrectly required raw references to contain only ACGT before reproducing CAI==1.0.2 raw chunking.",
+  "code_commit": "7568b1feab3425325914e7985d6966b0cc06d697",
+  "created_at_utc": "2026-11-19T19:06:40.602269+00:00",
+  "error": "invalid DNA sequence",
+  "error_type": "ValueError",
+  "models_fitted": false,
+  "n_variants_processed": 0,
+  "output_directory_created": false,
+  "phase": "reference_weights",
+  "predictions_generated": false,
+  "protocol_id": "a8_rk02_mordstein_structure_increment_dev_v1_frozen_before_structure_and_prediction",
+  "protocol_sha256": "d287593700b12a67b74c4b825ebb851d7619fcf0b8e9f03e135bb9846a34185e",
+  "resolution": "Frozen v2 protocol retains exact CAI==1.0.2 raw three-character chunking and documents the reference QC caveat; production and external CAI weights were cross-checked on all 61 sense codons before v2 launch.",
+  "schema": "a8.rk02.mordstein_structure_increment_dev_failed_preflight.v1",
+  "status": "FAILED_PREFLIGHT_NO_SCIENTIFIC_RESULT",
+  "structure_features_computed": false
+}

@@ -77,10 +77,17 @@ def load_literal_assignment(path: Path, variable: str):
 
 
 def reference_weights(references: list[str]) -> dict[str, float]:
+    """Reproduce CAI==1.0.2 RSCU/relative_adaptiveness on raw reference strings.
+
+    The frozen CAGFN first reference contains embedded whitespace. CAI==1.0.2
+    chunks every raw string into three characters without stripping whitespace;
+    retain that behavior and surface the QC caveat rather than silently cleaning.
+    """
     counts = Counter()
     for sequence in references:
         sequence = sequence.upper()
-        translate(sequence)
+        if not sequence or len(sequence) % 3:
+            raise ValueError("invalid reference length for raw CAI chunking")
         counts.update(sequence[i:i + 3] for i in range(0, len(sequence), 3))
     for codon in CODON_TABLE:
         if codon not in STOPS and counts[codon] == 0:
