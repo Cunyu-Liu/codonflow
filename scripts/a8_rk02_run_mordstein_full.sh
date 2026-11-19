@@ -36,8 +36,8 @@ PY
   fi
   sleep 120
 done
-mkdir -p "$ART" "$AUD"
-"$PY" -m pytest -q scripts/tests/test_a8_rk02_mordstein_reference_recovery.py | tee "$ART/unit_tests.console.log"
+mkdir -p "$AUD"
+"$PY" -m pytest -q scripts/tests/test_a8_rk02_mordstein_reference_recovery.py | tee "$AUD/mordstein_recovery_full_unit_tests_v1.console.log"
 "$PY" scripts/a8_rk02_mordstein_reference_recovery.py \
   --metadata "$META/PRJNA596086.read_run.tsv" \
   --raw-root "$BASE/raw" \
