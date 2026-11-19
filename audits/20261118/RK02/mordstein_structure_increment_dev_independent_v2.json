@@ -1,0 +1,135 @@
+{
+  "analysis_status": "DEVELOPMENT_ONLY_NOT_CONFIRMATORY_INDEPENDENT_TEST",
+  "checks": [
+    {
+      "name": "population_152_unique_variants",
+      "pass": true
+    },
+    {
+      "name": "raw_sequences_retranslated",
+      "pass": true
+    },
+    {
+      "name": "flowseq_scores_recomputed",
+      "pass": true
+    },
+    {
+      "name": "external_cai_recomputed_without_silent_zero",
+      "pass": true
+    },
+    {
+      "name": "viennarna_features_recomputed",
+      "pass": true
+    },
+    {
+      "name": "frozen_fold_assignment_recomputed",
+      "pass": true
+    },
+    {
+      "name": "oof_predictions_recomputed_without_sklearn",
+      "pass": true
+    },
+    {
+      "name": "model_metrics_recomputed",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_and_sign_flip_recomputed",
+      "pass": true
+    },
+    {
+      "name": "holm_and_gate_recomputed",
+      "pass": true
+    },
+    {
+      "name": "input_and_output_hashes_verified",
+      "pass": true
+    },
+    {
+      "name": "scientific_boundaries_preserved",
+      "pass": true
+    }
+  ],
+  "checks_passed": 12,
+  "checks_total": 12,
+  "feature_max_abs_delta": {
+    "cai_human_def_refs_observed_r1": 2.7755575615628914e-16,
+    "cpg_per_100nt_observed_5prime": 0.0,
+    "gc3_observed_5prime": 0.0,
+    "gc_observed_5prime": 0.0,
+    "log1p_total_assigned_reads": 0.0,
+    "mfe_observed_r1_full_kcal_mol": 0.0,
+    "mfe_observed_r1_window48_mean_kcal_mol": 0.0,
+    "mfe_observed_r1_window48_min_kcal_mol": 0.0
+  },
+  "independent_cai_package": "CAI 1.0.2",
+  "independent_viennarna": "2.7.2",
+  "model_metrics": {
+    "depth_only": {
+      "mse": 2.1678334536579666,
+      "pearson": 0.16282995626418628,
+      "rmse": 1.4723564288778606,
+      "spearman": 0.1972846998680964
+    },
+    "simple": {
+      "mse": 1.91542066442304,
+      "pearson": 0.3739384201594905,
+      "rmse": 1.3839872341980037,
+      "spearman": 0.4132340981007251
+    },
+    "simple_plus_structure": {
+      "mse": 1.9099920369574148,
+      "pearson": 0.3783272828517888,
+      "rmse": 1.3820246151778248,
+      "spearman": 0.4089831122410623
+    }
+  },
+  "n_variants": 152,
+  "prediction_max_abs_delta": {
+    "depth_only": 8.881784197001252e-16,
+    "simple": 1.0658141036401503e-14,
+    "simple_plus_structure": 8.881784197001252e-15
+  },
+  "primary_effects": {
+    "delta_mse": {
+      "ci95_percentile": [
+        -0.08960370674454529,
+        0.07676584869175411
+      ],
+      "endpoint": "delta_mse",
+      "holm_p": 1.0,
+      "observed": -0.005428627465625224,
+      "permutation_p_two_sided": 0.9001549922503875,
+      "seed": 41361120
+    },
+    "delta_spearman": {
+      "ci95_percentile": [
+        -0.05520539205719149,
+        0.04633584918114156
+      ],
+      "endpoint": "delta_spearman",
+      "holm_p": 1.0,
+      "observed": -0.00425098585966277,
+      "permutation_p_two_sided": 0.8574571271436429,
+      "seed": 41261120
+    }
+  },
+  "production_sha256": "eead79375e43f11b22c968a31d41010f8509f03289b8c5c833ecb571bcb4acc3",
+  "protocol_sha256": "f3e1911b4c72f34257c998b736b70ca76734c1586f04e40dd48c03f265d9bdb6",
+  "schema": "a8.rk02.mordstein_structure_increment_dev_independent.v1",
+  "status": "PASS",
+  "structure_increment_pass": false,
+  "verification": {
+    "bootstrap_and_sign_flip_recomputed": true,
+    "external_cai_recomputed": true,
+    "full_cds_analysis": false,
+    "full_rk_g1_gate": false,
+    "functional_untouched_access": false,
+    "generator_training_authorized": false,
+    "oof_predictions_recomputed_without_sklearn": true,
+    "protein_ood_evaluation": false,
+    "raw_sequences_retranslated": true,
+    "sota_claim": false,
+    "viennarna_recomputed": true
+  }
+}

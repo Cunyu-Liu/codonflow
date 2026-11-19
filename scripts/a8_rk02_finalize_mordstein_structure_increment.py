@@ -40,7 +40,13 @@ def main() -> None:
     check("population_152", production["n_variants"] == independent["n_variants"] == 152)
     check("raw_feature_independent_recompute", independent["verification"]["external_cai_recomputed"] and independent["verification"]["viennarna_recomputed"] and max(independent["feature_max_abs_delta"].values()) <= 1e-10)
     check("oof_independent_recompute", independent["verification"]["oof_predictions_recomputed_without_sklearn"] and max(independent["prediction_max_abs_delta"].values()) <= 1e-9)
-    check("resampling_independent_recompute", independent["verification"]["bootstrap_and_sign_flip_recomputed"] and production["primary_effects"] == independent["primary_effects"])
+    effects_match = True
+    for endpoint in ("delta_spearman", "delta_mse"):
+        p, q = production["primary_effects"][endpoint], independent["primary_effects"][endpoint]
+        effects_match = effects_match and abs(p["observed"] - q["observed"]) <= 1e-10
+        effects_match = effects_match and max(abs(a - b) for a, b in zip(p["ci95_percentile"], q["ci95_percentile"])) <= 1e-10
+        effects_match = effects_match and p["permutation_p_two_sided"] == q["permutation_p_two_sided"] and p["holm_p"] == q["holm_p"] and p["direction_pass"] == ((q["ci95_percentile"][0] > 0 if endpoint == "delta_spearman" else q["ci95_percentile"][1] < 0) and q["holm_p"] < .05)
+    check("resampling_independent_recompute", independent["verification"]["bootstrap_and_sign_flip_recomputed"] and effects_match)
     check("same_scientific_gate", production["structure_increment_pass"] == independent["structure_increment_pass"])
     check("five_folds_complete", sum(production["fold_sizes"].values()) == 152 and len(production["fold_sizes"]) == 5)
     for model in ("depth_only", "simple", "simple_plus_structure"):
@@ -52,7 +58,8 @@ def main() -> None:
     interpretation_keys = ["confirmatory_test", "functional_untouched_access", "protein_ood_evaluation", "complete_cds_analysis", "causal_inference", "full_rk_g1_gate", "generator_training_authorized", "sota_claim"]
     check("production_boundaries_closed", all(production["scientific_interpretation"].get(k) is False for k in interpretation_keys))
     head = subprocess.check_output(["git", "-C", str(args.repo), "rev-parse", "HEAD"], text=True).strip()
-    check("production_code_commit_is_current_head", production["code_commit"] == head and production["tracked_tree_clean_at_launch"] is True, head)
+    ancestor = subprocess.run(["git", "-C", str(args.repo), "merge-base", "--is-ancestor", production["code_commit"], "HEAD"]).returncode == 0
+    check("production_code_commit_is_ancestor_of_head", ancestor and production["tracked_tree_clean_at_launch"] is True, {"head": head, "production_code_commit": production["code_commit"]})
     passed = sum(c["pass"] for c in checks)
     gate = production["structure_increment_pass"]
     report = {

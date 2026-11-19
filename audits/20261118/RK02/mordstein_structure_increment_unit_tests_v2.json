@@ -1,0 +1,23 @@
+{
+  "cai_weight_crosscheck": {
+    "external_package": "CAI==1.0.2",
+    "max_abs_delta": 1.1102230246251565e-16,
+    "sense_codons": 61
+  },
+  "code_commit": "cbc0f0840c8c609f3f2b174e299fba5389ba2f70",
+  "command": [
+    "/root/miniconda3/envs/llr_env/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "scripts/tests/test_a8_rk02_mordstein_structure_increment.py"
+  ],
+  "created_at_utc": "2026-11-19T19:06:54.411652+00:00",
+  "failed": 0,
+  "passed": 12,
+  "returncode": 0,
+  "schema": "a8.rk02.mordstein_structure_increment_unit_tests.v2",
+  "status": "PASS",
+  "stderr": "",
+  "stdout": "............                                                             [100%]\n12 passed in 1.85s\n"
+}
