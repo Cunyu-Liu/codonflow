@@ -168,3 +168,11 @@ export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_TH
   --production-script scripts/a8_rk04_sequence_ood_model.py \
   --output audits/20261118/RK04/sequence_ood_model_independent_verification.json
 ```
+
+## 13. 模型 PPT 与 A8 v12 论文记录
+
+- 在线主稿在 revision 42 的 80 页实时基线上只追加第 81 页 `pge`，写后 revision=43。候选 XML 先经 `rk04_model_ppt_candidate_verification.json` **21/21 PASS**，写后整稿回读经 `rk04_model_ppt_verification.json` **12/12 PASS**；前 80 页 slide IDs 与语义 XML 均不变，新页五家族数值、4 段备注和画布边界全部通过。
+- 写后整稿 XML SHA256=`64044fb689f537f35c9cb59fb4d9302ea0d39037a5642708a8fa8241c0099d3b`。完整 before/after XML 保存在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/`；候选 XML、写入响应、验证脚本与报告进入 Git。
+- PPT 链接：https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g 。本页只报告 sequence-OOD proxy 性能，不支持机制、生成器或 SOTA。
+- `paper/CodonFlow_preprint_A8.md` 已升级为 v12，新增 sequence-OOD 数据协议、五家族完整结果、dev 选择、test/OOD bootstrap、失败历史和证据哈希；A8 v11 原快照 SHA256=`0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05` 保持不变。
+- 独立论文报告 `rk04_model_paper_verification.json` **19/19 PASS**；v12 SHA256=`5ff302e51dd26decaa628e23481bedab9b6a747fbd13eac08017c578396877a9`。仍为 non-submittable working manuscript，functional untouched、同骨干机制、主模型、强 baseline 主矩阵、生成器和湿实验未关闭。

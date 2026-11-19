@@ -1,0 +1,137 @@
+{
+  "protocol_id": "a8_rk04_model_paper_verification_v1",
+  "status": "PASS",
+  "manuscript": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_paper/CodonFlow_preprint_A8_v12.md",
+  "manuscript_sha256": "5ff302e51dd26decaa628e23481bedab9b6a747fbd13eac08017c578396877a9",
+  "prior_manuscript": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_paper/CodonFlow_preprint_A8_v11.md",
+  "prior_manuscript_sha256": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05",
+  "checks": [
+    {
+      "name": "v11_preserved",
+      "status": "PASS",
+      "detail": "0158f579cb1634b1a36c666c4cf7c930dcabe276abc00e3c00f5546ef1005a05"
+    },
+    {
+      "name": "all_other_v11_lines_preserved_in_order",
+      "status": "PASS",
+      "detail": {
+        "protected": 332,
+        "matched": 332
+      }
+    },
+    {
+      "name": "working_manuscript_status",
+      "status": "PASS",
+      "detail": "non-submittable"
+    },
+    {
+      "name": "independent_and_final",
+      "status": "PASS",
+      "detail": "40/40 + 18/18"
+    },
+    {
+      "name": "primary_selection",
+      "status": "PASS",
+      "detail": "ridge_all"
+    },
+    {
+      "name": "split_counts",
+      "status": "PASS",
+      "detail": "retained/test/OOD/untouched"
+    },
+    {
+      "name": "metrics_constant",
+      "status": "PASS",
+      "detail": "six-decimal evidence match"
+    },
+    {
+      "name": "metrics_ridge_gc",
+      "status": "PASS",
+      "detail": "six-decimal evidence match"
+    },
+    {
+      "name": "metrics_ridge_basic",
+      "status": "PASS",
+      "detail": "six-decimal evidence match"
+    },
+    {
+      "name": "metrics_ridge_all",
+      "status": "PASS",
+      "detail": "six-decimal evidence match"
+    },
+    {
+      "name": "metrics_histgb_all",
+      "status": "PASS",
+      "detail": "six-decimal evidence match"
+    },
+    {
+      "name": "bootstrap_test",
+      "status": "PASS",
+      "detail": [
+        "+0.025687",
+        "-0.066372",
+        "0.119629",
+        "-0.080600",
+        "-0.233242",
+        "0.078749"
+      ]
+    },
+    {
+      "name": "bootstrap_sequence_ood",
+      "status": "PASS",
+      "detail": [
+        "+0.146000",
+        "0.103896",
+        "0.189857",
+        "-0.263944",
+        "-0.374981",
+        "-0.144076"
+      ]
+    },
+    {
+      "name": "histgb_not_post_hoc_primary",
+      "status": "PASS",
+      "detail": "secondary family retained"
+    },
+    {
+      "name": "verification_recorded",
+      "status": "PASS",
+      "detail": "independent/final/tests"
+    },
+    {
+      "name": "scientific_boundaries",
+      "status": "PASS",
+      "detail": "limited proxy only"
+    },
+    {
+      "name": "failure_history_retained",
+      "status": "PASS",
+      "detail": "failures not hidden"
+    },
+    {
+      "name": "evidence_hashes_in_manuscript",
+      "status": "PASS",
+      "detail": [
+        "173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979",
+        "ebd1e96d3895f04f9168bbf9f39f72564324c5e853abd3a4c6c74aa7b26d63a6",
+        "5a15ae17dfbb282ab97aa954c6eaad40d064ec2251d2d080b1e7b1554e220b94",
+        "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75",
+        "84b3b2068ed68a96bbbe3694509c26c9043a3d66be4d503ee805bca52e83bd34"
+      ]
+    },
+    {
+      "name": "functional_untouched_still_pending",
+      "status": "PASS",
+      "detail": "untouched not evaluated"
+    }
+  ],
+  "summary": {
+    "checks": "19/19",
+    "failed": []
+  },
+  "evidence": {
+    "model_summary_sha256": "173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979",
+    "independent_verification_sha256": "ebd1e96d3895f04f9168bbf9f39f72564324c5e853abd3a4c6c74aa7b26d63a6",
+    "finalization_sha256": "5a15ae17dfbb282ab97aa954c6eaad40d064ec2251d2d080b1e7b1554e220b94"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "protocol_id": "a8_rk04_model_ppt_readback_verification_v1",
+  "status": "PASS",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "new_slide_id": "pge",
+  "new_slide_number": 81,
+  "revision_id": 43,
+  "checks": [
+    {
+      "name": "write_response",
+      "status": "PASS",
+      "detail": {
+        "revision_id": 43,
+        "slide_id": "pge",
+        "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g"
+      }
+    },
+    {
+      "name": "candidate_precheck",
+      "status": "PASS",
+      "detail": {
+        "checks": "21/21",
+        "failed": []
+      }
+    },
+    {
+      "name": "slide_count_81",
+      "status": "PASS",
+      "detail": {
+        "before": 80,
+        "after": 81
+      }
+    },
+    {
+      "name": "new_slide_id",
+      "status": "PASS",
+      "detail": "pge"
+    },
+    {
+      "name": "previous_slide_ids_unchanged",
+      "status": "PASS",
+      "detail": "80/80"
+    },
+    {
+      "name": "previous_semantic_xml_unchanged",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "candidate_paragraphs_preserved",
+      "status": "PASS",
+      "detail": {
+        "candidate": 57,
+        "actual": 57
+      }
+    },
+    {
+      "name": "speaker_notes_preserved",
+      "status": "PASS",
+      "detail": 4
+    },
+    {
+      "name": "no_undefined_objects",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "single_result_title",
+      "status": "PASS",
+      "detail": "unique"
+    },
+    {
+      "name": "result_and_boundary_visible",
+      "status": "PASS",
+      "detail": "gain and limitation"
+    },
+    {
+      "name": "new_elements_in_canvas",
+      "status": "PASS",
+      "detail": "960x540"
+    }
+  ],
+  "summary": {
+    "checks": "12/12",
+    "failed": []
+  },
+  "evidence": {
+    "before_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_model_before_v01.xml",
+    "before_xml_sha256": "956991838376d9b07f3073aa83ae8064c23c6e1446b866bd41ce663ff0f4206d",
+    "after_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_model_after_v01.xml",
+    "after_xml_sha256": "64044fb689f537f35c9cb59fb4d9302ea0d39037a5642708a8fa8241c0099d3b",
+    "candidate_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_sequence_ood_model_page81_v01.xml",
+    "candidate_xml_sha256": "08cbcfc499fd3157c690364ee1156e857f9dd9e5e6f55a3c57a3d1267b8b0b29",
+    "add_response": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_model_add_response_v01.json",
+    "add_response_sha256": "490a6273ba1d7221512a16e6d619a159aed85d79da87cc5954fc4f7372f74dbb",
+    "candidate_verification": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_model_ppt_candidate_verification.json",
+    "candidate_verification_sha256": "42826ddd1073b419fcd18aa7ab022f1d1bb76250868ec7a0e772f1bc204d8bed"
+  }
+}

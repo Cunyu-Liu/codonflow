@@ -1,0 +1,171 @@
+{
+  "protocol_id": "a8_rk04_model_ppt_candidate_verification_v1",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "independent_pass",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "finalization_pass",
+      "status": "PASS",
+      "detail": "PASS"
+    },
+    {
+      "name": "before_has_80_slides",
+      "status": "PASS",
+      "detail": 80
+    },
+    {
+      "name": "result_page_not_duplicate",
+      "status": "PASS",
+      "detail": "unique new title"
+    },
+    {
+      "name": "new_title",
+      "status": "PASS",
+      "detail": "title"
+    },
+    {
+      "name": "primary_identity",
+      "status": "PASS",
+      "detail": "ridge_all"
+    },
+    {
+      "name": "primary_dev_cbmse",
+      "status": "PASS",
+      "detail": 3.7255759829852586
+    },
+    {
+      "name": "ood_spearman_gain",
+      "status": "PASS",
+      "detail": {
+        "ci95": [
+          0.103896279597561,
+          0.18985668189473004
+        ],
+        "median": 0.14431126587244963,
+        "valid_replicates": 1000
+      }
+    },
+    {
+      "name": "ood_cbmse_change",
+      "status": "PASS",
+      "detail": {
+        "ci95": [
+          -0.3749811452546195,
+          -0.1440755164792544
+        ],
+        "median": -0.2616078367521095,
+        "valid_replicates": 1000
+      }
+    },
+    {
+      "name": "ood_intervals_exclude_zero",
+      "status": "PASS",
+      "detail": "both OOD intervals exclude zero"
+    },
+    {
+      "name": "test_intervals_cross_zero",
+      "status": "PASS",
+      "detail": "both retained-test intervals cross zero"
+    },
+    {
+      "name": "metrics_constant",
+      "status": "PASS",
+      "detail": [
+        "null",
+        "-0.004095",
+        "null",
+        "-0.057252",
+        "4.388894"
+      ]
+    },
+    {
+      "name": "metrics_ridge_gc",
+      "status": "PASS",
+      "detail": [
+        "0.119209",
+        "0.011011",
+        "0.071873",
+        "-0.050378",
+        "4.378262"
+      ]
+    },
+    {
+      "name": "metrics_ridge_basic",
+      "status": "PASS",
+      "detail": [
+        "0.124036",
+        "0.009743",
+        "0.203876",
+        "-0.009653",
+        "4.211838"
+      ]
+    },
+    {
+      "name": "metrics_ridge_all",
+      "status": "PASS",
+      "detail": [
+        "0.144896",
+        "0.015979",
+        "0.217873",
+        "0.011709",
+        "4.114318"
+      ]
+    },
+    {
+      "name": "metrics_histgb_all",
+      "status": "PASS",
+      "detail": [
+        "0.203076",
+        "0.037747",
+        "0.219383",
+        "0.032386",
+        "3.989950"
+      ]
+    },
+    {
+      "name": "all_families_visible",
+      "status": "PASS",
+      "detail": "5/5"
+    },
+    {
+      "name": "no_post_hoc_primary_switch",
+      "status": "PASS",
+      "detail": "HistGB retained-test result retained without switching primary"
+    },
+    {
+      "name": "scientific_boundary",
+      "status": "PASS",
+      "detail": 0.011709058444031695
+    },
+    {
+      "name": "speaker_notes",
+      "status": "PASS",
+      "detail": 4
+    },
+    {
+      "name": "elements_in_canvas",
+      "status": "PASS",
+      "detail": "960x540"
+    }
+  ],
+  "summary": {
+    "checks": "21/21",
+    "failed": []
+  },
+  "evidence": {
+    "model_summary": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/sequence_ood_model_summary.json",
+    "model_summary_sha256": "173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979",
+    "independent": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/sequence_ood_model_independent_verification.json",
+    "independent_sha256": "ebd1e96d3895f04f9168bbf9f39f72564324c5e853abd3a4c6c74aa7b26d63a6",
+    "finalization": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/sequence_ood_model_finalization.json",
+    "finalization_sha256": "5a15ae17dfbb282ab97aa954c6eaad40d064ec2251d2d080b1e7b1554e220b94",
+    "before_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_model_before_v01.xml",
+    "before_xml_sha256": "956991838376d9b07f3073aa83ae8064c23c6e1446b866bd41ce663ff0f4206d",
+    "candidate_xml": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/reporting/sequence_ood_model_ppt/rk04_sequence_ood_model_page81_v01.xml",
+    "candidate_xml_sha256": "08cbcfc499fd3157c690364ee1156e857f9dd9e5e6f55a3c57a3d1267b8b0b29"
+  }
+}

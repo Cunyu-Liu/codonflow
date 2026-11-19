@@ -1,6 +1,6 @@
 # Learning structure–translation–decay coupling for synonymous mRNA design
 
-> **Status: A8-RK working manuscript — not for submission.** Verified data, operational split, bounded cross-protein diagnostic, and bounded baseline-execution audits are recorded; core mechanism, model, main baseline matrix, OOD, generator, and wet-lab closure remain incomplete. No SOTA claim.
+> **Status: A8-RK working manuscript — not for submission.** Verified data, operational split, sequence-OOD proxy models, bounded cross-protein diagnostics, and bounded baseline-execution audits are recorded; core mechanism, main model, main baseline matrix, remaining OOD, generator, and wet-lab closure remain incomplete. No SOTA claim.
 
 ## Abstract
 
@@ -51,6 +51,20 @@ Exact CDS, exact protein, identifiers, operational protein-homology clusters and
 D4 contains 621,306/76,444/78,724 train/validation/test records. D5 contains 618,073/80,191/78,177 records and uses MMseqs2 identity 0.5 with bidirectional coverage 0.8. These are operational splits, not curated family- or species-level proof. The existing unique18 set is development-only. Untouched24 and a separate functional untouched set are evaluated once after all choices are frozen.
 
 **RK04 frozen operational split.** MMseqs2 clustering used identity **0.50**, bidirectional coverage **0.80**, and seed **20261118**. The Boël rows were assigned to train/dev/test = **5,079/635/634**, while **19,072 MAGE rows** remained untouched. Independent verification passed **33/33 checks**, including zero overlap for exact CDS, exact protein/derived infA, source protein ID, operational cluster, construct-signature group, and nonblank mutation signature. These are operational MMseqs2 clusters, not curated protein families. The split is leakage-controlled but is not itself training-ready evidence: MAGE was not evaluated, and no generator or SOTA claim is authorized.
+
+**RK04 sequence-OOD proxy experiment.** Length and GC thresholds were computed only from the original training rows at the 5th/95th percentiles; any out-of-range member moved its entire operational cluster into sequence-OOD. The resulting retained train/dev/test partitions contained **4,019/503/490 rows** and **3,561/447/436 clusters**, respectively; sequence-OOD contained **1,336 rows / 1,110 clusters**. All **19,072 MAGE functional-untouched rows** remained excluded from feature computation, fitting and evaluation. The split and train-only normalization passed **37/37 independent checks** and **11/11 finalization checks**.
+
+We fitted five frozen model families with 17 candidates: a training-weighted constant, GC-only ridge, basic-sequence-feature ridge, all-proxy-feature ridge, and all-proxy-feature histogram gradient boosting. Model fitting used retained train only; dev cluster-balanced MSE selected one candidate per family and then the overall primary family. Test and sequence-OOD were not used for selection, and no train+dev refit occurred. The selected primary was `ridge_all(alpha=100)` with dev cluster-balanced MSE **3.725576**. Final metrics were:
+
+| Family | Test Spearman | Test R² | Test CB-MSE | OOD Spearman | OOD R² | OOD CB-MSE |
+|---|---:|---:|---:|---:|---:|---:|
+| constant | null | -0.004095 | 4.400064 | null | -0.057252 | 4.388894 |
+| ridge_gc | 0.119209 | 0.011011 | 4.338435 | 0.071873 | -0.050378 | 4.378262 |
+| ridge_basic | 0.124036 | 0.009743 | 4.292031 | 0.203876 | -0.009653 | 4.211838 |
+| **ridge_all (primary)** | **0.144896** | **0.015979** | **4.257835** | **0.217873** | **0.011709** | **4.114318** |
+| histgb_all | 0.203076 | 0.037747 | 4.207758 | 0.219383 | 0.032386 | 3.989950 |
+
+For the dev-frozen primary relative to dev-selected GC-only, paired operational-cluster bootstrap with 1,000 replicates gave a retained-test Spearman difference of **+0.025687** (95% CI **[-0.066372, 0.119629]**) and CB-MSE difference of **-0.080600** (95% CI **[-0.233242, 0.078749]**); both intervals cross zero. On sequence-OOD, the corresponding differences were **+0.146000** (95% CI **[0.103896, 0.189857]**) and **-0.263944** (95% CI **[-0.374981, -0.144076]**), with both intervals excluding zero. HistGB's higher retained-test Spearman is retained as a secondary-family result and was not used to replace the dev-frozen primary post hoc. Two complete runs produced identical prediction, metric and selection hashes; independent metric/model-forward verification passed **40/40 checks** with maximum prediction delta **0.0**, finalization passed **18/18 checks**, and unit tests passed **12/12**. The initial schema failure, an incomplete multithreaded run, and the earlier constant-prediction floating-point correlation artifact are preserved; the correction did not change model selection, nonconstant results, or primary comparisons. These data establish a limited nonsynonymous cross-protein proxy signal on this sequence-OOD construction, with low absolute R². They do not establish fixed-protein synonymous mechanisms, same-backbone mechanistic increments, CodonFlow-RK generator readiness, functional-untouched performance, prospective experimental validity, or SOTA.
 
 ### 3.3 Task-specific comparisons
 
@@ -218,7 +232,7 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
 
 ### 6.7 Untouched generalization and time-matched performance
 
-[Pending RK-G3. Report untouched proteins/studies, length/GC/homology strata, available hosts and complete costs.]
+The RK04 length/GC sequence-OOD partition has now been evaluated under the dev-frozen proxy-model protocol in Section 3.2: `ridge_all` improved over GC-only on sequence-OOD with bootstrap intervals excluding zero, whereas the retained-test intervals crossed zero and absolute R² remained low. This is a cluster-disjoint nonsynonymous proxy result, not functional-untouched or fixed-protein synonymous evidence. The **19,072 MAGE functional-untouched rows** remain unevaluated, and no time-matched CodonFlow-RK generator comparison has been performed. Other protein/study/host OOD and complete-cost results remain pending RK-G3.
 
 ### 6.8 Independent functional validation
 
@@ -290,6 +304,15 @@ The working-manuscript values above were rendered from the following frozen arti
 | ROSE retained verifier failure v1 | `705fabeaa1ce70c57d0b17a3f9f7b41a02211cc5e3be8f5078a672020cf0df39` |
 | ROSE retained verifier failure v2 | `9faeecabeb83b099554e2049e6b1e2f7eb33cef5d97068f3d1077ed3dd528425` |
 | ROSE retained verifier failure v3 | `0b05ef4782b844544511d9c4b81be4f3bb3abd50e64025f39cf0d480c8a22f87` |
+| RK04 sequence-OOD split CSV | `b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6` |
+| RK04 train-only normalization | `a1b2bc158a2669d8cf5db0f6f2ea26c26913a2203ed5e86ca020497458b210db` |
+| RK04 sequence-OOD model protocol | `e52ed045c1fa2cf890d67f752c72a208b90220dd99be2e262501e67a7b81d926` |
+| RK04 sequence-OOD model summary | `173549549c39be716b83554ba91402cfed3e496ec565255a855457f9eff79979` |
+| RK04 sequence-OOD model independent verifier | `ebd1e96d3895f04f9168bbf9f39f72564324c5e853abd3a4c6c74aa7b26d63a6` |
+| RK04 sequence-OOD model finalization | `5a15ae17dfbb282ab97aa954c6eaad40d064ec2251d2d080b1e7b1554e220b94` |
+| RK04 sequence-OOD model deterministic retrain | `d0deb3fbe27c32afcaeb4c7ef04c8cedaab15679690d8b98f1276166328b4501` |
+| RK04 sequence-OOD model predictions | `925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75` |
+| RK04 sequence-OOD model metrics | `84b3b2068ed68a96bbbe3694509c26c9043a3d66be4d503ee805bca52e83bd34` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
