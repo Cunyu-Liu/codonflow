@@ -31,7 +31,10 @@ stage=grid_independent
 write_status RUNNING
 $PY scripts/a8_rk12_verify_lineardesign_unique18.py \
   --protocol configs/a8_rk12_lineardesign_unique18_protocol_v1.json \
-  --report "$GRID" --output "$GRID_IND" \
+  --production "$GRID" \
+  --materialization audits/20261118/RK05/lineardesign_materialization.json \
+  --build-report audits/20261118/RK05/lineardesign_build.json \
+  --output "$GRID_IND" \
   > "$AUDIT/lineardesign_unique18_grid_independent_v1.console.log" 2>&1
 stage=actual_set_matrix
 write_status RUNNING
