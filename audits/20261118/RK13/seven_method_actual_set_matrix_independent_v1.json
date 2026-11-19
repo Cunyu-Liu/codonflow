@@ -1,0 +1,1417 @@
+{
+  "schema": "a8-rk13-seven-method-actual-set-matrix-independent-v1",
+  "created_at": "2026-11-19T18:22:57.473518+00:00",
+  "status": "PASS",
+  "matrix": "audits/20261118/RK13/seven_method_actual_set_matrix_v1.json",
+  "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+  "protocol_sha256": "f644ed5defa3330b71817387277faf4e2668ffda3f8637638aa1ff7ff8fb313a",
+  "base_matrix_sha256": "09f3d1ce9c269408aa4e0a08198faa5316fce7fcbbdefe82d1721cfad31770b6",
+  "ensemble_report_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+  "ensemble_independent_sha256": "288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e",
+  "checks": [
+    {
+      "check": "matrix_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ensemble_protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ensemble_report_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ensemble_independent_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_matrix_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_independent_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_finalization_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_order_and_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_rescoring_declaration",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "excluded_claims",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_record_identity:C31E10.3b.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C31E10.3b.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C31E10.3b.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C31E10.3b.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 23.597556081565234,
+        "ned": 0.05400068096697311,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C31E10.3b.1",
+      "pass": true,
+      "evidence": 211.19851833069697
+    },
+    {
+      "check": "base_record_identity:C14A6.7.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C14A6.7.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C14A6.7.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C14A6.7.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 9.11178394113549,
+        "ned": 0.012627865961199294,
+        "n": 10
+      }
+    },
+    {
+      "check": "added_cost:C14A6.7.1",
+      "pass": true,
+      "evidence": 81.27939026011154
+    },
+    {
+      "check": "base_record_identity:C01H6.8b.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C01H6.8b.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C01H6.8b.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C01H6.8b.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 11.79245110458665,
+        "ned": 0.08877005347593585,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C01H6.8b.1",
+      "pass": true,
+      "evidence": 144.58018080610782
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000027077.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000027077.3",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000027077.3:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000027077.3:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 8.54890021775341,
+        "ned": 0.03562582345191041,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000027077.3",
+      "pass": true,
+      "evidence": 90.68489619297907
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000025296.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000025296.3",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000025296.3:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000025296.3:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 9.497395846207095,
+        "ned": 0.008592592592592593,
+        "n": 9
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000025296.3",
+      "pass": true,
+      "evidence": 118.90808715391904
+    },
+    {
+      "check": "base_record_identity:C07E3.9.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C07E3.9.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C07E3.9.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C07E3.9.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 13.14223930011589,
+        "ned": 0.07221566312475403,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C07E3.9.1",
+      "pass": true,
+      "evidence": 126.87887418502942
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000037188.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000037188.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000037188.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000037188.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 17.273369692035374,
+        "ned": 0.08153667825798976,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000037188.1",
+      "pass": true,
+      "evidence": 210.48830900900066
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000011420.3",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000011420.3",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000011420.3:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000011420.3:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 5.629974480273169,
+        "ned": 0.015114379084967322,
+        "n": 9
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000011420.3",
+      "pass": true,
+      "evidence": 137.47136251395568
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000044901.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000044901.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000044901.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000044901.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 18.59609022871395,
+        "ned": 0.05832727272727274,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000044901.1",
+      "pass": true,
+      "evidence": 105.58440352091566
+    },
+    {
+      "check": "base_record_identity:C47A4.1.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C47A4.1.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C47A4.1.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C47A4.1.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 25.720518318760874,
+        "ned": 0.015471167369901548,
+        "n": 10
+      }
+    },
+    {
+      "check": "added_cost:C47A4.1.1",
+      "pass": true,
+      "evidence": 121.85015232209116
+    },
+    {
+      "check": "base_record_identity:C05E11.2.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C05E11.2.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C05E11.2.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C05E11.2.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 38.817039491922394,
+        "ned": 0.03230958230958231,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C05E11.2.1",
+      "pass": true,
+      "evidence": 178.8404580662027
+    },
+    {
+      "check": "base_record_identity:C41G7.2.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C41G7.2.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C41G7.2.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C41G7.2.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 15.043072893044048,
+        "ned": 0.06457431457431459,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C41G7.2.1",
+      "pass": true,
+      "evidence": 1512.728886866942
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000001586.4",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000001586.4",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000001586.4:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000001586.4:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 14.91350312579608,
+        "ned": 0.0748625040439987,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000001586.4",
+      "pass": true,
+      "evidence": 1258.261271153111
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000017935.4",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000017935.4",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000017935.4:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000017935.4:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 16.66282690487749,
+        "ned": 0.06312684365781708,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000017935.4",
+      "pass": true,
+      "evidence": 343.525454654824
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000045324.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000045324.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000045324.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000045324.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 1.0390811918562881,
+        "ned": 0.02690909090909092,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000045324.1",
+      "pass": true,
+      "evidence": 124.56923832371831
+    },
+    {
+      "check": "base_record_identity:C17G10.10.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C17G10.10.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C17G10.10.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C17G10.10.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 12.632518947454468,
+        "ned": 0.03955555555555556,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C17G10.10.1",
+      "pass": true,
+      "evidence": 171.69927367381752
+    },
+    {
+      "check": "base_record_identity:C03B1.12.1",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:C03B1.12.1",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:C03B1.12.1:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:C03B1.12.1:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 11.480581267119076,
+        "ned": 0.01469314998726762,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:C03B1.12.1",
+      "pass": true,
+      "evidence": 316.3627453846857
+    },
+    {
+      "check": "base_record_identity:ENSACAT00000006494.4",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_set:ENSACAT00000006494.4",
+      "pass": true,
+      "evidence": [
+        "lineardesign_lambda11",
+        "codongpt",
+        "gemorna",
+        "cai_greedy",
+        "uniform_synonymous",
+        "lineardesign_scan",
+        "ensembledesign_11run"
+      ]
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:lineardesign_lambda11",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:gemorna",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:cai_greedy",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "base_method_exact_copy:ENSACAT00000006494.4:lineardesign_scan",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "raw_objectives_actual_set:ENSACAT00000006494.4:ensembledesign_11run",
+      "pass": true,
+      "evidence": {
+        "hv": 46.99277442472906,
+        "ned": 0.06615151515151514,
+        "n": 11
+      }
+    },
+    {
+      "check": "added_cost:ENSACAT00000006494.4",
+      "pass": true,
+      "evidence": 746.1459557921626
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 15.435668311072533,
+        "ci95": [
+          7.476255822656216,
+          24.887068814673075
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.1587291037976345,
+        "ci95": [
+          -0.17512693590942877,
+          -0.14259975533191335
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 9.957599087603805,
+        "ci95": [
+          3.944588574777783,
+          16.891853960977123
+        ],
+        "p": 0.00039998000099995
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.0924612418859128,
+        "ci95": [
+          -0.11572396680847159,
+          -0.07021612675686341
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 18.44933134484327,
+        "ci95": [
+          11.791769887416773,
+          26.47879904959269
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_cai_greedy:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 0.0712892803270687,
+        "ci95": [
+          0.05619031923868978,
+          0.0867995859785509
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 28.25412427919433,
+        "ci95": [
+          18.216800184250978,
+          40.43473726963101
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_uniform_synonymous:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.16949357278732735,
+        "ci95": [
+          -0.1857994373646297,
+          -0.15368303422089483
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 0.11699345316515025,
+        "ci95": [
+          0.05997289223915722,
+          0.17961016612351563
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_lineardesign_scan:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": -0.007958758808084186,
+        "ci95": [
+          -0.010176765823304533,
+          -0.005774850959179758
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 13.278905409264743,
+        "ci95": [
+          6.905803978603438,
+          20.778992868281897
+        ],
+        "p": 9.99950002499875e-05
+      }
+    },
+    {
+      "check": "paired_effect:lineardesign_lambda11_minus_ensembledesign_11run:ned",
+      "pass": true,
+      "evidence": {
+        "mean_effect": 0.025485684038033245,
+        "ci95": [
+          0.004242789855948274,
+          0.04755609051936109
+        ],
+        "p": 0.017699115044247787
+      }
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_codongpt:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_codongpt:ned",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_gemorna:ned",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_cai_greedy:ned",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_uniform_synonymous:ned",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_lineardesign_scan:ned",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_gemorna:hypervolume_normalized",
+      "pass": true,
+      "evidence": 0.00119994000299985
+    },
+    {
+      "check": "holm:lineardesign_lambda11_minus_ensembledesign_11run:ned",
+      "pass": true,
+      "evidence": 0.017699115044247787
+    },
+    {
+      "check": "method_summary",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "descriptive_highest",
+      "pass": true,
+      "evidence": "lineardesign_lambda11"
+    },
+    {
+      "check": "generation_cost_summary",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "checks_passed": 218,
+  "checks_total": 218,
+  "failed_checks": [],
+  "max_objective_recompute_delta": 0.0,
+  "max_hypervolume_recompute_delta": 0.0,
+  "max_ned_recompute_delta": 0.0,
+  "unique_added_method_mfe_sequences_recomputed": 192,
+  "mfe_workers": 1,
+  "motif_semantics": "frozen RK-12 production default: every catalogue occurrence weight 1; homopolymer score is summed run length",
+  "matrix_production_module_imported": false,
+  "base_methods_recomputed_again": false,
+  "base_methods_evidence": "exact-field copy from the frozen six-method matrix with separately bound 139/139 independent PASS",
+  "elapsed_s_not_generation_cost": 169.41755941463634,
+  "scope": "independent added-method raw-CDS and seven-method statistics verification; not dense AUC, time-matched cost, functional OOD or SOTA"
+}

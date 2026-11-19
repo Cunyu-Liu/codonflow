@@ -1,0 +1,17 @@
+{"status": "RUNNING", "record_id": "C31E10.3b.1", "completed_records": 1, "completed_runs": 11, "elapsed_s": 211.19851833069697, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004628906249990905}
+{"status": "RUNNING", "record_id": "C14A6.7.1", "completed_records": 2, "completed_runs": 22, "elapsed_s": 81.27939026011154, "unique_output_sequences": 10, "max_efe_abs_delta_from_rounded_official": 0.004815673828119316}
+{"status": "RUNNING", "record_id": "C01H6.8b.1", "completed_records": 3, "completed_runs": 33, "elapsed_s": 144.58018080610782, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004652709960936363}
+{"status": "RUNNING", "record_id": "ENSACAT00000027077.3", "completed_records": 4, "completed_runs": 44, "elapsed_s": 90.68489619297907, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004404296875009095}
+{"status": "RUNNING", "record_id": "ENSACAT00000025296.3", "completed_records": 5, "completed_runs": 55, "elapsed_s": 118.90808715391904, "unique_output_sequences": 9, "max_efe_abs_delta_from_rounded_official": 0.0049847412109329525}
+{"status": "RUNNING", "record_id": "C07E3.9.1", "completed_records": 6, "completed_runs": 66, "elapsed_s": 126.87887418502942, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004723510742195458}
+{"status": "RUNNING", "record_id": "ENSACAT00000037188.1", "completed_records": 7, "completed_runs": 77, "elapsed_s": 210.48830900900066, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.0046337890624954525}
+{"status": "RUNNING", "record_id": "ENSACAT00000011420.3", "completed_records": 8, "completed_runs": 88, "elapsed_s": 137.47136251395568, "unique_output_sequences": 9, "max_efe_abs_delta_from_rounded_official": 0.004953613281259095}
+{"status": "RUNNING", "record_id": "ENSACAT00000044901.1", "completed_records": 9, "completed_runs": 99, "elapsed_s": 105.58440352091566, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004800415039056816}
+{"status": "RUNNING", "record_id": "C47A4.1.1", "completed_records": 10, "completed_runs": 110, "elapsed_s": 121.85015232209116, "unique_output_sequences": 10, "max_efe_abs_delta_from_rounded_official": 0.004700317382798858}
+{"status": "RUNNING", "record_id": "C05E11.2.1", "completed_records": 11, "completed_runs": 121, "elapsed_s": 178.8404580662027, "unique_output_sequences": 11, "max_efe_abs_delta_from_rounded_official": 0.004488525390627274}
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk13_ensembledesign_unique18.py", line 264, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk13_ensembledesign_unique18.py", line 179, in main
+    raise ValueError(f"independent EFE exceeds tolerance: {run_path}: {delta}")
+ValueError: independent EFE exceeds tolerance: /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk13/ensembledesign_unique18_v1/C41G7.2.1/C41G7.2.1/run_1.txt: 101203.16
