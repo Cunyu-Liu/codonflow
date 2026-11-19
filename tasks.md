@@ -134,7 +134,9 @@
 - **输出**：跨层一致性、结构/速度/降解消融、Fig.2 机制证据。
 - **验收**：结论限定为关联，除非有干预；黑箱 reward 或 attention 图不得替代机制证据。
 
-**RK-G1 通过**：机制组合在真实功能 OOD 有稳定增量。未通过则修数据/假设，不启动昂贵生成训练。
+- **全量功能 OOD 更新（2026-11-19）**：retained train/dev/test=`4019/503/490`，sequence-OOD=`1336`；all 与 none 均为 4,997 参数，仅通道门控不同，2,000 次 cluster bootstrap。all−none 的 OOD ΔSpearman=`0.199016`，95% CI=`[0.129283,0.266863]`；ΔCB-MSE=`-0.276089`，95% CI=`[-0.377439,-0.180840]`。all−GC-only 两项 CI 也支持 all；但 all−full-proxy ridge 的 ΔSpearman=`-0.025779`，95% CI=`[-0.071103,0.019376]`，ΔCB-MSE=`-0.025572`，95% CI=`[-0.124069,0.076207]`，均不显著。**RK-G1 未通过**，不启动昂贵生成训练。该实验为跨蛋白、功能单监督，不支持固定蛋白机制或速度 OOD；完整重训 bitwise 一致，独立 `224/224 PASS`、finalization `48/48 PASS`。
+
+**RK-G1 状态：未通过**。all 相对同骨干 none 和 GC-only 有增量，但未同时优于 full-proxy ridge；修数据/假设前不得启动昂贵生成训练。
 
 ## Phase 2：最小 CodonFlow-RK（Day 8–18，RK-G2）
 

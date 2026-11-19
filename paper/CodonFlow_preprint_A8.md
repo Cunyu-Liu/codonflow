@@ -234,7 +234,31 @@ The unified main-baseline matrix, dense candidate-budget comparison, functional 
 
 The RK04 length/GC sequence-OOD partition has now been evaluated under the dev-frozen proxy-model protocol in Section 3.2: `ridge_all` improved over GC-only on sequence-OOD with bootstrap intervals excluding zero, whereas the retained-test intervals crossed zero and absolute R² remained low. This is a cluster-disjoint nonsynonymous proxy result, not functional-untouched or fixed-protein synonymous evidence. The **19,072 MAGE functional-untouched rows** remain unevaluated, and no time-matched CodonFlow-RK generator comparison has been performed. Other protein/study/host OOD and complete-cost results remain pending RK-G3.
 
-### 6.8 Independent functional validation
+### 6.8 Same-backbone mechanism-channel ablation on Boël sequence-OOD
+
+We next tested whether the four information channels improved functional prediction under the frozen Boël sequence-OOD protocol. The retained train, development, and test partitions contained 4,019, 503, and 490 constructs, respectively; sequence-OOD contained 1,336 constructs from 1,110 operational protein clusters. The all-channel and no-channel models had identical architectures, 4,997 parameters, optimization settings, and dense attention computation. Only channel gating differed. Model selection used development cluster-balanced mean squared error (CB-MSE), without test or OOD selection. Training took 71.0446 seconds for the all-channel model and 67.2221 seconds for the no-channel model on the same RTX 5090, with 2,103 forward passes per run including development and final evaluation.
+
+**Table 1**
+
+*Functional Prediction Performance on Boël Sequence-OOD*
+
+| Model | CB-MSE | Spearman | Row R² |
+|:---|---:|---:|---:|
+| RiboKinetic all channels | 4.088746 | 0.192094 | 0.010313 |
+| RiboKinetic no channels | 4.364834 | -0.006922 | -0.052326 |
+| GC-only ridge | 4.378262 | 0.071873 | -0.050378 |
+| Full-proxy ridge (development-selected primary) | 4.114318 | 0.217873 | 0.011709 |
+| Full-proxy HistGB (descriptive comparator) | 3.989950 | 0.219383 | 0.032386 |
+
+*Note.* CB-MSE denotes cluster-balanced mean squared error; lower values are better. Spearman and row R² were computed on the same 1,336 OOD constructs. The full-proxy ridge remained the development-selected primary baseline. HistGB is reported descriptively and was not used for post hoc primary-model selection.
+
+Paired cluster bootstrap with 2,000 resamples supported an increment over the same-backbone no-channel model. The all-minus-none difference in Spearman was 0.199016 (95% CI [0.129283, 0.266863]), and the difference in CB-MSE was -0.276089 (95% CI [-0.377439, -0.180840]). Relative to GC-only ridge, the corresponding differences were 0.120221 (95% CI [0.082462, 0.157406]) for Spearman and -0.289516 (95% CI [-0.350624, -0.225776]) for CB-MSE. Both intervals excluded zero in the direction favoring the all-channel model.
+
+The all-channel model did not outperform the full-proxy ridge on either OOD endpoint. Its Spearman difference was -0.025779 (95% CI [-0.071103, 0.019376]; Holm-adjusted p = 0.522), and its CB-MSE difference was -0.025572 (95% CI [-0.124069, 0.076207]; Holm-adjusted p = 0.595). Thus, the preregistered RK-G1 criterion was not met. The low absolute R² values and the more favorable HistGB point estimates further preclude an SOTA or broad superiority claim.
+
+These results support a limited inductive-bias interpretation: the four channels improved the shared backbone relative to no channels and GC-only regression, but did not establish superiority over the full proxy set. This experiment used cross-protein, nonsynonymous constructs and function-only supervision. It therefore does not validate fixed-protein synonymous mechanisms, and the initiation, velocity, and decay outputs are not validated mechanism-specific estimates. Velocity OOD and generator readiness remain unevaluated, and expensive generation training remains unauthorized. Two complete retraining runs were bitwise identical, while independent verification passed 224 of 224 checks and finalization passed 48 of 48 checks. Clean-environment reproduction remains outstanding.
+
+### 6.9 Independent functional validation
 
 [Pending. Retrospective held-out measurements first; prospective design–build–test–learn results only when actually completed.]
 
@@ -313,6 +337,13 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK04 sequence-OOD model deterministic retrain | `d0deb3fbe27c32afcaeb4c7ef04c8cedaab15679690d8b98f1276166328b4501` |
 | RK04 sequence-OOD model predictions | `925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75` |
 | RK04 sequence-OOD model metrics | `84b3b2068ed68a96bbbe3694509c26c9043a3d66be4d503ee805bca52e83bd34` |
+
+| RK08 full comparison summary | `ff97cc8ae4093ac24fe475d30bce2db6707c2635d9de572286c1f69d9f8579cb` |
+| RK08 full independent verifier | `190b7f93ccecc393d6f1b5846c78f8be176d72e9597593e74d61edc9bde060fa` |
+| RK08 full finalization | `47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2` |
+| RK08 full artifact manifest | `dce4cbc03c826124de3706222bd844495250fc3da19a2ef42512043124c16f4b` |
+| RK08 all-channel checkpoint | `7e581b2b49fd4f4aba723ce497e6f3369acb7ed54f278c6b377fef37a6417c61` |
+| RK08 no-channel checkpoint | `aa54bfc78ce3a50e70302ae0530a0be29656514988bddab051527a912c73dee7` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
