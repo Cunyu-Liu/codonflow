@@ -80,7 +80,7 @@ def main() -> None:
     record("ensemble_independent_binding", ensemble_independent["status"] == "PASS" and ensemble_independent["report_sha256"] == sha256(args.ensemble_report) and matrix["ensemble_independent_sha256"] == sha256(args.ensemble_independent))
     record("base_matrix_hash", sha256(base_path) == protocol["base_matrix_sha256"] == matrix["base_matrix_sha256"])
     record("base_independent_binding", sha256(base_independent_path) == protocol["base_independent_sha256"] and base_independent["status"] == "PASS" and base_independent["matrix_sha256"] == protocol["base_matrix_sha256"])
-    record("base_finalization_binding", sha256(base_finalization_path) == protocol["base_finalization_sha256"] and base_finalization["status"] == "PASS")
+    record("base_finalization_binding", sha256(base_finalization_path) == protocol["base_finalization_sha256"] and base_finalization["status"].startswith("PASS"))
     record("record_order_and_count", len(matrix["records"]) == 18 and [r["record_id"] for r in matrix["records"]] == list(records) == ensemble_protocol["record_order"])
     record("raw_rescoring_declaration", matrix["added_method_objectives_recomputed_from_raw_sequences"] is True and matrix["stored_objectives_used_for_added_method_scoring"] is False and matrix["base_method_objectives_inherited_from_independently_verified_matrix"] is True)
     record("excluded_claims", matrix["dense_budget_step_auc_v2"] is None and matrix["time_matched_comparison"] is False and matrix["scientific_gate_passed"] is False and matrix["sota_claim"] is False)

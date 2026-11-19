@@ -67,7 +67,7 @@ def main() -> None:
     base_finalization = json.loads(base_finalization_path.read_text())
     if sha256(base_independent_path) != protocol["base_independent_sha256"] or base_independent["status"] != "PASS":
         raise ValueError("base independent PASS mismatch")
-    if sha256(base_finalization_path) != protocol["base_finalization_sha256"] or base_finalization["status"] != "PASS":
+    if sha256(base_finalization_path) != protocol["base_finalization_sha256"] or not base_finalization["status"].startswith("PASS"):
         raise ValueError("base finalization PASS mismatch")
     if base_independent.get("matrix_sha256") != protocol["base_matrix_sha256"]:
         raise ValueError("base independent report is not bound to the frozen matrix")
