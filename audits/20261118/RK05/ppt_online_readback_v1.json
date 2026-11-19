@@ -1,0 +1,837 @@
+{
+  "schema": "a8.rk05.cagfn.ppt_online_readback.v1",
+  "task_id": "RK05_CAGFN_PPT_ONLINE_READBACK",
+  "created_at_utc": "2026-11-19T18:55:26.924639+00:00",
+  "status": "FAILED",
+  "checks_passed": 155,
+  "checks_total": 156,
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline_revision": 60,
+  "write_revision": 61,
+  "readback_revision": 61,
+  "slide_id": "pgY",
+  "slide_number": 99,
+  "slide_count": 99,
+  "legacy_semantic_xml_unchanged": true,
+  "server_normalization": [
+    "server-assigned ids ignored",
+    "XML whitespace ignored",
+    "missing col span normalized to 1",
+    "line endpoints within 0.001 px of integer normalized"
+  ],
+  "pre_report_git_head": "39f7febf65c2cd9b9aa8ff769945a88ff849dd2f",
+  "evidence_sha256": {
+    "baseline_xml": "fc26796ab978422fda5cc6262ef9f7e3e3a2261836e8bc76d567447cd355cad6",
+    "baseline_response": "ea2479a70ff707635e9fe35a6df4128f807aa7a695e90c60084a68352dbec498",
+    "candidate_xml": "037ab4d901f53d5388cfb0f719c2cf218fc2b1284fa7ea424f485f4885ee3668",
+    "add_response": "b5271031bc5a3548c06fe6794bf90effddc416a09eed3016a93267f714a09dc1",
+    "readback_xml": "30f76e60caa70a1bed9780b43d8254245d4060fc136578fcec9186f163b349b6",
+    "readback_response": "f343de2c89540f9ddb50b951371714fcb797db78fbaabe0855d772901ba4adad",
+    "production": "c169931fb8227b349148800b7d5136dede98f18fa31a1fd9b91c8eeeb7fe8b4d",
+    "independent": "d5c43d879255104d99c0c05b6e9c5f4a8a47e16e0fa446878b7de0b5430f50ab",
+    "finalization": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
+    "paper_verification": "372ecb52955d293db9d78187ed958245153bcad6ee3944d2079d451283228dc7",
+    "paper": "a5ef4a157a3e60b91a5087c24ae71ea0c0c01ab21260057298a98426edfed0e2",
+    "paper_audit": "5f546a314961b87470cb81ae073eec45023d28542741a04be87b91ff271bb143"
+  },
+  "checks": [
+    {
+      "name": "baseline_read_ok",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "baseline_revision_60",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "single_append_ok",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "single_append_revision_61",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "server_slide_id_pgY",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "readback_ok",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "readback_revision_61",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "baseline_has_98_slides",
+      "pass": true,
+      "details": 98
+    },
+    {
+      "name": "readback_has_99_slides",
+      "pass": true,
+      "details": 99
+    },
+    {
+      "name": "readback_ids_unique",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "legacy_id_sequence_unchanged",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "new_slide_is_last_pgY",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "new_title_occurs_exactly_once",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "legacy_slide_01_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppP"
+    },
+    {
+      "name": "legacy_slide_02_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppX"
+    },
+    {
+      "name": "legacy_slide_03_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppO"
+    },
+    {
+      "name": "legacy_slide_04_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppe"
+    },
+    {
+      "name": "legacy_slide_05_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppQ"
+    },
+    {
+      "name": "legacy_slide_06_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pps"
+    },
+    {
+      "name": "legacy_slide_07_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppS"
+    },
+    {
+      "name": "legacy_slide_08_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppt"
+    },
+    {
+      "name": "legacy_slide_09_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppR"
+    },
+    {
+      "name": "legacy_slide_10_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppq"
+    },
+    {
+      "name": "legacy_slide_11_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppF"
+    },
+    {
+      "name": "legacy_slide_12_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppV"
+    },
+    {
+      "name": "legacy_slide_13_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppz"
+    },
+    {
+      "name": "legacy_slide_14_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppZ"
+    },
+    {
+      "name": "legacy_slide_15_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppN"
+    },
+    {
+      "name": "legacy_slide_16_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppB"
+    },
+    {
+      "name": "legacy_slide_17_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppD"
+    },
+    {
+      "name": "legacy_slide_18_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppb"
+    },
+    {
+      "name": "legacy_slide_19_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppJ"
+    },
+    {
+      "name": "legacy_slide_20_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppM"
+    },
+    {
+      "name": "legacy_slide_21_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppg"
+    },
+    {
+      "name": "legacy_slide_22_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppl"
+    },
+    {
+      "name": "legacy_slide_23_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppf"
+    },
+    {
+      "name": "legacy_slide_24_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppc"
+    },
+    {
+      "name": "legacy_slide_25_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppd"
+    },
+    {
+      "name": "legacy_slide_26_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppm"
+    },
+    {
+      "name": "legacy_slide_27_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppj"
+    },
+    {
+      "name": "legacy_slide_28_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppp"
+    },
+    {
+      "name": "legacy_slide_29_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppw"
+    },
+    {
+      "name": "legacy_slide_30_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppx"
+    },
+    {
+      "name": "legacy_slide_31_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppW"
+    },
+    {
+      "name": "legacy_slide_32_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppH"
+    },
+    {
+      "name": "legacy_slide_33_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppK"
+    },
+    {
+      "name": "legacy_slide_34_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppI"
+    },
+    {
+      "name": "legacy_slide_35_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppo"
+    },
+    {
+      "name": "legacy_slide_36_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppC"
+    },
+    {
+      "name": "legacy_slide_37_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppG"
+    },
+    {
+      "name": "legacy_slide_38_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppr"
+    },
+    {
+      "name": "legacy_slide_39_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppE"
+    },
+    {
+      "name": "legacy_slide_40_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppv"
+    },
+    {
+      "name": "legacy_slide_41_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppn"
+    },
+    {
+      "name": "legacy_slide_42_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppy"
+    },
+    {
+      "name": "legacy_slide_43_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pph"
+    },
+    {
+      "name": "legacy_slide_44_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppA"
+    },
+    {
+      "name": "legacy_slide_45_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppk"
+    },
+    {
+      "name": "legacy_slide_46_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppY"
+    },
+    {
+      "name": "legacy_slide_47_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppi"
+    },
+    {
+      "name": "legacy_slide_48_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppL"
+    },
+    {
+      "name": "legacy_slide_49_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppU"
+    },
+    {
+      "name": "legacy_slide_50_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppa"
+    },
+    {
+      "name": "legacy_slide_51_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppu"
+    },
+    {
+      "name": "legacy_slide_52_semantic_xml_unchanged",
+      "pass": true,
+      "details": "ppT"
+    },
+    {
+      "name": "legacy_slide_53_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgp"
+    },
+    {
+      "name": "legacy_slide_54_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgg"
+    },
+    {
+      "name": "legacy_slide_55_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgZ"
+    },
+    {
+      "name": "legacy_slide_56_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgS"
+    },
+    {
+      "name": "legacy_slide_57_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgP"
+    },
+    {
+      "name": "legacy_slide_58_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgi"
+    },
+    {
+      "name": "legacy_slide_59_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgn"
+    },
+    {
+      "name": "legacy_slide_60_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgo"
+    },
+    {
+      "name": "legacy_slide_61_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgw"
+    },
+    {
+      "name": "legacy_slide_62_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgl"
+    },
+    {
+      "name": "legacy_slide_63_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgN"
+    },
+    {
+      "name": "legacy_slide_64_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgt"
+    },
+    {
+      "name": "legacy_slide_65_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgX"
+    },
+    {
+      "name": "legacy_slide_66_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgL"
+    },
+    {
+      "name": "legacy_slide_67_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgy"
+    },
+    {
+      "name": "legacy_slide_68_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgC"
+    },
+    {
+      "name": "legacy_slide_69_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgx"
+    },
+    {
+      "name": "legacy_slide_70_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgf"
+    },
+    {
+      "name": "legacy_slide_71_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgB"
+    },
+    {
+      "name": "legacy_slide_72_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgR"
+    },
+    {
+      "name": "legacy_slide_73_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgO"
+    },
+    {
+      "name": "legacy_slide_74_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgU"
+    },
+    {
+      "name": "legacy_slide_75_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgh"
+    },
+    {
+      "name": "legacy_slide_76_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgG"
+    },
+    {
+      "name": "legacy_slide_77_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgW"
+    },
+    {
+      "name": "legacy_slide_78_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgc"
+    },
+    {
+      "name": "legacy_slide_79_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgD"
+    },
+    {
+      "name": "legacy_slide_80_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgq"
+    },
+    {
+      "name": "legacy_slide_81_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pge"
+    },
+    {
+      "name": "legacy_slide_82_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pga"
+    },
+    {
+      "name": "legacy_slide_83_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgA"
+    },
+    {
+      "name": "legacy_slide_84_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgr"
+    },
+    {
+      "name": "legacy_slide_85_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgH"
+    },
+    {
+      "name": "legacy_slide_86_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgd"
+    },
+    {
+      "name": "legacy_slide_87_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgb"
+    },
+    {
+      "name": "legacy_slide_88_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgF"
+    },
+    {
+      "name": "legacy_slide_89_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgQ"
+    },
+    {
+      "name": "legacy_slide_90_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgu"
+    },
+    {
+      "name": "legacy_slide_91_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgk"
+    },
+    {
+      "name": "legacy_slide_92_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgE"
+    },
+    {
+      "name": "legacy_slide_93_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgK"
+    },
+    {
+      "name": "legacy_slide_94_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgm"
+    },
+    {
+      "name": "legacy_slide_95_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgJ"
+    },
+    {
+      "name": "legacy_slide_96_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgV"
+    },
+    {
+      "name": "legacy_slide_97_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgs"
+    },
+    {
+      "name": "legacy_slide_98_semantic_xml_unchanged",
+      "pass": true,
+      "details": "pgT"
+    },
+    {
+      "name": "new_style_semantic_match",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "new_data_semantic_match_with_server_defaults",
+      "pass": false,
+      "details": null
+    },
+    {
+      "name": "new_notes_semantic_match",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "visible_paragraphs_exact",
+      "pass": true,
+      "details": {
+        "count": 31
+      }
+    },
+    {
+      "name": "four_notes_exact",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "candidate_data_child_count",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "slide_contains_source_commit_prefix",
+      "pass": true,
+      "details": "952ccf9"
+    },
+    {
+      "name": "slide_contains_sequence_legality",
+      "pass": true,
+      "details": "20 unique · protein identity 20/20"
+    },
+    {
+      "name": "slide_contains_length",
+      "pass": true,
+      "details": "99 nt"
+    },
+    {
+      "name": "slide_contains_independent_checks",
+      "pass": true,
+      "details": "33/33"
+    },
+    {
+      "name": "slide_contains_finalization_checks",
+      "pass": true,
+      "details": "22/22"
+    },
+    {
+      "name": "slide_contains_mean_gc",
+      "pass": true,
+      "details": "47.575758%"
+    },
+    {
+      "name": "slide_contains_mean_mfe",
+      "pass": true,
+      "details": "-26.760000"
+    },
+    {
+      "name": "slide_contains_mean_cai",
+      "pass": true,
+      "details": "0.456632"
+    },
+    {
+      "name": "slide_contains_mean_ned",
+      "pass": true,
+      "details": "0.252632"
+    },
+    {
+      "name": "slide_contains_training_seconds",
+      "pass": true,
+      "details": "11.01"
+    },
+    {
+      "name": "slide_contains_sampling_seconds",
+      "pass": true,
+      "details": "6.68"
+    },
+    {
+      "name": "slide_contains_total_wall_clock",
+      "pass": true,
+      "details": "47.556746"
+    },
+    {
+      "name": "slide_contains_openreview_status",
+      "pass": true,
+      "details": "OpenReview rejected"
+    },
+    {
+      "name": "slide_contains_bounded_boundary",
+      "pass": true,
+      "details": "no convergence, full reproduction, matrix, OOD or SOTA"
+    },
+    {
+      "name": "slide_contains_paper_version",
+      "pass": true,
+      "details": "A8 v23"
+    },
+    {
+      "name": "slide_contains_evidence_commit",
+      "pass": true,
+      "details": "39f7febf"
+    },
+    {
+      "name": "forbidden_claim_absent_SOTA achieved",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "forbidden_claim_absent_converged model claim=true",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "forbidden_claim_absent_full CAGFN reproduction completed",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "forbidden_claim_absent_functional OOD closed",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "forbidden_claim_absent_time-matched comparison completed",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "production_process_completed",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "independent_33_of_33_pass",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "finalization_22_of_22_pass",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "paper_91_of_91_pass",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "paper_hash_matches_verified_v23",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "paper_audit_hash_matches_verified_v23",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "finalization_source_commit_exact",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "finalization_openreview_rejected",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "no_public_pretrained_weights",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "scientific_completion_boundaries_preserved",
+      "pass": true,
+      "details": {
+        "full_cagfn_reproduction": false,
+        "converged_model_claim": false,
+        "main_model_baseline_matrix_closed": false,
+        "time_matched_comparison": false,
+        "functional_ood_closed": false,
+        "sota_claim": false
+      }
+    },
+    {
+      "name": "authorized_bounded_smoke_complete",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "source_specific_metric_engines_stated",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "failure_chain_retained_on_slide",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "ned_not_functional_claim",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "all_new_slide_geometry_inside_canvas",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "one_result_table",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "result_table_5_rows_3_columns",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "ppt_evidence_commit_matches_pre_report_head",
+      "pass": true,
+      "details": "39f7febf65c2cd9b9aa8ff769945a88ff849dd2f"
+    }
+  ],
+  "claim_boundaries": {
+    "bounded_dependency_recovery_smoke_only": true,
+    "full_cagfn_reproduction": false,
+    "converged_model_claim": false,
+    "main_model_baseline_matrix_closed": false,
+    "time_matched_comparison": false,
+    "functional_ood_closed": false,
+    "sota_claim": false
+  }
+}
