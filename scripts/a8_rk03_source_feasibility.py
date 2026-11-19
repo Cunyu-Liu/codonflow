@@ -94,10 +94,10 @@ def main():
   add(f'{acc}_soft_retrieved',True,rec['sha256'])
   add(f'{acc}_series_title_present',bool(parsed['title']),parsed['title'])
   add(f'{acc}_sample_metadata_present',parsed['series_sample_count']>0,parsed['series_sample_count'])
-  add(f'{acc}_sra_relation_present',len(parsed['sra_relations'])>0,parsed['sra_relations'])
+  add(f'{acc}_raw_archive_relation_present',len(parsed['sra_relations'])+len(parsed['bioproject_relations'])>0,{'sra':parsed['sra_relations'],'bioproject':parsed['bioproject_relations']})
  # SRA RunInfo establishes public run-level recoverability, not downloaded reads.
  run_accessions=list(protocol['direct_bioproject_accessions'])
- for g in geo.values(): run_accessions.extend(g['sra_relations'])
+ for g in geo.values(): run_accessions.extend(g['sra_relations'] or g['bioproject_relations'])
  run_accessions=sorted(set(run_accessions)); runs={}
  for acc in run_accessions:
   url=protocol['runinfo_url_template'].format(accession=acc); path=raw/f'{acc}.runinfo.csv'
@@ -124,7 +124,7 @@ def main():
  add('source_tree_audit_sha',sha(tree_path)==v['source_tree_audit_sha256'])
  add('materialization_audit_sha',sha(mat_path)==v['materialization_audit_sha256'])
  add('pinned_repository_commit',commit==v['pinned_commit']==tree['commit'],commit)
- add('fixed_tree_entry_count',tree['tree_entry_count']==len(files)==13,tree['tree_entry_count'])
+ add('fixed_tree_entry_and_blob_counts',tree['tree_entry_count']==14 and len(files)==13,{'tree_entries':tree['tree_entry_count'],'materialized_blobs':len(files)})
  add('only_ecoli_harmonized_matrix_archives',zips==['VeloBERT/E.coli.summary.add.pro.SS.txt.zip','VeloGRU/E.coli.summary.add.pro.SS.txt.zip'],zips)
  add('ecoli_and_yeast_ga_checkpoints_only',checkpoints==['Genetic_algorithm/E.coli.fold_0_best_network.pth','Genetic_algorithm/yeast.fold_0_best_network.pth'],checkpoints)
  add('all_materialized_file_hashes',all(x['current_sha256']==x['sha256'] and x['current_bytes']==x['bytes'] for x in files))
@@ -134,7 +134,7 @@ def main():
  # Compact per-study feasibility records.
  def raw_for(acc):
   if acc in geo:
-   relations=geo[acc]['sra_relations']; r=[runs[x] for x in relations if x in runs]
+   relations=geo[acc]['sra_relations'] or geo[acc]['bioproject_relations']; r=[runs[x] for x in relations if x in runs]
    return {'geo_accession':acc,'runinfo_accessions':relations,'run_count':sum(x['run_count'] for x in r),'size_mb':sum(x['size_mb'] for x in r),'genome_builds':geo[acc]['genome_builds'],'site_assignment_evidence':geo[acc]['site_assignment_evidence'],'public_runinfo_available':bool(r)}
   r=runs.get(acc)
   return {'bioproject_accession':acc,'runinfo_accessions':[acc] if r else [],'run_count':r['run_count'] if r else 0,'size_mb':r['size_mb'] if r else 0,'genome_builds':[],'site_assignment_evidence':[],'public_runinfo_available':bool(r)}

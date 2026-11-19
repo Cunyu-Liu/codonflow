@@ -47,4 +47,7 @@ class TestSourceFeasibility(unittest.TestCase):
   p=json.loads(PROTOCOL.read_text())
   self.assertEqual(len(p['veloharmo']['references']),5)
   self.assertEqual(p['veloharmo']['expected_released_harmonized_matrix_organisms'],['E.coli'])
+  by_organism={x['organism']:x for x in p['veloharmo']['references']}
+  self.assertEqual((by_organism['Drosophila melanogaster']['label'],by_organism['Drosophila melanogaster']['accession']),('Dunn13','GSE49197'))
+  self.assertEqual((by_organism['Saccharomyces cerevisiae']['label'],by_organism['Saccharomyces cerevisiae']['accession']),('Pop14','GSE63789'))
 if __name__=='__main__': unittest.main()

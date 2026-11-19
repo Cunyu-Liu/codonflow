@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 P=ROOT/'configs/a8_rk03_source_feasibility_protocol_v1.json'
 A=ROOT/'audits/20261120/RK03'
+H=A
 def sha(p):
  h=hashlib.sha256()
  with open(p,'rb') as f:
@@ -31,8 +32,9 @@ def main():
   text=(raw/f'{acc}.soft.txt').read_text(errors='replace'); lines=text.splitlines(); vals=lambda prefix:[x.split('=',1)[1].strip() for x in lines if x.startswith(prefix)]
   title=(vals('!Series_title') or [None])[0]; samples=len(set(vals('!Series_sample_id')))
   relations=sorted(set(re.findall(r'SRP\d+','\n'.join(x for x in lines if x.startswith('!Series_relation = SRA')))))
+  projects=sorted(set(re.findall(r'PRJNA\d+','\n'.join(x for x in lines if x.startswith('!Series_relation = BioProject')))))
   builds=sorted(set(x.strip() for x in re.findall(r'Genome_build:\s*([^\n]+)',text,re.I)))
-  geo_ind[acc]={'sra_relations':relations,'run_count':0,'size_mb':0}
+  geo_ind[acc]={'sra_relations':relations,'bioproject_relations':projects,'run_count':0,'size_mb':0}
   eq(acc+'_title',title,g['title']); eq(acc+'_samples',samples,g['series_sample_count']); eq(acc+'_relations',relations,g['sra_relations']); eq(acc+'_builds',builds,g['genome_builds'])
   for evidence in g['site_assignment_evidence']: add(acc+'_site_evidence_'+hashlib.sha256(evidence.encode()).hexdigest()[:12],evidence in text)
  # Independent RunInfo recomputation.
@@ -55,7 +57,7 @@ def main():
  # Cross-check aggregated study records against independently parsed runinfo.
  for v in prod['veloharmo_organism_feasibility']:
   acc=v['source_accession']; src=v['raw_source']; expected=[]
-  if acc in geo_ind: expected=geo_ind[acc]['sra_relations']
+  if acc in geo_ind: expected=geo_ind[acc]['sra_relations'] or geo_ind[acc]['bioproject_relations']
   elif acc in prod['runinfo_evidence']: expected=[acc]
   rr=[run_ind[x] for x in expected]
   run_count=sum(x['run_count'] for x in rr); size=sum(x['size_mb'] for x in rr)
