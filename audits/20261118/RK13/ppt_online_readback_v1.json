@@ -1,0 +1,474 @@
+{
+  "schema": "a8-rk13-ppt-readback-verification-v1",
+  "created_utc": "2026-11-19T18:25:41.258469+00:00",
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "status": "PASS",
+  "checks_passed": 88,
+  "checks_total": 88,
+  "baseline_slide_count": 95,
+  "readback_slide_count": 98,
+  "new_slide_ids": [
+    "pgV",
+    "pgs",
+    "pgT"
+  ],
+  "slide96_add_revision": 58,
+  "slide97_add_revision": 59,
+  "slide98_add_revision": 60,
+  "baseline_sha256": "d842e6085905834e1b7646c088dc1417a8664e8f82e94a407ca1b4c5638e0273",
+  "readback_sha256": "fc26796ab978422fda5cc6262ef9f7e3e3a2261836e8bc76d567447cd355cad6",
+  "candidate96_sha256": "b77d1866ef2dcd7309e3adcb76d25997f990594aa4adbed06b60aec2cba9f48b",
+  "candidate97_sha256": "32574392da8a422f17682ec4bd623206776aaed63bf9ff9585540e5cec07f477",
+  "candidate98_sha256": "b226ef8df36f29f2fd20f57340500e788915a479057ad95b70f3823f4a073f83",
+  "finalization_sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+  "ensemble_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+  "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+  "changed_baseline_pages": [],
+  "checks": [
+    {
+      "name": "baseline_95",
+      "pass": true,
+      "evidence": 95
+    },
+    {
+      "name": "readback_98",
+      "pass": true,
+      "evidence": 98
+    },
+    {
+      "name": "first_95_ids_unchanged",
+      "pass": true,
+      "evidence": "ordered IDs"
+    },
+    {
+      "name": "first_95_semantic_xml_unchanged",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "new_page_ids_present_distinct",
+      "pass": true,
+      "evidence": [
+        "pgV",
+        "pgs",
+        "pgT"
+      ]
+    },
+    {
+      "name": "slide96_candidate_semantics",
+      "pass": true,
+      "evidence": "b77d1866ef2dcd7309e3adcb76d25997f990594aa4adbed06b60aec2cba9f48b"
+    },
+    {
+      "name": "slide96_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide96_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide96_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide96_id_matches",
+      "pass": true,
+      "evidence": "pgV"
+    },
+    {
+      "name": "slide97_candidate_semantics",
+      "pass": true,
+      "evidence": "32574392da8a422f17682ec4bd623206776aaed63bf9ff9585540e5cec07f477"
+    },
+    {
+      "name": "slide97_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide97_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide97_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide97_id_matches",
+      "pass": true,
+      "evidence": "pgs"
+    },
+    {
+      "name": "slide98_candidate_semantics",
+      "pass": true,
+      "evidence": "b226ef8df36f29f2fd20f57340500e788915a479057ad95b70f3823f4a073f83"
+    },
+    {
+      "name": "slide98_four_note_paragraphs",
+      "pass": true,
+      "evidence": 4
+    },
+    {
+      "name": "slide98_canvas_bounds",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "add_slide98_ok",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "add_slide98_id_matches",
+      "pass": true,
+      "evidence": "pgT"
+    },
+    {
+      "name": "slide96_run_count",
+      "pass": true,
+      "evidence": 198
+    },
+    {
+      "name": "slide96_unique_pairs",
+      "pass": true,
+      "evidence": 192
+    },
+    {
+      "name": "slide96_generation_seconds",
+      "pass": true,
+      "evidence": 6001.057458210271
+    },
+    {
+      "name": "slide96_efe_delta",
+      "pass": true,
+      "evidence": 0.005118408203145464
+    },
+    {
+      "name": "slide96_recovery_disclosure",
+      "pass": true,
+      "evidence": "preserved failure and frozen recovery"
+    },
+    {
+      "name": "slide96_finalization",
+      "pass": true,
+      "evidence": "22/22"
+    },
+    {
+      "name": "slide97_summary:lineardesign_lambda11:131",
+      "pass": true,
+      "evidence": "131"
+    },
+    {
+      "name": "slide97_summary:lineardesign_lambda11:29.972887",
+      "pass": true,
+      "evidence": "29.972887"
+    },
+    {
+      "name": "slide97_summary:lineardesign_lambda11:0.071289",
+      "pass": true,
+      "evidence": "0.071289"
+    },
+    {
+      "name": "slide97_summary:codongpt:1800",
+      "pass": true,
+      "evidence": "1800"
+    },
+    {
+      "name": "slide97_summary:codongpt:14.537219",
+      "pass": true,
+      "evidence": "14.537219"
+    },
+    {
+      "name": "slide97_summary:codongpt:0.230018",
+      "pass": true,
+      "evidence": "0.230018"
+    },
+    {
+      "name": "slide97_summary:gemorna:1427",
+      "pass": true,
+      "evidence": "1427"
+    },
+    {
+      "name": "slide97_summary:gemorna:20.015288",
+      "pass": true,
+      "evidence": "20.015288"
+    },
+    {
+      "name": "slide97_summary:gemorna:0.163751",
+      "pass": true,
+      "evidence": "0.163751"
+    },
+    {
+      "name": "slide97_summary:cai_greedy:18",
+      "pass": true,
+      "evidence": "18"
+    },
+    {
+      "name": "slide97_summary:cai_greedy:11.523556",
+      "pass": true,
+      "evidence": "11.523556"
+    },
+    {
+      "name": "slide97_summary:cai_greedy:0.000000",
+      "pass": true,
+      "evidence": "0.000000"
+    },
+    {
+      "name": "slide97_summary:uniform_synonymous:1800",
+      "pass": true,
+      "evidence": "1800"
+    },
+    {
+      "name": "slide97_summary:uniform_synonymous:1.718763",
+      "pass": true,
+      "evidence": "1.718763"
+    },
+    {
+      "name": "slide97_summary:uniform_synonymous:0.240783",
+      "pass": true,
+      "evidence": "0.240783"
+    },
+    {
+      "name": "slide97_summary:lineardesign_scan:103",
+      "pass": true,
+      "evidence": "103"
+    },
+    {
+      "name": "slide97_summary:lineardesign_scan:29.855894",
+      "pass": true,
+      "evidence": "29.855894"
+    },
+    {
+      "name": "slide97_summary:lineardesign_scan:0.079248",
+      "pass": true,
+      "evidence": "0.079248"
+    },
+    {
+      "name": "slide97_summary:ensembledesign_11run:192",
+      "pass": true,
+      "evidence": "192"
+    },
+    {
+      "name": "slide97_summary:ensembledesign_11run:16.693982",
+      "pass": true,
+      "evidence": "16.693982"
+    },
+    {
+      "name": "slide97_summary:ensembledesign_11run:0.045804",
+      "pass": true,
+      "evidence": "0.045804"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:hypervolume_normalized:+15.435668",
+      "pass": true,
+      "evidence": "+15.435668"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:hypervolume_normalized:[+7.476256, +24.887069]",
+      "pass": true,
+      "evidence": "[+7.476256, +24.887069]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:ned:-0.158729",
+      "pass": true,
+      "evidence": "-0.158729"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:ned:[-0.175127, -0.142600]",
+      "pass": true,
+      "evidence": "[-0.175127, -0.142600]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_codongpt:ned:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:hypervolume_normalized:+9.957599",
+      "pass": true,
+      "evidence": "+9.957599"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:hypervolume_normalized:[+3.944589, +16.891854]",
+      "pass": true,
+      "evidence": "[+3.944589, +16.891854]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:ned:-0.092461",
+      "pass": true,
+      "evidence": "-0.092461"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:ned:[-0.115724, -0.070216]",
+      "pass": true,
+      "evidence": "[-0.115724, -0.070216]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_gemorna:ned:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized:+18.449331",
+      "pass": true,
+      "evidence": "+18.449331"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized:[+11.791770, +26.478799]",
+      "pass": true,
+      "evidence": "[+11.791770, +26.478799]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:ned:+0.071289",
+      "pass": true,
+      "evidence": "+0.071289"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:ned:[+0.056190, +0.086800]",
+      "pass": true,
+      "evidence": "[+0.056190, +0.086800]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_cai_greedy:ned:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized:+28.254124",
+      "pass": true,
+      "evidence": "+28.254124"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized:[+18.216800, +40.434737]",
+      "pass": true,
+      "evidence": "[+18.216800, +40.434737]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:ned:-0.169494",
+      "pass": true,
+      "evidence": "-0.169494"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:ned:[-0.185799, -0.153683]",
+      "pass": true,
+      "evidence": "[-0.185799, -0.153683]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_uniform_synonymous:ned:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized:+0.116993",
+      "pass": true,
+      "evidence": "+0.116993"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized:[+0.059973, +0.179610]",
+      "pass": true,
+      "evidence": "[+0.059973, +0.179610]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:ned:-0.007959",
+      "pass": true,
+      "evidence": "-0.007959"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:ned:[-0.010177, -0.005775]",
+      "pass": true,
+      "evidence": "[-0.010177, -0.005775]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_lineardesign_scan:ned:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized:+13.278905",
+      "pass": true,
+      "evidence": "+13.278905"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized:[+6.905804, +20.778993]",
+      "pass": true,
+      "evidence": "[+6.905804, +20.778993]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:hypervolume_normalized:0.0012",
+      "pass": true,
+      "evidence": "0.0012"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:ned:+0.025486",
+      "pass": true,
+      "evidence": "+0.025486"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:ned:[+0.004243, +0.047556]",
+      "pass": true,
+      "evidence": "[+0.004243, +0.047556]"
+    },
+    {
+      "name": "comparison:lineardesign_lambda11_minus_ensembledesign_11run:ned:0.0177",
+      "pass": true,
+      "evidence": "0.0177"
+    },
+    {
+      "name": "slide98_lineardesign_cost",
+      "pass": true,
+      "evidence": 5459.871640930884
+    },
+    {
+      "name": "slide98_ensemble_cost",
+      "pass": true,
+      "evidence": 6001.057458210271
+    },
+    {
+      "name": "slide98_scorer_cost",
+      "pass": true,
+      "evidence": 164.76747115096077
+    },
+    {
+      "name": "scientific_boundaries",
+      "pass": true,
+      "evidence": "explicit limitations"
+    },
+    {
+      "name": "matrix_independent_badge",
+      "pass": true,
+      "evidence": 218
+    }
+  ],
+  "scientific_boundary": "PPT readback verifies presentation fidelity and numeric consistency only; scientific acceptance comes from the frozen RK-13 finalization and independent verifiers."
+}
