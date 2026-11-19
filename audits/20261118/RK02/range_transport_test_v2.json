@@ -1,0 +1,21 @@
+{
+  "schema": "a8-rk02-range-transport-integration-test-v1",
+  "status": "PASS",
+  "test_type": "synthetic interrupted HTTP range transport",
+  "payload_bytes": 2097289,
+  "existing_prefix_bytes": 12345,
+  "chunk_mib": 1,
+  "workers": 2,
+  "retry_delay_seconds": 0,
+  "simulated_behavior": "Each fake curl request returned only three quarters of the requested interval with exit 18; the final one-byte request returned success.",
+  "checks": {
+    "range_partial_status_observed": true,
+    "remaining_offset_resumed": true,
+    "formal_bytes_exact": true,
+    "formal_md5_exact": true,
+    "report_passed_files": 1,
+    "report_failed_files": 0
+  },
+  "scientific_result": false,
+  "mordstein_formal_data_used": false
+}

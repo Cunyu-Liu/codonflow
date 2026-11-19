@@ -77,11 +77,12 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=12)
     parser.add_argument("--chunk-mib", type=int, default=8)
     parser.add_argument("--attempts", type=int, default=8)
+    parser.add_argument("--retry-delay", type=int, default=5)
     args = parser.parse_args()
     if args.report.exists():
         raise FileExistsError(args.report)
-    if not (1 <= args.workers <= 32 and 1 <= args.chunk_mib <= 64 and 1 <= args.attempts <= 20):
-        raise ValueError("worker/chunk/attempt bounds")
+    if not (1 <= args.workers <= 32 and 1 <= args.chunk_mib <= 64 and 1 <= args.attempts <= 20 and 0 <= args.retry_delay <= 30):
+        raise ValueError("worker/chunk/attempt/retry-delay bounds")
     jobs = jobs_from_metadata(args.metadata, args.root, args.only)
     chunk_bytes = args.chunk_mib * 1024 * 1024
     print_lock = threading.Lock()
@@ -125,32 +126,37 @@ def main() -> None:
 
     failures = []
     def fetch(state: dict, start: int, end: int) -> None:
-        expected = end - start + 1
+        next_start = start
         last_error = "not started"
         for attempt in range(1, args.attempts + 1):
+            remaining = end - next_start + 1
             command = [
                 "curl", "-L", "--fail", "--silent", "--show-error",
                 "--connect-timeout", "30", "--speed-limit", "1024", "--speed-time", "90",
-                "--max-time", "900", "--range", f"{start}-{end}", state["url"],
+                "--max-time", "900", "--range", f"{next_start}-{end}", state["url"],
             ]
             completed = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
             data = completed.stdout
-            if completed.returncode == 0 and len(data) == expected:
+            if data and completed.returncode in {0, 18, 28, 56} and len(data) <= remaining:
                 view = memoryview(data)
-                offset = start
+                offset = next_start
                 while view:
                     written = os.pwrite(state["fd"], view, offset)
                     if written <= 0:
                         raise OSError("pwrite made no progress")
                     offset += written
                     view = view[written:]
-                log({"status": "range_complete", "token": state["token"], "start": start, "end": end, "attempt": attempt})
-                return
-            last_error = f"curl={completed.returncode}; bytes={len(data)}/{expected}; stderr={completed.stderr.decode(errors='replace')[-500:]}"
+                next_start += len(data)
+                if next_start > end:
+                    log({"status": "range_complete", "token": state["token"], "start": start, "end": end, "attempt": attempt})
+                    return
+                log({"status": "range_partial", "token": state["token"], "start": start,
+                     "resume_from": next_start, "end": end, "received": len(data), "attempt": attempt})
+            last_error = f"curl={completed.returncode}; bytes={len(data)}/{remaining}; resume_from={next_start}; stderr={completed.stderr.decode(errors='replace')[-500:]}"
             log({"status": "range_retry", "token": state["token"], "start": start, "end": end,
                  "attempt": attempt, "error": last_error})
             if attempt < args.attempts:
-                time.sleep(min(5 * attempt, 30))
+                time.sleep(min(args.retry_delay * attempt, 30))
         raise RuntimeError(f"{state['token']} range {start}-{end}: {last_error}")
 
     try:
