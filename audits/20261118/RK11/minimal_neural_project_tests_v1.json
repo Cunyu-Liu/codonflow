@@ -1,0 +1,44 @@
+{
+  "schema": "a8-rk11-full-project-regression-v1",
+  "status": "PASS_FULL_PROJECT_SUITE",
+  "command": "/root/miniconda3/envs/llr_env/bin/python -m pytest -q tests/",
+  "working_directory": "/home/codonflow-a8-rk",
+  "pythonpath": [
+    "/home/codonflow-a8-rk/src",
+    "/home/codonflow-a8-rk-smoke/rna_py_overlay"
+  ],
+  "environment": {
+    "python": "3.10.22",
+    "torch": "2.11.0+cu128",
+    "RNA": "2.7.2",
+    "pandas": "2.2.2",
+    "sklearn": "1.7.2"
+  },
+  "overlay_source": "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages",
+  "overlay_components": [
+    "RNA",
+    "ViennaRNA",
+    "viennarna-2.7.2.dist-info",
+    "viennarna.libs"
+  ],
+  "collected_tests": 290,
+  "passed": 289,
+  "skipped": 1,
+  "warnings": 12,
+  "elapsed_seconds": 955.01,
+  "exit_code": 0,
+  "skip_reason": "tmux integration requires CODONFLOW_RUN_TMUX_TEST=1",
+  "console_log": "minimal_neural_project_tests.console.log",
+  "console_log_sha256": "0bb08df6ba8ecf55231cb3acc8a57abfc0440975cf2f7be0ae2b9fa64f4e094f",
+  "initial_failure_log": "minimal_neural_project_tests_initial_failure.console.log",
+  "second_failure_log": "minimal_neural_project_tests_second_failure.console.log",
+  "initial_failure": "llr_env lacks RNA; two RK05 collection errors",
+  "second_failure": "codonflow env has RNA but lacks pandas and sklearn; two RK08 collection errors",
+  "tested_source_sha256": {
+    "training_script": "9be4ea53eac9fad9b35bf99bdb670e7907543c9da0ef1c340feb3eaf77117295",
+    "model_source": "c4c7324bc7baa856f4e7d216119166687686827493a1ae0bbe6987f6cfc05b8d"
+  },
+  "scientific_code_commit": "5c6659b8190f6d211a0799fa8855b0e4ba0295ff",
+  "reporting_commit": "1baf94f75cde691db3898ea4882d6539f98921b5",
+  "scientific_scope": "engineering regression only; no new biological, OOD or SOTA claim"
+}
