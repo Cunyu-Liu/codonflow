@@ -7,7 +7,7 @@ AUDIT=audits/20261118/RK12
 GRID=$AUDIT/lineardesign_unique18_grid_v1.json
 GRID_IND=$AUDIT/lineardesign_unique18_grid_independent_v1.json
 MATRIX=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk12/actual_set_matrix_v1/unique18_actual_set_matrix.json
-MATRIX_IND=$AUDIT/actual_set_matrix_independent_v1.json
+MATRIX_IND=$AUDIT/actual_set_matrix_independent_v2.json
 FINAL=$AUDIT/rk12_finalization_v1.json
 STATUS=$AUDIT/rk12_full_evaluation_status_v1.json
 stage=waiting_for_grid
@@ -51,8 +51,8 @@ write_status RUNNING
 PYTHONPATH=src $PY scripts/a8_rk12_verify_actual_set_matrix.py \
   --protocol configs/a8_rk12_actual_set_matrix_protocol_v1.json \
   --grid-report "$GRID" \
-  --matrix "$MATRIX" --output "$MATRIX_IND" \
-  > "$AUDIT/actual_set_matrix_independent_v1.console.log" 2>&1
+  --matrix "$MATRIX" --output "$MATRIX_IND" --mfe-workers 8 \
+  > "$AUDIT/actual_set_matrix_independent_v2.console.log" 2>&1
 stage=finalization
 write_status RUNNING
 $PY scripts/a8_rk12_finalize.py \
