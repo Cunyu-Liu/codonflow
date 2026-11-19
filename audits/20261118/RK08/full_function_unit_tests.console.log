@@ -1,0 +1,14 @@
+.......                                                                  [100%]
+=============================== warnings summary ===============================
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:56: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    rho = stats.spearmanr(y, pred).statistic
+
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:57: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    pearson = stats.pearsonr(y, pred).statistic
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+7 passed, 4 warnings in 2.71s

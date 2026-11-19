@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk08_train_ribokinetic.py", line 406, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk08_train_ribokinetic.py", line 350, in main
+    "scope": "FULL_DATA_MECHANISM_ABLATION_PENDING_PAIRED_COMPARISON" if limit is None else "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION",
+NameError: name 'limit' is not defined. Did you mean: 'list'?

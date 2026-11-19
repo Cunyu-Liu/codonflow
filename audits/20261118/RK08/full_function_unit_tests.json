@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/root/miniconda3/envs/llr_env/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_a8_rk08_full_function.py",
+    "-q"
+  ],
+  "returncode": 0,
+  "passed": 7,
+  "failed": 0,
+  "stdout": ".......                                                                  [100%]\n=============================== warnings summary ===============================\ntests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null\ntests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted\n  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:56: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.\n    rho = stats.spearmanr(y, pred).statistic\n\ntests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null\ntests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted\n  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:57: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.\n    pearson = stats.pearsonr(y, pred).statistic\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n7 passed, 4 warnings in 2.71s\n",
+  "stderr": ""
+}

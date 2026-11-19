@@ -1,0 +1,20 @@
+{
+  "records": [
+    {
+      "stage": "full_function_all_v2 initial summary write",
+      "error": "NameError: limit was not defined in main",
+      "resolution": "Read max_rows_per_split directly from config; preserved failed log; all four trainings restarted from scratch.",
+      "retained_log": "/home/codonflow-a8-rk/audits/20261118/RK08/full_function_all_v2.failed_nameerror.console.log"
+    },
+    {
+      "stage": "paired comparison schema alignment",
+      "error": "Initial comparator assumed construct_id/log_scale columns and source row order; actual predictions use record_id/cluster_id/prediction and split-grouped order.",
+      "resolution": "Aligned by construct_id+ood_assignment, validated cluster and target, and used the actual interval schema. No predictions or checkpoints were changed."
+    },
+    {
+      "stage": "independent epoch check",
+      "error": "Verifier initially assumed one-based history epochs.",
+      "resolution": "Corrected verifier to the recorded zero-based epoch field; model selection was already correct."
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "protocol": "a8_rk08_full_function_paired_v1_preregistered_before_result_readout",
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "scientific_scope": "Cross-protein nonsynonymous Bo\u00ebl function prediction; not fixed-protein synonymous mechanism evidence.",
+  "selection": "Dev cluster-balanced MSE only; test and sequence-OOD were excluded from fitting and checkpoint selection.",
+  "primary_endpoint": "sequence_ood cluster_balanced_mse",
+  "secondary_endpoint": "sequence_ood row_spearman",
+  "rk_g1_gate": "All three comparisons must favor ribokinetic_all on both sequence-OOD metrics, with 95% CI excluding zero and Holm p<0.05 within partition.",
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "sota_claimed": false,
+  "metrics": {
+    "dev": {
+      "ribokinetic_all": {
+        "n_rows": 503,
+        "n_clusters": 447,
+        "row_mse": 3.7728402784685033,
+        "row_r2": 0.04411067960825876,
+        "row_spearman": 0.2316233185224509,
+        "row_pearson": 0.22901581597411463,
+        "cluster_balanced_mse": 3.761769367012571
+      },
+      "ribokinetic_none": {
+        "n_rows": 503,
+        "n_clusters": 447,
+        "row_mse": 3.950354829141613,
+        "row_r2": -0.0008645249268888211,
+        "row_spearman": 0.03332068315628134,
+        "row_pearson": 0.059130592516068226,
+        "cluster_balanced_mse": 3.9020595367704716
+      },
+      "ridge_all": {
+        "n_rows": 503,
+        "n_clusters": 447,
+        "row_mse": 3.7458577737443837,
+        "row_r2": 0.05094698493780103,
+        "row_spearman": 0.2384695703761343,
+        "row_pearson": 0.2285849452881819,
+        "cluster_balanced_mse": 3.7255759829852586
+      },
+      "ridge_gc": {
+        "n_rows": 503,
+        "n_clusters": 447,
+        "row_mse": 3.8746640136454458,
+        "row_r2": 0.018312550391522908,
+        "row_spearman": 0.1377243957602878,
+        "row_pearson": 0.14846765308329032,
+        "cluster_balanced_mse": 3.8342221422949825
+      },
+      "histgb_all": {
+        "n_rows": 503,
+        "n_clusters": 447,
+        "row_mse": 3.7968224976233746,
+        "row_r2": 0.03803452862453849,
+        "row_spearman": 0.24375270573066135,
+        "row_pearson": 0.21729802334136522,
+        "cluster_balanced_mse": 3.7635590828453087
+      }
+    },
+    "test": {
+      "ribokinetic_all": {
+        "n_rows": 490,
+        "n_clusters": 436,
+        "row_mse": 4.2695000809394195,
+        "row_r2": 0.02888323806308979,
+        "row_spearman": 0.21680524848251176,
+        "row_pearson": 0.19610449552283318,
+        "cluster_balanced_mse": 4.2534637267769
+      },
+      "ribokinetic_none": {
+        "n_rows": 490,
+        "n_clusters": 436,
+        "row_mse": 4.409993196938172,
+        "row_r2": -0.0030725453533879676,
+        "row_spearman": 0.025083774235412817,
+        "row_pearson": 0.03726368464546469,
+        "cluster_balanced_mse": 4.395209807140411
+      },
+      "ridge_all": {
+        "n_rows": 490,
+        "n_clusters": 436,
+        "row_mse": 4.326231861856856,
+        "row_r2": 0.015979342445565314,
+        "row_spearman": 0.14489601584088516,
+        "row_pearson": 0.15794342664285282,
+        "cluster_balanced_mse": 4.257835240787258
+      },
+      "ridge_gc": {
+        "n_rows": 490,
+        "n_clusters": 436,
+        "row_mse": 4.348074971695457,
+        "row_r2": 0.011011030068246552,
+        "row_spearman": 0.11920943173160552,
+        "row_pearson": 0.12842241329194568,
+        "cluster_balanced_mse": 4.338435443510913
+      },
+      "histgb_all": {
+        "n_rows": 490,
+        "n_clusters": 436,
+        "row_mse": 4.230532247435408,
+        "row_r2": 0.03774664491979751,
+        "row_spearman": 0.20307644175384384,
+        "row_pearson": 0.214181340546878,
+        "cluster_balanced_mse": 4.207757635047566
+      }
+    },
+    "sequence_ood": {
+      "ribokinetic_all": {
+        "n_rows": 1336,
+        "n_clusters": 1110,
+        "row_mse": 4.050313890199509,
+        "row_r2": 0.010312503278833707,
+        "row_spearman": 0.1920940268665813,
+        "row_pearson": 0.23175730234369568,
+        "cluster_balanced_mse": 4.088745560141716
+      },
+      "ribokinetic_none": {
+        "n_rows": 1336,
+        "n_clusters": 1110,
+        "row_mse": 4.306661857750566,
+        "row_r2": -0.05232569839463408,
+        "row_spearman": -0.006921620658066635,
+        "row_pearson": 0.008607165506187803,
+        "cluster_balanced_mse": 4.364834131829025
+      },
+      "ridge_all": {
+        "n_rows": 1336,
+        "n_clusters": 1110,
+        "row_mse": 4.044598463054301,
+        "row_r2": 0.011709058444032028,
+        "row_spearman": 0.21787306638008885,
+        "row_pearson": 0.22186213291175358,
+        "cluster_balanced_mse": 4.114317657190562
+      },
+      "ridge_gc": {
+        "n_rows": 1336,
+        "n_clusters": 1110,
+        "row_mse": 4.298692154138485,
+        "row_r2": -0.05037831450507069,
+        "row_spearman": 0.07187342239270017,
+        "row_pearson": 0.08955974518423564,
+        "cluster_balanced_mse": 4.378261960057955
+      },
+      "histgb_all": {
+        "n_rows": 1336,
+        "n_clusters": 1110,
+        "row_mse": 3.959979689680672,
+        "row_r2": 0.03238551569303738,
+        "row_spearman": 0.2193829589217274,
+        "row_pearson": 0.2161676513423602,
+        "cluster_balanced_mse": 3.98995049596943
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ribokinetic_none",
+      "metric": "spearman",
+      "point_delta": 0.19172147424709896,
+      "ci95_low": 0.07416076088723265,
+      "ci95_high": 0.30849223098212386,
+      "sign_pvalue": 0.002,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.012
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ribokinetic_none",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.14174608036351088,
+      "ci95_low": -0.26652943144715113,
+      "ci95_high": -0.011444396701834064,
+      "sign_pvalue": 0.031,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.13
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ridge_all",
+      "metric": "spearman",
+      "point_delta": 0.0719092326416266,
+      "ci95_low": -0.02571670680106179,
+      "ci95_high": 0.16115100648804714,
+      "sign_pvalue": 0.128,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.33
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ridge_all",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.0043715140103577355,
+      "ci95_low": -0.15734085893541902,
+      "ci95_high": 0.15967150272749184,
+      "sign_pvalue": 0.974,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.974
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ridge_gc",
+      "metric": "spearman",
+      "point_delta": 0.09759581675090624,
+      "ci95_low": 0.012488617702700355,
+      "ci95_high": 0.18270165990199044,
+      "sign_pvalue": 0.026,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.13
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_all",
+      "right": "ridge_gc",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.08497171673401294,
+      "ci95_low": -0.19146597756537392,
+      "ci95_high": 0.022117490923823657,
+      "sign_pvalue": 0.11,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.33
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ribokinetic_none",
+      "metric": "spearman",
+      "point_delta": 0.19901564752464795,
+      "ci95_low": 0.12928337713577098,
+      "ci95_high": 0.26686266782858975,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ribokinetic_none",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.2760885716873087,
+      "ci95_low": -0.37743876398491627,
+      "ci95_high": -0.18084005281667756,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ridge_all",
+      "metric": "spearman",
+      "point_delta": -0.025779039513507546,
+      "ci95_low": -0.07110284401291353,
+      "ci95_high": 0.019376295071448196,
+      "sign_pvalue": 0.261,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.522
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ridge_all",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.025572097048845777,
+      "ci95_low": -0.12406914456408309,
+      "ci95_high": 0.07620733311926971,
+      "sign_pvalue": 0.595,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.595
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ridge_gc",
+      "metric": "spearman",
+      "point_delta": 0.12022060447388114,
+      "ci95_low": 0.08246218349106976,
+      "ci95_high": 0.15740605867134397,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_all",
+      "right": "ridge_gc",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.2895163999162387,
+      "ci95_low": -0.35062417261812934,
+      "ci95_high": -0.2257758131865134,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    }
+  ],
+  "costs": {
+    "ribokinetic_all": {
+      "elapsed_seconds": 71.04460430145264,
+      "best_epoch": 2,
+      "forward_passes_including_dev_and_final_eval": 2103,
+      "parameters": 4997,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "deterministic_algorithms": true,
+      "sdp_backends": {
+        "flash": false,
+        "mem_efficient": false,
+        "math": true
+      },
+      "checkpoint_sha256": "7e581b2b49fd4f4aba723ce497e6f3369acb7ed54f278c6b377fef37a6417c61",
+      "config_sha256": "e7a0707302d93544f39989e8b7ce788c5e51405fa0d9145fa3777f23cecfe685"
+    },
+    "ribokinetic_none": {
+      "elapsed_seconds": 67.22207927703857,
+      "best_epoch": 1,
+      "forward_passes_including_dev_and_final_eval": 2103,
+      "parameters": 4997,
+      "gpu": "NVIDIA GeForce RTX 5090",
+      "deterministic_algorithms": true,
+      "sdp_backends": {
+        "flash": false,
+        "mem_efficient": false,
+        "math": true
+      },
+      "checkpoint_sha256": "aa54bfc78ce3a50e70302ae0530a0be29656514988bddab051527a912c73dee7",
+      "config_sha256": "1904f89196b0628ba68586018f125dddb3b0a0e0511afca487324c464f165ea9"
+    }
+  },
+  "bootstrap": {
+    "method": "operational_protein_cluster_resampling",
+    "replicates": 2000,
+    "seed": 20261119
+  },
+  "inputs": {
+    "data_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+    "all_predictions_sha256": "76e14fec371e7cb94030eead8940efc97960180cafcb71b326f272bfc4046aa7",
+    "none_predictions_sha256": "a19ffe3ba099a8c505e403a74e1d87969344629ccc5db8495be1128758aa2e5b",
+    "baseline_predictions_sha256": "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75",
+    "train_script_sha256": "9bc4eb030d708a8e616bc5ba4b49abdca7b2d66ee7b31652f7ff6717953651b8",
+    "comparison_script_sha256": "fdf0acf496c183aaf6adfc57bf30b192ccb4d02970dff276f6731cc3a50af1bf"
+  },
+  "elapsed_seconds": 8.319637775421143
+}

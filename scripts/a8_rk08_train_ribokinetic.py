@@ -222,6 +222,11 @@ def main() -> None:
         torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+    torch.use_deterministic_algorithms(True, warn_only=True)
+    torch.set_float32_matmul_precision("highest")
+    torch.backends.cuda.enable_flash_sdp(False)
+    torch.backends.cuda.enable_mem_efficient_sdp(False)
+    torch.backends.cuda.enable_math_sdp(True)
     device = torch.device(args.device or training.get("device", "cpu"))
     if device.type == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA requested but unavailable")
@@ -342,7 +347,7 @@ def main() -> None:
     elapsed = time.time() - started
     summary = {
         "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
-        "scope": "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION",
+        "scope": "FULL_DATA_MECHANISM_ABLATION_PENDING_PAIRED_COMPARISON" if config.get("max_rows_per_split") is None else "REAL_DATA_SMOKE_NOT_MECHANISM_VALIDATION",
         "task": task,
         "ablation": config.get("ablation", "all"),
         "active_mechanisms": active,
@@ -366,6 +371,13 @@ def main() -> None:
             "device": str(device),
             "cuda_available": torch.cuda.is_available(),
             "gpu": torch.cuda.get_device_name(0) if device.type == "cuda" else None,
+            "deterministic_algorithms": torch.are_deterministic_algorithms_enabled(),
+            "matmul_precision": torch.get_float32_matmul_precision(),
+            "sdp_backends": {
+                "flash": torch.backends.cuda.flash_sdp_enabled(),
+                "mem_efficient": torch.backends.cuda.mem_efficient_sdp_enabled(),
+                "math": torch.backends.cuda.math_sdp_enabled(),
+            },
         },
         "hashes": {
             "data_sha256": file_sha256(args.data),
