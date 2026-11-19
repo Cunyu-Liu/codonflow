@@ -99,3 +99,4 @@ PYTHONPATH=. /usr/bin/python3 -m unittest scripts.tests.test_a8_rk04_sequence_oo
 - 第 59 页记录 split 数量、冻结协议和科学含义；第 60 页记录 33/33 独立复核、19/19 测试、零重叠、GitHub 证据和不可声称事项。
 - `ppt_verification.json` 为 PASS：整稿 60 页，前 58 页内容与结构保持不变（第 58 页末尾仅有无语义空白差异），新页关键文本和备注齐全，所有带坐标的元素均在 960×540 画布内。
 - 回读 XML SHA256=`b7c5f9651df573723953a4545037fb06f338bf329eca51238dcc482aad8311ef`。
+- sequence-OOD v2 在 revision 41 的 79 页基线上只追加第 80 页，slide ID=`pgq`，写入后 revision=42。候选 XML 先与 finalization 11/11 和真实 counts 核对；写后回读 10/10 PASS，前 79 页 slide IDs 与语义 XML 不变。回读 XML SHA256=`956991838376d9b07f3073aa83ae8064c23c6e1446b866bd41ce663ff0f4206d`。
