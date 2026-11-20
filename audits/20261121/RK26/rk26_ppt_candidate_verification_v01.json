@@ -1,0 +1,420 @@
+{
+  "schema": "a8-rk26-ppt-verification-v1",
+  "mode": "candidate",
+  "candidate_sha256": "52b9794c6f1a691cef24423bf0da57a8da7f071025460bdf6ac103473f46dba9",
+  "result_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "independent_sha256": "5a61826999015bc448636812e104ed0ff84a20f21b5efc522bf7be5a636632f0",
+  "closeout_sha256": "0c0deb52faebe180d93be2394269dc37c25e4aa3906e4b12f50b9e481ac7327c",
+  "slide_title": "Only 4 synonymous doubles: interaction OOD is not supported",
+  "candidate_visible_paragraphs": 61,
+  "candidate_note_paragraphs": 5,
+  "expected_table": [
+    [
+      "Pair",
+      "WT codons",
+      "All rows",
+      "All singles",
+      "All doubles",
+      "Syn singles",
+      "Syn doubles",
+      "Coverage"
+    ],
+    [
+      "1–2",
+      "GCC;AAA",
+      "4,096",
+      "126",
+      "3,969",
+      "4",
+      "3",
+      "PASS"
+    ],
+    [
+      "2–3",
+      "AAA;GAA",
+      "4,096",
+      "126",
+      "3,969",
+      "2",
+      "1",
+      "FAIL"
+    ],
+    [
+      "Total",
+      "—",
+      "8,192",
+      "252",
+      "7,938",
+      "6",
+      "4",
+      "NOT FEASIBLE"
+    ]
+  ],
+  "source_sha256": "2e72d73c2acc532bf8adae9e4ea648fb21316ab26b5f82913c2c13af284c821b",
+  "source_revision": 80,
+  "source_pages": 117,
+  "status": "PASS",
+  "checks_total": 88,
+  "checks_passed": 88,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "candidate root slide",
+      "pass": true
+    },
+    {
+      "name": "candidate SML namespace",
+      "pass": true
+    },
+    {
+      "name": "no invented IDs",
+      "pass": true
+    },
+    {
+      "name": "five note paragraphs",
+      "pass": true
+    },
+    {
+      "name": "one native table",
+      "pass": true
+    },
+    {
+      "name": "table four rows",
+      "pass": true
+    },
+    {
+      "name": "table eight columns",
+      "pass": true
+    },
+    {
+      "name": "table exact science matrix",
+      "pass": true
+    },
+    {
+      "name": "no images",
+      "pass": true
+    },
+    {
+      "name": "no undefined",
+      "pass": true
+    },
+    {
+      "name": "no embed",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 0 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 1 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 2 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 3 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 4 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 5 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 6 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 7 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 8 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 9 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 10 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 11 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 12 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 13 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 14 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 15 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 16 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 17 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 18 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 19 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 20 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 21 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 22 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 23 table",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 24 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 25 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 26 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 27 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 28 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 29 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 30 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 31 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 32 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 33 shape",
+      "pass": true
+    },
+    {
+      "name": "Inter only",
+      "pass": true
+    },
+    {
+      "name": "visible minimum 9pt",
+      "pass": true
+    },
+    {
+      "name": "title exact",
+      "pass": true
+    },
+    {
+      "name": "pair rows exact",
+      "pass": true
+    },
+    {
+      "name": "synonymous singles exact",
+      "pass": true
+    },
+    {
+      "name": "synonymous doubles exact",
+      "pass": true
+    },
+    {
+      "name": "independent exact",
+      "pass": true
+    },
+    {
+      "name": "closeout exact",
+      "pass": true
+    },
+    {
+      "name": "candidate closed",
+      "pass": true
+    },
+    {
+      "name": "no model fits visible",
+      "pass": true
+    },
+    {
+      "name": "no endpoints visible",
+      "pass": true
+    },
+    {
+      "name": "RK-G1 closed",
+      "pass": true
+    },
+    {
+      "name": "generator unauthorized",
+      "pass": true
+    },
+    {
+      "name": "untouched unread",
+      "pass": true
+    },
+    {
+      "name": "science commit visible",
+      "pass": true
+    },
+    {
+      "name": "closeout commit visible",
+      "pass": true
+    },
+    {
+      "name": "page number",
+      "pass": true
+    },
+    {
+      "name": "paper source in notes",
+      "pass": true
+    },
+    {
+      "name": "raw hash in notes",
+      "pass": true
+    },
+    {
+      "name": "clean hash in notes",
+      "pass": true
+    },
+    {
+      "name": "facts hash in notes",
+      "pass": true
+    },
+    {
+      "name": "result hash in notes",
+      "pass": true
+    },
+    {
+      "name": "independent hash in notes",
+      "pass": true
+    },
+    {
+      "name": "science commit in notes",
+      "pass": true
+    },
+    {
+      "name": "closeout commit in notes",
+      "pass": true
+    },
+    {
+      "name": "retrospective boundary",
+      "pass": true
+    },
+    {
+      "name": "not power analysis",
+      "pass": true
+    },
+    {
+      "name": "no success overclaim",
+      "pass": true
+    },
+    {
+      "name": "science outcome exact",
+      "pass": true
+    },
+    {
+      "name": "science no fit or endpoint",
+      "pass": true
+    },
+    {
+      "name": "science splits unread",
+      "pass": true
+    },
+    {
+      "name": "science no authorization",
+      "pass": true
+    },
+    {
+      "name": "independent 42 of 42",
+      "pass": true
+    },
+    {
+      "name": "independent counts exact",
+      "pass": true
+    },
+    {
+      "name": "closeout 54 of 54",
+      "pass": true
+    },
+    {
+      "name": "production hash bound",
+      "pass": true
+    },
+    {
+      "name": "independent hash bound",
+      "pass": true
+    },
+    {
+      "name": "science commit bound",
+      "pass": true
+    },
+    {
+      "name": "source response ok",
+      "pass": true
+    },
+    {
+      "name": "source revision 80",
+      "pass": true
+    },
+    {
+      "name": "source 117 pages",
+      "pass": true
+    },
+    {
+      "name": "source last RK25",
+      "pass": true
+    },
+    {
+      "name": "no previous RK26",
+      "pass": true
+    }
+  ],
+  "confirmatory_ood_feasible": false,
+  "model_fits": 0,
+  "functional_endpoint_evaluations": 0,
+  "rk_g1": false,
+  "generator_training_authorized": false,
+  "functional_untouched_evaluated": false
+}

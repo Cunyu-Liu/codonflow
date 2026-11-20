@@ -1,0 +1,943 @@
+{
+  "schema": "a8-rk26-ppt-verification-v1",
+  "mode": "online",
+  "candidate_sha256": "52b9794c6f1a691cef24423bf0da57a8da7f071025460bdf6ac103473f46dba9",
+  "result_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "independent_sha256": "5a61826999015bc448636812e104ed0ff84a20f21b5efc522bf7be5a636632f0",
+  "closeout_sha256": "0c0deb52faebe180d93be2394269dc37c25e4aa3906e4b12f50b9e481ac7327c",
+  "slide_title": "Only 4 synonymous doubles: interaction OOD is not supported",
+  "candidate_visible_paragraphs": 61,
+  "candidate_note_paragraphs": 5,
+  "expected_table": [
+    [
+      "Pair",
+      "WT codons",
+      "All rows",
+      "All singles",
+      "All doubles",
+      "Syn singles",
+      "Syn doubles",
+      "Coverage"
+    ],
+    [
+      "1–2",
+      "GCC;AAA",
+      "4,096",
+      "126",
+      "3,969",
+      "4",
+      "3",
+      "PASS"
+    ],
+    [
+      "2–3",
+      "AAA;GAA",
+      "4,096",
+      "126",
+      "3,969",
+      "2",
+      "1",
+      "FAIL"
+    ],
+    [
+      "Total",
+      "—",
+      "8,192",
+      "252",
+      "7,938",
+      "6",
+      "4",
+      "NOT FEASIBLE"
+    ]
+  ],
+  "before_sha256": "2e72d73c2acc532bf8adae9e4ea648fb21316ab26b5f82913c2c13af284c821b",
+  "after_sha256": "322dc0e7f8c64c776b0dccdbac9c40368333f6c1a157c5c6a151a66df37e1e9b",
+  "write_response_sha256": "147acda8e0f09cb211e8f4e8febac10d8d2fe90f9c0eb04ab809afaf8d9a342c",
+  "before_revision": 80,
+  "after_revision": 81,
+  "before_pages": 117,
+  "after_pages": 118,
+  "slide_id": "pZL",
+  "status": "FAIL",
+  "checks_total": 217,
+  "checks_passed": 216,
+  "failed_checks": [
+    "online table exact science matrix"
+  ],
+  "checks": [
+    {
+      "name": "candidate root slide",
+      "pass": true
+    },
+    {
+      "name": "candidate SML namespace",
+      "pass": true
+    },
+    {
+      "name": "no invented IDs",
+      "pass": true
+    },
+    {
+      "name": "five note paragraphs",
+      "pass": true
+    },
+    {
+      "name": "one native table",
+      "pass": true
+    },
+    {
+      "name": "table four rows",
+      "pass": true
+    },
+    {
+      "name": "table eight columns",
+      "pass": true
+    },
+    {
+      "name": "table exact science matrix",
+      "pass": true
+    },
+    {
+      "name": "no images",
+      "pass": true
+    },
+    {
+      "name": "no undefined",
+      "pass": true
+    },
+    {
+      "name": "no embed",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 0 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 1 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 2 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 3 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 4 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 5 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 6 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 7 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 8 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 9 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 10 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 11 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 12 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 13 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 14 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 15 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 16 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 17 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 18 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 19 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 20 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 21 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 22 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 23 table",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 24 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 25 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 26 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 27 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 28 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 29 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 30 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 31 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 32 shape",
+      "pass": true
+    },
+    {
+      "name": "canvas bounds 33 shape",
+      "pass": true
+    },
+    {
+      "name": "Inter only",
+      "pass": true
+    },
+    {
+      "name": "visible minimum 9pt",
+      "pass": true
+    },
+    {
+      "name": "title exact",
+      "pass": true
+    },
+    {
+      "name": "pair rows exact",
+      "pass": true
+    },
+    {
+      "name": "synonymous singles exact",
+      "pass": true
+    },
+    {
+      "name": "synonymous doubles exact",
+      "pass": true
+    },
+    {
+      "name": "independent exact",
+      "pass": true
+    },
+    {
+      "name": "closeout exact",
+      "pass": true
+    },
+    {
+      "name": "candidate closed",
+      "pass": true
+    },
+    {
+      "name": "no model fits visible",
+      "pass": true
+    },
+    {
+      "name": "no endpoints visible",
+      "pass": true
+    },
+    {
+      "name": "RK-G1 closed",
+      "pass": true
+    },
+    {
+      "name": "generator unauthorized",
+      "pass": true
+    },
+    {
+      "name": "untouched unread",
+      "pass": true
+    },
+    {
+      "name": "science commit visible",
+      "pass": true
+    },
+    {
+      "name": "closeout commit visible",
+      "pass": true
+    },
+    {
+      "name": "page number",
+      "pass": true
+    },
+    {
+      "name": "paper source in notes",
+      "pass": true
+    },
+    {
+      "name": "raw hash in notes",
+      "pass": true
+    },
+    {
+      "name": "clean hash in notes",
+      "pass": true
+    },
+    {
+      "name": "facts hash in notes",
+      "pass": true
+    },
+    {
+      "name": "result hash in notes",
+      "pass": true
+    },
+    {
+      "name": "independent hash in notes",
+      "pass": true
+    },
+    {
+      "name": "science commit in notes",
+      "pass": true
+    },
+    {
+      "name": "closeout commit in notes",
+      "pass": true
+    },
+    {
+      "name": "retrospective boundary",
+      "pass": true
+    },
+    {
+      "name": "not power analysis",
+      "pass": true
+    },
+    {
+      "name": "no success overclaim",
+      "pass": true
+    },
+    {
+      "name": "science outcome exact",
+      "pass": true
+    },
+    {
+      "name": "science no fit or endpoint",
+      "pass": true
+    },
+    {
+      "name": "science splits unread",
+      "pass": true
+    },
+    {
+      "name": "science no authorization",
+      "pass": true
+    },
+    {
+      "name": "independent 42 of 42",
+      "pass": true
+    },
+    {
+      "name": "independent counts exact",
+      "pass": true
+    },
+    {
+      "name": "closeout 54 of 54",
+      "pass": true
+    },
+    {
+      "name": "production hash bound",
+      "pass": true
+    },
+    {
+      "name": "independent hash bound",
+      "pass": true
+    },
+    {
+      "name": "science commit bound",
+      "pass": true
+    },
+    {
+      "name": "before response ok",
+      "pass": true
+    },
+    {
+      "name": "after response ok",
+      "pass": true
+    },
+    {
+      "name": "write response ok",
+      "pass": true
+    },
+    {
+      "name": "one revision increment",
+      "pass": true
+    },
+    {
+      "name": "write revision matches after",
+      "pass": true
+    },
+    {
+      "name": "one page append",
+      "pass": true
+    },
+    {
+      "name": "new slide ID",
+      "pass": true
+    },
+    {
+      "name": "new slide is last",
+      "pass": true
+    },
+    {
+      "name": "old slide IDs unchanged",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 1",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 2",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 3",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 4",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 5",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 6",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 7",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 8",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 9",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 10",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 11",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 12",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 13",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 14",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 15",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 16",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 17",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 18",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 19",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 20",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 21",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 22",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 23",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 24",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 25",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 26",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 27",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 28",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 29",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 30",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 31",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 32",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 33",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 34",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 35",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 36",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 37",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 38",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 39",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 40",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 41",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 42",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 43",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 44",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 45",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 46",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 47",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 48",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 49",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 50",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 51",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 52",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 53",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 54",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 55",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 56",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 57",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 58",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 59",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 60",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 61",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 62",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 63",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 64",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 65",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 66",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 67",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 68",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 69",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 70",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 71",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 72",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 73",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 74",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 75",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 76",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 77",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 78",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 79",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 80",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 81",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 82",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 83",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 84",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 85",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 86",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 87",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 88",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 89",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 90",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 91",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 92",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 93",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 94",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 95",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 96",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 97",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 98",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 99",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 100",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 101",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 102",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 103",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 104",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 105",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 106",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 107",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 108",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 109",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 110",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 111",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 112",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 113",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 114",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 115",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 116",
+      "pass": true
+    },
+    {
+      "name": "old page semantic identity 117",
+      "pass": true
+    },
+    {
+      "name": "online visible exact",
+      "pass": true
+    },
+    {
+      "name": "online notes exact",
+      "pass": true
+    },
+    {
+      "name": "online geometry exact",
+      "pass": true
+    },
+    {
+      "name": "online one table",
+      "pass": true
+    },
+    {
+      "name": "online table four rows",
+      "pass": true
+    },
+    {
+      "name": "online table eight columns",
+      "pass": true
+    },
+    {
+      "name": "online table exact science matrix",
+      "pass": false
+    },
+    {
+      "name": "only one RK26 title",
+      "pass": true
+    }
+  ],
+  "confirmatory_ood_feasible": false,
+  "model_fits": 0,
+  "functional_endpoint_evaluations": 0,
+  "rk_g1": false,
+  "generator_training_authorized": false,
+  "functional_untouched_evaluated": false
+}
