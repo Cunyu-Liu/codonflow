@@ -1,0 +1,17 @@
+{
+  "schema": "a8-rk25-engineering-fix-v2",
+  "fix": "Require exact dev replay identity/target/cluster/seed and permit at most 1e-12 absolute numeric CSV-roundtrip difference, recording the observed maximum.",
+  "protocol_changed": false,
+  "scientific_definitions_changed": false,
+  "previous_implementation_sha256": "940d72f8443274bd4e2bdb6c6ea716bcf4f6292b7850c80c12c2e13adfae9090",
+  "implementation_sha256": "41650c050f82112af937e1a7c262e0b5cd735b8b5482fa2a509590a2fdcfdeef",
+  "unit_test_implementation_sha256": "d7660c9c52355fb6fd6a64b8d593c8a2fc7c84dbdda70df729c6d5eb8503463b",
+  "unit_test_log_sha256": "ce72bc39c8738c242d89665735f5ce1a5055e1779d89c0f8dfb381153affae99",
+  "unit_tests": "14/14 PASS",
+  "failed_ood_log_sha256": "545c08b2e86472fc8d30d935e2270b2175fd4ba533ba6b90af712b6ca74f051f",
+  "failed_unverified_ood_predictions_sha256": "83a91e96791fac4f122694fda188005021d58dff61621c518601a8c533927054",
+  "failed_unverified_ood_predictions_retained_as": "rk25_ood_predictions_failed_dev_replay_roundtrip.csv.gz",
+  "observed_dev_replay_difference_before_fix": 8.881784197001252e-16,
+  "test_or_sequence_ood_metrics_produced_before_fix": false,
+  "functional_untouched_evaluated": false
+}

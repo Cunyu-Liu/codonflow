@@ -299,6 +299,25 @@ def build_prediction_frames(protocol, rows_by_split, model):
     return seed_frames
 
 
+def verify_dev_replay(previous, current, tolerance=1e-12):
+    previous = previous.copy().reset_index(drop=True)
+    current = current.copy().reset_index(drop=True)
+    previous['source_row'] = previous['source_row'].astype(str)
+    current['source_row'] = current['source_row'].astype(str)
+    metadata = ['source_row', 'construct_id', 'ood_assignment', 'operational_protein_cluster',
+                'expression_value', 'seed']
+    if not current[metadata].equals(previous[metadata]):
+        raise ValueError('dev replay identity, target, cluster, or seed changed')
+    difference = 0.0
+    for column in MODELS:
+        difference = max(difference, float(np.max(np.abs(
+            current[column].to_numpy(float) - previous[column].to_numpy(float)
+        ))))
+    if difference > tolerance:
+        raise ValueError(f'dev replay prediction difference={difference} exceeds {tolerance}')
+    return difference
+
+
 def calculate_metrics(frames, protocol):
     all_metrics = {}
     metric_rows = []
@@ -508,18 +527,12 @@ def main():
     frames = build_prediction_frames(protocol, rows_by_split, model)
     prediction_path = phase_root / f'rk25_{phase}_predictions.csv.gz'
     pd.concat(frames, ignore_index=True).to_csv(prediction_path, index=False, compression='gzip')
+    dev_replay_difference = None
     if args.frozen_ood_confirmation:
         previous = pd.read_csv(output_root / 'dev/rk25_dev_predictions.csv.gz')
-        previous['source_row'] = previous['source_row'].astype(str)
         current = pd.concat(frames, ignore_index=True)
         current_dev = current[current['ood_assignment'].isin(['train', 'dev'])].reset_index(drop=True)
-        if not current_dev.equals(previous):
-            difference = 0.0
-            for column in MODELS:
-                difference = max(difference, float(np.max(np.abs(
-                    current_dev[column].to_numpy(float) - previous[column].to_numpy(float)
-                ))))
-            raise ValueError(f'dev replay changed; maximum prediction difference={difference}')
+        dev_replay_difference = verify_dev_replay(previous, current_dev)
     metrics, metric_rows = calculate_metrics(frames, protocol)
     points = point_comparisons(metrics, protocol)
     comparisons = []
@@ -557,7 +570,8 @@ def main():
         'model_artifact_sha256': sha256_file(model_path),
         'predictions': str(prediction_path),
         'predictions_sha256': sha256_file(prediction_path),
-        'dev_replay_exact': args.frozen_ood_confirmation,
+        'dev_replay_max_abs_difference': dev_replay_difference,
+        'dev_replay_within_1e_12': dev_replay_difference is not None and dev_replay_difference <= 1e-12 if args.frozen_ood_confirmation else False,
         'model_diagnostics': diagnostics,
         'metrics': metrics,
         'metric_rows': metric_rows,

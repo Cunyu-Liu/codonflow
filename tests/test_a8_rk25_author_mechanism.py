@@ -246,6 +246,25 @@ class RK25Tests(unittest.TestCase):
         self.assertEqual(neural_observed['ood_assignment'].tolist(), ['train', 'dev'])
         self.assertEqual(baseline_observed['ridge_all'].tolist(), [0.2, 1.2])
         self.assertEqual(baseline_observed['expression_value'].tolist(), [0., 1.])
+    def test_14_dev_replay_roundtrip_tolerance(self):
+        previous = pd.DataFrame({
+            'source_row': ['0', '1'], 'construct_id': ['a', 'b'],
+            'ood_assignment': ['train', 'dev'], 'operational_protein_cluster': ['x', 'y'],
+            'expression_value': [0., 1.], 'seed': [20261119, 20261119],
+            'ribokinetic_all': [0.1, 1.1], 'boel_author': [0.2, 1.2],
+            'ridge_all': [0.3, 1.3], 'histgb_all': [0.4, 1.4],
+        })
+        current = previous.copy()
+        current.loc[0, 'boel_author'] += 8.881784197001252e-16
+        difference = rk.verify_dev_replay(previous, current)
+        self.assertLessEqual(difference, 1e-12)
+        current.loc[0, 'boel_author'] += 1e-6
+        with self.assertRaises(ValueError):
+            rk.verify_dev_replay(previous, current)
+        current = previous.copy()
+        current.loc[0, 'expression_value'] = 5.
+        with self.assertRaises(ValueError):
+            rk.verify_dev_replay(previous, current)
 
 
 if __name__ == '__main__':
