@@ -1,0 +1,79 @@
+{
+  "schema": "a8-rk23-paper-update-v1",
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "before_sha256": "5c9f9619a46ed555777f6bc9e986fc873c7ff5674406d93c19d21979155096b6",
+  "after_sha256": "168042d268da301057d9214393c25c05904c6a64d60bbb88ff265fc2cf8755b6",
+  "backup": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/paper_v1/CodonFlow_preprint_A8.before_rk23.md",
+  "section_sha256": "fc02dad4d31ac4f42ad4aca0751c57944cc5af14f1fb1d43bda38c40e05a9125",
+  "section_body": "### 6.34 Boël initiation folding did not improve the frozen protein-OOD comparison\n\nThe RK07 proxy comparison used folding energies computed from the CDS alone and therefore did not test the initiation feature supplied by Boël et al. We recovered the author-provided `Gz48v` field, defined in the source study as the UH folding energy for the pET21 5′ UTR together with the first 48 CDS nucleotides. The field was complete for all 6,348 records. These data compare different proteins and nonsynonymous constructs on a 0–5 expression scale; they are not a fixed-protein synonymous library and cannot isolate a causal UTR effect.\n\nBefore model fitting, we froze a feature-increment comparison on the existing protein-separated split. The base model contained CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, and log length; the augmented model added only `source_Gz48v`. We used a fixed multinomial logistic expected-score model with L2 = 0.01 and a fixed histogram gradient-boosting regressor, without hyperparameter search. Train, development, and test contained 5,079, 635, and 634 rows, respectively, and each operational partition contained 556 protein clusters. The four primary endpoints were the augmented-minus-base Spearman correlation and MSE improvement for the two model families. Inference used 20,000 operational-protein-cluster bootstrap replicates, 20,000 within-cluster prediction-swap permutations, and Holm correction across the four tests. Every endpoint required a positive effect, a 95% confidence interval above zero, and Holm-adjusted *p* < 0.05. Development effects were positive but all four intervals crossed zero; development was not used to retune the feature set or models.\n\nThe frozen test comparison did not support an initiation-folding increment (Table 6). Logistic Spearman changed from 0.123239 to 0.128580 and MSE from 4.331579 to 4.331129. HistGB Spearman changed from 0.205786 to 0.200735 and MSE from 4.297686 to 4.326146. All four confidence intervals crossed zero, all Holm-adjusted *p* values were 1.000, and none of the four primary endpoints passed. The resulting state is `PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_NOT_FULLY_SUPPORTED`.\n\n**Table 6**\n\n*Frozen Protein-OOD Effects of Adding Boël UH Folding Energy*\n\n| Model | Endpoint | Base | Augmented | Effect | 95% CI | Holm *p* |\n|---|---|---:|---:|---:|---:|---:|\n| Logistic | Spearman | 0.123239 | 0.128580 | +0.005341 | [−0.028391, 0.038772] | 1.000 |\n| Logistic | MSE improvement | 4.331579 | 4.331129 | +0.000449 | [−0.058058, 0.059025] | 1.000 |\n| HistGB | Spearman | 0.205786 | 0.200735 | −0.005051 | [−0.038226, 0.027886] | 1.000 |\n| HistGB | MSE improvement | 4.297686 | 4.326146 | −0.028460 | [−0.130563, 0.073041] | 1.000 |\n\n*Note.* Base and augmented values for MSE rows are MSE; effect is base MSE minus augmented MSE, so positive values indicate improvement. Base features are CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, and log length. Augmented features add author-provided UH folding energy. CI denotes confidence interval; MSE denotes mean squared error.\n\nA secondary comparison that replaced the base feature set with CAI, GC, and log length was descriptive only. Its test point estimates were positive: HistGB gained 0.061364 Spearman and 0.180757 MSE improvement, while logistic gained 0.009044 Spearman and 0.021717 MSE improvement. These comparisons were outside the preregistered four-test Holm family, received no confirmatory significance claim, and cannot reverse the negative primary result. They also do not establish superiority over the stronger preregistered base model.\n\nWe separately audited the optimized-construct and Figure 5 source tables for a possible fixed-protein numerical check. The optimized-construct sheet contained 25 rows, 24 unique construct names, and five protein groups, with one duplicated `RSP_2139-31C-FO/31C-FO` row. Its `p025`, `p50`, and `p975` fields are model prediction quantiles rather than measured expression. Figure 5 provided numerical growth curves for RSP_2139 and SRU_1983 but no fixed-protein expression table. We therefore did not execute that numerical mechanism test, digitize plotted expression values, or recycle model predictions as functional ground truth.\n\nIndependent implementations retrained every model and regenerated all development and test predictions, metrics, bootstrap arrays, and permutation arrays without importing the RK23 or RK07 production modules. Development acceptance passed 177/177 checks and test acceptance passed 275/275 checks; maximum production-versus-independent differences were zero for predictions, metrics, bootstrap results, and permutation results. The retained history includes two pre-resampling interface corrections, 14/14 synthetic tests, and a verifier-only correction after it initially assumed that length and GC included the terminal stop codon. These corrections did not alter the frozen scientific features, labels, models, endpoints, or outputs.\n\nThis test is a reused protein-OOD evaluation, not global untouched confirmation. It does not contradict the distinct fixed-GFP development result in Section 6.33, because the datasets, contrasts, and estimands differ. It establishes neither velocity nor decay mechanisms, fixed-protein synonymous transport, functional untouched performance, CodonFlow-RK generation, or external SOTA. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.\n",
+  "evidence_block": "| RK23 frozen protein-OOD protocol | `dd5f921190ee7107a1354432680847ee211ce817927c45dd751ff343611fd645` |\n| RK23 frozen development result | `34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2` |\n| RK23 frozen test result | `878322c8a2105b750059cce95aac16fa1249930b57404d7020a3672f81ad6373` |\n| RK23 independent development verification | `d3e38dad6b9932d69c44013f6adc5e624463edbf0648a727ccb1554ae8ee52ff` |\n| RK23 independent test verification | `d1ec5e61ff3d37c8f3dc06d3c19ee457c642c808b4196f2de37f45b2c495f0e1` |\n| RK23 test predictions | `fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00` |\n| RK23 test resampling | `249c84004ed4571c8e7e482efc8f6791cba7963ca1643f2e5437cd9f8ba06250` |\n| RK23 scientific closeout | `8791216165a328303c879936ecfe2bb45a20252636db3f159728ba085107af43` |\n| RK23 manuscript section | `fc02dad4d31ac4f42ad4aca0751c57944cc5af14f1fb1d43bda38c40e05a9125` |\n| RK23 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |\n| RK23 manuscript draft check | `306ff64692621e474caf2a350e9702fa509331f782be7266c03fa35f19e9fb14` |\n| RK23 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |",
+  "evidence": [
+    {
+      "name": "RK23 frozen protein-OOD protocol",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/a8_rk23_boel_uh_protocol_v1.json",
+      "sha256": "dd5f921190ee7107a1354432680847ee211ce817927c45dd751ff343611fd645"
+    },
+    {
+      "name": "RK23 frozen development result",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_dev_result_v1.json",
+      "sha256": "34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2"
+    },
+    {
+      "name": "RK23 frozen test result",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_test_result_v1.json",
+      "sha256": "878322c8a2105b750059cce95aac16fa1249930b57404d7020a3672f81ad6373"
+    },
+    {
+      "name": "RK23 independent development verification",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_dev_independent_verification_v1.json",
+      "sha256": "d3e38dad6b9932d69c44013f6adc5e624463edbf0648a727ccb1554ae8ee52ff"
+    },
+    {
+      "name": "RK23 independent test verification",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_test_independent_verification_v1.json",
+      "sha256": "d1ec5e61ff3d37c8f3dc06d3c19ee457c642c808b4196f2de37f45b2c495f0e1"
+    },
+    {
+      "name": "RK23 test predictions",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_predictions.csv.gz",
+      "sha256": "fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00"
+    },
+    {
+      "name": "RK23 test resampling",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_resampling_test.npz",
+      "sha256": "249c84004ed4571c8e7e482efc8f6791cba7963ca1643f2e5437cd9f8ba06250"
+    },
+    {
+      "name": "RK23 scientific closeout",
+      "path": "/home/codonflow-a8-rk/docs/handover/A8_RK23_BOEL_UH_CLOSEOUT.md",
+      "sha256": "8791216165a328303c879936ecfe2bb45a20252636db3f159728ba085107af43"
+    },
+    {
+      "name": "RK23 manuscript section",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/paper/rk23_manuscript_section.md",
+      "sha256": "fc02dad4d31ac4f42ad4aca0751c57944cc5af14f1fb1d43bda38c40e05a9125"
+    },
+    {
+      "name": "RK23 manuscript prepare check",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/paper/prepare_check.json",
+      "sha256": "d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8"
+    },
+    {
+      "name": "RK23 manuscript draft check",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/paper/draft_check.json",
+      "sha256": "306ff64692621e474caf2a350e9702fa509331f782be7266c03fa35f19e9fb14"
+    },
+    {
+      "name": "RK23 manuscript writing status",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK23/paper/status.json",
+      "sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9"
+    }
+  ],
+  "scientific_flags": {
+    "primary_protein_ood_increment_supported": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "expensive_generation_authorized": false,
+    "submittable": false
+  }
+}

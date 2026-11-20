@@ -832,6 +832,35 @@ The tagged analysis asked a separate paired question: when the same CDS acquires
 
 An independent implementation reconstructed the grouped tables, retrained every model, reproduced all 7,500 out-of-fold predictions, and regenerated the randomization arrays, passing 63/63 checks. The retained verification history includes an initial parser failure in which the literal model label `null` was interpreted as a missing value; correcting only that verifier parsing behavior left the scientific outputs unchanged. These results establish a robust 5′-structure increment in this fixed-GFP development dataset and a paired structure–expression association under the measured leader perturbation. They do not show that MFE is the sole causal mediator, because the leader also changes other sequence properties. Nor do they reverse earlier negative results obtained with different proxy endpoints, establish protein OOD, velocity, decay, functional untouched performance, CodonFlow-RK superiority, or external SOTA. RK-G1 remains false and expensive generator training remains unauthorized.
 
+### 6.34 Boël initiation folding did not improve the frozen protein-OOD comparison
+
+The RK07 proxy comparison used folding energies computed from the CDS alone and therefore did not test the initiation feature supplied by Boël et al. We recovered the author-provided `Gz48v` field, defined in the source study as the UH folding energy for the pET21 5′ UTR together with the first 48 CDS nucleotides. The field was complete for all 6,348 records. These data compare different proteins and nonsynonymous constructs on a 0–5 expression scale; they are not a fixed-protein synonymous library and cannot isolate a causal UTR effect.
+
+Before model fitting, we froze a feature-increment comparison on the existing protein-separated split. The base model contained CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, and log length; the augmented model added only `source_Gz48v`. We used a fixed multinomial logistic expected-score model with L2 = 0.01 and a fixed histogram gradient-boosting regressor, without hyperparameter search. Train, development, and test contained 5,079, 635, and 634 rows, respectively, and each operational partition contained 556 protein clusters. The four primary endpoints were the augmented-minus-base Spearman correlation and MSE improvement for the two model families. Inference used 20,000 operational-protein-cluster bootstrap replicates, 20,000 within-cluster prediction-swap permutations, and Holm correction across the four tests. Every endpoint required a positive effect, a 95% confidence interval above zero, and Holm-adjusted *p* < 0.05. Development effects were positive but all four intervals crossed zero; development was not used to retune the feature set or models.
+
+The frozen test comparison did not support an initiation-folding increment (Table 6). Logistic Spearman changed from 0.123239 to 0.128580 and MSE from 4.331579 to 4.331129. HistGB Spearman changed from 0.205786 to 0.200735 and MSE from 4.297686 to 4.326146. All four confidence intervals crossed zero, all Holm-adjusted *p* values were 1.000, and none of the four primary endpoints passed. The resulting state is `PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_NOT_FULLY_SUPPORTED`.
+
+**Table 6**
+
+*Frozen Protein-OOD Effects of Adding Boël UH Folding Energy*
+
+| Model | Endpoint | Base | Augmented | Effect | 95% CI | Holm *p* |
+|---|---|---:|---:|---:|---:|---:|
+| Logistic | Spearman | 0.123239 | 0.128580 | +0.005341 | [−0.028391, 0.038772] | 1.000 |
+| Logistic | MSE improvement | 4.331579 | 4.331129 | +0.000449 | [−0.058058, 0.059025] | 1.000 |
+| HistGB | Spearman | 0.205786 | 0.200735 | −0.005051 | [−0.038226, 0.027886] | 1.000 |
+| HistGB | MSE improvement | 4.297686 | 4.326146 | −0.028460 | [−0.130563, 0.073041] | 1.000 |
+
+*Note.* Base and augmented values for MSE rows are MSE; effect is base MSE minus augmented MSE, so positive values indicate improvement. Base features are CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, and log length. Augmented features add author-provided UH folding energy. CI denotes confidence interval; MSE denotes mean squared error.
+
+A secondary comparison that replaced the base feature set with CAI, GC, and log length was descriptive only. Its test point estimates were positive: HistGB gained 0.061364 Spearman and 0.180757 MSE improvement, while logistic gained 0.009044 Spearman and 0.021717 MSE improvement. These comparisons were outside the preregistered four-test Holm family, received no confirmatory significance claim, and cannot reverse the negative primary result. They also do not establish superiority over the stronger preregistered base model.
+
+We separately audited the optimized-construct and Figure 5 source tables for a possible fixed-protein numerical check. The optimized-construct sheet contained 25 rows, 24 unique construct names, and five protein groups, with one duplicated `RSP_2139-31C-FO/31C-FO` row. Its `p025`, `p50`, and `p975` fields are model prediction quantiles rather than measured expression. Figure 5 provided numerical growth curves for RSP_2139 and SRU_1983 but no fixed-protein expression table. We therefore did not execute that numerical mechanism test, digitize plotted expression values, or recycle model predictions as functional ground truth.
+
+Independent implementations retrained every model and regenerated all development and test predictions, metrics, bootstrap arrays, and permutation arrays without importing the RK23 or RK07 production modules. Development acceptance passed 177/177 checks and test acceptance passed 275/275 checks; maximum production-versus-independent differences were zero for predictions, metrics, bootstrap results, and permutation results. The retained history includes two pre-resampling interface corrections, 14/14 synthetic tests, and a verifier-only correction after it initially assumed that length and GC included the terminal stop codon. These corrections did not alter the frozen scientific features, labels, models, endpoints, or outputs.
+
+This test is a reused protein-OOD evaluation, not global untouched confirmation. It does not contradict the distinct fixed-GFP development result in Section 6.33, because the datasets, contrasts, and estimands differ. It establishes neither velocity nor decay mechanisms, fixed-protein synonymous transport, functional untouched performance, CodonFlow-RK generation, or external SOTA. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1138,6 +1167,18 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK22 manuscript prepare check | `032547b9422a54e99be457317fb7a5c935d76f96acb993c6e8cf569c6bd72b35` |
 | RK22 manuscript draft check | `55ee5dc0e8c98c439d1e4e814d034653a992faff0cb081f17ce9723b96f41e0e` |
 | RK22 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK23 frozen protein-OOD protocol | `dd5f921190ee7107a1354432680847ee211ce817927c45dd751ff343611fd645` |
+| RK23 frozen development result | `34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2` |
+| RK23 frozen test result | `878322c8a2105b750059cce95aac16fa1249930b57404d7020a3672f81ad6373` |
+| RK23 independent development verification | `d3e38dad6b9932d69c44013f6adc5e624463edbf0648a727ccb1554ae8ee52ff` |
+| RK23 independent test verification | `d1ec5e61ff3d37c8f3dc06d3c19ee457c642c808b4196f2de37f45b2c495f0e1` |
+| RK23 test predictions | `fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00` |
+| RK23 test resampling | `249c84004ed4571c8e7e482efc8f6791cba7963ca1643f2e5437cd9f8ba06250` |
+| RK23 scientific closeout | `8791216165a328303c879936ecfe2bb45a20252636db3f159728ba085107af43` |
+| RK23 manuscript section | `fc02dad4d31ac4f42ad4aca0751c57944cc5af14f1fb1d43bda38c40e05a9125` |
+| RK23 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |
+| RK23 manuscript draft check | `306ff64692621e474caf2a350e9702fa509331f782be7266c03fa35f19e9fb14` |
+| RK23 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
