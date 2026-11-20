@@ -1,0 +1,722 @@
+{
+  "checks": [
+    {
+      "details": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "name": "science_commit_full",
+      "pass": true
+    },
+    {
+      "details": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "name": "science_commit_is_ancestor",
+      "pass": true
+    },
+    {
+      "details": "768d3a2b32ca6afb551f55b05e331130f80f15e992a8ca032990271efdc2190e",
+      "name": "protocol_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "772a000a15aa53680a03195057e767fbadc670e3d6a1a89c119e479319a644a9",
+      "name": "coverage_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "1b371cec2eaa8007c7aeb151e1b3232e1c347a91cc8287c68c890e6c3f85544d",
+      "name": "production_script_hash",
+      "pass": true
+    },
+    {
+      "details": "e42cbfcac0ca2db318c7615619787f7f0b8d9a368d5a6c91b7822b165cece6ab",
+      "name": "coverage_script_hash",
+      "pass": true
+    },
+    {
+      "details": "82fc7f1991450aa8987994371dbcf87471ba5abc2babd5f6f8e6fd91e7c2ea65",
+      "name": "independent_script_hash",
+      "pass": true
+    },
+    {
+      "details": "c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+      "name": "independent_production_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef",
+      "name": "source_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "a8-rk28-mordstein-sequence-cluster-ood-protocol-v1",
+      "name": "frozen_before_fit",
+      "pass": true
+    },
+    {
+      "details": {
+        "clusters": 74,
+        "cross_cluster_nearest_identity_max": 0.9566666666666667,
+        "cross_cluster_nearest_identity_median": 0.89,
+        "largest_cluster": 12,
+        "primary_seed_fold_cluster_counts": [
+          15,
+          15,
+          16,
+          15,
+          13
+        ],
+        "primary_seed_fold_sizes": [
+          30,
+          31,
+          31,
+          30,
+          30
+        ],
+        "singleton_clusters": 35,
+        "singleton_fraction": 0.47297297297297297
+      },
+      "name": "label_free_coverage",
+      "pass": true
+    },
+    {
+      "details": "PASS_LABEL_FREE_COVERAGE_AUDIT_FEASIBLE",
+      "name": "coverage_feasible",
+      "pass": true
+    },
+    {
+      "details": {
+        "clusters": 74,
+        "largest": 12,
+        "variants": 152
+      },
+      "name": "sample_chain",
+      "pass": true
+    },
+    {
+      "details": {
+        "fits": 300,
+        "folds": 5,
+        "seeds": 10
+      },
+      "name": "training_record",
+      "pass": true
+    },
+    {
+      "details": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "name": "scientific_conclusion",
+      "pass": true
+    },
+    {
+      "details": false,
+      "name": "family_gate_negative",
+      "pass": true
+    },
+    {
+      "details": -0.03926352695138702,
+      "name": "ridge_spearman_effect_effect_negative",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.0895168124540685,
+        0.003815215477924786
+      ],
+      "name": "ridge_spearman_effect_ci_includes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.4039798010099495,
+      "name": "ridge_spearman_effect_holm_not_significant",
+      "pass": true
+    },
+    {
+      "details": 0,
+      "name": "ridge_spearman_effect_seed_count",
+      "pass": true
+    },
+    {
+      "details": false,
+      "name": "ridge_spearman_effect_fail",
+      "pass": true
+    },
+    {
+      "details": -0.08210497982135076,
+      "name": "ridge_mse_improvement_effect_negative",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.17410025597978984,
+        0.014917717692312673
+      ],
+      "name": "ridge_mse_improvement_ci_includes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.4039798010099495,
+      "name": "ridge_mse_improvement_holm_not_significant",
+      "pass": true
+    },
+    {
+      "details": 0,
+      "name": "ridge_mse_improvement_seed_count",
+      "pass": true
+    },
+    {
+      "details": false,
+      "name": "ridge_mse_improvement_fail",
+      "pass": true
+    },
+    {
+      "details": -0.025531405364416587,
+      "name": "histgb_spearman_effect_effect_negative",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.13685880333059386,
+        0.07891235967085743
+      ],
+      "name": "histgb_spearman_effect_ci_includes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.904254787260637,
+      "name": "histgb_spearman_effect_holm_not_significant",
+      "pass": true
+    },
+    {
+      "details": 3,
+      "name": "histgb_spearman_effect_seed_count",
+      "pass": true
+    },
+    {
+      "details": false,
+      "name": "histgb_spearman_effect_fail",
+      "pass": true
+    },
+    {
+      "details": -0.13385081438592558,
+      "name": "histgb_mse_improvement_effect_negative",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.49448101327934646,
+        0.1932063861930225
+      ],
+      "name": "histgb_mse_improvement_ci_includes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.904254787260637,
+      "name": "histgb_mse_improvement_holm_not_significant",
+      "pass": true
+    },
+    {
+      "details": 5,
+      "name": "histgb_mse_improvement_seed_count",
+      "pass": true
+    },
+    {
+      "details": false,
+      "name": "histgb_mse_improvement_fail",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.03926352695138702,
+        -0.04209979565196592,
+        -0.008122663495513216,
+        -0.007422139298382258,
+        -0.009862013819121274,
+        -0.03861767781354436,
+        -0.03604453283579029,
+        -0.007777527183756017,
+        -0.01284522174153735,
+        -0.02042796902657895
+      ],
+      "name": "ridge_spearman_effect_all_seeds_negative",
+      "pass": true
+    },
+    {
+      "details": [
+        -0.0821049798213509,
+        -0.11413134018833926,
+        -0.0031598742644973754,
+        -0.04458202848716919,
+        -0.018195077797521275,
+        -0.054461720012792814,
+        -0.06877203991523473,
+        -0.0004723268555968385,
+        -0.014581143846880362,
+        -0.05100511613264502
+      ],
+      "name": "ridge_mse_improvement_all_seeds_negative",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": 54,
+        "passed": 54
+      },
+      "name": "independent_54_of_54",
+      "pass": true
+    },
+    {
+      "details": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "name": "independent_conclusion_match",
+      "pass": true
+    },
+    {
+      "details": {
+        "all_models_refit": true,
+        "all_resamples_recomputed": true,
+        "clusters_rebuilt_from_raw_observed_r1": true,
+        "coverage_module_imported": false,
+        "features_rebuilt_from_raw_observed_r1": true,
+        "functional_untouched_read": false,
+        "production_module_imported": false,
+        "rk02_module_imported": false
+      },
+      "name": "independent_no_shared_modules",
+      "pass": true
+    },
+    {
+      "details": {
+        "all_models_refit": true,
+        "all_resamples_recomputed": true,
+        "clusters_rebuilt_from_raw_observed_r1": true,
+        "coverage_module_imported": false,
+        "features_rebuilt_from_raw_observed_r1": true,
+        "functional_untouched_read": false,
+        "production_module_imported": false,
+        "rk02_module_imported": false
+      },
+      "name": "independent_rebuilt_everything",
+      "pass": true
+    },
+    {
+      "details": {
+        "passed": 53,
+        "status": "FAIL"
+      },
+      "name": "initial_independent_failure_retained",
+      "pass": true
+    },
+    {
+      "details": [
+        "metric_row_coverage"
+      ],
+      "name": "initial_failure_only_null_literal_merge",
+      "pass": true
+    },
+    {
+      "details": 20,
+      "name": "production_synthetic_20",
+      "pass": true
+    },
+    {
+      "details": "initial ridge tolerance failure",
+      "name": "initial_synthetic_failure_retained",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 35746,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/analysis_variants_152.csv",
+        "sha256": "de108d0d60a9b5e472442b977295b969f23b67c5e4d699c66fe3ebe2fc5932bb"
+      },
+      "name": "production_artifact_analysis_variants_152.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/analysis_variants_152.csv",
+      "name": "production_artifact_location_analysis_variants_152.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 40991,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/fold_assignments.csv",
+        "sha256": "9491d8c18d682f3f0279a4686bd5e47a5e7ab6d98e67aa696962e886236ee195"
+      },
+      "name": "production_artifact_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/fold_assignments.csv",
+      "name": "production_artifact_location_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 260717,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/oof_predictions.csv",
+        "sha256": "bbdaa9dc8d92c3c7ee884fbe02ac745f1873624759930a56835f1c695d62b000"
+      },
+      "name": "production_artifact_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/oof_predictions.csv",
+      "name": "production_artifact_location_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2864709,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+        "sha256": "10ea2639ad46cb9e5b2e32bef9e00d4fb6cd040ef3195d602906992641e04120"
+      },
+      "name": "production_artifact_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+      "name": "production_artifact_location_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2120,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_effects.csv",
+        "sha256": "86527170f9a8b74a64a033deb0adfa044e385b958e9be7b37f99343f672bffbc"
+      },
+      "name": "production_artifact_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_effects.csv",
+      "name": "production_artifact_location_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 4289,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_metrics.csv",
+        "sha256": "5a11dffaa1289e62065f4d3ddce5f21df96456efe021fef7e2a713cc872aeb17"
+      },
+      "name": "production_artifact_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_metrics.csv",
+      "name": "production_artifact_location_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 3074,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/training_log.csv",
+        "sha256": "1a073b4df8d1dd9e4a3adcc494790e4bd50ee31c6abfe6c681c09682635bd520"
+      },
+      "name": "production_artifact_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/training_log.csv",
+      "name": "production_artifact_location_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 35095,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/analysis_variants_152.csv",
+        "sha256": "1f3f598fb888b85f105a8715b5d4b7eed108dc621e9555c17459bdc827e71f51"
+      },
+      "name": "independent_artifact_analysis_variants_152.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 40991,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/fold_assignments.csv",
+        "sha256": "9491d8c18d682f3f0279a4686bd5e47a5e7ab6d98e67aa696962e886236ee195"
+      },
+      "name": "independent_artifact_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 260717,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/oof_predictions.csv",
+        "sha256": "bbdaa9dc8d92c3c7ee884fbe02ac745f1873624759930a56835f1c695d62b000"
+      },
+      "name": "independent_artifact_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2867180,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/primary_inference_arrays.npz",
+        "sha256": "508fbb3e28aa1f1dad0c28b2e095a0bccceed2c62eb5d572032b25f0116aeef5"
+      },
+      "name": "independent_artifact_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2124,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/seed_effects.csv",
+        "sha256": "6d9e36ad3ce829e06b388036b790170d4a8d9cd1bb9051d8622826c2c32c57c2"
+      },
+      "name": "independent_artifact_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 4280,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/seed_metrics.csv",
+        "sha256": "0afe3264c2103368a05897ed3c574377f6256a8493f3784cc7767ab6ed786e8c"
+      },
+      "name": "independent_artifact_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 3074,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/independent/training_log.csv",
+        "sha256": "1a073b4df8d1dd9e4a3adcc494790e4bd50ee31c6abfe6c681c09682635bd520"
+      },
+      "name": "independent_artifact_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "name": "closeout_contains_71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "pass": true
+    },
+    {
+      "details": "c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+      "name": "closeout_contains_c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+      "pass": true
+    },
+    {
+      "details": "edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1",
+      "name": "closeout_contains_edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1",
+      "pass": true
+    },
+    {
+      "details": "-0.039264",
+      "name": "closeout_contains_-0.039264",
+      "pass": true
+    },
+    {
+      "details": "[-0.089517, 0.003815]",
+      "name": "closeout_contains_[-0.089517, 0.003815]",
+      "pass": true
+    },
+    {
+      "details": "-0.082105",
+      "name": "closeout_contains_-0.082105",
+      "pass": true
+    },
+    {
+      "details": "[-0.174100, 0.014918]",
+      "name": "closeout_contains_[-0.174100, 0.014918]",
+      "pass": true
+    },
+    {
+      "details": "-0.025531",
+      "name": "closeout_contains_-0.025531",
+      "pass": true
+    },
+    {
+      "details": "[-0.136859, 0.078912]",
+      "name": "closeout_contains_[-0.136859, 0.078912]",
+      "pass": true
+    },
+    {
+      "details": "-0.133851",
+      "name": "closeout_contains_-0.133851",
+      "pass": true
+    },
+    {
+      "details": "[-0.494481, 0.193206]",
+      "name": "closeout_contains_[-0.494481, 0.193206]",
+      "pass": true
+    },
+    {
+      "details": "54/54 PASS",
+      "name": "closeout_contains_54/54 PASS",
+      "pass": true
+    },
+    {
+      "details": "20/20 PASS",
+      "name": "closeout_contains_20/20 PASS",
+      "pass": true
+    },
+    {
+      "details": "40/40 PASS",
+      "name": "closeout_contains_40/40 PASS",
+      "pass": true
+    },
+    {
+      "details": "53/54",
+      "name": "closeout_contains_53/54",
+      "pass": true
+    },
+    {
+      "details": "300 \u6b21\u771f\u5b9e CPU \u6a21\u578b\u62df\u5408",
+      "name": "closeout_contains_300 \u6b21\u771f\u5b9e CPU \u6a21\u578b\u62df\u5408",
+      "pass": true
+    },
+    {
+      "details": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "name": "closeout_contains_FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "pass": true
+    },
+    {
+      "details": "RK-G1 \u4ecd\u4e3a false\uff0c\u751f\u6210\u8bad\u7ec3\u672a\u6388\u6743",
+      "name": "closeout_contains_RK-G1 \u4ecd\u4e3a false\uff0c\u751f\u6210\u8bad\u7ec3\u672a\u6388\u6743",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u662f\u72ec\u7acb untouched \u786e\u8ba4",
+      "name": "closeout_contains_\u4e0d\u662f\u72ec\u7acb untouched \u786e\u8ba4",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u662f protein OOD",
+      "name": "closeout_contains_\u4e0d\u662f protein OOD",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u662f measured structure",
+      "name": "closeout_contains_\u4e0d\u662f measured structure",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u6d4b\u91cf translation velocity \u6216 mRNA decay",
+      "name": "closeout_contains_\u4e0d\u6d4b\u91cf translation velocity \u6216 mRNA decay",
+      "pass": true
+    },
+    {
+      "details": 1,
+      "name": "registry_single_RK28_row",
+      "pass": true
+    },
+    {
+      "details": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "name": "registry_contains_71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "pass": true
+    },
+    {
+      "details": "independent54/54",
+      "name": "registry_contains_independent54/54",
+      "pass": true
+    },
+    {
+      "details": "0.039264",
+      "name": "registry_contains_0.039264",
+      "pass": true
+    },
+    {
+      "details": "0.025531",
+      "name": "registry_contains_0.025531",
+      "pass": true
+    },
+    {
+      "details": "RK-G1=false",
+      "name": "registry_contains_RK-G1=false",
+      "pass": true
+    },
+    {
+      "details": "generator unauthorized",
+      "name": "registry_contains_generator unauthorized",
+      "pass": true
+    },
+    {
+      "details": "structure transport not supported",
+      "name": "registry_contains_structure transport not supported",
+      "pass": true
+    },
+    {
+      "details": {
+        "author_gfp_identity_mapping": false,
+        "complete_cds_observed": false,
+        "external_study_relative_to_RK27": true,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK02_development": true,
+        "measured_structure": false,
+        "protein_ood": false,
+        "rk_g1_complete": false,
+        "velocity_or_decay_measured": false
+      },
+      "name": "retrospective_boundaries",
+      "pass": true
+    },
+    {
+      "details": {
+        "author_gfp_identity_mapping": false,
+        "complete_cds_observed": false,
+        "external_study_relative_to_RK27": true,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK02_development": true,
+        "measured_structure": false,
+        "protein_ood": false,
+        "rk_g1_complete": false,
+        "velocity_or_decay_measured": false
+      },
+      "name": "global_gate_not_overclaimed",
+      "pass": true
+    },
+    {
+      "details": {
+        "author_gfp_identity_mapping": false,
+        "complete_cds_observed": false,
+        "external_study_relative_to_RK27": true,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK02_development": true,
+        "measured_structure": false,
+        "protein_ood": false,
+        "rk_g1_complete": false,
+        "velocity_or_decay_measured": false
+      },
+      "name": "fragment_structure_boundary",
+      "pass": true
+    },
+    {
+      "details": {
+        "author_gfp_identity_mapping": false,
+        "complete_cds_observed": false,
+        "external_study_relative_to_RK27": true,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK02_development": true,
+        "measured_structure": false,
+        "protein_ood": false,
+        "rk_g1_complete": false,
+        "velocity_or_decay_measured": false
+      },
+      "name": "mechanism_scope_not_overclaimed",
+      "pass": true
+    }
+  ],
+  "closeout_sha256": "2b5ae1dd3c82841d7f836ae0fd53c9c41cc6420ebb041df2b0e4efdf8137315e",
+  "generator_training_authorized": false,
+  "independent_report_sha256": "edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1",
+  "n_checks": 101,
+  "n_passed": 101,
+  "registry_sha256": "81f625763887c7c2630b40c19267f8c026fef6439f7c28d7bffe42c3a49bad17",
+  "result_sha256": "c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+  "rk_g1_complete": false,
+  "schema": "a8-rk28-closeout-verification-v1",
+  "science_commit": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+  "status": "PASS",
+  "verifier_script_sha256": "0359e06fa8f7965724c324e2735cfe6f9e2f960eb4ae4bb0f47756e21e184985"
+}
