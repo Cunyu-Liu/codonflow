@@ -1,0 +1,28 @@
+# RK21/RK22 Results Increment
+
+### 6.32 Recovery of the row-level fixed-GFP sequence–expression table
+
+The earlier data-availability limitation was resolved by recovering the original supplementary File S2 table and independently checking every row against a separate MAT redistribution. The recovered main table contains 154 measurement rows and 71 source columns rather than 154 distinct sequences. Exact CDS grouping identifies 150 unique sequences and four duplicate pairs with different measured expression. All constructs are 864 nt long, share a common 144-nt 5′ UTR and a 720-nt CDS, and encode the same 239-aa GFP. Measured expression ranges from 43 to 10,606. Sequence, expression, and measured 5′ MFE agree for all 154 aligned rows across the two source representations.
+
+The tagged sheet retains 72 measurement rows and 62 source columns, corresponding to 71 unique exact CDS after within-sequence averaging. These rows match the main-sheet tagged flags. The source supplies tagged MFE and expression but no tagged nucleotide sequences, so no tagged sequence, CAI change, or GC change was imputed. Independent recovery verification passed 69/69 checks, including source-cell preservation, cross-source agreement, sequence lengths, translation identity, UTR sharing, duplicate structure, and tagged-pair consistency. All measurement rows remain available, but identical CDS must be grouped before model fitting or evaluation. This recovery supplies fixed-protein development data; it does not create a protein-OOD partition or establish functional transfer.
+
+### 6.33 Fixed-GFP 5′ MFE adds development signal beyond CAI and GC proxies
+
+We next froze a separate analysis before inspecting associations or fitting models. For the main table, replicate log10-expression values were averaged within each of the 150 exact-CDS groups. The simple feature set comprised CAI, CDS GC, and CDS GC3; the structure feature set added measured 5′ MFE. Untuned ridge and histogram gradient-boosting models were evaluated using ten fixed seeds and five-fold out-of-fold prediction within each seed. The four primary endpoints were the structure-minus-simple changes in out-of-fold Spearman correlation and MSE for the two model families. Inference paired effects by seed, used all 1,024 exact sign-flip patterns and 20,000 seed-bootstrap replicates, and applied Holm correction across the four tests. Support required a positive mean effect, at least eight positive seeds, a 95% interval above zero, and Holm-adjusted *p* < 0.05.
+
+Table 5 summarizes the mean out-of-fold performance. Adding 5′ MFE increased ridge Spearman from −0.039653 to 0.678782 and HistGB Spearman from 0.455130 to 0.717246. The corresponding MSE values decreased from 0.174779 to 0.090442 and from 0.147232 to 0.085159. All four primary endpoints were positive in 10/10 seeds, excluded zero from their intervals, and had Holm-adjusted *p* = 0.0078125. The ridge Spearman and MSE-improvement effects were +0.718436 (95% CI [0.682482, 0.755274]) and +0.084337 (95% CI [0.082928, 0.085557]); the HistGB effects were +0.262115 (95% CI [0.230765, 0.292225]) and +0.062073 (95% CI [0.055539, 0.069029]). Thus, the frozen fixed-GFP development gate passed for both model families.
+
+**Table 5**
+
+*Out-of-Fold Fixed-GFP Performance Before and After Adding Measured 5′ MFE*
+
+| Model | Simple Spearman | Structure Spearman | Spearman gain [95% CI] | Simple MSE | Structure MSE |
+|---|---:|---:|---:|---:|---:|
+| Ridge | −0.039653 | 0.678782 | +0.718436 [0.682482, 0.755274] | 0.174779 | 0.090442 |
+| HistGB | 0.455130 | 0.717246 | +0.262115 [0.230765, 0.292225] | 0.147232 | 0.085159 |
+
+*Note.* Values are means across ten frozen seeds with five-fold out-of-fold prediction per seed. Simple features are CAI, CDS GC, and CDS GC3; structure features add measured 5′ MFE. CI denotes confidence interval. MSE denotes mean squared error.
+
+The tagged analysis asked a separate paired question: when the same CDS acquires a 5′ leader, does the expression change track the measured change in 5′ structure? Tagged-minus-main differences were calculated within sequence identifiers and then averaged within exact CDS, yielding 71 groups. Positive MFE change denotes weaker predicted structure. The MFE-change and expression-change Spearman correlation was 0.565992 (95% CI [0.378594, 0.706085]; Holm-adjusted *p* = 0.0000199998). After adjustment for main-sheet CAI, GC, and GC3, the MFE-change coefficient was 0.098815 log10-expression units per kcal/mol (95% CI [0.064230, 0.133576]; Holm-adjusted *p* = 0.0000499975). These two endpoints used 100,000 and 20,000 permutations, respectively, 20,000 paired-group bootstrap replicates, and a separate two-test Holm family; both passed.
+
+An independent implementation reconstructed the grouped tables, retrained every model, reproduced all 7,500 out-of-fold predictions, and regenerated the randomization arrays, passing 63/63 checks. The retained verification history includes an initial parser failure in which the literal model label `null` was interpreted as a missing value; correcting only that verifier parsing behavior left the scientific outputs unchanged. These results establish a robust 5′-structure increment in this fixed-GFP development dataset and a paired structure–expression association under the measured leader perturbation. They do not show that MFE is the sole causal mediator, because the leader also changes other sequence properties. Nor do they reverse earlier negative results obtained with different proxy endpoints, establish protein OOD, velocity, decay, functional untouched performance, CodonFlow-RK superiority, or external SOTA. RK-G1 remains false and expensive generator training remains unauthorized.

@@ -38,7 +38,7 @@ The A8-RK audit separates verified data artifacts from model evidence. RiboMIMO 
 
 CodonTransformer training-table QC read **1,001,197 raw rows** and retained **449,655 clean rows**; organism counts changed from **164 raw** to **40 clean**. Finalization passed with **8/8 independent checks**. The raw-table SHA256 is `b319f975f4cd9814bf111a59b80000c001987abf33f3e52e77c4d96d434b4fa9`. This artifact supports only a bounded natural DNA–protein sequence-distribution corpus; it does not provide host-matched functional labels, a trained model, functional OOD evidence, or a baseline ranking.
 
-The functional long table contains **25,420 rows** and has SHA256 `c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377`. It comprises the verified Boël cross-protein records and MAGE construct-assay rows. The row-level Kudla 154-variant sequence–expression table remains unavailable; supporting methods and degenerate oligos are not substitutes for that table.
+The functional long table contains **25,420 rows** and has SHA256 `c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377`. It comprises the verified Boël cross-protein records and MAGE construct-assay rows. The previously unavailable row-level Kudla table has now been recovered: 154 measurement rows represent 150 unique exact CDS, and 72 tagged measurements represent 71 exact CDS. These fixed-GFP data are development-only; identical CDS are grouped before fitting, and no tagged nucleotide sequences were imputed (Sections 6.32–6.33).
 
 The RNARL official 21-file pair table contains **260,754 raw rows**, **256,578 clean rows**, and **128,289 clean pairs**. Raw cross-split exact-CDS overlap comprised **22 keys / 44 rows**; production QC excluded the whole protein pairs, and independent clean-table rescanning found zero exact-CDS and zero protein-sequence cross-split keys. The corrected independent verifier passed **8/8 checks** with maximum numeric delta **0.0**, and recovery finalization passed **10/10 checks**. The initial order-based verifier failure and recovery failure remain preserved. This is only a publisher-provided LinearDesign-like pair table: it does not establish natural-CDS provenance, lambda strata, UTR/raw-read remapping, functional training, functional OOD, official-model reproduction, or a baseline ranking.
 
@@ -805,6 +805,33 @@ All six prespecified LinearDesign-minus-comparator effects were positive, with 9
 
 An independent verifier reconstructed all curves, hypervolumes, dense AUC values, paired effects, intervals, and Holm adjustments from the hashed raw inputs and passed **88/88 checks**. A separate finalization binding passed **53/53 checks**, and the complete project CPU suite reported **347 passed, 1 skipped, 11 warnings, and 5 subtests passed in 27.39 s**. Legacy-schema execution failures, the verifier-only summary-field correction, and derivative-CSV line-ending normalization were retained without changing the protocol, raw inputs, primary statistics, or full scientific matrix. GEMORNA, the legacy LinearDesign scan, and CAI-greedy were excluded from dense ranking because their required repeated raw call trajectories were unavailable. This section closes only the four-method dense-prefix comparison. Unified time-matched evaluation, the complete seven-method dense panel, CodonFlow-RK generation, functional OOD and untouched evaluation, and external SOTA remain open. RK-G1 remains false, expensive generator training remains unauthorized, and the manuscript remains non-submittable.
 
+### 6.32 Recovery of the row-level fixed-GFP sequence–expression table
+
+The earlier data-availability limitation was resolved by recovering the original supplementary File S2 table and independently checking every row against a separate MAT redistribution. The recovered main table contains 154 measurement rows and 71 source columns rather than 154 distinct sequences. Exact CDS grouping identifies 150 unique sequences and four duplicate pairs with different measured expression. All constructs are 864 nt long, share a common 144-nt 5′ UTR and a 720-nt CDS, and encode the same 239-aa GFP. Measured expression ranges from 43 to 10,606. Sequence, expression, and measured 5′ MFE agree for all 154 aligned rows across the two source representations.
+
+The tagged sheet retains 72 measurement rows and 62 source columns, corresponding to 71 unique exact CDS after within-sequence averaging. These rows match the main-sheet tagged flags. The source supplies tagged MFE and expression but no tagged nucleotide sequences, so no tagged sequence, CAI change, or GC change was imputed. Independent recovery verification passed 69/69 checks, including source-cell preservation, cross-source agreement, sequence lengths, translation identity, UTR sharing, duplicate structure, and tagged-pair consistency. All measurement rows remain available, but identical CDS must be grouped before model fitting or evaluation. This recovery supplies fixed-protein development data; it does not create a protein-OOD partition or establish functional transfer.
+
+### 6.33 Fixed-GFP 5′ MFE adds development signal beyond CAI and GC proxies
+
+We next froze a separate analysis before inspecting associations or fitting models. For the main table, replicate log10-expression values were averaged within each of the 150 exact-CDS groups. The simple feature set comprised CAI, CDS GC, and CDS GC3; the structure feature set added measured 5′ MFE. Untuned ridge and histogram gradient-boosting models were evaluated using ten fixed seeds and five-fold out-of-fold prediction within each seed. The four primary endpoints were the structure-minus-simple changes in out-of-fold Spearman correlation and MSE for the two model families. Inference paired effects by seed, used all 1,024 exact sign-flip patterns and 20,000 seed-bootstrap replicates, and applied Holm correction across the four tests. Support required a positive mean effect, at least eight positive seeds, a 95% interval above zero, and Holm-adjusted *p* < 0.05.
+
+Table 5 summarizes the mean out-of-fold performance. Adding 5′ MFE increased ridge Spearman from −0.039653 to 0.678782 and HistGB Spearman from 0.455130 to 0.717246. The corresponding MSE values decreased from 0.174779 to 0.090442 and from 0.147232 to 0.085159. All four primary endpoints were positive in 10/10 seeds, excluded zero from their intervals, and had Holm-adjusted *p* = 0.0078125. The ridge Spearman and MSE-improvement effects were +0.718436 (95% CI [0.682482, 0.755274]) and +0.084337 (95% CI [0.082928, 0.085557]); the HistGB effects were +0.262115 (95% CI [0.230765, 0.292225]) and +0.062073 (95% CI [0.055539, 0.069029]). Thus, the frozen fixed-GFP development gate passed for both model families.
+
+**Table 5**
+
+*Out-of-Fold Fixed-GFP Performance Before and After Adding Measured 5′ MFE*
+
+| Model | Simple Spearman | Structure Spearman | Spearman gain [95% CI] | Simple MSE | Structure MSE |
+|---|---:|---:|---:|---:|---:|
+| Ridge | −0.039653 | 0.678782 | +0.718436 [0.682482, 0.755274] | 0.174779 | 0.090442 |
+| HistGB | 0.455130 | 0.717246 | +0.262115 [0.230765, 0.292225] | 0.147232 | 0.085159 |
+
+*Note.* Values are means across ten frozen seeds with five-fold out-of-fold prediction per seed. Simple features are CAI, CDS GC, and CDS GC3; structure features add measured 5′ MFE. CI denotes confidence interval. MSE denotes mean squared error.
+
+The tagged analysis asked a separate paired question: when the same CDS acquires a 5′ leader, does the expression change track the measured change in 5′ structure? Tagged-minus-main differences were calculated within sequence identifiers and then averaged within exact CDS, yielding 71 groups. Positive MFE change denotes weaker predicted structure. The MFE-change and expression-change Spearman correlation was 0.565992 (95% CI [0.378594, 0.706085]; Holm-adjusted *p* = 0.0000199998). After adjustment for main-sheet CAI, GC, and GC3, the MFE-change coefficient was 0.098815 log10-expression units per kcal/mol (95% CI [0.064230, 0.133576]; Holm-adjusted *p* = 0.0000499975). These two endpoints used 100,000 and 20,000 permutations, respectively, 20,000 paired-group bootstrap replicates, and a separate two-test Holm family; both passed.
+
+An independent implementation reconstructed the grouped tables, retrained every model, reproduced all 7,500 out-of-fold predictions, and regenerated the randomization arrays, passing 63/63 checks. The retained verification history includes an initial parser failure in which the literal model label `null` was interpreted as a missing value; correcting only that verifier parsing behavior left the scientific outputs unchanged. These results establish a robust 5′-structure increment in this fixed-GFP development dataset and a paired structure–expression association under the measured leader perturbation. They do not show that MFE is the sole causal mediator, because the leader also changes other sequence properties. Nor do they reverse earlier negative results obtained with different proxy endpoints, establish protein OOD, velocity, decay, functional untouched performance, CodonFlow-RK superiority, or external SOTA. RK-G1 remains false and expensive generator training remains unauthorized.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1101,6 +1128,16 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK16 manuscript prepare check | `d2810ea146ecc0c073e6b95336ce3e2de160b7368d5291b3608d234e585d13d7` |
 | RK16 manuscript draft check | `0154851ad875c5d71d8bdeb6fcd9abbaf98de963855f604632d1bbda73b7e74d` |
 | RK16 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK21 Kudla main source CSV | `91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c` |
+| RK21 Kudla tagged source CSV | `e6bf426a6870279b13a22d0dc12e8b54848965c7e5ca70ab1d4a8b0466531a4b` |
+| RK21 independent recovery verification | `972a35e318e0ef59065ee626098c7ca5a267bcb989565c459bc2dade6d1bf470` |
+| RK22 frozen fixed-protein protocol | `df1b41a23dea5cb4266f1a172f4ab0e0987297789201d80cf3b6e58ab4580814` |
+| RK22 fixed-protein analysis summary | `e7e90b1f5efa8e8fdf8d580e9f8aac0963bd329e1667cd0913d298c107e3bc9e` |
+| RK22 independent fixed-protein verification | `7f0657d42b2a233a4769ee19e3a2e1d3a0fcf4ad6d1186453bee14d209a06079` |
+| RK22 manuscript section | `43abd8934c992126adbde24735c12d6df2dd3a85e758e41de79eeed626a1ee1a` |
+| RK22 manuscript prepare check | `032547b9422a54e99be457317fb7a5c935d76f96acb993c6e8cf569c6bd72b35` |
+| RK22 manuscript draft check | `55ee5dc0e8c98c439d1e4e814d034653a992faff0cb081f17ce9723b96f41e0e` |
+| RK22 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 

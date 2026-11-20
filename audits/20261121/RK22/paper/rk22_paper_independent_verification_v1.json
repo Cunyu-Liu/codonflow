@@ -1,0 +1,254 @@
+{
+  "schema": "a8-rk22-paper-independent-verification-v1",
+  "status": "PASS",
+  "checks_passed": 43,
+  "checks_total": 43,
+  "checks": [
+    {
+      "name": "source_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "updated_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "only_three_authorized_integrations",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_unavailable_claim_removed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_data_statement",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_632_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_633_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "discussion_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "references_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "non_submittable_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "workflow_prepare",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "workflow_write",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "workflow_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "draft_mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "recovery_acceptance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_acceptance",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "recovery_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "recovery_sequence_facts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "main_numeric_anchors",
+      "pass": true,
+      "detail": [
+        "-0.039653",
+        "0.174779",
+        "0.678782",
+        "0.090442",
+        "+0.718436",
+        "+0.084337",
+        "0.682482",
+        "0.755274",
+        "0.082928",
+        "0.085557",
+        "0.455130",
+        "0.147232",
+        "0.717246",
+        "0.085159",
+        "+0.262115",
+        "+0.062073",
+        "0.230765",
+        "0.292225",
+        "0.055539",
+        "0.069029"
+      ]
+    },
+    {
+      "name": "main_seed_and_p",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_numeric_anchors",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_p_values",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_prediction_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "verifier_history_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_tagged_imputation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_ood_overclaim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "generator_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "previous_negative_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK21 Kudla main source CSV",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK21 Kudla tagged source CSV",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK21 independent recovery verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 frozen fixed-protein protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 fixed-protein analysis summary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 independent fixed-protein verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 manuscript section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 manuscript prepare check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 manuscript draft check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_RK22 manuscript writing status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_row_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "update_scope_flags",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "before_sha256": "fe92cf4390f9cb79281002f094ca54a6cf79672895d362f4b4d1835c7d18338e",
+  "after_sha256": "5c9f9619a46ed555777f6bc9e986fc873c7ff5674406d93c19d21979155096b6",
+  "section_sha256": "43abd8934c992126adbde24735c12d6df2dd3a85e758e41de79eeed626a1ee1a",
+  "scientific_flags": {
+    "protein_ood": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "expensive_generation_authorized": false,
+    "submittable": false
+  }
+}
