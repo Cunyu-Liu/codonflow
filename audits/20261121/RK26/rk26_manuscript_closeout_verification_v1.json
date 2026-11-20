@@ -1,0 +1,121 @@
+{
+  "schema": "a8-rk26-manuscript-closeout-verification-v1",
+  "status": "PASS",
+  "manuscript_commit": "f37c3d33b928e8280688d7253a3b8851178ccbc5",
+  "original_sha256": "46db82d54dcc2e87c4f8bf3a71017b8dd9fe921eb18c337b8e81f96784902578",
+  "manuscript_sha256": "91e8bf226225d6d621617128618012b9333086646af9cd315b34be156f130f9a",
+  "section_sha256": "de359b8383544347f3a5edf9628a1b1147f4e27df273b08061ddec40a1db57e4",
+  "local_report_sha256": "ef7952e530215c97a345bd3a33cd5f5181cb0e337d93b4cd981d4d76188aa744",
+  "remote_report_sha256": "ef7952e530215c97a345bd3a33cd5f5181cb0e337d93b4cd981d4d76188aa744",
+  "update_report_sha256": "46395df212f79f4de13fbba291edeb32b390aa345b2cac909ded56c5a1f0e610",
+  "closeout_sha256": "ad195b959f13bcad912cb1d822be992d4bdd24ce73716191d2bc99153bc49d30",
+  "checks_total": 25,
+  "checks_passed": 25,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "original backup hash",
+      "pass": true
+    },
+    {
+      "name": "final manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "section hash",
+      "pass": true
+    },
+    {
+      "name": "local report 57/57",
+      "pass": true
+    },
+    {
+      "name": "local report manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "remote report byte identical",
+      "pass": true
+    },
+    {
+      "name": "update report pass",
+      "pass": true
+    },
+    {
+      "name": "update report manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "closeout contains original hash",
+      "pass": true
+    },
+    {
+      "name": "closeout contains manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "closeout contains section hash",
+      "pass": true
+    },
+    {
+      "name": "closeout contains report hash",
+      "pass": true
+    },
+    {
+      "name": "closeout retains non-submittable state",
+      "pass": true
+    },
+    {
+      "name": "closeout retains zero fits",
+      "pass": true
+    },
+    {
+      "name": "closeout retains untouched boundary",
+      "pass": true
+    },
+    {
+      "name": "closeout retains RK-G1 false",
+      "pass": true
+    },
+    {
+      "name": "closeout retains no generator authorization",
+      "pass": true
+    },
+    {
+      "name": "one RK26-PAPER registry row",
+      "pass": true
+    },
+    {
+      "name": "registry manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "registry verifier hash",
+      "pass": true
+    },
+    {
+      "name": "registry non-submittable",
+      "pass": true
+    },
+    {
+      "name": "registry no fit",
+      "pass": true
+    },
+    {
+      "name": "registry no endpoint",
+      "pass": true
+    },
+    {
+      "name": "registry RK-G1 false",
+      "pass": true
+    },
+    {
+      "name": "manuscript commit exact or ancestor",
+      "pass": true
+    }
+  ],
+  "remote_report_byte_identical": true,
+  "functional_untouched_evaluated": false,
+  "rk_g1": false,
+  "generator_training_authorized": false
+}

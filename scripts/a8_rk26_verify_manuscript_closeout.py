@@ -60,7 +60,7 @@ def main():
     failed = [c['name'] for c in checks if not c['pass']]
     report = {
         'schema':'a8-rk26-manuscript-closeout-verification-v1',
-        'status':'PASS' if not failed else 'FAIL','manuscript_commit':args.commit,
+        'status':'PASS' if not failed else 'FAIL','manuscript_commit':str(args.commit),
         'original_sha256':ORIGINAL,'manuscript_sha256':MANUSCRIPT,'section_sha256':SECTION,
         'local_report_sha256':sha(args.local_report),'remote_report_sha256':sha(args.remote_report),
         'update_report_sha256':sha(args.update_report),'closeout_sha256':sha(args.closeout),
