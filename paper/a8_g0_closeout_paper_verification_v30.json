@@ -1,0 +1,654 @@
+{
+  "schema": "a8-g0-closeout-paper-verification-v1",
+  "overall_pass": true,
+  "status": "PASS",
+  "base_version": "v29",
+  "new_version": "v30",
+  "base_sha256": "be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444",
+  "new_sha256": "6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a",
+  "section_heading": "### 6.26 Bounded RK-G0 readiness and unified cost ledger",
+  "exact_base_restoration": true,
+  "check_counts": {
+    "passed": 127,
+    "total": 127
+  },
+  "checks": [
+    {
+      "name": "base_snapshot_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_paper_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "correction_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protocol_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_log_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_binds_production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_179_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_357_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_zero_delta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_6_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_9_tests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "correction_binds_final",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zero_new_compute",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "g0_bounded_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_gate_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "a7_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_section_and_anchors",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "exact_base_restoration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 closeout protocol v2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 closeout protocol v2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 unified cost production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 unified cost production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 correction record",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 correction record",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 retained v1 protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 retained v1 protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 retained v1 failure log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 retained v1 failure log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_G0 targeted 9-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_G0 targeted 9-test log",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "candidate_facts": [
+    {
+      "name": "source_and_row_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "thirteen_measured_rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "row_unique:lineardesign_unique18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:lineardesign_unique18:wall_clock_s",
+      "pass": true,
+      "detail": "5459.871640930884"
+    },
+    {
+      "name": "value:lineardesign_unique18:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:lineardesign_unique18:generation_or_inference_s",
+      "pass": true,
+      "detail": "5459.871640930884"
+    },
+    {
+      "name": "extra:lineardesign_unique18",
+      "pass": true,
+      "detail": "131"
+    },
+    {
+      "name": "row_unique:ensembledesign_unique18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:ensembledesign_unique18:wall_clock_s",
+      "pass": true,
+      "detail": "6001.057458210271"
+    },
+    {
+      "name": "value:ensembledesign_unique18:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:ensembledesign_unique18:generation_or_inference_s",
+      "pass": true,
+      "detail": "6001.057458210271"
+    },
+    {
+      "name": "extra:ensembledesign_unique18",
+      "pass": true,
+      "detail": "192"
+    },
+    {
+      "name": "row_unique:cagfn_official_smoke",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:cagfn_official_smoke:wall_clock_s",
+      "pass": true,
+      "detail": "47.556745767593384"
+    },
+    {
+      "name": "value:cagfn_official_smoke:training_s",
+      "pass": true,
+      "detail": "11.01"
+    },
+    {
+      "name": "value:cagfn_official_smoke:generation_or_inference_s",
+      "pass": true,
+      "detail": "6.68"
+    },
+    {
+      "name": "row_unique:id3_official_quick_test",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:id3_official_quick_test:wall_clock_s",
+      "pass": true,
+      "detail": "417.591162443161"
+    },
+    {
+      "name": "value:id3_official_quick_test:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:id3_official_quick_test:generation_or_inference_s",
+      "pass": true,
+      "detail": "417.591162443161"
+    },
+    {
+      "name": "extra:id3_official_quick_test",
+      "pass": true,
+      "detail": "12"
+    },
+    {
+      "name": "row_unique:codontransformer_official_smoke",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:codontransformer_official_smoke:wall_clock_s",
+      "pass": true,
+      "detail": "6.471435410901904"
+    },
+    {
+      "name": "value:codontransformer_official_smoke:generation_or_inference_s",
+      "pass": true,
+      "detail": "2.0327787059359252"
+    },
+    {
+      "name": "extra:codontransformer_official_smoke",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "name": "row_unique:veloharmo_official_smoke",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:veloharmo_official_smoke:wall_clock_s",
+      "pass": true,
+      "detail": "5.946522436104715"
+    },
+    {
+      "name": "value:veloharmo_official_smoke:generation_or_inference_s",
+      "pass": true,
+      "detail": "1.2729171668179333"
+    },
+    {
+      "name": "row_unique:ixnos_real_prefix",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:ixnos_real_prefix:wall_clock_s",
+      "pass": true,
+      "detail": "10.537669897079468"
+    },
+    {
+      "name": "value:ixnos_real_prefix:training_s",
+      "pass": true,
+      "detail": "6.03219199180603"
+    },
+    {
+      "name": "row_unique:rose_released_checkpoint",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:rose_released_checkpoint:wall_clock_s",
+      "pass": true,
+      "detail": "112.82697493582964"
+    },
+    {
+      "name": "value:rose_released_checkpoint:generation_or_inference_s",
+      "pass": true,
+      "detail": "105.96287328284234"
+    },
+    {
+      "name": "row_unique:ribomimo_study_ood",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:ribomimo_study_ood:wall_clock_s",
+      "pass": true,
+      "detail": "949.7424744511954"
+    },
+    {
+      "name": "value:ribomimo_study_ood:training_s",
+      "pass": true,
+      "detail": "733.5893584797159"
+    },
+    {
+      "name": "value:ribomimo_study_ood:generation_or_inference_s",
+      "pass": true,
+      "detail": "89.50084520922974"
+    },
+    {
+      "name": "value:ribomimo_study_ood:scoring_s",
+      "pass": true,
+      "detail": "45.446167211048305"
+    },
+    {
+      "name": "extra:ribomimo_study_ood",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "row_unique:rk06_dense_uniform",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:rk06_dense_uniform:wall_clock_s",
+      "pass": true,
+      "detail": "20945.031473771203"
+    },
+    {
+      "name": "value:rk06_dense_uniform:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:rk06_dense_uniform:generation_or_inference_s",
+      "pass": true,
+      "detail": "16.225387217942625"
+    },
+    {
+      "name": "value:rk06_dense_uniform:scoring_s",
+      "pass": true,
+      "detail": "20869.626151481643"
+    },
+    {
+      "name": "extra:rk06_dense_uniform",
+      "pass": true,
+      "detail": "27000"
+    },
+    {
+      "name": "row_unique:rk06_dense_hill_climbing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:rk06_dense_hill_climbing:wall_clock_s",
+      "pass": true,
+      "detail": "21077.843297181185"
+    },
+    {
+      "name": "value:rk06_dense_hill_climbing:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:rk06_dense_hill_climbing:generation_or_inference_s",
+      "pass": true,
+      "detail": "8.822805067058653"
+    },
+    {
+      "name": "value:rk06_dense_hill_climbing:scoring_s",
+      "pass": true,
+      "detail": "21020.672998382244"
+    },
+    {
+      "name": "extra:rk06_dense_hill_climbing",
+      "pass": true,
+      "detail": "27000"
+    },
+    {
+      "name": "row_unique:rk06_dense_mh_annealing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:rk06_dense_mh_annealing:wall_clock_s",
+      "pass": true,
+      "detail": "20939.076001615264"
+    },
+    {
+      "name": "value:rk06_dense_mh_annealing:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:rk06_dense_mh_annealing:generation_or_inference_s",
+      "pass": true,
+      "detail": "8.987731650937349"
+    },
+    {
+      "name": "value:rk06_dense_mh_annealing:scoring_s",
+      "pass": true,
+      "detail": "20877.88818777073"
+    },
+    {
+      "name": "extra:rk06_dense_mh_annealing",
+      "pass": true,
+      "detail": "27000"
+    },
+    {
+      "name": "row_unique:rk06_dense_areuredi_style",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "value:rk06_dense_areuredi_style:wall_clock_s",
+      "pass": true,
+      "detail": "21015.123456662055"
+    },
+    {
+      "name": "value:rk06_dense_areuredi_style:training_s",
+      "pass": true,
+      "detail": "0.0"
+    },
+    {
+      "name": "value:rk06_dense_areuredi_style:generation_or_inference_s",
+      "pass": true,
+      "detail": "10.632299634162337"
+    },
+    {
+      "name": "value:rk06_dense_areuredi_style:scoring_s",
+      "pass": true,
+      "detail": "20950.513713391032"
+    },
+    {
+      "name": "extra:rk06_dense_areuredi_style",
+      "pass": true,
+      "detail": "27000"
+    },
+    {
+      "name": "inherited_output:inherited_codongpt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_cost_null:inherited_codongpt",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_output:inherited_gemorna",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_cost_null:inherited_gemorna",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_output:inherited_cai_greedy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_cost_null:inherited_cai_greedy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_output:inherited_uniform_synonymous",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_cost_null:inherited_uniform_synonymous",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_output:inherited_lineardesign_scan",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inherited_cost_null:inherited_lineardesign_scan",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rnarl_qc_pairs_not_generation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "not_run_states",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cdgb_unresolved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_count_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_count_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_count_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tests_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zero_delta_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "v1_failure_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zero_compute_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "feasibility_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_global_cost_sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "null_not_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "open_boundaries",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

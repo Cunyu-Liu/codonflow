@@ -612,6 +612,36 @@ Across seeds 40261119, 40261120, 40261121, full−RCS ΔSpearman signs were +/+/
 
 Independent recomputation passed **24/24 checks** with maximum absolute tolerance 1e-12, and the unit suite passed **9/9 tests** (`mage_oof_comparator_closure_unit_tests_v4_python3.console.log`). The audit performed zero new fits and zero new scorer calls; its 120,000 primary resample replicates took 55.9064832450822 s. It remains development-only and post-hoc: `DEV_NO_GO_TEST_UNTOUCHED`, RK-G1=false, and the non-submittable working-manuscript status are unchanged.
 
+### 6.26 Bounded RK-G0 readiness and unified cost ledger
+
+We froze 20 source/gate facts and 22 explicit cost rows from 22 hashed reports. The bounded RK-G0 gate required usable real functional data with reliable splits, reproducible key baselines, and independently tested dense/actual-set evaluators. Boël sequence-OOD, MAGE development OOF, the Mordstein 16-file/eight-bin recovery, the 21-file RNARL pair-table QC, LinearDesign, EnsembleDesign, CodonTransformer, CAGFN, RiboMIMO study-OOD, and both evaluator families met their frozen technical criteria. This is a bounded readiness result, not a claim that every dataset, official model, or external dense trajectory is complete.
+
+Costs are reported only within their original task, hardware, and execution scopes. A dash is an explicit null with a machine-readable reason in the frozen JSON; it is never zero. Training, generation/inference, scoring, unique scorer calls, and total wall time are not summed or ranked across mixed or overlapping scopes. No time-matched or complete-SOTA interpretation is authorized.
+
+| Method | Scope | Wall (s) | Train (s) | Generation/inference (s) | Scoring/selection (s) | Calls / outputs |
+|---|---|---:|---:|---:|---:|---:|
+| LinearDesign | unique18, 198 runs, actual-set | 5459.871640930884 | 0.0 | 5459.871640930884 | — | 131 outputs |
+| EnsembleDesign | unique18, 198 runs, actual-set | 6001.057458210271 | 0.0 | 6001.057458210271 | — | 192 outputs |
+| CAGFN | bounded official toy smoke | 47.556745767593384 | 11.01 | 6.68 | — | — |
+| ID3 | one protein, 2 iterations, 1 seed | 417.591162443161 | 0.0 | 417.591162443161 | — | 12 runs/seeds |
+| CodonTransformer | 4 released-weight GPU inferences | 6.471435410901904 | — | 2.0327787059359252 | — | 2 outputs |
+| VeloHARMO | released test + bounded GA | 5.946522436104715 | — | 1.2729171668179333 | — | — |
+| iXnos | 1M-read prefix, 2 epochs | 10.537669897079468 | 6.03219199180603 | — | — | — |
+| ROSE | 2 studies, released checkpoint | 112.82697493582964 | — | 105.96287328284234 | — | — |
+| RiboMIMO | study-OOD, 3 independent seeds | 949.7424744511954 | 733.5893584797159 | 89.50084520922974 | 45.446167211048305 | 3 runs/seeds |
+| uniform simple search | unique18 dense, 54 runs | 20945.031473771203 | 0.0 | 16.225387217942625 | 20869.626151481643 | 27000 unique scorer calls |
+| hill-climbing | unique18 dense, 54 runs | 21077.843297181185 | 0.0 | 8.822805067058653 | 21020.672998382244 | 27000 unique scorer calls |
+| MH-annealing | unique18 dense, 54 runs | 20939.076001615264 | 0.0 | 8.987731650937349 | 20877.88818777073 | 27000 unique scorer calls |
+| AReUReDi-style | unique18 dense, 54 runs | 21015.123456662055 | 0.0 | 10.632299634162337 | 20950.513713391032 | 27000 unique scorer calls |
+
+The five inherited external actual-set groups remain cost-null rather than cost-zero: codonGPT=1800 outputs, GEMORNA=1427, CAI greedy=18, uniform synonymous=1800, and LinearDesignScan=103. RNARL contributes 128289 clean LinearDesign-like QC pairs, not valid official-model generations. CDGB source identity remains unresolved; COformer and CHARMING remain explicitly NOT_RUN. These states are not evidence that the corresponding methods are ineffective.
+
+The source-feasibility task is closed only as a feasibility report: iXnos executed a real 1,000,000-read prefix with independent P-site offset re-derivation, while the later source audit recovered metadata-level UTR/Ribo/VeloHARMO scope. It did not complete a full UTR–CDS remap, full SRR1049521 processing, natural-CDS eligibility, or five-species VeloHARMO matrices. The frozen status is therefore `FEASIBILITY_CLOSED_NOT_FULL_REMAP`.
+
+Production passed **179/179 checks**. The independent standard-library verifier recomputed every extraction and gate fact and passed **357/357 checks**, with maximum numeric discrepancy 0.0; targeted tests passed **9/9**, and finalization passed **6/6 checks**. The first protocol failed on `lineardesign_unique_sequences`; a full preflight then found ten invalid pointers. The v1 protocol/log and correction record are retained. The closeout reran no baseline, added zero scorer calls, and started no generator training.
+
+The resulting status is `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`. External dense coverage, time-matched evaluation, complete SOTA, full UTR–CDS remapping, RNARL official-model reproduction, functional-untouched evaluation, wet-lab validation, and RK-G1 remain unclosed. Expensive CodonFlow-RK generator training remains unauthorized, and this manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -825,6 +855,14 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK03 MAGE OOF comparator independent verification | `bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745` |
 | RK03 MAGE OOF comparator correction record | `ff77c83bfc43072721ed0e38bd2325b56b8151d01d6bfc9d64458b7f6c295297` |
 | RK03 MAGE OOF comparator 9-test log | `2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b` |
+| G0 closeout protocol v2 | `dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558` |
+| G0 unified cost production | `c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583` |
+| G0 independent verification | `1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40` |
+| G0 finalization | `9775981553bc830b9ac27aa19bf4eab5106a09901fb3863ba8e6ea8df66e4db2` |
+| G0 correction record | `859702316cc9ff3e5af61b1dcba49c22b7b3ba228287ed7eee2d473a66b1e0fd` |
+| G0 retained v1 protocol | `335158cdb300e1715feaf4d6c45d794c3958d788872cd0cb291309b6ae962710` |
+| G0 retained v1 failure log | `fac0023b71b79daaf54e1b7ba5d5f1d4e32573a6df11b73a72247f788395ca83` |
+| G0 targeted 9-test log | `808216c1e906665a6311eea3399af7e63a60328f6537b9bcf2f6f7027e943f4a` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

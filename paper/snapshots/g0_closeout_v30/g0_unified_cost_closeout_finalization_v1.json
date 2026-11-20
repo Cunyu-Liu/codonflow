@@ -1,0 +1,86 @@
+{
+  "schema_version": "a8-g0-closeout-finalization-v1",
+  "created_at": "2026-11-20T11:02:51.618171+00:00",
+  "status": "PASS_BOUNDED_G0_CLOSEOUT",
+  "checks": [
+    {
+      "check_id": "independent_all_pass",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check_id": "independent_numeric_delta_zero",
+      "passed": true,
+      "actual": 0.0,
+      "expected": 0.0
+    },
+    {
+      "check_id": "targeted_tests_pass",
+      "passed": true,
+      "actual": ".........                                                                [100%]\n9 passed in 0.15s\n",
+      "expected": "pytest passed with zero failed"
+    },
+    {
+      "check_id": "g0_bounded_pass",
+      "passed": true,
+      "actual": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+      "expected": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY"
+    },
+    {
+      "check_id": "g1_not_passed",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check_id": "generator_not_authorized",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    }
+  ],
+  "check_count": 6,
+  "passed_checks": 6,
+  "artifacts": {
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/configs/a8_g0_closeout_protocol_v2.json",
+      "sha256": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558"
+    },
+    "production": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_v2.json",
+      "sha256": "c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583"
+    },
+    "independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_independent_v1.json",
+      "sha256": "1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40"
+    },
+    "tests_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_closeout_targeted_tests_v1.console.log",
+      "sha256": "808216c1e906665a6311eea3399af7e63a60328f6537b9bcf2f6f7027e943f4a"
+    },
+    "production_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_g0_closeout.py",
+      "sha256": "376b7771a47f1439f4de711781579ea5a746b9129d126074b47c77a6b37108b8"
+    },
+    "verifier_script": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_g0_verify_closeout.py",
+      "sha256": "56315b01a0e5551b38afc248685fd9e79ceec16b33139eb3b5383e10a3745268"
+    }
+  },
+  "code_commit_at_finalization": "372ff85671961797c9052ec7f214347c9d0bb7aa",
+  "rk03_remaining_status": "FEASIBILITY_CLOSED_NOT_FULL_REMAP",
+  "rk_g0_status": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+  "rk_g1_status": "NOT_PASSED",
+  "generator_training_authorized": false,
+  "next_gate": "Review this closeout, then record it in the working manuscript and online Slides; do not start expensive generator training.",
+  "open_scope": {
+    "external_dense_complete": false,
+    "time_matched_complete": false,
+    "complete_sota": false,
+    "full_utr_cds_remap_complete": false,
+    "rnarl_official_model_reproduced": false,
+    "functional_untouched_evaluated": false,
+    "wet_lab_validation_complete": false
+  }
+}

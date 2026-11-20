@@ -1,0 +1,1776 @@
+{
+  "schema_version": "a8-g0-closeout-production-v1",
+  "protocol_id": "CF-A8-RK06-G0-CLOSEOUT-V2",
+  "protocol_path": "/home/codonflow-a8-rk/configs/a8_g0_closeout_protocol_v2.json",
+  "protocol_sha256": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+  "production_script_sha256": "376b7771a47f1439f4de711781579ea5a746b9129d126074b47c77a6b37108b8",
+  "created_at": "2026-11-20T11:02:41.976173+00:00",
+  "code_commit_at_execution": "372ff85671961797c9052ec7f214347c9d0bb7aa",
+  "cost_policy": {
+    "aggregation": "do not sum or rank across mixed hardware, tasks, actual-set, dense and smoke scopes",
+    "complete_sota": false,
+    "external_dense_complete": false,
+    "null_policy": "null means unavailable or not attributable, never zero",
+    "time_matched": false,
+    "unit": "seconds unless the metric name states calls/runs/rate"
+  },
+  "cost_matrix": [
+    {
+      "row_id": "lineardesign_unique18",
+      "method": "LinearDesign",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "unique18; 18 records x 11 lambdas; actual sets; not dense",
+      "comparison_class": "external_actual_set",
+      "source": "rk12_final",
+      "status": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "metrics": {
+        "actual_outputs": 131,
+        "generation_or_inference_s": 5459.871640930884,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": 0.0,
+        "wall_clock_s": 5459.871640930884
+      },
+      "unavailable_reasons": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      }
+    },
+    {
+      "row_id": "ensembledesign_unique18",
+      "method": "EnsembleDesign",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "unique18; 18 records x 11 runs; actual sets; not dense",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 192,
+        "generation_or_inference_s": 6001.057458210271,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": 0.0,
+        "wall_clock_s": 6001.057458210271
+      },
+      "unavailable_reasons": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      }
+    },
+    {
+      "row_id": "inherited_codongpt",
+      "method": "codonGPT",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 1800,
+        "generation_or_inference_s": null,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      }
+    },
+    {
+      "row_id": "inherited_gemorna",
+      "method": "GEMORNA",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 1427,
+        "generation_or_inference_s": null,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      }
+    },
+    {
+      "row_id": "inherited_cai_greedy",
+      "method": "CAI greedy",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 18,
+        "generation_or_inference_s": null,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      }
+    },
+    {
+      "row_id": "inherited_uniform_synonymous",
+      "method": "uniform synonymous actual-set",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 1800,
+        "generation_or_inference_s": null,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      }
+    },
+    {
+      "row_id": "inherited_lineardesign_scan",
+      "method": "LinearDesignScan",
+      "task": "accessibility/CDS multi-objective",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "comparison_class": "external_actual_set",
+      "source": "rk13_final",
+      "status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "metrics": {
+        "actual_outputs": 103,
+        "generation_or_inference_s": null,
+        "legal_rate": 1.0,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      }
+    },
+    {
+      "row_id": "cagfn_official_smoke",
+      "method": "CAGFN",
+      "task": "learned synonymous generation smoke",
+      "scope": "official bounded toy training and inference smoke; no main comparison",
+      "comparison_class": "official_smoke",
+      "source": "cagfn_final",
+      "status": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "metrics": {
+        "generation_or_inference_s": 6.68,
+        "scoring_s": null,
+        "training_s": 11.01,
+        "wall_clock_s": 47.556745767593384
+      },
+      "unavailable_reasons": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    },
+    {
+      "row_id": "id3_official_quick_test",
+      "method": "ID3",
+      "task": "accessibility optimization",
+      "scope": "one protein; 12 runs; 2 iterations; one seed; CPC trajectory defect retained",
+      "comparison_class": "official_smoke",
+      "source": "id3_final",
+      "status": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "metrics": {
+        "generation_or_inference_s": 417.591162443161,
+        "runs": 12,
+        "scoring_s": null,
+        "training_s": 0.0,
+        "wall_clock_s": 417.591162443161
+      },
+      "unavailable_reasons": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    },
+    {
+      "row_id": "codontransformer_official_smoke",
+      "method": "CodonTransformer",
+      "task": "organism-conditioned generation",
+      "scope": "official example plus C01; four GPU inferences; two unique CDS",
+      "comparison_class": "official_smoke",
+      "source": "ct_smoke",
+      "status": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "metrics": {
+        "actual_outputs": 2,
+        "generation_or_inference_s": 2.0327787059359252,
+        "runs": 4,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": 6.471435410901904
+      },
+      "unavailable_reasons": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      }
+    },
+    {
+      "row_id": "veloharmo_official_smoke",
+      "method": "VeloHARMO",
+      "task": "harmonization",
+      "scope": "E. coli released test plus bounded GA; no five-species matrix",
+      "comparison_class": "official_smoke",
+      "source": "velo_smoke",
+      "status": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "metrics": {
+        "generation_or_inference_s": 1.2729171668179333,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": 5.946522436104715
+      },
+      "unavailable_reasons": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      }
+    },
+    {
+      "row_id": "ixnos_real_prefix",
+      "method": "iXnos",
+      "task": "Ribo-seq/P-site feasibility and model smoke",
+      "scope": "1,000,000-read real prefix; two epochs; not full SRR1049521 protocol",
+      "comparison_class": "official_smoke",
+      "source": "ixnos_independent",
+      "status": "PASS",
+      "metrics": {
+        "generation_or_inference_s": null,
+        "scoring_s": null,
+        "training_s": 6.03219199180603,
+        "wall_clock_s": 10.537669897079468
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    },
+    {
+      "row_id": "rose_released_checkpoint",
+      "method": "ROSE",
+      "task": "ribosome stalling classification",
+      "scope": "released-test single-checkpoint inference; Battle15 and Pop14",
+      "comparison_class": "official_smoke",
+      "source": "rose_production",
+      "status": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "metrics": {
+        "generation_or_inference_s": 105.96287328284234,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": 112.82697493582964
+      },
+      "unavailable_reasons": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      }
+    },
+    {
+      "row_id": "ribomimo_study_ood",
+      "method": "RiboMIMO",
+      "task": "study-OOD ribosome occupancy",
+      "scope": "Mohammad16 to Subtelny14; three-seed independent retraining/evaluation",
+      "comparison_class": "study_ood_cost",
+      "source": "ribo_independent",
+      "status": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "metrics": {
+        "generation_or_inference_s": 89.50084520922974,
+        "runs": 3,
+        "scoring_s": 45.446167211048305,
+        "training_s": 733.5893584797159,
+        "wall_clock_s": 949.7424744511954
+      },
+      "unavailable_reasons": {}
+    },
+    {
+      "row_id": "rk06_dense_uniform",
+      "method": "uniform simple search",
+      "task": "CDS proxy multi-objective simple search",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "comparison_class": "dense_proxy_search",
+      "source": "rk06_final",
+      "status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "metrics": {
+        "generation_or_inference_s": 16.225387217942625,
+        "runs": 54,
+        "scoring_s": 20869.626151481643,
+        "training_s": 0.0,
+        "unique_scorer_calls": 27000,
+        "wall_clock_s": 20945.031473771203
+      },
+      "unavailable_reasons": {}
+    },
+    {
+      "row_id": "rk06_dense_hill_climbing",
+      "method": "hill-climbing",
+      "task": "CDS proxy multi-objective simple search",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "comparison_class": "dense_proxy_search",
+      "source": "rk06_final",
+      "status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "metrics": {
+        "generation_or_inference_s": 8.822805067058653,
+        "runs": 54,
+        "scoring_s": 21020.672998382244,
+        "training_s": 0.0,
+        "unique_scorer_calls": 27000,
+        "wall_clock_s": 21077.843297181185
+      },
+      "unavailable_reasons": {}
+    },
+    {
+      "row_id": "rk06_dense_mh_annealing",
+      "method": "MH-annealing",
+      "task": "CDS proxy multi-objective simple search",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "comparison_class": "dense_proxy_search",
+      "source": "rk06_final",
+      "status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "metrics": {
+        "generation_or_inference_s": 8.987731650937349,
+        "runs": 54,
+        "scoring_s": 20877.88818777073,
+        "training_s": 0.0,
+        "unique_scorer_calls": 27000,
+        "wall_clock_s": 20939.076001615264
+      },
+      "unavailable_reasons": {}
+    },
+    {
+      "row_id": "rk06_dense_areuredi_style",
+      "method": "AReUReDi-style",
+      "task": "CDS proxy multi-objective simple search",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "comparison_class": "dense_proxy_search",
+      "source": "rk06_final",
+      "status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "metrics": {
+        "generation_or_inference_s": 10.632299634162337,
+        "runs": 54,
+        "scoring_s": 20950.513713391032,
+        "training_s": 0.0,
+        "unique_scorer_calls": 27000,
+        "wall_clock_s": 21015.123456662055
+      },
+      "unavailable_reasons": {}
+    },
+    {
+      "row_id": "rnarl_availability",
+      "method": "RNARL",
+      "task": "learned synonymous generation",
+      "scope": "publisher pair-table QC only; official model not reproduced",
+      "comparison_class": "availability_only",
+      "source": "rnarl_final",
+      "status": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "metrics": {
+        "generation_or_inference_s": null,
+        "qc_pairs": 128289,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid official RNARL training/generation run; data QC time is not model cost."
+      }
+    },
+    {
+      "row_id": "cdgb_source_audit",
+      "method": "CDGB",
+      "task": "codon deoptimization",
+      "scope": "source identity unresolved; official execution not authorized",
+      "comparison_class": "availability_only",
+      "source": "cdgb_final",
+      "status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "metrics": {
+        "generation_or_inference_s": null,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    },
+    {
+      "row_id": "coformer_not_run",
+      "method": "COformer",
+      "task": "codon optimization",
+      "scope": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "comparison_class": "not_run",
+      "source": null,
+      "status": "NOT_RUN",
+      "metrics": {
+        "generation_or_inference_s": null,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    },
+    {
+      "row_id": "charming_not_run",
+      "method": "CHARMING",
+      "task": "codon optimization",
+      "scope": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "comparison_class": "not_run",
+      "source": null,
+      "status": "NOT_RUN",
+      "metrics": {
+        "generation_or_inference_s": null,
+        "scoring_s": null,
+        "training_s": null,
+        "wall_clock_s": null
+      },
+      "unavailable_reasons": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      }
+    }
+  ],
+  "summary": {
+    "row_count": 22,
+    "source_count": 22,
+    "measured_wall_clock_scopes": 13,
+    "explicit_null_wall_clock_scopes": 9,
+    "comparison_classes": {
+      "availability_only": 2,
+      "dense_proxy_search": 4,
+      "external_actual_set": 7,
+      "not_run": 2,
+      "official_smoke": 6,
+      "study_ood_cost": 1
+    },
+    "global_wall_clock_sum": null,
+    "global_wall_clock_sum_exclusion": "Mixed and overlapping scopes must not be summed or ranked."
+  },
+  "gate_results": [
+    {
+      "category": "G0",
+      "check_id": "boel_split_reliable",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "boel_split",
+      "actual": "PASS",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "mage_oof_technical_pass",
+      "expected": true,
+      "operator": "eq",
+      "pointer": "/overall_pass",
+      "source": "mage_closure",
+      "actual": true,
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "mordstein_full_recovery_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "mordstein_recovery",
+      "actual": "PASS",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "rnarl_full_pair_table_qc",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rnarl_final",
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "rnarl_21_files",
+      "expected": 21,
+      "operator": "eq",
+      "pointer": "/raw_files",
+      "source": "rnarl_final",
+      "actual": 21,
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "lineardesign_reproduced",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk12_final",
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "ensembledesign_reproduced",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk13_final",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "codontransformer_reproduced",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ct_final",
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "cagfn_reproduced",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "cagfn_final",
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "dense_evaluator_finalized",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk06_final",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "dense_independent_pass",
+      "expected": "INDEPENDENT_PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk06_independent",
+      "actual": "INDEPENDENT_PASS",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "actual_set_independent_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk12_independent",
+      "actual": "PASS",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "raw_read_psite_feasibility_bounded",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ixnos_final",
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "utr_source_feasibility_metadata",
+      "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "source_feasibility",
+      "actual": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "passed": true
+    },
+    {
+      "category": "G0",
+      "check_id": "ribomimo_study_ood_closed",
+      "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ribo_final",
+      "actual": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "passed": true
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "full_function_technical_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "full_function",
+      "actual": "PASS",
+      "passed": true
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk_g1_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/rk_g1_pass",
+      "source": "full_function",
+      "actual": false,
+      "passed": true
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "mage_mechanism_gate_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/scientific_gate_pass",
+      "source": "mage_closure",
+      "actual": false,
+      "passed": true
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk06_scientific_gate_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/claims/scientific_gate_passed",
+      "source": "rk06_final",
+      "actual": false,
+      "passed": true
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk06_rk_g1_remains_open",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/claims/rk_g1_closed",
+      "source": "rk06_final",
+      "actual": false,
+      "passed": true
+    }
+  ],
+  "g0_status": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+  "rk03_remaining_status": "FEASIBILITY_CLOSED_NOT_FULL_REMAP",
+  "technical_check_count": 179,
+  "technical_passed_checks": 179,
+  "technical_checks": [
+    {
+      "check_id": "source_sha256:boel_split",
+      "passed": true,
+      "actual": "c5782c837ee26b7e3d68eee17556a346bf09a2e91197b50221efe0254635d728",
+      "expected": "c5782c837ee26b7e3d68eee17556a346bf09a2e91197b50221efe0254635d728"
+    },
+    {
+      "check_id": "source_sha256:cagfn_final",
+      "passed": true,
+      "actual": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
+      "expected": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb"
+    },
+    {
+      "check_id": "source_sha256:cdgb_final",
+      "passed": true,
+      "actual": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2",
+      "expected": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2"
+    },
+    {
+      "check_id": "source_sha256:ct_final",
+      "passed": true,
+      "actual": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac",
+      "expected": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac"
+    },
+    {
+      "check_id": "source_sha256:ct_smoke",
+      "passed": true,
+      "actual": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+      "expected": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1"
+    },
+    {
+      "check_id": "source_sha256:full_function",
+      "passed": true,
+      "actual": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2",
+      "expected": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2"
+    },
+    {
+      "check_id": "source_sha256:id3_final",
+      "passed": true,
+      "actual": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",
+      "expected": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be"
+    },
+    {
+      "check_id": "source_sha256:ixnos_final",
+      "passed": true,
+      "actual": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28",
+      "expected": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28"
+    },
+    {
+      "check_id": "source_sha256:ixnos_independent",
+      "passed": true,
+      "actual": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+      "expected": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc"
+    },
+    {
+      "check_id": "source_sha256:mage_closure",
+      "passed": true,
+      "actual": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+      "expected": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad"
+    },
+    {
+      "check_id": "source_sha256:mordstein_recovery",
+      "passed": true,
+      "actual": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+      "expected": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889"
+    },
+    {
+      "check_id": "source_sha256:ribo_final",
+      "passed": true,
+      "actual": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e",
+      "expected": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e"
+    },
+    {
+      "check_id": "source_sha256:ribo_independent",
+      "passed": true,
+      "actual": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035",
+      "expected": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035"
+    },
+    {
+      "check_id": "source_sha256:rk06_final",
+      "passed": true,
+      "actual": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947",
+      "expected": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947"
+    },
+    {
+      "check_id": "source_sha256:rk06_independent",
+      "passed": true,
+      "actual": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+      "expected": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df"
+    },
+    {
+      "check_id": "source_sha256:rk12_final",
+      "passed": true,
+      "actual": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+      "expected": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6"
+    },
+    {
+      "check_id": "source_sha256:rk12_independent",
+      "passed": true,
+      "actual": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+      "expected": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a"
+    },
+    {
+      "check_id": "source_sha256:rk13_final",
+      "passed": true,
+      "actual": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+      "expected": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b"
+    },
+    {
+      "check_id": "source_sha256:rnarl_final",
+      "passed": true,
+      "actual": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767",
+      "expected": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767"
+    },
+    {
+      "check_id": "source_sha256:rose_production",
+      "passed": true,
+      "actual": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a",
+      "expected": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a"
+    },
+    {
+      "check_id": "source_sha256:source_feasibility",
+      "passed": true,
+      "actual": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41",
+      "expected": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41"
+    },
+    {
+      "check_id": "source_sha256:velo_smoke",
+      "passed": true,
+      "actual": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+      "expected": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5"
+    },
+    {
+      "check_id": "row_status:lineardesign_unique18",
+      "passed": true,
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:lineardesign_unique18:actual_outputs",
+      "passed": true,
+      "actual": 131,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:lineardesign_unique18:generation_or_inference_s",
+      "passed": true,
+      "actual": 5459.871640930884,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:lineardesign_unique18:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:lineardesign_unique18:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:lineardesign_unique18:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:lineardesign_unique18:wall_clock_s",
+      "passed": true,
+      "actual": 5459.871640930884,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:ensembledesign_unique18",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:ensembledesign_unique18:actual_outputs",
+      "passed": true,
+      "actual": 192,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ensembledesign_unique18:generation_or_inference_s",
+      "passed": true,
+      "actual": 6001.057458210271,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ensembledesign_unique18:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:ensembledesign_unique18:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:ensembledesign_unique18:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ensembledesign_unique18:wall_clock_s",
+      "passed": true,
+      "actual": 6001.057458210271,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:inherited_codongpt",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_codongpt:actual_outputs",
+      "passed": true,
+      "actual": 1800,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_codongpt:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_codongpt:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_codongpt:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_codongpt:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_codongpt:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:inherited_gemorna",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_gemorna:actual_outputs",
+      "passed": true,
+      "actual": 1427,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_gemorna:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_gemorna:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_gemorna:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_gemorna:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_gemorna:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:inherited_cai_greedy",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_cai_greedy:actual_outputs",
+      "passed": true,
+      "actual": 18,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_cai_greedy:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_cai_greedy:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_cai_greedy:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_cai_greedy:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_cai_greedy:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:inherited_uniform_synonymous",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_uniform_synonymous:actual_outputs",
+      "passed": true,
+      "actual": 1800,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_uniform_synonymous:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_uniform_synonymous:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_uniform_synonymous:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_uniform_synonymous:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_uniform_synonymous:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:inherited_lineardesign_scan",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_lineardesign_scan:actual_outputs",
+      "passed": true,
+      "actual": 103,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_lineardesign_scan:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:inherited_lineardesign_scan:legal_rate",
+      "passed": true,
+      "actual": 1.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:inherited_lineardesign_scan:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_lineardesign_scan:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:inherited_lineardesign_scan:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:cagfn_official_smoke",
+      "passed": true,
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE"
+    },
+    {
+      "check_id": "finite_nonnegative:cagfn_official_smoke:generation_or_inference_s",
+      "passed": true,
+      "actual": 6.68,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:cagfn_official_smoke:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:cagfn_official_smoke:training_s",
+      "passed": true,
+      "actual": 11.01,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:cagfn_official_smoke:wall_clock_s",
+      "passed": true,
+      "actual": 47.556745767593384,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:id3_official_quick_test",
+      "passed": true,
+      "actual": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "expected": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT"
+    },
+    {
+      "check_id": "finite_nonnegative:id3_official_quick_test:generation_or_inference_s",
+      "passed": true,
+      "actual": 417.591162443161,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:id3_official_quick_test:runs",
+      "passed": true,
+      "actual": 12,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:id3_official_quick_test:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:id3_official_quick_test:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:id3_official_quick_test:wall_clock_s",
+      "passed": true,
+      "actual": 417.591162443161,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:codontransformer_official_smoke",
+      "passed": true,
+      "actual": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE"
+    },
+    {
+      "check_id": "finite_nonnegative:codontransformer_official_smoke:actual_outputs",
+      "passed": true,
+      "actual": 2,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:codontransformer_official_smoke:generation_or_inference_s",
+      "passed": true,
+      "actual": 2.0327787059359252,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:codontransformer_official_smoke:runs",
+      "passed": true,
+      "actual": 4,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:codontransformer_official_smoke:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:codontransformer_official_smoke:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:codontransformer_official_smoke:wall_clock_s",
+      "passed": true,
+      "actual": 6.471435410901904,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:veloharmo_official_smoke",
+      "passed": true,
+      "actual": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE"
+    },
+    {
+      "check_id": "finite_nonnegative:veloharmo_official_smoke:generation_or_inference_s",
+      "passed": true,
+      "actual": 1.2729171668179333,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:veloharmo_official_smoke:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:veloharmo_official_smoke:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:veloharmo_official_smoke:wall_clock_s",
+      "passed": true,
+      "actual": 5.946522436104715,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:ixnos_real_prefix",
+      "passed": true,
+      "actual": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "check_id": "explicit_null:ixnos_real_prefix:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:ixnos_real_prefix:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:ixnos_real_prefix:training_s",
+      "passed": true,
+      "actual": 6.03219199180603,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ixnos_real_prefix:wall_clock_s",
+      "passed": true,
+      "actual": 10.537669897079468,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rose_released_checkpoint",
+      "passed": true,
+      "actual": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "expected": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE"
+    },
+    {
+      "check_id": "finite_nonnegative:rose_released_checkpoint:generation_or_inference_s",
+      "passed": true,
+      "actual": 105.96287328284234,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:rose_released_checkpoint:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:rose_released_checkpoint:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:rose_released_checkpoint:wall_clock_s",
+      "passed": true,
+      "actual": 112.82697493582964,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:ribomimo_study_ood",
+      "passed": true,
+      "actual": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "expected": "PASS_STUDY_OOD_PENDING_INDEPENDENT"
+    },
+    {
+      "check_id": "finite_nonnegative:ribomimo_study_ood:generation_or_inference_s",
+      "passed": true,
+      "actual": 89.50084520922974,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ribomimo_study_ood:runs",
+      "passed": true,
+      "actual": 3,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ribomimo_study_ood:scoring_s",
+      "passed": true,
+      "actual": 45.446167211048305,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ribomimo_study_ood:training_s",
+      "passed": true,
+      "actual": 733.5893584797159,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:ribomimo_study_ood:wall_clock_s",
+      "passed": true,
+      "actual": 949.7424744511954,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rk06_dense_uniform",
+      "passed": true,
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:generation_or_inference_s",
+      "passed": true,
+      "actual": 16.225387217942625,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:runs",
+      "passed": true,
+      "actual": 54,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:scoring_s",
+      "passed": true,
+      "actual": 20869.626151481643,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:unique_scorer_calls",
+      "passed": true,
+      "actual": 27000,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_uniform:wall_clock_s",
+      "passed": true,
+      "actual": 20945.031473771203,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rk06_dense_hill_climbing",
+      "passed": true,
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:generation_or_inference_s",
+      "passed": true,
+      "actual": 8.822805067058653,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:runs",
+      "passed": true,
+      "actual": 54,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:scoring_s",
+      "passed": true,
+      "actual": 21020.672998382244,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:unique_scorer_calls",
+      "passed": true,
+      "actual": 27000,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_hill_climbing:wall_clock_s",
+      "passed": true,
+      "actual": 21077.843297181185,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rk06_dense_mh_annealing",
+      "passed": true,
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:generation_or_inference_s",
+      "passed": true,
+      "actual": 8.987731650937349,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:runs",
+      "passed": true,
+      "actual": 54,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:scoring_s",
+      "passed": true,
+      "actual": 20877.88818777073,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:unique_scorer_calls",
+      "passed": true,
+      "actual": 27000,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_mh_annealing:wall_clock_s",
+      "passed": true,
+      "actual": 20939.076001615264,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rk06_dense_areuredi_style",
+      "passed": true,
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:generation_or_inference_s",
+      "passed": true,
+      "actual": 10.632299634162337,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:runs",
+      "passed": true,
+      "actual": 54,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:scoring_s",
+      "passed": true,
+      "actual": 20950.513713391032,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:training_s",
+      "passed": true,
+      "actual": 0.0,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:unique_scorer_calls",
+      "passed": true,
+      "actual": 27000,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "finite_nonnegative:rk06_dense_areuredi_style:wall_clock_s",
+      "passed": true,
+      "actual": 21015.123456662055,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "row_status:rnarl_availability",
+      "passed": true,
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY"
+    },
+    {
+      "check_id": "explicit_null:rnarl_availability:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "finite_nonnegative:rnarl_availability:qc_pairs",
+      "passed": true,
+      "actual": 128289,
+      "expected": "finite and nonnegative"
+    },
+    {
+      "check_id": "explicit_null:rnarl_availability:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:rnarl_availability:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:rnarl_availability:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:cdgb_source_audit",
+      "passed": true,
+      "actual": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "expected": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED"
+    },
+    {
+      "check_id": "explicit_null:cdgb_source_audit:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:cdgb_source_audit:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:cdgb_source_audit:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:cdgb_source_audit:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:coformer_not_run",
+      "passed": true,
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN"
+    },
+    {
+      "check_id": "explicit_null:coformer_not_run:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:coformer_not_run:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:coformer_not_run:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:coformer_not_run:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "row_status:charming_not_run",
+      "passed": true,
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN"
+    },
+    {
+      "check_id": "explicit_null:charming_not_run:generation_or_inference_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:charming_not_run:scoring_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:charming_not_run:training_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "explicit_null:charming_not_run:wall_clock_s",
+      "passed": true,
+      "actual": null,
+      "expected": null
+    },
+    {
+      "check_id": "gate:boel_split_reliable",
+      "passed": true,
+      "actual": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "check_id": "gate:mage_oof_technical_pass",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "check_id": "gate:mordstein_full_recovery_pass",
+      "passed": true,
+      "actual": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "check_id": "gate:rnarl_full_pair_table_qc",
+      "passed": true,
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY"
+    },
+    {
+      "check_id": "gate:rnarl_21_files",
+      "passed": true,
+      "actual": 21,
+      "expected": 21
+    },
+    {
+      "check_id": "gate:lineardesign_reproduced",
+      "passed": true,
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX"
+    },
+    {
+      "check_id": "gate:ensembledesign_reproduced",
+      "passed": true,
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX"
+    },
+    {
+      "check_id": "gate:codontransformer_reproduced",
+      "passed": true,
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE"
+    },
+    {
+      "check_id": "gate:cagfn_reproduced",
+      "passed": true,
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE"
+    },
+    {
+      "check_id": "gate:dense_evaluator_finalized",
+      "passed": true,
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE"
+    },
+    {
+      "check_id": "gate:dense_independent_pass",
+      "passed": true,
+      "actual": "INDEPENDENT_PASS",
+      "expected": "INDEPENDENT_PASS"
+    },
+    {
+      "check_id": "gate:actual_set_independent_pass",
+      "passed": true,
+      "actual": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "check_id": "gate:raw_read_psite_feasibility_bounded",
+      "passed": true,
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE"
+    },
+    {
+      "check_id": "gate:utr_source_feasibility_metadata",
+      "passed": true,
+      "actual": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY"
+    },
+    {
+      "check_id": "gate:ribomimo_study_ood_closed",
+      "passed": true,
+      "actual": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD"
+    },
+    {
+      "check_id": "gate:full_function_technical_pass",
+      "passed": true,
+      "actual": "PASS",
+      "expected": "PASS"
+    },
+    {
+      "check_id": "gate:rk_g1_remains_false",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check_id": "gate:mage_mechanism_gate_remains_false",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check_id": "gate:rk06_scientific_gate_remains_false",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "check_id": "gate:rk06_rk_g1_remains_open",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    }
+  ],
+  "boundary_checks_pass": true,
+  "overall_pass": true,
+  "boundaries": {
+    "complete_sota": false,
+    "external_dense_complete": false,
+    "five_species_veloharmo_complete": false,
+    "full_utr_cds_remap_complete": false,
+    "functional_untouched_evaluated": false,
+    "generator_training_authorized": false,
+    "rk_g1_passed": false,
+    "rnarl_official_model_reproduced": false,
+    "time_matched_complete": false,
+    "wet_lab_validation_complete": false
+  },
+  "scientific_conclusion": "RK-G0 bounded data/baseline/evaluator readiness is supported. This is not complete SOTA, a time-matched win, full external dense coverage, RK-G1 passage, generator authorization, functional untouched evaluation, or wet-lab validation."
+}
