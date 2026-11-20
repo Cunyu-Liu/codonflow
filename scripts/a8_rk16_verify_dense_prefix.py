@@ -107,7 +107,7 @@ def main() -> None:
     manifest = json.loads(input_paths["legacy_manifest"].read_text())
     check("matrix_source_complete", matrix["status"] == "COMPLETE_UNIQUE18_SEVEN_METHOD_ACTUAL_SET_MATRIX_DEVELOPMENT_ONLY" and len(matrix["records"]) == 18)
     check("ld_source_complete", ld_report["status"] == "COMPLETE_UNIQUE18_OFFICIAL_LINEARDESIGN_LAMBDA_GRID" and len(ld_report["runs"]) == 198)
-    check("ensemble_source_complete", ensemble_report["status"] == "PASS_ENSEMBLEDESIGN_UNIQUE18_RECOVERY" and len(ensemble_report["records"]) == 18)
+    check("ensemble_source_complete", ensemble_report["status"] == "COMPLETE_UNIQUE18_OFFICIAL_ENSEMBLEDESIGN_11RUN" and len(ensemble_report["records"]) == 18)
     check("legacy_manifest_count", manifest["file_count"] == 18 and len(manifest["files"]) == 18)
     check("report_matches_frozen_matrix_order", report["record_order"] == [record["record_id"] for record in matrix["records"]])
 

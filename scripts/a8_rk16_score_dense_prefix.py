@@ -234,7 +234,7 @@ def main() -> None:
         raise ValueError("complete frozen RK13 matrix required")
     if ld_report["status"] != "COMPLETE_UNIQUE18_OFFICIAL_LINEARDESIGN_LAMBDA_GRID":
         raise ValueError("complete official LinearDesign report required")
-    if ensemble_report["status"] != "PASS_ENSEMBLEDESIGN_UNIQUE18_RECOVERY":
+    if ensemble_report["status"] != "COMPLETE_UNIQUE18_OFFICIAL_ENSEMBLEDESIGN_11RUN":
         raise ValueError("complete official EnsembleDesign recovery required")
     if manifest["file_count"] != protocol["record_count"] or Path(manifest["root"]) != Path(protocol["inputs"]["legacy_manifest"]["root"]):
         raise ValueError("legacy manifest root/count mismatch")
