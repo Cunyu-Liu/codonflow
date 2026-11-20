@@ -945,6 +945,31 @@ Synthetic tests passed 10/10 for both the production and independent implementat
 
 RK26 therefore closes the proposed MAGE single-to-double synonymous OOD candidate on data-adequacy grounds while leaving the underlying mechanism question unresolved. RK-G1 remains false and expensive generator training remains unauthorized. The audit does not establish CodonFlow-RK superiority, external SOTA, functional untouched performance, or a complete mechanism result, and the manuscript remains a non-submittable working draft.
 
+### 6.38 Measured 5′ MFE improved fixed-GFP sequence-cluster transport in a retrospective analysis
+
+RK22 identified a strong 5′ minimum-free-energy (MFE) increment in random-fold development cross-validation, but did not test whether that increment transported across sequence clusters. RK27 therefore evaluated the same measured feature under whole-cluster holdout within the fixed GFP background. Because the expression labels had already been used for RK22 development, the analysis was prespecified as retrospective sequence-cluster transport validation, not independent untouched confirmation. Before model fitting, the coverage audit read only source-row, CDS, and protein annotations; expression and model features were excluded. The RK04 functional-untouched split was not read.
+
+The 154 measurement rows were aggregated to 150 unique exact CDSs, all encoding the same 720-nucleotide GFP. The frozen 90% complete-linkage rule produced 37 sequence clusters, including 13 singleton clusters; the largest cluster contained 61 sequences. Primary-seed fold sizes were 23, 61, 22, 22, and 22 sequences. The simple model contained CAI, CDS GC, and CDS GC3, whereas the structure model added measured 5′ MFE. Ridge and histogram gradient boosting (HistGB) were evaluated over 10 fold-assignment seeds and five folds, giving 300 CPU model fits. MFE-only models were descriptive references. Primary inference used 20,000 sequence-cluster bootstrap replicates and 20,000 paired whole-cluster simple/structure swaps, with Holm correction across four endpoints.
+
+**Table 10**
+
+*Measured 5′ MFE Increment Under Fixed-GFP Sequence-Cluster OOD Evaluation*
+
+| Model | Endpoint | Observed effect | 95% cluster-bootstrap CI | Holm *p* | Positive seeds |
+|---|---|---:|---:|---:|---:|
+| Ridge | ΔSpearman | 0.955051 | [0.493814, 1.106833] | 0.00019999 | 10/10 |
+| Ridge | MSE improvement | 0.157489 | [0.071313, 0.212686] | 0.00129994 | 10/10 |
+| HistGB | ΔSpearman | 0.412578 | [0.208828, 0.520318] | 0.00044998 | 10/10 |
+| HistGB | MSE improvement | 0.105907 | [0.042279, 0.140561] | 0.00129994 | 10/10 |
+
+*Note.* ΔSpearman = structure − simple; MSE improvement = simple − structure, so positive values favor adding measured 5′ MFE. Each endpoint required a positive effect, a 95% CI excluding zero, Holm *p* < 0.05, and the same positive direction in at least 8 of 10 fold-assignment seeds. OOD denotes out-of-distribution; MSE denotes mean squared error.
+
+All four frozen endpoints passed, and each was positive in all 10 seeds (Table 10). Under the primary seed, ridge Spearman/MSE changed from −0.318413/0.257149 for the simple model to 0.636638/0.099660 for the structure model; the corresponding HistGB values changed from 0.302424/0.198658 to 0.715002/0.092751. Descriptive MFE-only Spearman/MSE values were 0.605020/0.111354 for ridge and 0.637557/0.101574 for HistGB. These MFE-only arms did not replace the confirmatory structure-versus-simple comparison or introduce an additional requirement that the combined model outperform MFE alone. The resulting outcome was `FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY`.
+
+Production and coverage synthetic tests passed 14/14 checks, and independent-implementation synthetic tests passed 8/8. The independent verifier reconstructed clustering, aggregation, all model fits, and resampling from the raw CDSs without importing the production modules; final acceptance passed 47/47 checks. The retained initial report passed 46/47 checks because pandas interpreted the literal model-arm label `null` as missing during a metrics-table merge. Both tables actually contained 70 rows with matching keys. Only the verifier’s CSV parsing was corrected, and neither the models nor statistical results changed. Scientific closeout and registry binding passed 97/97 checks.
+
+This result supports a measured 5′ MFE increment for retrospective sequence-cluster transport within one fixed GFP study. It is not independent external confirmation or protein OOD evidence, and it provides no measurement of translation velocity, mRNA decay, or complete spatial coupling. It does not establish CodonFlow-RK superiority, external SOTA, or functional untouched performance. RK-G1 remains false and expensive generator training remains unauthorized; the next appropriate test is an independent fixed-protein functional dataset rather than generator training. The manuscript remains a non-submittable working draft.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1296,6 +1321,18 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK26 scientific closeout | `2a3675f3c9d6fa5d0f98f36f8b125344a808afc81b21f415be9243f6a4595df0` |
 | RK26 closeout verification | `0c0deb52faebe180d93be2394269dc37c25e4aa3906e4b12f50b9e481ac7327c` |
 | RK26 manuscript section | `de359b8383544347f3a5edf9628a1b1147f4e27df273b08061ddec40a1db57e4` |
+| RK27 frozen sequence-cluster protocol | `59698dfeb3aaced63fd9e195dfd0664ee7416cee3d6c8f1dc016deaa79006d14` |
+| RK27 Kudla main source CSV | `91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c` |
+| RK27 label-free sequence-cluster coverage | `14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4` |
+| RK27 sequence-cluster facts | `2d6afeaa89e03c79f6db7a886d2c31c24ef33ffe1e69ecbbc176c6f3cacc4780` |
+| RK27 sequence-cluster OOF predictions | `cc95d0eb590885b894a5ea18b18489202c993ad481ceb921498930a4daf6ac43` |
+| RK27 sequence-cluster training log | `0f02b3fdfc4b7759725d408410301342b80758e3abfcc11bb2fe77d5ae9e00ed` |
+| RK27 sequence-cluster OOD result | `b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e` |
+| RK27 independent sequence-cluster OOD verification | `1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4` |
+| RK27 scientific closeout | `3febc17e612d1a6f4c13b09bb9835bc759a502f93a8b9342b922b4d4ba5a73c7` |
+| RK27 closeout verification | `cc0a74afd09bd626214d943dfbf74ba23777ee84ee338efeb900f41d0e7af06c` |
+| RK27 manuscript section | `4bac16de3b0bf16164940a522de619d1a3a1d6cbb3b41b19c00786ef49eb88a4` |
+| RK27 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
