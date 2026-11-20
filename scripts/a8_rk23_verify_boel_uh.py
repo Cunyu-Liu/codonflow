@@ -63,15 +63,16 @@ def independent_load(protocol, splits):
             seq = "".join(raw["cds"].upper().split())
             assert hashlib.sha256(seq.encode()).hexdigest() == feat["cds_sha256"]
             assert raw["operational_protein_cluster"] == feat["operational_protein_cluster"]
-            assert len(seq) == int(feat["length_nt"])
-            gc = (seq.count("G") + seq.count("C")) / len(seq)
+            coding = seq[:-3]
+            assert len(coding) == int(feat["length_nt"])
+            gc = (coding.count("G") + coding.count("C")) / len(coding)
             assert abs(gc - float(feat["gc_fraction"])) < 1e-14
             gz = float(json.loads(raw["features_json"])["Gz48v"])
             assert gz == float(feat["source_Gz48v"])
             row = {
                 "source_row": int(raw["source_row"]), "construct_id": raw["construct_id"],
                 "cluster": raw["operational_protein_cluster"], "label": float(raw[protocol["label_field"]]),
-                "length_nt": len(seq), "gc3_fraction": independent_gc3(seq),
+                "length_nt": len(coding), "gc3_fraction": independent_gc3(seq),
                 "source_Gz48v": gz,
             }
             for name in ("cai", "gc_fraction", "full_cds_mfe_per_nt", "mfe_5prime_48_kcal_mol"):

@@ -1,0 +1,1392 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "result_protocol_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "model_artifact_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "prediction_file_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "functional_untouched_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk_g1_remains_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "row_counts",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "independent_logistic_refit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "train_prediction_identity_order",
+      "pass": true
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.2146323916550455,
+      "name": "train_primary_contrast_base_logistic_spearman",
+      "observed": 0.2146323916550455,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.2268885352649853,
+      "name": "train_primary_contrast_base_logistic_pearson",
+      "observed": 0.2268885352649853,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.804230328930143,
+      "name": "train_primary_contrast_base_logistic_mse",
+      "observed": 3.804230328930143,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9504436236226217,
+      "name": "train_primary_contrast_base_logistic_rmse",
+      "observed": 1.9504436236226217,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7112682207619239,
+      "name": "train_primary_contrast_base_logistic_mae",
+      "observed": 1.7112682207619239,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4614437506792202,
+      "name": "train_primary_contrast_base_logistic_top10_e5_enrichment",
+      "observed": 1.4614437506792202,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_primary_contrast_base_logistic_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5289113533605545,
+      "name": "train_primary_contrast_base_histgb_spearman",
+      "observed": 0.5289113533605545,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5431182320558602,
+      "name": "train_primary_contrast_base_histgb_pearson",
+      "observed": 0.5431182320558602,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.9819492257733633,
+      "name": "train_primary_contrast_base_histgb_mse",
+      "observed": 2.9819492257733633,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7268321359568692,
+      "name": "train_primary_contrast_base_histgb_rmse",
+      "observed": 1.7268321359568692,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4903516766809481,
+      "name": "train_primary_contrast_base_histgb_mae",
+      "observed": 1.4903516766809481,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.1263065728766337,
+      "name": "train_primary_contrast_base_histgb_top10_e5_enrichment",
+      "observed": 2.1263065728766337,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_primary_contrast_base_histgb_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.239705920345861,
+      "name": "train_primary_contrast_augmented_logistic_spearman",
+      "observed": 0.239705920345861,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.2496286206287287,
+      "name": "train_primary_contrast_augmented_logistic_pearson",
+      "observed": 0.2496286206287287,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.7606932811368434,
+      "name": "train_primary_contrast_augmented_logistic_mse",
+      "observed": 3.7606932811368434,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9392507009504583,
+      "name": "train_primary_contrast_augmented_logistic_rmse",
+      "observed": 1.9392507009504583,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6979551692733736,
+      "name": "train_primary_contrast_augmented_logistic_mae",
+      "observed": 1.6979551692733736,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.542983530760035,
+      "name": "train_primary_contrast_augmented_logistic_top10_e5_enrichment",
+      "observed": 1.542983530760035,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_primary_contrast_augmented_logistic_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5552843592919223,
+      "name": "train_primary_contrast_augmented_histgb_spearman",
+      "observed": 0.5552843592919223,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5669073331655721,
+      "name": "train_primary_contrast_augmented_histgb_pearson",
+      "observed": 0.5669073331655721,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.8931583108495134,
+      "name": "train_primary_contrast_augmented_histgb_mse",
+      "observed": 2.8931583108495134,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.700928661305204,
+      "name": "train_primary_contrast_augmented_histgb_rmse",
+      "observed": 1.700928661305204,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4654133222507093,
+      "name": "train_primary_contrast_augmented_histgb_mae",
+      "observed": 1.4654133222507093,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.176484899080212,
+      "name": "train_primary_contrast_augmented_histgb_top10_e5_enrichment",
+      "observed": 2.176484899080212,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_primary_contrast_augmented_histgb_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.17280150047934875,
+      "name": "train_secondary_descriptive_contrast_base_logistic_spearman",
+      "observed": 0.17280150047934875,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.1741096375750612,
+      "name": "train_secondary_descriptive_contrast_base_logistic_pearson",
+      "observed": 0.1741096375750612,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.889059511037139,
+      "name": "train_secondary_descriptive_contrast_base_logistic_mse",
+      "observed": 3.889059511037139,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9720698545024056,
+      "name": "train_secondary_descriptive_contrast_base_logistic_rmse",
+      "observed": 1.9720698545024056,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7353733746646804,
+      "name": "train_secondary_descriptive_contrast_base_logistic_mae",
+      "observed": 1.7353733746646804,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.3924485521493,
+      "name": "train_secondary_descriptive_contrast_base_logistic_top10_e5_enrichment",
+      "observed": 1.3924485521493,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_secondary_descriptive_contrast_base_logistic_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5033844017118918,
+      "name": "train_secondary_descriptive_contrast_base_histgb_spearman",
+      "observed": 0.5033844017118918,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5165807270052791,
+      "name": "train_secondary_descriptive_contrast_base_histgb_pearson",
+      "observed": 0.5165807270052791,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.1064363152494168,
+      "name": "train_secondary_descriptive_contrast_base_histgb_mse",
+      "observed": 3.1064363152494168,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7625085291281335,
+      "name": "train_secondary_descriptive_contrast_base_histgb_rmse",
+      "observed": 1.7625085291281335,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.530216199195059,
+      "name": "train_secondary_descriptive_contrast_base_histgb_mae",
+      "observed": 1.530216199195059,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.1074897005502917,
+      "name": "train_secondary_descriptive_contrast_base_histgb_top10_e5_enrichment",
+      "observed": 2.1074897005502917,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_secondary_descriptive_contrast_base_histgb_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.23998246250134364,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_spearman",
+      "observed": 0.23998246250134364,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.24966234153365485,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_pearson",
+      "observed": 0.24966234153365485,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.7606356484843024,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_mse",
+      "observed": 3.7606356484843024,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.93923584137781,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_rmse",
+      "observed": 1.93923584137781,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6983552373094835,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_mae",
+      "observed": 1.6983552373094835,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.524166658433693,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_top10_e5_enrichment",
+      "observed": 1.524166658433693,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_secondary_descriptive_contrast_augmented_logistic_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.540665646463366,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_spearman",
+      "observed": 0.540665646463366,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5521528777889084,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_pearson",
+      "observed": 0.5521528777889084,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.9369487920729136,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_mse",
+      "observed": 2.9369487920729136,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7137528386768361,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_rmse",
+      "observed": 1.7137528386768361,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4787393738060712,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_mae",
+      "observed": 1.4787393738060712,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.1576680267538704,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_top10_e5_enrichment",
+      "observed": 2.1576680267538704,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 5079.0,
+      "name": "train_secondary_descriptive_contrast_augmented_histgb_n",
+      "observed": 5079.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0250735286908155,
+      "name": "train_primary_contrast_logistic_delta_spearman",
+      "observed": 0.0250735286908155,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0435370477932997,
+      "name": "train_primary_contrast_logistic_mse_improvement",
+      "observed": 0.0435370477932997,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.02274008536374339,
+      "name": "train_primary_contrast_logistic_delta_pearson",
+      "observed": 0.02274008536374339,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.08153978008081486,
+      "name": "train_primary_contrast_logistic_delta_top10_e5_enrichment",
+      "observed": 0.08153978008081486,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.02637300593136782,
+      "name": "train_primary_contrast_histgb_delta_spearman",
+      "observed": 0.02637300593136782,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.08879091492384994,
+      "name": "train_primary_contrast_histgb_mse_improvement",
+      "observed": 0.08879091492384994,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.023789101109711885,
+      "name": "train_primary_contrast_histgb_delta_pearson",
+      "observed": 0.023789101109711885,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.050178326203578205,
+      "name": "train_primary_contrast_histgb_delta_top10_e5_enrichment",
+      "observed": 0.050178326203578205,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.06718096202199489,
+      "name": "train_secondary_descriptive_contrast_logistic_delta_spearman",
+      "observed": 0.06718096202199489,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.12842386255283644,
+      "name": "train_secondary_descriptive_contrast_logistic_mse_improvement",
+      "observed": 0.12842386255283644,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.07555270395859365,
+      "name": "train_secondary_descriptive_contrast_logistic_delta_pearson",
+      "observed": 0.07555270395859365,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.13171810628439307,
+      "name": "train_secondary_descriptive_contrast_logistic_delta_top10_e5_enrichment",
+      "observed": 0.13171810628439307,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.03728124475147421,
+      "name": "train_secondary_descriptive_contrast_histgb_delta_spearman",
+      "observed": 0.03728124475147421,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.16948752317650317,
+      "name": "train_secondary_descriptive_contrast_histgb_mse_improvement",
+      "observed": 0.16948752317650317,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0355721507836293,
+      "name": "train_secondary_descriptive_contrast_histgb_delta_pearson",
+      "observed": 0.0355721507836293,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.05017832620357865,
+      "name": "train_secondary_descriptive_contrast_histgb_delta_top10_e5_enrichment",
+      "observed": 0.05017832620357865,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "detail": null,
+      "name": "dev_prediction_identity_order",
+      "pass": true
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.212869675569568,
+      "name": "dev_primary_contrast_base_logistic_spearman",
+      "observed": 0.212869675569568,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.20646781151261173,
+      "name": "dev_primary_contrast_base_logistic_pearson",
+      "observed": 0.20646781151261173,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.8056771692362754,
+      "name": "dev_primary_contrast_base_logistic_mse",
+      "observed": 3.8056771692362754,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.950814488678069,
+      "name": "dev_primary_contrast_base_logistic_rmse",
+      "observed": 1.950814488678069,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6924090556443796,
+      "name": "dev_primary_contrast_base_logistic_mae",
+      "observed": 1.6924090556443796,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.2203375668449197,
+      "name": "dev_primary_contrast_base_logistic_top10_e5_enrichment",
+      "observed": 1.2203375668449197,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_primary_contrast_base_logistic_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.2182507627696166,
+      "name": "dev_primary_contrast_base_histgb_spearman",
+      "observed": 0.2182507627696166,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.18977905611612106,
+      "name": "dev_primary_contrast_base_histgb_pearson",
+      "observed": 0.18977905611612106,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.9262301824291486,
+      "name": "dev_primary_contrast_base_histgb_mse",
+      "observed": 3.9262301824291486,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9814717213296658,
+      "name": "dev_primary_contrast_base_histgb_rmse",
+      "observed": 1.9814717213296658,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6981812245654428,
+      "name": "dev_primary_contrast_base_histgb_mae",
+      "observed": 1.6981812245654428,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.2733957219251337,
+      "name": "dev_primary_contrast_base_histgb_top10_e5_enrichment",
+      "observed": 1.2733957219251337,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_primary_contrast_base_histgb_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.22336139700630508,
+      "name": "dev_primary_contrast_augmented_logistic_spearman",
+      "observed": 0.22336139700630508,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.220849661941367,
+      "name": "dev_primary_contrast_augmented_logistic_pearson",
+      "observed": 0.220849661941367,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.7813794530260436,
+      "name": "dev_primary_contrast_augmented_logistic_mse",
+      "observed": 3.7813794530260436,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9445769342008672,
+      "name": "dev_primary_contrast_augmented_logistic_rmse",
+      "observed": 1.9445769342008672,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6829979835357693,
+      "name": "dev_primary_contrast_augmented_logistic_mae",
+      "observed": 1.6829979835357693,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4325701871657754,
+      "name": "dev_primary_contrast_augmented_logistic_top10_e5_enrichment",
+      "observed": 1.4325701871657754,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_primary_contrast_augmented_logistic_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.24155371509781637,
+      "name": "dev_primary_contrast_augmented_histgb_spearman",
+      "observed": 0.24155371509781637,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.20728113502572743,
+      "name": "dev_primary_contrast_augmented_histgb_pearson",
+      "observed": 0.20728113502572743,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.890620091204472,
+      "name": "dev_primary_contrast_augmented_histgb_mse",
+      "observed": 3.890620091204472,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9724654854279382,
+      "name": "dev_primary_contrast_augmented_histgb_rmse",
+      "observed": 1.9724654854279382,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.680470073412277,
+      "name": "dev_primary_contrast_augmented_histgb_mae",
+      "observed": 1.680470073412277,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.2733957219251337,
+      "name": "dev_primary_contrast_augmented_histgb_top10_e5_enrichment",
+      "observed": 1.2733957219251337,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_primary_contrast_augmented_histgb_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.1665463877435225,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_spearman",
+      "observed": 0.1665463877435225,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.1340538911709277,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_pearson",
+      "observed": 0.1340538911709277,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.9037080321144972,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_mse",
+      "observed": 3.9037080321144972,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9757803602917245,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_rmse",
+      "observed": 1.9757803602917245,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7210650668239473,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_mae",
+      "observed": 1.7210650668239473,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.3264538770053476,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_top10_e5_enrichment",
+      "observed": 1.3264538770053476,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_secondary_descriptive_contrast_base_logistic_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.17649111132058762,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_spearman",
+      "observed": 0.17649111132058762,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.14314288397436553,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_pearson",
+      "observed": 0.14314288397436553,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 4.00845884636264,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_mse",
+      "observed": 4.00845884636264,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 2.002113594769947,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_rmse",
+      "observed": 2.002113594769947,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.7118209343403585,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_mae",
+      "observed": 1.7118209343403585,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.114221256684492,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_top10_e5_enrichment",
+      "observed": 1.114221256684492,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_secondary_descriptive_contrast_base_histgb_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.22363626661184757,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_spearman",
+      "observed": 0.22363626661184757,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.21787449970921885,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_pearson",
+      "observed": 0.21787449970921885,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.7872209309521048,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_mse",
+      "observed": 3.7872209309521048,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.946078346560617,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_rmse",
+      "observed": 1.946078346560617,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.68544953833474,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_mae",
+      "observed": 1.68544953833474,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.4325701871657754,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_top10_e5_enrichment",
+      "observed": 1.4325701871657754,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_secondary_descriptive_contrast_augmented_logistic_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.24308390060405954,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_spearman",
+      "observed": 0.24308390060405954,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.21299480798933687,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_pearson",
+      "observed": 0.21299480798933687,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 3.8848871040984183,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_mse",
+      "observed": 3.8848871040984183,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.9710116955762638,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_rmse",
+      "observed": 1.9710116955762638,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.6715682224311934,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_mae",
+      "observed": 1.6715682224311934,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.538686497326203,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_top10_e5_enrichment",
+      "observed": 1.538686497326203,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 635.0,
+      "name": "dev_secondary_descriptive_contrast_augmented_histgb_n",
+      "observed": 635.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.010491721436737073,
+      "name": "dev_primary_contrast_logistic_delta_spearman",
+      "observed": 0.010491721436737073,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0242977162102318,
+      "name": "dev_primary_contrast_logistic_mse_improvement",
+      "observed": 0.0242977162102318,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.014381850428755255,
+      "name": "dev_primary_contrast_logistic_delta_pearson",
+      "observed": 0.014381850428755255,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.21223262032085577,
+      "name": "dev_primary_contrast_logistic_delta_top10_e5_enrichment",
+      "observed": 0.21223262032085577,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.02330295232819976,
+      "name": "dev_primary_contrast_histgb_delta_spearman",
+      "observed": 0.02330295232819976,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0356100912246764,
+      "name": "dev_primary_contrast_histgb_mse_improvement",
+      "observed": 0.0356100912246764,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.017502078909606367,
+      "name": "dev_primary_contrast_histgb_delta_pearson",
+      "observed": 0.017502078909606367,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0,
+      "name": "dev_primary_contrast_histgb_delta_top10_e5_enrichment",
+      "observed": 0.0,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.05708987886832506,
+      "name": "dev_secondary_descriptive_contrast_logistic_delta_spearman",
+      "observed": 0.05708987886832506,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.11648710116239247,
+      "name": "dev_secondary_descriptive_contrast_logistic_mse_improvement",
+      "observed": 0.11648710116239247,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.08382060853829115,
+      "name": "dev_secondary_descriptive_contrast_logistic_delta_pearson",
+      "observed": 0.08382060853829115,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.10611631016042788,
+      "name": "dev_secondary_descriptive_contrast_logistic_delta_top10_e5_enrichment",
+      "observed": 0.10611631016042788,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.06659278928347193,
+      "name": "dev_secondary_descriptive_contrast_histgb_delta_spearman",
+      "observed": 0.06659278928347193,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.1235717422642213,
+      "name": "dev_secondary_descriptive_contrast_histgb_mse_improvement",
+      "observed": 0.1235717422642213,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.06985192401497134,
+      "name": "dev_secondary_descriptive_contrast_histgb_delta_pearson",
+      "observed": 0.06985192401497134,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.4244652406417111,
+      "name": "dev_secondary_descriptive_contrast_histgb_delta_top10_e5_enrichment",
+      "observed": 0.4244652406417111,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.010491721436737073,
+      "name": "dev_logistic_delta_spearman_effect",
+      "observed": 0.010491721436737073,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.5209239538023099,
+      "name": "dev_logistic_delta_spearman_p_raw",
+      "observed": 0.5209239538023099,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.0,
+      "name": "dev_logistic_delta_spearman_p_holm",
+      "observed": 1.0,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": -0.021706467992005,
+      "name": "dev_logistic_delta_spearman_ci_0",
+      "observed": -0.021706467992005,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.04197795448069197,
+      "name": "dev_logistic_delta_spearman_ci_1",
+      "observed": 0.04197795448069197,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0242977162102318,
+      "name": "dev_logistic_mse_improvement_effect",
+      "observed": 0.0242977162102318,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.3930303484825759,
+      "name": "dev_logistic_mse_improvement_p_raw",
+      "observed": 0.3930303484825759,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.0,
+      "name": "dev_logistic_mse_improvement_p_holm",
+      "observed": 1.0,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": -0.031117385753992966,
+      "name": "dev_logistic_mse_improvement_ci_0",
+      "observed": -0.031117385753992966,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.07780935953145646,
+      "name": "dev_logistic_mse_improvement_ci_1",
+      "observed": 0.07780935953145646,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.02330295232819976,
+      "name": "dev_histgb_delta_spearman_effect",
+      "observed": 0.02330295232819976,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.21348932553372332,
+      "name": "dev_histgb_delta_spearman_p_raw",
+      "observed": 0.21348932553372332,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.8539573021348933,
+      "name": "dev_histgb_delta_spearman_p_holm",
+      "observed": 0.8539573021348933,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": -0.012874412528952498,
+      "name": "dev_histgb_delta_spearman_ci_0",
+      "observed": -0.012874412528952498,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.059385075360566884,
+      "name": "dev_histgb_delta_spearman_ci_1",
+      "observed": 0.059385075360566884,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.0356100912246764,
+      "name": "dev_histgb_mse_improvement_effect",
+      "observed": 0.0356100912246764,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.47652617369131545,
+      "name": "dev_histgb_mse_improvement_p_raw",
+      "observed": 0.47652617369131545,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 1.0,
+      "name": "dev_histgb_mse_improvement_p_holm",
+      "observed": 1.0,
+      "pass": true,
+      "tolerance": 1e-10
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": -0.06172494914514046,
+      "name": "dev_histgb_mse_improvement_ci_0",
+      "observed": -0.06172494914514046,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "abs_difference": 0.0,
+      "expected": 0.13120921321434034,
+      "name": "dev_histgb_mse_improvement_ci_1",
+      "observed": 0.13120921321434034,
+      "pass": true,
+      "tolerance": 1e-09
+    },
+    {
+      "detail": 0.0,
+      "name": "all_prediction_values_reproduce",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "all_metric_values_reproduce",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "all_bootstrap_arrays_reproduce",
+      "pass": true
+    },
+    {
+      "detail": 0.0,
+      "name": "all_permutation_arrays_reproduce",
+      "pass": true
+    }
+  ],
+  "checks_failed": [],
+  "checks_passed": 177,
+  "checks_total": 177,
+  "max_bootstrap_difference": 0.0,
+  "max_logistic_weight_difference": 0.0,
+  "max_metric_difference": 0.0,
+  "max_permutation_difference": 0.0,
+  "max_prediction_difference": 0.0,
+  "protocol_sha256": "dd5f921190ee7107a1354432680847ee211ce817927c45dd751ff343611fd645",
+  "result_sha256": "34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2",
+  "status": "PASS_INDEPENDENT_VERIFICATION"
+}
