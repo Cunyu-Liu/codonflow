@@ -84,7 +84,7 @@ def main():
     claims_path = AUDIT / "simple_search_dense_claims_v1.json"
     finalization_path = AUDIT / "simple_search_dense_finalization_v1.json"
     production_path = AUDIT / "simple_search_dense_unique18_v1.json"
-    independent_path = AUDIT / "simple_search_dense_independent_v1.json"
+    independent_path = AUDIT / "simple_search_dense_independent_v2.json"
     protocol_path = ROOT / "configs/a8_rk06_simple_search_dense_unique18_protocol_v1.json"
     claims = json.loads(claims_path.read_text())
     finalization = json.loads(finalization_path.read_text())
