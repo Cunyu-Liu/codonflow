@@ -1,0 +1,303 @@
+{
+  "schema": "a8-rk19-reproduction-ppt-verification-v1",
+  "mode": "candidate",
+  "status": "PASS_RK19_REPRODUCTION_PPT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 56,
+    "total": 56
+  },
+  "candidate_sha256": "9c949e5a281e34a25acdcf8ce05b75de7a61a01ad7c33091c32a63422b069c3d",
+  "existing_sha256": "87dc09dc989b5200c1bdb3538ede9111fa79f3b2742be9dc7733846572392351",
+  "clean_sha256": "1519bb89f528d1f04801fdf945900c3d9f8c22fa2766c80b426f6428a798ca6f",
+  "postpush_sha256": "1519bb89f528d1f04801fdf945900c3d9f8c22fa2766c80b426f6428a798ca6f",
+  "console_sha256": "d9dc2e421d759d3c4d4ba94cbfcefb27c1c72c8e74ef047bb3f4e18be9665d97",
+  "manuscript_section_sha256": "3ffedb2efbf99754d1f5acfd8ea7c79498a45edb3752b8565487413a6c0ec6c9",
+  "full_experimental_clean_reproduction": false,
+  "gpu_integration_executed": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "checks": [
+    {
+      "name": "candidate_accepted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_hash_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_slide_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_candidate_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_unknown_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "page_and_marker",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_console_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_console_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_report_hash_clean",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_report_hash_postpush",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "console_summary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "skip_reason",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_versions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_versions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "isolated_prefix",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_external_pythonpath",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_torch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_numpy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_scipy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pandas",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_scikit-learn",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pytest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pymoo",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_rapidfuzz",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_metadata_existing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_metadata_clean",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_note",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "manuscript_section_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "commit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_Full experimental regeneration = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_Opt-in tmux/GPU integration was not executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_RK-G1 = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_functional untouched not evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_generator training unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_manuscript non-submittable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_full_experimental_clean_reproduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_full_experimental_clean_reproduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_gpu_integration_executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_gpu_integration_executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_rk_g1_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_rk_g1_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_generator_training_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_generator_training_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_functional_untouched_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_functional_untouched_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "speaker_notes",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

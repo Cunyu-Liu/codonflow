@@ -1,0 +1,904 @@
+{
+  "schema": "a8-rk19-reproduction-ppt-verification-v1",
+  "mode": "final",
+  "status": "PASS_RK19_REPRODUCTION_PPT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 175,
+    "total": 175
+  },
+  "candidate_sha256": "9c949e5a281e34a25acdcf8ce05b75de7a61a01ad7c33091c32a63422b069c3d",
+  "existing_sha256": "87dc09dc989b5200c1bdb3538ede9111fa79f3b2742be9dc7733846572392351",
+  "clean_sha256": "1519bb89f528d1f04801fdf945900c3d9f8c22fa2766c80b426f6428a798ca6f",
+  "postpush_sha256": "1519bb89f528d1f04801fdf945900c3d9f8c22fa2766c80b426f6428a798ca6f",
+  "console_sha256": "d9dc2e421d759d3c4d4ba94cbfcefb27c1c72c8e74ef047bb3f4e18be9665d97",
+  "manuscript_section_sha256": "3ffedb2efbf99754d1f5acfd8ea7c79498a45edb3752b8565487413a6c0ec6c9",
+  "full_experimental_clean_reproduction": false,
+  "gpu_integration_executed": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "checks": [
+    {
+      "name": "candidate_accepted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_hash_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_slide_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_candidate_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_unknown_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "page_and_marker",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_console_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_console_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_report_hash_clean",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_report_hash_postpush",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "console_summary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "skip_reason",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_versions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_versions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "isolated_prefix",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_external_pythonpath",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_torch",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_numpy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_scipy",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pandas",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_scikit-learn",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pytest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_pymoo",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_package_rapidfuzz",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_metadata_existing",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_metadata_clean",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_note",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "manuscript_section_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "commit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_Full experimental regeneration = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_Opt-in tmux/GPU integration was not executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_RK-G1 = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_functional untouched not evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_generator training unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_manuscript non-submittable",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_full_experimental_clean_reproduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_full_experimental_clean_reproduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_gpu_integration_executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_gpu_integration_executed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_rk_g1_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_rk_g1_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_generator_training_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_generator_training_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "clean_gate_functional_untouched_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_gate_functional_untouched_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "speaker_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "final_inputs_present",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "add_success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readback_success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "page_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_last_page",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_1_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_2_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_3_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_4_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_5_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_6_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_7_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_8_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_9_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_10_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_11_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_12_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_13_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_14_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_15_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_16_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_17_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_18_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_19_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_20_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_21_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_22_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_23_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_24_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_25_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_26_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_27_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_28_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_29_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_30_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_31_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_32_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_33_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_34_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_35_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_36_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_37_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_38_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_39_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_40_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_41_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_42_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_43_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_44_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_45_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_46_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_47_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_48_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_49_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_50_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_51_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_52_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_53_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_54_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_55_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_56_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_57_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_58_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_59_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_60_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_61_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_62_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_63_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_64_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_65_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_66_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_67_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_68_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_69_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_70_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_71_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_72_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_73_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_74_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_75_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_76_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_77_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_78_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_79_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_80_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_81_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_82_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_83_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_84_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_85_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_86_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_87_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_88_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_89_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_90_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_91_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_92_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_93_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_94_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_95_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_96_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_97_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_98_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_99_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_100_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_101_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_102_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_103_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_104_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_105_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_106_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_107_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_108_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "old_page_109_full_semantics_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_visible_text",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_online_page",
+      "pass": true,
+      "detail": [
+        110
+      ]
+    },
+    {
+      "name": "new_page_negative_gates",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "slide_id": "pZi",
+  "revision_id": 72,
+  "baseline_xml_sha256": "54b100dd697c4baddc688a1b62609123a7a567737c40f3241b1d8926fd116b44",
+  "after_xml_sha256": "0a62d4b1dfc2027cfae0b06985b04245dd5d9515b0e132cb9752bd468b9bf35a"
+}
