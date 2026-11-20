@@ -1,0 +1,83 @@
+{
+  "schema": "a8-rk06-ppt-verifier-correction-v1",
+  "date": "2026-11-20",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pZp",
+  "slide_number": 105,
+  "baseline": {
+    "slides": 104,
+    "revision_id": 66,
+    "last_slide_id": "pgz"
+  },
+  "write": {
+    "revision_id": 67,
+    "slides_after": 105,
+    "candidate_preflight": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_ppt_candidate_v1.json",
+      "sha256": "b033ed43fb4f484cd85d7136ed6324512e89ab6e5293cfc30f8e83c0d905ba1e",
+      "checks_passed": "50/50"
+    },
+    "candidate_xml_sha256": "718b60a0863ae06726c360793b923eddec11675f47ecba14bcc599563dc797ba"
+  },
+  "initial_write_verifier": {
+    "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_ppt_verification_v1.json",
+    "sha256": "ebd76cc27031c71283a0e8c00282e3eae8a0b83c382aef9529d53c845addf0f1",
+    "status": "FAIL",
+    "checks_passed": "14/16",
+    "failed_checks": [
+      "new_page_semantically_matches_candidate",
+      "candidate_visible_text_preserved"
+    ],
+    "preexisting_page_mismatches": []
+  },
+  "diagnosis": {
+    "numeric_or_method_or_conclusion_changes": 0,
+    "paragraph_count_before_after": [80, 80],
+    "whitespace_only_paragraphs": 4,
+    "attribute_differences": {
+      "content_wrap_true_omitted_by_service": 13,
+      "table_default_textAlign_center_omitted_by_service": 36,
+      "default_col_span_1_materialized_by_service": 6
+    },
+    "detail": "The Slides service collapsed repeated/leading spaces in four method-summary paragraphs and normalized schema-default attributes. Numeric tokens, method labels, all six paired tests, notes and page ordering were preserved."
+  },
+  "verifier_correction": {
+    "normalization_scope": [
+      "Collapse XML text whitespace for comparison without changing any non-whitespace token.",
+      "Treat content wrap=true as the schema default.",
+      "Treat table-cell content textAlign=center as the table default.",
+      "Continue treating col/row span=1 as the default."
+    ],
+    "anti_weakening_tests": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_ppt_verifier_unit_tests_v1.console.log",
+      "sha256": "8bfc3552876942a62b85c64eaa285ae024c89c46a411ff8000b5c938f88b9ebc",
+      "passed": "4/4",
+      "confirmed_rejections": [
+        "numeric value change",
+        "method label change",
+        "non-default text-shape alignment change"
+      ]
+    },
+    "online_slide_or_candidate_modified": false,
+    "scientific_values_or_tolerances_modified": false
+  },
+  "final_write_verifier": {
+    "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_ppt_verification_v2.json",
+    "sha256": "d40919972e585953c97a2b19157772fd7b3e7ec80f36e2fdae2fa9bfe9ee6687",
+    "status": "PASS",
+    "checks_passed": "16/16",
+    "preexisting_page_mismatches": []
+  },
+  "real_render_review": {
+    "screenshot": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/ppt_simple_search_dense_v1/WB1KsYGualerMUddEzMcCw1En0g_p105_pZp.jpg",
+    "sha256": "cf2f819d1b92970f41d82c4df7937bab2d58d8ae0e1ee203a4cba76150b4931e",
+    "dimensions": [960, 540],
+    "visual_pass": true,
+    "checks": [
+      "no clipped title, table, cards, evidence footer or boundary text",
+      "no element overlap or missing text",
+      "all six primary tests and four method means are visible",
+      "proxy-only, non-SOTA, RK-G1-open and non-submittable boundaries are visible"
+    ]
+  }
+}

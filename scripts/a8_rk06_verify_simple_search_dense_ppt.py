@@ -8,14 +8,20 @@ MARKER = "RK06 · UNIQUE18 REAL DENSE-BUDGET SEARCH"
 def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def load(p): return json.loads(Path(p).read_text())
 def slides(root): return [e for e in list(root) if e.tag.rsplit("}", 1)[-1] == "slide"]
-def text(root): return "\n".join("".join(p.itertext()) for p in root.iter() if p.tag.rsplit("}", 1)[-1] == "p")
-def semantic(e):
+def norm_space(value): return " ".join((value or "").split())
+def text(root):
+    return "\n".join(norm_space("".join(p.itertext())) for p in root.iter() if p.tag.rsplit("}", 1)[-1] == "p")
+def semantic(e, parent=None):
     attrs = dict(e.attrib)
     attrs.pop("id", None)
-    # Slides service materializes col/row span=1; this default has no semantic effect.
+    local = e.tag.rsplit("}", 1)[-1]
+    parent_local = parent.tag.rsplit("}", 1)[-1] if parent is not None else None
+    # Slides service normalizes these schema defaults and collapses XML text whitespace.
     if attrs.get("span") == "1": attrs.pop("span")
-    return (e.tag, tuple(sorted(attrs.items())), (e.text or "").strip(), (e.tail or "").strip(),
-            tuple(semantic(c) for c in list(e)))
+    if local == "content" and attrs.get("wrap") == "true": attrs.pop("wrap")
+    if local == "content" and parent_local == "td" and attrs.get("textAlign") == "center": attrs.pop("textAlign")
+    return (e.tag, tuple(sorted(attrs.items())), norm_space(e.text), norm_space(e.tail),
+            tuple(semantic(c, e) for c in list(e)))
 
 def main():
     ap = argparse.ArgumentParser()

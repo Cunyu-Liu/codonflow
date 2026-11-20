@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "baseline_slide_count": 104,
+  "postwrite_slide_count": 105,
+  "new_slide_id": "pZp",
+  "baseline_revision_id": 66,
+  "add_revision_id": 67,
+  "postwrite_revision_id": 67,
+  "baseline_xml_sha256": "a9c7d1e662627181554792a68e94ae43eb90f37cee788ce99f318212a4590055",
+  "candidate_xml_sha256": "718b60a0863ae06726c360793b923eddec11675f47ecba14bcc599563dc797ba",
+  "postwrite_xml_sha256": "6ccc494d8b7424ab87079c9f5fc4e3cb097fc1ff7b3c88f6defd0e70a3361d06",
+  "preexisting_page_mismatches": [],
+  "checks": [
+    {
+      "name": "baseline_response_ok",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "add_response_ok",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "postwrite_response_ok",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_preflight_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_unchanged_since_preflight",
+      "passed": true,
+      "detail": "718b60a0863ae06726c360793b923eddec11675f47ecba14bcc599563dc797ba"
+    },
+    {
+      "name": "exactly_one_page_appended",
+      "passed": true,
+      "detail": {
+        "before": 104,
+        "after": 105
+      }
+    },
+    {
+      "name": "all_preexisting_pages_semantically_preserved",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "new_slide_id_matches_response",
+      "passed": true,
+      "detail": {
+        "response": "pZp",
+        "readback": "pZp"
+      }
+    },
+    {
+      "name": "new_slide_is_last",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "marker_occurs_exactly_once_in_deck",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "new_page_semantically_matches_candidate",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_visible_text_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_note_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "revision_advanced",
+      "passed": true,
+      "detail": {
+        "baseline": 66,
+        "add": 67,
+        "postwrite": 67
+      }
+    },
+    {
+      "name": "postwrite_scope_is_presentation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_connection_or_credential_material",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}
