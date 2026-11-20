@@ -1,0 +1,109 @@
+{
+  "schema": "a8-rk22-fixed-protein-mechanism-protocol-v1",
+  "protocol_version": 1,
+  "frozen_before_any_association_or_model_fit": true,
+  "recovery_source_commit": "f692f07f0be3a83f6f70fc666e1eddf879c6246f",
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk22/fixed_protein_v1",
+  "audit_root": "audits/20261121/RK22",
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "tagged_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla_tagged72_source.csv",
+      "sha256": "e6bf426a6870279b13a22d0dc12e8b54848965c7e5ca70ab1d4a8b0466531a4b"
+    }
+  },
+  "scientific_scope": {
+    "main_question": "Does measured 5-prime MFE add fixed-protein expression signal beyond CAI, CDS GC and CDS GC3 under exact-CDS-grouped out-of-fold evaluation?",
+    "tagged_question": "Within the same CDS, does the expression change after adding the 5-prime leader track the measured 5-prime MFE change in the accessibility direction?",
+    "development_only": true,
+    "not_protein_ood": true,
+    "not_functional_untouched": true,
+    "not_generator_training_authorization": true,
+    "tagged_sequence_available": false,
+    "delta_CAI_or_delta_GC_used": false,
+    "delta_CAI_or_delta_GC_reason": "The tagged sheet lacks CAI and tagged nucleotide sequence. Its codon frequencies are conditional within amino acids and do not reconstruct overall tagged GC."
+  },
+  "main_analysis": {
+    "independent_unit": "exact_cds_group",
+    "measurement_rows": 154,
+    "expected_groups": 150,
+    "duplicate_groups": 4,
+    "aggregation": "One row per exact CDS; target is the arithmetic mean of log10_expression across replicate seqIds. CAI, MFE and sequence-derived features must be identical within a group.",
+    "target": "mean_log10_expression",
+    "simple_features": ["CAI", "gc_cds", "gc3_cds"],
+    "structure_features": ["CAI", "gc_cds", "gc3_cds", "mfe_5prime_kcal_mol"],
+    "feature_derivation": {
+      "gc_cds": "(G+C count)/720 over the CDS including terminal stop",
+      "gc3_cds": "fraction of third codon positions that are G or C over all 240 codons including terminal stop"
+    },
+    "models": {
+      "ridge": {
+        "pipeline": "StandardScaler fit on training rows only, then Ridge(alpha=1.0)",
+        "hyperparameter_tuning": false
+      },
+      "histgb": {
+        "class": "HistGradientBoostingRegressor",
+        "parameters": {
+          "loss": "squared_error",
+          "learning_rate": 0.05,
+          "max_iter": 200,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 10,
+          "l2_regularization": 1.0,
+          "early_stopping": false
+        },
+        "hyperparameter_tuning": false
+      }
+    },
+    "null_model": "Training-fold mean target; descriptive reference only",
+    "seeds": [20261121, 20261122, 20261123, 20261124, 20261125, 20261126, 20261127, 20261128, 20261129, 20261130],
+    "outer_cv": "Five-fold KFold(shuffle=true, random_state=seed) on 150 aggregated exact-CDS rows. Each repeat produces one out-of-fold prediction per group for every model and feature set.",
+    "metrics_per_seed": ["global_oof_spearman", "global_oof_mse_log10_squared"],
+    "effects": "structure minus simple for Spearman; simple MSE minus structure MSE for MSE, so positive always favors adding 5-prime MFE",
+    "primary_family": [
+      "ridge_spearman_effect",
+      "ridge_mse_improvement",
+      "histgb_spearman_effect",
+      "histgb_mse_improvement"
+    ],
+    "inference": {
+      "effect_summary": "Mean and median across the 10 seed-level OOF effects",
+      "confidence_interval": "Two-sided 95% percentile bootstrap over the 10 seed-level effects, 20000 resamples, seed 20261201",
+      "p_value": "Exhaustive two-sided sign-flip test on the 10 paired seed effects using the mean effect statistic; all 1024 sign patterns including observed",
+      "multiplicity": "Holm across the four primary tests"
+    },
+    "pass_rule": "For every primary endpoint: mean effect > 0, at least 8/10 seed effects > 0, bootstrap 95% CI excludes 0, and Holm-adjusted p < 0.05.",
+    "interpretation": "Pass supports a development-only fixed-protein 5-prime-structure increment under these frozen models. It is not protein OOD, functional untouched, RK-G1 or SOTA evidence."
+  },
+  "tagged_analysis": {
+    "independent_unit": "exact_cds_group",
+    "measurement_rows": 72,
+    "expected_groups": 71,
+    "aggregation": "Compute per-seqId tagged-minus-main differences, then average differences within exact CDS.",
+    "differences": {
+      "delta_mfe5": "tagged rnaEnergy_-4..37 minus main rnaEnergy_-4..37; positive means weaker predicted 5-prime structure",
+      "delta_log10_expression": "tagged log10_expression minus main log10_expression"
+    },
+    "primary_endpoint": "Spearman(delta_mfe5, delta_log10_expression), expected positive",
+    "adjusted_endpoint": "OLS coefficient of delta_mfe5 in delta_log10_expression ~ delta_mfe5 + main CAI + main gc_cds + main gc3_cds, expected positive",
+    "inference": {
+      "spearman_permutation": "Two-sided permutation of delta_mfe5 across 71 groups, 100000 permutations plus observed, seed 20261202",
+      "adjusted_coefficient_permutation": "Two-sided permutation of delta_mfe5, residualizing permuted predictor and outcome against intercept + main CAI/GC/GC3, 20000 permutations plus observed, seed 20261203",
+      "confidence_interval": "Paired group bootstrap with 20000 resamples for both endpoints, seed 20261204",
+      "multiplicity": "Holm across the two tagged endpoints"
+    },
+    "pass_rule": "Both endpoints positive, both bootstrap 95% CIs exclude 0, and both Holm-adjusted p < 0.05.",
+    "interpretation": "Pass supports paired 5-prime structure-expression coupling in this development subset. Because the leader changes more than MFE and tagged sequence is unavailable, it is not a sole-cause claim or generator authorization."
+  },
+  "execution": {
+    "device": "CPU only",
+    "gpu_required": false,
+    "functional_untouched_read": false,
+    "randomness_recorded": true,
+    "independent_verification_required": true,
+    "ppt_write_requires_independent_pass": true
+  }
+}
