@@ -1,0 +1,46 @@
+{
+  "schema": "a8-g0-ppt-closeout-correction-v1",
+  "status": "PASS_VERIFIER_CORRECTION_ONLY",
+  "scope": "Implementation corrections in the offline PPT verifier; no scientific evidence, manuscript text, slide XML, online page, tolerance, or numerical result was changed.",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pZg",
+  "slide_number": 106,
+  "revision_id": 68,
+  "corrections": [
+    {
+      "issue": "The initial verifier used two incorrect assumed production-summary field names when checking measured and null wall-clock scopes.",
+      "resolution": "Read the frozen production schema and bind the checks to measured_wall_clock_scopes and explicit_null_wall_clock_scopes.",
+      "scientific_data_changed": false,
+      "online_slide_changed": false
+    },
+    {
+      "issue": "The initial ordered text extractor omitted child.tail text following br elements.",
+      "resolution": "Extract node text and each child tail in document order, then recheck submitted-versus-online text and all scientific anchors.",
+      "scientific_data_changed": false,
+      "online_slide_changed": false
+    }
+  ],
+  "final_acceptance": {
+    "ppt_verification": "47/47 PASS",
+    "ppt_finalization": "10/10 PASS_G0_PPT_CLOSEOUT",
+    "visual_review": "PASS",
+    "old_105_pages_semantically_unchanged": true
+  },
+  "hashes": {
+    "verifier_script_sha256": "1cb741313487a91800d5a5aefbdafe184a78fd7edb771f8d9e53630ac0286658",
+    "finalizer_script_sha256": "74bd8e7eb7a73afb0700a2d64ccc3ea5d0b3ce6c5858c33d8a69d35272647b53",
+    "ppt_verification_sha256": "11480df787565c9165f02185dde646987d51d0349c84eb1079c97689b44d04d6",
+    "ppt_finalization_sha256": "7f9c08589d33375fa4cb9aadf5d8a6f6dcd1d070bf7f6156b4a2a86d5ed69f67",
+    "visual_review_sha256": "634a34874f5e374b12bc9f0bfc14411da08cb8ed1e1ca0fbd6e4119561c4f8b6",
+    "screenshot_sha256": "00f64ea5719ca179740f2ab6b4ffd1fefa305feb4a7b173955af14b0035fed0e"
+  },
+  "large_archive": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1/",
+  "boundaries": {
+    "rk_g1_passed": false,
+    "generator_training_authorized": false,
+    "complete_sota": false,
+    "time_matched_complete": false,
+    "functional_untouched_evaluated": false,
+    "wet_lab_validation_complete": false
+  }
+}
