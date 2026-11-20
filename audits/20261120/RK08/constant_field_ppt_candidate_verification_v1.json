@@ -1,0 +1,402 @@
+{
+  "schema": "a8-rk08-constant-field-ppt-verification-v1",
+  "mode": "candidate",
+  "status": "PASS_CONSTANT_FIELD_PPT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 76,
+    "total": 76
+  },
+  "candidate_sha256": "8bf03e2e9b2cd33ebba6857defc9755a63f10ac10c8ebea0e007c27a396cae2c",
+  "production_sha256": "8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb",
+  "independent_sha256": "e4e4d70b6e517b6428a91e795ee273a555a53c043051942951fc82d28b643f27",
+  "finalization_sha256": "ec67656bf3307540d7191f02b640804ad30fbfc35233bcdd5170caffcac92d1a",
+  "postpush_sha256": "72ec5e9c4b085846d78c462cb35c3aca023db3a22d4cedf621823d4b066bac81",
+  "recheck_sha256": "9f25377d1267ad8fc1e83eddac87b88f1cf2daa5ae3b99fd8d31eeff17da606c",
+  "velocity_mechanism_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "checks": [
+    {
+      "name": "candidate_accepted",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_hash_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_slide_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_candidate_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_unknown_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "page_and_marker",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "primary_partition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "bootstrap_contract",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_model_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_model_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_model_position_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_ridge_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_ridge_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_ridge_position_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_constant_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_constant_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_metric_constant_position_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "constant_metric_display",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "display_model_minus_constant_mse",
+      "pass": true,
+      "detail": "+0.05772 [+0.05710, +0.05834]"
+    },
+    {
+      "name": "display_model_minus_constant_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "display_model_minus_constant_cor",
+      "pass": true,
+      "detail": "−0.13349 [−0.13780, −0.12927]"
+    },
+    {
+      "name": "display_model_minus_constant_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "note_model_minus_constant_delta_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_delta_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_transcript_balanced_mse_ci_0.05709918203103379",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_transcript_balanced_mse_ci_0.05834085807893431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_transcript_balanced_mse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_mean_transcript_pearson_ci_-0.13779552902338732",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_mean_transcript_pearson_ci_-0.12926709989907645",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_constant_mean_transcript_pearson_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unsupported_model_minus_constant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "display_ridge_minus_constant_mse",
+      "pass": true,
+      "detail": "+0.00309 [+0.00295, +0.00324]"
+    },
+    {
+      "name": "display_ridge_minus_constant_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "display_ridge_minus_constant_cor",
+      "pass": true,
+      "detail": "−0.06295 [−0.06591, −0.06008]"
+    },
+    {
+      "name": "display_ridge_minus_constant_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "note_ridge_minus_constant_delta_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_delta_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_transcript_balanced_mse_ci_0.0029514829149933754",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_transcript_balanced_mse_ci_0.00324115839797996",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_transcript_balanced_mse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_mean_transcript_pearson_ci_-0.06590631231789056",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_mean_transcript_pearson_ci_-0.060080732289514466",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_ridge_minus_constant_mean_transcript_pearson_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unsupported_ridge_minus_constant",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "display_model_minus_ridge_mse",
+      "pass": true,
+      "detail": "+0.05462 [+0.05405, +0.05519]"
+    },
+    {
+      "name": "display_model_minus_ridge_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "display_model_minus_ridge_cor",
+      "pass": true,
+      "detail": "−0.07054 [−0.07325, −0.06777]"
+    },
+    {
+      "name": "display_model_minus_ridge_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "note_model_minus_ridge_delta_transcript_balanced_mse",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_delta_mean_transcript_pearson",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_transcript_balanced_mse_ci_0.05404594435779176",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_transcript_balanced_mse_ci_0.05519200143473219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_transcript_balanced_mse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_mean_transcript_pearson_ci_-0.07324810579112143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_mean_transcript_pearson_ci_-0.06776526128770917",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_model_minus_ridge_mean_transcript_pearson_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unsupported_model_minus_ridge",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_delta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "postpush_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fresh_recheck",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_tests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_Velocity mechanism = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_RK-G1 = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_functional untouched not evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_generator training unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_No causal, functional, protein-OOD, external-SOTA, or readiness claim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gate_velocity_mechanism_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gate_rk_g1_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gate_functional_untouched_evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gate_generator_training_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gate_external_sota_claim_authorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_shape",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "speaker_notes",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

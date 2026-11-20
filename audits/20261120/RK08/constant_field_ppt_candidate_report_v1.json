@@ -1,0 +1,490 @@
+{
+  "schema": "a8-rk08-constant-field-ppt-candidate-v1",
+  "status": "PASS_CONSTANT_FIELD_PPT_CANDIDATE",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 59,
+    "total": 59
+  },
+  "candidate_sha256": "8bf03e2e9b2cd33ebba6857defc9755a63f10ac10c8ebea0e007c27a396cae2c",
+  "baseline_xml_sha256": "61dcd6f4acfb0d16bac778a1f4cb528ea296a7108db793f3d842f2e138331115",
+  "baseline_slide_count": 108,
+  "baseline_revision_id": 70,
+  "baseline_last_slide_id": "pZS",
+  "production_sha256": "8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb",
+  "independent_sha256": "e4e4d70b6e517b6428a91e795ee273a555a53c043051942951fc82d28b643f27",
+  "finalization_sha256": "ec67656bf3307540d7191f02b640804ad30fbfc35233bcdd5170caffcac92d1a",
+  "postpush_sha256": "72ec5e9c4b085846d78c462cb35c3aca023db3a22d4cedf621823d4b066bac81",
+  "recheck_sha256": "9f25377d1267ad8fc1e83eddac87b88f1cf2daa5ae3b99fd8d31eeff17da606c",
+  "velocity_mechanism_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "checks": [
+    {
+      "name": "single_slide",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_preassigned_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_external_or_unknown_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_marker",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "canvas_bounds_0",
+      "pass": true,
+      "detail": [
+        48.0,
+        20.0,
+        690.0,
+        16.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_1",
+      "pass": true,
+      "detail": [
+        770.0,
+        20.0,
+        142.0,
+        16.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_2",
+      "pass": true,
+      "detail": [
+        48.0,
+        43.0,
+        864.0,
+        38.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_3",
+      "pass": true,
+      "detail": [
+        48.0,
+        87.0,
+        56.0,
+        4.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_4",
+      "pass": true,
+      "detail": [
+        116.0,
+        82.0,
+        796.0,
+        18.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_5",
+      "pass": true,
+      "detail": [
+        48.0,
+        110.0,
+        198.0,
+        66.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_6",
+      "pass": true,
+      "detail": [
+        64.0,
+        119.0,
+        166.0,
+        12.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_7",
+      "pass": true,
+      "detail": [
+        64.0,
+        134.0,
+        166.0,
+        27.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_8",
+      "pass": true,
+      "detail": [
+        64.0,
+        162.0,
+        166.0,
+        10.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_9",
+      "pass": true,
+      "detail": [
+        270.0,
+        110.0,
+        198.0,
+        66.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_10",
+      "pass": true,
+      "detail": [
+        286.0,
+        119.0,
+        166.0,
+        12.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_11",
+      "pass": true,
+      "detail": [
+        286.0,
+        134.0,
+        166.0,
+        27.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_12",
+      "pass": true,
+      "detail": [
+        286.0,
+        162.0,
+        166.0,
+        10.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_13",
+      "pass": true,
+      "detail": [
+        492.0,
+        110.0,
+        198.0,
+        66.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_14",
+      "pass": true,
+      "detail": [
+        508.0,
+        119.0,
+        166.0,
+        12.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_15",
+      "pass": true,
+      "detail": [
+        508.0,
+        134.0,
+        166.0,
+        27.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_16",
+      "pass": true,
+      "detail": [
+        508.0,
+        162.0,
+        166.0,
+        10.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_17",
+      "pass": true,
+      "detail": [
+        714.0,
+        110.0,
+        198.0,
+        66.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_18",
+      "pass": true,
+      "detail": [
+        730.0,
+        119.0,
+        166.0,
+        12.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_19",
+      "pass": true,
+      "detail": [
+        730.0,
+        134.0,
+        166.0,
+        27.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_20",
+      "pass": true,
+      "detail": [
+        730.0,
+        162.0,
+        166.0,
+        10.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_21",
+      "pass": true,
+      "detail": [
+        48.0,
+        194.0,
+        620.0,
+        20.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_22",
+      "pass": true,
+      "detail": [
+        700.0,
+        196.0,
+        212.0,
+        16.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_23",
+      "pass": true,
+      "detail": [
+        48.0,
+        222.0,
+        864.0,
+        136.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_24",
+      "pass": true,
+      "detail": [
+        48.0,
+        370.0,
+        420.0,
+        70.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_25",
+      "pass": true,
+      "detail": [
+        64.0,
+        380.0,
+        388.0,
+        18.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_26",
+      "pass": true,
+      "detail": [
+        64.0,
+        400.0,
+        388.0,
+        34.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_27",
+      "pass": true,
+      "detail": [
+        492.0,
+        370.0,
+        420.0,
+        70.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_28",
+      "pass": true,
+      "detail": [
+        508.0,
+        380.0,
+        388.0,
+        18.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_29",
+      "pass": true,
+      "detail": [
+        508.0,
+        400.0,
+        388.0,
+        34.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_30",
+      "pass": true,
+      "detail": [
+        48.0,
+        455.0,
+        864.0,
+        36.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_31",
+      "pass": true,
+      "detail": [
+        64.0,
+        461.0,
+        832.0,
+        24.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_32",
+      "pass": true,
+      "detail": [
+        48.0,
+        505.0,
+        720.0,
+        13.0
+      ]
+    },
+    {
+      "name": "canvas_bounds_33",
+      "pass": true,
+      "detail": [
+        800.0,
+        505.0,
+        112.0,
+        13.0
+      ]
+    },
+    {
+      "name": "no_text_text_overlap",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "native_table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visible_model_minus_constant_mse",
+      "pass": true,
+      "detail": "+0.05772 [+0.05710, +0.05834]"
+    },
+    {
+      "name": "visible_model_minus_constant_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "visible_model_minus_constant_cor",
+      "pass": true,
+      "detail": "−0.13349 [−0.13780, −0.12927]"
+    },
+    {
+      "name": "visible_model_minus_constant_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "visible_ridge_minus_constant_mse",
+      "pass": true,
+      "detail": "+0.00309 [+0.00295, +0.00324]"
+    },
+    {
+      "name": "visible_ridge_minus_constant_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "visible_ridge_minus_constant_cor",
+      "pass": true,
+      "detail": "−0.06295 [−0.06591, −0.06008]"
+    },
+    {
+      "name": "visible_ridge_minus_constant_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "visible_model_minus_ridge_mse",
+      "pass": true,
+      "detail": "+0.05462 [+0.05405, +0.05519]"
+    },
+    {
+      "name": "visible_model_minus_ridge_mse_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "visible_model_minus_ridge_cor",
+      "pass": true,
+      "detail": "−0.07054 [−0.07325, −0.06777]"
+    },
+    {
+      "name": "visible_model_minus_ridge_cor_p",
+      "pass": true,
+      "detail": "<0.001"
+    },
+    {
+      "name": "boundary_Velocity mechanism = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_RK-G1 = false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_functional untouched not evaluated",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_generator training unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_3,630 Subtelny14 transcripts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "boundary_A8-RK · 109",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}
