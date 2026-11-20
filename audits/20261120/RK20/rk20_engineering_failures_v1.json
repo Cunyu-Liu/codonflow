@@ -10,6 +10,16 @@
       "protocol_or_scientific_endpoint_changed": false,
       "correction": "The test now checks the exact discrete support and a tolerant bootstrap-average expectation. Reproduction, pairing, and Spearman checks were retained.",
       "final_result": "14 passed, 4 pre-existing SciPy ConstantInputWarning warnings"
+    },
+    {
+      "stage": "comparison_summary_serialization",
+      "result": "first complete comparison invocation exited before writing summary and metric tables",
+      "cause": "The summary writer requested nonexistent protocol key cost_contract.timing_scope; the frozen protocol names this field gpu_cotenancy. Earlier invocation-only failures also used an incorrect interpreter path and omitted required CLI paths; neither changed data or predictions.",
+      "production_code_changed": true,
+      "production_change_scope": "summary-only key lookup changed from timing_scope to gpu_cotenancy; no metric, bootstrap, model, data, or selection code changed",
+      "protocol_or_scientific_endpoint_changed": false,
+      "correction": "Map timing_scope to the frozen gpu_cotenancy text and rerun the complete comparison and independent verification.",
+      "final_result": "pending rerun"
     }
   ],
   "functional_untouched_evaluated": false,

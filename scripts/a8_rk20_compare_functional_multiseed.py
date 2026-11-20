@@ -355,7 +355,7 @@ def main() -> None:
             "new_neural_runs": costs,
             "total_new_training_seconds": float(sum(item["training_seconds"] for item in costs)),
             "baseline_predictions": "reused_frozen_not_retrained",
-            "timing_scope": protocol["cost_contract"]["timing_scope"],
+            "timing_scope": protocol["cost_contract"]["gpu_cotenancy"],
         },
         "bootstrap": protocol["statistics"],
         "inputs": {
