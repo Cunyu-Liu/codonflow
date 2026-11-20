@@ -1,0 +1,280 @@
+{
+  "schema": "a8-rk20-finalization-verification-v1",
+  "status": "PASS_RK20_FINALIZATION",
+  "checks_passed": 67,
+  "checks_total": 67,
+  "checks": [
+    {
+      "name": "final_status",
+      "pass": true
+    },
+    {
+      "name": "independent_77",
+      "pass": true
+    },
+    {
+      "name": "independent_hash",
+      "pass": true
+    },
+    {
+      "name": "summary_hash",
+      "pass": true
+    },
+    {
+      "name": "paired_hash",
+      "pass": true
+    },
+    {
+      "name": "metrics_hash",
+      "pass": true
+    },
+    {
+      "name": "per_seed_hash",
+      "pass": true
+    },
+    {
+      "name": "bootstrap_hash",
+      "pass": true
+    },
+    {
+      "name": "execution_hash",
+      "pass": true
+    },
+    {
+      "name": "manifest_hash",
+      "pass": true
+    },
+    {
+      "name": "execution_complete",
+      "pass": true
+    },
+    {
+      "name": "six_new_two_reused",
+      "pass": true
+    },
+    {
+      "name": "training_cost",
+      "pass": true
+    },
+    {
+      "name": "mean_ribokinetic_all_row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean_ribokinetic_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean_ribokinetic_none_row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean_ribokinetic_none_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean_ridge_all_row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean_ridge_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean_ridge_gc_row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean_ridge_gc_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean_histgb_all_row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean_histgb_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "delta_ribokinetic_none_spearman",
+      "pass": true
+    },
+    {
+      "name": "ci_ribokinetic_none_spearman",
+      "pass": true
+    },
+    {
+      "name": "holm_ribokinetic_none_spearman",
+      "pass": true
+    },
+    {
+      "name": "pass_ribokinetic_none_spearman",
+      "pass": true
+    },
+    {
+      "name": "delta_ribokinetic_none_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "ci_ribokinetic_none_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "holm_ribokinetic_none_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "pass_ribokinetic_none_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "delta_ridge_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "ci_ridge_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "holm_ridge_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "pass_ridge_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "delta_ridge_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "ci_ridge_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "holm_ridge_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "pass_ridge_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "delta_ridge_gc_spearman",
+      "pass": true
+    },
+    {
+      "name": "ci_ridge_gc_spearman",
+      "pass": true
+    },
+    {
+      "name": "holm_ridge_gc_spearman",
+      "pass": true
+    },
+    {
+      "name": "pass_ridge_gc_spearman",
+      "pass": true
+    },
+    {
+      "name": "delta_ridge_gc_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "ci_ridge_gc_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "holm_ridge_gc_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "pass_ridge_gc_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "delta_histgb_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "ci_histgb_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "holm_histgb_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "pass_histgb_all_spearman",
+      "pass": true
+    },
+    {
+      "name": "delta_histgb_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "ci_histgb_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "holm_histgb_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "pass_histgb_all_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "two_of_eight",
+      "pass": true
+    },
+    {
+      "name": "per_seed_spearman",
+      "pass": true
+    },
+    {
+      "name": "per_seed_cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "robustness_false",
+      "pass": true
+    },
+    {
+      "name": "boundary_rk_g1_pass",
+      "pass": true
+    },
+    {
+      "name": "boundary_functional_untouched_evaluated",
+      "pass": true
+    },
+    {
+      "name": "boundary_expensive_generation_authorized",
+      "pass": true
+    },
+    {
+      "name": "boundary_external_sota_authorized",
+      "pass": true
+    },
+    {
+      "name": "boundary_sota_claimed",
+      "pass": true
+    },
+    {
+      "name": "boundary_velocity_mechanism_pass",
+      "pass": true
+    },
+    {
+      "name": "boundary_fixed_gfp_structure_mechanism_pass",
+      "pass": true
+    },
+    {
+      "name": "no_added_seeds",
+      "pass": true
+    }
+  ],
+  "functional_robustness_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "expensive_generation_authorized": false
+}
