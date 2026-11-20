@@ -1,0 +1,240 @@
+{
+  "check_count": 37,
+  "checks": [
+    {
+      "detail": "66ad7cb7b3776b32d0160c9f0bf2ec8bd2a57b64d2a421c7b16070710040f00a",
+      "name": "protocol/hash",
+      "pass": true
+    },
+    {
+      "detail": "PASS_CONSTANT_VELOCITY_PREPARATION",
+      "name": "preparation/pass",
+      "pass": true
+    },
+    {
+      "detail": 18,
+      "name": "preparation/checks",
+      "pass": true
+    },
+    {
+      "detail": "PASS_CONSTANT_VELOCITY_FIELD_PRODUCTION",
+      "name": "production/pass",
+      "pass": true
+    },
+    {
+      "detail": "PASS_CONSTANT_VELOCITY_INDEPENDENT",
+      "name": "independent/pass",
+      "pass": true
+    },
+    {
+      "detail": 361,
+      "name": "independent/all_checks",
+      "pass": true
+    },
+    {
+      "detail": 6.245004513516506e-17,
+      "name": "independent/numeric_delta",
+      "pass": true
+    },
+    {
+      "detail": "8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb",
+      "name": "independent/production_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "model_minus_constant_supported": false,
+        "model_minus_ridge_supported": false,
+        "ridge_minus_constant_supported": false
+      },
+      "name": "support/recomputed",
+      "pass": true
+    },
+    {
+      "detail": "all comparison fields independently checked within 1e-12",
+      "name": "primary/recomputed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "elapsed_seconds": 25.81757343420759,
+        "model_forward_passes": 0,
+        "new_checkpoint_selection_runs": 0,
+        "new_model_training_runs": 0,
+        "unique_scorer_calls": 0
+      },
+      "name": "cost/no_training",
+      "pass": true
+    },
+    {
+      "detail": {
+        "elapsed_seconds": 25.81757343420759,
+        "model_forward_passes": 0,
+        "new_checkpoint_selection_runs": 0,
+        "new_model_training_runs": 0,
+        "unique_scorer_calls": 0
+      },
+      "name": "cost/no_scorer_or_forward",
+      "pass": true
+    },
+    {
+      "detail": {
+        "bin_rule": "min(19, floor(relative_position * 20))",
+        "codon_identity_features": false,
+        "estimator": "Within each training transcript, average observed targets within each relative-position bin; then average those transcript-bin means equally across training transcripts.",
+        "evaluation_target_access_for_fit": false,
+        "fit_dataset": "Mohammad16",
+        "fit_split": "train",
+        "host_features": false,
+        "missing_bin_fallback": "Equal-weight mean of per-transcript mean targets across all training transcripts.",
+        "name": "train_relative_position_20bin_transcript_balanced_constant",
+        "new_checkpoint_selection": false,
+        "new_model_training": false,
+        "relative_position": "codon_position / (codon_count - 1)",
+        "relative_position_bins": 20,
+        "sequence_features": false
+      },
+      "name": "field/train_only",
+      "pass": true
+    },
+    {
+      "detail": "sequence/codon identity excluded",
+      "name": "field/no_sequence",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "field/no_evaluation_fit",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "gate/original_negative",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "gate/rk_g1_closed",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "gate/no_functional",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "gate/no_generator",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "gate/no_sota",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/production_report.json",
+      "name": "artifact/production_report_bytes",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/independent_report.json",
+      "name": "artifact/independent_report_bytes",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/per_transcript_metrics.csv.gz",
+      "name": "artifact/per_transcript_metrics_hash",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/constant_field.json",
+      "name": "artifact/constant_field_hash",
+      "pass": true
+    },
+    {
+      "detail": "PASS_SCHEMA_CORRECTION_BEFORE_SCIENTIFIC_READOUT",
+      "name": "correction/v1_protocol_unchanged",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "correction/v1_gates_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "ac96f97299d979de08fe05b13442e4075439d5c7f34852d21b7921f621445b5f",
+      "name": "correction/v1_log_hash",
+      "pass": true
+    },
+    {
+      "detail": "PASS_ORIGINAL_REPORT_KEY_MAPPING_CORRECTION",
+      "name": "correction/v2_protocol_unchanged",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "correction/v2_gates_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "7e85de4b9ec9d8653bafbbf5a90e57117d97c0fae9beaa5e919c07145a1162ea",
+      "name": "correction/v2_log_hash",
+      "pass": true
+    },
+    {
+      "detail": "PASS_ROUND_TRIP_FLOAT_PARSING_CORRECTION",
+      "name": "correction/v3_protocol_unchanged",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "correction/v3_gates_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "c04311ce9af789bfce5a1a201f0789b21acd35ebcf207f308d8066f55b43ca41",
+      "name": "correction/v3_log_hash",
+      "pass": true
+    },
+    {
+      "detail": "PASS_ORIGINAL_COMPARISON_LIST_ADAPTER",
+      "name": "correction/v4_protocol_unchanged",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "correction/v4_gates_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "0d0ce0680184a4d5584585756204cb306b07abdc8d22568c976f628ed70c1cbf",
+      "name": "correction/v4_log_hash",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK08/constant_velocity_field_unit_tests_v5.log",
+      "name": "tests/latest_ten_passed",
+      "pass": true
+    }
+  ],
+  "external_sota_claim_authorized": false,
+  "failed_checks": [],
+  "failed_count": 0,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "independent_sha256": "e4e4d70b6e517b6428a91e795ee273a555a53c043051942951fc82d28b643f27",
+  "passed_count": 37,
+  "production_sha256": "8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb",
+  "protocol_sha256": "66ad7cb7b3776b32d0160c9f0bf2ec8bd2a57b64d2a421c7b16070710040f00a",
+  "rk_g1_pass": false,
+  "schema_version": "a8-rk08-constant-velocity-field-finalization-v1",
+  "scientific_conclusion": "No frozen comparison met both endpoint-wise support criteria. The constant-field diagnostic does not rescue the learned model, the ridge baseline, or the original model-ridge mechanism claim.",
+  "status": "PASS_CONSTANT_VELOCITY_FIELD_CLOSEOUT",
+  "support": {
+    "model_minus_constant_supported": false,
+    "model_minus_ridge_supported": false,
+    "ridge_minus_constant_supported": false
+  },
+  "velocity_mechanism_pass": false
+}

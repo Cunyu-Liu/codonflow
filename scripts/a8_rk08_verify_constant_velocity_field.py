@@ -159,10 +159,12 @@ def independent_support(row: dict) -> bool:
     )
 
 
-def run(root: Path, protocol_path: Path) -> dict:
+def run(root: Path, protocol_path: Path, output_override: Path | None = None) -> dict:
     started = time.perf_counter()
     protocol = json.loads(protocol_path.read_text())
-    output = Path(protocol["independent_output"])
+    output = output_override or Path(protocol["independent_output"])
+    if not output.is_absolute():
+        output = root / output
     if output.exists():
         raise FileExistsError(f"refusing to overwrite independent report: {output}")
     production_path = Path(protocol["audit_output"])
@@ -357,8 +359,9 @@ def run(root: Path, protocol_path: Path) -> dict:
         "elapsed_seconds": time.perf_counter() - started,
     }
     save(output, report)
-    team_output = Path(protocol["artifact_root"]) / "independent_report.json"
-    team_output.write_bytes(output.read_bytes())
+    if output_override is None:
+        team_output = Path(protocol["artifact_root"]) / "independent_report.json"
+        team_output.write_bytes(output.read_bytes())
     return report
 
 
@@ -366,8 +369,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--protocol", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    report = run(args.root.resolve(), args.protocol.resolve())
+    report = run(args.root.resolve(), args.protocol.resolve(), args.output)
     print(json.dumps({key: report[key] for key in (
         "status", "check_count", "passed_count", "failed_count", "max_numeric_delta", "recomputed_support", "elapsed_seconds"
     )}, indent=2))
