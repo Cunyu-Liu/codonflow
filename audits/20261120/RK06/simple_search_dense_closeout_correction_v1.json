@@ -1,0 +1,63 @@
+{
+  "schema": "a8-rk06-simple-search-dense-closeout-correction-v1",
+  "overall_pass": true,
+  "retained_failures": [
+    {
+      "phase": "ppt_check_schema_adapter",
+      "symptom": "KeyError: pass; historical PPT checks use passed",
+      "report_written": false,
+      "log": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_schema_exception.console.log",
+      "correction": "adapt only candidate/initial/final PPT check aggregation to passed"
+    },
+    {
+      "phase": "readme_current_paper_hash",
+      "symptom": "34/35 CLOSEOUT_FAIL; README missing current v29 SHA256",
+      "report": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_v1_readme_token_failure.json",
+      "console_log": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_v1_readme_token_failure.console.log",
+      "correction": "add the frozen current v29 SHA256 to README"
+    },
+    {
+      "phase": "targeted_tests_wrong_python",
+      "symptom": "system Python import errors for torch and RNA; four PPT tests passed",
+      "console_log": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_targeted_tests_v1.console.log",
+      "correction": "use /root/miniconda3/envs/codonflow/bin/python"
+    }
+  ],
+  "final_evidence": {
+    "closeout_report": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_v1.json",
+    "closeout_console_log": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_v1.console.log",
+    "closeout_checks": "35/35 PASS",
+    "targeted_test_log": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_closeout_targeted_tests_v2.console.log",
+    "targeted_tests": "25/25 PASS",
+    "paper_verifier_log": "/home/codonflow-a8-rk/paper/a8_rk03_mage_oof_comparator_paper_closeout_v29.console.log",
+    "paper_verification": "61/61 PASS"
+  },
+  "file_sha256": {
+    "audits/20261120/RK06/simple_search_dense_closeout_schema_exception.console.log": "c384c6593fe5491f7da7c60884ec2f0e40d60bb7629edacd4eed3e9a051ada59",
+    "audits/20261120/RK06/simple_search_dense_closeout_v1_readme_token_failure.json": "40331e098323c189eb08aff8154fbfc19c930b4385253a044c098598398a99ed",
+    "audits/20261120/RK06/simple_search_dense_closeout_v1_readme_token_failure.console.log": "066467e31f0e50e6b1f8afff1b1d6be037d1f2138a6f1e50542727d031c14995",
+    "audits/20261120/RK06/simple_search_dense_closeout_targeted_tests_v1.console.log": "78dbe5c8edeecd601797bdc859c6308fabb70ee3931f1690bb4ade85dec60f40",
+    "audits/20261120/RK06/simple_search_dense_closeout_targeted_tests_v2.console.log": "419d5606d2a383e1f0a8ce710a4d86f0814412d7eec7863d45b508fd79404510",
+    "audits/20261120/RK06/simple_search_dense_closeout_v1.json": "f1db1a13ca8cb1f083b477e8bc11676d23ce17d25d45037ec33cbd7567598e82",
+    "audits/20261120/RK06/simple_search_dense_closeout_v1.console.log": "c3288790599cdfddf247c72fd359d0a4ebc09c1f43782226ed2800389adc242c",
+    "paper/a8_rk03_mage_oof_comparator_paper_closeout_v29.console.log": "72a7fcc9d6d243718e0452da4e3035067f680b55a84f9a7c730e6069378bba76",
+    "scripts/a8_rk06_verify_simple_search_dense_closeout.py": "987767cdd38cc3400f41684c4b7e28bc3668185fe7e4f8e592654b294edfe542"
+  },
+  "document_sha256": {
+    "handoff": "9c4d5e996c9fcf2f970b1a024e75c1968c7777f68d88b01154dcdd09d6f0540c",
+    "tasks": "11f181254a02f4da4ee9294f863f5afc8f7440c4ff29d43d8a899348626096c4",
+    "handoff_tasks": "eba172f2f607e84598da17a6a0ba02f373174a1f1747e0a434db474385b14ae3",
+    "registry": "dd17d26a435fdd2a01866aa955d63cbbd167ad1d62bacb19f9af276886733427",
+    "readme": "3cc3b81f2d11c5706723a590390b15870ba42e9e38573d102266f96b364b58cf"
+  },
+  "production_numerics_changed": false,
+  "ppt_page_changed": false,
+  "scientific_tolerances_changed": false,
+  "new_scorer_calls": 0,
+  "new_model_fits": 0,
+  "scientific_gate_passed": false,
+  "rk_g1_closed": false,
+  "manuscript_submittable": false,
+  "full_project_pytest_run": false,
+  "clean_environment_install_run": false
+}

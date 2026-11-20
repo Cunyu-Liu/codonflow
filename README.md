@@ -129,7 +129,52 @@ $PY scripts/a8_rk03_verify_mage_oof_comparator_closure.py \
 
 预期为 **9/9 tests、24/24 independent PASS**，容差 `1e-12`。primary 使用 20,000 construct bootstrap + 20,000 paired permutations，五检验统一 Holm；0 new fits、0 new scorer calls。full−outer-train-mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，Holm p=`0.020748962551872408`；full−RCS 与 RCS−intrinsic 的四项机制检验 Holm p=1。v1 协议技术失败、环境兼容失败和 v2 更正记录均保留，不得删除。
 
-在线主稿第 **104 页 `pgz`、revision 66** 已记录：候选 **20/20 PASS**，写后 **29/29 PASS**，前 103 页 ID/顺序保留，真实截图无裁切、重叠或缺失。构建器与写后核验器为 `scripts/a8_rk03_build_mage_oof_comparator_ppt.py`、`scripts/a8_rk03_verify_mage_oof_comparator_ppt.py`；后者只有在人工检查真实截图后才可传 `--visual-pass true`。小型报告在 `audits/20261120/RK03/`，大型 XML/截图在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_oof_comparator_v1/`。初版 29/31 过严备注验收和 verifier-only 更正记录保留。论文增量排在 RK06 当前精确基线更新之后，避免覆盖其稿件变更。
+在线主稿第 **104 页 `pgz`、revision 66** 已记录：候选 **20/20 PASS**，写后 **29/29 PASS**，前 103 页 ID/顺序保留，真实截图无裁切、重叠或缺失。构建器与写后核验器为 `scripts/a8_rk03_build_mage_oof_comparator_ppt.py`、`scripts/a8_rk03_verify_mage_oof_comparator_ppt.py`；后者只有在人工检查真实截图后才可传 `--visual-pass true`。小型报告在 `audits/20261120/RK03/`，大型 XML/截图在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_oof_comparator_v1/`。初版 29/31 过严备注验收和 verifier-only 更正记录保留。MAGE section 6.25 / A8 v29 已在 RK06 v28 之后完成，论文核验 **61/61 PASS**；当前稿件 SHA256=`be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444`，可重新执行以下只读核验：
+
+```bash
+$PY scripts/a8_rk03_verify_mage_oof_comparator_paper.py --root /home/codonflow-a8-rk
+```
+
+## RK06 unique18 dense production 复现与边界
+
+正式矩阵为 18 records × 3 seeds × 4 methods × `B=1…500`，共 **216 runs / 108,000 unique synonymous scorer calls**。dense AUC 是 `B=1…499` 的 HV 算术平均，B500 只作端点；normalized HV 不截断，外部乱序 actual sets 的 dense AUC 保持 null。每方法 54 runs / 27,000 calls。累计 wall-clock 为 uniform `20945.031473771203` s、hill-climbing `21077.843297181185` s、MH-annealing `20939.076001615264` s、AReUReDi-style `21015.123456662055` s；不是 time-matched 主比较。
+
+```bash
+cd /home/codonflow-a8-rk
+export PYTHONDONTWRITEBYTECODE=1
+PY=/root/miniconda3/envs/codonflow/bin/python  # Python 3.10.22 + NumPy 2.2.6 + ViennaRNA 2.7.2 + torch
+CFG=configs/a8_rk06_simple_search_dense_unique18_protocol_v1.json
+A=audits/20261120/RK06
+IND=/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_independent_v2
+
+$PY -m unittest scripts.tests.test_a8_rk06_simple_search_dense_unique18 -v
+$PY -m unittest scripts.tests.test_a8_rk06_verify_simple_search_dense_unique18 -v
+$PY -m unittest scripts.tests.test_a8_rk06_verify_simple_search_dense_ppt -v
+
+# 恢复既有正式矩阵；不要在未备份时覆盖冻结证据。
+$PY scripts/a8_rk06_simple_search_dense_unique18.py \
+  --protocol "$CFG" --workers 4 --resume
+
+# 逐 run 独立重算；大型 checks/arrays 留在 /teams。
+$PY scripts/a8_rk06_verify_simple_search_dense_unique18.py \
+  --protocol "$CFG" \
+  --production "$A/simple_search_dense_unique18_v1.json" \
+  --output "$A/simple_search_dense_independent_v2.json" \
+  --independent-root "$IND" --workers 4 --resume
+
+$PY scripts/a8_rk06_finalize_simple_search_dense_unique18.py
+$PY scripts/a8_rk06_verify_simple_search_dense_closeout.py
+```
+
+本次文档 closeout **35/35 PASS**，上述三个定向测试模块合计 **25/25 PASS**，当前 v29 论文核验 **61/61 PASS**。误用 system `python3` 导致的 `torch/RNA` 导入错误日志保留；正确环境为 `/root/miniconda3/envs/codonflow/bin/python`。closeout 的 PPT 字段适配和 README 暂缺 v29 SHA 失败历史也保留在 `simple_search_dense_closeout_correction_v1.json`。
+
+全新复现应复制协议并使用新的 `artifact_root` 与输出路径；此时脚本会正确标为非 formal，不得把 smoke 当正式矩阵。冻结协议 SHA256=`f144397909b6961d961dd86727003accc63f3fa4d316019686f4c649b52d95fb`，production SHA256=`d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052`。最终 independent **26/26 PASS**，finalization **44/44 PASS**；恢复前后 432 份 checks/arrays SHA256 完全不变，新 scoring calls=0。端点映射与 external-policy 的两次汇总 schema 失败、修复日志和 correction 均保留。
+
+六个 primary tests 为 **4/6 SUPPORTED**：hill-climbing 与 MH-annealing 相对 uniform 的 dense AUC/B500 HV 为正向；AReUReDi-style 两项显著负向并保留 NOT SUPPORTED。完整效应、CI、Holm p、方法均值与成本见 `$A/simple_search_dense_claims_v1.json`。这些结果只支持 unique18 development proxy-search，不支持功能效果、外部 SOTA、time-matched 优势、RK-G1 关闭或生成训练授权。
+
+RK06 section 6.24 / A8 v28 已通过 **24/24 checks + 73/73 candidate facts**，随后 MAGE section 6.25 生成当前 v29。`scripts/a8_rk06_update_paper_simple_search_dense.py` 即使传 `--help` 也会实际更新，当前 v29 上不得再次运行；RK06 v28 paper verifier 也不适用于 v29。当前稿件使用上面的 MAGE v29 verifier。
+
+在线 PPT 已在 104 页/revision 66 基线上只追加第 **105 页 `pZp`、revision 67**。候选 **50/50 PASS**，最终写后 **16/16 PASS**，真实截图人工验收；首次 14/16 和 verifier correction 保留。科学、论文与 PPT 证据提交分别为 `0bc9ddb8a6944974ad72dce91b3eb6fd8d81690d`、`a68b07b7171093b534ad7055d7fcbddea952f350`、`1fa4ca2cde0c1272d382947b2d9bf765208cc2a6`。本段未运行完整项目 `pytest tests/` 或干净环境安装。
 
 ## 目录
 

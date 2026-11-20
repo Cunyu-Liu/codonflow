@@ -1,0 +1,204 @@
+{
+  "schema": "a8-rk06-simple-search-dense-closeout-v1",
+  "overall_pass": true,
+  "status": "CLOSEOUT_PASS",
+  "check_counts": {
+    "total": 35,
+    "passed": 35,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "check": "sha256_production",
+      "pass": true,
+      "detail": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052"
+    },
+    {
+      "check": "sha256_independent",
+      "pass": true,
+      "detail": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df"
+    },
+    {
+      "check": "sha256_finalization",
+      "pass": true,
+      "detail": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947"
+    },
+    {
+      "check": "sha256_claims",
+      "pass": true,
+      "detail": "ddfccf0e6dd14bb99de4623e70e9ad93fe232a4ffded027304ae3ce2d6579ba0"
+    },
+    {
+      "check": "sha256_ppt_candidate",
+      "pass": true,
+      "detail": "b033ed43fb4f484cd85d7136ed6324512e89ab6e5293cfc30f8e83c0d905ba1e"
+    },
+    {
+      "check": "sha256_ppt_final",
+      "pass": true,
+      "detail": "d40919972e585953c97a2b19157772fd7b3e7ec80f36e2fdae2fa9bfe9ee6687"
+    },
+    {
+      "check": "sha256_paper",
+      "pass": true,
+      "detail": "be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444"
+    },
+    {
+      "check": "production_panel",
+      "pass": true
+    },
+    {
+      "check": "production_counts",
+      "pass": true
+    },
+    {
+      "check": "independent_counts",
+      "pass": true
+    },
+    {
+      "check": "finalization_counts",
+      "pass": true
+    },
+    {
+      "check": "claims_gate",
+      "pass": true
+    },
+    {
+      "check": "claims_counts",
+      "pass": true
+    },
+    {
+      "check": "primary_test_count",
+      "pass": true
+    },
+    {
+      "check": "primary_decision_count",
+      "pass": true
+    },
+    {
+      "check": "handoff_exact_scientific_numbers",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "handoff_decision_rows",
+      "pass": true
+    },
+    {
+      "check": "ppt_candidate_50",
+      "pass": true
+    },
+    {
+      "check": "ppt_initial_14_of_16_retained",
+      "pass": true
+    },
+    {
+      "check": "ppt_final_16",
+      "pass": true
+    },
+    {
+      "check": "ppt_page_identity",
+      "pass": true
+    },
+    {
+      "check": "ppt_old_pages_preserved",
+      "pass": true
+    },
+    {
+      "check": "ppt_candidate_binding",
+      "pass": true
+    },
+    {
+      "check": "ppt_correction_retained",
+      "pass": true
+    },
+    {
+      "check": "paper_v28_verification",
+      "pass": true
+    },
+    {
+      "check": "paper_v29_verification",
+      "pass": true
+    },
+    {
+      "check": "paper_increment_chain",
+      "pass": true
+    },
+    {
+      "check": "paper_sections",
+      "pass": true
+    },
+    {
+      "check": "paper_gate",
+      "pass": true
+    },
+    {
+      "check": "handoff_closeout_tokens",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "tasks_closeout_tokens",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "handoff_tasks_closeout_tokens",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "registry_closeout_tokens",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "readme_closeout_tokens",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "check": "no_stale_paper_sync_pending",
+      "pass": true,
+      "detail": {}
+    }
+  ],
+  "document_sha256": {
+    "handoff": "9c4d5e996c9fcf2f970b1a024e75c1968c7777f68d88b01154dcdd09d6f0540c",
+    "tasks": "11f181254a02f4da4ee9294f863f5afc8f7440c4ff29d43d8a899348626096c4",
+    "handoff_tasks": "eba172f2f607e84598da17a6a0ba02f373174a1f1747e0a434db474385b14ae3",
+    "registry": "dd17d26a435fdd2a01866aa955d63cbbd167ad1d62bacb19f9af276886733427",
+    "readme": "3cc3b81f2d11c5706723a590390b15870ba42e9e38573d102266f96b364b58cf"
+  },
+  "evidence_sha256": {
+    "production": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052",
+    "independent": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+    "finalization": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947",
+    "claims": "ddfccf0e6dd14bb99de4623e70e9ad93fe232a4ffded027304ae3ce2d6579ba0",
+    "paper_v28": "770d8feb1cbbda289fc4e13a360ca8d1a7e72604fa55fb5b93ba1096d826d5fa",
+    "paper_v29": "be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444",
+    "ppt_candidate": "b033ed43fb4f484cd85d7136ed6324512e89ab6e5293cfc30f8e83c0d905ba1e",
+    "ppt_final": "d40919972e585953c97a2b19157772fd7b3e7ec80f36e2fdae2fa9bfe9ee6687"
+  },
+  "deck": {
+    "slide_count": 105,
+    "revision_id": 67,
+    "last_slide_id": "pZp"
+  },
+  "scientific_gate_passed": false,
+  "rk_g1_closed": false,
+  "manuscript_submittable": false,
+  "new_scorer_calls": 0,
+  "full_project_pytest_run": false,
+  "clean_environment_install_run": false
+}

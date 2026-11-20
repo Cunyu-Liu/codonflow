@@ -220,4 +220,14 @@
 - [x] v1 的全局常数 Spearman 技术假设失败保留，v2 改为均值基线仅作 RMSE 推断。最终 9/9 tests、24/24 independent PASS；五检验 Holm、20,000 bootstrap + 20,000 paired permutations、三 outer-seed 点估计完整。科学证据 commit=`46f1b7f057f479da9547745c5fa657bdfff00a21`。
 - [x] full−mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，Holm p=`0.020748962551872408`，三 seeds 均负；full−RCS 与 RCS−intrinsic 四项机制检验 Holm p=1、CI 跨 0，敏感性方向不稳定。结论为优于均值但不等于机制增量，`DEV_NO_GO_TEST_UNTOUCHED` 与 RK-G1=false 不变。
 - [x] 在线 PPT 第 104 页 `pgz`、revision 66：候选 20/20、写后 29/29 PASS，前 103 页 ID/顺序保留，真实截图无裁切/重叠/缺失；初版 29/31 过严备注要求及 verifier-only 更正记录保留。未重复加页。
-- [ ] 论文 section/anchors 待 RK06 正在运行的精确基线更新结束后，再按最新实时稿件 append-only 同步；不得覆盖 RK06 论文增量。纯外部模型、常数速度场、functional untouched、transport、生成器授权和可投稿状态仍未关闭。
+- [x] 真实论文增量已完成：先由 RK06 updater 生成 A8 v28 / section 6.24，再以 v28 精确 SHA 为基线写入 MAGE section 6.25 / v29。MAGE paper verifier **61/61 PASS**，删除新 section/anchors 后逐字恢复 v28。当前稿件 SHA256=`be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444`，论文与快照 commit=`a68b07b7171093b534ad7055d7fcbddea952f350`。纯外部模型、常数速度场、functional untouched、transport、生成器授权和可投稿状态仍未关闭。
+
+### RK06 unique18 dense production 完成边界
+- [x] 冻结协议 `configs/a8_rk06_simple_search_dense_unique18_protocol_v1.json` 的正式矩阵已完成：18 records × 3 seeds × 4 methods × `B=1…500`，216 runs、108,000 unique synonymous scorer calls。dense AUC=`B=1…499` HV 算术平均，B500 仅端点；normalized HV 不截断，外部乱序 actual sets 不补零、不把 lambda 转 budget。
+- [x] production SHA256=`d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052`；independent SHA256=`2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df`，26/26 PASS；finalization SHA256=`bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947`，44/44 PASS。
+- [x] 216 个逐 run 独立重计算全部通过；恢复前后 432 份 checks/arrays SHA256 完全不变，新 scoring calls=0。端点别名和 external-policy 两次汇总 schema 失败均保留并修复：7/7、8/8 tests PASS；科学证据 commits=`3517115061ba6e6702f03deda3a2dfd29c18994c`、`28ec8c1ee1d9d23302ab9460e1a8a609153551ea`、`0bc9ddb8a6944974ad72dce91b3eb6fd8d81690d`。
+- [x] 六个 primary tests 为 4/6 SUPPORTED：hill-climbing−uniform dense AUC/B500 HV 与 MH-annealing−uniform dense AUC/B500 HV 获支持；AReUReDi-style−uniform 两项显著负向并保留 NOT SUPPORTED。完整数值、方法均值、双向 dominance 与成本见 `simple_search_dense_claims_v1.json` 和 handoff 第 33.3 节。
+- [x] A8 v28 / section 6.24 已写入并通过 24/24 checks、73/73 candidate facts；当前真实稿件已为 v29，不得再次执行 RK06 updater，也不得在 v29 上重跑只接受 v28 的 RK06 paper verifier。
+- [x] RK06 PPT 候选 50/50 PASS；在实时 104 页/revision 66 基线上只追加第 105 页 `pZp` / revision 67。首次写后 14/16，定位为服务端空白/default 属性规范化差异；verifier anti-weakening tests 4/4 PASS 后最终 16/16 PASS，真实截图人工验收。commit=`1fa4ca2cde0c1272d382947b2d9bf765208cc2a6`。
+- [x] 文档 closeout 35/35 PASS，冻结 `codonflow` 环境定向测试 25/25 PASS，当前 v29 论文核验 61/61 PASS；closeout 失败历史和 correction 均保留。
+- [ ] 不将上述 bounded 结果标为 RK06 全部完成：外部实际输出集的完整 dense 矩阵、time-matched、真实功能、untouched24、全任务外部 SOTA 和 CodonFlow-RK 生成训练仍未闭合；未读取 untouched/test，未启动昂贵生成训练。

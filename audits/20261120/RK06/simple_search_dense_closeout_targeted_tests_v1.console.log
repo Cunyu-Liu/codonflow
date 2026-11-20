@@ -1,0 +1,41 @@
+test_a8_rk06_simple_search_dense_unique18 (unittest.loader._FailedTest) ... ERROR
+test_a8_rk06_verify_simple_search_dense_unique18 (unittest.loader._FailedTest) ... ERROR
+test_method_label_change_is_not_normalized_away (scripts.tests.test_a8_rk06_verify_simple_search_dense_ppt.SlideServiceNormalizationTests) ... ok
+test_numeric_change_is_not_normalized_away (scripts.tests.test_a8_rk06_verify_simple_search_dense_ppt.SlideServiceNormalizationTests) ... ok
+test_service_default_attributes_and_whitespace_are_equivalent (scripts.tests.test_a8_rk06_verify_simple_search_dense_ppt.SlideServiceNormalizationTests) ... ok
+test_text_shape_alignment_is_not_treated_as_table_default (scripts.tests.test_a8_rk06_verify_simple_search_dense_ppt.SlideServiceNormalizationTests) ... ok
+
+======================================================================
+ERROR: test_a8_rk06_simple_search_dense_unique18 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_a8_rk06_simple_search_dense_unique18
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk06_simple_search_dense_unique18.py", line 8, in <module>
+    from scripts import a8_rk06_simple_search_dense_unique18 as production
+  File "/home/codonflow-a8-rk/scripts/a8_rk06_simple_search_dense_unique18.py", line 29, in <module>
+    from codonflow.models.guided_sampler import synonymous_x0
+  File "/home/codonflow-a8-rk/src/codonflow/models/guided_sampler.py", line 20, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+
+======================================================================
+ERROR: test_a8_rk06_verify_simple_search_dense_unique18 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_a8_rk06_verify_simple_search_dense_unique18
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk06_verify_simple_search_dense_unique18.py", line 12, in <module>
+    from scripts import a8_rk06_verify_simple_search_dense_unique18 as independent
+  File "/home/codonflow-a8-rk/scripts/a8_rk06_verify_simple_search_dense_unique18.py", line 18, in <module>
+    import RNA
+ModuleNotFoundError: No module named 'RNA'
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+FAILED (errors=2)

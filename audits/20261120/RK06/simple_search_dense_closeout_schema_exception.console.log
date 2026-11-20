@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "scripts/a8_rk06_verify_simple_search_dense_closeout.py", line 160, in <module>
+    main()
+  File "scripts/a8_rk06_verify_simple_search_dense_closeout.py", line 105, in main
+    check("ppt_candidate_50", candidate["status"] == "PASS" and len(candidate["checks"]) == 50 and all(row["pass"] for row in candidate["checks"]))
+  File "scripts/a8_rk06_verify_simple_search_dense_closeout.py", line 105, in <genexpr>
+    check("ppt_candidate_50", candidate["status"] == "PASS" and len(candidate["checks"]) == 50 and all(row["pass"] for row in candidate["checks"]))
+KeyError: 'pass'

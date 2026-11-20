@@ -234,3 +234,19 @@
 4. **Week 4 / RK-G3/G4**：独立与等时间是否重复，论文每个主张是否闭合？
 
 任何未通过项保留为未完成；不得换弱 baseline、重复使用 untouched、删除失败分层或用计划文档宣称 SOTA。
+
+## 2026-11-20 RK06 unique18 dense production closure
+- [x] 按冻结协议完成 18 records × 3 seeds × 4 methods × `B=1…500` 的真实 unique synonymous scorer 运行：216 runs、108,000 calls；dense AUC 为 `B=1…499` HV 算术平均，B500 仅端点，外部乱序 actual sets 的 dense AUC 保持 null。
+- [x] 216 个逐 run 独立重计算全部通过；最终 independent 26/26 PASS、finalization 44/44 PASS。恢复前后 432 份 checks/arrays SHA256 不变，新 scoring calls=0。端点映射与 external-policy 两次 verifier schema 失败及修复均保留，production 和科学数值未改。
+- [x] 六个冻结 primary comparisons 中 4/6 SUPPORTED：hill-climbing、MH-annealing 相对 uniform 的 dense AUC/B500 HV 为正向；AReUReDi-style 两项显著负向并保留 NOT SUPPORTED。完整效应、paired 95% CI、Holm p、方法均值和成本见 `audits/20261120/RK06/simple_search_dense_claims_v1.json` 与 handoff 第 33 节。
+- [x] 科学证据、失败日志、修正记录和 manifest 已提交推送：`3517115061ba6e6702f03deda3a2dfd29c18994c`、`28ec8c1ee1d9d23302ab9460e1a8a609153551ea`、`0bc9ddb8a6944974ad72dce91b3eb6fd8d81690d`。
+- [x] RK06 写入 A8 section 6.24 / v28，24/24 checks、73/73 candidate facts PASS；随后 MAGE comparator 写入 section 6.25 / v29，61/61 PASS。当前稿件 SHA256=`be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444`，提交 `a68b07b7171093b534ad7055d7fcbddea952f350`。
+- [x] 在线 PPT 在 104 页/revision 66 基线上只追加第 105 页 `pZp`，revision 67；candidate 50/50 PASS，最终写后 16/16 PASS，真实截图人工验收。首次 14/16 报告及 verifier correction 保留，提交 `1fa4ca2cde0c1272d382947b2d9bf765208cc2a6`。
+- [x] 文档 closeout 35/35 PASS；使用冻结 `codonflow` 环境复跑定向测试 25/25 PASS，当前 v29 论文核验 61/61 PASS。closeout 字段适配、README 哈希和错误 Python 环境的失败日志均保留，未改科学数值。
+- [ ] RK06 整体仍未完成：本项只是 unique18 development proxy-search evidence；LinearDesign/EnsembleDesign 等外部实际输出集的完整 dense 矩阵、统一 time-matched/forward/unique-scorer 成本、untouched24/真实功能和 CodonFlow-RK 外部 SOTA 仍开放。
+
+## 2026-11-20 RK03 MAGE OOF comparator closure
+- [x] 冻结 131 constructs × 3 outer seeds OOF comparator 完成，0 new fits、0 new scorer calls，9/9 tests、24/24 independent PASS。full−fold-specific outer-train mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，五检验 Holm p=`0.020748962551872408`，三个 seeds 均为负。
+- [x] full−RCS 与 RCS−intrinsic 的四项机制对照均 CI 跨零、Holm p=1，敏感性方向不稳定；结论保留为“优于均值，不等于机制增量”。科学证据 `46f1b7f057f479da9547745c5fa657bdfff00a21`，PPT/交接 `d1d3b8027818cb8926316d2a825ca52016de76b8`。
+- [x] MAGE 第 104 页 `pgz` 写后 29/29 PASS、真实截图通过；A8 section 6.25 / v29 已完成 61/61 核验，不再等待 RK06。
+- [ ] 纯外部预训练模型替代、独立常数速度场臂、functional untouched、transport 与 generator authorization 未闭合；33 个 mechanism-test constructs 未读取，RK-G1=false，`DEV_NO_GO_TEST_UNTOUCHED` 不变。
