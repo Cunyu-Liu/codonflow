@@ -1,0 +1,64 @@
+=== [prepare] 校验元数据并对候选文献验真 ===
+{
+  "status": "pass",
+  "stage": "prepare",
+  "needs_citation": "no",
+  "verification_mode": "skipped",
+  "verification_note": "",
+  "failures": [],
+  "result": {
+    "meta_sha256": "5f097b27815129ea7d6d5dfb4a91135b24c760ea1a18dca4684d2080d56b7d7e",
+    "candidates_sha256": ""
+  }
+}
+[prepare] 通过
+=== [write] 校验英文正文形态 ===
+{
+  "status": "pass",
+  "stage": "write",
+  "failures": [],
+  "warnings": [],
+  "result": {
+    "mode": "draft",
+    "citation_style": "apa7",
+    "word_count": 684,
+    "min_words": 150,
+    "max_words": 15000,
+    "headings": [
+      "the complete author model outperformed all-channel on sequence-ood"
+    ],
+    "input_sha256": "7506392f196deb4d0bf3445742a4b8c07d78b60606125c2f8ba8d462fa76fe24",
+    "meta_sha256": "5f097b27815129ea7d6d5dfb4a91135b24c760ea1a18dca4684d2080d56b7d7e",
+    "verified_refs_sha256": ""
+  }
+}
+[write] 通过
+[deliver] 终稿已生成 .workflow/paper_final.md
+DOC_ID=""
+DOC_URL=""
+write_lark_failure() { \
+		LARK_FAILURE_STEP="$1" \
+		LARK_FAILURE_REASON="$2" \
+		LARK_DOCUMENT_ID="${DOC_ID:-}" \
+		LARK_DOCUMENT_URL="${DOC_URL:-}" \
+		python3 -c 'import hashlib,json,os; from pathlib import Path; source=Path(".workflow/paper_final.md").read_text(encoding="utf-8-sig"); permission=Path(".workflow/lark_permission.json"); result={"source_sha256":hashlib.sha256(source.encode("utf-8")).hexdigest(),"failure_step":os.environ["LARK_FAILURE_STEP"],"document_id":os.environ.get("LARK_DOCUMENT_ID",""),"document_url":os.environ.get("LARK_DOCUMENT_URL",""),"permission_snapshot_file":".workflow/lark_permission.json","permission_snapshot_available":permission.is_file(),"permission_snapshot_sha256":hashlib.sha256(permission.read_bytes()).hexdigest() if permission.is_file() else ""}; payload={"status":"fail","stage":"deliver","failures":[os.environ["LARK_FAILURE_REASON"]],"result":result,"fix":"按失败步骤修复后重新运行 make deliver；不得绕过权限读回或飞书内容校验。"}; Path(".workflow/lark_check.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")'; \
+	}
+finish_with_status() { \
+		set +e; \
+		python3 scripts/status.py --workflow .workflow "$@"; \
+		status_rc=$?; \
+		set -e; \
+		exit "$status_rc"; \
+	}
+block_lark() { \
+		write_lark_failure "$1" "$2"; \
+		finish_with_status; \
+	}
+OUTPUT_TARGET=$(python3 -c 'import json; print(json.load(open(".workflow/meta.json", encoding="utf-8-sig"))["output_target"])'); \
+	if [ "$OUTPUT_TARGET" = "markdown_only" ]; then \
+		echo "=== [deliver] meta 指定 markdown_only，仅生成终稿 ==="; \
+		finish_with_status; \
+	fi
+=== [deliver] meta 指定 markdown_only，仅生成终稿 ===
+/bin/bash: finish_with_status: command not found
+make: *** [deliver] Error 127

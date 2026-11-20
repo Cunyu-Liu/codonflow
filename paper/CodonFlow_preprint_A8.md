@@ -890,6 +890,35 @@ Independent implementations reconstructed the static features, retrained the 61 
 
 This result establishes that the train-only author-structure model outperformed the frozen base-plus-UH comparator on this cross-protein, nonsynonymous ordinal-expression benchmark. It therefore supplies a stronger reference for subsequent CodonFlow comparisons, not evidence that CodonFlow-RK has outperformed the author model. The comparison does not establish fixed-protein synonymous causality, translation velocity, mRNA decay, the complete spatial-coupling mechanism, external SOTA, or functional untouched performance. The protein-OOD test split was reused and is not globally untouched. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.
 
+### 6.36 The complete author model outperformed all-channel on sequence-OOD
+
+Section 6.35 established the train-only Boël author model as a stronger reference, but the preceding multiseed mechanism comparison had used a different partition. RK25 therefore placed the complete author model and the mechanism models on identical records and training seeds. The author multiclass structure was refit using training data only within the RK20 train, development, test, and sequence-OOD partitions, which contained 4,019, 503, 490, and 1,336 rows, respectively, and 6,348 rows in total. The four frozen `ribokinetic_all` prediction sets and the frozen ridge_all and HistGB predictions were reused without retraining or retuning. The confirmatory partition was sequence-OOD; the functional untouched partition was not accessed.
+
+The three contrasts were all-channel minus author, author minus ridge_all, and author minus HistGB. Each estimand was the mean of the four per-seed effects rather than an ensemble of predictions. Inference used 20,000 hierarchical bootstrap replicates that resampled both operational protein clusters and the four training seeds, with seed 20261125. Six sequence-OOD endpoints formed one Holm family. For each left-minus-right contrast, a positive Spearman difference and a negative cluster-balanced MSE difference favored the left model. Development was used for pipeline validation and independent recomputation, not for selecting whether to report the OOD result; test results were descriptive. The frozen comparator chain required the mechanism-versus-author component and both author-reference components to pass, rather than a majority vote across the six endpoints.
+
+On sequence-OOD, mean Spearman was 0.209276 for all-channel, 0.427394 for the author model, 0.217873 for ridge_all, and 0.219383 for HistGB. Mean cluster-balanced MSE was 4.015838, 3.285231, 4.114318, and 3.989950, respectively. Both all-channel-minus-author endpoints favored the author model, whereas all four author-minus-reference endpoints favored the author model (Table 8). Thus, the mechanism component passed 0/2 endpoints, the author-reference component passed 4/4, and the strong comparator chain failed.
+
+**Table 8**
+
+*Frozen Sequence-OOD Comparison of All-Channel, the Author Model, and Reference Models*
+
+| Left minus right | Endpoint | Effect | 95% CI | Holm *p* | Outcome |
+|---|---|---:|---:|---:|---|
+| All-channel − author | Spearman | −0.218118 | [−0.272271, −0.163340] | 0 (empirical) | FAIL |
+| All-channel − author | Cluster-balanced MSE difference | +0.730607 | [0.534138, 0.925880] | 0 (empirical) | FAIL |
+| Author − ridge_all | Spearman | +0.209521 | [0.158816, 0.260293] | 0 (empirical) | PASS |
+| Author − ridge_all | Cluster-balanced MSE difference | −0.829087 | [−1.004941, −0.653270] | 0 (empirical) | PASS |
+| Author − HistGB | Spearman | +0.208011 | [0.157289, 0.258573] | 0 (empirical) | PASS |
+| Author − HistGB | Cluster-balanced MSE difference | −0.704720 | [−0.867224, −0.543449] | 0 (empirical) | PASS |
+
+*Note.* Effects are means across four per-seed differences. For MSE rows, the effect is the left-model loss minus the right-model loss, so a negative value favors the left model. Confidence intervals use 20,000 hierarchical protein-cluster and seed bootstrap replicates. All empirical sign-tail and Holm-adjusted values were zero because no opposite-direction tail occurred among the resamples; these empirical zeros do not imply a literally zero probability and do not override the direction of the point estimates or confidence intervals. CI denotes confidence interval; MSE denotes mean squared error.
+
+The reused test partition was summarized without additional confirmatory testing. Mean test Spearman was 0.226730 for all-channel, 0.408112 for the author model, 0.144896 for ridge_all, and 0.203076 for HistGB; mean cluster-balanced MSE was 4.236604, 3.634041, 4.257835, and 4.207758, respectively. These descriptive values did not alter the sequence-OOD gate. Even passing all six sequence-OOD endpoints would not, by itself, have authorized RK-G1 under the frozen protocol.
+
+Independent implementations reconstructed the author features and refit the development models without calling the RK25 production fitting function. Development acceptance passed 337/337 checks. A separate OOD verifier realigned every frozen prediction, recomputed all metrics and point effects, and independently reran the complete hierarchical bootstrap, passing 678/678 checks. The maximum production-versus-independent differences were 9.275 × 10⁻¹⁰ for development-refit predictions, 1.021 × 10⁻¹⁴ for all-partition predictions, 4.441 × 10⁻¹⁶ for metrics and point effects, 1.776 × 10⁻¹⁵ for bootstrap arrays, and 4.441 × 10⁻¹⁶ for confidence intervals and *p* values. The three production gates were independently reproduced. The retained engineering history includes 14/14 production synthetic tests, 4/4 independent statistical cross-tests, an initial prediction-schema correction, and a development-replay correction that permitted only a measured gzip CSV round-trip difference below 10⁻¹² while preserving exact identities, labels, clusters, and seeds. Scientific closeout and registry binding passed 89/89 checks.
+
+These results support author-reference superiority on this sequence-OOD benchmark but do not support an all-channel mechanism increment over the complete author model. Because the strong comparator chain failed, RK-G1 remains false and expensive generator training remains unauthorized. The comparison does not establish fixed-protein synonymous causality, translation velocity, mRNA decay, the complete spatial-coupling mechanism, CodonFlow-RK superiority, external SOTA, or functional untouched performance. Functional untouched data were not read, and the manuscript remains a non-submittable working draft.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1224,6 +1253,14 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK24 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |
 | RK24 manuscript draft check | `3b0501a949940e1719ccd365e9523bd4b176fb4275fba422fb71ad9226452bfa` |
 | RK24 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK25 frozen author-mechanism protocol | `26df69797a64e97db53ccb8b53255ca17d69af85f7c1ab3e76338cd500496909` |
+| RK25 frozen sequence-OOD result | `72d0f42b30685984a6592dcb2fba208765e3663562b819d1982099226c6fdf42` |
+| RK25 sequence-OOD predictions | `5c289704bc23a7e85351a5f52f54089f086f38434f3a824807af4b09d457d157` |
+| RK25 sequence-OOD production bootstrap | `10018793d3a24711554ce4ab1b98c76e14271c7fc1c9d2ea75ab4bf4ac41939f` |
+| RK25 independent OOD verification | `2fac738cc3373140de9628b069048f0e71cccd39eec95352559d0dfb9a83ab69` |
+| RK25 independent OOD bootstrap | `a86068da089f05fab00a13621e66493b2853e21197d3a491061ddce24c22c3c4` |
+| RK25 scientific closeout | `1d09a3f3896ce71cc95c0dfa12b95367a3ef060b34c478a05406595365bf140e` |
+| RK25 manuscript section | `7506392f196deb4d0bf3445742a4b8c07d78b60606125c2f8ba8d462fa76fe24` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 

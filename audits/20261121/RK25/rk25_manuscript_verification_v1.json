@@ -1,0 +1,329 @@
+{
+  "schema": "a8-rk25-manuscript-verification-v1",
+  "status": "PASS",
+  "original_sha256": "12949c09f3b4707c87bfdd4486d1ad761762a81264d1b9da6a5df9fbef4d6643",
+  "manuscript_sha256": "46db82d54dcc2e87c4f8bf3a71017b8dd9fe921eb18c337b8e81f96784902578",
+  "section_sha256": "7506392f196deb4d0bf3445742a4b8c07d78b60606125c2f8ba8d462fa76fe24",
+  "paper_final_sha256": "7506392f196deb4d0bf3445742a4b8c07d78b60606125c2f8ba8d462fa76fe24",
+  "result_sha256": "72d0f42b30685984a6592dcb2fba208765e3663562b819d1982099226c6fdf42",
+  "independent_sha256": "2fac738cc3373140de9628b069048f0e71cccd39eec95352559d0dfb9a83ab69",
+  "prepare_sha256": "d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8",
+  "draft_sha256": "4ed279c6a04e7ac06a6a4796591752550f3295aafcad8e1ecfdf5b5ae5a94ebf",
+  "status_sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9",
+  "workflow_status": "PASS",
+  "mode": "draft",
+  "output_target": "markdown_only",
+  "delivery_shell_failure_retained": true,
+  "checks_total": 76,
+  "checks_passed": 76,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "original frozen hash",
+      "pass": true
+    },
+    {
+      "name": "section occurs once",
+      "pass": true
+    },
+    {
+      "name": "section heading once",
+      "pass": true
+    },
+    {
+      "name": "eight RK25 evidence rows",
+      "pass": true
+    },
+    {
+      "name": "all prior manuscript text unchanged",
+      "pass": true
+    },
+    {
+      "name": "paper final byte text equals section",
+      "pass": true
+    },
+    {
+      "name": "paper final hash binds section",
+      "pass": true
+    },
+    {
+      "name": "prepare pass",
+      "pass": true
+    },
+    {
+      "name": "draft pass",
+      "pass": true
+    },
+    {
+      "name": "draft section hash",
+      "pass": true
+    },
+    {
+      "name": "draft 684 words",
+      "pass": true
+    },
+    {
+      "name": "three-state PASS",
+      "pass": true
+    },
+    {
+      "name": "draft mode remains explicit",
+      "pass": true
+    },
+    {
+      "name": "delivery shell failure retained",
+      "pass": true
+    },
+    {
+      "name": "independent OOD 678/678",
+      "pass": true
+    },
+    {
+      "name": "production result bound",
+      "pass": true
+    },
+    {
+      "name": "science gates false true false",
+      "pass": true
+    },
+    {
+      "name": "manuscript point ribokinetic_all boel_author spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low ribokinetic_all boel_author spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high ribokinetic_all boel_author spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript point ribokinetic_all boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low ribokinetic_all boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high ribokinetic_all boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript point boel_author ridge_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low boel_author ridge_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high boel_author ridge_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript point boel_author ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low boel_author ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high boel_author ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript point boel_author histgb_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low boel_author histgb_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high boel_author histgb_all spearman",
+      "pass": true
+    },
+    {
+      "name": "manuscript point boel_author histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI low boel_author histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "manuscript CI high boel_author histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood Spearman ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood MSE ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood Spearman boel_author",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood MSE boel_author",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood Spearman ridge_all",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood MSE ridge_all",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood Spearman histgb_all",
+      "pass": true
+    },
+    {
+      "name": "sequence_ood MSE histgb_all",
+      "pass": true
+    },
+    {
+      "name": "test Spearman ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "test MSE ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "test Spearman boel_author",
+      "pass": true
+    },
+    {
+      "name": "test MSE boel_author",
+      "pass": true
+    },
+    {
+      "name": "test Spearman ridge_all",
+      "pass": true
+    },
+    {
+      "name": "test MSE ridge_all",
+      "pass": true
+    },
+    {
+      "name": "test Spearman histgb_all",
+      "pass": true
+    },
+    {
+      "name": "test MSE histgb_all",
+      "pass": true
+    },
+    {
+      "name": "independent magnitude max_abs_dev_refit_prediction_difference",
+      "pass": true
+    },
+    {
+      "name": "independent magnitude max_abs_prediction_difference",
+      "pass": true
+    },
+    {
+      "name": "independent magnitude max_abs_metric_difference",
+      "pass": true
+    },
+    {
+      "name": "independent magnitude max_abs_bootstrap_difference",
+      "pass": true
+    },
+    {
+      "name": "independent magnitude max_abs_inference_difference",
+      "pass": true
+    },
+    {
+      "name": "required statement: Development acceptance passed 337/337 checks.",
+      "pass": true
+    },
+    {
+      "name": "required statement: passing 678/678 checks.",
+      "pass": true
+    },
+    {
+      "name": "required statement: Scientific closeout and registry binding passed 89/89 checks.",
+      "pass": true
+    },
+    {
+      "name": "required statement: the mechanism component passed 0/2 endpoints",
+      "pass": true
+    },
+    {
+      "name": "required statement: the author-reference component passed 4/4",
+      "pass": true
+    },
+    {
+      "name": "required statement: the strong comparator chain failed",
+      "pass": true
+    },
+    {
+      "name": "required statement: RK-G1 remains false and expensive generator training remains unauthorized",
+      "pass": true
+    },
+    {
+      "name": "required statement: Functional untouched data were not read",
+      "pass": true
+    },
+    {
+      "name": "required statement: the manuscript remains a non-submittable working draft",
+      "pass": true
+    },
+    {
+      "name": "required statement: do not imply a literally zero probability",
+      "pass": true
+    },
+    {
+      "name": "required statement: rather than a majority vote across the six endpoints",
+      "pass": true
+    },
+    {
+      "name": "no majority success claim",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 frozen author-mechanism protocol",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 frozen sequence-OOD result",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 sequence-OOD predictions",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 sequence-OOD production bootstrap",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 independent OOD verification",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 independent OOD bootstrap",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 scientific closeout",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK25 manuscript section",
+      "pass": true
+    }
+  ],
+  "old_manuscript_preserved_exactly": true,
+  "functional_untouched_evaluated": false,
+  "rk_g1": false
+}
