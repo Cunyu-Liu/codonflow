@@ -1,0 +1,259 @@
+{
+  "schema": "a8-rk26-manuscript-verification-v1",
+  "status": "PASS",
+  "original_sha256": "46db82d54dcc2e87c4f8bf3a71017b8dd9fe921eb18c337b8e81f96784902578",
+  "manuscript_sha256": "91e8bf226225d6d621617128618012b9333086646af9cd315b34be156f130f9a",
+  "section_sha256": "de359b8383544347f3a5edf9628a1b1147f4e27df273b08061ddec40a1db57e4",
+  "paper_final_sha256": "de359b8383544347f3a5edf9628a1b1147f4e27df273b08061ddec40a1db57e4",
+  "result_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "independent_sha256": "5a61826999015bc448636812e104ed0ff84a20f21b5efc522bf7be5a636632f0",
+  "closeout_sha256": "0c0deb52faebe180d93be2394269dc37c25e4aa3906e4b12f50b9e481ac7327c",
+  "prepare_sha256": "14af12ea04778f7848d230b1a06ec1b423004ce81e0b0ed1ad7246592a324e2d",
+  "draft_sha256": "da521151b9ac06ee88f40f221d3c79552b8a5bd7864de91093efb8966a30510a",
+  "status_sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9",
+  "update_report_sha256": "46395df212f79f4de13fbba291edeb32b390aa345b2cac909ded56c5a1f0e610",
+  "workflow_status": "PASS",
+  "mode": "draft",
+  "output_target": "markdown_only",
+  "delivery_shell_failure_retained": true,
+  "initial_insertion_failure_retained": true,
+  "checks_total": 57,
+  "checks_passed": 57,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "original frozen hash",
+      "pass": true
+    },
+    {
+      "name": "section occurs once",
+      "pass": true
+    },
+    {
+      "name": "section heading once",
+      "pass": true
+    },
+    {
+      "name": "nine RK26 evidence rows",
+      "pass": true
+    },
+    {
+      "name": "all prior manuscript text unchanged",
+      "pass": true
+    },
+    {
+      "name": "paper final byte text equals section",
+      "pass": true
+    },
+    {
+      "name": "paper final hash binds section",
+      "pass": true
+    },
+    {
+      "name": "draft mode",
+      "pass": true
+    },
+    {
+      "name": "Markdown-only target",
+      "pass": true
+    },
+    {
+      "name": "no citation task",
+      "pass": true
+    },
+    {
+      "name": "prepare pass",
+      "pass": true
+    },
+    {
+      "name": "draft pass",
+      "pass": true
+    },
+    {
+      "name": "draft section hash",
+      "pass": true
+    },
+    {
+      "name": "draft 595 words",
+      "pass": true
+    },
+    {
+      "name": "three-state PASS",
+      "pass": true
+    },
+    {
+      "name": "draft delivery reason",
+      "pass": true
+    },
+    {
+      "name": "delivery shell failure retained",
+      "pass": true
+    },
+    {
+      "name": "initial insertion failure retained",
+      "pass": true
+    },
+    {
+      "name": "update report pass",
+      "pass": true
+    },
+    {
+      "name": "update report manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "update report reconstruction",
+      "pass": true
+    },
+    {
+      "name": "independent feasibility 42/42",
+      "pass": true
+    },
+    {
+      "name": "closeout 54/54",
+      "pass": true
+    },
+    {
+      "name": "production result bound",
+      "pass": true
+    },
+    {
+      "name": "independent report bound",
+      "pass": true
+    },
+    {
+      "name": "science commit bound",
+      "pass": true
+    },
+    {
+      "name": "science outcome exact",
+      "pass": true
+    },
+    {
+      "name": "science no fit or endpoint",
+      "pass": true
+    },
+    {
+      "name": "science splits unread",
+      "pass": true
+    },
+    {
+      "name": "science no authorization",
+      "pass": true
+    },
+    {
+      "name": "retrospective role",
+      "pass": true
+    },
+    {
+      "name": "table caption once",
+      "pass": true
+    },
+    {
+      "name": "manuscript pair row 1-2",
+      "pass": true
+    },
+    {
+      "name": "manuscript pair row 2-3",
+      "pass": true
+    },
+    {
+      "name": "manuscript total row",
+      "pass": true
+    },
+    {
+      "name": "required statement: retrospective data-adequacy audit rather than a preregistered mechanism experiment",
+      "pass": true
+    },
+    {
+      "name": "required statement: Neither the original 33-construct MAGE mechanism-test set nor the RK04 functional-untouched split was accessed.",
+      "pass": true
+    },
+    {
+      "name": "required statement: This was a design-feasibility rule, not a power analysis.",
+      "pass": true
+    },
+    {
+      "name": "required statement: Only 6 synonymous single-codon variants and 4 synonymous double-codon variants remained",
+      "pass": true
+    },
+    {
+      "name": "required statement: No model was fitted, no functional endpoint was evaluated, and no confidence interval or *p* value was produced.",
+      "pass": true
+    },
+    {
+      "name": "required statement: this audit is not a negative result about the performance of positional or structural interaction models",
+      "pass": true
+    },
+    {
+      "name": "required statement: Synthetic tests passed 10/10",
+      "pass": true
+    },
+    {
+      "name": "required statement: Independent acceptance passed 42/42 checks",
+      "pass": true
+    },
+    {
+      "name": "required statement: closeout and registry binding passed 54/54 checks",
+      "pass": true
+    },
+    {
+      "name": "required statement: RK-G1 remains false and expensive generator training remains unauthorized",
+      "pass": true
+    },
+    {
+      "name": "required statement: the manuscript remains a non-submittable working draft",
+      "pass": true
+    },
+    {
+      "name": "required statement: do not support the proposed confirmatory cross-context model comparison",
+      "pass": true
+    },
+    {
+      "name": "no mechanism success claim",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 frozen pair-feasibility protocol",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 raw MAGE pair source",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 clean MAGE pair source",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 sequence-only pair facts",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 pair-feasibility result",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 independent pair-feasibility verification",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 scientific closeout",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 closeout verification",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK26 manuscript section",
+      "pass": true
+    }
+  ],
+  "old_manuscript_preserved_exactly": true,
+  "model_fits": 0,
+  "functional_endpoint_evaluations": 0,
+  "functional_untouched_evaluated": false,
+  "rk_g1": false,
+  "generator_training_authorized": false
+}

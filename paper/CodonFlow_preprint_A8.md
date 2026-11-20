@@ -919,6 +919,32 @@ Independent implementations reconstructed the author features and refit the deve
 
 These results support author-reference superiority on this sequence-OOD benchmark but do not support an all-channel mechanism increment over the complete author model. Because the strong comparator chain failed, RK-G1 remains false and expensive generator training remains unauthorized. The comparison does not establish fixed-protein synonymous causality, translation velocity, mRNA decay, the complete spatial-coupling mechanism, CodonFlow-RK superiority, external SOTA, or functional untouched performance. Functional untouched data were not read, and the manuscript remains a non-submittable working draft.
 
+### 6.37 Fixed-protein single-to-double synonymous OOD was not supported by MAGE pair coverage
+
+The preceding MAGE analyses left open whether a fixed-protein pair assay could support training on synonymous single-codon changes followed by OOD evaluation on synonymous double-codon changes. RK26 examined this candidate design without repeating the earlier nested cross-validation. Because initial schema and count exploration preceded protocol freezing, the analysis was designated a retrospective data-adequacy audit rather than a preregistered mechanism experiment. The formal production and independent implementations used only codon, amino-acid, position, and wild-type annotations. Fitness, expression, relative codon-sickness scores, folding energies, RBS features, and SD-like fields were excluded from the derived fact table. Neither the original 33-construct MAGE mechanism-test set nor the RK04 functional-untouched split was accessed.
+
+The raw pair table contained 8,192 constructs across two exhaustive 64 × 64 codon-pair contexts. Wild-type reconstruction from the standard genetic code identified `GCC;AAA` for positions 1–2 and `AAA;GAA` for positions 2–3. Mutation-order reconstruction classified the complete table into two wild-type controls, 252 single-codon variants in the pair assay, and 7,938 codon-pair variants. Fixed-protein synonymous subsets were then obtained by requiring the translated amino acid to match the corresponding wild-type residue at every changed position. The frozen feasibility rule required at least two synonymous singles and two synonymous doubles in each pair context so that the proposed OOD spread would not be defined by a singleton in either context. This was a design-feasibility rule, not a power analysis.
+
+**Table 9**
+
+*Fixed-Protein Synonymous Coverage in the MAGE-seq Codon-Pair Assay*
+
+| Pair context | WT codons | All rows | All single-codon variants | All codon-pair variants | Synonymous singles | Synonymous doubles | Coverage |
+|---|---|---:|---:|---:|---:|---:|---|
+| 1–2 | GCC;AAA | 4,096 | 126 | 3,969 | 4 | 3 | PASS |
+| 2–3 | AAA;GAA | 4,096 | 126 | 3,969 | 2 | 1 | FAIL |
+| Total | — | 8,192 | 252 | 7,938 | 6 | 4 | NOT FEASIBLE |
+
+*Note.* Synonymous subsets preserve the wild-type protein at every changed position. The coverage rule requires at least two synonymous single-codon variants and two synonymous double-codon variants within each pair context. It evaluates design feasibility only and is not a statistical power analysis. WT denotes wild type.
+
+Only 6 synonymous single-codon variants and 4 synonymous double-codon variants remained after fixed-protein filtering (Table 9). Pair 1–2 contained 4 synonymous singles and 3 synonymous doubles and therefore passed the coverage rule. Pair 2–3 contained 2 synonymous singles but only 1 synonymous double and therefore failed. Thus, the 8,192-row assay size did not translate into an adequately covered fixed-protein interaction-OOD design; most pair constructs were not synonymous with the wild-type protein. The resulting scientific outcome was `FIXED_PROTEIN_SINGLE_TO_DOUBLE_SYNONYMOUS_OOD_NOT_SUPPORTED_BY_SAMPLE_COVERAGE`. The four synonymous double-codon constructs remain available for descriptive study, but they do not support the proposed confirmatory cross-context model comparison.
+
+No model was fitted, no functional endpoint was evaluated, and no confidence interval or *p* value was produced. Consequently, this audit is not a negative result about the performance of positional or structural interaction models. It establishes only that the candidate confirmatory comparison could not be conducted with the required sample coverage. It also provides no evidence about protein OOD, translation velocity, mRNA decay, or spatial coupling.
+
+Synthetic tests passed 10/10 for both the production and independent implementations. An independent verifier reconstructed all 8,192 raw rows, reconciled the clean metadata, and compared every sequence-only derived fact without using fitness or other functional measurements. Independent acceptance passed 42/42 checks, and the production and independent pair-context counts agreed exactly. Subsequent closeout and registry binding passed 54/54 checks, including source, protocol, artifact, report, scientific-commit, and claim-boundary verification.
+
+RK26 therefore closes the proposed MAGE single-to-double synonymous OOD candidate on data-adequacy grounds while leaving the underlying mechanism question unresolved. RK-G1 remains false and expensive generator training remains unauthorized. The audit does not establish CodonFlow-RK superiority, external SOTA, functional untouched performance, or a complete mechanism result, and the manuscript remains a non-submittable working draft.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1261,6 +1287,15 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK25 independent OOD bootstrap | `a86068da089f05fab00a13621e66493b2853e21197d3a491061ddce24c22c3c4` |
 | RK25 scientific closeout | `1d09a3f3896ce71cc95c0dfa12b95367a3ef060b34c478a05406595365bf140e` |
 | RK25 manuscript section | `7506392f196deb4d0bf3445742a4b8c07d78b60606125c2f8ba8d462fa76fe24` |
+| RK26 frozen pair-feasibility protocol | `c49140ae2fe1ebbefa40290caa6b55774f16ae1949168936cb2c69bd205540b4` |
+| RK26 raw MAGE pair source | `873f4ef0b410fb1299217d7c5cf0ffd5c78947591c9f944da867c428bdf93672` |
+| RK26 clean MAGE pair source | `7acecf37b7ca432468a8e5c7a45ab6f471df41ae7d30d493cf8e4fe95e06edf1` |
+| RK26 sequence-only pair facts | `ad96263a513c986abcd62b71c7927704b927422be383dc5bc71d60abc4c4b531` |
+| RK26 pair-feasibility result | `264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851` |
+| RK26 independent pair-feasibility verification | `5a61826999015bc448636812e104ed0ff84a20f21b5efc522bf7be5a636632f0` |
+| RK26 scientific closeout | `2a3675f3c9d6fa5d0f98f36f8b125344a808afc81b21f415be9243f6a4595df0` |
+| RK26 closeout verification | `0c0deb52faebe180d93be2394269dc37c25e4aa3906e4b12f50b9e481ac7327c` |
+| RK26 manuscript section | `de359b8383544347f3a5edf9628a1b1147f4e27df273b08061ddec40a1db57e4` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
