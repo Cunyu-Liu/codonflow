@@ -635,7 +635,7 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - verifier 只增加上述等效规范化规则，并加入数字变化、方法名变化和非默认文本框对齐变化必须仍失败的回归测试，**4/4 PASS**。页面、候选、科学数值和容差均未修改。
 - 最终写后报告 **16/16 PASS**，SHA256 `d40919972e585953c97a2b19157772fd7b3e7ec80f36e2fdae2fa9bfe9ee6687`。首次失败报告与 `simple_search_dense_ppt_verifier_correction_v1.json` 均保留。
 - 真实服务端截图已人工检查：标题、三张 KPI 卡、六行 primary tests、四方法均值、结论、边界和 evidence footer 完整，无裁切、重叠或缺字。PPT 代码、候选、失败/最终报告和 correction 以 `1fa4ca2cde0c1272d382947b2d9bf765208cc2a6` 推送。
-- 当前在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>，**105 页、revision 67、末页 `pZp`**。RK06 baseline/readback、add response、candidate XML 和截图归档在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/ppt_simple_search_dense_v1/`。
+- RK06 closeout 时点的在线主稿：<https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g>，**105 页、revision 67、末页 `pZp`**；当前 G0 后续状态见第 35 节。RK06 baseline/readback、add response、candidate XML 和截图归档在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/ppt_simple_search_dense_v1/`。
 
 ### 34.3 仍未关闭
 - RK-G0 的统一完整 baseline 成本矩阵、UTR–CDS、raw-read/P-site、完整自然分布、train-only 校准及 Kudla 逐构建数据限制仍在；RK12/RK13 外部 actual-set dense 完整矩阵未因本页而完成。
@@ -646,3 +646,42 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - `scripts/a8_rk06_verify_simple_search_dense_closeout.py` 直接读取冻结 production/independent/finalization/claims、两份论文核验、PPT candidate/写后报告和当前 v29，对照 handoff、两个 tasks、registry 与 README；最终 **35/35 PASS**，报告为 `audits/20261120/RK06/simple_search_dense_closeout_v1.json`。
 - 使用 `/root/miniconda3/envs/codonflow/bin/python`（Python 3.10.22、NumPy 2.2.6、ViennaRNA 2.7.2）复跑 production、independent verifier 与 PPT verifier 定向测试，合计 **25/25 PASS**；当前 A8 v29 的 MAGE paper verifier 再次 **61/61 PASS**。
 - closeout 自身的三类失败均保留：PPT 历史检查项使用 `passed` 而非 `pass` 导致的适配异常、README 暂缺 v29 SHA 的 34/35 报告、误用 system Python 导致 `torch/RNA` 导入错误。分别只修核验器字段适配、README 哈希和运行环境；科学数值、production、PPT 页面及容差均未改变。详见 `simple_search_dense_closeout_correction_v1.json`。
+
+## 35. RK-G0 bounded readiness、统一成本、v30 与 PPT106 closeout
+
+### 35.1 冻结范围与真实失败
+
+- 本轮只汇总已存在的真实科学证据，没有重跑 baseline、重训模型或新增 scorer calls。v2 协议 `configs/a8_g0_closeout_protocol_v2.json` SHA256=`dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558`。
+- 冻结 22 份来源及 SHA256、22 个成本行和 20 个 gate/boundary checks。v1 以 `KeyError: lineardesign_unique_sequences` 失败；全量预检发现 10 个失效指针，涉及 LinearDesign/EnsembleDesign 输出与合法性字段以及 RK06 不存在的 legal-rate 字段。失败日志和 v1 协议均保留。
+- v2 没有覆盖 v1：LinearDesign/EnsembleDesign 改从 `method_summary` 读取实际输出和 identity rate，删除不可证实的 run/legal-rate 指针；RNARL 的 `clean_pairs` 改列为 `qc_pairs`，不把 QC 对数写成生成输出。科学源文件、测量值和既有结论均未修改。correction=`audits/20261120/RK06/g0_closeout_correction_v1.json`。
+
+### 35.2 统一成本与独立验收
+
+- 成本矩阵含 22 行：13 个范围有实测 wall-clock，9 个范围显式 null。external actual-set、official smoke、study-OOD、dense proxy search、availability-only 和 NOT_RUN 分开记录；null 表示未测量或不可归因，不是 0。不同硬件、重叠任务和评价范围不合成全局总成本，也不形成 time-matched 排名。
+- LinearDesign unique18 generation=5459.871640930884 s、131 actual-set outputs；EnsembleDesign=6001.057458210271 s、192 outputs。CAGFN total/training/inference=47.556745767593384/11.01/6.68 s；ID3 official wall=417.591162443161 s、12 runs；CodonTransformer model load+inference=6.471435410901904 s、4 inferences/2 unique CDS；VeloHARMO test+bounded GA=5.946522436104715 s；iXnos=10.537669897079468 s；ROSE=112.82697493582964 s；RiboMIMO study-OOD 三 seed=949.7424744511954 s。
+- RK06 四方法各 27,000 unique scorer calls，wall-clock 每方法约 20,939–21,078 s；这是 dense proxy-search 成本，不是与 external actual-set 的 time-matched 主比较。RNARL 只有 21 文件、260,754 raw rows、128,289 clean QC pairs 的 pair-table QC，官方模型未复现。
+- production=`audits/20261120/RK06/g0_unified_cost_closeout_v2.json`，179/179 PASS，SHA256=`c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583`；independent 357/357 PASS、max numeric delta=0，SHA256=`1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40`；定向反篡改测试 9/9 PASS；finalization 6/6 `PASS_BOUNDED_G0_CLOSEOUT`，SHA256=`9775981553bc830b9ac27aa19bf4eab5106a09901fb3863ba8e6ea8df66e4db2`。科学证据 commit=`c1f641a17f4f2157be0d498d24ba363674bd7617`，已推送。
+
+### 35.3 科学门禁与未闭合范围
+
+- 当前只为 `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`：Boël/MAGE/Mordstein 等真实功能数据可用、划分可靠，关键 baseline 已有真实可复现输出，dense 与 actual-set 评价器均经独立测试。它不是对所有数据源、所有官方模型或完整外部 SOTA 的豁免。
+- RK03-REMAINING 仅闭合为 `FEASIBILITY_CLOSED_NOT_FULL_REMAP`。CDGB source identity unresolved；COformer/CHARMING=NOT_RUN，不伪称 availability audit；Kudla 逐构建序列—表达表仍不可用。
+- external actual-set dense 完整矩阵、time-matched、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种和完整外部 SOTA 仍未闭合；functional-untouched、wet-lab 与前瞻 DBTL 未完成。RK-G1=false，generator_training_authorized=false，不能启动昂贵生成训练。
+
+### 35.4 真实论文 v30
+
+- 在 v29 精确 SHA 门禁下新增 §6.26 `Bounded RK-G0 readiness and unified cost ledger`，写入 13 个实测成本域、外部 actual-set null 成本、RNARL/CDGB/COformer/CHARMING 状态、RK03 feasibility 边界和全部验收计数。
+- 当前 `paper/CodonFlow_preprint_A8.md` 为 v30，SHA256=`6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a`；独立论文 verifier 127/127 PASS。删除新增 section 和 anchors 可逐字恢复 v29，v29/证据快照在 `paper/snapshots/g0_closeout_v30/`。论文 commit=`e8bf9d37ecee83e7caa2ec8997717e85e99f8d28`，已推送；仍为 non-submittable working manuscript。
+
+### 35.5 在线 PPT 第 106 页与证据归档
+
+- 写前实时基线为 105 页 / revision 67，末页 RK06=`pZp`；只追加一次，得到第 106 页 `pZg` / revision 68。新页包含四组验收 KPI、Generation/Evaluation 成本卡、RK06 成本带和 amber 研究边界带。
+- 写后整稿回读确认旧 105 页语义全部不变。最终科学验收 47/47 PASS，closeout 10/10 `PASS_G0_PPT_CLOSEOUT`；960×540 真实截图人工复核无裁切、重叠、缺字，视觉报告 PASS。初期 verifier 的字段名猜测与 `<br/>` tail 提取问题只修 verifier，不改科学证据或在线页面，correction 已保留。
+- PPT 脚本、47/47 报告、10/10 finalization、视觉报告、日志与 correction 已在 commit=`44ce165e7c74419ba26bf4b422a24fc691c3de8b` 提交并推送。大型 before/after XML、响应、截图和冻结输入归档于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1/`。
+
+### 35.6 后续纪律
+
+- 不重复执行 RK06/MAGE/G0 updater，不重复追加 `pZg`；任何后续在线写入必须重新只读获取实时基线。
+- 下一科学任务是在既有可靠数据上推进 RK-G1，先修数据/协议并保留负结果；G0 bounded pass 不授权 CodonFlow-RK 昂贵生成训练。
+- 本轮未在 G0/v30 后运行完整项目 `pytest tests/`、干净环境安装或真实端到端总复现；既有 RK11 的 289 passed/1 skipped 不能替代当前提交的全量回归。
+- 文档 closeout 使用 `scripts/a8_g0_verify_closeout_documents.py` 与 `tests/test_a8_g0_closeout_documents.py`：反篡改测试 8/8 PASS，独立文档/证据验收 83/83 PASS，报告为 `audits/20261120/RK06/g0_closeout_documentation_verification_v1.json`。初次本地路径假设、过严 generator 字符串检查和 system Python 缺 pytest 的失败均保留在 correction/日志；只修测试调用与核验器，不改科学数据、在线页面或容差。

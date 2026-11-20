@@ -1,0 +1,471 @@
+{
+  "schema": "a8-g0-closeout-documentation-verification-v1",
+  "status": "PASS_BOUNDED_G0_DOCUMENTATION_CLOSEOUT",
+  "overall_pass": true,
+  "scope": "Documentation/evidence closeout only; no online slide write, model fit, generator training, baseline rerun, or full-project regression.",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_id": "pZg",
+  "slide_number": 106,
+  "revision_id": 68,
+  "g0_status": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+  "rk_g1_passed": false,
+  "generator_training_authorized": false,
+  "check_counts": {
+    "passed": 83,
+    "total": 83
+  },
+  "checks": [
+    {
+      "name": "exists_protocol",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/configs/a8_g0_closeout_protocol_v2.json"
+    },
+    {
+      "name": "sha_protocol",
+      "pass": true,
+      "detail": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558"
+    },
+    {
+      "name": "exists_production",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_v2.json"
+    },
+    {
+      "name": "sha_production",
+      "pass": true,
+      "detail": "c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583"
+    },
+    {
+      "name": "exists_independent",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_independent_v1.json"
+    },
+    {
+      "name": "sha_independent",
+      "pass": true,
+      "detail": "1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40"
+    },
+    {
+      "name": "exists_science_final",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_finalization_v1.json"
+    },
+    {
+      "name": "sha_science_final",
+      "pass": true,
+      "detail": "9775981553bc830b9ac27aa19bf4eab5106a09901fb3863ba8e6ea8df66e4db2"
+    },
+    {
+      "name": "exists_science_correction",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_closeout_correction_v1.json"
+    },
+    {
+      "name": "sha_science_correction",
+      "pass": true,
+      "detail": "859702316cc9ff3e5af61b1dcba49c22b7b3ba228287ed7eee2d473a66b1e0fd"
+    },
+    {
+      "name": "exists_tests_log",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_closeout_targeted_tests_v1.console.log"
+    },
+    {
+      "name": "sha_tests_log",
+      "pass": true,
+      "detail": "808216c1e906665a6311eea3399af7e63a60328f6537b9bcf2f6f7027e943f4a"
+    },
+    {
+      "name": "exists_paper",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md"
+    },
+    {
+      "name": "sha_paper",
+      "pass": true,
+      "detail": "6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a"
+    },
+    {
+      "name": "exists_paper_verification",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/paper/a8_g0_closeout_paper_verification_v30.json"
+    },
+    {
+      "name": "exists_ppt_verification",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_ppt_verification_v01.json"
+    },
+    {
+      "name": "sha_ppt_verification",
+      "pass": true,
+      "detail": "11480df787565c9165f02185dde646987d51d0349c84eb1079c97689b44d04d6"
+    },
+    {
+      "name": "exists_ppt_final",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_ppt_closeout_finalization_v1.json"
+    },
+    {
+      "name": "sha_ppt_final",
+      "pass": true,
+      "detail": "7f9c08589d33375fa4cb9aadf5d8a6f6dcd1d070bf7f6156b4a2a86d5ed69f67"
+    },
+    {
+      "name": "exists_visual",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_ppt_visual_review_v01.json"
+    },
+    {
+      "name": "sha_visual",
+      "pass": true,
+      "detail": "634a34874f5e374b12bc9f0bfc14411da08cb8ed1e1ca0fbd6e4119561c4f8b6"
+    },
+    {
+      "name": "exists_ppt_correction",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_ppt_closeout_correction_v1.json"
+    },
+    {
+      "name": "sha_ppt_correction",
+      "pass": true,
+      "detail": "c374e66d738603e6a7f5a8eec9133a2fcd07eb7e8c9d4adcc2aec81339719220"
+    },
+    {
+      "name": "exists_screenshot",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1/g0_screenshots_v01/WB1KsYGualerMUddEzMcCw1En0g_p106_pZg.jpg"
+    },
+    {
+      "name": "sha_screenshot",
+      "pass": true,
+      "detail": "00f64ea5719ca179740f2ab6b4ffd1fefa305feb4a7b173955af14b0035fed0e"
+    },
+    {
+      "name": "production_counts_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_all_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_all_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_source_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "targeted_test_log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "bounded_status_and_open_gates",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "linear_cost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ensemble_cost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ribomimo_cost",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rnarl_qc_not_generation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_global_cost_sum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_v30_section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "paper_verification_127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ppt_47",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ppt_final_10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visual_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "commit_science_ancestor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "commit_paper_ancestor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "commit_ppt_ancestor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "readme_common_anchors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "readme_ppt_106_revision68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readme_generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_common_anchors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "tasks_root_ppt_106_revision68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_common_anchors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "tasks_handoff_ppt_106_revision68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_common_anchors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "handoff_ppt_106_revision68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_common_anchors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "registry_ppt_106_revision68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_g0_section_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_rk03_bounded_checked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_retained_failures_and_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_root_open_scope_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_g0_section_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_rk03_bounded_checked",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_retained_failures_and_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tasks_handoff_open_scope_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_section_35_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_subsections_complete",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_cost_and_source_boundaries",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "handoff_no_duplicate_slide_or_updater",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readme_g0_section_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readme_readonly_reproduction",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readme_cost_policy_and_gap",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK-G0-COST-READINESS_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK-G0-COST-READINESS_schema",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK18-WORKING-MANUSCRIPT-V30_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK18-WORKING-MANUSCRIPT-V30_schema",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK-G0-PPT-CLOSEOUT_once",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_CF-A8-RK-G0-PPT-CLOSEOUT_schema",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "registry_acceptance_and_open_boundaries",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "documentation_changed_from_bound_baseline",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "commits": {
+    "science": "c1f641a17f4f2157be0d498d24ba363674bd7617",
+    "paper": "e8bf9d37ecee83e7caa2ec8997717e85e99f8d28",
+    "ppt": "44ce165e7c74419ba26bf4b422a24fc691c3de8b"
+  },
+  "evidence_hashes": {
+    "protocol": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+    "production": "c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583",
+    "independent": "1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40",
+    "science_final": "9775981553bc830b9ac27aa19bf4eab5106a09901fb3863ba8e6ea8df66e4db2",
+    "science_correction": "859702316cc9ff3e5af61b1dcba49c22b7b3ba228287ed7eee2d473a66b1e0fd",
+    "tests_log": "808216c1e906665a6311eea3399af7e63a60328f6537b9bcf2f6f7027e943f4a",
+    "paper": "6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a",
+    "paper_verification": "c5043bdda89b85e1c1af4362ba0c3d0eab11b8198215ccdad7d27d864b8ee8c4",
+    "ppt_verification": "11480df787565c9165f02185dde646987d51d0349c84eb1079c97689b44d04d6",
+    "ppt_final": "7f9c08589d33375fa4cb9aadf5d8a6f6dcd1d070bf7f6156b4a2a86d5ed69f67",
+    "visual": "634a34874f5e374b12bc9f0bfc14411da08cb8ed1e1ca0fbd6e4119561c4f8b6",
+    "ppt_correction": "c374e66d738603e6a7f5a8eec9133a2fcd07eb7e8c9d4adcc2aec81339719220",
+    "screenshot": "00f64ea5719ca179740f2ab6b4ffd1fefa305feb4a7b173955af14b0035fed0e"
+  },
+  "baseline_document_sha256": {
+    "readme": "3cc3b81f2d11c5706723a590390b15870ba42e9e38573d102266f96b364b58cf",
+    "tasks_root": "11f181254a02f4da4ee9294f863f5afc8f7440c4ff29d43d8a899348626096c4",
+    "tasks_handoff": "eba172f2f607e84598da17a6a0ba02f373174a1f1747e0a434db474385b14ae3",
+    "handoff": "9c4d5e996c9fcf2f970b1a024e75c1968c7777f68d88b01154dcdd09d6f0540c",
+    "registry": "dd17d26a435fdd2a01866aa955d63cbbd167ad1d62bacb19f9af276886733427"
+  },
+  "current_document_sha256": {
+    "readme": "c4cac64ef4a2c250266bb3f89deb3dfd13f52bddf79a384103d4eb7ac45b549b",
+    "tasks_root": "d37a85685b8f4e91596963282cbfb98baae225725a15e842bd303593decdbb7f",
+    "tasks_handoff": "8dbd132791626702789e2eaf96bad706b8eaa89df9c8c10af01f5ee3686cb72b",
+    "handoff": "1034d1f8d1ee35f55fce9d0c5f2025a8e772902b5c79f33cd0a3bcf9a05f4e65",
+    "registry": "5545f1d62d9afcb26f0cc9ba64b46da028f2b0dca89bd082307337554683695f"
+  },
+  "full_project_pytest_run": false,
+  "clean_environment_install_run": false,
+  "online_slide_modified_by_this_verifier": false
+}

@@ -176,6 +176,39 @@ RK06 section 6.24 / A8 v28 已通过 **24/24 checks + 73/73 candidate facts**，
 
 在线 PPT 已在 104 页/revision 66 基线上只追加第 **105 页 `pZp`、revision 67**。候选 **50/50 PASS**，最终写后 **16/16 PASS**，真实截图人工验收；首次 14/16 和 verifier correction 保留。科学、论文与 PPT 证据提交分别为 `0bc9ddb8a6944974ad72dce91b3eb6fd8d81690d`、`a68b07b7171093b534ad7055d7fcbddea952f350`、`1fa4ca2cde0c1272d382947b2d9bf765208cc2a6`。本段未运行完整项目 `pytest tests/` 或干净环境安装。
 
+## A8-RK：RK-G0 bounded readiness 与统一成本 closeout
+
+**当前状态（2026-11-20）**：A8 工作稿为 v30，新增 §6.26；在线总稿为 106 页 / revision 68，末页 `pZg`。G0 仅达到 `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`，不是完整 RK-G0–G4、生成模型、外部 SOTA 或真实功能闭环。
+
+- 冻结 22 份真实来源及 SHA256，形成 22 行统一成本矩阵、20 个 gate/boundary checks；13 个范围有实测 wall-clock，9 个范围显式 null。null 表示未测量或不可归因，不是 0；不同硬件、任务和评价范围不求伪总和、不作 time-matched 排名。
+- production 179/179 PASS，独立复核 357/357 PASS / max delta=0，定向反篡改测试 9/9 PASS，finalization 6/6 PASS。科学证据 commit=`c1f641a17f4f2157be0d498d24ba363674bd7617`。
+- v1 的 `KeyError: lineardesign_unique_sequences` 与 10 个失效指针完整保留；v2 仅修读取路径和不可证实字段，没有修改科学源、重跑 baseline 或新增 scorer calls。详见 `audits/20261120/RK06/g0_closeout_correction_v1.json`。
+- LinearDesign unique18 generation=5459.871640930884 s / 131 outputs；EnsembleDesign=6001.057458210271 s / 192 outputs；RK06 四方法各 27,000 unique scorer calls、每方法约 20,939–21,078 s；RiboMIMO study-OOD 三 seed=949.7424744511954 s。外部 actual-set、official smoke、study-OOD 与 dense proxy search 不混排。
+- RK03-REMAINING 仅闭合为 `FEASIBILITY_CLOSED_NOT_FULL_REMAP`；RNARL 仍是 21 文件、260,754 raw rows、128,289 clean QC pairs 的 pair-table QC，不是官方生成或训练。CDGB source identity 未解决，COformer/CHARMING=NOT_RUN。
+- 论文 v30 SHA256=`6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a`，独立 127/127 PASS，commit=`e8bf9d37ecee83e7caa2ec8997717e85e99f8d28`。第 106 页科学验收 47/47、closeout 10/10、视觉复核 PASS，旧 105 页语义不变；PPT 证据 commit=`44ce165e7c74419ba26bf4b422a24fc691c3de8b`。
+- 大型 PPT XML、响应、截图与科学输入归档：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1/`。
+
+只读复核命令（不会追加在线页面或重跑生成器）：
+
+```bash
+cd /home/codonflow-a8-rk
+python3 scripts/a8_g0_verify_closeout.py \
+  --root /home/codonflow-a8-rk \
+  --protocol configs/a8_g0_closeout_protocol_v2.json \
+  --production audits/20261120/RK06/g0_unified_cost_closeout_v2.json \
+  --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_recheck_independent_v1.json \
+  --tests-log audits/20261120/RK06/g0_closeout_targeted_tests_v1.console.log \
+  --finalization-output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_recheck_finalization_v1.json
+python3 scripts/a8_g0_verify_paper_closeout.py --root /home/codonflow-a8-rk
+python3 scripts/a8_g0_verify_ppt_closeout.py \
+  --workdir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1
+python3 scripts/a8_g0_finalize_ppt_closeout.py \
+  --workdir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1
+python3 scripts/a8_g0_verify_closeout_documents.py --root /home/codonflow-a8-rk
+```
+
+仍未闭合：external actual-set dense 完整矩阵、time-matched、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、完整外部 SOTA、Kudla 逐构建表、functional-untouched、wet-lab/前瞻 DBTL。RK-G1=false，generator_training_authorized=false。本轮未在 G0/v30 后运行完整项目 `pytest tests/`、干净环境安装或端到端总复现。
+
 ## 目录
 
 ```

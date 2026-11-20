@@ -1,0 +1,59 @@
+{
+  "schema": "a8-g0-closeout-documentation-correction-v1",
+  "status": "PASS_DOCUMENTATION_VERIFIER_CORRECTION_ONLY",
+  "scope": "Corrections limited to documentation-verifier test invocation and string matching. No scientific source, measured value, manuscript, online slide, tolerance, or research gate was changed by these corrections.",
+  "corrections": [
+    {
+      "issue": "The first local unit-test invocation assumed the test file was already in the repository tests directory and raised FileNotFoundError for the verifier module.",
+      "resolution": "Allow CODONFLOW_ROOT and G0_VERIFIER_PATH overrides for local testing while retaining the repository-relative default used in production.",
+      "scientific_data_changed": false,
+      "online_slide_changed": false
+    },
+    {
+      "issue": "The initial documentation check incorrectly treated generator_training_authorized=false as if it contained the contiguous token unauthorized, producing four false failures.",
+      "resolution": "Accept either the explicit machine-readable generator_training_authorized=false boundary or the registry phrase generator unauthorized; retain anti-tamper tests for missing gates and altered slide IDs.",
+      "scientific_data_changed": false,
+      "online_slide_changed": false
+    },
+    {
+      "issue": "The first remote system-Python test attempt failed with /usr/bin/python3: No module named pytest.",
+      "resolution": "Preserve the system-Python failure log and rerun with /root/miniconda3/envs/codonflow/bin/python; final result is 8 passed plus 5 subtests.",
+      "failure_log": "audits/20261120/RK06/g0_closeout_documentation_tests_system_python_failure_v1.console.log",
+      "final_test_log": "audits/20261120/RK06/g0_closeout_documentation_tests_v1.console.log",
+      "scientific_data_changed": false,
+      "online_slide_changed": false
+    }
+  ],
+  "final_acceptance": {
+    "documentation_verification": "83/83 PASS_BOUNDED_G0_DOCUMENTATION_CLOSEOUT",
+    "tests": "8 passed, 5 subtests passed",
+    "paper_verification": "127/127 PASS",
+    "ppt_verification": "47/47 PASS",
+    "ppt_finalization": "10/10 PASS_G0_PPT_CLOSEOUT"
+  },
+  "hashes": {
+    "documentation_verifier_sha256": "d31e9309f0d9a07dda6ec9ff42975742cc1d8fbde412428beeb8945e5dde40ff",
+    "documentation_tests_sha256": "48275bd5836ca7e51a2a0f0064b451dd526dc29d69dacbacfb93a779a53dd043",
+    "documentation_report_sha256": "b9c2e7033aa942f9f77e76460c39dc44a3dd4d85e40c8d146042de8af9be447c",
+    "documentation_console_sha256": "46d04b33b9409ea9966ab309ef196d99fcfd8dacd23ce5e21c443315fea546dd",
+    "tests_log_sha256": "0ced1922ff806b02bcf64175c9c4cd1c7202ecfa6081d27bf235944c99b8983f",
+    "system_python_failure_log_sha256": "b72695fcb3e2889d64484497e2ea8079822f1532c2505f226cde970957bedf7d"
+  },
+  "current_document_sha256": {
+    "readme": "c4cac64ef4a2c250266bb3f89deb3dfd13f52bddf79a384103d4eb7ac45b549b",
+    "tasks_root": "d37a85685b8f4e91596963282cbfb98baae225725a15e842bd303593decdbb7f",
+    "tasks_handoff": "8dbd132791626702789e2eaf96bad706b8eaa89df9c8c10af01f5ee3686cb72b",
+    "handoff": "1034d1f8d1ee35f55fce9d0c5f2025a8e772902b5c79f33cd0a3bcf9a05f4e65",
+    "registry": "5545f1d62d9afcb26f0cc9ba64b46da028f2b0dca89bd082307337554683695f"
+  },
+  "boundaries": {
+    "g0_status": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+    "rk_g1_passed": false,
+    "generator_training_authorized": false,
+    "full_project_pytest_run": false,
+    "clean_environment_install_run": false,
+    "complete_sota": false,
+    "functional_untouched_evaluated": false,
+    "wet_lab_validation_complete": false
+  }
+}

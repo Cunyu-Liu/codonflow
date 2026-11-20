@@ -37,7 +37,7 @@
 - [x] CF-A8-RK18-WORKING-MANUSCRIPT-V5：A8 新增 EnsembleDesign example/C01 结果、EFE 口径、双独立复核、finalization 和五份证据哈希；A7 未改。A8 SHA256=`505c42f61e21ab1cb03f54ee661adf005f6fa996e17ffec5ae6ed481fe2f8eca`，独立 **16/16 PASS**；仍为 non-submittable working manuscript。
 - [x] CF-A8-RK05-ENSEMBLEDESIGN-PPT：既有在线主稿追加第 73 页 `pgO`、revision=35，记录固定源码、example/C01 EFE、bounded 参数、双 13/13 独立 PASS、11/11 finalization、v1 retained failure 和 EFE≠LinearDesign MFE。独立写后验证 **10/10 PASS**，前 72 页 slide ID 与语义 XML 全部不变。commit `9986974ac46cc65aaf0708e509e9ad5ff2cfb2af`。
 - [x] CF-A8-RK03-MAGE-DEVELOPMENT-NESTED-CV：固定 infA、rich medium、positions 10–71 的原 train+dev=131 constructs 完成 5-fold outer/4-fold inner nested CV，原 33 test constructs 在记录表、fold、特征、拟合、预测和指标中完全排除。full−intrinsic ΔRMSE=`+0.000094928`，95% CI=`[-0.001417567,0.001456402]`；full−local-MFE ΔRMSE=`−0.000155645`，95% CI=`[-0.000999395,0.000600285]`；四项 Holm p=1.0，两个敏感性 seeds 未满足方向一致性。最终 `DEV_NO_GO_TEST_UNTOUCHED`，独立 raw-source **96/96 PASS**、全部数值差 0，finalization **30/30 PASS**；v1 NO-GO 不改写，无 test/transport/RK-G1/生成器授权。A8 v26 新增 6.22，论文核验 **54/54 PASS**（候选事实 29/29），v25 可逐字恢复；生产协议与生产器 commit=`b6f9f09c9873cab7af4d8b321f2bd9a452fbb8d7`。
-- [ ] RK03-REMAINING：完成 UTR–CDS 映射/raw read 或 P-site 独立重比对可行性报告、VeloHARMO 其余物种真实可获得性追踪；不得把 processed-matrix QC 写成机制或模型闭环。
+- [x] RK03-REMAINING（bounded source-feasibility）：完成 UTR–CDS 映射/raw read 或 P-site 独立重比对可行性报告、VeloHARMO 其余物种真实可获得性追踪；最终状态为 `FEASIBILITY_CLOSED_NOT_FULL_REMAP`。这不代表 full UTR–CDS remap、四物种信号 matrix、五物种模型覆盖或完整 RK03 main 已完成。
 - [x] CF-A8-RK03-MAGE-DEVELOPMENT-PPT：既有在线主稿追加第 **102 页 `pgj`（revision 64）**，以三 KPI、四行主对比、设计与独立复核侧栏记录 nested-development NO-GO、敏感性方向失败和 test/protein-OOD/普遍证伪边界。候选写前 **52/52 PASS**，整稿写后 **79/79 PASS**；前 101 页语义 XML 完全不变，新页与候选语义一致。`--index` 参数拒绝、标题/徽章 3 px 交叠 lint 和初版字段映射 78/79 均保留并修正；未绕过 lint。PPT 仅记录已核验结果，不产生 test/transport/RK-G1/生成器结论。
 
 以上完成项不证明真实功能、机制、外部 SOTA 或新架构有效。
@@ -231,3 +231,14 @@
 - [x] RK06 PPT 候选 50/50 PASS；在实时 104 页/revision 66 基线上只追加第 105 页 `pZp` / revision 67。首次写后 14/16，定位为服务端空白/default 属性规范化差异；verifier anti-weakening tests 4/4 PASS 后最终 16/16 PASS，真实截图人工验收。commit=`1fa4ca2cde0c1272d382947b2d9bf765208cc2a6`。
 - [x] 文档 closeout 35/35 PASS，冻结 `codonflow` 环境定向测试 25/25 PASS，当前 v29 论文核验 61/61 PASS；closeout 失败历史和 correction 均保留。
 - [ ] 不将上述 bounded 结果标为 RK06 全部完成：外部实际输出集的完整 dense 矩阵、time-matched、真实功能、untouched24、全任务外部 SOTA 和 CodonFlow-RK 生成训练仍未闭合；未读取 untouched/test，未启动昂贵生成训练。
+
+## 2026-11-20：RK-G0 bounded readiness、统一成本与论文/PPT closeout
+
+- [x] **真实来源与协议**：冻结 22 份来源及 SHA256、22 个成本行、20 个 gate/boundary checks。v1 的 `KeyError: lineardesign_unique_sequences` 和 10 个失效指针保留；v2 只修协议读取与不可证实字段，科学源和测量值未改，baseline 重跑与新增 scorer calls 均为 0。
+- [x] **独立验收**：production 179/179 PASS；独立 verifier 357/357 PASS、max numeric delta=0；定向反篡改测试 9/9 PASS；finalization 6/6 `PASS_BOUNDED_G0_CLOSEOUT`。证据提交 `c1f641a17f4f2157be0d498d24ba363674bd7617` 已推送。
+- [x] **统一成本**：13 个范围有实测 wall-clock，9 个范围显式 null；null 不是 0。LinearDesign unique18=5459.871640930884 s/131 outputs，EnsembleDesign=6001.057458210271 s/192 outputs；RK06 四方法各 27,000 unique scorer calls、每方法约 20,939–21,078 s；RiboMIMO study-OOD 三 seed=949.7424744511954 s。不同硬件、任务和评价范围不合成伪总成本，也不形成 time-matched 排名。
+- [x] **G0 结论**：状态仅为 `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`。Boël/MAGE/Mordstein 等真实功能数据、可靠划分、关键 baseline 输出、dense 与 actual-set 评价器具有 bounded readiness；不是所有数据源、官方模型或完整外部 SOTA 的豁免。RK03-REMAINING 仅闭合为 `FEASIBILITY_CLOSED_NOT_FULL_REMAP`。
+- [x] **论文 v30**：新增 §6.26 `Bounded RK-G0 readiness and unified cost ledger`，SHA256=`6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a`；独立论文验收 127/127 PASS，v29 可精确恢复。提交 `e8bf9d37ecee83e7caa2ec8997717e85e99f8d28` 已推送。
+- [x] **在线 PPT**：第 106 页 `pZg`、revision 68；旧 105 页语义全部保持不变。页面科学验收 47/47 PASS、closeout 10/10 `PASS_G0_PPT_CLOSEOUT`、真实截图视觉复核 PASS。PPT 脚本、报告、日志和 correction 已在 `44ce165e7c74419ba26bf4b422a24fc691c3de8b` 提交并推送；大型 XML/响应/截图归档于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/g0_closeout_ppt_v1/`。
+- [ ] **仍未闭合**：external actual-set dense 完整矩阵、time-matched、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、完整外部 SOTA、Kudla 逐构建序列—表达表、functional-untouched 和 wet-lab/前瞻 DBTL。RK-G1=false，generator_training_authorized=false；不得启动昂贵生成训练或把本 closeout 写成 RK-G0–G4 全部通过。
+- [ ] **复现边界**：本轮未在 G0/v30 后运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；179/357/9/6、127/127、47/47 与 10/10 只覆盖各自冻结证据和定向验收。
