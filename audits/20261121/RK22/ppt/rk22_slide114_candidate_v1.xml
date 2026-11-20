@@ -1,0 +1,77 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style><fill><fillColor color="rgba(248, 250, 252, 1)"/></fill></style>
+  <data>
+    <shape type="text" topLeftX="48" topLeftY="26" width="560" height="14"><content fontSize="9.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>CODONFLOW / A8-RK · FIXED-PROTEIN MECHANISM</p></content></shape>
+    <shape type="text" topLeftX="48" topLeftY="26" width="864" height="14"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>RK22 · KUDLA + TAGGED</p></content></shape>
+    <shape type="text" topLeftX="48" topLeftY="47" width="864" height="36"><content textType="headline" fontSize="28" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>5′ MFE adds fixed-GFP signal beyond simple proxies</p></content></shape>
+    <shape type="rect" topLeftX="48" topLeftY="91" width="56" height="4" presetHandlers="0"><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="116" topLeftY="84" width="796" height="16"><content fontSize="11" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>150 exact-CDS groups · 10 seeds × 5-fold OOF · 71 paired tagged CDS</p></content></shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="60" topLeftY="118" width="174" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>HISTGB SPEARMAN GAIN</p></content></shape>
+    <shape type="text" topLeftX="60" topLeftY="132" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.262</p></content></shape>
+    <shape type="text" topLeftX="60" topLeftY="160" width="174" height="12"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.231, 0.292]</p></content></shape>
+
+    <shape type="round-rect" topLeftX="270" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="282" topLeftY="118" width="174" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>HISTGB MSE IMPROVEMENT</p></content></shape>
+    <shape type="text" topLeftX="282" topLeftY="132" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" textAlign="left" wrap="false"><p>+0.062</p></content></shape>
+    <shape type="text" topLeftX="282" topLeftY="160" width="174" height="12"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Holm p = 0.0078125</p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="504" topLeftY="118" width="174" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>TAGGED PAIRED SPEARMAN</p></content></shape>
+    <shape type="text" topLeftX="504" topLeftY="132" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>0.566</p></content></shape>
+    <shape type="text" topLeftX="504" topLeftY="160" width="174" height="12"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.379, 0.706]</p></content></shape>
+
+    <shape type="round-rect" topLeftX="714" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="726" topLeftY="118" width="174" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>INDEPENDENT ACCEPTANCE</p></content></shape>
+    <shape type="text" topLeftX="726" topLeftY="132" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" textAlign="left" wrap="false"><p>63 / 63</p></content></shape>
+    <shape type="text" topLeftX="726" topLeftY="160" width="174" height="12"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>OOF + RANDOMIZATION</p></content></shape>
+
+    <shape type="text" topLeftX="48" topLeftY="194" width="620" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Adding measured 5′ MFE improves both model families</p></content></shape>
+    <shape type="text" topLeftX="684" topLeftY="196" width="228" height="14"><content fontSize="10" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>Mean across 10 frozen seeds</p></content></shape>
+    <table topLeftX="48" topLeftY="220" width="864" height="104">
+      <colgroup><col width="124"/><col width="142"/><col width="154"/><col width="224"/><col width="220"/></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Model</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Simple Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>+ 5′ MFE Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Spearman gain [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>MSE: simple → +MFE</p></content></td>
+      </tr>
+      <tr height="38">
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>Ridge</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>-0.040</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.679</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.718 [0.682, 0.755]</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.1748 → 0.0904</p></content></td>
+      </tr>
+      <tr height="38">
+        <td><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>HistGB</p></content></td>
+        <td><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.455</p></content></td>
+        <td><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.717</p></content></td>
+        <td><content fontSize="10.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.262 [0.231, 0.292]</p></content></td>
+        <td><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.1472 → 0.0852</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="344" width="420" height="106" presetHandlers="10"><fill><fillColor color="rgba(240, 253, 250, 1)"/></fill><border color="rgba(153, 246, 228, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="354" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Paired leader evidence</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="380" width="388" height="58"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.15" textAlign="left"><p>Weaker measured 5′ structure tracks higher paired expression.</p><p>Adjusted coefficient = 0.0988; 95% CI [0.0642, 0.1336].</p><p>Holm p = 0.000050 · no tagged CAI/GC deltas imputed.</p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="344" width="420" height="106" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="354" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Development pass, not protein OOD</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="380" width="388" height="58"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.15" textAlign="left"><p>Single fixed GFP; no velocity/decay or functional untouched.</p><p>No CodonFlow-RK or SOTA result; generator training unauthorized.</p><p>RK-G1 = false; paired leader evidence is not sole-cause proof.</p></content></shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="466" width="864" height="34" presetHandlers="8"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="66" topLeftY="475" width="828" height="16"><content fontSize="10" fontFamily="Inter" color="rgba(154, 52, 18, 1)" bold="true" textAlign="center" wrap="false"><p>4/4 main + 2/2 paired endpoints PASS · 10/10 positive seeds for every main endpoint · untouched unread</p></content></shape>
+    <shape type="text" topLeftX="48" topLeftY="514" width="728" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Source: RK22 audit 63/63 · protocol 48eea1e2 · verified evidence b506bf4d</p></content></shape>
+    <shape type="text" topLeftX="776" topLeftY="514" width="136" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>114 · RK22</p></content></shape>
+  </data>
+  <note><content>
+    <p>RK22 was frozen before model fitting and uses 154 Kudla measurements aggregated to 150 exact-CDS groups, with 10 seeds and five-fold out-of-fold evaluation; the tagged analysis uses 72 measurements aggregated to 71 exact-CDS groups.</p>
+    <p>Adding measured 5-prime MFE increases mean HistGB out-of-fold Spearman from 0.455130 to 0.717246 and reduces MSE from 0.147232 to 0.085159; Ridge increases Spearman from minus 0.039653 to 0.678782 and reduces MSE from 0.174779 to 0.090442.</p>
+    <p>All four primary structure-increment endpoints are positive in 10 of 10 seeds, exclude zero in their bootstrap intervals and have Holm-adjusted p equal to 0.0078125; the HistGB Spearman gain is 0.262115 with interval 0.230765 to 0.292225.</p>
+    <p>The paired leader analysis gives Spearman 0.565992 with interval 0.378594 to 0.706085, and the CAI/GC/GC3-adjusted MFE-change coefficient is 0.098815 with interval 0.064230 to 0.133576; both tagged endpoints pass, without inventing tagged CAI or GC changes.</p>
+    <p>Independent verification passed 63 of 63 checks, including every out-of-fold prediction and randomization array. This is fixed-GFP development evidence, not protein OOD, velocity, decay, functional untouched, CodonFlow-RK or SOTA evidence; RK-G1 remains false and generator training remains unauthorized (protocol commit 48eea1e2bd194b80e9c169e9420a3185e65fcb85; verified evidence commit b506bf4deca5eb229bf683ceb7ebb12ef1141833).</p>
+  </content></note>
+</slide>

@@ -1,0 +1,237 @@
+{
+  "schema": "a8-rk22-ppt-verification-v1",
+  "status": "PASS",
+  "mode": "candidate",
+  "checks_passed": 45,
+  "checks_total": 45,
+  "checks": [
+    {
+      "name": "candidate_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_independent_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "main_science_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_science_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_scope",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_title",
+      "pass": true,
+      "detail": "5′ MFE adds fixed-GFP signal beyond simple proxies"
+    },
+    {
+      "name": "anchor_design",
+      "pass": true,
+      "detail": "150 exact-CDS groups · 10 seeds × 5-fold OOF · 71 paired tagged CDS"
+    },
+    {
+      "name": "anchor_hist_gain",
+      "pass": true,
+      "detail": "+0.262"
+    },
+    {
+      "name": "anchor_hist_gain_ci",
+      "pass": true,
+      "detail": "95% CI [0.231, 0.292]"
+    },
+    {
+      "name": "anchor_hist_mse_gain",
+      "pass": true,
+      "detail": "+0.062"
+    },
+    {
+      "name": "anchor_tag_rho",
+      "pass": true,
+      "detail": "0.566"
+    },
+    {
+      "name": "anchor_tag_ci",
+      "pass": true,
+      "detail": "95% CI [0.379, 0.706]"
+    },
+    {
+      "name": "anchor_verification",
+      "pass": true,
+      "detail": "63 / 63"
+    },
+    {
+      "name": "anchor_main_holm",
+      "pass": true,
+      "detail": "Holm p = 0.0078125"
+    },
+    {
+      "name": "anchor_tag_adjusted",
+      "pass": true,
+      "detail": "Adjusted coefficient = 0.0988"
+    },
+    {
+      "name": "anchor_tag_adjusted_ci",
+      "pass": true,
+      "detail": "95% CI [0.0642, 0.1336]"
+    },
+    {
+      "name": "anchor_tag_holm",
+      "pass": true,
+      "detail": "Holm p = 0.000050"
+    },
+    {
+      "name": "anchor_page",
+      "pass": true,
+      "detail": "114 · RK22"
+    },
+    {
+      "name": "anchor_boundary",
+      "pass": true,
+      "detail": "Development pass, not protein OOD"
+    },
+    {
+      "name": "anchor_generator_boundary",
+      "pass": true,
+      "detail": "generator training unauthorized"
+    },
+    {
+      "name": "anchor_source_commits",
+      "pass": true,
+      "detail": "protocol 48eea1e2 · verified evidence b506bf4d"
+    },
+    {
+      "name": "anchor_ridge_simple_rho",
+      "pass": true,
+      "detail": "-0.040"
+    },
+    {
+      "name": "anchor_ridge_structure_rho",
+      "pass": true,
+      "detail": "0.679"
+    },
+    {
+      "name": "anchor_ridge_gain",
+      "pass": true,
+      "detail": "+0.718 [0.682, 0.755]"
+    },
+    {
+      "name": "anchor_ridge_mse",
+      "pass": true,
+      "detail": "0.1748 → 0.0904"
+    },
+    {
+      "name": "anchor_histgb_simple_rho",
+      "pass": true,
+      "detail": "0.455"
+    },
+    {
+      "name": "anchor_histgb_structure_rho",
+      "pass": true,
+      "detail": "0.717"
+    },
+    {
+      "name": "anchor_histgb_gain",
+      "pass": true,
+      "detail": "+0.262 [0.231, 0.292]"
+    },
+    {
+      "name": "anchor_histgb_mse",
+      "pass": true,
+      "detail": "0.1472 → 0.0852"
+    },
+    {
+      "name": "four_main_endpoints",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "two_tag_endpoints",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pass_banner",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_untagged_imputation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_sovereignty_overclaim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_candidate_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_three_rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_five_columns",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "one_note",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "five_note_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_full_commits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all_elements_in_canvas",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "font_size_minimum",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "inter_font",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_external_media",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "candidate_sha256": "4ae49967dca1f66fd8ee0f98615c6a3295ed49a9f90cbbee35b33f922c4be046",
+  "science_summary_sha256": "e7e90b1f5efa8e8fdf8d580e9f8aac0963bd329e1667cd0913d298c107e3bc9e",
+  "independent_sha256": "7f0657d42b2a233a4769ee19e3a2e1d3a0fcf4ad6d1186453bee14d209a06079"
+}
