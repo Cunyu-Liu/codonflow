@@ -1,0 +1,2171 @@
+{
+  "schema": "a8-rk08-channel-screen-independent-v1",
+  "status": "PASS_CHANNEL_SCREEN_INDEPENDENT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 320,
+    "total": 320
+  },
+  "failures": [],
+  "max_numeric_delta": 1.9095836023552692e-14,
+  "selected_arm": "all",
+  "selected_dev_cluster_balanced_mse": 3.761769367012553,
+  "channel_screen_gate_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "velocity_mechanism_pass": false,
+  "expensive_generation_authorized": false,
+  "independent_comparisons": [
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ribokinetic_none",
+      "metric": "spearman",
+      "point_delta": 0.19172147424709896,
+      "ci95_low": 0.08219688023509271,
+      "ci95_high": 0.30172948014593226,
+      "sign_pvalue": 0.002,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.012
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ribokinetic_none",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.14174608036351088,
+      "ci95_low": -0.2648140185691084,
+      "ci95_high": -0.020059716472660867,
+      "sign_pvalue": 0.022,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.088
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ridge_all",
+      "metric": "spearman",
+      "point_delta": 0.0719092326416266,
+      "ci95_low": -0.01589275323562637,
+      "ci95_high": 0.16156932841705846,
+      "sign_pvalue": 0.119,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.312
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ridge_all",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.0043715140103577355,
+      "ci95_low": -0.16099405288070906,
+      "ci95_high": 0.14739955224726592,
+      "sign_pvalue": 0.976,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.976
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ridge_gc",
+      "metric": "spearman",
+      "point_delta": 0.09759581675090624,
+      "ci95_low": 0.014624254343458602,
+      "ci95_high": 0.1797292795884585,
+      "sign_pvalue": 0.017,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.085
+    },
+    {
+      "partition": "test",
+      "left": "ribokinetic_selected",
+      "right": "ridge_gc",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.08497171673401294,
+      "ci95_low": -0.18886995477543342,
+      "ci95_high": 0.016179272949971853,
+      "sign_pvalue": 0.104,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.312
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ribokinetic_none",
+      "metric": "spearman",
+      "point_delta": 0.19901564752464795,
+      "ci95_low": 0.12925907591173844,
+      "ci95_high": 0.26781646706339085,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ribokinetic_none",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.2760885716873087,
+      "ci95_low": -0.37608880535590633,
+      "ci95_high": -0.18123318545616485,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ridge_all",
+      "metric": "spearman",
+      "point_delta": -0.025779039513507546,
+      "ci95_low": -0.0755256519724216,
+      "ci95_high": 0.020488139619787824,
+      "sign_pvalue": 0.266,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.532
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ridge_all",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.025572097048845777,
+      "ci95_low": -0.1282439258338166,
+      "ci95_high": 0.07253420347846523,
+      "sign_pvalue": 0.636,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.636
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ridge_gc",
+      "metric": "spearman",
+      "point_delta": 0.12022060447388114,
+      "ci95_low": 0.0819592276678431,
+      "ci95_high": 0.1602983907730725,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    },
+    {
+      "partition": "sequence_ood",
+      "left": "ribokinetic_selected",
+      "right": "ridge_gc",
+      "metric": "cluster_balanced_mse",
+      "point_delta": -0.2895163999162387,
+      "ci95_low": -0.3565435053891241,
+      "ci95_high": -0.226815730607076,
+      "sign_pvalue": 0.0,
+      "bootstrap_valid": 2000,
+      "bootstrap_requested": 2000,
+      "holm_pvalue_within_partition": 0.0
+    }
+  ],
+  "hashes": {
+    "protocol": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+    "preparation": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79",
+    "selection": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+    "evaluation": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed"
+  },
+  "checks": [
+    {
+      "check_id": "protocol_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "preparation_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "evaluation_pending_independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "protocol_hash_preparation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "protocol_hash_selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "protocol_hash_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "preparation_hash_selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "preparation_hash_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_hash_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "evaluation_script_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "ten_unique_arms",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:all",
+      "passed": true,
+      "detail": {
+        "delta": 1.8207657603852567e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:none",
+      "passed": true,
+      "detail": {
+        "delta": 1.9095836023552692e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:initiation_only",
+      "passed": true,
+      "detail": {
+        "delta": 1.687538997430238e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:initiation_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:velocity_only",
+      "passed": true,
+      "detail": {
+        "delta": 1.7319479184152442e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:velocity_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:decay_only",
+      "passed": true,
+      "detail": {
+        "delta": 1.8207657603852567e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:decay_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:pair_only",
+      "passed": true,
+      "detail": {
+        "delta": 1.7763568394002505e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:pair_only",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:no_initiation",
+      "passed": true,
+      "detail": {
+        "delta": 1.7763568394002505e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:no_initiation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:no_velocity",
+      "passed": true,
+      "detail": {
+        "delta": 1.554312234475219e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:no_velocity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:no_decay",
+      "passed": true,
+      "detail": {
+        "delta": 1.554312234475219e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:no_decay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_hash:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_screen_only:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "config_arm:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "run_hash:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prediction_hash:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "checkpoint_hash:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "active:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rows:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric_partitions:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_test_ood_screen:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_rows:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "train_rows:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "dev_cb_mse:no_pair",
+      "passed": true,
+      "detail": {
+        "delta": 1.9095836023552692e-14,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "parameters:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "not_generator:no_pair",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selected_arm_recomputed",
+      "passed": true,
+      "detail": {
+        "expected": "all",
+        "reported": "all"
+      }
+    },
+    {
+      "check_id": "selected_dev_recomputed",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "evaluation_selected_arm",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prior_state_equal:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_prior_flag:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "prior_state_equal:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_prior_flag:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_screen_state_equal:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_train_dev_exact:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_no_untouched:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_prediction_hash:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_screen_state_equal:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_train_dev_exact:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_no_untouched:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "eval_prediction_hash:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "data_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "baseline_hash",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "source_6348",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "source_no_untouched",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "aligned_rows:all",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "aligned_rows:none",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_selected:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ribokinetic_none:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_all:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:test:ridge_gc:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ribokinetic_none:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ribokinetic_none:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ribokinetic_none:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:test:ridge_all:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ridge_all:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:test:ridge_all:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_all:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ridge_all:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ridge_gc:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:test:ridge_gc:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:test:ridge_gc:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_selected:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ribokinetic_none:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_all:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:n_rows",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:n_clusters",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:row_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:row_r2",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:row_spearman",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:row_pearson",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "metric:sequence_ood:ridge_gc:cluster_balanced_mse",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ribokinetic_none:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ribokinetic_none:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ribokinetic_none:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ridge_all:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_all:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ridge_all:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:spearman:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:spearman:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:spearman:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:spearman:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:spearman:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ridge_gc:spearman",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:cluster_balanced_mse:point_delta",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:cluster_balanced_mse:ci95_low",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:cluster_balanced_mse:ci95_high",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:cluster_balanced_mse:sign_pvalue",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "comparison:sequence_ood:ridge_gc:cluster_balanced_mse:holm_pvalue_within_partition",
+      "passed": true,
+      "detail": {
+        "delta": 0.0,
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "check_id": "bootstrap_count:sequence_ood:ridge_gc:cluster_balanced_mse",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "channel_gate_matches",
+      "passed": true,
+      "detail": {
+        "independent": false,
+        "reported": false
+      }
+    },
+    {
+      "check_id": "overall_g1_remains_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "untouched_remains_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "velocity_negative_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "generator_not_authorized",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_sota",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "no_wet_lab",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "paired_csv_rows",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "metrics_csv_rows",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

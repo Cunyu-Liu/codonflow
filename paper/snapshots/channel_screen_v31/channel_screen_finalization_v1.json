@@ -1,0 +1,242 @@
+{
+  "schema": "a8-rk08-channel-screen-finalization-v1",
+  "status": "PASS_CHANNEL_SCREEN_CLOSEOUT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 42,
+    "total": 42
+  },
+  "failures": [],
+  "git_head_at_finalization": "9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+  "preregistration_commit": "669b2735c21bf9bda8fdac12fc0c9f69635a38b5",
+  "selected_arm": "all",
+  "selected_dev_cluster_balanced_mse": 3.761769367012553,
+  "channel_screen_gate_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "velocity_mechanism_pass": false,
+  "expensive_generation_authorized": false,
+  "complete_sota": false,
+  "full_project_pytest_run": false,
+  "clean_environment_install_run": false,
+  "hashes": {
+    "protocol": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+    "preparation": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79",
+    "selection": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+    "evaluation": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed",
+    "independent": "3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f",
+    "bootstrap_deltas": "8acba797dfc19b993934c81f5b7281619bf3d27055a728dc79d3f4a1923d606f"
+  },
+  "checks": [
+    {
+      "check_id": "protocol_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "preparation_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_frozen",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "evaluation_produced",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "independent_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "independent_no_failures",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "independent_numeric_tolerance",
+      "passed": true,
+      "detail": 1.9095836023552692e-14
+    },
+    {
+      "check_id": "ten_arms",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "one_selected_arm",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_matches_independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "gate_matches_independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "sequence_ood_comparisons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "test_comparisons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "bootstrap_2000",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "all_prior_state_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "none_prior_state_equal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "screen_excluded_test_ood",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "functional_untouched_not_evaluated",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "velocity_negative_retained",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "rk_g1_remains_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "generator_not_authorized",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "complete_sota_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "wet_lab_false",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "unit_tests_8_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "bootstrap_artifact_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "evaluation_summary_raw_copy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "selection_hash_in_evaluation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "protocol_hash_chain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "evaluation_hash_chain",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:configs/a8_rk08_channel_screen_protocol_v1.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_prepare_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_run_channel_screen.sh",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_select_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_eval_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_verify_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:scripts/a8_rk08_finalize_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:tests/test_a8_rk08_channel_screen.py",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:audits/20261118/RK08/channel_screen_preparation_v1.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:audits/20261118/RK08/channel_screen_selection_v1.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:audits/20261118/RK08/channel_screen_evaluation_v1.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "tracked:audits/20261118/RK08/channel_screen_independent_v1.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check_id": "preregistration_commit_is_ancestor",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

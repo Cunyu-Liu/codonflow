@@ -1,0 +1,22 @@
+{
+  "schema": "a8-rk08-channel-screen-paper-correction-v1",
+  "status": "VERIFIER_LITERAL_EXPECTATION_CORRECTED",
+  "paper_sha256_before": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+  "paper_sha256_after": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+  "manuscript_changed": false,
+  "scientific_evidence_changed": false,
+  "failed_check_names": [
+    "not_causal",
+    "bitwise_diagnostic"
+  ],
+  "reason": "The verifier required exact English substrings that did not match the equivalent source wording. Literal expectations were aligned to the actual source section; no manuscript text, result, or scientific artifact changed.",
+  "failed_report": {
+    "path": "/home/codonflow-a8-rk/paper/a8_rk08_channel_screen_paper_verification_v31_failed_literal_check.json",
+    "sha256": "ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7"
+  },
+  "passing_report": {
+    "path": "/home/codonflow-a8-rk/paper/a8_rk08_channel_screen_paper_verification_v31.json",
+    "sha256": "245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491"
+  },
+  "verifier_sha256": "92ad0af01b3a1585be117b07aa5d60d2b1cec20ceb92e9663e5ab7a2575b9014"
+}

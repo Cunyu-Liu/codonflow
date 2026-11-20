@@ -1,0 +1,606 @@
+{
+  "schema": "a8-rk08-channel-screen-paper-verification-v1",
+  "status": "PASS_RK08_CHANNEL_SCREEN_PAPER_V31",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 115,
+    "total": 115
+  },
+  "paper_sha256": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+  "base_sha256": "6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a",
+  "update_sha256": "b0d0cfb6613dafaf63882f83df92c35c04f1ce8e12560bdbf2157cd10e10950e",
+  "selected_arm": "all",
+  "channel_screen_gate_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "checks": [
+    {
+      "name": "frozen_protocol_sha",
+      "pass": true,
+      "detail": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4"
+    },
+    {
+      "name": "frozen_preparation_sha",
+      "pass": true,
+      "detail": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79"
+    },
+    {
+      "name": "frozen_selection_sha",
+      "pass": true,
+      "detail": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5"
+    },
+    {
+      "name": "frozen_evaluation_sha",
+      "pass": true,
+      "detail": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed"
+    },
+    {
+      "name": "frozen_independent_sha",
+      "pass": true,
+      "detail": "3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f"
+    },
+    {
+      "name": "finalization_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "update_record_sha",
+      "pass": true,
+      "detail": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a"
+    },
+    {
+      "name": "base_snapshot_sha",
+      "pass": true,
+      "detail": "6ab241c672ced7ec5f770d324487cc5deb742c0d3697afb5418d7f2b11c3024a"
+    },
+    {
+      "name": "exact_base_restoration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_single",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_after_g0",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "prior_g0_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "working_manuscript_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source_section_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_prepare_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_draft_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_status_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "writing_binds_source",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source_heading_transform",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "workflow_snapshot_hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protocol_arm_count",
+      "pass": true,
+      "detail": [
+        "all",
+        "none",
+        "initiation_only",
+        "velocity_only",
+        "decay_only",
+        "pair_only",
+        "no_initiation",
+        "no_velocity",
+        "no_decay",
+        "no_pair"
+      ]
+    },
+    {
+      "name": "preparation_complete",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all_arms_screen_train_dev_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "selected_arm_all",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "selection_test_ood_unused",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "development_partition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ten_arms_4997",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_minimum_all",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_all",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_none",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_initiation_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_velocity_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_decay_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_pair_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_no_initiation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_no_velocity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_no_decay",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "dev_value_no_pair",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_all",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_none",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_initiation_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_velocity_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_decay_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_pair_only",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_no_initiation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_no_velocity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_no_decay",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "arm_prose_no_pair",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "sequence_ood_partition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "bootstrap_unit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "holm_six_per_partition",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "comparison_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "sequence_ood_row_selected_minus_none",
+      "pass": true,
+      "detail": "| selected − none | 0.19901564752464795 [0.12925907591173844, 0.26781646706339085] | 0 | −0.2760885716873087 [−0.37608880535590633, −0.18123318545616485] | 0 |"
+    },
+    {
+      "name": "sequence_ood_row_selected_minus_ridge_all",
+      "pass": true,
+      "detail": "| selected − ridge_all | −0.025779039513507546 [−0.0755256519724216, 0.020488139619787824] | 0.532 | −0.025572097048845777 [−0.1282439258338166, 0.07253420347846523] | 0.636 |"
+    },
+    {
+      "name": "sequence_ood_row_selected_minus_ridge_gc",
+      "pass": true,
+      "detail": "| selected − ridge_gc | 0.12022060447388114 [0.0819592276678431, 0.1602983907730725] | 0 | −0.2895163999162387 [−0.3565435053891241, −0.226815730607076] | 0 |"
+    },
+    {
+      "name": "none_supported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "gc_supported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ridge_all_not_supported",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "ridge_all_intervals_cross_zero",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "channel_gate_false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rk_g1_false",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "generator_unauthorized",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "functional_untouched",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "velocity_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_overclaim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "not_causal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "bitwise_diagnostic",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_delta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_hash_chain",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_42",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_tests_8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "finalization_head",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen protocol",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen preparation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen preparation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen preparation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen preparation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen frozen selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen frozen selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen frozen selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen frozen selection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen evaluation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen evaluation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen evaluation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen evaluation",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen finalization",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 channel-screen 8-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 channel-screen 8-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 channel-screen 8-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 channel-screen 8-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 manuscript source section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 manuscript source section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 manuscript source section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 manuscript source section",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 manuscript writing draft check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 manuscript writing draft check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 manuscript writing draft check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 manuscript writing draft check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_path_RK08 manuscript writing status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_sha_RK08 manuscript writing status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_RK08 manuscript writing status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_RK08 manuscript writing status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "update_hash_fields",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "update_boundaries",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}
