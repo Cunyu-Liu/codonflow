@@ -1,0 +1,88 @@
+{
+  "schema": "a8-rk16-dense-prefix-v1",
+  "status": "FROZEN_BEFORE_DENSE_PREFIX_SCORING",
+  "frozen_at": "2026-11-20T17:29:18+00:00",
+  "scientific_preregistration_card": {
+    "observed": "RK13 closed seven-method terminal actual sets on 18 development records, but dense_budget_step_auc_v2 was null and unified time-matched comparison remained open.",
+    "problem": "Determine whether the LinearDesign-11 terminal-set advantage persists under real ordered generation-call prefixes rather than inferred or padded curves.",
+    "hypothesis": "Across the same 18 development records, LinearDesign-11 has positive paired effects against codonGPT, uniform synonymous sampling, and EnsembleDesign-11 for both B1..B10 dense AUC and B11 normalized hypervolume.",
+    "data": "Frozen seed-0 raw ordered outputs and independently verified objective values from RK12/RK13; no new protein records, labels, functional test rows, or OOD rows.",
+    "controls": "Frozen official LinearDesign lambda ordering and official EnsembleDesign run ordering; original legacy codonGPT and uniform output order; original normalized hypervolume references.",
+    "primary_metric": "Reference: LinearDesign-11 minus each comparator. Metrics: real generation-call dense_budget_step_auc_v2 over B1..B10 and normalized hypervolume at B11. N=18 paired records; 20000 bootstrap resamples; six-test Holm family.",
+    "secondary_metric": "Descriptive B1..B100 codonGPT and uniform curves only; these do not replace the common four-method B11 primary comparison.",
+    "allowed_conclusion": "A common-budget surrogate-efficiency comparison for four methods on 18 development records, with exact raw-prefix provenance.",
+    "forbidden_conclusion": "No time-matched, SOTA, functional-OOD, external-SOTA authorization, CodonFlow-RK improvement, or full seven-method dense ranking claim."
+  },
+  "record_count": 18,
+  "seed": 0,
+  "primary_methods": [
+    "lineardesign_lambda11",
+    "codongpt",
+    "uniform_synonymous",
+    "ensembledesign_11run"
+  ],
+  "reference_method": "lineardesign_lambda11",
+  "comparators": [
+    "codongpt",
+    "uniform_synonymous",
+    "ensembledesign_11run"
+  ],
+  "primary_max_budget": 11,
+  "primary_auc_end": 10,
+  "secondary_max_budget": 100,
+  "secondary_methods": [
+    "codongpt",
+    "uniform_synonymous"
+  ],
+  "budget_semantics": "One objective vector at every real ordered generation call B=1,...,Bmax. Repeated sequences remain at their original call positions and reuse the independently verified objective for that exact sequence. No deduplication-induced budget shift, padding, synthetic origin, or zero-filled budgets.",
+  "evaluation_mode": "real_ordered_generation_call_prefix",
+  "objective_mode": "frozen_rk12_rk13_independently_verified_sequence_objectives",
+  "primary_metrics": [
+    "dense_budget_step_auc_v2",
+    "endpoint_hypervolume_normalized_b11"
+  ],
+  "bootstrap_resamples": 20000,
+  "bootstrap_seed_base": 20261120,
+  "holm_alpha": 0.05,
+  "holm_family_size": 6,
+  "dense_prefix_superiority_rule": "All six paired effects must be positive, their percentile 95% CI must exclude zero, and Holm-adjusted two-sided p must be below 0.05. Per-comparator two-metric results are also reported separately.",
+  "exclusions": {
+    "gemorna": "Legacy artifacts retain first-occurrence unique valid sequences and 100-request totals, but not the repeated raw calls; generation-call budgets therefore cannot be reconstructed without inventing positions.",
+    "lineardesign_scan": "Legacy artifacts retain first-occurrence unique valid sequences but not repeated raw calls; generation-call budgets therefore cannot be reconstructed without inventing positions.",
+    "cai_greedy": "Only one real output exists, so a B1..B11 trajectory and AUC cannot be formed."
+  },
+  "inputs": {
+    "matrix": {
+      "path": "audits/20261118/RK13/seven_method_actual_set_matrix_v1.json",
+      "sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+      "independent_verification_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b"
+    },
+    "lineardesign_report": {
+      "path": "audits/20261118/RK12/lineardesign_unique18_grid_v1.json",
+      "sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6"
+    },
+    "ensemble_report": {
+      "path": "audits/20261118/RK13/ensembledesign_unique18_recovery_v1.json",
+      "sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+      "independent_verification_sha256": "288c74d61e8f35f023a6f64d56bbe4d4c93ae416420db14aceb6e166953fd15e"
+    },
+    "legacy_manifest": {
+      "path": "audits/20261120/RK16/rk16_legacy_input_manifest_v1.json",
+      "sha256": "53cd60a3f89967b6ac33b61e34c52630885d82d9a5af8d8e176b282c7f14e907",
+      "root": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/a6_baselines/unique18_s0",
+      "file_count": 18
+    }
+  },
+  "lineardesign_lambda_order": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+  "ensemble_run_order": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  "time_matched_comparison": false,
+  "time_matched_null_reason": "The sole RTX 5090 was occupied by unrelated real experiments at protocol freeze; shared or retroactively allocated timings are not controlled end-to-end costs. No process was killed and no timing was imputed.",
+  "scientific_gate_passed": false,
+  "codonflow_rk_evaluated": false,
+  "functional_ood_evaluated": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "external_sota_authorized": false,
+  "sota_claimed": false
+}
