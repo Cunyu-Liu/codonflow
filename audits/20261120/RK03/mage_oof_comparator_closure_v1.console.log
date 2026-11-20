@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "scripts/a8_rk03_mage_oof_comparator_closure.py", line 272, in <module>
+    main()
+  File "scripts/a8_rk03_mage_oof_comparator_closure.py", line 233, in main
+    raise AssertionError(f"technical contract failed: {checks}")
+AssertionError: technical contract failed: [{'name': 'development_rows_only', 'pass': True}, {'name': 'n_131_unique_constructs', 'pass': True}, {'name': 'no_new_model_fit', 'pass': True}, {'name': 'five_exploratory_holm_tests', 'pass': True}, {'name': 'constant_mean_spearman_is_null', 'pass': False}, {'name': 'all_technical_values_finite', 'pass': True}]

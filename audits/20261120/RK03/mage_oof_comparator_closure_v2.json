@@ -1,0 +1,433 @@
+{
+  "cost": {
+    "new_scorer_calls": 0,
+    "new_training_compute": 0,
+    "resample_replicates_primary": 120000,
+    "wall_seconds": 55.9064832450822
+  },
+  "environment": {
+    "numpy": "1.17.4",
+    "pandas": "0.25.3",
+    "python": "3.8.10",
+    "scipy": "1.3.3"
+  },
+  "exploratory_comparisons": {
+    "full_mechanism_minus_outer_train_mean": {
+      "analysis_role": "post_hoc_exploratory",
+      "bootstrap_replicates": 20000,
+      "candidate": "full_mechanism",
+      "delta_rmse": -0.015370339550445498,
+      "delta_rmse_ci95": [
+        -0.0259385856740894,
+        -0.005729286631198561
+      ],
+      "holm_p_rmse": 0.020748962551872408,
+      "permutation_p_rmse": 0.004149792510374482,
+      "permutation_replicates": 20000,
+      "reference": "outer_train_mean",
+      "reference_metrics": {
+        "mae": 0.032224183513687325,
+        "mean_prediction": 0.9678254823420854,
+        "mean_y": 0.9678549618320612,
+        "n": 131,
+        "rmse": 0.04959854257604538,
+        "spearman": -0.21535138944483337,
+        "spearman_null_reason": null
+      }
+    },
+    "full_mechanism_minus_rcs_only": {
+      "analysis_role": "post_hoc_exploratory",
+      "bootstrap_replicates": 20000,
+      "candidate": "full_mechanism",
+      "delta_rmse": 7.54291571132687e-05,
+      "delta_rmse_ci95": [
+        -0.001304659287456654,
+        0.0013410731145082557
+      ],
+      "delta_spearman": 0.01894551686269652,
+      "delta_spearman_ci95": [
+        -0.035360666095523505,
+        0.0812104898567834
+      ],
+      "holm_p_rmse": 1.0,
+      "holm_p_spearman": 1.0,
+      "interpretation": "local-MFE increment conditional on intrinsic + RCS",
+      "permutation_p_rmse": 0.9149542522873856,
+      "permutation_p_spearman": 0.5045747712614369,
+      "permutation_replicates": 20000,
+      "reference": "rcs_only"
+    },
+    "rcs_only_minus_intrinsic": {
+      "analysis_role": "post_hoc_exploratory",
+      "bootstrap_replicates": 20000,
+      "candidate": "rcs_only",
+      "delta_rmse": 1.9499256082820826e-05,
+      "delta_rmse_ci95": [
+        -0.0007529122397496208,
+        0.0007030615007199467
+      ],
+      "delta_spearman": 0.003953545226666688,
+      "delta_spearman_ci95": [
+        -0.0360723999783062,
+        0.04841834750571718
+      ],
+      "holm_p_rmse": 1.0,
+      "holm_p_spearman": 1.0,
+      "interpretation": "RCS increment without local-MFE additions",
+      "permutation_p_rmse": 0.9591020448977551,
+      "permutation_p_spearman": 0.8379581020948953,
+      "permutation_replicates": 20000,
+      "reference": "intrinsic"
+    }
+  },
+  "feature_arm_interpretation": {
+    "constant_speed_arm": "not fitted or inferred; intrinsic is a no-RCS ablation, not proof of a separately implemented constant-speed field",
+    "external_pretrained_model_replacement": "not closed by this audit",
+    "full_mechanism": "intrinsic + local-MFE + RCS additions",
+    "intrinsic": "categorical baseline + intrinsic numeric features; no RCS or local-MFE additions",
+    "local_mfe": "intrinsic + local-MFE additions",
+    "rcs_only": "the frozen arm name is retained verbatim, but it contains intrinsic + RCS additions; it is not a pure external-pretrained-model baseline"
+  },
+  "holm_family": [
+    {
+      "comparison_id": "full_mechanism_minus_rcs_only",
+      "effect": "delta_spearman",
+      "holm_p": 1.0,
+      "raw_p": 0.5045747712614369
+    },
+    {
+      "comparison_id": "full_mechanism_minus_rcs_only",
+      "effect": "delta_rmse",
+      "holm_p": 1.0,
+      "raw_p": 0.9149542522873856
+    },
+    {
+      "comparison_id": "rcs_only_minus_intrinsic",
+      "effect": "delta_spearman",
+      "holm_p": 1.0,
+      "raw_p": 0.8379581020948953
+    },
+    {
+      "comparison_id": "rcs_only_minus_intrinsic",
+      "effect": "delta_rmse",
+      "holm_p": 1.0,
+      "raw_p": 0.9591020448977551
+    },
+    {
+      "comparison_id": "full_mechanism_minus_outer_train_mean",
+      "effect": "delta_rmse",
+      "holm_p": 0.020748962551872408,
+      "raw_p": 0.004149792510374482
+    }
+  ],
+  "limitations": [
+    "Post-hoc exploratory comparison on already-used development predictions; not independent confirmation.",
+    "The frozen rcs_only arm includes intrinsic features and is not a pure external-pretrained-model baseline.",
+    "No separate constant-speed-field arm, mature-model replacement, test metric, transport analysis, or generator authorization is produced.",
+    "Outer-training means vary across folds; their OOF Spearman is descriptive only and is excluded from paired inference, which uses RMSE only."
+  ],
+  "new_model_fits": 0,
+  "overall_pass": true,
+  "overall_pass_scope": "technical_artifact_contract_only_not_scientific_go",
+  "primary_models": {
+    "full_mechanism": {
+      "mae": 0.022259518643958517,
+      "mean_prediction": 0.9672249693719108,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03422820302559988,
+      "spearman": 0.6352981456298569,
+      "spearman_null_reason": null
+    },
+    "intrinsic": {
+      "mae": 0.02218789627326376,
+      "mean_prediction": 0.9673925630140914,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03413327461240379,
+      "spearman": 0.6123990835404937,
+      "spearman_null_reason": null
+    },
+    "local_mfe": {
+      "mae": 0.022317182950456396,
+      "mean_prediction": 0.9672812577069033,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.034383848442279714,
+      "spearman": 0.6272655881774328,
+      "spearman_null_reason": null
+    },
+    "outer_train_mean": {
+      "mae": 0.032224183513687325,
+      "mean_prediction": 0.9678254823420854,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.04959854257604538,
+      "spearman": -0.21535138944483337,
+      "spearman_null_reason": null
+    },
+    "rcs_only": {
+      "mae": 0.021816612746170472,
+      "mean_prediction": 0.9673068108614217,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03415277386848661,
+      "spearman": 0.6163526287671603,
+      "spearman_null_reason": null
+    }
+  },
+  "primary_outer_seed": "40261119",
+  "production_script_sha256": "16c1dffa2d4fe1bc6622f676a47183f1cfbe9f83793d53cbb2b514a3bb05166a",
+  "protocol": "/home/codonflow-a8-rk/configs/a8_rk03_mage_oof_comparator_closure_protocol_v2.json",
+  "protocol_sha256": "e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b",
+  "schema": "a8-rk03-mage-oof-comparator-closure-v2",
+  "scientific_gate": "UNCHANGED_DEV_NO_GO_TEST_UNTOUCHED",
+  "scientific_gate_pass": false,
+  "sensitivity": {
+    "40261119": {
+      "comparisons": {
+        "full_mechanism_minus_outer_train_mean": {
+          "delta_rmse": -0.015370339550445498
+        },
+        "full_mechanism_minus_rcs_only": {
+          "delta_rmse": 7.54291571132687e-05,
+          "delta_spearman": 0.01894551686269652
+        },
+        "rcs_only_minus_intrinsic": {
+          "delta_rmse": 1.9499256082820826e-05,
+          "delta_spearman": 0.003953545226666688
+        }
+      },
+      "models": {
+        "full_mechanism": {
+          "mae": 0.022259518643958517,
+          "mean_prediction": 0.9672249693719108,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03422820302559988,
+          "spearman": 0.6352981456298569,
+          "spearman_null_reason": null
+        },
+        "intrinsic": {
+          "mae": 0.02218789627326376,
+          "mean_prediction": 0.9673925630140914,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03413327461240379,
+          "spearman": 0.6123990835404937,
+          "spearman_null_reason": null
+        },
+        "local_mfe": {
+          "mae": 0.022317182950456396,
+          "mean_prediction": 0.9672812577069033,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.034383848442279714,
+          "spearman": 0.6272655881774328,
+          "spearman_null_reason": null
+        },
+        "outer_train_mean": {
+          "mae": 0.032224183513687325,
+          "mean_prediction": 0.9678254823420854,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.04959854257604538,
+          "spearman": -0.21535138944483337,
+          "spearman_null_reason": null
+        },
+        "rcs_only": {
+          "mae": 0.021816612746170472,
+          "mean_prediction": 0.9673068108614217,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03415277386848661,
+          "spearman": 0.6163526287671603,
+          "spearman_null_reason": null
+        }
+      },
+      "outer_train_mean_fold_values": [
+        0.9647596153846153,
+        0.9641809523809525,
+        0.9736952380952381,
+        0.9673333333333334,
+        0.9692761904761905
+      ]
+    },
+    "40261120": {
+      "comparisons": {
+        "full_mechanism_minus_outer_train_mean": {
+          "delta_rmse": -0.01175266432845904
+        },
+        "full_mechanism_minus_rcs_only": {
+          "delta_rmse": -0.0009099641815015561,
+          "delta_spearman": 0.023702584785667447
+        },
+        "rcs_only_minus_intrinsic": {
+          "delta_rmse": 0.00039284326670958186,
+          "delta_spearman": -0.00880938504253892
+        }
+      },
+      "models": {
+        "full_mechanism": {
+          "mae": 0.025349254671951853,
+          "mean_prediction": 0.9674874044726448,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03709096965525271,
+          "spearman": 0.5342892028299824,
+          "spearman_null_reason": null
+        },
+        "intrinsic": {
+          "mae": 0.025524251014300857,
+          "mean_prediction": 0.967241269263079,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03760809057004468,
+          "spearman": 0.5193960030868539,
+          "spearman_null_reason": null
+        },
+        "local_mfe": {
+          "mae": 0.024582146758907658,
+          "mean_prediction": 0.9678212226521371,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.036716953926110886,
+          "spearman": 0.5495961767190484,
+          "spearman_null_reason": null
+        },
+        "outer_train_mean": {
+          "mae": 0.03193270838576183,
+          "mean_prediction": 0.9678803358219388,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.04884363398371175,
+          "spearman": -0.11541196493734808,
+          "spearman_null_reason": null
+        },
+        "rcs_only": {
+          "mae": 0.02576283244737318,
+          "mean_prediction": 0.9669998190366479,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.038000933836754264,
+          "spearman": 0.5105866180443149,
+          "spearman_null_reason": null
+        }
+      },
+      "outer_train_mean_fold_values": [
+        0.9705192307692307,
+        0.9662095238095237,
+        0.9690571428571427,
+        0.965247619047619,
+        0.9682666666666667
+      ]
+    },
+    "40261121": {
+      "comparisons": {
+        "full_mechanism_minus_outer_train_mean": {
+          "delta_rmse": -0.01132139189895405
+        },
+        "full_mechanism_minus_rcs_only": {
+          "delta_rmse": -0.00040558612199879246,
+          "delta_spearman": 0.03108645115768638
+        },
+        "rcs_only_minus_intrinsic": {
+          "delta_rmse": 0.0005387506569868583,
+          "delta_spearman": -0.006967422715462579
+        }
+      },
+      "models": {
+        "full_mechanism": {
+          "mae": 0.025230326814939658,
+          "mean_prediction": 0.9658714672160443,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.0374101033649844,
+          "spearman": 0.5805411438139304,
+          "spearman_null_reason": null
+        },
+        "intrinsic": {
+          "mae": 0.02492783613550944,
+          "mean_prediction": 0.9657197108016986,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03727693882999633,
+          "spearman": 0.5564221153717066,
+          "spearman_null_reason": null
+        },
+        "local_mfe": {
+          "mae": 0.02447347981478068,
+          "mean_prediction": 0.9662608211247057,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.036681352485654385,
+          "spearman": 0.589913795597068,
+          "spearman_null_reason": null
+        },
+        "outer_train_mean": {
+          "mae": 0.03207846727064285,
+          "mean_prediction": 0.9678688889354917,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.04873149526393845,
+          "spearman": -0.176717717443521,
+          "spearman_null_reason": null
+        },
+        "rcs_only": {
+          "mae": 0.025329011011804292,
+          "mean_prediction": 0.9651154470075657,
+          "mean_y": 0.9678549618320612,
+          "n": 131,
+          "rmse": 0.03781568948698319,
+          "spearman": 0.549454692656244,
+          "spearman_null_reason": null
+        }
+      },
+      "outer_train_mean_fold_values": [
+        0.9693173076923076,
+        0.9660095238095238,
+        0.9689238095238095,
+        0.9691333333333333,
+        0.9659047619047619
+      ]
+    }
+  },
+  "source": {
+    "nested_production_script": "/home/codonflow-a8-rk/scripts/a8_rk03_mage_development_nested_cv.py",
+    "nested_production_script_sha256": "2ad1ff1bbc7a08db6009b3928ef4ff18c7786e987328a30f1d54c8938c5fad9d",
+    "nested_protocol": "/home/codonflow-a8-rk/configs/a8_rk03_mage_development_nested_cv_protocol_v2.json",
+    "nested_protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
+    "nested_report": "/home/codonflow-a8-rk/audits/20261119/RK03/mage_development_nested_cv_v2.json",
+    "nested_report_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
+    "oof_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/development_oof_predictions.csv",
+    "oof_csv_sha256": "64c74470d875777162b28e567a28babb26b597d9b9565f00d56707f9e7a5943a"
+  },
+  "status": "DEVELOPMENT_ONLY_EXPLORATORY_TEST_UNTOUCHED",
+  "technical_checks": [
+    {
+      "name": "development_rows_only",
+      "pass": true
+    },
+    {
+      "name": "n_131_unique_constructs",
+      "pass": true
+    },
+    {
+      "name": "no_new_model_fit",
+      "pass": true
+    },
+    {
+      "name": "five_exploratory_holm_tests",
+      "pass": true
+    },
+    {
+      "name": "fold_varying_mean_spearman_descriptive_only",
+      "pass": true
+    },
+    {
+      "name": "all_technical_values_finite",
+      "pass": true
+    }
+  ],
+  "test_authorized": false
+}

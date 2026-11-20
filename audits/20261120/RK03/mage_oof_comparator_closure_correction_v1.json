@@ -1,0 +1,66 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-closure-correction-v1",
+  "scientific_gate": "UNCHANGED_DEV_NO_GO_TEST_UNTOUCHED",
+  "protocol_v1": {
+    "path": "configs/a8_rk03_mage_oof_comparator_closure_protocol_v1.json",
+    "sha256": "7e65528508f73335e93c9630fe2c500caa7a75af3ebe140bb77ffa2f6be3ba4d",
+    "production_report_written": false,
+    "failure_log": "audits/20261120/RK03/mage_oof_comparator_closure_v1.console.log",
+    "failure_log_sha256": "f4f92b24112c5bb5bde89ec4166e8496c341ede457cb6ebaf29676e8881475e7",
+    "failure_reason": "The protocol incorrectly treated fold-varying outer-training means as one globally constant prediction vector and required a null Spearman value."
+  },
+  "protocol_v2": {
+    "path": "configs/a8_rk03_mage_oof_comparator_closure_protocol_v2.json",
+    "sha256": "e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b",
+    "correction": "Outer-training-mean Spearman is computed descriptively but excluded from paired inference; the baseline comparison remains RMSE-only. Comparisons, seeds, resampling counts and scientific gate are unchanged.",
+    "production_report": "audits/20261120/RK03/mage_oof_comparator_closure_v2.json",
+    "production_report_sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+    "independent_report": "audits/20261120/RK03/mage_oof_comparator_closure_independent_v2.json",
+    "independent_report_sha256": "bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745",
+    "independent_checks": "24/24 PASS",
+    "unit_tests": "9/9 PASS",
+    "unit_test_log": "audits/20261120/RK03/mage_oof_comparator_closure_unit_tests_v4_python3.console.log",
+    "unit_test_log_sha256": "2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b"
+  },
+  "retained_implementation_failures": [
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_unit_tests_v1.console.log",
+      "sha256": "2b739b8fd37791207c84a1b161a3f7f7b17948234ae5c6c0ff1d72311f149341",
+      "reason": "codonflow environment lacked pandas; test body did not run"
+    },
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_unit_tests_v1_python3.console.log",
+      "sha256": "3d4ed6576a3c1bd637b1e1003d939fc4a1213ed034dcb69742ca8bc00e93623c",
+      "reason": "SciPy 1.3.3 lacks SpearmanrResult.statistic"
+    },
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_unit_tests_v2_python3.console.log",
+      "sha256": "97c98f9f7d8644c68664109f140e9ab26ad0cc379147838dbd42ea8653e59e53",
+      "reason": "system Python lacks str.removeprefix"
+    },
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_independent_v2.console.log",
+      "sha256": "5f8cf10f18477dd785e31dc6f775e1f8e6fe9fea05dc4ef7752f80155d9b5969",
+      "reason": "NumPy 1.17 Generator lacks random_sample; no independent report was written"
+    }
+  ],
+  "successful_logs": [
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_v2.console.log",
+      "sha256": "6685f56394b9483d6dd85aef8d26eee26d3a1973b49f55828b0889b2cc308a05"
+    },
+    {
+      "log": "audits/20261120/RK03/mage_oof_comparator_closure_independent_v2_retry1.console.log",
+      "sha256": "1782ddff26cc646bffcd35bac7178b830013794d7ce66265d101217fae304c2d"
+    }
+  ],
+  "code": {
+    "production_script": "scripts/a8_rk03_mage_oof_comparator_closure.py",
+    "production_script_sha256": "16c1dffa2d4fe1bc6622f676a47183f1cfbe9f83793d53cbb2b514a3bb05166a",
+    "independent_script": "scripts/a8_rk03_verify_mage_oof_comparator_closure.py",
+    "independent_script_sha256": "80d9f13fe21dd727b8ebf7750cf4b154ca793ef8d64126ee571f00b856b90573"
+  },
+  "no_test_labels_read": true,
+  "no_new_model_fits": true,
+  "no_generator_or_sota_authorization": true
+}

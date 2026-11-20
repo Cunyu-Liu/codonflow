@@ -1,0 +1,137 @@
+{
+  "check_counts": {
+    "passed": 24,
+    "total": 24
+  },
+  "checks": [
+    {
+      "detail": null,
+      "name": "source_hash_oof_csv",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_nested_report",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_nested_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_hash_nested_production_script",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "protocol_hash_bound",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_script_hash_bound",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_technical_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "scientific_no_go_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "131_unique_constructs",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "primary_folds_exact",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "primary_models_recomputed",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "effects_intervals_permutation_and_holm_recomputed",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "holm_family_recomputed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "folds_exact_40261119",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "folds_exact_40261120",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "folds_exact_40261121",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "all_three_seed_metrics_and_effects_recomputed",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "outer_train_mean_has_no_evaluation_label",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fold_varying_mean_spearman_descriptive_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "five_test_family",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_new_training_or_scorer",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "arm_name_limitation_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_test_or_generator_claim",
+      "pass": true
+    }
+  ],
+  "independent_script_sha256": "80d9f13fe21dd727b8ebf7750cf4b154ca793ef8d64126ee571f00b856b90573",
+  "overall_pass": true,
+  "overall_pass_scope": "independent_technical_recomputation_only_not_scientific_go",
+  "production_report": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_v2.json",
+  "production_report_sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+  "protocol_sha256": "e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b",
+  "schema": "a8-rk03-mage-oof-comparator-closure-independent-v2",
+  "scientific_gate": "UNCHANGED_DEV_NO_GO_TEST_UNTOUCHED",
+  "tolerance": 1e-12
+}

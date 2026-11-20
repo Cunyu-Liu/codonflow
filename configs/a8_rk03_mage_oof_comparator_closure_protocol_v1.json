@@ -1,0 +1,89 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-closure-protocol-v1",
+  "protocol_id": "a8_rk03_mage_oof_comparator_closure_v1_frozen_before_new_effects",
+  "analysis_role": "post_hoc_development_only_exploratory_comparator_closure",
+  "scientific_question": "Using only the already frozen MAGE development OOF predictions, what are the paired effects of the two previously unreported feature-arm contrasts, and does the full arm improve RMSE over an outer-training-mean predictor?",
+  "source": {
+    "oof_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/development_oof_predictions.csv",
+    "oof_csv_sha256": "64c74470d875777162b28e567a28babb26b597d9b9565f00d56707f9e7a5943a",
+    "nested_report": "/home/codonflow-a8-rk/audits/20261119/RK03/mage_development_nested_cv_v2.json",
+    "nested_report_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
+    "nested_protocol": "/home/codonflow-a8-rk/configs/a8_rk03_mage_development_nested_cv_protocol_v2.json",
+    "nested_protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
+    "nested_production_script": "/home/codonflow-a8-rk/scripts/a8_rk03_mage_development_nested_cv.py",
+    "nested_production_script_sha256": "2ad1ff1bbc7a08db6009b3928ef4ff18c7786e987328a30f1d54c8938c5fad9d"
+  },
+  "development_data": {
+    "expected_n_constructs": 131,
+    "allowed_original_splits": ["train", "dev"],
+    "frozen_test_constructs_used": false,
+    "new_labels_or_sequences_read": false,
+    "new_model_fits": 0,
+    "development_reuse_disclosure": "All rows and predictions come from the already-used train+dev nested-CV artifact. This audit is not independent confirmation and does not authorize the frozen 33-construct test partition."
+  },
+  "feature_arm_interpretation": {
+    "intrinsic": "categorical baseline + intrinsic numeric features; no RCS or local-MFE additions",
+    "local_mfe": "intrinsic + local-MFE additions",
+    "rcs_only": "the frozen arm name is retained verbatim, but it contains intrinsic + RCS additions; it is not a pure external-pretrained-model baseline",
+    "full_mechanism": "intrinsic + local-MFE + RCS additions",
+    "constant_speed_arm": "not fitted or inferred; intrinsic is a no-RCS ablation, not proof of a separately implemented constant-speed field",
+    "external_pretrained_model_replacement": "not closed by this audit"
+  },
+  "exploratory_comparisons": [
+    {
+      "comparison_id": "full_mechanism_minus_rcs_only",
+      "candidate": "full_mechanism",
+      "reference": "rcs_only",
+      "interpretation": "local-MFE increment conditional on intrinsic + RCS",
+      "metrics": ["delta_spearman", "delta_rmse"],
+      "bootstrap_seed": 40261319,
+      "permutation_seed": 40261329
+    },
+    {
+      "comparison_id": "rcs_only_minus_intrinsic",
+      "candidate": "rcs_only",
+      "reference": "intrinsic",
+      "interpretation": "RCS increment without local-MFE additions",
+      "metrics": ["delta_spearman", "delta_rmse"],
+      "bootstrap_seed": 40261320,
+      "permutation_seed": 40261330
+    }
+  ],
+  "outer_training_mean_baseline": {
+    "comparison_id": "full_mechanism_minus_outer_train_mean",
+    "candidate": "full_mechanism",
+    "reference": "outer_train_mean",
+    "construction": "For each seed and outer fold, the arithmetic mean observed_rich of rows whose outer fold differs from the evaluation fold; every evaluation row in that fold receives that mean. No evaluation-fold label contributes to its prediction.",
+    "metrics": ["delta_rmse"],
+    "additional_descriptive_metrics": ["candidate_mae", "reference_mae", "reference_rmse", "reference_spearman"],
+    "reference_spearman_value": null,
+    "reference_spearman_reason": "undefined_for_constant_prediction_not_zero",
+    "bootstrap_seed": 40261321,
+    "permutation_seed": 40261331
+  },
+  "inference": {
+    "primary_outer_seed": "40261119",
+    "sensitivity_outer_seeds": ["40261120", "40261121"],
+    "paired_unit": "construct_id",
+    "bootstrap_replicates": 20000,
+    "bootstrap_ci": "two-sided 95% percentile over construct resampling with replacement",
+    "permutation_replicates": 20000,
+    "permutation_scheme": "independently swap candidate/reference predictions within each construct; two-sided absolute-effect plus-one p value",
+    "multiplicity": "Holm across five exploratory tests: two feature-arm contrasts times two metrics plus full-minus-outer-train-mean RMSE",
+    "sensitivity": "point estimates only for all five effects on the two sensitivity seeds; no new resampling family",
+    "no_gate_rule": "No significance or sign pattern in this post-hoc audit can change DEV_NO_GO_TEST_UNTOUCHED or authorize test, transport, generator training, or a SOTA claim."
+  },
+  "technical_contract": {
+    "single_oof_prediction_per_construct_seed_arm": true,
+    "finite_predictions_required": true,
+    "outer_folds_required": [0, 1, 2, 3, 4],
+    "independent_verifier_recomputes_all_metrics_effects_intervals_pvalues_and_holm": true,
+    "absolute_float_tolerance": 1e-12,
+    "report_overall_pass_scope": "technical artifact contract only; never a scientific GO"
+  },
+  "outputs": {
+    "production_report": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_v1.json",
+    "independent_report": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_independent_v1.json",
+    "large_new_artifacts": false
+  }
+}

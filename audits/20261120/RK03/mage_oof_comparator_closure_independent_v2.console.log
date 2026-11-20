@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "scripts/a8_rk03_verify_mage_oof_comparator_closure.py", line 245, in <module>
+    main()
+  File "scripts/a8_rk03_verify_mage_oof_comparator_closure.py", line 165, in main
+    value = resample(y, pred[spec["candidate"]], pred[spec["reference"]], names,
+  File "scripts/a8_rk03_verify_mage_oof_comparator_closure.py", line 70, in resample
+    choose = rng.random_sample(n) < 0.5
+AttributeError: 'numpy.random.generator.Generator' object has no attribute 'random_sample'
