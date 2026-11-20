@@ -1,0 +1,12 @@
+{
+  "schema": "a8-rk27-execution-abort-record-v1",
+  "event": "initial_multithread_execution_aborted_before_predictions",
+  "scientific_protocol_changed": false,
+  "model_or_seed_changed": false,
+  "result_used": false,
+  "prediction_table_produced": false,
+  "reason": "The small-data process created 46 worker threads and consumed tens of CPU-minutes before completing the prediction table. A separate single-thread benchmark completed five real HistGradientBoosting fits and predictions in 0.4717438220977783 seconds.",
+  "action": "Stopped the inefficient process and restarted the identical frozen analysis with OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1 and MKL_NUM_THREADS=1.",
+  "functional_untouched_read": false,
+  "generator_training_authorized": false
+}

@@ -1,0 +1,230 @@
+{
+  "analysis_script_sha256": "156bfa6da0323e0ddccd9eeb002fdeed1f84cc1105ec12ffc1e2688daf29077c",
+  "analysis_type": "retrospective_fixed_protein_sequence_cluster_transport_validation",
+  "completed_utc": "2026-11-20T21:21:02.492727+00:00",
+  "coverage_report_sha256": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4",
+  "device": "CPU_ONLY",
+  "folds_per_seed": 5,
+  "model_fits_per_seed": 30,
+  "n_exact_cds_groups": 150,
+  "n_measurement_rows": 154,
+  "n_sequence_clusters": 37,
+  "outputs": {
+    "analysis_exact_cds_150.csv": {
+      "bytes": 23210,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/analysis_exact_cds_150.csv",
+      "sha256": "1042ab0f4399ea9f9e2189b54c94aa283c8511d7240b82a6268d61ddcf5a9e1f"
+    },
+    "fold_assignments.csv": {
+      "bytes": 125270,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/fold_assignments.csv",
+      "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    "oof_predictions.csv": {
+      "bytes": 347182,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/oof_predictions.csv",
+      "sha256": "cc95d0eb590885b894a5ea18b18489202c993ad481ceb921498930a4daf6ac43"
+    },
+    "primary_inference_arrays.npz": {
+      "bytes": 1964051,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+      "sha256": "f160324dac03df2660b238cdc560d75b7ee74811d5a8d459f7777798c9730575"
+    },
+    "seed_effects.csv": {
+      "bytes": 2049,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_effects.csv",
+      "sha256": "5afc9b7f6629668a53e709048693a8c89d571fb2908a215a0791a052ffb65162"
+    },
+    "seed_metrics.csv": {
+      "bytes": 4359,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_metrics.csv",
+      "sha256": "37b1118f597d1cfb5bff5dfec77a53f3670ffd0db567967184e8a0b4a8c0386a"
+    },
+    "training_log.csv": {
+      "bytes": 3070,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/training_log.csv",
+      "sha256": "0f02b3fdfc4b7759725d408410301342b80758e3abfcc11bb2fe77d5ae9e00ed"
+    }
+  },
+  "primary_absolute_performance": [
+    {
+      "arm": "null",
+      "mse": 0.19447105211901383,
+      "spearman": -0.36723424154157747
+    },
+    {
+      "arm": "ridge_simple",
+      "mse": 0.2571487833252607,
+      "spearman": -0.3184132230240836
+    },
+    {
+      "arm": "ridge_structure",
+      "mse": 0.09966007836096168,
+      "spearman": 0.6366379927254766
+    },
+    {
+      "arm": "ridge_mfe_only",
+      "mse": 0.11135386623628662,
+      "spearman": 0.6050204478003892
+    },
+    {
+      "arm": "histgb_simple",
+      "mse": 0.1986577547399576,
+      "spearman": 0.30242388253871244
+    },
+    {
+      "arm": "histgb_structure",
+      "mse": 0.09275069489613177,
+      "spearman": 0.7150018178934215
+    },
+    {
+      "arm": "histgb_mfe_only",
+      "mse": 0.10157442010720205,
+      "spearman": 0.6375567761664476
+    }
+  ],
+  "primary_seed": 20261221,
+  "primary_tests": [
+    {
+      "bootstrap_median": 0.8766765068352675,
+      "ci95": [
+        0.4938143325215412,
+        1.1068328448152622
+      ],
+      "mean_seed_effect": 0.9899493931749317,
+      "median_seed_effect": 0.9801786217518877,
+      "observed_effect": 0.9550512157495602,
+      "p_cluster_swap": 4.999750012499375e-05,
+      "p_holm": 0.000199990000499975,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.9550512157495602,
+        0.9723604756525327,
+        0.9662517434189035,
+        0.9800675054059618,
+        1.0205120774615002,
+        1.0127303775236087,
+        0.9802897380978138,
+        0.9650285746829499,
+        0.9831538730304031,
+        1.0640483507260845
+      ],
+      "test": "ridge_spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.15583851637472582,
+      "ci95": [
+        0.07131333997658695,
+        0.21268609940042837
+      ],
+      "mean_seed_effect": 0.16134779494141857,
+      "median_seed_effect": 0.1578330959681524,
+      "observed_effect": 0.15748870496429904,
+      "p_cluster_swap": 0.0007999600019999,
+      "p_holm": 0.0012999350032498376,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.157488704964299,
+        0.1634281380628988,
+        0.156997164907558,
+        0.1581774869720058,
+        0.1620599153439609,
+        0.16348690737671884,
+        0.15596236537221286,
+        0.15455257587360383,
+        0.15604936141625028,
+        0.1852753291246776
+      ],
+      "test": "ridge_mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.4060358302021787,
+      "ci95": [
+        0.20882791150236585,
+        0.5203177505533748
+      ],
+      "mean_seed_effect": 0.41429535968519804,
+      "median_seed_effect": 0.41360404775817916,
+      "observed_effect": 0.4125779353547091,
+      "p_cluster_swap": 0.00014999250037498125,
+      "p_holm": 0.00044997750112494374,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.4125779353547091,
+        0.385685804477749,
+        0.4173206139090969,
+        0.4486353014375829,
+        0.3937027466769261,
+        0.42979858372734614,
+        0.41463016016164916,
+        0.4207549850859686,
+        0.40838325683469123,
+        0.4114642091862616
+      ],
+      "test": "histgb_spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.10305645598062418,
+      "ci95": [
+        0.0422788346378453,
+        0.1405610628854256
+      ],
+      "mean_seed_effect": 0.10782166211923017,
+      "median_seed_effect": 0.1080079512826723,
+      "observed_effect": 0.10590705984382583,
+      "p_cluster_swap": 0.0006499675016249188,
+      "p_holm": 0.0012999350032498376,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.10590705984382581,
+        0.10398546061639863,
+        0.10927821373076081,
+        0.108448103478423,
+        0.10173797218290412,
+        0.11369314071090236,
+        0.10756779908692159,
+        0.11172100253622833,
+        0.10551310407143273,
+        0.11036476493450431
+      ],
+      "test": "histgb_mse_improvement"
+    }
+  ],
+  "protocol": "audits/20261121/RK27/a8_rk27_kudla_sequence_cluster_ood_protocol_v1.json",
+  "protocol_sha256": "59698dfeb3aaced63fd9e195dfd0664ee7416cee3d6c8f1dc016deaa79006d14",
+  "schema": "a8-rk27-kudla-sequence-cluster-ood-result-v1",
+  "scientific_conclusion": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY",
+  "scientific_flags": {
+    "RK_G1_complete": false,
+    "fixed_protein": true,
+    "full_spatial_coupling_established": false,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "independent_untouched_confirmation": false,
+    "labels_previously_used_in_RK22_development": true,
+    "protein_ood": false,
+    "sequence_cluster_ood": true,
+    "velocity_or_decay_measured": false
+  },
+  "seeds": [
+    20261221,
+    20261222,
+    20261223,
+    20261224,
+    20261225,
+    20261226,
+    20261227,
+    20261228,
+    20261229,
+    20261230
+  ],
+  "selected_min_identity": 0.9,
+  "sequence_cluster_ood_mfe_increment_pass": true,
+  "started_utc": "2026-11-20T21:20:16.946048+00:00",
+  "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "total_model_fits": 300
+}
