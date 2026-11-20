@@ -47,6 +47,18 @@ class IndependentHelperTests(unittest.TestCase):
         self.assertEqual(independent.independent_motif(sequence), 11.0)
         self.assertEqual(independent.independent_motif(sequence), motif_penalty_score(sequence))
 
+    def test_production_endpoint_aliases_prevent_aggregation_stopiteration(self):
+        production = [
+            {"method": "hill_climbing", "endpoint": "dense_budget_step_auc_v2"},
+            {"method": "hill_climbing", "endpoint": "hypervolume_normalized_B500"},
+        ]
+        for endpoint in ["dense_budget_step_auc_v2", "b500_normalized_hv"]:
+            candidate = next(row for row in production
+                             if row["endpoint"] == independent.production_endpoint_for_independent(endpoint))
+            self.assertEqual(candidate["method"], "hill_climbing")
+        with self.assertRaises(ValueError):
+            independent.production_endpoint_for_independent("unregistered_endpoint")
+
     def test_dominance_uses_independent_arrays(self):
         with tempfile.TemporaryDirectory() as directory:
             a_path = Path(directory) / "a.npy"

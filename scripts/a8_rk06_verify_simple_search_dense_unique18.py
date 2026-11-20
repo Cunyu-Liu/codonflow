@@ -294,6 +294,17 @@ def holm(p_values):
     return output
 
 
+def production_endpoint_for_independent(endpoint):
+    """Map independent labels to the frozen production schema without changing values."""
+    aliases = {
+        "dense_budget_step_auc_v2": "dense_budget_step_auc_v2",
+        "b500_normalized_hv": "hypervolume_normalized_B500",
+    }
+    if endpoint not in aliases:
+        raise ValueError(f"unmapped independent endpoint: {endpoint}")
+    return aliases[endpoint]
+
+
 def independent_inference(results, protocol):
     records = sorted({row["record_id"] for row in results})
     seeds = protocol["seeds"]
@@ -416,7 +427,7 @@ def main():
     test_differences = []
     for independent in tests:
         candidate = next(row for row in production["primary_tests"] if row["method"] == independent["method"]
-                         and row["endpoint"] == independent["endpoint"])
+                         and row["endpoint"] == production_endpoint_for_independent(independent["endpoint"]))
         for key in ["effect", "sign_flip_p", "holm_p"]:
             test_differences.append(abs(float(independent[key]) - float(candidate[key])))
         test_differences.append(float(np.max(np.abs(np.asarray(independent["ci95"]) - np.asarray(candidate["ci95"])))) )
