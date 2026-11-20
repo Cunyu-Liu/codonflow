@@ -19,7 +19,16 @@
       "production_change_scope": "summary-only key lookup changed from timing_scope to gpu_cotenancy; no metric, bootstrap, model, data, or selection code changed",
       "protocol_or_scientific_endpoint_changed": false,
       "correction": "Map timing_scope to the frozen gpu_cotenancy text and rerun the complete comparison and independent verification.",
-      "final_result": "pending rerun"
+      "final_result": "rerun produced the frozen comparison artifacts and PASS_INDEPENDENT_VERIFICATION 77/77"
+    },
+    {
+      "stage": "finalization_csv_float_binding",
+      "result": "50/67 checks passed; all 17 failures were exact-equality comparisons between CSV-parsed floats and their JSON decimal representations",
+      "cause": "CSV parsing can differ in the final floating-point bit from the JSON representation even when the decimal values agree to numerical precision.",
+      "production_code_changed": false,
+      "protocol_or_scientific_endpoint_changed": false,
+      "correction": "Retain the failed report and use math.isclose with relative and absolute tolerance 1e-12 only for CSV-to-JSON numeric bindings; hashes, statuses, flags and counts remain exact.",
+      "final_result": "PASS_RK20_FINALIZATION 67/67; original 50/67 report retained separately"
     }
   ],
   "functional_untouched_evaluated": false,

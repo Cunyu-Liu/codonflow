@@ -1,0 +1,76 @@
+{
+  "schema": "a8-rk20-functional-multiseed-finalization-v1",
+  "status": "PASS_RK20_COMPLETE_ROBUSTNESS_NOT_PASSED",
+  "protocol_id": "a8_rk20_functional_multiseed_v1",
+  "preregistered_code_commit": "14760b6f7dbd952f89cad06eb01a631bc35abdeb",
+  "summary_only_engineering_fix_commit": "505cd22ff51439ce12be606f51570bbf2969c38e",
+  "independent_verification": {
+    "status": "PASS_INDEPENDENT_VERIFICATION",
+    "checks_passed": 77,
+    "checks_total": 77,
+    "report": "audits/20261120/RK20/rk20_independent_verification_v1.json",
+    "sha256": "52010082615f767bd3b1bdcd08f0733306dac8273ea89075adb9bf5168947f54"
+  },
+  "training": {
+    "seeds": [20261119, 20261120, 20261121, 20261122],
+    "models_per_seed": ["ribokinetic_all", "ribokinetic_none"],
+    "new_runs": 6,
+    "reused_frozen_runs": 2,
+    "all_runs_complete": true,
+    "total_new_training_seconds": 458.86265110969543,
+    "checkpoint_selection": "development cluster-balanced MSE only",
+    "test_or_ood_selection": false,
+    "prediction_ensemble_evaluated": false,
+    "timing_scope": "Shared-GPU robustness-run cost only; not controlled time-matched SOTA evidence.",
+    "execution_sha256": "1250c272cfdfe702d718bd138b55b8b9839e9c028f9c5eaa8fd67068c5558ae9",
+    "manifest_sha256": "16c66a832aaf63e99c288d75ecfbf999dfa2334682bf92768bf542ddc9896d67"
+  },
+  "mean_sequence_ood_metrics": {
+    "ribokinetic_all": {"row_spearman": 0.20927607075299703, "cluster_balanced_mse": 4.015837535606317},
+    "ribokinetic_none": {"row_spearman": 0.1401748646989223, "cluster_balanced_mse": 4.136879778221965},
+    "ridge_all": {"row_spearman": 0.21787306638008885, "cluster_balanced_mse": 4.114317657190562},
+    "ridge_gc": {"row_spearman": 0.07187342239270017, "cluster_balanced_mse": 4.378261960057955},
+    "histgb_all": {"row_spearman": 0.2193829589217274, "cluster_balanced_mse": 3.98995049596943}
+  },
+  "sequence_ood_primary_and_secondary_comparisons": [
+    {"left": "ribokinetic_all", "right": "ribokinetic_none", "metric": "spearman", "delta": 0.06910120605407477, "ci95": [0.004822716608282815, 0.16273517257639497], "holm_p": 0.126, "pass": false},
+    {"left": "ribokinetic_all", "right": "ribokinetic_none", "metric": "cluster_balanced_mse", "delta": -0.12104224261564733, "ci95": [-0.27133490885188455, 0.038846006270141946], "holm_p": 0.62, "pass": false},
+    {"left": "ribokinetic_all", "right": "ridge_all", "metric": "spearman", "delta": -0.008596995627091798, "ci95": [-0.058824354658409565, 0.04027937727442116], "holm_p": 1.0, "pass": false},
+    {"left": "ribokinetic_all", "right": "ridge_all", "metric": "cluster_balanced_mse", "delta": -0.09848012158424524, "ci95": [-0.24624338967406137, 0.030588030983201585], "holm_p": 0.62, "pass": false},
+    {"left": "ribokinetic_all", "right": "ridge_gc", "metric": "spearman", "delta": 0.13740264836029686, "ci95": [0.09365625822192651, 0.18395958315329308], "holm_p": 0.0, "pass": true},
+    {"left": "ribokinetic_all", "right": "ridge_gc", "metric": "cluster_balanced_mse", "delta": -0.36242442445163814, "ci95": [-0.5041822872840257, -0.24815748982880861], "holm_p": 0.0, "pass": true},
+    {"left": "ribokinetic_all", "right": "histgb_all", "metric": "spearman", "delta": -0.01010688816873035, "ci95": [-0.06899358905841237, 0.0486745487624733], "holm_p": 1.0, "pass": false},
+    {"left": "ribokinetic_all", "right": "histgb_all", "metric": "cluster_balanced_mse", "delta": 0.0258870396368871, "ci95": [-0.15984114761488216, 0.19344903893513024], "holm_p": 1.0, "pass": false}
+  ],
+  "fully_passed_sequence_ood_tests": "2/8",
+  "all_minus_none_per_seed": {
+    "spearman": [0.19901564752464795, 0.022651892319494354, 0.014371146647929017, 0.04036613772422773],
+    "cluster_balanced_mse": [-0.2760885716873087, -0.227281937311548, -0.056225918724670976, 0.07542745726093836]
+  },
+  "scientific_conclusion": "The all-feature neural model robustly beats the GC-only ridge on both frozen sequence-OOD endpoints, but does not robustly beat full-proxy ridge or HistGB. The all-minus-none Spearman direction is positive but not significant after eight-test Holm correction, and the cluster-balanced MSE interval crosses zero with one reversed seed. Stable mechanism increment and superiority to strong all-feature baselines are therefore not established.",
+  "functional_robustness_pass": false,
+  "velocity_mechanism_pass": false,
+  "fixed_gfp_structure_mechanism_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "expensive_generation_authorized": false,
+  "external_sota_authorized": false,
+  "sota_claimed": false,
+  "no_added_seeds_or_test_ood_tuning": true,
+  "comparison_artifacts": {
+    "summary": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk20/functional_multiseed_v1/comparison_v1/comparison_summary.json",
+    "summary_sha256": "1cef5ea463e26b5944e1b222e1746e8632e764446983a8dcef30759b353f5d52",
+    "paired_comparisons_sha256": "7feb92c843e6b8c53a2dc60937cdfdfa02780feaa0587d3422ea5298d5133b53",
+    "metrics_sha256": "6dd14452292b5b1063823d7dfba9dd997ef7c089ca286342b1e612217a4a3cef",
+    "per_seed_comparisons_sha256": "45e8e0b0a1636cfb4c9680cca61fca0fa66e2ac6f861fac7022dc0348c622503",
+    "bootstrap_deltas_sha256": "9fad99f2c261499547719bb83931e2db3dced42b73a5b430462c35b551bca653",
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 20261120
+  },
+  "limitations": [
+    "Sequence-OOD and test were already observed in RK08; RK20 is robustness evidence, not untouched confirmation.",
+    "Cross-protein nonsynonymous Boel prediction is not fixed-protein synonymous mechanism evidence.",
+    "A functional result alone would not override the failed velocity and fixed-GFP structure mechanisms.",
+    "No CodonFlow-RK generator, unified time-matched SOTA, wet-lab, or external dense-trajectory result is supplied."
+  ]
+}
