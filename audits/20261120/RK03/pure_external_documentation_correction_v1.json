@@ -1,0 +1,44 @@
+{
+  "schema": "codonflow.a8_rk03.pure_external_documentation_correction.v1",
+  "scope": "documentation completeness only",
+  "initial_status": "FAIL_PURE_EXTERNAL_DOCUMENTATION",
+  "initial_failed_checks": [
+    "document:readme:summary:replacement=false",
+    "document:registry:token:0.7673134542688491",
+    "document:registry:token:0.7483679374061527"
+  ],
+  "causes": [
+    "README did not expose the normalized replacement=false token used by the acceptance contract.",
+    "REGISTRY stated the direction of full-pure and intrinsic+RCS-pure but omitted their two Spearman effect values."
+  ],
+  "changes": [
+    "Added replacement=false to the README current-status sentence without changing its scientific meaning.",
+    "Added full-pure dSpearman=0.7673134542688491 and intrinsic+RCS-pure dSpearman=0.7483679374061527 to the existing REGISTRY result row.",
+    "Generated final evidence on a clean HEAD export and scoped the new handover task file so unrelated pre-existing task-file edits are not included in the commit."
+  ],
+  "clean_evidence_root": "/home/codonflow-pure-rcs-docs-clean",
+  "unrelated_preexisting_task_changes_reverted_or_deleted": false,
+  "unrelated_preexisting_task_changes_included_in_commit": false,
+  "scientific_content_changed": false,
+  "scientific_evidence_changed": false,
+  "manuscript_changed": false,
+  "online_slide_changed": false,
+  "protocol_or_gate_changed": false,
+  "initial_test_log": "audits/20261120/RK03/pure_external_documentation_tests_attempt1_v1.console.log",
+  "initial_test_log_sha256": "94e91b5179df5deeff46b18897a8848361ee9674ae8b8f7a916bf5acfb466440",
+  "final_test_log": "audits/20261120/RK03/pure_external_documentation_tests_v1.console.log",
+  "final_test_log_sha256": "f2b66f99502cd2d3a6d00b9fa2ef8f4ea64788111e8b89401c26ab61553bdb4d",
+  "final_mutation_tests": "12/12 PASS",
+  "final_verification": "audits/20261120/RK03/pure_external_documentation_verification_v1.json",
+  "final_verification_sha256": "2a4e41d3b19fe036fbd54c259e7c0e8c673d662761ae49ed3f112d749a88a244",
+  "final_verification_checks": "243/243 PASS",
+  "readme_sha256": "a9f5b539bbcc89500010a544fb3329a61943fcac55d3cbf2e7a8c313affff860",
+  "registry_sha256": "d026a3d322a83e2bcc3b9d4628e40118837bff30c46c1c8ed229e723546f1980",
+  "clean_root_tasks_sha256": "afbb10ffb2ea01431f91dc2b04b90b4242c90517a2657dadbe7dee8534d425e1",
+  "scoped_handover_tasks_sha256": "ed31cd769a35b97dfee60c11bdda8bb0a2835942b976a6f61f539bb389ef8251",
+  "pure_external_replacement_supported_development_only": false,
+  "mechanism_increment_pass": false,
+  "rk_g1_pass": false,
+  "test_authorized": false,
+  "generator_training_authorized": false
+}

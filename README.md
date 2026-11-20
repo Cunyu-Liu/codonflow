@@ -225,6 +225,21 @@ python3 scripts/a8_g0_verify_closeout_documents.py --root /home/codonflow-a8-rk
 
 文档只读验收：`python3 scripts/a8_rk08_verify_channel_screen_documents.py --root /home/codonflow-a8-rk --output audits/20261118/RK08/channel_screen_documentation_verification_v1.json`。PPT 只读复验：`python3 scripts/a8_rk08_verify_channel_screen_ppt.py --mode final --work-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1 --visual-reviewed --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_ppt_verification_posthandover_v01.json`；finalizer 同样只读：`python3 scripts/a8_rk08_finalize_channel_screen_ppt.py --root /home/codonflow-a8-rk --work-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1 --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_ppt_closeout_finalization_posthandover_v1.json`。
 
+## A8-RK：MAGE 纯外部 RCS 对照、v32 与 PPT108 closeout
+
+**当前状态（2026-11-20）**：工作稿为 **v32**，新增 §6.28；在线总稿为 **108 页 / revision 70**，末页 `pZS`。纯外部 RCS 特征臂在复用 MAGE development folds 上显著差于 intrinsic，不能替代 intrinsic（replacement=false）；full 或 intrinsic+RCS 优于纯 RCS 也不构成 full−intrinsic 机制增量。`rk_g1_pass=false`，test 与生成训练仍未授权。
+
+- **纯外部臂定义与隔离**：仅使用 variant RCS、matched wild-type 差值及绝对差，不使用 position、codon/amino-acid identity、GC、local MFE 或其他 intrinsic 特征。131 个 train+dev constructs 沿用冻结 OOF/folds，5 outer × 4 inner × 3 seeds × 6 alphas，共 375 次新拟合；33 个 test constructs 始终排除。协议 SHA256=`9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45`，预注册提交 `0a08eb90c3ee787578f5fac1d5f01a2b2fe72a5d`。
+- **替代结论**：纯 RCS 主 seed RMSE=`0.04929761172417739`、Spearman=`-0.13201530863899236`；intrinsic 分别为 `0.03413327461240379`、`0.6123990835404937`。pure−intrinsic ΔSpearman=`-0.744414392179486`，95% CI=`[-0.9403491867053566,-0.5300791533185797]`，Holm p=`0.0002999850007499625`；ΔRMSE=`+0.015164337111773597`，CI=`[0.005846359530413134,0.02506527402042598]`，p=`0.009449527523623819`，两个 sensitivity seeds 方向一致不利于纯 RCS。
+- **不能挽救机制增量**：full−pure 与 intrinsic+RCS−pure 的 Spearman/RMSE 比较均满足 development-only 支持规则，但 comparator 是弱纯 RCS 臂。旧 full−intrinsic 两项 CI 均跨零、Holm p=1，因此 `pure_external_replacement_supported_development_only=false`、`mechanism_increment_pass=false`；不得把“优于纯 RCS”写成“机制优于 intrinsic”。
+- **独立验收**：10/10 单元测试 PASS；独立实现重跑 375 fits 及全部统计，174/174 PASS、max numeric delta=0；finalization 43/43 `PASS_PURE_EXTERNAL_COMPARATOR_CLOSEOUT`，postpush 174/174。科学证据提交 `b95e1244537a23c95cdda986cb60e343cfd7e4da`；生产/独立/finalization SHA256 分别为 `c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9`、`eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2`、`29561b13922e4319715fd511c4b2ac4fa911d893815c722df17e0a96fb58f8e0`。
+- **论文 v32**：真实稿件 SHA256=`6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0`，独立及 postpush 均 100/100 PASS，可精确恢复 v31；论文提交 `d5959f73ac4f4812d614eee6d6c04d320dff38fc`。写作交付的 Makefile shell 错误与 correction 保留，未因此修改科学内容或门禁脚本。
+- **PPT108**：candidate 227/227、写后 553/553、closeout 32/32，真实在线截图视觉 PASS；旧 107 页及备注语义不变。两次 `+add-slide` server timeout 后均确认未写入，再以带幂等键的原生接口追加一次 `pZS`，revision 70；没有重复页。PPT 提交 `3460c2e07d6e44d09afa38e747db737aae939911`。closeout 的报告字段与末尾换行修正记录保留，科学内容和在线页面未因此改变。
+- **证据入口**：科学报告位于 `audits/20261120/RK03/`，PPT 小型报告同目录以 `pure_external_ppt_` 为前缀；大型 predictions、日志、整稿 XML 和截图位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/` 及其 `pure_external_ppt_v1/` 子目录，大型 artifacts 不进入 Git。
+- **复现边界**：本项只闭合纯 RCS 特征臂的替代诊断，不闭合所有外部预训练模型、独立常数速度场、transport、functional untouched、真实功能或完整外部 SOTA。v32/pure-RCS/PPT108 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现。
+
+文档只读验收：`python3 scripts/a8_rk03_verify_pure_external_documents.py --root /home/codonflow-a8-rk --asset-root /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1 --output audits/20261120/RK03/pure_external_documentation_verification_v1.json`。PPT 只读复验：`python3 scripts/a8_rk03_verify_pure_external_slide_postwrite.py --base /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/pure_external_ppt_v1 --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/pure_external_ppt_v1/pure_rcs_slide_postwrite_verification_posthandover_v01.json`；finalizer 使用同一 `--work-dir` 和独立输出文件。
+
 ## 目录
 
 ```

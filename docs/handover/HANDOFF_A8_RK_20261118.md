@@ -767,3 +767,67 @@ PPT 首次 candidate 102/103 是 verifier 用 `notes.count("Holm p=0")` 误计 `
 - 纯外部预训练模型替代、独立常数速度场、transport、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、external actual-set dense 完整矩阵、time-matched 与完整外部 SOTA 仍未闭合。
 - v31/channel screen/PPT107 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；本轮 PASS 只覆盖各自冻结证据、定向测试、独立重算、论文与页面验收。
 - 权威工作树=`/home/codonflow-a8-rk`、分支=`a8-rk`；代码/提交留在 `/home`，大型数据/权重/artifacts 留在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。远端 RK05/RK12/RK13 未提交在途状态不属于 RK08，不得清理、覆盖或混入提交。
+
+## 37. MAGE 纯外部 RCS 对照：替代失败，但不改变 full−intrinsic 非显著结论
+
+### 37.1 冻结动机、特征组成与隔离
+
+旧 nested-CV 报告中的 `rcs_only` 实际是 intrinsic numeric/categorical baseline 加 RCS additions，不能回答“纯外部预训练结构特征能否替代 intrinsic”。本项在任何新拟合前冻结 `pure_external_rcs`：只包含 `RCS`、`delta_rcs_vs_wt`、`abs_delta_rcs_vs_wt`，禁止 position、position interaction、codon/amino-acid identity、GC、local MFE 和其他 intrinsic 特征。
+
+- 协议=`configs/a8_rk03_mage_pure_external_nested_cv_protocol_v1.json`，SHA256=`9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45`；预注册提交=`0a08eb90c3ee787578f5fac1d5f01a2b2fe72a5d`。
+- 准备报告=`audits/20261120/RK03/mage_pure_external_nested_cv_preparation_v1.json`，SHA256=`d5e8f16ac9cace99e5ca4ade08f918bcc58b6af9a2528ddb92651d711ebec63f`；准备阶段真实拟合数=0，OOF 只含 98 train+33 dev。
+- 复用冻结 131-construct OOF SHA256=`64c74470d875777162b28e567a28babb26b597d9b9565f00d56707f9e7a5943a`；原始 MAGE feature CSV SHA256=`83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8`。
+- 沿用 5 outer folds × 4 inner folds × 3 seeds × 6 alphas；主 seed=`40261119`，sensitivity=`40261120/40261121`，每 seed 125 fits，planned=actual=375。生产耗时 `94.4689605939202` s，numeric threads=1。
+- 原始表仅选择外部特征必要字段；未读取表达值、标准差或序列字段。33 个 test constructs 不参与特征选择、拟合或评价，test predictions/metrics 均未产生，`DEV_NO_GO_TEST_UNTOUCHED` 不变。
+- 预注册比较为 pure−intrinsic、full−pure、intrinsic+RCS−pure；每项含 ΔSpearman 与 ΔRMSE，20,000 次 construct bootstrap、20,000 次 within-construct prediction-swap permutation，六检验统一 Holm，两个 sensitivity seeds 还需方向一致。
+
+### 37.2 主 seed 指标与三项预注册比较
+
+| arm | RMSE | MAE | Spearman |
+|---|---:|---:|---:|
+| intrinsic | 0.03413327461240379 | 0.022187896273263757 | 0.6123990835404937 |
+| pure external RCS | 0.04929761172417739 | 0.03158281646008941 | -0.13201530863899236 |
+| intrinsic+RCS | 0.034152773868486606 | 0.021816612746170472 | 0.6163526287671603 |
+| full mechanism | 0.03422820302559988 | 0.0222595186439585 | 0.6352981456298568 |
+
+| comparison | endpoint | point Δ | paired 95% CI | Holm p | preregistered support |
+|---|---|---:|---:|---:|---|
+| pure−intrinsic | Spearman | -0.744414392179486 | [-0.9403491867053566, -0.5300791533185797] | 0.0002999850007499625 | false：方向不利于 pure |
+| pure−intrinsic | RMSE | +0.015164337111773597 | [0.005846359530413134, 0.02506527402042598] | 0.009449527523623819 | false：方向不利于 pure |
+| full−pure | Spearman | +0.7673134542688491 | [0.5631894046071572, 0.9532654793818945] | 0.0002999850007499625 | development-only true |
+| full−pure | RMSE | -0.015069408698577508 | [-0.02544806838533774, -0.005479110034720501] | 0.009449527523623819 | development-only true |
+| intrinsic+RCS−pure | Spearman | +0.7483679374061527 | [0.539343123375721, 0.9432946055506556] | 0.0002999850007499625 | development-only true |
+| intrinsic+RCS−pure | RMSE | -0.015144837855690783 | [-0.02536403898497323, -0.00577083989049933] | 0.009449527523623819 | development-only true |
+
+sensitivity seed 40261120 的 pure−intrinsic ΔSpearman/ΔRMSE=`-0.5442331298855756/+0.011016023254221755`，full−pure=`+0.5591263296287041/-0.011533144169013722`，intrinsic+RCS−pure=`+0.5354237448430367/-0.010623179987512159`；seed 40261121 分别为 `-0.5884455647566449/+0.011148755654897778`、`+0.6125645931988687/-0.011015591119909705`、`+0.5814781420411822/-0.010610004997910913`。方向均符合预注册判定。
+
+科学结论是：**纯 RCS 不能替代 intrinsic，且在该协议下显著更差**。full 和 intrinsic+RCS 优于纯 RCS 只说明它们优于这个弱外部臂，不能挽救旧 full−intrinsic 机制比较：旧 ΔSpearman=`0.022899062089363098`、CI=`[-0.03790577728252063,0.09011639336438297]`，ΔRMSE=`0.00009492841319608952`、CI=`[-0.0014175669474227434,0.0014564023955950885]`，两项 Holm p=1。故 replacement=false、mechanism_increment=false、RK-G1=false。
+
+### 37.3 独立重算、论文 v32 与证据锚点
+
+- 默认 `/usr/bin/python3` 缺 pytest 的首次环境失败日志保留；正确环境为 `/root/miniconda3/envs/llr_env/bin/python`，10/10 单元测试 PASS。
+- 独立实现重新抽取外部特征，重跑 375 fits、nested alpha、预测、指标、bootstrap、permutation 与 Holm：174/174 `PASS_PURE_EXTERNAL_INDEPENDENT_VERIFICATION`，max numeric delta=0。独立报告 SHA256=`eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2`。
+- 生产报告 SHA256=`c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9`；finalization 43/43 `PASS_PURE_EXTERNAL_COMPARATOR_CLOSEOUT`，SHA256=`29561b13922e4319715fd511c4b2ac4fa911d893815c722df17e0a96fb58f8e0`。科学证据提交=`b95e1244537a23c95cdda986cb60e343cfd7e4da`；postpush 再次 174/174、max delta=0。
+- 大型 predictions、production/independent logs 和 postpush 位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/`。
+- 英文新节以 476 词通过写作工作流 `PASS / markdown_only`，随后合入真实稿件为 §6.28 `Pure external-RCS comparator on reused MAGE development folds`。当前论文 v32 SHA256=`6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0`；独立及 postpush 均 100/100 PASS，可精确恢复 v31，摘要、旧章节与参考文献未改。paper verification SHA256=`12461ce66e44a055940c3b3a300b66f3c484d0f6703874e576ac1db94dac3d07`，update report SHA256=`d4e8a5603d2cb9b7be7b11517ae27535f52ba6638893abcff3e824ab2bc7962d`。
+- 论文提交=`d5959f73ac4f4812d614eee6d6c04d320dff38fc`。写作交付曾出现 `finish_with_status: command not found`；失败日志和 correction 保留，未修改写作门禁脚本或科学正文。
+
+### 37.4 在线 PPT108 与超时处置
+
+在线主稿从 107 页/revision 69/末页 `pZZ` 的实时基线开始。候选标题为 `Pure external RCS cannot replace intrinsic features`，显示纯 RCS Spearman −0.132、RMSE 0.049298、独立 174/174、closeout 43/43，以及三项比较和负门禁；全精度值保留在备注。
+
+- candidate 227/227 PASS，候选 XML SHA256=`d596d18912b1e5ec5d83ca38a08ea5634a996d43bef05d4cc04d421cf6deb477`，candidate report SHA256=`5a3e0e106a8a3424f82c1995671a277f77e93da608ee321c7742bac4e8c5bfa6`；本地实际渲染视觉 PASS。
+- 两次 `+add-slide` 均返回 server timeout；每次超时后的整稿回读都仍为 107/revision 69/`pZZ`，纯 RCS title hits 为空，故两次均未落库。没有盲目继续追加，也没有删除或覆盖页面。
+- 读取原生 `slides.xml_presentation.slide.create` schema 后，以幂等键 `codonflow-pure-rcs-20261120-v01` 发起同一创建请求，成功返回新页 `pZS`、revision 70。当前在线主稿为 **108 页/revision 70/末页 `pZS`**，纯 RCS 页面仅出现一次。
+- 写后独立核验 553/553 PASS：旧 107 页 ID、完整语义、可见文本和备注不变，新页文字、表格、备注与候选及冻结科学证据一致。postwrite report SHA256=`270802767179c0526602343e798421a862a28419616b207dbe1bc761b7801fce`。
+- 真实在线截图人工视觉 PASS，无溢出、遮挡、裁切或不可读表格。closeout 32/32 `PASS_PURE_EXTERNAL_PPT_CLOSEOUT`，finalization SHA256=`65cbdf405a598b20d36c55ed50b0ceb33df1c5921df6c2c353e035127ed722bc`。
+- closeout 初次报告缺顶层哈希字段、第二次仅因 dry-run payload 缺候选末尾换行而 31/32；失败日志与 `pure_external_ppt_closeout_correction_v1.json` 保留，修正未改变科学内容、候选 XML 或在线页面。
+- PPT 证据提交=`3460c2e07d6e44d09afa38e747db737aae939911`，已推送。大型 before/after XML、响应、失败现场与截图归档于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/pure_external_ppt_v1/`。
+
+### 37.5 当前续作边界
+
+- 本项只闭合旧 `rcs_only` 命名/特征组成歧义和**纯 RCS 特征臂**替代诊断；不闭合所有外部预训练模型替代，不证明因果机制、protein OOD、真实生物功能或 SOTA。
+- 不得重复追加 PPT `pZS`，不得重跑 v31→v32 updater，不得读取 33 个 MAGE test constructs 调参，也不得把 full−pure 的显著结果写成 full−intrinsic 机制增量。
+- 独立常数速度场、transport、functional untouched、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、external actual-set dense 完整矩阵、time-matched 与完整外部 SOTA 仍未闭合。生成训练继续禁止。
+- v32/pure-RCS/PPT108 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；本轮 PASS 只覆盖冻结证据、定向测试、独立重算、论文和页面验收。
+- 权威工作树=`/home/codonflow-a8-rk`、分支=`a8-rk`；代码/提交留在 `/home`，大型数据/权重/artifacts 留在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。远端 RK05/RK12/RK13 未提交在途状态不属于本项，不得清理、覆盖或混入提交。

@@ -1,0 +1,25 @@
+test_reject_holm_claim_change (__main__.DocumentationMutationTests) ... ok
+test_reject_idempotency_key_change (__main__.DocumentationMutationTests) ... ok
+test_reject_missing_science_commit (__main__.DocumentationMutationTests) ... ok
+test_reject_old_full_intrinsic_effect_change (__main__.DocumentationMutationTests) ... ok
+test_reject_pure_spearman_sign_flip (__main__.DocumentationMutationTests) ... ok
+test_reject_registry_gate_status_flip (__main__.DocumentationMutationTests) ... ok
+test_reject_replacement_claim_flip (__main__.DocumentationMutationTests) ... ok
+test_reject_reproduction_overclaim (__main__.DocumentationMutationTests) ... ok
+test_reject_revision_change (__main__.DocumentationMutationTests) ... ok
+test_reject_test_exclusion_removal (__main__.DocumentationMutationTests) ... ok
+test_reject_wrong_slide_id (__main__.DocumentationMutationTests) ... ok
+test_unmodified_records_pass (__main__.DocumentationMutationTests) ... FAIL
+
+======================================================================
+FAIL: test_unmodified_records_pass (__main__.DocumentationMutationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk03_test_pure_external_documents.py", line 44, in test_unmodified_records_pass
+    self.assertTrue(report["overall_pass"], report["failed_checks"])
+AssertionError: False is not true : [{'name': 'document:readme:summary:replacement=false', 'pass': False, 'detail': ''}, {'name': 'document:registry:token:0.7673134542688491', 'pass': False, 'detail': ''}, {'name': 'document:registry:token:0.7483679374061527', 'pass': False, 'detail': ''}]
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.138s
+
+FAILED (failures=1)

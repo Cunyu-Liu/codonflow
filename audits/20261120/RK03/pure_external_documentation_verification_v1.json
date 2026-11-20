@@ -1,0 +1,1304 @@
+{
+  "schema": "codonflow.a8_rk03.pure_external_documentation_verification.v1",
+  "status": "PASS_PURE_EXTERNAL_DOCUMENTATION",
+  "overall_pass": true,
+  "checks_total": 243,
+  "checks_passed": 243,
+  "checks_failed": 0,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "hash:configs/a8_rk03_mage_pure_external_nested_cv_protocol_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45",
+        "actual": "9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/mage_pure_external_nested_cv_preparation_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "d5e8f16ac9cace99e5ca4ade08f918bcc58b6af9a2528ddb92651d711ebec63f",
+        "actual": "d5e8f16ac9cace99e5ca4ade08f918bcc58b6af9a2528ddb92651d711ebec63f"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/mage_pure_external_nested_cv_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9",
+        "actual": "c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/mage_pure_external_nested_cv_independent_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2",
+        "actual": "eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/mage_pure_external_nested_cv_finalization_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "29561b13922e4319715fd511c4b2ac4fa911d893815c722df17e0a96fb58f8e0",
+        "actual": "29561b13922e4319715fd511c4b2ac4fa911d893815c722df17e0a96fb58f8e0"
+      }
+    },
+    {
+      "name": "hash:paper/CodonFlow_preprint_A8.md",
+      "pass": true,
+      "detail": {
+        "expected": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0",
+        "actual": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0"
+      }
+    },
+    {
+      "name": "hash:paper/a8_rk03_pure_external_rcs_paper_verification_v32.json",
+      "pass": true,
+      "detail": {
+        "expected": "12461ce66e44a055940c3b3a300b66f3c484d0f6703874e576ac1db94dac3d07",
+        "actual": "12461ce66e44a055940c3b3a300b66f3c484d0f6703874e576ac1db94dac3d07"
+      }
+    },
+    {
+      "name": "hash:paper/a8_rk03_pure_external_rcs_paper_update_v32.json",
+      "pass": true,
+      "detail": {
+        "expected": "d4e8a5603d2cb9b7be7b11517ae27535f52ba6638893abcff3e824ab2bc7962d",
+        "actual": "d4e8a5603d2cb9b7be7b11517ae27535f52ba6638893abcff3e824ab2bc7962d"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/pure_external_ppt_candidate_verification_v01.json",
+      "pass": true,
+      "detail": {
+        "expected": "5a3e0e106a8a3424f82c1995671a277f77e93da608ee321c7742bac4e8c5bfa6",
+        "actual": "5a3e0e106a8a3424f82c1995671a277f77e93da608ee321c7742bac4e8c5bfa6"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/pure_external_ppt_postwrite_verification_v01.json",
+      "pass": true,
+      "detail": {
+        "expected": "270802767179c0526602343e798421a862a28419616b207dbe1bc761b7801fce",
+        "actual": "270802767179c0526602343e798421a862a28419616b207dbe1bc761b7801fce"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/pure_external_ppt_online_visual_review_v01.json",
+      "pass": true,
+      "detail": {
+        "expected": "a283d2f4dc0286ec17976c46fbeca6c9d990cf453aed740536b97f55eedff6d9",
+        "actual": "a283d2f4dc0286ec17976c46fbeca6c9d990cf453aed740536b97f55eedff6d9"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/pure_external_ppt_closeout_finalization_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "65cbdf405a598b20d36c55ed50b0ceb33df1c5921df6c2c353e035127ed722bc",
+        "actual": "65cbdf405a598b20d36c55ed50b0ceb33df1c5921df6c2c353e035127ed722bc"
+      }
+    },
+    {
+      "name": "hash:audits/20261120/RK03/pure_external_ppt_closeout_correction_v1.json",
+      "pass": true,
+      "detail": {
+        "expected": "b8d815538f325a2ee3b24ddb9de4a0445a15cea4667bded86aa65eee5ca6ed98",
+        "actual": "b8d815538f325a2ee3b24ddb9de4a0445a15cea4667bded86aa65eee5ca6ed98"
+      }
+    },
+    {
+      "name": "preparation:before_fitting",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "preparation:test_excluded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:fit_count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:pure_feature_contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:test_excluded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:replacement_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:mechanism_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:generator_not_authorized",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "production:runtime_recorded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:full_recompute",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:fit_count_and_delta",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:test_and_gates",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science_closeout:43_of_43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "comparison:pure_replacement_rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "comparison:full_over_pure_development_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "comparison:augmented_over_pure_development_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "comparison:multiplicity_and_sensitivity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:v32_100_of_100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:exact_v31_rollback",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:no_reference_or_gate_change",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:current_hash_matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:candidate_227_of_227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:postwrite_553_of_553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:108_rev70_pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:old_pages_preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:online_visual_pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:closeout_32_of_32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:correction_did_not_change_science",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:gates_remain_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset:science_postpush_exists",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/postpush_independent.json"
+    },
+    {
+      "name": "asset:paper_postpush_exists",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/paper_postpush_verification_v32.json"
+    },
+    {
+      "name": "asset:science_postpush_174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "asset:paper_postpush_100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:new_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:new_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:new_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:new_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:new_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:0a08eb90c3ee787578f5fac1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:b95e1244537a23c95cdda986",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:d5959f73ac4f4812d614eee6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:3460c2e07d6e44d09afa38e7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:6c3d2a0329a46ca70d4dd782",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:174/174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:43/43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:100/100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:553/553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:32/32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:token:pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:0a08eb90c3ee787578f5fac1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:b95e1244537a23c95cdda986",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:d5959f73ac4f4812d614eee6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:3460c2e07d6e44d09afa38e7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:6c3d2a0329a46ca70d4dd782",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:174/174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:43/43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:100/100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:553/553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:32/32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:token:pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:0a08eb90c3ee787578f5fac1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:b95e1244537a23c95cdda986",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:d5959f73ac4f4812d614eee6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:3460c2e07d6e44d09afa38e7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:6c3d2a0329a46ca70d4dd782",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:174/174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:43/43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:100/100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:553/553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:32/32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:token:pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:0a08eb90c3ee787578f5fac1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:b95e1244537a23c95cdda986",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:d5959f73ac4f4812d614eee6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:3460c2e07d6e44d09afa38e7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:6c3d2a0329a46ca70d4dd782",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:174/174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:43/43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:100/100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:553/553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:32/32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:token:pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:9efd39ef21672722adde333e28f4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.04929761172417739",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:-0.13201530863899236",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.03413327461240379",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.6123990835404937",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:-0.744414392179486",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:-0.9403491867053566",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:-0.5300791533185797",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.0002999850007499625",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.015164337111773597",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.005846359530413134",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.02506527402042598",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:0.009449527523623819",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:375",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:33 个 test constructs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:replacement=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:full−intrinsic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:Holm p=1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:227/227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:revision 70",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:summary:未运行完整项目 `pytest tests/`",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:9efd39ef21672722adde333e28f4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.04929761172417739",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:-0.13201530863899236",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.03413327461240379",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.6123990835404937",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:-0.744414392179486",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:-0.9403491867053566",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:-0.5300791533185797",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.0002999850007499625",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.015164337111773597",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.005846359530413134",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.02506527402042598",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:0.009449527523623819",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:375",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:33 个 test constructs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:replacement=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:full−intrinsic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:Holm p=1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:227/227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:revision 70",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:summary:未运行完整项目 `pytest tests/`",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:9efd39ef21672722adde333e28f4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.04929761172417739",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:-0.13201530863899236",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.03413327461240379",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.6123990835404937",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:-0.744414392179486",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:-0.9403491867053566",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:-0.5300791533185797",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.0002999850007499625",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.015164337111773597",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.005846359530413134",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.02506527402042598",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:0.009449527523623819",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:375",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:33 个 test constructs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:replacement=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:full−intrinsic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:Holm p=1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:227/227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:revision 70",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:summary:未运行完整项目 `pytest tests/`",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:9efd39ef21672722adde333e28f4e1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.04929761172417739",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.13201530863899236",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.03413327461240379",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.6123990835404937",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.744414392179486",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.9403491867053566",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.5300791533185797",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.0002999850007499625",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.015164337111773597",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.005846359530413134",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.02506527402042598",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.009449527523623819",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:375",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:33 个 test constructs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:replacement=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:full−intrinsic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:Holm p=1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:227/227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:revision 70",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:未运行完整项目 `pytest tests/`",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.7673134542688491",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.5631894046071572",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.9532654793818945",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.015069408698577508",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.02544806838533774",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.005479110034720501",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.7483679374061527",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.539343123375721",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.9432946055506556",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.015144837855690783",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.02536403898497323",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.00577083989049933",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.5442331298855756",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.011016023254221755",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.5884455647566449",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.011148755654897778",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.022899062089363098",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.03790577728252063",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.09011639336438297",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.00009492841319608952",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:-0.0014175669474227434",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:0.0014564023955950885",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:c39e3f3b42e126abdc3fdc0838c053",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:eb4153a3cb3109aff34a6e73006af3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:29561b13922e4319715fd511c4b2ac",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:12461ce66e44a055940c3b3a300b66",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:5a3e0e106a8a3424f82c1995671a27",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:270802767179c0526602343e798421",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:65cbdf405a598b20d36c55ed50b0ce",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:94.4689605939202",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:codonflow-pure-rcs-20261120-v0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:不得重复追加 PPT `pZS`",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:detail:33 个 test constructs 不参与特征选择、拟",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:0a08eb90c3ee787578f5fac1d5f01a",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:b95e1244537a23c95cdda986cb60e3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:d5959f73ac4f4812d614eee6d6c04d",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:3460c2e07d6e44d09afa38e747db73",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:6c3d2a0329a46ca70d4dd782748a06",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:174/174",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:43/43",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:100/100",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:553/553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:32/32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:CF-A8-RK18-WORKING-MANUSCRIPT-",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:CF-A8-RK03-PURE-EXTERNAL-PPT-C",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:94.4689605939202",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:227/227",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:done_pure_rcs_replacement_fals",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:done_v32_recorded_non_submitta",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:done_108_pages_rev70_pZS_old_p",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:0.7673134542688491",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:0.7483679374061527",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:token:33 test excluded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:task_mirrors_identical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme:no_gate_weakening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:no_gate_weakening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:no_gate_weakening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:no_gate_weakening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:no_gate_weakening",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:0a08eb90",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:b95e1244",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:d5959f73",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:3460c2e0",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "documents": {
+    "readme": {
+      "path": "README.md",
+      "sha256": "a9f5b539bbcc89500010a544fb3329a61943fcac55d3cbf2e7a8c313affff860"
+    },
+    "root_tasks": {
+      "path": "docs/handover/tasks.md",
+      "sha256": "afbb10ffb2ea01431f91dc2b04b90b4242c90517a2657dadbe7dee8534d425e1"
+    },
+    "handover_tasks": {
+      "path": "docs/handover/A8_RK_PURE_EXTERNAL_RCS_tasks.md",
+      "sha256": "ed31cd769a35b97dfee60c11bdda8bb0a2835942b976a6f61f539bb389ef8251"
+    },
+    "handoff": {
+      "path": "docs/handover/HANDOFF_A8_RK_20261118.md",
+      "sha256": "0b23f28e4e1e4155ca488f7461f90bd728f838b994a49752cadd4c64a8a9da6c"
+    },
+    "registry": {
+      "path": "experiments/REGISTRY.md",
+      "sha256": "d026a3d322a83e2bcc3b9d4628e40118837bff30c46c1c8ed229e723546f1980"
+    }
+  },
+  "manuscript": {
+    "version": "v32",
+    "sha256": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0"
+  },
+  "presentation": {
+    "pages": 108,
+    "revision": 70,
+    "last_slide_id": "pZS"
+  },
+  "scientific_boundary": {
+    "pure_external_replacement_supported_development_only": false,
+    "mechanism_increment_pass": false,
+    "rk_g1_pass": false,
+    "test_authorized": false,
+    "generator_training_authorized": false
+  },
+  "reproduction_boundary": "Full-project pytest, clean installation, and an end-to-end reproduction were not established by this record."
+}

@@ -1,0 +1,237 @@
+{
+  "schema": "codonflow.a8_rk03.pure_external_documentation_finalization.v1",
+  "status": "PASS_PURE_EXTERNAL_DOCUMENTATION_CLOSEOUT",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 39,
+    "failed": 0,
+    "total": 39
+  },
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "verification:status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "verification:243_of_243",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "verification:report_hash_matches_correction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mutation_tests:final_12_pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mutation_tests:final_log_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mutation_tests:initial_failure_preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:initial_failure_recorded:document:readme:summary:replacement=false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:initial_failure_recorded:document:registry:token:0.7673134542688491",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:initial_failure_recorded:document:registry:token:0.7483679374061527",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:exactly_three_documentation_gaps",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:no_science_change",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:no_paper_or_slide_change",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:final_counts",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:commit_scope_hygiene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "correction:clean_evidence_root",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:hash:README.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:text_integrity:README.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:hash:docs/handover/tasks.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:text_integrity:docs/handover/tasks.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:hash:docs/handover/A8_RK_PURE_EXTERNAL_RCS_tasks.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:text_integrity:docs/handover/A8_RK_PURE_EXTERNAL_RCS_tasks.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:hash:docs/handover/HANDOFF_A8_RK_20261118.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:text_integrity:docs/handover/HANDOFF_A8_RK_20261118.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:hash:experiments/REGISTRY.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:text_integrity:experiments/REGISTRY.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:readme_correction_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry_correction_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:clean_root_tasks_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:scoped_handover_tasks_hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "manuscript:v32",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "presentation:108_rev70_pZS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "boundary:replacement_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "boundary:mechanism_and_rk_g1_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "boundary:test_and_generator_unauthorized",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "boundary:full_reproduction_not_overclaimed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:0a08eb90",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:b95e1244",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:d5959f73",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "git:ancestor:3460c2e0",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "documentation_verification_sha256": "2a4e41d3b19fe036fbd54c259e7c0e8c673d662761ae49ed3f112d749a88a244",
+  "documentation_correction_sha256": "df7b9d7e7caea2402360215b3e62239d726ab2eb09a4c5554c59d3b41a92d55c",
+  "documentation_verifier_sha256": "c8efa67a7b35a1f89236d3c96713e5e8a81a42d115d60bf970f777303d9cc995",
+  "documentation_mutation_tests_sha256": "98c291fa3d43e0db5fabcfef9f1670cc078ca0832504fe345f61d843540279df",
+  "documents": {
+    "README.md": "a9f5b539bbcc89500010a544fb3329a61943fcac55d3cbf2e7a8c313affff860",
+    "docs/handover/tasks.md": "afbb10ffb2ea01431f91dc2b04b90b4242c90517a2657dadbe7dee8534d425e1",
+    "docs/handover/A8_RK_PURE_EXTERNAL_RCS_tasks.md": "ed31cd769a35b97dfee60c11bdda8bb0a2835942b976a6f61f539bb389ef8251",
+    "docs/handover/HANDOFF_A8_RK_20261118.md": "0b23f28e4e1e4155ca488f7461f90bd728f838b994a49752cadd4c64a8a9da6c",
+    "experiments/REGISTRY.md": "d026a3d322a83e2bcc3b9d4628e40118837bff30c46c1c8ed229e723546f1980"
+  },
+  "manuscript": {
+    "version": "v32",
+    "sha256": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0"
+  },
+  "presentation": {
+    "pages": 108,
+    "revision": 70,
+    "last_slide_id": "pZS"
+  },
+  "scientific_boundary": {
+    "pure_external_replacement_supported_development_only": false,
+    "mechanism_increment_pass": false,
+    "rk_g1_pass": false,
+    "test_authorized": false,
+    "generator_training_authorized": false
+  },
+  "large_artifact_policy": "Large predictions, whole-deck XML, responses and screenshots remain under /teams/HoulabData_1788502323/liucunyu/codonflow1031/ and are not committed to Git.",
+  "reproduction_boundary": "Full-project pytest, clean installation, and an end-to-end reproduction were not established by this record."
+}
