@@ -1,0 +1,17 @@
+{
+  "schema": "a8-rk20-engineering-failures-v1",
+  "records": [
+    {
+      "stage": "initial_targeted_unit_tests",
+      "result": "13 passed, 1 failed",
+      "failed_test": "test_hierarchical_bootstrap_is_reproducible_and_paired",
+      "cause": "The test incorrectly expected every cluster-resampled MSE delta to equal the original four-cluster mean (-21). Correct resamples take the discrete values -37, -29, -21, -13, and -5 according to the sampled cluster multiplicities.",
+      "production_code_changed": false,
+      "protocol_or_scientific_endpoint_changed": false,
+      "correction": "The test now checks the exact discrete support and a tolerant bootstrap-average expectation. Reproduction, pairing, and Spearman checks were retained.",
+      "final_result": "14 passed, 4 pre-existing SciPy ConstantInputWarning warnings"
+    }
+  ],
+  "functional_untouched_evaluated": false,
+  "expensive_generation_authorized": false
+}
