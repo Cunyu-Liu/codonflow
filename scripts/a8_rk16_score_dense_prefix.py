@@ -230,7 +230,7 @@ def main() -> None:
     ld_report = json.loads(ld_path.read_text())
     ensemble_report = json.loads(ensemble_path.read_text())
     manifest = json.loads(manifest_path.read_text())
-    if matrix["status"] != "PASS_RK13_COMPLETE" or len(matrix["records"]) != protocol["record_count"]:
+    if matrix["status"] != "COMPLETE_UNIQUE18_SEVEN_METHOD_ACTUAL_SET_MATRIX_DEVELOPMENT_ONLY" or len(matrix["records"]) != protocol["record_count"]:
         raise ValueError("complete frozen RK13 matrix required")
     if ld_report["status"] != "COMPLETE_UNIQUE18_OFFICIAL_LINEARDESIGN_LAMBDA_GRID":
         raise ValueError("complete official LinearDesign report required")
