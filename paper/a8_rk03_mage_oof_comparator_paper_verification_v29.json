@@ -1,0 +1,328 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-paper-verification-v1",
+  "overall_pass": true,
+  "status": "PASS",
+  "base_version": "v28",
+  "new_version": "v29",
+  "base_sha256": "770d8feb1cbbda289fc4e13a360ca8d1a7e72604fa55fb5b93ba1096d826d5fa",
+  "new_sha256": "be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444",
+  "section_heading": "### 6.25 Development-only MAGE OOF comparator closure",
+  "exact_base_restoration": true,
+  "check_counts": {
+    "passed": 61,
+    "total": 61
+  },
+  "checks": [
+    {
+      "name": "base_snapshot_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_paper_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "correction_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protocol_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_log_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_binds_production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "production_and_independent_pass",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_24_checks",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_9_tests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "correction_retained",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_gate_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "zero_new_compute",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "a7_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_section_and_anchors",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "anchor_table_continuous",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "section_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "exact_base_restoration",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_RK03 MAGE OOF comparator protocol v2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_RK03 MAGE OOF comparator protocol v2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_RK03 MAGE OOF comparator production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_RK03 MAGE OOF comparator production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_RK03 MAGE OOF comparator independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_RK03 MAGE OOF comparator independent verification",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_RK03 MAGE OOF comparator correction record",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_RK03 MAGE OOF comparator correction record",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "evidence_hash_RK03 MAGE OOF comparator 9-test log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "snapshot_hash_RK03 MAGE OOF comparator 9-test log",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "candidate_facts": [
+    {
+      "name": "full_mechanism_minus_outer_train_mean_delta_rmse_value",
+      "pass": true,
+      "detail": "-0.015370339550445498"
+    },
+    {
+      "name": "full_mechanism_minus_outer_train_mean_delta_rmse_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mechanism_minus_outer_train_mean_delta_rmse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_rmse_value",
+      "pass": true,
+      "detail": "7.54291571132687e-05"
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_rmse_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_rmse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_spearman_value",
+      "pass": true,
+      "detail": "0.01894551686269652"
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_spearman_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mechanism_minus_rcs_only_delta_spearman_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_rmse_value",
+      "pass": true,
+      "detail": "1.9499256082820826e-05"
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_rmse_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_rmse_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_spearman_value",
+      "pass": true,
+      "detail": "0.003953545226666688"
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_spearman_ci",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_only_minus_intrinsic_delta_spearman_holm",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "raw_permutation_p",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "model_rmse_values",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all_three_seed_ids_present",
+      "pass": true,
+      "detail": [
+        "40261119",
+        "40261120",
+        "40261121"
+      ]
+    },
+    {
+      "name": "signs_full_mechanism_minus_rcs_only_delta_spearman",
+      "pass": true,
+      "detail": "+/+/+"
+    },
+    {
+      "name": "signs_full_mechanism_minus_rcs_only_delta_rmse",
+      "pass": true,
+      "detail": "+/−/−"
+    },
+    {
+      "name": "signs_rcs_only_minus_intrinsic_delta_spearman",
+      "pass": true,
+      "detail": "+/−/−"
+    },
+    {
+      "name": "signs_rcs_only_minus_intrinsic_delta_rmse",
+      "pass": true,
+      "detail": "+/+/+"
+    },
+    {
+      "name": "signs_full_mechanism_minus_outer_train_mean_delta_rmse",
+      "pass": true,
+      "detail": "−/−/−"
+    },
+    {
+      "name": "independent_count_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unit_count_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "wall_time_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "rcs_scope_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mean_spearman_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mechanism_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "open_boundaries",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "retained_v1_failure",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "non_submittable",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-paper-update-v1",
+  "base_version": "v28",
+  "new_version": "v29",
+  "base_sha256": "770d8feb1cbbda289fc4e13a360ca8d1a7e72604fa55fb5b93ba1096d826d5fa",
+  "new_sha256": "be9fcc72f6f5b631de89084457b3011a8c966d677b916924c795753738d6d444",
+  "section_heading": "### 6.25 Development-only MAGE OOF comparator closure",
+  "section_number": "25",
+  "section_sha256": "c339e8973bbe695b18118ca7aaa8b27ccf15ed7c65e3246e0c98133cac348f78",
+  "section_markdown": "### 6.25 Development-only MAGE OOF comparator closure\n\nTo close a comparator gap in the existing MAGE nested-development diagnostic without fitting another model, we froze a post-hoc exploratory analysis of the existing 131-construct OOF predictions for all three outer seeds. The four original arms were unchanged. The arm named `rcs_only` contains intrinsic features plus RCS additions and is not a pure external-pretrained-model replacement. The outer-train-mean prediction for each fold was computed only from development labels outside that fold. No mechanism-test construct or new sequence/label was accessed.\n\nFor the two feature contrasts, paired inference covered both ΔSpearman and ΔRMSE. The outer-train-mean comparison used RMSE only: fold-specific training means are not a globally constant prediction vector, so their OOF Spearman is descriptive and excluded from paired inference. Five tests shared one Holm family. The primary outer seed used 20,000 construct bootstraps and 20,000 paired permutations; the other two seeds contributed point estimates only. The earlier v1 protocol failed its technical gate because it incorrectly required a null Spearman for fold-varying means; no v1 production report was written, and the correction and all failed logs are retained.\n\n| Comparison | Metric | Effect | 95% paired CI | Holm p |\n|---|---:|---:|---:|---:|\n| full − RCS | ΔSpearman | 0.01894551686269652 | [-0.035360666095523505, 0.0812104898567834] | 1.0 |\n| full − RCS | ΔRMSE | 7.54291571132687e-05 | [-0.001304659287456654, 0.0013410731145082557] | 1.0 |\n| RCS − intrinsic | ΔSpearman | 0.003953545226666688 | [-0.0360723999783062, 0.04841834750571718] | 1.0 |\n| RCS − intrinsic | ΔRMSE | 1.9499256082820826e-05 | [-0.0007529122397496208, 0.0007030615007199467] | 1.0 |\n| full − outer-train mean | ΔRMSE | -0.015370339550445498 | [-0.0259385856740894, -0.005729286631198561] | 0.020748962551872408 |\n\nThe full model and outer-train mean had primary RMSE values of 0.03422820302559988 and 0.04959854257604538, respectively. The full−mean ΔRMSE was -0.015370339550445498, with raw permutation p=0.004149792510374482 and Holm p=0.020748962551872408; its three-seed ΔRMSE signs were −/−/−. This establishes an improvement over the fold-specific training-mean baseline on already-used development predictions, not a mechanism increment or independent confirmation.\n\nAcross seeds 40261119, 40261120, 40261121, full−RCS ΔSpearman signs were +/+/+ and ΔRMSE signs were +/−/−; RCS−intrinsic ΔSpearman signs were +/−/− and ΔRMSE signs were +/+/+. All four feature-comparison Holm p values were 1.0 and every confidence interval crossed zero; the sensitivity directions were not stable. A separately fitted constant-speed arm, a mature external-model replacement, functional-untouched evaluation, transport analysis, and generator authorization remain open.\n\nIndependent recomputation passed **24/24 checks** with maximum absolute tolerance 1e-12, and the unit suite passed **9/9 tests** (`mage_oof_comparator_closure_unit_tests_v4_python3.console.log`). The audit performed zero new fits and zero new scorer calls; its 120,000 primary resample replicates took 55.9064832450822 s. It remains development-only and post-hoc: `DEV_NO_GO_TEST_UNTOUCHED`, RK-G1=false, and the non-submittable working-manuscript status are unchanged.\n\n",
+  "anchor_markdown": "\n| RK03 MAGE OOF comparator protocol v2 | `e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b` |\n| RK03 MAGE OOF comparator production | `50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad` |\n| RK03 MAGE OOF comparator independent verification | `bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745` |\n| RK03 MAGE OOF comparator correction record | `ff77c83bfc43072721ed0e38bd2325b56b8151d01d6bfc9d64458b7f6c295297` |\n| RK03 MAGE OOF comparator 9-test log | `2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b` |",
+  "snapshot_directory": "/home/codonflow-a8-rk/paper/snapshots/rk03_mage_oof_comparator_v29",
+  "base_snapshot": "/home/codonflow-a8-rk/paper/snapshots/rk03_mage_oof_comparator_v29/CodonFlow_preprint_A8_v28.md",
+  "evidence": {
+    "RK03 MAGE OOF comparator protocol v2": {
+      "path": "/home/codonflow-a8-rk/configs/a8_rk03_mage_oof_comparator_closure_protocol_v2.json",
+      "sha256": "e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b"
+    },
+    "RK03 MAGE OOF comparator production": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_v2.json",
+      "sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad"
+    },
+    "RK03 MAGE OOF comparator independent verification": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_independent_v2.json",
+      "sha256": "bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745"
+    },
+    "RK03 MAGE OOF comparator correction record": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_correction_v1.json",
+      "sha256": "ff77c83bfc43072721ed0e38bd2325b56b8151d01d6bfc9d64458b7f6c295297"
+    },
+    "RK03 MAGE OOF comparator 9-test log": {
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_oof_comparator_closure_unit_tests_v4_python3.console.log",
+      "sha256": "2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b"
+    }
+  },
+  "production_sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+  "independent_sha256": "bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745",
+  "correction_sha256": "ff77c83bfc43072721ed0e38bd2325b56b8151d01d6bfc9d64458b7f6c295297",
+  "protocol_sha256": "e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b",
+  "unit_test_log_sha256": "2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b",
+  "a7_sha256": "941a9d48e8397c0646c5d6ae9fdf997230c606766d0e3988b295e4bd4d44d423",
+  "scientific_gate": "UNCHANGED_DEV_NO_GO_TEST_UNTOUCHED",
+  "manuscript_submittable": false
+}

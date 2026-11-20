@@ -1,0 +1,415 @@
+{
+  "schema": "a8-rk06-simple-search-dense-paper-verification-v28",
+  "overall_pass": true,
+  "status": "PAPER_V28_PASS",
+  "manuscript": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+  "manuscript_sha256": "770d8feb1cbbda289fc4e13a360ca8d1a7e72604fa55fb5b93ba1096d826d5fa",
+  "base_sha256": "c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952",
+  "section_sha256": "1a77649b558da8b6044d98067c270f8d8ddd9502031c2d5c746c94f73b23f469",
+  "checks": [
+    {
+      "check": "base_v27_sha",
+      "pass": true
+    },
+    {
+      "check": "new_v28_sha",
+      "pass": true
+    },
+    {
+      "check": "claims_sha",
+      "pass": true
+    },
+    {
+      "check": "finalization_sha",
+      "pass": true
+    },
+    {
+      "check": "independent_sha",
+      "pass": true
+    },
+    {
+      "check": "finalization_pass",
+      "pass": true
+    },
+    {
+      "check": "independent_pass",
+      "pass": true
+    },
+    {
+      "check": "single_section",
+      "pass": true
+    },
+    {
+      "check": "section_sha",
+      "pass": true
+    },
+    {
+      "check": "anchor_block_present_once",
+      "pass": true
+    },
+    {
+      "check": "anchor_table_continuous",
+      "pass": true
+    },
+    {
+      "check": "exact_v27_restoration",
+      "pass": true
+    },
+    {
+      "check": "evidence_anchor_protocol",
+      "pass": true
+    },
+    {
+      "check": "evidence_anchor_production",
+      "pass": true
+    },
+    {
+      "check": "evidence_anchor_independent",
+      "pass": true
+    },
+    {
+      "check": "evidence_anchor_finalization",
+      "pass": true
+    },
+    {
+      "check": "evidence_anchor_claims",
+      "pass": true
+    },
+    {
+      "check": "snapshot_simple_search_dense_claims_v1.json",
+      "pass": true
+    },
+    {
+      "check": "snapshot_simple_search_dense_finalization_v1.json",
+      "pass": true
+    },
+    {
+      "check": "snapshot_simple_search_dense_unique18_v1.json",
+      "pass": true
+    },
+    {
+      "check": "snapshot_simple_search_dense_independent_v2.json",
+      "pass": true
+    },
+    {
+      "check": "snapshot_a8_rk06_simple_search_dense_unique18_protocol_v1.json",
+      "pass": true
+    },
+    {
+      "check": "non_submittable_status",
+      "pass": true
+    },
+    {
+      "check": "scientific_gate_open",
+      "pass": true
+    }
+  ],
+  "candidate_facts": [
+    {
+      "fact": "216_runs",
+      "pass": true
+    },
+    {
+      "fact": "108000_scored",
+      "pass": true
+    },
+    {
+      "fact": "dense_formula",
+      "pass": true
+    },
+    {
+      "fact": "normalized_hv_unclipped",
+      "pass": true
+    },
+    {
+      "fact": "no_synthetic_origin",
+      "pass": true
+    },
+    {
+      "fact": "statistical_unit",
+      "pass": true
+    },
+    {
+      "fact": "resampling_counts",
+      "pass": true
+    },
+    {
+      "fact": "six_primary_rows",
+      "pass": true
+    },
+    {
+      "fact": "method_0_mean_dense_auc",
+      "pass": true
+    },
+    {
+      "fact": "method_0_mean_hv_B50",
+      "pass": true
+    },
+    {
+      "fact": "method_0_mean_hv_B100",
+      "pass": true
+    },
+    {
+      "fact": "method_0_mean_hv_B500",
+      "pass": true
+    },
+    {
+      "fact": "method_0_sum_wall_clock_seconds",
+      "pass": true
+    },
+    {
+      "fact": "method_1_mean_dense_auc",
+      "pass": true
+    },
+    {
+      "fact": "method_1_mean_hv_B50",
+      "pass": true
+    },
+    {
+      "fact": "method_1_mean_hv_B100",
+      "pass": true
+    },
+    {
+      "fact": "method_1_mean_hv_B500",
+      "pass": true
+    },
+    {
+      "fact": "method_1_sum_wall_clock_seconds",
+      "pass": true
+    },
+    {
+      "fact": "method_2_mean_dense_auc",
+      "pass": true
+    },
+    {
+      "fact": "method_2_mean_hv_B50",
+      "pass": true
+    },
+    {
+      "fact": "method_2_mean_hv_B100",
+      "pass": true
+    },
+    {
+      "fact": "method_2_mean_hv_B500",
+      "pass": true
+    },
+    {
+      "fact": "method_2_sum_wall_clock_seconds",
+      "pass": true
+    },
+    {
+      "fact": "method_3_mean_dense_auc",
+      "pass": true
+    },
+    {
+      "fact": "method_3_mean_hv_B50",
+      "pass": true
+    },
+    {
+      "fact": "method_3_mean_hv_B100",
+      "pass": true
+    },
+    {
+      "fact": "method_3_mean_hv_B500",
+      "pass": true
+    },
+    {
+      "fact": "method_3_sum_wall_clock_seconds",
+      "pass": true
+    },
+    {
+      "fact": "primary_0_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_0_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_0_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_0_decision",
+      "pass": true
+    },
+    {
+      "fact": "primary_1_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_1_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_1_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_1_decision",
+      "pass": true
+    },
+    {
+      "fact": "primary_2_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_2_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_2_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_2_decision",
+      "pass": true
+    },
+    {
+      "fact": "primary_3_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_3_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_3_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_3_decision",
+      "pass": true
+    },
+    {
+      "fact": "primary_4_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_4_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_4_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_4_decision",
+      "pass": true
+    },
+    {
+      "fact": "primary_5_effect",
+      "pass": true
+    },
+    {
+      "fact": "primary_5_ci",
+      "pass": true
+    },
+    {
+      "fact": "primary_5_holm",
+      "pass": true
+    },
+    {
+      "fact": "primary_5_decision",
+      "pass": true
+    },
+    {
+      "fact": "dominance_0_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_0_b",
+      "pass": true
+    },
+    {
+      "fact": "dominance_1_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_1_b",
+      "pass": true
+    },
+    {
+      "fact": "dominance_2_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_2_b",
+      "pass": true
+    },
+    {
+      "fact": "dominance_3_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_3_b",
+      "pass": true
+    },
+    {
+      "fact": "dominance_4_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_4_b",
+      "pass": true
+    },
+    {
+      "fact": "dominance_5_a",
+      "pass": true
+    },
+    {
+      "fact": "dominance_5_b",
+      "pass": true
+    },
+    {
+      "fact": "independent_counts",
+      "pass": true
+    },
+    {
+      "fact": "finalization_counts",
+      "pass": true
+    },
+    {
+      "fact": "external_dense_null",
+      "pass": true
+    },
+    {
+      "fact": "no_time_matched_external",
+      "pass": true
+    },
+    {
+      "fact": "no_untouched",
+      "pass": true
+    },
+    {
+      "fact": "no_functional",
+      "pass": true
+    },
+    {
+      "fact": "no_generator_training",
+      "pass": true
+    },
+    {
+      "fact": "explicit_boundaries",
+      "pass": true
+    },
+    {
+      "fact": "manuscript_remains_non_submittable",
+      "pass": true
+    }
+  ],
+  "check_counts": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0
+  },
+  "candidate_fact_counts": {
+    "total": 73,
+    "passed": 73,
+    "failed": 0
+  },
+  "exact_v27_restoration": true,
+  "manuscript_submittable": false,
+  "scientific_gate_passed": false,
+  "rk_g1_closed": false
+}

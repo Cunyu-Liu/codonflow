@@ -553,6 +553,65 @@ For the RiboMIMO source layer, Mohammad19/GSE119104 contributed 10 runs and 5,20
 
 Independent offline verification reparsed every required response, rechecked the study mappings and recomputed all run counts, sizes and materialized-file hashes. It passed **169/169 checks**, with maximum numeric discrepancy 0. Finalization passed **47/47 checks**. This closes only the bounded metadata-feasibility subtask. UTR–CDS construction, independent raw-read/P-site remapping, four non-E. coli harmonized matrices, the full natural-distribution report, mechanism validation and model training remain unperformed. Any future remapping must freeze reference versions per study and assess read length and end assignment per sample; no global P-site offset is licensed. RK-G1 remains open and the manuscript remains non-submittable.
 
+### 6.24 Real dense-budget simple-search trajectories on unique18
+
+We measured real anytime behavior for four non-learned simple searches on the 18 unique18 development records. The frozen panel comprised three seeds, four methods and 500 successive unique proxy-scorer evaluations per run, giving 216 runs and 108,000 scored sequences. Every sequence remained synonymous with its source. The initial state consumed budget B=1. The primary dense endpoint was sum(HV_b for b=1,...,499)/499; B=500 was retained as an endpoint and was excluded from the AUC. Normalized HV used each record's frozen calibration reference and scale and was not clipped to [0,1]. No synthetic origin, trapezoidal integration, zero-filled missing budget or conversion of unordered external actual sets was used.
+
+| Method | Mean dense AUC | Mean HV B50 | Mean HV B100 | Mean HV B500 | Total wall time (s) |
+|---|---:|---:|---:|---:|---:|
+| uniform | 1.950968565 | 1.415294670 | 1.718857849 | 2.334063596 | 20945.031473771 |
+| hill_climbing | 8.702457019 | 1.208588184 | 3.068278130 | 16.402767217 | 21077.843297181 |
+| mh_annealing | 3.133456174 | 0.454691806 | 0.731198467 | 9.840774383 | 20939.076001615 |
+| areuredi_style | 0.901603954 | 0.417154406 | 0.600703695 | 1.494733501 | 21015.123456662 |
+
+The record was the statistical unit. For each record and method, values were first averaged arithmetically over seeds 0, 1 and 2. Paired record bootstrap used 20,000 resamples, paired sign-flip permutation used 20,000 draws, and Holm correction covered the six primary tests. A supported advantage required a positive effect, a 95% CI lower bound above zero and Holm-adjusted p<0.05.
+
+| Method minus uniform | Endpoint | Effect | 95% CI | Holm p | Supported advantage |
+|---|---|---:|---|---:|---|
+| hill_climbing | dense AUC | 6.751488454 | [4.942193634, 8.753959752] | 0.00029999 | yes |
+| hill_climbing | B500 normalized HV | 14.068703620 | [10.421982583, 18.135617640] | 0.00029999 | yes |
+| mh_annealing | dense AUC | 1.182487609 | [0.631103879, 1.771868974] | 0.00069997 | yes |
+| mh_annealing | B500 normalized HV | 7.506710787 | [5.281172524, 9.867376191] | 0.00029999 | yes |
+| areuredi_style | dense AUC | -1.049364611 | [-1.273765722, -0.815195131] | 0.00029999 | no |
+| areuredi_style | B500 normalized HV | -0.839330096 | [-1.079445860, -0.599015543] | 0.00029999 | no |
+
+The frozen rule supported 4 of six comparisons: hill_climbing (dense AUC), hill_climbing (B500 HV), mh_annealing (dense AUC), mh_annealing (B500 HV). The remaining comparisons, including negative and interval-crossing effects, are retained in the table. These are development proxy-search comparisons, not functional or external SOTA results.
+
+Secondary bidirectional strict-dominance fractions at B=500 were computed from each run's Pareto points. They describe proxy-output sets only.
+
+| Method A | Method B | Fraction of A dominated by B | Fraction of B dominated by A |
+|---|---|---:|---:|
+| areuredi_style | hill_climbing | 0.790542980 | 0.012901913 |
+| areuredi_style | mh_annealing | 0.907215656 | 0.009523810 |
+| areuredi_style | uniform | 0.599558157 | 0.158183897 |
+| hill_climbing | mh_annealing | 0.026349885 | 0.604501552 |
+| hill_climbing | uniform | 0.012698413 | 0.778006462 |
+| mh_annealing | uniform | 0.049405231 | 0.823351004 |
+
+Independent verification recomputed every CAI, ViennaRNA MFE, GC and motif objective from sequence, all 500-point normalized-HV curves, secondary budgets, NED, Pareto counts, strict dominance and paired inference. It passed **26/26 checks**; the maximum absolute discrepancy was 0 for objectives, 0 for dense HV and 0 for paired inference. Finalization passed **44/44 checks**. Wall times are internal one-worker-per-run costs and are not time-matched to LinearDesign, EnsembleDesign or another external implementation. External independent-lambda outputs remain unordered actual sets, so their dense AUC remains null.
+
+This section closes only the real dense-budget simple-search evidence gap on unique18 development proxies. It used no untouched24 record, functional-untouched assay row, MAGE mechanism-test construct or functional label; it trained no generator. It does not establish functional effectiveness, CodonFlow-RK improvement, external SOTA, RK-G1 closure or generator-training readiness. The manuscript remains non-submittable.
+
+### 6.25 Development-only MAGE OOF comparator closure
+
+To close a comparator gap in the existing MAGE nested-development diagnostic without fitting another model, we froze a post-hoc exploratory analysis of the existing 131-construct OOF predictions for all three outer seeds. The four original arms were unchanged. The arm named `rcs_only` contains intrinsic features plus RCS additions and is not a pure external-pretrained-model replacement. The outer-train-mean prediction for each fold was computed only from development labels outside that fold. No mechanism-test construct or new sequence/label was accessed.
+
+For the two feature contrasts, paired inference covered both ΔSpearman and ΔRMSE. The outer-train-mean comparison used RMSE only: fold-specific training means are not a globally constant prediction vector, so their OOF Spearman is descriptive and excluded from paired inference. Five tests shared one Holm family. The primary outer seed used 20,000 construct bootstraps and 20,000 paired permutations; the other two seeds contributed point estimates only. The earlier v1 protocol failed its technical gate because it incorrectly required a null Spearman for fold-varying means; no v1 production report was written, and the correction and all failed logs are retained.
+
+| Comparison | Metric | Effect | 95% paired CI | Holm p |
+|---|---:|---:|---:|---:|
+| full − RCS | ΔSpearman | 0.01894551686269652 | [-0.035360666095523505, 0.0812104898567834] | 1.0 |
+| full − RCS | ΔRMSE | 7.54291571132687e-05 | [-0.001304659287456654, 0.0013410731145082557] | 1.0 |
+| RCS − intrinsic | ΔSpearman | 0.003953545226666688 | [-0.0360723999783062, 0.04841834750571718] | 1.0 |
+| RCS − intrinsic | ΔRMSE | 1.9499256082820826e-05 | [-0.0007529122397496208, 0.0007030615007199467] | 1.0 |
+| full − outer-train mean | ΔRMSE | -0.015370339550445498 | [-0.0259385856740894, -0.005729286631198561] | 0.020748962551872408 |
+
+The full model and outer-train mean had primary RMSE values of 0.03422820302559988 and 0.04959854257604538, respectively. The full−mean ΔRMSE was -0.015370339550445498, with raw permutation p=0.004149792510374482 and Holm p=0.020748962551872408; its three-seed ΔRMSE signs were −/−/−. This establishes an improvement over the fold-specific training-mean baseline on already-used development predictions, not a mechanism increment or independent confirmation.
+
+Across seeds 40261119, 40261120, 40261121, full−RCS ΔSpearman signs were +/+/+ and ΔRMSE signs were +/−/−; RCS−intrinsic ΔSpearman signs were +/−/− and ΔRMSE signs were +/+/+. All four feature-comparison Holm p values were 1.0 and every confidence interval crossed zero; the sensitivity directions were not stable. A separately fitted constant-speed arm, a mature external-model replacement, functional-untouched evaluation, transport analysis, and generator authorization remain open.
+
+Independent recomputation passed **24/24 checks** with maximum absolute tolerance 1e-12, and the unit suite passed **9/9 tests** (`mage_oof_comparator_closure_unit_tests_v4_python3.console.log`). The audit performed zero new fits and zero new scorer calls; its 120,000 primary resample replicates took 55.9064832450822 s. It remains development-only and post-hoc: `DEV_NO_GO_TEST_UNTOUCHED`, RK-G1=false, and the non-submittable working-manuscript status are unchanged.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -756,6 +815,16 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK03 source-feasibility finalization | `d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41` |
 | RK03 source-feasibility unit tests | `b9e965dc0529c60f882a5c950ded3a24ea8cc009d968cf3ec12f9b3ddbbbca87` |
 | RK03 source-feasibility artifact manifest | `4bc61c4243ae5e350801bd89d691b239f15a456596220f3fe7522b3285c1bf7d` |
+| RK06 simple-search dense frozen protocol | `f144397909b6961d961dd86727003accc63f3fa4d316019686f4c649b52d95fb` |
+| RK06 simple-search dense production | `d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052` |
+| RK06 simple-search dense independent verification | `2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df` |
+| RK06 simple-search dense finalization | `bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947` |
+| RK06 simple-search dense claims | `ddfccf0e6dd14bb99de4623e70e9ad93fe232a4ffded027304ae3ce2d6579ba0` |
+| RK03 MAGE OOF comparator protocol v2 | `e5e570e862e20a65b50bf9cb6677aef053c89f974171505d9f2a47f450217c0b` |
+| RK03 MAGE OOF comparator production | `50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad` |
+| RK03 MAGE OOF comparator independent verification | `bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745` |
+| RK03 MAGE OOF comparator correction record | `ff77c83bfc43072721ed0e38bd2325b56b8151d01d6bfc9d64458b7f6c295297` |
+| RK03 MAGE OOF comparator 9-test log | `2ca4618c190e3f0f03d43d794031a634e1c70010f3ea76e0528928151b7fd13b` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 

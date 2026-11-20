@@ -1,0 +1,106 @@
+{
+  "schema": "a8-rk06-simple-search-dense-unique18-v1",
+  "protocol_id": "a8_rk06_simple_search_dense_unique18_v1_frozen_before_production",
+  "created_date": "2026-11-20",
+  "status": "FROZEN_BEFORE_PRODUCTION",
+  "scope": "Real per-unique-scorer trajectories for four non-learned simple-search methods on the 18-record development panel; no external-method dense imputation, functional labels, CodonFlow generator result, or SOTA designation",
+  "benchmark_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta",
+  "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+  "population": "18 unique development records only; no untouched24, functional untouched, MAGE test, Ribo test, or functional assay labels",
+  "rscu_json": "/home/codonflow-a8-rk/configs/cai_ref_v4train.json",
+  "rscu_sha256": "80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f",
+  "calibration_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18",
+  "calibration_acceptance": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18_acceptance.json",
+  "calibration_acceptance_sha256": "e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c",
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_unique18_v1",
+  "audit_dir": "/home/codonflow-a8-rk/audits/20261120/RK06",
+  "methods": [
+    "uniform",
+    "hill_climbing",
+    "mh_annealing",
+    "areuredi_style"
+  ],
+  "seeds": [0, 1, 2],
+  "expected_record_count": 18,
+  "expected_run_count": 216,
+  "expected_unique_scorer_calls": 108000,
+  "max_unique_scorer": 500,
+  "max_attempts": 25000,
+  "weights": [1.0, 1.0, 1.0, 0.5],
+  "gc_target": 0.55,
+  "rho": 0.01,
+  "initial_temperature": 1.0,
+  "final_temperature": 0.01,
+  "initialization": "synonymous_x0(source, numpy.default_rng(seed * 1009)); identical initial state across methods within a record-seed",
+  "uniform_operator": "global_synonymous",
+  "objectives_maximize": [
+    "cai",
+    "negative_mfe_vienna_default_fold_compound_37C",
+    "negative_absolute_gc_deviation",
+    "negative_motif_penalty_per_codon"
+  ],
+  "budget_rule": "Budget 1 is the initial state. Each previously unscored legal sequence consumes exactly one budget; cache hits consume terminal requests but no unique-scorer budget. Every integer budget 1..500 must have one real finite objective vector.",
+  "dense_metric": {
+    "name": "dense_budget_step_auc_v2",
+    "formula": "sum(HV_b for b=1..499)/499",
+    "endpoint": "HV_500 is reported but excluded from AUC",
+    "synthetic_origin_added": false,
+    "missing_budgets_zero_filled": false
+  },
+  "secondary_budgets": [50, 100, 500],
+  "secondary_metrics": [
+    "normalized_hypervolume",
+    "pareto_point_count",
+    "per_axis_best",
+    "pairwise_ned",
+    "bidirectional_strict_dominance_at_B500"
+  ],
+  "ned_rule": "Mean pairwise Levenshtein/max(length), exact all-pairs at B=50/100; deterministic 200-of-500 sequence subsample with numpy default_rng(0) at B=500, matching the frozen pairwise_ned convention",
+  "primary_comparisons": [
+    {"method": "hill_climbing", "comparator": "uniform"},
+    {"method": "mh_annealing", "comparator": "uniform"},
+    {"method": "areuredi_style", "comparator": "uniform"}
+  ],
+  "primary_endpoints": [
+    "dense_budget_step_auc_v2",
+    "hypervolume_normalized_B500"
+  ],
+  "statistics": {
+    "unit": "one record; arithmetic mean of its three seeds before paired inference",
+    "effect_direction": "method minus uniform; positive favors method",
+    "n_records": 18,
+    "paired_bootstrap_resamples": 20000,
+    "paired_sign_flip_permutations": 20000,
+    "bootstrap_seed": 20261120,
+    "permutation_seed": 20261121,
+    "ci_level": 0.95,
+    "ci_method": "two-sided percentile paired bootstrap over record indices",
+    "p_value": "two-sided paired sign-flip with plus-one correction, capped at 1",
+    "multiplicity": "Holm over six primary tests: three methods x two endpoints",
+    "success_rule": "95% CI lower bound > 0 and Holm-adjusted p < 0.05; otherwise no supported advantage"
+  },
+  "execution": {
+    "formal_workers": 4,
+    "worker_per_run": 1,
+    "numerical_threads_per_worker": 1,
+    "order": "benchmark FASTA order, then seed ascending, then protocol method order",
+    "resume": "skip only byte-stable completed run JSON with matching protocol/input/initial-state identity and 500 points; never accept partial output",
+    "smoke": "C01H6.8b.1, seed 0, all four methods, B=20, one worker, separate non-formal artifact root"
+  },
+  "cost": {
+    "cache_before_requests": 0,
+    "model_forward_calls": 0,
+    "report": "per-run wall clock, objective-scoring time, residual generation/cache/proposal time, terminal requests and unique scorer calls",
+    "parallelism_note": "four independent runs may execute concurrently; observed per-run costs are not unified or time-matched to external baselines",
+    "time_matched_external_comparison": false
+  },
+  "external_actual_sets": "LinearDesign/EnsembleDesign and other unordered actual-output sets retain dense_budget_step_auc_v2=null; no zero filling or lambda-to-budget conversion",
+  "decision_boundary": "Development proxy-design search only. Even a positive simple-search comparison does not establish functional effectiveness, CodonFlow-RK improvement, RK-G1, external SOTA, untouched generalization, or generator authorization.",
+  "untouched24_used": false,
+  "functional_untouched_used": false,
+  "scientific_gate_passed": false,
+  "rk_g1_closed": false,
+  "expensive_generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "sota_claim": false
+}
