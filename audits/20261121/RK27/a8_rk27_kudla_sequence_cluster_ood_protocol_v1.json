@@ -1,0 +1,114 @@
+{
+  "schema": "a8-rk27-kudla-sequence-cluster-ood-protocol-v1",
+  "protocol_version": 1,
+  "status": "FROZEN_BEFORE_ANY_RK27_MODEL_FIT_OR_NEW_EXPRESSION_ASSOCIATION",
+  "source_commit_at_freeze": "42dd84edeff8cdc6b1b2b50ec202afecbe4bf79f",
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1",
+  "audit_root": "audits/20261121/RK27",
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "prior_random_cv_summary": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK22/rk22_analysis_summary_v1.json",
+      "sha256": "e7e90b1f5efa8e8fdf8d580e9f8aac0963bd329e1667cd0913d298c107e3bc9e"
+    }
+  },
+  "preregistration_card": {
+    "question": "Does the RK22 5-prime-MFE increment over CAI, CDS GC and CDS GC3 survive fixed-GFP sequence-cluster out-of-distribution evaluation rather than random exact-CDS cross-validation?",
+    "falsifiable_hypothesis": "For both ridge and HistGB, adding measured 5-prime MFE improves held-out-cluster Spearman and reduces held-out-cluster MSE relative to the corresponding simple-feature model, with cluster-aware uncertainty excluding zero and positive effects in at least 8 of 10 frozen fold-assignment seeds.",
+    "observed_phenomenon": "RK22 random exact-CDS five-fold development analysis found a large positive 5-prime-MFE increment, but it did not test sequence-cluster transport and used all 150 groups in development.",
+    "control_or_comparison": "The strong comparator is the identical model trained on CAI, CDS GC and CDS GC3 without MFE. MFE-only models are descriptive references, not substitutes for the incremental comparison. The null is the training-fold mean.",
+    "outcome_metrics": "Primary effects are structure-minus-simple global OOF Spearman and simple-minus-structure global OOF MSE for ridge and HistGB, so positive always favors MFE. Absolute OOF metrics and MFE-only performance are secondary descriptions.",
+    "falsification_rule": "If any of the four primary effects is non-positive, has a cluster-bootstrap 95% CI including zero, has Holm-adjusted cluster-swap permutation p >= 0.05, or has fewer than 8 positive effects across the 10 fold-assignment seeds, the corresponding family-wide transport claim fails.",
+    "next_decision_rule": "A pass supports fixed-protein sequence-cluster transport of the measured-MFE increment and motivates a genuinely independent external validation. It does not by itself authorize generator training because these labels informed RK22 development. A fail removes the claim of robust sequence-cluster transport and keeps RK-G1 closed."
+  },
+  "scientific_boundaries": {
+    "analysis_type": "retrospective_sequence_cluster_transport_validation",
+    "fixed_protein": true,
+    "sequence_cluster_ood": true,
+    "protein_ood": false,
+    "independent_untouched_confirmation": false,
+    "labels_previously_used_in_RK22_development": true,
+    "functional_untouched_read": false,
+    "velocity_or_decay_measured": false,
+    "full_spatial_coupling_established": false,
+    "generator_training_authorized": false,
+    "cluster_threshold_selected_using_expression_or_labels": false
+  },
+  "label_free_coverage_audit": {
+    "columns_permitted": ["source_row", "cds", "protein_aa"],
+    "columns_forbidden": ["expression_value", "log10_expression", "rnaEnergy_-4..37", "mfe_5prime_kcal_mol", "CAI", "target"],
+    "pairwise_identity": "For two 720-nt CDS strings, the fraction of identical aligned positions; no alignment or label is used.",
+    "linkage": "SciPy complete linkage on condensed distance 1-identity.",
+    "candidate_min_identities": [0.78, 0.80, 0.82, 0.85, 0.88, 0.90, 0.92, 0.95],
+    "selection_rule": "Choose the lowest candidate identity yielding at least 30 clusters, largest cluster <=75 rows, and singleton clusters <=50% of all clusters.",
+    "selected_min_identity_from_label_free_audit": 0.90,
+    "expected_unique_cds": 150,
+    "expected_protein_groups": 1,
+    "expected_clusters": 37,
+    "expected_largest_cluster": 61,
+    "expected_singleton_clusters": 13
+  },
+  "aggregation": {
+    "independent_prediction_row": "exact_cds_group",
+    "measurement_rows": 154,
+    "expected_groups": 150,
+    "target": "Arithmetic mean of log10_expression within exact CDS.",
+    "features": "CAI, gc_cds, gc3_cds and mfe_5prime_kcal_mol must be identical within exact CDS; gc features are recomputed from the 720-nt CDS as in RK22.",
+    "duplicate_measurement_groups": 4
+  },
+  "outer_evaluation": {
+    "type": "five-fold grouped out-of-fold evaluation on frozen complete-linkage sequence clusters",
+    "selected_min_identity": 0.90,
+    "folds": 5,
+    "primary_seed": 20261221,
+    "sensitivity_seeds": [20261221, 20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230],
+    "fold_assignment": "For each seed, use numpy.random.default_rng(seed) to shuffle the sorted unique cluster IDs; stable-sort the shuffled IDs by descending cluster size. Iterate in that order and assign each whole cluster to one of the currently least-loaded folds. If multiple folds tie for least load, choose among their sorted fold indices with the same RNG. Cluster ID, not expression, determines every assignment.",
+    "leakage_rule": "No sequence cluster may occur in both train and test for any fold. No target or model result may be used for clustering, fold assignment, feature selection or hyperparameter tuning."
+  },
+  "models": {
+    "feature_sets": {
+      "simple": ["CAI", "gc_cds", "gc3_cds"],
+      "structure": ["CAI", "gc_cds", "gc3_cds", "mfe_5prime_kcal_mol"],
+      "mfe_only_descriptive": ["mfe_5prime_kcal_mol"]
+    },
+    "ridge": "StandardScaler fit on training rows only, then Ridge(alpha=1.0).",
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=false, random_state=fold_seed).",
+    "null": "Training-fold mean target; descriptive only.",
+    "hyperparameter_tuning": false,
+    "device": "CPU_ONLY"
+  },
+  "primary_inference": {
+    "evaluation_seed": 20261221,
+    "tests": ["ridge_spearman_effect", "ridge_mse_improvement", "histgb_spearman_effect", "histgb_mse_improvement"],
+    "cluster_bootstrap": {
+      "resamples": 20000,
+      "seed": 20261321,
+      "unit": "sequence_cluster",
+      "procedure": "Resample the 37 cluster IDs with replacement, include every exact-CDS row in each selected cluster, and recompute the paired OOF effect. Percentile two-sided 95% CI."
+    },
+    "cluster_swap_permutation": {
+      "permutations": 20000,
+      "seed": 20261322,
+      "procedure": "For each permutation draw one sign per sequence cluster and apply it to every row in that cluster; swapping simple and structure predictions within clusters generates the paired null. Recompute each effect and use a two-sided absolute-effect p-value with plus-one correction."
+    },
+    "multiplicity": "Holm across the four primary tests.",
+    "seed_sensitivity_rule": "At least 8 of the 10 seed-level global OOF effects must be positive for every primary endpoint. Seed sensitivity is a stability check, not an independent-sample confidence interval."
+  },
+  "pass_rule": "All four primary endpoints must have observed effect >0, cluster-bootstrap 95% CI entirely above zero, Holm-adjusted cluster-swap p <0.05, and at least 8/10 positive fold-assignment-seed effects.",
+  "result_interpretation": {
+    "pass": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY",
+    "fail": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_NOT_SUPPORTED",
+    "not_either": "Independent external confirmation, protein OOD, translation velocity, decay, full spatial coupling, RK-G1 completion or generator authorization."
+  },
+  "execution": {
+    "python": "/root/miniconda3/envs/codonflow/bin/python",
+    "gpu_required": false,
+    "production_and_independent_verifier_must_not_share_implementation": true,
+    "synthetic_tests_required": true,
+    "ppt_write_requires_independent_pass": true,
+    "github_push_after_verified_closeout": true
+  }
+}

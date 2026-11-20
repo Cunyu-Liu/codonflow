@@ -1,0 +1,205 @@
+{
+  "analysis_type": "retrospective_label_free_coverage_audit_before_RK27_model_fit",
+  "cds_length_nt": 720,
+  "columns_read": [
+    "source_row",
+    "cds",
+    "protein_aa"
+  ],
+  "coverage_rows": [
+    {
+      "clusters": 4,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9458333333333333,
+      "cross_cluster_nearest_identity_median": 0.8777777777777778,
+      "largest_cluster": 88,
+      "median_cluster_size": 23.5,
+      "min_identity": 0.78,
+      "primary_seed_fold_sizes": [
+        88,
+        0,
+        15,
+        22,
+        25
+      ],
+      "singleton_clusters": 0,
+      "singleton_fraction": 0.0
+    },
+    {
+      "clusters": 6,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9458333333333333,
+      "cross_cluster_nearest_identity_median": 0.8819444444444444,
+      "largest_cluster": 63,
+      "median_cluster_size": 23.5,
+      "min_identity": 0.8,
+      "primary_seed_fold_sizes": [
+        25,
+        22,
+        63,
+        15,
+        25
+      ],
+      "singleton_clusters": 0,
+      "singleton_fraction": 0.0
+    },
+    {
+      "clusters": 11,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9458333333333333,
+      "cross_cluster_nearest_identity_median": 0.8819444444444444,
+      "largest_cluster": 63,
+      "median_cluster_size": 6.0,
+      "min_identity": 0.82,
+      "primary_seed_fold_sizes": [
+        22,
+        21,
+        23,
+        63,
+        21
+      ],
+      "singleton_clusters": 0,
+      "singleton_fraction": 0.0
+    },
+    {
+      "clusters": 18,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9458333333333333,
+      "cross_cluster_nearest_identity_median": 0.8826388888888889,
+      "largest_cluster": 63,
+      "median_cluster_size": 3.5,
+      "min_identity": 0.85,
+      "primary_seed_fold_sizes": [
+        22,
+        22,
+        63,
+        21,
+        22
+      ],
+      "singleton_clusters": 2,
+      "singleton_fraction": 0.1111111111111111
+    },
+    {
+      "clusters": 29,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9583333333333334,
+      "cross_cluster_nearest_identity_median": 0.8986111111111111,
+      "largest_cluster": 61,
+      "median_cluster_size": 2.0,
+      "min_identity": 0.88,
+      "primary_seed_fold_sizes": [
+        61,
+        22,
+        22,
+        23,
+        22
+      ],
+      "singleton_clusters": 7,
+      "singleton_fraction": 0.2413793103448276
+    },
+    {
+      "clusters": 37,
+      "coverage_eligible": true,
+      "cross_cluster_nearest_identity_max": 0.9638888888888889,
+      "cross_cluster_nearest_identity_median": 0.8986111111111111,
+      "largest_cluster": 61,
+      "median_cluster_size": 2.0,
+      "min_identity": 0.9,
+      "primary_seed_fold_sizes": [
+        23,
+        61,
+        22,
+        22,
+        22
+      ],
+      "singleton_clusters": 13,
+      "singleton_fraction": 0.35135135135135137
+    },
+    {
+      "clusters": 46,
+      "coverage_eligible": true,
+      "cross_cluster_nearest_identity_max": 0.9638888888888889,
+      "cross_cluster_nearest_identity_median": 0.9402777777777778,
+      "largest_cluster": 49,
+      "median_cluster_size": 2.0,
+      "min_identity": 0.92,
+      "primary_seed_fold_sizes": [
+        49,
+        25,
+        26,
+        25,
+        25
+      ],
+      "singleton_clusters": 22,
+      "singleton_fraction": 0.4782608695652174
+    },
+    {
+      "clusters": 93,
+      "coverage_eligible": false,
+      "cross_cluster_nearest_identity_max": 0.9666666666666667,
+      "cross_cluster_nearest_identity_median": 0.9486111111111111,
+      "largest_cluster": 8,
+      "median_cluster_size": 1.0,
+      "min_identity": 0.95,
+      "primary_seed_fold_sizes": [
+        30,
+        30,
+        30,
+        30,
+        30
+      ],
+      "singleton_clusters": 63,
+      "singleton_fraction": 0.6774193548387096
+    }
+  ],
+  "coverage_script_sha256": "4e9e9fbc273a369baf1977e1fb8a3c2daf692b5fac0ee9583c28fddf3a56cb08",
+  "exact_protein_groups": 1,
+  "expression_or_model_fit_performed": false,
+  "facts_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/sequence_cluster_facts.csv",
+  "facts_sha256": "2d6afeaa89e03c79f6db7a886d2c31c24ef33ffe1e69ecbbc176c6f3cacc4780",
+  "forbidden_columns_not_read": [
+    "CAI",
+    "expression_value",
+    "log10_expression",
+    "mfe_5prime_kcal_mol",
+    "rnaEnergy_-4..37",
+    "target"
+  ],
+  "functional_untouched_read": false,
+  "measurement_rows": 154,
+  "pairwise_identity_quantiles": {
+    "0.0": 0.75,
+    "0.1": 0.7875,
+    "0.25": 0.8041666666666667,
+    "0.5": 0.8208333333333333,
+    "0.75": 0.8680555555555556,
+    "0.9": 0.9375,
+    "1.0": 0.9958333333333333
+  },
+  "protocol": "audits/20261121/RK27/a8_rk27_kudla_sequence_cluster_ood_protocol_v1.json",
+  "protocol_sha256": "59698dfeb3aaced63fd9e195dfd0664ee7416cee3d6c8f1dc016deaa79006d14",
+  "schema": "a8-rk27-label-free-sequence-cluster-coverage-v1",
+  "selected_coverage": {
+    "clusters": 37,
+    "coverage_eligible": true,
+    "cross_cluster_nearest_identity_max": 0.9638888888888889,
+    "cross_cluster_nearest_identity_median": 0.8986111111111111,
+    "largest_cluster": 61,
+    "median_cluster_size": 2.0,
+    "min_identity": 0.9,
+    "primary_seed_fold_sizes": [
+      23,
+      61,
+      22,
+      22,
+      22
+    ],
+    "singleton_clusters": 13,
+    "singleton_fraction": 0.35135135135135137
+  },
+  "selected_min_identity": 0.9,
+  "source_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+  "source_sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+  "status": "PASS_LABEL_FREE_COVERAGE_AUDIT",
+  "unique_cds": 150
+}
