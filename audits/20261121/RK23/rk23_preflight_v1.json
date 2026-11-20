@@ -1,0 +1,59 @@
+{
+  "status": "PREFLIGHT_PASS_WITH_FIXED_PROTEIN_NUMERIC_BOUNDARY",
+  "protocol_id": "a8_rk23_boel_initiation_structure_protein_ood_v1",
+  "feature_audit": {
+    "source_rows": 6348,
+    "source_Gz48v_complete_rows": 6348,
+    "source_Gave48_complete_rows": 6348,
+    "source_Gave96_complete_rows": 6348,
+    "source_Gave144_complete_rows": 6348,
+    "feature_file_sha256": "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b",
+    "split_file_sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8"
+  },
+  "definition_sources": [
+    {
+      "url": "https://www.nature.com/articles/nature16509",
+      "verified_statements": [
+        "Delta G_UH is the partition-function folding energy for the pET21 5'UTR plus the first 48 nt of the CDS.",
+        "The optimized-construct p025, p50 and p975 columns are model prediction quantiles rather than measured expression labels.",
+        "The 6,348-expression dataset is cross-protein and non-synonymous."
+      ]
+    },
+    {
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature16509/MediaObjects/41586_2016_BFnature16509_MOESM287_ESM.xlsx",
+      "sha256": "3883e8eb029541c3b73debf177ecfd100b69a419157e7e4042ffec0e03e11e94",
+      "content": "Fig.5a numeric growth curves for RSP_2139 and SRU_1983; no numeric fixed-protein expression table"
+    },
+    {
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fnature16509/MediaObjects/41586_2016_BFnature16509_MOESM293_ESM.xlsx",
+      "sha256": "32589258b1713587ea4d2e6c78d540a463a429d29fce27ab3dd798df47686e3f",
+      "content": "25 rows, 24 unique construct names and five protein groups; one duplicated RSP_2139-31C-FO/31C-FO row"
+    }
+  ],
+  "optimized_construct_sequence_audit": {
+    "rows": 25,
+    "unique_construct_names": 24,
+    "duplicate_construct_names": ["RSP_2139-31C-FO/31C-FO"],
+    "protein_groups": {
+      "SRU_1983": {"rows": 6, "unique_protein_sequences": 1},
+      "SCO1897": {"rows": 6, "unique_protein_sequences": 1},
+      "RSP_2139": {"rows": 6, "unique_protein_sequences": 1},
+      "APE_0230.1": {"rows": 5, "unique_protein_sequences": 1},
+      "Eco-ycaQ": {"rows": 2, "unique_protein_sequences": 1}
+    },
+    "all_sequences_valid_nonstop_cds": true,
+    "p025_p50_p975_are_measured_expression": false,
+    "numeric_fixed_protein_expression_available": false,
+    "image_digitization_used": false
+  },
+  "unit_tests": {
+    "initial": "3 failed and 9 passed; three test-only errors in hand-calculated GC3, a Spearman-invariant shifted prediction and a synthetic dictionary key",
+    "test_only_repairs": "corrected the synthetic examples and key construction; scientific implementation unchanged",
+    "intermediate": "2 failed and 10 passed after two additional hand-calculated test expectations were corrected",
+    "final": "12 passed in 1.21s",
+    "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest tests/test_a8_rk23_boel_uh.py -q"
+  },
+  "test_label_access": "No RK23 train/dev/test model fitting or RK23 test evaluation has occurred at preflight freeze.",
+  "functional_untouched_accessed": false,
+  "ready_for_train_dev_fit": true
+}

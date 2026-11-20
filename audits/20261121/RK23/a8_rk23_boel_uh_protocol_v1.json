@@ -1,0 +1,130 @@
+{
+  "protocol_id": "a8_rk23_boel_initiation_structure_protein_ood_v1",
+  "frozen_on": "2026-11-21",
+  "scientific_question": "Does the author-provided pET21 5'UTR plus first-48-nt CDS folding feature (Delta G_UH; raw column Gz48v) add protein-cluster-OOD expression prediction value beyond the previously frozen RK07 sequence proxies?",
+  "observed_phenomenon": "RK22 supported a 5' structure increment in fixed-GFP development data, whereas RK07 did not test the author-provided UTR+head feature and RK20 did not support observed-R1 structure increments in a different GFP library.",
+  "falsifiable_hypothesis": "Adding Gz48v to the RK07 feature set improves both Spearman and MSE on the existing Boel operational-protein-cluster test split under both a linear multinomial logistic backbone and a fixed HistGradientBoosting backbone.",
+  "scientific_scope": "Boel 2016 cross-protein, non-synonymous ordinal expression data; protein-cluster OOD transport of an initiation-structure feature. This is not a fixed-protein synonymous-library test, not functional untouched, and not SOTA evidence.",
+  "source_feature": {
+    "raw_column": "Gz48v",
+    "symbol": "Delta G_UH",
+    "definition": "Predicted partition-function folding free energy for the pET21 5'UTR plus the first 48 nt of the CDS, as defined by Boel et al.",
+    "definition_url": "https://www.nature.com/articles/nature16509",
+    "units": "kcal/mol",
+    "feature_file_column": "source_Gz48v"
+  },
+  "split_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+  "split_sha256": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+  "feature_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/proxy_features.csv.gz",
+  "feature_file_sha256": "aabb16bf36912bd761a9c5dd6c1c34797a99d1b2d3aab1b4891e34732b67941b",
+  "feature_summary": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk07/full/feature_summary.json",
+  "feature_summary_sha256": "64a50488a523a46cb4359c36598a8dfde3278be23e921e58e3b206a5ac0acd5b",
+  "rk07_protocol_sha256": "d42f7d06543b8f7279cc25cb4354828f6cc9fdb27f2d6c5ba0ed9808a20f762e",
+  "source_id": "boel_2016_nesg6348",
+  "expected_rows": {"train": 5079, "dev": 635, "test": 634, "total": 6348},
+  "allowed_splits": ["train", "dev", "test"],
+  "forbidden_split": "functional_untouched",
+  "label_field": "expression_value",
+  "label_classes": [0, 1, 2, 3, 4, 5],
+  "primary_contrast": {
+    "name": "rk07_plus_uh_minus_rk07",
+    "base_features": ["cai", "gc_fraction", "full_cds_mfe_per_nt", "mfe_5prime_48_kcal_mol", "log_length_nt"],
+    "augmented_features": ["cai", "gc_fraction", "full_cds_mfe_per_nt", "mfe_5prime_48_kcal_mol", "log_length_nt", "source_Gz48v"]
+  },
+  "secondary_descriptive_contrast": {
+    "name": "simple_plus_uh_minus_simple",
+    "base_features": ["cai", "gc_fraction", "gc3_fraction", "log_length_nt"],
+    "augmented_features": ["cai", "gc_fraction", "gc3_fraction", "log_length_nt", "source_Gz48v"],
+    "inference": "descriptive only; excluded from the primary Holm family and gate"
+  },
+  "models": {
+    "logistic": {
+      "type": "multinomial_logistic_expected_score",
+      "l2": 0.01,
+      "max_iter": 2000,
+      "standardization": "train mean and population standard deviation; no dev/test fitting",
+      "selection": "fixed a priori; no hyperparameter search"
+    },
+    "histgb": {
+      "type": "HistGradientBoostingRegressor",
+      "learning_rate": 0.05,
+      "max_iter": 200,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 20,
+      "l2_regularization": 1.0,
+      "early_stopping": false,
+      "random_state": 20261121,
+      "selection": "fixed a priori; no hyperparameter search"
+    }
+  },
+  "primary_endpoints": [
+    {"model": "logistic", "metric": "delta_spearman", "direction": "augmented minus base; pass if > 0"},
+    {"model": "logistic", "metric": "mse_improvement", "direction": "base MSE minus augmented MSE; pass if > 0"},
+    {"model": "histgb", "metric": "delta_spearman", "direction": "augmented minus base; pass if > 0"},
+    {"model": "histgb", "metric": "mse_improvement", "direction": "base MSE minus augmented MSE; pass if > 0"}
+  ],
+  "secondary_metrics": ["pearson", "rmse", "mae", "top10_e5_enrichment"],
+  "top_k_fraction": 0.1,
+  "top_k_positive_label": 5,
+  "bootstrap": {
+    "unit": "operational_protein_cluster",
+    "replicates": 20000,
+    "seed": 20261121,
+    "interval": "paired percentile 95% CI"
+  },
+  "permutation": {
+    "unit": "operational_protein_cluster",
+    "replicates": 20000,
+    "seed": 20261221,
+    "procedure": "within each resampled cluster, exchange base and augmented prediction vectors with probability 0.5; recompute paired effects",
+    "p_value": "two-sided absolute-effect tail with plus-one correction"
+  },
+  "multiple_testing": "Holm across exactly four primary endpoints, separately within each evaluation split; the scientific gate uses only the test family",
+  "evaluation_order": [
+    "freeze protocol, implementation, tests and input hashes before label modelling",
+    "fit train only and write train/dev predictions and model artifact",
+    "commit and push the frozen protocol and implementation before test evaluation",
+    "load frozen train/dev model artifact and require exact dev reproduction",
+    "evaluate the existing test split once under this protocol; it is reused and not globally untouched",
+    "independently reconstruct features, models, predictions and resampling before reporting"
+  ],
+  "stratification": {
+    "variables": ["length_nt", "gc_fraction"],
+    "thresholds": "train-only terciles",
+    "scope": "descriptive test failure regions; no additional inferential gate"
+  },
+  "gate": {
+    "all_four_test_effects_positive": true,
+    "all_four_test_ci_lower_bounds_above_zero": true,
+    "all_four_test_holm_p_below": 0.05,
+    "pass_state": "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_SUPPORTED_LIMITED_SCOPE",
+    "otherwise_state": "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_NOT_FULLY_SUPPORTED",
+    "rk_g1_remains_false_even_if_pass": true,
+    "generator_training_authorized": false,
+    "reason": "Boel is cross-protein and non-synonymous; this experiment alone cannot establish fixed-protein synonymous spatial coupling, velocity/decay mechanisms, external SOTA or generator readiness."
+  },
+  "optimized_construct_boundary": {
+    "source_data_fig5_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/raw/boel_source_data_fig5.xlsx",
+    "source_data_fig5_sha256": "3883e8eb029541c3b73debf177ecfd100b69a419157e7e4042ffec0e03e11e94",
+    "optimized_genes_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/raw/boel_optimized_genes.xlsx",
+    "optimized_genes_sha256": "32589258b1713587ea4d2e6c78d540a463a429d29fce27ab3dd798df47686e3f",
+    "verified_rows": 25,
+    "unique_construct_names": 24,
+    "protein_groups": 5,
+    "numeric_fig5_content": "growth curves for RSP_2139 and SRU_1983 only",
+    "p025_p50_p975_interpretation": "model prediction quantiles, not measured expression labels",
+    "measured_expression_numeric_table_available": false,
+    "image_digitization_allowed": false,
+    "fixed_protein_functional_test_performed": false
+  },
+  "prohibited_claims": [
+    "fixed-protein synonymous OOD validation",
+    "functional untouched confirmation",
+    "velocity or decay mechanism validation",
+    "causal isolation of the UTR from folding-algorithm or correlated sequence effects",
+    "CodonFlow-RK generator evidence",
+    "SOTA or external baseline ranking",
+    "use of optimized-construct model prediction quantiles as functional ground truth",
+    "use of MAGE functional_untouched for fitting, tuning or evaluation"
+  ]
+}
