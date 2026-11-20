@@ -1,0 +1,335 @@
+{
+  "schema": "a8-rk27-ppt-verification-v1",
+  "mode": "post",
+  "status": "PASS",
+  "n_checks": 57,
+  "n_passed": 57,
+  "candidate_sha256": "322b2400ccbc298123c71311287633b27f7e8d8156eb106680f3586b86880e5e",
+  "result_sha256": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+  "independent_sha256": "1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4",
+  "checks": [
+    {
+      "name": "candidate_root_slide",
+      "pass": true,
+      "details": "{https://www.larkoffice.com/sml/2.0}slide"
+    },
+    {
+      "name": "five_note_paragraphs",
+      "pass": true,
+      "details": 5
+    },
+    {
+      "name": "no_undefined_or_embed",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "no_emoji_or_external_images",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "independent_47",
+      "pass": true,
+      "details": 47
+    },
+    {
+      "name": "four_primary_endpoints",
+      "pass": true,
+      "details": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY"
+    },
+    {
+      "name": "fixed_protein_boundaries",
+      "pass": true,
+      "details": {
+        "RK_G1_complete": false,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK22_development": true,
+        "protein_ood": false,
+        "sequence_cluster_ood": true,
+        "velocity_or_decay_measured": false
+      }
+    },
+    {
+      "name": "visible_ridge_spearman_effect_effect",
+      "pass": true,
+      "details": "+0.95505"
+    },
+    {
+      "name": "visible_ridge_spearman_effect_ci",
+      "pass": true,
+      "details": "95% CI [0.49381, 1.10683]"
+    },
+    {
+      "name": "visible_ridge_spearman_effect_seed_stability",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "note_ridge_spearman_effect_exact",
+      "pass": true,
+      "details": "ridge_spearman_effect"
+    },
+    {
+      "name": "visible_ridge_mse_improvement_effect",
+      "pass": true,
+      "details": "+0.15749"
+    },
+    {
+      "name": "visible_ridge_mse_improvement_ci",
+      "pass": true,
+      "details": "95% CI [0.07131, 0.21269]"
+    },
+    {
+      "name": "visible_ridge_mse_improvement_seed_stability",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "note_ridge_mse_improvement_exact",
+      "pass": true,
+      "details": "ridge_mse_improvement"
+    },
+    {
+      "name": "visible_histgb_spearman_effect_effect",
+      "pass": true,
+      "details": "+0.41258"
+    },
+    {
+      "name": "visible_histgb_spearman_effect_ci",
+      "pass": true,
+      "details": "95% CI [0.20883, 0.52032]"
+    },
+    {
+      "name": "visible_histgb_spearman_effect_seed_stability",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "note_histgb_spearman_effect_exact",
+      "pass": true,
+      "details": "histgb_spearman_effect"
+    },
+    {
+      "name": "visible_histgb_mse_improvement_effect",
+      "pass": true,
+      "details": "+0.10591"
+    },
+    {
+      "name": "visible_histgb_mse_improvement_ci",
+      "pass": true,
+      "details": "95% CI [0.04228, 0.14056]"
+    },
+    {
+      "name": "visible_histgb_mse_improvement_seed_stability",
+      "pass": true,
+      "details": 10
+    },
+    {
+      "name": "note_histgb_mse_improvement_exact",
+      "pass": true,
+      "details": "histgb_mse_improvement"
+    },
+    {
+      "name": "visible_ridge_simple_spearman",
+      "pass": true,
+      "details": "−0.31841"
+    },
+    {
+      "name": "visible_ridge_simple_mse",
+      "pass": true,
+      "details": "0.25715"
+    },
+    {
+      "name": "visible_ridge_structure_spearman",
+      "pass": true,
+      "details": "0.63664"
+    },
+    {
+      "name": "visible_ridge_structure_mse",
+      "pass": true,
+      "details": "0.09966"
+    },
+    {
+      "name": "visible_ridge_mfe_only_spearman",
+      "pass": true,
+      "details": "0.60502"
+    },
+    {
+      "name": "visible_ridge_mfe_only_mse",
+      "pass": true,
+      "details": "0.11135"
+    },
+    {
+      "name": "visible_histgb_simple_spearman",
+      "pass": true,
+      "details": "0.30242"
+    },
+    {
+      "name": "visible_histgb_simple_mse",
+      "pass": true,
+      "details": "0.19866"
+    },
+    {
+      "name": "visible_histgb_structure_spearman",
+      "pass": true,
+      "details": "0.71500"
+    },
+    {
+      "name": "visible_histgb_structure_mse",
+      "pass": true,
+      "details": "0.09275"
+    },
+    {
+      "name": "visible_histgb_mfe_only_spearman",
+      "pass": true,
+      "details": "0.63756"
+    },
+    {
+      "name": "visible_histgb_mfe_only_mse",
+      "pass": true,
+      "details": "0.10157"
+    },
+    {
+      "name": "required_visible_150 exact CDS",
+      "pass": true,
+      "details": "150 exact CDS"
+    },
+    {
+      "name": "required_visible_37 clusters",
+      "pass": true,
+      "details": "37 clusters"
+    },
+    {
+      "name": "required_visible_300 real CPU fits",
+      "pass": true,
+      "details": "300 real CPU fits"
+    },
+    {
+      "name": "required_visible_Independent 47/47",
+      "pass": true,
+      "details": "Independent 47/47"
+    },
+    {
+      "name": "required_visible_closeout 97/97",
+      "pass": true,
+      "details": "closeout 97/97"
+    },
+    {
+      "name": "required_visible_RK-G1 remains false; generator training is unauthorized.",
+      "pass": true,
+      "details": "RK-G1 remains false; generator training is unauthorized."
+    },
+    {
+      "name": "required_visible_119 · RK27",
+      "pass": true,
+      "details": "119 · RK27"
+    },
+    {
+      "name": "required_visible_8a62836b",
+      "pass": true,
+      "details": "8a62836b"
+    },
+    {
+      "name": "required_visible_95257f29",
+      "pass": true,
+      "details": "95257f29"
+    },
+    {
+      "name": "note_hash_or_commit_b601db3b",
+      "pass": true,
+      "details": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e"
+    },
+    {
+      "name": "note_hash_or_commit_1e657146",
+      "pass": true,
+      "details": "1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4"
+    },
+    {
+      "name": "note_hash_or_commit_8a62836b",
+      "pass": true,
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1"
+    },
+    {
+      "name": "note_hash_or_commit_95257f29",
+      "pass": true,
+      "details": "95257f290062d0f7d1ad2ab7bab21eef0b485437"
+    },
+    {
+      "name": "all_elements_inside_960_by_540",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "table_dimensions_reconcile",
+      "pass": true,
+      "details": [
+        {
+          "columns": 864.0,
+          "target_width": 864.0,
+          "rows": 166.0,
+          "target_height": 166.0,
+          "n_rows": 7
+        }
+      ]
+    },
+    {
+      "name": "post_page_count_119",
+      "pass": true,
+      "details": {
+        "before": 118,
+        "after": 119
+      }
+    },
+    {
+      "name": "post_old_118_semantically_unchanged",
+      "pass": true,
+      "details": {
+        "before": "ad34ad4b0aef7f341c1343ce070699bf33a7dc810ebee37cdbec7c23f6918515",
+        "after_first_118": "ad34ad4b0aef7f341c1343ce070699bf33a7dc810ebee37cdbec7c23f6918515"
+      }
+    },
+    {
+      "name": "post_new_slide_is_last_and_expected",
+      "pass": true,
+      "details": "pZy"
+    },
+    {
+      "name": "post_canvas_unchanged",
+      "pass": true,
+      "details": {
+        "id": "WB1KsYGualerMUddEzMcCw1En0g",
+        "width": "960",
+        "height": "540"
+      }
+    },
+    {
+      "name": "post_visible_text_exact",
+      "pass": true,
+      "details": {
+        "candidate": 59,
+        "online": 59
+      }
+    },
+    {
+      "name": "post_notes_exact",
+      "pass": true,
+      "details": {
+        "candidate": 5,
+        "online": 5
+      }
+    },
+    {
+      "name": "post_RK26_last_old_page_preserved",
+      "pass": true,
+      "details": "pZL"
+    }
+  ],
+  "baseline_sha256": "322dc0e7f8c64c776b0dccdbac9c40368333f6c1a157c5c6a151a66df37e1e9b",
+  "current_sha256": "091b644423f9099c7ebbbec26a45c5d5e3a5c6b9961c87e10939742f53074eab",
+  "slide_id": "pZy"
+}

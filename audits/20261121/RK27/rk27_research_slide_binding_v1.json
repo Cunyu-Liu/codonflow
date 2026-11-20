@@ -1,0 +1,132 @@
+{
+  "RK_G1_complete": false,
+  "checks": [
+    {
+      "details": 50,
+      "name": "preflight_50",
+      "pass": true
+    },
+    {
+      "details": 57,
+      "name": "online_57",
+      "pass": true
+    },
+    {
+      "details": {
+        "revision_id": 82,
+        "slide_id": "pZy",
+        "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g"
+      },
+      "name": "write_response",
+      "pass": true
+    },
+    {
+      "details": 82,
+      "name": "readback_response",
+      "pass": true
+    },
+    {
+      "details": "pZy",
+      "name": "manifest_identity",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "old_deck_protection",
+      "pass": true
+    },
+    {
+      "details": "322b2400ccbc298123c71311287633b27f7e8d8156eb106680f3586b86880e5e",
+      "name": "candidate_hash",
+      "pass": true
+    },
+    {
+      "details": "59523a17c6cc79a3ad07eb4070de8a33d11dcb63594ca0da478876b9e70bda91",
+      "name": "preflight_hash",
+      "pass": true
+    },
+    {
+      "details": "0707dbac1e5721ed0e2c706949be71763988c7e7b13dd26dc91fbd94b281e4cd",
+      "name": "online_report_hash",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/ppt/source_before_rk27_r81.xml",
+        "sha256": "322dc0e7f8c64c776b0dccdbac9c40368333f6c1a157c5c6a151a66df37e1e9b"
+      },
+      "name": "baseline_xml_exists_and_hash",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/ppt/source_before_rk27_r81.xml",
+      "name": "baseline_xml_large_asset_location",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/ppt/current_after_rk27_r82.xml",
+        "sha256": "091b644423f9099c7ebbbec26a45c5d5e3a5c6b9961c87e10939742f53074eab"
+      },
+      "name": "current_xml_exists_and_hash",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/ppt/current_after_rk27_r82.xml",
+      "name": "current_xml_large_asset_location",
+      "pass": true
+    },
+    {
+      "details": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+      "name": "science_result_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4",
+      "name": "independent_hash_binding",
+      "pass": true
+    },
+    {
+      "details": 97,
+      "name": "science_closeout_97",
+      "pass": true
+    },
+    {
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "name": "science_commit_is_ancestor",
+      "pass": true
+    },
+    {
+      "details": "95257f290062d0f7d1ad2ab7bab21eef0b485437",
+      "name": "closeout_commit_is_ancestor",
+      "pass": true
+    },
+    {
+      "details": "retrospective fixed-GFP sequence-cluster OOD measured-MFE increment",
+      "name": "scope_and_global_gate",
+      "pass": true
+    },
+    {
+      "details": {
+        "returncode": 0,
+        "stderr": ""
+      },
+      "name": "postbind_verifier_replay",
+      "pass": true
+    },
+    {
+      "details": 57,
+      "name": "postbind_57_and_byte_identical",
+      "pass": true
+    }
+  ],
+  "generator_training_authorized": false,
+  "manifest_sha256": "a2ef4068ee1e3fbe0d8a2a85d767f7271f6e620c57638cc4b9d81dbe3a385a3b",
+  "n_checks": 21,
+  "n_passed": 21,
+  "revision_id": 82,
+  "schema": "a8-rk27-research-slide-binding-v1",
+  "slide_id": "pZy",
+  "slide_number": 119,
+  "status": "PASS"
+}
