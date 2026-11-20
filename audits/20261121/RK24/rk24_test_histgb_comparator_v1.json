@@ -1,0 +1,42 @@
+{
+  "addendum_id": "A8_RK24_RK23_HISTGB_DESCRIPTIVE_COMPARATOR_V1",
+  "addendum_sha256": "b17ae177e73820ab1baaf5c688ac57a944a30970ae0a8a224c5ff7a66dfa5dd3",
+  "base_logistic_crosscheck_max_abs_difference": 0.0,
+  "descriptive_effects": {
+    "author_minus_histgb_spearman": 0.2298557930988734,
+    "histgb_minus_author_mse": 0.766854453984323
+  },
+  "functional_untouched_accessed": false,
+  "generator_training_authorized": false,
+  "inference_status": "descriptive point estimates only; no additional confirmatory endpoint family",
+  "metrics": {
+    "rk23_histgb_plus_uh": {
+      "mse": 4.326145966453431,
+      "spearman": 0.20073508224367628
+    },
+    "rk24_author_multiclass": {
+      "mse": 3.5592915124691085,
+      "spearman": 0.4305908753425497
+    },
+    "rk24_base_plus_uh_logistic": {
+      "mse": 4.331129372215796,
+      "spearman": 0.12858011330132996
+    }
+  },
+  "n": 634,
+  "primary_gate_changed": false,
+  "primary_protocol_changed": false,
+  "prohibited_claims": [
+    "No new confirmatory superiority claim or p-value is introduced by this addendum.",
+    "No change to the frozen RK24 four-endpoint gate, model, features, or hyperparameters.",
+    "No claim that either reused dev/test split is globally untouched."
+  ],
+  "rk23_predictions_sha256": "fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00",
+  "rk23_result_sha256": "878322c8a2105b750059cce95aac16fa1249930b57404d7020a3672f81ad6373",
+  "rk24_predictions_sha256": "37d7a7a6c0afcf02ddc933dbd8df2ab6b17d49cbde674fbadfac8d3d36a61055",
+  "rk24_result": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_test_result_v1.json",
+  "rk24_result_sha256": "c78e239edf24f299497b7e1d02c7c6ed5a22216112cf7d9ee9445b74b4d4b3fe",
+  "rk_g1": false,
+  "split": "test",
+  "status": "PASS_DESCRIPTIVE_HISTGB_COMPARATOR"
+}

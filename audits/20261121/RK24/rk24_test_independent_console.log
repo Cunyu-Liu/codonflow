@@ -1,0 +1,23 @@
+{
+  "status": "PASS_INDEPENDENT_VERIFICATION",
+  "checks_total": 153,
+  "checks_passed": 153,
+  "checks_failed": [],
+  "max_static_feature_difference": 7.216449660063518e-16,
+  "max_prediction_difference": 2.4740689497093626e-09,
+  "max_bootstrap_difference": 3.0417401930549204e-10,
+  "max_permutation_difference": 2.1483925749521404e-10,
+  "scientific_gate": {
+    "endpoints": {
+      "binary_delta_auc": true,
+      "binary_logloss_improvement": true,
+      "multiclass_delta_spearman": true,
+      "multiclass_mse_improvement": true
+    },
+    "all_four_pass": true,
+    "state": "BOEL_AUTHOR_STRUCTURE_SUPERIORITY_SUPPORTED_LIMITED_SCOPE",
+    "rk_g1": false,
+    "fixed_protein_synonymous_ood": false,
+    "functional_untouched": false
+  }
+}
