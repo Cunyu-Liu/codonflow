@@ -1,0 +1,137 @@
+{
+  "schema": "a8-rk03-mage-pure-external-nested-cv-protocol-v1",
+  "protocol_id": "a8_rk03_mage_pure_external_nested_cv_v1_frozen_before_model_fitting",
+  "frozen_before_pure_external_model_fitting": true,
+  "analysis_role": "development_only_pre_registered_pure_external_feature_comparator",
+  "scientific_question": "On the frozen 131-construct MAGE development set, can a predictor using only external-RCS-derived features replace the intrinsic baseline, and how do the existing intrinsic+RCS and full-mechanism arms compare with that pure external predictor?",
+  "source": {
+    "oof_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_development_nested_cv_v2/development_oof_predictions.csv",
+    "oof_csv_sha256": "64c74470d875777162b28e567a28babb26b597d9b9565f00d56707f9e7a5943a",
+    "raw_feature_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/kelsic_2016_mage_seq/single_codon_fitness.csv",
+    "raw_feature_csv_sha256": "83901672861d1ae672a0770259e9adcda279844ebd927257966ec220a6a48da8",
+    "nested_report": "/home/codonflow-a8-rk/audits/20261119/RK03/mage_development_nested_cv_v2.json",
+    "nested_report_sha256": "bc87238f21db4cd1cee47b83b12427e5978749369c6593f5b3874e3871b4c18c",
+    "nested_protocol": "/home/codonflow-a8-rk/configs/a8_rk03_mage_development_nested_cv_protocol_v2.json",
+    "nested_protocol_sha256": "e53f9a7de0f79b6ecc992845324d8b1baa6d2f516522403da5522a46f0b89afd",
+    "nested_production_script": "/home/codonflow-a8-rk/scripts/a8_rk03_mage_development_nested_cv.py",
+    "nested_production_script_sha256": "2ad1ff1bbc7a08db6009b3928ef4ff18c7786e987328a30f1d54c8938c5fad9d"
+  },
+  "development_data": {
+    "expected_n_constructs": 131,
+    "allowed_original_splits": ["train", "dev"],
+    "expected_original_train_n": 98,
+    "expected_original_dev_n": 33,
+    "frozen_test_n": 33,
+    "labels_and_existing_predictions_source": "frozen development OOF CSV only",
+    "raw_feature_columns_selected": ["construct_id", "record_class", "expression_type", "codon_position", "wt_codon", "mutant_codon", "amino_acid", "features_json"],
+    "raw_expression_value_or_stdev_fields_accessed": false,
+    "test_construct_feature_rows_selected": false,
+    "test_labels_used_for_fit_selection_metrics_or_gate": false,
+    "test_predictions_or_metrics_generated": false,
+    "new_sequences_read": false,
+    "development_reuse_disclosure": "All labels, folds and existing-arm predictions come from the already-used train+dev nested-CV artifact. This is a development-only comparator, not independent confirmation and not authorization to evaluate the frozen 33-construct test partition."
+  },
+  "pure_external_arm": {
+    "name": "pure_external_rcs",
+    "numeric_features": ["RCS", "delta_rcs_vs_wt", "abs_delta_rcs_vs_wt"],
+    "categorical_features": [],
+    "feature_source": "RCS of the variant and wild-type control from the external supervised structure feature already frozen in features_json; delta and absolute delta are deterministic external-only transforms",
+    "intrinsic_numeric_features_included": false,
+    "position_or_position_interactions_included": false,
+    "codon_or_amino_acid_identity_features_included": false,
+    "gc_or_nucleotide_change_features_included": false,
+    "local_mfe_features_included": false,
+    "rcs_x_position_scaled_included": false,
+    "intercept_allowed": true,
+    "scope": "This closes the ambiguity of the old rcs_only name, which contained intrinsic features. It is a pure external-RCS predictor, not a claim to replace every possible external pretrained model."
+  },
+  "frozen_existing_arms": {
+    "intrinsic": "reuse frozen OOF predictions; categorical baseline plus intrinsic numeric features",
+    "rcs_only": "reuse frozen OOF predictions; intrinsic plus RCS additions, retained under its historical arm name",
+    "full_mechanism": "reuse frozen OOF predictions; intrinsic plus local-MFE and RCS additions",
+    "existing_arm_refit": false
+  },
+  "nested_cv": {
+    "unit": "construct_id",
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "primary_outer_seed": "40261119",
+    "sensitivity_outer_seeds": ["40261120", "40261121"],
+    "outer_fold_source": "frozen OOF CSV; independently verify against SHA256(seed + ':' + construct_id) round-robin assignment",
+    "inner_assignment": "SHA256(seed + ':inner:' + construct_id) round-robin within each outer-training partition, identical to the frozen protocol",
+    "alpha_grid": [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0],
+    "alpha_selection": "minimum inner out-of-fold RMSE; ties resolved by larger alpha then lexicographic alpha string",
+    "outer_prediction": "refit on the complete outer-training partition with selected alpha and predict the held-out outer fold",
+    "numeric_scaling": "inner-training-only and outer-training-only StandardScaler with_mean=false",
+    "solver": "lsqr",
+    "tolerance": 1e-12,
+    "max_iter": 100000,
+    "fit_intercept": true,
+    "planned_pure_external_fit_count": 375,
+    "numeric_threads": 1
+  },
+  "primary_comparisons": [
+    {
+      "comparison_id": "pure_external_rcs_minus_intrinsic",
+      "candidate": "pure_external_rcs",
+      "reference": "intrinsic",
+      "supported_direction": "delta Spearman > 0 and delta RMSE < 0",
+      "bootstrap_seed": 40261419,
+      "permutation_seed": 40261429
+    },
+    {
+      "comparison_id": "full_mechanism_minus_pure_external_rcs",
+      "candidate": "full_mechanism",
+      "reference": "pure_external_rcs",
+      "supported_direction": "delta Spearman > 0 and delta RMSE < 0",
+      "bootstrap_seed": 40261420,
+      "permutation_seed": 40261430
+    },
+    {
+      "comparison_id": "rcs_only_minus_pure_external_rcs",
+      "candidate": "rcs_only",
+      "reference": "pure_external_rcs",
+      "supported_direction": "delta Spearman > 0 and delta RMSE < 0",
+      "bootstrap_seed": 40261421,
+      "permutation_seed": 40261431
+    }
+  ],
+  "inference": {
+    "metrics": ["delta_spearman", "delta_rmse"],
+    "bootstrap_replicates": 20000,
+    "bootstrap_ci": "two-sided 95% percentile over construct resampling with replacement",
+    "permutation_replicates": 20000,
+    "permutation_scheme": "independently swap candidate/reference prediction pairs within each construct; two-sided absolute-effect plus-one p value",
+    "multiplicity": "Holm across six tests: three comparisons times two metrics",
+    "sensitivity": "point estimates for all three comparisons on both sensitivity seeds; favorable support requires delta Spearman > 0 and delta RMSE < 0 in both repetitions",
+    "comparison_support_requires_all": [
+      "primary delta Spearman CI lower bound > 0",
+      "primary delta RMSE CI upper bound < 0",
+      "both Holm-adjusted p values < 0.05",
+      "both sensitivity repetitions have the pre-specified favorable signs"
+    ]
+  },
+  "gate_and_interpretation": {
+    "original_dev_no_go_modified": false,
+    "test_authorized": false,
+    "functional_untouched_evaluated": false,
+    "mechanism_increment_pass": false,
+    "rk_g1_pass": false,
+    "generator_training_authorized": false,
+    "complete_sota": false,
+    "positive_comparator_result_scope": "A supported pure-external or augmentation contrast is limited to this reused development protocol. It does not erase the prior no-go, prove causal mechanism, establish protein OOD, or authorize test, transport, generation or a SOTA claim.",
+    "negative_or_inconclusive_results_must_be_retained": true
+  },
+  "technical_contract": {
+    "single_pure_prediction_per_construct_and_seed": true,
+    "finite_predictions_required": true,
+    "independent_verifier_recomputes_features_folds_alpha_selection_predictions_metrics_effects_intervals_pvalues_and_holm": true,
+    "absolute_float_tolerance": 1e-12,
+    "report_overall_pass_scope": "technical and reproducibility contract only; never a scientific GO"
+  },
+  "outputs": {
+    "production_report": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_pure_external_nested_cv_v1.json",
+    "independent_report": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_pure_external_nested_cv_independent_v1.json",
+    "large_artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/"
+  }
+}

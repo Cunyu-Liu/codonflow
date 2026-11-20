@@ -1,0 +1,69 @@
+{
+  "created_utc": "2026-11-20T12:36:42.200962+00:00",
+  "environment": {
+    "interpreter": "/root/miniconda3/envs/llr_env/bin/python",
+    "numpy": "2.2.6",
+    "pandas": "2.2.2",
+    "python": "3.10.22",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2"
+  },
+  "files": {
+    "independent_script": {
+      "bytes": 19669,
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk03_mage_verify_pure_external_nested_cv.py",
+      "sha256": "1ea32114329f09ed3c28a65e79416e8a23c1b7fd2f633330c5c81dbf30ad3a2a"
+    },
+    "preserved_environment_failure_log": {
+      "bytes": 41,
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_pure_external_nested_cv_tests_v1_failed_environment.log",
+      "sha256": "b72695fcb3e2889d64484497e2ea8079822f1532c2505f226cde970957bedf7d"
+    },
+    "production_script": {
+      "bytes": 18760,
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk03_mage_pure_external_nested_cv.py",
+      "sha256": "5c177451f8a39f8cedd2976ab15757bf723e083d943e2c958694187468b2be82"
+    },
+    "protocol": {
+      "bytes": 8230,
+      "path": "/home/codonflow-a8-rk/configs/a8_rk03_mage_pure_external_nested_cv_protocol_v1.json",
+      "sha256": "9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45"
+    },
+    "unit_test_log": {
+      "bytes": 99,
+      "path": "/home/codonflow-a8-rk/audits/20261120/RK03/mage_pure_external_nested_cv_tests_v1.log",
+      "sha256": "080a6aa9c2cb20d1418801980b49581c773f7e67bfccccf769f4b0a82e3905d2"
+    },
+    "unit_tests": {
+      "bytes": 6511,
+      "path": "/home/codonflow-a8-rk/scripts/tests/test_a8_rk03_mage_pure_external_nested_cv.py",
+      "sha256": "62ddd175ed2996394e89b3e5dbc448185910850f449c501c6c1ed0323c6048c6"
+    }
+  },
+  "generator_training_authorized": false,
+  "git_head_at_preparation": "28cdfdabef346917467d353995b4630157599a84",
+  "next_action": "Commit and push this pre-registration, then run the frozen production config without modification.",
+  "old_nested_status": "DEV_NO_GO_TEST_UNTOUCHED",
+  "old_nested_test_metrics_generated": false,
+  "old_nested_test_predictions_generated": false,
+  "oof_original_split_counts": {
+    "dev": 33,
+    "train": 98
+  },
+  "oof_rows": 131,
+  "production_report_exists": false,
+  "protocol_frozen_before_pure_external_model_fitting": true,
+  "pure_prediction_artifact_exists": false,
+  "real_pure_external_model_fits": 0,
+  "rk_g1_pass": false,
+  "schema": "a8-rk03-mage-pure-external-nested-cv-preparation-v1",
+  "scientific_result_generated": false,
+  "status": "PASS_PRETRAIN_PREPARED",
+  "test_authorized": false,
+  "test_rows_in_oof": 0,
+  "unit_tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /root/miniconda3/envs/llr_env/bin/python -m pytest -q scripts/tests/test_a8_rk03_mage_pure_external_nested_cv.py",
+    "failed": 0,
+    "passed": 10
+  }
+}
