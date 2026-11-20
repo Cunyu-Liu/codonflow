@@ -1,0 +1,9 @@
+/home/codonflow-a8-rk/scripts/a8_rk25_verify_dev.py:53: DtypeWarning: Columns (11) have mixed types. Specify dtype option on import or set low_memory=False.
+  source = pd.read_csv(protocol['data']['functional_csv'], usecols=columns)
+{
+  "status": "PASS",
+  "checks": "337/337",
+  "report": "audits/20261121/RK25/rk25_dev_independent_verification_v1.json",
+  "max_prediction_difference": 9.275140655518044e-10,
+  "max_metric_difference": 2.3808954807691407e-11
+}

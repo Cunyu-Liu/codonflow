@@ -1,0 +1,1380 @@
+{
+  "schema": "a8-rk25-dev-independent-verification-v1",
+  "status": "PASS",
+  "protocol_sha256": "26df69797a64e97db53ccb8b53255ca17d69af85f7c1ab3e76338cd500496909",
+  "production_result_sha256": "8292100b34d8fcc810ef97f3d497445c6fe9327da75b542345c4b14be719ad21",
+  "production_implementation_sha256": "940d72f8443274bd4e2bdb6c6ea716bcf4f6292b7850c80c12c2e13adfae9090",
+  "independent_implementation_sha256": "5583b4636a8111cfbb84a3e190518e7e828e065dc39fe36f13e662f82358956d",
+  "model_artifact_sha256": "62b2c05135a3ea3e05c646fbee8764693e7b1464878e009126ae94443b7508e4",
+  "predictions_sha256": "793d66357d3d2242c6569c17e37d45bfa75286bd7d3ae4298c8a078ae98ecf29",
+  "independent_arrays": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk25/author_mechanism_comparator_v1/dev/rk25_dev_independent_refit.npz",
+  "independent_arrays_sha256": "f46999e2d01b95d9782309053e0e0af06d4103a380af89714f9090da6aa47cb5",
+  "checks_total": 337,
+  "checks_passed": 337,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "protocol binding",
+      "pass": true
+    },
+    {
+      "name": "implementation binding",
+      "pass": true
+    },
+    {
+      "name": "dev only status",
+      "pass": true
+    },
+    {
+      "name": "dev splits",
+      "pass": true
+    },
+    {
+      "name": "no test metrics",
+      "pass": true
+    },
+    {
+      "name": "no sequence-OOD metrics",
+      "pass": true
+    },
+    {
+      "name": "no confirmatory comparisons",
+      "pass": true
+    },
+    {
+      "name": "no bootstrap",
+      "pass": true
+    },
+    {
+      "name": "untouched false",
+      "pass": true
+    },
+    {
+      "name": "RK-G1 remains false",
+      "pass": true
+    },
+    {
+      "name": "input hash functional_csv",
+      "pass": true
+    },
+    {
+      "name": "input hash baseline_predictions",
+      "pass": true
+    },
+    {
+      "name": "input hash author_feature_file",
+      "pass": true
+    },
+    {
+      "name": "input hash author_feature_preflight",
+      "pass": true
+    },
+    {
+      "name": "input hash author_definition_protocol",
+      "pass": true
+    },
+    {
+      "name": "input hash author_run_implementation",
+      "pass": true
+    },
+    {
+      "name": "input hash rk07_implementation",
+      "pass": true
+    },
+    {
+      "name": "input hash rk23_implementation",
+      "pass": true
+    },
+    {
+      "name": "input hash feature_builder",
+      "pass": true
+    },
+    {
+      "name": "input hash rk20_execution",
+      "pass": true
+    },
+    {
+      "name": "input hash rk20_comparison_summary",
+      "pass": true
+    },
+    {
+      "name": "input hash rk20_comparison_implementation",
+      "pass": true
+    },
+    {
+      "name": "input hash ribokinetic_all_seed20261119",
+      "pass": true
+    },
+    {
+      "name": "input hash ribokinetic_all_seed20261120",
+      "pass": true
+    },
+    {
+      "name": "input hash ribokinetic_all_seed20261121",
+      "pass": true
+    },
+    {
+      "name": "input hash ribokinetic_all_seed20261122",
+      "pass": true
+    },
+    {
+      "name": "model artifact hash",
+      "pass": true
+    },
+    {
+      "name": "prediction hash",
+      "pass": true
+    },
+    {
+      "name": "artifact protocol hash",
+      "pass": true
+    },
+    {
+      "name": "artifact feature hash",
+      "pass": true
+    },
+    {
+      "name": "prediction rows",
+      "pass": true
+    },
+    {
+      "name": "prediction partitions",
+      "pass": true
+    },
+    {
+      "name": "prediction seeds",
+      "pass": true
+    },
+    {
+      "name": "feature names",
+      "pass": true
+    },
+    {
+      "name": "single-codon slope reproduction",
+      "pass": true
+    },
+    {
+      "name": "multiclass weight reproduction",
+      "pass": true
+    },
+    {
+      "name": "multiclass bias reproduction",
+      "pass": true
+    },
+    {
+      "name": "feature mean reproduction",
+      "pass": true
+    },
+    {
+      "name": "feature scale reproduction",
+      "pass": true
+    },
+    {
+      "name": "single-codon convergence",
+      "pass": true
+    },
+    {
+      "name": "multinomial convergence",
+      "pass": true
+    },
+    {
+      "name": "identity order seed 20261119",
+      "pass": true
+    },
+    {
+      "name": "prediction ribokinetic_all seed 20261119",
+      "pass": true
+    },
+    {
+      "name": "prediction boel_author seed 20261119",
+      "pass": true
+    },
+    {
+      "name": "prediction ridge_all seed 20261119",
+      "pass": true
+    },
+    {
+      "name": "prediction histgb_all seed 20261119",
+      "pass": true
+    },
+    {
+      "name": "identity order seed 20261120",
+      "pass": true
+    },
+    {
+      "name": "prediction ribokinetic_all seed 20261120",
+      "pass": true
+    },
+    {
+      "name": "prediction boel_author seed 20261120",
+      "pass": true
+    },
+    {
+      "name": "prediction ridge_all seed 20261120",
+      "pass": true
+    },
+    {
+      "name": "prediction histgb_all seed 20261120",
+      "pass": true
+    },
+    {
+      "name": "identity order seed 20261121",
+      "pass": true
+    },
+    {
+      "name": "prediction ribokinetic_all seed 20261121",
+      "pass": true
+    },
+    {
+      "name": "prediction boel_author seed 20261121",
+      "pass": true
+    },
+    {
+      "name": "prediction ridge_all seed 20261121",
+      "pass": true
+    },
+    {
+      "name": "prediction histgb_all seed 20261121",
+      "pass": true
+    },
+    {
+      "name": "identity order seed 20261122",
+      "pass": true
+    },
+    {
+      "name": "prediction ribokinetic_all seed 20261122",
+      "pass": true
+    },
+    {
+      "name": "prediction boel_author seed 20261122",
+      "pass": true
+    },
+    {
+      "name": "prediction ridge_all seed 20261122",
+      "pass": true
+    },
+    {
+      "name": "prediction histgb_all seed 20261122",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261119 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261120 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261121 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric train 20261122 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric train boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric train boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric train boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric train ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric train histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric train histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric train histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric train histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261119 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261120 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261121 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all n_rows",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all n_clusters",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "metric dev 20261122 histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ribokinetic_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ribokinetic_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ribokinetic_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ribokinetic_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ribokinetic_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev boel_author row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev boel_author row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev boel_author row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev boel_author row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ridge_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ridge_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ridge_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ridge_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev histgb_all row_mse",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev histgb_all row_r2",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev histgb_all row_spearman",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev histgb_all row_pearson",
+      "pass": true
+    },
+    {
+      "name": "mean metric dev histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'ribokinetic_all', 'boel_author', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'ribokinetic_all', 'boel_author', 'cluster_balanced_mse')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'boel_author', 'ridge_all', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'boel_author', 'ridge_all', 'cluster_balanced_mse')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'boel_author', 'histgb_all', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('train', 'boel_author', 'histgb_all', 'cluster_balanced_mse')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'ribokinetic_all', 'boel_author', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'ribokinetic_all', 'boel_author', 'cluster_balanced_mse')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'boel_author', 'ridge_all', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'boel_author', 'ridge_all', 'cluster_balanced_mse')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'boel_author', 'histgb_all', 'spearman')",
+      "pass": true
+    },
+    {
+      "name": "point comparison ('dev', 'boel_author', 'histgb_all', 'cluster_balanced_mse')",
+      "pass": true
+    }
+  ],
+  "max_abs_single_slope_difference": 7.460698725481052e-14,
+  "max_abs_multiclass_weight_difference": 4.305284947991872e-10,
+  "max_abs_multiclass_bias_difference": 1.553495110329095e-10,
+  "max_abs_feature_mean_difference": 3.1086244689504383e-15,
+  "max_abs_feature_scale_difference": 1.7763568394002505e-15,
+  "max_abs_prediction_difference": 9.275140655518044e-10,
+  "max_abs_metric_difference": 2.3808954807691407e-11,
+  "max_abs_point_comparison_difference": 2.3808954807691407e-11,
+  "train_dev_rows": [
+    4019,
+    503
+  ],
+  "test_or_sequence_ood_metrics_accessed": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1": false
+}

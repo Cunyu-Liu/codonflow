@@ -1,0 +1,13 @@
+partition,left,right,metric,point_delta_mean_per_seed,benefit,confirmatory
+train,ribokinetic_all,boel_author,spearman,-0.15118066430310878,-0.15118066430310878,False
+train,ribokinetic_all,boel_author,cluster_balanced_mse,0.48405490011853836,-0.48405490011853836,False
+train,boel_author,ridge_all,spearman,0.20330408738846384,0.20330408738846384,False
+train,boel_author,ridge_all,cluster_balanced_mse,-0.5295250544945183,0.5295250544945183,False
+train,boel_author,histgb_all,spearman,-0.013143668901814176,-0.013143668901814176,False
+train,boel_author,histgb_all,cluster_balanced_mse,0.024136878541622497,-0.024136878541622497,False
+dev,ribokinetic_all,boel_author,spearman,-0.19001335569338512,-0.19001335569338512,False
+dev,ribokinetic_all,boel_author,cluster_balanced_mse,0.38878885240327454,-0.38878885240327454,False
+dev,boel_author,ridge_all,spearman,0.16768106452941617,0.16768106452941617,False
+dev,boel_author,ridge_all,cluster_balanced_mse,-0.31638185477442926,0.31638185477442926,False
+dev,boel_author,histgb_all,spearman,0.16239792917488913,0.16239792917488913,False
+dev,boel_author,histgb_all,cluster_balanced_mse,-0.35436495463447937,0.35436495463447937,False

@@ -1,22 +1,9 @@
-Traceback (most recent call last):
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 575, in <module>
-    main()
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 485, in main
-    frames = build_prediction_frames(protocol, rows_by_split, model)
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 257, in build_prediction_frames
-    prediction = read_csv_partitions(record['path'], splits)
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 217, in read_csv_partitions
-    assignments = pd.read_csv(path, usecols=['ood_assignment'])['ood_assignment']
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
-    return _read(filepath_or_buffer, kwds)
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
-    parser = TextFileReader(filepath_or_buffer, **kwds)
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
-    self._engine = self._make_engine(f, self.engine)
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1898, in _make_engine
-    return mapping[engine](f, **self.options)
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 140, in __init__
-    self._validate_usecols_names(usecols, self.orig_names)
-  File "/root/miniconda3/envs/codonflow/lib/python3.10/site-packages/pandas/io/parsers/base_parser.py", line 979, in _validate_usecols_names
-    raise ValueError(
-ValueError: Usecols do not match columns, columns expected but not found: ['ood_assignment']
+{
+  "status": "DEV_ONLY_NO_TEST_OR_SEQUENCE_OOD_READOUT",
+  "result": "/home/codonflow-a8-rk/audits/20261121/RK25/rk25_dev_result_v1.json",
+  "model_artifact_sha256": "62b2c05135a3ea3e05c646fbee8764693e7b1464878e009126ae94443b7508e4",
+  "predictions_sha256": "793d66357d3d2242c6569c17e37d45bfa75286bd7d3ae4298c8a078ae98ecf29",
+  "mechanism_vs_author_pass": false,
+  "author_reference_pass": false,
+  "strong_comparator_chain_pass": false
+}
