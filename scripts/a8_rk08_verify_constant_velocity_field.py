@@ -181,7 +181,9 @@ def run(root: Path, protocol_path: Path) -> dict:
             raise AssertionError(f"input digest mismatch: {path}")
 
     raw = read_raw(raw_path)
-    frame = pd.read_csv(prediction_path)
+    frame = pd.read_csv(prediction_path).rename(columns={
+        "model_prediction": "model", "ridge_prediction": "ridge"
+    })
     if len(frame) != protocol["frozen_predictions"]["expected_rows"]:
         raise AssertionError("prediction row mismatch")
     raw_target = np.empty(len(frame), dtype=np.float64)

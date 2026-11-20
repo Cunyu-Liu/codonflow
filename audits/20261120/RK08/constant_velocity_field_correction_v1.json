@@ -1,0 +1,27 @@
+{
+  "schema_version": "a8-rk08-constant-velocity-field-correction-v1",
+  "status": "PASS_SCHEMA_CORRECTION_BEFORE_SCIENTIFIC_READOUT",
+  "trigger": "The first production attempt stopped at CSV header validation because the frozen prediction columns are model_prediction and ridge_prediction.",
+  "failure_log": "audits/20261120/RK08/constant_velocity_field_production_failure_v1.log",
+  "failure_log_sha256": "ac96f97299d979de08fe05b13442e4075439d5c7f34852d21b7921f621445b5f",
+  "scientific_protocol_changed": false,
+  "input_data_changed": false,
+  "comparison_seeds_changed": false,
+  "endpoint_or_gate_changed": false,
+  "production_report_created_before_correction": false,
+  "independent_report_created_before_correction": false,
+  "ood_metric_readout_before_correction": false,
+  "readout_scope_before_failure": "CSV header only; no constant-field fit, prediction, metric, bootstrap, or model comparison was computed.",
+  "implementation_changes": [
+    "Rename the two frozen prediction columns to the internal model and ridge aliases immediately after strict schema validation.",
+    "Apply the same column mapping in the independent implementation.",
+    "Update the schema unit test to use the actual frozen column names and assert both aliases.",
+    "Allow versioned preparation output so the original preparation report remains immutable."
+  ],
+  "corrected_unit_tests": "10 passed",
+  "corrected_preparation": "audits/20261120/RK08/constant_velocity_field_preparation_v2.json",
+  "corrected_preparation_status": "PASS_CONSTANT_VELOCITY_PREPARATION",
+  "corrected_preparation_checks": "18/18",
+  "rk_g1_pass": false,
+  "generator_training_authorized": false
+}

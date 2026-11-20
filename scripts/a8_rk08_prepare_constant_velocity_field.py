@@ -21,11 +21,14 @@ def main() -> None:
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--unit-test-log", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     root = args.root.resolve()
     protocol_path = args.protocol.resolve()
     protocol = json.loads(protocol_path.read_text())
-    output = root / "audits/20261120/RK08/constant_velocity_field_preparation_v1.json"
+    output = args.output or root / "audits/20261120/RK08/constant_velocity_field_preparation_v1.json"
+    if not output.is_absolute():
+        output = root / output
     if output.exists():
         raise FileExistsError(output)
     checks = []

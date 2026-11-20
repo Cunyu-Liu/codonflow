@@ -84,9 +84,10 @@ def load_codon_counts(path: Path) -> dict[str, dict]:
 
 def load_prediction_frame(path: Path, records: dict[str, dict], expected_rows: int) -> pd.DataFrame:
     frame = pd.read_csv(path)
-    required = {"record_id", "dataset", "split", "codon_position", "target", "model", "ridge"}
+    required = {"record_id", "dataset", "split", "codon_position", "target", "model_prediction", "ridge_prediction"}
     if set(frame.columns) != required:
         raise ValueError(f"unexpected prediction columns: {sorted(frame.columns)}")
+    frame = frame.rename(columns={"model_prediction": "model", "ridge_prediction": "ridge"})
     if len(frame) != expected_rows:
         raise ValueError(f"prediction row count {len(frame)} != {expected_rows}")
     if frame[["record_id", "codon_position"]].duplicated().any():
