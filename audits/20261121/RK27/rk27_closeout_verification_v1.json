@@ -1,0 +1,656 @@
+{
+  "RK_G1_complete": false,
+  "checks": [
+    {
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "name": "science_commit_full",
+      "pass": true
+    },
+    {
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "name": "science_commit_is_ancestor",
+      "pass": true
+    },
+    {
+      "details": "59698dfeb3aaced63fd9e195dfd0664ee7416cee3d6c8f1dc016deaa79006d14",
+      "name": "protocol_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4",
+      "name": "coverage_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "156bfa6da0323e0ddccd9eeb002fdeed1f84cc1105ec12ffc1e2688daf29077c",
+      "name": "production_script_hash",
+      "pass": true
+    },
+    {
+      "details": "4e9e9fbc273a369baf1977e1fb8a3c2daf692b5fac0ee9583c28fddf3a56cb08",
+      "name": "coverage_script_hash",
+      "pass": true
+    },
+    {
+      "details": "64f005518beb2b4be84f1d5db67e6c4fabda5aa2e13fdca4e02b5249923d22e5",
+      "name": "independent_script_hash",
+      "pass": true
+    },
+    {
+      "details": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+      "name": "independent_production_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+      "name": "source_hash_binding",
+      "pass": true
+    },
+    {
+      "details": "FROZEN_BEFORE_ANY_RK27_MODEL_FIT_OR_NEW_EXPRESSION_ASSOCIATION",
+      "name": "frozen_before_fit",
+      "pass": true
+    },
+    {
+      "details": {
+        "clusters": 37,
+        "coverage_eligible": true,
+        "cross_cluster_nearest_identity_max": 0.9638888888888889,
+        "cross_cluster_nearest_identity_median": 0.8986111111111111,
+        "largest_cluster": 61,
+        "median_cluster_size": 2.0,
+        "min_identity": 0.9,
+        "primary_seed_fold_sizes": [
+          23,
+          61,
+          22,
+          22,
+          22
+        ],
+        "singleton_clusters": 13,
+        "singleton_fraction": 0.35135135135135137
+      },
+      "name": "label_free_coverage",
+      "pass": true
+    },
+    {
+      "details": {
+        "clusters": 37,
+        "groups": 150,
+        "rows": 154
+      },
+      "name": "sample_chain",
+      "pass": true
+    },
+    {
+      "details": {
+        "fits": 300,
+        "folds": 5,
+        "seeds": 10
+      },
+      "name": "training_record",
+      "pass": true
+    },
+    {
+      "details": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY",
+      "name": "scientific_conclusion",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "family_gate",
+      "pass": true
+    },
+    {
+      "details": 0.9550512157495602,
+      "name": "ridge_spearman_effect_positive",
+      "pass": true
+    },
+    {
+      "details": [
+        0.4938143325215412,
+        1.1068328448152622
+      ],
+      "name": "ridge_spearman_effect_ci_excludes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.000199990000499975,
+      "name": "ridge_spearman_effect_holm_significant",
+      "pass": true
+    },
+    {
+      "details": 10,
+      "name": "ridge_spearman_effect_seed_stable",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "ridge_spearman_effect_pass",
+      "pass": true
+    },
+    {
+      "details": 0.15748870496429904,
+      "name": "ridge_mse_improvement_positive",
+      "pass": true
+    },
+    {
+      "details": [
+        0.07131333997658695,
+        0.21268609940042837
+      ],
+      "name": "ridge_mse_improvement_ci_excludes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.0012999350032498376,
+      "name": "ridge_mse_improvement_holm_significant",
+      "pass": true
+    },
+    {
+      "details": 10,
+      "name": "ridge_mse_improvement_seed_stable",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "ridge_mse_improvement_pass",
+      "pass": true
+    },
+    {
+      "details": 0.4125779353547091,
+      "name": "histgb_spearman_effect_positive",
+      "pass": true
+    },
+    {
+      "details": [
+        0.20882791150236585,
+        0.5203177505533748
+      ],
+      "name": "histgb_spearman_effect_ci_excludes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.00044997750112494374,
+      "name": "histgb_spearman_effect_holm_significant",
+      "pass": true
+    },
+    {
+      "details": 10,
+      "name": "histgb_spearman_effect_seed_stable",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "histgb_spearman_effect_pass",
+      "pass": true
+    },
+    {
+      "details": 0.10590705984382583,
+      "name": "histgb_mse_improvement_positive",
+      "pass": true
+    },
+    {
+      "details": [
+        0.0422788346378453,
+        0.1405610628854256
+      ],
+      "name": "histgb_mse_improvement_ci_excludes_zero",
+      "pass": true
+    },
+    {
+      "details": 0.0012999350032498376,
+      "name": "histgb_mse_improvement_holm_significant",
+      "pass": true
+    },
+    {
+      "details": 10,
+      "name": "histgb_mse_improvement_seed_stable",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "histgb_mse_improvement_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": 47,
+        "passed": 47
+      },
+      "name": "independent_47_of_47",
+      "pass": true
+    },
+    {
+      "details": "FIXED_PROTEIN_SEQUENCE_CLUSTER_OOD_MFE_INCREMENT_SUPPORTED_RETROSPECTIVELY",
+      "name": "independent_conclusion_match",
+      "pass": true
+    },
+    {
+      "details": {
+        "all_models_refit": true,
+        "all_resamples_recomputed": true,
+        "clusters_rebuilt_from_raw_cds": true,
+        "coverage_module_imported": false,
+        "functional_untouched_read": false,
+        "production_module_imported": false
+      },
+      "name": "independent_no_shared_modules",
+      "pass": true
+    },
+    {
+      "details": {
+        "all_models_refit": true,
+        "all_resamples_recomputed": true,
+        "clusters_rebuilt_from_raw_cds": true,
+        "coverage_module_imported": false,
+        "functional_untouched_read": false,
+        "production_module_imported": false
+      },
+      "name": "independent_rebuilt_everything",
+      "pass": true
+    },
+    {
+      "details": {
+        "passed": 46,
+        "status": "FAIL"
+      },
+      "name": "initial_independent_failure_retained",
+      "pass": true
+    },
+    {
+      "details": [
+        "metric_row_coverage"
+      ],
+      "name": "initial_failure_only_null_literal_merge",
+      "pass": true
+    },
+    {
+      "details": "14 passed",
+      "name": "production_synthetic_log",
+      "pass": true
+    },
+    {
+      "details": "8 passed",
+      "name": "independent_synthetic_log",
+      "pass": true
+    },
+    {
+      "details": {
+        "action": "Stopped the inefficient process and restarted the identical frozen analysis with OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1 and MKL_NUM_THREADS=1.",
+        "event": "initial_multithread_execution_aborted_before_predictions",
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "model_or_seed_changed": false,
+        "prediction_table_produced": false,
+        "reason": "The small-data process created 46 worker threads and consumed tens of CPU-minutes before completing the prediction table. A separate single-thread benchmark completed five real HistGradientBoosting fits and predictions in 0.4717438220977783 seconds.",
+        "result_used": false,
+        "schema": "a8-rk27-execution-abort-record-v1",
+        "scientific_protocol_changed": false
+      },
+      "name": "initial_execution_abort_safe",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 23210,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/analysis_exact_cds_150.csv",
+        "sha256": "1042ab0f4399ea9f9e2189b54c94aa283c8511d7240b82a6268d61ddcf5a9e1f"
+      },
+      "name": "production_artifact_analysis_exact_cds_150.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/analysis_exact_cds_150.csv",
+      "name": "production_artifact_location_analysis_exact_cds_150.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 125270,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/fold_assignments.csv",
+        "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+      },
+      "name": "production_artifact_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/fold_assignments.csv",
+      "name": "production_artifact_location_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 347182,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/oof_predictions.csv",
+        "sha256": "cc95d0eb590885b894a5ea18b18489202c993ad481ceb921498930a4daf6ac43"
+      },
+      "name": "production_artifact_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/oof_predictions.csv",
+      "name": "production_artifact_location_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 1964051,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+        "sha256": "f160324dac03df2660b238cdc560d75b7ee74811d5a8d459f7777798c9730575"
+      },
+      "name": "production_artifact_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+      "name": "production_artifact_location_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2049,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_effects.csv",
+        "sha256": "5afc9b7f6629668a53e709048693a8c89d571fb2908a215a0791a052ffb65162"
+      },
+      "name": "production_artifact_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_effects.csv",
+      "name": "production_artifact_location_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 4359,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_metrics.csv",
+        "sha256": "37b1118f597d1cfb5bff5dfec77a53f3670ffd0db567967184e8a0b4a8c0386a"
+      },
+      "name": "production_artifact_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/seed_metrics.csv",
+      "name": "production_artifact_location_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 3070,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/training_log.csv",
+        "sha256": "0f02b3fdfc4b7759725d408410301342b80758e3abfcc11bb2fe77d5ae9e00ed"
+      },
+      "name": "production_artifact_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/training_log.csv",
+      "name": "production_artifact_location_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 125269,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/fold_assignments.csv",
+        "sha256": "427f936a3c5e6eb9469c4103b988b1acff2a14f039c3cee45c2f7c1e45f14a62"
+      },
+      "name": "independent_artifact_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 347181,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/oof_predictions.csv",
+        "sha256": "afcce5ff7b67d0d152def332afc7788587f5b9204d15df11b6e0b26b1ea933a6"
+      },
+      "name": "independent_artifact_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 1964204,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/primary_inference_arrays.npz",
+        "sha256": "6431d0a8be08d9091b501a9e2bad3d3fc7e028637c64d7ed48947eb9712961a1"
+      },
+      "name": "independent_artifact_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 2055,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/seed_effects.csv",
+        "sha256": "47350b6a6b6de742941fefe8de7a881baa11906a9bfe6937d53e143642fbaa56"
+      },
+      "name": "independent_artifact_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 4359,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/seed_metrics.csv",
+        "sha256": "2d9dbf50a13d0c03177ce666a0fba61b7dc2ba959adf1fb4e5291ae449f2689f"
+      },
+      "name": "independent_artifact_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 3070,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk27/kudla_sequence_cluster_ood_v1/independent/training_log.csv",
+        "sha256": "0f02b3fdfc4b7759725d408410301342b80758e3abfcc11bb2fe77d5ae9e00ed"
+      },
+      "name": "independent_artifact_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "name": "closeout_contains_8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "pass": true
+    },
+    {
+      "details": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+      "name": "closeout_contains_b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+      "pass": true
+    },
+    {
+      "details": "1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4",
+      "name": "closeout_contains_1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4",
+      "pass": true
+    },
+    {
+      "details": "0.955051",
+      "name": "closeout_contains_0.955051",
+      "pass": true
+    },
+    {
+      "details": "[0.493814, 1.106833]",
+      "name": "closeout_contains_[0.493814, 1.106833]",
+      "pass": true
+    },
+    {
+      "details": "0.157489",
+      "name": "closeout_contains_0.157489",
+      "pass": true
+    },
+    {
+      "details": "[0.071313, 0.212686]",
+      "name": "closeout_contains_[0.071313, 0.212686]",
+      "pass": true
+    },
+    {
+      "details": "0.412578",
+      "name": "closeout_contains_0.412578",
+      "pass": true
+    },
+    {
+      "details": "[0.208828, 0.520318]",
+      "name": "closeout_contains_[0.208828, 0.520318]",
+      "pass": true
+    },
+    {
+      "details": "0.105907",
+      "name": "closeout_contains_0.105907",
+      "pass": true
+    },
+    {
+      "details": "[0.042279, 0.140561]",
+      "name": "closeout_contains_[0.042279, 0.140561]",
+      "pass": true
+    },
+    {
+      "details": "47/47 PASS",
+      "name": "closeout_contains_47/47 PASS",
+      "pass": true
+    },
+    {
+      "details": "14/14 PASS",
+      "name": "closeout_contains_14/14 PASS",
+      "pass": true
+    },
+    {
+      "details": "8/8 PASS",
+      "name": "closeout_contains_8/8 PASS",
+      "pass": true
+    },
+    {
+      "details": "46/47",
+      "name": "closeout_contains_46/47",
+      "pass": true
+    },
+    {
+      "details": "300 \u6b21\u771f\u5b9e CPU \u6a21\u578b\u62df\u5408",
+      "name": "closeout_contains_300 \u6b21\u771f\u5b9e CPU \u6a21\u578b\u62df\u5408",
+      "pass": true
+    },
+    {
+      "details": "\u56de\u987e\u6027\u56fa\u5b9a\u86cb\u767d\u5e8f\u5217\u7c07\u8fd0\u8f93\u8bc1\u636e",
+      "name": "closeout_contains_\u56de\u987e\u6027\u56fa\u5b9a\u86cb\u767d\u5e8f\u5217\u7c07\u8fd0\u8f93\u8bc1\u636e",
+      "pass": true
+    },
+    {
+      "details": "RK-G1 \u4ecd\u4e3a false",
+      "name": "closeout_contains_RK-G1 \u4ecd\u4e3a false",
+      "pass": true
+    },
+    {
+      "details": "\u751f\u6210\u8bad\u7ec3\u672a\u6388\u6743",
+      "name": "closeout_contains_\u751f\u6210\u8bad\u7ec3\u672a\u6388\u6743",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u662f\u72ec\u7acb untouched \u786e\u8ba4",
+      "name": "closeout_contains_\u4e0d\u662f\u72ec\u7acb untouched \u786e\u8ba4",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u662f protein OOD",
+      "name": "closeout_contains_\u4e0d\u662f protein OOD",
+      "pass": true
+    },
+    {
+      "details": "\u4e0d\u6d4b\u91cf velocity \u6216 decay",
+      "name": "closeout_contains_\u4e0d\u6d4b\u91cf velocity \u6216 decay",
+      "pass": true
+    },
+    {
+      "details": 1,
+      "name": "registry_single_RK27_row",
+      "pass": true
+    },
+    {
+      "details": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "name": "registry_contains_8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+      "pass": true
+    },
+    {
+      "details": "independent47/47",
+      "name": "registry_contains_independent47/47",
+      "pass": true
+    },
+    {
+      "details": "0.955051",
+      "name": "registry_contains_0.955051",
+      "pass": true
+    },
+    {
+      "details": "0.412578",
+      "name": "registry_contains_0.412578",
+      "pass": true
+    },
+    {
+      "details": "RK-G1=false",
+      "name": "registry_contains_RK-G1=false",
+      "pass": true
+    },
+    {
+      "details": "generator unauthorized",
+      "name": "registry_contains_generator unauthorized",
+      "pass": true
+    },
+    {
+      "details": "retrospective fixed-protein sequence-cluster transport supported",
+      "name": "registry_contains_retrospective fixed-protein sequence-cluster transport supported",
+      "pass": true
+    },
+    {
+      "details": {
+        "RK_G1_complete": false,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK22_development": true,
+        "protein_ood": false,
+        "sequence_cluster_ood": true,
+        "velocity_or_decay_measured": false
+      },
+      "name": "retrospective_boundaries",
+      "pass": true
+    },
+    {
+      "details": {
+        "RK_G1_complete": false,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK22_development": true,
+        "protein_ood": false,
+        "sequence_cluster_ood": true,
+        "velocity_or_decay_measured": false
+      },
+      "name": "global_gate_not_overclaimed",
+      "pass": true
+    },
+    {
+      "details": {
+        "RK_G1_complete": false,
+        "fixed_protein": true,
+        "full_spatial_coupling_established": false,
+        "functional_untouched_read": false,
+        "generator_training_authorized": false,
+        "independent_untouched_confirmation": false,
+        "labels_previously_used_in_RK22_development": true,
+        "protein_ood": false,
+        "sequence_cluster_ood": true,
+        "velocity_or_decay_measured": false
+      },
+      "name": "mechanism_scope_not_overclaimed",
+      "pass": true
+    }
+  ],
+  "closeout_sha256": "3febc17e612d1a6f4c13b09bb9835bc759a502f93a8b9342b922b4d4ba5a73c7",
+  "generator_training_authorized": false,
+  "independent_report_sha256": "1e657146110a553071b169578839cbd0c45e357d9d4ff32394f297848d2df5f4",
+  "n_checks": 97,
+  "n_passed": 97,
+  "registry_sha256": "cffaa480af865de3fea2006a3d40c8f47cfd7f98cdfa209d6dfcd3be11b1560a",
+  "result_sha256": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+  "schema": "a8-rk27-closeout-verification-v1",
+  "science_commit": "8a62836bb73b34bcae529bae6a21f6e3eefc85d1",
+  "status": "PASS",
+  "verifier_script_sha256": "58d460972c6e9360a30cea41ab19ebaf92646be0a4d51d0ad77414127de88378"
+}
