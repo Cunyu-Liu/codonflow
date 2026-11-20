@@ -765,7 +765,13 @@ A computational Pareto improvement is also distinct from biological improvement.
 
 Every result must link to its run ID, code and dirty-diff hash, environment, raw/clean data and split hashes, checkpoint, complete configuration, seeds, original measurements or sequences, evaluation script and artifact hash. Candidate datasets and planned experiments remain explicitly marked. Failed baselines, partial outputs, negative strata and unavailable costs are retained rather than converted to zero or removed.
 
-### 8.1 A8-RK evidence anchors
+### 8.1 CPU-suite reproduction
+
+The repaired existing environment completed the full project CPU suite with **331 collected tests: 330 passed, 1 skipped, 0 failed, 0 errors** in 27.12 s and passed 15/15 independent checks. A separate clean conda prefix then reproduced the same test outcome in 15.91 s and passed **24/24 independent checks** (`PASS_CLEAN_CPU_SUITE`). The clean prefix used Python 3.10.22, torch 2.11.0+cu128, numpy 2.2.6, scipy 1.15.3, pandas 2.2.2, scikit-learn 1.7.2, pytest 9.1.1, ViennaRNA 2.7.2, pymoo 0.6.2, RapidFuzz 3.14.5, and transformers 4.46.3; `pip check` reported no broken requirements. This is a fresh reproduction within declared compatible dependency ranges, not an exact copy of the repaired environment's torch 2.14.1+cu132 / transformers 5.20.2 stack.
+
+The sole skip in both runs was the explicit opt-in isolated tmux integration test. No opt-in tmux/GPU integration was executed. Both JUnit files contained 331 testcase elements but had a `tests=336` header; this five-count metadata discrepancy is retained, and acceptance relies on the console summary and independently enumerated cases. Failed conda/pip attempts, the `/teams` archive-seek limitation, the successful `/home` package-cache transaction, and an initial verifier input-schema failure are preserved. These results close the repaired-existing and fresh-clean **CPU test suites only**: full experimental regeneration, scientific mechanism gates, functional untouched evaluation, generator authorization and external-SOTA authorization remain open or false.
+
+### 8.2 A8-RK evidence anchors
 
 The working-manuscript values above were rendered from the following frozen artifacts. Large CSV, prediction, and weight files remain outside Git under the project artifact root; their report-level hashes are recorded here.
 
@@ -1013,8 +1019,16 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK08 constant-field manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 | RK08 constant-field retained delivery failure | `005a32493c6ac34f03ae91ca8f57940962623381ee2d6bc39dee9bf49bc40b69` |
 | RK08 constant-field delivery correction | `321bd948b5c53c2f61b0fb9715d4b0729b058b9864f298d87cc309b54ad45b00` |
+| RK19 repaired-existing CPU-suite verification | `87dc09dc989b5200c1bdb3538ede9111fa79f3b2742be9dc7733846572392351` |
+| RK19 fresh-clean CPU-suite verification | `1519bb89f528d1f04801fdf945900c3d9f8c22fa2766c80b426f6428a798ca6f` |
+| RK19 clean base explicit specification | `303aeeea89f8597be5d248f66bee6d7c77f27ac648486658d1c10f4ad99b11ca` |
+| RK19 clean CPU-suite console log | `d9dc2e421d759d3c4d4ba94cbfcefb27c1c72c8e74ef047bb3f4e18be9665d97` |
+| RK19 manuscript reproducibility source section | `3ffedb2efbf99754d1f5acfd8ea7c79498a45edb3752b8565487413a6c0ec6c9` |
+| RK19 manuscript reproducibility prepare check | `3cdfcebbfe48e40d7e2f5630f2442f06bff352bbfe71754ee83e281288d5f0aa` |
+| RK19 manuscript reproducibility draft check | `6e85cb34e6aede8ac23a4d76151fe2a2c930189322c84e4cc02fe4d83aaf304c` |
+| RK19 manuscript reproducibility writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
-A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
+A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
 ## 9. References
 

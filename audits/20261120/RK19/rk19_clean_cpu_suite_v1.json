@@ -1,0 +1,173 @@
+{
+  "schema": "a8-rk19-clean-cpu-suite-v1",
+  "status": "PASS_CLEAN_CPU_SUITE",
+  "overall_pass": true,
+  "check_count": 24,
+  "passed_count": 24,
+  "environment_prefix": "/home/codonflow-rk19-clean-explicit-v2",
+  "python_executable": "/home/codonflow-rk19-clean-explicit-v2/bin/python",
+  "python_version": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 23:02:24) [GCC 14.4.0]",
+  "external_pythonpath": false,
+  "package_versions": {
+    "torch": "2.11.0+cu128",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pandas": "2.2.2",
+    "scikit-learn": "1.7.2",
+    "pymoo": "0.6.2",
+    "rapidfuzz": "3.14.5",
+    "pytest": "9.1.1"
+  },
+  "tests": {
+    "collected": 331,
+    "passed": 330,
+    "skipped": 1,
+    "failed": 0,
+    "errors": 0
+  },
+  "junit_metadata_observation": {
+    "tests_attribute": 336,
+    "testcase_elements": 331
+  },
+  "input_sha256": {
+    "create_log": "1e54e8a80b953acb7a2e4b4e5c3ea52203da3181b84316c33cac1e1ad374583a",
+    "explicit_spec": "303aeeea89f8597be5d248f66bee6d7c77f27ac648486658d1c10f4ad99b11ca",
+    "junit": "fe9939a51ea6f9b678e73f3b58a3f5f1ca59db793e2bb87722666509bdabc293",
+    "console": "d9dc2e421d759d3c4d4ba94cbfcefb27c1c72c8e74ef047bb3f4e18be9665d97",
+    "pip_check_log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "existing_env_report": "87dc09dc989b5200c1bdb3538ede9111fa79f3b2742be9dc7733846572392351",
+    "science_gate": "72ec5e9c4b085846d78c462cb35c3aca023db3a22d4cedf621823d4b066bac81",
+    "environment_yml": "bd0229705b7ce2b14389a6291caad075430916e73f83e6c8dd363e9e657c7326",
+    "pyproject_toml": "c757d43ea75f99bc211ea18495659e53594f421e852ca90eaa2af608e3ea309a"
+  },
+  "clean_cpu_test_suite_reproduction": true,
+  "full_experimental_clean_reproduction": false,
+  "gpu_integration_executed": false,
+  "rk_g1_pass": false,
+  "generator_training_authorized": false,
+  "functional_untouched_evaluated": false,
+  "checks": [
+    {
+      "name": "isolated_executable",
+      "pass": true,
+      "detail": "/home/codonflow-rk19-clean-explicit-v2/bin/python"
+    },
+    {
+      "name": "isolated_prefix",
+      "pass": true,
+      "detail": "/home/codonflow-rk19-clean-explicit-v2"
+    },
+    {
+      "name": "no_external_pythonpath",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "site_packages_under_prefix",
+      "pass": true,
+      "detail": [
+        "/home/codonflow-rk19-clean-explicit-v2/lib/python3.10/site-packages"
+      ]
+    },
+    {
+      "name": "conda_transaction_completed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "explicit_spec_present",
+      "pass": true,
+      "detail": 26
+    },
+    {
+      "name": "official_package_urls",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_aliyun_package_urls",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pip_check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "import_torch",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_numpy",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_scipy",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_pandas",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_sklearn",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_RNA",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_pymoo",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_rapidfuzz",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "import_pytest",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "junit_testcases",
+      "pass": true,
+      "detail": 331
+    },
+    {
+      "name": "junit_no_failures",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "one_explicit_skip",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "console_result",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "existing_env_regression_bound",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_gates_unchanged",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}
