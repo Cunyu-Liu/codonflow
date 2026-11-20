@@ -1,0 +1,77 @@
+{
+  "schema": "a8-rk21-kudla-recovery-protocol-v1",
+  "protocol_version": 1,
+  "frozen_before_validated_table_export": true,
+  "raw_structure_preflight_completed": true,
+  "model_metrics_computed_under_this_protocol": false,
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1",
+  "audit_root": "audits/20261121/RK21",
+  "sources": {
+    "primary_measurements": {
+      "citation": "Kudla G, Murray AW, Tollervey D, Plotkin JB. Science 2009.",
+      "doi": "10.1126/science.1170160",
+      "url": "https://www.science.org/doi/10.1126/science.1170160",
+      "note": "The Science SOM documents the experiment but does not contain the complete per-construct sequence-expression table."
+    },
+    "primary_table": {
+      "citation": "Supek F, Smuc T. Genetics 2010, File S2, Kudla et al. GFP dataset and tagged dataset.",
+      "doi": "10.1534/genetics.110.115477",
+      "landing_url": "https://academic.oup.com/genetics/article/185/3/1129/6062689",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/raw/supek_smuc_files2.xls",
+      "sha256": "ac3325e570a7f1c0ede2ff153d8a3f70ec494f8dca01ef4dba7ae80850cea0d4",
+      "bytes": 4205568,
+      "main_sheet": "Kudla et al. GFP dataset",
+      "tagged_sheet": "Kudla et al. tagged dataset",
+      "natural_reference_sheet": "E. coli genes >= 80 codons"
+    },
+    "independent_derivative_copy": {
+      "citation": "Fernandes A, Vinga S. PLOS ONE 2016, S1 Software.",
+      "doi": "10.1371/journal.pone.0150369",
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4775025/",
+      "download_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0150369.s001&type=supplementary",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/raw/pone.0150369.s001.zip",
+      "sha256": "d18851a9f313f86445d288fceacb5d37f69a419f8bf8493bce4dd97262378759",
+      "bytes": 7425280,
+      "mat_member": "Data/Kudla_Dataset_WithEnergy.mat",
+      "mat_sha256": "e440aedd5c13724c5bef834137ba0cf11e4613bc9f64462456a252edfee06595"
+    }
+  },
+  "expected_contract": {
+    "main_rows": 154,
+    "main_columns": 71,
+    "tagged_rows": 72,
+    "tagged_columns": 62,
+    "full_mrna_nt": 864,
+    "utr_5prime_nt": 144,
+    "cds_nt_including_stop": 720,
+    "protein_aa_excluding_stop": 239,
+    "unique_exact_cds": 150,
+    "duplicate_exact_cds_groups": 4,
+    "expression_min": 43,
+    "expression_max": 10606,
+    "tagged_sequence_available": false,
+    "required_main_columns": [
+      "seqId",
+      "rnaEnergy_-4..37",
+      "CAI",
+      "is_in_72-sequence_set",
+      "pGK8_normalizedFlourescence",
+      "sequenceWithUtr"
+    ],
+    "required_tagged_columns": [
+      "seqId",
+      "rnaEnergy_-4..37",
+      "pGK16_fluo_with_leader_sequence"
+    ]
+  },
+  "data_rules": [
+    "Preserve every source column and every source row in the two GFP sheets.",
+    "Treat seqId as the construct key; never renumber from a literature sample count.",
+    "Group exact duplicate CDS for every future split; do not randomly separate identical CDS across train and evaluation.",
+    "Retain all 154 measurement rows while disclosing 150 unique exact CDS and four duplicate groups.",
+    "Do not impute a tagged nucleotide sequence: File S2 supplies tagged MFE, codon frequencies and expression, not tagged sequenceWithUtr.",
+    "Do not digitize figures or infer unobserved expression values.",
+    "Do not read or evaluate the pre-existing functional untouched partition.",
+    "This recovery protocol does not fit a model, authorize generator training, or claim RK-G1, OOD, untouched, time-matched or SOTA completion."
+  ]
+}

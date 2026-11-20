@@ -16,7 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest", "pandas>=2.2", "scikit-learn>=1.7"]
 eval = ["pymoo", "ViennaRNA", "rapidfuzz"]
-analysis = ["pandas>=2.2", "scikit-learn>=1.7"]
+analysis = ["pandas>=2.2", "scikit-learn>=1.7", "xlrd>=2.0,<3"]
 baselines = ["transformers", "linformer"]
 
 [tool.setuptools.packages.find]
