@@ -213,12 +213,36 @@ def base_frame(rows_by_split):
     return pd.DataFrame(records)
 
 
-def read_csv_partitions(path, splits):
-    assignments = pd.read_csv(path, usecols=['ood_assignment'])['ood_assignment']
+def read_csv_partitions(path, splits, split_column='ood_assignment'):
+    assignments = pd.read_csv(path, usecols=[split_column])[split_column]
     keep = assignments.isin(splits).to_numpy()
     frame = pd.read_csv(path, skiprows=lambda index: index != 0 and not keep[index - 1])
     if len(frame) != int(np.sum(keep)):
         raise ValueError(f'partition filtering mismatch: {path}')
+    return frame
+
+
+def read_neural_prediction(path, splits):
+    frame = read_csv_partitions(path, splits, split_column='split').rename(columns={
+        'record_id': 'construct_id', 'split': 'ood_assignment',
+        'cluster_id': 'operational_protein_cluster',
+    })
+    required = {'construct_id', 'ood_assignment', 'operational_protein_cluster', 'target', 'prediction'}
+    if not required.issubset(frame.columns):
+        raise ValueError(f'neural prediction schema mismatch: {path}')
+    if not np.isfinite(frame[['prediction', 'lower_95', 'upper_95']].to_numpy(float)).all():
+        raise ValueError(f'non-finite neural prediction or interval: {path}')
+    return frame
+
+
+def read_baseline_prediction(path, splits):
+    frame = read_csv_partitions(path, splits).rename(columns={
+        'cluster_id': 'operational_protein_cluster', 'expression': 'expression_value',
+        'pred_ridge_all': 'ridge_all', 'pred_histgb_all': 'histgb_all',
+    })
+    required = {'source_row', 'construct_id', 'ood_assignment', 'expression_value', 'ridge_all', 'histgb_all'}
+    if not required.issubset(frame.columns):
+        raise ValueError(f'baseline prediction schema mismatch: {path}')
     return frame
 
 
@@ -254,14 +278,13 @@ def build_prediction_frames(protocol, rows_by_split, model):
     seed_frames = []
     for seed in protocol['seeds']:
         record = protocol['frozen_ribokinetic_all_predictions'][str(seed)]
-        prediction = read_csv_partitions(record['path'], splits)
-        prediction['source_row'] = prediction['source_row'].astype(str)
+        prediction = read_neural_prediction(record['path'], splits)
         values = merge_one_prediction(base, prediction, ['construct_id', 'ood_assignment'], 'prediction')
         frame = base.copy()
         frame['seed'] = int(seed)
         frame['ribokinetic_all'] = values
         seed_frames.append(frame)
-    baseline = read_csv_partitions(protocol['data']['baseline_predictions'], splits)
+    baseline = read_baseline_prediction(protocol['data']['baseline_predictions'], splits)
     baseline['source_row'] = baseline['source_row'].astype(str)
     keys = ['source_row', 'construct_id', 'ood_assignment']
     ridge = merge_one_prediction(base, baseline, keys, 'ridge_all')

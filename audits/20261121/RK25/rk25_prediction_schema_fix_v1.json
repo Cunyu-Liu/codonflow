@@ -1,0 +1,17 @@
+{
+  "schema": "a8-rk25-engineering-fix-v1",
+  "fix": "Explicitly map the real RK20 neural and baseline prediction schemas before identity, target, and cluster validation.",
+  "protocol_changed": false,
+  "scientific_definitions_changed": false,
+  "previous_implementation_sha256": "315669c1db749fe7e33aa2dc22ea024cf40d6addcdc0979763b780ba8b2d277f",
+  "implementation_sha256": "940d72f8443274bd4e2bdb6c6ea716bcf4f6292b7850c80c12c2e13adfae9090",
+  "unit_test_implementation_sha256": "ab890b6b09c6b0396b0ef9e38603d0593c545a8d0ac90e2eede5e3ca70e00812",
+  "unit_test_log_sha256": "9fed5786d2ab67c482c94c00e22b249eacbb51ea00abd79dc14c8c0aa8f8f2cc",
+  "unit_tests": "13/13 PASS",
+  "failed_dev_log_sha256": "cd28624de1a747ac307234d1c1338d17ffffb4be090449499a394e1a16ac34a7",
+  "unverified_model_artifact_sha256": "62b2c05135a3ea3e05c646fbee8764693e7b1464878e009126ae94443b7508e4",
+  "unverified_model_artifact_retained_as": "rk25_author_model_failed_prediction_schema.pkl",
+  "dev_metrics_produced_before_fix": false,
+  "test_or_sequence_ood_metrics_produced_before_fix": false,
+  "functional_untouched_evaluated": false
+}

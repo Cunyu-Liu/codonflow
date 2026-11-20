@@ -222,6 +222,30 @@ class RK25Tests(unittest.TestCase):
         self.assertIn('source_Gz48v', names)
         self.assertIn('s7_16', names)
         self.assertIn('s17_32', names)
+    def test_13_real_prediction_schema_mapping(self):
+        neural = pd.DataFrame({
+            'record_id': ['a', 'b', 'c'], 'split': ['train', 'dev', 'test'],
+            'cluster_id': ['x', 'y', 'z'], 'target': [0., 1., 2.],
+            'prediction': [0.1, 1.1, 2.1], 'lower_95': [0., 1., 2.],
+            'upper_95': [0.2, 1.2, 2.2],
+        })
+        baseline = pd.DataFrame({
+            'source_row': [0, 1, 2], 'construct_id': ['a', 'b', 'c'],
+            'ood_assignment': ['train', 'dev', 'test'], 'cluster_id': ['x', 'y', 'z'],
+            'expression': [0., 1., 2.], 'pred_ridge_all': [0.2, 1.2, 2.2],
+            'pred_histgb_all': [0.3, 1.3, 2.3],
+        })
+        with tempfile.TemporaryDirectory() as directory:
+            neural_path = Path(directory) / 'neural.csv'
+            baseline_path = Path(directory) / 'baseline.csv'
+            neural.to_csv(neural_path, index=False)
+            baseline.to_csv(baseline_path, index=False)
+            neural_observed = rk.read_neural_prediction(neural_path, ['train', 'dev'])
+            baseline_observed = rk.read_baseline_prediction(baseline_path, ['train', 'dev'])
+        self.assertEqual(neural_observed['construct_id'].tolist(), ['a', 'b'])
+        self.assertEqual(neural_observed['ood_assignment'].tolist(), ['train', 'dev'])
+        self.assertEqual(baseline_observed['ridge_all'].tolist(), [0.2, 1.2])
+        self.assertEqual(baseline_observed['expression_value'].tolist(), [0., 1.])
 
 
 if __name__ == '__main__':
