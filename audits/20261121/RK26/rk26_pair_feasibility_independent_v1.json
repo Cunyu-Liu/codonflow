@@ -1,0 +1,284 @@
+{
+  "candidate_confirmatory_design_feasible": false,
+  "checks": [
+    {
+      "detail": null,
+      "name": "protocol_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "raw_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_hash",
+      "pass": true
+    },
+    {
+      "detail": 8192,
+      "name": "raw_rows_8192",
+      "pass": true
+    },
+    {
+      "detail": 8192,
+      "name": "clean_rows_8192",
+      "pass": true
+    },
+    {
+      "detail": 8192,
+      "name": "fact_rows_8192",
+      "pass": true
+    },
+    {
+      "detail": 8192,
+      "name": "result_rows_8192",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "two_pair_contexts",
+      "pass": true
+    },
+    {
+      "detail": [
+        "source_row",
+        "pair_id",
+        "codon1",
+        "aa1",
+        "codon2",
+        "aa2",
+        "wt_codon1",
+        "wt_aa1",
+        "wt_codon2",
+        "wt_aa2",
+        "mutation_signature",
+        "mutation_order",
+        "is_synonymous",
+        "record_class"
+      ],
+      "name": "fact_schema_sequence_only",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fact_schema_has_no_forbidden_columns",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "produced_fact_row_count",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "all_8192_fact_rows_exact",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "all_8192_clean_rows_reconciled",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "count_schema",
+      "pass": true
+    },
+    {
+      "detail": [],
+      "name": "context_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "result_context_counts_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_facts_csv_gz_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_facts_csv_gz_bytes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_counts_csv_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_counts_csv_bytes",
+      "pass": true
+    },
+    {
+      "detail": {
+        "codon_pair_variant": 7938,
+        "single_codon_variant_in_pair_assay": 252,
+        "wild_type_control": 2
+      },
+      "name": "class_counts",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "six_synonymous_singles",
+      "pass": true
+    },
+    {
+      "detail": 4,
+      "name": "four_synonymous_doubles",
+      "pass": true
+    },
+    {
+      "detail": [
+        4,
+        3,
+        1
+      ],
+      "name": "pair_1-2_synonymous_coverage",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_1-2_complete_64_by_64_grid",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_1-2_mutation_order_totals",
+      "pass": true
+    },
+    {
+      "detail": [
+        2,
+        1,
+        0
+      ],
+      "name": "pair_2-3_synonymous_coverage",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_2-3_complete_64_by_64_grid",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_2-3_mutation_order_totals",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "candidate_not_feasible",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "scientific_outcome_bounded",
+      "pass": true
+    },
+    {
+      "detail": 0,
+      "name": "zero_model_fits",
+      "pass": true
+    },
+    {
+      "detail": 0,
+      "name": "zero_functional_endpoint_evaluations",
+      "pass": true
+    },
+    {
+      "detail": 0,
+      "name": "zero_confidence_intervals_or_p_values",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_original_mage_33_construct_mechanism_test_accessed",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_rk04_functional_untouched_split_accessed",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_protein_ood_claim",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_velocity_decay_or_spatial_coupling_claim",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_rk_g1_pass",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "boundary_generator_training_authorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retrospective_not_preregistered",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "not_power_analysis",
+      "pass": true
+    }
+  ],
+  "checks_passed": 42,
+  "checks_total": 42,
+  "functional_endpoint_evaluations": 0,
+  "generator_training_authorized": false,
+  "independent_double_synonymous": 4,
+  "independent_pair_contexts": [
+    {
+      "coverage_rule_pass": 1,
+      "double_synonymous": 3,
+      "double_total": 3969,
+      "pair_id": "1-2",
+      "rows": 4096,
+      "single_synonymous": 4,
+      "single_total": 126,
+      "unique_observed_codon_pairs": 4096,
+      "wild_type": 1,
+      "wt_codon1": "GCC",
+      "wt_codon2": "AAA"
+    },
+    {
+      "coverage_rule_pass": 0,
+      "double_synonymous": 1,
+      "double_total": 3969,
+      "pair_id": "2-3",
+      "rows": 4096,
+      "single_synonymous": 2,
+      "single_total": 126,
+      "unique_observed_codon_pairs": 4096,
+      "wild_type": 1,
+      "wt_codon1": "AAA",
+      "wt_codon2": "GAA"
+    }
+  ],
+  "independent_single_synonymous": 6,
+  "model_fits": 0,
+  "original_mage_33_construct_mechanism_test_accessed": false,
+  "production_report_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "protocol_sha256": "c49140ae2fe1ebbefa40290caa6b55774f16ae1949168936cb2c69bd205540b4",
+  "rk04_functional_untouched_split_accessed": false,
+  "rk_g1_pass": false,
+  "schema": "a8-rk26-mage-pair-feasibility-independent-v1",
+  "status": "PASS"
+}

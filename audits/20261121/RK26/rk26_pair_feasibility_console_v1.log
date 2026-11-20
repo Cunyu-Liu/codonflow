@@ -1,0 +1,79 @@
+{
+  "analysis_role": "retrospective_data_adequacy_audit_not_a_preregistered_mechanism_experiment",
+  "artifacts": {
+    "pair_counts_csv": {
+      "bytes": 230,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk26/mage_pair_feasibility_v1/rk26_pair_context_counts.csv",
+      "rows": 2,
+      "sha256": "a3b3c5665f039917b6ffc36e8b3789884921760ac91469fd50c0dee668ec9b24"
+    },
+    "pair_facts_csv_gz": {
+      "bytes": 66834,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk26/mage_pair_feasibility_v1/rk26_pair_sequence_facts.csv.gz",
+      "rows": 8192,
+      "sha256": "ad96263a513c986abcd62b71c7927704b927422be383dc5bc71d60abc4c4b531"
+    }
+  },
+  "confidence_intervals_or_p_values": 0,
+  "confirmatory_single_to_double_ood_feasible": false,
+  "decision_explanation": "At least one pair context fails the frozen per-pair synonymous-single/double coverage rule; no confirmatory model comparison or endpoint evaluation is supported.",
+  "descriptive_analysis_remains_possible_but_not_confirmatory": true,
+  "functional_endpoint_evaluations": 0,
+  "generator_training_authorized": false,
+  "model_fits": 0,
+  "not_a_power_analysis": true,
+  "original_mage_33_construct_mechanism_test_accessed": false,
+  "pair_contexts": [
+    {
+      "coverage_rule_pass": 1,
+      "double_synonymous": 3,
+      "double_total": 3969,
+      "pair_id": "1-2",
+      "rows": 4096,
+      "single_synonymous": 4,
+      "single_total": 126,
+      "unique_observed_codon_pairs": 4096,
+      "wild_type": 1,
+      "wt_codon1": "GCC",
+      "wt_codon2": "AAA"
+    },
+    {
+      "coverage_rule_pass": 0,
+      "double_synonymous": 1,
+      "double_total": 3969,
+      "pair_id": "2-3",
+      "rows": 4096,
+      "single_synonymous": 2,
+      "single_total": 126,
+      "unique_observed_codon_pairs": 4096,
+      "wild_type": 1,
+      "wt_codon1": "AAA",
+      "wt_codon2": "GAA"
+    }
+  ],
+  "protein_ood_claim": false,
+  "protocol_sha256": "c49140ae2fe1ebbefa40290caa6b55774f16ae1949168936cb2c69bd205540b4",
+  "record_class_counts": {
+    "codon_pair_variant": 7938,
+    "single_codon_variant_in_pair_assay": 252,
+    "wild_type_control": 2
+  },
+  "report_path": "/home/codonflow-a8-rk/audits/20261121/RK26/rk26_pair_feasibility_result_v1.json",
+  "report_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "rk04_functional_untouched_split_accessed": false,
+  "rk_g1_pass": false,
+  "rows": 8192,
+  "schema": "a8-rk26-mage-pair-feasibility-result-v1",
+  "scientific_outcome": "FIXED_PROTEIN_SINGLE_TO_DOUBLE_SYNONYMOUS_OOD_NOT_SUPPORTED_BY_SAMPLE_COVERAGE",
+  "source": {
+    "clean_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/kelsic_2016_mage_seq/codon_pair_fitness.csv",
+    "clean_sha256": "7acecf37b7ca432468a8e5c7a45ab6f471df41ae7d30d493cf8e4fe95e06edf1",
+    "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5234859/",
+    "raw_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/raw/kelsic_2016_mage_seq/data_s2_codon_pair_csv.csv",
+    "raw_sha256": "873f4ef0b410fb1299217d7c5cf0ffd5c78947591c9f944da867c428bdf93672"
+  },
+  "synonymous_double_variants": 4,
+  "synonymous_single_variants": 6,
+  "velocity_decay_or_spatial_coupling_claim": false,
+  "wall_seconds": 0.8923575109802186
+}
