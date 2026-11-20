@@ -1,0 +1,401 @@
+{
+  "schema": "a8-rk28-manuscript-verification-v1",
+  "status": "PASS",
+  "original_sha256": "1a4f84e16179d6ef7d4d7d59dd1f21f7d5313635e6e3d27f31ec6f7e2149bc5c",
+  "manuscript_sha256": "f965d37c1b7ed1e98ca36669c6b7a526124c68b9f1b465cf42dcdbc197e6a90a",
+  "section_sha256": "6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2",
+  "paper_final_sha256": "6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2",
+  "result_sha256": "c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+  "coverage_sha256": "772a000a15aa53680a03195057e767fbadc670e3d6a1a89c119e479319a644a9",
+  "independent_sha256": "edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1",
+  "independent_initial_sha256": "8210af62d7c8d0594f1532ef26346d4dcbd38c81473b3e0ca73049bd31bd4131",
+  "production_synthetic_sha256": "737b34f6b28be4ec9cf6c2c2332f6f926339c51962edd7a5fb2029c4d4a4d558",
+  "closeout_sha256": "deb22cf239ce46dea31a6ee5b08b782ef991d8111116216a091d0155314dd68a",
+  "prepare_sha256": "d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8",
+  "draft_sha256": "7a0c381b2e5e0424672654e76ee108f6ef4c7ce0879f7c75374d5c726f8a3e1b",
+  "status_sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9",
+  "update_report_sha256": "fc2317f530a70ff04045b5e989e01860b016dd0bff1d124298e08c93fedf9385",
+  "workflow_status": "PASS",
+  "mode": "draft",
+  "output_target": "markdown_only",
+  "delivery_shell_failure_retained": true,
+  "initial_synthetic_failure_retained": true,
+  "initial_independent_failure_retained": true,
+  "checks_total": 92,
+  "checks_passed": 92,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "original frozen hash",
+      "pass": true
+    },
+    {
+      "name": "section occurs once",
+      "pass": true
+    },
+    {
+      "name": "section heading once",
+      "pass": true
+    },
+    {
+      "name": "RK28 follows RK27 and precedes Discussion",
+      "pass": true
+    },
+    {
+      "name": "twelve RK28 evidence rows",
+      "pass": true
+    },
+    {
+      "name": "all prior manuscript text unchanged",
+      "pass": true
+    },
+    {
+      "name": "paper final byte text equals section",
+      "pass": true
+    },
+    {
+      "name": "paper final hash binds section",
+      "pass": true
+    },
+    {
+      "name": "draft mode",
+      "pass": true
+    },
+    {
+      "name": "section task scope",
+      "pass": true
+    },
+    {
+      "name": "Markdown-only target",
+      "pass": true
+    },
+    {
+      "name": "no citation task",
+      "pass": true
+    },
+    {
+      "name": "prepare pass",
+      "pass": true
+    },
+    {
+      "name": "draft pass",
+      "pass": true
+    },
+    {
+      "name": "draft section hash",
+      "pass": true
+    },
+    {
+      "name": "draft 603 words",
+      "pass": true
+    },
+    {
+      "name": "three-state PASS",
+      "pass": true
+    },
+    {
+      "name": "Markdown-only delivery reason",
+      "pass": true
+    },
+    {
+      "name": "delivery shell failure retained",
+      "pass": true
+    },
+    {
+      "name": "update report pass",
+      "pass": true
+    },
+    {
+      "name": "update report manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "update report reconstruction",
+      "pass": true
+    },
+    {
+      "name": "production synthetic 20/20",
+      "pass": true
+    },
+    {
+      "name": "initial synthetic ridge misconception retained",
+      "pass": true
+    },
+    {
+      "name": "initial independent 53/54",
+      "pass": true
+    },
+    {
+      "name": "independent OOD 54/54",
+      "pass": true
+    },
+    {
+      "name": "closeout 101/101",
+      "pass": true
+    },
+    {
+      "name": "production result bound",
+      "pass": true
+    },
+    {
+      "name": "independent report bound",
+      "pass": true
+    },
+    {
+      "name": "science commit bound",
+      "pass": true
+    },
+    {
+      "name": "scientific conclusion exact",
+      "pass": true
+    },
+    {
+      "name": "retrospective cross-study analysis role",
+      "pass": true
+    },
+    {
+      "name": "sample chain",
+      "pass": true
+    },
+    {
+      "name": "300 fits over 10 seeds and 5 folds",
+      "pass": true
+    },
+    {
+      "name": "label-free coverage",
+      "pass": true
+    },
+    {
+      "name": "selected 90 percent clustering",
+      "pass": true
+    },
+    {
+      "name": "primary fold sizes",
+      "pass": true
+    },
+    {
+      "name": "primary fold cluster counts",
+      "pass": true
+    },
+    {
+      "name": "all four primary gates failed",
+      "pass": true
+    },
+    {
+      "name": "positive seed counts",
+      "pass": true
+    },
+    {
+      "name": "fixed-protein sequence-cluster scope",
+      "pass": true
+    },
+    {
+      "name": "retrospective label boundary",
+      "pass": true
+    },
+    {
+      "name": "observed-R1 not complete measured structure",
+      "pass": true
+    },
+    {
+      "name": "no full mechanism or velocity decay",
+      "pass": true
+    },
+    {
+      "name": "science no authorization",
+      "pass": true
+    },
+    {
+      "name": "table caption once",
+      "pass": true
+    },
+    {
+      "name": "prior table retained",
+      "pass": true
+    },
+    {
+      "name": "manuscript primary row ridge_spearman_effect",
+      "pass": true
+    },
+    {
+      "name": "manuscript primary row ridge_mse_improvement",
+      "pass": true
+    },
+    {
+      "name": "manuscript primary row histgb_spearman_effect",
+      "pass": true
+    },
+    {
+      "name": "manuscript primary row histgb_mse_improvement",
+      "pass": true
+    },
+    {
+      "name": "primary absolute ridge simple",
+      "pass": true
+    },
+    {
+      "name": "primary absolute ridge structure",
+      "pass": true
+    },
+    {
+      "name": "primary absolute ridge mfe_only",
+      "pass": true
+    },
+    {
+      "name": "primary absolute histgb simple",
+      "pass": true
+    },
+    {
+      "name": "primary absolute histgb structure",
+      "pass": true
+    },
+    {
+      "name": "primary absolute histgb mfe_only",
+      "pass": true
+    },
+    {
+      "name": "required statement: retrospective cross-study observed-R1 sequence-cluster transport analysis, not independent untouched confirmation",
+      "pass": true
+    },
+    {
+      "name": "required statement: The RK04 functional-untouched split was not read.",
+      "pass": true
+    },
+    {
+      "name": "required statement: The 152 unique identifiers corresponded to 152 unique 300-nucleotide ACGT sequences.",
+      "pass": true
+    },
+    {
+      "name": "required statement: giving 300 CPU model fits",
+      "pass": true
+    },
+    {
+      "name": "required statement: All four frozen endpoints failed",
+      "pass": true
+    },
+    {
+      "name": "required statement: Both ridge effects were negative in all 10 seeds",
+      "pass": true
+    },
+    {
+      "name": "required statement: these arms did not replace the confirmatory structure-versus-simple comparison",
+      "pass": true
+    },
+    {
+      "name": "required statement: the revised test passed 20/20 checks without changing the production model, protocol, or thresholds",
+      "pass": true
+    },
+    {
+      "name": "required statement: Its retained initial report passed 53/54 checks",
+      "pass": true
+    },
+    {
+      "name": "required statement: Only CSV parsing was corrected",
+      "pass": true
+    },
+    {
+      "name": "required statement: final independent acceptance passed 54/54 checks",
+      "pass": true
+    },
+    {
+      "name": "required statement: Scientific closeout and registry binding passed 101/101 checks",
+      "pass": true
+    },
+    {
+      "name": "required statement: do not directly contradict RK27",
+      "pass": true
+    },
+    {
+      "name": "required statement: reject a strong claim that the structure increment transports generally across studies",
+      "pass": true
+    },
+    {
+      "name": "required statement: do not establish that structure is universally harmful",
+      "pass": true
+    },
+    {
+      "name": "required statement: The unobserved central 138 nucleotides, corresponding to 46 codons, could not be restored",
+      "pass": true
+    },
+    {
+      "name": "required statement: author-level GFP identity mapping was unavailable",
+      "pass": true
+    },
+    {
+      "name": "required statement: not independent untouched or protein-OOD confirmation",
+      "pass": true
+    },
+    {
+      "name": "required statement: provides no complete-CDS measured structure, translation velocity, mRNA decay, or complete spatial-coupling evidence",
+      "pass": true
+    },
+    {
+      "name": "required statement: It does not establish CodonFlow-RK superiority, external SOTA, or functional untouched performance",
+      "pass": true
+    },
+    {
+      "name": "required statement: RK-G1 remains false and expensive generator training remains unauthorized",
+      "pass": true
+    },
+    {
+      "name": "required statement: the manuscript remains a non-submittable working draft",
+      "pass": true
+    },
+    {
+      "name": "no full-mechanism success claim",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 frozen observed-R1 sequence-cluster protocol",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 Mordstein source CSV",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 label-free observed-R1 coverage",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 observed-R1 sequence-cluster facts",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 observed-R1 OOF predictions",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 observed-R1 training log",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 observed-R1 sequence-cluster OOD result",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 independent observed-R1 OOD verification",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 scientific closeout",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 closeout verification",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 manuscript section",
+      "pass": true
+    },
+    {
+      "name": "evidence row RK28 manuscript writing status",
+      "pass": true
+    }
+  ],
+  "old_manuscript_preserved_exactly": true,
+  "functional_untouched_evaluated": false,
+  "rk_g1": false,
+  "generator_training_authorized": false
+}

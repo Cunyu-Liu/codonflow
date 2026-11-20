@@ -1,0 +1,320 @@
+{
+  "schema": "a8-rk28-manuscript-closeout-verification-v1",
+  "status": "PASS",
+  "manuscript_commit": "b68e3fba391563ce7895a0dafd532ed84b1d7f76",
+  "science_commit": "71d27dd7610559c2781849c2be7b2a26933c3d0e",
+  "science_closeout_commit": "868cdb1d47d71c1a266d783628e047d41ba007e0",
+  "ppt_commit": "fb2c907eb068da4417bdee85449c08afa7466186",
+  "manuscript_sha256": "f965d37c1b7ed1e98ca36669c6b7a526124c68b9f1b465cf42dcdbc197e6a90a",
+  "section_sha256": "6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2",
+  "manuscript_verification_sha256": "085556c462c24b4425d0f03bc9769d06d64d2ed7d4bb7969b5c5745e7002da18",
+  "postpush_verification_sha256": "085556c462c24b4425d0f03bc9769d06d64d2ed7d4bb7969b5c5745e7002da18",
+  "update_report_sha256": "fc2317f530a70ff04045b5e989e01860b016dd0bff1d124298e08c93fedf9385",
+  "writing_status_sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9",
+  "science_result_sha256": "c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f",
+  "independent_report_sha256": "edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1",
+  "science_closeout_report_sha256": "deb22cf239ce46dea31a6ee5b08b782ef991d8111116216a091d0155314dd68a",
+  "slide_online_report_sha256": "d85aeba04d6a77abb5dbfe1c9603d1ca0d8b27cc713932899ff2f9bba32f4bed",
+  "slide_candidate_report_sha256": "90d85dc0c25c1d8e7287a49e8b45919b6d661a2e61dbdb0da7b6429969f16f64",
+  "slide_response_sha256": "7fb0db7be6b05c1273e256e95617859497961117f6aece006a4eb3ac5bb8bf5b",
+  "closeout_sha256": "6c5d807b0b6a7859d57479a077d6fd0b471d1cebdf28990c9a67015b2b1a17a4",
+  "postpush_byte_identical": true,
+  "committed_file_count": 16,
+  "checks_total": 72,
+  "checks_passed": 72,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "manuscript commit is full hash",
+      "pass": true
+    },
+    {
+      "name": "manuscript commit ancestor of HEAD",
+      "pass": true
+    },
+    {
+      "name": "manuscript commit present on origin/a8-rk",
+      "pass": true
+    },
+    {
+      "name": "science commit ancestor of HEAD",
+      "pass": true
+    },
+    {
+      "name": "science commit present on origin/a8-rk",
+      "pass": true
+    },
+    {
+      "name": "science closeout commit ancestor of HEAD",
+      "pass": true
+    },
+    {
+      "name": "science closeout commit present on origin/a8-rk",
+      "pass": true
+    },
+    {
+      "name": "PPT commit ancestor of HEAD",
+      "pass": true
+    },
+    {
+      "name": "PPT commit present on origin/a8-rk",
+      "pass": true
+    },
+    {
+      "name": "manuscript verification 92/92",
+      "pass": true
+    },
+    {
+      "name": "postpush verification 92/92",
+      "pass": true
+    },
+    {
+      "name": "postpush report byte identical",
+      "pass": true
+    },
+    {
+      "name": "postpush manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "old manuscript exact",
+      "pass": true
+    },
+    {
+      "name": "insertion-only update",
+      "pass": true
+    },
+    {
+      "name": "Markdown-only workflow PASS",
+      "pass": true
+    },
+    {
+      "name": "single-section not whole-paper claim",
+      "pass": true
+    },
+    {
+      "name": "verification binds status",
+      "pass": true
+    },
+    {
+      "name": "verification binds update",
+      "pass": true
+    },
+    {
+      "name": "verification binds science result",
+      "pass": true
+    },
+    {
+      "name": "verification binds independent report",
+      "pass": true
+    },
+    {
+      "name": "science independent 54/54",
+      "pass": true
+    },
+    {
+      "name": "science closeout 101/101",
+      "pass": true
+    },
+    {
+      "name": "slide candidate 256/256",
+      "pass": true
+    },
+    {
+      "name": "slide online 624/624",
+      "pass": true
+    },
+    {
+      "name": "slide pZC",
+      "pass": true
+    },
+    {
+      "name": "slide revision 83",
+      "pass": true
+    },
+    {
+      "name": "slide old pages preserved",
+      "pass": true
+    },
+    {
+      "name": "slide binds science and closeout",
+      "pass": true
+    },
+    {
+      "name": "slide binds result and independent",
+      "pass": true
+    },
+    {
+      "name": "candidate and online bind same XML",
+      "pass": true
+    },
+    {
+      "name": "science scope remains retrospective cross-study observed-R1",
+      "pass": true
+    },
+    {
+      "name": "science conclusion remains not supported",
+      "pass": true
+    },
+    {
+      "name": "no RK-G1 or generator authorization",
+      "pass": true
+    },
+    {
+      "name": "manuscript commit contains exactly 16 scoped files",
+      "pass": true
+    },
+    {
+      "name": "no pre-existing handover modifications committed",
+      "pass": true
+    },
+    {
+      "name": "committed manuscript hash",
+      "pass": true
+    },
+    {
+      "name": "current manuscript hash unchanged",
+      "pass": true
+    },
+    {
+      "name": "closeout contains b68e3fba391563ce7895a0dafd532ed84b1d7f76",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 71d27dd7610559c2781849c2be7b2a26933c3d0e",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 868cdb1d47d71c1a266d783628e047d41ba007e0",
+      "pass": true
+    },
+    {
+      "name": "closeout contains fb2c907eb068da4417bdee85449c08afa7466186",
+      "pass": true
+    },
+    {
+      "name": "closeout contains f965d37c1b7ed1e98ca36669c6b7a526124c68b9f1b465cf42dcdbc197e6a90a",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2",
+      "pass": true
+    },
+    {
+      "name": "closeout contains fc2317f530a70ff04045b5e989e01860b016dd0bff1d124298e08c93fedf9385",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 085556c462c24b4425d0f03bc9769d06d64d2ed7d4bb7969b5c5745e7002da18",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9",
+      "pass": true
+    },
+    {
+      "name": "closeout contains FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 92/92 PASS",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 54/54 PASS",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 101/101 PASS",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 256/256 PASS",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 624/624 PASS",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 603 词",
+      "pass": true
+    },
+    {
+      "name": "closeout contains post-push 复验",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 字节一致",
+      "pass": true
+    },
+    {
+      "name": "closeout contains pZC",
+      "pass": true
+    },
+    {
+      "name": "closeout contains revision 83",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 12 条 RK28 证据行",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 逐字节恢复原 RK27 稿件",
+      "pass": true
+    },
+    {
+      "name": "closeout contains finish_with_status",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 不证明整篇可提交",
+      "pass": true
+    },
+    {
+      "name": "closeout contains RK-G1 仍为 false",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 昂贵生成训练未授权",
+      "pass": true
+    },
+    {
+      "name": "closeout contains functional untouched 未评价",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 不是独立 untouched 或 protein OOD 确认",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 未测量结构、velocity、decay 或完整空间耦合",
+      "pass": true
+    },
+    {
+      "name": "closeout contains non-submittable working manuscript",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 前 119 页",
+      "pass": true
+    },
+    {
+      "name": "closeout contains 只追加一次",
+      "pass": true
+    },
+    {
+      "name": "closeout contains /home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md",
+      "pass": true
+    },
+    {
+      "name": "closeout contains /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/",
+      "pass": true
+    }
+  ],
+  "rk_g1": false,
+  "generator_training_authorized": false,
+  "functional_untouched_evaluated": false,
+  "whole_manuscript_submittable": false
+}
