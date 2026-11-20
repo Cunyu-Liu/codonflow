@@ -1,0 +1,366 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "pre_registration_head",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "preparation_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "preparation_zero_real_fits",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "protocol_still_frozen",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_binds_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_binds_protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_binds_production",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_oof_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "source_raw_features_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_nested_report_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_nested_code_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_n",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_split_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_fit_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_fit_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_overall_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_174_checks",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_numeric_exact",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_feature_schema",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_categorical_or_intrinsic_features",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "large_prediction_artifact_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_not_supported",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_spearman_worse",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_rmse_worse",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_holm_significant_adverse",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_sensitivity_not_favorable",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_adverse_sign_40261120",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_adverse_sign_40261121",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "full_over_pure_supported_bounded",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "intrinsic_augmentation_over_pure_supported_bounded",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_full_intrinsic_ci_cross_zero",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_full_intrinsic_holm_one",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_no_go_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_test_predictions_generated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_test_metrics_generated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_original_dev_no_go_modified",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_test_authorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_mechanism_increment_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_rk_g1_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "boundary_generator_training_authorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_feature_rows_zero",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "functional_untouched_not_evaluated",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "complete_sota_not_claimed",
+      "pass": true
+    }
+  ],
+  "checks_failed": 0,
+  "checks_passed": 43,
+  "checks_total": 43,
+  "complete_sota": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "independent_report_sha256": "eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2",
+  "large_artifacts": {
+    "pure_external_oof_predictions.csv": {
+      "bytes": 19353,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/pure_external_oof_predictions.csv",
+      "sha256": "36746dbbedb167b256a54a1b22a71cd13615315f4f62c7a4d1fccf2c84d3f911"
+    }
+  },
+  "mechanism_increment_pass": false,
+  "old_full_mechanism_minus_intrinsic": {
+    "bootstrap_replicates": 20000,
+    "delta_rmse": 9.492841319608952e-05,
+    "delta_rmse_ci95": [
+      -0.0014175669474227434,
+      0.0014564023955950885
+    ],
+    "delta_spearman": 0.022899062089363098,
+    "delta_spearman_ci95": [
+      -0.03790577728252063,
+      0.09011639336438297
+    ],
+    "holm_p_rmse": 1.0,
+    "holm_p_spearman": 1.0,
+    "permutation_p_rmse": 0.9038548072596371,
+    "permutation_p_spearman": 0.46897655117244136,
+    "permutation_replicates": 20000
+  },
+  "overall_pass": true,
+  "pre_registration_commit": "0a08eb90c3ee787578f5fac1d5f01a2b2fe72a5d",
+  "preparation_report_sha256": "d5e8f16ac9cace99e5ca4ade08f918bcc58b6af9a2528ddb92651d711ebec63f",
+  "production_report_sha256": "c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9",
+  "protocol_sha256": "9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45",
+  "rk_g1_pass": false,
+  "schema": "a8-rk03-mage-pure-external-nested-cv-finalization-v1",
+  "scientific_conclusion": {
+    "full_and_intrinsic_plus_rcs_outperform_pure_rcs": true,
+    "interpretation": "The pure external-RCS feature arm does not replace the intrinsic baseline. Contrasts against this weak pure arm do not rescue the prior non-significant full-versus-intrinsic mechanism comparison. Development-only no-go and test/generator prohibitions remain unchanged.",
+    "old_full_over_intrinsic_mechanism_increment_established": false,
+    "pure_external_feature_arm_closed": true,
+    "pure_external_rcs_is_significantly_worse_than_intrinsic_on_reused_development": true,
+    "pure_external_rcs_replacement_supported": false,
+    "these_pure_rcs_contrasts_establish_full_over_intrinsic": false
+  },
+  "status": "PASS_PURE_EXTERNAL_COMPARATOR_CLOSEOUT",
+  "test_untouched": true,
+  "verified_primary_comparisons": {
+    "full_mechanism_minus_pure_external_rcs": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": -0.015069408698577508,
+      "delta_rmse_ci95": [
+        -0.02544806838533774,
+        -0.005479110034720501
+      ],
+      "delta_spearman": 0.7673134542688491,
+      "delta_spearman_ci95": [
+        0.5631894046071572,
+        0.9532654793818945
+      ],
+      "holm_p_rmse": 0.009449527523623819,
+      "holm_p_spearman": 0.0002999850007499625,
+      "permutation_p_rmse": 0.003949802509874506,
+      "permutation_p_spearman": 4.999750012499375e-05,
+      "permutation_replicates": 20000,
+      "sensitivity_signs_ok": true,
+      "supported_development_only": true
+    },
+    "pure_external_rcs_minus_intrinsic": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": 0.015164337111773597,
+      "delta_rmse_ci95": [
+        0.005846359530413134,
+        0.02506527402042598
+      ],
+      "delta_spearman": -0.744414392179486,
+      "delta_spearman_ci95": [
+        -0.9403491867053566,
+        -0.5300791533185797
+      ],
+      "holm_p_rmse": 0.009449527523623819,
+      "holm_p_spearman": 0.0002999850007499625,
+      "permutation_p_rmse": 0.0034498275086245686,
+      "permutation_p_spearman": 4.999750012499375e-05,
+      "permutation_replicates": 20000,
+      "sensitivity_signs_ok": false,
+      "supported_development_only": false
+    },
+    "rcs_only_minus_pure_external_rcs": {
+      "bootstrap_replicates": 20000,
+      "delta_rmse": -0.015144837855690783,
+      "delta_rmse_ci95": [
+        -0.02536403898497323,
+        -0.00577083989049933
+      ],
+      "delta_spearman": 0.7483679374061527,
+      "delta_spearman_ci95": [
+        0.539343123375721,
+        0.9432946055506556
+      ],
+      "holm_p_rmse": 0.009449527523623819,
+      "holm_p_spearman": 0.0002999850007499625,
+      "permutation_p_rmse": 0.0031498425078746064,
+      "permutation_p_spearman": 4.999750012499375e-05,
+      "permutation_replicates": 20000,
+      "sensitivity_signs_ok": true,
+      "supported_development_only": true
+    }
+  },
+  "verified_primary_models": {
+    "full_mechanism": {
+      "mae": 0.0222595186439585,
+      "mean_prediction": 0.9672249693719108,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03422820302559988,
+      "spearman": 0.6352981456298568
+    },
+    "intrinsic": {
+      "mae": 0.022187896273263757,
+      "mean_prediction": 0.9673925630140914,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.03413327461240379,
+      "spearman": 0.6123990835404937
+    },
+    "pure_external_rcs": {
+      "mae": 0.03158281646008941,
+      "mean_prediction": 0.9679219963088712,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.04929761172417739,
+      "spearman": -0.13201530863899236
+    },
+    "rcs_only": {
+      "mae": 0.021816612746170472,
+      "mean_prediction": 0.9673068108614218,
+      "mean_y": 0.9678549618320612,
+      "n": 131,
+      "rmse": 0.034152773868486606,
+      "spearman": 0.6163526287671603
+    }
+  }
+}
