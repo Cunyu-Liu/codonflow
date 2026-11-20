@@ -1,0 +1,223 @@
+{
+  "schema": "a8-rk21-ppt-verification-v1",
+  "phase": "online",
+  "status": "PASS",
+  "checks_passed": 40,
+  "checks_total": 40,
+  "checks": [
+    {
+      "name": "single_slide_root",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "candidate_has_no_server_id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_hand_authored_element_ids",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_undefined_or_external_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "all_elements_inside_960x540",
+      "pass": true,
+      "detail": 34
+    },
+    {
+      "name": "title_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "kpi_154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "kpi_150",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "kpi_72",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "kpi_69_/_69",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "fact_905912d3",
+      "pass": true,
+      "detail": "154 rows · 71 columns · 864 nt"
+    },
+    {
+      "name": "fact_535891f1",
+      "pass": true,
+      "detail": "150 exact CDS · 4 duplicate pairs"
+    },
+    {
+      "name": "fact_c81b7c70",
+      "pass": true,
+      "detail": "72 paired IDs · 62 source columns"
+    },
+    {
+      "name": "fact_3f00db41",
+      "pass": true,
+      "detail": "One 239-aa protein · expression 43–10606"
+    },
+    {
+      "name": "fact_b0027854",
+      "pass": true,
+      "detail": "MFE + expression; no tagged sequence"
+    },
+    {
+      "name": "fact_fef2e0cf",
+      "pass": true,
+      "detail": "Sequence, expression and 5′ MFE exact"
+    },
+    {
+      "name": "split_grouping_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "scientific_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "untouched_unread",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source_and_commit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "page_label",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "table_5x3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "five_speaker_note_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "note_6eb6a1c2",
+      "pass": true,
+      "detail": "154 measurement rows"
+    },
+    {
+      "name": "note_13ef7898",
+      "pass": true,
+      "detail": "150 unique exact CDS"
+    },
+    {
+      "name": "note_644a17b6",
+      "pass": true,
+      "detail": "72 tagged pairs"
+    },
+    {
+      "name": "note_7e655437",
+      "pass": true,
+      "detail": "69 of 69 checks"
+    },
+    {
+      "name": "note_5eaf5bf6",
+      "pass": true,
+      "detail": "RK-G1 remains false"
+    },
+    {
+      "name": "visible_font_sizes_explicit",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "font_family_consistent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_emoji",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "before_112_after_113",
+      "pass": true,
+      "detail": [
+        112,
+        113
+      ]
+    },
+    {
+      "name": "new_slide_id_matches",
+      "pass": true,
+      "detail": "pZw"
+    },
+    {
+      "name": "only_one_new_slide_id",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "revision_advanced",
+      "pass": true,
+      "detail": 76
+    },
+    {
+      "name": "all_previous_112_pages_semantically_unchanged",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "online_new_page_matches_candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_required_facts_present",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_source_and_page_label",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "candidate_sha256": "50898ac508c8c2302920a87ddad933a5cb43f4eb25de1c779814e055c91b496c",
+  "before_sha256": "5a8c516411033be7916c4f7bd643c8caa00ed8ebfd70df7f9a3c8c4f928bac37",
+  "after_sha256": "b8e5effd5b27409324a358f2eac3a06a51d4d1015c05c324b91c745f8a970707",
+  "slide_id": "pZw",
+  "scientific_flags": {
+    "mechanism_evaluated": false,
+    "functional_ood_evaluated": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "sota_claimed": false
+  }
+}
