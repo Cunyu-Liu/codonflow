@@ -43,13 +43,9 @@ class IndependentHelperTests(unittest.TestCase):
         self.assertAlmostEqual(independent.independent_ned(sequences), pairwise_ned(sequences, rng=np.random.default_rng(0)))
 
     def test_motif_penalty_is_per_codon_input(self):
-        sequence = "AATAAAGGG"
+        sequence = "AATAAACAGGTAATACGACTCACTATAATTTAGGTGACACTATAAAAAAA"
+        self.assertEqual(independent.independent_motif(sequence), 7.0)
         self.assertEqual(independent.independent_motif(sequence), motif_penalty_score(sequence))
-
-    def test_catalog_weights_match_frozen_unweighted_production_oracle(self):
-        sequence = "CAGGTAATACGACTCACTATAATTTAGGTGACACTAT"
-        self.assertEqual(motif_penalty_score(sequence), 3.0)
-        self.assertEqual(independent.independent_motif(sequence), 3.0)
 
     def test_dominance_uses_independent_arrays(self):
         with tempfile.TemporaryDirectory() as directory:

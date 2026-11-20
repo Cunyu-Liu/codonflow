@@ -1,0 +1,17 @@
+E
+======================================================================
+ERROR: test_a8_rk06_verify_simple_search_dense_unique18 (unittest.loader._FailedTest)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_a8_rk06_verify_simple_search_dense_unique18
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/codonflow/lib/python3.10/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk06_verify_simple_search_dense_unique18.py", line 8, in <module>
+    from codonflow.core.codon import gc_fraction
+ModuleNotFoundError: No module named 'codonflow'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

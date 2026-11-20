@@ -24,12 +24,11 @@ sys.path.insert(0, str(ROOT / "src"))
 from codonflow.core.codon import STANDARD_TABLE_1
 from codonflow.models.guided_sampler import synonymous_x0
 
-# The frozen v4 oracle calls motif_penalty_score(sequence) without an override
-# map, so every catalog entry has weight 1.0.  Do not substitute the nominal
-# DEFAULT_MOTIFS weights here: independent verification must reproduce the
-# actual production objective, including CAGG, T7 and SP6.
-MOTIFS = (("AATAAA", 1.0), ("ATTAAA", 1.0), ("GTGAGT", 1.0), ("CAGG", 1.0),
-          ("TAATACGACTCACTATA", 1.0), ("ATTTAGGTGACACTAT", 1.0))
+# Match the frozen production motif_penalty_score contract: without an
+# explicit name-to-weight mapping every detected motif/run has unit weight.
+# Do not substitute nominal DEFAULT_MOTIFS annotation weights here.
+MOTIFS = ("AATAAA", "ATTAAA", "GTGAGT", "CAGG",
+          "TAATACGACTCACTATA", "ATTTAGGTGACACTAT")
 
 
 def sha256(path):
@@ -103,8 +102,8 @@ def independent_mfe(sequence):
 
 def independent_motif(sequence):
     total = 0.0
-    for pattern, weight in MOTIFS:
-        total += weight * len(re.findall(f"(?={pattern})", sequence))
+    for pattern in MOTIFS:
+        total += len(re.findall(f"(?={pattern})", sequence))
     for base in "ACGT":
         total += sum(len(run) for run in re.findall(f"{base}{{6,}}", sequence))
     return float(total)
@@ -375,6 +374,7 @@ def main():
     production = json.loads(production_path.read_text())
     protocol_sha = sha256(protocol_path)
     code_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    verifier_sha = sha256(Path(__file__).resolve())
     if production["protocol_sha256"] != protocol_sha:
         raise ValueError("production protocol hash mismatch")
     if not production.get("overall_pass") or not production.get("formal_full_panel"):
@@ -476,7 +476,7 @@ def main():
     report = {
         "schema": "a8-rk06-simple-search-dense-independent-v1",
         "code_commit": code_commit,
-        "verifier_sha256": sha256(Path(__file__).resolve()),
+        "verifier_sha256": verifier_sha,
         "independent_root": str(output_root),
         "protocol_sha256": protocol_sha,
         "production_path": str(production_path),
