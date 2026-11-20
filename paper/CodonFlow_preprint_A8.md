@@ -1,6 +1,6 @@
 # Learning structure–translation–decay coupling for synonymous mRNA design
 
-> **Status: A8-RK working manuscript — not for submission.** Verified data, operational split, sequence-OOD proxy models, bounded cross-protein diagnostics, and bounded baseline-execution audits are recorded; core mechanism, main model, main baseline matrix, remaining OOD, generator, and wet-lab closure remain incomplete. No SOTA claim.
+> **Status: A8-RK working manuscript — not for submission.** Verified data, operational split, sequence-OOD proxy models, bounded cross-protein diagnostics, bounded baseline-execution audits, and a four-method dense-prefix comparison are recorded; core mechanism, main model, unified time-matched and remaining baseline matrices, remaining OOD, generator, and wet-lab closure remain incomplete. No SOTA claim.
 
 ## Abstract
 
@@ -767,6 +767,44 @@ Independent implementations recomputed all metrics from raw predictions and all 
 
 These are robustness results on an already-observed partition, not untouched confirmation. Functional untouched data were not accessed, no seeds or hyperparameters were added after readout, and no test/OOD selection occurred. Because the frozen robustness gate failed—and because the velocity and fixed-GFP structure mechanisms had already failed—RK-G1 remains false and expensive generator training remains unauthorized. No biological functional improvement, CodonFlow-RK generation result, causal mechanism, external SOTA, or wet-lab conclusion is claimed.
 
+### 6.31 Real generation-call dense-prefix comparison on unique18
+
+The remaining external-baseline gap was that actual-set outputs did not show how performance accumulated across successive generation calls. We therefore froze a dense-prefix analysis before reading the results. The primary panel comprised 18 unique18 development records and four methods with complete ordered raw outputs: LinearDesign with 11 lambda values, codonGPT, uniform synonymous sampling, and the 11-run EnsembleDesign set. Each method was evaluated at budgets B=1,...,11, yielding 792 primary generation-call positions. Duplicate sequences remained at their original call positions; no deduplication, zero-filled budget, synthetic origin, or unordered-set interpolation was used. Previously accepted exact sequence objectives and per-record hypervolume calibration were reused. Dense AUC was the mean normalized hypervolume over B=1,...,10, and B=11 hypervolume was a separate endpoint. LinearDesign was compared with each of the other three methods using 20,000 record-paired bootstrap replicates, and all six primary tests were corrected together by the Holm method.
+
+LinearDesign had the highest mean value on both primary endpoints, as summarized in Table 3. EnsembleDesign ranked second among these four methods. CodonGPT and uniform synonymous sampling had substantially lower mean dense AUC and B=11 hypervolume. A descriptive extension to B=100 was retained only for codonGPT and uniform synonymous sampling, whose raw outputs supported that range; it was not included in the primary Holm family. Over B=1,...,99, their mean dense AUC values were 11.851796 and 1.330156, respectively, and their B=100 hypervolume values were 14.537219 and 1.718763.
+
+**Table 3**
+
+*Mean Dense-Prefix Performance Over 18 Development Records*
+
+| Method | Dense AUC, B=1–10 | Normalized hypervolume, B=11 |
+|---|---:|---:|
+| LinearDesign-11 | 22.794606 | 29.972887 |
+| EnsembleDesign-11 | 14.896234 | 16.693982 |
+| codonGPT | 5.205444 | 7.989211 |
+| Uniform synonymous | 0.702952 | 0.966618 |
+
+*Note.* AUC denotes area under the dense budget-step hypervolume curve, computed as the unweighted mean over B=1,...,10. Normalized hypervolume was not clipped to [0,1].
+
+All six prespecified LinearDesign-minus-comparator effects were positive, with 95% confidence intervals entirely above zero and Holm-adjusted *p* = 0.00059997 (Table 4). The frozen two-endpoint gate therefore passed against codonGPT, uniform synonymous sampling, and EnsembleDesign. This establishes dense generation-call efficiency on the evaluated proxy objectives and development records; it does not establish that LinearDesign is faster per unit wall time or better on biological function.
+
+**Table 4**
+
+*Paired LinearDesign Improvements in the Frozen Primary Family*
+
+| Comparator | Endpoint | Mean effect [95% CI] | Holm *p* |
+|---|---|---:|---:|
+| codonGPT | Dense AUC | +17.589162 [+11.334443, +24.621194] | 0.00059997 |
+| codonGPT | B=11 hypervolume | +21.983676 [+12.613876, +32.906748] | 0.00059997 |
+| Uniform synonymous | Dense AUC | +22.091655 [+15.135915, +30.502155] | 0.00059997 |
+| Uniform synonymous | B=11 hypervolume | +29.006270 [+18.976333, +41.514897] | 0.00059997 |
+| EnsembleDesign-11 | Dense AUC | +7.898372 [+4.214060, +12.023210] | 0.00059997 |
+| EnsembleDesign-11 | B=11 hypervolume | +13.278905 [+6.933435, +20.795086] | 0.00059997 |
+
+*Note.* Effects are LinearDesign minus the named comparator. Confidence intervals and Holm-adjusted sign-test probabilities used 20,000 record-paired bootstrap replicates.
+
+An independent verifier reconstructed all curves, hypervolumes, dense AUC values, paired effects, intervals, and Holm adjustments from the hashed raw inputs and passed **88/88 checks**. A separate finalization binding passed **53/53 checks**, and the complete project CPU suite reported **347 passed, 1 skipped, 11 warnings, and 5 subtests passed in 27.39 s**. Legacy-schema execution failures, the verifier-only summary-field correction, and derivative-CSV line-ending normalization were retained without changing the protocol, raw inputs, primary statistics, or full scientific matrix. GEMORNA, the legacy LinearDesign scan, and CAI-greedy were excluded from dense ranking because their required repeated raw call trajectories were unavailable. This section closes only the four-method dense-prefix comparison. Unified time-matched evaluation, the complete seven-method dense panel, CodonFlow-RK generation, functional OOD and untouched evaluation, and external SOTA remain open. RK-G1 remains false, expensive generator training remains unauthorized, and the manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1049,6 +1087,20 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK20 manuscript prepare check | `3cdfcebbfe48e40d7e2f5630f2442f06bff352bbfe71754ee83e281288d5f0aa` |
 | RK20 manuscript draft check | `09750428ac97222cd0a8af05d38c48b5287d6326a548f63049344f147bea903a` |
 | RK20 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+
+| RK16 dense-prefix frozen protocol | `957b199378b1a7692288b24363a6be9f5c0db6234788038fa8d1aab211be2df8` |
+| RK16 full dense-prefix matrix | `7dd7957de01995723dd1bc6b28b7955bdd522dcbefcba74ca26f0ba867788c90` |
+| RK16 dense-prefix audit | `3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500` |
+| RK16 primary comparison CSV | `6baceb837aa8ba34c0d2bf1d4b4b7877323eb1d3e0089f6aa6c846d0e651ac0b` |
+| RK16 independent verification | `d07f796bfbf76dd0898ba249f7344cc5d1cfc33e90762e207fad938b3be2e4b6` |
+| RK16 finalization | `2cf31798c4532b3ee8cd253dde3908032195187971c3a9bd7d599a8cfc4abb27` |
+| RK16 full CPU-suite console log | `ef2d0e10e02adfc7e2bc16842074547d48f4129090712450475186a173c347a6` |
+| RK16 engineering failures | `0823038467096c3cae8402251d0938f77d9227a2fa9ac42dec366545f8599777` |
+| RK16 closeout | `0521907d3369671fa7d34bfff01e110a633847707d8c01cecd405a20367279cb` |
+| RK16 manuscript source section | `39b933f44500e2e6b0af790445204dc25507f48f6db7cd204c9a4e5da3312b69` |
+| RK16 manuscript prepare check | `d2810ea146ecc0c073e6b95336ce3e2de160b7368d5291b3608d234e585d13d7` |
+| RK16 manuscript draft check | `0154851ad875c5d71d8bdeb6fcd9abbaf98de963855f604632d1bbda73b7e74d` |
+| RK16 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
