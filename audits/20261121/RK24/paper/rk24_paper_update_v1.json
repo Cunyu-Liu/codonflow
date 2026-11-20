@@ -1,0 +1,101 @@
+{
+  "schema": "a8-rk24-paper-update-v1",
+  "status": "PASS_PENDING_INDEPENDENT_VERIFICATION",
+  "before_sha256": "168042d268da301057d9214393c25c05904c6a64d60bbb88ff265fc2cf8755b6",
+  "after_sha256": "12949c09f3b4707c87bfdd4486d1ad761762a81264d1b9da6a5df9fbef4d6643",
+  "backup": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/paper_v1/CodonFlow_preprint_A8.before_rk24.md",
+  "section_sha256": "f23926a336ecc1502e622e228a3cbf7b04577cb757c63e5695afb69a1505a2bd",
+  "section_body": "### 6.35 The train-only Boël author model established a stronger protein-OOD baseline\n\nThe single initiation-energy increment in Section 6.34 did not evaluate the complete author-specified model structure for the Boël expression data. We therefore constructed a stronger comparator by reconstructing that structure and fitting it using training data only. The published coefficients were not used for prediction because they were estimated from the full E0/E5 data and would introduce development and test label information into the present protein-separated evaluation.\n\nStatic features were reconstructed for all 6,348 records from the coding sequences and the source definitions. Calculations excluded the terminal stop codon and the C-terminal LEHHHHHH tag. The 61 single-codon slopes were fitted with unregularized binary logistic models using only training E0/E5 outcomes and were then frozen for the regional features covering amino acids 7–16 and 17–32. The author binary model was likewise an unregularized training-only logistic fit, while the author multiclass model used all training rows and a fixed multinomial logistic model with L2 = 0.01. The comparator was the RK23 base-plus-UH model containing CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, log length, and `source_Gz48v`. All 61 single-codon fits and all four final models converged.\n\nTrain, development, and test contained 5,079, 635, and 634 rows. The test binary analysis contained 398 rows from 364 protein clusters, including 206 E0 and 192 E5 records; the multiclass analysis contained all 634 rows from 556 clusters. Before model fitting, we froze four primary endpoints: binary AUC increment, binary log-loss improvement, multiclass Spearman increment, and multiclass MSE improvement. Inference used 20,000 protein-cluster bootstrap replicates and 20,000 within-cluster prediction-swap permutations, with Holm correction across the four tests. Each endpoint required a positive effect, a 95% confidence interval above zero, and Holm-adjusted *p* < 0.05. Development passed all four endpoints without changing the feature definitions, models, or inference protocol.\n\nThe frozen test comparison supported the author-structure model over base plus UH on all four primary endpoints (Table 7). Binary AUC increased from 0.600905 to 0.788228, binary log loss decreased from 0.684787 to 0.553847, multiclass Spearman increased from 0.128580 to 0.430591, and multiclass MSE decreased from 4.331129 to 3.559292. Every confidence interval excluded zero, every Holm-adjusted *p* value was 0.000200 after rounding, and 4/4 endpoints passed.\n\n**Table 7**\n\n*Frozen Protein-OOD Effects of the Train-Only Boël Author Model*\n\n| Task | Endpoint | Base + UH | Author model | Effect | 95% CI | Holm *p* |\n|---|---|---:|---:|---:|---:|---:|\n| Binary | AUC | 0.600905 | 0.788228 | +0.187323 | [0.133246, 0.242123] | 0.000200 |\n| Binary | Log-loss improvement | 0.684787 | 0.553847 | +0.130941 | [0.082469, 0.177782] | 0.000200 |\n| Multiclass | Spearman | 0.128580 | 0.430591 | +0.302011 | [0.227394, 0.375201] | 0.000200 |\n| Multiclass | MSE improvement | 4.331129 | 3.559292 | +0.771838 | [0.563060, 0.983787] | 0.000200 |\n\n*Note.* For AUC and Spearman, effect is author model minus base plus UH. For log-loss and MSE rows, the two model columns contain the loss and effect is base-plus-UH loss minus author-model loss, so positive effects indicate improvement. AUC denotes area under the receiver operating characteristic curve; CI denotes confidence interval; MSE denotes mean squared error; UH denotes the initiation-region folding-energy feature used in Section 6.34. Probabilities are rounded to six decimal places.\n\nA descriptive HistGB comparator was registered after development and before the frozen test evaluation, without changing the primary protocol. On test, the RK23 HistGB-plus-UH model had Spearman 0.200735 and MSE 4.326146, whereas the author multiclass model had Spearman 0.430591 and MSE 3.559292. The corresponding descriptive effects were +0.229856 Spearman and +0.766854 MSE improvement. This comparison supplied no additional confirmatory *p* value and did not alter the four-endpoint gate. The base-plus-UH logistic predictions were also identical to the frozen RK23 logistic predictions.\n\nIndependent implementations reconstructed the static features, retrained the 61 single-codon models and four final models, and regenerated predictions, metrics, bootstrap arrays, and permutation arrays without importing the RK07, RK23, or RK24 production modules. Development acceptance passed 97/97 checks and test acceptance passed 153/153 checks. On test, the maximum absolute production-versus-independent differences were 7.216 × 10⁻¹⁶ for static features, 2.474 × 10⁻⁹ for predictions, 5.402 × 10⁻¹¹ for metrics, 3.042 × 10⁻¹⁰ for bootstrap results, and 2.148 × 10⁻¹⁰ for permutation results. The retained history includes 12/12 synthetic tests and corrections to a label-field mapping and verifier interfaces; none changed the frozen scientific definitions or accepted outputs.\n\nThis result establishes that the train-only author-structure model outperformed the frozen base-plus-UH comparator on this cross-protein, nonsynonymous ordinal-expression benchmark. It therefore supplies a stronger reference for subsequent CodonFlow comparisons, not evidence that CodonFlow-RK has outperformed the author model. The comparison does not establish fixed-protein synonymous causality, translation velocity, mRNA decay, the complete spatial-coupling mechanism, external SOTA, or functional untouched performance. The protein-OOD test split was reused and is not globally untouched. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.\n",
+  "evidence_block": "| RK24 frozen author-model protocol | `92135eb2e22741ad70b4de01cc04d5e0ef363a50626252071985d57ed2295ed7` |\n| RK24 reconstructed static features | `78105d38c96fde52924cce420cd19cd596a9b8f9c6225eeddc55aeb8aabcf0dd` |\n| RK24 frozen train-only model artifact | `26df9b51d466d4164d84bd7646133ca74c35a6a8ec0d27999c504f6fa79d3d83` |\n| RK24 development result | `4403fc847f1aaaf31217a64664377ef35aabc42f1a02c91f35f9160b70f3b820` |\n| RK24 independent development verification | `bd9b6b13dfc55d5d214ceec356110578fae833e4dedbe3b8686f67379cc3bc4f` |\n| RK24 frozen test result | `c78e239edf24f299497b7e1d02c7c6ed5a22216112cf7d9ee9445b74b4d4b3fe` |\n| RK24 test predictions | `37d7a7a6c0afcf02ddc933dbd8df2ab6b17d49cbde674fbadfac8d3d36a61055` |\n| RK24 test resampling | `09f81d4063c8744f04772067639ca211ff5d598101349118e683c1a1dfd45775` |\n| RK24 independent test verification | `eb1df66dc2de506bf2bd1378c08741e50b8408ec8d60f674b66ad6db505fb254` |\n| RK24 development HistGB comparator | `853d316c98493101f3f9fc97853f4d8cd57a0b1ffc5c6fad892d535b8888825b` |\n| RK24 test HistGB comparator | `fe6dc3f4ef438068da8c99ed04d5f4fb4b27e41abd13a733179c2fba8a1d782c` |\n| RK24 scientific closeout | `c27bcc5744368fbab82d6b93967a8983c882302617d1f542464b986e263f8e74` |\n| RK24 manuscript section | `f23926a336ecc1502e622e228a3cbf7b04577cb757c63e5695afb69a1505a2bd` |\n| RK24 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |\n| RK24 manuscript draft check | `3b0501a949940e1719ccd365e9523bd4b176fb4275fba422fb71ad9226452bfa` |\n| RK24 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |",
+  "evidence": [
+    {
+      "name": "RK24 frozen author-model protocol",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/a8_rk24_boel_author_protocol_v1.json",
+      "sha256": "92135eb2e22741ad70b4de01cc04d5e0ef363a50626252071985d57ed2295ed7"
+    },
+    {
+      "name": "RK24 reconstructed static features",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_features_v1/boel_author_static_features.csv.gz",
+      "sha256": "78105d38c96fde52924cce420cd19cd596a9b8f9c6225eeddc55aeb8aabcf0dd"
+    },
+    {
+      "name": "RK24 frozen train-only model artifact",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_models.pkl",
+      "sha256": "26df9b51d466d4164d84bd7646133ca74c35a6a8ec0d27999c504f6fa79d3d83"
+    },
+    {
+      "name": "RK24 development result",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_dev_result_v1.json",
+      "sha256": "4403fc847f1aaaf31217a64664377ef35aabc42f1a02c91f35f9160b70f3b820"
+    },
+    {
+      "name": "RK24 independent development verification",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_dev_independent_verification_v1.json",
+      "sha256": "bd9b6b13dfc55d5d214ceec356110578fae833e4dedbe3b8686f67379cc3bc4f"
+    },
+    {
+      "name": "RK24 frozen test result",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_test_result_v1.json",
+      "sha256": "c78e239edf24f299497b7e1d02c7c6ed5a22216112cf7d9ee9445b74b4d4b3fe"
+    },
+    {
+      "name": "RK24 test predictions",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/test/rk24_test_predictions.csv.gz",
+      "sha256": "37d7a7a6c0afcf02ddc933dbd8df2ab6b17d49cbde674fbadfac8d3d36a61055"
+    },
+    {
+      "name": "RK24 test resampling",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/test/rk24_test_resampling_test.npz",
+      "sha256": "09f81d4063c8744f04772067639ca211ff5d598101349118e683c1a1dfd45775"
+    },
+    {
+      "name": "RK24 independent test verification",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_test_independent_verification_v1.json",
+      "sha256": "eb1df66dc2de506bf2bd1378c08741e50b8408ec8d60f674b66ad6db505fb254"
+    },
+    {
+      "name": "RK24 development HistGB comparator",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_dev_histgb_comparator_v1.json",
+      "sha256": "853d316c98493101f3f9fc97853f4d8cd57a0b1ffc5c6fad892d535b8888825b"
+    },
+    {
+      "name": "RK24 test HistGB comparator",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_test_histgb_comparator_v1.json",
+      "sha256": "fe6dc3f4ef438068da8c99ed04d5f4fb4b27e41abd13a733179c2fba8a1d782c"
+    },
+    {
+      "name": "RK24 scientific closeout",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/A8_RK24_BOEL_AUTHOR_CLOSEOUT.md",
+      "sha256": "c27bcc5744368fbab82d6b93967a8983c882302617d1f542464b986e263f8e74"
+    },
+    {
+      "name": "RK24 manuscript section",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/paper/rk24_manuscript_section.md",
+      "sha256": "f23926a336ecc1502e622e228a3cbf7b04577cb757c63e5695afb69a1505a2bd"
+    },
+    {
+      "name": "RK24 manuscript prepare check",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/paper/prepare_check.json",
+      "sha256": "d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8"
+    },
+    {
+      "name": "RK24 manuscript draft check",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/paper/draft_check.json",
+      "sha256": "3b0501a949940e1719ccd365e9523bd4b176fb4275fba422fb71ad9226452bfa"
+    },
+    {
+      "name": "RK24 manuscript writing status",
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK24/paper/status.json",
+      "sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9"
+    }
+  ],
+  "scientific_flags": {
+    "author_structure_superiority_supported_limited_scope": true,
+    "codonflow_rk_superiority_supported": false,
+    "fixed_protein_synonymous_mechanism_supported": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "expensive_generation_authorized": false,
+    "submittable": false
+  }
+}

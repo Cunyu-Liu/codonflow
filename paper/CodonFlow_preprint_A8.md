@@ -861,6 +861,35 @@ Independent implementations retrained every model and regenerated all developmen
 
 This test is a reused protein-OOD evaluation, not global untouched confirmation. It does not contradict the distinct fixed-GFP development result in Section 6.33, because the datasets, contrasts, and estimands differ. It establishes neither velocity nor decay mechanisms, fixed-protein synonymous transport, functional untouched performance, CodonFlow-RK generation, or external SOTA. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.
 
+### 6.35 The train-only Boël author model established a stronger protein-OOD baseline
+
+The single initiation-energy increment in Section 6.34 did not evaluate the complete author-specified model structure for the Boël expression data. We therefore constructed a stronger comparator by reconstructing that structure and fitting it using training data only. The published coefficients were not used for prediction because they were estimated from the full E0/E5 data and would introduce development and test label information into the present protein-separated evaluation.
+
+Static features were reconstructed for all 6,348 records from the coding sequences and the source definitions. Calculations excluded the terminal stop codon and the C-terminal LEHHHHHH tag. The 61 single-codon slopes were fitted with unregularized binary logistic models using only training E0/E5 outcomes and were then frozen for the regional features covering amino acids 7–16 and 17–32. The author binary model was likewise an unregularized training-only logistic fit, while the author multiclass model used all training rows and a fixed multinomial logistic model with L2 = 0.01. The comparator was the RK23 base-plus-UH model containing CAI, GC, full-CDS MFE per nucleotide, local 5′-CDS MFE over 48 nucleotides, log length, and `source_Gz48v`. All 61 single-codon fits and all four final models converged.
+
+Train, development, and test contained 5,079, 635, and 634 rows. The test binary analysis contained 398 rows from 364 protein clusters, including 206 E0 and 192 E5 records; the multiclass analysis contained all 634 rows from 556 clusters. Before model fitting, we froze four primary endpoints: binary AUC increment, binary log-loss improvement, multiclass Spearman increment, and multiclass MSE improvement. Inference used 20,000 protein-cluster bootstrap replicates and 20,000 within-cluster prediction-swap permutations, with Holm correction across the four tests. Each endpoint required a positive effect, a 95% confidence interval above zero, and Holm-adjusted *p* < 0.05. Development passed all four endpoints without changing the feature definitions, models, or inference protocol.
+
+The frozen test comparison supported the author-structure model over base plus UH on all four primary endpoints (Table 7). Binary AUC increased from 0.600905 to 0.788228, binary log loss decreased from 0.684787 to 0.553847, multiclass Spearman increased from 0.128580 to 0.430591, and multiclass MSE decreased from 4.331129 to 3.559292. Every confidence interval excluded zero, every Holm-adjusted *p* value was 0.000200 after rounding, and 4/4 endpoints passed.
+
+**Table 7**
+
+*Frozen Protein-OOD Effects of the Train-Only Boël Author Model*
+
+| Task | Endpoint | Base + UH | Author model | Effect | 95% CI | Holm *p* |
+|---|---|---:|---:|---:|---:|---:|
+| Binary | AUC | 0.600905 | 0.788228 | +0.187323 | [0.133246, 0.242123] | 0.000200 |
+| Binary | Log-loss improvement | 0.684787 | 0.553847 | +0.130941 | [0.082469, 0.177782] | 0.000200 |
+| Multiclass | Spearman | 0.128580 | 0.430591 | +0.302011 | [0.227394, 0.375201] | 0.000200 |
+| Multiclass | MSE improvement | 4.331129 | 3.559292 | +0.771838 | [0.563060, 0.983787] | 0.000200 |
+
+*Note.* For AUC and Spearman, effect is author model minus base plus UH. For log-loss and MSE rows, the two model columns contain the loss and effect is base-plus-UH loss minus author-model loss, so positive effects indicate improvement. AUC denotes area under the receiver operating characteristic curve; CI denotes confidence interval; MSE denotes mean squared error; UH denotes the initiation-region folding-energy feature used in Section 6.34. Probabilities are rounded to six decimal places.
+
+A descriptive HistGB comparator was registered after development and before the frozen test evaluation, without changing the primary protocol. On test, the RK23 HistGB-plus-UH model had Spearman 0.200735 and MSE 4.326146, whereas the author multiclass model had Spearman 0.430591 and MSE 3.559292. The corresponding descriptive effects were +0.229856 Spearman and +0.766854 MSE improvement. This comparison supplied no additional confirmatory *p* value and did not alter the four-endpoint gate. The base-plus-UH logistic predictions were also identical to the frozen RK23 logistic predictions.
+
+Independent implementations reconstructed the static features, retrained the 61 single-codon models and four final models, and regenerated predictions, metrics, bootstrap arrays, and permutation arrays without importing the RK07, RK23, or RK24 production modules. Development acceptance passed 97/97 checks and test acceptance passed 153/153 checks. On test, the maximum absolute production-versus-independent differences were 7.216 × 10⁻¹⁶ for static features, 2.474 × 10⁻⁹ for predictions, 5.402 × 10⁻¹¹ for metrics, 3.042 × 10⁻¹⁰ for bootstrap results, and 2.148 × 10⁻¹⁰ for permutation results. The retained history includes 12/12 synthetic tests and corrections to a label-field mapping and verifier interfaces; none changed the frozen scientific definitions or accepted outputs.
+
+This result establishes that the train-only author-structure model outperformed the frozen base-plus-UH comparator on this cross-protein, nonsynonymous ordinal-expression benchmark. It therefore supplies a stronger reference for subsequent CodonFlow comparisons, not evidence that CodonFlow-RK has outperformed the author model. The comparison does not establish fixed-protein synonymous causality, translation velocity, mRNA decay, the complete spatial-coupling mechanism, external SOTA, or functional untouched performance. The protein-OOD test split was reused and is not globally untouched. RK-G1 remains false, expensive generator training remains unauthorized, functional untouched data were not accessed, and the manuscript remains non-submittable.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1179,6 +1208,22 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK23 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |
 | RK23 manuscript draft check | `306ff64692621e474caf2a350e9702fa509331f782be7266c03fa35f19e9fb14` |
 | RK23 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK24 frozen author-model protocol | `92135eb2e22741ad70b4de01cc04d5e0ef363a50626252071985d57ed2295ed7` |
+| RK24 reconstructed static features | `78105d38c96fde52924cce420cd19cd596a9b8f9c6225eeddc55aeb8aabcf0dd` |
+| RK24 frozen train-only model artifact | `26df9b51d466d4164d84bd7646133ca74c35a6a8ec0d27999c504f6fa79d3d83` |
+| RK24 development result | `4403fc847f1aaaf31217a64664377ef35aabc42f1a02c91f35f9160b70f3b820` |
+| RK24 independent development verification | `bd9b6b13dfc55d5d214ceec356110578fae833e4dedbe3b8686f67379cc3bc4f` |
+| RK24 frozen test result | `c78e239edf24f299497b7e1d02c7c6ed5a22216112cf7d9ee9445b74b4d4b3fe` |
+| RK24 test predictions | `37d7a7a6c0afcf02ddc933dbd8df2ab6b17d49cbde674fbadfac8d3d36a61055` |
+| RK24 test resampling | `09f81d4063c8744f04772067639ca211ff5d598101349118e683c1a1dfd45775` |
+| RK24 independent test verification | `eb1df66dc2de506bf2bd1378c08741e50b8408ec8d60f674b66ad6db505fb254` |
+| RK24 development HistGB comparator | `853d316c98493101f3f9fc97853f4d8cd57a0b1ffc5c6fad892d535b8888825b` |
+| RK24 test HistGB comparator | `fe6dc3f4ef438068da8c99ed04d5f4fb4b27e41abd13a733179c2fba8a1d782c` |
+| RK24 scientific closeout | `c27bcc5744368fbab82d6b93967a8983c882302617d1f542464b986e263f8e74` |
+| RK24 manuscript section | `f23926a336ecc1502e622e228a3cbf7b04577cb757c63e5695afb69a1505a2bd` |
+| RK24 manuscript prepare check | `d5db334b575dc178ac4df024ec4dbff3e47fc190dc28a9bf3c3bd1aedf9f3cc8` |
+| RK24 manuscript draft check | `3b0501a949940e1719ccd365e9523bd4b176fb4275fba422fb71ad9226452bfa` |
+| RK24 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
