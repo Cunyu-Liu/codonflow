@@ -1,0 +1,100 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(248, 250, 252, 1)" /></fill>
+  </style>
+  <data>
+    <shape width="560" height="14" topLeftX="48" topLeftY="26" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>CODONFLOW / A8-RK · AUTHOR-STRUCTURE STRONG BASELINE</p></content></shape>
+    <shape width="864" height="14" topLeftX="48" topLeftY="26" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>RK24 · BOËL 2016 · TRAIN-ONLY REFIT</p></content></shape>
+    <shape width="864" height="36" topLeftX="48" topLeftY="47" type="text"><content textType="headline" fontSize="27" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Boël author model wins the frozen protein-OOD comparison</p></content></shape>
+    <shape width="56" height="4" topLeftX="48" topLeftY="91" presetHandlers="0" type="rect"><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="796" height="16" topLeftX="116" topLeftY="84" type="text"><content fontSize="11" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>634 test constructs · 556 protein clusters · 20,000 bootstrap + 20,000 permutations</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="48" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>BINARY AUC GAIN</p></content></shape>
+    <shape width="174" height="28" topLeftX="60" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.18732</p></content></shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.13325, 0.24212]</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="270" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>LOG-LOSS IMPROVEMENT</p></content></shape>
+    <shape width="174" height="28" topLeftX="282" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.13094</p></content></shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.08247, 0.17778]</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="492" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>MULTICLASS SPEARMAN GAIN</p></content></shape>
+    <shape width="174" height="28" topLeftX="504" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.30201</p></content></shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.22739, 0.37520]</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="714" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>MSE IMPROVEMENT</p></content></shape>
+    <shape width="174" height="28" topLeftX="726" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>+0.77184</p></content></shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.56306, 0.98379]</p></content></shape>
+
+    <shape width="620" height="18" topLeftX="48" topLeftY="194" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Train-only author refit versus the same frozen base + UH model</p></content></shape>
+    <shape width="228" height="14" topLeftX="684" topLeftY="196" type="text"><content fontSize="10" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>4 / 4 PASS · independent 153 / 153</p></content></shape>
+    <table width="864" height="138" topLeftX="48" topLeftY="220">
+      <colgroup><col width="104" /><col width="142" /><col width="108" /><col width="108" /><col width="282" /><col width="120" /></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Track</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Endpoint</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Base + UH</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Author</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Effect [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="10" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Holm p</p></content></td>
+      </tr>
+      <tr height="27">
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Binary</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>AUC</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.60091</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.78823</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.18732 [0.13325, 0.24212]</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.00019999</p></content></td>
+      </tr>
+      <tr height="27">
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Binary</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>Log-loss improvement</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.68479</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.55385</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.13094 [0.08247, 0.17778]</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.00019999</p></content></td>
+      </tr>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Multiclass</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.12858</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.43059</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.30201 [0.22739, 0.37520]</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.00019999</p></content></td>
+      </tr>
+      <tr height="28">
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Multiclass</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>MSE improvement</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>4.33113</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>3.55929</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.77184 [0.56306, 0.98379]</p></content></td>
+        <td><content fontSize="9.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.00019999</p></content></td>
+      </tr>
+    </table>
+
+    <shape width="420" height="86" topLeftX="48" topLeftY="374" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(241, 245, 249, 1)" /></fill><border color="rgba(203, 213, 225, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="64" topLeftY="382" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Frozen HistGB + UH · descriptive comparison</p></content></shape>
+    <shape width="388" height="62" topLeftX="64" topLeftY="404" type="text"><content fontSize="9.7" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.12" textAlign="left"><p>Spearman 0.20074 → 0.43059; gain +0.22986.</p><p>MSE 4.32615 → 3.55929; improvement +0.76685.</p><p>HistGB comparison is descriptive, not a new p-value family.</p></content></shape>
+
+    <shape width="420" height="86" topLeftX="492" topLeftY="374" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><border color="rgba(253, 186, 116, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="508" topLeftY="382" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Strong baseline passed · mechanism Gate stays closed</p></content></shape>
+    <shape width="388" height="62" topLeftX="508" topLeftY="404" type="text"><content fontSize="9.7" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.12" textAlign="left"><p>RK-G1 remains false; generator training is unauthorized.</p><p>Cross-protein, non-synonymous data; no velocity or decay test.</p><p>Functional untouched unread; no CodonFlow-RK or SOTA claim.</p></content></shape>
+
+    <shape width="864" height="34" topLeftX="48" topLeftY="474" presetHandlers="8" type="round-rect"><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><border color="rgba(153, 246, 228, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="828" height="16" topLeftX="66" topLeftY="483" type="text"><content fontSize="9.8" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="center" wrap="false"><p>4/4 primary endpoints PASS · all Holm-adjusted p = 0.00019999 · independent test 153/153 · no generator authorization</p></content></shape>
+    <shape width="728" height="12" topLeftX="48" topLeftY="520" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Source: RK24 audit 153/153 · evidence b4c04d29 · closeout a3509724</p></content></shape>
+    <shape width="136" height="12" topLeftX="776" topLeftY="520" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>116 · RK24</p></content></shape>
+  </data>
+  <note>
+    <content>
+      <p>RK24 froze an author-structure, train-only refit before model fitting. Published Boël coefficients were not used for prediction because they were fit on all E0/E5 source data. The 61 single-codon slopes and both author binary models were fit only on train E0/E5 by unregularized binary logistic regression; the multiclass models used all train rows and fixed L2 = 0.01 multinomial logistic regression. Train, development and test contain 5,079, 635 and 634 constructs. Test contains 398 E0/E5 rows in 364 binary protein clusters and 634 multiclass rows in 556 protein clusters. Inference used 20,000 protein-cluster bootstrap replicates and 20,000 within-cluster prediction-swap permutations.</p>
+      <p>On test, base and author binary AUC are 0.600905137540453 and 0.7882281553398058; the gain is 0.1873230177993528 with 95% interval 0.13324636329372375 to 0.2421234519153588. Base and author binary log-loss are 0.6847873019746681 and 0.5538465767221601; the improvement is 0.130940725252508 with interval 0.08246948450936671 to 0.17778180644415129. Base and author multiclass Spearman are 0.12858011330132996 and 0.4305908753425497; the gain is 0.30201076204121974 with interval 0.22739420732548424 to 0.37520097036757444. Base and author multiclass MSE are 4.331129372215796 and 3.5592915124691085; the improvement is 0.7718378597466873 with interval 0.5630600690157701 to 0.9837873937534691. Every Holm-adjusted p value is 0.000199990000499975 and all four primary endpoints pass.</p>
+      <p>The pre-registered supplementary HistGB comparison is descriptive only and does not change the four-endpoint Gate. Frozen RK23 HistGB plus UH test Spearman is 0.20073508224367628 and author multiclass Spearman is 0.4305908753425497; the descriptive gain is 0.2298557930988734. HistGB MSE is 4.326145966453431 and author MSE is 3.5592915124691085; the descriptive improvement is 0.766854453984323. The RK24 base logistic predictions are value-identical to the frozen RK23 base plus UH predictions.</p>
+      <p>Independent acceptance passed 153 of 153 checks after rebuilding every author feature, refitting all 61 single-codon models and four final models, and reconstructing train, development and test predictions, metrics, bootstrap arrays and permutation arrays without importing the production modules. Maximum static-feature difference is 7.216449660063518e-16; maximum prediction difference is 2.4740689497093626e-09; maximum metric difference is 5.4017679218532066e-11; maximum bootstrap difference is 3.0417401930549204e-10; maximum permutation difference is 2.1483925749521404e-10. Development independent acceptance separately passed 97 of 97 checks. The retained history includes the pre-fit label-field correction, a verifier-only metric-count correction, and a test-verifier command-line argument correction; none changed the frozen scientific protocol or outputs.</p>
+      <p>The supported conclusion is limited to superiority of the train-only Boël author-structure model over the frozen base plus UH comparator on this reused cross-protein, non-synonymous ordinal-expression split. This is not fixed-protein synonymous causality, research OOD, translation velocity, mRNA decay, full spatial coupling, functional untouched confirmation, CodonFlow-RK generation or external SOTA. RK-G1 remains false, expensive generator training remains unauthorized, and functional untouched data were not accessed (frozen test evidence commit b4c04d2935015386603a5dff8b1f8c9247295b5a; scientific closeout commit a35097243e9b0f2b71786479bd981488ac3ed526).</p>
+    </content>
+  </note>
+</slide>

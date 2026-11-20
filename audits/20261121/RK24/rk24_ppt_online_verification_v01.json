@@ -1,0 +1,433 @@
+{
+  "status": "PASS",
+  "mode": "online",
+  "checks_total": 83,
+  "checks_passed": 83,
+  "checks_failed": [],
+  "checks": [
+    {
+      "name": "baseline_115",
+      "pass": true,
+      "detail": 115
+    },
+    {
+      "name": "baseline_last_pZN",
+      "pass": true,
+      "detail": "pZN"
+    },
+    {
+      "name": "after_116",
+      "pass": true,
+      "detail": 116
+    },
+    {
+      "name": "response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "response_slide_id_matches",
+      "pass": true,
+      "detail": {
+        "response": "pZt",
+        "after": "pZt"
+      }
+    },
+    {
+      "name": "new_slide_not_duplicate",
+      "pass": true,
+      "detail": "pZt"
+    },
+    {
+      "name": "all_old_pages_semantically_preserved",
+      "pass": true,
+      "detail": {
+        "changed_pages": []
+      }
+    },
+    {
+      "name": "old_page_ids_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_independent_status",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_independent_153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_max_static_feature_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_max_prediction_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_max_metric_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_max_bootstrap_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_max_permutation_difference",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_primary_gate_positive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_test_n",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_clusters",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_clusters",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_resampling",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_auc_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_auc_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_auc_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_auc_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_logloss_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_logloss_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_logloss_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_logloss_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_spearman_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_spearman_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_spearman_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_spearman_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_mse_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_base_mse_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_mse_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_author_mse_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_delta_auc_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_delta_auc_ci_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_delta_auc_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_delta_auc_positive_gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_logloss_improvement_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_logloss_improvement_ci_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_logloss_improvement_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_binary_logloss_improvement_positive_gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_delta_spearman_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_delta_spearman_ci_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_delta_spearman_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_delta_spearman_positive_gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_mse_improvement_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_mse_improvement_ci_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_mse_improvement_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_multiclass_mse_improvement_positive_gate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_spearman_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_spearman_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_mse_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_mse_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_delta_spearman_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_delta_spearman_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_mse_improvement_visible",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_histgb_mse_improvement_notes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_comparator_descriptive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_4 / 4 PASS",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_153 / 153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_HistGB comparison is descriptive",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_RK-G1 remains false; generator t",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_Functional untouched unread; no ",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_116 · RK24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_b4c04d29",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_visible_a3509724",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_commits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_no_false_generator_claim",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_notes_five_paragraphs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_data_present",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_ids_unique",
+      "pass": true,
+      "detail": 67
+    },
+    {
+      "name": "online_one_table",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_table_five_rows",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_table_six_columns",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_table_width",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "online_canvas_bounds",
+      "pass": true,
+      "detail": 34
+    },
+    {
+      "name": "online_no_external_media",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_matches_candidate_semantically",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_text_matches_candidate",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "new_slide_notes_match_candidate",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "new_slide_id": "pZt",
+  "before_slides": 115,
+  "after_slides": 116,
+  "old_pages_semantically_preserved": true
+}
