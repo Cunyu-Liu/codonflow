@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/codonflow/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/codonflow/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_verify_boel_author_model.py", line 512, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_verify_boel_author_model.py", line 454, in main
+    close(report, f"{split}_{track}_{role}", value, expected_metrics[track][role])
+UnboundLocalError: local variable 'value' referenced before assignment

@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/codonflow/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/root/miniconda3/envs/codonflow/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py", line 520, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py", line 434, in main
+    datasets = load_data(protocol, args.evaluation_splits)
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py", line 114, in load_data
+    label = float(raw[protocol["label_field"]])
+KeyError: 'E'

@@ -1,0 +1,335 @@
+{
+  "command": [
+    "/root/miniconda3/envs/codonflow/bin/python",
+    "-m",
+    "scripts.a8_rk24_run_boel_author_model",
+    "--protocol",
+    "audits/20261121/RK24/a8_rk24_boel_author_protocol_v1.json",
+    "--evaluation-splits",
+    "train",
+    "dev",
+    "--model-artifact",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_models.pkl",
+    "--output-result",
+    "audits/20261121/RK24/rk24_dev_result_v1.json",
+    "--output-predictions",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_dev_predictions.csv.gz",
+    "--resampling-prefix",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_dev_resampling"
+  ],
+  "dependency_sha256": {
+    "feature_builder": "488da772bcfc6b034c8f1add93e56e5cd02aa671ff657dec5252d44d7afca15d",
+    "rk07": "63a229e5e2b406939d217bb7ad6dc29180814f833d063cb9d2caa441f84a2b08",
+    "rk23": "4a95f1737cbdc62c8ebd95ba63e37ee12c3849c8976e638911604aa9b479dd16"
+  },
+  "dev_prediction_sha256_by_name": {
+    "author_binary_p_e5": "97220d59f598e911a14585cc65ad01f0728c75f18bcac80bc5dd539e25f7f8ea",
+    "author_multiclass_expected": "28fad9cb39421a153a803e9a47b387c73c58dc4a8146920eed69a5ee549d8b17",
+    "base_binary_p_e5": "0a6d31f62e3cd8710aaff4f97ddfc5fdd2eb272a947fd3092f38276a6278ed73",
+    "base_multiclass_expected": "7268174911a50da699964c7999fe60bb1714c1ab077d65e1a0610af0909b4f3f"
+  },
+  "dev_result": null,
+  "dev_result_sha256": null,
+  "environment": {
+    "numpy": "2.2.6",
+    "python": "3.10.22",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2"
+  },
+  "evaluation_splits": [
+    "train",
+    "dev"
+  ],
+  "functional_untouched_accessed": false,
+  "functional_untouched_confirmed": false,
+  "gate": {
+    "expensive_generation_training_requires_separate_mechanism_gate": true,
+    "functional_untouched_confirmed": false,
+    "generator_training_authorized": false,
+    "rk_g1_remains_false_even_if_pass": true
+  },
+  "generator_training_authorized": false,
+  "implementation_sha256": "c52eb8cc15df5b76ac79a3ca9626b59d7c0ad8358a93588933b383a2732dce19",
+  "model_artifact": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_models.pkl",
+  "model_artifact_sha256": "26df9b51d466d4164d84bd7646133ca74c35a6a8ec0d27999c504f6fa79d3d83",
+  "prediction_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_dev_predictions.csv.gz",
+  "prediction_file_sha256": "6e30c7014e49d373dbb16ca686e509a89e48383f89362045513b5dde2ccb4fe9",
+  "prohibited_claims": [
+    "No use of published full-data coefficients as an OOD predictor.",
+    "No claim of exact reproduction of the original fitted coefficients or an external untouched benchmark.",
+    "No claim that a predictive baseline improvement proves translation velocity, mRNA decay, causality, or fixed-protein synonymous optimization.",
+    "No claim of CodonFlow-RK superiority, time-matched superiority, complete seven-method ranking, or generator authorization from this baseline alone.",
+    "No reading of functional_untouched."
+  ],
+  "protocol_id": "A8_RK24_BOEL_AUTHOR_TRAIN_REFIT_V1",
+  "protocol_sha256": "92135eb2e22741ad70b4de01cc04d5e0ef363a50626252071985d57ed2295ed7",
+  "published_coefficients_used_for_prediction": false,
+  "rk_g1": false,
+  "scientific_scope": "Protein-cluster OOD comparison on cross-protein, non-synonymous Boel ordinal expression scores. It tests predictive value of the author feature/model structure, not fixed-protein synonymous causality, translation velocity, mRNA decay, or the complete spatial-coupling mechanism.",
+  "split_results": {
+    "dev": {
+      "metrics": {
+        "binary": {
+          "author": {
+            "auc": 0.7902284880894507,
+            "brier": 0.18664223807579705,
+            "logloss": 0.5605996428764587
+          },
+          "base": {
+            "auc": 0.6576932425862907,
+            "brier": 0.2327171346056638,
+            "logloss": 0.6608715395233031
+          },
+          "n": 363,
+          "n_e0": 176,
+          "n_e5": 187
+        },
+        "multiclass": {
+          "author": {
+            "mae": 1.5515784590144235,
+            "mse": 3.3401573399695885,
+            "n": 635,
+            "pearson": 0.3988599536691343,
+            "rmse": 1.8276097340432362,
+            "spearman": 0.42833797789898925,
+            "top10_e5_enrichment": 1.8039772727272727
+          },
+          "base": {
+            "mae": 1.6829979835357693,
+            "mse": 3.7813794530260436,
+            "n": 635,
+            "pearson": 0.220849661941367,
+            "rmse": 1.9445769342008672,
+            "spearman": 0.22336139700630508,
+            "top10_e5_enrichment": 1.4325701871657754
+          }
+        }
+      },
+      "n": 635,
+      "paired_effects": {
+        "binary_brier_improvement_descriptive": 0.04607489652986674,
+        "binary_delta_auc": 0.13253524550315998,
+        "binary_logloss_improvement": 0.10027189664684444,
+        "multiclass_delta_pearson_descriptive": 0.1780102917277673,
+        "multiclass_delta_spearman": 0.20497658089268417,
+        "multiclass_delta_top10_e5_enrichment_descriptive": 0.37140708556149726,
+        "multiclass_mse_improvement": 0.4412221130564551
+      },
+      "primary_inference": {
+        "all_four_pass": true,
+        "binary_clusters": 327,
+        "bootstrap_replicates": 20000,
+        "comparisons": {
+          "binary_delta_auc": {
+            "ci95": [
+              0.07796137470977439,
+              0.18912999298052435
+            ],
+            "effect": 0.13253524550315998,
+            "p_holm": 0.000199990000499975,
+            "p_raw": 4.999750012499375e-05,
+            "passes_all": true,
+            "passes_direction": true
+          },
+          "binary_logloss_improvement": {
+            "ci95": [
+              0.04936899204630542,
+              0.1501818954478351
+            ],
+            "effect": 0.10027189664684444,
+            "p_holm": 0.000199990000499975,
+            "p_raw": 9.99950002499875e-05,
+            "passes_all": true,
+            "passes_direction": true
+          },
+          "multiclass_delta_spearman": {
+            "ci95": [
+              0.1330714800331534,
+              0.278862037736682
+            ],
+            "effect": 0.20497658089268417,
+            "p_holm": 0.000199990000499975,
+            "p_raw": 4.999750012499375e-05,
+            "passes_all": true,
+            "passes_direction": true
+          },
+          "multiclass_mse_improvement": {
+            "ci95": [
+              0.24295717578872472,
+              0.6428031671878002
+            ],
+            "effect": 0.4412221130564551,
+            "p_holm": 0.000199990000499975,
+            "p_raw": 9.99950002499875e-05,
+            "passes_all": true,
+            "passes_direction": true
+          }
+        },
+        "multiclass_clusters": 556,
+        "passed_endpoints": 4,
+        "permutation_replicates": 20000,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_dev_resampling_dev.npz",
+        "resampling_sha256": "24b33e483dff8ceba2cdd47cba8b45551c2028700035c2b77042ab9fc00c2e5e"
+      }
+    },
+    "train": {
+      "metrics": {
+        "binary": {
+          "author": {
+            "auc": 0.8079770714523486,
+            "brier": 0.17683339239497162,
+            "logloss": 0.5274184236313555
+          },
+          "base": {
+            "auc": 0.6768978787069587,
+            "brier": 0.22463315365777087,
+            "logloss": 0.6401512684229186
+          },
+          "n": 2966,
+          "n_e0": 1372,
+          "n_e5": 1594
+        },
+        "multiclass": {
+          "author": {
+            "mae": 1.5148649174913453,
+            "mse": 3.1988556039548013,
+            "n": 5079,
+            "pearson": 0.4505267265361699,
+            "rmse": 1.788534484977799,
+            "spearman": 0.44531338828437306,
+            "top10_e5_enrichment": 2.0196776296940295
+          },
+          "base": {
+            "mae": 1.6979551692733736,
+            "mse": 3.7606932811368434,
+            "n": 5079,
+            "pearson": 0.2496286206287287,
+            "rmse": 1.9392507009504583,
+            "spearman": 0.239705920345861,
+            "top10_e5_enrichment": 1.542983530760035
+          }
+        }
+      },
+      "n": 5079,
+      "paired_effects": {
+        "binary_brier_improvement_descriptive": 0.04779976126279925,
+        "binary_delta_auc": 0.13107919274538993,
+        "binary_logloss_improvement": 0.11273284479156309,
+        "multiclass_delta_pearson_descriptive": 0.20089810590744117,
+        "multiclass_delta_spearman": 0.20560746793851206,
+        "multiclass_delta_top10_e5_enrichment_descriptive": 0.4766940989339945,
+        "multiclass_mse_improvement": 0.5618376771820421
+      },
+      "primary_inference": null
+    }
+  },
+  "status": "DEV_ONLY_NO_TEST_ACCESS",
+  "test_metrics_computed": false,
+  "test_reused_not_globally_untouched": true,
+  "train_fit_only": true,
+  "training_diagnostics": {
+    "author_binary_optimizer": {
+      "gradient_max_abs": 3.170634322619498e-08,
+      "iterations": 76,
+      "l2": 0.0,
+      "max_iter": 5000,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 0.5274184236313555,
+      "success": true
+    },
+    "author_multiclass_optimizer": {
+      "gradient_max_abs": 2.007996450126184e-07,
+      "iterations": 106,
+      "l2": 0.01,
+      "max_iter": 4000,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 1.4247998615449056,
+      "success": true
+    },
+    "base_binary_optimizer": {
+      "gradient_max_abs": 8.333080395493277e-09,
+      "iterations": 18,
+      "l2": 0.0,
+      "max_iter": 5000,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "objective": 0.6401512684229186,
+      "success": true
+    },
+    "base_multiclass_optimizer": {
+      "gradient_max_abs": 8.274374945151542e-08,
+      "iterations": 43,
+      "l2": 0.01,
+      "max_iter": 4000,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "objective": 1.5316692562835306,
+      "success": true
+    },
+    "single_codon_count": 61,
+    "single_codon_max_abs_raw_slope": 25.12800597938744,
+    "single_codon_max_gradient": 8.6827390219636e-09,
+    "single_codon_max_iterations": 7,
+    "single_codon_slopes": {
+      "AAA": 8.732655012375776,
+      "AAC": 5.043958306813068,
+      "AAG": 2.59410582456031,
+      "AAT": 5.868259690917077,
+      "ACA": 18.21886537665984,
+      "ACC": -2.257067969187135,
+      "ACG": 0.2435095220602878,
+      "ACT": 15.626769152274573,
+      "AGA": -6.073487863481475,
+      "AGC": 0.17849489773683228,
+      "AGG": -12.528609350276929,
+      "AGT": 8.535844784749907,
+      "ATA": -17.464289181601217,
+      "ATC": -0.02416218225638748,
+      "ATG": 7.284965077007933,
+      "ATT": 9.814698314685494,
+      "CAA": 13.983393670790592,
+      "CAC": -8.977387379023146,
+      "CAG": -1.8643269836968768,
+      "CAT": 13.74537684131084,
+      "CCA": 7.972497580669792,
+      "CCC": -16.537670570454264,
+      "CCG": -15.59841264242055,
+      "CCT": 3.3938419894548217,
+      "CGA": -6.525405180455209,
+      "CGC": -9.12163730135014,
+      "CGG": -25.12800597938744,
+      "CGT": 14.457991486530773,
+      "CTA": -4.421201174686385,
+      "CTC": -12.277823876168876,
+      "CTG": -8.071677167066037,
+      "CTT": -0.7590196528440506,
+      "GAA": 19.900135212626637,
+      "GAC": -2.0680218756690523,
+      "GAG": -4.1558570245571005,
+      "GAT": 20.062955756057733,
+      "GCA": 12.42163348653657,
+      "GCC": -9.11620672048721,
+      "GCG": -8.839841782675453,
+      "GCT": 12.911916094484706,
+      "GGA": 2.4481267168271046,
+      "GGC": -7.342050042668859,
+      "GGG": -17.67580703547118,
+      "GGT": 15.699545564805831,
+      "GTA": 13.964028700051792,
+      "GTC": -8.09541051338194,
+      "GTG": -6.383262609342965,
+      "GTT": 14.758756497874753,
+      "TAC": -1.4893850651643055,
+      "TAT": 6.958852647154973,
+      "TCA": 11.246074721963708,
+      "TCC": -15.532953936979137,
+      "TCG": -22.797668577829235,
+      "TCT": 6.696152917313576,
+      "TGC": -16.443032079885906,
+      "TGG": -12.278623061436596,
+      "TGT": -8.149788943831709,
+      "TTA": 5.65776871921986,
+      "TTC": -8.416038622422242,
+      "TTG": -0.22592570682601867,
+      "TTT": 8.112090997146266
+    }
+  }
+}

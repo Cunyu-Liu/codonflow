@@ -1,0 +1,34 @@
+{
+  "addendum_id": "A8_RK24_RK23_HISTGB_DESCRIPTIVE_COMPARATOR_V1",
+  "registered_after_rk24_dev_and_before_rk24_test": true,
+  "primary_protocol_changed": false,
+  "primary_endpoints_or_gate_changed": false,
+  "inference_status": "descriptive point estimates only; no additional confirmatory endpoint family",
+  "purpose": "Check the author-structure multiclass model against the previously frozen RK23 HistGB+UH comparator, not only the weaker logistic baseline.",
+  "rk23_prediction_column": "primary_contrast_augmented_histgb",
+  "rk23_logistic_crosscheck_column": "primary_contrast_augmented_logistic",
+  "rk24_author_column": "author_multiclass_expected",
+  "rk24_base_column": "base_multiclass_expected",
+  "metrics": ["spearman", "mse"],
+  "effects": ["author_minus_histgb_spearman", "histgb_minus_author_mse"],
+  "base_logistic_crosscheck_max_abs_tolerance": 1e-10,
+  "rk23": {
+    "dev": {
+      "result": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_dev_result_v1.json",
+      "result_sha256": "34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2",
+      "predictions": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/dev/rk23_dev_predictions.csv.gz",
+      "predictions_sha256": "9ca2d2fdbe1ed706ac52a42e2208478307d6304b03c80c0e618f605210cc9d50"
+    },
+    "test": {
+      "result": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_test_result_v1.json",
+      "result_sha256": "878322c8a2105b750059cce95aac16fa1249930b57404d7020a3672f81ad6373",
+      "predictions": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_predictions.csv.gz",
+      "predictions_sha256": "fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00"
+    }
+  },
+  "prohibited_claims": [
+    "No new confirmatory superiority claim or p-value is introduced by this addendum.",
+    "No change to the frozen RK24 four-endpoint gate, model, features, or hyperparameters.",
+    "No claim that either reused dev/test split is globally untouched."
+  ]
+}

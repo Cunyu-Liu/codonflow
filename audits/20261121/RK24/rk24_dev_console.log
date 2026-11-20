@@ -1,0 +1,127 @@
+{
+  "status": "DEV_ONLY_NO_TEST_ACCESS",
+  "model_artifact_sha256": "26df9b51d466d4164d84bd7646133ca74c35a6a8ec0d27999c504f6fa79d3d83",
+  "training": {
+    "single_codon_count": 61,
+    "single_codon_max_gradient": 8.6827390219636e-09,
+    "single_codon_max_iterations": 7,
+    "single_codon_max_abs_raw_slope": 25.12800597938744,
+    "base_binary_optimizer": {
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 18,
+      "objective": 0.6401512684229186,
+      "gradient_max_abs": 8.333080395493277e-09,
+      "l2": 0.0,
+      "max_iter": 5000
+    },
+    "author_binary_optimizer": {
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 76,
+      "objective": 0.5274184236313555,
+      "gradient_max_abs": 3.170634322619498e-08,
+      "l2": 0.0,
+      "max_iter": 5000
+    },
+    "base_multiclass_optimizer": {
+      "success": true,
+      "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+      "iterations": 43,
+      "objective": 1.5316692562835306,
+      "gradient_max_abs": 8.274374945151542e-08,
+      "l2": 0.01,
+      "max_iter": 4000
+    },
+    "author_multiclass_optimizer": {
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 106,
+      "objective": 1.4247998615449056,
+      "gradient_max_abs": 2.007996450126184e-07,
+      "l2": 0.01,
+      "max_iter": 4000
+    }
+  },
+  "splits": {
+    "train": {
+      "paired_effects": {
+        "binary_delta_auc": 0.13107919274538993,
+        "binary_logloss_improvement": 0.11273284479156309,
+        "multiclass_delta_spearman": 0.20560746793851206,
+        "multiclass_mse_improvement": 0.5618376771820421,
+        "binary_brier_improvement_descriptive": 0.04779976126279925,
+        "multiclass_delta_pearson_descriptive": 0.20089810590744117,
+        "multiclass_delta_top10_e5_enrichment_descriptive": 0.4766940989339945
+      },
+      "primary_inference": null
+    },
+    "dev": {
+      "paired_effects": {
+        "binary_delta_auc": 0.13253524550315998,
+        "binary_logloss_improvement": 0.10027189664684444,
+        "multiclass_delta_spearman": 0.20497658089268417,
+        "multiclass_mse_improvement": 0.4412221130564551,
+        "binary_brier_improvement_descriptive": 0.04607489652986674,
+        "multiclass_delta_pearson_descriptive": 0.1780102917277673,
+        "multiclass_delta_top10_e5_enrichment_descriptive": 0.37140708556149726
+      },
+      "primary_inference": {
+        "comparisons": {
+          "binary_delta_auc": {
+            "effect": 0.13253524550315998,
+            "ci95": [
+              0.07796137470977439,
+              0.18912999298052435
+            ],
+            "p_raw": 4.999750012499375e-05,
+            "passes_direction": true,
+            "p_holm": 0.000199990000499975,
+            "passes_all": true
+          },
+          "binary_logloss_improvement": {
+            "effect": 0.10027189664684444,
+            "ci95": [
+              0.04936899204630542,
+              0.1501818954478351
+            ],
+            "p_raw": 9.99950002499875e-05,
+            "passes_direction": true,
+            "p_holm": 0.000199990000499975,
+            "passes_all": true
+          },
+          "multiclass_delta_spearman": {
+            "effect": 0.20497658089268417,
+            "ci95": [
+              0.1330714800331534,
+              0.278862037736682
+            ],
+            "p_raw": 4.999750012499375e-05,
+            "passes_direction": true,
+            "p_holm": 0.000199990000499975,
+            "passes_all": true
+          },
+          "multiclass_mse_improvement": {
+            "effect": 0.4412221130564551,
+            "ci95": [
+              0.24295717578872472,
+              0.6428031671878002
+            ],
+            "p_raw": 9.99950002499875e-05,
+            "passes_direction": true,
+            "p_holm": 0.000199990000499975,
+            "passes_all": true
+          }
+        },
+        "all_four_pass": true,
+        "passed_endpoints": 4,
+        "bootstrap_replicates": 20000,
+        "permutation_replicates": 20000,
+        "binary_clusters": 327,
+        "multiclass_clusters": 556,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_train_refit_v1/dev/rk24_dev_resampling_dev.npz",
+        "resampling_sha256": "24b33e483dff8ceba2cdd47cba8b45551c2028700035c2b77042ab9fc00c2e5e"
+      }
+    }
+  }
+}
