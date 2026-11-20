@@ -1,0 +1,149 @@
+{
+  "schema": "a8-rk21-kudla-recovery-v1",
+  "status": "PASS_RECOVERY_PENDING_INDEPENDENT_VERIFICATION",
+  "protocol": "/home/codonflow-a8-rk/audits/20261121/RK21/a8_rk21_kudla_recovery_protocol_v1.json",
+  "protocol_sha256": "cfb7599e2577289c7acf71a3bc0af35ceda166aa2e23daa5b6e89ac11d998dbb",
+  "recovery_script_sha256": "cb68411ff2e6a9d82efff32d826764a9c19f854047fc2223afd650583e7da755",
+  "source_chain": {
+    "primary_measurements": {
+      "citation": "Kudla G, Murray AW, Tollervey D, Plotkin JB. Science 2009.",
+      "doi": "10.1126/science.1170160",
+      "url": "https://www.science.org/doi/10.1126/science.1170160",
+      "note": "The Science SOM documents the experiment but does not contain the complete per-construct sequence-expression table."
+    },
+    "primary_table": {
+      "citation": "Supek F, Smuc T. Genetics 2010, File S2, Kudla et al. GFP dataset and tagged dataset.",
+      "doi": "10.1534/genetics.110.115477",
+      "landing_url": "https://academic.oup.com/genetics/article/185/3/1129/6062689",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/raw/supek_smuc_files2.xls",
+      "sha256": "ac3325e570a7f1c0ede2ff153d8a3f70ec494f8dca01ef4dba7ae80850cea0d4",
+      "bytes": 4205568,
+      "main_sheet": "Kudla et al. GFP dataset",
+      "tagged_sheet": "Kudla et al. tagged dataset",
+      "natural_reference_sheet": "E. coli genes >= 80 codons"
+    },
+    "independent_derivative_copy": {
+      "citation": "Fernandes A, Vinga S. PLOS ONE 2016, S1 Software.",
+      "doi": "10.1371/journal.pone.0150369",
+      "landing_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4775025/",
+      "download_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0150369.s001&type=supplementary",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/raw/pone.0150369.s001.zip",
+      "sha256": "d18851a9f313f86445d288fceacb5d37f69a419f8bf8493bce4dd97262378759",
+      "bytes": 7425280,
+      "mat_member": "Data/Kudla_Dataset_WithEnergy.mat",
+      "mat_sha256": "e440aedd5c13724c5bef834137ba0cf11e4613bc9f64462456a252edfee06595"
+    }
+  },
+  "counts": {
+    "main_measurement_rows": 154,
+    "main_source_columns": 71,
+    "unique_seqId": 154,
+    "unique_exact_cds": 150,
+    "duplicate_exact_cds_groups": 4,
+    "duplicate_measurement_rows_beyond_unique": 4,
+    "tagged_rows": 72,
+    "tagged_source_columns": 62,
+    "shared_5prime_utr_nt": 144,
+    "cds_nt_including_stop": 720,
+    "protein_aa_excluding_stop": 239,
+    "unique_protein_sequences": 1
+  },
+  "expression_range": {
+    "min": 43.0,
+    "max": 10606.0
+  },
+  "shared_5prime_utr_sha256": "cd39a2b900b435791a00810eb33168ba1b805f569caba1f0424f43ad474b5a67",
+  "protein_sha256": "1041d381511cdf4e0dff50ee0f331e26d76b6d8bf0a95e4ad6a5ead87a0f2fc8",
+  "duplicate_exact_cds": [
+    {
+      "exact_cds_group": "KUDLA_CDS_007",
+      "seqIds": [
+        "GFP_014",
+        "GFP_018"
+      ],
+      "expressions": [
+        978.0,
+        738.0
+      ],
+      "cds_sha256": "2d17d9bc964644061e3ecc60b29abe04b5ef40297b7207672f19968ca1a9bed7"
+    },
+    {
+      "exact_cds_group": "KUDLA_CDS_060",
+      "seqIds": [
+        "GFP_105",
+        "GFP_150"
+      ],
+      "expressions": [
+        358.0,
+        255.0
+      ],
+      "cds_sha256": "a7f2869af9b8fc43f38ef8eda07a39cd38f58ae5b1b4bbdbeb4838fec41c25d2"
+    },
+    {
+      "exact_cds_group": "KUDLA_CDS_086",
+      "seqIds": [
+        "GFP_159",
+        "GFP_162"
+      ],
+      "expressions": [
+        1217.0,
+        931.0
+      ],
+      "cds_sha256": "c6ef58b4ef78bd408c2236b3ce59be1308c335152c4ee78aa1c0af68937c9301"
+    },
+    {
+      "exact_cds_group": "KUDLA_CDS_118",
+      "seqIds": [
+        "GFP_205",
+        "GFP_224"
+      ],
+      "expressions": [
+        1513.0,
+        4183.0
+      ],
+      "cds_sha256": "182bb0b44573e8172380bb57291f6924391c9b2a18f95cfc8f908c7c81ce7d32"
+    }
+  ],
+  "primary_xls_mat_exact_match": true,
+  "tagged_sequence_available": false,
+  "tagged_ids_match_main_yes_flags": true,
+  "outputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+      "bytes": 403473
+    },
+    "tagged_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla_tagged72_source.csv",
+      "sha256": "e6bf426a6870279b13a22d0dc12e8b54848965c7e5ca70ab1d4a8b0466531a4b",
+      "bytes": 61293
+    },
+    "mrna_fasta": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_mrna.fasta",
+      "sha256": "1ff7a7d4de8c34c724eab60545848e60ebb3d8e728bac5a3225936fd49182445",
+      "bytes": 136136
+    },
+    "cds_fasta": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_cds.fasta",
+      "sha256": "0871434c7dadb1875fc6e1df247b6922ee32121622f84060f6e8372a4cd5de60",
+      "bytes": 113652
+    }
+  },
+  "scientific_flags": {
+    "model_fit_or_mechanism_metric_computed": false,
+    "fixed_protein_sequence_ood_evaluated": false,
+    "paired_tag_mechanism_evaluated": false,
+    "functional_ood_evaluated": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "expensive_generation_authorized": false,
+    "time_matched_comparison": false,
+    "sota_claimed": false
+  },
+  "limitations": [
+    "File S2 is the authoritative per-construct table used here; the MAT file is an independently published derivative copy that matches it row by row.",
+    "Four pairs of distinct seqIds have identical CDS but different measured expression and must remain grouped in future splits.",
+    "The tagged sheet has 72 paired measurements and computed features but no tagged nucleotide sequence; no tagged sequence is imputed.",
+    "Recovery alone is not mechanism, OOD, untouched, generator or SOTA evidence."
+  ]
+}

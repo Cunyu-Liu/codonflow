@@ -1,0 +1,409 @@
+{
+  "schema": "a8-rk21-kudla-recovery-independent-v1",
+  "status": "PASS_INDEPENDENT_VERIFICATION",
+  "checks_passed": 69,
+  "checks_total": 69,
+  "checks": [
+    {
+      "name": "protocol_schema",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "summary_pending_independent",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protocol_hash_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "recovery_script_hash_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "primary_xls_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "primary_xls_bytes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_zip_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_zip_bytes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_hash_main_csv",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_bytes_main_csv",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_hash_tagged_csv",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_bytes_tagged_csv",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_hash_mrna_fasta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_bytes_mrna_fasta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_hash_cds_fasta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "output_bytes_cds_fasta",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "workbook_sheet_inventory",
+      "pass": true,
+      "detail": [
+        "title",
+        "Kudla et al. GFP dataset",
+        "Kudla et al. tagged dataset",
+        "E. coli genes >= 80 codons"
+      ]
+    },
+    {
+      "name": "main_source_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_source_dimensions",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "natural_reference_dimensions",
+      "pass": true,
+      "detail": [
+        3920,
+        71
+      ]
+    },
+    {
+      "name": "main_export_rows",
+      "pass": true,
+      "detail": 154
+    },
+    {
+      "name": "tagged_export_rows",
+      "pass": true,
+      "detail": 72
+    },
+    {
+      "name": "main_source_columns_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_source_columns_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "main_source_row_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_source_row_order",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "every_main_source_cell_match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "every_tagged_source_cell_match",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "seqId_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "expression_positive_finite",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "expression_range",
+      "pass": true,
+      "detail": [
+        43.0,
+        10606.0
+      ]
+    },
+    {
+      "name": "expression_alias_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "log10_expression_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "full_mrna_alphabet_length",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "shared_utr_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "shared_utr_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cds_boundaries",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "terminal_stop_exactly_one",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "one_identical_protein",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "protein_export_and_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cds_export_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cds_hash_recomputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "group_bijection",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "unique_exact_cds_150",
+      "pass": true,
+      "detail": 150
+    },
+    {
+      "name": "four_duplicate_groups",
+      "pass": true,
+      "detail": {
+        "KUDLA_CDS_007": 2,
+        "KUDLA_CDS_060": 2,
+        "KUDLA_CDS_086": 2,
+        "KUDLA_CDS_118": 2
+      }
+    },
+    {
+      "name": "group_size_column",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "derivative_zip_crc",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_member_sha",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_duplicate_copies_identical",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_fields",
+      "pass": true,
+      "detail": [
+        "Sequence",
+        "Des",
+        "rnaEnergyMinus4to37",
+        "rnaEnergyEntireProt"
+      ]
+    },
+    {
+      "name": "mat_row_count",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_sequences_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_expression_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_mfe5_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_full_mfe_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mat_match_flags",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_ids_unique",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_ids_match_yes_flags",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_links_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_expression_positive_log",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "tagged_sequence_not_imputed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "mrna_fasta_roundtrip",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "cds_fasta_roundtrip",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "summary_counts_recomputed",
+      "pass": true,
+      "detail": {
+        "main_measurement_rows": 154,
+        "main_source_columns": 71,
+        "unique_seqId": 154,
+        "unique_exact_cds": 150,
+        "duplicate_exact_cds_groups": 4,
+        "duplicate_measurement_rows_beyond_unique": 4,
+        "tagged_rows": 72,
+        "tagged_source_columns": 62,
+        "shared_5prime_utr_nt": 144,
+        "cds_nt_including_stop": 720,
+        "protein_aa_excluding_stop": 239,
+        "unique_protein_sequences": 1
+      }
+    },
+    {
+      "name": "duplicate_summary_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "recovery_does_not_claim_scientific_completion",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "primary_match_and_tag_link_summary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "source_identity_fields",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "no_untouched_or_generator_claim",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "protocol_sha256": "cfb7599e2577289c7acf71a3bc0af35ceda166aa2e23daa5b6e89ac11d998dbb",
+  "recovery_summary_sha256": "968d98fdbf4a40846a0ae9511a3cae05b1fce3a7cfb3d3543208259e2cc5bee1",
+  "verification_script_sha256": "815da870d0102134ac1e50dc457fdc3b468a8c3606a1c2d81151e29879458833",
+  "recovery_complete": true,
+  "main_measurement_rows": 154,
+  "unique_exact_cds": 150,
+  "tagged_rows": 72,
+  "primary_xls_mat_exact_match": true,
+  "tagged_sequence_available": false,
+  "fixed_protein_sequence_ood_evaluated": false,
+  "paired_tag_mechanism_evaluated": false,
+  "functional_ood_evaluated": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "sota_claimed": false,
+  "output_hashes": {
+    "main_csv": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+    "tagged_csv": "e6bf426a6870279b13a22d0dc12e8b54848965c7e5ca70ab1d4a8b0466531a4b",
+    "mrna_fasta": "1ff7a7d4de8c34c724eab60545848e60ebb3d8e728bac5a3225936fd49182445",
+    "cds_fasta": "0871434c7dadb1875fc6e1df247b6922ee32121622f84060f6e8372a4cd5de60"
+  }
+}
