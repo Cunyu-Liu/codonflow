@@ -1,0 +1,21 @@
+{
+  "schema": "a8-rk25-preexperiment-freeze-v1",
+  "protocol_id": "A8_RK25_AUTHOR_MECHANISM_COMPARATOR_V1",
+  "base_commit": "77b866cef24ada94a05ca09aed5fef0d78b93e0f",
+  "protocol_sha256": "26df69797a64e97db53ccb8b53255ca17d69af85f7c1ab3e76338cd500496909",
+  "implementation_sha256": "315669c1db749fe7e33aa2dc22ea024cf40d6addcdc0979763b780ba8b2d277f",
+  "unit_test_implementation_sha256": "d827fa60b3d418ae358e2afb433100d58fba930c376891d41c0d4acacaee52bf",
+  "unit_test_log_sha256": "d1179d46a270ad0ea5152f8615bae3b618371e2aae703f1260e7fddb9fa52abe",
+  "unit_tests": "12/12 PASS",
+  "failed_test_logs_preserved": [
+    "rk25_unit_tests_failed_import_v1.txt",
+    "rk25_unit_tests_failed_fixture_v2.txt",
+    "rk25_unit_tests_failed_zero_variance_v3.txt",
+    "rk25_unit_tests_failed_zero_variance_v4.txt"
+  ],
+  "real_author_model_fit_executed": false,
+  "real_dev_metric_readout_executed": false,
+  "test_or_sequence_ood_metric_readout_executed": false,
+  "functional_untouched_evaluated": false,
+  "commit_scope": "Protocol, implementation, synthetic tests, and test evidence only; existing handover edits and historical untracked controllers are excluded."
+}

@@ -1,0 +1,47 @@
+test_01_protocol_contract (__main__.RK25Tests) ... ok
+test_02_split_gate (__main__.RK25Tests) ... ok
+test_03_cluster_balanced_mse (__main__.RK25Tests) ... ok
+test_04_prediction_identity_and_target (__main__.RK25Tests) ... ok
+test_05_csv_partition_readback (__main__.RK25Tests) ... ok
+test_06_point_comparisons (__main__.RK25Tests) ... ok
+test_07_bootstrap_reproducible (__main__.RK25Tests) ... ok
+test_08_holm_and_direction (__main__.RK25Tests) ... ok
+test_09_author_model_fit_smoke (__main__.RK25Tests) ... ERROR
+test_10_static_old_split_is_ignored (__main__.RK25Tests) ... ERROR
+test_11_cds_hash_mismatch_rejected (__main__.RK25Tests) ... ERROR
+test_12_model_feature_contract_is_72 (__main__.RK25Tests) ... ok
+
+======================================================================
+ERROR: test_09_author_model_fit_smoke (__main__.RK25Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk25_author_mechanism.py", line 152, in test_09_author_model_fit_smoke
+    model = rk.fit_author_model(rows, protocol)
+  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 182, in fit_author_model
+    matrix = feature_matrix(train_rows, names, single_slopes)
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py", line 66, in feature_matrix
+    columns.append(np.asarray([float(r[name]) for r in rows], dtype=float))
+  File "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py", line 66, in <listcomp>
+    columns.append(np.asarray([float(r[name]) for r in rows], dtype=float))
+KeyError: 'source_Gz48v'
+
+======================================================================
+ERROR: test_10_static_old_split_is_ignored (__main__.RK25Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk25_author_mechanism.py", line 184, in test_10_static_old_split_is_ignored
+    'features_json': json.dumps({'Gz48v': row['source_Gz48v']}),
+KeyError: 'source_Gz48v'
+
+======================================================================
+ERROR: test_11_cds_hash_mismatch_rejected (__main__.RK25Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk25_author_mechanism.py", line 206, in test_11_cds_hash_mismatch_rejected
+    self.assertNotEqual(rk.sha256_text(cds[:-3] + 'TAG'), row['cds_sha256'])
+KeyError: 'cds_sha256'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.427s
+
+FAILED (errors=3)

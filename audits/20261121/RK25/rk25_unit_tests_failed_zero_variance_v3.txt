@@ -1,0 +1,29 @@
+test_01_protocol_contract (__main__.RK25Tests) ... ok
+test_02_split_gate (__main__.RK25Tests) ... ok
+test_03_cluster_balanced_mse (__main__.RK25Tests) ... ok
+test_04_prediction_identity_and_target (__main__.RK25Tests) ... ok
+test_05_csv_partition_readback (__main__.RK25Tests) ... ok
+test_06_point_comparisons (__main__.RK25Tests) ... ok
+test_07_bootstrap_reproducible (__main__.RK25Tests) ... ok
+test_08_holm_and_direction (__main__.RK25Tests) ... ok
+test_09_author_model_fit_smoke (__main__.RK25Tests) ... ERROR
+test_10_static_old_split_is_ignored (__main__.RK25Tests) ... ok
+test_11_cds_hash_mismatch_rejected (__main__.RK25Tests) ... ok
+test_12_model_feature_contract_is_72 (__main__.RK25Tests) ... ok
+
+======================================================================
+ERROR: test_09_author_model_fit_smoke (__main__.RK25Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk25_author_mechanism.py", line 155, in test_09_author_model_fit_smoke
+    model = rk.fit_author_model(rows, protocol)
+  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 184, in fit_author_model
+    model = fit_multinomial_logistic(
+  File "/home/codonflow-a8-rk/scripts/a8_rk07_proxy_evaluate.py", line 106, in fit_multinomial_logistic
+    raise ValueError("zero-variance training feature")
+ValueError: zero-variance training feature
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.432s
+
+FAILED (errors=1)

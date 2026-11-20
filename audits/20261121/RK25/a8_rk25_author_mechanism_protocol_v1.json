@@ -1,0 +1,125 @@
+{
+  "schema": "a8-rk25-author-mechanism-comparator-protocol-v1",
+  "protocol_id": "A8_RK25_AUTHOR_MECHANISM_COMPARATOR_V1",
+  "frozen_on": "2026-11-21",
+  "frozen_before_author_model_fit_or_new_dev_metric_readout": true,
+  "scientific_question": "On the exact RK20 train/dev/test/sequence-OOD assignments, does the four-seed all-channel RiboKinetic function model outperform a train-only Boel author-structure model, and does that author model outperform the previous ridge_all and HistGB full-proxy controls?",
+  "observed_phenomenon": "RK20 did not establish a stable all-channel increment over ridge_all or HistGB, but those controls did not include the complete Boel author model. RK24 supported the author model on a different protein-OOD split, so its metrics cannot be transferred to the RK20 partition.",
+  "falsifiable_hypothesis": "The mean-per-seed all-channel model is superior to the author model on sequence-OOD Spearman and cluster-balanced MSE, while the author model is superior to both previous full-proxy controls on the same two endpoints.",
+  "scope": "A strong-comparator addendum on already observed cross-protein, nonsynonymous Boel ordinal-expression data. It is not fixed-protein synonymous evidence, untouched confirmation, causal mechanism evidence, generator training, or external SOTA.",
+  "data": {
+    "functional_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/functional_long_sequence_ood.csv",
+    "functional_csv_sha256": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+    "baseline_predictions": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_model_v2/predictions.csv.gz",
+    "baseline_predictions_sha256": "925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75",
+    "author_feature_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk24/author_features_v1/boel_author_static_features.csv.gz",
+    "author_feature_file_sha256": "78105d38c96fde52924cce420cd19cd596a9b8f9c6225eeddc55aeb8aabcf0dd",
+    "author_feature_preflight": "/home/codonflow-a8-rk/audits/20261121/RK24/rk24_feature_preflight_v1.json",
+    "author_feature_preflight_sha256": "3dbbb840404301d32a727ad37c91b10160acb6ea058798e2aa49786182e8bcbb",
+    "author_definition_protocol": "/home/codonflow-a8-rk/audits/20261121/RK24/a8_rk24_boel_author_protocol_v1.json",
+    "author_definition_protocol_sha256": "92135eb2e22741ad70b4de01cc04d5e0ef363a50626252071985d57ed2295ed7",
+    "author_run_implementation": "/home/codonflow-a8-rk/scripts/a8_rk24_run_boel_author_model.py",
+    "author_run_implementation_sha256": "c52eb8cc15df5b76ac79a3ca9626b59d7c0ad8358a93588933b383a2732dce19",
+    "rk07_implementation": "/home/codonflow-a8-rk/scripts/a8_rk07_proxy_evaluate.py",
+    "rk07_implementation_sha256": "63a229e5e2b406939d217bb7ad6dc29180814f833d063cb9d2caa441f84a2b08",
+    "rk23_implementation": "/home/codonflow-a8-rk/scripts/a8_rk23_run_boel_uh.py",
+    "rk23_implementation_sha256": "4a95f1737cbdc62c8ebd95ba63e37ee12c3849c8976e638911604aa9b479dd16",
+    "feature_builder": "/home/codonflow-a8-rk/scripts/a8_rk24_build_features.py",
+    "feature_builder_sha256": "488da772bcfc6b034c8f1add93e56e5cd02aa671ff657dec5252d44d7afca15d",
+    "rk20_execution": "/home/codonflow-a8-rk/audits/20261120/RK20/rk20_execution_v1.json",
+    "rk20_execution_sha256": "1250c272cfdfe702d718bd138b55b8b9839e9c028f9c5eaa8fd67068c5558ae9",
+    "rk20_comparison_summary": "/home/codonflow-a8-rk/audits/20261120/RK20/rk20_comparison_summary_v1.json",
+    "rk20_comparison_summary_sha256": "1cef5ea463e26b5944e1b222e1746e8632e764446983a8dcef30759b353f5d52",
+    "rk20_comparison_implementation": "/home/codonflow-a8-rk/scripts/a8_rk20_compare_functional_multiseed.py",
+    "rk20_comparison_implementation_sha256": "4dc0556bd27050d32b88665f36a953a4962d635bb2c7704fcd89cb715df96c2c",
+    "source_id": "boel_2016_nesg6348",
+    "label_field": "expression_value",
+    "label_classes": [0, 1, 2, 3, 4, 5],
+    "rows": 6348,
+    "expected_rows": {"train": 4019, "dev": 503, "test": 490, "sequence_ood": 1336},
+    "partitions": ["train", "dev", "test", "sequence_ood"],
+    "primary_partition": "sequence_ood",
+    "forbidden_partitions": ["functional_untouched", "untouched"],
+    "functional_untouched_evaluated": false
+  },
+  "frozen_ribokinetic_all_predictions": {
+    "20261119": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/full_function_all_v2/predictions.csv",
+      "sha256": "76e14fec371e7cb94030eead8940efc97960180cafcb71b326f272bfc4046aa7"
+    },
+    "20261120": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk20/functional_multiseed_v1/all_seed20261120/predictions.csv",
+      "sha256": "e060b5179e34d0099bf0cc568e4d28b0657463691980ecc546571b3f95353527"
+    },
+    "20261121": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk20/functional_multiseed_v1/all_seed20261121/predictions.csv",
+      "sha256": "4937590849b4f2d1835959325ea13d1678fa915ec4fab48f4b2bd58cbe1ec1fa"
+    },
+    "20261122": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk20/functional_multiseed_v1/all_seed20261122/predictions.csv",
+      "sha256": "4f1cfd414ffd7a4cd2f3d26231fa6dca4abf8f328d0f3ffbdac3e73ff84dbbac"
+    }
+  },
+  "seeds": [20261119, 20261120, 20261121, 20261122],
+  "author_model": {
+    "feature_contract": "Exactly the 72 RK24 author features: source_Gz48v, I_62, aH, aH2, gH2, u3H, L_knt, Linv_knt, rAA, dAUA, 60 non-ATG codon frequencies, s7_16, and s17_32.",
+    "single_codon_slopes": "Refit 61 unregularized binary E5-versus-E0 logistic models on RK20 train extremes only; freeze raw-frequency slopes for regional features.",
+    "final_model": "Multinomial logistic expected score on all RK20 train rows, fixed L2=0.01 and max_iter=4000.",
+    "published_coefficients_used_for_prediction": false,
+    "hyperparameter_search": false,
+    "dev_or_ood_model_selection": false,
+    "implementation": "Import the frozen RK24 author_feature_names, feature_matrix, and fit_binary_logistic definitions; use the same RK07 multinomial logistic implementation."
+  },
+  "comparisons": [
+    {"name": "all_vs_author", "left": "ribokinetic_all", "right": "boel_author"},
+    {"name": "author_vs_ridge_all", "left": "boel_author", "right": "ridge_all"},
+    {"name": "author_vs_histgb_all", "left": "boel_author", "right": "histgb_all"}
+  ],
+  "endpoints": ["row_spearman", "cluster_balanced_mse"],
+  "estimand": "Mean of four per-seed left-minus-right effects. Deterministic author/ridge/HistGB predictions are repeated for each seed; no prediction averaging or ensemble claim.",
+  "statistics": {
+    "bootstrap": "Hierarchical resampling of operational protein clusters and four training seeds independently with replacement, using identical sampled clusters and seeds for all models.",
+    "replicates": 20000,
+    "seed": 20261125,
+    "interval": "two-sided percentile 95% CI on the raw left-minus-right delta",
+    "pvalue": "two-sided sign-tail probability on the benefit scale",
+    "multiplicity": "Holm across exactly six sequence-OOD comparison-by-endpoint tests",
+    "spearman_benefit": "left minus right; support requires delta>0 and CI lower bound>0",
+    "mse_benefit": "right minus left on the benefit scale; raw delta remains left minus right and support requires delta<0 and CI upper bound<0",
+    "dev_inference": false,
+    "test_inference": false
+  },
+  "pass_rules": {
+    "individual_endpoint": "Required raw-delta direction, corresponding 95% CI entirely on the beneficial side of zero, and Holm-adjusted p<0.05.",
+    "mechanism_vs_author_pass": "Both all_vs_author endpoints pass.",
+    "author_reference_pass": "All four author_vs_ridge_all and author_vs_histgb_all endpoints pass.",
+    "strong_comparator_chain_pass": "All six sequence-OOD endpoints pass.",
+    "failed_or_mixed_result": "Retain all dev/test/sequence-OOD metrics and the failed gate; do not remove a comparator, seed, endpoint, or partition."
+  },
+  "dev_role": "Fit on train and compute train/dev only. Independent dev refit, prediction comparison, metric recomputation, and hash binding are mandatory before sequence-OOD. Dev effect direction does not decide whether OOD is reported and is not used to change the model or protocol.",
+  "test_role": "Descriptive only after dev independent verification; already observed in RK08/RK20 and not globally untouched.",
+  "sequence_ood_role": "One confirmation-gated evaluation after dev independent verification. This is a new author-model readout on an already observed partition, not untouched confirmation.",
+  "decision": {
+    "rk_g1_remains_false_even_if_strong_comparator_chain_passes": true,
+    "reason": "The prior velocity and fixed-protein mechanism requirements remain unresolved and this cross-protein nonsynonymous partition is not independent functional-untouched evidence.",
+    "expensive_generation_authorized": false,
+    "functional_untouched_evaluation_authorized": false,
+    "sota_claim_authorized": false
+  },
+  "cost_contract": {
+    "author_fit_device": "CPU",
+    "new_neural_or_generator_training": false,
+    "ribokinetic_predictions": "Reuse four hash-frozen RK20 all-channel prediction files; do not relabel reuse as new training.",
+    "record_seconds_and_model_convergence": true,
+    "time_matched_sota_claim": false
+  },
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk25/author_mechanism_comparator_v1",
+  "audit_root": "audits/20261121/RK25",
+  "prohibited_claims": [
+    "No use of RK24 fitted coefficients or published full-data coefficients on the RK20 split.",
+    "No direct comparison of metrics calculated on different split assignments.",
+    "No claim of fixed-protein synonymous causality, velocity, decay, complete spatial coupling, functional-untouched confirmation, or generator authorization.",
+    "No claim of CodonFlow-RK generation superiority, complete external SOTA, or controlled time-matched superiority.",
+    "No reading of functional_untouched."
+  ]
+}

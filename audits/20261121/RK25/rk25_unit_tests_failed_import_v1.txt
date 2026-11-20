@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk25_author_mechanism.py", line 16, in <module>
+    from scripts import a8_rk25_run_author_mechanism as rk
+  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 19, in <module>
+    from scripts.a8_rk20_compare_functional_multiseed import (
+ImportError: cannot import name 'cluster_balanced_mse' from 'scripts.a8_rk20_compare_functional_multiseed' (/home/codonflow-a8-rk/scripts/a8_rk20_compare_functional_multiseed.py)
