@@ -1,0 +1,293 @@
+{
+  "schema": "a8-rk16-finalization-v1",
+  "status": "PASS_RK16_DENSE_PREFIX_TIME_MATCHED_OPEN",
+  "protocol_sha256": "957b199378b1a7692288b24363a6be9f5c0db6234788038fa8d1aab211be2df8",
+  "matrix_sha256": "7dd7957de01995723dd1bc6b28b7955bdd522dcbefcba74ca26f0ba867788c90",
+  "audit_sha256": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500",
+  "independent_sha256": "d07f796bfbf76dd0898ba249f7344cc5d1cfc33e90762e207fad938b3be2e4b6",
+  "csv_sha256": "6baceb837aa8ba34c0d2bf1d4b4b7877323eb1d3e0089f6aa6c846d0e651ac0b",
+  "full_regression_sha256": "ef2d0e10e02adfc7e2bc16842074547d48f4129090712450475186a173c347a6",
+  "engineering_failures_sha256": "0823038467096c3cae8402251d0938f77d9227a2fa9ac42dec366545f8599777",
+  "closeout_sha256": "0521907d3369671fa7d34bfff01e110a633847707d8c01cecd405a20367279cb",
+  "checks_passed": 53,
+  "checks_total": 53,
+  "checks": [
+    {
+      "check": "exists_protocol",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_matrix",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_audit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_independent",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_regression",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_engineering",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exists_closeout",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "protocol_schema",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "protocol_frozen",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "protocol_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "csv_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_pass",
+      "pass": true,
+      "evidence": "88/88"
+    },
+    {
+      "check": "record_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_order",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "method_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "primary_call_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "secondary_call_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "secondary_summary_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_dense_curves_real_and_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exclusions_bound",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "six_primary_comparisons",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_audit_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_six_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_effects_positive",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_cis_above_zero",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_holm_significant",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "dense_gate_true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "per_comparator_gate_true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "csv_numeric_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "full_regression_summary",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "full_regression_counts",
+      "pass": true,
+      "evidence": "347 passed, 1 skipped, 11 warnings, 5 subtests passed in 27.39s"
+    },
+    {
+      "check": "closeout_regression_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "engineering_failures_preserved",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "engineering_science_unchanged",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_PASS_RK16_DENSE_PREFIX_TIME_MATCHED_OPEN",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_dense_prefix_superiority_pass=true",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_6/6 primary tests passed",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_88/88 PASS",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_time_matched_comparison=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_scientific_gate_passed=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_codonflow_rk_evaluated=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_functional_untouched_evaluated=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_rk_g1_pass=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_external_sota_authorized=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_contains_sota_claimed=false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_false_flags",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_false_flags",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "independent_false_flags",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "dense_prefix_superiority_pass": true,
+  "rk16_dense_task_completion_authorized": true,
+  "rk16_time_matched_completion_authorized": false,
+  "time_matched_comparison": false,
+  "scientific_gate_passed": false,
+  "codonflow_rk_evaluated": false,
+  "functional_ood_evaluated": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "external_sota_authorized": false,
+  "sota_claimed": false
+}

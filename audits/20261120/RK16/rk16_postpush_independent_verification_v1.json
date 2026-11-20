@@ -1,0 +1,457 @@
+{
+  "schema": "a8-rk16-independent-verification-v1",
+  "status": "PASS",
+  "protocol_sha256": "957b199378b1a7692288b24363a6be9f5c0db6234788038fa8d1aab211be2df8",
+  "matrix_report_sha256": "7dd7957de01995723dd1bc6b28b7955bdd522dcbefcba74ca26f0ba867788c90",
+  "audit_sha256": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500",
+  "comparisons_csv_sha256": "6baceb837aa8ba34c0d2bf1d4b4b7877323eb1d3e0089f6aa6c846d0e651ac0b",
+  "checks_passed": 88,
+  "checks_total": 88,
+  "checks": [
+    {
+      "check": "protocol_schema",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "protocol_frozen_before_scoring",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "protocol_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "report_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "csv_hash",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "report_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "record_count",
+      "pass": true,
+      "evidence": 18
+    },
+    {
+      "check": "record_order",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "primary_methods",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "primary_budget",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "input_hash_matrix",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "input_hash_lineardesign_report",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "input_hash_ensemble_report",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "input_hash_legacy_manifest",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "matrix_source_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ld_source_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "ensemble_source_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "legacy_manifest_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "report_matches_frozen_matrix_order",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "scoring_commit_is_ancestor",
+      "pass": true,
+      "evidence": "3273211e026b79e7d81aa1afa8a55e6f676f98b6"
+    },
+    {
+      "check": "scoring_code_unchanged",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "legacy_raw_hashes_all_records",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "reference_hashes_all_records",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "primary_curves_independent_recompute",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "secondary_b100_curves_independent_recompute",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "duplicates_retained_at_real_budget_positions",
+      "pass": true,
+      "evidence": 73
+    },
+    {
+      "check": "primary_curve_row_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "secondary_curve_row_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_lineardesign_lambda11_dense_budget_step_auc_v2_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_lineardesign_lambda11_dense_budget_step_auc_v2_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_lineardesign_lambda11_endpoint_hypervolume_normalized_b11_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_lineardesign_lambda11_endpoint_hypervolume_normalized_b11_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_codongpt_dense_budget_step_auc_v2_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_codongpt_dense_budget_step_auc_v2_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_codongpt_endpoint_hypervolume_normalized_b11_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_codongpt_endpoint_hypervolume_normalized_b11_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_uniform_synonymous_dense_budget_step_auc_v2_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_uniform_synonymous_dense_budget_step_auc_v2_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_uniform_synonymous_endpoint_hypervolume_normalized_b11_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_uniform_synonymous_endpoint_hypervolume_normalized_b11_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_ensembledesign_11run_dense_budget_step_auc_v2_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_ensembledesign_11run_dense_budget_step_auc_v2_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_ensembledesign_11run_endpoint_hypervolume_normalized_b11_mean",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "summary_ensembledesign_11run_endpoint_hypervolume_normalized_b11_median",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "holm_family_size",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:dense_budget_step_auc_v2_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:dense_budget_step_auc_v2_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:dense_budget_step_auc_v2_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:dense_budget_step_auc_v2_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:dense_budget_step_auc_v2_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:endpoint_hypervolume_normalized_b11_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:endpoint_hypervolume_normalized_b11_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:endpoint_hypervolume_normalized_b11_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:endpoint_hypervolume_normalized_b11_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_codongpt:endpoint_hypervolume_normalized_b11_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:dense_budget_step_auc_v2_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:dense_budget_step_auc_v2_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:dense_budget_step_auc_v2_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:dense_budget_step_auc_v2_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:dense_budget_step_auc_v2_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:endpoint_hypervolume_normalized_b11_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:endpoint_hypervolume_normalized_b11_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:endpoint_hypervolume_normalized_b11_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:endpoint_hypervolume_normalized_b11_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_uniform_synonymous:endpoint_hypervolume_normalized_b11_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:dense_budget_step_auc_v2_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:dense_budget_step_auc_v2_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:dense_budget_step_auc_v2_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:dense_budget_step_auc_v2_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:dense_budget_step_auc_v2_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:endpoint_hypervolume_normalized_b11_numeric",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:endpoint_hypervolume_normalized_b11_ci",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:endpoint_hypervolume_normalized_b11_record_effects",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:endpoint_hypervolume_normalized_b11_holm",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_lineardesign_lambda11_minus_ensembledesign_11run:endpoint_hypervolume_normalized_b11_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_csv_row_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "comparison_csv_numeric_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "per_comparator_gate_codongpt",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "per_comparator_gate_uniform_synonymous",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "per_comparator_gate_ensembledesign_11run",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "overall_dense_gate",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "exclusions_frozen",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "audit_generation_call_counts",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_time_matched_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_scientific_gate_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_codonflow_evaluation_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_functional_ood_or_untouched_claim",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "global_gates_remain_closed",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "time_matched_comparison": false,
+  "scientific_gate_passed": false,
+  "rk_g1_pass": false,
+  "external_sota_authorized": false,
+  "sota_claimed": false
+}
