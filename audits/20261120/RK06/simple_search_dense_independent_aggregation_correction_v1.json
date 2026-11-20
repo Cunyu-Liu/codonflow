@@ -1,0 +1,81 @@
+{
+  "schema": "a8-rk06-independent-aggregation-correction-v1",
+  "date": "2026-11-20",
+  "production_unchanged": {
+    "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_unique18_v1.json",
+    "sha256": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052",
+    "runs": 216,
+    "unique_scorer_calls": 108000
+  },
+  "initial_full_independent_recomputation": {
+    "code_commit": "cbf4c65297d4cc29f56a1b7a89f78e43d517b62a",
+    "completed_run_checks": 216,
+    "failed_run_checks": 0,
+    "aggregation_status": "FAILED_BEFORE_REPORT",
+    "failure_log": "simple_search_dense_independent_v2_aggregation_endpoint_failure.console.log",
+    "failure_log_sha256": "8165db7f984801589e580c56a1a372493de8a517ea2aafb70f8baeee0651738a",
+    "report_written": false
+  },
+  "corrections": [
+    {
+      "failure": "StopIteration while aligning independently recomputed primary tests to production",
+      "root_cause": "The independent endpoint label b500_normalized_hv was compared literally with the production label hypervolume_normalized_B500.",
+      "correction": "Added an explicit two-endpoint schema mapping and a regression test. No inference values or production rows were changed.",
+      "fix_commit": "3517115061ba6e6702f03deda3a2dfd29c18994c",
+      "failed_setup_log": "simple_search_dense_independent_unit_tests_v3_endpoint_alias.console.log",
+      "failed_setup_reason": "The first unittest command lacked the project PYTHONPATH and failed during import before running the test body.",
+      "passing_test_log": "simple_search_dense_independent_unit_tests_v4_endpoint_alias.console.log",
+      "passing_test_log_sha256": "8a2e203885f95dbf65f11b53eaf6c790ebea8be04edc0b8e9144e7b9253b6ae7",
+      "tests_passed": "7/7"
+    },
+    {
+      "failure": "TypeError in the external actual-set dense-policy check after the endpoint alignment had passed",
+      "failure_log": "simple_search_dense_independent_v2_endpoint_alias_resume.console.log",
+      "failure_log_sha256": "c09fff6a3204e3414dd5c0ca0edaed3e62ffcb9a020b932bfcc40717fb05355e",
+      "root_cause": "The frozen production policy is an explicit string, while the verifier and finalizer assumed a dictionary schema.",
+      "correction": "Added strict string/dictionary adapters in verifier and finalizer, plus shared regression cases for valid and invalid policies. No external actual-set conversion was introduced.",
+      "fix_commit": "28ec8c1ee1d9d23302ab9460e1a8a609153551ea",
+      "passing_test_log": "simple_search_dense_independent_unit_tests_v5_policy_schema.console.log",
+      "passing_test_log_sha256": "e78ebe030e7950b7e82daa18d77aa0ffd3c8ed2a16b73ffa4de25c5031e46a30",
+      "tests_passed": "8/8"
+    }
+  ],
+  "resume_integrity": {
+    "resume_log": "simple_search_dense_independent_v2_schema_fix_resume.console.log",
+    "resume_log_sha256": "d0c700eded84f46b22f80c2a87f28f46110edcbd2e5eeeb2feb7b415d2301869",
+    "pre_resume_file_manifest": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_independent_v2/pre_endpoint_alias_resume_file_hashes.json",
+    "pre_resume_file_manifest_sha256": "8e9a9fcb1cc4141238ee36dcecf7475b7b961fe651f4a2808c7835b95b6fc942",
+    "saved_check_files": 216,
+    "saved_array_files": 216,
+    "files_compared_before_and_after": 432,
+    "changed_files_after_resume": 0,
+    "new_scoring_calls_during_aggregation_resume": 0,
+    "note": "Only aggregation was rerun from the 216 saved passing checks and 216 arrays. All 432 pre-resume file hashes were byte-identical after the successful report was created."
+  },
+  "final_independent": {
+    "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_independent_v2.json",
+    "sha256": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+    "code_commit": "28ec8c1ee1d9d23302ab9460e1a8a609153551ea",
+    "verifier_sha256": "3e1b7c39d78328d640f1a2b6f5eb4504b27f16c94acc11ec0e740ad0100a810d",
+    "checks_passed": "26/26",
+    "maximum_differences": {
+      "objectives": 0.0,
+      "dense_curve": 0.0,
+      "dense_auc": 0.0,
+      "descriptor_auc": 0.0,
+      "descriptor_hv": 0.0,
+      "secondary": 2.170486013142181e-14,
+      "paired_inference": 0.0,
+      "dominance": 0.0,
+      "method_summary": 0.0
+    }
+  },
+  "finalization": {
+    "path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_finalization_v1.json",
+    "sha256": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947",
+    "checks_passed": "44/44",
+    "claims_path": "/home/codonflow-a8-rk/audits/20261120/RK06/simple_search_dense_claims_v1.json",
+    "claims_sha256": "ddfccf0e6dd14bb99de4623e70e9ad93fe232a4ffded027304ae3ce2d6579ba0"
+  },
+  "scope": "Verifier/finalizer schema corrections only. Production, protocol, saved independent run checks and arrays were not rewritten. The result remains development proxy-search evidence, not functional validation, external SOTA, RK-G1 closure or generator-training authorization."
+}

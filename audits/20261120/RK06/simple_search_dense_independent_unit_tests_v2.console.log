@@ -1,13 +1,5 @@
-...F..
-======================================================================
-FAIL: test_motif_penalty_is_per_codon_input (scripts.tests.test_a8_rk06_verify_simple_search_dense_unique18.IndependentHelperTests)
+......
 ----------------------------------------------------------------------
-Traceback (most recent call last):
-  File "/home/codonflow-a8-rk/scripts/tests/test_a8_rk06_verify_simple_search_dense_unique18.py", line 47, in test_motif_penalty_is_per_codon_input
-    self.assertEqual(independent.independent_motif(sequence), 7.0)
-AssertionError: 11.0 != 7.0
+Ran 6 tests in 0.020s
 
-----------------------------------------------------------------------
-Ran 6 tests in 0.027s
-
-FAILED (failures=1)
+OK

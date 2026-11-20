@@ -1,0 +1,411 @@
+{
+  "schema": "a8-rk06-simple-search-dense-finalization-v1",
+  "status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+  "overall_pass": true,
+  "protocol_sha256": "f144397909b6961d961dd86727003accc63f3fa4d316019686f4c649b52d95fb",
+  "production_sha256": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052",
+  "independent_sha256": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+  "artifact_manifest_sha256": "48baf89bcc582041c9c1647c4274f494e94235e6a7a177478c2a5579bbf8e63d",
+  "production_code_commit": "e59fc3f46da84dec467532519c2f13342f13cc95",
+  "independent_code_commit": "28ec8c1ee1d9d23302ab9460e1a8a609153551ea",
+  "checks": [
+    {
+      "check": "production_overall_pass",
+      "pass": true
+    },
+    {
+      "check": "production_formal_panel",
+      "pass": true
+    },
+    {
+      "check": "production_status",
+      "pass": true
+    },
+    {
+      "check": "independent_overall_pass",
+      "pass": true
+    },
+    {
+      "check": "independent_status",
+      "pass": true
+    },
+    {
+      "check": "protocol_hash_production",
+      "pass": true
+    },
+    {
+      "check": "protocol_hash_independent",
+      "pass": true
+    },
+    {
+      "check": "production_hash_independent",
+      "pass": true
+    },
+    {
+      "check": "manifest_hash",
+      "pass": true
+    },
+    {
+      "check": "artifact_summary_hash",
+      "pass": true
+    },
+    {
+      "check": "run_count",
+      "pass": true
+    },
+    {
+      "check": "unique_scorer_count",
+      "pass": true
+    },
+    {
+      "check": "record_count",
+      "pass": true
+    },
+    {
+      "check": "method_count",
+      "pass": true
+    },
+    {
+      "check": "seed_count",
+      "pass": true
+    },
+    {
+      "check": "six_primary_tests",
+      "pass": true
+    },
+    {
+      "check": "six_dominance_comparisons",
+      "pass": true
+    },
+    {
+      "check": "objective_independence",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "check": "dense_curve_independence",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "check": "inference_independence",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "check": "dominance_independence",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "check": "method_summary_independence",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "check": "external_dense_null",
+      "pass": true
+    },
+    {
+      "check": "no_external_dense_conversion",
+      "pass": true
+    },
+    {
+      "check": "no_untouched",
+      "pass": true
+    },
+    {
+      "check": "no_functional_untouched",
+      "pass": true
+    },
+    {
+      "check": "no_functional_labels",
+      "pass": true
+    },
+    {
+      "check": "no_time_matched_external_claim",
+      "pass": true
+    },
+    {
+      "check": "rk_g1_remains_open",
+      "pass": true
+    },
+    {
+      "check": "no_generator_authorization",
+      "pass": true
+    },
+    {
+      "check": "no_sota_claim",
+      "pass": true
+    },
+    {
+      "check": "manuscript_remains_non_submittable",
+      "pass": true
+    },
+    {
+      "check": "smoke_pass",
+      "pass": true
+    },
+    {
+      "check": "production_unit_tests",
+      "pass": true
+    },
+    {
+      "check": "independent_unit_tests",
+      "pass": true
+    },
+    {
+      "check": "failed_smoke_retained",
+      "pass": true
+    },
+    {
+      "check": "failed_initial_test_retained",
+      "pass": true
+    },
+    {
+      "check": "production_commit_ancestor",
+      "pass": true,
+      "detail": "e59fc3f46da84dec467532519c2f13342f13cc95"
+    },
+    {
+      "check": "independent_commit_ancestor",
+      "pass": true,
+      "detail": "28ec8c1ee1d9d23302ab9460e1a8a609153551ea"
+    },
+    {
+      "check": "frozen_independent_verifier_blob",
+      "pass": true,
+      "detail": "3e1b7c39d78328d640f1a2b6f5eb4504b27f16c94acc11ec0e740ad0100a810d"
+    },
+    {
+      "check": "frozen_blob_a8_rk06_simple_search_dense_unique18.py",
+      "pass": true,
+      "detail": "c6a528ce0eff43dd5249b0f7dc1e8990f26e35eea3e1125e1ffbb4369ac787ba"
+    },
+    {
+      "check": "frozen_blob_a8_rk06_simple_search_dense_unique18_protocol_v1.json",
+      "pass": true,
+      "detail": "f144397909b6961d961dd86727003accc63f3fa4d316019686f4c649b52d95fb"
+    },
+    {
+      "check": "all_run_paths_in_artifact_root",
+      "pass": true
+    },
+    {
+      "check": "independent_manifest_hash",
+      "pass": true
+    }
+  ],
+  "check_counts": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0
+  },
+  "claims": {
+    "population": "unique18 development proxy-search only",
+    "design": "18 records × 3 seeds × 4 methods × 500 real unique scorer calls",
+    "n_runs": 216,
+    "n_unique_scorer_calls": 108000,
+    "dense_metric": "sum(HV_b for b=1..499)/499; B500 is endpoint only; no synthetic origin, trapezoid, missing-budget zero fill, or external actual-set conversion",
+    "method_summary": [
+      {
+        "method": "uniform",
+        "n_runs": 54,
+        "mean_dense_auc": 1.950968565215308,
+        "mean_hv_B500": 2.334063596490794,
+        "mean_endpoint_hv": 2.334063596490794,
+        "mean_hv_B50": 1.4152946703562763,
+        "mean_hv_B100": 1.7188578488832127,
+        "sum_unique_scorer_calls": 27000,
+        "sum_terminal_requests": 27018,
+        "sum_wall_clock_seconds": 20945.031473771203,
+        "sum_scoring_seconds": 20869.626151481643,
+        "sum_generation_cache_proposal_seconds": 16.225387217942625,
+        "sum_dense_metric_and_audit_seconds": 59.179935071617365
+      },
+      {
+        "method": "hill_climbing",
+        "n_runs": 54,
+        "mean_dense_auc": 8.702457019343266,
+        "mean_hv_B500": 16.40276721679599,
+        "mean_endpoint_hv": 16.40276721679599,
+        "mean_hv_B50": 1.2085881841069122,
+        "mean_hv_B100": 3.0682781298455812,
+        "sum_unique_scorer_calls": 27000,
+        "sum_terminal_requests": 27975,
+        "sum_wall_clock_seconds": 21077.843297181185,
+        "sum_scoring_seconds": 21020.672998382244,
+        "sum_generation_cache_proposal_seconds": 8.822805067058653,
+        "sum_dense_metric_and_audit_seconds": 48.34749373188242
+      },
+      {
+        "method": "mh_annealing",
+        "n_runs": 54,
+        "mean_dense_auc": 3.1334561742359406,
+        "mean_hv_B500": 9.840774383389704,
+        "mean_endpoint_hv": 9.840774383389704,
+        "mean_hv_B50": 0.45469180643496365,
+        "mean_hv_B100": 0.7311984667877925,
+        "sum_unique_scorer_calls": 27000,
+        "sum_terminal_requests": 27248,
+        "sum_wall_clock_seconds": 20939.076001615264,
+        "sum_scoring_seconds": 20877.88818777073,
+        "sum_generation_cache_proposal_seconds": 8.987731650937349,
+        "sum_dense_metric_and_audit_seconds": 52.200082193594426
+      },
+      {
+        "method": "areuredi_style",
+        "n_runs": 54,
+        "mean_dense_auc": 0.9016039544569978,
+        "mean_hv_B500": 1.4947335005264264,
+        "mean_endpoint_hv": 1.4947335005264264,
+        "mean_hv_B50": 0.41715440631303946,
+        "mean_hv_B100": 0.6007036953243176,
+        "sum_unique_scorer_calls": 27000,
+        "sum_terminal_requests": 27150,
+        "sum_wall_clock_seconds": 21015.123456662055,
+        "sum_scoring_seconds": 20950.513713391032,
+        "sum_generation_cache_proposal_seconds": 10.632299634162337,
+        "sum_dense_metric_and_audit_seconds": 53.9774436368607
+      }
+    ],
+    "primary_tests": [
+      {
+        "method": "hill_climbing",
+        "comparator": "uniform",
+        "endpoint": "dense_budget_step_auc_v2",
+        "effect": 6.75148845412796,
+        "ci95": [
+          4.942193633861991,
+          8.753959752415268
+        ],
+        "sign_flip_p": 4.999750012499375e-05,
+        "holm_p": 0.0002999850007499625,
+        "supported_advantage": true
+      },
+      {
+        "method": "hill_climbing",
+        "comparator": "uniform",
+        "endpoint": "b500_normalized_hv",
+        "effect": 14.068703620305195,
+        "ci95": [
+          10.421982582759776,
+          18.135617639919914
+        ],
+        "sign_flip_p": 4.999750012499375e-05,
+        "holm_p": 0.0002999850007499625,
+        "supported_advantage": true
+      },
+      {
+        "method": "mh_annealing",
+        "comparator": "uniform",
+        "endpoint": "dense_budget_step_auc_v2",
+        "effect": 1.1824876090206324,
+        "ci95": [
+          0.63110387879515,
+          1.7718689736783468
+        ],
+        "sign_flip_p": 0.0006999650017499125,
+        "holm_p": 0.0006999650017499125,
+        "supported_advantage": true
+      },
+      {
+        "method": "mh_annealing",
+        "comparator": "uniform",
+        "endpoint": "b500_normalized_hv",
+        "effect": 7.506710786898909,
+        "ci95": [
+          5.281172524406616,
+          9.86737619098708
+        ],
+        "sign_flip_p": 4.999750012499375e-05,
+        "holm_p": 0.0002999850007499625,
+        "supported_advantage": true
+      },
+      {
+        "method": "areuredi_style",
+        "comparator": "uniform",
+        "endpoint": "dense_budget_step_auc_v2",
+        "effect": -1.0493646107583101,
+        "ci95": [
+          -1.2737657218109384,
+          -0.8151951305369047
+        ],
+        "sign_flip_p": 4.999750012499375e-05,
+        "holm_p": 0.0002999850007499625,
+        "supported_advantage": false
+      },
+      {
+        "method": "areuredi_style",
+        "comparator": "uniform",
+        "endpoint": "b500_normalized_hv",
+        "effect": -0.8393300959643683,
+        "ci95": [
+          -1.079445859646316,
+          -0.5990155433578945
+        ],
+        "sign_flip_p": 4.999750012499375e-05,
+        "holm_p": 0.0002999850007499625,
+        "supported_advantage": false
+      }
+    ],
+    "bidirectional_strict_dominance_B500": [
+      {
+        "method_a": "areuredi_style",
+        "method_b": "hill_climbing",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.7905429800463901,
+        "mean_fraction_b_strictly_dominated_by_a": 0.012901912901912903,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      },
+      {
+        "method_a": "areuredi_style",
+        "method_b": "mh_annealing",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.9072156561461184,
+        "mean_fraction_b_strictly_dominated_by_a": 0.009523809523809523,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      },
+      {
+        "method_a": "areuredi_style",
+        "method_b": "uniform",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.5995581572518817,
+        "mean_fraction_b_strictly_dominated_by_a": 0.15818389698404578,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      },
+      {
+        "method_a": "hill_climbing",
+        "method_b": "mh_annealing",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.026349884683218017,
+        "mean_fraction_b_strictly_dominated_by_a": 0.6045015524182191,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      },
+      {
+        "method_a": "hill_climbing",
+        "method_b": "uniform",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.012698412698412698,
+        "mean_fraction_b_strictly_dominated_by_a": 0.7780064620652506,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      },
+      {
+        "method_a": "mh_annealing",
+        "method_b": "uniform",
+        "budget": 500,
+        "mean_fraction_a_strictly_dominated_by_b": 0.04940523096551465,
+        "mean_fraction_b_strictly_dominated_by_a": 0.8233510041255849,
+        "interpretation": "secondary proxy-output dominance only; not functional superiority"
+      }
+    ],
+    "statistical_unit": "record; arithmetic mean over seeds 0/1/2 before pairing",
+    "resampling": "20,000 paired record bootstrap and 20,000 paired sign-flip permutations; six Holm tests",
+    "external_actual_set_dense": null,
+    "time_matched_external_comparison": false,
+    "scientific_gate_passed": false,
+    "rk_g1_closed": false,
+    "sota_claim": false,
+    "boundary": "These are real development proxy-search trajectories. Effects do not establish functional effectiveness, CodonFlow-RK improvement, external SOTA, RK-G1 closure, or generator-training readiness."
+  }
+}

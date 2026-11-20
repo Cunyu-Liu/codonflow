@@ -1,0 +1,76 @@
+{
+  "schema": "a8-rk06-independent-run-v1",
+  "protocol_sha256": "f144397909b6961d961dd86727003accc63f3fa4d316019686f4c649b52d95fb",
+  "production_sha256": "9f980b1cd662c90ab420eefe510ec526186eb81cf4681e6551ab1a30ff8e3a5f",
+  "production_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_unique18_v1/runs/C01H6.8b.1/uniform_s0.json",
+  "record_id": "C01H6.8b.1",
+  "seed": 0,
+  "method": "uniform",
+  "pass": true,
+  "errors": [],
+  "n_points": 500,
+  "n_unique_sequences": 500,
+  "protein_identity_pass": true,
+  "objective_max_abs_diff": 0.0,
+  "dense_curve_max_abs_diff": 0.0,
+  "dense_auc_abs_diff": 0.0,
+  "descriptor_auc_abs_diff": 0.0,
+  "descriptor_hv_abs_diff": 0.0,
+  "secondary_max_abs_diff": 1.7763568394002505e-15,
+  "independent_dense_auc": 1.8968597931548936,
+  "independent_dense_area": 946.5330367842919,
+  "independent_hv_B500": 2.113747048253843,
+  "independent_secondary": {
+    "50": {
+      "hypervolume_normalized": 1.5340655718822636,
+      "n_scored": 50,
+      "n_pareto_points": 10,
+      "per_axis_best": [
+        0.7608710920352065,
+        129.0,
+        -0.04264705882352948,
+        -0.0
+      ],
+      "pairwise_ned": 0.2527931172468988
+    },
+    "100": {
+      "hypervolume_normalized": 1.771026643360978,
+      "n_scored": 100,
+      "n_pareto_points": 14,
+      "per_axis_best": [
+        0.7751199803601474,
+        134.39999389648438,
+        -0.04264705882352948,
+        -0.0
+      ],
+      "pairwise_ned": 0.25229005743711624
+    },
+    "500": {
+      "hypervolume_normalized": 2.113747048253843,
+      "n_scored": 500,
+      "n_pareto_points": 26,
+      "per_axis_best": [
+        0.7853026647372519,
+        138.1999969482422,
+        -0.037745098039215774,
+        -0.0
+      ],
+      "pairwise_ned": 0.25213567839195977
+    }
+  },
+  "independent_objectives_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_independent_fix_smoke_v2/independent_arrays/C01H6.8b.1/uniform_s0.npy",
+  "independent_objectives_sha256": "60454d4707b54abc6bebda346d3a4ff8248b936f2c6ef9b3b5d05c634c75f922",
+  "cost": {
+    "cache_before_requests": 0,
+    "unique_scorer_calls": 500,
+    "model_forward_calls": 0,
+    "generator_calls": 500,
+    "terminal_reward_evaluations": 501,
+    "wall_clock_seconds": 100.81920434581116,
+    "search_elapsed_seconds": 100.28462485224009,
+    "scoring_seconds": 100.0884951185435,
+    "generation_cache_proposal_seconds": 0.19612973369657993,
+    "dense_metric_and_audit_seconds": 0.5345794935710728,
+    "worker_per_run": 1
+  }
+}
