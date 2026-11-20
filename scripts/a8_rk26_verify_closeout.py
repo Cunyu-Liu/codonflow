@@ -87,13 +87,15 @@ def main():
     if len(lines)==1:
         cells = [cell.strip() for cell in lines[0].strip().strip('|').split('|')]
         check('registry_11_columns', len(cells)==11, len(cells))
-        check('registry_status_completed', cells[8]=='completed', cells[8])
-        check('registry_science_commit', cells[9]==args.science_commit, cells[9])
-        check('registry_counts', 'single-syn6' in cells[4] and 'double-syn4' in cells[4], cells[4])
-        check('registry_independent_42', 'independent42/42' in cells[7], cells[7])
+        check('registry_status_completed', cells[10].startswith('completed'), cells[10])
+        check('registry_science_commit', args.science_commit in cells[6], cells[6])
+        check('registry_counts', 'single-syn6' in cells[9] and 'double-syn4' in cells[9], cells[9])
+        check('registry_independent_42', 'independent42/42' in cells[8], cells[8])
         check('registry_no_test_or_generator', 'test/untouched untouched' in cells[10] and 'no generator' in cells[10], cells[10])
-        check('registry_run_log_exists', Path(cells[6]).exists(), cells[6])
-        check('registry_data_exists', Path(cells[5]).exists(), cells[5])
+        run_log = ROOT/'rk26_pair_feasibility_independent_console_v1.log'
+        check('registry_run_log_exists', str(run_log) in cells[8] and run_log.exists(), cells[8])
+        data_root = Path(protocol['outputs']['large_artifact_root'])
+        check('registry_data_exists', str(data_root) in cells[5] and data_root.exists(), cells[5])
     exists = subprocess.run(['git','cat-file','-e',args.science_commit+'^{commit}'],cwd=REPO).returncode==0
     ancestor = subprocess.run(['git','merge-base','--is-ancestor',args.science_commit,'HEAD'],cwd=REPO).returncode==0
     check('science_commit_exists',exists,args.science_commit)

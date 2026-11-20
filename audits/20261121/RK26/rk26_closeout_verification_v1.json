@@ -1,0 +1,285 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "independent_42_of_42",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_all_checks_true",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "production_hash_bound",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "protocol_hash_bound",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "row_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "single_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "double_count",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_1_2_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_2_3_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "candidate_closed_not_feasible",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bounded_outcome",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "retrospective_role",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_model_or_endpoint",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_test_or_untouched_access",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk_g1_and_generator_closed",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_facts_csv_gz_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_facts_csv_gz_bytes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_counts_csv_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pair_counts_csv_bytes",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fact_rows_8192",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "counts_rows_2",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_protocol_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_result_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_independent_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_production_script_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_independent_script_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_tests_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_test_console_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_facts_sha256",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_binds_counts_sha256",
+      "pass": true
+    },
+    {
+      "detail": "6 synonymous single-codon variants",
+      "name": "closeout_phrase_30",
+      "pass": true
+    },
+    {
+      "detail": "4 synonymous double-codon variants",
+      "name": "closeout_phrase_31",
+      "pass": true
+    },
+    {
+      "detail": "only **1 synonymous double-codon variant**",
+      "name": "closeout_phrase_32",
+      "pass": true
+    },
+    {
+      "detail": "10/10 PASS",
+      "name": "closeout_phrase_33",
+      "pass": true
+    },
+    {
+      "detail": "42/42 PASS",
+      "name": "closeout_phrase_34",
+      "pass": true
+    },
+    {
+      "detail": "8,192/8,192 rows",
+      "name": "closeout_phrase_35",
+      "pass": true
+    },
+    {
+      "detail": "not a preregistered mechanism experiment",
+      "name": "closeout_phrase_36",
+      "pass": true
+    },
+    {
+      "detail": "Model fits: **0**",
+      "name": "closeout_phrase_37",
+      "pass": true
+    },
+    {
+      "detail": "Functional endpoint evaluations: **0**",
+      "name": "closeout_phrase_38",
+      "pass": true
+    },
+    {
+      "detail": "RK-G1 remains **false**",
+      "name": "closeout_phrase_39",
+      "pass": true
+    },
+    {
+      "detail": "generator training remains **unauthorized**",
+      "name": "closeout_phrase_40",
+      "pass": true
+    },
+    {
+      "detail": "af338407392db625a3deaa76aab923ff1298fe3d",
+      "name": "closeout_phrase_41",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_console_10_ok",
+      "pass": true
+    },
+    {
+      "detail": 1,
+      "name": "one_rk26_registry_row",
+      "pass": true
+    },
+    {
+      "detail": 11,
+      "name": "registry_11_columns",
+      "pass": true
+    },
+    {
+      "detail": "completed; retrospective coverage audit only; test/untouched untouched; no generator; RK-G1=false",
+      "name": "registry_status_completed",
+      "pass": true
+    },
+    {
+      "detail": "`6c142514701188efc7cdf79dd99eaf637685434c`",
+      "name": "registry_science_commit",
+      "pass": true
+    },
+    {
+      "detail": "single-syn6; double-syn4; pair 1–2=4/3 PASS; pair 2–3=2/1 FAIL; candidate confirmatory OOD not supported by sample coverage",
+      "name": "registry_counts",
+      "pass": true
+    },
+    {
+      "detail": "synthetic10/10; independent42/42; raw/clean 8,192 rows exact; closeout evidence-bound; `/home/codonflow-a8-rk/audits/20261121/RK26/rk26_pair_feasibility_independent_console_v1.log`",
+      "name": "registry_independent_42",
+      "pass": true
+    },
+    {
+      "detail": "completed; retrospective coverage audit only; test/untouched untouched; no generator; RK-G1=false",
+      "name": "registry_no_test_or_generator",
+      "pass": true
+    },
+    {
+      "detail": "synthetic10/10; independent42/42; raw/clean 8,192 rows exact; closeout evidence-bound; `/home/codonflow-a8-rk/audits/20261121/RK26/rk26_pair_feasibility_independent_console_v1.log`",
+      "name": "registry_run_log_exists",
+      "pass": true
+    },
+    {
+      "detail": "raw pair SHA256=`873f4ef0b410`; clean pair SHA256=`7acecf37b7ca`; sequence-only facts 8,192 rows under `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk26/mage_pair_feasibility_v1/`",
+      "name": "registry_data_exists",
+      "pass": true
+    },
+    {
+      "detail": "6c142514701188efc7cdf79dd99eaf637685434c",
+      "name": "science_commit_exists",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "science_commit_ancestor_of_head",
+      "pass": true
+    }
+  ],
+  "checks_passed": 54,
+  "checks_total": 54,
+  "closeout_sha256": "2a3675f3c9d6fa5d0f98f36f8b125344a808afc81b21f415be9243f6a4595df0",
+  "generator_training_authorized": false,
+  "independent_report_sha256": "5a61826999015bc448636812e104ed0ff84a20f21b5efc522bf7be5a636632f0",
+  "production_result_sha256": "264d6a6dd4df2cd52738f9f465d6d0bcc67bb9784cb59304e733d7f55f519851",
+  "protocol_sha256": "c49140ae2fe1ebbefa40290caa6b55774f16ae1949168936cb2c69bd205540b4",
+  "rk_g1_pass": false,
+  "schema": "a8-rk26-closeout-verification-v1",
+  "science_commit": "6c142514701188efc7cdf79dd99eaf637685434c",
+  "status": "PASS"
+}
