@@ -970,6 +970,31 @@ Production and coverage synthetic tests passed 14/14 checks, and independent-imp
 
 This result supports a measured 5′ MFE increment for retrospective sequence-cluster transport within one fixed GFP study. It is not independent external confirmation or protein OOD evidence, and it provides no measurement of translation velocity, mRNA decay, or complete spatial coupling. It does not establish CodonFlow-RK superiority, external SOTA, or functional untouched performance. RK-G1 remains false and expensive generator training remains unauthorized; the next appropriate test is an independent fixed-protein functional dataset rather than generator training. The manuscript remains a non-submittable working draft.
 
+### 6.39 Observed-R1 structure did not support fixed-GFP cross-study sequence-cluster transport
+
+RK27 supported a measured 5′ minimum-free-energy (MFE) increment under sequence-cluster holdout within the Kudla fixed-GFP study. RK28 tested whether this structure increment transported to the Mordstein HEK293 fixed-GFP collection. The two analyses did not use equivalent structural measurements: RK28 observed only 300-nucleotide R1 fragments and computed ViennaRNA-predicted MFE features, rather than measuring 5′ MFE over complete Kudla CDSs. Because the 152 variants had already been used for RK02 development, RK28 was prespecified as a retrospective cross-study observed-R1 sequence-cluster transport analysis, not independent untouched confirmation. The protocol and analysis card were frozen before study labels were read; the coverage audit accessed only `variant_id` and `sequence_5prime_300nt`. The RK04 functional-untouched split was not read.
+
+The 152 unique identifiers corresponded to 152 unique 300-nucleotide ACGT sequences. The frozen 90% complete-linkage rule produced 74 sequence clusters, including 35 singletons; the largest cluster contained 12 sequences. Primary-fold sizes were 30, 31, 31, 30, and 30 sequences, with 15, 15, 16, 15, and 13 clusters, respectively. The simple model contained log1p depth, observed-R1 GC3, GC, CpG, and CAI. The structure model added predicted MFE over the full 300-nucleotide fragment and the minimum and mean MFE over 48-nucleotide windows. Ridge and histogram gradient boosting (HistGB) were evaluated over 10 fold-assignment seeds and five folds, giving 300 CPU model fits. Primary inference used 20,000 whole-cluster bootstrap replicates and 20,000 paired whole-cluster simple/structure swaps, with Holm correction across four endpoints.
+
+**Table 11**
+
+*Observed-R1 Structure Increment Under Fixed-GFP HEK293 Sequence-Cluster OOD Evaluation*
+
+| Model | Endpoint | Observed effect | 95% cluster-bootstrap CI | Holm *p* | Positive seeds |
+|---|---|---:|---:|---:|---:|
+| Ridge | ΔSpearman | −0.039264 | [−0.089517, 0.003815] | 0.40397980 | 0/10 |
+| Ridge | MSE improvement | −0.082105 | [−0.174100, 0.014918] | 0.40397980 | 0/10 |
+| HistGB | ΔSpearman | −0.025531 | [−0.136859, 0.078912] | 0.90425479 | 3/10 |
+| HistGB | MSE improvement | −0.133851 | [−0.494481, 0.193206] | 0.90425479 | 5/10 |
+
+*Note.* ΔSpearman = structure − simple; MSE improvement = simple − structure, so positive values favor adding observed-R1 structure. Each endpoint required a positive effect, a 95% CI excluding zero above zero, Holm *p* < 0.05, and the same positive direction in at least 8 of 10 fold-assignment seeds. OOD denotes out-of-distribution; MSE denotes mean squared error.
+
+All four frozen endpoints failed (Table 11). Under the primary seed, ridge Spearman/MSE changed from 0.349548/2.057832 for the simple model to 0.310284/2.139937 for the structure model; the corresponding HistGB values changed from 0.238982/2.585560 to 0.213450/2.719411. Both ridge effects were negative in all 10 seeds, whereas HistGB showed no stable positive direction. Descriptive MFE-only Spearman/MSE values were 0.172049/2.249101 for ridge and 0.119366/2.705108 for HistGB; these arms did not replace the confirmatory structure-versus-simple comparison. The resulting outcome was `FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED`.
+
+The initial production synthetic test incorrectly treated L2-regularized ridge as unregularized ordinary least squares. Testing stopped before study labels were read; only the synthetic expectation was corrected, and the revised test passed 20/20 checks without changing the production model, protocol, or thresholds. The independent verifier reconstructed the features, clustering, fold assignments, all 300 fits, and resampling from the raw CSV without importing production, coverage, or RK02 modules. Its retained initial report passed 53/54 checks because pandas interpreted the literal arm label `null` as missing during a descriptive merge. All numerical results already agreed. Only CSV parsing was corrected, and final independent acceptance passed 54/54 checks. Scientific closeout and registry binding passed 101/101 checks.
+
+These results do not directly contradict RK27 because the study, host, assay, sequence coverage, and structural-feature operationalization differed. They nevertheless reject a strong claim that the structure increment transports generally across studies; they do not establish that structure is universally harmful. RK28 remains limited to retrospective observed-R1 analysis. The unobserved central 138 nucleotides, corresponding to 46 codons, could not be restored, and author-level GFP identity mapping was unavailable. This is not independent untouched or protein-OOD confirmation and provides no complete-CDS measured structure, translation velocity, mRNA decay, or complete spatial-coupling evidence. It does not establish CodonFlow-RK superiority, external SOTA, or functional untouched performance. RK-G1 remains false and expensive generator training remains unauthorized; the manuscript remains a non-submittable working draft.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1333,6 +1358,18 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK27 closeout verification | `cc0a74afd09bd626214d943dfbf74ba23777ee84ee338efeb900f41d0e7af06c` |
 | RK27 manuscript section | `4bac16de3b0bf16164940a522de619d1a3a1d6cbb3b41b19c00786ef49eb88a4` |
 | RK27 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK28 frozen observed-R1 sequence-cluster protocol | `768d3a2b32ca6afb551f55b05e331130f80f15e992a8ca032990271efdc2190e` |
+| RK28 Mordstein source CSV | `3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef` |
+| RK28 label-free observed-R1 coverage | `772a000a15aa53680a03195057e767fbadc670e3d6a1a89c119e479319a644a9` |
+| RK28 observed-R1 sequence-cluster facts | `6944156dc4bc491d1066083d10a35017b2052be33e60e11a58ebe811e8bbbbd1` |
+| RK28 observed-R1 OOF predictions | `bbdaa9dc8d92c3c7ee884fbe02ac745f1873624759930a56835f1c695d62b000` |
+| RK28 observed-R1 training log | `1a073b4df8d1dd9e4a3adcc494790e4bd50ee31c6abfe6c681c09682635bd520` |
+| RK28 observed-R1 sequence-cluster OOD result | `c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f` |
+| RK28 independent observed-R1 OOD verification | `edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1` |
+| RK28 scientific closeout | `2b5ae1dd3c82841d7f836ae0fd53c9c41cc6420ebb041df2b0e4efdf8137315e` |
+| RK28 closeout verification | `deb22cf239ce46dea31a6ee5b08b782ef991d8111116216a091d0155314dd68a` |
+| RK28 manuscript section | `6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2` |
+| RK28 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
