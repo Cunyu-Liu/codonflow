@@ -1,0 +1,288 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill>
+      <fillColor color="rgba(248, 250, 252, 1)" />
+    </fill>
+  </style>
+  <data>
+    <shape type="round-rect" topLeftX="712" topLeftY="24" width="192" height="30" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(220, 252, 231, 1)" />
+      </fill>
+      <border color="rgba(220, 252, 231, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="720" topLeftY="29" width="176" height="20">
+      <content fontSize="10" fontFamily="思源黑体" color="rgba(21, 128, 61, 1)" bold="true" lineSpacing="multiple:1" textAlign="center" wrap="false" textType="caption">
+        <p>IND 24/24 · 9/9 TESTS</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="25" width="640" height="20">
+      <content fontSize="10" fontFamily="思源黑体" color="rgba(37, 99, 235, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false" textType="caption">
+        <p>RK03 · MAGE OOF COMPARATOR CLOSURE</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="56" width="848" height="34">
+      <content fontSize="25" fontFamily="思源黑体" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false" textType="headline">
+        <p>MAGE 对照补全：优于均值，不等于机制增量</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="94" width="848" height="38">
+      <content fontSize="11" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1.2" textAlign="left" wrap="true">
+        <p>131 development OOF · 原 33 test constructs 排除 · post-hoc exploratory · 0 new model fits</p>
+        <p>20,000 bootstrap + 20,000 paired permutations · Holm across 5 tests · three outer-CV seeds</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="56" topLeftY="140" width="272" height="88" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(239, 246, 255, 1)" />
+      </fill>
+      <border color="rgba(147, 197, 253, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="72" topLeftY="150" width="240" height="18">
+      <content fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>FULL MECHANISM RMSE</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="72" topLeftY="172" width="240" height="31">
+      <content fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false" textType="headline">
+        <p>0.03423</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="72" topLeftY="207" width="240" height="15">
+      <content fontSize="8" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" bold="false" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>OOF · primary seed</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="344" topLeftY="140" width="272" height="88" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(239, 246, 255, 1)" />
+      </fill>
+      <border color="rgba(147, 197, 253, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="360" topLeftY="150" width="240" height="18">
+      <content fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>OUTER-TRAIN MEAN RMSE</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="360" topLeftY="172" width="240" height="31">
+      <content fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false" textType="headline">
+        <p>0.0496</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="360" topLeftY="207" width="240" height="15">
+      <content fontSize="8" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" bold="false" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>fold-specific train means only</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="632" topLeftY="140" width="272" height="88" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(239, 246, 255, 1)" />
+      </fill>
+      <border color="rgba(147, 197, 253, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="150" width="240" height="18">
+      <content fontSize="10" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>FULL − MEAN · ΔRMSE</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="172" width="240" height="31">
+      <content fontSize="22" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false" textType="headline">
+        <p>-0.01537</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="648" topLeftY="207" width="240" height="15">
+      <content fontSize="8" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" bold="false" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>95% CI [-0.02594, -0.005729] · Holm p=0.0207</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="240" width="848" height="18">
+      <content fontSize="9" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>THREE EXPLORATORY PAIRED CONTRASTS · POSITIVE Δρ FAVORS CANDIDATE · NEGATIVE ΔRMSE FAVORS CANDIDATE</p>
+      </content>
+    </shape>
+    <table topLeftX="56" topLeftY="264" width="820" height="122">
+      <colgroup>
+        <col width="200" />
+        <col width="230" />
+        <col width="80" />
+        <col width="230" />
+        <col width="80" />
+      </colgroup>
+      <tr height="24">
+        <td>
+          <fill>
+            <fillColor color="rgba(30, 64, 175, 1)" />
+          </fill>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="center">
+            <p>Contrast</p>
+          </content>
+        </td>
+        <td>
+          <fill>
+            <fillColor color="rgba(30, 64, 175, 1)" />
+          </fill>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="center">
+            <p>ΔSpearman [95% CI]</p>
+          </content>
+        </td>
+        <td>
+          <fill>
+            <fillColor color="rgba(30, 64, 175, 1)" />
+          </fill>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="center">
+            <p>Holm p</p>
+          </content>
+        </td>
+        <td>
+          <fill>
+            <fillColor color="rgba(30, 64, 175, 1)" />
+          </fill>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="center">
+            <p>ΔRMSE [95% CI]</p>
+          </content>
+        </td>
+        <td>
+          <fill>
+            <fillColor color="rgba(30, 64, 175, 1)" />
+          </fill>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="center">
+            <p>Holm p</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="30">
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+            <p>Full − RCS arm</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>0.01895 [-0.03536, 0.08121]</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>1</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>7.543e-05 [-0.001305, 0.001341]</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>1</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="30">
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+            <p>RCS arm − intrinsic</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>0.003954 [-0.03607, 0.04842]</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>1</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>1.95e-05 [-0.0007529, 0.0007031]</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>1</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="30">
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="true" lineSpacing="multiple:1" textAlign="left">
+            <p>Full − outer-train mean</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>descriptive only</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>—</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>-0.01537 [-0.02594, -0.005729]</p>
+          </content>
+        </td>
+        <td>
+          <content fontSize="8" fontFamily="思源黑体" color="rgba(71, 85, 105, 1)" bold="false" lineSpacing="multiple:1" textAlign="center">
+            <p>0.0207</p>
+          </content>
+        </td>
+      </tr>
+    </table>
+    <shape type="round-rect" topLeftX="56" topLeftY="402" width="410" height="74" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(239, 246, 255, 1)" />
+      </fill>
+      <border color="rgba(239, 246, 255, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="70" topLeftY="409" width="382" height="58">
+      <content fontSize="8" fontFamily="思源黑体" color="rgba(30, 64, 175, 1)" bold="false" lineSpacing="multiple:1.15" textAlign="left" wrap="true">
+        <p>SEED SIGNS · primary / sensitivity 1 / sensitivity 2</p>
+        <p>Full−mean ΔRMSE: − / − / − · 3/3 favorable</p>
+        <p>Full−RCS Δρ: + / + / + · ΔRMSE: + / − / −</p>
+        <p>RCS−intrinsic Δρ: + / − / − · ΔRMSE: + / + / +</p>
+      </content>
+    </shape>
+    <shape type="round-rect" topLeftX="486" topLeftY="402" width="418" height="74" presetHandlers="12">
+      <fill>
+        <fillColor color="rgba(255, 247, 237, 1)" />
+      </fill>
+      <border color="rgba(255, 247, 237, 1)" width="1" />
+      <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape type="text" topLeftX="500" topLeftY="409" width="390" height="58">
+      <content fontSize="9" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)" bold="false" lineSpacing="multiple:1.2" textAlign="left" wrap="true">
+        <p>结论 · 均值对照方向一致；4/4 机制增量检验 Holm p=1，CI 跨 0</p>
+        <p>DEV_NO_GO_TEST_UNTOUCHED 不变 · no test / transport / generator</p>
+        <p>rcs_only 含 intrinsic；纯外部模型与常数速度臂仍未闭合</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="56" topLeftY="496" width="700" height="18">
+      <content fontSize="8" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" bold="false" lineSpacing="multiple:1" textAlign="left" wrap="true" textType="caption">
+        <p>Evidence: 131 OOF · independent 24/24 · tests 9/9 · 120,000 resamples · GitHub 46f1b7f057</p>
+      </content>
+    </shape>
+    <shape type="text" topLeftX="776" topLeftY="496" width="128" height="18">
+      <content fontSize="9" fontFamily="思源黑体" color="rgba(100, 116, 139, 1)" bold="false" lineSpacing="multiple:1" textAlign="right" wrap="false" textType="caption">
+        <p>RK03 · 2026-11-20</p>
+      </content>
+    </shape>
+  </data>
+  <note>
+    <content>
+      <p>本页只使用既有 MAGE nested-CV 的 131 个 development OOF 预测，原 33 个 test constructs 未读取。没有重新拟合模型，也没有新序列、标签或湿实验。该分析是 post-hoc exploratory comparator closure，不是独立确认。</p>
+      <p>full mechanism 的 RMSE=0.03422820302559988，outer-training-mean 的 RMSE=0.04959854257604538。full−mean ΔRMSE=-0.015370339550445498，95% CI=[-0.0259385856740894, -0.005729286631198561]，raw permutation p=0.004149792510374482，五检验 Holm p=0.020748962551872408。三个 seed 的 ΔRMSE 分别为 -0.015370339550445498, -0.01175266432845904, -0.01132139189895405。</p>
+      <p>full−rcs_only：ΔSpearman=0.01894551686269652，95% CI=[-0.035360666095523505, 0.0812104898567834]，Holm p=1.0；ΔRMSE=7.54291571132687e-05，95% CI=[-0.001304659287456654, 0.0013410731145082557]，Holm p=1.0。</p>
+      <p>rcs_only−intrinsic：ΔSpearman=0.003953545226666688，95% CI=[-0.0360723999783062, 0.04841834750571718]，Holm p=1.0；ΔRMSE=1.9499256082820826e-05，95% CI=[-0.0007529122397496208, 0.0007030615007199467]，Holm p=1.0。</p>
+      <p>outer-training mean 在每个 outer fold 内只用训练折标签均值，但不同 fold 的均值可变，因此其 OOF Spearman 只作描述，不作配对 Spearman 推断。rcs_only 是冻结臂名，实际包含 intrinsic+RCS，不是纯外部预训练模型。独立复核 24/24、单元测试 9/9 通过。DEV_NO_GO_TEST_UNTOUCHED 不变；未授权 test、transport、生成器训练或 SOTA 结论。科学代码提交为 46f1b7f057f479da9547745c5fa657bdfff00a21。</p>
+    </content>
+  </note>
+</slide>

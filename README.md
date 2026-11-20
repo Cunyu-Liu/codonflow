@@ -105,6 +105,32 @@ A8 v27 SHA256=`c745b3e73b7d9f380f7c0ce326cc5fba2cfae769273b2e58f606a73dba9e0952`
 
 结果已写入在线主稿第 103 页（`pgM`，revision 65）：写前 **35/35 PASS**，整稿写后 **47/47 PASS**，前 102 页语义 XML 全部不变。写后规范化只允许服务端显式化 `col@span=1` 和分配 ID；首次 46/47 失败报告保留。该 bounded 子任务已闭合，但不关闭四物种 harmonization、自然分布报告、机制效度、RK-G1、生成训练授权或 manuscript submittability。
 
+## A8-RK：MAGE 既有 OOF 对照补全
+
+本项只读取 nested-development 已冻结的 131 constructs × 3 seeds OOF 预测，不重训、不读取 33 个 mechanism-test constructs。`rcs_only` 含 intrinsic+RCS；outer-train mean 按 fold 仅用该 fold 之外的 development 标签。科学结论是“full 优于 fold-specific train-mean，不等于机制增量”，`DEV_NO_GO_TEST_UNTOUCHED` 不变。
+
+```bash
+cd /home/codonflow-a8-rk
+export PYTHONDONTWRITEBYTECODE=1
+PY=python3  # system Python with NumPy/SciPy; miniconda base lacks NumPy
+CFG=configs/a8_rk03_mage_oof_comparator_closure_protocol_v2.json
+A=audits/20261120/RK03
+
+$PY -m unittest scripts.tests.test_a8_rk03_mage_oof_comparator_closure -v
+
+$PY scripts/a8_rk03_mage_oof_comparator_closure.py \
+  --protocol "$CFG" --output "$A/mage_oof_comparator_closure_v2.json"
+
+$PY scripts/a8_rk03_verify_mage_oof_comparator_closure.py \
+  --protocol "$CFG" \
+  --production "$A/mage_oof_comparator_closure_v2.json" \
+  --output "$A/mage_oof_comparator_closure_independent_v2.json"
+```
+
+预期为 **9/9 tests、24/24 independent PASS**，容差 `1e-12`。primary 使用 20,000 construct bootstrap + 20,000 paired permutations，五检验统一 Holm；0 new fits、0 new scorer calls。full−outer-train-mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，Holm p=`0.020748962551872408`；full−RCS 与 RCS−intrinsic 的四项机制检验 Holm p=1。v1 协议技术失败、环境兼容失败和 v2 更正记录均保留，不得删除。
+
+在线主稿第 **104 页 `pgz`、revision 66** 已记录：候选 **20/20 PASS**，写后 **29/29 PASS**，前 103 页 ID/顺序保留，真实截图无裁切、重叠或缺失。构建器与写后核验器为 `scripts/a8_rk03_build_mage_oof_comparator_ppt.py`、`scripts/a8_rk03_verify_mage_oof_comparator_ppt.py`；后者只有在人工检查真实截图后才可传 `--visual-pass true`。小型报告在 `audits/20261120/RK03/`，大型 XML/截图在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_oof_comparator_v1/`。初版 29/31 过严备注验收和 verifier-only 更正记录保留。论文增量排在 RK06 当前精确基线更新之后，避免覆盖其稿件变更。
+
 ## 目录
 
 ```

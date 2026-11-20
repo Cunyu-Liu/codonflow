@@ -1,0 +1,49 @@
+# content：页面文字/数据不截断，不含演讲者备注；图片及嵌入对象未解析，样式不完整，修改时仍须读 raw XML。
+# 表格 r/c 表示 XML 行/格顺序，跨行跨列另标 span；字符串中的 \n 表示原文换行。
+
+## slide 104 id="pgz"
+[shape id="bTCr"]
+[shape id="bTUk"] "IND 24/24 · 9/9 TESTS"
+[shape id="bTUc"] "RK03 · MAGE OOF COMPARATOR CLOSURE"
+[shape id="bTUl"] "MAGE 对照补全：优于均值，不等于机制增量"
+[shape id="bTCP"] "131 development OOF · 原 33 test constructs 排除 · post-hoc exploratory · 0 new model fits\n20,000 bootstrap + 20,000 paired permutations · Holm across 5 tests · three outer-CV seeds"
+[shape id="bTCE"]
+[shape id="bTUh"] "FULL MECHANISM RMSE"
+[shape id="bTUG"] "0.03423"
+[shape id="bTUi"] "OOF · primary seed"
+[shape id="bTCF"]
+[shape id="bTCb"] "OUTER-TRAIN MEAN RMSE"
+[shape id="bTUa"] "0.0496"
+[shape id="bTUm"] "fold-specific train means only"
+[shape id="bTUy"]
+[shape id="bTCj"] "FULL − MEAN · ΔRMSE"
+[shape id="bTCg"] "-0.01537"
+[shape id="bTUT"] "95% CI [-0.02594, -0.005729] · Holm p=0.0207"
+[shape id="bTUO"] "THREE EXPLORATORY PAIRED CONTRASTS · POSITIVE Δρ FAVORS CANDIDATE · NEGATIVE ΔRMSE FAVORS CANDIDATE"
+[table id="bTUU"]
+  r1c1 id="bTUC" fillColor.color="rgba(30, 64, 175, 1)" content.color="rgba(255, 255, 255, 1)": "Contrast"
+  r1c2 id="bTUd" fillColor.color="rgba(30, 64, 175, 1)" content.color="rgba(255, 255, 255, 1)": "ΔSpearman [95% CI]"
+  r1c3 id="bTCY" fillColor.color="rgba(30, 64, 175, 1)" content.color="rgba(255, 255, 255, 1)": "Holm p"
+  r1c4 id="bTCq" fillColor.color="rgba(30, 64, 175, 1)" content.color="rgba(255, 255, 255, 1)": "ΔRMSE [95% CI]"
+  r1c5 id="bTCA" fillColor.color="rgba(30, 64, 175, 1)" content.color="rgba(255, 255, 255, 1)": "Holm p"
+  r2c1 id="bTUL" content.color="rgba(71, 85, 105, 1)": "Full − RCS arm"
+  r2c2 id="bTUx" content.color="rgba(71, 85, 105, 1)": "0.01895 [-0.03536, 0.08121]"
+  r2c3 id="bTUt" content.color="rgba(71, 85, 105, 1)": "1"
+  r2c4 id="bTCW" content.color="rgba(71, 85, 105, 1)": "7.543e-05 [-0.001305, 0.001341]"
+  r2c5 id="bTCN" content.color="rgba(71, 85, 105, 1)": "1"
+  r3c1 id="bTCn" content.color="rgba(71, 85, 105, 1)": "RCS arm − intrinsic"
+  r3c2 id="bTUM" content.color="rgba(71, 85, 105, 1)": "0.003954 [-0.03607, 0.04842]"
+  r3c3 id="bTUB" content.color="rgba(71, 85, 105, 1)": "1"
+  r3c4 id="bTUS" content.color="rgba(71, 85, 105, 1)": "1.95e-05 [-0.0007529, 0.0007031]"
+  r3c5 id="bTCs" content.color="rgba(71, 85, 105, 1)": "1"
+  r4c1 id="bTCp" content.color="rgba(71, 85, 105, 1)": "Full − outer-train mean"
+  r4c2 id="bTCQ" content.color="rgba(71, 85, 105, 1)": "descriptive only"
+  r4c3 id="bTUR" content.color="rgba(71, 85, 105, 1)": "—"
+  r4c4 id="bTUo" content.color="rgba(71, 85, 105, 1)": "-0.01537 [-0.02594, -0.005729]"
+  r4c5 id="bTUf" content.color="rgba(71, 85, 105, 1)": "0.0207"
+[shape id="bTUX"]
+[shape id="bTCu"] "SEED SIGNS · primary / sensitivity 1 / sensitivity 2\nFull−mean ΔRMSE: − / − / − · 3/3 favorable\nFull−RCS Δρ: + / + / + · ΔRMSE: + / − / −\nRCS−intrinsic Δρ: + / − / − · ΔRMSE: + / + / +"
+[shape id="bTCe"]
+[shape id="bTCH"] "结论 · 均值对照方向一致；4/4 机制增量检验 Holm p=1，CI 跨 0\nDEV_NO_GO_TEST_UNTOUCHED 不变 · no test / transport / generator\nrcs_only 含 intrinsic；纯外部模型与常数速度臂仍未闭合"
+[shape id="bTUK"] "Evidence: 131 OOF · independent 24/24 · tests 9/9 · 120,000 resamples · GitHub 46f1b7f057"
+[shape id="bTUD"] "RK03 · 2026-11-20"

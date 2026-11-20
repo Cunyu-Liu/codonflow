@@ -213,3 +213,11 @@
 - [x] A8 v27 新增 6.23 节与六个证据 anchors，论文 61/61、候选事实 30/30 通过，v26 逐字恢复核验通过；仍为 non-submittable working manuscript。科学证据 commit=`c0fd2b32a4919734747214ae06336efb67e03dcd`，论文 commit=`c5046b9c25a700f6231f0411b95f4d881dcda5d8`。
 - [x] 在线 PPT 第 103 页 `pgM`、revision 65：写前 35/35、写后整稿 47/47 通过，前 102 页语义 XML 全部不变；首次 46/47 报告保留，唯一差异为服务端显式化 schema-default `col@span=1`。PPT 证据 commit=`dc567587aa9b3a1db67be0fcebcd26fdf450e16a`。
 - [ ] 本 bounded 子任务不下载 reads、不构建 UTR–CDS、不执行 raw-read/P-site 重比对，也不生成四个非 E. coli harmonized matrices；自然分布报告、机制验证、模型训练、RK-G1、昂贵生成训练授权与可投稿论文仍未关闭。
+
+## 2026-11-20 RK03 MAGE OOF comparator closure
+
+- [x] 仅基于既有 131×3 development OOF 冻结预测完成 full−RCS、RCS−intrinsic、full−outer-train-mean 三项探索对照；0 new fits、0 new scorer calls、33 test constructs 未读取。`rcs_only` 明确为 intrinsic+RCS；fold-specific train means 无 evaluation-fold 标签泄漏。
+- [x] v1 的全局常数 Spearman 技术假设失败保留，v2 改为均值基线仅作 RMSE 推断。最终 9/9 tests、24/24 independent PASS；五检验 Holm、20,000 bootstrap + 20,000 paired permutations、三 outer-seed 点估计完整。科学证据 commit=`46f1b7f057f479da9547745c5fa657bdfff00a21`。
+- [x] full−mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，Holm p=`0.020748962551872408`，三 seeds 均负；full−RCS 与 RCS−intrinsic 四项机制检验 Holm p=1、CI 跨 0，敏感性方向不稳定。结论为优于均值但不等于机制增量，`DEV_NO_GO_TEST_UNTOUCHED` 与 RK-G1=false 不变。
+- [x] 在线 PPT 第 104 页 `pgz`、revision 66：候选 20/20、写后 29/29 PASS，前 103 页 ID/顺序保留，真实截图无裁切/重叠/缺失；初版 29/31 过严备注要求及 verifier-only 更正记录保留。未重复加页。
+- [ ] 论文 section/anchors 待 RK06 正在运行的精确基线更新结束后，再按最新实时稿件 append-only 同步；不得覆盖 RK06 论文增量。纯外部模型、常数速度场、functional untouched、transport、生成器授权和可投稿状态仍未关闭。

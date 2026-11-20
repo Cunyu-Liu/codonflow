@@ -558,3 +558,26 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 整稿回读确认 103 页，前 102 页 ID、顺序和语义 XML 全部不变；新页文本、备注、表格与候选一致。首次写后为 **46/47 PASS**，唯一失败是服务端仅在七个 `<col>` 上显式化 schema-default `span=1`；失败报告保留。核验器只规范化该默认属性和服务端分配 ID，文本、数值、表格、几何及其他属性仍严格比较，最终 **47/47 PASS**，远端仓库独立重跑结果相同。
 - 候选 XML、写前/写后报告、首次失败报告、真实写入响应和核验脚本位于 `audits/20261120/RK03/`，大型基线/回读 XML 与完整证据位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_source_feasibility_v1/`。PPT 证据 commit=`dc567587aa9b3a1db67be0fcebcd26fdf450e16a`，已推送。当前在线主稿真实状态为 **103 页、revision 65、末页 `pgM`**，不得重复追加本页。
 - PPT 记录不产生 reads 下载、UTR–CDS、重比对、P-site、机制或模型结果，不关闭 RK-G1，不授权生成器训练，也不使 manuscript 变为可提交。
+
+## 32. MAGE 既有 OOF 对照补全与在线 PPT 第 104 页
+
+### 冻结分析、失败更正与独立复核
+
+- 本项只复用 nested-development 已冻结的 **131 constructs × 3 outer seeds** OOF 预测，不重训、不读取新序列或标签、不接触原 33 个 mechanism-test constructs，也不改变 `DEV_NO_GO_TEST_UNTOUCHED`。保留 intrinsic、local-MFE、`rcs_only`、full-mechanism 四个冻结臂；其中 `rcs_only` 实际包含 intrinsic+RCS，不能写成纯外部预训练模型。
+- v2 协议新增三项 development-only 探索对照：full−RCS、RCS−intrinsic 和 full−outer-train-mean。前两项各检验 ΔSpearman/ΔRMSE，均值基线只作 RMSE 推断；五检验统一 Holm，primary 为 20,000 construct bootstrap + 20,000 paired permutations，另两个 outer seeds 仅报告点估计。outer-train mean 在每个 fold 只使用该 fold 之外的 development 标签均值，独立复核确认无 evaluation-fold 标签泄漏。
+- v1 错把 fold-specific train means 当成全局常数并要求 Spearman=null，正式运行在技术门禁失败，未生成 production report；v2 明确 fold 间 train mean 可变，OOF Spearman 仅描述、不作 paired Spearman 推断。v1/v2 协议、环境兼容失败、v1 技术失败和更正记录全部保留。
+- 最终 **9/9 tests、24/24 independent PASS**，独立实现以 `1e-12` 容差重算模型指标、效应、CI、置换、Holm、三 seed 点估计及均值基线无泄漏条件。0 new fits、0 new scorer calls；primary 共 120,000 resample replicates，production wall time=55.9064832450822 s。科学代码与证据 commit=`46f1b7f057f479da9547745c5fa657bdfff00a21`，已推送。
+
+### 结果、边界与论文同步顺序
+
+- full RMSE=`0.03422820302559988`，outer-train mean RMSE=`0.04959854257604538`；full−mean ΔRMSE=`-0.015370339550445498`，95% CI=`[-0.0259385856740894,-0.005729286631198561]`，Holm p=`0.020748962551872408`，三个 seeds 均为负。结论仅为优于 fold-specific train-mean baseline。
+- full−RCS：ΔSpearman=`0.01894551686269652`，95% CI=`[-0.035360666095523505,0.0812104898567834]`；ΔRMSE=`0.0000754291571132687`，95% CI=`[-0.001304659287456654,0.0013410731145082557]`。RCS−intrinsic：ΔSpearman=`0.003953545226666688`，95% CI=`[-0.0360723999783062,0.04841834750571718]`；ΔRMSE=`0.000019499256082820826`，95% CI=`[-0.0007529122397496208,0.0007030615007199467]`。四项机制对照 Holm p=1，敏感性方向不稳定，不能宣称机制增量。
+- 纯外部预训练模型替代、独立常数速度场臂、functional untouched、transport 和 generator authorization 均未闭合。RK-G1=false，昂贵生成训练仍未授权。
+- 为避免与正在运行的 RK06 finalization/paper updater 争用 v27 精确增量基线，本项论文 section/anchors 暂不改写；待 RK06 论文更新完成后再以最新实时稿件追加 MAGE comparator 证据。当前科学审计和 PPT 已闭合，manuscript 仍是 non-submittable working manuscript。
+
+### 第 104 页写入、回读与视觉验收
+
+- 写前实时基线为 **103 页、revision 65、末页 `pgM`**。候选页由 production/independent JSON 和 9/9 测试日志程序化生成，含三张 RMSE 卡、三行探索对照、三 seed 方向及边界；候选 **20/20 preflight PASS**。首次 CLI 参数校验失败未发生外部写入，错误响应保留。
+- 成功追加第 **104 页 `pgz`，revision 66**。完整 XML 回读确认 104 页、前 103 页 slide ID/顺序不变、marker 仅一次，新页可见文字和备注与候选语义一致；真实截图人工检查标题、卡片、表格、底部结论均完整，无裁切、重叠或缺失。
+- 写后最终 **29/29 PASS**。初版验收器额外要求两个探索对照的 raw permutation p 必须写入备注，得到 29/31；页面按冻结设计已含 CI/Holm p，raw p 保留在科学 JSON，因此只更正验收规则，页面、科学数值和容差均未改。失败报告、更正记录和最终报告均保留。远端 closeout 复跑先因 miniconda base 缺 NumPy 在测试导入阶段失败，v5 日志保留；改用本项既有 system Python 后 v6 为 **9/9 tests + 29/29 PPT PASS**，远端报告 SHA 与本地最终报告完全一致。
+- PPT builder=`scripts/a8_rk03_build_mage_oof_comparator_ppt.py`，写后 verifier=`scripts/a8_rk03_verify_mage_oof_comparator_ppt.py`；小型候选/响应/报告位于 `audits/20261120/RK03/`，大型 baseline/readback XML 与截图位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/ppt_mage_oof_comparator_v1/`。当前在线主稿真实状态为 **104 页、revision 66、末页 `pgz`**，不得重复追加本页。

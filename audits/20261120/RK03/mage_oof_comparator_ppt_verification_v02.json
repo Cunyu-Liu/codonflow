@@ -1,0 +1,168 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-ppt-verification-v1",
+  "overall_pass": true,
+  "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "revision_id": 66,
+  "slide_id": "pgz",
+  "slide_number": 104,
+  "candidate_sha256": "dc188cd64d9d00e70888ba722397bdf884c0942b2e55e8d3f1f340c268754dd5",
+  "readback_xml_sha256": "a9c7d1e662627181554792a68e94ae43eb90f37cee788ce99f318212a4590055",
+  "production_sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+  "independent_sha256": "bbe8a7dc75f8573435b7d4cb5f97360be88c77f7caa60bacf6ac0d310957c745",
+  "screenshot_sha256": "7b71ec7f3b8a0f8bf21ff245ac5ae4d1823868fb9fb6a8a7e1115a6d97a77e53",
+  "visual_review": "PASS_no_clipping_overlap_or_missing_text",
+  "check_counts": {
+    "passed": 29,
+    "total": 29
+  },
+  "checks": [
+    {
+      "name": "add_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "readback_response_ok",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "exactly_one_page_appended",
+      "pass": true,
+      "detail": {
+        "baseline": 103,
+        "readback": 104
+      }
+    },
+    {
+      "name": "all_old_slide_ids_and_order_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "appended_slide_id_and_position",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "single_marker_in_full_deck",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visible_text_semantic_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "speaker_notes_semantic_identity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "preflight_pass_and_candidate_hash",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "independent_binds_production",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_outer_train_mean_delta_rmse",
+      "pass": true,
+      "detail": "-0.015370339550445498"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_outer_train_mean_delta_rmse_ci95",
+      "pass": true,
+      "detail": "[-0.0259385856740894, -0.005729286631198561]"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_outer_train_mean_holm_p_rmse",
+      "pass": true,
+      "detail": "0.020748962551872408"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_outer_train_mean_permutation_p_rmse",
+      "pass": true,
+      "detail": "0.004149792510374482"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_delta_rmse",
+      "pass": true,
+      "detail": "7.54291571132687e-05"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_delta_rmse_ci95",
+      "pass": true,
+      "detail": "[-0.001304659287456654, 0.0013410731145082557]"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_holm_p_rmse",
+      "pass": true,
+      "detail": "1.0"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_delta_spearman",
+      "pass": true,
+      "detail": "0.01894551686269652"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_delta_spearman_ci95",
+      "pass": true,
+      "detail": "[-0.035360666095523505, 0.0812104898567834]"
+    },
+    {
+      "name": "notes_exact_full_mechanism_minus_rcs_only_holm_p_spearman",
+      "pass": true,
+      "detail": "1.0"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_delta_rmse",
+      "pass": true,
+      "detail": "1.9499256082820826e-05"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_delta_rmse_ci95",
+      "pass": true,
+      "detail": "[-0.0007529122397496208, 0.0007030615007199467]"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_holm_p_rmse",
+      "pass": true,
+      "detail": "1.0"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_delta_spearman",
+      "pass": true,
+      "detail": "0.003953545226666688"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_delta_spearman_ci95",
+      "pass": true,
+      "detail": "[-0.0360723999783062, 0.04841834750571718]"
+    },
+    {
+      "name": "notes_exact_rcs_only_minus_intrinsic_holm_p_spearman",
+      "pass": true,
+      "detail": "1.0"
+    },
+    {
+      "name": "scientific_gate_unchanged",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "real_screenshot_returned",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "visual_review_pass",
+      "pass": true,
+      "detail": "Title/cards/table/footer inspected: no clipping, overlap, or missing text"
+    }
+  ]
+}

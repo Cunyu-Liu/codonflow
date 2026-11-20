@@ -1,0 +1,33 @@
+{
+  "schema": "a8-rk03-mage-oof-comparator-ppt-verifier-correction-v1",
+  "status": "PASS_AFTER_VERIFIER_REQUIREMENT_CORRECTION",
+  "online_slide_modified_during_correction": false,
+  "slide_id": "pgz",
+  "revision_id": 66,
+  "candidate_sha256": "dc188cd64d9d00e70888ba722397bdf884c0942b2e55e8d3f1f340c268754dd5",
+  "readback_xml_sha256": "a9c7d1e662627181554792a68e94ae43eb90f37cee788ce99f318212a4590055",
+  "initial_failed_verification": {
+    "path": "mage_oof_comparator_ppt_verification_v01.json",
+    "sha256": "180ed8a039c4c1c49ab3e1596dad65f386cb8dc60ad765d7e95f0cdbacf6d826",
+    "check_counts": {"passed": 29, "total": 31},
+    "failed_checks": [
+      "notes_exact_full_mechanism_minus_rcs_only_permutation_p_rmse",
+      "notes_exact_rcs_only_minus_intrinsic_permutation_p_rmse"
+    ],
+    "cause": "Verifier v1 over-specified the intended slide-notes schema by requiring raw permutation p values for the two exploratory feature contrasts. The frozen slide design reports their effect estimates, confidence intervals, and Holm-adjusted p values; raw permutation p values remain available in the production and independent reports. The full-minus-mean raw permutation p remains mandatory in the notes."
+  },
+  "correction": {
+    "changed": "verifier_only",
+    "visible_slide_or_speaker_notes_changed": false,
+    "scientific_values_changed": false,
+    "tolerances_relaxed": false,
+    "final_verifier_sha256": "235cc589181d4e72d1819214094ca96c0318693355da2f7989b5df5ef401f166"
+  },
+  "final_verification": {
+    "path": "mage_oof_comparator_ppt_verification_v02.json",
+    "sha256": "1cc491fb333461eaacc39324f7d2b30fc3d519ab628152db02771e110f70cb74",
+    "overall_pass": true,
+    "check_counts": {"passed": 29, "total": 29},
+    "visual_review": "PASS_no_clipping_overlap_or_missing_text"
+  }
+}
