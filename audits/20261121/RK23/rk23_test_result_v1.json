@@ -1,0 +1,504 @@
+{
+  "command": [
+    "/root/miniconda3/envs/codonflow/bin/python",
+    "-m",
+    "scripts.a8_rk23_run_boel_uh",
+    "--protocol",
+    "audits/20261121/RK23/a8_rk23_boel_uh_protocol_v1.json",
+    "--evaluation-splits",
+    "train",
+    "dev",
+    "test",
+    "--frozen-test-confirmation",
+    "--dev-result",
+    "audits/20261121/RK23/rk23_dev_result_v1.json",
+    "--model-artifact",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/dev/rk23_models.pkl",
+    "--output-result",
+    "audits/20261121/RK23/rk23_test_result_v1.json",
+    "--output-predictions",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_predictions.csv.gz",
+    "--resampling-prefix",
+    "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_resampling"
+  ],
+  "dev_prediction_sha256_by_name": {
+    "primary_contrast_augmented_histgb": "8156ff1d82e3722d301f38a0707704bb4bd7395290695e64cca4e6673bc163cf",
+    "primary_contrast_augmented_logistic": "7268174911a50da699964c7999fe60bb1714c1ab077d65e1a0610af0909b4f3f",
+    "primary_contrast_base_histgb": "c5f371cfefc3b9a8ab42c862e16804843bc9093a163330040dc31fd89b8c6dc6",
+    "primary_contrast_base_logistic": "27ab742036d314741843a9c7cc3a2e5bcfe84b0c4d090b1d035a3eab2a6f39b4",
+    "secondary_descriptive_contrast_augmented_histgb": "60fbfa2da097fe9bcc949d1285fd7c3efcd5d62338f58bd4508113cfb248178f",
+    "secondary_descriptive_contrast_augmented_logistic": "3fe12b2829b3ab5e495dbc20d868d0117963d4be520aafe63cdba2032150b7a8",
+    "secondary_descriptive_contrast_base_histgb": "1f997fe1892d251233bde9c0691848bcf92f5846eda72dad8bfa6d3ee47bd021",
+    "secondary_descriptive_contrast_base_logistic": "2392ab0d29924f05b2008054d04939cf4c142688882642eb92f5868eba7d8795"
+  },
+  "dev_result": "/home/codonflow-a8-rk/audits/20261121/RK23/rk23_dev_result_v1.json",
+  "dev_result_sha256": "34835f68a6e40826361d168bd412165e52462c0f8080dffced7745ebcb6b77b2",
+  "environment": {
+    "numpy": "2.2.6",
+    "python": "3.10.22",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2"
+  },
+  "evaluation_splits": [
+    "train",
+    "dev",
+    "test"
+  ],
+  "functional_untouched_accessed": false,
+  "functional_untouched_confirmed": false,
+  "gate": {
+    "all_four_test_ci_lower_bounds_above_zero": true,
+    "all_four_test_effects_positive": true,
+    "all_four_test_holm_p_below": 0.05,
+    "generator_training_authorized": false,
+    "otherwise_state": "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_NOT_FULLY_SUPPORTED",
+    "pass_state": "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_SUPPORTED_LIMITED_SCOPE",
+    "reason": "Boel is cross-protein and non-synonymous; this experiment alone cannot establish fixed-protein synonymous spatial coupling, velocity/decay mechanisms, external SOTA or generator readiness.",
+    "rk_g1_remains_false_even_if_pass": true
+  },
+  "generator_training_authorized": false,
+  "implementation_sha256": "4a95f1737cbdc62c8ebd95ba63e37ee12c3849c8976e638911604aa9b479dd16",
+  "model_artifact": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/dev/rk23_models.pkl",
+  "model_artifact_sha256": "17ca8844bde48ed5eeafe488b86134502a5399bda5bcaebbe621cb02ccf085f8",
+  "prediction_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_predictions.csv.gz",
+  "prediction_file_sha256": "fdc2e2e81b10faf9b0b053ab820925efcdb9fbcb2c364328848dd9e23207dd00",
+  "prohibited_claims": [
+    "fixed-protein synonymous OOD validation",
+    "functional untouched confirmation",
+    "velocity or decay mechanism validation",
+    "causal isolation of the UTR from folding-algorithm or correlated sequence effects",
+    "CodonFlow-RK generator evidence",
+    "SOTA or external baseline ranking",
+    "use of optimized-construct model prediction quantiles as functional ground truth",
+    "use of MAGE functional_untouched for fitting, tuning or evaluation"
+  ],
+  "protocol_id": "a8_rk23_boel_initiation_structure_protein_ood_v1",
+  "protocol_sha256": "dd5f921190ee7107a1354432680847ee211ce817927c45dd751ff343611fd645",
+  "rk07_evaluate_dependency_sha256": "63a229e5e2b406939d217bb7ad6dc29180814f833d063cb9d2caa441f84a2b08",
+  "rk_g1": false,
+  "scientific_scope": "Boel 2016 cross-protein, non-synonymous ordinal expression data; protein-cluster OOD transport of an initiation-structure feature. This is not a fixed-protein synonymous-library test, not functional untouched, and not SOTA evidence.",
+  "split_results": {
+    "dev": {
+      "metrics": {
+        "primary_contrast_augmented_histgb": {
+          "mae": 1.680470073412277,
+          "mse": 3.890620091204472,
+          "n": 635,
+          "pearson": 0.20728113502572743,
+          "rmse": 1.9724654854279382,
+          "spearman": 0.24155371509781637,
+          "top10_e5_enrichment": 1.2733957219251337
+        },
+        "primary_contrast_augmented_logistic": {
+          "mae": 1.6829979835357693,
+          "mse": 3.7813794530260436,
+          "n": 635,
+          "pearson": 0.220849661941367,
+          "rmse": 1.9445769342008672,
+          "spearman": 0.22336139700630508,
+          "top10_e5_enrichment": 1.4325701871657754
+        },
+        "primary_contrast_base_histgb": {
+          "mae": 1.6981812245654428,
+          "mse": 3.9262301824291486,
+          "n": 635,
+          "pearson": 0.18977905611612106,
+          "rmse": 1.9814717213296658,
+          "spearman": 0.2182507627696166,
+          "top10_e5_enrichment": 1.2733957219251337
+        },
+        "primary_contrast_base_logistic": {
+          "mae": 1.6924090556443796,
+          "mse": 3.8056771692362754,
+          "n": 635,
+          "pearson": 0.20646781151261173,
+          "rmse": 1.950814488678069,
+          "spearman": 0.212869675569568,
+          "top10_e5_enrichment": 1.2203375668449197
+        },
+        "secondary_descriptive_contrast_augmented_histgb": {
+          "mae": 1.6715682224311934,
+          "mse": 3.8848871040984183,
+          "n": 635,
+          "pearson": 0.21299480798933687,
+          "rmse": 1.9710116955762638,
+          "spearman": 0.24308390060405954,
+          "top10_e5_enrichment": 1.538686497326203
+        },
+        "secondary_descriptive_contrast_augmented_logistic": {
+          "mae": 1.68544953833474,
+          "mse": 3.7872209309521048,
+          "n": 635,
+          "pearson": 0.21787449970921885,
+          "rmse": 1.946078346560617,
+          "spearman": 0.22363626661184757,
+          "top10_e5_enrichment": 1.4325701871657754
+        },
+        "secondary_descriptive_contrast_base_histgb": {
+          "mae": 1.7118209343403585,
+          "mse": 4.00845884636264,
+          "n": 635,
+          "pearson": 0.14314288397436553,
+          "rmse": 2.002113594769947,
+          "spearman": 0.17649111132058762,
+          "top10_e5_enrichment": 1.114221256684492
+        },
+        "secondary_descriptive_contrast_base_logistic": {
+          "mae": 1.7210650668239473,
+          "mse": 3.9037080321144972,
+          "n": 635,
+          "pearson": 0.1340538911709277,
+          "rmse": 1.9757803602917245,
+          "spearman": 0.1665463877435225,
+          "top10_e5_enrichment": 1.3264538770053476
+        }
+      },
+      "n": 635,
+      "paired_effects": {
+        "primary_contrast_histgb": {
+          "delta_pearson": 0.017502078909606367,
+          "delta_spearman": 0.02330295232819976,
+          "delta_top10_e5_enrichment": 0.0,
+          "mse_improvement": 0.0356100912246764
+        },
+        "primary_contrast_logistic": {
+          "delta_pearson": 0.014381850428755255,
+          "delta_spearman": 0.010491721436737073,
+          "delta_top10_e5_enrichment": 0.21223262032085577,
+          "mse_improvement": 0.0242977162102318
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_pearson": 0.06985192401497134,
+          "delta_spearman": 0.06659278928347193,
+          "delta_top10_e5_enrichment": 0.4244652406417111,
+          "mse_improvement": 0.1235717422642213
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_pearson": 0.08382060853829115,
+          "delta_spearman": 0.05708987886832506,
+          "delta_top10_e5_enrichment": 0.10611631016042788,
+          "mse_improvement": 0.11648710116239247
+        }
+      },
+      "primary_inference": {
+        "all_four_pass": false,
+        "bootstrap_replicates": 20000,
+        "clusters": 556,
+        "comparisons": {
+          "histgb_delta_spearman": {
+            "ci95": [
+              -0.012874412528952498,
+              0.059385075360566884
+            ],
+            "effect": 0.02330295232819976,
+            "p_holm": 0.8539573021348933,
+            "p_raw": 0.21348932553372332,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "histgb_mse_improvement": {
+            "ci95": [
+              -0.06172494914514046,
+              0.13120921321434034
+            ],
+            "effect": 0.0356100912246764,
+            "p_holm": 1.0,
+            "p_raw": 0.47652617369131545,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_delta_spearman": {
+            "ci95": [
+              -0.021706467992005,
+              0.04197795448069197
+            ],
+            "effect": 0.010491721436737073,
+            "p_holm": 1.0,
+            "p_raw": 0.5209239538023099,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_mse_improvement": {
+            "ci95": [
+              -0.031117385753992966,
+              0.07780935953145646
+            ],
+            "effect": 0.0242977162102318,
+            "p_holm": 1.0,
+            "p_raw": 0.3930303484825759,
+            "passes_all": false,
+            "passes_direction": false
+          }
+        },
+        "permutation_replicates": 20000,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/dev/rk23_dev_resampling_dev.npz",
+        "resampling_sha256": "ba7e8575955f4678c5906b5d8b8d091a5105322f3c8476352e283f7a89056a75"
+      }
+    },
+    "test": {
+      "metrics": {
+        "primary_contrast_augmented_histgb": {
+          "mae": 1.8302673712970634,
+          "mse": 4.326145966453431,
+          "n": 634,
+          "pearson": 0.1977634433767459,
+          "rmse": 2.0799389333471865,
+          "spearman": 0.20073508224367628,
+          "top10_e5_enrichment": 0.9803059895833334
+        },
+        "primary_contrast_augmented_logistic": {
+          "mae": 1.8615015743042815,
+          "mse": 4.331129372215796,
+          "n": 634,
+          "pearson": 0.15757593235281042,
+          "rmse": 2.0811365578010004,
+          "spearman": 0.12858011330132996,
+          "top10_e5_enrichment": 1.1350911458333333
+        },
+        "primary_contrast_base_histgb": {
+          "mae": 1.83049433270021,
+          "mse": 4.297686306611763,
+          "n": 634,
+          "pearson": 0.2033130143254249,
+          "rmse": 2.073086179253473,
+          "spearman": 0.20578582778335267,
+          "top10_e5_enrichment": 1.1866861979166667
+        },
+        "primary_contrast_base_logistic": {
+          "mae": 1.8638226915787843,
+          "mse": 4.3315785679697285,
+          "n": 634,
+          "pearson": 0.15084624200887006,
+          "rmse": 2.081244475781192,
+          "spearman": 0.12323866964334065,
+          "top10_e5_enrichment": 1.0319010416666667
+        },
+        "secondary_descriptive_contrast_augmented_histgb": {
+          "mae": 1.818737345026927,
+          "mse": 4.2657134639216725,
+          "n": 634,
+          "pearson": 0.218040528320933,
+          "rmse": 2.06536037144167,
+          "spearman": 0.21980549398744995,
+          "top10_e5_enrichment": 1.1350911458333333
+        },
+        "secondary_descriptive_contrast_augmented_logistic": {
+          "mae": 1.8624003055523783,
+          "mse": 4.332697750534641,
+          "n": 634,
+          "pearson": 0.1563235321839127,
+          "rmse": 2.0815133318176566,
+          "spearman": 0.12774951934957665,
+          "top10_e5_enrichment": 1.0319010416666667
+        },
+        "secondary_descriptive_contrast_base_histgb": {
+          "mae": 1.8593579555373043,
+          "mse": 4.446470819302786,
+          "n": 634,
+          "pearson": 0.13702701904734843,
+          "rmse": 2.10866564900716,
+          "spearman": 0.15844151430095546,
+          "top10_e5_enrichment": 0.9803059895833334
+        },
+        "secondary_descriptive_contrast_base_logistic": {
+          "mae": 1.8744751645397295,
+          "mse": 4.354414693493063,
+          "n": 634,
+          "pearson": 0.12566944716282774,
+          "rmse": 2.0867234348358346,
+          "spearman": 0.11870548295539017,
+          "top10_e5_enrichment": 1.2898763020833333
+        }
+      },
+      "n": 634,
+      "paired_effects": {
+        "primary_contrast_histgb": {
+          "delta_pearson": -0.005549570948679,
+          "delta_spearman": -0.005050745539676382,
+          "delta_top10_e5_enrichment": -0.20638020833333337,
+          "mse_improvement": -0.028459659841668206
+        },
+        "primary_contrast_logistic": {
+          "delta_pearson": 0.006729690343940359,
+          "delta_spearman": 0.005341443657989303,
+          "delta_top10_e5_enrichment": 0.10319010416666652,
+          "mse_improvement": 0.0004491957539327629
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_pearson": 0.08101350927358458,
+          "delta_spearman": 0.061363979686494485,
+          "delta_top10_e5_enrichment": 0.1547851562499999,
+          "mse_improvement": 0.1807573553811137
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_pearson": 0.030654085021084965,
+          "delta_spearman": 0.00904403639418648,
+          "delta_top10_e5_enrichment": -0.2579752604166665,
+          "mse_improvement": 0.02171694295842208
+        }
+      },
+      "primary_inference": {
+        "all_four_pass": false,
+        "bootstrap_replicates": 20000,
+        "clusters": 556,
+        "comparisons": {
+          "histgb_delta_spearman": {
+            "ci95": [
+              -0.03822624688088306,
+              0.02788614599173979
+            ],
+            "effect": -0.005050745539676382,
+            "p_holm": 1.0,
+            "p_raw": 0.7623118844057797,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "histgb_mse_improvement": {
+            "ci95": [
+              -0.13056306283760102,
+              0.07304107234596917
+            ],
+            "effect": -0.028459659841668206,
+            "p_holm": 1.0,
+            "p_raw": 0.5882705864706764,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_delta_spearman": {
+            "ci95": [
+              -0.028391217548145335,
+              0.03877199494833087
+            ],
+            "effect": 0.005341443657989303,
+            "p_holm": 1.0,
+            "p_raw": 0.760561971901405,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_mse_improvement": {
+            "ci95": [
+              -0.05805847621001278,
+              0.05902495012966774
+            ],
+            "effect": 0.0004491957539327629,
+            "p_holm": 1.0,
+            "p_raw": 0.9876506174691265,
+            "passes_all": false,
+            "passes_direction": false
+          }
+        },
+        "permutation_replicates": 20000,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_resampling_test.npz",
+        "resampling_sha256": "249c84004ed4571c8e7e482efc8f6791cba7963ca1643f2e5437cd9f8ba06250"
+      }
+    },
+    "train": {
+      "metrics": {
+        "primary_contrast_augmented_histgb": {
+          "mae": 1.4654133222507093,
+          "mse": 2.8931583108495134,
+          "n": 5079,
+          "pearson": 0.5669073331655721,
+          "rmse": 1.700928661305204,
+          "spearman": 0.5552843592919223,
+          "top10_e5_enrichment": 2.176484899080212
+        },
+        "primary_contrast_augmented_logistic": {
+          "mae": 1.6979551692733736,
+          "mse": 3.7606932811368434,
+          "n": 5079,
+          "pearson": 0.2496286206287287,
+          "rmse": 1.9392507009504583,
+          "spearman": 0.239705920345861,
+          "top10_e5_enrichment": 1.542983530760035
+        },
+        "primary_contrast_base_histgb": {
+          "mae": 1.4903516766809481,
+          "mse": 2.9819492257733633,
+          "n": 5079,
+          "pearson": 0.5431182320558602,
+          "rmse": 1.7268321359568692,
+          "spearman": 0.5289113533605545,
+          "top10_e5_enrichment": 2.1263065728766337
+        },
+        "primary_contrast_base_logistic": {
+          "mae": 1.7112682207619239,
+          "mse": 3.804230328930143,
+          "n": 5079,
+          "pearson": 0.2268885352649853,
+          "rmse": 1.9504436236226217,
+          "spearman": 0.2146323916550455,
+          "top10_e5_enrichment": 1.4614437506792202
+        },
+        "secondary_descriptive_contrast_augmented_histgb": {
+          "mae": 1.4787393738060712,
+          "mse": 2.9369487920729136,
+          "n": 5079,
+          "pearson": 0.5521528777889084,
+          "rmse": 1.7137528386768361,
+          "spearman": 0.540665646463366,
+          "top10_e5_enrichment": 2.1576680267538704
+        },
+        "secondary_descriptive_contrast_augmented_logistic": {
+          "mae": 1.6983552373094835,
+          "mse": 3.7606356484843024,
+          "n": 5079,
+          "pearson": 0.24966234153365485,
+          "rmse": 1.93923584137781,
+          "spearman": 0.23998246250134364,
+          "top10_e5_enrichment": 1.524166658433693
+        },
+        "secondary_descriptive_contrast_base_histgb": {
+          "mae": 1.530216199195059,
+          "mse": 3.1064363152494168,
+          "n": 5079,
+          "pearson": 0.5165807270052791,
+          "rmse": 1.7625085291281335,
+          "spearman": 0.5033844017118918,
+          "top10_e5_enrichment": 2.1074897005502917
+        },
+        "secondary_descriptive_contrast_base_logistic": {
+          "mae": 1.7353733746646804,
+          "mse": 3.889059511037139,
+          "n": 5079,
+          "pearson": 0.1741096375750612,
+          "rmse": 1.9720698545024056,
+          "spearman": 0.17280150047934875,
+          "top10_e5_enrichment": 1.3924485521493
+        }
+      },
+      "n": 5079,
+      "paired_effects": {
+        "primary_contrast_histgb": {
+          "delta_pearson": 0.023789101109711885,
+          "delta_spearman": 0.02637300593136782,
+          "delta_top10_e5_enrichment": 0.050178326203578205,
+          "mse_improvement": 0.08879091492384994
+        },
+        "primary_contrast_logistic": {
+          "delta_pearson": 0.02274008536374339,
+          "delta_spearman": 0.0250735286908155,
+          "delta_top10_e5_enrichment": 0.08153978008081486,
+          "mse_improvement": 0.0435370477932997
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_pearson": 0.0355721507836293,
+          "delta_spearman": 0.03728124475147421,
+          "delta_top10_e5_enrichment": 0.05017832620357865,
+          "mse_improvement": 0.16948752317650317
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_pearson": 0.07555270395859365,
+          "delta_spearman": 0.06718096202199489,
+          "delta_top10_e5_enrichment": 0.13171810628439307,
+          "mse_improvement": 0.12842386255283644
+        }
+      },
+      "primary_inference": null
+    }
+  },
+  "status": "FROZEN_TEST_EVALUATED_PENDING_INDEPENDENT_VERIFICATION",
+  "test_metrics_computed": true,
+  "test_reused_not_globally_untouched": true,
+  "train_fit_only": true
+}

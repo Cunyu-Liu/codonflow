@@ -1,0 +1,199 @@
+{
+  "status": "FROZEN_TEST_EVALUATED_PENDING_INDEPENDENT_VERIFICATION",
+  "model_artifact_sha256": "17ca8844bde48ed5eeafe488b86134502a5399bda5bcaebbe621cb02ccf085f8",
+  "splits": {
+    "train": {
+      "paired_effects": {
+        "primary_contrast_logistic": {
+          "delta_spearman": 0.0250735286908155,
+          "mse_improvement": 0.0435370477932997,
+          "delta_pearson": 0.02274008536374339,
+          "delta_top10_e5_enrichment": 0.08153978008081486
+        },
+        "primary_contrast_histgb": {
+          "delta_spearman": 0.02637300593136782,
+          "mse_improvement": 0.08879091492384994,
+          "delta_pearson": 0.023789101109711885,
+          "delta_top10_e5_enrichment": 0.050178326203578205
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_spearman": 0.06718096202199489,
+          "mse_improvement": 0.12842386255283644,
+          "delta_pearson": 0.07555270395859365,
+          "delta_top10_e5_enrichment": 0.13171810628439307
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_spearman": 0.03728124475147421,
+          "mse_improvement": 0.16948752317650317,
+          "delta_pearson": 0.0355721507836293,
+          "delta_top10_e5_enrichment": 0.05017832620357865
+        }
+      },
+      "primary_inference": null
+    },
+    "dev": {
+      "paired_effects": {
+        "primary_contrast_histgb": {
+          "delta_pearson": 0.017502078909606367,
+          "delta_spearman": 0.02330295232819976,
+          "delta_top10_e5_enrichment": 0.0,
+          "mse_improvement": 0.0356100912246764
+        },
+        "primary_contrast_logistic": {
+          "delta_pearson": 0.014381850428755255,
+          "delta_spearman": 0.010491721436737073,
+          "delta_top10_e5_enrichment": 0.21223262032085577,
+          "mse_improvement": 0.0242977162102318
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_pearson": 0.06985192401497134,
+          "delta_spearman": 0.06659278928347193,
+          "delta_top10_e5_enrichment": 0.4244652406417111,
+          "mse_improvement": 0.1235717422642213
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_pearson": 0.08382060853829115,
+          "delta_spearman": 0.05708987886832506,
+          "delta_top10_e5_enrichment": 0.10611631016042788,
+          "mse_improvement": 0.11648710116239247
+        }
+      },
+      "primary_inference": {
+        "all_four_pass": false,
+        "bootstrap_replicates": 20000,
+        "clusters": 556,
+        "comparisons": {
+          "histgb_delta_spearman": {
+            "ci95": [
+              -0.012874412528952498,
+              0.059385075360566884
+            ],
+            "effect": 0.02330295232819976,
+            "p_holm": 0.8539573021348933,
+            "p_raw": 0.21348932553372332,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "histgb_mse_improvement": {
+            "ci95": [
+              -0.06172494914514046,
+              0.13120921321434034
+            ],
+            "effect": 0.0356100912246764,
+            "p_holm": 1.0,
+            "p_raw": 0.47652617369131545,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_delta_spearman": {
+            "ci95": [
+              -0.021706467992005,
+              0.04197795448069197
+            ],
+            "effect": 0.010491721436737073,
+            "p_holm": 1.0,
+            "p_raw": 0.5209239538023099,
+            "passes_all": false,
+            "passes_direction": false
+          },
+          "logistic_mse_improvement": {
+            "ci95": [
+              -0.031117385753992966,
+              0.07780935953145646
+            ],
+            "effect": 0.0242977162102318,
+            "p_holm": 1.0,
+            "p_raw": 0.3930303484825759,
+            "passes_all": false,
+            "passes_direction": false
+          }
+        },
+        "permutation_replicates": 20000,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/dev/rk23_dev_resampling_dev.npz",
+        "resampling_sha256": "ba7e8575955f4678c5906b5d8b8d091a5105322f3c8476352e283f7a89056a75"
+      }
+    },
+    "test": {
+      "paired_effects": {
+        "primary_contrast_logistic": {
+          "delta_spearman": 0.005341443657989303,
+          "mse_improvement": 0.0004491957539327629,
+          "delta_pearson": 0.006729690343940359,
+          "delta_top10_e5_enrichment": 0.10319010416666652
+        },
+        "primary_contrast_histgb": {
+          "delta_spearman": -0.005050745539676382,
+          "mse_improvement": -0.028459659841668206,
+          "delta_pearson": -0.005549570948679,
+          "delta_top10_e5_enrichment": -0.20638020833333337
+        },
+        "secondary_descriptive_contrast_logistic": {
+          "delta_spearman": 0.00904403639418648,
+          "mse_improvement": 0.02171694295842208,
+          "delta_pearson": 0.030654085021084965,
+          "delta_top10_e5_enrichment": -0.2579752604166665
+        },
+        "secondary_descriptive_contrast_histgb": {
+          "delta_spearman": 0.061363979686494485,
+          "mse_improvement": 0.1807573553811137,
+          "delta_pearson": 0.08101350927358458,
+          "delta_top10_e5_enrichment": 0.1547851562499999
+        }
+      },
+      "primary_inference": {
+        "comparisons": {
+          "logistic_delta_spearman": {
+            "effect": 0.005341443657989303,
+            "ci95": [
+              -0.028391217548145335,
+              0.03877199494833087
+            ],
+            "p_raw": 0.760561971901405,
+            "passes_direction": false,
+            "p_holm": 1.0,
+            "passes_all": false
+          },
+          "logistic_mse_improvement": {
+            "effect": 0.0004491957539327629,
+            "ci95": [
+              -0.05805847621001278,
+              0.05902495012966774
+            ],
+            "p_raw": 0.9876506174691265,
+            "passes_direction": false,
+            "p_holm": 1.0,
+            "passes_all": false
+          },
+          "histgb_delta_spearman": {
+            "effect": -0.005050745539676382,
+            "ci95": [
+              -0.03822624688088306,
+              0.02788614599173979
+            ],
+            "p_raw": 0.7623118844057797,
+            "passes_direction": false,
+            "p_holm": 1.0,
+            "passes_all": false
+          },
+          "histgb_mse_improvement": {
+            "effect": -0.028459659841668206,
+            "ci95": [
+              -0.13056306283760102,
+              0.07304107234596917
+            ],
+            "p_raw": 0.5882705864706764,
+            "passes_direction": false,
+            "p_holm": 1.0,
+            "passes_all": false
+          }
+        },
+        "all_four_pass": false,
+        "bootstrap_replicates": 20000,
+        "permutation_replicates": 20000,
+        "clusters": 556,
+        "resampling_file": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk23/protein_ood_v1/test/rk23_test_resampling_test.npz",
+        "resampling_sha256": "249c84004ed4571c8e7e482efc8f6791cba7963ca1643f2e5437cd9f8ba06250"
+      }
+    }
+  }
+}
