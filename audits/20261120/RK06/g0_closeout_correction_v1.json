@@ -1,0 +1,68 @@
+{
+  "schema_version": "a8-g0-closeout-correction-v1",
+  "status": "CORRECTED_AND_INDEPENDENTLY_VERIFIED",
+  "failure_history": [
+    {
+      "protocol": "configs/a8_g0_closeout_protocol_v1.json",
+      "sha256": "335158cdb300e1715feaf4d6c45d794c3958d788872cd0cb291309b6ae962710",
+      "log": "audits/20261120/RK06/g0_unified_cost_closeout_v1.console.log",
+      "log_sha256": "fac0023b71b79daaf54e1b7ba5d5f1d4e32573a6df11b73a72247f788395ca83",
+      "error": "KeyError: lineardesign_unique_sequences",
+      "diagnosis": "Ten invalid pointers were found by a full preflight: six LinearDesign/EnsembleDesign count or identity pointers and four unsupported RK06 legal-rate pointers."
+    }
+  ],
+  "correction": {
+    "protocol": "configs/a8_g0_closeout_protocol_v2.json",
+    "sha256": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+    "changes": "Read LinearDesign/EnsembleDesign output counts and identity rates from method_summary; remove unavailable run pointers and unsupported RK06 legal-rate fields; rename RNARL clean_pairs to qc_pairs. No scientific source or measured value was edited."
+  },
+  "validation": {
+    "production_overall_pass": true,
+    "production_checks": "179/179",
+    "independent_checks": "357/357",
+    "max_numeric_delta": 0.0,
+    "targeted_tests": "9/9 PASS",
+    "finalization": "PASS_BOUNDED_G0_CLOSEOUT 6/6"
+  },
+  "side_effects": {
+    "scientific_source_files_changed": 0,
+    "baseline_reruns": 0,
+    "new_scorer_calls": 0,
+    "generator_training_started": false,
+    "paper_or_ppt_written_by_this_correction": false
+  },
+  "artifacts": {
+    "v1_protocol": {
+      "path": "configs/a8_g0_closeout_protocol_v1.json",
+      "sha256": "335158cdb300e1715feaf4d6c45d794c3958d788872cd0cb291309b6ae962710"
+    },
+    "v1_failure_log": {
+      "path": "audits/20261120/RK06/g0_unified_cost_closeout_v1.console.log",
+      "sha256": "fac0023b71b79daaf54e1b7ba5d5f1d4e32573a6df11b73a72247f788395ca83"
+    },
+    "v2_protocol": {
+      "path": "configs/a8_g0_closeout_protocol_v2.json",
+      "sha256": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558"
+    },
+    "v2_production": {
+      "path": "audits/20261120/RK06/g0_unified_cost_closeout_v2.json",
+      "sha256": "c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583"
+    },
+    "v2_production_log": {
+      "path": "audits/20261120/RK06/g0_unified_cost_closeout_v2.console.log",
+      "sha256": "04e1a9f638d5ddde3c4b2e60e16995e96cd64eedd46a750c1e0aa6d1af45975a"
+    },
+    "independent": {
+      "path": "audits/20261120/RK06/g0_unified_cost_closeout_independent_v1.json",
+      "sha256": "1bf177c3ad170d3bd0385efce488402fd8e2e74611a0dc3590499e47acd93a40"
+    },
+    "finalization": {
+      "path": "audits/20261120/RK06/g0_unified_cost_closeout_finalization_v1.json",
+      "sha256": "9775981553bc830b9ac27aa19bf4eab5106a09901fb3863ba8e6ea8df66e4db2"
+    },
+    "tests": {
+      "path": "audits/20261120/RK06/g0_closeout_targeted_tests_v1.console.log",
+      "sha256": "808216c1e906665a6311eea3399af7e63a60328f6537b9bcf2f6f7027e943f4a"
+    }
+  }
+}

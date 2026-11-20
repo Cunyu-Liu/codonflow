@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "scripts/a8_g0_closeout.py", line 193, in <module>
+    raise SystemExit(main())
+  File "scripts/a8_g0_closeout.py", line 182, in main
+    report = build_report(root, protocol, protocol_path)
+  File "scripts/a8_g0_closeout.py", line 78, in build_report
+    metrics = {name: evaluate(spec, document)
+  File "scripts/a8_g0_closeout.py", line 78, in <dictcomp>
+    metrics = {name: evaluate(spec, document)
+  File "scripts/a8_g0_closeout.py", line 41, in evaluate
+    return pointer(document, spec["pointer"])
+  File "scripts/a8_g0_closeout.py", line 35, in pointer
+    value = value[token]
+KeyError: 'lineardesign_unique_sequences'

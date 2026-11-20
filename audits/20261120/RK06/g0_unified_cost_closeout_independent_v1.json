@@ -1,0 +1,2758 @@
+{
+  "schema_version": "a8-g0-closeout-independent-v1",
+  "created_at": "2026-11-20T11:02:51.613603+00:00",
+  "verifier_script_sha256": "56315b01a0e5551b38afc248685fd9e79ceec16b33139eb3b5383e10a3745268",
+  "protocol_path": "/home/codonflow-a8-rk/configs/a8_g0_closeout_protocol_v2.json",
+  "protocol_sha256": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+  "production_path": "/home/codonflow-a8-rk/audits/20261120/RK06/g0_unified_cost_closeout_v2.json",
+  "production_sha256": "c0510f528615af6ef505aed83dd1c0ec5d1fa75eb900c46f6a363521c2cdd583",
+  "check_count": 357,
+  "passed_checks": 357,
+  "checks": [
+    {
+      "check_id": "protocol_sha256",
+      "actual": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+      "expected": "dc173e2d7e4db7e9fd115a20be6db9ee2016c67f78ee65869963f78b7eb00558",
+      "passed": true
+    },
+    {
+      "check_id": "production_schema",
+      "actual": "a8-g0-closeout-production-v1",
+      "expected": "a8-g0-closeout-production-v1",
+      "passed": true
+    },
+    {
+      "check_id": "protocol_id",
+      "actual": "CF-A8-RK06-G0-CLOSEOUT-V2",
+      "expected": "CF-A8-RK06-G0-CLOSEOUT-V2",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:boel_split",
+      "actual": "c5782c837ee26b7e3d68eee17556a346bf09a2e91197b50221efe0254635d728",
+      "expected": "c5782c837ee26b7e3d68eee17556a346bf09a2e91197b50221efe0254635d728",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:cagfn_final",
+      "actual": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
+      "expected": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:cdgb_final",
+      "actual": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2",
+      "expected": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ct_final",
+      "actual": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac",
+      "expected": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ct_smoke",
+      "actual": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+      "expected": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:full_function",
+      "actual": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2",
+      "expected": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:id3_final",
+      "actual": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",
+      "expected": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ixnos_final",
+      "actual": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28",
+      "expected": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ixnos_independent",
+      "actual": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+      "expected": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:mage_closure",
+      "actual": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+      "expected": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:mordstein_recovery",
+      "actual": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+      "expected": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ribo_final",
+      "actual": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e",
+      "expected": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:ribo_independent",
+      "actual": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035",
+      "expected": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rk06_final",
+      "actual": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947",
+      "expected": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rk06_independent",
+      "actual": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+      "expected": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rk12_final",
+      "actual": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+      "expected": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rk12_independent",
+      "actual": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+      "expected": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rk13_final",
+      "actual": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+      "expected": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rnarl_final",
+      "actual": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767",
+      "expected": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:rose_production",
+      "actual": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a",
+      "expected": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:source_feasibility",
+      "actual": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41",
+      "expected": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41",
+      "passed": true
+    },
+    {
+      "check_id": "source_sha256:velo_smoke",
+      "actual": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+      "expected": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5",
+      "passed": true
+    },
+    {
+      "check_id": "row_ids",
+      "actual": [
+        "cagfn_official_smoke",
+        "cdgb_source_audit",
+        "charming_not_run",
+        "codontransformer_official_smoke",
+        "coformer_not_run",
+        "ensembledesign_unique18",
+        "id3_official_quick_test",
+        "inherited_cai_greedy",
+        "inherited_codongpt",
+        "inherited_gemorna",
+        "inherited_lineardesign_scan",
+        "inherited_uniform_synonymous",
+        "ixnos_real_prefix",
+        "lineardesign_unique18",
+        "ribomimo_study_ood",
+        "rk06_dense_areuredi_style",
+        "rk06_dense_hill_climbing",
+        "rk06_dense_mh_annealing",
+        "rk06_dense_uniform",
+        "rnarl_availability",
+        "rose_released_checkpoint",
+        "veloharmo_official_smoke"
+      ],
+      "expected": [
+        "cagfn_official_smoke",
+        "cdgb_source_audit",
+        "charming_not_run",
+        "codontransformer_official_smoke",
+        "coformer_not_run",
+        "ensembledesign_unique18",
+        "id3_official_quick_test",
+        "inherited_cai_greedy",
+        "inherited_codongpt",
+        "inherited_gemorna",
+        "inherited_lineardesign_scan",
+        "inherited_uniform_synonymous",
+        "ixnos_real_prefix",
+        "lineardesign_unique18",
+        "ribomimo_study_ood",
+        "rk06_dense_areuredi_style",
+        "rk06_dense_hill_climbing",
+        "rk06_dense_mh_annealing",
+        "rk06_dense_uniform",
+        "rnarl_availability",
+        "rose_released_checkpoint",
+        "veloharmo_official_smoke"
+      ],
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:lineardesign_unique18:method",
+      "actual": "LinearDesign",
+      "expected": "LinearDesign",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:lineardesign_unique18:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:lineardesign_unique18:scope",
+      "actual": "unique18; 18 records x 11 lambdas; actual sets; not dense",
+      "expected": "unique18; 18 records x 11 lambdas; actual sets; not dense",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:lineardesign_unique18:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:lineardesign_unique18:source",
+      "actual": "rk12_final",
+      "expected": "rk12_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:lineardesign_unique18",
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:lineardesign_unique18",
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:actual_outputs",
+      "actual": 131,
+      "expected": 131,
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:generation_or_inference_s",
+      "actual": 5459.871640930884,
+      "expected": 5459.871640930884,
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:lineardesign_unique18:wall_clock_s",
+      "actual": 5459.871640930884,
+      "expected": 5459.871640930884,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:lineardesign_unique18",
+      "actual": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      },
+      "expected": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ensembledesign_unique18:method",
+      "actual": "EnsembleDesign",
+      "expected": "EnsembleDesign",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ensembledesign_unique18:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ensembledesign_unique18:scope",
+      "actual": "unique18; 18 records x 11 runs; actual sets; not dense",
+      "expected": "unique18; 18 records x 11 runs; actual sets; not dense",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ensembledesign_unique18:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ensembledesign_unique18:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:ensembledesign_unique18",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:ensembledesign_unique18",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:actual_outputs",
+      "actual": 192,
+      "expected": 192,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:generation_or_inference_s",
+      "actual": 6001.057458210271,
+      "expected": 6001.057458210271,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ensembledesign_unique18:wall_clock_s",
+      "actual": 6001.057458210271,
+      "expected": 6001.057458210271,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:ensembledesign_unique18",
+      "actual": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      },
+      "expected": {
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_codongpt:method",
+      "actual": "codonGPT",
+      "expected": "codonGPT",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_codongpt:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_codongpt:scope",
+      "actual": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "expected": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_codongpt:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_codongpt:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:inherited_codongpt",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:inherited_codongpt",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:actual_outputs",
+      "actual": 1800,
+      "expected": 1800,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_codongpt:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:inherited_codongpt",
+      "actual": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "expected": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_gemorna:method",
+      "actual": "GEMORNA",
+      "expected": "GEMORNA",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_gemorna:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_gemorna:scope",
+      "actual": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "expected": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_gemorna:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_gemorna:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:inherited_gemorna",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:inherited_gemorna",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:actual_outputs",
+      "actual": 1427,
+      "expected": 1427,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_gemorna:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:inherited_gemorna",
+      "actual": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "expected": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_cai_greedy:method",
+      "actual": "CAI greedy",
+      "expected": "CAI greedy",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_cai_greedy:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_cai_greedy:scope",
+      "actual": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "expected": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_cai_greedy:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_cai_greedy:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:inherited_cai_greedy",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:inherited_cai_greedy",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:actual_outputs",
+      "actual": 18,
+      "expected": 18,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_cai_greedy:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:inherited_cai_greedy",
+      "actual": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "expected": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_uniform_synonymous:method",
+      "actual": "uniform synonymous actual-set",
+      "expected": "uniform synonymous actual-set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_uniform_synonymous:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_uniform_synonymous:scope",
+      "actual": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "expected": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_uniform_synonymous:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_uniform_synonymous:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:inherited_uniform_synonymous",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:inherited_uniform_synonymous",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:actual_outputs",
+      "actual": 1800,
+      "expected": 1800,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_uniform_synonymous:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:inherited_uniform_synonymous",
+      "actual": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "expected": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_lineardesign_scan:method",
+      "actual": "LinearDesignScan",
+      "expected": "LinearDesignScan",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_lineardesign_scan:task",
+      "actual": "accessibility/CDS multi-objective",
+      "expected": "accessibility/CDS multi-objective",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_lineardesign_scan:scope",
+      "actual": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "expected": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_lineardesign_scan:comparison_class",
+      "actual": "external_actual_set",
+      "expected": "external_actual_set",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:inherited_lineardesign_scan:source",
+      "actual": "rk13_final",
+      "expected": "rk13_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:inherited_lineardesign_scan",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:inherited_lineardesign_scan",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:actual_outputs",
+      "actual": 103,
+      "expected": 103,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:legal_rate",
+      "actual": 1.0,
+      "expected": 1.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:inherited_lineardesign_scan:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:inherited_lineardesign_scan",
+      "actual": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "expected": {
+        "generation_or_inference_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13.",
+        "scoring_s": "Shared actual-set rescoring is not attributable to this individual generator.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cagfn_official_smoke:method",
+      "actual": "CAGFN",
+      "expected": "CAGFN",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cagfn_official_smoke:task",
+      "actual": "learned synonymous generation smoke",
+      "expected": "learned synonymous generation smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cagfn_official_smoke:scope",
+      "actual": "official bounded toy training and inference smoke; no main comparison",
+      "expected": "official bounded toy training and inference smoke; no main comparison",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cagfn_official_smoke:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cagfn_official_smoke:source",
+      "actual": "cagfn_final",
+      "expected": "cagfn_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:cagfn_official_smoke",
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:cagfn_official_smoke",
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:cagfn_official_smoke:generation_or_inference_s",
+      "actual": 6.68,
+      "expected": 6.68,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cagfn_official_smoke:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cagfn_official_smoke:training_s",
+      "actual": 11.01,
+      "expected": 11.01,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cagfn_official_smoke:wall_clock_s",
+      "actual": 47.556745767593384,
+      "expected": 47.556745767593384,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:cagfn_official_smoke",
+      "actual": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:id3_official_quick_test:method",
+      "actual": "ID3",
+      "expected": "ID3",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:id3_official_quick_test:task",
+      "actual": "accessibility optimization",
+      "expected": "accessibility optimization",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:id3_official_quick_test:scope",
+      "actual": "one protein; 12 runs; 2 iterations; one seed; CPC trajectory defect retained",
+      "expected": "one protein; 12 runs; 2 iterations; one seed; CPC trajectory defect retained",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:id3_official_quick_test:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:id3_official_quick_test:source",
+      "actual": "id3_final",
+      "expected": "id3_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:id3_official_quick_test",
+      "actual": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "expected": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:id3_official_quick_test",
+      "actual": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "expected": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "passed": true
+    },
+    {
+      "check_id": "metric:id3_official_quick_test:generation_or_inference_s",
+      "actual": 417.591162443161,
+      "expected": 417.591162443161,
+      "passed": true
+    },
+    {
+      "check_id": "metric:id3_official_quick_test:runs",
+      "actual": 12,
+      "expected": 12,
+      "passed": true
+    },
+    {
+      "check_id": "metric:id3_official_quick_test:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:id3_official_quick_test:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:id3_official_quick_test:wall_clock_s",
+      "actual": 417.591162443161,
+      "expected": 417.591162443161,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:id3_official_quick_test",
+      "actual": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:codontransformer_official_smoke:method",
+      "actual": "CodonTransformer",
+      "expected": "CodonTransformer",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:codontransformer_official_smoke:task",
+      "actual": "organism-conditioned generation",
+      "expected": "organism-conditioned generation",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:codontransformer_official_smoke:scope",
+      "actual": "official example plus C01; four GPU inferences; two unique CDS",
+      "expected": "official example plus C01; four GPU inferences; two unique CDS",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:codontransformer_official_smoke:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:codontransformer_official_smoke:source",
+      "actual": "ct_smoke",
+      "expected": "ct_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:codontransformer_official_smoke",
+      "actual": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:codontransformer_official_smoke",
+      "actual": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:actual_outputs",
+      "actual": 2,
+      "expected": 2,
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:generation_or_inference_s",
+      "actual": 2.0327787059359252,
+      "expected": 2.0327787059359252,
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:runs",
+      "actual": 4,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:codontransformer_official_smoke:wall_clock_s",
+      "actual": 6.471435410901904,
+      "expected": 6.471435410901904,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:codontransformer_official_smoke",
+      "actual": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "expected": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:veloharmo_official_smoke:method",
+      "actual": "VeloHARMO",
+      "expected": "VeloHARMO",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:veloharmo_official_smoke:task",
+      "actual": "harmonization",
+      "expected": "harmonization",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:veloharmo_official_smoke:scope",
+      "actual": "E. coli released test plus bounded GA; no five-species matrix",
+      "expected": "E. coli released test plus bounded GA; no five-species matrix",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:veloharmo_official_smoke:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:veloharmo_official_smoke:source",
+      "actual": "velo_smoke",
+      "expected": "velo_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:veloharmo_official_smoke",
+      "actual": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:veloharmo_official_smoke",
+      "actual": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "expected": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:veloharmo_official_smoke:generation_or_inference_s",
+      "actual": 1.2729171668179333,
+      "expected": 1.2729171668179333,
+      "passed": true
+    },
+    {
+      "check_id": "metric:veloharmo_official_smoke:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:veloharmo_official_smoke:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:veloharmo_official_smoke:wall_clock_s",
+      "actual": 5.946522436104715,
+      "expected": 5.946522436104715,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:veloharmo_official_smoke",
+      "actual": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "expected": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ixnos_real_prefix:method",
+      "actual": "iXnos",
+      "expected": "iXnos",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ixnos_real_prefix:task",
+      "actual": "Ribo-seq/P-site feasibility and model smoke",
+      "expected": "Ribo-seq/P-site feasibility and model smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ixnos_real_prefix:scope",
+      "actual": "1,000,000-read real prefix; two epochs; not full SRR1049521 protocol",
+      "expected": "1,000,000-read real prefix; two epochs; not full SRR1049521 protocol",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ixnos_real_prefix:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ixnos_real_prefix:source",
+      "actual": "ixnos_independent",
+      "expected": "ixnos_independent",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:ixnos_real_prefix",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:ixnos_real_prefix",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "metric:ixnos_real_prefix:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ixnos_real_prefix:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ixnos_real_prefix:training_s",
+      "actual": 6.03219199180603,
+      "expected": 6.03219199180603,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ixnos_real_prefix:wall_clock_s",
+      "actual": 10.537669897079468,
+      "expected": 10.537669897079468,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:ixnos_real_prefix",
+      "actual": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rose_released_checkpoint:method",
+      "actual": "ROSE",
+      "expected": "ROSE",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rose_released_checkpoint:task",
+      "actual": "ribosome stalling classification",
+      "expected": "ribosome stalling classification",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rose_released_checkpoint:scope",
+      "actual": "released-test single-checkpoint inference; Battle15 and Pop14",
+      "expected": "released-test single-checkpoint inference; Battle15 and Pop14",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rose_released_checkpoint:comparison_class",
+      "actual": "official_smoke",
+      "expected": "official_smoke",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rose_released_checkpoint:source",
+      "actual": "rose_production",
+      "expected": "rose_production",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rose_released_checkpoint",
+      "actual": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "expected": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rose_released_checkpoint",
+      "actual": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "expected": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rose_released_checkpoint:generation_or_inference_s",
+      "actual": 105.96287328284234,
+      "expected": 105.96287328284234,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rose_released_checkpoint:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rose_released_checkpoint:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rose_released_checkpoint:wall_clock_s",
+      "actual": 112.82697493582964,
+      "expected": 112.82697493582964,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rose_released_checkpoint",
+      "actual": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "expected": {
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "Released pretrained weights were used; upstream training was not rerun."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ribomimo_study_ood:method",
+      "actual": "RiboMIMO",
+      "expected": "RiboMIMO",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ribomimo_study_ood:task",
+      "actual": "study-OOD ribosome occupancy",
+      "expected": "study-OOD ribosome occupancy",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ribomimo_study_ood:scope",
+      "actual": "Mohammad16 to Subtelny14; three-seed independent retraining/evaluation",
+      "expected": "Mohammad16 to Subtelny14; three-seed independent retraining/evaluation",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ribomimo_study_ood:comparison_class",
+      "actual": "study_ood_cost",
+      "expected": "study_ood_cost",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:ribomimo_study_ood:source",
+      "actual": "ribo_independent",
+      "expected": "ribo_independent",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:ribomimo_study_ood",
+      "actual": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "expected": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:ribomimo_study_ood",
+      "actual": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "expected": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "passed": true
+    },
+    {
+      "check_id": "metric:ribomimo_study_ood:generation_or_inference_s",
+      "actual": 89.50084520922974,
+      "expected": 89.50084520922974,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ribomimo_study_ood:runs",
+      "actual": 3,
+      "expected": 3,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ribomimo_study_ood:scoring_s",
+      "actual": 45.446167211048305,
+      "expected": 45.446167211048305,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ribomimo_study_ood:training_s",
+      "actual": 733.5893584797159,
+      "expected": 733.5893584797159,
+      "passed": true
+    },
+    {
+      "check_id": "metric:ribomimo_study_ood:wall_clock_s",
+      "actual": 949.7424744511954,
+      "expected": 949.7424744511954,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:ribomimo_study_ood",
+      "actual": {},
+      "expected": {},
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_uniform:method",
+      "actual": "uniform simple search",
+      "expected": "uniform simple search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_uniform:task",
+      "actual": "CDS proxy multi-objective simple search",
+      "expected": "CDS proxy multi-objective simple search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_uniform:scope",
+      "actual": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "expected": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_uniform:comparison_class",
+      "actual": "dense_proxy_search",
+      "expected": "dense_proxy_search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_uniform:source",
+      "actual": "rk06_final",
+      "expected": "rk06_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rk06_dense_uniform",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rk06_dense_uniform",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:generation_or_inference_s",
+      "actual": 16.225387217942625,
+      "expected": 16.225387217942625,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:runs",
+      "actual": 54,
+      "expected": 54,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:scoring_s",
+      "actual": 20869.626151481643,
+      "expected": 20869.626151481643,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:unique_scorer_calls",
+      "actual": 27000,
+      "expected": 27000,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_uniform:wall_clock_s",
+      "actual": 20945.031473771203,
+      "expected": 20945.031473771203,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rk06_dense_uniform",
+      "actual": {},
+      "expected": {},
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_hill_climbing:method",
+      "actual": "hill-climbing",
+      "expected": "hill-climbing",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_hill_climbing:task",
+      "actual": "CDS proxy multi-objective simple search",
+      "expected": "CDS proxy multi-objective simple search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_hill_climbing:scope",
+      "actual": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "expected": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_hill_climbing:comparison_class",
+      "actual": "dense_proxy_search",
+      "expected": "dense_proxy_search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_hill_climbing:source",
+      "actual": "rk06_final",
+      "expected": "rk06_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rk06_dense_hill_climbing",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rk06_dense_hill_climbing",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:generation_or_inference_s",
+      "actual": 8.822805067058653,
+      "expected": 8.822805067058653,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:runs",
+      "actual": 54,
+      "expected": 54,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:scoring_s",
+      "actual": 21020.672998382244,
+      "expected": 21020.672998382244,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:unique_scorer_calls",
+      "actual": 27000,
+      "expected": 27000,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_hill_climbing:wall_clock_s",
+      "actual": 21077.843297181185,
+      "expected": 21077.843297181185,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rk06_dense_hill_climbing",
+      "actual": {},
+      "expected": {},
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_mh_annealing:method",
+      "actual": "MH-annealing",
+      "expected": "MH-annealing",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_mh_annealing:task",
+      "actual": "CDS proxy multi-objective simple search",
+      "expected": "CDS proxy multi-objective simple search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_mh_annealing:scope",
+      "actual": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "expected": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_mh_annealing:comparison_class",
+      "actual": "dense_proxy_search",
+      "expected": "dense_proxy_search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_mh_annealing:source",
+      "actual": "rk06_final",
+      "expected": "rk06_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rk06_dense_mh_annealing",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rk06_dense_mh_annealing",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:generation_or_inference_s",
+      "actual": 8.987731650937349,
+      "expected": 8.987731650937349,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:runs",
+      "actual": 54,
+      "expected": 54,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:scoring_s",
+      "actual": 20877.88818777073,
+      "expected": 20877.88818777073,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:unique_scorer_calls",
+      "actual": 27000,
+      "expected": 27000,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_mh_annealing:wall_clock_s",
+      "actual": 20939.076001615264,
+      "expected": 20939.076001615264,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rk06_dense_mh_annealing",
+      "actual": {},
+      "expected": {},
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_areuredi_style:method",
+      "actual": "AReUReDi-style",
+      "expected": "AReUReDi-style",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_areuredi_style:task",
+      "actual": "CDS proxy multi-objective simple search",
+      "expected": "CDS proxy multi-objective simple search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_areuredi_style:scope",
+      "actual": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "expected": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_areuredi_style:comparison_class",
+      "actual": "dense_proxy_search",
+      "expected": "dense_proxy_search",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rk06_dense_areuredi_style:source",
+      "actual": "rk06_final",
+      "expected": "rk06_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rk06_dense_areuredi_style",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rk06_dense_areuredi_style",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:generation_or_inference_s",
+      "actual": 10.632299634162337,
+      "expected": 10.632299634162337,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:runs",
+      "actual": 54,
+      "expected": 54,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:scoring_s",
+      "actual": 20950.513713391032,
+      "expected": 20950.513713391032,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:training_s",
+      "actual": 0.0,
+      "expected": 0.0,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:unique_scorer_calls",
+      "actual": 27000,
+      "expected": 27000,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rk06_dense_areuredi_style:wall_clock_s",
+      "actual": 21015.123456662055,
+      "expected": 21015.123456662055,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rk06_dense_areuredi_style",
+      "actual": {},
+      "expected": {},
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rnarl_availability:method",
+      "actual": "RNARL",
+      "expected": "RNARL",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rnarl_availability:task",
+      "actual": "learned synonymous generation",
+      "expected": "learned synonymous generation",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rnarl_availability:scope",
+      "actual": "publisher pair-table QC only; official model not reproduced",
+      "expected": "publisher pair-table QC only; official model not reproduced",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rnarl_availability:comparison_class",
+      "actual": "availability_only",
+      "expected": "availability_only",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:rnarl_availability:source",
+      "actual": "rnarl_final",
+      "expected": "rnarl_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:rnarl_availability",
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:rnarl_availability",
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "passed": true
+    },
+    {
+      "check_id": "metric:rnarl_availability:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rnarl_availability:qc_pairs",
+      "actual": 128289,
+      "expected": 128289,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rnarl_availability:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rnarl_availability:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:rnarl_availability:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:rnarl_availability",
+      "actual": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid official RNARL training/generation run; data QC time is not model cost."
+      },
+      "expected": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid official RNARL training/generation run; data QC time is not model cost."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cdgb_source_audit:method",
+      "actual": "CDGB",
+      "expected": "CDGB",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cdgb_source_audit:task",
+      "actual": "codon deoptimization",
+      "expected": "codon deoptimization",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cdgb_source_audit:scope",
+      "actual": "source identity unresolved; official execution not authorized",
+      "expected": "source identity unresolved; official execution not authorized",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cdgb_source_audit:comparison_class",
+      "actual": "availability_only",
+      "expected": "availability_only",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:cdgb_source_audit:source",
+      "actual": "cdgb_final",
+      "expected": "cdgb_final",
+      "passed": true
+    },
+    {
+      "check_id": "row_status:cdgb_source_audit",
+      "actual": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "expected": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:cdgb_source_audit",
+      "actual": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "expected": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "passed": true
+    },
+    {
+      "check_id": "metric:cdgb_source_audit:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cdgb_source_audit:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cdgb_source_audit:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:cdgb_source_audit:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:cdgb_source_audit",
+      "actual": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:coformer_not_run:method",
+      "actual": "COformer",
+      "expected": "COformer",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:coformer_not_run:task",
+      "actual": "codon optimization",
+      "expected": "codon optimization",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:coformer_not_run:scope",
+      "actual": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "expected": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:coformer_not_run:comparison_class",
+      "actual": "not_run",
+      "expected": "not_run",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:coformer_not_run:source",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "row_status:coformer_not_run",
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:coformer_not_run",
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN",
+      "passed": true
+    },
+    {
+      "check_id": "metric:coformer_not_run:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:coformer_not_run:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:coformer_not_run:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:coformer_not_run:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:coformer_not_run",
+      "actual": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:charming_not_run:method",
+      "actual": "CHARMING",
+      "expected": "CHARMING",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:charming_not_run:task",
+      "actual": "codon optimization",
+      "expected": "codon optimization",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:charming_not_run:scope",
+      "actual": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "expected": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:charming_not_run:comparison_class",
+      "actual": "not_run",
+      "expected": "not_run",
+      "passed": true
+    },
+    {
+      "check_id": "row_metadata:charming_not_run:source",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "row_status:charming_not_run",
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN",
+      "passed": true
+    },
+    {
+      "check_id": "row_accepted_status:charming_not_run",
+      "actual": "NOT_RUN",
+      "expected": "NOT_RUN",
+      "passed": true
+    },
+    {
+      "check_id": "metric:charming_not_run:generation_or_inference_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:charming_not_run:scoring_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:charming_not_run:training_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "metric:charming_not_run:wall_clock_s",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "unavailable_reasons:charming_not_run",
+      "actual": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "expected": {
+        "generation_or_inference_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "scoring_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "training_s": "No valid measured cost for this scope; null is explicit and is not zero.",
+        "wall_clock_s": "No valid measured cost for this scope; null is explicit and is not zero."
+      },
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:boel_split_reliable",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:mage_oof_technical_pass",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:mordstein_full_recovery_pass",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:rnarl_full_pair_table_qc",
+      "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:rnarl_21_files",
+      "actual": 21,
+      "expected": 21,
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:lineardesign_reproduced",
+      "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:ensembledesign_reproduced",
+      "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:codontransformer_reproduced",
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:cagfn_reproduced",
+      "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:dense_evaluator_finalized",
+      "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:dense_independent_pass",
+      "actual": "INDEPENDENT_PASS",
+      "expected": "INDEPENDENT_PASS",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:actual_set_independent_pass",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:raw_read_psite_feasibility_bounded",
+      "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:utr_source_feasibility_metadata",
+      "actual": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:ribomimo_study_ood_closed",
+      "actual": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:full_function_technical_pass",
+      "actual": "PASS",
+      "expected": "PASS",
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:rk_g1_remains_false",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:mage_mechanism_gate_remains_false",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:rk06_scientific_gate_remains_false",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "gate_recompute:rk06_rk_g1_remains_open",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "gate_results",
+      "actual": [
+        {
+          "category": "G0",
+          "check_id": "boel_split_reliable",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "boel_split",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "mage_oof_technical_pass",
+          "expected": true,
+          "operator": "eq",
+          "pointer": "/overall_pass",
+          "source": "mage_closure",
+          "actual": true,
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "mordstein_full_recovery_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "mordstein_recovery",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "rnarl_full_pair_table_qc",
+          "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rnarl_final",
+          "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "rnarl_21_files",
+          "expected": 21,
+          "operator": "eq",
+          "pointer": "/raw_files",
+          "source": "rnarl_final",
+          "actual": 21,
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "lineardesign_reproduced",
+          "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk12_final",
+          "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "ensembledesign_reproduced",
+          "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk13_final",
+          "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "codontransformer_reproduced",
+          "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ct_final",
+          "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "cagfn_reproduced",
+          "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "cagfn_final",
+          "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "dense_evaluator_finalized",
+          "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk06_final",
+          "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "dense_independent_pass",
+          "expected": "INDEPENDENT_PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk06_independent",
+          "actual": "INDEPENDENT_PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "actual_set_independent_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk12_independent",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "raw_read_psite_feasibility_bounded",
+          "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ixnos_final",
+          "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "utr_source_feasibility_metadata",
+          "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "source_feasibility",
+          "actual": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "ribomimo_study_ood_closed",
+          "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ribo_final",
+          "actual": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "full_function_technical_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "full_function",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk_g1_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/rk_g1_pass",
+          "source": "full_function",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "mage_mechanism_gate_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/scientific_gate_pass",
+          "source": "mage_closure",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk06_scientific_gate_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/claims/scientific_gate_passed",
+          "source": "rk06_final",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk06_rk_g1_remains_open",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/claims/rk_g1_closed",
+          "source": "rk06_final",
+          "actual": false,
+          "passed": true
+        }
+      ],
+      "expected": [
+        {
+          "category": "G0",
+          "check_id": "boel_split_reliable",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "boel_split",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "mage_oof_technical_pass",
+          "expected": true,
+          "operator": "eq",
+          "pointer": "/overall_pass",
+          "source": "mage_closure",
+          "actual": true,
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "mordstein_full_recovery_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "mordstein_recovery",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "rnarl_full_pair_table_qc",
+          "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rnarl_final",
+          "actual": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "rnarl_21_files",
+          "expected": 21,
+          "operator": "eq",
+          "pointer": "/raw_files",
+          "source": "rnarl_final",
+          "actual": 21,
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "lineardesign_reproduced",
+          "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk12_final",
+          "actual": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "ensembledesign_reproduced",
+          "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk13_final",
+          "actual": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "codontransformer_reproduced",
+          "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ct_final",
+          "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "cagfn_reproduced",
+          "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "cagfn_final",
+          "actual": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "dense_evaluator_finalized",
+          "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk06_final",
+          "actual": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "dense_independent_pass",
+          "expected": "INDEPENDENT_PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk06_independent",
+          "actual": "INDEPENDENT_PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "actual_set_independent_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "rk12_independent",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "raw_read_psite_feasibility_bounded",
+          "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ixnos_final",
+          "actual": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "utr_source_feasibility_metadata",
+          "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "source_feasibility",
+          "actual": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+          "passed": true
+        },
+        {
+          "category": "G0",
+          "check_id": "ribomimo_study_ood_closed",
+          "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "ribo_final",
+          "actual": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "full_function_technical_pass",
+          "expected": "PASS",
+          "operator": "eq",
+          "pointer": "/status",
+          "source": "full_function",
+          "actual": "PASS",
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk_g1_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/rk_g1_pass",
+          "source": "full_function",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "mage_mechanism_gate_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/scientific_gate_pass",
+          "source": "mage_closure",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk06_scientific_gate_remains_false",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/claims/scientific_gate_passed",
+          "source": "rk06_final",
+          "actual": false,
+          "passed": true
+        },
+        {
+          "category": "BOUNDARY",
+          "check_id": "rk06_rk_g1_remains_open",
+          "expected": false,
+          "operator": "eq",
+          "pointer": "/claims/rk_g1_closed",
+          "source": "rk06_final",
+          "actual": false,
+          "passed": true
+        }
+      ],
+      "passed": true
+    },
+    {
+      "check_id": "g0_status",
+      "actual": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+      "expected": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+      "passed": true
+    },
+    {
+      "check_id": "rk03_remaining_status",
+      "actual": "FEASIBILITY_CLOSED_NOT_FULL_REMAP",
+      "expected": "FEASIBILITY_CLOSED_NOT_FULL_REMAP",
+      "passed": true
+    },
+    {
+      "check_id": "boundaries",
+      "actual": {
+        "complete_sota": false,
+        "external_dense_complete": false,
+        "five_species_veloharmo_complete": false,
+        "full_utr_cds_remap_complete": false,
+        "functional_untouched_evaluated": false,
+        "generator_training_authorized": false,
+        "rk_g1_passed": false,
+        "rnarl_official_model_reproduced": false,
+        "time_matched_complete": false,
+        "wet_lab_validation_complete": false
+      },
+      "expected": {
+        "complete_sota": false,
+        "external_dense_complete": false,
+        "five_species_veloharmo_complete": false,
+        "full_utr_cds_remap_complete": false,
+        "functional_untouched_evaluated": false,
+        "generator_training_authorized": false,
+        "rk_g1_passed": false,
+        "rnarl_official_model_reproduced": false,
+        "time_matched_complete": false,
+        "wet_lab_validation_complete": false
+      },
+      "passed": true
+    },
+    {
+      "check_id": "global_wall_clock_sum",
+      "actual": null,
+      "expected": null,
+      "passed": true
+    },
+    {
+      "check_id": "row_count",
+      "actual": 22,
+      "expected": 22,
+      "passed": true
+    },
+    {
+      "check_id": "measured_wall_clock_scopes",
+      "actual": 13,
+      "expected": 13,
+      "passed": true
+    },
+    {
+      "check_id": "explicit_null_wall_clock_scopes",
+      "actual": 9,
+      "expected": 9,
+      "passed": true
+    },
+    {
+      "check_id": "production_overall_pass",
+      "actual": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "check_id": "production_technical_checks",
+      "actual": 179,
+      "expected": 179,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:complete_sota",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:external_dense_complete",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:five_species_veloharmo_complete",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:full_utr_cds_remap_complete",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:functional_untouched_evaluated",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:generator_training_authorized",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:rk_g1_passed",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:rnarl_official_model_reproduced",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:time_matched_complete",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    },
+    {
+      "check_id": "forbidden_claim_boundary:wet_lab_validation_complete",
+      "actual": false,
+      "expected": false,
+      "passed": true
+    }
+  ],
+  "max_numeric_delta": 0.0,
+  "all_pass": true,
+  "independent_scope": "Recomputed source hashes, every cost extraction, statuses, gate facts and forbidden-claim boundaries without importing the production module."
+}

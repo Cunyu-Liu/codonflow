@@ -1,0 +1,936 @@
+{
+  "boundaries": {
+    "complete_sota": false,
+    "external_dense_complete": false,
+    "five_species_veloharmo_complete": false,
+    "full_utr_cds_remap_complete": false,
+    "functional_untouched_evaluated": false,
+    "generator_training_authorized": false,
+    "rk_g1_passed": false,
+    "rnarl_official_model_reproduced": false,
+    "time_matched_complete": false,
+    "wet_lab_validation_complete": false
+  },
+  "cost_policy": {
+    "aggregation": "do not sum or rank across mixed hardware, tasks, actual-set, dense and smoke scopes",
+    "complete_sota": false,
+    "external_dense_complete": false,
+    "null_policy": "null means unavailable or not attributable, never zero",
+    "time_matched": false,
+    "unit": "seconds unless the metric name states calls/runs/rate"
+  },
+  "cost_rows": [
+    {
+      "accepted_status": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "LinearDesign",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/lineardesign_lambda11/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "pointer": "/lineardesign_generation_seconds"
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/lineardesign_lambda11/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "wall_clock_s": {
+          "pointer": "/lineardesign_generation_seconds"
+        }
+      },
+      "row_id": "lineardesign_unique18",
+      "scope": "unique18; 18 records x 11 lambdas; actual sets; not dense",
+      "source": "rk12_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "EnsembleDesign",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/ensembledesign_11run/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "pointer": "/ensemble_generation_seconds"
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/ensembledesign_11run/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "wall_clock_s": {
+          "pointer": "/ensemble_generation_seconds"
+        }
+      },
+      "row_id": "ensembledesign_unique18",
+      "scope": "unique18; 18 records x 11 runs; actual sets; not dense",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "codonGPT",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/codongpt/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/codongpt/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        }
+      },
+      "row_id": "inherited_codongpt",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "GEMORNA",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/gemorna/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/gemorna/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        }
+      },
+      "row_id": "inherited_gemorna",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "CAI greedy",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/cai_greedy/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/cai_greedy/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        }
+      },
+      "row_id": "inherited_cai_greedy",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "uniform synonymous actual-set",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/uniform_synonymous/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/uniform_synonymous/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        }
+      },
+      "row_id": "inherited_uniform_synonymous",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "comparison_class": "external_actual_set",
+      "method": "LinearDesignScan",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/method_summary/lineardesign_scan/total_actual_outputs"
+        },
+        "generation_or_inference_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        },
+        "legal_rate": {
+          "pointer": "/method_summary/lineardesign_scan/min_identity_rate"
+        },
+        "scoring_s": {
+          "null_reason": "Shared actual-set rescoring is not attributable to this individual generator."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "Inherited actual sets were scored, but generation wall-clock was not measured in RK12/RK13."
+        }
+      },
+      "row_id": "inherited_lineardesign_scan",
+      "scope": "RK12/RK13 frozen actual sets; inherited generation; no dense trajectory",
+      "source": "rk13_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility/CDS multi-objective"
+    },
+    {
+      "accepted_status": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "comparison_class": "official_smoke",
+      "method": "CAGFN",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/cost/inference_seconds"
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "pointer": "/cost/training_seconds"
+        },
+        "wall_clock_s": {
+          "pointer": "/cost/total_wall_clock_seconds"
+        }
+      },
+      "row_id": "cagfn_official_smoke",
+      "scope": "official bounded toy training and inference smoke; no main comparison",
+      "source": "cagfn_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "learned synonymous generation smoke"
+    },
+    {
+      "accepted_status": "BOUNDED_OFFICIAL_QUICK_TEST_COMPLETE_WITH_CPC_STE_TRAJECTORY_DEFECT",
+      "comparison_class": "official_smoke",
+      "method": "ID3",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/execution/official_total_wall_time_s"
+        },
+        "runs": {
+          "pointer": "/execution/successful"
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "wall_clock_s": {
+          "pointer": "/execution/official_total_wall_time_s"
+        }
+      },
+      "row_id": "id3_official_quick_test",
+      "scope": "one protein; 12 runs; 2 iterations; one seed; CPC trajectory defect retained",
+      "source": "id3_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "accessibility optimization"
+    },
+    {
+      "accepted_status": "BOUNDED_OFFICIAL_EXECUTION_COMPLETE",
+      "comparison_class": "official_smoke",
+      "method": "CodonTransformer",
+      "metrics": {
+        "actual_outputs": {
+          "pointer": "/unique_sequence_count"
+        },
+        "generation_or_inference_s": {
+          "pointer": "/total_inference_seconds"
+        },
+        "runs": {
+          "sum_pointers": [
+            "/default_run_count",
+            "/constrained_run_count"
+          ]
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "Released pretrained weights were used; upstream training was not rerun."
+        },
+        "wall_clock_s": {
+          "sum_pointers": [
+            "/model_load_seconds",
+            "/total_inference_seconds"
+          ]
+        }
+      },
+      "row_id": "codontransformer_official_smoke",
+      "scope": "official example plus C01; four GPU inferences; two unique CDS",
+      "source": "ct_smoke",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "organism-conditioned generation"
+    },
+    {
+      "accepted_status": "BOUNDED_OFFICIAL_ALGORITHM_EXECUTION_COMPLETE",
+      "comparison_class": "official_smoke",
+      "method": "VeloHARMO",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/bounded_ga/wall_seconds"
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "Released pretrained weights were used; upstream training was not rerun."
+        },
+        "wall_clock_s": {
+          "sum_pointers": [
+            "/official_velogru_test/wall_seconds",
+            "/bounded_ga/wall_seconds"
+          ]
+        }
+      },
+      "row_id": "veloharmo_official_smoke",
+      "scope": "E. coli released test plus bounded GA; no five-species matrix",
+      "source": "velo_smoke",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "harmonization"
+    },
+    {
+      "accepted_status": "PASS",
+      "comparison_class": "official_smoke",
+      "method": "iXnos",
+      "metrics": {
+        "generation_or_inference_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "pointer": "/independent_training_seconds_including_compile"
+        },
+        "wall_clock_s": {
+          "pointer": "/independent_process_seconds"
+        }
+      },
+      "row_id": "ixnos_real_prefix",
+      "scope": "1,000,000-read real prefix; two epochs; not full SRR1049521 protocol",
+      "source": "ixnos_independent",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "Ribo-seq/P-site feasibility and model smoke"
+    },
+    {
+      "accepted_status": "PASS_COMPLETE_RELEASED_TEST_SINGLE_CHECKPOINT_INFERENCE",
+      "comparison_class": "official_smoke",
+      "method": "ROSE",
+      "metrics": {
+        "generation_or_inference_s": {
+          "sum_pointers": [
+            "/studies/Battle15/timing_seconds/single_full_forward",
+            "/studies/Pop14/timing_seconds/single_full_forward"
+          ]
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "Released pretrained weights were used; upstream training was not rerun."
+        },
+        "wall_clock_s": {
+          "pointer": "/execution/total_seconds"
+        }
+      },
+      "row_id": "rose_released_checkpoint",
+      "scope": "released-test single-checkpoint inference; Battle15 and Pop14",
+      "source": "rose_production",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "ribosome stalling classification"
+    },
+    {
+      "accepted_status": "PASS_STUDY_OOD_PENDING_INDEPENDENT",
+      "comparison_class": "study_ood_cost",
+      "method": "RiboMIMO",
+      "metrics": {
+        "generation_or_inference_s": {
+          "sum_pointers": [
+            "/runs/0/target_evaluation_seconds",
+            "/runs/1/target_evaluation_seconds",
+            "/runs/2/target_evaluation_seconds"
+          ]
+        },
+        "runs": {
+          "constant": 3
+        },
+        "scoring_s": {
+          "sum_pointers": [
+            "/runs/0/ridge_selection_seconds",
+            "/runs/1/ridge_selection_seconds",
+            "/runs/2/ridge_selection_seconds"
+          ]
+        },
+        "training_s": {
+          "sum_pointers": [
+            "/runs/0/training_seconds",
+            "/runs/1/training_seconds",
+            "/runs/2/training_seconds"
+          ]
+        },
+        "wall_clock_s": {
+          "pointer": "/execution/wall_seconds_all_seeds"
+        }
+      },
+      "row_id": "ribomimo_study_ood",
+      "scope": "Mohammad16 to Subtelny14; three-seed independent retraining/evaluation",
+      "source": "ribo_independent",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "study-OOD ribosome occupancy"
+    },
+    {
+      "accepted_status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "comparison_class": "dense_proxy_search",
+      "method": "uniform simple search",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/claims/method_summary/0/sum_generation_cache_proposal_seconds"
+        },
+        "runs": {
+          "pointer": "/claims/method_summary/0/n_runs"
+        },
+        "scoring_s": {
+          "pointer": "/claims/method_summary/0/sum_scoring_seconds"
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "unique_scorer_calls": {
+          "pointer": "/claims/method_summary/0/sum_unique_scorer_calls"
+        },
+        "wall_clock_s": {
+          "pointer": "/claims/method_summary/0/sum_wall_clock_seconds"
+        }
+      },
+      "row_id": "rk06_dense_uniform",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "source": "rk06_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "CDS proxy multi-objective simple search"
+    },
+    {
+      "accepted_status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "comparison_class": "dense_proxy_search",
+      "method": "hill-climbing",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/claims/method_summary/1/sum_generation_cache_proposal_seconds"
+        },
+        "runs": {
+          "pointer": "/claims/method_summary/1/n_runs"
+        },
+        "scoring_s": {
+          "pointer": "/claims/method_summary/1/sum_scoring_seconds"
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "unique_scorer_calls": {
+          "pointer": "/claims/method_summary/1/sum_unique_scorer_calls"
+        },
+        "wall_clock_s": {
+          "pointer": "/claims/method_summary/1/sum_wall_clock_seconds"
+        }
+      },
+      "row_id": "rk06_dense_hill_climbing",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "source": "rk06_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "CDS proxy multi-objective simple search"
+    },
+    {
+      "accepted_status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "comparison_class": "dense_proxy_search",
+      "method": "MH-annealing",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/claims/method_summary/2/sum_generation_cache_proposal_seconds"
+        },
+        "runs": {
+          "pointer": "/claims/method_summary/2/n_runs"
+        },
+        "scoring_s": {
+          "pointer": "/claims/method_summary/2/sum_scoring_seconds"
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "unique_scorer_calls": {
+          "pointer": "/claims/method_summary/2/sum_unique_scorer_calls"
+        },
+        "wall_clock_s": {
+          "pointer": "/claims/method_summary/2/sum_wall_clock_seconds"
+        }
+      },
+      "row_id": "rk06_dense_mh_annealing",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "source": "rk06_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "CDS proxy multi-objective simple search"
+    },
+    {
+      "accepted_status": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "comparison_class": "dense_proxy_search",
+      "method": "AReUReDi-style",
+      "metrics": {
+        "generation_or_inference_s": {
+          "pointer": "/claims/method_summary/3/sum_generation_cache_proposal_seconds"
+        },
+        "runs": {
+          "pointer": "/claims/method_summary/3/n_runs"
+        },
+        "scoring_s": {
+          "pointer": "/claims/method_summary/3/sum_scoring_seconds"
+        },
+        "training_s": {
+          "constant": 0.0
+        },
+        "unique_scorer_calls": {
+          "pointer": "/claims/method_summary/3/sum_unique_scorer_calls"
+        },
+        "wall_clock_s": {
+          "pointer": "/claims/method_summary/3/sum_wall_clock_seconds"
+        }
+      },
+      "row_id": "rk06_dense_areuredi_style",
+      "scope": "unique18 development; 18 records x 3 seeds; B=1..500; 54 runs; 27,000 unique scorer calls",
+      "source": "rk06_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "CDS proxy multi-objective simple search"
+    },
+    {
+      "accepted_status": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "comparison_class": "availability_only",
+      "method": "RNARL",
+      "metrics": {
+        "generation_or_inference_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "qc_pairs": {
+          "pointer": "/clean_pairs"
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "No valid official RNARL training/generation run; data QC time is not model cost."
+        }
+      },
+      "row_id": "rnarl_availability",
+      "scope": "publisher pair-table QC only; official model not reproduced",
+      "source": "rnarl_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "learned synonymous generation"
+    },
+    {
+      "accepted_status": "SOURCE_IDENTITY_UNRESOLVED_OFFICIAL_EXECUTION_NOT_AUTHORIZED",
+      "comparison_class": "availability_only",
+      "method": "CDGB",
+      "metrics": {
+        "generation_or_inference_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        }
+      },
+      "row_id": "cdgb_source_audit",
+      "scope": "source identity unresolved; official execution not authorized",
+      "source": "cdgb_final",
+      "status_constant": null,
+      "status_pointer": "/status",
+      "task": "codon deoptimization"
+    },
+    {
+      "accepted_status": null,
+      "comparison_class": "not_run",
+      "method": "COformer",
+      "metrics": {
+        "generation_or_inference_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        }
+      },
+      "row_id": "coformer_not_run",
+      "scope": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "source": null,
+      "status_constant": "NOT_RUN",
+      "status_pointer": null,
+      "task": "codon optimization"
+    },
+    {
+      "accepted_status": null,
+      "comparison_class": "not_run",
+      "method": "CHARMING",
+      "metrics": {
+        "generation_or_inference_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "scoring_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "training_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        },
+        "wall_clock_s": {
+          "null_reason": "No valid measured cost for this scope; null is explicit and is not zero."
+        }
+      },
+      "row_id": "charming_not_run",
+      "scope": "not run in the frozen A8-RK evidence; no availability audit claimed",
+      "source": null,
+      "status_constant": "NOT_RUN",
+      "status_pointer": null,
+      "task": "codon optimization"
+    }
+  ],
+  "evidence_baseline_commit": "372ff85671961797c9052ec7f214347c9d0bb7aa",
+  "g0_pass_status": "PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY",
+  "gate_checks": [
+    {
+      "category": "G0",
+      "check_id": "boel_split_reliable",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "boel_split"
+    },
+    {
+      "category": "G0",
+      "check_id": "mage_oof_technical_pass",
+      "expected": true,
+      "operator": "eq",
+      "pointer": "/overall_pass",
+      "source": "mage_closure"
+    },
+    {
+      "category": "G0",
+      "check_id": "mordstein_full_recovery_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "mordstein_recovery"
+    },
+    {
+      "category": "G0",
+      "check_id": "rnarl_full_pair_table_qc",
+      "expected": "PASS_BOUNDED_LINEARDESIGN_PAIR_TABLE_QC_ONLY",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rnarl_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "rnarl_21_files",
+      "expected": 21,
+      "operator": "eq",
+      "pointer": "/raw_files",
+      "source": "rnarl_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "lineardesign_reproduced",
+      "expected": "PASS_COMPLETE_RK12_UNIQUE18_LINEARDESIGN_AND_ACTUAL_SET_MATRIX",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk12_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "ensembledesign_reproduced",
+      "expected": "PASS_RK13_ENSEMBLEDESIGN_SEVEN_METHOD_MATRIX",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk13_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "codontransformer_reproduced",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ct_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "cagfn_reproduced",
+      "expected": "PASS_RK05_CAGFN_OFFICIAL_BOUNDED_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "cagfn_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "dense_evaluator_finalized",
+      "expected": "FINALIZED_DEVELOPMENT_DENSE_EVIDENCE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk06_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "dense_independent_pass",
+      "expected": "INDEPENDENT_PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk06_independent"
+    },
+    {
+      "category": "G0",
+      "check_id": "actual_set_independent_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "rk12_independent"
+    },
+    {
+      "category": "G0",
+      "check_id": "raw_read_psite_feasibility_bounded",
+      "expected": "CLOSED_BOUNDED_OFFICIAL_SMOKE",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ixnos_final"
+    },
+    {
+      "category": "G0",
+      "check_id": "utr_source_feasibility_metadata",
+      "expected": "FINALIZED_SOURCE_FEASIBILITY_METADATA_ONLY",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "source_feasibility"
+    },
+    {
+      "category": "G0",
+      "check_id": "ribomimo_study_ood_closed",
+      "expected": "PASS_RK05_RIBOMIMO_STUDY_OOD",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "ribo_final"
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "full_function_technical_pass",
+      "expected": "PASS",
+      "operator": "eq",
+      "pointer": "/status",
+      "source": "full_function"
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk_g1_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/rk_g1_pass",
+      "source": "full_function"
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "mage_mechanism_gate_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/scientific_gate_pass",
+      "source": "mage_closure"
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk06_scientific_gate_remains_false",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/claims/scientific_gate_passed",
+      "source": "rk06_final"
+    },
+    {
+      "category": "BOUNDARY",
+      "check_id": "rk06_rk_g1_remains_open",
+      "expected": false,
+      "operator": "eq",
+      "pointer": "/claims/rk_g1_closed",
+      "source": "rk06_final"
+    }
+  ],
+  "protocol_id": "CF-A8-RK06-G0-CLOSEOUT-V2",
+  "rk03_remaining_status": "FEASIBILITY_CLOSED_NOT_FULL_REMAP",
+  "schema_version": "a8-g0-closeout-protocol-v2",
+  "sources": {
+    "boel_split": {
+      "path": "audits/20261118/RK04/sequence_ood_finalization.json",
+      "sha256": "c5782c837ee26b7e3d68eee17556a346bf09a2e91197b50221efe0254635d728"
+    },
+    "cagfn_final": {
+      "path": "audits/20261118/RK05/cagfn_official_smoke_finalization_v1.json",
+      "sha256": "1a2accb76ad8bd95d4e2dbebe2001f40664c7e79ae3a7cfdfa162fe1decd7acb"
+    },
+    "cdgb_final": {
+      "path": "audits/20261118/RK05/cdgb_source_finalization.json",
+      "sha256": "dc49cdc6540d9f45f2cd040518e660871fc3b0dc109e929f92f7a541e4df66b2"
+    },
+    "ct_final": {
+      "path": "audits/20261118/RK05/codontransformer_finalization_v1.json",
+      "sha256": "39a02033837ca1a7c9afa79ec928b6e0167da9a674654b3e7a0a214b2ec101ac"
+    },
+    "ct_smoke": {
+      "path": "audits/20261118/RK05/codontransformer_official_smoke_v1.json",
+      "sha256": "cbfdfeca06fdd061d0d0a09b0a57dbf614bf3b864d8554b759812d35bc6a96b1"
+    },
+    "full_function": {
+      "path": "audits/20261118/RK08/full_function_finalization_v1.json",
+      "sha256": "47a52e28816fa4524e0b124ee4ea705a079edeb3bbf4a809b6686e6e91eb83e2"
+    },
+    "id3_final": {
+      "path": "audits/20261118/RK05/id3_official_quick_test_finalization.json",
+      "sha256": "ec3d6c9a53b428dd9e92d2fbf072ca6c591faa20ce23fe38127cf6082bab14be"
+    },
+    "ixnos_final": {
+      "path": "audits/20261118/RK05/ixnos_finalization_v1.json",
+      "sha256": "a3fb63540d59e5f76cebcbea555bf1a4c063b19c4d3917e48304c94ef3ab1c28"
+    },
+    "ixnos_independent": {
+      "path": "audits/20261118/RK05/ixnos_independent_verification_v1.json",
+      "sha256": "2b7fe05d788df6474430d228ac8e597bf4aba58892f279e54a869322d1ae40cc"
+    },
+    "mage_closure": {
+      "path": "audits/20261120/RK03/mage_oof_comparator_closure_v2.json",
+      "sha256": "50273b7831da130ae74122c0d8d4463f6f472a10eafde2d9dec964dfcd2142ad"
+    },
+    "mordstein_recovery": {
+      "path": "audits/20261118/RK02/mordstein_recovery_full_finalization_v1.json",
+      "sha256": "026e5a4d272d40e6d834de932b9be332869ad1ce5309770e4d5b2e1f9f72d889"
+    },
+    "ribo_final": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_finalization_v1.json",
+      "sha256": "1f247fb05c08ff4499be50a6ab5b551d1b76db154cf9f9f882b72af4a9016d0e"
+    },
+    "ribo_independent": {
+      "path": "audits/20261119/RK05/ribomimo_study_ood_independent_retrain_v1.json",
+      "sha256": "d1fec0d5b1341cb3e1c283b2b39dc51dcf8466ff07589625e0008e428718c035"
+    },
+    "rk06_final": {
+      "path": "audits/20261120/RK06/simple_search_dense_finalization_v1.json",
+      "sha256": "bcbf1cc2bf299c212588740eb2f15d4ccc2bb693be6d672ebd46145018eab947"
+    },
+    "rk06_independent": {
+      "path": "audits/20261120/RK06/simple_search_dense_independent_v2.json",
+      "sha256": "2e24fb6434f7e2a6967bd051ca2491fcddac88a408351a2ce0dd2520546ef6df"
+    },
+    "rk12_final": {
+      "path": "audits/20261118/RK12/rk12_finalization_v1.json",
+      "sha256": "0eb96092a3e7ee59dd6b91a4d5c7be276407a1b6825a305b305c18248430d1d6"
+    },
+    "rk12_independent": {
+      "path": "audits/20261118/RK12/actual_set_matrix_independent_v2.json",
+      "sha256": "27c9b9c17692451328b989d25a1a536849aad665f56755740dc4a556c9267f0a"
+    },
+    "rk13_final": {
+      "path": "audits/20261118/RK13/rk13_finalization_v1.json",
+      "sha256": "cc2f9aa87b7ed511a087313a12e222259b9e3e34713c36835f67ed9c56479a5b"
+    },
+    "rnarl_final": {
+      "path": "audits/20261118/RK03/rnarl_finalization_recovery_v4.json",
+      "sha256": "42cf321c1a67082dfe526a71f3f93871ab440b5c9989357fa83f565f0aabd767"
+    },
+    "rose_production": {
+      "path": "audits/20261118/RK05/rose_official_single_checkpoint_v1.json",
+      "sha256": "03cacac5d8378bc9120fc48c78a7bc52bb24e83314543e82a03058d121194d0a"
+    },
+    "source_feasibility": {
+      "path": "audits/20261120/RK03/source_feasibility_finalization_v1.json",
+      "sha256": "d1c62a3817db05b353d9574dda5a33fa5d316326bd193f07e645b9f5e9067e41"
+    },
+    "velo_smoke": {
+      "path": "audits/20261118/RK05/veloharmo_official_smoke_v1.json",
+      "sha256": "9713e5d2cb6a7bd041f1abd0c6f1083e435f63193b99737b3d9e1e3c41225cb5"
+    }
+  }
+}
