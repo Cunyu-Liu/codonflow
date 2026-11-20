@@ -127,12 +127,12 @@ def test_prediction_schema_and_raw_partition_alignment(tmp_path):
         "split": ["dev"],
         "codon_position": [1],
         "target": [1.0],
-        "model_prediction": [1.0],
+        "model_prediction": [0.12345678901234567],
         "ridge_prediction": [1.0],
     }).to_csv(path, index=False)
     frame = MODULE.load_prediction_frame(path, records, 1)
     assert frame.loc[0, "position_bin"] == 2
-    assert frame.loc[0, "model"] == 1.0
+    assert frame.loc[0, "model"] == float("0.12345678901234567")
     assert frame.loc[0, "ridge"] == 1.0
     records["Study:r"]["split"] = "train"
     with pytest.raises(ValueError, match="split mismatch"):

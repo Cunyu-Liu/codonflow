@@ -1,0 +1,117 @@
+{
+  "check_count": 18,
+  "checks": [
+    {
+      "detail": "FROZEN_BEFORE_CONSTANT_FIELD_READOUT",
+      "name": "protocol/frozen",
+      "pass": true
+    },
+    {
+      "detail": 6,
+      "name": "protocol/six_primary_tests",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "protocol/no_functional_access",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "protocol/no_generator_authorization",
+      "pass": true
+    },
+    {
+      "detail": false,
+      "name": "protocol/original_gate_closed",
+      "pass": true
+    },
+    {
+      "detail": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/velocity_records.jsonl.gz",
+        "sha256": "b681e74e9e3ca9efe3c7e7b3d0a970116189660d0b16c4de616d2c2979b70f12"
+      },
+      "name": "input/velocity_records_hash",
+      "pass": true
+    },
+    {
+      "detail": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/run_v1/predictions.csv.gz",
+        "sha256": "53affd48e861df0716c7a5d825e503561fc0b429c26c4d1b8cc00f35b3ad51aa"
+      },
+      "name": "input/frozen_predictions_hash",
+      "pass": true
+    },
+    {
+      "detail": "235201ea570fb5fccaf99c51259247a0e4428e4e9ea11a09946a0b491f3f9ddc",
+      "name": "input/source_summary_hash",
+      "pass": true
+    },
+    {
+      "detail": "10 passed in 1.02s",
+      "name": "tests/ten_passed",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK08/constant_velocity_field_v1.json",
+      "name": "readout/production_absent",
+      "pass": true
+    },
+    {
+      "detail": "/home/codonflow-a8-rk/audits/20261120/RK08/constant_velocity_field_independent_v1.json",
+      "name": "readout/independent_absent",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/production_report.json",
+      "name": "readout/production_report.json_absent",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/independent_report.json",
+      "name": "readout/independent_report.json_absent",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/per_transcript_metrics.csv.gz",
+      "name": "readout/per_transcript_metrics.csv.gz_absent",
+      "pass": true
+    },
+    {
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1/constant_field.json",
+      "name": "readout/constant_field.json_absent",
+      "pass": true
+    },
+    {
+      "detail": "f0a6e63da492ca5980e3a5adf3f0c41bf5e89cc8b343b36fb24cfc0281104e43",
+      "name": "code/scripts/a8_rk08_constant_velocity_field.py_present",
+      "pass": true
+    },
+    {
+      "detail": "0a97339c503f1491be834149f46739321b56b2bc57290fc460a1f2203d23dfc2",
+      "name": "code/scripts/a8_rk08_verify_constant_velocity_field.py_present",
+      "pass": true
+    },
+    {
+      "detail": "d9febc54aaaaa9b7b59342b417cf72ef2db0741bff13f089e0a0667a5eca78bd",
+      "name": "code/tests/test_a8_rk08_constant_velocity_field.py_present",
+      "pass": true
+    }
+  ],
+  "code_sha256": {
+    "scripts/a8_rk08_constant_velocity_field.py": "f0a6e63da492ca5980e3a5adf3f0c41bf5e89cc8b343b36fb24cfc0281104e43",
+    "scripts/a8_rk08_verify_constant_velocity_field.py": "0a97339c503f1491be834149f46739321b56b2bc57290fc460a1f2203d23dfc2",
+    "tests/test_a8_rk08_constant_velocity_field.py": "d9febc54aaaaa9b7b59342b417cf72ef2db0741bff13f089e0a0667a5eca78bd"
+  },
+  "constant_field_readout_started": false,
+  "failed_count": 0,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "new_checkpoint_selections": 0,
+  "new_model_fits": 0,
+  "passed_count": 18,
+  "protocol_sha256": "66ad7cb7b3776b32d0160c9f0bf2ec8bd2a57b64d2a421c7b16070710040f00a",
+  "rk_g1_pass": false,
+  "schema_version": "a8-rk08-constant-velocity-field-preparation-v1",
+  "status": "PASS_CONSTANT_VELOCITY_PREPARATION"
+}

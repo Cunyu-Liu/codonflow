@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk08_constant_velocity_field.py", line 424, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk08_constant_velocity_field.py", line 413, in main
+    report = run(args.root.resolve(), args.protocol.resolve())
+  File "/home/codonflow-a8-rk/scripts/a8_rk08_constant_velocity_field.py", line 342, in run
+    raise AssertionError(f"metric changed {group}/{new_model}/{metric}: {new_value} vs {original_value}")
+AssertionError: metric changed dev/model/position_spearman: 0.43426630722766785 vs 0.43426649802991235

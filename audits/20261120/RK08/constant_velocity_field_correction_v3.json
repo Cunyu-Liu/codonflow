@@ -1,0 +1,28 @@
+{
+  "schema_version": "a8-rk08-constant-velocity-field-correction-v3",
+  "status": "PASS_ROUND_TRIP_FLOAT_PARSING_CORRECTION",
+  "trigger": "The original-report guard stopped before the new paired-bootstrap readout because default pandas CSV parsing changed dev model position_spearman from 0.43426649802991235 to 0.43426630722766785 through near-tie rounding.",
+  "failure_log": "audits/20261120/RK08/constant_velocity_field_production_failure_v3.log",
+  "failure_log_sha256": "c04311ce9af789bfce5a1a201f0789b21acd35ebcf207f308d8066f55b43ca41",
+  "root_cause": "The frozen CSV stores .17g values. Default pandas parsing does not guarantee exact round-trip recovery of every adjacent float; Spearman ranks are sensitive to the resulting near-tie changes.",
+  "scientific_protocol_changed": false,
+  "input_data_changed": false,
+  "comparison_seeds_changed": false,
+  "endpoint_or_gate_changed": false,
+  "metric_formula_changed": false,
+  "tolerance_relaxed": false,
+  "production_report_created_before_correction": false,
+  "independent_report_created_before_correction": false,
+  "new_bootstrap_readout_before_correction": false,
+  "implementation_changes": [
+    "Use float_precision=round_trip in both production and independent CSV readers.",
+    "Run original model/ridge metric reproduction guards before any new paired-bootstrap computation.",
+    "Retain the original 1e-12 absolute reproduction tolerance and add a high-precision schema regression assertion."
+  ],
+  "corrected_unit_tests": "10 passed",
+  "corrected_preparation": "audits/20261120/RK08/constant_velocity_field_preparation_v4.json",
+  "corrected_preparation_status": "PASS_CONSTANT_VELOCITY_PREPARATION",
+  "corrected_preparation_checks": "18/18",
+  "rk_g1_pass": false,
+  "generator_training_authorized": false
+}

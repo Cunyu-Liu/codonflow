@@ -95,7 +95,7 @@ def load_codon_counts(path: Path) -> dict[str, dict]:
 
 
 def load_prediction_frame(path: Path, records: dict[str, dict], expected_rows: int) -> pd.DataFrame:
-    frame = pd.read_csv(path)
+    frame = pd.read_csv(path, float_precision="round_trip")
     required = {"record_id", "dataset", "split", "codon_position", "target", "model_prediction", "ridge_prediction"}
     if set(frame.columns) != required:
         raise ValueError(f"unexpected prediction columns: {sorted(frame.columns)}")
@@ -295,6 +295,18 @@ def run(root: Path, protocol_path: Path) -> dict:
             per_tables.append(per)
             all_metrics[key] = {model: metrics_block(partition, per, model) for model in MODELS}
 
+    # Reproduction guards run before any new paired-bootstrap readout.
+    for group, original_group in source_summary["metrics"].items():
+        new_group = original_group_key(group)
+        for original_model, new_model in ORIGINAL_MODEL_NAMES.items():
+            for metric, original_value in original_group[original_model].items():
+                new_value = all_metrics[new_group][new_model][metric]
+                if original_value is None:
+                    if new_value is not None:
+                        raise AssertionError(f"metric changed {group}/{new_model}/{metric}")
+                elif not math.isclose(float(new_value), float(original_value), rel_tol=0, abs_tol=1e-12):
+                    raise AssertionError(f"metric changed {group}/{new_model}/{metric}: {new_value} vs {original_value}")
+
     primary = protocol["primary_partition"]
     primary_per = per_transcript_table(
         frame.loc[(frame["split"] == primary.split("|")[0]) & (frame["dataset"] == primary.split("|")[1])]
@@ -329,17 +341,6 @@ def run(root: Path, protocol_path: Path) -> dict:
         comparison_results[comparison_name]["mean_transcript_pearson"]["holm_pvalue"] = adjusted[2 * index + 1]
     support = {f"{name}_supported": supported(result) for name, result in comparison_results.items()}
 
-    # Reproduction guards against accidentally analyzing a different run.
-    for group, original_group in source_summary["metrics"].items():
-        new_group = original_group_key(group)
-        for original_model, new_model in ORIGINAL_MODEL_NAMES.items():
-            for metric, original_value in original_group[original_model].items():
-                new_value = all_metrics[new_group][new_model][metric]
-                if original_value is None:
-                    if new_value is not None:
-                        raise AssertionError(f"metric changed {group}/{new_model}/{metric}")
-                elif not math.isclose(float(new_value), float(original_value), rel_tol=0, abs_tol=1e-12):
-                    raise AssertionError(f"metric changed {group}/{new_model}/{metric}: {new_value} vs {original_value}")
     original_primary = source_summary["primary_comparisons"]["model_minus_ridge"]
     new_primary = comparison_results["model_minus_ridge"]
     for metric in METRICS:
