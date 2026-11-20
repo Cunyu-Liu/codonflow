@@ -1,0 +1,112 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(248, 250, 252, 1)"/></fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="48" topLeftY="26" width="590" height="14">
+      <content fontSize="9.5" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="left" wrap="false"><p>CODONFLOW / A8-RK · CROSS-STUDY SEQUENCE TRANSPORT</p></content>
+    </shape>
+    <shape type="text" topLeftX="48" topLeftY="26" width="864" height="14">
+      <content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>RK28 · MORDSTEIN HEK293 · OBSERVED-R1 SEQUENCE-CLUSTER OOD</p></content>
+    </shape>
+    <shape type="text" topLeftX="48" topLeftY="47" width="864" height="36">
+      <content textType="headline" fontSize="23" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Observed-R1 structure does not transport to HEK293 expression</p></content>
+    </shape>
+    <shape type="rect" topLeftX="48" topLeftY="91" width="56" height="4" presetHandlers="0">
+      <fill><fillColor color="rgba(190, 18, 60, 1)"/></fill><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/>
+    </shape>
+    <shape type="text" topLeftX="116" topLeftY="84" width="796" height="16">
+      <content fontSize="11" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>152 fixed-GFP variants · 74 clusters · 10 seeds / 5 folds · 20,000 bootstrap + 20,000 cluster-swap permutations</p></content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="110" width="198" height="78" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="60" topLeftY="117" width="174" height="12"><content fontSize="8.8" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>RIDGE · SPEARMAN GAIN</p></content></shape>
+    <shape type="text" topLeftX="60" topLeftY="131" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="left" wrap="false"><p>−0.03926</p></content></shape>
+    <shape type="text" topLeftX="60" topLeftY="159" width="174" height="11"><content fontSize="8.8" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>95% CI [−0.08952, 0.00382]</p></content></shape>
+    <shape type="text" topLeftX="60" topLeftY="173" width="174" height="10"><content fontSize="8.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Holm p 0.403980 · 0/10 seeds</p></content></shape>
+
+    <shape type="round-rect" topLeftX="270" topLeftY="110" width="198" height="78" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="282" topLeftY="117" width="174" height="12"><content fontSize="8.8" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>RIDGE · MSE IMPROVEMENT</p></content></shape>
+    <shape type="text" topLeftX="282" topLeftY="131" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="left" wrap="false"><p>−0.08210</p></content></shape>
+    <shape type="text" topLeftX="282" topLeftY="159" width="174" height="11"><content fontSize="8.8" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>95% CI [−0.17410, 0.01492]</p></content></shape>
+    <shape type="text" topLeftX="282" topLeftY="173" width="174" height="10"><content fontSize="8.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Holm p 0.403980 · 0/10 seeds</p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="110" width="198" height="78" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="504" topLeftY="117" width="174" height="12"><content fontSize="8.8" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>HISTGB · SPEARMAN GAIN</p></content></shape>
+    <shape type="text" topLeftX="504" topLeftY="131" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="left" wrap="false"><p>−0.02553</p></content></shape>
+    <shape type="text" topLeftX="504" topLeftY="159" width="174" height="11"><content fontSize="8.8" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>95% CI [−0.13686, 0.07891]</p></content></shape>
+    <shape type="text" topLeftX="504" topLeftY="173" width="174" height="10"><content fontSize="8.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Holm p 0.904255 · 3/10 seeds</p></content></shape>
+
+    <shape type="round-rect" topLeftX="714" topLeftY="110" width="198" height="78" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="726" topLeftY="117" width="174" height="12"><content fontSize="8.8" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>HISTGB · MSE IMPROVEMENT</p></content></shape>
+    <shape type="text" topLeftX="726" topLeftY="131" width="174" height="28"><content fontSize="22" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="left" wrap="false"><p>−0.13385</p></content></shape>
+    <shape type="text" topLeftX="726" topLeftY="159" width="174" height="11"><content fontSize="8.8" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>95% CI [−0.49448, 0.19321]</p></content></shape>
+    <shape type="text" topLeftX="726" topLeftY="173" width="174" height="10"><content fontSize="8.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Holm p 0.904255 · 5/10 seeds</p></content></shape>
+
+    <shape type="text" topLeftX="48" topLeftY="202" width="620" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Primary-seed absolute OOD performance</p></content></shape>
+    <shape type="text" topLeftX="620" topLeftY="204" width="292" height="14"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>Confirmatory contrast: structure versus simple</p></content></shape>
+    <table topLeftX="48" topLeftY="226" width="864" height="166">
+      <colgroup><col width="130"/><col width="340"/><col width="190"/><col width="204"/></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(190, 18, 60, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Model</p></content></td>
+        <td><fill><fillColor color="rgba(190, 18, 60, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Predictor set</p></content></td>
+        <td><fill><fillColor color="rgba(190, 18, 60, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(190, 18, 60, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>MSE</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>Ridge</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>Simple: depth + GC3 + GC + CpG + CAI</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.34955</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>2.05783</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>Ridge</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>Simple + observed-R1 MFE (300 nt / 48 nt)</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>0.31028</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>2.13994</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>Ridge</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>MFE-only descriptive reference</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>0.17205</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>2.24910</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>HistGB</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>Simple: depth + GC3 + GC + CpG + CAI</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.23898</p></content></td>
+        <td><fill><fillColor color="rgba(241, 245, 249, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>2.58556</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>HistGB</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>Simple + observed-R1 MFE (300 nt / 48 nt)</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>0.21345</p></content></td>
+        <td><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(159, 18, 57, 1)" bold="true" textAlign="left" wrap="false"><p>2.71941</p></content></td>
+      </tr>
+      <tr height="23">
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>HistGB</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>MFE-only descriptive reference</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>0.11937</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>2.70511</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="404" width="420" height="58" presetHandlers="10"><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="411" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Evidence closed</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="432" width="388" height="25"><content fontSize="9.2" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.05" textAlign="left"><p>4/4 endpoints FAIL; no positive transport increment.</p><p>Independent 54/54 · closeout 101/101 · 300 real CPU fits.</p></content></shape>
+    <shape type="round-rect" topLeftX="492" topLeftY="404" width="420" height="58" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="411" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Retrospective fragment · not full mechanism</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="432" width="388" height="25"><content fontSize="9.2" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.05" textAlign="left"><p>300 nt observed R1; no complete CDS, measured MFE or protein OOD.</p><p>No velocity/decay; RK-G1 false; generator unauthorized.</p></content></shape>
+    <shape type="round-rect" topLeftX="48" topLeftY="474" width="864" height="34" presetHandlers="8"><fill><fillColor color="rgba(255, 241, 242, 1)"/></fill><border color="rgba(253, 164, 175, 1)" width="1"/><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)"/></shape>
+    <shape type="text" topLeftX="66" topLeftY="483" width="828" height="16"><content fontSize="9.8" fontFamily="Inter" color="rgba(190, 18, 60, 1)" bold="true" textAlign="center" wrap="false"><p>CROSS-STUDY STRUCTURE TRANSPORT NOT SUPPORTED · 4/4 ENDPOINTS FAIL · independent 54/54 · closeout 101/101</p></content></shape>
+    <shape type="text" topLeftX="48" topLeftY="520" width="728" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Source: RK28 frozen protocol + independent recomputation · science 71d27dd7 · closeout 868cdb1d</p></content></shape>
+    <shape type="text" topLeftX="776" topLeftY="520" width="136" height="12"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>120 · RK28</p></content></shape>
+  </data>
+  <note><content>
+    <p>RK28 is a retrospective fixed-GFP cross-study observed-R1 sequence-cluster transport analysis on 152 Mordstein HEK293 variants, not an independent untouched confirmation or a protein-OOD experiment. The 152 unique 300-nucleotide observed-R1 sequences formed 74 complete-linkage clusters at 90 percent identity; labels had previously been used in RK02 development.</p>
+    <p>The frozen protocol compared log1p depth, observed-R1 GC3, GC, CpG and CAI with the same features plus three ViennaRNA predicted MFE features. Ridge and HistGB were evaluated over 10 seeds and 5 folds, producing 300 real CPU model fits. Primary inference used 20,000 whole-cluster bootstrap replicates and 20,000 whole-cluster simple-structure swap permutations with four-endpoint Holm correction.</p>
+    <p>Ridge Spearman gain is minus 0.03926352695138702 with 95 percent interval minus 0.0895168124540685 to 0.003815215477924786 and Holm-adjusted p 0.4039798010099495. Ridge MSE improvement is minus 0.08210497982135076 with interval minus 0.17410025597978984 to 0.014917717692312673 and Holm-adjusted p 0.4039798010099495. HistGB Spearman gain is minus 0.025531405364416587 with interval minus 0.13685880333059386 to 0.07891235967085743 and Holm-adjusted p 0.904254787260637. HistGB MSE improvement is minus 0.13385081438592558 with interval minus 0.49448101327934646 to 0.1932063861930225 and Holm-adjusted p 0.904254787260637. All four confirmatory endpoints fail; positive-seed counts are 0, 0, 3 and 5 out of 10.</p>
+    <p>Primary-seed absolute OOD Spearman and MSE are 0.349548 and 2.057832 for ridge simple, 0.310284 and 2.139937 for ridge structure, 0.238982 and 2.585560 for HistGB simple, and 0.213450 and 2.719411 for HistGB structure. MFE-only arms are descriptive references; the confirmatory contrast remains structure versus simple.</p>
+    <p>Independent verification passed 54 of 54 after rebuilding clustering, features, all model fits, predictions and resampling arrays; closeout evidence binding passed 101 of 101. Production result SHA256 is c762484fde8fb3f7b9f13912bfbd75258a7538d45b13d604d498dd4ffd64c67f and independent report SHA256 is edd1e14c8396b7ba3cce5b2accb94248af1020507765b8d64467a6b16e04b9d1. Science commit is 71d27dd7610559c2781849c2be7b2a26933c3d0e and closeout commit is 868cdb1d47d71c1a266d783628e047d41ba007e0. This analysis does not observe the complete CDS, use measured structure, establish author GFP identity, measure velocity or decay, establish full spatial coupling, read functional untouched data, authorize generator training or complete RK-G1.</p>
+  </content></note>
+</slide>
