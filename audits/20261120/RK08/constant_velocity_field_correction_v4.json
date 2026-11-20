@@ -1,0 +1,23 @@
+{
+  "schema_version": "a8-rk08-constant-velocity-field-correction-v4",
+  "status": "PASS_ORIGINAL_COMPARISON_LIST_ADAPTER",
+  "trigger": "After all original model/ridge metrics passed the 1e-12 guard, the original-primary comparison guard used a dict lookup on the source report's two-row list schema.",
+  "failure_log": "audits/20261120/RK08/constant_velocity_field_production_failure_v4.log",
+  "failure_log_sha256": "0d0ce0680184a4d5584585756204cb306b07abdc8d22568c976f628ed70c1cbf",
+  "scientific_protocol_changed": false,
+  "input_data_changed": false,
+  "comparison_seeds_changed": false,
+  "endpoint_or_gate_changed": false,
+  "metric_formula_changed": false,
+  "tolerance_relaxed": false,
+  "production_report_created_before_correction": false,
+  "independent_report_created_before_correction": false,
+  "new_results_written_or_inspected_before_correction": false,
+  "correction_scope": "Index the original two-row comparison list by its metric field and compare point delta, CI low/high, sign p-value, Holm p-value, and bootstrap count against the frozen schema. The source report has no bootstrap-mean field, so no nonexistent field is compared.",
+  "corrected_unit_tests": "10 passed",
+  "corrected_preparation": "audits/20261120/RK08/constant_velocity_field_preparation_v5.json",
+  "corrected_preparation_status": "PASS_CONSTANT_VELOCITY_PREPARATION",
+  "corrected_preparation_checks": "18/18",
+  "rk_g1_pass": false,
+  "generator_training_authorized": false
+}

@@ -341,16 +341,25 @@ def run(root: Path, protocol_path: Path) -> dict:
         comparison_results[comparison_name]["mean_transcript_pearson"]["holm_pvalue"] = adjusted[2 * index + 1]
     support = {f"{name}_supported": supported(result) for name, result in comparison_results.items()}
 
-    original_primary = source_summary["primary_comparisons"]["model_minus_ridge"]
+    original_primary = {row["metric"]: row for row in source_summary["primary_comparisons"]}
+    if set(original_primary) != set(METRICS):
+        raise AssertionError("original primary metric schema changed")
     new_primary = comparison_results["model_minus_ridge"]
     for metric in METRICS:
-        for field_name in ("ci95", "bootstrap_mean_delta", "pvalue_two_sided"):
-            if not np.allclose(new_primary[metric][field_name], original_primary[metric][field_name], rtol=0, atol=1e-12):
-                raise AssertionError(f"original primary comparison changed: {metric}/{field_name}")
-        if new_primary[f"delta_{metric}"] != original_primary[f"delta_{metric}"]:
+        original_row = original_primary[metric]
+        new_row = new_primary[metric]
+        if not np.allclose(
+            new_row["ci95"], [original_row["ci95_low"], original_row["ci95_high"]], rtol=0, atol=1e-12
+        ):
+            raise AssertionError(f"original primary CI changed: {metric}")
+        if new_primary[f"delta_{metric}"] != original_row["point_delta_model_minus_ridge"]:
             raise AssertionError(f"original point delta changed: {metric}")
-        if new_primary[metric]["holm_pvalue"] != original_primary[metric]["holm_pvalue"]:
+        if new_row["pvalue_two_sided"] != original_row["sign_pvalue"]:
+            raise AssertionError(f"original sign pvalue changed: {metric}")
+        if new_row["holm_pvalue"] != original_row["holm_pvalue"]:
             raise AssertionError(f"original Holm result changed: {metric}")
+        if new_primary["bootstrap_replicates"] != original_row["bootstrap_requested"]:
+            raise AssertionError(f"original bootstrap count changed: {metric}")
 
     per_output = artifact_root / "per_transcript_metrics.csv.gz"
     pd.concat(per_tables, ignore_index=True).to_csv(per_output, index=False, compression="gzip")
