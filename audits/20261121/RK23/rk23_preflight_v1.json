@@ -50,7 +50,10 @@
     "initial": "3 failed and 9 passed; three test-only errors in hand-calculated GC3, a Spearman-invariant shifted prediction and a synthetic dictionary key",
     "test_only_repairs": "corrected the synthetic examples and key construction; scientific implementation unchanged",
     "intermediate": "2 failed and 10 passed after two additional hand-calculated test expectations were corrected",
-    "final": "12 passed in 1.21s",
+    "final_before_input_hash_smoke": "12 passed in 1.05s",
+    "input_hash_smoke_failure": "The first dev command stopped before data loading or model fitting because split_file_sha256 was incorrectly inferred instead of using the protocol's split_sha256 field; the tee pipeline also masked the nonzero exit status.",
+    "input_hash_repair": "Added an explicit INPUT_HASH_KEYS mapping and a regression test; no scientific feature, model, label or endpoint changed.",
+    "final": "13 passed after the input-hash repair",
     "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest tests/test_a8_rk23_boel_uh.py -q"
   },
   "test_label_access": "No RK23 train/dev/test model fitting or RK23 test evaluation has occurred at preflight freeze.",

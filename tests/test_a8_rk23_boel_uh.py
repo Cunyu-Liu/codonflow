@@ -98,6 +98,17 @@ def test_optimized_prediction_quantiles_are_not_expression_ground_truth():
     assert cfg["image_digitization_allowed"] is False
 
 
+def test_input_hash_field_mapping_is_explicit():
+    cfg = protocol()
+    assert rk23.INPUT_HASH_KEYS == {
+        "split_file": "split_sha256",
+        "feature_file": "feature_file_sha256",
+        "feature_summary": "feature_summary_sha256",
+    }
+    for path_key, digest_key in rk23.INPUT_HASH_KEYS.items():
+        assert path_key in cfg and digest_key in cfg
+
+
 def test_fixed_model_and_four_endpoint_contract():
     cfg = protocol()
     assert len(cfg["primary_endpoints"]) == 4

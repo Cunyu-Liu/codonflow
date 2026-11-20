@@ -22,6 +22,13 @@ from sklearn.ensemble import HistGradientBoostingRegressor
 from scripts.a8_rk07_proxy_evaluate import fit_multinomial_logistic, logistic_expected_score
 
 
+INPUT_HASH_KEYS = {
+    "split_file": "split_sha256",
+    "feature_file": "feature_file_sha256",
+    "feature_summary": "feature_summary_sha256",
+}
+
+
 def sha256_file(path: str | Path) -> str:
     digest = hashlib.sha256()
     with open(path, "rb") as handle:
@@ -334,8 +341,8 @@ def main() -> None:
     test_requested = "test" in args.evaluation_splits
     if test_requested != args.frozen_test_confirmation:
         raise ValueError("test and --frozen-test-confirmation must agree")
-    for key in ("split_file", "feature_file", "feature_summary"):
-        if sha256_file(protocol[key]) != protocol[f"{key}_sha256"]:
+    for key, digest_key in INPUT_HASH_KEYS.items():
+        if sha256_file(protocol[key]) != protocol[digest_key]:
             raise ValueError(f"input hash mismatch: {key}")
     for key in ("source_data_fig5_file", "optimized_genes_file"):
         if sha256_file(protocol["optimized_construct_boundary"][key]) != protocol["optimized_construct_boundary"][key.replace("_file", "_sha256")]:
