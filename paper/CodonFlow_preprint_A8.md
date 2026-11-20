@@ -720,6 +720,41 @@ The pure external-RCS predictor performed significantly worse than intrinsic on 
 
 An independent implementation reconstructed the external-only features, repeated all 375 fits, and recomputed predictions, model selection, metrics, intervals, permutation tests, and Holm correction. It passed **174/174 checks** with maximum numeric discrepancy 0; finalization passed **43/43 checks**. The original development no-go remains unchanged. No test or functional-untouched evaluation was performed, RK-G1 remains false, expensive generator training remains unauthorized, and no protein-OOD, causal-mechanism, complete-SOTA, or submittable-manuscript claim is made.
 
+
+### 6.29 A train-only constant relative-position field outperforms both velocity predictors on Subtelny14
+
+To test whether the frozen velocity predictors captured more than a simple positional trend, we preregistered a sequence-independent constant-field comparator before computing its readout. The field used only the Mohammad16 training partition: 933 transcripts and 267,800 observed codon positions. Relative position was calculated as codon position divided by codon count minus one and discretized into the same 20 bins used by the ridge baseline. Within each training transcript, observed targets were first averaged within each bin; these transcript-bin means were then averaged with equal transcript weight. No sequence, codon identity, host, evaluation target, new model fit, or checkpoint selection entered the comparator. Predictions were evaluated on the frozen Subtelny14 partition of 3,630 transcripts and 1,444,596 observed positions, which has zero exact-CDS overlap with all Mohammad16 splits. The target remains an occupancy-derived speed proxy rather than a physical velocity measurement.
+
+**Table 1**
+
+*Subtelny14 Metrics for the Frozen Velocity Predictors and the Constant Relative-Position Field*
+
+| Predictor | Transcript-balanced MSE | Mean transcript Pearson |
+|---|---:|---:|
+| RiboKinetic velocity | 0.23056854005324243 | −0.00884488119796242 |
+| Codon–position–length ridge | 0.1759458819436876 | 0.061698354230170255 |
+| Constant relative-position field | 0.17285268431817252 | 0.12464883660898879 |
+
+*Note.* All 3,630 transcripts had finite within-transcript Pearson values for all three predictors. Lower MSE and higher Pearson are better. The constant field was estimated from Mohammad16 training data only.
+
+The three paired comparisons used 2,000 transcript-bootstrap replicates with the original seed 20261120. Six endpoint-wise tests were corrected together by the Holm method. Support required a transcript-balanced MSE interval entirely below zero, a mean-transcript Pearson interval entirely above zero, both Holm-adjusted *p* values below 0.05, and beneficial bootstrap-mean directions at sensitivity seeds 20261121 and 20261122.
+
+**Table 2**
+
+*Paired Subtelny14 Comparisons Against the Constant Relative-Position Field and the Original Ridge Comparator*
+
+| Comparison | ΔTranscript-balanced MSE [95% CI] | Holm *p* | ΔMean transcript Pearson [95% CI] | Holm *p* |
+|---|---:|---:|---:|---:|
+| RiboKinetic − constant field | 0.05771585573506995 [0.05709918203103379, 0.05834085807893431] | 0 | −0.1334937178069512 [−0.13779552902338732, −0.12926709989907645] | 0 |
+| Ridge − constant field | 0.003093197625515117 [0.0029514829149933754, 0.00324115839797996] | 0 | −0.06295048237881853 [−0.06590631231789056, −0.060080732289514466] | 0 |
+| RiboKinetic − ridge | 0.05462265810955484 [0.05404594435779176, 0.05519200143473219] | 0 | −0.07054323542813268 [−0.07324810579112143, −0.06776526128770917] | 0 |
+
+*Note.* CI denotes confidence interval. Negative ΔMSE and positive ΔPearson would favor the first-named predictor. Zero sign-test *p* values denote no opposing bootstrap signs in 2,000 replicates, not a continuous probability of exactly zero.
+
+The constant field therefore had the lowest transcript-balanced MSE and the highest mean transcript Pearson among these three frozen predictors. Both RiboKinetic and ridge were significantly worse than the constant field on both endpoints, and both sensitivity seeds retained the adverse directions. Consequently, neither the model–constant nor the ridge–constant comparison met the support rule. The original model–ridge comparison also remained unfavorable and was reproduced at the frozen numerical tolerance. These results strengthen the prior negative cross-study mechanism conclusion: internal development gains did not transfer, and the codon–position–length ridge did not improve on a train-only positional field in this partition.
+
+An independent implementation checked every prediction target against the raw records, refit the field, and recomputed all metrics, bootstrap comparisons, sensitivity analyses, and Holm adjustments. It passed **361/361 checks**, with maximum numeric discrepancy **6.245004513516506 × 10⁻¹⁷**; scientific closeout passed **37/37 checks**, and an exact-commit post-push rerun again passed **361/361 checks**. The production analysis required **25.81757343420759 s**, with no new training, model forward pass, checkpoint selection, or scorer call. This retrospective comparator does not establish homology-cluster OOD, causal velocity regulation, biological function, or external SOTA. Functional-untouched data were not accessed, RK-G1 remains false, and generator training remains unauthorized.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -964,6 +999,20 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK03 pure-external-RCS manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 | RK03 pure-external-RCS retained delivery failure | `a21fde3b388c16e354cf1c79793afa54e7e7efb7d59f883198fff9e28161f97e` |
 | RK03 pure-external-RCS delivery correction | `ebcf2fdd95cef0664ac3916e80b5168d246a0903108edc77d23e7da6b4578318` |
+
+| RK08 constant-field frozen protocol | `66ad7cb7b3776b32d0160c9f0bf2ec8bd2a57b64d2a421c7b16070710040f00a` |
+| RK08 constant-field preparation | `528c57b2189d5e322ae49d452f54eff29394c6f4610d0bacf45a17ffd1b3dcdb` |
+| RK08 constant-field production | `8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb` |
+| RK08 constant-field independent verification | `e4e4d70b6e517b6428a91e795ee273a555a53c043051942951fc82d28b643f27` |
+| RK08 constant-field finalization | `ec67656bf3307540d7191f02b640804ad30fbfc35233bcdd5170caffcac92d1a` |
+| RK08 constant-field exact-commit post-push verification | `72ec5e9c4b085846d78c462cb35c3aca023db3a22d4cedf621823d4b066bac81` |
+| RK08 constant-field 10-test log | `633e94b1f5f31868282c3747277fb33b0560f329488e867ba094a51daf3f39df` |
+| RK08 constant-field manuscript source section | `e54e33ea497f43e6c7462d3c6ee429239fd7d4a712208c68ab759ed023c328e1` |
+| RK08 constant-field manuscript prepare check | `f7e16584dd7c5e9afa9db6c81342ca0a5bb4facc7cb8889508b751b67718dc06` |
+| RK08 constant-field manuscript draft check | `454fa2b13f27ccae1d30df0147db819a5be0ee8f36dddd3d43df7ca7f31e9ac2` |
+| RK08 constant-field manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK08 constant-field retained delivery failure | `005a32493c6ac34f03ae91ca8f57940962623381ee2d6bc39dee9bf49bc40b69` |
+| RK08 constant-field delivery correction | `321bd948b5c53c2f61b0fb9715d4b0729b058b9864f298d87cc309b54ad45b00` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
