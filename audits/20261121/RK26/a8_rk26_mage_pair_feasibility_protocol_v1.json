@@ -1,0 +1,48 @@
+{
+  "schema": "a8-rk26-mage-pair-feasibility-protocol-v1",
+  "protocol_id": "a8_rk26_mage_pair_feasibility_v1_retrospective_sequence_only",
+  "analysis_role": "retrospective_data_adequacy_audit_not_a_preregistered_mechanism_experiment",
+  "candidate_origin": "An unregistered single-to-double synonymous OOD idea was explored at schema/count level before this reproducibility protocol was frozen. No model, functional endpoint, confidence interval, p-value, or generator was run.",
+  "scientific_question": "Can the MAGE-seq codon-pair assay support a fixed-protein confirmatory model comparison trained on synonymous single-codon variants and evaluated on synonymous double-codon variants in both assayed pair contexts?",
+  "source": {
+    "raw_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/raw/kelsic_2016_mage_seq/data_s2_codon_pair_csv.csv",
+    "raw_sha256": "873f4ef0b410fb1299217d7c5cf0ffd5c78947591c9f944da867c428bdf93672",
+    "clean_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/kelsic_2016_mage_seq/codon_pair_fitness.csv",
+    "clean_sha256": "7acecf37b7ca432468a8e5c7a45ab6f471df41ae7d30d493cf8e4fe95e06edf1",
+    "paper_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5234859/"
+  },
+  "allowed_raw_columns": ["codon1", "aa1", "pos1", "codon2", "aa2", "pos2", "is_wt"],
+  "allowed_clean_columns": ["source_row", "construct_id", "mutation_signature", "record_class", "codon_position", "wt_codon", "mutant_codon", "amino_acid"],
+  "prohibited_analysis_columns": ["fitness_rich", "fitness_stdev_rich", "expression_value", "expression_stdev", "RCS", "mfe_ddG(100nt)", "mfe_ddG_100nt", "RBS_calc", "SD-like-ddG", "SD_like_ddG"],
+  "expected_pair_contexts": ["1-2", "2-3"],
+  "expected_rows_per_pair": 4096,
+  "mutation_order": "Number of positions whose observed codon differs from the unique is_wt=1 codon in the same pair context.",
+  "synonymous_definition": "At both positions, standard genetic-code translation of the observed codon equals standard genetic-code translation of the WT codon; WT rows are excluded from variant counts.",
+  "confirmatory_design_requirements": {
+    "minimum_pair_contexts": 2,
+    "minimum_synonymous_single_variants_per_pair": 2,
+    "minimum_synonymous_double_variants_per_pair": 2,
+    "rationale": "The candidate requires a nonzero synonymous-single training set and at least two synonymous-double OOD constructs in each pair context so that a context-specific OOD spread is not defined by a singleton. This is a design-feasibility rule, not a power analysis or a claim that smaller descriptive analyses are impossible."
+  },
+  "decision": {
+    "if_any_pair_fails": "FIXED_PROTEIN_SINGLE_TO_DOUBLE_SYNONYMOUS_OOD_NOT_SUPPORTED_BY_SAMPLE_COVERAGE; no model fit or functional endpoint evaluation",
+    "if_all_pairs_pass": "COVERAGE_FEASIBILITY_ONLY__SEPARATE_PREREGISTERED_MECHANISM_PROTOCOL_REQUIRED"
+  },
+  "boundaries": {
+    "no_model_fitting": true,
+    "no_functional_endpoint_evaluation": true,
+    "no_confidence_interval_or_p_value": true,
+    "original_mage_33_construct_mechanism_test_accessed": false,
+    "rk04_functional_untouched_split_accessed": false,
+    "protein_ood_claim": false,
+    "velocity_decay_or_spatial_coupling_claim": false,
+    "rk_g1_pass": false,
+    "generator_training_authorized": false
+  },
+  "outputs": {
+    "small_report_root": "/home/codonflow-a8-rk/audits/20261121/RK26",
+    "large_artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk26/mage_pair_feasibility_v1",
+    "pair_facts_csv_gz": "rk26_pair_sequence_facts.csv.gz",
+    "pair_counts_csv": "rk26_pair_context_counts.csv"
+  }
+}
