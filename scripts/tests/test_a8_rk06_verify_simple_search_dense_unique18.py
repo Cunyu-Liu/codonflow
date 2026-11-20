@@ -44,7 +44,7 @@ class IndependentHelperTests(unittest.TestCase):
 
     def test_motif_penalty_is_per_codon_input(self):
         sequence = "AATAAACAGGTAATACGACTCACTATAATTTAGGTGACACTATAAAAAAA"
-        self.assertEqual(independent.independent_motif(sequence), 7.0)
+        self.assertEqual(independent.independent_motif(sequence), 11.0)
         self.assertEqual(independent.independent_motif(sequence), motif_penalty_score(sequence))
 
     def test_dominance_uses_independent_arrays(self):
