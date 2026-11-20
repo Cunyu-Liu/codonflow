@@ -1,0 +1,16 @@
+{
+  "schema": "a8-rk03-pure-external-native-slide-create-request-v01",
+  "method": "slides xml_presentation.slide create",
+  "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+  "params": {
+    "xml_presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+    "revision_id": -1,
+    "idempotency_key": "codonflow-pure-rcs-20261120-v01"
+  },
+  "body_source": "pure_rcs_add_dry_run_v01.json:data.api[0].body",
+  "candidate_source": "pure_rcs_slide_candidate_v01.xml",
+  "candidate_sha256": "d596d18912b1e5ec5d83ca38a08ea5634a996d43bef05d4cc04d421cf6deb477",
+  "shortcut_timeout_failures_preceding_native_request": 2,
+  "both_timeout_readbacks_confirmed_no_page": true,
+  "native_response": "pure_rcs_native_add_response_v01.json"
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "a8-rk03-pure-external-ppt-closeout-correction-v1",
+  "scope": "verification_reporting_and_terminal_newline_normalization_only",
+  "scientific_content_changed": false,
+  "candidate_xml_changed": false,
+  "online_slide_changed_after_native_success": false,
+  "online_slide_id": "pZS",
+  "online_revision": 70,
+  "issues": [
+    {
+      "observed": "The first closeout invocation stopped because the postwrite report did not expose the evidence SHA256 fields at top level, although all five hash checks had already passed.",
+      "resolution": "The postwrite verifier now serializes those same five evidence hashes; its independent semantic audit still passes 553/553.",
+      "retained_log": "pure_rcs_ppt_finalization_v1.console.log"
+    },
+    {
+      "observed": "The next closeout invocation passed 31/32 because the dry-run payload omitted only the candidate file's terminal newline.",
+      "resolution": "The comparison now ignores terminal newline characters only; all XML content, visible text, notes, evidence values, and online slide content remain unchanged.",
+      "retained_log": "pure_rcs_ppt_finalization_v2.console.log"
+    }
+  ],
+  "final_status": "PASS_PURE_EXTERNAL_PPT_CLOSEOUT",
+  "final_checks": "32/32",
+  "final_report": "pure_rcs_ppt_closeout_finalization_v1.json",
+  "final_report_sha256": "65cbdf405a598b20d36c55ed50b0ceb33df1c5921df6c2c353e035127ed722bc",
+  "postwrite_verifier_sha256": "8f134c80f5c2bca63d48b819d09a16dcda72fa1f3235be095e20e01d424f0cb2",
+  "finalizer_sha256": "b1b378d7c1ff758345b8ebd89bd08e9b1d75c66c8c75b90c2c6691386f3c834c",
+  "rk_g1_pass": false,
+  "test_authorized": false,
+  "generator_training_authorized": false
+}

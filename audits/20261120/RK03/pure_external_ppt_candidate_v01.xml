@@ -1,0 +1,89 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(248, 250, 252, 1)"/></fill>
+  </style>
+  <data>
+    <shape type="text" topLeftX="48" topLeftY="20" width="690" height="16">
+      <content textType="caption" fontSize="10" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" letterSpacing="1.2" wrap="false"><p>A8-RK · EXTERNAL FEATURE ABLATION · 20 NOV 2026</p></content>
+    </shape>
+    <shape type="text" topLeftX="770" topLeftY="20" width="142" height="16">
+      <content textType="caption" fontSize="10" fontFamily="Aptos" color="rgba(15, 118, 110, 1)" bold="true" textAlign="right" wrap="false"><p>RK03 · PURE RCS</p></content>
+    </shape>
+    <shape type="text" topLeftX="48" topLeftY="43" width="864" height="38">
+      <content textType="title" fontSize="28" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>Pure external RCS cannot replace intrinsic features</p></content>
+    </shape>
+    <shape type="rect" topLeftX="48" topLeftY="87" width="56" height="4" presetHandlers="2"><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill></shape>
+    <shape type="text" topLeftX="116" topLeftY="80" width="796" height="18">
+      <content fontSize="11" fontFamily="Aptos" color="rgba(71, 85, 105, 1)" wrap="false"><p>131 reused train+dev constructs · 5 outer / 4 inner folds · 3 seeds · 6 alphas · 375 fits · 20,000 paired resamples · test 33 excluded</p></content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" wrap="false"><p>PURE RCS · PRIMARY SEED</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>−0.132 <span color="rgba(154, 52, 18, 1)" fontSize="10">SPEARMAN</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="270" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="286" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" wrap="false"><p>PURE RCS · PRIMARY SEED</p></content></shape>
+    <shape type="text" topLeftX="286" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>0.049298 <span color="rgba(154, 52, 18, 1)" fontSize="11">RMSE</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" wrap="false"><p>INDEPENDENT · MAX DELTA 0</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>174 / 174 <span color="rgba(15, 118, 110, 1)" fontSize="11">PASS</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="714" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255, 255, 255, 1)"/></fill><border color="rgba(226, 232, 240, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="730" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" wrap="false"><p>CLOSEOUT · POSTPUSH 174/174</p></content></shape>
+    <shape type="text" topLeftX="730" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>43 / 43 <span color="rgba(15, 118, 110, 1)" fontSize="11">PASS</span></p></content></shape>
+
+    <shape type="text" topLeftX="48" topLeftY="194" width="620" height="20"><content textType="headline" fontSize="14" fontFamily="Aptos" color="rgba(15, 23, 42, 1)" bold="true" wrap="false"><p>Preregistered development-only comparisons</p></content></shape>
+    <shape type="text" topLeftX="700" topLeftY="196" width="212" height="16"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>Rounded display · full precision in note</p></content></shape>
+    <table topLeftX="48" topLeftY="222" width="864" height="136">
+      <colgroup><col width="150"/><col width="270"/><col width="70"/><col width="290"/><col width="84"/></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left"><p>Comparison</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Spearman delta [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Holm p</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>RMSE delta [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(255, 255, 255, 1)" bold="true"><p>Holm p</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left"><p>pure − intrinsic</p></content></td>
+        <td><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)"><p>−0.744 [−0.940, −0.530]</p></content></td>
+        <td><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)" bold="true"><p>&lt;0.001</p></content></td>
+        <td><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)"><p>+0.0152 [+0.0058, +0.0251]</p></content></td>
+        <td><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(154, 52, 18, 1)" bold="true"><p>0.00945</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left"><p>full − pure</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)"><p>+0.767 [+0.563, +0.953]</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)" bold="true"><p>&lt;0.001</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)"><p>−0.0151 [−0.0254, −0.0055]</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)" bold="true"><p>0.00945</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><content fontSize="10" fontFamily="思源黑体" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left"><p>intrinsic+RCS − pure</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)"><p>+0.748 [+0.539, +0.943]</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)" bold="true"><p>&lt;0.001</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)"><p>−0.0151 [−0.0254, −0.0058]</p></content></td>
+        <td><fill><fillColor color="rgba(236, 253, 245, 1)"/></fill><content fontSize="10" fontFamily="思源黑体" color="rgba(15, 118, 110, 1)" bold="true"><p>0.00945</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="370" width="420" height="70" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="380" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Aptos" color="rgba(154, 52, 18, 1)" bold="true" wrap="false"><p>Replacement fails</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="400" width="388" height="34"><content fontSize="11" fontFamily="Aptos" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.1"><p>Pure is worse on both endpoints<br/><span color="rgba(120, 53, 15, 1)" fontSize="9">Spearman −0.132 vs +0.612 · RMSE 0.049298 vs 0.034133 · both sensitivity seeds agree.</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="370" width="420" height="70" presetHandlers="10"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="380" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Aptos" color="rgba(154, 52, 18, 1)" bold="true" wrap="false"><p>Mechanism interpretation unchanged</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="400" width="388" height="34"><content fontSize="11" fontFamily="Aptos" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.1"><p>Beating pure RCS is not beating intrinsic<br/><span color="rgba(120, 53, 15, 1)" fontSize="9">Old full−intrinsic: both CIs cross zero · both Holm p = 1.</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="455" width="864" height="36" presetHandlers="8"><fill><fillColor color="rgba(255, 247, 237, 1)"/></fill><border color="rgba(253, 186, 116, 1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="461" width="832" height="24"><content fontSize="11" fontFamily="Aptos" color="rgba(154, 52, 18, 1)" bold="true" wrap="false"><p>Replacement = false · mechanism increment = false · RK-G1 = false · test + generator remain unauthorized</p></content></shape>
+    <shape type="text" topLeftX="48" topLeftY="505" width="720" height="13"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" wrap="false"><p>Source: manuscript v32 §6.28 · production / independent / finalization · GitHub d5959f73</p></content></shape>
+    <shape type="text" topLeftX="800" topLeftY="505" width="112" height="13"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>A8-RK · 108</p></content></shape>
+  </data>
+  <note><content>
+    <p>The pure arm contained only variant RCS, its difference from the matched wild-type control, and the absolute difference, with no position, position interaction, codon or amino-acid identity, GC, local-MFE, or other intrinsic feature; the frozen 131-construct train-plus-development artifact reused five outer folds, four inner folds, three seeds, and six alphas for 375 new fits, while all 33 test constructs remained excluded.</p>
+    <p>Primary-seed metrics were intrinsic RMSE 0.03413327461240379, MAE 0.022187896273263757, Spearman 0.6123990835404937; pure external RCS RMSE 0.04929761172417739, MAE 0.03158281646008941, Spearman -0.13201530863899236; intrinsic+RCS RMSE 0.034152773868486606, MAE 0.021816612746170472, Spearman 0.6163526287671603; and full mechanism RMSE 0.03422820302559988, MAE 0.0222595186439585, Spearman 0.6352981456298568.</p>
+    <p>For pure minus intrinsic, Spearman delta was -0.744414392179486 with CI [-0.9403491867053566, -0.5300791533185797] and Holm p=0.0002999850007499625, while RMSE delta was 0.015164337111773597 with CI [0.005846359530413134, 0.02506527402042598] and Holm p=0.009449527523623819; for full minus pure, the corresponding values were 0.7673134542688491, CI [0.5631894046071572, 0.9532654793818945], Holm p=0.0002999850007499625, and -0.015069408698577508, CI [-0.02544806838533774, -0.005479110034720501], Holm p=0.009449527523623819; for intrinsic+RCS minus pure, they were 0.7483679374061527, CI [0.539343123375721, 0.9432946055506556], Holm p=0.0002999850007499625, and -0.015144837855690783, CI [-0.02536403898497323, -0.00577083989049933], Holm p=0.009449527523623819.</p>
+    <p>Both sensitivity seeds retained the adverse pure-minus-intrinsic directions, the old full-minus-intrinsic comparison remained non-significant with both Holm p=1 and both CIs crossing zero, and development-only wins over pure RCS do not establish a mechanism increment; independent verification passed 174/174 with maximum numeric delta 0, finalization passed 43/43, postpush independent verification passed 174/174, manuscript v32 section 6.28 and GitHub commits b95e1244537a23c95cdda986cb60e343cfd7e4da and d5959f73ac4f4812d614eee6d6c04d320dff38fc record the evidence, while replacement, mechanism increment, RK-G1, test authorization, and generator authorization remain false.</p>
+  </content></note>
+</slide>

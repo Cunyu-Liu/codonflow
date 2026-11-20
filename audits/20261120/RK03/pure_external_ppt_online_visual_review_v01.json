@@ -1,0 +1,31 @@
+{
+  "schema": "a8-rk03-pure-external-online-visual-review-v01",
+  "status": "PASS_ONLINE_VISUAL_REVIEW",
+  "visual_pass": true,
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "slide_number": 108,
+  "slide_id": "pZS",
+  "canvas": [960, 540],
+  "no_overflow": true,
+  "no_overlap": true,
+  "legible": true,
+  "negative_gate_visible": true,
+  "table_aligned": true,
+  "screenshot": "pure_rcs_screenshots_v01/WB1KsYGualerMUddEzMcCw1En0g_p108_pZS.jpg",
+  "screenshot_sha256": "4a258df93c9c1c15d6a55b01d87b317100744437210e2f9a92ab33afaaeef44f",
+  "source": "lark-cli slides +screenshot on the actual online slide after native idempotent creation",
+  "reviewed_items": {
+    "title_and_context": "PASS — title, kicker, protocol line, and page number are complete and legible.",
+    "four_kpis": "PASS — pure Spearman, pure RMSE, independent 174/174, and closeout 43/43 are readable with no clipping.",
+    "comparison_table": "PASS — all three comparisons, effect estimates, confidence intervals, and Holm p-values are visible without overlap or truncation.",
+    "interpretation_cards": "PASS — replacement failure and unchanged mechanism interpretation are distinct and legible.",
+    "negative_gate": "PASS — replacement false, mechanism increment false, RK-G1 false, and test/generator unauthorized are visible.",
+    "layout_and_aesthetics": "PASS — white, teal, and amber palette; consistent spacing; clean alignment; no unexpected overlap, overflow, cropping, or unreadable density."
+  },
+  "visible_scientific_boundary": "Development-only replacement fails; beating pure RCS is not beating intrinsic; old full-minus-intrinsic CIs cross zero with Holm p=1; no test or generator authorization.",
+  "postwrite_semantic_verification": "pure_rcs_slide_postwrite_verification_v01.json",
+  "postwrite_semantic_checks": "553/553 PASS",
+  "rk_g1_pass": false,
+  "test_authorized": false,
+  "generator_training_authorized": false
+}
