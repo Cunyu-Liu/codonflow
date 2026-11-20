@@ -1,0 +1,132 @@
+{
+  "schema": "a8-rk19-full-cpu-regression-v1",
+  "status": "PASS_FULL_CPU_SUITE_EXISTING_ENV",
+  "overall_pass": true,
+  "check_count": 15,
+  "passed_count": 15,
+  "environment": "codonflow",
+  "python": "3.10.22",
+  "device_contract": "CUDA_VISIBLE_DEVICES empty; CPU test run",
+  "tests": {
+    "collected": 331,
+    "passed": 330,
+    "skipped": 1,
+    "failed": 0,
+    "errors": 0
+  },
+  "junit_metadata_observation": {
+    "tests_attribute": 336,
+    "testcase_elements": 331,
+    "attribute_minus_elements": 5,
+    "acceptance_basis": "console summary plus independently enumerated testcase elements"
+  },
+  "package_versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "pandas": "2.2.2",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.8.0",
+    "pytest": "9.1.1"
+  },
+  "input_sha256": {
+    "junit": "3d7fe00ed8eaffac6e19feeca5a7dda3ea364b0f02da71b31e232ae0ee428eb6",
+    "console": "038d070c0f5da0bc127c22a52711e630fce566aafae2f8b51efdb71b5e4b4ee0",
+    "initial_log": "a73dd1884e81fefdee263c0b750e425af06395a683764cc2082814402123ca0e",
+    "pip_check_log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "science_gate": "8b064345503e2551be63632632c49d108af020b6a49263d9d87becec4ae883eb",
+    "environment_yml": "bd0229705b7ce2b14389a6291caad075430916e73f83e6c8dd363e9e657c7326",
+    "pyproject_toml": "c757d43ea75f99bc211ea18495659e53594f421e852ca90eaa2af608e3ea309a"
+  },
+  "full_cpu_suite_pass": true,
+  "clean_environment_reproduction": false,
+  "gpu_integration_executed": false,
+  "rk_g1_pass": false,
+  "generator_training_authorized": false,
+  "functional_untouched_evaluated": false,
+  "checks": [
+    {
+      "name": "junit_counts",
+      "pass": true,
+      "detail": {
+        "suite_tests_attribute": "336",
+        "testcase_elements": 331,
+        "attribute_minus_elements": 5
+      }
+    },
+    {
+      "name": "junit_no_failures",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "junit_one_skip",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "expected_integration_skip",
+      "pass": true,
+      "detail": {
+        "classname": "tests.test_gpu_queue_integration",
+        "name": "test_queue_lifecycle_in_isolated_tmux",
+        "reason": "explicit tmux integration opt-in"
+      }
+    },
+    {
+      "name": "console_counts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "collection_repaired",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "integration_marker_registered",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "initial_failure_preserved",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pip_check",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "pandas_version",
+      "pass": true,
+      "detail": "2.2.2"
+    },
+    {
+      "name": "sklearn_version",
+      "pass": true,
+      "detail": "1.7.2"
+    },
+    {
+      "name": "conda_dependencies_declared",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "test_extra_declared",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "analysis_extra_declared",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "science_gates_unchanged",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

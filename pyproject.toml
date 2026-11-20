@@ -14,8 +14,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "pandas>=2.2", "scikit-learn>=1.7"]
 eval = ["pymoo", "ViennaRNA", "rapidfuzz"]
+analysis = ["pandas>=2.2", "scikit-learn>=1.7"]
 baselines = ["transformers", "linformer"]
 
 [tool.setuptools.packages.find]
@@ -24,3 +25,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+markers = [
+    "integration: isolated integration test that may require local system tools",
+]
