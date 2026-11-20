@@ -1,0 +1,248 @@
+{
+  "schema": "a8-rk08-channel-selection-v1",
+  "status": "PASS_CHANNEL_SELECTION_FROZEN",
+  "protocol_sha256": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+  "preparation_sha256": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79",
+  "selection_rule": "Select exactly one arm: minimum dev cluster-balanced MSE; exact ties resolved by arms_in_tie_break_order.",
+  "arms_in_tie_break_order": [
+    "all",
+    "none",
+    "initiation_only",
+    "velocity_only",
+    "decay_only",
+    "pair_only",
+    "no_initiation",
+    "no_velocity",
+    "no_decay",
+    "no_pair"
+  ],
+  "development_table": [
+    {
+      "arm": "all",
+      "tie_break_order": 0,
+      "dev_cluster_balanced_mse": 3.761769367012553,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 2,
+      "parameters": 4997,
+      "elapsed_seconds": 53.61956429481506,
+      "checkpoint_sha256": "9fd03f9d5b3eac3554bbbb57f21723b6dfdc946235febb863afe004160dd8985"
+    },
+    {
+      "arm": "none",
+      "tie_break_order": 1,
+      "dev_cluster_balanced_mse": 3.9020595367704525,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 1,
+      "parameters": 4997,
+      "elapsed_seconds": 48.84505248069763,
+      "checkpoint_sha256": "00dff25efca59df91bdd27948727a536b37fb5bc678a7f852500520da8503342"
+    },
+    {
+      "arm": "initiation_only",
+      "tie_break_order": 2,
+      "dev_cluster_balanced_mse": 3.8301992553887327,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 3,
+      "parameters": 4997,
+      "elapsed_seconds": 50.45613217353821,
+      "checkpoint_sha256": "2021398227ed6d9385fb215f126142e7250c517879da6997a162bf109dbcfd97"
+    },
+    {
+      "arm": "velocity_only",
+      "tie_break_order": 3,
+      "dev_cluster_balanced_mse": 3.8916879794475405,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 4,
+      "parameters": 4997,
+      "elapsed_seconds": 50.60075879096985,
+      "checkpoint_sha256": "2462dd7569aa259e7f57285c96e6ece1eb84f372ac137f59d74f26f876d7873b"
+    },
+    {
+      "arm": "decay_only",
+      "tie_break_order": 4,
+      "dev_cluster_balanced_mse": 3.850946340081351,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 4,
+      "parameters": 4997,
+      "elapsed_seconds": 50.14025950431824,
+      "checkpoint_sha256": "5cb572302a264af1f66e2009a6a84a074188536fa5a4652015cba3b64ab50935"
+    },
+    {
+      "arm": "pair_only",
+      "tie_break_order": 5,
+      "dev_cluster_balanced_mse": 3.8281384321374885,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 4,
+      "parameters": 4997,
+      "elapsed_seconds": 48.67064452171326,
+      "checkpoint_sha256": "4eac39d09736855273138919db714748c89fa2bcda09f7820f8af7a7d63b2ab6"
+    },
+    {
+      "arm": "no_initiation",
+      "tie_break_order": 6,
+      "dev_cluster_balanced_mse": 3.7844715234272623,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 3,
+      "parameters": 4997,
+      "elapsed_seconds": 52.01726245880127,
+      "checkpoint_sha256": "5955333f16425d6e2dbcef2c0a86140eeaa67ebda062178ff36b9dbc0c65e174"
+    },
+    {
+      "arm": "no_velocity",
+      "tie_break_order": 7,
+      "dev_cluster_balanced_mse": 3.7779845961149188,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 3,
+      "parameters": 4997,
+      "elapsed_seconds": 52.084901332855225,
+      "checkpoint_sha256": "136ed6ec35e55baa00fd81567a7e12c7187ea24c98a64e7309191a08877ef3ca"
+    },
+    {
+      "arm": "no_decay",
+      "tie_break_order": 8,
+      "dev_cluster_balanced_mse": 3.8131579274957996,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 4,
+      "parameters": 4997,
+      "elapsed_seconds": 51.99522256851196,
+      "checkpoint_sha256": "041e79af27d20f70888e60babfa0792ef703d181c71f60d8075517db4c8607ce"
+    },
+    {
+      "arm": "no_pair",
+      "tie_break_order": 9,
+      "dev_cluster_balanced_mse": 3.795848800821685,
+      "dev_n_rows": 503,
+      "dev_n_clusters": 447,
+      "selected_epoch": 4,
+      "parameters": 4997,
+      "elapsed_seconds": 59.618539571762085,
+      "checkpoint_sha256": "80da145bb4cd2c24576ab73b63dd536e2bddf7455df7e1dd25eff5fc47bcb838"
+    }
+  ],
+  "selected_arm": "all",
+  "selected_dev_cluster_balanced_mse": 3.761769367012553,
+  "selected_checkpoint": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_v1/screen/all/best.pt",
+    "sha256": "9fd03f9d5b3eac3554bbbb57f21723b6dfdc946235febb863afe004160dd8985"
+  },
+  "none_checkpoint": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_v1/screen/none/best.pt",
+    "sha256": "00dff25efca59df91bdd27948727a536b37fb5bc678a7f852500520da8503342"
+  },
+  "prior_checkpoint_equivalence": {
+    "all": {
+      "state_dict_bitwise_equal": true,
+      "selected_epoch_equal": true,
+      "prior_checkpoint_sha256": "7e581b2b49fd4f4aba723ce497e6f3369acb7ed54f278c6b377fef37a6417c61",
+      "screen_checkpoint_sha256": "9fd03f9d5b3eac3554bbbb57f21723b6dfdc946235febb863afe004160dd8985"
+    },
+    "none": {
+      "state_dict_bitwise_equal": true,
+      "selected_epoch_equal": true,
+      "prior_checkpoint_sha256": "aa54bfc78ce3a50e70302ae0530a0be29656514988bddab051527a912c73dee7",
+      "screen_checkpoint_sha256": "00dff25efca59df91bdd27948727a536b37fb5bc678a7f852500520da8503342"
+    }
+  },
+  "artifact_hashes": {
+    "all": {
+      "run_summary": "c29921b20e4d5475cb9a7ea0603e7c8cc426e91359c18d4463a1d06eda390228",
+      "predictions": "2adaff92e641c76269317e0971e78dab085e4719e8896cec078d8b1f38acc714",
+      "checkpoint": "9fd03f9d5b3eac3554bbbb57f21723b6dfdc946235febb863afe004160dd8985",
+      "history": "a1223330674d48dee673d569d72cfeccebf22a69aeecabe9902d7f9028528b27",
+      "resolved_config": "b7f688f12f52603d6ae5ea7a30f1dcd55a938d5fc3cac185736a53a392fcb8c8",
+      "console_log": "b6570c7ce090f39e981c1098e9722b2e3c2e2cd512b6be9852603309f0d9466a"
+    },
+    "none": {
+      "run_summary": "f935433666911617f22d55f38add9b65ede6012ff086cf205eb5b6fe03cc55fd",
+      "predictions": "fc67f5e06377fa073be4f1a476fdcd8169e69b58c7f3e6cf3d978ae404b17b17",
+      "checkpoint": "00dff25efca59df91bdd27948727a536b37fb5bc678a7f852500520da8503342",
+      "history": "6c3496d2388ac402433814c9ce81b66ed6c53e6c46783f236262a8c09655ace2",
+      "resolved_config": "c43a786143ceeab6d9b3970595aa2b4143e4ac06196e166883c327f093c4d8a8",
+      "console_log": "76b7b4d1cc994d015f03863881a3e148d629d9f55126eb4350a0122fe15a07f0"
+    },
+    "initiation_only": {
+      "run_summary": "ae74c70554afd355e09fabfa013e1d2ef4be56eb30927a7b81632e477c47e482",
+      "predictions": "05010dfe354b24459e80ce6a1d75a7d9b787233a08edddabe7801b85a2b1b4ae",
+      "checkpoint": "2021398227ed6d9385fb215f126142e7250c517879da6997a162bf109dbcfd97",
+      "history": "706901bd13792faeda46b933ba811dafd171449b97c2f7cf107c51158f7f8881",
+      "resolved_config": "aa373a2ed99a7dea95f77fcac2d2fe8142e7801f13b372033de7edd361d7aadb",
+      "console_log": "3295387da19e29d03fc5ea5d1d638399e897ebf7cb21307f503f0ab4ac63fa5c"
+    },
+    "velocity_only": {
+      "run_summary": "897da95d4ed4f259090612157681e6ebd2d63bedfab7f22637bd6a026ed1f0a0",
+      "predictions": "0494e18cdbbdb9763a332b93d563138e7c84addcd81b1959d0ca2cc841bb0645",
+      "checkpoint": "2462dd7569aa259e7f57285c96e6ece1eb84f372ac137f59d74f26f876d7873b",
+      "history": "60c750583a7417b0506063234c1350726b573fdc993140add3f30363fd6538dd",
+      "resolved_config": "c4ac279a7d43966afa31af3c48c1d5c2cdfcf27eec696a0bd70406adfc0b4dac",
+      "console_log": "924c7660423cfedf3d98dd3c7162a8d39a00e2ebae414473830faab0a8026129"
+    },
+    "decay_only": {
+      "run_summary": "f1dc72dda640a532221d037227e4d42cac44acb2096a0e7a5d7614498ea156b7",
+      "predictions": "7029237c0052b813b23f2a90dca1c72813f51758f47ca3fb08465ff9520a7097",
+      "checkpoint": "5cb572302a264af1f66e2009a6a84a074188536fa5a4652015cba3b64ab50935",
+      "history": "3138364ef62155994441012f79b97ab33430077a4ca0ee729f9fa8c4349f93d7",
+      "resolved_config": "976c58e4e444160d22e4edb8babad38d79f38fc88aff3a41127e499205c57203",
+      "console_log": "afdf40f272d9d5d85dfd92b3c98c51eea3f1e21d181e5714a2366c3817655a37"
+    },
+    "pair_only": {
+      "run_summary": "b5cd645fa5914fcebba7992d8614118756adbd1f1f77801a5180ac8a55e4db1f",
+      "predictions": "5eb32d145f35ed9f7725d30916365b185e39bd80762681dec9b607ce6708a2c8",
+      "checkpoint": "4eac39d09736855273138919db714748c89fa2bcda09f7820f8af7a7d63b2ab6",
+      "history": "ca9d572f21332d1a0c854325d24f2bb505817232e8d65e5e07f9e05a8042d547",
+      "resolved_config": "2da3bde7e113e86216437b4b9850c1845e3619cce4b7d0c923079cd8fec2a883",
+      "console_log": "b3a11615bb21976e665d299fc0cc19d8dd7e60b9c4995991a28566840f727c22"
+    },
+    "no_initiation": {
+      "run_summary": "45bd012395fa2e965aca31f930f00903d4f1313f28ae547fe99d09a0ce87b54b",
+      "predictions": "42db8a4f8c9360de5745e6137683616785664f877c2d3af2a8eb047e05185502",
+      "checkpoint": "5955333f16425d6e2dbcef2c0a86140eeaa67ebda062178ff36b9dbc0c65e174",
+      "history": "0c317b7efe27b2ff757a39c30cd7e337099823a06a97b2e60e19fc697ab7f3fa",
+      "resolved_config": "65e3cee63e41e692e434b661d3c4947e7e9ca1f22eb2fc3b29213c91c33d3011",
+      "console_log": "3f1568094bb40b2c650bf362225ff0d80cb6dbda5f24fa6bdf5419a4745ff02e"
+    },
+    "no_velocity": {
+      "run_summary": "5280d272fc6d4baf62c12e4be076c51a3856827a04634b2bbad48bc10b68a7ea",
+      "predictions": "559c0b0c359b7d36d8b0d017e5764a2453daa115584ba288cc4cbd60ed6323e7",
+      "checkpoint": "136ed6ec35e55baa00fd81567a7e12c7187ea24c98a64e7309191a08877ef3ca",
+      "history": "9c095cf9c363cb866215a44693a3999e19494b6a1729277cdf72b815257b60cd",
+      "resolved_config": "fbffa593ad037275187c0131a4750819fa5efa8e55c646e30308f115935bd13a",
+      "console_log": "bef55cd0ce48338edff367348f2409f1fd5ed40dd8304d93c79e4bcecf71be56"
+    },
+    "no_decay": {
+      "run_summary": "3cf3c4a1c7469f8f517c733c573cb35b29815e1b734d9fa335eaa12cf13fe14d",
+      "predictions": "8636b3ad737909c1929a0ea5531115349a8b1dd91a1fe9dccfda0e636bd31b91",
+      "checkpoint": "041e79af27d20f70888e60babfa0792ef703d181c71f60d8075517db4c8607ce",
+      "history": "e0b07e161af14da9282df2c9a0bb6042d938d2f25823f3a81c8821db78c66b04",
+      "resolved_config": "a6a0e1a114d0512bd07ed8d0ca6c44e9c8a4f63d6cdf1e5d4d63c2cabbb40b3b",
+      "console_log": "1eef568a5768b52e7667e8cbb1df9d37b2737176a7272677592970cc28bf8537"
+    },
+    "no_pair": {
+      "run_summary": "bec29ce699e0c78f230bb7a00e801cfc802a4e6870913834cccb56efe32955b0",
+      "predictions": "0f6ea3bc2cff5346314cd224f91074e3227d325e7fbeb3cfcac06b36866312b4",
+      "checkpoint": "80da145bb4cd2c24576ab73b63dd536e2bddf7455df7e1dd25eff5fc47bcb838",
+      "history": "691322ea13d27ad8c23e487eaf822cc749deadee3292370d9424699a9f221979",
+      "resolved_config": "261bd51f91ed575a095853b66d245a679bf92f896bce76df144cbc573d2ed7cd",
+      "console_log": "4da60db64ec69b159f452ad465814d84dd529ae01896644a3a38c696a75f4c4f"
+    }
+  },
+  "screen_rows": {
+    "train": 4019,
+    "dev": 503
+  },
+  "test_or_ood_used_for_selection": false,
+  "functional_untouched_evaluated": false,
+  "channel_screen_gate_pass": null,
+  "velocity_mechanism_pass": false,
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "complete_sota": false
+}
