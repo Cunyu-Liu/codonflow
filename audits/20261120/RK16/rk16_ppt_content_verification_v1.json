@@ -1,0 +1,248 @@
+{
+  "schema": "a8-rk16-ppt-content-verification-v1",
+  "status": "PASS",
+  "source_commit": "4115d281abe4a798b05525dff43f751460ee03a3",
+  "source_snapshot": "remote /home/codonflow-a8-rk final pushed files",
+  "source_hashes": {
+    "rk16_dense_prefix_audit_v1.json": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500",
+    "rk16_primary_comparisons_v1.csv": "6baceb837aa8ba34c0d2bf1d4b4b7877323eb1d3e0089f6aa6c846d0e651ac0b",
+    "rk16_independent_verification_v1.json": "d07f796bfbf76dd0898ba249f7344cc5d1cfc33e90762e207fad938b3be2e4b6",
+    "rk16_finalization_v1.json": "2cf31798c4532b3ee8cd253dde3908032195187971c3a9bd7d599a8cfc4abb27",
+    "rk16_manuscript_verification_v1.json": "d9ec84beca4bfd9d5ecd62a33f8b2262433be73833ca3cc59504e1bbe49327c1"
+  },
+  "checks_passed": 28,
+  "checks_total": 28,
+  "checks": [
+    {
+      "check": "source_hash:rk16_dense_prefix_audit_v1.json",
+      "pass": true,
+      "evidence": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500"
+    },
+    {
+      "check": "source_hash:rk16_primary_comparisons_v1.csv",
+      "pass": true,
+      "evidence": "6baceb837aa8ba34c0d2bf1d4b4b7877323eb1d3e0089f6aa6c846d0e651ac0b"
+    },
+    {
+      "check": "source_hash:rk16_independent_verification_v1.json",
+      "pass": true,
+      "evidence": "d07f796bfbf76dd0898ba249f7344cc5d1cfc33e90762e207fad938b3be2e4b6"
+    },
+    {
+      "check": "source_hash:rk16_finalization_v1.json",
+      "pass": true,
+      "evidence": "2cf31798c4532b3ee8cd253dde3908032195187971c3a9bd7d599a8cfc4abb27"
+    },
+    {
+      "check": "source_hash:rk16_manuscript_verification_v1.json",
+      "pass": true,
+      "evidence": "d9ec84beca4bfd9d5ecd62a33f8b2262433be73833ca3cc59504e1bbe49327c1"
+    },
+    {
+      "check": "audit_pass",
+      "pass": true,
+      "evidence": "PASS"
+    },
+    {
+      "check": "primary_panel_counts",
+      "pass": true,
+      "evidence": [
+        18,
+        4,
+        792
+      ]
+    },
+    {
+      "check": "dense_prefix_gate",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "three_comparator_gates",
+      "pass": true,
+      "evidence": {
+        "codongpt": true,
+        "uniform_synonymous": true,
+        "ensembledesign_11run": true
+      }
+    },
+    {
+      "check": "method_means:lineardesign_lambda11",
+      "pass": true,
+      "evidence": [
+        22.794606316429064,
+        29.972887490261744
+      ]
+    },
+    {
+      "check": "method_means:ensembledesign_11run",
+      "pass": true,
+      "evidence": [
+        14.896234418783472,
+        16.693982080997003
+      ]
+    },
+    {
+      "check": "method_means:codongpt",
+      "pass": true,
+      "evidence": [
+        5.205444025614179,
+        7.989211310427903
+      ]
+    },
+    {
+      "check": "method_means:uniform_synonymous",
+      "pass": true,
+      "evidence": [
+        0.7029515245686863,
+        0.9666178877667078
+      ]
+    },
+    {
+      "check": "six_primary_comparisons",
+      "pass": true,
+      "evidence": 6
+    },
+    {
+      "check": "all_comparisons_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "all_cis_above_zero",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "common_holm_p",
+      "pass": true,
+      "evidence": [
+        "0.000599970001499925"
+      ]
+    },
+    {
+      "check": "ensemble_effects",
+      "pass": true,
+      "evidence": [
+        7.8983718976455926,
+        13.278905409264743
+      ]
+    },
+    {
+      "check": "acceptance:independent",
+      "pass": true,
+      "evidence": "88/88"
+    },
+    {
+      "check": "acceptance:postpush_independent",
+      "pass": true,
+      "evidence": "88/88"
+    },
+    {
+      "check": "acceptance:finalization",
+      "pass": true,
+      "evidence": "53/53"
+    },
+    {
+      "check": "acceptance:postpush_finalization",
+      "pass": true,
+      "evidence": "53/53"
+    },
+    {
+      "check": "acceptance:manuscript",
+      "pass": true,
+      "evidence": "59/59"
+    },
+    {
+      "check": "postpush_independent_byte_identical",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "postpush_finalization_byte_identical",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "closeout_negative_boundaries",
+      "pass": true,
+      "evidence": [
+        "time_matched_comparison=false",
+        "scientific_gate_passed=false",
+        "codonflow_rk_evaluated=false",
+        "functional_ood_evaluated=false",
+        "functional_untouched_evaluated=false",
+        "rk_g1_pass=false",
+        "expensive_generation_authorized=false",
+        "external_sota_authorized=false",
+        "sota_claimed=false"
+      ]
+    },
+    {
+      "check": "audit_negative_boundaries",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "manuscript_slide_binding",
+      "pass": true,
+      "evidence": [
+        "22.794606",
+        "29.972887",
+        "14.896234",
+        "16.693982",
+        "5.205444",
+        "7.989211",
+        "0.702952",
+        "0.966618",
+        "+7.898372",
+        "+13.278905",
+        "88/88",
+        "53/53",
+        "Unified time-matched evaluation",
+        "CodonFlow-RK generation",
+        "functional OOD and untouched evaluation",
+        "external SOTA remain open",
+        "manuscript remains non-submittable"
+      ]
+    }
+  ],
+  "slide_values": {
+    "records": 18,
+    "primary_calls": 792,
+    "methods": [
+      "lineardesign_lambda11",
+      "ensembledesign_11run",
+      "codongpt",
+      "uniform_synonymous"
+    ],
+    "primary_tests_passed": 6,
+    "primary_tests_total": 6,
+    "bootstrap_resamples": 20000,
+    "independent": "88/88",
+    "finalization": "53/53",
+    "manuscript": "59/59",
+    "means": {
+      "lineardesign_lambda11": [
+        22.794606316429064,
+        29.972887490261744
+      ],
+      "ensembledesign_11run": [
+        14.896234418783472,
+        16.693982080997003
+      ],
+      "codongpt": [
+        5.205444025614179,
+        7.989211310427903
+      ],
+      "uniform_synonymous": [
+        0.7029515245686863,
+        0.9666178877667078
+      ]
+    },
+    "ensemble_effects": [
+      7.8983718976455926,
+      13.278905409264743
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "schema": "a8-rk16-ppt-candidate-verification-v1",
+  "status": "PASS",
+  "candidate": "rk16_ppt_slide112_v1.xml",
+  "candidate_sha256": "c68a90057fb14befa745f8d6967b264e58c41c4fc539b8de662e5830c508b146",
+  "baseline_sha256": "0c4d5e6d9301ef1ecb26668ae3fa61f15c3c03a0ecf6540c593c5dbbbccf304a",
+  "baseline_pages": 111,
+  "canvas": [
+    960,
+    540
+  ],
+  "checks_passed": 19,
+  "checks_total": 19,
+  "checks": [
+    {
+      "check": "content_verification_pass",
+      "pass": true,
+      "evidence": "28/28"
+    },
+    {
+      "check": "official_raw_xml_inspection",
+      "pass": true,
+      "evidence": {
+        "presentation_slides": 112,
+        "selected": "rk16candidate"
+      }
+    },
+    {
+      "check": "baseline_page_count",
+      "pass": true,
+      "evidence": 111
+    },
+    {
+      "check": "baseline_last_page",
+      "pass": true,
+      "evidence": "pZn"
+    },
+    {
+      "check": "single_slide_root",
+      "pass": true,
+      "evidence": "{https://www.larkoffice.com/sml/2.0}slide"
+    },
+    {
+      "check": "no_client_ids",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "expected_element_count",
+      "pass": true,
+      "evidence": 34
+    },
+    {
+      "check": "one_native_table",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "no_external_images",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "speaker_notes_present",
+      "pass": true,
+      "evidence": 1327
+    },
+    {
+      "check": "all_elements_inside_canvas",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "no_unintended_top_level_overlap",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "required_slide_claims",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "speaker_note_scope",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "check": "uniform_inter_font",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "check": "table_grid_width",
+      "pass": true,
+      "evidence": [
+        280.0,
+        292.0,
+        292.0
+      ]
+    },
+    {
+      "check": "table_row_height",
+      "pass": true,
+      "evidence": [
+        28.0,
+        28.0,
+        28.0,
+        28.0,
+        28.0
+      ]
+    },
+    {
+      "check": "table_shape",
+      "pass": true,
+      "evidence": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "check": "header_has_explicit_fill",
+      "pass": true,
+      "evidence": null
+    }
+  ]
+}
