@@ -63,7 +63,7 @@ def test_paired_resampling_shapes_and_point_effects(tmp_path):
     cfg = protocol()
     cfg["bootstrap"]["replicates"] = 40
     cfg["permutation"]["replicates"] = 40
-    contrast = cfg["primary_contrast"]["name"]
+    contrast = "primary_contrast"
     predictions = {f"{contrast}_base_logistic": base, f"{contrast}_augmented_logistic": augmented,
                    f"{contrast}_base_histgb": base, f"{contrast}_augmented_histgb": augmented}
     out = rk23.resample_primary(y, predictions, clusters, cfg, 0, tmp_path / "arrays.npz")
@@ -96,6 +96,28 @@ def test_optimized_prediction_quantiles_are_not_expression_ground_truth():
     assert cfg["measured_expression_numeric_table_available"] is False
     assert cfg["fixed_protein_functional_test_performed"] is False
     assert cfg["image_digitization_allowed"] is False
+
+
+def test_prediction_keys_match_resampling_contract():
+    class ZeroModel:
+        def predict(self, x):
+            return np.zeros(len(x))
+
+    cfg = protocol()
+    rows = [{"length_nt": 100, "cai": 0.5, "gc_fraction": 0.5, "gc3_fraction": 0.5,
+             "full_cds_mfe_per_nt": -0.2, "mfe_5prime_48_kcal_mol": -10.0, "source_Gz48v": -20.0}]
+    models = {}
+    for contrast in ("primary_contrast", "secondary_descriptive_contrast"):
+        models[contrast] = {}
+        for role in ("base", "augmented"):
+            names = cfg[contrast][role + "_features"]
+            logistic = {"train_mean": [0.0] * len(names), "train_scale": [1.0] * len(names),
+                        "weights": np.zeros((6, len(names))).tolist(), "bias": [0.0] * 6,
+                        "classes": cfg["label_classes"]}
+            models[contrast][role] = {"feature_names": names, "logistic": logistic, "histgb": ZeroModel()}
+    predictions = rk23.predict_contrast(models, rows, "primary_contrast")
+    assert "primary_contrast_base_logistic" in predictions
+    assert "primary_contrast_augmented_histgb" in predictions
 
 
 def test_input_hash_field_mapping_is_explicit():

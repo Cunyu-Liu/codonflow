@@ -201,7 +201,7 @@ def independent_holm(pvals):
 
 
 def independent_resampling(y, predictions, clusters, protocol, split_index, output):
-    contrast = protocol["primary_contrast"]["name"]
+    contrast = "primary_contrast"
     groups = sorted(set(clusters))
     indices = [np.flatnonzero(clusters == g) for g in groups]
     count = protocol["bootstrap"]["replicates"]
@@ -303,6 +303,9 @@ def main():
     max_permutation_diff = 0.0
     for split_index, split in enumerate(splits):
         rows = data[split]
+        recorded_identities = csv_predictions[split]["rows"]
+        expected_identities = [(r["source_row"], r["construct_id"], r["label"]) for r in rows]
+        check(f"{split}_prediction_identity_order", recorded_identities == expected_identities)
         y = np.array([r["label"] for r in rows])
         source_rows = np.array([r["source_row"] for r in rows])
         clusters = np.array([r["cluster"] for r in rows])
@@ -355,6 +358,10 @@ def main():
         report["scientific_gate"] = {"endpoints": gate, "all_four_pass": all(gate.values()),
             "state": "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_SUPPORTED_LIMITED_SCOPE" if all(gate.values()) else "PROTEIN_OOD_INITIATION_STRUCTURE_INCREMENT_NOT_FULLY_SUPPORTED",
             "rk_g1": False, "fixed_protein_synonymous_ood": False, "functional_untouched": False}
+        check("production_gate_matches_independent_gate", result["split_results"]["test"]["primary_inference"]["all_four_pass"] == all(gate.values()))
+        for key, passed in gate.items():
+            expected = result["split_results"]["test"]["primary_inference"]["comparisons"][key]
+            check(f"production_endpoint_gate_{key}", expected["passes_all"] == passed and expected["passes_direction"] == bool(expected["effect"] > 0 and expected["ci95"][0] > 0))
     report["checks_total"] = len(report["checks"])
     report["checks_passed"] = sum(c["pass"] for c in report["checks"])
     report["checks_failed"] = [c for c in report["checks"] if not c["pass"]]

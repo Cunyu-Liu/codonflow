@@ -53,10 +53,14 @@
     "final_before_input_hash_smoke": "12 passed in 1.05s",
     "input_hash_smoke_failure": "The first dev command stopped before data loading or model fitting because split_file_sha256 was incorrectly inferred instead of using the protocol's split_sha256 field; the tee pipeline also masked the nonzero exit status.",
     "input_hash_repair": "Added an explicit INPUT_HASH_KEYS mapping and a regression test; no scientific feature, model, label or endpoint changed.",
-    "final": "13 passed after the input-hash repair",
+    "final": "14 passed after the input-hash and prediction-key repairs",
     "command": "CUDA_VISIBLE_DEVICES='' OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest tests/test_a8_rk23_boel_uh.py -q"
   },
-  "test_label_access": "No RK23 train/dev/test model fitting or RK23 test evaluation has occurred at preflight freeze.",
+  "dev_execution_failures_before_result": [
+    "First dev command stopped before data loading because of the split hash field mapping; fixed in INPUT_HASH_KEYS.",
+    "Second dev command fitted train but stopped before dev inference because prediction keys used primary_contrast while resampling used the scientific contrast name; unified to primary_contrast and added an explicit key-contract test. No dev/test result was written."
+  ],
+  "test_label_access": "No RK23 test evaluation has occurred; train fitting was exercised but no valid dev result was produced before these implementation repairs.",
   "functional_untouched_accessed": false,
   "ready_for_train_dev_fit": true
 }

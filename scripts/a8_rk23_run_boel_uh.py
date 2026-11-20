@@ -205,7 +205,7 @@ def holm_adjust(p_values: dict[str, float]) -> dict[str, float]:
 
 
 def resample_primary(y: np.ndarray, predictions: dict, clusters: np.ndarray, protocol: dict, split_index: int, output_npz: str | Path) -> dict:
-    contrast = protocol["primary_contrast"]["name"]
+    contrast = "primary_contrast"
     b = int(protocol["bootstrap"]["replicates"])
     if b != int(protocol["permutation"]["replicates"]):
         raise ValueError("paired arrays require equal replicate counts")
