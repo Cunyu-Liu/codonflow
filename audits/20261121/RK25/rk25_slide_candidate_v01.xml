@@ -1,0 +1,92 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill><fillColor color="rgba(248, 250, 252, 1)" /></fill>
+  </style>
+  <data>
+    <shape width="590" height="14" topLeftX="48" topLeftY="26" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>CODONFLOW / A8-RK · AUTHOR-MECHANISM COMPARATOR</p></content></shape>
+    <shape width="864" height="14" topLeftX="48" topLeftY="26" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>RK25 · FROZEN RK20 PARTITIONS · 4 SEEDS</p></content></shape>
+    <shape width="864" height="36" topLeftX="48" topLeftY="47" type="text"><content textType="headline" fontSize="27" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Author model wins; all-channel mechanism increment fails</p></content></shape>
+    <shape width="56" height="4" topLeftX="48" topLeftY="91" presetHandlers="0" type="rect"><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="796" height="16" topLeftX="116" topLeftY="84" type="text"><content fontSize="11" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false"><p>1,336 sequence-OOD constructs · hierarchical protein-cluster + seed bootstrap · 20,000 replicates</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="48" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(254, 202, 202, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(153, 27, 27, 1)" bold="true" textAlign="left" wrap="false"><p>ALL − AUTHOR · SPEARMAN</p></content></shape>
+    <shape width="174" height="28" topLeftX="60" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(185, 28, 28, 1)" bold="true" textAlign="left" wrap="false"><p>−0.21812</p></content></shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [−0.27227, −0.16334]</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="270" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(254, 202, 202, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(153, 27, 27, 1)" bold="true" textAlign="left" wrap="false"><p>ALL − AUTHOR · CLUSTER MSE</p></content></shape>
+    <shape width="174" height="28" topLeftX="282" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(185, 28, 28, 1)" bold="true" textAlign="left" wrap="false"><p>+0.73061</p></content></shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [0.53414, 0.92588]</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="492" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(153, 246, 228, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>AUTHOR REFERENCE GATE</p></content></shape>
+    <shape width="174" height="28" topLeftX="504" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>4 / 4 PASS</p></content></shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>ridge_all + HistGB · both endpoints</p></content></shape>
+
+    <shape width="198" height="70" topLeftX="714" topLeftY="110" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(153, 246, 228, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="118" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>INDEPENDENT OOD ACCEPTANCE</p></content></shape>
+    <shape width="174" height="28" topLeftX="726" topLeftY="132" type="text"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>678 / 678</p></content></shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="162" type="text"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>dev 337/337 · bootstrap max diff 1.78e-15</p></content></shape>
+
+    <shape width="620" height="18" topLeftX="48" topLeftY="194" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Frozen sequence-OOD comparisons · mean of four per-seed effects</p></content></shape>
+    <shape width="228" height="14" topLeftX="684" topLeftY="196" type="text"><content fontSize="10" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>0/2 mechanism · 4/4 references</p></content></shape>
+    <table width="864" height="136" topLeftX="48" topLeftY="220">
+      <colgroup><col width="178" /><col width="78" /><col width="78" /><col width="238" /><col width="236" /><col width="56" /></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Comparison</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Left Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Right Spearman</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Spearman difference [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Cluster-MSE diff [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15, 118, 110, 1)" /></fill><content fontSize="9.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="center" wrap="false"><p>Gate</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(153, 27, 27, 1)" bold="true" textAlign="left" wrap="false"><p>All-channel − author</p></content></td>
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.20928</p></content></td>
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.42739</p></content></td>
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(185, 28, 28, 1)" bold="true" textAlign="left" wrap="false"><p>−0.21812 [−0.27227, −0.16334]</p></content></td>
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(185, 28, 28, 1)" bold="true" textAlign="left" wrap="false"><p>+0.73061 [0.53414, 0.92588]</p></content></td>
+        <td><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(185, 28, 28, 1)" bold="true" textAlign="center" wrap="false"><p>FAIL</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Author − ridge_all</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.42739</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.21787</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.20952 [0.15882, 0.26029]</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>−0.82909 [−1.00494, −0.65327]</p></content></td>
+        <td><content fontSize="9.3" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="center" wrap="false"><p>PASS</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>Author − HistGB</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.42739</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.21938</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>+0.20801 [0.15729, 0.25857]</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(17, 94, 89, 1)" bold="true" textAlign="left" wrap="false"><p>−0.70472 [−0.86722, −0.54345]</p></content></td>
+        <td><fill><fillColor color="rgba(240, 253, 250, 1)" /></fill><content fontSize="9.3" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="center" wrap="false"><p>PASS</p></content></td>
+      </tr>
+    </table>
+
+    <shape width="420" height="86" topLeftX="48" topLeftY="374" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(241, 245, 249, 1)" /></fill><border color="rgba(203, 213, 225, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="64" topLeftY="382" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>What the frozen chain establishes</p></content></shape>
+    <shape width="388" height="62" topLeftX="64" topLeftY="404" type="text"><content fontSize="9.7" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.12" textAlign="left"><p>Author Spearman 0.42739; cluster MSE 3.28523.</p><p>Author beats ridge_all and HistGB on both endpoints.</p><p>All-channel is worse than author on both endpoints.</p></content></shape>
+
+    <shape width="420" height="86" topLeftX="492" topLeftY="374" presetHandlers="10" type="round-rect"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><border color="rgba(253, 186, 116, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="508" topLeftY="382" type="text"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Strong chain fails · mechanism Gate stays closed</p></content></shape>
+    <shape width="388" height="62" topLeftX="508" topLeftY="404" type="text"><content fontSize="9.7" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.12" textAlign="left"><p>RK-G1 remains false; generator training is unauthorized.</p><p>Test is descriptive; functional untouched was not read.</p><p>No velocity, decay, spatial-coupling or generator claim.</p></content></shape>
+
+    <shape width="864" height="34" topLeftX="48" topLeftY="474" presetHandlers="8" type="round-rect"><fill><fillColor color="rgba(254, 242, 242, 1)" /></fill><border color="rgba(254, 202, 202, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="828" height="16" topLeftX="66" topLeftY="483" type="text"><content fontSize="9.8" fontFamily="Inter" color="rgba(153, 27, 27, 1)" bold="true" textAlign="center" wrap="false"><p>MECHANISM 0/2 · AUTHOR REFERENCE 4/4 · independent OOD 678/678 · generator training remains unauthorized</p></content></shape>
+    <shape width="728" height="12" topLeftX="48" topLeftY="520" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Source: RK25 audit 678/678 · evidence 44014ad0 · closeout 38ecaf7a</p></content></shape>
+    <shape width="136" height="12" topLeftX="776" topLeftY="520" type="text"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>117 · RK25</p></content></shape>
+  </data>
+  <note>
+    <content>
+      <p>RK25 used the frozen RK20 train, development, test and sequence-OOD partitions with 4,019, 503, 490 and 1,336 constructs. The Boël author multiclass model was refit from scratch using train only: 61 single-codon slopes came from train E0/E5 and the final multinomial logistic model used all train rows with fixed L2 = 0.01. No RK24 fitted coefficients or Boël Published coefficients were used. Four frozen ribokinetic_all seeds and frozen ridge_all and HistGB predictions were aligned without new neural or generator training.</p>
+      <p>On sequence-OOD, all-channel minus author Spearman is minus 0.21811836219540887 with 95% hierarchical-bootstrap interval minus 0.2722711773243162 to minus 0.16334044169079254. All-channel minus author cluster-balanced MSE is plus 0.7306069546160505 with interval 0.5341382109633555 to 0.9258797959656737. Both mechanism endpoints fail. Author minus ridge_all Spearman is plus 0.20952136656831705 with interval 0.15881562830926724 to 0.2602926941378022, and cluster-MSE is minus 0.8290870762002958 with interval minus 1.004941052200879 to minus 0.6532704006471712. Author minus HistGB Spearman is plus 0.2080114740266785 with interval 0.15728926553841197 to 0.25857330923095795, and cluster-MSE is minus 0.7047199149791634 with interval minus 0.8672243031203977 to minus 0.5434487638967203. Both author-reference comparisons pass two of two endpoints.</p>
+      <p>The estimand is the mean of four per-seed effects, not a prediction ensemble. Inference used 20,000 hierarchical bootstrap replicates with seed 20261125, resampling operational protein clusters and training seeds. All six empirical sign-tail and Holm-adjusted p values are zero because no opposite-sign tail occurred; this does not rescue the two mechanism endpoints, whose point and interval directions fail. Development showed the same ordering. Test was descriptive only and was not included in the six-endpoint Holm family.</p>
+      <p>Independent OOD acceptance passed 678 of 678 checks; development acceptance separately passed 337 of 337. Maximum prediction difference is 1.021405182655144e-14, maximum metric difference is 4.440892098500626e-16, maximum bootstrap-array difference is 1.7763568394002505e-15 and maximum inference difference is 4.440892098500626e-16. The independent verifier reproduced all three Gate decisions. The earlier gzip CSV replay difference of 8.881784197001252e-16 was handled by the frozen 1e-12 numerical tolerance while identities, labels, clusters and seeds remained strict; the failed first attempt did not compute test or OOD metrics and was not used as scientific evidence.</p>
+      <p>The supported conclusion is limited to this reused cross-protein, non-synonymous sequence-OOD benchmark. The author model is stronger than ridge_all and HistGB, but all-channel does not beat the author model. The strong comparator chain fails, RK-G1 remains false and expensive generator training remains unauthorized. This is not fixed-protein synonymous causality, translation velocity, mRNA decay, full spatial coupling, functional-untouched confirmation, CodonFlow-RK superiority, external SOTA or generative quality. Functional untouched data were not accessed. Frozen evidence commit 44014ad0fc923fba65d52fcda953117d9c822051; scientific closeout commit 38ecaf7a222f5ce74ceba16f29f3043071bf5d9e.</p>
+    </content>
+  </note>
+</slide>
