@@ -1,6 +1,9 @@
-Traceback (most recent call last):
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 598, in <module>
-    main()
-  File "/home/codonflow-a8-rk/scripts/a8_rk25_run_author_mechanism.py", line 522, in main
-    raise ValueError(f'dev replay changed; maximum prediction difference={difference}')
-ValueError: dev replay changed; maximum prediction difference=8.881784197001252e-16
+{
+  "status": "FROZEN_SEQUENCE_OOD_EVALUATED_PENDING_INDEPENDENT_VERIFICATION",
+  "result": "/home/codonflow-a8-rk/audits/20261121/RK25/rk25_ood_result_v1.json",
+  "model_artifact_sha256": "62b2c05135a3ea3e05c646fbee8764693e7b1464878e009126ae94443b7508e4",
+  "predictions_sha256": "5c289704bc23a7e85351a5f52f54089f086f38434f3a824807af4b09d457d157",
+  "mechanism_vs_author_pass": false,
+  "author_reference_pass": true,
+  "strong_comparator_chain_pass": false
+}
