@@ -1,0 +1,524 @@
+{
+  "after_sha256": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0",
+  "baseline_commit": "b95e1244537a23c95cdda986cb60e343cfd7e4da",
+  "before_sha256": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+  "checks": [
+    {
+      "detail": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+      "name": "baseline_commit_v31_sha",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "update_binds_v31",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "preparation_binds_v31",
+      "pass": true
+    },
+    {
+      "detail": "6c3d2a0329a46ca70d4dd782748a06c60fbecbf91fd8d8fe5d7ea1c42e2b73f0",
+      "name": "current_matches_update_after",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_source_matches_update",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "one_section_6_28",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_precedes_discussion",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "previous_section_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "working_manuscript_status_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "non_submittable_close_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "section_insert_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "anchor_rows_hash",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS frozen protocol",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS preparation",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS production",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS independent verification",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS finalization",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS 10-test log",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS manuscript source section",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS manuscript prepare check",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS manuscript draft check",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS manuscript writing status",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS retained delivery failure",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "evidence_anchor_RK03 pure-external-RCS delivery correction",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "exact_reconstruction_from_v31",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "exact_rollback_to_v31",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "references_unchanged",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "abstract_unchanged",
+      "pass": true
+    },
+    {
+      "detail": "0.03422820302559988",
+      "name": "primary_metric_full_mechanism_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.0222595186439585",
+      "name": "primary_metric_full_mechanism_mae",
+      "pass": true
+    },
+    {
+      "detail": "0.6352981456298568",
+      "name": "primary_metric_full_mechanism_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.03413327461240379",
+      "name": "primary_metric_intrinsic_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.022187896273263757",
+      "name": "primary_metric_intrinsic_mae",
+      "pass": true
+    },
+    {
+      "detail": "0.6123990835404937",
+      "name": "primary_metric_intrinsic_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.04929761172417739",
+      "name": "primary_metric_pure_external_rcs_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.03158281646008941",
+      "name": "primary_metric_pure_external_rcs_mae",
+      "pass": true
+    },
+    {
+      "detail": "-0.13201530863899236",
+      "name": "primary_metric_pure_external_rcs_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.034152773868486606",
+      "name": "primary_metric_rcs_only_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.021816612746170472",
+      "name": "primary_metric_rcs_only_mae",
+      "pass": true
+    },
+    {
+      "detail": "0.6163526287671603",
+      "name": "primary_metric_rcs_only_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.7673134542688491",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_spearman",
+      "pass": true
+    },
+    {
+      "detail": "-0.015069408698577508",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.0002999850007499625",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_holm_p_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.009449527523623819",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_holm_p_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.5631894046071572",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_spearman_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "0.9532654793818945",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_spearman_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "-0.02544806838533774",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_rmse_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "-0.005479110034720501",
+      "name": "comparison_full_mechanism_minus_pure_external_rcs_delta_rmse_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "-0.744414392179486",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.015164337111773597",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.0002999850007499625",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_holm_p_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.009449527523623819",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_holm_p_rmse",
+      "pass": true
+    },
+    {
+      "detail": "-0.9403491867053566",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_spearman_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "-0.5300791533185797",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_spearman_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "0.005846359530413134",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_rmse_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "0.02506527402042598",
+      "name": "comparison_pure_external_rcs_minus_intrinsic_delta_rmse_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "0.7483679374061527",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_spearman",
+      "pass": true
+    },
+    {
+      "detail": "-0.015144837855690783",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.0002999850007499625",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_holm_p_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.009449527523623819",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_holm_p_rmse",
+      "pass": true
+    },
+    {
+      "detail": "0.539343123375721",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_spearman_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "0.9432946055506556",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_spearman_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "-0.02536403898497323",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_rmse_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "-0.00577083989049933",
+      "name": "comparison_rcs_only_minus_pure_external_rcs_delta_rmse_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "0.022899062089363098",
+      "name": "old_full_intrinsic_spearman",
+      "pass": true
+    },
+    {
+      "detail": "0.00009492841319608952",
+      "name": "old_full_intrinsic_rmse",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_full_intrinsic_decimal_exact",
+      "pass": true
+    },
+    {
+      "detail": "-0.03790577728252063",
+      "name": "old_full_intrinsic_delta_spearman_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "0.09011639336438297",
+      "name": "old_full_intrinsic_delta_spearman_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": "-0.0014175669474227434",
+      "name": "old_full_intrinsic_delta_rmse_ci95_0",
+      "pass": true
+    },
+    {
+      "detail": "0.0014564023955950885",
+      "name": "old_full_intrinsic_delta_rmse_ci95_1",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "old_holm_one_reported",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_replacement_negative_statement",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_significantly_worse_statement",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_sensitivity_adverse_statement",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "full_pure_not_full_intrinsic",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "naming_ambiguity_closed_without_mechanism_rescue",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "pure_feature_composition_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "intrinsic_features_excluded_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "development_reuse_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_33_excluded_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "nested_cv_contract_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fit_count_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "inference_contract_explicit",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_174_reported",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_zero_delta_reported",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "finalization_43_reported",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_go_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_test_or_functional_claim",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk_g1_remains_false",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "generator_unauthorized",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_overclaim",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "workflow_status_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "workflow_prepare_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "workflow_draft_pass",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "workflow_input_binds_section",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "delivery_failure_retained",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "delivery_correction_bounded",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "update_pending_verification_before_this_report",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "science_commit_bound",
+      "pass": true
+    }
+  ],
+  "checks_failed": 0,
+  "checks_passed": 100,
+  "checks_total": 100,
+  "exact_rollback_to_v31": true,
+  "generator_training_authorized": false,
+  "mechanism_increment_pass": false,
+  "overall_pass": true,
+  "preparation_report_sha256": "06aeb672db9144610e9759a0dcd1689186e455c373eb011507f3eecd261baeb1",
+  "pure_external_replacement_supported": false,
+  "references_changed": false,
+  "rk_g1_pass": false,
+  "schema": "a8-rk03-pure-external-paper-verification-v32",
+  "scientific_content_source": "audits/20261120/RK03/mage_pure_external_nested_cv_v1.json plus independent and finalization reports",
+  "section_sha256": "a6848a76b74eff95325de5298458c44794813f74f4afcfb986d486b8f979e4c0",
+  "status": "PASS_PURE_EXTERNAL_PAPER_V32",
+  "submittable_manuscript": false,
+  "update_report_sha256": "d4e8a5603d2cb9b7be7b11517ae27535f52ba6638893abcff3e824ab2bc7962d"
+}

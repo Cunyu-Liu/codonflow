@@ -684,6 +684,42 @@ The selected arm improved both sequence-OOD endpoints relative to `none` and `ri
 As a leakage diagnostic rather than a new performance claim, the train/development-only `all` and `none` checkpoints had bitwise-equal state dictionaries and identical selected epochs to the corresponding earlier full-configuration runs. The post-selection predictions were also byte-identical to the earlier evaluation artifacts. Thus, merely loading test/OOD rows in the earlier configuration did not alter the learned weights; this check does not improve or reinterpret the negative full-proxy comparison.
 
 Independent standard-library verification reconstructed arm selection, all test/OOD metrics, 2,000 bootstrap replicates, confidence intervals, sign tests, and Holm correction. It passed **320/320 checks**, with maximum numeric discrepancy 1.9095836023552692e-14; the targeted suite passed **8/8 tests**, and finalization passed **42/42 checks**. Functional untouched was not evaluated, the earlier velocity endpoint remains failed, and this screen alone cannot close RK-G1. Expensive generator training remains unauthorized, and no functional, wet-lab, complete-SOTA, or submittable-manuscript claim is made.
+
+### 6.28 Pure external-RCS comparator on reused MAGE development folds
+
+To resolve whether the historical `rcs_only` arm could be interpreted as a pure external predictor, we preregistered a development-only comparator before fitting any new model. The historical arm contains intrinsic features plus RCS additions, so its frozen predictions cannot answer this question. The new `pure_external_rcs` arm used only variant RCS, its difference from the matched wild-type control, and the absolute difference. It contained no position, position interaction, codon or amino-acid identity, GC, local-MFE, or other intrinsic feature. Labels, folds, and the three existing-arm predictions came from the frozen 131-construct train-plus-development artifact; the 33 test constructs were excluded from feature selection, fitting, and evaluation. The pure arm used the same five outer folds, four inner folds, three outer seeds, and six-value regularization grid as the earlier nested-CV protocol, requiring 375 new fits while leaving all old-arm predictions unchanged.
+
+**Table 1**
+
+*Primary Development Metrics for the Pure External-RCS Comparator*
+
+| Arm | RMSE | MAE | Spearman |
+|---|---:|---:|---:|
+| intrinsic | 0.03413327461240379 | 0.022187896273263757 | 0.6123990835404937 |
+| pure external RCS | 0.04929761172417739 | 0.03158281646008941 | −0.13201530863899236 |
+| intrinsic + RCS | 0.034152773868486606 | 0.021816612746170472 | 0.6163526287671603 |
+| full mechanism | 0.03422820302559988 | 0.0222595186439585 | 0.6352981456298568 |
+
+*Note.* Results use primary outer seed 40261119 and 131 reused development constructs. Lower RMSE and MAE and higher Spearman are better. RCS denotes the external structure-derived feature; MAE denotes mean absolute error. These are development diagnostics, not independent test results.
+
+The preregistered comparisons used 20,000 construct-bootstrap replicates for two-sided 95% percentile confidence intervals and 20,000 within-construct prediction-swap permutations. Holm correction covered the six tests formed by three comparisons and two endpoints. Support required both intervals to exclude zero in the favorable direction, both Holm-adjusted *p* values to be below 0.05, and favorable point-estimate signs on both sensitivity seeds.
+
+**Table 2**
+
+*Preregistered Pure External-RCS Comparisons on Reused Development Folds*
+
+| Comparison | ΔSpearman [95% CI] | Holm *p* | ΔRMSE [95% CI] | Holm *p* |
+|---|---:|---:|---:|---:|
+| pure external RCS − intrinsic | −0.744414392179486 [−0.9403491867053566, −0.5300791533185797] | 0.0002999850007499625 | 0.015164337111773597 [0.005846359530413134, 0.02506527402042598] | 0.009449527523623819 |
+| full mechanism − pure external RCS | 0.7673134542688491 [0.5631894046071572, 0.9532654793818945] | 0.0002999850007499625 | −0.015069408698577508 [−0.02544806838533774, −0.005479110034720501] | 0.009449527523623819 |
+| intrinsic + RCS − pure external RCS | 0.7483679374061527 [0.539343123375721, 0.9432946055506556] | 0.0002999850007499625 | −0.015144837855690783 [−0.02536403898497323, −0.00577083989049933] | 0.009449527523623819 |
+
+*Note.* CI denotes confidence interval. Positive ΔSpearman and negative ΔRMSE favor the first-named arm. Each p value is Holm-adjusted across six primary tests.
+
+The pure external-RCS predictor performed significantly worse than intrinsic on both primary endpoints, with adverse point-estimate directions on both sensitivity seeds. Pure external replacement was therefore not supported. Full mechanism and intrinsic+RCS each outperformed the pure arm under the preregistered support rule, but comparisons against this weak pure predictor do not establish an increment over intrinsic. The earlier full-mechanism−intrinsic comparison remained unchanged: ΔSpearman was 0.022899062089363098 with a 95% CI of [−0.03790577728252063, 0.09011639336438297], and ΔRMSE was 0.00009492841319608952 with a 95% CI of [−0.0014175669474227434, 0.0014564023955950885]; both Holm-adjusted *p* values were 1. Thus, the new arm closes the naming and feature-composition ambiguity without rescuing the prior non-significant mechanism comparison.
+
+An independent implementation reconstructed the external-only features, repeated all 375 fits, and recomputed predictions, model selection, metrics, intervals, permutation tests, and Holm correction. It passed **174/174 checks** with maximum numeric discrepancy 0; finalization passed **43/43 checks**. The original development no-go remains unchanged. No test or functional-untouched evaluation was performed, RK-G1 remains false, expensive generator training remains unauthorized, and no protein-OOD, causal-mechanism, complete-SOTA, or submittable-manuscript claim is made.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -915,6 +951,19 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK08 manuscript source section | `47aa365a8a2362b78cc815aa3502a551348fdf48cd9f8e5a6ead182720299a20` |
 | RK08 manuscript writing draft check | `a9e62bc5371167bcaaa97a40cd94c0ff8662b4b6a4f5a2eb8bc299df8c7ef534` |
 | RK08 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+
+| RK03 pure-external-RCS frozen protocol | `9efd39ef21672722adde333e28f4e1144983949dfab5a6437a1f45a68e930b45` |
+| RK03 pure-external-RCS preparation | `d5e8f16ac9cace99e5ca4ade08f918bcc58b6af9a2528ddb92651d711ebec63f` |
+| RK03 pure-external-RCS production | `c39e3f3b42e126abdc3fdc0838c053c17b6c95374e841500e34196b340d663c9` |
+| RK03 pure-external-RCS independent verification | `eb4153a3cb3109aff34a6e73006af30387409a64531d4b28143bec17f71da0d2` |
+| RK03 pure-external-RCS finalization | `29561b13922e4319715fd511c4b2ac4fa911d893815c722df17e0a96fb58f8e0` |
+| RK03 pure-external-RCS 10-test log | `080a6aa9c2cb20d1418801980b49581c773f7e67bfccccf769f4b0a82e3905d2` |
+| RK03 pure-external-RCS manuscript source section | `a6848a76b74eff95325de5298458c44794813f74f4afcfb986d486b8f979e4c0` |
+| RK03 pure-external-RCS manuscript prepare check | `f7e16584dd7c5e9afa9db6c81342ca0a5bb4facc7cb8889508b751b67718dc06` |
+| RK03 pure-external-RCS manuscript draft check | `9001fd2a65dc4a6202f5c763389695acda2b295a580f6edae87ba89445b146f8` |
+| RK03 pure-external-RCS manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
+| RK03 pure-external-RCS retained delivery failure | `a21fde3b388c16e354cf1c79793afa54e7e7efb7d59f883198fff9e28161f97e` |
+| RK03 pure-external-RCS delivery correction | `ebcf2fdd95cef0664ac3916e80b5168d246a0903108edc77d23e7da6b4578318` |
 
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, clean-environment reproduction, and prospective validation gates are complete.
 
