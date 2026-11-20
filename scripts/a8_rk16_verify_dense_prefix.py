@@ -180,7 +180,7 @@ def main() -> None:
                     and actual_row["novel_sequence"] == novel
                     and actual_row["n_unique_so_far"] == len(seen)
                     and actual_row["objectives"] == by_sequence[sequence]
-                    and close(actual_row["hypervolume_normalized"], expected_row["hv"])
+                    and close(actual_row["hv"], expected_row["hv"])
                 )
                 if not valid:
                     all_curve_checks = False
@@ -197,7 +197,7 @@ def main() -> None:
             actual = output_record["secondary_b100_descriptive"][method]
             valid = close(actual["dense_budget_step_auc_v2"], dense["auc"]) and close(actual["endpoint_hypervolume_normalized"], dense["curve"][-1]["hv"])
             valid = valid and len(actual["curve"]) == 100 and [row["budget"] for row in actual["curve"]] == list(range(1, 101))
-            valid = valid and all(close(row["hypervolume_normalized"], expected["hv"]) for row, expected in zip(actual["curve"], dense["curve"]))
+            valid = valid and all(close(row["hv"], expected["hv"]) for row, expected in zip(actual["curve"], dense["curve"]))
             if not valid:
                 all_secondary_checks = False
 
