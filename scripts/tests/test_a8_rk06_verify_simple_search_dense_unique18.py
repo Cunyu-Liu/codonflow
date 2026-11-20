@@ -10,6 +10,7 @@ from codonflow.core.motifs import motif_penalty_score
 from codonflow.eval.anytime import FrozenReference, dense_budget_step_auc_v2
 from codonflow.eval.metrics import cai, cai_weights_from_rscu, mfe, pairwise_ned
 from scripts import a8_rk06_verify_simple_search_dense_unique18 as independent
+from scripts import a8_rk06_finalize_simple_search_dense_unique18 as finalizer
 
 
 class IndependentHelperTests(unittest.TestCase):
@@ -58,6 +59,20 @@ class IndependentHelperTests(unittest.TestCase):
             self.assertEqual(candidate["method"], "hill_climbing")
         with self.assertRaises(ValueError):
             independent.production_endpoint_for_independent("unregistered_endpoint")
+
+    def test_external_dense_policy_accepts_only_explicit_null_schemas(self):
+        frozen_text = ("LinearDesign/EnsembleDesign and other unordered actual-output sets retain "
+                       "dense_budget_step_auc_v2=null; no zero filling or lambda-to-budget conversion")
+        cases = [
+            (frozen_text, (True, True)),
+            ({"dense_budget_step_auc_v2": None, "independent_lambda_run_unordered": True}, (True, True)),
+            ("dense_budget_step_auc_v2=null", (False, False)),
+            ({"dense_budget_step_auc_v2": 0.0, "independent_lambda_run_unordered": True}, (False, True)),
+        ]
+        for module in [independent, finalizer]:
+            for policy, expected in cases:
+                with self.subTest(module=module.__name__, policy=policy):
+                    self.assertEqual(module.external_dense_policy_status(policy), expected)
 
     def test_dominance_uses_independent_arrays(self):
         with tempfile.TemporaryDirectory() as directory:

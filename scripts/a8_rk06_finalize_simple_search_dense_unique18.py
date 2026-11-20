@@ -11,6 +11,20 @@ ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "audits/20261120/RK06"
 
 
+def external_dense_policy_status(policy):
+    """Read either frozen external-policy schema without converting unordered sets."""
+    if isinstance(policy, dict):
+        return (
+            policy.get("dense_budget_step_auc_v2") is None,
+            policy.get("independent_lambda_run_unordered") is True,
+        )
+    frozen_text = (
+        "LinearDesign/EnsembleDesign and other unordered actual-output sets retain "
+        "dense_budget_step_auc_v2=null; no zero filling or lambda-to-budget conversion"
+    )
+    return policy == frozen_text, policy == frozen_text
+
+
 def sha256(path):
     h = hashlib.sha256()
     with Path(path).open("rb") as handle:
@@ -62,8 +76,9 @@ def main():
     check("inference_independence", independent["maximum_differences"]["paired_inference"] <= 1e-12, independent["maximum_differences"]["paired_inference"])
     check("dominance_independence", independent["maximum_differences"]["dominance"] <= 1e-12, independent["maximum_differences"]["dominance"])
     check("method_summary_independence", independent["maximum_differences"]["method_summary"] <= 1e-9, independent["maximum_differences"]["method_summary"])
-    check("external_dense_null", production["external_actual_set_dense_policy"]["dense_budget_step_auc_v2"] is None)
-    check("no_external_dense_conversion", production["external_actual_set_dense_policy"]["independent_lambda_run_unordered"] is True)
+    external_dense_null, no_external_dense_conversion = external_dense_policy_status(production["external_actual_set_dense_policy"])
+    check("external_dense_null", external_dense_null)
+    check("no_external_dense_conversion", no_external_dense_conversion)
     check("no_untouched", not production["untouched24_used"])
     check("no_functional_untouched", not production["functional_untouched_used"])
     check("no_functional_labels", not production["functional_labels_used"])

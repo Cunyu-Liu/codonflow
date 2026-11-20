@@ -305,6 +305,20 @@ def production_endpoint_for_independent(endpoint):
     return aliases[endpoint]
 
 
+def external_dense_policy_status(policy):
+    """Return (dense_is_null, unordered_external_conversion_forbidden) for frozen schemas."""
+    if isinstance(policy, dict):
+        return (
+            policy.get("dense_budget_step_auc_v2") is None,
+            policy.get("independent_lambda_run_unordered") is True,
+        )
+    frozen_text = (
+        "LinearDesign/EnsembleDesign and other unordered actual-output sets retain "
+        "dense_budget_step_auc_v2=null; no zero filling or lambda-to-budget conversion"
+    )
+    return policy == frozen_text, policy == frozen_text
+
+
 def independent_inference(results, protocol):
     records = sorted({row["record_id"] for row in results})
     seeds = protocol["seeds"]
@@ -472,7 +486,7 @@ def main():
     check("artifact_manifest_run_count", manifest["run_count"] == 216)
     manifest_lookup = {row["path"]: row["sha256"] for row in manifest["run_files"]}
     check("artifact_manifest_run_hashes", all(manifest_lookup.get(row["production_path"]) == row["production_sha256"] for row in results))
-    check("external_dense_remains_null", production["external_actual_set_dense_policy"]["dense_budget_step_auc_v2"] is None)
+    check("external_dense_remains_null", external_dense_policy_status(production["external_actual_set_dense_policy"])[0])
     check("no_untouched_or_functional_use", not production["untouched24_used"] and not production["functional_untouched_used"] and not production["functional_labels_used"])
     check("no_scientific_gate_or_sota_claim", not production["scientific_gate_passed"] and not production["rk_g1_closed"] and not production["sota_claim"])
     array_manifest = {
