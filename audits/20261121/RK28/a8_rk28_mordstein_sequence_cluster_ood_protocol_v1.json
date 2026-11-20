@@ -1,0 +1,137 @@
+{
+  "schema": "a8-rk28-mordstein-sequence-cluster-ood-protocol-v1",
+  "protocol_id": "a8_rk28_mordstein_observed_r1_sequence_cluster_ood_v1",
+  "created_before_RK28_outcome_or_model_feature_read": true,
+  "created_before_RK28_model_fit": true,
+  "analysis_type": "retrospective_cross_study_fixed_gfp_observed_r1_structure_increment_sequence_cluster_transport_validation",
+  "scientific_question": "Does adding observed-R1 ViennaRNA MFE features improve fixed-GFP HEK293 intronless Flow-seq prediction under whole-sequence-cluster OOD evaluation, despite the previous random-variant development no-go?",
+  "prior_evidence": {
+    "rk27_result_sha256": "b601db3b0a5bec6b228492846f0058a0d959439c0eeebada05b749daa366ed5e",
+    "rk02_development_finalization_sha256": "c8fca9ae49706dfa7ef1d026cefde922ef461eb1fcfb5a7dab742b370637a1fc",
+    "rk02_development_result": "FIXED_GFP_OBSERVED_R1_STRUCTURE_INCREMENT_NO_GO_DEVELOPMENT_ONLY",
+    "note": "RK27 used measured Kudla 5-prime MFE on complete CDS. RK28 uses ViennaRNA-predicted MFE on the observed 300-nt R1 fragment; this is not direct external replication of the measured feature."
+  },
+  "preregistration_card": {
+    "observed_phenomenon": "RK27 found a strong measured-MFE increment under fixed-GFP sequence-cluster OOD in E. coli, whereas RK02 found no observed-R1 structure increment in random-variant HEK293 development folds.",
+    "falsifiable_hypothesis": "For both ridge and HistGB, adding three observed-R1 MFE features improves held-out-cluster Spearman and reduces held-out-cluster MSE relative to the identical simple-feature model, with cluster-aware uncertainty excluding zero and positive effects in at least 8 of 10 frozen fold-assignment seeds.",
+    "data_and_split": "All 152 finalized Mordstein HEK293 intronless Flow-seq variants; frozen 90% complete-linkage clusters over the observed 300-nt R1 sequence only; five-fold whole-cluster OOF evaluation.",
+    "controls": "The strong comparator is the identical backbone trained on depth, observed-R1 GC3, GC, CpG and CAI without structure. MFE-only is descriptive. Training-fold mean is the null.",
+    "primary_metrics": "structure-minus-simple global OOF Spearman and simple-minus-structure global OOF MSE for ridge and HistGB; positive favors structure.",
+    "expected_evidence": "All four effects positive, cluster-bootstrap 95% CI above zero, Holm cluster-swap p<0.05 and at least 8/10 positive seed effects.",
+    "falsification": "Any failed primary endpoint rejects the family-wide HEK293 observed-R1 structure-transport claim.",
+    "next_decision": "A pass motivates genuinely independent full-CDS functional validation; a fail rejects robust cross-study structure transport. Neither outcome alone authorizes generator training or completes RK-G1."
+  },
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/variant_counts.csv",
+      "sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef"
+    },
+    "references_r1_fasta": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/references_r1.fasta",
+      "sha256": "8dacbe7f970918e55a8f62c7184898001001901a6a0e05ce562c6d5c361dd205"
+    },
+    "rk02_feature_implementation": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk02_mordstein_structure_increment.py",
+      "sha256": "9838de20edd6a52e3f49f0f53f43ea5ec90ab1eba6be1ed5825a33f72c71b7e2"
+    },
+    "cai_wrapper": {
+      "path": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/CAI_calculator.py",
+      "sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a",
+      "reference_variable": "def_refs",
+      "reference_count": 9,
+      "caveat": "The raw external reference behavior is retained for comparability with RK02, including its known whitespace/frame caveat; it is not a validated clean human reference set."
+    }
+  },
+  "label_free_coverage_audit": {
+    "columns_permitted": ["variant_id", "sequence_5prime_300nt"],
+    "columns_forbidden": ["flowseq_score_r1_only", "counts_bin1", "counts_bin2", "counts_bin3", "counts_bin4", "counts_bin5", "counts_bin6", "counts_bin7", "counts_bin8", "r1_assigned_reads", "r1_pair_purity", "r1_seed_exact_reads"],
+    "expected_rows": 152,
+    "expected_sequence_length": 300,
+    "exact_sequence_uniqueness_required": true,
+    "min_identity": 0.90,
+    "linkage": "SciPy complete linkage on condensed Hamming distance 1-identity over the 300 observed positions; no alignment, outcome or model feature is used.",
+    "selection_rule": "The 90% threshold is frozen now. No alternative threshold may be tried after seeing coverage or outcomes.",
+    "feasibility_rule": "Require 152 unique variant IDs and unique 300-nt ACGT sequences, at least 10 clusters, largest cluster <=121 rows (<=80% rounded down), and primary-seed fold sizes each >=5 with at least 2 clusters per fold. Otherwise close as COVERAGE_INFEASIBLE_ZERO_FITS without reading outcomes or fitting models.",
+    "functional_untouched_read": false
+  },
+  "outer_evaluation": {
+    "type": "five-fold grouped OOF evaluation on frozen observed-R1 sequence clusters",
+    "folds": 5,
+    "primary_seed": 20261222,
+    "sensitivity_seeds": [20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230, 20261231],
+    "fold_assignment": "For each seed, numpy.random.default_rng(seed) shuffles sorted unique cluster IDs; stable-sort shuffled IDs by descending cluster size. Assign each whole cluster to a currently least-loaded fold, breaking load ties with the same RNG. Cluster ID, not outcome, determines every assignment.",
+    "leakage_rule": "No observed-R1 sequence cluster may occur in both train and test. Scaling and outcome standardization are fitted within training folds only. No feature selection or hyperparameter tuning."
+  },
+  "outcome": {
+    "name": "flowseq_score_r1_only",
+    "formula": "sum_{i=1..8} i*counts_bin_i / sum_{i=1..8} counts_bin_i",
+    "interpretation": "R1-assigned HEK293 intronless Flow-seq weighted fluorescence-bin score; not direct RFU, translation velocity, decay or universal expression."
+  },
+  "models": {
+    "feature_sets": {
+      "simple": ["log1p_total_assigned_reads", "gc3_observed_5prime", "gc_observed_5prime", "cpg_per_100nt_observed_5prime", "cai_human_def_refs_observed_r1"],
+      "structure_addition": ["mfe_observed_r1_full_kcal_mol", "mfe_observed_r1_window48_min_kcal_mol", "mfe_observed_r1_window48_mean_kcal_mol"],
+      "mfe_only_descriptive": ["mfe_observed_r1_full_kcal_mol", "mfe_observed_r1_window48_min_kcal_mol", "mfe_observed_r1_window48_mean_kcal_mol"]
+    },
+    "structure_engine": "ViennaRNA RNA.fold_compound MFE; DNA converted to RNA; 37 C; dangles=0; full observed 300-nt fragment and every contiguous 48-nt window. This is predicted fragment MFE, not measured structure or full-CDS initiation MFE.",
+    "ridge": "Training-fold feature and outcome mean/population-standard-deviation scaling, then Ridge(alpha=1.0, solver=cholesky).",
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=False, random_state=fold_seed).",
+    "null": "Training-fold mean outcome; descriptive only.",
+    "hyperparameter_tuning": false,
+    "device": "CPU_ONLY",
+    "expected_model_fits_if_feasible": 300
+  },
+  "primary_inference": {
+    "evaluation_seed": 20261222,
+    "tests": ["ridge_spearman_effect", "ridge_mse_improvement", "histgb_spearman_effect", "histgb_mse_improvement"],
+    "cluster_bootstrap": {
+      "resamples": 20000,
+      "seed": 20261323,
+      "procedure": "Resample frozen cluster IDs with replacement to the observed number of clusters, include every variant in each selected cluster, and recompute each paired OOF effect. Percentile two-sided 95% CI."
+    },
+    "cluster_swap_permutation": {
+      "permutations": 20000,
+      "seed": 20261324,
+      "procedure": "Draw one sign per cluster and swap simple/structure predictions for every variant in that cluster. Two-sided absolute-effect p-value with plus-one correction."
+    },
+    "multiplicity": "Holm across exactly four primary tests.",
+    "seed_sensitivity_rule": "At least 8 of 10 seed-level global OOF effects must be positive for every primary endpoint."
+  },
+  "pass_rule": "All four primary endpoints must have observed effect >0, cluster-bootstrap 95% CI entirely above zero, Holm-adjusted cluster-swap p<0.05 and at least 8/10 positive fold-assignment-seed effects.",
+  "result_interpretation": {
+    "pass": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_SUPPORTED_RETROSPECTIVELY",
+    "fail": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+    "coverage_infeasible": "COVERAGE_INFEASIBLE_ZERO_FITS"
+  },
+  "scientific_boundaries": {
+    "fixed_protein": true,
+    "external_study_relative_to_RK27": true,
+    "independent_untouched_confirmation": false,
+    "labels_previously_used_in_RK02_development": true,
+    "complete_cds_observed": false,
+    "author_gfp_identity_mapping": false,
+    "measured_structure": false,
+    "protein_ood": false,
+    "velocity_or_decay_measured": false,
+    "full_spatial_coupling_established": false,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "rk_g1_complete": false
+  },
+  "outputs": {
+    "large_artifact_directory": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1",
+    "audit_directory": "/home/codonflow-a8-rk/audits/20261121/RK28",
+    "coverage_report": "/home/codonflow-a8-rk/audits/20261121/RK28/rk28_sequence_coverage_v1.json",
+    "coverage_facts": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/sequence_cluster_facts.csv",
+    "result": "/home/codonflow-a8-rk/audits/20261121/RK28/rk28_sequence_cluster_ood_result_v1.json",
+    "independent_report": "/home/codonflow-a8-rk/audits/20261121/RK28/rk28_sequence_cluster_ood_independent_v1.json"
+  },
+  "execution": {
+    "python": "/root/miniconda3/envs/codonflow/bin/python",
+    "single_thread_required": true,
+    "production_and_independent_verifier_must_not_share_implementation": true,
+    "synthetic_tests_required": true,
+    "ppt_write_requires_independent_pass": true,
+    "github_push_after_verified_closeout": true
+  }
+}

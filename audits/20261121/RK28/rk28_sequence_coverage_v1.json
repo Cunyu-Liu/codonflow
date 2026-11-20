@@ -1,0 +1,110 @@
+{
+  "analysis_type": "retrospective_label_free_coverage_audit_before_RK28_outcome_or_feature_read",
+  "checks": [
+    {
+      "name": "152 rows",
+      "pass": true
+    },
+    {
+      "name": "unique variant IDs",
+      "pass": true
+    },
+    {
+      "name": "300 nt sequences",
+      "pass": true
+    },
+    {
+      "name": "ACGT only",
+      "pass": true
+    },
+    {
+      "name": "unique observed-R1 sequences",
+      "pass": true
+    },
+    {
+      "name": "at least 10 clusters",
+      "pass": true
+    },
+    {
+      "name": "largest cluster <=121",
+      "pass": true
+    },
+    {
+      "name": "every primary fold >=5 variants",
+      "pass": true
+    },
+    {
+      "name": "every primary fold >=2 clusters",
+      "pass": true
+    }
+  ],
+  "columns_read": [
+    "variant_id",
+    "sequence_5prime_300nt"
+  ],
+  "complete_cds_observed": false,
+  "coverage_feasible": true,
+  "coverage_script_sha256": "e42cbfcac0ca2db318c7615619787f7f0b8d9a368d5a6c91b7822b165cece6ab",
+  "expression_or_model_fit_performed": false,
+  "facts_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/sequence_cluster_facts.csv",
+  "facts_sha256": "6944156dc4bc491d1066083d10a35017b2052be33e60e11a58ebe811e8bbbbd1",
+  "forbidden_columns_not_read": [
+    "counts_bin1",
+    "counts_bin2",
+    "counts_bin3",
+    "counts_bin4",
+    "counts_bin5",
+    "counts_bin6",
+    "counts_bin7",
+    "counts_bin8",
+    "flowseq_score_r1_only",
+    "r1_assigned_reads",
+    "r1_pair_purity",
+    "r1_seed_exact_reads"
+  ],
+  "functional_untouched_read": false,
+  "measured_structure": false,
+  "model_fit_authorized": true,
+  "outcome_or_model_feature_read": false,
+  "pairwise_identity_quantiles": {
+    "0.0": 0.7,
+    "0.1": 0.76,
+    "0.25": 0.7866666666666666,
+    "0.5": 0.81,
+    "0.75": 0.84,
+    "0.9": 0.8633333333333333,
+    "1.0": 0.97
+  },
+  "protocol": "/home/codonflow-a8-rk/audits/20261121/RK28/a8_rk28_mordstein_sequence_cluster_ood_protocol_v1.json",
+  "protocol_sha256": "768d3a2b32ca6afb551f55b05e331130f80f15e992a8ca032990271efdc2190e",
+  "rows": 152,
+  "schema": "a8-rk28-label-free-sequence-cluster-coverage-v1",
+  "scientific_conclusion_if_infeasible": null,
+  "selected_coverage": {
+    "clusters": 74,
+    "cross_cluster_nearest_identity_max": 0.9566666666666667,
+    "cross_cluster_nearest_identity_median": 0.89,
+    "largest_cluster": 12,
+    "primary_seed_fold_cluster_counts": [
+      15,
+      15,
+      16,
+      15,
+      13
+    ],
+    "primary_seed_fold_sizes": [
+      30,
+      31,
+      31,
+      30,
+      30
+    ],
+    "singleton_clusters": 35,
+    "singleton_fraction": 0.47297297297297297
+  },
+  "selected_min_identity": 0.9,
+  "sequence_length_nt": 300,
+  "source_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/variant_counts.csv",
+  "source_sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef",
+  "status": "PASS_LABEL_FREE_COVERAGE_AUDIT_FEASIBLE"
+}
