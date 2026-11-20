@@ -1,0 +1,46 @@
+{
+  "task": "function",
+  "ablation": "velocity_only",
+  "include_splits": [
+    "train",
+    "dev"
+  ],
+  "max_rows_per_split": null,
+  "columns": {
+    "cds_column": "cds",
+    "target_column": "expression_value",
+    "split_column": "ood_assignment",
+    "id_column": "construct_id",
+    "cluster_column": "operational_protein_cluster",
+    "host_column": "host"
+  },
+  "model": {
+    "d_model": 16,
+    "n_layers": 1,
+    "n_heads": 4,
+    "dropout": 0.0,
+    "max_len": 1002,
+    "ff_mult": 2,
+    "initiation_window": 16,
+    "long_range_stride": 16,
+    "pair_strength": 1.0,
+    "allow_wobble": true,
+    "num_hosts": 16
+  },
+  "training": {
+    "device": "cuda",
+    "epochs": 6,
+    "batch_size": 16,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "seed": 20261119,
+    "gradient_clip": 1.0,
+    "selection_metric": "cluster_balanced_mse"
+  },
+  "loss_weights": {
+    "function": 1.0,
+    "initiation": 1.0,
+    "velocity": 1.0,
+    "decay": 1.0
+  }
+}

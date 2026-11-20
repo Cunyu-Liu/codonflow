@@ -1,0 +1,135 @@
+{
+  "schema": "a8-rk08-channel-screen-preparation-v1",
+  "status": "PASS_CHANNEL_SCREEN_PREPARATION",
+  "protocol_path": "/home/codonflow-a8-rk/configs/a8_rk08_channel_screen_protocol_v1.json",
+  "protocol_sha256": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+  "arms_in_tie_break_order": [
+    "all",
+    "none",
+    "initiation_only",
+    "velocity_only",
+    "decay_only",
+    "pair_only",
+    "no_initiation",
+    "no_velocity",
+    "no_decay",
+    "no_pair"
+  ],
+  "config_hashes": {
+    "all": {
+      "path": "configs/a8_rk08_channel_screen_all_config.json",
+      "sha256": "c8b2550b51901b01d15ab76a526f7020803a3af314381568ee75422bb0d2b5e9"
+    },
+    "none": {
+      "path": "configs/a8_rk08_channel_screen_none_config.json",
+      "sha256": "84ba2be6671d63b0b6e92e23bcdc5d5b6f1c7bc2828faba0db979ee656bafeca"
+    },
+    "initiation_only": {
+      "path": "configs/a8_rk08_channel_screen_initiation_only_config.json",
+      "sha256": "ede51cf8aa442c9db6755212e7d5cc102f924beb6de61efd3009fa0b264d9613"
+    },
+    "velocity_only": {
+      "path": "configs/a8_rk08_channel_screen_velocity_only_config.json",
+      "sha256": "c2f29301294014ae01481f36a890b03107690c25a10a08f8398dcf67bd4365d9"
+    },
+    "decay_only": {
+      "path": "configs/a8_rk08_channel_screen_decay_only_config.json",
+      "sha256": "c539c524d2f9ffd0749c1137c8617c245be99f25f2eb3352caf11ffcef22e15b"
+    },
+    "pair_only": {
+      "path": "configs/a8_rk08_channel_screen_pair_only_config.json",
+      "sha256": "94d2da40371fdef66d185b1648d0d59dfd7ed79be3e5bc9d091d770fa389b541"
+    },
+    "no_initiation": {
+      "path": "configs/a8_rk08_channel_screen_no_initiation_config.json",
+      "sha256": "0cef8af61aac2700d00d516da04af966fdc85426de3058666f5eb6717528915c"
+    },
+    "no_velocity": {
+      "path": "configs/a8_rk08_channel_screen_no_velocity_config.json",
+      "sha256": "2f9085262d353ca7d0fa73848cec55699cc7d460e49d56a92e762484b6e90e26"
+    },
+    "no_decay": {
+      "path": "configs/a8_rk08_channel_screen_no_decay_config.json",
+      "sha256": "404e7058483ddc3cd9766ae23c4db5c1677b61c419295dd1fe425086f6261f46"
+    },
+    "no_pair": {
+      "path": "configs/a8_rk08_channel_screen_no_pair_config.json",
+      "sha256": "c065344a31a3fcccde85fb061ae71aab77c520eb64e1f6752bcbebbec4d2dc63"
+    }
+  },
+  "active_mechanisms": {
+    "all": {
+      "initiation": true,
+      "velocity": true,
+      "decay": true,
+      "pair": true
+    },
+    "none": {
+      "initiation": false,
+      "velocity": false,
+      "decay": false,
+      "pair": false
+    },
+    "initiation_only": {
+      "initiation": true,
+      "velocity": false,
+      "decay": false,
+      "pair": false
+    },
+    "velocity_only": {
+      "initiation": false,
+      "velocity": true,
+      "decay": false,
+      "pair": false
+    },
+    "decay_only": {
+      "initiation": false,
+      "velocity": false,
+      "decay": true,
+      "pair": false
+    },
+    "pair_only": {
+      "initiation": false,
+      "velocity": false,
+      "decay": false,
+      "pair": true
+    },
+    "no_initiation": {
+      "initiation": false,
+      "velocity": true,
+      "decay": true,
+      "pair": true
+    },
+    "no_velocity": {
+      "initiation": true,
+      "velocity": false,
+      "decay": true,
+      "pair": true
+    },
+    "no_decay": {
+      "initiation": true,
+      "velocity": true,
+      "decay": false,
+      "pair": true
+    },
+    "no_pair": {
+      "initiation": true,
+      "velocity": true,
+      "decay": true,
+      "pair": false
+    }
+  },
+  "screen_include_splits": [
+    "train",
+    "dev"
+  ],
+  "expected_rows": {
+    "train": 4019,
+    "dev": 503
+  },
+  "test_or_ood_loaded": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "expensive_generation_authorized": false,
+  "output_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_v1"
+}
