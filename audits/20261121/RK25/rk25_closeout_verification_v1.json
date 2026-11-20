@@ -1,0 +1,375 @@
+{
+  "schema": "a8-rk25-closeout-verification-v1",
+  "status": "PASS",
+  "result_sha256": "72d0f42b30685984a6592dcb2fba208765e3663562b819d1982099226c6fdf42",
+  "ood_independent_report_sha256": "2fac738cc3373140de9628b069048f0e71cccd39eec95352559d0dfb9a83ab69",
+  "closeout_sha256": "1d09a3f3896ce71cc95c0dfa12b95367a3ef060b34c478a05406595365bf140e",
+  "registry_sha256": "f45a3fdbeb7838756d020a3d88f337ba8b8ec0a50a5755177789155385411683",
+  "implementation_sha256": "959ee3b6347bc181470ab79133d4f1a9682123992b8cd54d3443695fee043989",
+  "checks_total": 89,
+  "checks_passed": 89,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "dev PASS",
+      "pass": true
+    },
+    {
+      "name": "OOD PASS",
+      "pass": true
+    },
+    {
+      "name": "OOD production binding",
+      "pass": true
+    },
+    {
+      "name": "protocol hash",
+      "pass": true
+    },
+    {
+      "name": "result hash",
+      "pass": true
+    },
+    {
+      "name": "independent report hash",
+      "pass": true
+    },
+    {
+      "name": "mechanism gate false",
+      "pass": true
+    },
+    {
+      "name": "author reference gate true",
+      "pass": true
+    },
+    {
+      "name": "strong chain false",
+      "pass": true
+    },
+    {
+      "name": "RK-G1 false",
+      "pass": true
+    },
+    {
+      "name": "test descriptive",
+      "pass": true
+    },
+    {
+      "name": "sequence OOD research partition",
+      "pass": true
+    },
+    {
+      "name": "functional untouched false",
+      "pass": true
+    },
+    {
+      "name": "no new training",
+      "pass": true
+    },
+    {
+      "name": "dev replay",
+      "pass": true
+    },
+    {
+      "name": "six confirmatory",
+      "pass": true
+    },
+    {
+      "name": "all sequence OOD",
+      "pass": true
+    },
+    {
+      "name": "endpoint pattern",
+      "pass": true
+    },
+    {
+      "name": "empirical p zeros",
+      "pass": true
+    },
+    {
+      "name": "CI direction ribokinetic_all boel_author spearman",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author spearman point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author spearman ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author spearman ci95_high",
+      "pass": true
+    },
+    {
+      "name": "CI direction ribokinetic_all boel_author cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author cluster_balanced_mse point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author cluster_balanced_mse ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric ribokinetic_all boel_author cluster_balanced_mse ci95_high",
+      "pass": true
+    },
+    {
+      "name": "CI direction boel_author ridge_all spearman",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all spearman point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all spearman ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all spearman ci95_high",
+      "pass": true
+    },
+    {
+      "name": "CI direction boel_author ridge_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all cluster_balanced_mse point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all cluster_balanced_mse ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author ridge_all cluster_balanced_mse ci95_high",
+      "pass": true
+    },
+    {
+      "name": "CI direction boel_author histgb_all spearman",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all spearman point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all spearman ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all spearman ci95_high",
+      "pass": true
+    },
+    {
+      "name": "CI direction boel_author histgb_all cluster_balanced_mse",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all cluster_balanced_mse point_delta_mean_per_seed",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all cluster_balanced_mse ci95_low",
+      "pass": true
+    },
+    {
+      "name": "closeout numeric boel_author histgb_all cluster_balanced_mse ci95_high",
+      "pass": true
+    },
+    {
+      "name": "Spearman anchor ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "MSE anchor ribokinetic_all",
+      "pass": true
+    },
+    {
+      "name": "Spearman anchor boel_author",
+      "pass": true
+    },
+    {
+      "name": "MSE anchor boel_author",
+      "pass": true
+    },
+    {
+      "name": "Spearman anchor ridge_all",
+      "pass": true
+    },
+    {
+      "name": "MSE anchor ridge_all",
+      "pass": true
+    },
+    {
+      "name": "Spearman anchor histgb_all",
+      "pass": true
+    },
+    {
+      "name": "MSE anchor histgb_all",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor AUTHOR_REFERENCE_SUPERIORITY_SUPPORTED",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor ALL_CHANNEL_MECHANISM_INCREMENT_NOT_SUPPORTED",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor STRONG_COMPARATOR_CHAIN_FAILED",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 337/337",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 678/678",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 20,000 hierarchical bootstrap",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor not a majority vote",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor Test was descriptive only",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor Functional untouched data were not accessed",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor RK-G1 = false",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor expensive generator training remains unauthorized",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor does not establish fixed-protein synonymous causal",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor not functional-untouched confirmation",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 44014ad0fc923fba65d52fcda953117d9c822051",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 62b2c05135a3ea3e05c646fbee8764693e7b1464878e009126",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 5c289704bc23a7e85351a5f52f54089f086f38434f3a824807",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor 10018793d3a24711554ce4ab1b98c76e14271c7fc1c9d2ea75",
+      "pass": true
+    },
+    {
+      "name": "closeout anchor a86068da089f05fab00a13621e66493b2853e21197d3a49106",
+      "pass": true
+    },
+    {
+      "name": "one RK25 registry row",
+      "pass": true
+    },
+    {
+      "name": "RK25 row 11 columns",
+      "pass": true
+    },
+    {
+      "name": "registry anchor 44014ad0fc923fba65d52fcda953117d9c822051",
+      "pass": true
+    },
+    {
+      "name": "registry anchor 678/678",
+      "pass": true
+    },
+    {
+      "name": "registry anchor 337/337",
+      "pass": true
+    },
+    {
+      "name": "registry anchor mechanism 0/2 FAIL",
+      "pass": true
+    },
+    {
+      "name": "registry anchor 4/4 PASS",
+      "pass": true
+    },
+    {
+      "name": "registry anchor strong chain FAIL",
+      "pass": true
+    },
+    {
+      "name": "registry anchor RK-G1=false",
+      "pass": true
+    },
+    {
+      "name": "registry anchor test descriptive only",
+      "pass": true
+    },
+    {
+      "name": "registry anchor no functional untouched access",
+      "pass": true
+    },
+    {
+      "name": "registry schema CF-A8-RK24",
+      "pass": true
+    },
+    {
+      "name": "registry schema CF-A8-RK24-PPT",
+      "pass": true
+    },
+    {
+      "name": "registry schema CF-A8-RK24-PAPER",
+      "pass": true
+    },
+    {
+      "name": "registry schema CF-A8-RK25",
+      "pass": true
+    },
+    {
+      "name": "model hash binding",
+      "pass": true
+    },
+    {
+      "name": "prediction hash binding",
+      "pass": true
+    },
+    {
+      "name": "bootstrap hash binding",
+      "pass": true
+    },
+    {
+      "name": "independent bootstrap exists",
+      "pass": true
+    },
+    {
+      "name": "independent bootstrap hash",
+      "pass": true
+    }
+  ],
+  "mechanism_vs_author_pass": false,
+  "author_reference_pass": true,
+  "strong_comparator_chain_pass": false,
+  "rk_g1": false,
+  "functional_untouched_evaluated": false
+}
