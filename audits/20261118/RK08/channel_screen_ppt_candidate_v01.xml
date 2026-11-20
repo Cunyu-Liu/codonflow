@@ -1,0 +1,83 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style><fill><fillColor color="rgba(248,250,252,1)"/></fill></style>
+  <data>
+    <shape type="text" topLeftX="48" topLeftY="20" width="690" height="16">
+      <content textType="caption" fontSize="10" fontFamily="Aptos" color="rgba(100,116,139,1)" letterSpacing="1.2" wrap="false" verticalAlign="middle"><p>A8-RK · MECHANISM / CHANNEL SCREEN · 20 NOV 2026</p></content>
+    </shape>
+    <shape type="text" topLeftX="770" topLeftY="20" width="142" height="16">
+      <content textType="caption" fontSize="10" fontFamily="Aptos" color="rgba(15,118,110,1)" bold="true" textAlign="right" wrap="false" verticalAlign="middle"><p>RK08 · CLOSEOUT</p></content>
+    </shape>
+    <shape type="text" topLeftX="48" topLeftY="43" width="864" height="38">
+      <content textType="title" fontSize="28" fontFamily="Aptos Display" color="rgba(15,23,42,1)" bold="true" wrap="false" verticalAlign="middle"><p>Development selected all; full-proxy increment is not established</p></content>
+    </shape>
+    <shape type="rect" topLeftX="48" topLeftY="87" width="56" height="4" presetHandlers="2"><fill><fillColor color="rgba(15,118,110,1)"/></fill></shape>
+    <shape type="text" topLeftX="116" topLeftY="80" width="796" height="18">
+      <content textType="body" fontSize="11" fontFamily="Aptos" color="rgba(71,85,105,1)" wrap="false" verticalAlign="middle"><p>10 matched arms · 4,997 parameters/arm · train/dev-only selection · 2,000 cluster bootstraps · Holm correction</p></content>
+    </shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(226,232,240,1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" wrap="false"><p>DEV-SELECTED · 4,997 PARAMS/ARM</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos Display" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>all <span fontSize="10" color="rgba(15,118,110,1)">CB-MSE 3.761769</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="270" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(226,232,240,1)" width="1"/></shape>
+    <shape type="text" topLeftX="286" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" wrap="false"><p>SEQUENCE-OOD · 1,110 CLUSTERS</p></content></shape>
+    <shape type="text" topLeftX="286" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos Display" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>1,336 <span fontSize="11" color="rgba(15,118,110,1)">ROWS</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(226,232,240,1)" width="1"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" wrap="false"><p>INDEPENDENT · MAX DELTA 1.91e-14</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos Display" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>320 / 320 <span fontSize="11" color="rgba(15,118,110,1)">PASS</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="714" topLeftY="110" width="198" height="66" presetHandlers="10"><fill><fillColor color="rgba(255,255,255,1)"/></fill><border color="rgba(226,232,240,1)" width="1"/></shape>
+    <shape type="text" topLeftX="730" topLeftY="120" width="166" height="14"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" wrap="false"><p>FINALIZATION · TARGETED 8/8</p></content></shape>
+    <shape type="text" topLeftX="730" topLeftY="137" width="166" height="28"><content textType="headline" fontSize="23" fontFamily="Aptos Display" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>42 / 42 <span fontSize="11" color="rgba(15,118,110,1)">PASS</span></p></content></shape>
+
+    <shape type="text" topLeftX="48" topLeftY="194" width="620" height="20"><content textType="headline" fontSize="14" fontFamily="Aptos" color="rgba(15,23,42,1)" bold="true" wrap="false"><p>Frozen sequence-OOD comparisons · selected arm = all</p></content></shape>
+    <shape type="text" topLeftX="700" topLeftY="196" width="212" height="16"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" textAlign="right" wrap="false"><p>Rounded display · full precision in note</p></content></shape>
+    <table topLeftX="48" topLeftY="222" width="864" height="136">
+      <colgroup><col width="150"/><col width="270"/><col width="70"/><col width="290"/><col width="84"/></colgroup>
+      <tr height="28">
+        <td><fill><fillColor color="rgba(15,118,110,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="left"><p>Comparison</p></content></td>
+        <td><fill><fillColor color="rgba(15,118,110,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>Spearman delta [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15,118,110,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>Holm p</p></content></td>
+        <td><fill><fillColor color="rgba(15,118,110,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>CB-MSE delta [95% CI]</p></content></td>
+        <td><fill><fillColor color="rgba(15,118,110,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(255,255,255,1)" textAlign="center"><p>Holm p</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><fill><fillColor color="rgba(255,255,255,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(30,41,59,1)" textAlign="left"><p>all − none</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,118,110,1)" textAlign="center"><p>+0.199 [+0.129, +0.268]</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(15,118,110,1)" textAlign="center"><p>&lt;0.001</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,118,110,1)" textAlign="center"><p>−0.276 [−0.376, −0.181]</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(15,118,110,1)" textAlign="center"><p>&lt;0.001</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><fill><fillColor color="rgba(255,255,255,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(30,41,59,1)" textAlign="left"><p>all − ridge_all</p></content></td>
+        <td><fill><fillColor color="rgba(255,247,237,1)"/></fill><content textType="body" fontSize="10" color="rgba(154,52,18,1)" textAlign="center"><p>−0.026 [−0.076, +0.020]</p></content></td>
+        <td><fill><fillColor color="rgba(255,247,237,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(154,52,18,1)" textAlign="center"><p>0.532</p></content></td>
+        <td><fill><fillColor color="rgba(255,247,237,1)"/></fill><content textType="body" fontSize="10" color="rgba(154,52,18,1)" textAlign="center"><p>−0.026 [−0.128, +0.073]</p></content></td>
+        <td><fill><fillColor color="rgba(255,247,237,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(154,52,18,1)" textAlign="center"><p>0.636</p></content></td>
+      </tr>
+      <tr height="36">
+        <td><fill><fillColor color="rgba(255,255,255,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(30,41,59,1)" textAlign="left"><p>all − ridge_gc</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,118,110,1)" textAlign="center"><p>+0.120 [+0.082, +0.160]</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(15,118,110,1)" textAlign="center"><p>&lt;0.001</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" color="rgba(15,118,110,1)" textAlign="center"><p>−0.290 [−0.357, −0.227]</p></content></td>
+        <td><fill><fillColor color="rgba(236,253,245,1)"/></fill><content textType="body" fontSize="10" bold="true" color="rgba(15,118,110,1)" textAlign="center"><p>&lt;0.001</p></content></td>
+      </tr>
+    </table>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="370" width="420" height="70" presetHandlers="10"><fill><fillColor color="rgba(236,253,245,1)"/></fill><border color="rgba(167,243,208,1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="380" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Aptos" color="rgba(15,118,110,1)" bold="true" wrap="false"><p>Supported comparisons</p></content></shape>
+    <shape type="text" topLeftX="64" topLeftY="402" width="388" height="28"><content textType="body" fontSize="11" fontFamily="Aptos" color="rgba(30,41,59,1)" lineSpacing="multiple:1.15"><p>2/2 endpoints vs none · 2/2 vs ridge_gc<br/><span fontSize="9" color="rgba(71,85,105,1)">Both CIs exclude zero; Holm p &lt; 0.05.</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="492" topLeftY="370" width="420" height="70" presetHandlers="10"><fill><fillColor color="rgba(255,247,237,1)"/></fill><border color="rgba(253,186,116,1)" width="1"/></shape>
+    <shape type="text" topLeftX="508" topLeftY="380" width="388" height="18"><content textType="headline" fontSize="13" fontFamily="Aptos" color="rgba(154,52,18,1)" bold="true" wrap="false"><p>Gate-defining comparison</p></content></shape>
+    <shape type="text" topLeftX="508" topLeftY="402" width="388" height="28"><content textType="body" fontSize="11" fontFamily="Aptos" color="rgba(30,41,59,1)" lineSpacing="multiple:1.15"><p>No significant increment over ridge_all<br/><span fontSize="9" color="rgba(120,53,15,1)">Spearman p = 0.532 · CB-MSE p = 0.636 · both CIs cross zero.</span></p></content></shape>
+
+    <shape type="round-rect" topLeftX="48" topLeftY="455" width="864" height="36" presetHandlers="8"><fill><fillColor color="rgba(255,247,237,1)"/></fill><border color="rgba(253,186,116,1)" width="1"/></shape>
+    <shape type="text" topLeftX="64" topLeftY="461" width="832" height="24"><content textType="body" fontSize="11" fontFamily="Aptos" color="rgba(154,52,18,1)" bold="true" verticalAlign="middle" wrap="false"><p>Channel gate = false · RK-G1 = false · generator unauthorized · functional untouched (19,072) not evaluated</p></content></shape>
+
+    <shape type="text" topLeftX="48" topLeftY="505" width="720" height="13"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" wrap="false"><p>Source: manuscript v31 §6.27 · selection / evaluation / independent / finalization · GitHub 7d5e51a1</p></content></shape>
+    <shape type="text" topLeftX="800" topLeftY="505" width="112" height="13"><content textType="caption" fontSize="9" fontFamily="Aptos" color="rgba(100,116,139,1)" textAlign="right" wrap="false"><p>A8-RK · 107</p></content></shape>
+  </data>
+  <note><content textType="body" fontSize="12" color="rgba(15,23,42,1)"><p>Ten matched 4,997-parameter arms were screened on train and development only; independent development cluster-balanced MSE selected all at 3.761769367012553 from 503 rows and 447 clusters. Frozen sequence-OOD evaluation used 1,336 rows, 1,110 operational protein clusters, 2,000 cluster bootstrap replicates, and Holm correction within six comparisons. For all versus none, Spearman delta was 0.19901564752464795 with CI [0.12925907591173844, 0.26781646706339085] and Holm p=0, while CB-MSE delta was -0.2760885716873087 with CI [-0.37608880535590633, -0.18123318545616485] and Holm p=0; for all versus ridge_all, the corresponding values were -0.025779039513507546, CI [-0.0755256519724216, 0.020488139619787824], Holm p=0.532, and -0.025572097048845777, CI [-0.1282439258338166, 0.07253420347846523], Holm p=0.636; for all versus ridge_gc, they were 0.12022060447388114, CI [0.0819592276678431, 0.1602983907730725], Holm p=0, and -0.2895163999162387, CI [-0.3565435053891241, -0.226815730607076], Holm p=0. The full-proxy ridge comparison did not meet either endpoint criterion, so channel_screen_gate_pass and RK-G1 remain false; the 19,072 functional-untouched rows were not evaluated, the velocity endpoint remains failed, and generator training is unauthorized. Independent verification passed 320/320 with maximum numeric delta 1.9095836023552692e-14, targeted tests passed 8/8, and finalization passed 42/42; manuscript v31 section 6.27 and GitHub commit 7d5e51a17f93218e831bc22b845c030065362a35 record the result.</p></content></note>
+</slide>

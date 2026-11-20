@@ -1,0 +1,33 @@
+{
+  "schema": "a8-rk08-channel-screen-ppt-correction-v1",
+  "failed_report": "rk08_ppt_verification_failed_tail_whitespace_v01.json",
+  "failed_report_sha256": "8be87efb4e23443b9e03379c8726271c853127d13903d6582de1ecda5c545a7d",
+  "initial_check_counts": {
+    "passed": 222,
+    "total": 223
+  },
+  "scope": "verifier_normalization_only",
+  "scientific_content_changed": false,
+  "online_slide_changed_after_failure": false,
+  "root_cause": "The previous final slide pZg acquired two spaces of indentation in its whitespace-only closing tail when pZZ was appended. The structural verifier incorrectly treated formatting whitespace as semantic content.",
+  "observed_difference": {
+    "slide_id": "pZg",
+    "tag": "slide tail",
+    "before_repr": "\\n",
+    "after_repr": "\\n  ",
+    "non_whitespace_content_difference": false
+  },
+  "fix": "Ignore only whitespace-only inter-element tails in semantic signatures; all element tags, attributes, text, non-whitespace tails, and children remain compared.",
+  "final_check_counts": {
+    "passed": 223,
+    "total": 223
+  },
+  "final_report_sha256": "427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8",
+  "slide_id": "pZZ",
+  "page": 107,
+  "revision_id": 69,
+  "channel_screen_gate_pass": false,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false
+}
