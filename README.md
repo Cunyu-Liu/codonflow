@@ -178,7 +178,7 @@ RK06 section 6.24 / A8 v28 已通过 **24/24 checks + 73/73 candidate facts**，
 
 ## A8-RK：RK-G0 bounded readiness 与统一成本 closeout
 
-**当前状态（2026-11-20）**：A8 工作稿为 v30，新增 §6.26；在线总稿为 106 页 / revision 68，末页 `pZg`。G0 仅达到 `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`，不是完整 RK-G0–G4、生成模型、外部 SOTA 或真实功能闭环。
+**G0 closeout 时点（2026-11-20）**：A8 工作稿为 v30，新增 §6.26；在线总稿为 106 页 / revision 68，末页 `pZg`。G0 仅达到 `PASS_BOUNDED_DATA_BASELINE_EVALUATION_READY`，不是完整 RK-G0–G4、生成模型、外部 SOTA 或真实功能闭环。后续 RK08/v31/PPT107 见下节。
 
 - 冻结 22 份真实来源及 SHA256，形成 22 行统一成本矩阵、20 个 gate/boundary checks；13 个范围有实测 wall-clock，9 个范围显式 null。null 表示未测量或不可归因，不是 0；不同硬件、任务和评价范围不求伪总和、不作 time-matched 排名。
 - production 179/179 PASS，独立复核 357/357 PASS / max delta=0，定向反篡改测试 9/9 PASS，finalization 6/6 PASS。科学证据 commit=`c1f641a17f4f2157be0d498d24ba363674bd7617`。
@@ -208,6 +208,22 @@ python3 scripts/a8_g0_verify_closeout_documents.py --root /home/codonflow-a8-rk
 ```
 
 仍未闭合：external actual-set dense 完整矩阵、time-matched、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、完整外部 SOTA、Kudla 逐构建表、functional-untouched、wet-lab/前瞻 DBTL。RK-G1=false，generator_training_authorized=false。本轮未在 G0/v30 后运行完整项目 `pytest tests/`、干净环境安装或端到端总复现。
+
+## A8-RK：RK08 十臂机制通道筛选、v31 与 PPT107 closeout
+
+**当前状态（2026-11-20）**：工作稿为 **v31**，新增 §6.27；在线总稿为 **107 页 / revision 69**，末页 `pZZ`。十臂同骨干 screen 的 development 唯一入选臂为 `all`，但其相对 full-proxy `ridge_all` 的 sequence-OOD Spearman 与 CB-MSE 两项均不显著，故 `channel_screen_gate_pass=false`、`rk_g1_pass=false`，**未授权昂贵生成训练**。
+
+- **预注册与隔离**：协议、10 份 train/dev-only configs、准备报告和运行脚本在训练前以 `669b2735c21bf9bda8fdac12fc0c9f69635a38b5` 推送。每臂 4,997 参数，统一 backbone、训练超参数、seed 和 dev checkpoint 规则；选臂前不加载 test、sequence-OOD 或 functional untouched。
+- **development 选择**：10/10 臂真实完成；独立 cluster-balanced MSE 最小值为 `all=3.761769367012553`，其余臂均更高，无同分。train/dev-only `all` 与 `none` 的 `state_dict` 分别与既有全量实验逐张量 bitwise 相等；selected epoch、best 权重及 train/dev/最终评估 predictions 一致，排除了旧训练仅因加载 test/OOD 行而改变权重的可能。
+- **sequence-OOD 主结果**：2,000 次 operational-protein-cluster paired bootstrap，6 个 OOD 比较内 Holm 校正。`all−none`：ΔSpearman=`+0.19901564752464795`，95% CI=`[0.12925907591173844,0.26781646706339085]`，Holm p=0；ΔCB-MSE=`-0.2760885716873087`，CI=`[-0.37608880535590633,-0.18123318545616485]`，p=0。`all−ridge_gc`：ΔSpearman=`+0.12022060447388114`，CI=`[0.0819592276678431,0.1602983907730725]`，p=0；ΔCB-MSE=`-0.2895163999162387`，CI=`[-0.3565435053891241,-0.226815730607076]`，p=0。
+- **full-proxy 关键对照未通过**：`all−ridge_all` ΔSpearman=`-0.025779039513507546`，95% CI=`[-0.0755256519724216,0.020488139619787824]`，Holm p=`0.532`；ΔCB-MSE=`-0.025572097048845777`，CI=`[-0.1282439258338166,0.07253420347846523]`，p=`0.636`。即使 dev 选出 `all`，也没有稳定超过 full-proxy ridge；不是换一个单通道臂即可解除的门禁。
+- **独立验收与边界**：通道筛选定向测试 8/8 PASS；独立 verifier 从原始预测重算选臂、指标、bootstrap、CI、p 值和 Holm，320/320 PASS，max numeric delta=`1.9095836023552692e-14`；finalization 42/42 `PASS_CHANNEL_SCREEN_CLOSEOUT`。科学证据与 closeout 分别为 `9fc6353399db2e33ccb56c2a6b1afbd4d4340170`、`d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f`。既有 velocity 主终点已失败，MAGE 机制对照亦未支持稳定机制增量；functional untouched 未评测，外部预训练模型替代、独立常数速度场、transport 和完整外部 SOTA 未闭合。
+- **论文 v31**：真实稿件 `paper/CodonFlow_preprint_A8.md`，SHA256=`9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a`；新增 §6.27 和证据锚点，可精确恢复 v30。115/115 PASS；首次 113/115 的英文同义字面检查失败报告和 correction 均保留，未改变科学证据。论文提交 `7d5e51a17f93218e831bc22b845c030065362a35`，推送后复验仍为 115/115。
+- **PPT107**：在 106 页/revision 68/`pZg` 基线上只追加第 107 页 `pZZ`、revision 69；candidate 103/103、写后 223/223、closeout 18/18，真实服务端截图人工视觉验收 PASS。保留 candidate 102/103 的 `Holm p=0` 前缀误计失败、写后 222/223 的旧末页 whitespace-only tail 失败及 correction；科学内容与旧页语义未改。PPT 提交 `d4afbf79e55da335f66b05507448ecd6e2fbc798`，推送后复验仍为 223/223 和 18/18。
+- **证据入口**：选择、评估、paired/metrics、320/320 独立报告和 42/42 finalization 位于 `audits/20261118/RK08/`；大型 checkpoints、predictions、bootstrap deltas 与 PPT before/after XML、响应和截图分别位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_v1/`、`channel_screen_ppt_v1/`。小型验收与脚本进入 Git，大型数据/权重不进入 Git。
+- **复现边界**：本轮定向证据验收不能替代完整项目 `pytest tests/`、干净环境安装或端到端总复现；这些仍未在 v31/channel screen/PPT107 后执行。RK08 不改变 `DEV_NO_GO_TEST_UNTOUCHED`，不把 train/dev proxy 或 sequence-OOD 提升写成真实生物功能，也不把未训练生成器写成已完成。
+
+文档只读验收：`python3 scripts/a8_rk08_verify_channel_screen_documents.py --root /home/codonflow-a8-rk --output audits/20261118/RK08/channel_screen_documentation_verification_v1.json`。PPT 只读复验：`python3 scripts/a8_rk08_verify_channel_screen_ppt.py --mode final --work-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1 --visual-reviewed --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_ppt_verification_posthandover_v01.json`；finalizer 同样只读：`python3 scripts/a8_rk08_finalize_channel_screen_ppt.py --root /home/codonflow-a8-rk --work-dir /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1 --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_ppt_closeout_finalization_posthandover_v1.json`。
 
 ## 目录
 

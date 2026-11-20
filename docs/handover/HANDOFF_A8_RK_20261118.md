@@ -685,3 +685,85 @@ RK-G0 仍未关闭。下一步为 RK-03 机制/自然数据下载与 QC、RK-05 
 - 下一科学任务是在既有可靠数据上推进 RK-G1，先修数据/协议并保留负结果；G0 bounded pass 不授权 CodonFlow-RK 昂贵生成训练。
 - 本轮未在 G0/v30 后运行完整项目 `pytest tests/`、干净环境安装或真实端到端总复现；既有 RK11 的 289 passed/1 skipped 不能替代当前提交的全量回归。
 - 文档 closeout 使用 `scripts/a8_g0_verify_closeout_documents.py` 与 `tests/test_a8_g0_closeout_documents.py`：反篡改测试 8/8 PASS，独立文档/证据验收 83/83 PASS，报告为 `audits/20261120/RK06/g0_closeout_documentation_verification_v1.json`。初次本地路径假设、过严 generator 字符串检查和 system Python 缺 pytest 的失败均保留在 correction/日志；只修测试调用与核验器，不改科学数据、在线页面或容差。
+
+## 36. RK08 十臂机制通道筛选：dev 选择 all，但 full-proxy 增量未成立
+
+### 36.1 预注册、隔离与冻结选择
+
+既有功能 OOD 实验只有 `all` 与 `none`，单通道和 leave-one-out 对照未闭合。RK08 在训练前冻结 10 个同参数臂：`all`、`none`、`initiation_only`、`velocity_only`、`decay_only`、`pair_only`、`no_initiation`、`no_velocity`、`no_decay`、`no_pair`。每臂 4,997 参数，backbone、训练超参数、seed 与 dev checkpoint 规则一致；screen configs 仅含 train/dev，test、sequence-OOD 与 functional untouched 在选臂前不加载。
+
+- 协议=`configs/a8_rk08_channel_screen_protocol_v1.json`，SHA256=`ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4`。
+- 准备报告=`audits/20261118/RK08/channel_screen_preparation_v1.json`，SHA256=`fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79`。
+- 预注册提交=`669b2735c21bf9bda8fdac12fc0c9f69635a38b5`，先于 10 臂训练推送。
+- 输入=`/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/functional_long_sequence_ood.csv`，SHA256=`b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6`；train/dev/test/sequence-OOD=`4019/503/490/1336`，另有 functional untouched=`19072`。
+- baseline predictions SHA256=`925d848d1d3fda2e2451fd383f2609a5419d691f7e24c7ea724c964c877c9e75`；sequence-OOD 含 1,110 operational protein clusters。
+
+10/10 臂真实训练完成，按独立重算的 development cluster-balanced MSE 排序如下；无精确同分，唯一入选 `all`。
+
+| development rank | arm | independently recomputed CB-MSE |
+|---:|---|---:|
+| 1 | `all` | 3.761769367012553 |
+| 2 | `no_velocity` | 3.7779845961149188 |
+| 3 | `no_initiation` | 3.7844715234272623 |
+| 4 | `no_pair` | 3.795848800821685 |
+| 5 | `no_decay` | 3.8131579274957996 |
+| 6 | `pair_only` | 3.8281384321374885 |
+| 7 | `initiation_only` | 3.8301992553887327 |
+| 8 | `decay_only` | 3.850946340081351 |
+| 9 | `velocity_only` | 3.8916879794475405 |
+| 10 | `none` | 3.9020595367704525 |
+
+train/dev-only `all`、`none` 与旧全量实验的 `state_dict` 分别逐张量 bitwise 相等，selected epoch 相同；冻结选择后，新旧 best 权重、train/dev predictions 与最终评估 predictions 仍完全一致。这实证排除了旧训练仅因加载 test/OOD 行而改变权重，但不构成可普遍省略数据隔离的理由。原 all/none checkpoint SHA256 分别为 `7e581b2b49fd4f4aba723ce497e6f3369acb7ed54f278c6b377fef37a6417c61`、`aa54bfc78ce3a50e70302ae0530a0be29656514988bddab051527a912c73dee7`；最终 all/none predictions SHA256 分别为 `76e14fec371e7cb94030eead8940efc97960180cafcb71b326f272bfc4046aa7`、`a19ffe3ba099a8c505e403a74e1d87969344629ccc5db8495be1128758aa2e5b`。
+
+选择报告=`audits/20261118/RK08/channel_screen_selection_v1.json`，状态 `PASS_CHANNEL_SELECTION_FROZEN`，SHA256=`e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5`。
+
+### 36.2 冻结 test/sequence-OOD 比较与负门禁
+
+冻结选择后仅评估 `all` 与 `none`。使用 2,000 次 operational-protein-cluster paired bootstrap；test 与 sequence-OOD 各 6 个比较，分别 Holm 校正。sequence-OOD 结果如下，完整精度以 evaluation JSON 为准。
+
+| selected arm − comparator | metric | point Δ | paired 95% CI | Holm p | gate direction |
+|---|---|---:|---|---:|---|
+| `none` | Spearman | +0.19901564752464795 | [0.12925907591173844, 0.26781646706339085] | 0 | PASS |
+| `none` | CB-MSE | −0.2760885716873087 | [−0.37608880535590633, −0.18123318545616485] | 0 | PASS |
+| `ridge_gc` | Spearman | +0.12022060447388114 | [0.0819592276678431, 0.1602983907730725] | 0 | PASS |
+| `ridge_gc` | CB-MSE | −0.2895163999162387 | [−0.3565435053891241, −0.226815730607076] | 0 | PASS |
+| `ridge_all` | Spearman | −0.025779039513507546 | [−0.0755256519724216, 0.020488139619787824] | 0.532 | FAIL |
+| `ridge_all` | CB-MSE | −0.025572097048845777 | [−0.1282439258338166, 0.07253420347846523] | 0.636 | FAIL |
+
+通道门禁要求 selected arm 相对 `none`、`ridge_all`、`ridge_gc` 的 Spearman 与 CB-MSE 六件事项均方向正确、CI 不跨零且 Holm p<0.05。full-proxy `ridge_all` 两项失败，因此：
+
+- `channel_screen_gate_pass=false`；`rk_g1_pass=false`；`generator_training_authorized=false`。
+- 结果不是“某单通道替代臂即可解决”，而是 development 选出的 `all` 也没有稳定超过 full-proxy ridge。
+- 即使通道门禁通过，也不能单独把整体 RK-G1 改为 true：既有 velocity 主终点已失败，MAGE full−RCS 与 RCS−intrinsic 机制对照亦未支持稳定机制增量，functional untouched 仍未评测。
+- 正向 `all−none` / `all−ridge_gc` 只说明在该 OOD 协议下优于相应 comparator，不证明因果机制、真实生物功能、外部 SOTA 或生成性能。
+
+评估报告=`audits/20261118/RK08/channel_screen_evaluation_v1.json`，SHA256=`825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed`；paired/metrics=`channel_screen_paired_comparisons_v1.csv`、`channel_screen_metrics_v1.csv`；bootstrap deltas SHA256=`8acba797dfc19b993934c81f5b7281619bf3d27055a728dc79d3f4a1923d606f`。
+
+### 36.3 独立重算与证据位置
+
+- 通道定向单元/反篡改测试 8/8 PASS。
+- 独立 verifier 从原始预测重算 dev 选臂、全部 test/OOD 指标、2,000 次 bootstrap、CI、p 值与 Holm：320/320 PASS，max numeric delta=`1.9095836023552692e-14`。报告=`channel_screen_independent_v1.json`，SHA256=`3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f`。
+- finalization 42/42 `PASS_CHANNEL_SCREEN_CLOSEOUT`，报告=`channel_screen_finalization_v1.json`。
+- 科学证据提交=`9fc6353399db2e33ccb56c2a6b1afbd4d4340170`；closeout 提交=`d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f`，均已推送。
+- 大型 checkpoints、predictions、bootstrap deltas、screen/evaluation 日志位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_v1/`；未把大型数据或权重提交 Git。
+- `DEV_NO_GO_TEST_UNTOUCHED` 不变；MAGE 19,072 rows 与 functional untouched 未用于选臂、调参或最终评估。
+
+### 36.4 论文 v31 与在线 PPT107
+
+论文以 v30 精确 SHA 绑定更新，新增 `### 6.27 Development-selected mechanism-channel screen` 与证据锚点；删除新增节和锚点可精确恢复 v30。独立 section 源 SHA256=`47aa365a8a2362b78cc815aa3502a551348fdf48cd9f8e5a6ead182720299a20`。
+
+| artifact | verified state | immutable evidence / commit |
+|---|---|---|
+| manuscript v31 | `paper/CodonFlow_preprint_A8.md`；115/115 PASS；推送后复验 115/115 | manuscript SHA256=`9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a`；pass report SHA256=`245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491`；commit=`7d5e51a17f93218e831bc22b845c030065362a35` |
+| retained paper correction | 首次 113/115，仅为英文同义表述字面匹配过严；科学证据和论文未因此改变 | `paper/a8_rk08_channel_screen_paper_verification_v31_failed_literal_check.json`，SHA256=`ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7`；correction 保留 |
+| online PPT107 | 106/revision 68/`pZg` → 107/revision 69/`pZZ`；candidate 103/103、写后 223/223、closeout 18/18；真实截图视觉 PASS；推送后复验不变 | final report SHA256=`427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8`；finalization SHA256=`0ce1a5c7fb58860d2ca9bea092d363065940c6934c10adb77acf301fafe86aa8`；commit=`d4afbf79e55da335f66b05507448ecd6e2fbc798` |
+
+PPT 首次 candidate 102/103 是 verifier 用 `notes.count("Holm p=0")` 误计 `0.532/0.636` 前缀；首次写后 222/223 是旧末页 `pZg` whitespace-only closing tail 的序列化缩进变化。两份失败报告与 `rk08_ppt_correction_v01.json` 均保留；修正后严格比较标签、属性、文本、非空白 tail 和子元素，旧页语义未变，在线页面未因 verifier 修正再次写入。before/after XML SHA256=`11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9` / `4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b`，大型归档位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/`。
+
+### 36.5 下一位 agent 的边界
+
+- RK08 是已完成的**负门禁通道筛选**，不是生成器训练、完整功能验证或 RK-G1 关闭；不得重复训练 10 臂、重复追加 PPT `pZZ` 或重跑旧 paper updater。
+- 下一步若继续机制研究，应优先修数据、协议与 comparator 设计；不能为了通过门禁读取 functional untouched、删除 full-proxy 对照、缩小 CI 或改写多重校正规则。
+- 纯外部预训练模型替代、独立常数速度场、transport、完整自然分布、full UTR–CDS remap、RNARL 官方模型、VeloHARMO 五物种、external actual-set dense 完整矩阵、time-matched 与完整外部 SOTA 仍未闭合。
+- v31/channel screen/PPT107 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；本轮 PASS 只覆盖各自冻结证据、定向测试、独立重算、论文与页面验收。
+- 权威工作树=`/home/codonflow-a8-rk`、分支=`a8-rk`；代码/提交留在 `/home`，大型数据/权重/artifacts 留在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。远端 RK05/RK12/RK13 未提交在途状态不属于 RK08，不得清理、覆盖或混入提交。

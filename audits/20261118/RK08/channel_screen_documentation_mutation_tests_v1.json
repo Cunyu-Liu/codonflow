@@ -1,0 +1,111 @@
+{
+  "schema": "a8_rk08_channel_screen_documentation_mutation_tests_v1",
+  "generated_at": "2026-11-20T12:26:37.167598+00:00",
+  "status": "PASS_RK08_CHANNEL_SCREEN_DOCUMENTATION_MUTATIONS",
+  "overall_pass": true,
+  "check_counts": {
+    "passed": 9,
+    "total": 9
+  },
+  "baseline": {
+    "pass": true,
+    "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/baseline.json",
+    "report_sha256": "6aa0120bf342cd7f4ec76ea7b172dc597d39e730081df2b29b830e13024f86ce"
+  },
+  "mutations": [
+    {
+      "name": "readme_gate_true",
+      "pass": true,
+      "expected_failure": "document:README:forbid:channel_screen_gate_pass=true",
+      "observed_failures": [
+        "document:README:forbid:channel_screen_gate_pass=true",
+        "document:README:negative_gate"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/readme_gate_true.json",
+      "report_sha256": "21e5dda041af577288f0cf4f4912363a3ffb0ef37c0642b09b1ae299e15578a4"
+    },
+    {
+      "name": "handoff_full_proxy_delta",
+      "pass": true,
+      "expected_failure": "handoff:ood_value:ridge_all:spearman:point_delta",
+      "observed_failures": [
+        "handoff:ood_value:ridge_all:spearman:point_delta"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/handoff_full_proxy_delta.json",
+      "report_sha256": "91eb16590729fe9bfdbcf3c0b8f16d3490049433472baf99e53628ba7247dfd3"
+    },
+    {
+      "name": "registry_remove_science_row",
+      "pass": true,
+      "expected_failure": "registry:CF-A8-RK08-CHANNEL-SCREEN:exactly_once",
+      "observed_failures": [
+        "document:registry:contains:0.532",
+        "document:registry:contains:0.636",
+        "document:registry:contains:3.761769367012553",
+        "document:registry:contains:320/320",
+        "document:registry:contains:42/42",
+        "document:registry:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+        "document:registry:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+        "document:registry:negative_gate",
+        "registry:CF-A8-RK08-CHANNEL-SCREEN:exactly_once"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/registry_remove_science_row.json",
+      "report_sha256": "2e24d04103dad02a8bc0d2e949e4d48e9ca0cfb0c99a275bf1701c0bf0be69c9"
+    },
+    {
+      "name": "handoff_selection_hash",
+      "pass": true,
+      "expected_failure": "handoff:immutable_hash_recorded:e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+      "observed_failures": [
+        "handoff:immutable_hash_recorded:e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/handoff_selection_hash.json",
+      "report_sha256": "299a3dad16fa41722bef94fbb1d55d5a140ad8d15141c210bfda117d7f9501f5"
+    },
+    {
+      "name": "root_tasks_slide_id",
+      "pass": true,
+      "expected_failure": "document:root_tasks:contains:pZZ",
+      "observed_failures": [
+        "document:root_tasks:contains:pZZ"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/root_tasks_slide_id.json",
+      "report_sha256": "72a6df2bed68b8b15c5609ff94ad94c84f21e903a06bb1d78337b294d812a64e"
+    },
+    {
+      "name": "registry_gate_status",
+      "pass": true,
+      "expected_failure": "document:registry:negative_gate",
+      "observed_failures": [
+        "document:registry:negative_gate"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/registry_gate_status.json",
+      "report_sha256": "e18baaf1d289811051f9adb51f451be80ece3730aabe35bda8dbd046bc5c12e9"
+    },
+    {
+      "name": "handover_tasks_ppt_count",
+      "pass": true,
+      "expected_failure": "document:handover_tasks:contains:223/223",
+      "observed_failures": [
+        "document:handover_tasks:contains:223/223"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/handover_tasks_ppt_count.json",
+      "report_sha256": "9a6aa927e0eacc8cd583dbb0da04284c7425dff224f9ab33cf20a681fcbca62b"
+    },
+    {
+      "name": "registry_column_count",
+      "pass": true,
+      "expected_failure": "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:eleven_columns",
+      "observed_failures": [
+        "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:done",
+        "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:eleven_columns"
+      ],
+      "report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_documentation_tests_v1/registry_column_count.json",
+      "report_sha256": "bb53ff378b4c0c0d5d1afd93844e12286a43c301850b9f3f276c4b43991a92ca"
+    }
+  ],
+  "failures": [],
+  "real_documents_modified": false,
+  "scientific_evidence_modified": false,
+  "online_slides_modified": false
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "a8_rk08_channel_screen_documentation_correction_v1",
+  "date": "2026-11-20",
+  "status": "PASS_RK08_CHANNEL_SCREEN_DOCUMENTATION_WITH_RETAINED_CORRECTIONS",
+  "initial_verification": {
+    "check_counts": {"passed": 273, "total": 286},
+    "report": "audits/20261118/RK08/channel_screen_documentation_verification_v1_failed_initial.json",
+    "sha256": "3cbf2dad1f5614fccc561f85dab754590d1baceec794e8843328efb46cb4fec4"
+  },
+  "intermediate_verification": {
+    "check_counts": {"passed": 280, "total": 286},
+    "report": "audits/20261118/RK08/channel_screen_documentation_verification_v1_failed_table_match.json",
+    "sha256": "1553f82e425219c71db4e6b216f7c0352eb4ee76e715a95866d2a911b40a584a"
+  },
+  "final_verification": {
+    "check_counts": {"passed": 310, "total": 310},
+    "report": "audits/20261118/RK08/channel_screen_documentation_verification_v1.json",
+    "sha256": "7929749a174366b9b29754623f93208d58fd0727dc1efc62f79809daf25ff99f"
+  },
+  "mutation_tests": {
+    "retained_failed_check_counts": {"passed": 8, "total": 9},
+    "retained_failed_report": "audits/20261118/RK08/channel_screen_documentation_mutation_tests_v1_failed_partial_replacement.json",
+    "retained_failed_sha256": "23d7311f6ad7e420a479013bfce6c00a9f1420d8430d19003c5969b95556ae10",
+    "final_check_counts": {"passed": 9, "total": 9},
+    "final_report": "audits/20261118/RK08/channel_screen_documentation_mutation_tests_v1.json",
+    "final_sha256": "0044fcac6bd3e90fa0e53d4ba43253086e3e16d1b75f2b7ddc58becb5602d721",
+    "note": "An earlier mutation-harness invocation aborted because its input used an ASCII minus while the handoff table uses U+2212. The harness was corrected; no real document or evidence file was modified by that aborted test."
+  },
+  "corrections": [
+    {
+      "scope": "handoff and registry transcription",
+      "change": "Corrected the before-XML SHA256 transcription to the independently computed source value 11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9.",
+      "scientific_values_changed": false,
+      "online_slides_changed": false
+    },
+    {
+      "scope": "experiments/REGISTRY.md",
+      "change": "Normalized all three new RK08 rows to the existing 11-column schema: run_id/date/phase/cmd/gpu/data_version/code_commit/hyperparams/convergence/final_metrics/status. Removed the accidentally introduced project column and did not add a tests_log column.",
+      "scientific_values_changed": false
+    },
+    {
+      "scope": "documentation verifier",
+      "change": "Recognized that selection.channel_screen_gate_pass is null before frozen evaluation; the final false gate is read from evaluation. Mapped ribokinetic_none to the handoff row label none, restricted OOD matching to Markdown table rows, and compared parsed numbers rather than string formatting.",
+      "statistical_threshold_or_tolerance_changed": false,
+      "scientific_values_changed": false
+    },
+    {
+      "scope": "mutation harness",
+      "change": "Used the actual U+2212 sign for the full-proxy mutation and replaced all occurrences in the repeated-count mutation. The retained 8/9 report had one incomplete test mutation, not a false negative in the verifier.",
+      "real_documents_modified_by_tests": false,
+      "scientific_evidence_modified_by_tests": false
+    }
+  ],
+  "immutable_scientific_evidence": {
+    "selection_sha256": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+    "evaluation_sha256": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed",
+    "independent_sha256": "3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f",
+    "manuscript_v31_sha256": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+    "ppt_after_xml_sha256": "4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b"
+  },
+  "boundaries": {
+    "channel_screen_gate_pass": false,
+    "rk_g1_pass": false,
+    "functional_untouched_evaluated": false,
+    "generator_training_authorized": false,
+    "new_gpu_training_or_scoring_calls": 0,
+    "online_slides_modified": false,
+    "full_project_pytest_run": false,
+    "clean_environment_install_run": false,
+    "end_to_end_reproduction_run": false
+  },
+  "document_sha256": {
+    "README.md": "949975d4d7f4f8684f40d8720d9267f33cb5823088d74f8ec93652d6153d20f0",
+    "tasks.md": "25f9dea47bc5b7fd5eefb7ffc37b50aa596b0c594de503a5fb7ed17cc1613e92",
+    "docs/handover/tasks.md": "2139dcbca2f76f25ed95631ec4837fc5ae406ac594ab281f2d0d3333b47803bf",
+    "docs/handover/HANDOFF_A8_RK_20261118.md": "b1b3c76f48dfaa12bbe711d40ada739638c5b004a303fc8f41e7ee4484517bd0",
+    "experiments/REGISTRY.md": "d90fa02fd680ff4ed5d7509c1ce6cb1a19eddbaafaccc43647eb1d4d9e2b37f7"
+  }
+}

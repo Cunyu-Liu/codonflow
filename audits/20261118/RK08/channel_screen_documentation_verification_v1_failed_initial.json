@@ -1,0 +1,1539 @@
+{
+  "schema": "a8_rk08_channel_screen_documentation_verification_v1",
+  "generated_at": "2026-11-20T12:21:58.055579+00:00",
+  "status": "FAIL_RK08_CHANNEL_SCREEN_DOCUMENTATION",
+  "overall_pass": false,
+  "check_counts": {
+    "passed": 273,
+    "total": 286
+  },
+  "failures": [
+    {
+      "name": "immutable_sha256:ppt_before_xml",
+      "pass": false,
+      "detail": "11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9 != 11960a4ec12d74c9d61702a04481d2c7dc4094f6e7d8309f254e4db5a35cb5a9"
+    },
+    {
+      "name": "selection:gate_false",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ribokinetic_none:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ribokinetic_none:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_all:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_all:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_gc:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_gc:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:negative_gate",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:twelve_columns",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN-PPT-CLOSEOUT:twelve_columns",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "registry:preserves_rk06_row",
+      "pass": false,
+      "detail": ""
+    }
+  ],
+  "document_sha256": {
+    "README": "949975d4d7f4f8684f40d8720d9267f33cb5823088d74f8ec93652d6153d20f0",
+    "root_tasks": "25f9dea47bc5b7fd5eefb7ffc37b50aa596b0c594de503a5fb7ed17cc1613e92",
+    "handover_tasks": "2139dcbca2f76f25ed95631ec4837fc5ae406ac594ab281f2d0d3333b47803bf",
+    "handoff": "d9ba8d1d67a970225a53117481bc90e3018ef2560b5ffab609cd3b559804d11b",
+    "registry": "a358e6dbb173f6a81bfbdd243308f10ca5d19ae45f034b1a0805813273c794bd"
+  },
+  "evidence_sha256": {
+    "protocol": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+    "preparation": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79",
+    "selection": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+    "evaluation": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed",
+    "independent": "3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f",
+    "manuscript": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+    "paper_report": "245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491",
+    "paper_failed_report": "ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7",
+    "ppt_candidate": "cd1967296e631c79e826061bfbb9914c048aa5eb0ac24df401d40a838989989a",
+    "ppt_report": "427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8",
+    "ppt_finalization": "0ce1a5c7fb58860d2ca9bea092d363065940c6934c10adb77acf301fafe86aa8",
+    "ppt_visual": "83e3863404f7e51c12adaf246902ae8d689e40e4406e9a15b06d7d6e0171fd6c",
+    "ppt_correction": "5f711fcf3b15ea90a33ee1a3ccb6e0b72712493eda9d81e8112565d4b36b8353",
+    "ppt_before_xml": "11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9",
+    "ppt_after_xml": "4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b",
+    "ppt_candidate_xml": "a5cfba63c9b540d1a7783732d02b04c301130bebf01ad7914c8194ae6dd6aa99"
+  },
+  "selected_arm": "all",
+  "channel_screen_gate_pass": null,
+  "rk_g1_pass": false,
+  "functional_untouched_evaluated": false,
+  "generator_training_authorized": false,
+  "checks": [
+    {
+      "name": "exists:README",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/README.md"
+    },
+    {
+      "name": "exists:root_tasks",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/tasks.md"
+    },
+    {
+      "name": "exists:handover_tasks",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/docs/handover/tasks.md"
+    },
+    {
+      "name": "exists:handoff",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/docs/handover/HANDOFF_A8_RK_20261118.md"
+    },
+    {
+      "name": "exists:registry",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/experiments/REGISTRY.md"
+    },
+    {
+      "name": "exists:protocol",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/configs/a8_rk08_channel_screen_protocol_v1.json"
+    },
+    {
+      "name": "exists:preparation",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_preparation_v1.json"
+    },
+    {
+      "name": "exists:selection",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_selection_v1.json"
+    },
+    {
+      "name": "exists:evaluation",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_evaluation_v1.json"
+    },
+    {
+      "name": "exists:independent",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_independent_v1.json"
+    },
+    {
+      "name": "exists:science_finalization",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_finalization_v1.json"
+    },
+    {
+      "name": "exists:manuscript",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/paper/CodonFlow_preprint_A8.md"
+    },
+    {
+      "name": "exists:paper_report",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/paper/a8_rk08_channel_screen_paper_verification_v31.json"
+    },
+    {
+      "name": "exists:paper_failed_report",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/paper/a8_rk08_channel_screen_paper_verification_v31_failed_literal_check.json"
+    },
+    {
+      "name": "exists:ppt_candidate",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_ppt_candidate_verification_v01.json"
+    },
+    {
+      "name": "exists:ppt_report",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_ppt_verification_v01.json"
+    },
+    {
+      "name": "exists:ppt_finalization",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_ppt_closeout_finalization_v1.json"
+    },
+    {
+      "name": "exists:ppt_visual",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_ppt_visual_review_v01.json"
+    },
+    {
+      "name": "exists:ppt_correction",
+      "pass": true,
+      "detail": "/home/codonflow-a8-rk/audits/20261118/RK08/channel_screen_ppt_closeout_correction_v1.json"
+    },
+    {
+      "name": "exists:ppt_before_xml",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_source_v02.xml"
+    },
+    {
+      "name": "exists:ppt_after_xml",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_after_v01.xml"
+    },
+    {
+      "name": "exists:ppt_candidate_xml",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/rk08_slide_v01.xml"
+    },
+    {
+      "name": "immutable_sha256:protocol",
+      "pass": true,
+      "detail": "ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4 != ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4"
+    },
+    {
+      "name": "immutable_sha256:preparation",
+      "pass": true,
+      "detail": "fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79 != fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79"
+    },
+    {
+      "name": "immutable_sha256:selection",
+      "pass": true,
+      "detail": "e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5 != e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5"
+    },
+    {
+      "name": "immutable_sha256:evaluation",
+      "pass": true,
+      "detail": "825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed != 825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed"
+    },
+    {
+      "name": "immutable_sha256:independent",
+      "pass": true,
+      "detail": "3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f != 3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f"
+    },
+    {
+      "name": "immutable_sha256:manuscript",
+      "pass": true,
+      "detail": "9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a != 9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a"
+    },
+    {
+      "name": "immutable_sha256:paper_report",
+      "pass": true,
+      "detail": "245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491 != 245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491"
+    },
+    {
+      "name": "immutable_sha256:paper_failed_report",
+      "pass": true,
+      "detail": "ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7 != ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7"
+    },
+    {
+      "name": "immutable_sha256:ppt_candidate",
+      "pass": true,
+      "detail": "cd1967296e631c79e826061bfbb9914c048aa5eb0ac24df401d40a838989989a != cd1967296e631c79e826061bfbb9914c048aa5eb0ac24df401d40a838989989a"
+    },
+    {
+      "name": "immutable_sha256:ppt_report",
+      "pass": true,
+      "detail": "427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8 != 427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8"
+    },
+    {
+      "name": "immutable_sha256:ppt_finalization",
+      "pass": true,
+      "detail": "0ce1a5c7fb58860d2ca9bea092d363065940c6934c10adb77acf301fafe86aa8 != 0ce1a5c7fb58860d2ca9bea092d363065940c6934c10adb77acf301fafe86aa8"
+    },
+    {
+      "name": "immutable_sha256:ppt_visual",
+      "pass": true,
+      "detail": "83e3863404f7e51c12adaf246902ae8d689e40e4406e9a15b06d7d6e0171fd6c != 83e3863404f7e51c12adaf246902ae8d689e40e4406e9a15b06d7d6e0171fd6c"
+    },
+    {
+      "name": "immutable_sha256:ppt_correction",
+      "pass": true,
+      "detail": "5f711fcf3b15ea90a33ee1a3ccb6e0b72712493eda9d81e8112565d4b36b8353 != 5f711fcf3b15ea90a33ee1a3ccb6e0b72712493eda9d81e8112565d4b36b8353"
+    },
+    {
+      "name": "immutable_sha256:ppt_before_xml",
+      "pass": false,
+      "detail": "11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9 != 11960a4ec12d74c9d61702a04481d2c7dc4094f6e7d8309f254e4db5a35cb5a9"
+    },
+    {
+      "name": "immutable_sha256:ppt_after_xml",
+      "pass": true,
+      "detail": "4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b != 4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b"
+    },
+    {
+      "name": "immutable_sha256:ppt_candidate_xml",
+      "pass": true,
+      "detail": "a5cfba63c9b540d1a7783732d02b04c301130bebf01ad7914c8194ae6dd6aa99 != a5cfba63c9b540d1a7783732d02b04c301130bebf01ad7914c8194ae6dd6aa99"
+    },
+    {
+      "name": "selection:status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:ten_arms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:selected_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:no_test_or_ood",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:untouched_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:gate_false",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "selection:rk_g1_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:generator_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:protocol_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selection:preparation_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:selection_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:selected_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:gate_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:rk_g1_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:untouched_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:generator_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:320_of_320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:overall_pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:max_delta",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "independent:gate_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science_final:42_of_42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science_final:status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science_final:no_full_pytest",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "science_final:no_clean_install",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "development:unique_selected_minimum",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_1_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_2_no_velocity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_3_no_initiation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_4_no_pair",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_5_no_decay",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_6_pair_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_7_initiation_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_8_decay_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_9_velocity_only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:dev_rank_10_none",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "evaluation:six_ood_comparisons",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ribokinetic_none:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ribokinetic_none:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_all:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_all:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_gc:spearman",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:ood_row:ridge_gc:cluster_balanced_mse",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "paper:115_of_115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:overall_pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:manuscript_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:gate_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:untouched_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:generator_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:not_submittable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:section_6_27",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "paper:failed_113_of_115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_candidate:103_of_103",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_candidate:pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:223_of_223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:slide_pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:revision_69",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:source_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:after_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:gate_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:untouched_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt:generator_false",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:18_of_18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:page_107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:revision_69",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:candidate_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:report_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:visual_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:source_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_final:after_binding",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_visual:pass",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_visual:page_107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_visual:no_overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ppt_visual:legible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:RK08",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:ridge_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:3.761769367012553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:0.532",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:0.636",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:320/320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:42/42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:115/115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:223/223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:18/18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:v31",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:7d5e51a17f93218e831bc22b845c030065362a35",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:contains:d4afbf79e55da335f66b05507448ecd6e2fbc798",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:negative_gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:rk_g1_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:untouched_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:generator_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:channel_screen_gate_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:channel_screen_gate_pass`=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:rk_g1_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:RK-G1=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:generator_training_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:expensive_generation_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:functional_untouched_evaluated=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:README:forbid:complete_sota=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:RK08",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:ridge_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:3.761769367012553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:0.532",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:0.636",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:320/320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:42/42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:115/115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:223/223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:18/18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:v31",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:7d5e51a17f93218e831bc22b845c030065362a35",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:contains:d4afbf79e55da335f66b05507448ecd6e2fbc798",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:negative_gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:rk_g1_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:untouched_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:generator_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:channel_screen_gate_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:channel_screen_gate_pass`=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:rk_g1_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:RK-G1=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:generator_training_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:expensive_generation_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:functional_untouched_evaluated=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:root_tasks:forbid:complete_sota=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:RK08",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:ridge_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:3.761769367012553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:0.532",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:0.636",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:320/320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:42/42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:115/115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:223/223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:18/18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:v31",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:7d5e51a17f93218e831bc22b845c030065362a35",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:contains:d4afbf79e55da335f66b05507448ecd6e2fbc798",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:negative_gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:rk_g1_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:untouched_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:generator_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:channel_screen_gate_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:channel_screen_gate_pass`=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:rk_g1_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:RK-G1=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:generator_training_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:expensive_generation_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:functional_untouched_evaluated=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handover_tasks:forbid:complete_sota=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:RK08",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:ridge_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:3.761769367012553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:0.532",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:0.636",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:320/320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:42/42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:115/115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:223/223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:18/18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:v31",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:7d5e51a17f93218e831bc22b845c030065362a35",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:contains:d4afbf79e55da335f66b05507448ecd6e2fbc798",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:negative_gate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:rk_g1_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:untouched_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:generator_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:channel_screen_gate_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:channel_screen_gate_pass`=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:rk_g1_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:RK-G1=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:generator_training_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:expensive_generation_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:functional_untouched_evaluated=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:handoff:forbid:complete_sota=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:RK08",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:ridge_all",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:3.761769367012553",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:0.532",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:0.636",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:320/320",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:42/42",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:115/115",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:223/223",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:18/18",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:pZZ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:107",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:v31",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:9fc6353399db2e33ccb56c2a6b1afbd4d4340170",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:d628fb8b71f5a9a264dcc14952d6f3b7eccf8a6f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:7d5e51a17f93218e831bc22b845c030065362a35",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:contains:d4afbf79e55da335f66b05507448ecd6e2fbc798",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:negative_gate",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:rk_g1_negative",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:untouched_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:generator_boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:channel_screen_gate_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:channel_screen_gate_pass`=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:rk_g1_pass=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:RK-G1=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:generator_training_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:expensive_generation_authorized=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:functional_untouched_evaluated=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document:registry:forbid:complete_sota=true",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:ed46e2bf5d919f57285a7fe81182f9529406512f97f45be3ece829b78af99ba4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:fe36818f673f39cbad114fc219a010d84ea71074553e9b19d53610ee7ea98d79",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:e5ce7720485e569febf4656ab9289d12393aac04dd1642ca017dd1f53a0b26a5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:825bb36e0f8bc24586f614916a2090dd22d2fe6162d65508dc7d036250ea45ed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:3a5c0c5342e3421fa81298fc893655055c112425551bcc36c1c1c7f200a8565f",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:9c0b453d5b3fbc0e2672dc776fa718d13cc50dcc072ab654aafdfcbe3e0a3c1a",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:245d848ab6e8e70c30e13c8efc0a799f3765a7c0b8150d387179943849c89491",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:ffde5c0e08683b53bf8ed5f76f5ec0ed00e12a23b26c4385888b057f67ca57a7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:427ec28db95f31f27241adb22cd2eaf9e639253e5d9e0c9a3e2d9d46f0824bc8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:0ce1a5c7fb58860d2ca9bea092d363065940c6934c10adb77acf301fafe86aa8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:11960a4ec12d74c9d61702a04481c2c7dc4094f6e7d8309f254e4db5a35cb5a9",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "handoff:immutable_hash_recorded:4f33d571c16d072f993e7143faa7398b6345d22ae332ab0e409c79d32479be1b",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "README:documentation_verifier_command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "README:ppt_verifier_command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "README:large_artifact_root",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff:section_36_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "root_tasks:rk08_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handover_tasks:rk08_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "README:rk08_section_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN:exactly_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN:twelve_columns",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN:done",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:exactly_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:twelve_columns",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK18-WORKING-MANUSCRIPT-V31:done",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN-PPT-CLOSEOUT:exactly_once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN-PPT-CLOSEOUT:twelve_columns",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "registry:CF-A8-RK08-CHANNEL-SCREEN-PPT-CLOSEOUT:done",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:preserves_g0_row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry:preserves_rk06_row",
+      "pass": false,
+      "detail": ""
+    }
+  ]
+}
