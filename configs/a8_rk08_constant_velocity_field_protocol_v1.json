@@ -1,0 +1,90 @@
+{
+  "schema_version": "a8-rk08-constant-velocity-field-v1",
+  "status": "FROZEN_BEFORE_CONSTANT_FIELD_READOUT",
+  "scientific_scope": "A retrospective, preregistered sequence-independent position-field comparator for the already frozen RK08 velocity-proxy predictions. This analysis cannot reverse the original negative cross-study mechanism result or open RK-G1.",
+  "source_protocol": {
+    "path": "configs/a8_rk08_velocity_v1.json",
+    "sha256": "cd5dc89ef5865e11cc11e7378a0d016e8dd0e791015355e3af556850a271298e"
+  },
+  "source_run_summary": {
+    "path": "audits/20261118/RK08/velocity_run_summary_v1.json",
+    "sha256": "235201ea570fb5fccaf99c51259247a0e4428e4e9ea11a09946a0b491f3f9ddc"
+  },
+  "velocity_records": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/velocity_records.jsonl.gz",
+    "sha256": "b681e74e9e3ca9efe3c7e7b3d0a970116189660d0b16c4de616d2c2979b70f12"
+  },
+  "frozen_predictions": {
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/velocity_proxy_v1/run_v1/predictions.csv.gz",
+    "sha256": "53affd48e861df0716c7a5d825e503561fc0b429c26c4d1b8cc00f35b3ad51aa",
+    "expected_rows": 2628306
+  },
+  "constant_field": {
+    "name": "train_relative_position_20bin_transcript_balanced_constant",
+    "fit_split": "train",
+    "fit_dataset": "Mohammad16",
+    "relative_position_bins": 20,
+    "relative_position": "codon_position / (codon_count - 1)",
+    "bin_rule": "min(19, floor(relative_position * 20))",
+    "estimator": "Within each training transcript, average observed targets within each relative-position bin; then average those transcript-bin means equally across training transcripts.",
+    "missing_bin_fallback": "Equal-weight mean of per-transcript mean targets across all training transcripts.",
+    "sequence_features": false,
+    "codon_identity_features": false,
+    "host_features": false,
+    "evaluation_target_access_for_fit": false,
+    "new_model_training": false,
+    "new_checkpoint_selection": false
+  },
+  "models": [
+    "model",
+    "ridge",
+    "constant"
+  ],
+  "partitions": {
+    "train": ["Mohammad16"],
+    "dev": ["Mohammad16"],
+    "test": ["Mohammad16"],
+    "study_ood": ["Subtelny14", "Mohammad19-1", "Mohammad19-2"]
+  },
+  "primary_partition": "study_ood|Subtelny14",
+  "primary_comparisons": [
+    "model_minus_constant",
+    "ridge_minus_constant",
+    "model_minus_ridge"
+  ],
+  "primary_metrics": [
+    "transcript_balanced_mse",
+    "mean_transcript_pearson"
+  ],
+  "comparison_rules": {
+    "better_direction": "Lower transcript-balanced MSE and higher mean transcript Pearson are better.",
+    "pearson_rows": "For each paired comparison, use transcripts with finite Pearson values for both compared predictors.",
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 20261120,
+    "sensitivity_bootstrap_seeds": [20261121, 20261122],
+    "resampling_unit": "transcript record_id with replacement",
+    "shared_indices": "For a given comparison and seed, the same transcript resample is used for both endpoints; resetting the same seed for each comparison gives aligned transcript resamples across comparisons.",
+    "confidence_interval": "2.5th and 97.5th percentiles of paired bootstrap delta",
+    "two_sided_pvalue": "min(1, 2 * min(mean(delta<=0), mean(delta>=0)))",
+    "multiplicity": "Holm across all six primary endpoint-comparison p-values",
+    "sensitivity_rule": "For support, the bootstrap mean delta must have the beneficial direction at both sensitivity seeds."
+  },
+  "support_rules": {
+    "model_minus_constant_supported": "Both endpoint Holm p<0.05; MSE CI high<0; Pearson CI low>0; both sensitivity seeds have beneficial directions.",
+    "ridge_minus_constant_supported": "Both endpoint Holm p<0.05; MSE CI high<0; Pearson CI low>0; both sensitivity seeds have beneficial directions.",
+    "model_minus_ridge_supported": "Both endpoint Holm p<0.05; MSE CI high<0; Pearson CI low>0; both sensitivity seeds have beneficial directions."
+  },
+  "boundaries": {
+    "target_semantics": "occupancy-derived speed proxy, not physical velocity",
+    "primary_ood": "Subtelny14 is cross-study/cross-species and exact-CDS-disjoint from all Mohammad16 splits; it is not homology-cluster OOD.",
+    "functional_untouched_evaluated": false,
+    "velocity_mechanism_pass_remains": false,
+    "rk_g1_pass_remains": false,
+    "generator_training_authorized": false,
+    "external_sota_claim_authorized": false,
+    "rule": "Even a significant improvement over the constant field does not establish transferable mechanism, causal velocity regulation, protein-OOD function, or generation readiness."
+  },
+  "audit_output": "/home/codonflow-a8-rk/audits/20261120/RK08/constant_velocity_field_v1.json",
+  "independent_output": "/home/codonflow-a8-rk/audits/20261120/RK08/constant_velocity_field_independent_v1.json",
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/constant_velocity_field_v1"
+}
