@@ -1,0 +1,260 @@
+{
+  "schema": "a8-rk22-fixed-protein-mechanism-v1",
+  "status": "PASS_ANALYSIS_PENDING_INDEPENDENT_VERIFICATION",
+  "protocol": "/home/codonflow-a8-rk/audits/20261121/RK22/a8_rk22_fixed_protein_protocol_v1.json",
+  "protocol_sha256": "df1b41a23dea5cb4266f1a172f4ab0e0987297789201d80cf3b6e58ab4580814",
+  "analysis_script_sha256": "2147a0e6a89cb679a34d53edc05f204aeb860775cab4b7de2d59c893958b1729",
+  "main": {
+    "measurement_rows": 154,
+    "exact_cds_groups": 150,
+    "seeds": [
+      20261121,
+      20261122,
+      20261123,
+      20261124,
+      20261125,
+      20261126,
+      20261127,
+      20261128,
+      20261129,
+      20261130
+    ],
+    "folds_per_seed": 5,
+    "performance": [
+      {
+        "model": "null",
+        "feature_set": "null",
+        "mean_spearman": -0.14704380740653353,
+        "mean_mse": 0.17326461955336803,
+        "sd_spearman": 0.0747054483338462,
+        "sd_mse": 0.0019075967313762748
+      },
+      {
+        "model": "ridge",
+        "feature_set": "simple",
+        "mean_spearman": -0.039653245886391644,
+        "mean_mse": 0.17477940026982802,
+        "sd_spearman": 0.06659190004187919,
+        "sd_mse": 0.0032956419336355185
+      },
+      {
+        "model": "ridge",
+        "feature_set": "structure",
+        "mean_spearman": 0.678782378194453,
+        "mean_mse": 0.09044232535359513,
+        "sd_spearman": 0.008857000550837279,
+        "sd_mse": 0.002258563374913585
+      },
+      {
+        "model": "histgb",
+        "feature_set": "simple",
+        "mean_spearman": 0.45513040359953993,
+        "mean_mse": 0.14723201375723363,
+        "sd_spearman": 0.05415826224240061,
+        "sd_mse": 0.01108210900912757
+      },
+      {
+        "model": "histgb",
+        "feature_set": "structure",
+        "mean_spearman": 0.7172458742131862,
+        "mean_mse": 0.08515900251439626,
+        "sd_spearman": 0.01658523288798314,
+        "sd_mse": 0.004703606363701651
+      }
+    ],
+    "primary_tests": [
+      {
+        "n_seeds": 10,
+        "effects": [
+          0.783855594977484,
+          0.6800800393287155,
+          0.6755144909073069,
+          0.7465489485308965,
+          0.6903454118307455,
+          0.6098136178881667,
+          0.7460564808857524,
+          0.8281492372559,
+          0.7144923271966218,
+          0.7095000920068574
+        ],
+        "mean_effect": 0.7184356240808446,
+        "median_effect": 0.7119962096017396,
+        "positive_seeds": 10,
+        "ci95": [
+          0.6824824636207129,
+          0.7552741818085841
+        ],
+        "p_signflip_exact": 0.001953125,
+        "signflip_patterns": 1024,
+        "test": "ridge_spearman_effect",
+        "model": "ridge",
+        "endpoint": "spearman_effect",
+        "p_holm": 0.0078125,
+        "pass": true
+      },
+      {
+        "n_seeds": 10,
+        "effects": [
+          0.08507059407857345,
+          0.0853763256136664,
+          0.08329024857788286,
+          0.08409522555168641,
+          0.0823669118131567,
+          0.07943757806166296,
+          0.08781975194069844,
+          0.08552128180480756,
+          0.08515907619172439,
+          0.08523375552847
+        ],
+        "mean_effect": 0.08433707491623292,
+        "median_effect": 0.08511483513514892,
+        "positive_seeds": 10,
+        "ci95": [
+          0.08292808799296376,
+          0.08555659661003315
+        ],
+        "p_signflip_exact": 0.001953125,
+        "signflip_patterns": 1024,
+        "test": "ridge_mse_improvement",
+        "model": "ridge",
+        "endpoint": "mse_improvement",
+        "p_holm": 0.0078125,
+        "pass": true
+      },
+      {
+        "n_seeds": 10,
+        "effects": [
+          0.27480630076006174,
+          0.24567162863111347,
+          0.3509669319131021,
+          0.2720479315331317,
+          0.28895965022650383,
+          0.1837908595369403,
+          0.3057651927222741,
+          0.2201516763117235,
+          0.18792605822702002,
+          0.2910684762745925
+        ],
+        "mean_effect": 0.2621154706136463,
+        "median_effect": 0.27342711614659676,
+        "positive_seeds": 10,
+        "ci95": [
+          0.23076488318385585,
+          0.29222458982118066
+        ],
+        "p_signflip_exact": 0.001953125,
+        "signflip_patterns": 1024,
+        "test": "histgb_spearman_effect",
+        "model": "histgb",
+        "endpoint": "spearman_effect",
+        "p_holm": 0.0078125,
+        "pass": true
+      },
+      {
+        "n_seeds": 10,
+        "effects": [
+          0.06308759203271928,
+          0.05879634396009724,
+          0.0847143046005334,
+          0.0524942047309796,
+          0.069707631120585,
+          0.049838516795687515,
+          0.06847555400675837,
+          0.05984448348289975,
+          0.045288663516406674,
+          0.0684828181817068
+        ],
+        "mean_effect": 0.06207301124283736,
+        "median_effect": 0.06146603775780952,
+        "positive_seeds": 10,
+        "ci95": [
+          0.05553873455115575,
+          0.06902916801029602
+        ],
+        "p_signflip_exact": 0.001953125,
+        "signflip_patterns": 1024,
+        "test": "histgb_mse_improvement",
+        "model": "histgb",
+        "endpoint": "mse_improvement",
+        "p_holm": 0.0078125,
+        "pass": true
+      }
+    ],
+    "development_structure_increment_pass": true
+  },
+  "tagged": {
+    "measurement_rows": 72,
+    "exact_cds_groups": 71,
+    "tests": [
+      {
+        "test": "paired_spearman",
+        "estimate": 0.5659919428918262,
+        "ci95": [
+          0.378593944519367,
+          0.7060851118858951
+        ],
+        "p_permutation": 9.99990000099999e-06,
+        "permutations": 100000,
+        "p_holm": 1.999980000199998e-05,
+        "pass": true
+      },
+      {
+        "test": "adjusted_delta_mfe5_coefficient",
+        "estimate": 0.09881541376606053,
+        "ci95": [
+          0.0642302057953475,
+          0.13357640031403098
+        ],
+        "p_permutation": 4.999750012499375e-05,
+        "permutations": 20000,
+        "p_holm": 4.999750012499375e-05,
+        "pass": true
+      }
+    ],
+    "paired_structure_expression_pass": true,
+    "delta_mfe5_median": 2.5,
+    "delta_log10_expression_median": -0.11579125945148139
+  },
+  "development_structure_support": true,
+  "outputs": {
+    "main_exact_cds_150.csv": {
+      "sha256": "ba54cbdbaba6352faebf529458d23f0d2c039b2d53203d7e891faf142051e3e8",
+      "bytes": 13892
+    },
+    "tagged_exact_cds_71.csv": {
+      "sha256": "ff0c816d94b578f9c095d5d9ba409c5964579c8a7f24255baccbdb9938bd00ac",
+      "bytes": 7116
+    },
+    "main_fold_assignments.csv": {
+      "sha256": "93527067a449b92117c4c43bd30b6e03442f605463587e97f53ba7bc55d4bfb7",
+      "bytes": 37526
+    },
+    "main_oof_predictions.csv": {
+      "sha256": "9e46a4cfdd299119b8cb264190295af2f18fce4ab2cc9b8ca5cca35a16608a89",
+      "bytes": 567744
+    },
+    "main_seed_metrics.csv": {
+      "sha256": "96d1942be09e6b7ade4ee99a86ab46efde17210ae00e0c8036ee3bd5ed845507",
+      "bytes": 3166
+    },
+    "main_seed_effects.csv": {
+      "sha256": "35c12ec2f362a77b9a886016ea7a38518a77dd1a255014b497889678ce275241",
+      "bytes": 1125
+    },
+    "tagged_randomization_arrays.npz": {
+      "sha256": "a27be54c9d57c956dca7b235f5e27e16e22e414aafb018421c9d284ae5177858",
+      "bytes": 970031
+    }
+  },
+  "scientific_flags": {
+    "fixed_protein_development_analysis": true,
+    "protein_ood_evaluated": false,
+    "functional_ood_evaluated": false,
+    "functional_untouched_evaluated": false,
+    "rk_g1_pass": false,
+    "expensive_generation_authorized": false,
+    "external_sota_authorized": false,
+    "sota_claimed": false,
+    "tagged_sequence_imputed": false
+  }
+}
