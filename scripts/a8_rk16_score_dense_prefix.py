@@ -111,7 +111,7 @@ def raw_lineardesign(report: dict, record_id: str, lambda_order: list[float]) ->
     sequences = []
     for value in lambda_order:
         run = by_lambda[value]
-        if run["status"] != "done" or not run["evaluation_sequence_dna"]:
+        if run["returncode"] != 0 or not run["protein_identity_pass"] or not run["evaluation_sequence_dna"]:
             raise ValueError(f"incomplete LinearDesign run {record_id} lambda={value}")
         sequences.append(run["evaluation_sequence_dna"])
     return sequences
@@ -119,7 +119,7 @@ def raw_lineardesign(report: dict, record_id: str, lambda_order: list[float]) ->
 
 def raw_ensemble(report: dict, record_id: str, run_order: list[int]) -> list[str]:
     records = [record for record in report["records"] if record["record_id"] == record_id]
-    if len(records) != 1 or records[0]["status"] != "done":
+    if len(records) != 1 or records[0]["returncode"] != 0:
         raise ValueError(f"incomplete EnsembleDesign record {record_id}")
     runs = records[0]["runs"]
     by_id = {int(run["run_id"]): run for run in runs}
@@ -128,7 +128,7 @@ def raw_ensemble(report: dict, record_id: str, run_order: list[int]) -> list[str
     sequences = []
     for run_id in run_order:
         run = by_id[run_id]
-        if run["status"] != "done" or not run["evaluation_sequence_dna"]:
+        if not run["protein_identity_pass"] or not run["evaluation_sequence_dna"]:
             raise ValueError(f"incomplete EnsembleDesign run {record_id} run={run_id}")
         sequences.append(run["evaluation_sequence_dna"])
     return sequences

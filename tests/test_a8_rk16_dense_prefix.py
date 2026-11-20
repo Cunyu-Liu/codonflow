@@ -12,6 +12,7 @@ from scripts.a8_rk16_score_dense_prefix import (
     objective_lookup,
     paired_effect,
     raw_lineardesign,
+    raw_ensemble,
     score_trajectory,
     sequence_sha256,
     trajectory_records,
@@ -23,11 +24,19 @@ class RK16DensePrefixContractTests(unittest.TestCase):
         sequences = {0.0: "ATGAAA", 0.1: "ATGAAG", 0.2: "ATGAAA"}
         report = {
             "runs": [
-                {"record_id": "r", "lambda": value, "status": "done", "evaluation_sequence_dna": sequences[value]}
+                {"record_id": "r", "lambda": value, "returncode": 0, "protein_identity_pass": True, "evaluation_sequence_dna": sequences[value]}
                 for value in (0.2, 0.0, 0.1)
             ]
         }
         self.assertEqual(raw_lineardesign(report, "r", [0.0, 0.1, 0.2]), ["ATGAAA", "ATGAAG", "ATGAAA"])
+
+    def test_ensemble_order_and_identity_fields_match_real_report(self):
+        report = {"records": [{"record_id": "r", "returncode": 0, "runs": [
+            {"run_id": 2, "protein_identity_pass": True, "evaluation_sequence_dna": "ATGAAG"},
+            {"run_id": 1, "protein_identity_pass": True, "evaluation_sequence_dna": "ATGAAA"},
+            {"run_id": 3, "protein_identity_pass": True, "evaluation_sequence_dna": "ATGAAA"},
+        ]}]}
+        self.assertEqual(raw_ensemble(report, "r", [1, 2, 3]), ["ATGAAA", "ATGAAG", "ATGAAA"])
 
     def test_duplicate_objective_reuse_does_not_shift_budget(self):
         sequences = ["ATGAAA", "ATGAAA", "ATGAAG"]
