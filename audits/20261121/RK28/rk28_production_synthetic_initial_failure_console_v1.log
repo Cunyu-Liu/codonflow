@@ -1,0 +1,16 @@
+Initial RK28 synthetic test attempt (before any study outcome read or study model fit)
+
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk28_test_production.py", line 79, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk28_test_production.py", line 52, in main
+    check("ridge learns synthetic relation", np.max(np.abs(prediction - test["target"].to_numpy())) < 1e-8)
+  File "/home/codonflow-a8-rk/scripts/a8_rk28_test_production.py", line 27, in check
+    raise AssertionError(name)
+AssertionError: ridge learns synthetic relation
+
+Diagnosis: the test incorrectly required OLS-scale exact recovery even though the
+frozen production estimator is Ridge(alpha=1.0). No production code, protocol,
+hyperparameter, outcome, split, or statistical threshold was changed. The test
+was corrected to allow ordinary L2 shrinkage while requiring absolute error <0.25
+and Spearman >0.999 on the fixed synthetic relation.

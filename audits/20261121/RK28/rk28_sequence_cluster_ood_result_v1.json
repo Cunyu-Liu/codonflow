@@ -1,0 +1,244 @@
+{
+  "analysis_script_sha256": "1b371cec2eaa8007c7aeb151e1b3232e1c347a91cc8287c68c890e6c3f85544d",
+  "analysis_type": "retrospective_cross_study_fixed_gfp_observed_r1_structure_increment_sequence_cluster_transport_validation",
+  "cai_wrapper_sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a",
+  "completed_utc": "2026-11-20T21:50:21.905262+00:00",
+  "coverage_report_sha256": "772a000a15aa53680a03195057e767fbadc670e3d6a1a89c119e479319a644a9",
+  "device": "CPU_ONLY",
+  "elapsed_seconds": 104.82859860593453,
+  "environment": {
+    "ViennaRNA": "2.7.2",
+    "numpy": "2.2.6",
+    "pandas": "2.2.2",
+    "python": "3.10.22",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2"
+  },
+  "feature_implementation_sha256": "9838de20edd6a52e3f49f0f53f43ea5ec90ab1eba6be1ed5825a33f72c71b7e2",
+  "folds_per_seed": 5,
+  "model_fits_per_seed": 30,
+  "n_sequence_clusters": 74,
+  "n_variants": 152,
+  "outputs": {
+    "analysis_variants_152.csv": {
+      "bytes": 35746,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/analysis_variants_152.csv",
+      "sha256": "de108d0d60a9b5e472442b977295b969f23b67c5e4d699c66fe3ebe2fc5932bb"
+    },
+    "fold_assignments.csv": {
+      "bytes": 40991,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/fold_assignments.csv",
+      "sha256": "9491d8c18d682f3f0279a4686bd5e47a5e7ab6d98e67aa696962e886236ee195"
+    },
+    "oof_predictions.csv": {
+      "bytes": 260717,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/oof_predictions.csv",
+      "sha256": "bbdaa9dc8d92c3c7ee884fbe02ac745f1873624759930a56835f1c695d62b000"
+    },
+    "primary_inference_arrays.npz": {
+      "bytes": 2864709,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/primary_inference_arrays.npz",
+      "sha256": "10ea2639ad46cb9e5b2e32bef9e00d4fb6cd040ef3195d602906992641e04120"
+    },
+    "seed_effects.csv": {
+      "bytes": 2120,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_effects.csv",
+      "sha256": "86527170f9a8b74a64a033deb0adfa044e385b958e9be7b37f99343f672bffbc"
+    },
+    "seed_metrics.csv": {
+      "bytes": 4289,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/seed_metrics.csv",
+      "sha256": "5a11dffaa1289e62065f4d3ddce5f21df96456efe021fef7e2a713cc872aeb17"
+    },
+    "training_log.csv": {
+      "bytes": 3074,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/training_log.csv",
+      "sha256": "1a073b4df8d1dd9e4a3adcc494790e4bd50ee31c6abfe6c681c09682635bd520"
+    }
+  },
+  "primary_absolute_performance": [
+    {
+      "arm": "null",
+      "mse": 2.3282523903222745,
+      "spearman": -0.22168120992840112
+    },
+    {
+      "arm": "ridge_simple",
+      "mse": 2.0578319750720024,
+      "spearman": 0.3495479056035101
+    },
+    {
+      "arm": "ridge_structure",
+      "mse": 2.1399369548933533,
+      "spearman": 0.3102843786521231
+    },
+    {
+      "arm": "ridge_mfe_only",
+      "mse": 2.249101108646019,
+      "spearman": 0.17204874281535548
+    },
+    {
+      "arm": "histgb_simple",
+      "mse": 2.5855599615497797,
+      "spearman": 0.2389816752811997
+    },
+    {
+      "arm": "histgb_structure",
+      "mse": 2.719410775935705,
+      "spearman": 0.21345026991678312
+    },
+    {
+      "arm": "histgb_mfe_only",
+      "mse": 2.7051075899418002,
+      "spearman": 0.1193656985428277
+    }
+  ],
+  "primary_seed": 20261222,
+  "primary_tests": [
+    {
+      "bootstrap_median": -0.038911960288067565,
+      "ci95": [
+        -0.0895168124540685,
+        0.003815215477924786
+      ],
+      "mean_seed_effect": -0.022248306781757664,
+      "median_seed_effect": -0.01663659538405815,
+      "observed_effect": -0.03926352695138702,
+      "p_cluster_swap": 0.10099495025248738,
+      "p_holm": 0.4039798010099495,
+      "pass": false,
+      "positive_seeds": 0,
+      "seed_effects": [
+        -0.03926352695138702,
+        -0.04209979565196592,
+        -0.008122663495513216,
+        -0.007422139298382258,
+        -0.009862013819121274,
+        -0.03861767781354436,
+        -0.03604453283579029,
+        -0.007777527183756017,
+        -0.01284522174153735,
+        -0.02042796902657895
+      ],
+      "test": "ridge_spearman_effect"
+    },
+    {
+      "bootstrap_median": -0.08158238101565637,
+      "ci95": [
+        -0.17410025597978984,
+        0.014917717692312673
+      ],
+      "mean_seed_effect": -0.04514656473220278,
+      "median_seed_effect": -0.047793572309907106,
+      "observed_effect": -0.08210497982135076,
+      "p_cluster_swap": 0.12139393030348483,
+      "p_holm": 0.4039798010099495,
+      "pass": false,
+      "positive_seeds": 0,
+      "seed_effects": [
+        -0.0821049798213509,
+        -0.11413134018833926,
+        -0.0031598742644973754,
+        -0.04458202848716919,
+        -0.018195077797521275,
+        -0.054461720012792814,
+        -0.06877203991523473,
+        -0.0004723268555968385,
+        -0.014581143846880362,
+        -0.05100511613264502
+      ],
+      "test": "ridge_mse_improvement"
+    },
+    {
+      "bootstrap_median": -0.03181881989241925,
+      "ci95": [
+        -0.13685880333059386,
+        0.07891235967085743
+      ],
+      "mean_seed_effect": -0.014869805469445671,
+      "median_seed_effect": -0.020656102297403403,
+      "observed_effect": -0.025531405364416587,
+      "p_cluster_swap": 0.6592170391480426,
+      "p_holm": 0.904254787260637,
+      "pass": false,
+      "positive_seeds": 3,
+      "seed_effects": [
+        -0.025531405364416587,
+        -0.058345222331467855,
+        0.012161586557347615,
+        -0.05942505659741276,
+        -0.030177072296480645,
+        -0.01578079923039022,
+        -0.005313741403621397,
+        -0.03655033958400958,
+        0.04795311605487296,
+        0.02231087950112176
+      ],
+      "test": "histgb_spearman_effect"
+    },
+    {
+      "bootstrap_median": -0.13810212450497966,
+      "ci95": [
+        -0.49448101327934646,
+        0.1932063861930225
+      ],
+      "mean_seed_effect": 0.0067592015318124424,
+      "median_seed_effect": 0.01781764556533405,
+      "observed_effect": -0.13385081438592558,
+      "p_cluster_swap": 0.4521273936303185,
+      "p_holm": 0.904254787260637,
+      "pass": false,
+      "positive_seeds": 5,
+      "seed_effects": [
+        -0.13385081438592517,
+        -0.0157523008522511,
+        0.09717985493394288,
+        -0.07294010598384704,
+        -0.15457530078886306,
+        0.07251840247630925,
+        0.0513875919829192,
+        -0.1257223707022579,
+        0.2176924913278122,
+        0.13165456731028513
+      ],
+      "test": "histgb_mse_improvement"
+    }
+  ],
+  "protocol": "audits/20261121/RK28/a8_rk28_mordstein_sequence_cluster_ood_protocol_v1.json",
+  "protocol_sha256": "768d3a2b32ca6afb551f55b05e331130f80f15e992a8ca032990271efdc2190e",
+  "schema": "a8-rk28-mordstein-sequence-cluster-ood-result-v1",
+  "scientific_conclusion": "FIXED_GFP_HEK293_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+  "scientific_flags": {
+    "author_gfp_identity_mapping": false,
+    "complete_cds_observed": false,
+    "external_study_relative_to_RK27": true,
+    "fixed_protein": true,
+    "full_spatial_coupling_established": false,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "independent_untouched_confirmation": false,
+    "labels_previously_used_in_RK02_development": true,
+    "measured_structure": false,
+    "protein_ood": false,
+    "rk_g1_complete": false,
+    "velocity_or_decay_measured": false
+  },
+  "seeds": [
+    20261222,
+    20261223,
+    20261224,
+    20261225,
+    20261226,
+    20261227,
+    20261228,
+    20261229,
+    20261230,
+    20261231
+  ],
+  "selected_min_identity": 0.9,
+  "sequence_cluster_ood_structure_increment_pass": false,
+  "source_csv_sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef",
+  "started_utc": "2026-11-20T21:48:37.076699+00:00",
+  "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "total_model_fits": 300
+}
