@@ -1,0 +1,110 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+  <style>
+    <fill id="rk23Fill">
+      <fillColor color="rgba(248, 250, 252, 1)" />
+    </fill>
+  </style>
+  <data>
+    <shape width="560" height="14" topLeftX="48" topLeftY="26" type="text" id="rk23Kicker">
+      <content fontSize="9.5" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" textAlign="left" wrap="false">
+        <p>CODONFLOW / A8-RK · PROTEIN-OOD MECHANISM</p>
+      </content>
+    </shape>
+    <shape width="864" height="14" topLeftX="48" topLeftY="26" type="text" id="rk23Series">
+      <content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false">
+        <p>RK23 · BOËL 2016</p>
+      </content>
+    </shape>
+    <shape width="864" height="36" topLeftX="48" topLeftY="47" type="text" id="rk23Title">
+      <content textType="headline" fontSize="28" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+        <p>Boël UH feature adds no stable protein-OOD signal</p>
+      </content>
+    </shape>
+    <shape width="56" height="4" topLeftX="48" topLeftY="91" presetHandlers="0" type="rect" id="rk23Rule">
+      <fill><fillColor color="rgba(194, 65, 12, 1)" /></fill>
+      <content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape width="796" height="16" topLeftX="116" topLeftY="84" type="text" id="rk23Subtitle">
+      <content fontSize="11" fontFamily="Inter" color="rgba(71, 85, 105, 1)" textAlign="left" wrap="false">
+        <p>634 test constructs · 556 protein clusters · 20,000 bootstrap + 20,000 permutations</p>
+      </content>
+    </shape>
+
+    <shape width="198" height="66" topLeftX="48" topLeftY="110" presetHandlers="10" type="round-rect" id="rk23Card1">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="118" type="text" id="rk23Card1Label"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>LOGISTIC SPEARMAN GAIN</p></content></shape>
+    <shape width="174" height="28" topLeftX="60" topLeftY="132" type="text" id="rk23Card1Value"><content fontSize="22" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" textAlign="left" wrap="false"><p>+0.00534</p></content></shape>
+    <shape width="174" height="12" topLeftX="60" topLeftY="160" type="text" id="rk23Card1Foot"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [-0.02839, 0.03877]</p></content></shape>
+
+    <shape width="198" height="66" topLeftX="270" topLeftY="110" presetHandlers="10" type="round-rect" id="rk23Card2">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="118" type="text" id="rk23Card2Label"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>HISTGB SPEARMAN GAIN</p></content></shape>
+    <shape width="174" height="28" topLeftX="282" topLeftY="132" type="text" id="rk23Card2Value"><content fontSize="22" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" textAlign="left" wrap="false"><p>-0.00505</p></content></shape>
+    <shape width="174" height="12" topLeftX="282" topLeftY="160" type="text" id="rk23Card2Foot"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>95% CI [-0.03823, 0.02789]</p></content></shape>
+
+    <shape width="198" height="66" topLeftX="492" topLeftY="110" presetHandlers="10" type="round-rect" id="rk23Card3">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="118" type="text" id="rk23Card3Label"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>PRIMARY ENDPOINTS</p></content></shape>
+    <shape width="174" height="28" topLeftX="504" topLeftY="132" type="text" id="rk23Card3Value"><content fontSize="22" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" textAlign="left" wrap="false"><p>0 / 4 PASS</p></content></shape>
+    <shape width="174" height="12" topLeftX="504" topLeftY="160" type="text" id="rk23Card3Foot"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>All Holm p values are 1.0</p></content></shape>
+
+    <shape width="198" height="66" topLeftX="714" topLeftY="110" presetHandlers="10" type="round-rect" id="rk23Card4">
+      <fill><fillColor color="rgba(255, 255, 255, 1)" /></fill><border color="rgba(226, 232, 240, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" />
+    </shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="118" type="text" id="rk23Card4Label"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" bold="true" textAlign="left" wrap="false"><p>INDEPENDENT ACCEPTANCE</p></content></shape>
+    <shape width="174" height="28" topLeftX="726" topLeftY="132" type="text" id="rk23Card4Value"><content fontSize="22" fontFamily="Inter" color="rgba(15, 118, 110, 1)" bold="true" textAlign="left" wrap="false"><p>275 / 275</p></content></shape>
+    <shape width="174" height="12" topLeftX="726" topLeftY="160" type="text" id="rk23Card4Foot"><content fontSize="9.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>ZERO ARRAY DIFFERENCES</p></content></shape>
+
+    <shape width="620" height="18" topLeftX="48" topLeftY="194" type="text" id="rk23TableTitle"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Pre-registered combined features: no confirmatory gain</p></content></shape>
+    <shape width="228" height="14" topLeftX="684" topLeftY="196" type="text" id="rk23TableNote"><content fontSize="10" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>Frozen test · reused, not untouched</p></content></shape>
+    <table id="rk23Table" width="864" height="104" topLeftX="48" topLeftY="220">
+      <colgroup><col span="1" width="110" /><col span="1" width="140" /><col span="1" width="140" /><col span="1" width="254" /><col span="1" width="220" /></colgroup>
+      <tr height="28">
+        <td id="rk23H1"><fill><fillColor color="rgba(194, 65, 12, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Model</p></content></td>
+        <td id="rk23H2"><fill><fillColor color="rgba(194, 65, 12, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Base Spearman</p></content></td>
+        <td id="rk23H3"><fill><fillColor color="rgba(194, 65, 12, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>+ UH Spearman</p></content></td>
+        <td id="rk23H4"><fill><fillColor color="rgba(194, 65, 12, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>Spearman gain [95% CI]</p></content></td>
+        <td id="rk23H5"><fill><fillColor color="rgba(194, 65, 12, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" textAlign="left" wrap="false"><p>MSE: base → +UH</p></content></td>
+      </tr>
+      <tr height="38">
+        <td id="rk23R1C1"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(154, 52, 18, 1)" bold="true" textAlign="left" wrap="false"><p>Logistic</p></content></td>
+        <td id="rk23R1C2"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.12324</p></content></td>
+        <td id="rk23R1C3"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.12858</p></content></td>
+        <td id="rk23R1C4"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(154, 52, 18, 1)" bold="true" textAlign="left" wrap="false"><p>+0.00534 [-0.02839, 0.03877]</p></content></td>
+        <td id="rk23R1C5"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>4.33158 → 4.33113</p></content></td>
+      </tr>
+      <tr height="38">
+        <td id="rk23R2C1"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" bold="true" textAlign="left" wrap="false"><p>HistGB</p></content></td>
+        <td id="rk23R2C2"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.20579</p></content></td>
+        <td id="rk23R2C3"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>0.20074</p></content></td>
+        <td id="rk23R2C4"><content fontSize="10.5" fontFamily="Inter" color="rgba(154, 52, 18, 1)" bold="true" textAlign="left" wrap="false"><p>-0.00505 [-0.03823, 0.02789]</p></content></td>
+        <td id="rk23R2C5"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" textAlign="left" wrap="false"><p>4.29769 → 4.32615</p></content></td>
+      </tr>
+    </table>
+
+    <shape width="420" height="106" topLeftX="48" topLeftY="344" presetHandlers="10" type="round-rect" id="rk23InferenceCard"><fill><fillColor color="rgba(241, 245, 249, 1)" /></fill><border color="rgba(203, 213, 225, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="64" topLeftY="354" type="text" id="rk23InferenceTitle"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(15, 23, 42, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Primary inference</p></content></shape>
+    <shape width="388" height="58" topLeftX="64" topLeftY="380" type="text" id="rk23InferenceText"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.15" textAlign="left"><p>All four CIs cross zero; HistGB effects are negative.</p><p>HistGB MSE improvement is -0.02846.</p><p>Simple-only gains are descriptive, not confirmatory.</p></content></shape>
+
+    <shape width="420" height="106" topLeftX="492" topLeftY="344" presetHandlers="10" type="round-rect" id="rk23GateCard"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><border color="rgba(253, 186, 116, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="388" height="18" topLeftX="508" topLeftY="354" type="text" id="rk23GateTitle"><content textType="headline" fontSize="13" fontFamily="Inter" color="rgba(194, 65, 12, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false"><p>Gate remains closed</p></content></shape>
+    <shape width="388" height="58" topLeftX="508" topLeftY="380" type="text" id="rk23GateText"><content fontSize="10.5" fontFamily="Inter" color="rgba(30, 41, 59, 1)" lineSpacing="multiple:1.15" textAlign="left"><p>RK-G1 remains false; generator training is unauthorized.</p><p>Cross-protein, non-synonymous data; no velocity or decay test.</p><p>Functional untouched unread; no CodonFlow-RK or SOTA claim.</p></content></shape>
+
+    <shape width="864" height="34" topLeftX="48" topLeftY="466" presetHandlers="8" type="round-rect" id="rk23FooterBand"><fill><fillColor color="rgba(255, 247, 237, 1)" /></fill><border color="rgba(253, 186, 116, 1)" width="1" /><content fontSize="16" fontFamily="Inter" color="rgba(31, 35, 41, 1)" /></shape>
+    <shape width="828" height="16" topLeftX="66" topLeftY="475" type="text" id="rk23Footer"><content fontSize="10" fontFamily="Inter" color="rgba(154, 52, 18, 1)" bold="true" textAlign="center" wrap="false"><p>0/4 primary endpoints PASS · all Holm-adjusted p values are 1.0 · independent test 275/275 · no generator authorization</p></content></shape>
+    <shape width="728" height="12" topLeftX="48" topLeftY="514" type="text" id="rk23Source"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="left" wrap="false"><p>Source: RK23 audit 275/275 · evidence a180c596 · closeout 7ed4cdbb</p></content></shape>
+    <shape width="136" height="12" topLeftX="776" topLeftY="514" type="text" id="rk23Page"><content fontSize="9" fontFamily="Inter" color="rgba(100, 116, 139, 1)" textAlign="right" wrap="false"><p>115 · RK23</p></content></shape>
+  </data>
+  <note id="rk23Notes">
+    <content>
+      <p>RK23 was frozen before model fitting. The Boël cross-protein, non-synonymous ordinal expression data contain 6,348 rows split into 5,079 train, 635 dev and 634 test constructs; dev and test each contain 556 operational protein clusters. Inference uses 20,000 protein-cluster bootstrap replicates and 20,000 within-cluster paired-prediction exchange permutations.</p>
+      <p>For the pre-registered combined-feature contrast, logistic base Spearman is 0.12323866964334065 and augmented Spearman is 0.12858011330132996; the gain is 0.005341443657989303 with interval -0.028391217548145335 to 0.03877199494833087. Logistic MSE improvement is 0.0004491957539327629 with interval -0.05805847621001278 to 0.05902495012966774. Both Holm-adjusted p values are 1.0.</p>
+      <p>HistGB base Spearman is 0.20578582778335267 and augmented Spearman is 0.20073508224367628; the gain is -0.005050745539676382 with interval -0.03822624688088306 to 0.02788614599173979. HistGB MSE improvement is -0.028459659841668206 with interval -0.13056306283760102 to 0.07304107234596917. Both Holm-adjusted p values are 1.0.</p>
+      <p>Independent test verification passed 275 of 275 checks after independent refitting and complete train, dev and test prediction, metric, bootstrap and permutation reconstruction; all maximum differences were zero. Development verification passed 177 of 177 checks. The simple-feature HistGB contrast gives descriptive test Spearman gain 0.061363979686494485 and MSE improvement 0.1807573553811137, but it is outside the primary Holm family and does not alter the negative primary decision.</p>
+      <p>All four primary endpoints fail, so the protein-OOD initiation-structure increment is not supported. This is not fixed-protein synonymous OOD, velocity, decay, functional untouched, CodonFlow-RK or SOTA evidence. RK-G1 remains false and generator training remains unauthorized (frozen test evidence commit a180c596b42f187ae46d6bd8d3607f1d2f2acb4d; closeout commit 7ed4cdbb6ff74b4761bdab355cb460252bae09cd).</p>
+    </content>
+  </note>
+</slide>
