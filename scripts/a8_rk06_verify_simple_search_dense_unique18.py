@@ -9,6 +9,7 @@ import json
 import math
 import os
 import re
+import subprocess
 import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -23,8 +24,12 @@ sys.path.insert(0, str(ROOT / "src"))
 from codonflow.core.codon import STANDARD_TABLE_1
 from codonflow.models.guided_sampler import synonymous_x0
 
-MOTIFS = (("AATAAA", 1.0), ("ATTAAA", 1.0), ("GTGAGT", 1.0), ("CAGG", 0.5),
-          ("TAATACGACTCACTATA", 2.0), ("ATTTAGGTGACACTAT", 2.0))
+# The frozen v4 oracle calls motif_penalty_score(sequence) without an override
+# map, so every catalog entry has weight 1.0.  Do not substitute the nominal
+# DEFAULT_MOTIFS weights here: independent verification must reproduce the
+# actual production objective, including CAGG, T7 and SP6.
+MOTIFS = (("AATAAA", 1.0), ("ATTAAA", 1.0), ("GTGAGT", 1.0), ("CAGG", 1.0),
+          ("TAATACGACTCACTATA", 1.0), ("ATTTAGGTGACACTAT", 1.0))
 
 
 def sha256(path):
@@ -360,6 +365,7 @@ def main():
     parser.add_argument("--protocol", required=True)
     parser.add_argument("--production", required=True)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--independent-root", help="Separate root for independent arrays/checks; preserves earlier failed evidence")
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
@@ -368,6 +374,7 @@ def main():
     protocol = json.loads(protocol_path.read_text())
     production = json.loads(production_path.read_text())
     protocol_sha = sha256(protocol_path)
+    code_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if production["protocol_sha256"] != protocol_sha:
         raise ValueError("production protocol hash mismatch")
     if not production.get("overall_pass") or not production.get("formal_full_panel"):
@@ -375,7 +382,7 @@ def main():
     records = dict(read_fasta_simple(protocol["benchmark_fasta"]))
     rscu = json.loads(Path(protocol["rscu_json"]).read_text())
     weights = cai_weights(rscu)
-    output_root = Path(protocol["artifact_root"])
+    output_root = Path(args.independent_root) if args.independent_root else Path(protocol["artifact_root"])
     jobs = [(protocol, protocol_sha, descriptor, records[descriptor["record_id"]], text_sha(records[descriptor["record_id"]]),
              weights, str(output_root), args.resume) for descriptor in production["runs"]]
     results = []
@@ -468,6 +475,9 @@ def main():
     check("independent_array_manifest", len(array_manifest["files"]) == 216 and all(sha256(row["path"]) == row["sha256"] for row in array_manifest["files"]))
     report = {
         "schema": "a8-rk06-simple-search-dense-independent-v1",
+        "code_commit": code_commit,
+        "verifier_sha256": sha256(Path(__file__).resolve()),
+        "independent_root": str(output_root),
         "protocol_sha256": protocol_sha,
         "production_path": str(production_path),
         "production_sha256": sha256(production_path),

@@ -26,7 +26,7 @@ def git_bytes(revision, path):
 def main():
     protocol_path = ROOT / "configs/a8_rk06_simple_search_dense_unique18_protocol_v1.json"
     production_path = AUDIT / "simple_search_dense_unique18_v1.json"
-    independent_path = AUDIT / "simple_search_dense_independent_v1.json"
+    independent_path = AUDIT / "simple_search_dense_independent_v2.json"
     manifest_path = AUDIT / "simple_search_dense_artifact_manifest.json"
     protocol = json.loads(protocol_path.read_text())
     production = json.loads(production_path.read_text())
@@ -75,14 +75,19 @@ def main():
     smoke = json.loads((AUDIT / "simple_search_dense_smoke_v2.json").read_text())
     check("smoke_pass", smoke["overall_pass"] and smoke["status"] == "SMOKE_PASS" and smoke["n_unique_scorer_calls"] == 80)
     unit_log = (AUDIT / "simple_search_dense_unit_tests_codonflow_env.console.log").read_text()
-    independent_unit_log = (AUDIT / "simple_search_dense_independent_unit_tests.console.log").read_text()
+    independent_unit_log = (AUDIT / "simple_search_dense_independent_unit_tests_v2.console.log").read_text()
     check("production_unit_tests", "Ran 13 tests" in unit_log and "OK" in unit_log)
-    check("independent_unit_tests", "Ran 6 tests" in independent_unit_log and "OK" in independent_unit_log)
+    check("independent_unit_tests", "Ran 7 tests" in independent_unit_log and "OK" in independent_unit_log)
     check("failed_smoke_retained", (AUDIT / "simple_search_dense_smoke_v1.console.log").exists())
     check("failed_initial_test_retained", (AUDIT / "simple_search_dense_unit_tests.console.log").exists())
     code_commit = production["code_commit"]
     ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", code_commit, "HEAD"], cwd=ROOT).returncode == 0
     check("production_commit_ancestor", ancestor, code_commit)
+    independent_code_commit = independent["code_commit"]
+    independent_ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", independent_code_commit, "HEAD"], cwd=ROOT).returncode == 0
+    check("independent_commit_ancestor", independent_ancestor, independent_code_commit)
+    independent_blob = hashlib.sha256(git_bytes(independent_code_commit, "scripts/a8_rk06_verify_simple_search_dense_unique18.py")).hexdigest()
+    check("frozen_independent_verifier_blob", independent_blob == sha256(ROOT / "scripts/a8_rk06_verify_simple_search_dense_unique18.py"), independent_blob)
     for path in ["scripts/a8_rk06_simple_search_dense_unique18.py", "configs/a8_rk06_simple_search_dense_unique18_protocol_v1.json"]:
         committed = hashlib.sha256(git_bytes(code_commit, path)).hexdigest()
         check(f"frozen_blob_{Path(path).name}", committed == sha256(ROOT / path), committed)
@@ -129,6 +134,7 @@ def main():
         "independent_sha256": sha256(independent_path),
         "artifact_manifest_sha256": sha256(manifest_path),
         "production_code_commit": code_commit,
+        "independent_code_commit": independent_code_commit,
         "checks": checks,
         "check_counts": {"total": len(checks), "passed": sum(row["pass"] for row in checks), "failed": sum(not row["pass"] for row in checks)},
         "claims": claims,

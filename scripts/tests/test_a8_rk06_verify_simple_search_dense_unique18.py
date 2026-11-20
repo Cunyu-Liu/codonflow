@@ -46,6 +46,11 @@ class IndependentHelperTests(unittest.TestCase):
         sequence = "AATAAAGGG"
         self.assertEqual(independent.independent_motif(sequence), motif_penalty_score(sequence))
 
+    def test_catalog_weights_match_frozen_unweighted_production_oracle(self):
+        sequence = "CAGGTAATACGACTCACTATAATTTAGGTGACACTAT"
+        self.assertEqual(motif_penalty_score(sequence), 3.0)
+        self.assertEqual(independent.independent_motif(sequence), 3.0)
+
     def test_dominance_uses_independent_arrays(self):
         with tempfile.TemporaryDirectory() as directory:
             a_path = Path(directory) / "a.npy"
