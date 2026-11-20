@@ -140,7 +140,7 @@ def main() -> None:
             continue
         legacy = json.loads(legacy_path.read_text())
         calibration = Path(matrix_record["calibration"])
-        if sha256(calibration) != matrix_record["reference_sha256"] or output_record["reference_sha256"] != matrix_record["reference_sha256"]:
+        if sha256(calibration) != matrix_record["calibration_sha256"] or output_record["calibration_sha256"] != matrix_record["calibration_sha256"]:
             all_reference_checks = False
             continue
         reference = FrozenReference.from_dict(json.loads(calibration.read_text()))

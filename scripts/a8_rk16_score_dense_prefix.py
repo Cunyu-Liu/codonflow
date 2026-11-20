@@ -252,7 +252,7 @@ def main() -> None:
             raise ValueError(f"legacy file hash mismatch {filename}")
         legacy = json.loads(legacy_path.read_text())
         calibration = Path(matrix_record["calibration"])
-        if sha256(calibration) != matrix_record["reference_sha256"]:
+        if sha256(calibration) != matrix_record["calibration_sha256"]:
             raise ValueError(f"reference hash mismatch {record_id}")
         reference = FrozenReference.from_dict(json.loads(calibration.read_text()))
         raw = {
@@ -276,7 +276,7 @@ def main() -> None:
         output_records.append({
             "record_id": record_id,
             "source_sha256": matrix_record["source_sha256"],
-            "reference_sha256": matrix_record["reference_sha256"],
+            "calibration_sha256": matrix_record["calibration_sha256"],
             "primary": primary,
             "secondary_b100_descriptive": secondary,
         })
