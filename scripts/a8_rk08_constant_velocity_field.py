@@ -21,6 +21,18 @@ from scipy.stats import pearsonr, spearmanr
 MODELS = ("model", "ridge", "constant")
 COMPARISONS = ("model_minus_constant", "ridge_minus_constant", "model_minus_ridge")
 METRICS = ("transcript_balanced_mse", "mean_transcript_pearson")
+ORIGINAL_MODEL_NAMES = {
+    "ribokinetic_velocity": "model",
+    "ridge_codon_position_length": "ridge",
+}
+
+
+def original_group_key(group: str) -> str:
+    if group in {"train", "dev", "test"}:
+        return f"{group}|Mohammad16"
+    if group.startswith("study_ood:"):
+        return group.replace("study_ood:", "study_ood|", 1)
+    raise ValueError(f"unknown original metric group: {group}")
 
 
 def sha256(path: Path) -> str:
@@ -319,14 +331,15 @@ def run(root: Path, protocol_path: Path) -> dict:
 
     # Reproduction guards against accidentally analyzing a different run.
     for group, original_group in source_summary["metrics"].items():
-        for model in ("model", "ridge"):
-            for metric, original_value in original_group[model].items():
-                new_value = all_metrics[group][model][metric]
+        new_group = original_group_key(group)
+        for original_model, new_model in ORIGINAL_MODEL_NAMES.items():
+            for metric, original_value in original_group[original_model].items():
+                new_value = all_metrics[new_group][new_model][metric]
                 if original_value is None:
                     if new_value is not None:
-                        raise AssertionError(f"metric changed {group}/{model}/{metric}")
+                        raise AssertionError(f"metric changed {group}/{new_model}/{metric}")
                 elif not math.isclose(float(new_value), float(original_value), rel_tol=0, abs_tol=1e-12):
-                    raise AssertionError(f"metric changed {group}/{model}/{metric}: {new_value} vs {original_value}")
+                    raise AssertionError(f"metric changed {group}/{new_model}/{metric}: {new_value} vs {original_value}")
     original_primary = source_summary["primary_comparisons"]["model_minus_ridge"]
     new_primary = comparison_results["model_minus_ridge"]
     for metric in METRICS:

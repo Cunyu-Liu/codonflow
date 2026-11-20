@@ -137,3 +137,5 @@ def test_prediction_schema_and_raw_partition_alignment(tmp_path):
     records["Study:r"]["split"] = "train"
     with pytest.raises(ValueError, match="split mismatch"):
         MODULE.load_prediction_frame(path, records, 1)
+    assert MODULE.original_group_key("dev") == "dev|Mohammad16"
+    assert MODULE.original_group_key("study_ood:Subtelny14") == "study_ood|Subtelny14"

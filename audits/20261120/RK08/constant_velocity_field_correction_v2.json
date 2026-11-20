@@ -1,0 +1,27 @@
+{
+  "schema_version": "a8-rk08-constant-velocity-field-correction-v2",
+  "status": "PASS_ORIGINAL_REPORT_KEY_MAPPING_CORRECTION",
+  "trigger": "The second production attempt stopped at the original-report reproduction guard because the frozen source summary uses ribokinetic_velocity / ridge_codon_position_length model keys and study_ood:... partition keys.",
+  "failure_log": "audits/20261120/RK08/constant_velocity_field_production_failure_v2.log",
+  "failure_log_sha256": "7e85de4b9ec9d8653bafbbf5a90e57117d97c0fae9beaa5e919c07145a1162ea",
+  "scientific_protocol_changed": false,
+  "input_data_changed": false,
+  "comparison_seeds_changed": false,
+  "endpoint_or_gate_changed": false,
+  "production_report_created_before_correction": false,
+  "independent_report_created_before_correction": false,
+  "in_memory_metrics_computed_before_guard": true,
+  "new_results_written_or_inspected_before_correction": false,
+  "scientific_readout_used_to_choose_correction": false,
+  "correction_scope": "Map only the original report's model and partition identifiers to the already frozen internal identifiers for equality guards. No data, prediction, constant-field, metric, bootstrap, support, or gate formula changed.",
+  "additional_regression_assertions": [
+    "dev maps to dev|Mohammad16",
+    "study_ood:Subtelny14 maps to study_ood|Subtelny14"
+  ],
+  "corrected_unit_tests": "10 passed",
+  "corrected_preparation": "audits/20261120/RK08/constant_velocity_field_preparation_v3.json",
+  "corrected_preparation_status": "PASS_CONSTANT_VELOCITY_PREPARATION",
+  "corrected_preparation_checks": "18/18",
+  "rk_g1_pass": false,
+  "generator_training_authorized": false
+}
