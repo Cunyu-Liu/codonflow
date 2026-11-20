@@ -76,6 +76,7 @@ def build_section(claims, independent, finalization):
         "",
         "This section closes only the real dense-budget simple-search evidence gap on unique18 development proxies. It used no untouched24 record, functional-untouched assay row, MAGE mechanism-test construct or functional label; it trained no generator. It does not establish functional effectiveness, CodonFlow-RK improvement, external SOTA, RK-G1 closure or generator-training readiness. The manuscript remains non-submittable.",
         "",
+        "",
     ])
     return "\n".join(lines)
 
@@ -99,20 +100,18 @@ def main():
     if SECTION_HEADING in base or "### 6.24 " in base:
         raise RuntimeError("section 6.24 already exists; refusing duplicate insertion")
     section = build_section(claims, independent, finalization)
-    anchor_rows = "\n".join([
-        "",
+    anchor_rows = "\n" + "\n".join([
         f"| RK06 simple-search dense frozen protocol | `{sha256(protocol_path)}` |",
         f"| RK06 simple-search dense production | `{sha256(production_path)}` |",
         f"| RK06 simple-search dense independent verification | `{sha256(independent_path)}` |",
         f"| RK06 simple-search dense finalization | `{sha256(finalization_path)}` |",
         f"| RK06 simple-search dense claims | `{sha256(claims_path)}` |",
-        "",
     ])
     updated = base.replace("\n## 7. Discussion", "\n" + section + "## 7. Discussion", 1)
-    marker = "\nA7 is retained as the prior manuscript snapshot."
+    marker = "\n\nA7 is retained as the prior manuscript snapshot."
     if marker not in updated:
         raise RuntimeError("evidence-anchor insertion marker missing")
-    updated = updated.replace(marker, anchor_rows + "A7 is retained as the prior manuscript snapshot.", 1)
+    updated = updated.replace(marker, anchor_rows + marker, 1)
     if updated == base or updated.count(SECTION_HEADING) != 1:
         raise RuntimeError("paper update did not produce exactly one new section")
     snapshot = ROOT / "paper/snapshots/rk06_simple_search_dense_v28"

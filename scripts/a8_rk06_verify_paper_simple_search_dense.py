@@ -62,10 +62,12 @@ def main():
     section = text[start:end]
     check("section_sha", hashlib.sha256(section.encode()).hexdigest() == update["section_sha256"])
     restored = text[:start] + text[end:]
-    marker = "A7 is retained as the prior manuscript snapshot."
+    marker = "\n\nA7 is retained as the prior manuscript snapshot."
     inserted_anchor_block = update["anchor_rows"] + marker
     check("anchor_block_present_once", restored.count(inserted_anchor_block) == 1)
-    restored = restored.replace(inserted_anchor_block, "\n" + marker, 1)
+    first_anchor = "| RK06 simple-search dense frozen protocol |"
+    check("anchor_table_continuous", "\n" + first_anchor in restored and "\n\n" + first_anchor not in restored)
+    restored = restored.replace(inserted_anchor_block, marker, 1)
     check("exact_v27_restoration", restored == base)
     for label, path in [
         ("protocol", protocol_path), ("production", production_path), ("independent", independent_path),
