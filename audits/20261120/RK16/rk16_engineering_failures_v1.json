@@ -1,0 +1,62 @@
+{
+  "schema": "a8-rk16-engineering-failures-v1",
+  "scientific_protocol_changed": false,
+  "input_data_changed": false,
+  "primary_statistical_method_changed": false,
+  "result_report_overwritten": false,
+  "derivative_csv_line_endings_normalized_to_lf": true,
+  "derivative_csv_numeric_content_changed": false,
+  "pre_lf_independent_verification": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk16/dense_prefix_v1/rk16_independent_verification_pre_lf_v1.json",
+  "failures": [
+    {
+      "stage": "initial_scoring",
+      "error": "ValueError: complete frozen RK13 matrix required",
+      "root_cause": "The scorer expected PASS_RK13_COMPLETE; the immutable matrix status is COMPLETE_UNIQUE18_SEVEN_METHOD_ACTUAL_SET_MATRIX_DEVELOPMENT_ONLY.",
+      "fix_commit": "b4596aaa10b79759d1aed6e1aca353d9965fa604",
+      "log": "scoring.console.log",
+      "log_sha256": "bb1776987537ce13987105db48e2ebaed102512624c0b778f9d0d216d5c024e3",
+      "result_written_before_failure": false
+    },
+    {
+      "stage": "second_scoring",
+      "error": "ValueError: complete official EnsembleDesign recovery required",
+      "root_cause": "The scorer expected PASS_ENSEMBLEDESIGN_UNIQUE18_RECOVERY; the immutable report status is COMPLETE_UNIQUE18_OFFICIAL_ENSEMBLEDESIGN_11RUN.",
+      "fix_commit": "a3cfd7be487d5ab97f5f2b927e7d19258e68d374",
+      "log": "scoring_v2.console.log",
+      "log_sha256": "6d46f0276de697a09bf6da12aabefa12223c548504c129f31c0a45ed10de582f",
+      "result_written_before_failure": false
+    },
+    {
+      "stage": "third_scoring",
+      "error": "KeyError: reference_sha256",
+      "root_cause": "The matrix field is calibration_sha256. Output and verifier bindings were renamed to the real field.",
+      "fix_commit": "1362f26ae0c413f361fbfff1498fcd36bccbd508",
+      "log": "scoring_v3.console.log",
+      "log_sha256": "b10bd092b8a959cac887bcfdc6df37fff470373374fcd1303357d7a38c373bf1",
+      "result_written_before_failure": false
+    },
+    {
+      "stage": "fourth_scoring",
+      "error": "KeyError: status in LinearDesign run",
+      "root_cause": "Official LinearDesign runs use returncode and protein_identity_pass rather than a per-run status field. EnsembleDesign records/runs use the same actual identity field and record-level returncode.",
+      "fix_commit": "3273211e026b79e7d81aa1afa8a55e6f676f98b6",
+      "log": "scoring_v4.console.log",
+      "log_sha256": "16d3cd128762ea7be121ed8d6528d3acd7a6f70753a3cf4cf57d1e1d8de5a50f",
+      "result_written_before_failure": false,
+      "structural_preflight": "PASS after binding all 3996 raw generation-call positions; contract tests 7/7"
+    },
+    {
+      "stage": "first_independent_verification",
+      "error": "KeyError: hypervolume_normalized in curve row",
+      "root_cause": "The independent verifier used the summary-level name for per-budget rows; dense curve rows use hv. The scientific result file was not modified.",
+      "fix_commit": "795ad1807f6ee9fcb5061cb606fd7be3a2d08d03",
+      "result_written_before_failure": true,
+      "result_file_modified_by_fix": false
+    }
+  ],
+  "successful_scoring_log": {
+    "path": "scoring_v5.console.log",
+    "sha256": "7208337bc01ed5829e89e0f6d1d616b5fa7ffc44fe51099c8f1fc310a135c572"
+  },
+  "log_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk16/dense_prefix_v1/"
+}
