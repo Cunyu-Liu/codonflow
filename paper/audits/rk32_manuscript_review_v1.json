@@ -1,0 +1,121 @@
+{
+  "status": "FAIL_RK32_MANUSCRIPT_REVIEW",
+  "checks_total": 18,
+  "checks_passed": 16,
+  "failed_checks": [
+    {
+      "check": "single_section",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "check": "rk31_and_prior_sections_preserved",
+      "pass": false,
+      "detail": null
+    }
+  ],
+  "checks": [
+    {
+      "check": "integration_binding",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "single_section",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "check": "prior_manuscript_byte_preserved",
+      "pass": true,
+      "detail": {
+        "stripped_sha256": "941de468a92ef016acf0f492ed094723f281f7bffb22934df46d2c92ed7a0f62",
+        "original_sha256": "941de468a92ef016acf0f492ed094723f281f7bffb22934df46d2c92ed7a0f62"
+      }
+    },
+    {
+      "check": "rk31_and_prior_sections_preserved",
+      "pass": false,
+      "detail": null
+    },
+    {
+      "check": "label_free_and_frozen_contract",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "table19_exact_24_rows",
+      "pass": true,
+      "detail": {
+        "rows": 24
+      }
+    },
+    {
+      "check": "endpoint_decision_accounting",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "table20_exact_15_rows",
+      "pass": true,
+      "detail": {
+        "rows": 15
+      }
+    },
+    {
+      "check": "arm_conclusions_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "local_not_universal",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "mordstein_coverage_boundary",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "independent_deltas_and_fits",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "clean_reproduction_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "closeout_and_tests",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "evidence_anchor_hashes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "writing_workflow_final_exact",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "working_draft_and_open_gates",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "failure_history_retained",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "manuscript_sha256": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+  "section_sha256": "8f0080685555ed54b6284d60eb0f0f8f05544c2c078a7539ed1742d35373642f",
+  "working_draft": true,
+  "independent_confirmation": false,
+  "RK_G1_complete": false
+}
