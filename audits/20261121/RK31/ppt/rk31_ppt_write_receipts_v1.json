@@ -1,0 +1,118 @@
+{
+  "schema_version": "a8-rk31-ppt-write-receipts-v1",
+  "deck_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "baseline": {
+    "pages": 130,
+    "revision_id": 93,
+    "last_slide_id": "pZc"
+  },
+  "final": {
+    "pages": 139,
+    "revision_id": 102,
+    "last_slide_id": "pZb"
+  },
+  "pages": [
+    {
+      "page": 131,
+      "key": "design",
+      "slide_id": "pZD",
+      "revision_id": 94,
+      "source_xml": "rk31_131_design.xml",
+      "source_sha256": "7dad296f503526040a482de1bb955794d121a7910c56b6fe8ca9713795796ad8",
+      "add_response": "rk31_131_add_response.json"
+    },
+    {
+      "page": 132,
+      "key": "protocol",
+      "slide_id": "pZq",
+      "revision_id": 95,
+      "source_xml": "rk31_132_protocol.xml",
+      "source_sha256": "0320d189109707852aedfd58112d5ed7f8f101795ea60ce6592ee6d51dd7363b",
+      "add_response": "rk31_132_add_response.json"
+    },
+    {
+      "page": 133,
+      "key": "decision",
+      "slide_id": "pZe",
+      "revision_id": 96,
+      "source_xml": "rk31_133_decision.xml",
+      "source_sha256": "0d113fa64ea77f094b6dc62ba5f1dcfe02539b2cf51831aad2bb3e6c2206b41e",
+      "add_response": "rk31_133_add_response.json"
+    },
+    {
+      "page": 134,
+      "key": "hela_no_intron",
+      "slide_id": "pZa",
+      "revision_id": 97,
+      "source_xml": "rk31_134_hela_no_intron.xml",
+      "source_sha256": "4cbff2113ce59c3f6bda86de6a02d988c4556a39dd94668f8e8e4302d0fa9292",
+      "add_response": "rk31_134_add_response.json"
+    },
+    {
+      "page": 135,
+      "key": "hela_with_intron",
+      "slide_id": "pZA",
+      "revision_id": 98,
+      "source_xml": "rk31_135_hela_with_intron.xml",
+      "source_sha256": "2f68db20980d1e8f184da4d036f075060c4e40114aa81690f0788817be36d925",
+      "add_response": "rk31_135_add_response_v2.json"
+    },
+    {
+      "page": 136,
+      "key": "hek293_no_intron",
+      "slide_id": "pZr",
+      "revision_id": 99,
+      "source_xml": "rk31_136_hek293_no_intron.xml",
+      "source_sha256": "02d38b942a944d7ade88bea0ef9a6b39aefb376c17eeaf1aa726eb97b4b4e529",
+      "add_response": "rk31_136_add_response.json"
+    },
+    {
+      "page": 137,
+      "key": "absolute",
+      "slide_id": "pZH",
+      "revision_id": 100,
+      "source_xml": "rk31_137_absolute.xml",
+      "source_sha256": "616ef8c2a4a808d95e0ad5705f62fc0207f9e2d09728873c19ee46320db894a4",
+      "add_response": "rk31_137_add_response.json"
+    },
+    {
+      "page": 138,
+      "key": "reproduction",
+      "slide_id": "pZd",
+      "revision_id": 101,
+      "source_xml": "rk31_138_reproduction.xml",
+      "source_sha256": "5ee5c56c46d8a927d49fa6aa45f5091cc76bfd04a5943be8da11e859420f7907",
+      "add_response": "rk31_138_add_response_v2.json"
+    },
+    {
+      "page": 139,
+      "key": "boundaries",
+      "slide_id": "pZb",
+      "revision_id": 102,
+      "source_xml": "rk31_139_boundaries.xml",
+      "source_sha256": "7d868845817571e21d3248d1b854eb18c7dbd27193faab7f7c9bbc3a684ba642",
+      "add_response": "rk31_139_add_response.json"
+    }
+  ],
+  "anomalies": [
+    {
+      "page": 135,
+      "type": "server_timeout",
+      "write_confirmed_before_retry": false,
+      "readback_pages": 134,
+      "readback_revision": 97,
+      "resolution": "Retried once only after full readback confirmed the page was absent; success pZA/revision 98."
+    },
+    {
+      "page": 138,
+      "type": "local_argument_error",
+      "server_write_attempted": false,
+      "resolution": "Corrected local page key from evidence to reproduction before the first server write."
+    },
+    {
+      "page": 131,
+      "type": "screenshot_cli_argument",
+      "resolution": "Installed CLI rejected --page-id; installed help specified --slide-id, which succeeded."
+    }
+  ]
+}
