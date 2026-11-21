@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "checks": "76/76",
+  "failed_checks": [],
+  "independent_conclusion": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+  "family_pass": {
+    "local42_vs_simple": false,
+    "local42_vs_full1": false,
+    "local42_vs_full3": false
+  },
+  "max_abs_deltas": {
+    "analysis": 1.4210854715202004e-14,
+    "predictions": 8.881784197001252e-16,
+    "seed_effects": 1.5265566588595902e-16,
+    "inference_arrays": 3.3306690738754696e-16,
+    "primary_tests": 5.551115123125783e-17
+  },
+  "elapsed_seconds": 213.34889127779752,
+  "report": "audits/20261121/RK33/rk33_local_coverage_independent_v1.json"
+}
