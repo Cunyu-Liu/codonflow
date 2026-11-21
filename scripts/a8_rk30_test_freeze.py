@@ -62,6 +62,13 @@ def test_metadata_exactly_64_r1_runs_without_reading_fastq():
     assert all(r["r2"] is None for r in runs)
 
 
+def test_selected_existing_hek_run_does_not_require_missing_hela_files():
+    runs = counter.select_runs(protocol(), ["SRR10714583"])
+    assert len(runs) == 1
+    assert runs[0]["context"] == "hek293_no_intron"
+    assert runs[0]["r1"].exists()
+
+
 def test_download_selects_56_hela_r1_only_and_exact_bytes(tmp_path):
     p = protocol()
     jobs = download.jobs_from_metadata(Path(p["inputs"]["metadata_tsv"]["path"]), tmp_path, [])

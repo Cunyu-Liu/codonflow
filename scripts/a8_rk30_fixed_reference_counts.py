@@ -73,6 +73,19 @@ def parse_runs(protocol: dict, require_files: bool = True) -> list[dict]:
     return sorted(observed, key=lambda row: (row["context"], row["replicate"], row["bin"]))
 
 
+def select_runs(protocol: dict, only_runs: list[str]) -> list[dict]:
+    selected = set(only_runs)
+    runs = parse_runs(protocol, require_files=False)
+    if selected:
+        runs = [row for row in runs if row["run"] in selected]
+        if len(runs) != len(selected):
+            raise ValueError("Not all requested runs found")
+    for run in runs:
+        if not run["r1"].exists():
+            raise FileNotFoundError(run["r1"])
+    return runs
+
+
 def outcome_table(counts: pd.DataFrame, protocol: dict) -> tuple[pd.DataFrame, dict]:
     required = {"variant_id", "context", "replicate", "bin", "count"}
     if not required.issubset(counts.columns):
@@ -169,12 +182,8 @@ def main() -> None:
         raise ValueError("Reference cohort is not 152 unique 300-nt sequences")
     assigner = recovery.SeedAssigner(sequences, 8)
     empty = recovery.SeedAssigner([], 8)
-    runs = parse_runs(protocol, require_files=True)
+    runs = select_runs(protocol, args.only_runs)
     selected = set(args.only_runs)
-    if selected:
-        runs = [row for row in runs if row["run"] in selected]
-        if len(runs) != len(selected):
-            raise ValueError("Not all requested runs found")
     args.output_root.mkdir(parents=True, exist_ok=True)
     run_dir = args.output_root / "per_run"
     run_dir.mkdir(exist_ok=True)
