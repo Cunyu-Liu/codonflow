@@ -310,3 +310,15 @@
 - [x] **文档 closeout**：独立核验 registry/tasks/handoff、论文/PPT 哈希和科学边界，v2 **23/23 PASS**；v1 21/23 的 `n_pass/n_checks` 字段假定失败保留。
 - [ ] **科学任务仍未闭合**：本轮状态仅为 `PASS_INVENTORY_ONLY_SCIENTIFIC_GATES_UNRESOLVED`。完整 external SOTA、统一 time-matched、七方法共同 dense、多物种 VeloHARMO、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和可投稿稿件均未完成；昂贵生成训练未授权，wet-lab 未执行。
 - [ ] **下一项必须产生判别证据**：RK39 优先核实同一蛋白、同一初始化语义、同一真实 scorer 与完整成本口径下的 fixed-protein actual-set 对照是否可真实执行；满足冻结条件才运行，否则转向新的合格数据源判别实验，不再重复同类盘点。
+
+## 2026-11-22：RK39 共同输入、固定 TAA 与等实际输出数对照（双终点显著负向，任务未解决）
+
+- [x] **公平性缺口转为冻结协议**：确认旧 simple-search 的 `synonymous_x0` 不是天然 CDS，且 LinearDesign-11/EnsembleDesign-11 外部实际输出全部为 TAA。新协议仅以天然 CDS 翻译蛋白，随后丢弃天然同义选择与终止子；protein-only 首同义密码子模板加随机初始化，固定 TAA，搜索不使用天然 calibration normalization，评价阶段对所有方法施加相同归一化。协议 SHA `6e72fc94bd395a524fd2ecc825625f17c0bb86583fda3871e338f0508f1d15e1`。
+- [x] **真实执行与配对规则**：18 records ×3 seeds ×3 methods ×11 点，共 **162 runs / 1,782 unique-scorer calls**；每 record 按 LinearDesign-11 的真实唯一 DNA 数 k 取 simple-search 前 k 个 unique-scorer 输出，禁止 best-k、补零、事后子集或推断外部 dense。k 合计131、均值7.278、范围4–11；四个单线程 workers，wall=342.521745 s，逐 run scoring 总和=1311.997885 s。
+- [x] **双主终点均显著反向**：hill-climbing−LinearDesign-11 的 normalized HV 效应=`-29.7146177809`，95% CI=`[-41.9256988380,-19.5525350779]`；pairwise NED 效应=`-0.0665977004`，CI=`[-0.0822465948,-0.0511346818]`；两终点 Holm p 均为 `9.99950002499875e-05`，18/18 records 和3/3 seeds 均为负。状态为 `COMMON_INPUT_ACTUAL_SET_TASK_UNRESOLVED`，小 p 值表示稳定变差，不是通过。
+- [x] **绝对表现与敏感性不救回主门禁**：LinearDesign-11 HV/NED=`29.9728874903/0.0712892803`；hill-climbing=`0.2582697094/0.0046915799`；MH-annealing=`0.2593831165/0.0048574044`；uniform=`0.7202456320/0.2408663156`。uniform NED 效应=`+0.1695770352` 且18/18为正，但 HV 效应=`-29.2526418583` 且18/18为负，只是质量—多样性代理权衡。
+- [x] **独立与 clean 验收**：独立复核不导入生产脚本，重翻译蛋白、重建初始化、重算四目标、HV/NED 与推断，**1216/1216 PASS**，独立重评1,594条唯一序列，四目标最大绝对误差0.0；clean 完整162 runs后逐点 closeout **830/830 PASS**。全项目 **477 passed / 1 skipped / 0 failed / 5 subtests passed**。科学提交 `b3f89b948b707a56e9ae9ab8e9726a5fa0acaa41`，clean/论文提交 `9bbac1a68a8f71cfa328a15cc3fd270ed933590a`。
+- [x] **英文稿 §6.50**：新增 Tables 32–33，稿件2,154行，SHA `611a0ceec7adb305fdfb47f6ac2566b37c2e500ffd8210a49835e3d0439230bf`；隔离写作 prepare/write/deliver 全 PASS，638词小节、0 failure/0 warning，幂等集成两次输出一致。首次缺依赖与两次远程内联 shell 失败均保留，未绕过门禁。
+- [x] **在线 PPT187–192**：六页 IDs `pSA,pSr,pSH,pSd,pSb,pSF`，最终 **192页/revision164**；逐页预上传审计合计 **421/421 PASS**，每页在线 XML 文字精确一致并完成真实截图人工复核。第192页初版标题溢出在上传前拦截并修正；新增前186页结构/属性/文字全部一致，第186页仅末尾两个序列化空格差异。PPT closeout=`audits/20261122/RK39/rk39_ppt_closeout.json`，大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/ppt_v1/`。
+- [ ] **科学任务仍未解决**：共同输入与等实际输出数只消除一类公平性混杂，不构成 CodonFlow 胜利、外部 SOTA、time-matched、共同 dense、功能/protein OOD 或 untouched confirmation。完整七方法统一成本、真实功能标签、前瞻 DBTL 和 wet-lab 均未完成；RK-G1=false，昂贵生成训练未授权，manuscript_submittable=false。
+- [ ] **下一项必须是机制可判别实验**：优先预注册预算／初始化诊断，区分“短预算不足”与“protein-only 初始化／目标景观不匹配”是否导致 RK39 的巨大 HV 缺口；外部 LinearDesign 只能使用真实可执行的新预算轨迹，不能从 actual-set 反推 dense。若没有可执行的公平外部对照，则转向新的合格数据源，不重复同一11点负结果，不以敏感性臂或工程数量包装胜利。
