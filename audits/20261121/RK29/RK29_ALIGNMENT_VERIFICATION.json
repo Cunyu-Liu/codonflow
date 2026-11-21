@@ -1,0 +1,37 @@
+{
+  "schema": "a8-rk29-independent-alignment-verification-v1",
+  "status": "PASS_INDEPENDENT_ALIGNMENT_FAILURE_VERIFICATION",
+  "confirmed_conclusion": "NOT_DISCRIMINATING_SOURCE_ALIGNMENT_OR_COVERAGE_FAILED",
+  "created_utc": "2026-11-21T06:14:27.609761+00:00",
+  "failure_report": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/RK29_ALIGNMENT_FAILURE.json",
+  "failure_report_sha256": "ec1fc2c02370b21a333eb5cb38907cd3e893c4de86b95e8b8770e3033f4feb0d",
+  "protocol_sha256": "e12a28b9ceaf3c4d8c70b78868e69ebfa2913a169dac99cac77ca20705b1c196",
+  "protocol_freeze_commit": "9496e1797470e5dd007e990d3760855f8bd43f0a",
+  "verifier_script_sha256": "01e793fc7657a8382fadfbef4a2a5a206b51731cfcaf3364ced9c9e95e25306f",
+  "raw_input_hashes_reverified": true,
+  "cartesian_pair_checks_recomputed": 10227,
+  "candidate_size_distribution_recomputed": {
+    "1": 240,
+    "2": 598,
+    "3": 117
+  },
+  "n_valid_global_sequence_outcome_assignments_recomputed": "2269172274089954722489767972697745718012098832763446206560719160495085006361913075613142743055523548409027278469016322048",
+  "n_ambiguous_rows_recomputed": 715,
+  "n_ambiguous_protein_design_groups_recomputed": 338,
+  "representative_sequence_difference_recomputed": true,
+  "production_failure_log_sha256": "ca28aedef3935f4f966293670374cf716f163d452b3f00ea12e694322c846c2c",
+  "production_failure_log_contains_ambiguous_join_stop": true,
+  "model_output_files_absent": [
+    "analysis_variants_950.csv",
+    "oof_predictions.csv",
+    "fold_assignments.csv",
+    "seed_metrics.csv",
+    "seed_effects.csv",
+    "primary_inference_arrays.npz"
+  ],
+  "rk29_result_json_absent": true,
+  "model_fit_or_scientific_result_found": false,
+  "row_order_or_arbitrary_assignment_used": false,
+  "imports_production_or_coverage_modules": false,
+  "elapsed_seconds": 7.018429852090776
+}

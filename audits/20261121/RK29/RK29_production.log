@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/scripts/a8_rk29_run_decay_cluster_ood.py", line 440, in <module>
+    main()
+  File "/home/codonflow-a8-rk/scripts/a8_rk29_run_decay_cluster_ood.py", line 326, in main
+    mapped, alignment = load_authorized_analysis(protocol, coverage)
+  File "/home/codonflow-a8-rk/scripts/a8_rk29_run_decay_cluster_ood.py", line 113, in load_authorized_analysis
+    mapped, alignment = assign_outcome_names(outcome, geo, protocol["outcome_access"]["geo_to_outcome_timepoint_map"])
+  File "/home/codonflow-a8-rk/scripts/a8_rk29_run_decay_cluster_ood.py", line 84, in assign_outcome_names
+    raise RuntimeError(f"ambiguous or missing measurement join for {row['Protein_id']} {row['Group']}: {names}")
+RuntimeError: ambiguous or missing measurement join for c1_p10 iCodon_1: ['c1-p10-rA-r1', 'c1-p10-rB-r1']
