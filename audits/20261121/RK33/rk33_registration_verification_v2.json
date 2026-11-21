@@ -1,0 +1,202 @@
+{
+  "schema": "a8-rk33-final-registration-verification-v2",
+  "status": "PASS",
+  "head": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
+  "origin_a8_rk": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
+  "actual_remote_a8_rk": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
+  "concurrent_closeout_commit": "5beff8ad66fc71ea28101fe39538d8e260071104",
+  "concurrent_archive_commit": "8203c0bbda4fa008841d11030af525bb545eb83e",
+  "registry_dedup_commit": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
+  "checks_passed": 26,
+  "checks_total": 26,
+  "checks": [
+    {
+      "name": "origin_and_actual_remote_match",
+      "pass": true,
+      "details": {
+        "origin": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
+        "remote": "8dcb95509e737fa756940e6e7e95f319d5cf79ea"
+      }
+    },
+    {
+      "name": "concurrent_closeout_is_in_history",
+      "pass": true,
+      "details": {
+        "returncode": 0
+      }
+    },
+    {
+      "name": "one_rk33_registry_row",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "one_concurrent_rk33_tasks_section",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "no_duplicate_parallel_rk33_tasks_section",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "concurrent_handoff_present",
+      "pass": true,
+      "details": {
+        "characters": 5969
+      }
+    },
+    {
+      "name": "parallel_detailed_handoff_retained",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "sha_rk33_local_coverage_result_v1.json",
+      "pass": true,
+      "details": "d341694fb336ba579bbb990d80d7b17eafff104250052cea8577e4b927c08b64"
+    },
+    {
+      "name": "sha_rk33_local_coverage_independent_v1.json",
+      "pass": true,
+      "details": "3b53c5118bc93a71a5eaadaaaf22e48f13bc0b2d580b017308348a0ff171fa8d"
+    },
+    {
+      "name": "sha_rk33_clean_reproduction_v1.json",
+      "pass": true,
+      "details": "7808acc84567fe972be0ddb870c23bd8714da2bc1e0dbdb1421ff08a5171e455"
+    },
+    {
+      "name": "sha_rk33_closeout_verification_v2.json",
+      "pass": true,
+      "details": "ae09d302c8dd331aa59239c6e90180289e3c7ab34a030d3510e26b6af55c334b"
+    },
+    {
+      "name": "sha_CodonFlow_preprint_A8.md",
+      "pass": true,
+      "details": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d"
+    },
+    {
+      "name": "production_verdict_retained",
+      "pass": true,
+      "details": {
+        "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+        "conclusion": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+        "all_12_pass": false,
+        "family_pass": {
+          "local42_vs_full1": false,
+          "local42_vs_full3": false,
+          "local42_vs_simple": false
+        },
+        "evaluated_model_fits": 400
+      }
+    },
+    {
+      "name": "independent_76_of_76",
+      "pass": true,
+      "details": {
+        "status": "PASS",
+        "checks": "76/76"
+      }
+    },
+    {
+      "name": "clean_reproduction_90_of_90",
+      "pass": true,
+      "details": {
+        "status": "PASS",
+        "checks": "90/90"
+      }
+    },
+    {
+      "name": "science_closeout_22_of_22",
+      "pass": true,
+      "details": {
+        "status": "PASS",
+        "checks": "22/22"
+      }
+    },
+    {
+      "name": "full_project_tests_recorded",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "ppt_21_of_21_and_155_slides",
+      "pass": true,
+      "details": {
+        "slides": 155,
+        "revision": 122
+      }
+    },
+    {
+      "name": "no_appledouble_in_tracked_ppt_evidence",
+      "pass": true,
+      "details": {
+        "tracked_files": 101
+      }
+    },
+    {
+      "name": "ppt_bundle_sha",
+      "pass": true,
+      "details": {
+        "sha256": "804df9aac43aa55c93eaa78e4992fe75c056592244b1385eebad9c67b7e90a32",
+        "bytes": 2331319
+      }
+    },
+    {
+      "name": "teams_production_artifacts_present",
+      "pass": true,
+      "details": {
+        "files": 7,
+        "bytes": 5607215
+      }
+    },
+    {
+      "name": "teams_independent_artifacts_present",
+      "pass": true,
+      "details": {
+        "files": 7,
+        "bytes": 5615003
+      }
+    },
+    {
+      "name": "teams_clean_artifacts_present",
+      "pass": true,
+      "details": {
+        "files": 14,
+        "bytes": 11222218
+      }
+    },
+    {
+      "name": "teams_ppt_artifacts_present",
+      "pass": true,
+      "details": {
+        "files": 127,
+        "bytes": 11067205
+      }
+    },
+    {
+      "name": "superseded_registration_failure_retained",
+      "pass": true,
+      "details": {
+        "status": "FAIL",
+        "failed": [
+          "staged_diff_check"
+        ]
+      }
+    },
+    {
+      "name": "no_unstaged_tracked_edits",
+      "pass": true,
+      "details": null
+    }
+  ],
+  "notes": [
+    "The concurrent 20261122 handoff/tasks/registry closeout was audited and retained; no duplicate RK33 tasks section or PPT pages were added.",
+    "The earlier parallel registration verifier v1 remains as a FAIL record for its three handoff trailing-whitespace errors; this v2 independently checks the final concurrent state.",
+    "Concurrent commit 8dcb9550 retained the science RK33 registry row and relabelled the parallel documentation row RK33-DOC-CLOSEOUT; this verification makes no further registry edit.",
+    "Historical dirty/untracked files were archived by the separate concurrent commit 8203c0bb; this verifier does not reverse or rewrite that history.",
+    "External SOTA, unified time-matched, full seven-method dense trajectories, functional/protein OOD, prospective DBTL and RK-G1 remain open."
+  ]
+}

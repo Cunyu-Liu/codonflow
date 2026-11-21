@@ -37,7 +37,7 @@ def main() -> None:
     ancestry = subprocess.run(["git", "merge-base", "--is-ancestor", "5beff8ad66fc71ea28101fe39538d8e260071104", "HEAD"], cwd=ROOT).returncode
     check("concurrent_closeout_is_in_history", ancestry == 0, {"returncode": ancestry})
 
-    registry = run("git", "show", "HEAD:experiments/REGISTRY.md").decode()
+    registry = (ROOT / "experiments/REGISTRY.md").read_text()
     tasks = run("git", "show", "HEAD:docs/handover/tasks.md").decode()
     check("one_rk33_registry_row", registry.count("| RK33 |") == 1, registry.count("| RK33 |"))
     check("one_concurrent_rk33_tasks_section", tasks.count("## 2026-11-22：RK33 local observed-R1") == 1, tasks.count("## 2026-11-22：RK33 local observed-R1"))
@@ -61,7 +61,7 @@ def main() -> None:
     independent = json.loads((ROOT / AUDIT / "rk33_local_coverage_independent_v1.json").read_text())
     reproduction = json.loads((ROOT / AUDIT / "rk33_clean_reproduction_v1.json").read_text())
     closeout = json.loads((ROOT / AUDIT / "rk33_closeout_verification_v2.json").read_text())
-    check("science_status_retained", science.get("status") in {"PASS", "SUCCESS", "COMPLETED"} or science.get("conclusion") is not None, {"status": science.get("status"), "conclusion": science.get("conclusion")})
+    check("production_verdict_retained", science.get("status") == "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION" and science.get("scientific_conclusion") == "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED" and science.get("all_12_pass") is False and science.get("evaluated_model_fits") == 400 and not any(science.get("family_pass", {}).values()), {"status": science.get("status"), "conclusion": science.get("scientific_conclusion"), "all_12_pass": science.get("all_12_pass"), "family_pass": science.get("family_pass"), "evaluated_model_fits": science.get("evaluated_model_fits")})
     check("independent_76_of_76", independent.get("status") == "PASS" and independent.get("checks_passed") == 76 and independent.get("checks_total") == 76, {"status": independent.get("status"), "checks": f'{independent.get("checks_passed")}/{independent.get("checks_total")}'})
     check("clean_reproduction_90_of_90", reproduction.get("status") == "PASS" and reproduction.get("checks_passed") == 90 and reproduction.get("checks_total") == 90, {"status": reproduction.get("status"), "checks": f'{reproduction.get("checks_passed")}/{reproduction.get("checks_total")}'})
     check("science_closeout_22_of_22", closeout.get("status") == "PASS" and closeout.get("checks_passed") == 22 and closeout.get("checks_total") == 22, {"status": closeout.get("status"), "checks": f'{closeout.get("checks_passed")}/{closeout.get("checks_total")}'})
@@ -97,12 +97,14 @@ def main() -> None:
         "actual_remote_a8_rk": remote,
         "concurrent_closeout_commit": "5beff8ad66fc71ea28101fe39538d8e260071104",
         "concurrent_archive_commit": "8203c0bbda4fa008841d11030af525bb545eb83e",
+        "registry_dedup_commit": "8dcb95509e737fa756940e6e7e95f319d5cf79ea",
         "checks_passed": sum(bool(c["pass"]) for c in checks),
         "checks_total": len(checks),
         "checks": checks,
         "notes": [
             "The concurrent 20261122 handoff/tasks/registry closeout was audited and retained; no duplicate RK33 tasks section or PPT pages were added.",
             "The earlier parallel registration verifier v1 remains as a FAIL record for its three handoff trailing-whitespace errors; this v2 independently checks the final concurrent state.",
+            "Concurrent commit 8dcb9550 retained the science RK33 registry row and relabelled the parallel documentation row RK33-DOC-CLOSEOUT; this verification makes no further registry edit.",
             "Historical dirty/untracked files were archived by the separate concurrent commit 8203c0bb; this verifier does not reverse or rewrite that history.",
             "External SOTA, unified time-matched, full seven-method dense trajectories, functional/protein OOD, prospective DBTL and RK-G1 remain open.",
         ],
