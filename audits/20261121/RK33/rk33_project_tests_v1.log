@@ -1,0 +1,106 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.22, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/codonflow-a8-rk
+configfile: pyproject.toml
+plugins: platformdirs-4.12.4, anyio-4.16.0
+collected 430 items
+
+tests/test_a6_codongpt_batch.py ....                                     [  0%]
+tests/test_a6_joint_hv.py .....                                          [  2%]
+tests/test_a7_calibration_pool.py ..                                     [  2%]
+tests/test_a7_confirmation.py ...                                        [  3%]
+tests/test_a7_convergence_audit.py .....                                 [  4%]
+tests/test_a7_data_audit.py ...                                          [  5%]
+tests/test_a7_execute_external.py ..                                     [  5%]
+tests/test_a7_execute_g2.py ...                                          [  6%]
+tests/test_a7_execute_proposal_in_loop.py ..                             [  6%]
+tests/test_a7_follow_g1.py ....                                          [  7%]
+tests/test_a7_follow_g2.py ...                                           [  8%]
+tests/test_a7_g0_gate.py ..                                              [  8%]
+tests/test_a7_g1_behavior.py ....                                        [  9%]
+tests/test_a7_g2_gate.py .......                                         [ 11%]
+tests/test_a7_g2_preflight.py ..                                         [ 11%]
+tests/test_a7_g2_raw_verification.py .....                               [ 13%]
+tests/test_a7_learned_runner.py .                                        [ 13%]
+tests/test_a7_plot_g2.py .                                               [ 13%]
+tests/test_a7_proposal_in_loop.py ....                                   [ 14%]
+tests/test_a7_proposal_in_loop_gate.py ...                               [ 15%]
+tests/test_a7_protocol.py ...                                            [ 15%]
+tests/test_a7_provenance.py .                                            [ 16%]
+tests/test_a7_recompute_external.py ..                                   [ 16%]
+tests/test_a7_recompute_unique18.py ....                                 [ 17%]
+tests/test_a7_recover_sources.py ....                                    [ 18%]
+tests/test_a7_resume.py ....                                             [ 19%]
+tests/test_a7_resume_training.py .....                                   [ 20%]
+tests/test_a7_run_training.py ..                                         [ 20%]
+tests/test_a7_species_audit.py ...                                       [ 21%]
+tests/test_a7_summarize_g2.py ..                                         [ 22%]
+tests/test_a7_training_config.py ...                                     [ 22%]
+tests/test_a7_unique18_shards.py .                                       [ 23%]
+tests/test_a7_verify_frozen_assets.py ...                                [ 23%]
+tests/test_a8_g0_closeout.py .........                                   [ 25%]
+tests/test_a8_g0_closeout_documents.py ........                          [ 27%]
+tests/test_a8_rk05_cdgb_source_audit.py ........                         [ 29%]
+tests/test_a8_rk05_codontransformer_official_smoke.py ........           [ 31%]
+tests/test_a8_rk05_ensembledesign_official_smoke.py ...........          [ 33%]
+tests/test_a8_rk05_lineardesign_official_smoke.py ...........            [ 36%]
+tests/test_a8_rk08_channel_screen.py ........                            [ 38%]
+tests/test_a8_rk08_constant_field_ppt.py ...                             [ 39%]
+tests/test_a8_rk08_constant_velocity_field.py ..........                 [ 41%]
+tests/test_a8_rk08_full_function.py .......                              [ 43%]
+tests/test_a8_rk08_ribokinetic.py ............                           [ 45%]
+tests/test_a8_rk08_velocity.py ...                                       [ 46%]
+tests/test_a8_rk16_dense_prefix.py .......                               [ 48%]
+tests/test_a8_rk19_reproduction_ppt.py ...                               [ 48%]
+tests/test_a8_rk20_functional_multiseed.py .......                       [ 50%]
+tests/test_a8_rk23_boel_uh.py ..............                             [ 53%]
+tests/test_a8_rk24_boel_author_model.py ............                     [ 56%]
+tests/test_a8_rk25_author_mechanism.py ..............                    [ 59%]
+tests/test_a8_rk25_verify_ood.py ....                                    [ 60%]
+tests/test_a8_rk26_mage_pair_feasibility.py ..........                   [ 63%]
+tests/test_a8_rk27_independent_verifier.py ........                      [ 64%]
+tests/test_a8_rk27_sequence_cluster_ood.py ..........                    [ 67%]
+tests/test_a8_rk27_sequence_coverage.py ....                             [ 68%]
+tests/test_a8_rk33_local_coverage.py ......                              [ 69%]
+tests/test_anytime.py .....                                              [ 70%]
+tests/test_atc.py .....                                                  [ 71%]
+tests/test_codon.py ..........                                           [ 74%]
+tests/test_data_baselines.py .....................                       [ 79%]
+tests/test_download_corpora.py .                                         [ 79%]
+tests/test_evaluation_protocol.py ...........                            [ 81%]
+tests/test_gemorna_arm.py .                                              [ 82%]
+tests/test_gpu_queue.py ...                                              [ 82%]
+tests/test_gpu_queue_integration.py s                                    [ 83%]
+tests/test_metrics.py ............                                       [ 85%]
+tests/test_model_rl.py ...........                                       [ 88%]
+tests/test_paired_stats.py ...                                           [ 89%]
+tests/test_pretrain_protocol.py ......                                   [ 90%]
+tests/test_rk19_environment_contract.py ...                              [ 91%]
+tests/test_simple_search.py ............                                 [ 93%]
+tests/test_synonymous_corruption.py ...                                  [ 94%]
+tests/test_synonymous_markov.py .................                        [ 98%]
+tests/test_tokenizer.py ......                                           [100%]
+
+=============================== warnings summary ===============================
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:56: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    rho = stats.spearmanr(y, pred).statistic
+
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:57: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    pearson = stats.pearsonr(y, pred).statistic
+
+tests/test_model_rl.py::test_model_forward_shapes
+tests/test_model_rl.py::test_edit_flow_loss_finite
+tests/test_pretrain_protocol.py::test_validation_is_reproducible_across_calls
+tests/test_pretrain_protocol.py::test_validation_generator_uses_model_device
+tests/test_pretrain_protocol.py::test_conditionality_probe_uses_device_and_matching_corruption
+tests/test_pretrain_protocol.py::test_validation_micro_batching_preserves_full_batch_loss[False]
+tests/test_pretrain_protocol.py::test_validation_micro_batching_preserves_full_batch_loss[True]
+  /home/codonflow-a8-rk/src/codonflow/models/edit_flow.py:94: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+    self.encoder = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 429 passed, 1 skipped, 11 warnings in 20.16s =================

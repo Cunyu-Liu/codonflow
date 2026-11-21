@@ -1,0 +1,406 @@
+{
+  "analysis_type": "retrospective_outcome_known_coverage_followup_not_independent_confirmation",
+  "arrays_exact_equal": "52/52",
+  "artifact_sha256": {
+    "clean_console": "a8749a749210fd8233234b2b5c2cca453e0d18173fbdaafbbebe576f46aafc33",
+    "clean_independent_console": "a369031c16ea2e430268ece8dab8a64b2bcce773c94a9a3149ffb2cc1cc1e588",
+    "failed_console": "2efeb37fe85848b06d275057ff2ce58398631184befe4209bccca4e8d1242a18",
+    "independent": "3b53c5118bc93a71a5eaadaaaf22e48f13bc0b2d580b017308348a0ff171fa8d",
+    "preflight": "ff3b3159230fc8650a8f1b873c4c2d412ee42a5fc5c0bbce53240c2fccac706d",
+    "production_console": "102d74fd64fdd47740dd17833436a349d31706ed83ba92901a515507dc9fe7b6",
+    "project_tests": "06863b85f1efec936bdff6af62a62899b3434588d90aa0ab4d7cf2972ebcd12f",
+    "protocol": "d5a3282f0d03a384b3d77c3d30d2a98b315c0624d16e6d97563d09cee60a96fe",
+    "reproduction": "7808acc84567fe972be0ddb870c23bd8714da2bc1e0dbdb1421ff08a5171e455",
+    "result": "d341694fb336ba579bbb990d80d7b17eafff104250052cea8577e4b927c08b64",
+    "synthetic_v1": "dfbc320492334df1ae447719dc993c118180103cd80b31e3531ec30c65d85f1d",
+    "synthetic_v2": "dfbc320492334df1ae447719dc993c118180103cd80b31e3531ec30c65d85f1d"
+  },
+  "checks": [
+    {
+      "details": {
+        "checks": 21,
+        "status": "PASS_RK33_LABEL_FREE_PREFLIGHT"
+      },
+      "name": "preflight_21_of_21",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": 18,
+        "status": "PASS"
+      },
+      "name": "synthetic_v1_18_of_18",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": 18,
+        "status": "PASS"
+      },
+      "name": "synthetic_v2_18_of_18",
+      "pass": true
+    },
+    {
+      "details": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+      "name": "production_conclusion",
+      "pass": true
+    },
+    {
+      "details": {
+        "evaluated_model_fits": 400,
+        "new_model_fits": 200,
+        "reused_rk28_model_fits": 200
+      },
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": {
+        "independent": 12,
+        "production": 12
+      },
+      "name": "twelve_frozen_endpoints",
+      "pass": true
+    },
+    {
+      "details": {
+        "passed": 0,
+        "total": 12
+      },
+      "name": "zero_of_twelve",
+      "pass": true
+    },
+    {
+      "details": {
+        "local42_vs_full1__histgb_mse_improvement": [
+          -0.2547405517998259,
+          0.4025421660664394
+        ],
+        "local42_vs_full1__histgb_spearman_effect": [
+          -0.07171423841651083,
+          0.1321854301285903
+        ],
+        "local42_vs_full1__ridge_mse_improvement": [
+          -0.08889221051447084,
+          0.07417503335598878
+        ],
+        "local42_vs_full1__ridge_spearman_effect": [
+          -0.05856047107378637,
+          0.04037679397433563
+        ],
+        "local42_vs_full3__histgb_mse_improvement": [
+          -0.18650690060084615,
+          0.48911867345592225
+        ],
+        "local42_vs_full3__histgb_spearman_effect": [
+          -0.06245751722261643,
+          0.158577717269599
+        ],
+        "local42_vs_full3__ridge_mse_improvement": [
+          -0.03698623846071536,
+          0.17466799153834514
+        ],
+        "local42_vs_full3__ridge_spearman_effect": [
+          -0.03024717042424728,
+          0.07753494766807899
+        ],
+        "local42_vs_simple__histgb_mse_improvement": [
+          -0.30030366638506945,
+          0.28796607886885034
+        ],
+        "local42_vs_simple__histgb_spearman_effect": [
+          -0.08468073588957464,
+          0.12326851563264574
+        ],
+        "local42_vs_simple__ridge_mse_improvement": [
+          -0.05761621113065077,
+          0.03354720189167854
+        ],
+        "local42_vs_simple__ridge_spearman_effect": [
+          -0.04928297962028316,
+          0.00889243373126865
+        ]
+      },
+      "name": "all_ci_cross_zero",
+      "pass": true
+    },
+    {
+      "details": {
+        "local42_vs_full1__histgb_mse_improvement": 1.0,
+        "local42_vs_full1__histgb_spearman_effect": 1.0,
+        "local42_vs_full1__ridge_mse_improvement": 1.0,
+        "local42_vs_full1__ridge_spearman_effect": 1.0,
+        "local42_vs_full3__histgb_mse_improvement": 1.0,
+        "local42_vs_full3__histgb_spearman_effect": 1.0,
+        "local42_vs_full3__ridge_mse_improvement": 1.0,
+        "local42_vs_full3__ridge_spearman_effect": 1.0,
+        "local42_vs_simple__histgb_mse_improvement": 1.0,
+        "local42_vs_simple__histgb_spearman_effect": 1.0,
+        "local42_vs_simple__ridge_mse_improvement": 1.0,
+        "local42_vs_simple__ridge_spearman_effect": 1.0
+      },
+      "name": "all_holm_one",
+      "pass": true
+    },
+    {
+      "details": {
+        "local42_vs_full1": false,
+        "local42_vs_full3": false,
+        "local42_vs_simple": false
+      },
+      "name": "all_families_fail",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": 76,
+        "status": "PASS"
+      },
+      "name": "independent_76_of_76",
+      "pass": true
+    },
+    {
+      "details": {
+        "family_pass": {
+          "local42_vs_full1": false,
+          "local42_vs_full3": false,
+          "local42_vs_simple": false
+        },
+        "independent": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+        "production": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED"
+      },
+      "name": "independent_conclusion_match",
+      "pass": true
+    },
+    {
+      "details": {
+        "independent": [
+          [
+            "local42_vs_simple__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_simple__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_simple__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_simple__histgb_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full1__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full1__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full1__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full1__histgb_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full3__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full3__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full3__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full3__histgb_mse_improvement",
+            false
+          ]
+        ],
+        "production": [
+          [
+            "local42_vs_simple__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_simple__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_simple__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_simple__histgb_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full1__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full1__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full1__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full1__histgb_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full3__ridge_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full3__ridge_mse_improvement",
+            false
+          ],
+          [
+            "local42_vs_full3__histgb_spearman_effect",
+            false
+          ],
+          [
+            "local42_vs_full3__histgb_mse_improvement",
+            false
+          ]
+        ]
+      },
+      "name": "independent_endpoint_gates_match",
+      "pass": true
+    },
+    {
+      "details": {
+        "analysis": 1.4210854715202004e-14,
+        "inference_arrays": 3.3306690738754696e-16,
+        "predictions": 8.881784197001252e-16,
+        "primary_tests": 5.551115123125783e-17,
+        "seed_effects": 1.5265566588595902e-16
+      },
+      "name": "independent_numeric_tolerances",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "90/90",
+        "status": "PASS"
+      },
+      "name": "reproduction_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "equal": 12,
+        "total": 12
+      },
+      "name": "csv_byte_identical",
+      "pass": true
+    },
+    {
+      "details": {
+        "equal": 52,
+        "total": 52
+      },
+      "name": "arrays_exact",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": "20e1ac389313fc21c36e82a5745be3d89bf0dffa",
+        "observed": "20e1ac389313fc21c36e82a5745be3d89bf0dffa"
+      },
+      "name": "clean_commit",
+      "pass": true
+    },
+    {
+      "details": {
+        "git_diff_quiet_returncode": 0
+      },
+      "name": "clean_tracked_tree_unchanged",
+      "pass": true
+    },
+    {
+      "details": {
+        "passed": 429,
+        "seconds": 20.16,
+        "skipped": 1
+      },
+      "name": "project_tests",
+      "pass": true
+    },
+    {
+      "details": {
+        "dangles_effect_identified": false,
+        "exact_kudla_start_aware_transport": false,
+        "functional_untouched_read": false,
+        "host_or_assay_effect_identified": false,
+        "independent_untouched_confirmation": false,
+        "measured_structure": false,
+        "protein_ood": false,
+        "retrospective_outcome_known": true,
+        "rk_g1_complete": false,
+        "velocity_or_decay_measured": false
+      },
+      "name": "scientific_boundaries",
+      "pass": true
+    },
+    {
+      "details": {
+        "failed_log_bytes": 340,
+        "success_log_bytes": 10895
+      },
+      "name": "retained_failure_and_success_logs",
+      "pass": true
+    }
+  ],
+  "checks_passed": 22,
+  "checks_total": 22,
+  "clean_commit": "20e1ac389313fc21c36e82a5745be3d89bf0dffa",
+  "clean_independent_seconds": 190.44328842498362,
+  "clean_production_seconds": 158.61769604636356,
+  "csv_byte_equal": "12/12",
+  "endpoints_passed": 0,
+  "endpoints_total": 12,
+  "evaluated_model_fits": 400,
+  "failed_checks": [],
+  "independent_checks": "76/76",
+  "independent_seconds": 213.34889127779752,
+  "new_model_fits": 200,
+  "production_seconds": 154.17062000138685,
+  "project_tests": {
+    "passed": 429,
+    "seconds": 20.16,
+    "skipped": 1
+  },
+  "reproduction_checks": "90/90",
+  "reused_rk28_model_fits": 200,
+  "schema": "a8-rk33-local-coverage-closeout-verification-v2",
+  "scientific_conclusion": "LOCAL42_OBSERVED_R1_STRUCTURE_INCREMENT_NOT_SUPPORTED",
+  "scientific_flags": {
+    "complete_cds_observed": false,
+    "dangles_effect_identified": false,
+    "exact_kudla_start_aware_transport": false,
+    "fixed_protein": true,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "host_or_assay_effect_identified": false,
+    "independent_untouched_confirmation": false,
+    "measured_structure": false,
+    "protein_ood": false,
+    "retrospective_outcome_known": true,
+    "rk_g1_complete": false,
+    "start_atg_observed": false,
+    "upstream_4nt_observed": false,
+    "velocity_or_decay_measured": false
+  },
+  "status": "PASS"
+}
