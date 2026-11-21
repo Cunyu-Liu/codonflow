@@ -1,0 +1,410 @@
+{
+  "status": "PASS_RK32_PPT_AUDIT",
+  "presentation": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "revision_id": 112,
+  "slide_count": 147,
+  "rk32_pages": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147
+  ],
+  "rk32_slide_ids": [
+    "pZF",
+    "pZQ",
+    "pZu",
+    "pZk",
+    "pZE",
+    "pZK",
+    "pZm",
+    "pZJ"
+  ],
+  "checks_total": 20,
+  "checks_passed": 20,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "live_readback_ok_revision_112",
+      "pass": true,
+      "evidence": {
+        "revision_id": 112
+      }
+    },
+    {
+      "name": "slide_count_147",
+      "pass": true,
+      "evidence": {
+        "slide_count": 147
+      }
+    },
+    {
+      "name": "pre_snapshot_139",
+      "pass": true,
+      "evidence": {
+        "pre_slide_count": 139
+      }
+    },
+    {
+      "name": "all_139_preexisting_slides_content_unchanged",
+      "pass": true,
+      "evidence": {
+        "changed_pages": [],
+        "comparison": "XML parsed; only element-tail whitespace ignored"
+      }
+    },
+    {
+      "name": "new_slide_ids_and_order",
+      "pass": true,
+      "evidence": {
+        "expected": [
+          "pZF",
+          "pZQ",
+          "pZu",
+          "pZk",
+          "pZE",
+          "pZK",
+          "pZm",
+          "pZJ"
+        ],
+        "observed": [
+          "pZF",
+          "pZQ",
+          "pZu",
+          "pZk",
+          "pZE",
+          "pZK",
+          "pZm",
+          "pZJ"
+        ]
+      }
+    },
+    {
+      "name": "page_numbers_140_to_147",
+      "pass": true,
+      "evidence": {
+        "pages": [
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147
+        ]
+      }
+    },
+    {
+      "name": "speaker_notes_present_all_new_pages",
+      "pass": true,
+      "evidence": {
+        "notes_nonempty": 8
+      }
+    },
+    {
+      "name": "eight_current_screenshots_960x540",
+      "pass": true,
+      "evidence": {
+        "screenshots": [
+          {
+            "page": 140,
+            "slide_id": "pZF",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p140_pZF.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 158883,
+            "sha256": "e5824d61ac7c43f944a24735554d98547046b258892f50cb2eb770567f3c83de"
+          },
+          {
+            "page": 141,
+            "slide_id": "pZQ",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p141_pZQ.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 206454,
+            "sha256": "580780bc572b3f74b01d6dbe87ee67134d714eb757beff317d205bdf0f2a0995"
+          },
+          {
+            "page": 142,
+            "slide_id": "pZu",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p142_pZu.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 185895,
+            "sha256": "189fb1141cd475142982116bea4894016dbb6373080b04f1f5654e33acd68787"
+          },
+          {
+            "page": 143,
+            "slide_id": "pZk",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p143_pZk.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 187824,
+            "sha256": "77f6614646cccbc2a4760b1b9d0fcf58403160b780e06c7ff677325c7574836d"
+          },
+          {
+            "page": 144,
+            "slide_id": "pZE",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p144_pZE.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 189952,
+            "sha256": "b6bf82866949abe889b9ea84479fbc695e6ce4f1ce96727ffb18b53a74a1c5b2"
+          },
+          {
+            "page": 145,
+            "slide_id": "pZK",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p145_pZK.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 184730,
+            "sha256": "d19932abf20f735190be1c7bc3a1b7966fe3c9f9007617b0f912b78e9edac8e6"
+          },
+          {
+            "page": 146,
+            "slide_id": "pZm",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p146_pZm.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 190357,
+            "sha256": "855870f712ee81156db0acfd50def34c068693fc060adc1d509d9240259295e4"
+          },
+          {
+            "page": 147,
+            "slide_id": "pZJ",
+            "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p147_pZJ.jpg",
+            "dimensions": [
+              960,
+              540
+            ],
+            "bytes": 202895,
+            "sha256": "ffaf684e6c9f630637b59edc39663e6675861d0eedaa6decee63c0b55fd9c38a"
+          }
+        ],
+        "manual_visual_readback": "8/8 completed before this audit"
+      }
+    },
+    {
+      "name": "design_and_label_free_preflight_values",
+      "pass": true,
+      "evidence": {
+        "required_terms": [
+          "150",
+          "37",
+          "864 nt",
+          "700",
+          "154 measurement rows",
+          "144-nt 5′UTR + 720-nt CDS",
+          "0.948728",
+          "1.3549",
+          "0.994375",
+          "1.9879",
+          "No expression outcomes read during preflight"
+        ]
+      }
+    },
+    {
+      "name": "frozen_protocol_six_arms_exact",
+      "pass": true,
+      "evidence": {
+        "observed_rows": [
+          [
+            "Structure arm",
+            "Frozen definition",
+            "Required evidence"
+          ],
+          [
+            "Source local",
+            "Source-reported local MFE · start-aware -4 to +37 nt",
+            "Ridge + HistGB · 2 metrics"
+          ],
+          [
+            "Vienna local",
+            "Vienna local MFE · UTR[-4:] + CDS[:38] · dangles=2",
+            "Ridge + HistGB · 2 metrics"
+          ],
+          [
+            "Source full",
+            "Source-reported full-transcript MFE · retained as independent arm",
+            "Ridge + HistGB · 2 metrics"
+          ],
+          [
+            "Vienna full CDS",
+            "Vienna CDS-only MFE · complete 720-nt CDS · dangles=2",
+            "Ridge + HistGB · 2 metrics"
+          ],
+          [
+            "Vienna full mRNA",
+            "Vienna complete 864-nt mRNA MFE · dangles=2",
+            "Ridge + HistGB · 2 metrics"
+          ],
+          [
+            "Mordstein-like",
+            "CDS[:300] MFE + 48-nt minimum-window and window-mean MFE",
+            "Ridge + HistGB · 2 metrics"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "decision_table_and_conclusion_exact",
+      "pass": true,
+      "evidence": {
+        "observed_rows": [
+          [
+            "Structure arm",
+            "Passed endpoints",
+            "Arm decision"
+          ],
+          [
+            "Source local",
+            "4 / 4",
+            "PASS"
+          ],
+          [
+            "Vienna local",
+            "4 / 4",
+            "PASS"
+          ],
+          [
+            "Source full",
+            "0 / 4",
+            "FAIL"
+          ],
+          [
+            "Vienna full CDS",
+            "0 / 4",
+            "FAIL"
+          ],
+          [
+            "Vienna full mRNA",
+            "0 / 4",
+            "FAIL"
+          ],
+          [
+            "Mordstein-like",
+            "1 / 4",
+            "FAIL"
+          ]
+        ],
+        "conclusion": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY"
+      }
+    },
+    {
+      "name": "ridge_12_endpoints_exact",
+      "pass": true,
+      "evidence": {
+        "rows": 12
+      }
+    },
+    {
+      "name": "histgb_12_endpoints_exact",
+      "pass": true,
+      "evidence": {
+        "rows": 12
+      }
+    },
+    {
+      "name": "absolute_15_rows_exact",
+      "pass": true,
+      "evidence": {
+        "rows": 15
+      }
+    },
+    {
+      "name": "pass_accounting_9_24_local2_full0",
+      "pass": true,
+      "evidence": {
+        "endpoint_passes": 9,
+        "local_arm_passes": 2,
+        "full_arm_passes": 0
+      }
+    },
+    {
+      "name": "reproduction_and_closeout_evidence_exact",
+      "pass": true,
+      "evidence": {
+        "required_terms": [
+          "700",
+          "23 / 23",
+          "106 / 106",
+          "423 tests passed · 1 skipped",
+          "67a5f4612d0bdd5d",
+          "a75eaed1c01ad202",
+          "e8c22276462e907d",
+          "5811261bb820048a",
+          "9dea683f56668e57",
+          "469b30e4604f"
+        ]
+      }
+    },
+    {
+      "name": "manuscript_hash_and_review_bound",
+      "pass": true,
+      "evidence": {
+        "manuscript_sha256": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+        "review_checks": 18
+      }
+    },
+    {
+      "name": "fit_count_label_unambiguous",
+      "pass": true,
+      "evidence": {
+        "fit_label": "700 per run; independent repeats all"
+      }
+    },
+    {
+      "name": "remaining_tasks_and_local_transport_boundary_explicit",
+      "pass": true,
+      "evidence": {
+        "required_terms": [
+          "OPEN",
+          "UNREAD",
+          "no functional OOD or RK-G1 claim",
+          "Mordstein observed-R1 starts at CDS position 4",
+          "start ATG and four upstream nucleotides are absent",
+          "Complete external SOTA and unified time-matched evaluation",
+          "Complete seven-method dense generation-call trajectories",
+          "Full UTR–CDS remap and multispecies VeloHARMO closure",
+          "Prospective DBTL / wet-lab validation",
+          "RK-G1 NOT CLOSED"
+        ]
+      }
+    },
+    {
+      "name": "no_preprint_submission_or_independent_confirmation_claim",
+      "pass": true,
+      "evidence": {
+        "scope": "eight new slides"
+      }
+    }
+  ],
+  "evidence_sha256": {
+    "pre_xml": "c8c0a8188aa823df59334818408ff553856c52ff0843d0ff1991acbc8724a608",
+    "final_xml": "c5441c1e4f2f0852946ebb66a4126149338af50088d529340735e0b9e7e96e46",
+    "result": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c",
+    "independent": "e8c22276462e907d40fd84fc9c4d0d6526374dab92c5bf9dea3467967274cd2e",
+    "closeout": "5811261bb820048ab463e67bc0307559845017a0bf5143a635f948c8e75132e2",
+    "reproduction": "9dea683f56668e574b3c175b0640a2ee5824a5b3ee6cb471b27a31b0c3046f8a",
+    "manuscript_review": "1bc2f9d78567c5593157e54d58e2907b578cca1d978fffb0ea72c666cd8a97cb",
+    "manuscript_integration": "aee73ca1f4e7e1730f00a612ed7bc0381cb49f0ed4a511516fabb7dd073b37cd"
+  }
+}
