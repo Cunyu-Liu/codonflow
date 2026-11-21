@@ -265,3 +265,12 @@
 - [x] **在线 PPT108**：在 107/revision 69/`pZZ` 后仅追加第 108 页 `pZS`、revision 70；candidate 227/227、写后 553/553、closeout 32/32，真实在线截图视觉 PASS，旧 107 页及备注语义不变。两次 `+add-slide` server timeout 后均回读确认未落库；随后使用带幂等键的原生创建接口成功一次，未产生重复页。closeout 的报告字段和末尾换行修正不改变科学或在线内容。PPT 提交=`3460c2e07d6e44d09afa38e747db737aae939911`；归档位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/mage_pure_external_nested_cv_v1/pure_external_ppt_v1/`。
 - [ ] **仍未闭合**：本项只闭合旧 `rcs_only` 并非纯外部臂的歧义及纯 RCS 替代诊断，不闭合所有外部预训练模型替代、独立常数速度场、transport、functional untouched、full UTR–CDS remap、完整外部 SOTA 或真实功能验证；不得据此启动昂贵生成训练。
 - [ ] **复现边界**：v32/pure-RCS/PPT108 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；上述 PASS 只覆盖冻结证据、定向测试、独立重算、论文与页面验收。权威工作树仍为 `/home/codonflow-a8-rk`、分支 `a8-rk`。
+
+## 2026-11-21：RK29 iCodon 来源可识别性停止、PPT121 与复现 closeout
+
+- [x] **来源与无结局覆盖**：Goodman 出版商逐变体 CSV 持续 403；Mauger 官方补充包含 ORF/SHAPE-MaP 但无可一一连接的逐变体功能结局。改选 iCodon/GSE207584，在读取结局前冻结 950 variants、96 proteins、96 evaluation groups，跨蛋白 identity≥0.90 配对为 0，四个 ViennaRNA 28°C MFE 特征均有限；状态 `PASS_LABEL_FREE_COVERAGE_AUDIT_FEASIBLE`。
+- [x] **协议先冻结再读结局**：冻结 simple93/structure97/MFE-only/iCodon-only、Ridge/HistGB、10 seeds×5 folds、四终点 Holm 和唯一一对一序列—结局连接门禁；协议提交 `9496e1797470e5dd007e990d3760855f8bd43f0a`，9/9 合成测试通过后授权生产。
+- [x] **完整对齐审计按预注册停止**：GEO 10,227 行是每个蛋白内部 FASTA 名称×测量向量的笛卡尔积；候选分布 240/598/117（1/2/3 candidates），715/955 S6 行无唯一序列，338/578 蛋白×设计组有多重合法分配。禁止以行号、首匹配、最近值或 target-informed 选择挽救；400 planned fits 实际为 0，无 analysis/prediction/metric/inference 或 `RK29_RESULT.json`。
+- [x] **独立与干净复现**：独立 verifier 不 import 生产/覆盖模块，重新解析原始 S6/GEO/FASTA 并复算全部 10,227 配对，状态 `PASS_INDEPENDENT_ALIGNMENT_FAILURE_VERIFICATION`；科学停止提交 `3f75dc79cab881eb18eb65e10b15e0a5c0345dc8` 已推送。完整项目测试 423 passed/1 skipped；独立 clean clone 中 9/9 测试与独立 verifier 复跑通过，20 个声明字段完全一致，clone 前后 0 dirty files。离线 v3–v5 失败及在线/Torch 下载停止日志保留，最终 20-wheel 递归闭包 v6 安装和 `PASS_RK29_REPRODUCTION` 已核实。
+- [x] **研究 PPT 与论文边界**：既有 PPT 从 120 页/revision83/`pZC` 仅追加第 121 页 `pZx`/revision84；前 120 页 ID、顺序和规范化语义 XML 不变，4 段 notes，所有对象在 960×540 内，状态 `PASS_RK29_PPT_READBACK`。本轮按 Skill 做服务器 XML 回读与画布检查，未声称截图视觉验收。英文稿不变，因为 RK29 是来源可识别性失败，不是结构增量阳性或阴性科学结果。
+- [ ] **下一步仍需新证据**：只有取得权威逐变体序列键/明确映射表，或选取已独立连接序列与功能结局的新数据集，才可新预注册判别实验。当前失败连接不得事后修订；functional untouched 未访问，昂贵生成训练未授权，RK-G1=false。

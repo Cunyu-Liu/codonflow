@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "run_id": "A8-RK29",
+  "date": "2026-11-21",
+  "status": "PASS_RK29_REPRODUCTION",
+  "science_head": "3f75dc79cab881eb18eb65e10b15e0a5c0345dc8",
+  "authoritative_worktree": "/home/codonflow-a8-rk",
+  "full_project_suite": {
+    "environment": "/home/codonflow-clean-env-v1/bin/python",
+    "command": "python -m pytest tests/",
+    "passed": 423,
+    "skipped": 1,
+    "warnings": 11,
+    "elapsed_seconds": 31.84,
+    "exit_code": 0,
+    "log": "project_pytest_v1.log",
+    "log_sha256": "6f7b75587f8dc464174e6e06c9b2cbeee742577fa620c6700750d6b091c43f1a"
+  },
+  "clean_clone": {
+    "path": "/home/codonflow-a8-rk29-repro",
+    "head": "3f75dc79cab881eb18eb65e10b15e0a5c0345dc8",
+    "dirty_files_before": 0,
+    "dirty_files_after": 0
+  },
+  "minimal_environment": {
+    "path": "/home/codonflow-rk29-minimal-env-py310",
+    "python": "3.10.22",
+    "system_site_packages": false,
+    "torch_installed": false,
+    "project_install_mode": "no-deps",
+    "scope": "RK29 scripts and targeted tests only; not a full-project environment",
+    "versions": {
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.7.2",
+      "pytest": "9.2.0",
+      "ViennaRNA": "2.7.2"
+    },
+    "offline_wheel_count": 20,
+    "recursive_dependency_closure_pass": true,
+    "offline_install_attempt": "v6",
+    "offline_install_log": "clean_minimal_offline_install_v6.log",
+    "offline_install_log_sha256": "f11e91bcf421d10240b6e0d06bdf3acdd6a76bee1388f4ca2a35cba4f8d1ea21",
+    "wheelhouse_log": "local_wheelhouse_build_v1.log",
+    "wheelhouse_log_sha256": "880bc69af3aa8dc325b54b2095c127055b0619bd146d1a22c8ae245c955b3a3e",
+    "failed_attempts_retained": [
+      "full environment Torch download deliberately stopped",
+      "stalled Aliyun minimal install stopped",
+      "slow official PyPI minimal install stopped",
+      "offline v3 missing exceptiongroup",
+      "offline v4 missing typing-extensions",
+      "offline v5 missing cloudpickle>=3.0"
+    ]
+  },
+  "clean_rk29_tests": {
+    "command": "python scripts/a8_rk29_test_production.py",
+    "passed": 9,
+    "failed": 0,
+    "elapsed_seconds": 166.834,
+    "log": "clean_rk29_unit_v1.log",
+    "log_sha256": "823dd68d09c6ffe8563d457c87f3d60674382bd048519b6fad35b188350b9191"
+  },
+  "clean_independent_verifier": {
+    "command": "python scripts/a8_rk29_verify_alignment_failure.py --protocol configs/a8-rk29-icodon-decay-cluster-ood-v1.json --failure-report <teams>/RK29_ALIGNMENT_FAILURE.json --audit-script scripts/a8_rk29_audit_outcome_alignment.py --output <teams>/reproduction/clean_RK29_ALIGNMENT_VERIFICATION.json --production-log <teams>/RK29_production.log --production-root <teams>/production",
+    "status": "PASS_INDEPENDENT_ALIGNMENT_FAILURE_VERIFICATION",
+    "raw_pairs_recomputed": 10227,
+    "raw_pairs_expected": 10227,
+    "candidate_size_distribution": {"1": 240, "2": 598, "3": 117},
+    "ambiguous_s6_rows": 715,
+    "ambiguous_protein_design_groups": 338,
+    "scientific_fields_compared": 20,
+    "scientific_field_differences": 0,
+    "model_fit_or_scientific_result_found": false,
+    "rk29_result_json_absent": true,
+    "row_order_or_arbitrary_assignment_used": false,
+    "imports_production_or_coverage_modules": false,
+    "report": "clean_RK29_ALIGNMENT_VERIFICATION.json",
+    "report_sha256": "d6a2e125e5a3f6a79663bff07aab79ad399480de905230ab727157c5b879df05",
+    "stdout_log": "clean_independent_verifier_v1.log",
+    "stdout_log_sha256": "d6a2e125e5a3f6a79663bff07aab79ad399480de905230ab727157c5b879df05"
+  },
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/reproduction",
+  "scientific_conclusion_changed": false,
+  "model_fits": 0,
+  "functional_untouched_accessed": false,
+  "generative_training_run": false
+}
