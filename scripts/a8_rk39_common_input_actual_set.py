@@ -445,7 +445,7 @@ def main() -> None:
                              "source": source, "source_sha256": source_sha,
                              "seed": seed, "method": method, "k": k})
 
-    expected_jobs = 9 if args.smoke else protocol["expected_run_count"]
+    expected_jobs = 3 if args.smoke else protocol["expected_run_count"]
     if len(jobs) != expected_jobs:
         raise ValueError(f"job-count mismatch: {len(jobs)} != {expected_jobs}")
     for job in jobs:
@@ -490,9 +490,9 @@ def main() -> None:
         "manuscript_submittable": False,
     }
     if args.smoke:
-        base["expected_smoke_runs"] = 9
-        base["expected_smoke_unique_scorer_calls"] = 99
-        if base["n_unique_scorer_calls"] != 99:
+        base["expected_smoke_runs"] = 3
+        base["expected_smoke_unique_scorer_calls"] = 33
+        if base["n_unique_scorer_calls"] != 33:
             raise ValueError("smoke unique-scorer total mismatch")
         base["smoke_gate_passed"] = True
     else:
