@@ -1,0 +1,246 @@
+{
+  "checks": [
+    {
+      "details": {
+        "discussion_marker_preserved": true,
+        "manuscript_status": "non_submittable_working_draft",
+        "non_insertion_content_preserved_exactly": true,
+        "original_bytes": 236372,
+        "original_sha256": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+        "section_bytes": 9367,
+        "section_count": 1,
+        "section_sha256": "2da98cbfb5a39fb5f1dadf5059f581b3cb3fc27ac132cf7a664bec0304c0e0c0",
+        "status": "PASS",
+        "table_21_count": 1,
+        "table_22_count": 1,
+        "updated_bytes": 245739,
+        "updated_sha256": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d"
+      },
+      "name": "integration_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "lark": "skipped_by_user",
+        "reason": "\u5199\u4f5c\u68c0\u67e5\u901a\u8fc7\uff0c\u7ec8\u7a3f\u5df2\u751f\u6210\uff0c\u7528\u6237\u5df2\u8df3\u8fc7\u98de\u4e66\u4ea4\u4ed8\u3002",
+        "stage": "deliver",
+        "status": "PASS",
+        "verification": ""
+      },
+      "name": "workflow_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d",
+        "observed": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d"
+      },
+      "name": "updated_hash",
+      "pass": true
+    },
+    {
+      "details": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+      "name": "original_hash",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": "2da98cbfb5a39fb5f1dadf5059f581b3cb3fc27ac132cf7a664bec0304c0e0c0",
+        "observed": "2da98cbfb5a39fb5f1dadf5059f581b3cb3fc27ac132cf7a664bec0304c0e0c0"
+      },
+      "name": "section_hash",
+      "pass": true
+    },
+    {
+      "details": {
+        "insertions": 1,
+        "recovered_original": true
+      },
+      "name": "insertion_only_recovery",
+      "pass": true
+    },
+    {
+      "details": {
+        "section_count": 1
+      },
+      "name": "section_location",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212simple | Ridge | Spearman | -0.017568 | [-0.049283, 0.008892] | 0.167992 | 1.000000 | 0/10 | No |",
+      "name": "endpoint_row_local42_vs_simple__ridge_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212simple | Ridge | MSE improvement | -0.010966 | [-0.057616, 0.033547] | 0.639968 | 1.000000 | 2/10 | No |",
+      "name": "endpoint_row_local42_vs_simple__ridge_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212simple | Histgb | Spearman | 0.023830 | [-0.084681, 0.123269] | 0.720614 | 1.000000 | 8/10 | No |",
+      "name": "endpoint_row_local42_vs_simple__histgb_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212simple | Histgb | MSE improvement | 0.009639 | [-0.300304, 0.287966] | 0.952202 | 1.000000 | 7/10 | No |",
+      "name": "endpoint_row_local42_vs_simple__histgb_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full1 | Ridge | Spearman | -0.009363 | [-0.058560, 0.040377] | 0.693865 | 1.000000 | 1/10 | No |",
+      "name": "endpoint_row_local42_vs_full1__ridge_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full1 | Ridge | MSE improvement | -0.008150 | [-0.088892, 0.074175] | 0.846208 | 1.000000 | 1/10 | No |",
+      "name": "endpoint_row_local42_vs_full1__ridge_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full1 | Histgb | Spearman | 0.035356 | [-0.071714, 0.132185] | 0.537973 | 1.000000 | 7/10 | No |",
+      "name": "endpoint_row_local42_vs_full1__histgb_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full1 | Histgb | MSE improvement | 0.081083 | [-0.254741, 0.402542] | 0.636868 | 1.000000 | 6/10 | No |",
+      "name": "endpoint_row_local42_vs_full1__histgb_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full3 | Ridge | Spearman | 0.021696 | [-0.030247, 0.077535] | 0.451477 | 1.000000 | 8/10 | No |",
+      "name": "endpoint_row_local42_vs_full3__ridge_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full3 | Ridge | MSE improvement | 0.071139 | [-0.036986, 0.174668] | 0.224939 | 1.000000 | 8/10 | No |",
+      "name": "endpoint_row_local42_vs_full3__ridge_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full3 | Histgb | Spearman | 0.049361 | [-0.062458, 0.158578] | 0.371981 | 1.000000 | 9/10 | No |",
+      "name": "endpoint_row_local42_vs_full3__histgb_spearman_effect",
+      "pass": true
+    },
+    {
+      "details": "| local42\u2212full3 | Histgb | MSE improvement | 0.143489 | [-0.186507, 0.489119] | 0.408480 | 1.000000 | 5/10 | No |",
+      "name": "endpoint_row_local42_vs_full3__histgb_mse_improvement",
+      "pass": true
+    },
+    {
+      "details": "| Ridge | simple | 0.349548 | 2.057832 |",
+      "name": "absolute_row_ridge_simple",
+      "pass": true
+    },
+    {
+      "details": "| Ridge | simple + local42 MFE | 0.331980 | 2.068798 |",
+      "name": "absolute_row_ridge_local42",
+      "pass": true
+    },
+    {
+      "details": "| Ridge | simple + full-300 MFE | 0.341343 | 2.060648 |",
+      "name": "absolute_row_ridge_full1",
+      "pass": true
+    },
+    {
+      "details": "| Ridge | simple + full-300/window48 MFEs | 0.310284 | 2.139937 |",
+      "name": "absolute_row_ridge_full3",
+      "pass": true
+    },
+    {
+      "details": "| Histgb | simple | 0.238982 | 2.585560 |",
+      "name": "absolute_row_histgb_simple",
+      "pass": true
+    },
+    {
+      "details": "| Histgb | simple + local42 MFE | 0.262811 | 2.575921 |",
+      "name": "absolute_row_histgb_local42",
+      "pass": true
+    },
+    {
+      "details": "| Histgb | simple + full-300 MFE | 0.227455 | 2.657005 |",
+      "name": "absolute_row_histgb_full1",
+      "pass": true
+    },
+    {
+      "details": "| Histgb | simple + full-300/window48 MFEs | 0.213450 | 2.719411 |",
+      "name": "absolute_row_histgb_full3",
+      "pass": true
+    },
+    {
+      "details": "0/12 endpoints passed and all three family gates were false",
+      "name": "scientific_conclusion",
+      "pass": true
+    },
+    {
+      "details": "76/76 checks",
+      "name": "independent_checks",
+      "pass": true
+    },
+    {
+      "details": "90/90 checks",
+      "name": "reproduction_checks",
+      "pass": true
+    },
+    {
+      "details": "12/12 CSV files were byte-identical",
+      "name": "csv_reproduction",
+      "pass": true
+    },
+    {
+      "details": "52/52 NPZ arrays were exactly equal",
+      "name": "array_reproduction",
+      "pass": true
+    },
+    {
+      "details": "20e1ac389313fc21c36e82a5745be3d89bf0dffa",
+      "name": "clean_commit",
+      "pass": true
+    },
+    {
+      "details": "429 passed and one skipped test",
+      "name": "project_tests",
+      "pass": true
+    },
+    {
+      "details": "200 new fits; 200 accepted simple/full3 fits were reused, for 400 evaluated fits",
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": "not an independent confirmation or a test of RNA velocity",
+      "name": "not_independent",
+      "pass": true
+    },
+    {
+      "details": "Functional untouched data were not read",
+      "name": "no_functional_untouched",
+      "pass": true
+    },
+    {
+      "details": "no wet-lab experiment was performed",
+      "name": "no_wet_lab",
+      "pass": true
+    },
+    {
+      "details": "RK-G1 remain open",
+      "name": "rk_g1_open",
+      "pass": true
+    },
+    {
+      "details": "d341694fb336ba579bbb990d80d7b17eafff104250052cea8577e4b927c08b64",
+      "name": "closeout_hash",
+      "pass": true
+    }
+  ],
+  "checks_passed": 40,
+  "checks_total": 40,
+  "failed_checks": [],
+  "integration_sha256": "df31909ee20818aee31254f76786eca76a799c82ac3a1826f3247b9ca5d5c4fa",
+  "manuscript_sha256": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d",
+  "manuscript_status": "non_submittable_working_draft",
+  "original_sha256": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+  "schema": "a8-rk33-manuscript-audit-v1",
+  "section_sha256": "2da98cbfb5a39fb5f1dadf5059f581b3cb3fc27ac132cf7a664bec0304c0e0c0",
+  "status": "PASS",
+  "workflow_status_sha256": "03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9"
+}
