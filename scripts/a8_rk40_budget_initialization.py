@@ -365,8 +365,14 @@ def main() -> None:
     matrix_records = {row["record_id"]: row for row in json.loads(matrix_path.read_text())["records"]}
     if set(benchmark) != set(matrix_records) or len(benchmark) != 18:
         raise ValueError("benchmark/external population mismatch")
-    for key in ("benchmark_fasta", "rscu_json", "calibration_acceptance", "rk39_summary"):
-        if rk39.sha(protocol[key]) != protocol[key + "_sha256"]:
+    input_hash_fields = {
+        "benchmark_fasta": "benchmark_sha256",
+        "rscu_json": "rscu_sha256",
+        "calibration_acceptance": "calibration_acceptance_sha256",
+        "rk39_summary": "rk39_summary_sha256",
+    }
+    for key, hash_field in input_hash_fields.items():
+        if rk39.sha(protocol[key]) != protocol[hash_field]:
             raise ValueError(f"input identity mismatch: {key}")
     code_commit, dirty = rk39.git_state()
     if not args.smoke and dirty:
