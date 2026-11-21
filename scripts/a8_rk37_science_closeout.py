@@ -60,7 +60,8 @@ def main():
     check("clean_decision", clean["scientific_decision"] == production["scientific_decision"] == independent["independent_decision"] == comparison["scientific_decision"])
     check("fit_accounting", production["fit_accounting"]["actual_unique_fits"] == independent["independent_fit_count"] == clean["fit_accounting"]["actual_unique_fits"] == 48)
     check("target_after_source_gate", production["target_outcomes_accessed_after_all_source_fits"] is True and clean["target_outcomes_accessed_after_all_source_fits"] is True)
-    check("distribution_metrics_present", all(s["target_evaluation"]["distribution_metrics_present"] for s in production["source_reports"] + clean["source_reports"]))
+    required_distribution = ("n_transcripts", "n_masked_positions", "min", "max", "mean", "std", "quantiles")
+    check("distribution_metrics_present", all(key in production["target_distribution"] and key in clean["target_distribution"] for key in required_distribution))
     check("source_target_disjoint", production["target_identity"]["exact_cds_overlap"] == 0)
     check("negative_decision", production["scientific_decision"] == "CROSS_STUDY_TRANSLATION_TASK_UNRESOLVED_COMPONENT_DIAGNOSIS_REQUIRED")
     check("two_endpoints", len(production["primary_endpoints"]) == 2)
@@ -85,14 +86,15 @@ def main():
         check(f"independent_artifact_{Path(artifact['path']).name}", sha256(artifact["path"]) == artifact["sha256"])
     check("inference_artifact_sha", sha256(production["artifacts"]["primary_inference_arrays"]["path"]) == production["artifacts"]["primary_inference_arrays"]["sha256"])
     contract = paths["contract_log"].read_text()
-    check("contract_11_pass", "11 passed" in contract and "failed" not in contract.lower())
-    check("initial_contract_failure_retained", "2 failed" in paths["failed_contract_log"].read_text())
+    check("contract_11_pass", "Ran 11 tests" in contract and "OK" in contract and "FAILED" not in contract)
+    check("initial_contract_failure_retained", "Ran 11 tests" in paths["failed_contract_log"].read_text() and "FAILED (failures=2)" in paths["failed_contract_log"].read_text())
     project = paths["project_test_log"].read_text()
     check("project_tests_pass", re.search(r"\d+ passed", project) is not None and not re.search(r"\d+ failed", project))
     for key in ("functional_untouched_read", "generator_training_authorized", "rk_g1_complete", "sota_claim_authorized", "wet_lab_or_prospective_dbtl"):
         check(f"boundary_{key}", production["scientific_scope"][key] is False)
     check("retrospective_boundary", production["scientific_scope"]["retrospective_followup_not_untouched"] is True)
-    check("large_artifacts_outside_git", "/teams/HoulabData_1788502323/liucunyu/" in production["artifacts"]["output_directory"])
+    artifact_root = "/teams/HoulabData_1788502323/liucunyu/"
+    check("large_artifacts_outside_git", all(artifact["path"].startswith(artifact_root) for source in production["source_reports"] for artifact in source["target_evaluation"]["artifacts"].values()))
     passed = sum(item["pass"] for item in checks)
     report = {
         "schema": "a8-rk37-science-closeout-v1",

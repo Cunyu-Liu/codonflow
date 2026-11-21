@@ -1,0 +1,6408 @@
+{
+  "schema": "a8-rk37-clean-reproduction-comparison-v1",
+  "status": "PASS_RK37_CLEAN_REPRODUCTION",
+  "checks_passed": 877,
+  "checks_total": 877,
+  "failures": [],
+  "checks": [
+    {
+      "name": "production_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "protocol_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "fit_accounting",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "scientific_decision",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "target_access_gate",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "distinct_clean_commit",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_code_identity_scripts/a8_rk37_run_translation_pivot.py",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_code_identity_configs/a8_rk37_translation_pivot_protocol_v1.json",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "frozen_code_identity_tests/test_a8_rk37_translation_pivot.py",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_id",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_split",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_selected_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_mean",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_mean_transcript_spearman",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_constant_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_constant_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_tb_mse_improvement_over_constant",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_mean_pearson_improvement_over_position_raw",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_1234_predictions_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_record_ids_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_offsets_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_positions_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_target_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_constant_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_ribomimo_raw_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_ribomimo_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_prediction_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_raw_new_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_raw_new_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_raw_new_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_raw_new_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_raw_new_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_effect_tb_mse_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_predictions_effect_mean_pearson_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_coef_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_intercept_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_alpha_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_coef_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_intercept_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_alpha_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_coef_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_intercept_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_alpha_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_coef_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_intercept_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_alpha_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_coef_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_intercept_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_alpha_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_source_models_source_train_raw_masked_mean_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_transcript_csv_byte_exact",
+      "pass": true,
+      "evidence": {
+        "production_sha": "e22f00dfcda8f0dee4b5b364b86159e3df668f2df12550fe2dc94e56f9ced8c0",
+        "clean_sha": "e22f00dfcda8f0dee4b5b364b86159e3df668f2df12550fe2dc94e56f9ced8c0"
+      }
+    },
+    {
+      "name": "seed_2345_id",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_split",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_selected_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_mean",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_mean_transcript_spearman",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_constant_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_constant_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_tb_mse_improvement_over_constant",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_mean_pearson_improvement_over_position_raw",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_2345_predictions_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_record_ids_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_offsets_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_positions_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_target_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_constant_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_ribomimo_raw_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_ribomimo_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_prediction_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_raw_new_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_raw_new_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_raw_new_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_raw_new_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_raw_new_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_effect_tb_mse_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_predictions_effect_mean_pearson_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_coef_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_intercept_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_alpha_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_coef_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_intercept_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_alpha_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_coef_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_intercept_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_alpha_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_coef_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_intercept_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_alpha_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_coef_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_intercept_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_alpha_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_source_models_source_train_raw_masked_mean_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_transcript_csv_byte_exact",
+      "pass": true,
+      "evidence": {
+        "production_sha": "280a4e22dec24766d32e070e10fffb0d6bb1eb481d4e912fac74892c4581d32b",
+        "clean_sha": "280a4e22dec24766d32e070e10fffb0d6bb1eb481d4e912fac74892c4581d32b"
+      }
+    },
+    {
+      "name": "seed_3456_id",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_split",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_selected_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_mean",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_candidate_count",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_0_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_0_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_1_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_2_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_3_validation_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_mean_transcript_spearman",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_constant_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_constant_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_n_transcripts",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_n_masked_positions",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_n_transcripts_with_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_n_transcripts_with_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_transcript_balanced_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_mean_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_median_transcript_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_mean_transcript_spearman",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_global_mse",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_global_r2",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_global_pearson",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_tb_mse_improvement_over_constant",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_mean_pearson_improvement_over_position_raw",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "seed_3456_predictions_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_record_ids_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_offsets_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_positions_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_target_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_constant_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_ribomimo_raw_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_ribomimo_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_prediction_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_raw_new_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_raw_new_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_raw_new_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_raw_new_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_raw_new_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_effect_tb_mse_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_predictions_effect_mean_pearson_improvement_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_coef_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_intercept_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_alpha_position_raw_unanchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_coef_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_intercept_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_alpha_position_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_coef_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_intercept_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_alpha_position_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_coef_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_intercept_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_alpha_local_raw_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_coef_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_intercept_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_alpha_local_centered_anchored_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_source_models_source_train_raw_masked_mean_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_transcript_csv_byte_exact",
+      "pass": true,
+      "evidence": {
+        "production_sha": "43f4a94c04f9cfebb8ba84a073aa3d10a641be787f6ff5f3f5241d0cc328cd09",
+        "clean_sha": "43f4a94c04f9cfebb8ba84a073aa3d10a641be787f6ff5f3f5241d0cc328cd09"
+      }
+    },
+    {
+      "name": "primary_0_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_effect",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_0_ci95_low",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_0_ci95_high",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_0_sign_flip_pvalue",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_0_holm_pvalue",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_0_sensitivity_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_primary_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_sensitivity_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_gate_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_identity",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_effect",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_1_ci95_low",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_1_ci95_high",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_1_sign_flip_pvalue",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_1_holm_pvalue",
+      "pass": true,
+      "evidence": {
+        "difference": 0.0,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "primary_1_sensitivity_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_primary_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_sensitivity_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_gate_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_array_names",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_tb_mse_improvement_over_constant_effect_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_tb_mse_improvement_over_constant_bootstrap_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_tb_mse_improvement_over_constant_sign_flip_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_mean_pearson_improvement_over_position_raw_effect_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_mean_pearson_improvement_over_position_raw_bootstrap_exact",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_mean_pearson_improvement_over_position_raw_sign_flip_exact",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "exact_arrays_compared": 111,
+  "production": {
+    "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_translation_pivot_result_v1.json",
+    "sha256": "d3182b89eb27d4d69f5301a9f1e4379893134e8e8b95bce3aedeb16274929522",
+    "commit": "5786ffc0ae43eab5c74d4ac2aff98eedce2ca0f9"
+  },
+  "clean": {
+    "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_translation_pivot_clean_result_v1.json",
+    "sha256": "dc3f447ebe39e681e8b017d06c650baad3dc5a6bac231e5f5ce78cff250f59f7",
+    "commit": "493a0a701923763e3839b74924a49927910fbc81"
+  },
+  "scientific_decision": "CROSS_STUDY_TRANSLATION_TASK_UNRESOLVED_COMPONENT_DIAGNOSIS_REQUIRED",
+  "note": "Exact array/CSV reproduction verifies engineering determinism; it does not change the negative scientific gate or create independent confirmation."
+}

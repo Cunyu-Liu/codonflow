@@ -1,0 +1,50 @@
+{"phase": "SOURCE_FITS_COMPLETE_NO_TARGET_OUTCOME", "seed": 1234, "fits": 16, "selected_alpha": {"position_raw_unanchored": 100.0, "position_raw_anchored": 100.0, "position_centered_anchored": 100.0, "local_raw_anchored": 0.1, "local_centered_anchored": 0.1}}
+{"phase": "SOURCE_FITS_COMPLETE_NO_TARGET_OUTCOME", "seed": 2345, "fits": 16, "selected_alpha": {"position_raw_unanchored": 100.0, "position_raw_anchored": 100.0, "position_centered_anchored": 100.0, "local_raw_anchored": 100.0, "local_centered_anchored": 100.0}}
+{"phase": "SOURCE_FITS_COMPLETE_NO_TARGET_OUTCOME", "seed": 3456, "fits": 16, "selected_alpha": {"position_raw_unanchored": 100.0, "position_raw_anchored": 100.0, "position_centered_anchored": 100.0, "local_raw_anchored": 100.0, "local_centered_anchored": 100.0}}
+/home/codonflow-rk37-clean-493a0a70/scripts/a8_rk37_run_translation_pivot.py:216: RuntimeWarning: invalid value encountered in scalar divide
+  spearman.append(float(np.mean((ry - np.mean(ry)) * (rp - np.mean(rp))) / (np.std(ry) * np.std(rp))))
+{"phase": "TARGET_EVALUATED_AFTER_ALL_48_SOURCE_FITS", "seed": 1234, "primary_effects": {"tb_mse_improvement_over_constant": -0.7552289373809654, "mean_pearson_improvement_over_position_raw": -0.033028385490347575}}
+{"phase": "TARGET_EVALUATED_AFTER_ALL_48_SOURCE_FITS", "seed": 2345, "primary_effects": {"tb_mse_improvement_over_constant": -0.6900556882071105, "mean_pearson_improvement_over_position_raw": -0.034327278112197775}}
+{"phase": "TARGET_EVALUATED_AFTER_ALL_48_SOURCE_FITS", "seed": 3456, "primary_effects": {"tb_mse_improvement_over_constant": -0.6890053197180819, "mean_pearson_improvement_over_position_raw": -0.034614057660251066}}
+{
+  "status": "PASS_RK37_PRODUCTION_PENDING_INDEPENDENT",
+  "scientific_decision": "CROSS_STUDY_TRANSLATION_TASK_UNRESOLVED_COMPONENT_DIAGNOSIS_REQUIRED",
+  "fits": 48,
+  "primary_endpoints": [
+    {
+      "name": "tb_mse_improvement_over_constant",
+      "n_pairs": 3921,
+      "effect": -0.7552289373809654,
+      "ci95_low": -0.7625974575597905,
+      "ci95_high": -0.7480053463364944,
+      "sign_flip_pvalue": 4.999750012499375e-05,
+      "resamples": 20000,
+      "sensitivity_effects": [
+        -0.6900556882071105,
+        -0.6890053197180819
+      ],
+      "holm_pvalue": 9.99950002499875e-05,
+      "primary_pass": false,
+      "sensitivity_pass": false,
+      "gate_pass": false
+    },
+    {
+      "name": "mean_pearson_improvement_over_position_raw",
+      "n_pairs": 3921,
+      "effect": -0.033028385490347575,
+      "ci95_low": -0.035758013452495324,
+      "ci95_high": -0.030296139561485122,
+      "sign_flip_pvalue": 4.999750012499375e-05,
+      "resamples": 20000,
+      "sensitivity_effects": [
+        -0.034327278112197775,
+        -0.034614057660251066
+      ],
+      "holm_pvalue": 9.99950002499875e-05,
+      "primary_pass": false,
+      "sensitivity_pass": false,
+      "gate_pass": false
+    }
+  ],
+  "wall_seconds": 159.18425097782165
+}

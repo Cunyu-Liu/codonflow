@@ -1,0 +1,537 @@
+{
+  "schema": "a8-rk37-science-closeout-v1",
+  "status": "PASS_RK37_SCIENCE_CLOSEOUT",
+  "checks_passed": 90,
+  "checks_total": 90,
+  "failures": [],
+  "checks": [
+    {
+      "name": "exists_protocol",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_production",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_independent",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_clean_result",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_comparison",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_contract_log",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_failed_contract_log",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "exists_project_test_log",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "protocol_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "production_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_all_checks",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_production_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_comparison_status",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_comparison_all_checks",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_array_accounting",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_production_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_result_hash_binding",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "clean_decision",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "fit_accounting",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "target_after_source_gate",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "distribution_metrics_present",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "source_target_disjoint",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "negative_decision",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "two_endpoints",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_negative_effect",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_gate_false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_ci_excludes_zero",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_0_independent_match",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_negative_effect",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_gate_false",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_ci_excludes_zero",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "primary_1_independent_match",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_ribomimo_raw_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_ribomimo_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_unanchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_position_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_1234_local_r_below_position",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_1234_subtelny14_seed1234.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_1234_source_models_seed1234.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_1234_subtelny14_seed1234_transcript_metrics.csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_ribomimo_raw_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_ribomimo_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_unanchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_position_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_2345_local_r_below_position",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_2345_subtelny14_seed2345.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_2345_source_models_seed2345.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_2345_subtelny14_seed2345_transcript_metrics.csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_alpha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_ribomimo_raw_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_ribomimo_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_unanchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_position_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_raw_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_centered_anchored_does_not_beat_constant_mse",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "seed_3456_local_r_below_position",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_3456_subtelny14_seed3456.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_3456_source_models_seed3456.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "artifact_sha_3456_subtelny14_seed3456_transcript_metrics.csv",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_subtelny14_seed1234.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_subtelny14_seed2345.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_subtelny14_seed3456.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_source_models_seed1234.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_source_models_seed2345.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_source_models_seed3456.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "independent_artifact_primary_inference_arrays.npz",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "inference_artifact_sha",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "contract_11_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "initial_contract_failure_retained",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "project_tests_pass",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "boundary_functional_untouched_read",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "boundary_generator_training_authorized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "boundary_rk_g1_complete",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "boundary_sota_claim_authorized",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "boundary_wet_lab_or_prospective_dbtl",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "retrospective_boundary",
+      "pass": true,
+      "evidence": null
+    },
+    {
+      "name": "large_artifacts_outside_git",
+      "pass": true,
+      "evidence": null
+    }
+  ],
+  "evidence": {
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/configs/a8_rk37_translation_pivot_protocol_v1.json",
+      "sha256": "e121c146fa45ea1cb24bdb59d80aea52aaf50d00494e6881875fbcf529c15447"
+    },
+    "production": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_translation_pivot_result_v1.json",
+      "sha256": "d3182b89eb27d4d69f5301a9f1e4379893134e8e8b95bce3aedeb16274929522"
+    },
+    "independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_translation_pivot_independent_v1.json",
+      "sha256": "1996a1a0c395ac267f9aa2107e1c418d6c325af705863989abe9d8a50994108e"
+    },
+    "clean_result": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_translation_pivot_clean_result_v1.json",
+      "sha256": "dc3f447ebe39e681e8b017d06c650baad3dc5a6bac231e5f5ce78cff250f59f7"
+    },
+    "comparison": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_clean_reproduction_comparison_v1.json",
+      "sha256": "5e0a04205feefec8b923196825dcd6468a1322a43f29486321e0e6bd1fff57b1"
+    },
+    "contract_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_contract_tests_v1.log",
+      "sha256": "1607edbfae007ff56d6138df5d24d28abfe4b1ef27902563e1bb9ad258e5c4ec"
+    },
+    "failed_contract_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_contract_tests_failure_v1.log",
+      "sha256": "55104f7e2779830c110688fa1efd86ad786a70b3491b852f48bb48f60d99517c"
+    },
+    "project_test_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261122/RK37/rk37_project_tests_v1.log",
+      "sha256": "8f9749342d40b1aa82aee96833cb293c849f2d5bdd5fd58ba0e9d65a4067ced9"
+    }
+  },
+  "scientific_decision": "CROSS_STUDY_TRANSLATION_TASK_UNRESOLVED_COMPONENT_DIAGNOSIS_REQUIRED",
+  "primary_endpoints": [
+    {
+      "name": "tb_mse_improvement_over_constant",
+      "n_pairs": 3921,
+      "effect": -0.7552289373809654,
+      "ci95_low": -0.7625974575597905,
+      "ci95_high": -0.7480053463364944,
+      "sign_flip_pvalue": 4.999750012499375e-05,
+      "resamples": 20000,
+      "sensitivity_effects": [
+        -0.6900556882071105,
+        -0.6890053197180819
+      ],
+      "holm_pvalue": 9.99950002499875e-05,
+      "primary_pass": false,
+      "sensitivity_pass": false,
+      "gate_pass": false
+    },
+    {
+      "name": "mean_pearson_improvement_over_position_raw",
+      "n_pairs": 3921,
+      "effect": -0.033028385490347575,
+      "ci95_low": -0.035758013452495324,
+      "ci95_high": -0.030296139561485122,
+      "sign_flip_pvalue": 4.999750012499375e-05,
+      "resamples": 20000,
+      "sensitivity_effects": [
+        -0.034327278112197775,
+        -0.034614057660251066
+      ],
+      "holm_pvalue": 9.99950002499875e-05,
+      "primary_pass": false,
+      "sensitivity_pass": false,
+      "gate_pass": false
+    }
+  ],
+  "verification": {
+    "independent": "771/771",
+    "clean": "877/877",
+    "exact_clean_arrays": 111
+  },
+  "scientific_boundaries": "RK37 is a retrospective cross-study translation-occupancy diagnostic with a negative dual gate. It is not protein OOD, physical velocity, untouched confirmation, SOTA, wet-lab/prospective DBTL or RK-G1.",
+  "reporting_status": "Manuscript, online slides and documentation are separate pending closeout steps."
+}
