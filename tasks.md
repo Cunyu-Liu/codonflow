@@ -273,3 +273,15 @@
 - [x] **在线 PPT107**：在 106/revision 68/`pZg` 后只追加第 107 页 `pZZ`、revision 69；candidate 103/103、写后 223/223、closeout 18/18、真实截图视觉 PASS，推送后复验仍为 223/223 和 18/18。首次 102/103 与 222/223 的 verifier 失败及 correction 保留。提交 `d4afbf79e55da335f66b05507448ecd6e2fbc798`；归档位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk08/channel_screen_ppt_v1/`。
 - [ ] **仍未通过 RK-G1 / 未授权生成训练**：既有 velocity 主终点失败，MAGE full−RCS 与 RCS−intrinsic 未支持稳定机制增量；functional untouched 未读取或评测。纯外部预训练模型替代、独立常数速度场、transport、完整外部 SOTA 和 G0 未闭合边界仍保留。不得把 proxy/search/OOD 提升写成真实功能或因果机制。
 - [ ] **复现边界**：v31/channel screen/PPT107 后未运行完整项目 `pytest tests/`、干净环境安装或端到端总复现；本轮 PASS 只覆盖冻结证据、定向测试、独立重算、论文与页面验收。权威工作树仍为 `/home/codonflow-a8-rk`、分支 `a8-rk`。
+
+## 2026-11-22：RK36 独立运输可行性审计与§四转向（执行交接文档核心指令）
+
+- [x] **预注册冻结**：标签无关可行性协议冻结 R1–R7 合格要求（独立研究/宿主、完整 CDS、变体特异天然 5'UTR≥4nt、固定蛋白同义库、蛋白身份+family 映射、新鲜连续结局、隔离+溯源），合格⟺七项全 PASS；冻结于任何结局关联之前。协议 SHA `891023c8746b…`，冻结提交 `7942d6a9`。
+- [x] **标签无关审计**：审计 4 个数据集（Kudla/Boël/Mordstein/MAGE infA），仅读 schema/覆盖/身份元数据，不做结局效应相关、不读 functional untouched。统一长表 25420 行/31 列**无 5'UTR 列**。结果 **0/4 合格**：Kudla R1 fail（训练队列）；Boël R3–R7 fail（跨蛋白天然非 synonymous、ordinal 0–5、固定 pET/T7 leader 无天然 UTR、family 映射缺失）；Mordstein R2–R3 fail（observed-R1 自 CDS pos4 起、缺 ATG/上游 4nt）；MAGE R2/R3/R7 fail（无完整构建、冻结禁读）。result SHA `9b02373b460a…`，科学提交 `eca9171d`。
+- [x] **独立核验**：独立脚本重读原始源、重导判别事实与各数据集合格判定，**24/24 PASS**，确认 0 合格与 branch-3 转向。independent SHA `8b1c2bfbec7e…`。
+- [x] **论文 §6.47**：新增 Table 27 可行性矩阵 + 缺失维度 + 转向计划 + 非主张声明；integration **12/12**、review **32/32** PASS；稿件 1931→1984 行，SHA `8011248f9686…`，提交 `cb528983`。
+- [x] **在线 PPT**：在 169/revision140 后追加 170–173（4 页 `pSL/pSy/pSC/pSx`），p171 原地微调版面（revision145）；PPT 审计 **23/23** PASS（Table 27 逐格对冻结 result），4 张真实截图视觉复核 PASS；旧 169 页语义保持不变。脚本/小证据入 git `audits/20261122/RK36/ppt_v1/`，大型 XML/截图归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk36/ppt_v1/`。
+- [x] **转向决策**：无合格独立运输数据 → §四 branch-3 记录 6 项缺失维度（同义库/天然 UTR/完整跨宿主 CDS/连续结局/family 映射/溯源），正式触发 branch-2 转向：停止以 start-aware MFE 为核心创新，转向数据支持的功能序列建模/翻译动力学；下一任务 RK37＝预注册翻译速度/功能预测 benchmark（RiboMIMO 等 bounded clean 数据，constant/ridge + CAI/GC + full-proxy MFE + 通用序列模型 baseline，蛋白/研究 OOD，SOTA 须配对 95%CI 下界>0 + 多重性 + 100% legality + 完整成本）。佐证：RK23 Boël 蛋白 OOD 0/4（Holm p=1）+ RK25 机制 0/2 已构成跨蛋白跨宿主运输失败。
+- [x] **项目测试与 closeout**：`run_tests_json.py tests/` 得 **455 passed / 1 skipped / 0 failed**（18.17s）；closeout 全链路核验 PASS（协议/result/independent/integration/review/PPT/tests + 提交 + gates）。
+- [ ] **仍未闭合**：external actual-set SOTA 主矩阵、time-matched 七方法、完整 dense、多物种 VeloHARMO、functional protein OOD、独立确认、wet-lab/前瞻 DBTL；RK37 转向任务待启动。RK-G1=false、generator_training_authorized=false，不得启动昂贵生成训练或把本 closeout 写成 RK-G0–G4 全通过。
+- [ ] **复现边界**：本轮为标签无关可行性审计，无模型拟合，故无干净复现对比（不适用）；PASS 仅覆盖冻结协议、独立重导、稿件与页面验收及项目测试。权威工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`，与并行会话共享并发提交。

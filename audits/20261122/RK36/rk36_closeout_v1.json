@@ -1,0 +1,171 @@
+{
+  "artifact_sha256": {
+    "independent": "8b1c2bfbec7eca331d033412a9653812fd6a45e8d9a0d106d8b66ace4d4acfc0",
+    "integration": "bcce53b346df415cc4b4235fe336bf06d898782745964979d6909f044dd97d3c",
+    "ppt_audit": "e774b6704618cd5e1f10ef71ad89a9270110cdab0d9bcfd12e4600c164f33d36",
+    "protocol": "891023c8746ba451746385b4e318054fad91db2af25831243071e0bb740c6c36",
+    "result": "9b02373b460a278d3e295f6d17786ed5e2f572b4afa662749d3ef443d8db9ffe",
+    "review": "1d1f2600a93e1e705ff387539f02b72cf4518656c24f60b5f0c05c0848ef8425",
+    "tests": "aae6059d3234ef0c30f01a4bfd7528951e86c5932b36b53ef6df11b49ad20ec6"
+  },
+  "checks": [
+    {
+      "details": null,
+      "name": "file_exists_protocol",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_result",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_independent",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_integration",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_review",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_ppt_audit",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "file_exists_tests",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_n_qualifying_zero",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_branch_3_pivot",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_label_free",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_four_datasets",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_missing_dims",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_pivot_rk37",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_gates",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_pass_24_24",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "integration_pass_12_12",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "review_pass_32_32",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "ppt_pass_23_23",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "tests_455_1_0",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "manuscript_sec_6_47",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "manuscript_sha_match_review",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_sha_match_independent",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "commit_exists_freeze",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "commit_exists_science",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "commit_exists_manuscript",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "ppt_pages_170_173",
+      "pass": true
+    }
+  ],
+  "checks_passed": 26,
+  "checks_total": 26,
+  "commits": {
+    "freeze": "7942d6a93b0df5fbb6e33a1bc8c8426e70a2353d",
+    "manuscript": "cb528983b400b6a5aa780ae4fe8ee58cb1874b98",
+    "science": "eca9171d2f28e30a62a6052ff30450eaccdee051"
+  },
+  "created_utc": "2026-11-21T18:19:11.327750+00:00",
+  "gates": {
+    "RK_G1": false,
+    "functional_untouched_readable": false,
+    "generative_training_authorized": false
+  },
+  "manuscript_sha256": "8011248f96860bac1058cc70dcf047256f4c42592a7733f6ce2056ba5213b3f3",
+  "ppt": {
+    "pages": {
+      "pSC": 172,
+      "pSL": 170,
+      "pSx": 173,
+      "pSy": 171
+    },
+    "presentation_id": "WB1KsYGualerMUddEzMcCw1En0g",
+    "revision": 145,
+    "total_pages": 173
+  },
+  "schema": "a8-rk36-closeout-v1",
+  "scope": "Label-free independent-transport feasibility audit + branch-3 record + branch-2 pivot trigger; no transport effect, SOTA, mechanism, functional/protein OOD, generator or wet-lab claim.",
+  "status": "PASS_BOUNDED_FEASIBILITY_PIVOT_CLOSEOUT"
+}

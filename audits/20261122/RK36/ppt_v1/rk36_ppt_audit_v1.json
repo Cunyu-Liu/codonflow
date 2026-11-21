@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "details": {
+        "ids": [
+          "pSL",
+          "pSy",
+          "pSC",
+          "pSx"
+        ]
+      },
+      "name": "four_pages_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "page_numbers",
+      "pass": true
+    },
+    {
+      "details": {
+        "rows": 4
+      },
+      "name": "matrix_row_count",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ],
+        "rendered": [
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ]
+      },
+      "name": "matrix_match_kudla_2009_gfp",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Pass",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Pass",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "No"
+        ]
+      },
+      "name": "matrix_match_boel_2016_nesg6348",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ]
+      },
+      "name": "matrix_match_mordstein_2020_hek293",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Fail",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Fail",
+          "No"
+        ]
+      },
+      "name": "matrix_match_kelsic_2016_mage_infA",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p170_zero_qualifying",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p170_decision_3_2",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p171_title_0_4",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p171_no_utr_column",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p172_rk37",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p172_branch_pivot",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p172_rk_g1_false",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_independent_24_24",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_manuscript_32_32",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_project_455",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_freeze_commit",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_result_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "p173_boundary",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "nav_label_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_emoji",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_chinese",
+      "pass": true
+    }
+  ],
+  "checks_passed": 23,
+  "checks_total": 23,
+  "pages": {
+    "pSC": 172,
+    "pSL": 170,
+    "pSx": 173,
+    "pSy": 171
+  },
+  "schema": "a8-rk36-ppt-audit-v1",
+  "status": "PASS"
+}
