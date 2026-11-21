@@ -1,0 +1,35 @@
+{
+  "status": "FAIL_RK31_MANUSCRIPT_REVIEW",
+  "checks": {
+    "manual_full_section_review": true,
+    "integration_pass": true,
+    "manuscript_hash_binding": true,
+    "original_text_preserved_in_order": true,
+    "single_rk31_block": true,
+    "rk29_rk30_retained": true,
+    "academic_prepare_write_pass": true,
+    "academic_make_status_pass": true,
+    "academic_final_exact": true,
+    "primary_24_rows": true,
+    "primary_values_and_observed_definition": true,
+    "stale_mean_seed_key_values_absent": true,
+    "absolute_18_rows": false,
+    "absolute_values": false,
+    "scientific_conclusion_and_boundaries": true,
+    "verification_and_reproduction_reported": true,
+    "evidence_anchors_bound": true,
+    "mordstein_reference_retained": false
+  },
+  "checks_passed": 15,
+  "checks_total": 18,
+  "failed": [
+    "absolute_18_rows",
+    "absolute_values",
+    "mordstein_reference_retained"
+  ],
+  "manuscript_sha256": "941de468a92ef016acf0f492ed094723f281f7bffb22934df46d2c92ed7a0f62",
+  "section_sha256": "ce7f8f2b0c7eca0e7745858c9b864e585c891f7fcc48bc3030441effb71dfea5",
+  "academic_make_status": "PASS",
+  "academic_deliver_console_note": "Makefile deliver emits a finish_with_status shell error in this isolated copy; make status is retained verbatim and the final Markdown is checked byte-for-byte.",
+  "working_draft": true
+}

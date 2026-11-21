@@ -1,0 +1,35 @@
+=== [prepare] 校验元数据并对候选文献验真 ===
+{
+  "status": "pass",
+  "stage": "prepare",
+  "needs_citation": "no",
+  "verification_mode": "skipped",
+  "verification_note": "",
+  "failures": [],
+  "result": {
+    "meta_sha256": "47f59d8cab2d93b0ca4ea59afe50d495d2d340adf5a6d9d224f066e633cbc0fb",
+    "candidates_sha256": ""
+  }
+}
+[prepare] 通过
+=== [write] 校验英文正文形态 ===
+{
+  "status": "pass",
+  "stage": "write",
+  "failures": [],
+  "warnings": [],
+  "result": {
+    "mode": "draft",
+    "citation_style": "apa7",
+    "word_count": 1024,
+    "min_words": 600,
+    "max_words": 5000,
+    "headings": [
+      "known-context gating did not support broad mfe applicability"
+    ],
+    "input_sha256": "86fc85750a7658338675950dd5ec70ba323e7fd5b37788b72f1368f3d9fc1a86",
+    "meta_sha256": "47f59d8cab2d93b0ca4ea59afe50d495d2d340adf5a6d9d224f066e633cbc0fb",
+    "verified_refs_sha256": ""
+  }
+}
+[write] 通过
