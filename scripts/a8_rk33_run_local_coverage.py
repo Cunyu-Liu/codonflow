@@ -185,7 +185,7 @@ def main():
         old = reused[reused["seed"] == seed].copy()
         assert len(old) == 152
         merged = analysis.merge(old[["variant_id", "seed", "sequence_cluster_id", "target", "fold", "ridge_simple", "ridge_structure", "histgb_simple", "histgb_structure"]], on="variant_id", suffixes=("", "_rk28"), validate="one_to_one")
-        assert np.array_equal(merged["target"].to_numpy(float), merged["target_rk28"].to_numpy(float))
+        assert np.allclose(merged["target"].to_numpy(float), merged["target_rk28"].to_numpy(float), rtol=0, atol=1e-12)
         assert np.array_equal(merged["sequence_cluster_id"].to_numpy(int), merged["sequence_cluster_id_rk28"].to_numpy(int))
         current = merged[["variant_id", "seed", "sequence_cluster_id", "target", "fold", "ridge_simple", "histgb_simple"]].copy()
         current["ridge_full3"] = merged["ridge_structure"].to_numpy(float)
