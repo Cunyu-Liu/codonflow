@@ -11,8 +11,8 @@ export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_TH
 export PYTHONPATH="${REPO}/scripts${PYTHONPATH:+:${PYTHONPATH}}"
 cd "${REPO}"
 
-"${PYTHON}" scripts/a8_rk30_test_freeze.py
-"${PYTHON}" scripts/a8_rk30_test_model.py
+"${PYTHON}" -m pytest -q scripts/a8_rk30_test_freeze.py
+"${PYTHON}" -m pytest -q scripts/a8_rk30_test_model.py
 
 if [[ "${RK30_RUN_PRODUCTION:-0}" == "1" ]]; then
   "${PYTHON}" scripts/a8_rk30_fixed_reference_counts.py \

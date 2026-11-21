@@ -69,3 +69,4 @@
 - 同一合成 closeout 连续整合两次的稿件 SHA256 均为 `4a96ed56af2df92d8d008e32a115c740535b127f46df45ceb88a8504984f74b9`，章节、参考文献和证据锚均只出现一次，输出 `PASS_IDEMPOTENT_MANUSCRIPT_INTEGRATION`。
 - 将 `raw_independent_pass` 人为设为 false 的反向 fixture 在哈希检查前被拒绝，未生成稿件，输出 `PASS_NEGATIVE_RELEASE_GATE_PRE_HASH`。所有合成文本与数值只用于工程验收，不进入真实论文或 PPT。
 - 复现清单已纳入整合器源码哈希。真实结果后将在干净克隆重新计数 64 runs、重跑 1,700 fits 并独立复核；该最终复现尚未执行。
+- 稿件门禁回归首次误用 `python scripts/a8_rk30_test_freeze.py` 与 `python scripts/a8_rk30_test_model.py` 直接执行 pytest 模块，产生空日志和 0 tests，不能算测试通过；`freeze_tests_v6_manuscript_gate.log`、`model_tests_v4_manuscript_gate.log` 保留为失败证据。`a8_rk30_reproduce.sh` 中同样的入口错误已改为 `python -m pytest -q`，随后重跑至明确计数后才允许提交。
