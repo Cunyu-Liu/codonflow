@@ -8,6 +8,7 @@ import RNA
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import a8_rk34_run_start_context as production  # noqa: E402
+import a8_rk34_verify_start_context_independent as independent  # noqa: E402
 
 
 def synthetic_frame(seed=20261221):
@@ -36,6 +37,15 @@ def test_matched_factorial_sequences():
     assert contexts["neither"] == "NNNN" + "NNN" + "C" * 35
     assert contexts["exact_real"][4:] == contexts["start_only"][4:]
     assert contexts["exact_real"][7:] == contexts["upstream_only"][7:]
+
+
+def test_independent_raw_reconstruction_uses_same_frozen_contract():
+    utr = "ACGU" * 36
+    cds = "ATG" + "".join(np.random.default_rng(341).choice(list("ACGT"), size=717))
+    assert independent.ARMS == production.ARMS
+    assert independent.TEST_ORDER == production.TEST_ORDER
+    assert independent.contexts(utr, cds) == production.context_sequences(utr, cds)
+    assert independent.conclusion({name: False for name in production.FAMILIES}) == production.conclusion_for({name: False for name in production.FAMILIES})
 
 
 def test_gc3_uses_third_codon_positions_only():
@@ -122,3 +132,18 @@ def test_preregistration_retains_scientific_boundaries():
     assert "cannot upgrade a failed confirmatory result" in text
     assert "Functional untouched data are not read" in text
     assert "RK-G1" in text
+
+
+def test_independent_seed_metric_csv_null_arm_roundtrip(tmp_path):
+    path = tmp_path / "seed_metrics.csv"
+    path.write_text("seed,arm,spearman,mse\n20261221,,0.1,0.2\n20261221,ridge_simple,0.3,0.4\n")
+    frame = independent.read_seed_metrics(path)
+    assert frame["arm"].tolist() == ["null", "ridge_simple"]
+    assert frame[["spearman", "mse"]].to_numpy().tolist() == [[0.1, 0.2], [0.3, 0.4]]
+    path.write_text("seed,arm,spearman\n20261221,null,0.1\n")
+    try:
+        independent.read_seed_metrics(path)
+    except ValueError as error:
+        assert "schema" in str(error)
+    else:
+        raise AssertionError("invalid metric schema was accepted")
