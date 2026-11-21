@@ -1,0 +1,334 @@
+{
+  "schema": "a8-rk41-manuscript-closeout-v1",
+  "original": "/Users/liucunyu/Library/Application Support/LarkShell/aha/users/75d39038b07591340774141238694f9f/doubao/.doubao/agent_mode/workspace/.sessions/38455444094217474/agents/m_0cweLfjApSt/rk29/staging/rk41/CodonFlow_preprint_A8.md",
+  "original_sha256": "7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2",
+  "accepted_section_sha256": "b23ab94755546d67093d63924eef8aeae06ea21b8230a3d8b41d3e38f4144cca",
+  "accepted_section_word_count": 599,
+  "workflow_status": "PASS",
+  "output": "/Users/liucunyu/Library/Application Support/LarkShell/aha/users/75d39038b07591340774141238694f9f/doubao/.doubao/agent_mode/workspace/.sessions/38455444094217474/agents/m_0cweLfjApSt/rk29/staging/rk41/CodonFlow_preprint_A8_RK41.md",
+  "output_sha256": "ed074226456026fa07ac82780cf1a0b235fba50572e6607931dfc4a12adf9ca6",
+  "original_lines": 2186,
+  "output_lines": 2228,
+  "decision": "INTERNAL_MULTISTART_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED",
+  "common_input_actual_set_gate_passed": false,
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "manuscript_submittable": false,
+  "status": "PASS",
+  "n_checks": 57,
+  "n_pass": 57,
+  "checks": [
+    {
+      "check": "original_sha256",
+      "passed": true,
+      "detail": "7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2"
+    },
+    {
+      "check": "single_insertion_marker",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "section_not_already_present",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted_section_heading",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted_section_has_two_tables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted_section_no_placeholder",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "workflow_prepare_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "workflow_write_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "workflow_deliver_pass",
+      "passed": true,
+      "detail": {
+        "status": "PASS",
+        "stage": "deliver",
+        "reason": "写作检查通过，终稿已生成，用户已跳过飞书交付。",
+        "lark": "skipped_by_user",
+        "verification": ""
+      }
+    },
+    {
+      "check": "accepted_source_matches_draft_check",
+      "passed": true,
+      "detail": "b23ab94755546d67093d63924eef8aeae06ea21b8230a3d8b41d3e38f4144cca"
+    },
+    {
+      "check": "six_primary_endpoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "effect_raw_common_input_basin_selection_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "0.050030"
+    },
+    {
+      "check": "ci_raw_common_input_basin_selection_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": [
+        "0.035533",
+        "0.064341"
+      ]
+    },
+    {
+      "check": "effect_raw_common_input_basin_selection_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.031529"
+    },
+    {
+      "check": "ci_raw_common_input_basin_selection_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": [
+        "0.015111",
+        "0.052030"
+      ]
+    },
+    {
+      "check": "effect_raw_common_input_sequential_advantage_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "0.788952"
+    },
+    {
+      "check": "ci_raw_common_input_sequential_advantage_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": [
+        "0.621305",
+        "0.952120"
+      ]
+    },
+    {
+      "check": "effect_raw_common_input_sequential_advantage_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.486789"
+    },
+    {
+      "check": "ci_raw_common_input_sequential_advantage_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": [
+        "0.330474",
+        "0.658647"
+      ]
+    },
+    {
+      "check": "effect_common_input_actual_set_versus_linear_design_first_k_hv",
+      "passed": true,
+      "detail": "-29.215520"
+    },
+    {
+      "check": "ci_common_input_actual_set_versus_linear_design_first_k_hv",
+      "passed": true,
+      "detail": [
+        "-41.230472",
+        "-18.981136"
+      ]
+    },
+    {
+      "check": "effect_common_input_actual_set_versus_linear_design_first_k_ned",
+      "passed": true,
+      "detail": "0.165764"
+    },
+    {
+      "check": "ci_common_input_actual_set_versus_linear_design_first_k_ned",
+      "passed": true,
+      "detail": [
+        "0.149476",
+        "0.182711"
+      ]
+    },
+    {
+      "check": "absolute_raw_random_b11_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "2.457592"
+    },
+    {
+      "check": "absolute_raw_random_b11_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.287328"
+    },
+    {
+      "check": "absolute_raw_random_b11_first_k_hv",
+      "passed": true,
+      "detail": "0.258270"
+    },
+    {
+      "check": "absolute_raw_random_b11_first_k_ned",
+      "passed": true,
+      "detail": "0.004692"
+    },
+    {
+      "check": "absolute_raw_pool_first_b11_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "3.196515"
+    },
+    {
+      "check": "absolute_raw_pool_first_b11_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.742588"
+    },
+    {
+      "check": "absolute_raw_pool_first_b11_first_k_hv",
+      "passed": true,
+      "detail": "0.751843"
+    },
+    {
+      "check": "absolute_raw_pool_first_b11_first_k_ned",
+      "passed": true,
+      "detail": "0.237085"
+    },
+    {
+      "check": "absolute_raw_pool_best_b11_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "3.246544"
+    },
+    {
+      "check": "absolute_raw_pool_best_b11_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.774117"
+    },
+    {
+      "check": "absolute_raw_pool_best_b11_first_k_hv",
+      "passed": true,
+      "detail": "0.757367"
+    },
+    {
+      "check": "absolute_raw_pool_best_b11_first_k_ned",
+      "passed": true,
+      "detail": "0.237053"
+    },
+    {
+      "check": "absolute_calibrated_pool_first_b11_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "3.196515"
+    },
+    {
+      "check": "absolute_calibrated_pool_first_b11_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.742881"
+    },
+    {
+      "check": "absolute_calibrated_pool_first_b11_first_k_hv",
+      "passed": true,
+      "detail": "0.751843"
+    },
+    {
+      "check": "absolute_calibrated_pool_first_b11_first_k_ned",
+      "passed": true,
+      "detail": "0.237085"
+    },
+    {
+      "check": "absolute_calibrated_pool_best_b11_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "3.310026"
+    },
+    {
+      "check": "absolute_calibrated_pool_best_b11_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "0.826891"
+    },
+    {
+      "check": "absolute_calibrated_pool_best_b11_first_k_hv",
+      "passed": true,
+      "detail": "0.756650"
+    },
+    {
+      "check": "absolute_calibrated_pool_best_b11_first_k_ned",
+      "passed": true,
+      "detail": "0.237103"
+    },
+    {
+      "check": "absolute_external_best_normalized_weighted_utility",
+      "passed": true,
+      "detail": "11.798970"
+    },
+    {
+      "check": "absolute_external_best_single_point_normalized_hv",
+      "passed": true,
+      "detail": "26.439732"
+    },
+    {
+      "check": "absolute_external_first_k_hv",
+      "passed": true,
+      "detail": "29.972887"
+    },
+    {
+      "check": "absolute_external_first_k_ned",
+      "passed": true,
+      "detail": "0.071289"
+    },
+    {
+      "check": "internal_families_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "external_family_fails",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "decision_reported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "independent_evidence_reported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "scientific_boundaries_reported",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "prior_prefix_byte_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "prior_suffix_byte_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "single_new_section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "table_sequence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "full_length",
+      "passed": true,
+      "detail": 2228
+    }
+  ]
+}
