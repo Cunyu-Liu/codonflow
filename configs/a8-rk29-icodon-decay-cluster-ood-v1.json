@@ -1,0 +1,149 @@
+{
+  "schema": "a8-rk29-icodon-decay-cluster-ood-protocol-v1",
+  "experiment_id": "A8-RK29",
+  "title": "Protein-cluster OOD structure increment beyond iCodon for injected-mRNA decay in zebrafish embryos",
+  "frozen_before_outcome_access": true,
+  "source_selection": {
+    "study": "Diez et al. 2022, iCodon customizes gene expression based on the codon composition",
+    "doi": "10.1038/s41598-022-15526-7",
+    "article_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9287306/",
+    "geo_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE207584",
+    "host": "one-cell-stage Danio rerio embryos",
+    "assay": "targeted RNA-seq of injected in-vitro-transcribed mRNA at 2, 5, and 8 hours post injection; three biological replicates",
+    "biological_question": "Do computational secondary-structure features add out-of-protein predictive information to the strong iCodon and sequence baseline for synonymous-variant mRNA decay?",
+    "not_claimed": "This is not a protein-expression, translation-rate, mammalian, endogenous-transcription, prospective-design, or wet-lab validation."
+  },
+  "inputs": {
+    "outcome_xlsx": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/41598_2022_15526_MOESM7_ESM.xlsx",
+      "sha256": "203e0862d807bcda4742f8e8dfb2e1c6e32aca0d69fdfab34444d365274d3e6b",
+      "url": "https://static-content.springer.com/esm/art%3A10.1038%2Fs41598-022-15526-7/MediaObjects/41598_2022_15526_MOESM7_ESM.xlsx",
+      "expected_rows": 955,
+      "sheet_name": "Supplemental-Table-6-library-pe"
+    },
+    "geo_perfect_csv_gz": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/GSE207584_Zebrafish-library-perfect.csv.gz",
+      "sha256": "44451c890db1f350b529dbdd5e49b158789d23568b1243860f5990b96698902c",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE207nnn/GSE207584/suppl/GSE207584_Zebrafish-library-perfect.csv.gz",
+      "expected_rows": 10227,
+      "expected_unique_names": 955
+    },
+    "reference_fasta_gz": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/GSE207584_reference.fasta.gz",
+      "sha256": "7d2cdda973ccef47a72e66d8ddf9e200271ffa9e5855635ce19eb94dedeab49c",
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE207nnn/GSE207584/suppl/GSE207584_reference.fasta.gz",
+      "expected_records": 1395
+    }
+  },
+  "label_free_coverage": {
+    "report_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/label_free_coverage.json",
+    "manifest_path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/label_free_variant_manifest.tsv",
+    "authorized_columns": {
+      "outcome_xlsx": ["Protein_id", "Group", "Predicted_mRNA_stability"],
+      "geo_perfect_csv_gz": ["Name", "Protein_id", "Group"],
+      "reference_fasta_gz": ["record_name", "sequence"]
+    },
+    "forbidden_until_freeze": ["2h_A", "2h_B", "2h_C", "5h_A", "5h_B", "5h_C", "8h_A", "8h_B", "8h_C", "Decay_rate", "zf_library_2h_1", "zf_library_2h_2", "zf_library_2h_3", "zf_library_5h_1", "zf_library_5h_2", "zf_library_5h_3", "zf_library_8h_1", "zf_library_8h_2", "zf_library_8h_3"],
+    "join_rule": "Before outcome access, deduplicate the GEO perfect table to its 955 unique Name values, derive Protein_id and Group solely from the frozen reference-FASTA naming grammar, and require the resulting Protein_id-by-Group multiset to equal S6. Join each unique Name to exactly one reference FASTA sequence. After the protocol is frozen and outcome access is explicitly authorized, match S6 to GEO measurement rows by canonical Name-derived Protein_id and Group plus all nine numeric timepoint values; require one unique Name per S6 row and a one-to-one assignment across all rows. Never join by row order, the redundant GEO metadata columns, nearest value, or fuzzy matching.",
+    "cluster_rule": "Start with exact Protein_id groups, then union different proteins connected by exact variable-CDS duplicates or >=0.90 Hamming identity over the 297-nt variable region. All synonymous variants of a protein and all cross-protein high-identity sequences remain in one evaluation group.",
+    "selection_rule": "After the complete 955-row label-free metadata/sequence audit, exclude Protein_id groups with fewer than three unique variants. This removes four proteins and five variants and retains exactly 950 variants across 96 proteins, matching the source study's per-protein analysis context. The rule uses no abundance or decay values.",
+    "expected_selected_variants": 950,
+    "expected_selected_proteins": 96,
+    "power_gate": {
+      "min_variants": 500,
+      "min_evaluation_groups": 60,
+      "min_proteins": 60,
+      "min_median_variants_per_protein": 8,
+      "min_variants_per_protein": 3,
+      "required_design_groups": ["iCodon_5", "IDT", "Genewiz"]
+    }
+  },
+  "sequence_definition": {
+    "constant_5prime": "ATGGTGAGCAAGGGCGAGGAGCTGTCCCTCGAG",
+    "constant_3prime": "TCTAGATAG",
+    "variable_length_nt": 297,
+    "full_length_nt": 339,
+    "alphabet": "ACGT",
+    "synonymy_rule": "Translate the 297-nt variable region with the standard genetic code; require no stop and one identical 99-aa translation within each Protein_id.",
+    "duplicate_rule": "Exact variable-CDS duplicates are allowed only when their Protein_id and outcome are identical after outcome authorization; otherwise the analysis stops as source-inconsistent. Exact duplicates remain in the same evaluation group."
+  },
+  "outcome_access": {
+    "require_explicit_flag": "--authorize-outcome-read",
+    "published_column": "Decay_rate",
+    "direction": "higher values indicate greater measured mRNA stability, following the source study's usage",
+    "baseline_column": "Predicted_mRNA_stability",
+    "geo_to_outcome_timepoint_map": {
+      "zf_library_2h_1": "2h_A",
+      "zf_library_2h_2": "2h_B",
+      "zf_library_2h_3": "2h_C",
+      "zf_library_5h_1": "5h_A",
+      "zf_library_5h_2": "5h_B",
+      "zf_library_5h_3": "5h_C",
+      "zf_library_8h_1": "8h_A",
+      "zf_library_8h_2": "8h_B",
+      "zf_library_8h_3": "8h_C"
+    },
+    "alignment_rule": "For every S6 row, require exactly one unique GEO Name whose FASTA-derived Protein_id and Group match and whose nine numeric timepoint values all equal the mapped S6 values. Require the resulting 955 S6-to-Name assignments to be one-to-one. Redundant or mismatched GEO metadata rows are not samples. Any unmatched or ambiguous variant stops the analysis as source-inconsistent.",
+    "decay_recompute_diagnostic": {
+      "time_hpi": [2.0, 5.0, 8.0],
+      "candidate_estimators": ["all_nine_points_ln", "all_nine_points_log2", "timepoint_mean_abundance_ln", "timepoint_mean_abundance_log2", "timepoint_mean_log_abundance_ln", "timepoint_mean_log_abundance_log2"],
+      "minimum_absolute_pearson_with_published_decay": 0.95,
+      "rule": "The published Decay_rate remains the sole model target. Candidate first-order slopes are alignment diagnostics only; failure stops the run as source-inconsistent. No post-hoc target transformation is allowed."
+    },
+    "dynamic_range_gate": {
+      "min_unique_values": 100,
+      "require_positive_iqr": true,
+      "require_positive_training_fold_sd": true
+    }
+  },
+  "features": {
+    "baseline": ["Predicted_mRNA_stability"],
+    "simple_groups": ["icodon_score", "codon_frequencies_61", "amino_acid_frequencies_20", "gc", "gc3", "cpg_per_nt", "upa_per_nt", "design_group_one_hot_7"],
+    "structure_addition": ["mfe_variable_297nt_28C", "mfe_full_339nt_28C", "mfe_variable_5prime48nt_28C", "mfe_constant5prime33nt_plus_variable48nt_28C"],
+    "mfe_only_descriptive": ["mfe_variable_297nt_28C", "mfe_full_339nt_28C", "mfe_variable_5prime48nt_28C", "mfe_constant5prime33nt_plus_variable48nt_28C"],
+    "structure_engine": "ViennaRNA Python fold_compound, default MFE parameters except temperature=28.0 C; DNA T converted to RNA U; no experimental-structure claim",
+    "design_groups": ["iCodon_1", "iCodon_2", "iCodon_3", "iCodon_4", "iCodon_5", "IDT", "Genewiz"]
+  },
+  "models": {
+    "arms": ["null", "ridge_icodon", "ridge_simple", "ridge_structure", "ridge_mfe_only", "histgb_icodon", "histgb_simple", "histgb_structure", "histgb_mfe_only"],
+    "confirmatory_contrast": "structure minus simple within each backbone",
+    "ridge": {"alpha": 1.0, "solver": "cholesky", "scaling": "training-fold z-score for X and y; zero-variance X columns use scale=1"},
+    "histgb": {"loss": "squared_error", "learning_rate": 0.05, "max_iter": 200, "max_leaf_nodes": 7, "min_samples_leaf": 10, "l2_regularization": 1.0, "early_stopping": false},
+    "device": "CPU_ONLY",
+    "hyperparameter_selection": "None; all settings are frozen before outcome access."
+  },
+  "outer_evaluation": {
+    "n_folds": 5,
+    "primary_seed": 20261129,
+    "sensitivity_seeds": [20261129, 20261130, 20261131, 20261132, 20261133, 20261134, 20261135, 20261136, 20261137, 20261138],
+    "fold_rule": "Greedy row-count-balanced assignment of whole evaluation groups; train and test groups must be disjoint in every fold.",
+    "expected_model_fits_per_seed": 40,
+    "expected_total_model_fits": 400
+  },
+  "primary_inference": {
+    "tests": ["ridge_spearman_effect", "ridge_mse_improvement", "histgb_spearman_effect", "histgb_mse_improvement"],
+    "cluster_bootstrap": {"seed": 20261229, "resamples": 10000, "unit": "evaluation group"},
+    "cluster_swap_permutation": {"seed": 20261329, "permutations": 10000, "unit": "evaluation group", "alternative": "two-sided"},
+    "multiple_testing": "Holm across the four primary tests",
+    "alpha": 0.05,
+    "pass_rule": "For every primary test: observed effect > 0, cluster-bootstrap 95% CI lower bound > 0, Holm-adjusted cluster-swap p < 0.05, and positive effect in at least 8 of 10 sensitivity seeds."
+  },
+  "secondary_descriptive": {
+    "within_protein_spearman": "Mean per-Protein_id Spearman across eligible held-out proteins; no confirmatory p-value.",
+    "top1_design_regret": "For each held-out protein, observed best target minus target of the variant selected by each OOF prediction; lower is better. No prospective-design or wet-lab claim.",
+    "design_group_stratification": "Report primary-seed metrics by iCodon bins, IDT, and Genewiz without changing the primary gate."
+  },
+  "result_interpretation": {
+    "pass": "ZEBRAFISH_SYNONYMOUS_MRNA_DECAY_STRUCTURE_INCREMENT_SUPPORTED_PROTEIN_OOD",
+    "fail": "ZEBRAFISH_SYNONYMOUS_MRNA_DECAY_STRUCTURE_INCREMENT_NOT_SUPPORTED_PROTEIN_OOD",
+    "source_failure": "NOT_DISCRIMINATING_SOURCE_ALIGNMENT_OR_COVERAGE_FAILED"
+  },
+  "scientific_boundaries": [
+    "All conclusions are conditional on injected mRNA in one-cell zebrafish embryos, the 96 observed synthetic proteins, 2/5/8-hpi targeted RNA-seq, and the stated MFE definitions.",
+    "MFE is computed secondary structure, not experimentally measured RNA structure.",
+    "Changing from RK27/RK28 to this dataset jointly changes host, assay, proteins, sequence coverage, and outcome; RK29 cannot identify which joint factor explains a positive or negative result.",
+    "Retrospective top-1 selection is descriptive and is not prospective design success.",
+    "Functional untouched data remain frozen and are not read by this experiment.",
+    "No expensive generative training is authorized or performed."
+  ]
+}

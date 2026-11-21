@@ -1,0 +1,141 @@
+{
+  "abundance_values_accessed": false,
+  "coverage_feasible": true,
+  "environment": {
+    "ViennaRNA": "2.7.2",
+    "numpy": "2.2.6",
+    "python": "3.10.22"
+  },
+  "expression_or_model_fit_performed": false,
+  "facts_sha256": "ed44676dc8322a4dce8814a612feb9cb98c6f612880c836e2936c360062eca57",
+  "facts_tsv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/label_free_variant_manifest.tsv",
+  "forbidden_columns_accessed": [],
+  "geo_all_headers": [
+    "Name",
+    "Protein_id",
+    "Group",
+    "zf_library_2h_1",
+    "zf_library_2h_2",
+    "zf_library_2h_3",
+    "zf_library_5h_1",
+    "zf_library_5h_2",
+    "zf_library_5h_3",
+    "zf_library_8h_1",
+    "zf_library_8h_2",
+    "zf_library_8h_3"
+  ],
+  "geo_parsed_columns": [
+    "Name",
+    "Protein_id",
+    "Group"
+  ],
+  "inputs": {
+    "geo_perfect_csv_gz": {
+      "bytes": 98372,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/GSE207584_Zebrafish-library-perfect.csv.gz",
+      "sha256": "44451c890db1f350b529dbdd5e49b158789d23568b1243860f5990b96698902c"
+    },
+    "outcome_xlsx": {
+      "bytes": 143626,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/41598_2022_15526_MOESM7_ESM.xlsx",
+      "sha256": "203e0862d807bcda4742f8e8dfb2e1c6e32aca0d69fdfab34444d365274d3e6b"
+    },
+    "reference_fasta_gz": {
+      "bytes": 79908,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_source_feasibility_v1/raw/GSE207584_reference.fasta.gz",
+      "sha256": "7d2cdda973ccef47a72e66d8ddf9e200271ffa9e5855635ce19eb94dedeab49c"
+    }
+  },
+  "model_fit_authorized": true,
+  "next_step": "Commit this protocol, audit code, and report before running the separate outcome-authorized production process.",
+  "outcome_sheet_all_headers": [
+    "Protein_id",
+    "Group",
+    "2h_A",
+    "2h_B",
+    "2h_C",
+    "5h_A",
+    "5h_B",
+    "5h_C",
+    "8h_A",
+    "8h_B",
+    "8h_C",
+    "Decay_rate",
+    "Predicted_mRNA_stability"
+  ],
+  "outcome_values_accessed": false,
+  "parsed_outcome_sheet_columns": [
+    "Protein_id",
+    "Group",
+    "Predicted_mRNA_stability"
+  ],
+  "protocol": "configs/a8-rk29-icodon-decay-cluster-ood-v1.json",
+  "protocol_sha256": "e12a28b9ceaf3c4d8c70b78868e69ebfa2913a169dac99cac77ca20705b1c196",
+  "schema": "a8-rk29-label-free-coverage-v1",
+  "selected_coverage": {
+    "baseline_finite_count": 955,
+    "canonical_name_metadata_match": true,
+    "constant_context_pass": true,
+    "cross_protein_identity_threshold": 0.9,
+    "cross_protein_pair_examples": [],
+    "cross_protein_pairs_at_or_above_threshold": 0,
+    "design_group_counts": {
+      "Genewiz": 46,
+      "IDT": 209,
+      "iCodon_1": 142,
+      "iCodon_2": 137,
+      "iCodon_3": 137,
+      "iCodon_4": 137,
+      "iCodon_5": 142
+    },
+    "exact_full_cds_duplicate_count": 0,
+    "excluded_low_coverage_proteins": {
+      "c7_p1": 2,
+      "c7_p6": 1,
+      "c7_p7": 1,
+      "c7_p9": 1
+    },
+    "full_length_nt": 339,
+    "geo_auxiliary_metadata_used": false,
+    "max_cross_protein_identity_observed": 0.3872053872053872,
+    "n_evaluation_groups": 96,
+    "n_excluded_variants": 5,
+    "n_geo_source_rows": 10227,
+    "n_geo_unique_names": 955,
+    "n_proteins": 96,
+    "n_reference_records": 1395,
+    "n_source_variants": 955,
+    "n_variants": 950,
+    "power_gate_checks": {
+      "evaluation_groups": true,
+      "median_variants_per_protein": true,
+      "min_variants_per_protein": true,
+      "proteins": true,
+      "required_design_groups": true,
+      "variants": true
+    },
+    "primary_seed_fold_sizes": [
+      189,
+      192,
+      190,
+      190,
+      189
+    ],
+    "protein_group_multiset_match": true,
+    "protein_variant_count_max": 14,
+    "protein_variant_count_median": 11.0,
+    "protein_variant_count_min": 3,
+    "synonymy_pass": true,
+    "variable_length_nt": 297
+  },
+  "status": "PASS_LABEL_FREE_COVERAGE_AUDIT_FEASIBLE",
+  "structure_coverage": {
+    "all_finite": true,
+    "engine": "ViennaRNA",
+    "n_rows": 950,
+    "temperature_C": 28.0,
+    "version": "2.7.2"
+  },
+  "structure_features_sha256": "c4f0b2b073424b73d614463883d80e3b2f293248392853c9efa2f9e6e39671f2",
+  "structure_features_tsv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk29/icodon_decay_cluster_ood_v1/label_free_structure_features.tsv"
+}
