@@ -1,0 +1,209 @@
+{
+  "schema": "a8-rk32-structure-definition-independent-v1",
+  "status": "PASS",
+  "created_at": "2026-11-21T14:42:12.236987+00:00",
+  "protocol_sha256": "67a5f4612d0bdd5d00e4b88d0869385580682750ef05cf2ab9d8642974fdc804",
+  "production_result_sha256": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c",
+  "independent_script_sha256": "1898e34bc63cc9baf45c642965153325a5eec5144c69912106f3be45c76c39a7",
+  "component_wall_seconds": 443.40612746961415,
+  "checks": [
+    {
+      "name": "protocol_result_hash",
+      "pass": true,
+      "detail": "67a5f4612d0bdd5d00e4b88d0869385580682750ef05cf2ab9d8642974fdc804"
+    },
+    {
+      "name": "production_fit_accounting",
+      "pass": true,
+      "detail": 700
+    },
+    {
+      "name": "production_test_accounting",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "name": "analysis_type",
+      "pass": true,
+      "detail": "retrospective_outcome_known_followup_not_independent_confirmation"
+    },
+    {
+      "name": "source_hash",
+      "pass": true,
+      "detail": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    {
+      "name": "coverage_hash",
+      "pass": true,
+      "detail": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4"
+    },
+    {
+      "name": "raw_cohort",
+      "pass": true,
+      "detail": {
+        "rows": 150,
+        "clusters": 37
+      }
+    },
+    {
+      "name": "raw_feature_recomputation",
+      "pass": true,
+      "detail": {
+        "max_abs_delta": 2.842170943040401e-14,
+        "features": [
+          "CAI",
+          "gc_cds",
+          "gc3_cds",
+          "target",
+          "mfe_5prime_kcal_mol",
+          "vienna_local_mfe",
+          "rna_energy_entire_prot_kcal_mol",
+          "vienna_full_cds_mfe",
+          "vienna_full_mrna_mfe",
+          "mfe_cds300",
+          "mfe_cds48_min",
+          "mfe_cds48_mean"
+        ]
+      }
+    },
+    {
+      "name": "primary_fold_loads",
+      "pass": true,
+      "detail": [
+        23,
+        61,
+        22,
+        22,
+        22
+      ]
+    },
+    {
+      "name": "fold_recomputation",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "cluster_leakage",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "independent_700_fit_predictions",
+      "pass": true,
+      "detail": {
+        "rows": 1500,
+        "max_abs_delta": 2.6645352591003757e-15
+      }
+    },
+    {
+      "name": "seed_metric_recomputation",
+      "pass": true,
+      "detail": 1.3877787807814457e-16
+    },
+    {
+      "name": "seed_effect_recomputation",
+      "pass": true,
+      "detail": {
+        "rows": 240,
+        "max_abs_delta": 2.3592239273284576e-16
+      }
+    },
+    {
+      "name": "bootstrap_indices",
+      "pass": true,
+      "detail": "exact"
+    },
+    {
+      "name": "permutation_signs",
+      "pass": true,
+      "detail": "exact"
+    },
+    {
+      "name": "independent_inference_arrays",
+      "pass": true,
+      "detail": 2.2898349882893854e-16
+    },
+    {
+      "name": "primary_summary_recomputation",
+      "pass": true,
+      "detail": 6.245004513516506e-17
+    },
+    {
+      "name": "pass_seed_and_gate_recomputation",
+      "pass": true,
+      "detail": 0
+    },
+    {
+      "name": "arm_conclusion_recomputation",
+      "pass": true,
+      "detail": [
+        {
+          "arm": "source_local",
+          "n_tests": 4,
+          "n_pass": 4,
+          "all_four_pass": true
+        },
+        {
+          "arm": "vienna_local",
+          "n_tests": 4,
+          "n_pass": 4,
+          "all_four_pass": true
+        },
+        {
+          "arm": "source_full",
+          "n_tests": 4,
+          "n_pass": 0,
+          "all_four_pass": false
+        },
+        {
+          "arm": "vienna_full_cds",
+          "n_tests": 4,
+          "n_pass": 0,
+          "all_four_pass": false
+        },
+        {
+          "arm": "vienna_full_mrna",
+          "n_tests": 4,
+          "n_pass": 0,
+          "all_four_pass": false
+        },
+        {
+          "arm": "mordstein_like",
+          "n_tests": 4,
+          "n_pass": 1,
+          "all_four_pass": false
+        }
+      ]
+    },
+    {
+      "name": "scientific_conclusion",
+      "pass": true,
+      "detail": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY"
+    },
+    {
+      "name": "output_hashes",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "training_log",
+      "pass": true,
+      "detail": {
+        "rows": 50,
+        "fits": 700
+      }
+    }
+  ],
+  "max_deltas": {
+    "features": 2.842170943040401e-14,
+    "predictions": 2.6645352591003757e-15,
+    "metrics": 1.3877787807814457e-16,
+    "effects": 2.3592239273284576e-16,
+    "inference": 2.2898349882893854e-16,
+    "summary": 6.245004513516506e-17
+  },
+  "scientific_conclusion": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY",
+  "independent_confirmation": false,
+  "functional_untouched_read": false,
+  "RK_G1_complete": false
+}

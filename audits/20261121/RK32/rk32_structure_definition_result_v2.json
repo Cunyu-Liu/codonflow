@@ -1,0 +1,865 @@
+{
+  "analysis_script_sha256": "d16f66694493b48a910f46221c7adc9a9bf782c52589aa22670918767d89c7eb",
+  "analysis_type": "retrospective_outcome_known_followup_not_independent_confirmation",
+  "arm_results": [
+    {
+      "all_four_pass": true,
+      "arm": "source_local",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": true,
+      "arm": "vienna_local",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "arm": "source_full",
+      "n_pass": 0,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "arm": "vienna_full_cds",
+      "n_pass": 0,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "arm": "vienna_full_mrna",
+      "n_pass": 0,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "arm": "mordstein_like",
+      "n_pass": 1,
+      "n_tests": 4
+    }
+  ],
+  "completed_utc": "2026-11-21T14:28:55.769217+00:00",
+  "component_wall_seconds": 252.1404136591591,
+  "folds_per_seed": 5,
+  "model_fits_per_fold": 14,
+  "n_exact_cds_groups": 150,
+  "n_measurement_rows": 154,
+  "n_sequence_clusters": 37,
+  "n_structure_arms_all_four_pass": 2,
+  "outputs": {
+    "analysis_structure_definitions_150.csv": {
+      "bytes": 52358,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/analysis_structure_definitions_150.csv",
+      "sha256": "77fb7a78d86a0aeda897855b37f4b116f1c24130896db228dde84b23993d6edb"
+    },
+    "fold_assignments.csv": {
+      "bytes": 125270,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/fold_assignments.csv",
+      "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    "oof_predictions.csv": {
+      "bytes": 569817,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/oof_predictions.csv",
+      "sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    "primary_inference_arrays.npz": {
+      "bytes": 8026100,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/primary_inference_arrays.npz",
+      "sha256": "36cdfc6d8367fbc4a66f3759dae493a70af6ce68a1264865a23415f525e68858"
+    },
+    "seed_effects.csv": {
+      "bytes": 16318,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/seed_effects.csv",
+      "sha256": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7"
+    },
+    "seed_metrics.csv": {
+      "bytes": 10099,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/seed_metrics.csv",
+      "sha256": "286651800ddbbab7fbdbf8c43602ac8e05ec155ac9eaa01f496f5d3cc81edca5"
+    },
+    "training_log.csv": {
+      "bytes": 3120,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/training_log.csv",
+      "sha256": "c275c55ad7b1b46d0f7c51994d2fb33b11c9b189c4ce79e12fb4ea1389e8d753"
+    }
+  },
+  "primary_absolute_performance": [
+    {
+      "arm": "null",
+      "mse": 0.19447105211901383,
+      "spearman": -0.36723424154157747
+    },
+    {
+      "arm": "ridge_simple",
+      "mse": 0.2571487833252607,
+      "spearman": -0.3184132230240836
+    },
+    {
+      "arm": "ridge_source_local",
+      "mse": 0.09966007836096168,
+      "spearman": 0.6366379927254766
+    },
+    {
+      "arm": "ridge_vienna_local",
+      "mse": 0.100222948393566,
+      "spearman": 0.6662696109262617
+    },
+    {
+      "arm": "ridge_source_full",
+      "mse": 0.2377517000758009,
+      "spearman": -0.16514200224602635
+    },
+    {
+      "arm": "ridge_vienna_full_cds",
+      "mse": 0.23168237289724217,
+      "spearman": -0.19368201346443412
+    },
+    {
+      "arm": "ridge_vienna_full_mrna",
+      "mse": 0.2249687893014933,
+      "spearman": -0.08451953736517195
+    },
+    {
+      "arm": "ridge_mordstein_like",
+      "mse": 0.14610553146920688,
+      "spearman": 0.2948512241031617
+    },
+    {
+      "arm": "histgb_simple",
+      "mse": 0.1986577547399576,
+      "spearman": 0.30242388253871244
+    },
+    {
+      "arm": "histgb_source_local",
+      "mse": 0.09275069489613177,
+      "spearman": 0.7150018178934215
+    },
+    {
+      "arm": "histgb_vienna_local",
+      "mse": 0.09439444777098298,
+      "spearman": 0.7051708291048044
+    },
+    {
+      "arm": "histgb_source_full",
+      "mse": 0.20231812073981614,
+      "spearman": 0.229809979102372
+    },
+    {
+      "arm": "histgb_vienna_full_cds",
+      "mse": 0.20170980219854767,
+      "spearman": 0.2406251275512643
+    },
+    {
+      "arm": "histgb_vienna_full_mrna",
+      "mse": 0.19365408696743158,
+      "spearman": 0.2444706091579343
+    },
+    {
+      "arm": "histgb_mordstein_like",
+      "mse": 0.12832529520486904,
+      "spearman": 0.4339854604974953
+    }
+  ],
+  "primary_seed": 20261221,
+  "primary_tests": [
+    {
+      "bootstrap_median": 0.8766765068352675,
+      "ci95": [
+        0.4938143325215412,
+        1.1068328448152622
+      ],
+      "mean_seed_effect": 0.9899493931749317,
+      "median_seed_effect": 0.9801786217518877,
+      "observed_effect": 0.9550512157495602,
+      "p_cluster_swap": 4.999750012499375e-05,
+      "p_holm": 0.00119994000299985,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.9550512157495602,
+        0.9723604756525327,
+        0.9662517434189035,
+        0.9800675054059618,
+        1.0205120774615002,
+        1.0127303775236087,
+        0.9802897380978138,
+        0.9650285746829499,
+        0.9831538730304031,
+        1.0640483507260845
+      ],
+      "test": "ridge__source_local__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.15583851637472582,
+      "ci95": [
+        0.07131333997658695,
+        0.21268609940042837
+      ],
+      "mean_seed_effect": 0.16134779494141857,
+      "median_seed_effect": 0.1578330959681524,
+      "observed_effect": 0.15748870496429904,
+      "p_cluster_swap": 0.0007999600019999,
+      "p_holm": 0.013599320033998299,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.15748870496429904,
+        0.1634281380628988,
+        0.156997164907558,
+        0.15817748697200576,
+        0.16205991534396086,
+        0.1634869073767188,
+        0.15596236537221286,
+        0.15455257587360383,
+        0.15604936141625034,
+        0.18527532912467765
+      ],
+      "test": "ridge__source_local__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.9031667522138571,
+      "ci95": [
+        0.5288529340140695,
+        1.1296531183722225
+      ],
+      "mean_seed_effect": 1.0151818707939673,
+      "median_seed_effect": 1.0063798561212445,
+      "observed_effect": 0.9846828339503453,
+      "p_cluster_swap": 4.999750012499375e-05,
+      "p_holm": 0.00119994000299985,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.9846828339503453,
+        0.9923525286115432,
+        0.9939792719159002,
+        1.004952233308787,
+        1.041585070233679,
+        1.0375973268110859,
+        1.010598721543364,
+        0.988034102943474,
+        1.0078074789337021,
+        1.0902291396877908
+      ],
+      "test": "ridge__vienna_local__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.15467897530887015,
+      "ci95": [
+        0.07130516135712904,
+        0.21456724192685425
+      ],
+      "mean_seed_effect": 0.1613267853654788,
+      "median_seed_effect": 0.15770951852677217,
+      "observed_effect": 0.1569258349316947,
+      "p_cluster_swap": 0.0007999600019999,
+      "p_holm": 0.013599320033998299,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.1569258349316947,
+        0.16269940046178413,
+        0.15808279229390917,
+        0.15733624475963515,
+        0.16266631306988777,
+        0.16349324769173543,
+        0.15644213970742796,
+        0.1553900696275441,
+        0.15602517296590956,
+        0.1842066381452598
+      ],
+      "test": "ridge__vienna_local__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.1478171364075438,
+      "ci95": [
+        -0.056267004373750054,
+        0.3310289003511425
+      ],
+      "mean_seed_effect": 0.16483105426358696,
+      "median_seed_effect": 0.16561935806812456,
+      "observed_effect": 0.15327122077805724,
+      "p_cluster_swap": 0.03984800759962002,
+      "p_holm": 0.5180240987950603,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.15327122077805724,
+        0.17458778058050595,
+        0.16025288302528123,
+        0.14689936503727521,
+        0.1918774840065955,
+        0.17063203866553942,
+        0.1606066774707097,
+        0.17607762854668207,
+        0.1718747638783761,
+        0.14223070064684734
+      ],
+      "test": "ridge__source_full__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.018937446528114812,
+      "ci95": [
+        -0.01830973024816694,
+        0.03746333531942235
+      ],
+      "mean_seed_effect": 0.02136247602499203,
+      "median_seed_effect": 0.02178194999782792,
+      "observed_effect": 0.01939708324945981,
+      "p_cluster_swap": 0.30173491325433727,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.01939708324945981,
+        0.021864741504383032,
+        0.019778062779299728,
+        0.019466755892877854,
+        0.02440314576801663,
+        0.021833287184893843,
+        0.022904666697192825,
+        0.023873987640506876,
+        0.021730612810761992,
+        0.018372416722527728
+      ],
+      "test": "ridge__source_full__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.11521132411971115,
+      "ci95": [
+        -0.07643095625610936,
+        0.31848061510586867
+      ],
+      "mean_seed_effect": 0.1396734246151674,
+      "median_seed_effect": 0.14060662413479255,
+      "observed_effect": 0.12473120955964948,
+      "p_cluster_swap": 0.07484625768711564,
+      "p_holm": 0.8981550922453877,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.12473120955964948,
+        0.14079952211132013,
+        0.14041372615826497,
+        0.1318764350680766,
+        0.15467039780595773,
+        0.15186137658094778,
+        0.13790516353263899,
+        0.1484229923726129,
+        0.14664513083779648,
+        0.11940829212440912
+      ],
+      "test": "ridge__vienna_full_cds__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.025078594649676426,
+      "ci95": [
+        -0.009956625721784832,
+        0.04374052826667449
+      ],
+      "mean_seed_effect": 0.025930300263107553,
+      "median_seed_effect": 0.02647168434260884,
+      "observed_effect": 0.025466410428018567,
+      "p_cluster_swap": 0.19024048797560122,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.025466410428018567,
+        0.027919949280247464,
+        0.024210110750739817,
+        0.024580574040585564,
+        0.02732757529383186,
+        0.026589089317507836,
+        0.02731201860330091,
+        0.02823623294769714,
+        0.026354279367709843,
+        0.0213067626014365
+      ],
+      "test": "ridge__vienna_full_cds__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.22298471594110242,
+      "ci95": [
+        -0.01113897741421445,
+        0.42692987134055227
+      ],
+      "mean_seed_effect": 0.25317050492246546,
+      "median_seed_effect": 0.25136295310001766,
+      "observed_effect": 0.23389368565891164,
+      "p_cluster_swap": 0.009249537523123843,
+      "p_holm": 0.13874306284685764,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.23389368565891164,
+        0.25185008716055735,
+        0.24959042514980567,
+        0.24053399849145088,
+        0.27764330230767376,
+        0.2708145361524439,
+        0.25937755289896997,
+        0.2508758190394779,
+        0.26517515936400626,
+        0.2319504830013573
+      ],
+      "test": "ridge__vienna_full_mrna__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.03149307600721293,
+      "ci95": [
+        -0.01826055224183163,
+        0.05499248420138861
+      ],
+      "mean_seed_effect": 0.03496949769765248,
+      "median_seed_effect": 0.03555024381487785,
+      "observed_effect": 0.03217999402376736,
+      "p_cluster_swap": 0.2431878406079696,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.03217999402376736,
+        0.03650401011345613,
+        0.032173583402697416,
+        0.029953742148215952,
+        0.038695942576531965,
+        0.035495769378614594,
+        0.03684054588496011,
+        0.03796203112472955,
+        0.0356047182511411,
+        0.034284640072410597
+      ],
+      "test": "ridge__vienna_full_mrna__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.571626947038252,
+      "ci95": [
+        0.19975061219949874,
+        0.8999428099857213
+      ],
+      "mean_seed_effect": 0.6557233363017307,
+      "median_seed_effect": 0.6563971458234261,
+      "observed_effect": 0.6132644471272453,
+      "p_cluster_swap": 0.0006999650017499125,
+      "p_holm": 0.012599370031498424,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.6132644471272453,
+        0.6584399087269301,
+        0.623067575630223,
+        0.6543543829199221,
+        0.6936842357931307,
+        0.6787004187776979,
+        0.6715267474847137,
+        0.6259583784858345,
+        0.6528520899230023,
+        0.6853851781486077
+      ],
+      "test": "ridge__mordstein_like__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.10973293097098412,
+      "ci95": [
+        0.03951607538268757,
+        0.16046641477051024
+      ],
+      "mean_seed_effect": 0.11623106654508583,
+      "median_seed_effect": 0.113396544095745,
+      "observed_effect": 0.11104325185605385,
+      "p_cluster_swap": 0.012749362531873407,
+      "p_holm": 0.1784910754462277,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.11104325185605385,
+        0.12822682446739322,
+        0.11312944773797627,
+        0.11060388284953265,
+        0.11817380983560928,
+        0.11721284100645658,
+        0.11366364045351372,
+        0.10861622681647949,
+        0.11167510152005815,
+        0.12996563890778517
+      ],
+      "test": "ridge__mordstein_like__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.4060358302021787,
+      "ci95": [
+        0.20882791150236585,
+        0.5203177505533748
+      ],
+      "mean_seed_effect": 0.41429535968519804,
+      "median_seed_effect": 0.41360404775817916,
+      "observed_effect": 0.4125779353547091,
+      "p_cluster_swap": 0.00014999250037498125,
+      "p_holm": 0.003149842507874606,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.4125779353547091,
+        0.385685804477749,
+        0.4173206139090969,
+        0.4486353014375829,
+        0.3937027466769261,
+        0.42979858372734614,
+        0.41463016016164916,
+        0.4207549850859686,
+        0.40838325683469123,
+        0.4114642091862616
+      ],
+      "test": "histgb__source_local__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.10305645598062418,
+      "ci95": [
+        0.0422788346378453,
+        0.1405610628854256
+      ],
+      "mean_seed_effect": 0.10782166211923017,
+      "median_seed_effect": 0.1080079512826723,
+      "observed_effect": 0.10590705984382583,
+      "p_cluster_swap": 0.0006499675016249188,
+      "p_holm": 0.012349382530873457,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.10590705984382583,
+        0.10398546061639863,
+        0.10927821373076085,
+        0.10844810347842303,
+        0.10173797218290413,
+        0.11369314071090235,
+        0.10756779908692157,
+        0.1117210025362283,
+        0.10551310407143269,
+        0.11036476493450434
+      ],
+      "test": "histgb__source_local__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.392806672851715,
+      "ci95": [
+        0.22099868199285705,
+        0.5230205155513327
+      ],
+      "mean_seed_effect": 0.4151280652320917,
+      "median_seed_effect": 0.4132830576783939,
+      "observed_effect": 0.402746946566092,
+      "p_cluster_swap": 9.99950002499875e-05,
+      "p_holm": 0.002199890005499725,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.402746946566092,
+        0.4094088480586357,
+        0.4341442574284995,
+        0.46151185823064533,
+        0.3913704047939354,
+        0.41715726729815206,
+        0.41969483947392067,
+        0.4196441788073331,
+        0.4014032520770775,
+        0.39419879958662607
+      ],
+      "test": "histgb__vienna_local__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.10280568747489979,
+      "ci95": [
+        0.05566414462088933,
+        0.1301780643841748
+      ],
+      "mean_seed_effect": 0.11164868526289917,
+      "median_seed_effect": 0.11290209516495747,
+      "observed_effect": 0.10426330696897464,
+      "p_cluster_swap": 0.0002999850007499625,
+      "p_holm": 0.00599970001499925,
+      "pass": true,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.10426330696897464,
+        0.11410068430774761,
+        0.11769903972858255,
+        0.11905373268173454,
+        0.10481716480589073,
+        0.1150230355642645,
+        0.11206200342081886,
+        0.1137421869090961,
+        0.10813380620625779,
+        0.10759189203562457
+      ],
+      "test": "histgb__vienna_local__mse_improvement"
+    },
+    {
+      "bootstrap_median": -0.06230365469336363,
+      "ci95": [
+        -0.18093119508108058,
+        0.03605631751162825
+      ],
+      "mean_seed_effect": -0.03188537318323905,
+      "median_seed_effect": -0.030191398505048594,
+      "observed_effect": -0.07261390343634044,
+      "p_cluster_swap": 0.13389330533473326,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 1,
+      "seed_effects": [
+        -0.07261390343634044,
+        -0.007952972905380495,
+        -0.05006345449181057,
+        0.024910809105200632,
+        -0.020909224166673346,
+        -0.01754371739573357,
+        -0.02354566129929886,
+        -0.03880933854633989,
+        -0.03683713571079833,
+        -0.07548913298521567
+      ],
+      "test": "histgb__source_full__spearman_effect"
+    },
+    {
+      "bootstrap_median": -0.003856216084364028,
+      "ci95": [
+        -0.03897181742924756,
+        0.016237743953992256
+      ],
+      "mean_seed_effect": 0.00475122658310821,
+      "median_seed_effect": 0.00626475615570829,
+      "observed_effect": -0.0036603659998585523,
+      "p_cluster_swap": 0.7692615369231538,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 7,
+      "seed_effects": [
+        -0.0036603659998585523,
+        0.008866257392029786,
+        -0.0008858572916719291,
+        0.013593558121085867,
+        0.007128156364036098,
+        0.008935086686955798,
+        0.006068753922342639,
+        0.004227674375692218,
+        0.006460758389073941,
+        -0.0032217561286037714
+      ],
+      "test": "histgb__source_full__mse_improvement"
+    },
+    {
+      "bootstrap_median": -0.048396118325394616,
+      "ci95": [
+        -0.14841888441795822,
+        0.045771453641532525
+      ],
+      "mean_seed_effect": -0.018742084883703762,
+      "median_seed_effect": -0.009252829873261093,
+      "observed_effect": -0.061798754987448135,
+      "p_cluster_swap": 0.14939253037348132,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 3,
+      "seed_effects": [
+        -0.061798754987448135,
+        -0.012958742859838945,
+        -0.02157370123062574,
+        0.0037968523719725533,
+        -0.014818609442284414,
+        0.008912981610733173,
+        -0.00554691688668324,
+        0.006621359254180448,
+        -0.0008269811173807762,
+        -0.08922833554966253
+      ],
+      "test": "histgb__vienna_full_cds__spearman_effect"
+    },
+    {
+      "bootstrap_median": -0.003544038322480505,
+      "ci95": [
+        -0.03311828730111316,
+        0.013537995155060783
+      ],
+      "mean_seed_effect": 0.007089428222521199,
+      "median_seed_effect": 0.009713791607188625,
+      "observed_effect": -0.0030520474585900405,
+      "p_cluster_swap": 0.7689115544222789,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 8,
+      "seed_effects": [
+        -0.0030520474585900405,
+        0.010508486411593486,
+        0.006015019076149169,
+        0.010146456260653495,
+        0.009281126953723755,
+        0.011339120494753354,
+        0.009086143652390816,
+        0.010150589639309104,
+        0.0120510907226222,
+        -0.004631703527393345
+      ],
+      "test": "histgb__vienna_full_cds__mse_improvement"
+    },
+    {
+      "bootstrap_median": -0.05205776372744006,
+      "ci95": [
+        -0.16066710797584344,
+        0.03119952350566661
+      ],
+      "mean_seed_effect": -0.03416214289988527,
+      "median_seed_effect": -0.028622837998038442,
+      "observed_effect": -0.05795327338077813,
+      "p_cluster_swap": 0.15009249537523123,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 0,
+      "seed_effects": [
+        -0.05795327338077813,
+        -0.03455630822297695,
+        -0.004989034425853356,
+        -0.00750779530514073,
+        -0.04810295467190695,
+        -0.019379522241749214,
+        -0.03433975467073341,
+        -0.022142106172686082,
+        -0.02290592132534347,
+        -0.08974475858168443
+      ],
+      "test": "histgb__vienna_full_mrna__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.004042547054160444,
+      "ci95": [
+        -0.03537346917117463,
+        0.025417131069239016
+      ],
+      "mean_seed_effect": 0.014087849138240599,
+      "median_seed_effect": 0.016214646243495917,
+      "observed_effect": 0.00500366777252604,
+      "p_cluster_swap": 0.8201589920503974,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.00500366777252604,
+        0.01386606558988299,
+        0.01733081881184221,
+        0.017566205550900837,
+        0.015486341564948389,
+        0.01821191200380877,
+        0.012120885070688236,
+        0.020840123937085144,
+        0.016942950922043443,
+        0.0035095201586799307
+      ],
+      "test": "histgb__vienna_full_mrna__mse_improvement"
+    },
+    {
+      "bootstrap_median": 0.11741478742213116,
+      "ci95": [
+        -0.03662034142175089,
+        0.2889156439823333
+      ],
+      "mean_seed_effect": 0.1346483230424029,
+      "median_seed_effect": 0.13092351056863402,
+      "observed_effect": 0.13156157795878287,
+      "p_cluster_swap": 0.3536823158842058,
+      "p_holm": 1.0,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.13156157795878287,
+        0.09148186283217563,
+        0.140296063537327,
+        0.2290181679961781,
+        0.12152766423474398,
+        0.13028544317848517,
+        0.14986865208791517,
+        0.14180952151300752,
+        0.10432793660872608,
+        0.10630634047668758
+      ],
+      "test": "histgb__mordstein_like__spearman_effect"
+    },
+    {
+      "bootstrap_median": 0.06837502479537769,
+      "ci95": [
+        3.4510864642907274e-05,
+        0.10997217566065486
+      ],
+      "mean_seed_effect": 0.07335666224305191,
+      "median_seed_effect": 0.07117740825067599,
+      "observed_effect": 0.07033245953508857,
+      "p_cluster_swap": 0.08449577521123944,
+      "p_holm": 0.9294535273236338,
+      "pass": false,
+      "positive_seeds": 10,
+      "seed_effects": [
+        0.07033245953508857,
+        0.07131630182378591,
+        0.07686750665047874,
+        0.08635058043931666,
+        0.06972398905778414,
+        0.07103851467756607,
+        0.07829848696517408,
+        0.06955679808264001,
+        0.06841227646081414,
+        0.07166970873787082
+      ],
+      "test": "histgb__mordstein_like__mse_improvement"
+    }
+  ],
+  "protocol": "audits/20261121/RK32/a8_rk32_structure_definition_protocol_v2.json",
+  "protocol_sha256": "67a5f4612d0bdd5d00e4b88d0869385580682750ef05cf2ab9d8642974fdc804",
+  "schema": "a8-rk32-structure-definition-result-v1",
+  "scientific_conclusion": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY",
+  "scientific_flags": {
+    "RK_G1_complete": false,
+    "expression_outcome_previously_known": true,
+    "full_external_sota": false,
+    "functional_untouched_read": false,
+    "independent_untouched_confirmation": false,
+    "protein_ood": false,
+    "same_frozen_37_clusters_and_folds": true
+  },
+  "seeds": [
+    20261221,
+    20261222,
+    20261223,
+    20261224,
+    20261225,
+    20261226,
+    20261227,
+    20261228,
+    20261229,
+    20261230
+  ],
+  "started_utc": "2026-11-21T14:24:43.628824+00:00",
+  "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "structure_arms": {
+    "mordstein_like": [
+      "mfe_cds300",
+      "mfe_cds48_min",
+      "mfe_cds48_mean"
+    ],
+    "source_full": [
+      "rna_energy_entire_prot_kcal_mol"
+    ],
+    "source_local": [
+      "mfe_5prime_kcal_mol"
+    ],
+    "vienna_full_cds": [
+      "vienna_full_cds_mfe"
+    ],
+    "vienna_full_mrna": [
+      "vienna_full_mrna_mfe"
+    ],
+    "vienna_local": [
+      "vienna_local_mfe"
+    ]
+  },
+  "total_model_fits": 700
+}
