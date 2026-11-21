@@ -1,0 +1,262 @@
+{
+  "checks": [
+    {
+      "details": {
+        "rows": [
+          "Kudla 2009 GFP (E. coli)",
+          "Boel 2016 (E. coli BL21)",
+          "Mordstein 2020 (HEK293)",
+          "Kelsic 2016 MAGE infA"
+        ]
+      },
+      "name": "table27_row_count",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ],
+        "rendered": [
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ]
+      },
+      "name": "table27_match_kudla_2009_gfp",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Pass",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Pass",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "Fail",
+          "No"
+        ]
+      },
+      "name": "table27_match_boel_2016_nesg6348",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Pass",
+          "No"
+        ]
+      },
+      "name": "table27_match_mordstein_2020_hek293",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Fail",
+          "No"
+        ],
+        "rendered": [
+          "Pass",
+          "Fail",
+          "Fail",
+          "Pass",
+          "Pass",
+          "Pass",
+          "Fail",
+          "No"
+        ]
+      },
+      "name": "table27_match_kelsic_2016_mage_infA",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "failed_line_kudla_2009_gfp",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "failed_line_boel_2016_nesg6348",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "failed_line_mordstein_2020_hek293",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "failed_line_kelsic_2016_mage_infA",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_0",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_1",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_2",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_3",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_4",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dim_5",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "n_qualifying_zero",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "branch3_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "branch2_pivot_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk37_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "ribomimo_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "protocol_sha_in_anchor",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_sha_in_anchor",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_sha_in_anchor",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "anchor_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "table27_caption",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "section_order",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "sec_6_46_intact",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "sec_6_45_intact",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_chinese_in_section",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "non_claim_present",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk_g1_false",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_24_24",
+      "pass": true
+    }
+  ],
+  "checks_passed": 32,
+  "checks_total": 32,
+  "created_utc": "2026-11-21T18:04:39.861637+00:00",
+  "manuscript_sha256": "8011248f96860bac1058cc70dcf047256f4c42592a7733f6ce2056ba5213b3f3",
+  "result_sha256": "9b02373b460a278d3e295f6d17786ed5e2f572b4afa662749d3ef443d8db9ffe",
+  "schema": "a8-rk36-manuscript-review-v1",
+  "status": "PASS"
+}

@@ -1474,6 +1474,59 @@ These findings support only a retrospective, fixed-Kudla, sequence-cluster-OOD c
 | Scope | Fixed-Kudla natural-window coverage transport only; coverage not necessary within Kudla; no host/assay identification, separable component claim, independent transport, functional/protein OOD, generator, or wet-lab claim |
 :::
 
+### 6.47 No available independent dataset can reconstruct the exact start window, triggering a pivot away from start-aware MFE as the core innovation
+
+The handover protocol (§3–§4) designates RK34 as the terminal same-cohort window ablation and requires that subsequent work either pursue a genuinely independent transport confirmation or pivot. RK34 established a joint exact-context increment within Kudla without separable upstream or start-codon contributions, and RK35 showed that the natural truncated RK33 window still carries the increment within Kudla, so coverage alone does not explain the cross-study transport failure. Together these trigger §4 branch 1: seek an independent, full-CDS, protein-identified functional dataset on which the same exact start window can be preregistered for transport. RK36 executes the mandated first step of that branch — a label-free feasibility audit, frozen before any outcome association, asking whether any available public dataset can support a strict independent transport experiment. The audit reads only schema, sequence-coverage and identity metadata; it computes no outcome-effect correlation and reads no functional-untouched outcome.
+
+Seven eligibility requirements were frozen in `configs/a8_rk36_independent_transport_feasibility_protocol_v1.json`: R1 an independent study/host from the Kudla training cohort; R2 full CDS per variant; R3 a native variant-specific 5′ UTR (at least four nucleotides upstream of the ATG) so that `UTR[-4:]+CDS[:38]` can be reconstructed with the same construct geometry as Kudla (a fixed vector leader substitution does not qualify); R4 a fixed-protein synonymous library (a cross-protein natural non-synonymous pool cannot test the synonymous initiation-structure mechanism); R5 clear protein identity plus a family map for protein/study out-of-distribution isolation; R6 a fresh continuous expression/fitness outcome with adequate dynamic range (a coarse ordinal score does not qualify); and R7 feasible sequence-cluster/protein/study isolation with documentable license, accession and raw SHA. A dataset qualifies only if all seven pass. Four datasets were audited against the unified functional long table (25,420 rows, 31 columns) and the raw sources: the Kudla 2009 GFP recovery, Boel 2016 NESG6348, Mordstein 2020 HEK293 observed R1, and Kelsic 2016 MAGE infA.
+
+**No dataset qualified (0/4); the prespecified branch-3 decision was triggered (Table 27).** The unified long table contains no 5′ UTR column at all. Kudla has the full native UTR and CDS but is the training cohort (R1 fails). Boel 2016 is an independent study with full CDS and many protein identities, yet it is a cross-protein natural *non-synonymous* pool with an absent family map, an ordinal 0–5 total-protein expression score, a C-terminal tag and a fixed pET/T7 vector leader rather than a captured variant-specific native UTR (R3–R7 fail). Mordstein 2020 is cross-host and synonymous with a continuous fitness outcome, but its observed R1 reads begin at CDS position 4, lacking the start ATG and upstream four nucleotides, so the exact window cannot be reconstructed (R2–R3 fail; consistent with the RK28/RK33 0/12 negatives). Kelsic 2016 MAGE infA has no full construct sequence in the supplement and is frozen functional-untouched (R2–R3, R7 fail).
+
+**Table 27**
+
+*Independent-Transport Eligibility Matrix (label-free; Pass/Fail against frozen R1–R7)*
+
+| Dataset | R1 indep. | R2 full CDS | R3 native UTR | R4 synonymous | R5 family map | R6 continuous | R7 isolation | Qualifies |
+|---|---|---|---|---|---|---|---|---|
+| Kudla 2009 GFP (E. coli) | Fail | Pass | Pass | Pass | Pass | Pass | Pass | No |
+| Boel 2016 (E. coli BL21) | Pass | Pass | Fail | Fail | Fail | Fail | Fail | No |
+| Mordstein 2020 (HEK293) | Pass | Fail | Fail | Pass | Pass | Pass | Pass | No |
+| Kelsic 2016 MAGE infA | Pass | Fail | Fail | Pass | Pass | Pass | Fail | No |
+
+*Note.* R1 independent study/host; R2 full CDS per variant; R3 native variant-specific 5′ UTR (≥4 nt upstream of ATG); R4 fixed-protein synonymous library; R5 protein identity + family map; R6 fresh continuous outcome; R7 isolation + provenance. A dataset qualifies only if all seven pass. The unified functional long table has no 5′ UTR column.
+
+Per-dataset failed requirements:
+
+- **Kudla 2009 GFP (E. coli)**: fails R1_independent_study_host.
+- **Boel 2016 (E. coli BL21)**: fails R3_native_variant_specific_5utr, R4_fixed_protein_synonymous_library, R5_protein_identity_family_map, R6_fresh_continuous_outcome, R7_isolation_and_provenance.
+- **Mordstein 2020 (HEK293)**: fails R2_full_cds_per_variant, R3_native_variant_specific_5utr.
+- **Kelsic 2016 MAGE infA**: fails R2_full_cds_per_variant, R3_native_variant_specific_5utr, R7_isolation_and_provenance.
+
+Because no independent dataset can reconstruct the exact Kudla native start window for a fixed-protein synonymous transport test with a fresh continuous outcome, §4 branch 3 applies: the missing dimensions are recorded rather than papered over with a host/assay/coverage-mismatched dataset. The missing dimensions are:
+
+- Fixed-protein synonymous library (Boel is cross-protein non-synonymous).
+- Native variant-specific 5'UTR (>=4 nt upstream of ATG) captured per construct (no UTR column in any available source; Mordstein truncated; MAGE no full construct).
+- Full CDS with start ATG in an independent cross-host study (Mordstein observed-R1 starts at CDS position 4).
+- Fresh continuous expression/fitness outcome with adequate dynamic range (Boel is ordinal 0-5).
+- Protein family map for protein/study OOD isolation (Boel family map absent).
+- Documented license/accession/raw SHA for a qualifying construct-level dataset.
+
+This formally triggers the §4 branch-2 pivot. The cross-protein and cross-host transport failures already observed (RK23 Boel protein-OOD 0/4 at Holm p = 1; RK25 mechanism 0/2) corroborate that start-aware MFE is not a portable core innovation on the available data. The project therefore stops treating start-aware MFE as the core model innovation and pivots to data-supported functional sequence modeling and translation dynamics. The concrete next preregistered task (RK37) is a translation-speed / functional prediction benchmark on available bounded clean data (for example RiboMIMO), with strong constant and Ridge controls, CAI/GC and full-proxy MFE baselines, and general sequence models, evaluated under protein/study out-of-distribution Spearman, RMSE and top-k enrichment; a SOTA claim will require a paired 95% confidence-interval lower bound above zero, multiplicity control, 100% legality and full cost accounting. Construct-level synonymous datasets with native full UTR–CDS and continuous fresh outcomes in an independent host/study remain the data to seek before any future transport claim; Cambray 2018 fixed-UTR constructs require raw construct verification first.
+
+An independently written verification re-read the raw sources, re-derived the discriminating facts (no UTR column in the long table, Boel or Mordstein; Kudla UTR present; MAGE zero full CDS; Boel full CDS, non-synonymous, ordinal, family absent) and re-derived each dataset's qualifying verdict through a separate code path; it passed 24/24 checks and confirmed 0 qualifying datasets and the branch-3 pivot decision. This is a feasibility/eligibility audit only: it makes no transport-effect, SOTA or mechanism claim, reads no functional-untouched outcome for positives, and authorizes no generative training (RK-G1 remains false).
+
+::: {.evidence-anchor #sec-6-47}
+| Field | Evidence |
+|---|---|
+| Code commits | `7942d6a93b0df5fbb6e33a1bc8c8426e70a2353d` (protocol freeze + label-free audit scripts); `eca9171d2f28e30a62a6052ff30450eaccdee051` (feasibility result + independent verification) |
+| Code | `scripts/a8_rk36_build_protocol.py`; `scripts/a8_rk36_feasibility_audit.py`; independent `scripts/a8_rk36_verify_feasibility.py` |
+| Protocol | `configs/a8_rk36_independent_transport_feasibility_protocol_v1.json` |
+| Results | `audits/20261122/RK36/rk36_feasibility_result_v1.json`; `rk36_feasibility_independent_v1.json` |
+| SHA256 | protocol `891023c8746ba451746385b4e318054fad91db2af25831243071e0bb740c6c36`; result `9b02373b460a278d3e295f6d17786ed5e2f572b4afa662749d3ef443d8db9ffe`; independent `8b1c2bfbec7eca331d033412a9653812fd6a45e8d9a0d106d8b66ace4d4acfc0` |
+| Analysis | Label-free audit of 4 datasets against frozen R1–R7; unified long table 25,420 rows / 31 columns; 0 qualifying datasets; independent verification 24/24 |
+| Scope | Feasibility/eligibility only; branch-3 record + branch-2 pivot trigger; no transport effect, SOTA, mechanism, functional/protein OOD, generator or wet-lab claim; functional untouched not read; RK-G1 false |
+:::
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
