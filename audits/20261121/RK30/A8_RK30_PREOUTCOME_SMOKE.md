@@ -31,3 +31,7 @@
 ## 新真实计数的首个先验 QC
 
 既有 HEK293 `SRR10714593`（CM2_Bin1）固定参考计数为 1,245,343 assigned reads；152/152 变体与 RK28 同 bin 计数逐值一致。该 run 的 100 条 reservoir reads 经独立蛮力最近参考分配，0 mismatch。其余 run 与新 HeLa 条件必须完成同样的全量验收后才可用于正式分析。
+
+## 并行计数等价性
+
+新增可选 `--workers`，默认仍为 1；每个进程只写一个独立 run checkpoint，全局长表和结局仍由主进程统一生成。4 进程重算全部 8 个 HEK run 后，与原串行 checkpoint 的 `counts`、`metrics`、`audit_samples`、实验映射、输入字节数和输入 SHA256 均逐字段一致（8/8，`HEK293_PARALLEL_EQUIVALENCE.json`）。因此完整 64-run 计数使用 8 个 CPU 进程；该并行设置不改变分配规则、audit seed 或结局公式。

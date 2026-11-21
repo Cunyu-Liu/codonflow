@@ -18,7 +18,8 @@ if [[ "${RK30_RUN_PRODUCTION:-0}" == "1" ]]; then
   "${PYTHON}" scripts/a8_rk30_fixed_reference_counts.py \
     --protocol "${PROTOCOL}" \
     --freeze-report "${RK30_ARTIFACT_ROOT}/RK30_LABEL_FREE_FREEZE.json" \
-    --output-root "${RK30_ARTIFACT_ROOT}"
+    --output-root "${RK30_ARTIFACT_ROOT}" \
+    --workers "${RK30_COUNT_WORKERS:-8}"
   "${PYTHON}" scripts/a8_rk30_run_matched_context.py \
     --protocol "${PROTOCOL}" \
     --freeze-report "${RK30_ARTIFACT_ROOT}/RK30_LABEL_FREE_FREEZE.json" \

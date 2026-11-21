@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import hashlib
 import json
 import re
@@ -155,13 +156,50 @@ def outcome_table(counts: pd.DataFrame, protocol: dict) -> tuple[pd.DataFrame, d
     return outcomes, diagnostics
 
 
+def count_one_run(task: tuple[dict, int, dict, list[str], str]) -> dict:
+    """Count one independent run; global outcomes are never written here."""
+    run, run_index, protocol, sequences, run_dir_string = task
+    run_dir = Path(run_dir_string)
+    checkpoint = run_dir / f"{run['run']}.json"
+    input_hash = sha256(run["r1"])
+    if checkpoint.exists():
+        record = json.loads(checkpoint.read_text())
+        if record["input_sha256"] != input_hash or len(record["counts"]) != 152:
+            raise RuntimeError(f"Checkpoint mismatch: {checkpoint}")
+        record["status"] = "existing_verified"
+        return record
+    assigner = recovery.SeedAssigner(sequences, 8)
+    empty = recovery.SeedAssigner([], 8)
+    counts, _, _, metrics, audit = recovery.assign_reads(
+        [run], 0, False, assigner, empty,
+        assignment_cache_max=protocol["fixed_reference_counting"]["assignment_cache_max_unique_sequences_per_run"],
+        audit_sample_per_run=protocol["fixed_reference_counting"]["audit_reservoir_reads_per_run"],
+        audit_seed=protocol["fixed_reference_counting"]["audit_seed"] + run_index,
+    )
+    record = {
+        "run": run["run"], "context": run["context"], "replicate": run["replicate"],
+        "bin": run["bin"], "library_name": run["library_name"],
+        "input_path": str(run["r1"]), "input_sha256": input_hash,
+        "input_bytes": run["r1"].stat().st_size, "expected_md5": run["expected_md5"],
+        "counts": counts[:, 0].astype(int).tolist(), "metrics": metrics[0],
+        "audit_samples": audit, "status": "counted",
+    }
+    temporary = checkpoint.with_suffix(".tmp")
+    temporary.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n")
+    temporary.replace(checkpoint)
+    return record
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--freeze-report", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--only-runs", nargs="*", default=[])
+    parser.add_argument("--workers", type=int, default=1)
     args = parser.parse_args()
+    if not 1 <= args.workers <= 16:
+        raise ValueError("workers must be between 1 and 16")
     protocol = json.loads(args.protocol.read_text())
     if protocol["schema"] != "a8-rk30-mordstein-matched-context-protocol-v1":
         raise ValueError("wrong protocol")
@@ -180,8 +218,6 @@ def main() -> None:
     sequences = references["sequence_5prime_300nt"].astype(str).str.upper().tolist()
     if len(set(sequences)) != 152 or {len(seq) for seq in sequences} != {300}:
         raise ValueError("Reference cohort is not 152 unique 300-nt sequences")
-    assigner = recovery.SeedAssigner(sequences, 8)
-    empty = recovery.SeedAssigner([], 8)
     runs = select_runs(protocol, args.only_runs)
     selected = set(args.only_runs)
     args.output_root.mkdir(parents=True, exist_ok=True)
@@ -189,38 +225,28 @@ def main() -> None:
     run_dir.mkdir(exist_ok=True)
     started = datetime.now(timezone.utc).isoformat()
     wall = time.perf_counter()
+    tasks = [(run, run_index, protocol, sequences, str(run_dir)) for run_index, run in enumerate(runs)]
     records = []
-    for run_index, run in enumerate(runs):
-        checkpoint = run_dir / f"{run['run']}.json"
-        input_hash = sha256(run["r1"])
-        if checkpoint.exists():
-            record = json.loads(checkpoint.read_text())
-            if record["input_sha256"] != input_hash or len(record["counts"]) != 152:
-                raise RuntimeError(f"Checkpoint mismatch: {checkpoint}")
-            record["status"] = "existing_verified"
-        else:
-            counts, _, _, metrics, audit = recovery.assign_reads(
-                [run], 0, False, assigner, empty,
-                assignment_cache_max=protocol["fixed_reference_counting"]["assignment_cache_max_unique_sequences_per_run"],
-                audit_sample_per_run=protocol["fixed_reference_counting"]["audit_reservoir_reads_per_run"],
-                audit_seed=protocol["fixed_reference_counting"]["audit_seed"] + run_index,
-            )
-            record = {
-                "run": run["run"], "context": run["context"], "replicate": run["replicate"],
-                "bin": run["bin"], "library_name": run["library_name"],
-                "input_path": str(run["r1"]), "input_sha256": input_hash,
-                "input_bytes": run["r1"].stat().st_size, "expected_md5": run["expected_md5"],
-                "counts": counts[:, 0].astype(int).tolist(), "metrics": metrics[0],
-                "audit_samples": audit, "status": "counted",
-            }
-            temporary = checkpoint.with_suffix(".tmp")
-            temporary.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n")
-            temporary.replace(checkpoint)
-        records.append(record)
-        print(json.dumps({"phase": "fixed_reference_count", "run": run["run"],
-                          "assigned": record["metrics"]["r1_assigned"],
-                          "scanned": record["metrics"]["pairs_scanned"],
-                          "status": record["status"]}), flush=True)
+    if args.workers == 1:
+        results = map(count_one_run, tasks)
+        for record in results:
+            records.append(record)
+            print(json.dumps({"phase": "fixed_reference_count", "run": record["run"],
+                              "assigned": record["metrics"]["r1_assigned"],
+                              "scanned": record["metrics"]["pairs_scanned"],
+                              "status": record["status"]}), flush=True)
+    else:
+        with concurrent.futures.ProcessPoolExecutor(max_workers=args.workers) as pool:
+            futures = [pool.submit(count_one_run, task) for task in tasks]
+            for future in concurrent.futures.as_completed(futures):
+                record = future.result()
+                records.append(record)
+                print(json.dumps({"phase": "fixed_reference_count", "run": record["run"],
+                                  "assigned": record["metrics"]["r1_assigned"],
+                                  "scanned": record["metrics"]["pairs_scanned"],
+                                  "status": record["status"]}), flush=True)
+        order = {run["run"]: index for index, run in enumerate(runs)}
+        records.sort(key=lambda record: order[record["run"]])
     if selected:
         print(json.dumps({"status": "PASS_SELECTED_RUNS", "runs": len(records)}))
         return
@@ -255,6 +281,7 @@ def main() -> None:
         "elapsed_seconds": time.perf_counter() - wall,
         "protocol_sha256": sha256(args.protocol), "reference_order": variant_ids,
         "n_runs": len(records), "n_experiments": 8, "n_variants_before_qc": 152,
+        "workers": args.workers,
         **diagnostics,
         "counts_sha256": sha256(counts_path),
         "outcomes_sha256": sha256(args.output_root / "matched_context_outcomes.csv"),
