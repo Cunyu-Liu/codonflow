@@ -1,0 +1,59 @@
+{
+  "schema": "a8-rk34-closeout-v1",
+  "status": "FAIL",
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "primary_family_results": [
+    {
+      "all_four_pass": true,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "exact_vs_simple",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_given_start",
+      "n_pass": 3,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_given_upstream",
+      "n_pass": 2,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_without_upstream",
+      "n_pass": 1,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_without_start",
+      "n_pass": 2,
+      "n_tests": 4
+    }
+  ],
+  "confirmatory_tests": 20,
+  "confirmatory_pass": 12,
+  "closeout_markdown_sha256": "8e3aa8656bc3b0453975a925f26b7f8593bb65c6574f4ba37ff68e0043e6751f",
+  "checks_passed": 35,
+  "checks_total": 36
+}
+[
+  {
+    "name": "preflight_12",
+    "pass": false,
+    "details": null
+  }
+]

@@ -52,8 +52,8 @@ def main():
         checks.append({"name": name, "pass": bool(ok), "details": details})
 
     check("freeze_30", data["freeze"]["status"] == "PASS" and data["freeze"]["checks_passed"] == data["freeze"]["checks_total"] == 30)
-    check("preflight_12", data["preflight"]["status"] == "PASS" and data["preflight"]["checks_passed"] == data["preflight"]["checks_total"] == 12)
-    check("protocol_binding", production["protocol_sha256"] == independent["protocol_sha256"] == protocol["protocol_sha256"])
+    check("preflight_12", data["preflight"]["status"] == "PASS_LABEL_FREE_START_CONTEXT_PREFLIGHT" and data["preflight"]["checks_passed"] == data["preflight"]["checks_total"] == 12)
+    check("protocol_binding", production["protocol_sha256"] == independent["protocol_sha256"] == sha(paths["protocol"]))
     check("independent_binds_production", independent["production_summary_sha256"] == sha(paths["production"]))
     check("scientific_conclusion", production["scientific_conclusion"] == independent["scientific_conclusion"] == reproduction["scientific_conclusion"] == "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY")
     primary = {row["family"]: row for row in production["family_results"] if row["analysis"] == "primary"}
@@ -64,7 +64,10 @@ def main():
     check("confirmatory_12_of_20", production["n_confirmatory_tests"] == 20 and production["n_confirmatory_pass"] == 12 and len(production["primary_tests"]) == 40)
     check("fit_accounting", production["new_model_fits"] == 700 and production["reused_rk32_model_fits"] == 200 and production["evaluated_model_fits"] == 900 and independent["independent_model_fits"] == 900)
     check("independent_pass", independent["status"] == "PASS" and independent["checks_passed"] == independent["checks_total"])
-    check("independent_numeric_precision", independent["max_abs_prediction_delta"] < 1e-10 and independent["max_abs_metric_delta"] < 1e-12 and independent["max_abs_effect_delta"] < 1e-12 and independent["max_abs_ci_delta"] < 1e-10 and independent["n_test_record_exact_equal"] == 40 and independent["n_inference_array_exact_equal"] == 82)
+    endpoint_checks = [row for row in independent["checks"] if row["name"].startswith("endpoint_")]
+    inference_array_check = [row for row in independent["checks"] if row["name"] == "inference_array_identity"]
+    deltas = independent["max_deltas"]
+    check("independent_numeric_precision", deltas["prediction"] < 1e-10 and deltas["seed_metric"] < 1e-12 and deltas["seed_effect"] < 1e-12 and deltas["ci"] < 1e-10 and len(endpoint_checks) == 40 and all(row["pass"] for row in endpoint_checks) and len(inference_array_check) == 1 and inference_array_check[0]["pass"] and reproduction["independent_arrays_exact"] == 82)
     check("energy_roundtrip", production["max_recomputed_energy_abs_delta"] < 1e-12, production["max_recomputed_energy_abs_delta"])
     check("reproduction_pass", reproduction["status"] == "PASS" and reproduction["checks_passed"] == reproduction["checks_total"] and reproduction["production_csv_byte_identical"] == 6 and reproduction["production_arrays_exact"] == 82 and reproduction["independent_csv_byte_identical"] == 5 and reproduction["independent_arrays_exact"] == 82)
     for key, record in production["outputs"].items():
@@ -85,7 +88,9 @@ def main():
     failed_names = [row["name"] for row in failed_independent["checks"] if not row["pass"]]
     check("independent_v1_failure_retained", failed_independent["status"] == "FAIL" and failed_names == ["seed_metric_identity"] and independent["verification_revision"] == "v2_canonicalize_null_baseline_arm_after_csv_roundtrip" and independent["seed_metric_numeric_tolerance"] == 1e-9)
     check("untouched_not_read", not production["scientific_flags"]["functional_untouched_read"] and not independent["functional_untouched_read"])
-    check("claims_boundary", not production["scientific_flags"]["protein_ood"] and not production["scientific_flags"]["rk_g1_supported"] and production["scientific_flags"]["no_wetlab"] and not production["scientific_flags"]["expensive_generation_training"])
+    flags = production["scientific_flags"]
+    boundaries = protocol["scientific_boundaries"]
+    check("claims_boundary", not flags["protein_ood"] and not flags["RK_G1_complete"] and not flags["host_or_assay_identified"] and not flags["full_external_sota"] and not boundaries["generator_training_authorized"] and not boundaries["functional_untouched_read"] and not independent["functional_untouched_read"])
 
     test_rows = [row for row in production["primary_tests"] if row["analysis"] == "primary"]
     lines = [
@@ -101,9 +106,9 @@ def main():
     for row in test_rows:
         lines.append(f"| {row['family']} | {row['model']} | {row['metric']} | {row['observed_effect']:.6g} | [{row['ci95'][0]:.6g}, {row['ci95'][1]:.6g}] | {row['p_holm']:.6g} | {row['positive_seeds']}/10 | {'PASS' if row['pass'] else 'FAIL'} |")
     lines += ["", "## Verification and boundaries", "",
-              f"- Independent: {independent['checks_passed']}/{independent['checks_total']} PASS; maximum prediction delta {independent['max_abs_prediction_delta']:.3g}; 40/40 test records and 82/82 inference arrays exactly equal.",
+              f"- Independent: {independent['checks_passed']}/{independent['checks_total']} PASS; maximum prediction delta {deltas['prediction']:.3g}; 40/40 test records and 82/82 inference arrays exactly equal.",
               f"- Clean reproduction: {reproduction['checks_passed']}/{reproduction['checks_total']} PASS; 6/6 production CSV, 82/82 production arrays, 5/5 independent CSV and 82/82 independent arrays exact.",
-              f"- Component wall time: production {production['component_wall_seconds']:.3f} s; independent {independent['component_wall_seconds']:.3f} s.",
+              f"- Component wall time: production {production['component_wall_seconds']:.3f} s; independent {independent['elapsed_seconds']:.3f} s.",
               "- Retrospective fixed-Kudla, 37 sequence clusters, 150 exact-CDS groups, 154 measurement rows. Artificial N-masking is a computational ablation, not a biological perturbation.",
               "- No claim of universal upstream/start mechanism, independent untouched transport, host/assay identification, functional/protein OOD, external SOTA, prospective DBTL, wet lab, or RK-G1.",
               "- External complete SOTA, unified time-matched, seven-method common dense matrix, multi-species VeloHARMO, real functional/protein OOD, untouched and prospective validation remain open.", ""]

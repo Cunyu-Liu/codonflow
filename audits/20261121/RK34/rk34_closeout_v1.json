@@ -1,0 +1,307 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "freeze_30",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preflight_12",
+      "pass": false
+    },
+    {
+      "details": null,
+      "name": "protocol_binding",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_binds_production",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "scientific_conclusion",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "exact_family_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "start_given_upstream": 2,
+        "start_without_upstream": 1,
+        "upstream_given_start": 3,
+        "upstream_without_start": 2
+      },
+      "name": "separable_families_fail",
+      "pass": true
+    },
+    {
+      "details": {
+        "exact_vs_simple": 4,
+        "start_given_upstream": 2,
+        "start_without_upstream": 1,
+        "upstream_given_start": 3,
+        "upstream_without_start": 2
+      },
+      "name": "sensitivity_does_not_rescue",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "confirmatory_12_of_20",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_numeric_precision",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "energy_roundtrip",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "reproduction_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_analysis_start_context_150.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_output_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_independent_primary_tests.json",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_primary_inference_arrays.npz",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_output_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "tests_v1",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "tests_v2",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "tests_independent",
+      "pass": true
+    },
+    {
+      "details": "455 passed, 1 skipped",
+      "name": "project_tests",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "prefit_failure_retained",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_v1_failure_retained",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "untouched_not_read",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "claims_boundary",
+      "pass": true
+    }
+  ],
+  "checks_passed": 35,
+  "checks_total": 36,
+  "closeout_markdown_sha256": "8e3aa8656bc3b0453975a925f26b7f8593bb65c6574f4ba37ff68e0043e6751f",
+  "confirmatory_pass": 12,
+  "confirmatory_tests": 20,
+  "inputs": {
+    "failure_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_production_v1.log",
+      "sha256": "9e6d91e0413de298b1a636c6ecf6bc009c4a2adc880017203a204c09314e6502"
+    },
+    "freeze": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_freeze_verification_v2.json",
+      "sha256": "eecfc148150e6ca635cd8dda957f1983779429f4bfad412bae5b3be8a82e39ad"
+    },
+    "independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_independent_v2.json",
+      "sha256": "7f7f6d105560da3e24b8653d0d0fbff52cef0947a4c7b336f69cae98c4d687b8"
+    },
+    "independent_failed_v1": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_independent_v1.json",
+      "sha256": "d81770997492095a81f08649f224f1f265d4d88ca95ec9d744637cabc56329a6"
+    },
+    "independent_failed_v1_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_independent_v1.log",
+      "sha256": "1925d34ad6dbb5fd4c2f2e42c467c1d1f97eaa628c9833eec1d7399cd0da9c31"
+    },
+    "independent_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_independent_v2.log",
+      "sha256": "ff619fe89648cda333a56d871a11510e194682ea83c42f79559a36810081fe8f"
+    },
+    "preflight": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_preflight_v1.json",
+      "sha256": "2a3bdd363e2b0178e758590f3e2cff3273c3ab586085c99407e55b92e57c64e0"
+    },
+    "production": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_result_v2.json",
+      "sha256": "5eaddc34e9a69b79c4c595c83d4afd8beb4df51925171559fb6c864e2a4b2e12"
+    },
+    "production_log": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_production_v2.log",
+      "sha256": "0f3155e2ad2b156203b629eb96da707c9bb10e7104ab684c8eb97c1e11236638"
+    },
+    "project_tests": {
+      "path": "audits/20261121/RK34/rk34_clean_project_tests_v1.log",
+      "sha256": "72840a6fef81376c501e99f386708368f01ffdc129c647bfeb895ac6f164fb43"
+    },
+    "protocol": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/a8_rk34_start_context_protocol_v2.json",
+      "sha256": "5e75d50c65d5fea2c27aa92e287d72607af6cb709866384030583ddb7ba91ef4"
+    },
+    "reproduction": {
+      "path": "audits/20261121/RK34/rk34_clean_reproduction_comparison_v1.json",
+      "sha256": "546619f08850c8306bf475f881882b6db3bad335b4cfb95b590738a4e30e6ff7"
+    },
+    "tests_independent": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_synthetic_tests_with_independent_v2.log",
+      "sha256": "1a5ed9584af47de9a863e38b73b7035bc3eda32f644aaba2b947e72085ed09ac"
+    },
+    "tests_v1": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_synthetic_tests_v1.log",
+      "sha256": "739f28c65e4b6b387ab2b5188e3b06d7cf0a0f015530b6956cceb22f948fb59c"
+    },
+    "tests_v2": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_synthetic_tests_v2.log",
+      "sha256": "9c5530adf98e8e4da965a7fe820aa45bbcf0214ba62f7a55646da97e9e7dbeb0"
+    }
+  },
+  "primary_family_results": [
+    {
+      "all_four_pass": true,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "exact_vs_simple",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_given_start",
+      "n_pass": 3,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_given_upstream",
+      "n_pass": 2,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_without_upstream",
+      "n_pass": 1,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_without_start",
+      "n_pass": 2,
+      "n_tests": 4
+    }
+  ],
+  "schema": "a8-rk34-closeout-v1",
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "status": "FAIL"
+}

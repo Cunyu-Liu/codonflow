@@ -1,0 +1,52 @@
+{
+  "schema": "a8-rk34-closeout-v1",
+  "status": "PASS",
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "primary_family_results": [
+    {
+      "all_four_pass": true,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "exact_vs_simple",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_given_start",
+      "n_pass": 3,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_given_upstream",
+      "n_pass": 2,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_without_upstream",
+      "n_pass": 1,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_without_start",
+      "n_pass": 2,
+      "n_tests": 4
+    }
+  ],
+  "confirmatory_tests": 20,
+  "confirmatory_pass": 12,
+  "closeout_markdown_sha256": "3a81386c7df1854a4e57dbe87802c40ac715be39b7ba83bb7e40b755c86d6f83",
+  "checks_passed": 36,
+  "checks_total": 36
+}

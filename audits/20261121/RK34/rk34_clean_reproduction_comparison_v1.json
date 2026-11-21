@@ -1,0 +1,1655 @@
+{
+  "candidate_independent_report_sha256": "0eccf2b6dd83a31e87eb931af652628b2d7692d61f4e8425c127425be44cf93c",
+  "candidate_summary_sha256": "7ed123d39fd05fc44995407a78f99abca5101c0b48673173783c214128c86904",
+  "checks": [
+    {
+      "details": null,
+      "name": "protocol_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_script_sha",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+        "reference_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY"
+      },
+      "name": "production_science",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "1b92cfffc9f6a5b3066fda54f1b38a2f30095ed76c3dd5dbc960422aec4f2513",
+        "reference_sha": "1b92cfffc9f6a5b3066fda54f1b38a2f30095ed76c3dd5dbc960422aec4f2513"
+      },
+      "name": "production_csv_analysis_start_context_150.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023",
+        "reference_sha": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+      },
+      "name": "production_csv_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "71a3cf45a9928b3830cc75d8024dbdb917972ba6ed6d0dc83abec566aff7328e",
+        "reference_sha": "71a3cf45a9928b3830cc75d8024dbdb917972ba6ed6d0dc83abec566aff7328e"
+      },
+      "name": "production_csv_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "512304d1aabac35cad0b8980d2026513dfda54056791827e03d56bdea840ac43",
+        "reference_sha": "512304d1aabac35cad0b8980d2026513dfda54056791827e03d56bdea840ac43"
+      },
+      "name": "production_csv_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "044aa54aa7302c23988bfeddba29d71f48fbfe243148875dd1f2388390c7b284",
+        "reference_sha": "044aa54aa7302c23988bfeddba29d71f48fbfe243148875dd1f2388390c7b284"
+      },
+      "name": "production_csv_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "7e8850368e4e4395851b95a421fe4d788ab97fa8a2f4c04b05bee990690725fe",
+        "reference_sha": "7e8850368e4e4395851b95a421fe4d788ab97fa8a2f4c04b05bee990690725fe"
+      },
+      "name": "production_csv_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": 82,
+      "name": "production_array_keys",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__primary__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_bootstrap__sensitivity_d0__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000,
+          37
+        ]
+      },
+      "name": "production_array_bootstrap_cluster_indices",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__primary__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "production_array_permutation__sensitivity_d0__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000,
+          37
+        ]
+      },
+      "name": "production_array_permutation_cluster_signs",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "155/155"
+      },
+      "name": "reference_independent_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "155/155"
+      },
+      "name": "candidate_independent_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_science",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_fit_count",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_check_names",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "6d44d50929e3ef52f3d0250e8a8fdc694c7b3a092b45c1f23ca308983733829f",
+        "reference_sha": "6d44d50929e3ef52f3d0250e8a8fdc694c7b3a092b45c1f23ca308983733829f"
+      },
+      "name": "independent_csv_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023",
+        "reference_sha": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+      },
+      "name": "independent_csv_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "927f0017c6282faee361925af2b7a7698af868ab589b624a7676d5044007bdf7",
+        "reference_sha": "927f0017c6282faee361925af2b7a7698af868ab589b624a7676d5044007bdf7"
+      },
+      "name": "independent_csv_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "3a914a22d09c1934c290a1e72c2f511d1bdf9919ad80b162a22e732a70297de0",
+        "reference_sha": "3a914a22d09c1934c290a1e72c2f511d1bdf9919ad80b162a22e732a70297de0"
+      },
+      "name": "independent_csv_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "faec15642dbc5d36b058e66a348e6e0bffdbd53bf0564b05c3adbfb63460353e",
+        "reference_sha": "faec15642dbc5d36b058e66a348e6e0bffdbd53bf0564b05c3adbfb63460353e"
+      },
+      "name": "independent_csv_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "candidate_sha": "64dded1bea2f78c567b92046a445930d1e1493a201bda582bf3030f46622cebb",
+        "reference_sha": "64dded1bea2f78c567b92046a445930d1e1493a201bda582bf3030f46622cebb"
+      },
+      "name": "independent_tests_byte_identity",
+      "pass": true
+    },
+    {
+      "details": 82,
+      "name": "independent_array_keys",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__primary__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_bootstrap__sensitivity_d0__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000,
+          37
+        ]
+      },
+      "name": "independent_array_bootstrap_cluster_indices",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__primary__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__histgb__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__start_given_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__start_given_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__start_without_upstream__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__start_without_upstream__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__upstream_given_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__upstream_given_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__upstream_without_start__mse_improvement",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000
+        ]
+      },
+      "name": "independent_array_permutation__sensitivity_d0__ridge__upstream_without_start__spearman_effect",
+      "pass": true
+    },
+    {
+      "details": {
+        "shape": [
+          20000,
+          37
+        ]
+      },
+      "name": "independent_array_permutation_cluster_signs",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "functional_untouched_not_read",
+      "pass": true
+    }
+  ],
+  "checks_passed": 187,
+  "checks_total": 187,
+  "independent_arrays_exact": 82,
+  "independent_csv_byte_identical": 5,
+  "production_arrays_exact": 82,
+  "production_csv_byte_identical": 6,
+  "reference_independent_report_sha256": "7f7f6d105560da3e24b8653d0d0fbff52cef0947a4c7b336f69cae98c4d687b8",
+  "reference_summary_sha256": "5eaddc34e9a69b79c4c595c83d4afd8beb4df51925171559fb6c864e2a4b2e12",
+  "schema": "a8-rk34-clean-reproduction-comparison-v1",
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "status": "PASS"
+}

@@ -1,0 +1,52 @@
+{
+  "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "primary_family_results": [
+    {
+      "analysis": "primary",
+      "family": "exact_vs_simple",
+      "n_tests": 4,
+      "n_pass": 4,
+      "all_four_pass": true,
+      "confirmatory": true
+    },
+    {
+      "analysis": "primary",
+      "family": "upstream_given_start",
+      "n_tests": 4,
+      "n_pass": 3,
+      "all_four_pass": false,
+      "confirmatory": true
+    },
+    {
+      "analysis": "primary",
+      "family": "start_given_upstream",
+      "n_tests": 4,
+      "n_pass": 2,
+      "all_four_pass": false,
+      "confirmatory": true
+    },
+    {
+      "analysis": "primary",
+      "family": "start_without_upstream",
+      "n_tests": 4,
+      "n_pass": 1,
+      "all_four_pass": false,
+      "confirmatory": true
+    },
+    {
+      "analysis": "primary",
+      "family": "upstream_without_start",
+      "n_tests": 4,
+      "n_pass": 2,
+      "all_four_pass": false,
+      "confirmatory": true
+    }
+  ],
+  "n_confirmatory_pass": 12,
+  "n_confirmatory_tests": 20,
+  "new_model_fits": 700,
+  "reused_rk32_model_fits": 200,
+  "evaluated_model_fits": 900,
+  "summary": "audits/20261121/RK34/rk34_start_context_clean_result_v2.json"
+}
