@@ -1,0 +1,114 @@
+{
+  "schema": "a8-rk38-baseline-untouched-inventory-protocol-v1",
+  "protocol_id": "RK38_BASELINE_UNTOUCHED_INVENTORY_V1",
+  "frozen_before_production_readout": true,
+  "scientific_question": "Which real baseline outputs, ordered scorer-budget trajectories, costs, exclusions, and untouched functional partitions actually exist, and which comparisons remain unsupported?",
+  "scope": "Read-only development inventory. This is not a new cross-input CodonFlow-versus-experiment comparison, not a SOTA ranking, not a functional evaluation, and not permission to open functional-untouched outcomes.",
+  "population": {
+    "development_records": 18,
+    "development_seeds": [0, 1, 2],
+    "external_actual_set_seed": 0,
+    "untouched24_used": false,
+    "functional_untouched_used": false
+  },
+  "inputs": {
+    "a7_g2": {
+      "root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5",
+      "gate": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/g2_gate.json",
+      "gate_sha256": "a2e157b2635860460cde95d8c3a03d12a7b948b2cd6d20dab5ce37deb8923cbc",
+      "execution": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/execution_status.json",
+      "execution_sha256": "296ef267239c631759cdc9c86d63ba37b285629aa598742bed69ecb709a1eab4",
+      "arms": ["FULL", "EDIT"],
+      "simple_methods": ["uniform", "hill_climbing", "mh_annealing", "areuredi_style"],
+      "expected_raw_files": 324,
+      "expected_points_per_file": 500
+    },
+    "rk06_dense": {
+      "summary": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_unique18_v1/simple_search_dense_unique18_v1.json",
+      "summary_sha256": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052",
+      "expected_runs": 216,
+      "expected_unique_scorer_calls": 108000,
+      "methods": ["uniform", "hill_climbing", "mh_annealing", "areuredi_style"]
+    },
+    "external_actual_set": {
+      "matrix": "/home/codonflow-a8-rk/audits/20261118/RK13/seven_method_actual_set_matrix_v1.json",
+      "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+      "independent": "/home/codonflow-a8-rk/audits/20261118/RK13/seven_method_actual_set_matrix_independent_v1.json",
+      "independent_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b",
+      "legacy_root_template": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/eval_outputs/a6_baselines/unique18_s0",
+      "legacy_files_per_seed": 18,
+      "legacy_methods": ["lineardesign_scan", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous"],
+      "lineardesign_grid": "/home/codonflow-a8-rk/audits/20261118/RK12/lineardesign_unique18_grid_v1.json",
+      "lineardesign_grid_sha256": "f983f8bd32750b32900e9e061979a2ee655cda42788477b13049a8e50898eda6",
+      "lineardesign_expected_runs": 198,
+      "ensemble_report": "/home/codonflow-a8-rk/audits/20261118/RK13/ensembledesign_unique18_recovery_v1.json",
+      "ensemble_report_sha256": "bbdc24bdf72331e7cb0ceb30d75d152ab88ae2efb5705d00f449560d67922fe2",
+      "ensemble_expected_records": 18,
+      "method_order": ["lineardesign_lambda11", "codongpt", "gemorna", "cai_greedy", "uniform_synonymous", "lineardesign_scan", "ensembledesign_11run"]
+    },
+    "rk16_dense_prefix": {
+      "matrix": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk16/dense_prefix_v1/rk16_dense_prefix_matrix_v1.json",
+      "matrix_sha256": "7dd7957de01995723dd1bc6b28b7955bdd522dcbefcba74ca26f0ba867788c90",
+      "audit": "/home/codonflow-a8-rk/audits/20261120/RK16/rk16_dense_prefix_audit_v1.json",
+      "audit_sha256": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500",
+      "expected_methods": ["lineardesign_lambda11", "codongpt", "uniform_synonymous", "ensembledesign_11run"],
+      "budget": 11,
+      "expected_primary_real_generation_calls": 792
+    },
+    "functional_untouched_metadata_only": {
+      "split_summary": "/home/codonflow-a8-rk/audits/20261118/RK04/split_summary.json",
+      "split_summary_sha256": "b5e3b24c0e30db0d47a57506e6f4dae2522c053b676dbf6064f366b8b9d27845",
+      "split_independent": "/home/codonflow-a8-rk/audits/20261118/RK04/independent_split_verification.json",
+      "split_independent_sha256": "18e53b5a256f188962391b1c99f033cd2bc4c9489a750ddd2ea7b2cb288d9956",
+      "sequence_ood_summary": "/home/codonflow-a8-rk/audits/20261118/RK04/sequence_ood_summary.json",
+      "sequence_ood_summary_sha256": "7acd133f92092a17e6e3373ecf3de78eaa14be42fdbbeb31a559e42245fa3ff3",
+      "rk20_finalization": "/home/codonflow-a8-rk/audits/20261120/RK20/rk20_finalization_v1.json",
+      "rk20_finalization_sha256": "af7cbcbc1f85d04258fef850539e2ed325f1a65ad29abee313f3c59e5f5c7564",
+      "expected_rows": 19072,
+      "expected_clusters": 1,
+      "expected_signature_groups": 13569,
+      "expected_synonymous_single_codon_rows": 362,
+      "new_label_or_outcome_read": false,
+      "new_file_sha256_allowed": false,
+      "file_stat_only": true
+    }
+  },
+  "output": {
+    "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/baseline_untouched_inventory_v1",
+    "audit_root": "/home/codonflow-a8-rk/audits/20261122/RK38",
+    "expected_detailed_rows": 846,
+    "expected_external_actual_set_cells": 126,
+    "expected_raw_run_rows": {
+      "a7_g2": 324,
+      "rk06_dense": 216,
+      "a6_legacy_five_methods": 270,
+      "lineardesign_lambda11": 18,
+      "ensembledesign_11run": 18
+    }
+  },
+  "required_validations": [
+    "Hash every frozen summary input before analysis and every raw run file during inventory.",
+    "Require exact record, seed, method, status, point count, unique-sequence count, identity and cost-field consistency.",
+    "Align every seed0 external actual-set sequence set to the frozen seven-method matrix; do not use stored objective vectors as raw-output substitutes.",
+    "Keep unordered actual outputs, lambda grids, B11 ordered prefixes and B500 ordered scorer trajectories in distinct coverage classes.",
+    "Do not infer unavailable dense AUC, repeated-call positions, forward calls, end-to-end time, or protein-only equivalence.",
+    "Use existing functional split summaries only; stat frozen files but do not open, hash, or evaluate functional-untouched rows."
+  ],
+  "statistics": {
+    "new_effect_estimates": false,
+    "new_p_values": false,
+    "reason": "This task audits evidence coverage and provenance rather than estimating a new cross-input treatment effect."
+  },
+  "decision_boundary": {
+    "inventory_pass_rule": "All frozen inputs, 846 detailed raw rows, 126 external actual-set cells, and metadata-only untouched checks pass; known exclusions are retained rather than zero-filled.",
+    "scientific_gate_passed": false,
+    "codonflow_external_sota_evaluated": false,
+    "time_matched_comparison": false,
+    "functional_untouched_evaluated": false,
+    "new_functional_labels_read": false,
+    "sota_claim": false,
+    "rk_g1_pass": false,
+    "expensive_generator_training_authorized": false,
+    "manuscript_submittable": false
+  }
+}

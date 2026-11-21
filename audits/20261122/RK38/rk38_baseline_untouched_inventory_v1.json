@@ -1,0 +1,217 @@
+{
+  "schema": "a8-rk38-baseline-untouched-inventory-v1",
+  "protocol_id": "RK38_BASELINE_UNTOUCHED_INVENTORY_V1",
+  "protocol_sha256": "025006e43ec1bc5ba17c53ea1b4771cb89ffd3cb61bb4229bddf2f3a75eeaadf",
+  "created_at": "2026-11-21T19:05:49.358637+00:00",
+  "status": "PASS_INVENTORY_ONLY_SCIENTIFIC_GATES_UNRESOLVED",
+  "code_commit_at_execution": "765911f7dafa2790f4bd3fefae95a5bb493cfe37",
+  "platform": "Linux-5.15.0-161-generic-x86_64-with-glibc2.31",
+  "counts": {
+    "detailed_rows": 846,
+    "detailed_rows_by_source": {
+      "a7_g2": 324,
+      "rk06_dense": 216,
+      "a6_legacy_five_methods": 270,
+      "lineardesign_lambda11": 18,
+      "ensembledesign_11run": 18
+    },
+    "external_seed0_actual_set_cells": 126,
+    "rk16_b11_methods": 4,
+    "rk16_b11_real_generation_calls": 792,
+    "functional_untouched_rows_metadata_only": 19072
+  },
+  "a7_g2": {
+    "raw_file_count": 324,
+    "learned_cuda_runs": 108,
+    "simple_search_runs": 216,
+    "scientific_gate_passed": false,
+    "execution_status": "g2_complete",
+    "gate_sha256": "a2e157b2635860460cde95d8c3a03d12a7b948b2cd6d20dab5ce37deb8923cbc",
+    "execution_sha256": "296ef267239c631759cdc9c86d63ba37b285629aa598742bed69ecb709a1eab4"
+  },
+  "rk06_dense": {
+    "raw_file_count": 216,
+    "unique_scorer_calls": 108000,
+    "summary_sha256": "d060492c1d6882ad950ccde9782ee5cf2f8b98dfd5d24b0ea16757e6a8d2a052",
+    "shared_with_a7_simple_search": true,
+    "cost_note": "RK06 supplies terminal-scoring and finer cost fields for the same shared simple-search runs; not an additional independent method family."
+  },
+  "external_actual_set": {
+    "legacy_raw_files": 54,
+    "legacy_rows_three_seeds": 270,
+    "seed0_actual_set_cells": 126,
+    "method_summary": {
+      "lineardesign_lambda11": {
+        "mean_hypervolume_normalized": 29.972887490261744,
+        "mean_ned": 0.07128928032706872,
+        "total_actual_outputs": 131,
+        "min_identity_rate": 1.0
+      },
+      "codongpt": {
+        "mean_hypervolume_normalized": 14.537219179189211,
+        "mean_ned": 0.23001838412470324,
+        "total_actual_outputs": 1800,
+        "min_identity_rate": 1.0
+      },
+      "gemorna": {
+        "mean_hypervolume_normalized": 20.015288402657937,
+        "mean_ned": 0.16375052221298153,
+        "total_actual_outputs": 1427,
+        "min_identity_rate": 1.0
+      },
+      "cai_greedy": {
+        "mean_hypervolume_normalized": 11.523556145418477,
+        "mean_ned": 0.0,
+        "total_actual_outputs": 18,
+        "min_identity_rate": 1.0
+      },
+      "uniform_synonymous": {
+        "mean_hypervolume_normalized": 1.7187632110674154,
+        "mean_ned": 0.24078285311439607,
+        "total_actual_outputs": 1800,
+        "min_identity_rate": 1.0
+      },
+      "lineardesign_scan": {
+        "mean_hypervolume_normalized": 29.855894037096594,
+        "mean_ned": 0.07924803913515291,
+        "total_actual_outputs": 103,
+        "min_identity_rate": 1.0
+      },
+      "ensembledesign_11run": {
+        "mean_hypervolume_normalized": 16.693982080997003,
+        "mean_ned": 0.04580359628903548,
+        "total_actual_outputs": 192,
+        "min_identity_rate": 1.0
+      }
+    },
+    "descriptive_highest_mean_hv_method": "lineardesign_lambda11",
+    "dense_budget_step_auc_v2": null,
+    "time_matched_comparison": false,
+    "sota_claim": false,
+    "matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+    "independent_sha256": "e7ecf5c99b9667ae19a81cd2875e1a892c849f885c9ef3e890ecc1b4875ce17b"
+  },
+  "rk16_dense_prefix": {
+    "method_summary": {
+      "lineardesign_lambda11": {
+        "mean_dense_budget_step_auc_v2": 22.794606316429064,
+        "median_dense_budget_step_auc_v2": 19.816417919811826,
+        "mean_endpoint_hypervolume_normalized_b11": 29.972887490261744,
+        "median_endpoint_hypervolume_normalized_b11": 25.0244737436507,
+        "total_real_generation_calls_primary": 198
+      },
+      "codongpt": {
+        "mean_dense_budget_step_auc_v2": 5.205444025614179,
+        "median_dense_budget_step_auc_v2": 4.934223679521038,
+        "mean_endpoint_hypervolume_normalized_b11": 7.989211310427903,
+        "median_endpoint_hypervolume_normalized_b11": 7.5470637550720605,
+        "total_real_generation_calls_primary": 198
+      },
+      "uniform_synonymous": {
+        "mean_dense_budget_step_auc_v2": 0.7029515245686863,
+        "median_dense_budget_step_auc_v2": 0.7241846503063563,
+        "mean_endpoint_hypervolume_normalized_b11": 0.9666178877667078,
+        "median_endpoint_hypervolume_normalized_b11": 1.0478264432120101,
+        "total_real_generation_calls_primary": 198
+      },
+      "ensembledesign_11run": {
+        "mean_dense_budget_step_auc_v2": 14.896234418783472,
+        "median_dense_budget_step_auc_v2": 11.829805058526478,
+        "mean_endpoint_hypervolume_normalized_b11": 16.693982080997003,
+        "median_endpoint_hypervolume_normalized_b11": 14.027871212955985,
+        "total_real_generation_calls_primary": 198
+      }
+    },
+    "secondary_b100_descriptive_summary": {
+      "codongpt": {
+        "mean_dense_budget_step_auc_v2_b1_b99": 11.85179628890003,
+        "mean_endpoint_hypervolume_normalized_b100": 14.537219179189211,
+        "scope": "descriptive two-method long-budget curve; excluded from primary Holm family"
+      },
+      "uniform_synonymous": {
+        "mean_dense_budget_step_auc_v2_b1_b99": 1.3301558984906001,
+        "mean_endpoint_hypervolume_normalized_b100": 1.7187632110674156,
+        "scope": "descriptive two-method long-budget curve; excluded from primary Holm family"
+      }
+    },
+    "matrix_sha256": "7dd7957de01995723dd1bc6b28b7955bdd522dcbefcba74ca26f0ba867788c90",
+    "audit_sha256": "3cd364114a6e1a247ccdb4896310115a1527519089f87776c4f3b10007d64500",
+    "ordered_prefix": true,
+    "budget": 11,
+    "time_matched_comparison": false,
+    "scope": "Four-method shared proxy-output B11 prefixes; no CodonFlow arm and no external SOTA claim."
+  },
+  "functional_untouched": {
+    "rows": 19072,
+    "clusters": 1,
+    "unique_construct_signature_groups": 13569,
+    "sources": {
+      "kelsic_2016_mage_seq": 19072
+    },
+    "datasets": {
+      "data_s1_single_codon_csv": 9344,
+      "data_s2_codon_pair_csv": 8192,
+      "data_s3_utr_csv": 1536
+    },
+    "variant_classes": {
+      "codon_pair_variant": 7938,
+      "nonsynonymous_single_codon": 8836,
+      "single_codon_variant_in_pair_assay": 252,
+      "synonymous_single_codon": 362,
+      "utr_hairpin_variant": 1530,
+      "wild_type_control": 154
+    },
+    "synonymous_single_codon_rows": 362,
+    "independent_multiprotein_untouched_dataset_count": 0,
+    "potential_single_protein_confirmation_cohorts": 1,
+    "generalizable_fixed_protein_multiprotein_claim_supported": false,
+    "functional_robustness_pass": false,
+    "fully_passed_sequence_ood_tests": "2/8",
+    "functional_untouched_evaluated": false,
+    "functional_untouched_evaluation_authorized_now": false,
+    "new_label_or_outcome_read": false,
+    "new_file_sha256_computed": false,
+    "stat_only_files": [
+      {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/splits/rk04_v1/functional_long_split.csv",
+        "bytes": 34088815,
+        "frozen_sha256_not_recomputed": "1ea0ff63b7f5e820abca3842b690cba0ffdfbc8b5f3f7fe4bf88a25efb94c0f8",
+        "access": "stat_only"
+      },
+      {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk04/sequence_ood_v2/functional_long_sequence_ood.csv",
+        "bytes": 35958226,
+        "frozen_sha256_not_recomputed": "b9e29eac8eeb0adc46101d81ae8f2afa650eb3d5a37722b065e052fc669e45c6",
+        "access": "stat_only"
+      }
+    ],
+    "reason_not_opened": "RK20 passed only 2/8 sequence-OOD tests and did not pass functional robustness; no new untouched protocol or authorization exists."
+  },
+  "missing_or_not_comparable": [
+    "No CodonFlow arm in the seven-method external actual-set or RK16 four-method B11 matrix.",
+    "No common dense prefix for GEMORNA, CAI-greedy, or legacy LinearDesign-scan; repeated-call positions are not zero-filled.",
+    "No uniform end-to-end hardware, parallelism, generator-plus-scorer wall clock across external and natural-source arms.",
+    "Protein-to-CDS external input semantics are not causally exchangeable with natural-CDS warm-start CodonFlow.",
+    "No eligible multi-protein fixed-protein functional-untouched cohort; the 19,072-row MAGE partition has one operational cluster and only 362 synonymous single-codon rows.",
+    "Functional robustness remains failed (2/8 sequence-OOD tests passed); no untouched outcomes were opened or evaluated."
+  ],
+  "scientific_gate_passed": false,
+  "codonflow_external_sota_evaluated": false,
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "new_functional_labels_read": false,
+  "sota_claim": false,
+  "rk_g1_pass": false,
+  "expensive_generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "artifacts": {
+    "baseline_run_inventory_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/baseline_untouched_inventory_v1/baseline_run_inventory_v1.csv",
+      "sha256": "e792c6dca54d1bca6f3a3c940d471ab5966a424f6edfe2549a32e29d95484df2"
+    },
+    "external_actual_set_cells_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/baseline_untouched_inventory_v1/external_actual_set_cells_v1.csv",
+      "sha256": "7de82e33f842016189ba4b9182e46b70c8da77a6b5e3cbff47b59507657f5a8f"
+    }
+  }
+}

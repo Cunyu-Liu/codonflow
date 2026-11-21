@@ -1,0 +1,3303 @@
+{
+  "schema": "a8-rk38-baseline-untouched-inventory-independent-v1",
+  "created_at": "2026-11-21T19:05:55.917826+00:00",
+  "completed_at": "2026-11-21T19:05:59.099991+00:00",
+  "status": "FAIL",
+  "implementation": "separate standard-library CSV/raw-JSON verifier; does not import production code",
+  "summary": "audits/20261122/RK38/rk38_baseline_untouched_inventory_v1.json",
+  "summary_sha256": "1c0994b38582c2cae9b3e653a64f92daaf8bf306ccaba5e61855be2140f7864e",
+  "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/baseline_untouched_inventory_v1/baseline_run_inventory_v1.csv",
+  "details_sha256": "e792c6dca54d1bca6f3a3c940d471ab5966a424f6edfe2549a32e29d95484df2",
+  "cells": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/baseline_untouched_inventory_v1/external_actual_set_cells_v1.csv",
+  "cells_sha256": "7de82e33f842016189ba4b9182e46b70c8da77a6b5e3cbff47b59507657f5a8f",
+  "checks": [
+    {
+      "check": "protocol_sha",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "detail_row_count",
+      "status": "PASS",
+      "detail": 846
+    },
+    {
+      "check": "external_cell_count",
+      "status": "PASS",
+      "detail": 126
+    },
+    {
+      "check": "detail_source_counts",
+      "status": "PASS",
+      "detail": {
+        "a7_g2": 324,
+        "rk06_dense": 216,
+        "a6_legacy_five_methods": 270,
+        "lineardesign_lambda11": 18,
+        "ensembledesign_11run": 18
+      }
+    },
+    {
+      "check": "summary_artifact_detail_sha",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "summary_artifact_cells_sha",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "raw_sha_0",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C01H6.8b.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_0",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_1",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C01H6.8b.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_1",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_2",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C01H6.8b.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_2",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_3",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C03B1.12.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_3",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_4",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C03B1.12.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_4",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_5",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C03B1.12.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_5",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_6",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C05E11.2.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_6",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_7",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C05E11.2.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_7",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_8",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C05E11.2.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_8",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_9",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C07E3.9.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_9",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_10",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C07E3.9.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_10",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_11",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C07E3.9.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_11",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_12",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C14A6.7.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_12",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_13",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C14A6.7.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_13",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_14",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C14A6.7.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_14",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_15",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C17G10.10.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_15",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_16",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C17G10.10.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_16",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_17",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C17G10.10.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_17",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_18",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C31E10.3b.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_18",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_19",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C31E10.3b.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_19",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_20",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C31E10.3b.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_20",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_21",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C41G7.2.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_21",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_22",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C41G7.2.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_22",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_23",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C41G7.2.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_23",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_24",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C47A4.1.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_24",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_25",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C47A4.1.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_25",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_26",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/C47A4.1.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_26",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_27",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000001586.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_27",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_28",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000001586.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_28",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_29",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000001586.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_29",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_30",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000006494.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_30",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_31",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000006494.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_31",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_32",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000006494.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_32",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_33",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000011420.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_33",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_34",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000011420.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_34",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_35",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000011420.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_35",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_36",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000017935.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_36",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_37",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000017935.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_37",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_38",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000017935.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_38",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_39",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000025296.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_39",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_40",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000025296.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_40",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_41",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000025296.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_41",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_42",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000027077.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_42",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_43",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000027077.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_43",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_44",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000027077.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_44",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_45",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000037188.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_45",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_46",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000037188.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_46",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_47",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000037188.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_47",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_48",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000044901.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_48",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_49",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000044901.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_49",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_50",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000044901.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_50",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_51",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000045324.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_51",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_52",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000045324.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_52",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_53",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/FULL/ENSACAT00000045324.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_53",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_54",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C01H6.8b.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_54",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_55",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C01H6.8b.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_55",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_56",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C01H6.8b.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_56",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_57",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C03B1.12.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_57",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_58",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C03B1.12.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_58",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_59",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C03B1.12.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_59",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_60",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C05E11.2.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_60",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_61",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C05E11.2.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_61",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_62",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C05E11.2.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_62",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_63",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C07E3.9.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_63",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_64",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C07E3.9.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_64",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_65",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C07E3.9.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_65",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_66",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C14A6.7.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_66",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_67",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C14A6.7.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_67",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_68",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C14A6.7.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_68",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_69",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C17G10.10.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_69",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_70",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C17G10.10.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_70",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_71",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C17G10.10.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_71",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_72",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C31E10.3b.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_72",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_73",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C31E10.3b.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_73",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_74",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C31E10.3b.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_74",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_75",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C41G7.2.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_75",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_76",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C41G7.2.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_76",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_77",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C41G7.2.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_77",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_78",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C47A4.1.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_78",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_79",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C47A4.1.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_79",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_80",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/C47A4.1.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_80",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_81",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000001586.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_81",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_82",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000001586.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_82",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_83",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000001586.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_83",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_84",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000006494.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_84",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_85",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000006494.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_85",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_86",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000006494.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_86",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_87",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000011420.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_87",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_88",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000011420.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_88",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_89",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000011420.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_89",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_90",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000017935.4_learned_s0.json"
+    },
+    {
+      "check": "trajectory_90",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_91",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000017935.4_learned_s1.json"
+    },
+    {
+      "check": "trajectory_91",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_92",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000017935.4_learned_s2.json"
+    },
+    {
+      "check": "trajectory_92",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_93",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000025296.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_93",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_94",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000025296.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_94",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_95",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000025296.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_95",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_96",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000027077.3_learned_s0.json"
+    },
+    {
+      "check": "trajectory_96",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_97",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000027077.3_learned_s1.json"
+    },
+    {
+      "check": "trajectory_97",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_98",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000027077.3_learned_s2.json"
+    },
+    {
+      "check": "trajectory_98",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_99",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000037188.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_99",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_100",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000037188.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_100",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_101",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000037188.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_101",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_102",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000044901.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_102",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_103",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000044901.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_103",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_104",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000044901.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_104",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_105",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000045324.1_learned_s0.json"
+    },
+    {
+      "check": "trajectory_105",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s0"
+    },
+    {
+      "check": "raw_sha_106",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000045324.1_learned_s1.json"
+    },
+    {
+      "check": "trajectory_106",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s1"
+    },
+    {
+      "check": "raw_sha_107",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/EDIT/ENSACAT00000045324.1_learned_s2.json"
+    },
+    {
+      "check": "trajectory_107",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:codonflow_learned:s2"
+    },
+    {
+      "check": "raw_sha_108",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_108",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_109",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_109",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_110",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_110",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_111",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_111",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_112",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_112",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_113",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_113",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_114",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_114",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_115",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_115",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_116",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_116",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_117",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_117",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_118",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_118",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_119",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_119",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_120",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_120",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_121",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_121",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_122",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_122",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_123",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_123",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_124",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_124",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_125",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_125",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_126",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_126",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_127",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_127",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_128",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_128",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_129",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_129",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_130",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_130",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_131",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_131",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_132",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_132",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_133",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_133",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_134",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_134",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_135",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_135",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:uniform:s0"
+    },
+    {
+      "check": "raw_sha_136",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_136",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:uniform:s1"
+    },
+    {
+      "check": "raw_sha_137",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_137",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:uniform:s2"
+    },
+    {
+      "check": "raw_sha_138",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_138",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:uniform:s0"
+    },
+    {
+      "check": "raw_sha_139",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_139",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:uniform:s1"
+    },
+    {
+      "check": "raw_sha_140",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_140",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:uniform:s2"
+    },
+    {
+      "check": "raw_sha_141",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_141",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:uniform:s0"
+    },
+    {
+      "check": "raw_sha_142",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_142",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:uniform:s1"
+    },
+    {
+      "check": "raw_sha_143",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_143",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:uniform:s2"
+    },
+    {
+      "check": "raw_sha_144",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_144",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:uniform:s0"
+    },
+    {
+      "check": "raw_sha_145",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_145",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:uniform:s1"
+    },
+    {
+      "check": "raw_sha_146",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_146",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:uniform:s2"
+    },
+    {
+      "check": "raw_sha_147",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_147",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:uniform:s0"
+    },
+    {
+      "check": "raw_sha_148",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_148",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:uniform:s1"
+    },
+    {
+      "check": "raw_sha_149",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_149",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:uniform:s2"
+    },
+    {
+      "check": "raw_sha_150",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_150",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:uniform:s0"
+    },
+    {
+      "check": "raw_sha_151",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_151",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:uniform:s1"
+    },
+    {
+      "check": "raw_sha_152",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_152",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:uniform:s2"
+    },
+    {
+      "check": "raw_sha_153",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_153",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_154",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_154",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_155",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_155",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_156",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_156",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_157",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_157",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_158",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_158",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_159",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_uniform_s0.json"
+    },
+    {
+      "check": "trajectory_159",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:uniform:s0"
+    },
+    {
+      "check": "raw_sha_160",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_uniform_s1.json"
+    },
+    {
+      "check": "trajectory_160",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:uniform:s1"
+    },
+    {
+      "check": "raw_sha_161",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_uniform_s2.json"
+    },
+    {
+      "check": "trajectory_161",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:uniform:s2"
+    },
+    {
+      "check": "raw_sha_162",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_162",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_163",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_163",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_164",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_164",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_165",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_165",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_166",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_166",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_167",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_167",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_168",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_168",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_169",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_169",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_170",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_170",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_171",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_171",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_172",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_172",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_173",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_173",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_174",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_174",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_175",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_175",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_176",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_176",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_177",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_177",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_178",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_178",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_179",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_179",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_180",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_180",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_181",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_181",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_182",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_182",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_183",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_183",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_184",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_184",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_185",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_185",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_186",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_186",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_187",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_187",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_188",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_188",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_189",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_189",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_190",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_190",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_191",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_191",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_192",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_192",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_193",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_193",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_194",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_194",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_195",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_195",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_196",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_196",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_197",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_197",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_198",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_198",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_199",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_199",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_200",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_200",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_201",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_201",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_202",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_202",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_203",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_203",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_204",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_204",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_205",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_205",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_206",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_206",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_207",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_207",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_208",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_208",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_209",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_209",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_210",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_210",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_211",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_211",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_212",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_212",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_213",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_hill_climbing_s0.json"
+    },
+    {
+      "check": "trajectory_213",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:hill_climbing:s0"
+    },
+    {
+      "check": "raw_sha_214",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_hill_climbing_s1.json"
+    },
+    {
+      "check": "trajectory_214",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:hill_climbing:s1"
+    },
+    {
+      "check": "raw_sha_215",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_hill_climbing_s2.json"
+    },
+    {
+      "check": "trajectory_215",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:hill_climbing:s2"
+    },
+    {
+      "check": "raw_sha_216",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_216",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_217",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_217",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_218",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_218",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_219",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_219",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_220",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_220",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_221",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_221",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_222",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_222",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_223",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_223",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_224",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_224",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_225",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_225",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_226",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_226",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_227",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_227",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_228",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_228",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_229",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_229",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_230",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_230",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_231",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_231",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_232",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_232",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_233",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_233",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_234",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_234",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_235",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_235",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_236",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_236",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_237",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_237",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_238",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_238",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_239",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_239",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_240",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_240",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_241",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_241",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_242",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_242",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_243",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_243",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_244",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_244",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_245",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_245",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_246",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_246",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_247",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_247",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_248",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_248",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_249",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_249",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_250",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_250",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_251",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_251",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_252",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_252",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_253",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_253",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_254",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_254",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_255",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_255",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_256",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_256",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_257",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_257",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_258",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_258",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_259",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_259",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_260",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_260",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_261",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_261",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_262",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_262",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_263",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_263",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_264",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_264",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_265",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_265",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_266",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_266",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_267",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_mh_annealing_s0.json"
+    },
+    {
+      "check": "trajectory_267",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:mh_annealing:s0"
+    },
+    {
+      "check": "raw_sha_268",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_mh_annealing_s1.json"
+    },
+    {
+      "check": "trajectory_268",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:mh_annealing:s1"
+    },
+    {
+      "check": "raw_sha_269",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_mh_annealing_s2.json"
+    },
+    {
+      "check": "trajectory_269",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:mh_annealing:s2"
+    },
+    {
+      "check": "raw_sha_270",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_270",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_271",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_271",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_272",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C01H6.8b.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_272",
+      "status": "PASS",
+      "detail": "a7_g2:C01H6.8b.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_273",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_273",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_274",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_274",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_275",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C03B1.12.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_275",
+      "status": "PASS",
+      "detail": "a7_g2:C03B1.12.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_276",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_276",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_277",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_277",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_278",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C05E11.2.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_278",
+      "status": "PASS",
+      "detail": "a7_g2:C05E11.2.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_279",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_279",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_280",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_280",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_281",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C07E3.9.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_281",
+      "status": "PASS",
+      "detail": "a7_g2:C07E3.9.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_282",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_282",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_283",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_283",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_284",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C14A6.7.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_284",
+      "status": "PASS",
+      "detail": "a7_g2:C14A6.7.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_285",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_285",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_286",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_286",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_287",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C17G10.10.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_287",
+      "status": "PASS",
+      "detail": "a7_g2:C17G10.10.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_288",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_288",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_289",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_289",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_290",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C31E10.3b.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_290",
+      "status": "PASS",
+      "detail": "a7_g2:C31E10.3b.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_291",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_291",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_292",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_292",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_293",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C41G7.2.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_293",
+      "status": "PASS",
+      "detail": "a7_g2:C41G7.2.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_294",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_294",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_295",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_295",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_296",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/C47A4.1.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_296",
+      "status": "PASS",
+      "detail": "a7_g2:C47A4.1.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_297",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_297",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_298",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_298",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_299",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000001586.4_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_299",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000001586.4:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_300",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_300",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_301",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_301",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_302",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000006494.4_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_302",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000006494.4:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_303",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_303",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_304",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_304",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_305",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000011420.3_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_305",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000011420.3:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_306",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_306",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_307",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_307",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_308",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000017935.4_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_308",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000017935.4:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_309",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_309",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_310",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_310",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_311",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000025296.3_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_311",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000025296.3:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_312",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_312",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_313",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_313",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_314",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000027077.3_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_314",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000027077.3:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_315",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_315",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_316",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_316",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_317",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000037188.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_317",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000037188.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_318",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_318",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_319",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_319",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_320",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000044901.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_320",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000044901.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_321",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_areuredi_style_s0.json"
+    },
+    {
+      "check": "trajectory_321",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:areuredi_style:s0"
+    },
+    {
+      "check": "raw_sha_322",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_areuredi_style_s1.json"
+    },
+    {
+      "check": "trajectory_322",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:areuredi_style:s1"
+    },
+    {
+      "check": "raw_sha_323",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/eval_outputs/a7_g2_r5/shared_simple/ENSACAT00000045324.1_areuredi_style_s2.json"
+    },
+    {
+      "check": "trajectory_323",
+      "status": "PASS",
+      "detail": "a7_g2:ENSACAT00000045324.1:areuredi_style:s2"
+    },
+    {
+      "check": "raw_sha_324",
+      "status": "PASS",
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk06/simple_search_dense_unique18_v1/runs/C01H6.8b.1/areuredi_style_s0.json"
+    }
+  ],
+  "n_checks": 655,
+  "n_pass": 655,
+  "n_fail": 0,
+  "error": "KeyError: 'n_unique'",
+  "functional_untouched_labels_read": false,
+  "scientific_gate_passed": false,
+  "sota_claim": false
+}
