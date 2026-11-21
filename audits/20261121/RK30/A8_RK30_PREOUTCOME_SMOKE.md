@@ -35,3 +35,19 @@
 ## 并行计数等价性
 
 新增可选 `--workers`，默认仍为 1；每个进程只写一个独立 run checkpoint，全局长表和结局仍由主进程统一生成。4 进程重算全部 8 个 HEK run 后，与原串行 checkpoint 的 `counts`、`metrics`、`audit_samples`、实验映射、输入字节数和输入 SHA256 均逐字段一致（8/8，`HEK293_PARALLEL_EQUIVALENCE.json`）。因此完整 64-run 计数使用 8 个 CPU 进程；该并行设置不改变分配规则、audit seed 或结局公式。
+
+## 工作树与干净克隆回归
+
+- 当前工作树在 `b0128b0d66779e0e77ee638d61d14dcefa6c3de5` 上完成项目标准 `pytest tests/`：**423 passed, 1 skipped**，日志为 `project_pytest_rk30_preoutcome.log`。
+- 首次 HTTPS 干净克隆因 `GnuTLS recv error (-110)` 中止，未执行测试；保留该网络失败。改用已用于推送的 SSH 通道后，在同一 HEAD 的 `/home/codonflow-a8-rk30-clean-check` 依次通过冻结测试、模型测试和完整项目测试；后者同为 **423 passed, 1 skipped**，日志为 `clean_clone_preoutcome_pytest.log`。
+- 以上仅是预结局工程复现，不代替真实数据齐备后的 clean-checkout 科学结果复现。
+
+## 本地临时 spool 传输验收
+
+服务器到 ENA 的吞吐较低且增加服务器并发曾触发连接拒绝，因此新增 `scripts/a8_rk30_spool_transfer.py` 作为数据获取辅助工具。正式数据仍只落在 `/teams`；本地 `/tmp` 仅在远端验收前保存临时文件。该工具不改变协议、计数规则或模型。
+
+- `SRR10714571` 端到端验收通过：103,317,045 bytes；ENA MD5 `d60cc1c913406a9c8938c7ecb87f0220`；SHA256 `59ebb3e798e5873b3a0ac481018d1f5d0641f3a716e4bdfa9123263888f5802f`。本地大小/MD5、远端大小/MD5、原子 rename 和本地临时文件清理均通过。
+- 重跑同一 run 时，正式文件预检独立复算 MD5/SHA256 后返回 `existing_precheck`，不重复下载或上传。
+- 初次辅助脚本通过 SSH 传递多行 `python -c` 时引用失败，未转正临时文件；改为 stdin 传脚本后重跑通过。手工末段清单曾误含非目标 run，现改为从 SRA metadata 的两个 HeLa Flow-seq 标题完整推导 56 个 run 并断言数量。
+- 三组并行曾超过 SSH 复用会话上限，产生可重试的 precheck 失败；未据此判定数据缺失。现统一为一个最多 6-worker 的协调任务，为监控会话保留余量。
+- 原服务器下载保留的静态 range-stage 只有在预期大小和 ENA MD5 均匹配、且 60 秒内无修改时才原子转正；`SRR10714520`、`SRR10714521` 由此通过。正在写入的临时文件不参与。
