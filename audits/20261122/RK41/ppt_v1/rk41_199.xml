@@ -1,0 +1,259 @@
+<slide xmlns="https://www.larkoffice.com/sml/2.0">
+    <style>
+      <fill>
+        <fillColor color="rgba(248, 250, 252, 1)" />
+      </fill>
+    </style>
+    <data>
+      <shape width="480" height="15" topLeftX="48" topLeftY="7" type="text">
+        <content fontSize="8" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>01 / FROZEN INTERNAL-BASIN DESIGN</p>
+        </content>
+      </shape>
+      <shape width="262" height="15" topLeftX="650" topLeftY="7" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="right" wrap="false">
+          <p>A8 / RK41 / INTERNAL BASIN</p>
+        </content>
+      </shape>
+      <shape width="864" height="40" topLeftX="48" topLeftY="27" type="text">
+        <content fontSize="26" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>Eight internal starts isolate initialization-basin selection</p>
+        </content>
+      </shape>
+      <shape width="58" height="4" topLeftX="48" topLeftY="72" presetHandlers="1" type="round-rect">
+        <fill>
+          <fillColor color="rgba(24, 158, 132, 1)" />
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="864" height="18" topLeftX="48" topLeftY="80" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>Four new arms plus accepted RK40 random B11 baselines · protein-only synonymous starts · no external sequence initialization</p>
+        </content>
+      </shape>
+      <shape width="204" height="76" topLeftX="48" topLeftY="104" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="184" height="14" topLeftX="58" topLeftY="110" type="text">
+        <content fontSize="8" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>DEVELOPMENT RECORDS</p>
+        </content>
+      </shape>
+      <shape width="184" height="28" topLeftX="58" topLeftY="126" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>18</p>
+        </content>
+      </shape>
+      <shape width="184" height="15" topLeftX="58" topLeftY="157" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>record is the inference unit</p>
+        </content>
+      </shape>
+      <shape width="204" height="76" topLeftX="268" topLeftY="104" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="184" height="14" topLeftX="278" topLeftY="110" type="text">
+        <content fontSize="8" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>SEEDS</p>
+        </content>
+      </shape>
+      <shape width="184" height="28" topLeftX="278" topLeftY="126" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>3</p>
+        </content>
+      </shape>
+      <shape width="184" height="15" topLeftX="278" topLeftY="157" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>all-seed direction required</p>
+        </content>
+      </shape>
+      <shape width="204" height="76" topLeftX="488" topLeftY="104" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="184" height="14" topLeftX="498" topLeftY="110" type="text">
+        <content fontSize="8" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>SEARCH ARMS</p>
+        </content>
+      </shape>
+      <shape width="184" height="28" topLeftX="498" topLeftY="126" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>4 + 2</p>
+        </content>
+      </shape>
+      <shape width="184" height="15" topLeftX="498" topLeftY="157" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>4 new + 2 accepted · exact B11</p>
+        </content>
+      </shape>
+      <shape width="204" height="76" topLeftX="708" topLeftY="104" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="184" height="14" topLeftX="718" topLeftY="110" type="text">
+        <content fontSize="8" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>PRIMARY FAMILIES</p>
+        </content>
+      </shape>
+      <shape width="184" height="28" topLeftX="718" topLeftY="126" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>3</p>
+        </content>
+      </shape>
+      <shape width="184" height="15" topLeftX="718" topLeftY="157" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>two internal + one external</p>
+        </content>
+      </shape>
+      <shape width="204" height="200" topLeftX="48" topLeftY="204" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="60" height="30" topLeftX="60" topLeftY="216" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>01</p>
+        </content>
+      </shape>
+      <shape width="180" height="38" topLeftX="60" topLeftY="254" type="text">
+        <content fontSize="12" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Pool generation</p>
+        </content>
+      </shape>
+      <shape width="180" height="70" topLeftX="60" topLeftY="304" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Eight distinct protein-only synonyms</p>
+          <p>All eight candidates truly scored</p>
+        </content>
+      </shape>
+      <shape width="204" height="200" topLeftX="268" topLeftY="204" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="60" height="30" topLeftX="280" topLeftY="216" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>02</p>
+        </content>
+      </shape>
+      <shape width="180" height="38" topLeftX="280" topLeftY="254" type="text">
+        <content fontSize="12" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Start selection</p>
+        </content>
+      </shape>
+      <shape width="180" height="70" topLeftX="280" topLeftY="304" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left">
+          <p>First = index0; Best = max utility</p>
+          <p>Ties resolve to the lowest index</p>
+        </content>
+      </shape>
+      <shape width="204" height="200" topLeftX="488" topLeftY="204" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="60" height="30" topLeftX="500" topLeftY="216" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>03</p>
+        </content>
+      </shape>
+      <shape width="180" height="38" topLeftX="500" topLeftY="254" type="text">
+        <content fontSize="12" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Budget control</p>
+        </content>
+      </shape>
+      <shape width="180" height="70" topLeftX="500" topLeftY="304" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Cached start + three local points</p>
+          <p>Exactly 11 unique-scorer outputs</p>
+        </content>
+      </shape>
+      <shape width="204" height="200" topLeftX="708" topLeftY="204" presetHandlers="10" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 255, 255, 1)" />
+        </fill>
+        <border color="rgba(226, 232, 240, 1)" width="1" />
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="60" height="30" topLeftX="720" topLeftY="216" type="text">
+        <content fontSize="20" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>04</p>
+        </content>
+      </shape>
+      <shape width="180" height="38" topLeftX="720" topLeftY="254" type="text">
+        <content fontSize="12" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Frozen inference</p>
+        </content>
+      </shape>
+      <shape width="180" height="70" topLeftX="720" topLeftY="304" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Two internal + one external family</p>
+          <p>Bootstrap + sign-flip + Holm</p>
+        </content>
+      </shape>
+      <shape width="864" height="30" topLeftX="48" topLeftY="438" presetHandlers="8" type="round-rect">
+        <fill>
+          <fillColor color="rgba(220, 247, 238, 1)" />
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="840" height="24" topLeftX="60" topLeftY="441" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(24, 158, 132, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>Primary A: raw best−raw first · B: raw best−raw sequential · C: raw best−LinearDesign-11</p>
+        </content>
+      </shape>
+      <shape width="864" height="30" topLeftX="48" topLeftY="474" presetHandlers="8" type="round-rect">
+        <fill>
+          <fillColor color="rgba(255, 244, 211, 1)" />
+        </fill>
+        <content fontSize="16" fontFamily="思源黑体" color="rgba(31, 35, 41, 1)" />
+      </shape>
+      <shape width="840" height="24" topLeftX="60" topLeftY="477" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(176, 116, 24, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="left">
+          <p>No new arm uses LinearDesign, EnsembleDesign, native synonymous DNA or another external sequence</p>
+        </content>
+      </shape>
+      <shape width="810" height="14" topLeftX="48" topLeftY="510" type="text">
+        <content fontSize="7" fontFamily="Inter" color="rgba(105, 119, 135, 1)" bold="false" lineSpacing="multiple:1.05" textAlign="left" wrap="false">
+          <p>Source: RK41 protocol 9ed2657dfe69 · frozen before smoke and formal outcomes</p>
+        </content>
+      </shape>
+      <shape width="28" height="17" topLeftX="886" topLeftY="507" type="text">
+        <content fontSize="9" fontFamily="Inter" color="rgba(24, 37, 51, 1)" bold="true" lineSpacing="multiple:1.05" textAlign="right" wrap="false">
+          <p>199</p>
+        </content>
+      </shape>
+    </data>
+    <note>
+      <content>
+        <p>Each record and seed generates eight different protein-only synonymous initializations, all evaluated by the real scorer.</p>
+        <p>The first arm selects pool index zero; the best arm selects maximum search utility with lowest-index tie breaking.</p>
+        <p>The selected start is cached and only three new local-search points are added, preserving an exact budget of eleven unique outputs.</p>
+        <p>The three frozen primary families use record-level inference and require both endpoints to pass.</p>
+        <p>Source: RK41 independent b402c4fd4899 · clean closeout af5ad2580151.</p>
+        <p>Independent verification: 5,401 checks; clean closeout: 1,114 checks; full project tests: 494 passed, one skipped, five subtests passed.</p>
+        <p>Coverage: 324 runs, 3,564 raw points, 216 complete new trajectories and 1,604 independently rescored unique sequences.</p>
+        <p>Internal proxy improvements do not establish external SOTA, functional efficacy, protein OOD, untouched-confirmation success or manuscript-submittable status.</p>
+      </content>
+    </note>
+  </slide>

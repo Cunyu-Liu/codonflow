@@ -1,0 +1,239 @@
+{
+  "schema": "a8-rk41-documentation-closeout-v1",
+  "precloseout_head": "d8d1e40161246ca931f4dc8ca7007b678cba9782",
+  "decision": "INTERNAL_MULTISTART_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED",
+  "primary_gate_passed": false,
+  "common_input_actual_set_gate_passed": false,
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "manuscript_submittable": false,
+  "manuscript_sha256": "ed074226456026fa07ac82780cf1a0b235fba50572e6607931dfc4a12adf9ca6",
+  "ppt_current_xml_sha256": "068b0821860c74b37dfb48d5a7d104bf3ef44afd0eab9d9a6eee601c59049049",
+  "full_pytest_log_sha256": "2c89d0e6df0cc3be67883fe64b9ac56c416f5f29f439aad9c29e7e5617c67e0f",
+  "status": "PASS",
+  "n_checks": 39,
+  "n_pass": 39,
+  "checks": [
+    {
+      "check": "expected_precloseout_head",
+      "passed": true,
+      "detail": "d8d1e40161246ca931f4dc8ca7007b678cba9782"
+    },
+    {
+      "check": "only_documentation_changes",
+      "passed": true,
+      "detail": [
+        "audits/20261122/RK41/ppt_v1/a8_rk41_ppt_closeout.py",
+        "audits/20261122/RK41/ppt_v1/build_rk41_page.py",
+        "audits/20261122/RK41/ppt_v1/reference_193.xml",
+        "audits/20261122/RK41/ppt_v1/reference_194.xml",
+        "audits/20261122/RK41/ppt_v1/reference_195.xml",
+        "audits/20261122/RK41/ppt_v1/reference_196.xml",
+        "audits/20261122/RK41/ppt_v1/reference_197.xml",
+        "audits/20261122/RK41/ppt_v1/reference_198.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_199.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_200.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_201.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_202.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_203.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_204.xml",
+        "audits/20261122/RK41/ppt_v1/rk41_research_deck_closeout_v1.json",
+        "audits/20261122/RK41/rk41_documentation_closeout_v1.json",
+        "audits/20261122/RK41/rk41_documentation_closeout_v1_retained_failure.json",
+        "audits/20261122/RK41/rk41_documentation_closeout_v1_retained_failure_2.json",
+        "docs/handover/HANDOFF_A8_RK41_20261122.md",
+        "experiments/REGISTRY.md",
+        "scripts/a8_rk41_documentation_closeout.py",
+        "tasks.md"
+      ]
+    },
+    {
+      "check": "protocol_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "protocol_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "production_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "production_coverage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "production_decision",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "production_gates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "independent_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "independent_all_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "independent_full_trajectory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "independent_rescoring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "clean_closeout_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "clean_closeout_all_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "clean_summary_binding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "clean_summary_archived",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "full_project_tests",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manuscript_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manuscript_lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manuscript_section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manuscript_tables",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "manuscript_closeout",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted_section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_closeout_all_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_current",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_prior_preservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_new_ids",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_archive_current_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "ppt_archive_source_sha",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "registry_single_rk41",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "registry_prior_rk40",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "registry_decision_and_evidence",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "tasks_single_rk41",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "tasks_scientific_boundary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "handoff_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "handoff_results",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "handoff_reproduction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "handoff_ppt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "handoff_open_gates",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}

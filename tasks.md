@@ -334,3 +334,16 @@
 - [x] **在线 PPT193–198**：六页 IDs=`pSQ,pSu,pSk,pSE,pSK,pSm`，最终198页/revision170；离线426/426 checks、六页预上传与在线真实截图人工验收均 PASS，文本/几何/备注回读一致，前192页语义完全未变。大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/ppt_v1/`；PPT 提交 `20d7001e60fdc18d53dbcc42beef2be6331a7268`。
 - [ ] **科学任务仍未解决**：本轮只支持内部代理搜索尺度和短预算均有贡献，未逆转 RK39 的共同输入 actual-set 失败；external SOTA、统一 time-matched、完整七方法共同 dense、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和 manuscript submittable 均未完成。昂贵生成训练未授权，functional untouched 未读取，wet-lab 未执行。
 - [ ] **下一项必须产生新判别证据**：根据初始化诊断，优先冻结不依赖外部序列的 basin-aware 内部初始化/多起点方案，再在共同输入 actual-set 与统一成本口径下检验；不得把 external-seeded 诊断当作 CodonFlow 设计，也不得预先宣称该方向能关闭共同输入或 SOTA 门禁。
+
+## RK41 · 内部盆地感知初始化与共同输入复核（2026-11-22）
+
+- [x] **无外部序列的新初始化协议**：每 record/seed 生成八个不同 protein-only 同义起点并全部真实评分；first 取 index0，best 按对应搜索 utility 选择，平票取最低 index。四个新臂共享初始化池和局部搜索 RNG，精确11个唯一 scorer 输出；不使用 LinearDesign、EnsembleDesign 或天然同义 DNA。协议 SHA `9ed2657dfe698bc096eb1e1fe853a723f26bd69dcd3b0bc768e4f946412dc83a`，冻结提交 `49017ae4b031f6b502b3b3b8d5dec990d26682e8`。
+- [x] **真实执行与完整轨迹**：接受 RK40 已独立验证的108个 raw/calibrated random B11 runs；新增18×3×4=216 runs、2,376 unique-scorer calls，总分析324 runs/3,564 raw points。1,296/1,296池一致性 PASS，生产 wall=`166.46109749702737 s`。smoke、正式失败、生产和 clean 原始证据均保留。
+- [x] **两个内部 primary families 通过**：raw best−first 的 utility/HV 效应=`+0.0500296358/+0.0315287694`，95% CI 分别为`[+0.0355334661,+0.0643409883]`与`[+0.0151106225,+0.0520303839]`；raw best−random B11 的效应=`+0.7889522329/+0.4867889939`，CI 分别为`[+0.6213054849,+0.9521202697]`与`[+0.3304744151,+0.6586472376]`。四个内部终点均满足 Holm p<0.05且3/3 seeds正向。
+- [x] **共同输入 external family 仍失败**：raw pool-best−LinearDesign-11 的 first-k actual-set HV 效应=`−29.2155200839`，95% CI=`[−41.2304720282,−18.9811358075]`，三个 seed 均负；pairwise NED 效应=`+0.1657640837`，CI=`[+0.1494759234,+0.1827114782]`，只表示更高档案内序列多样性，不能救援冻结 HV 失败。最终判定 `INTERNAL_MULTISTART_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED`。
+- [x] **独立与 clean 验收**：独立复核不导入生产轨迹结论，重翻译、重建池、重算四目标、完整轨迹、指标与推断，5,401/5,401 PASS；独立重评1,604 unique sequences，四目标最大绝对误差0.0。detached clean 完整重跑216新 runs，逐点与推断 closeout 1,114/1,114 PASS。全项目494 passed/1 skipped/5 subtests passed。科学提交 `acc5813774d5893304d043b7a73748180d7c44c7`，clean 提交 `d263f85f02d33028312628adf9d6610b31bfb457`。
+- [x] **英文稿 §6.52**：新增 Tables 36–37，accepted section 599词，全文2,228行，SHA `ed074226456026fa07ac82780cf1a0b235fba50572e6607931dfc4a12adf9ca6`；隔离 workflow PASS，manuscript 整合57/57 PASS，旧文前后缀、全部数值和科学边界保留。论文提交 `d8d1e40161246ca931f4dc8ca7007b678cba9782`。
+- [x] **在线 PPT199–204**：六页 IDs `pSJ,pSV,pSs,pST,pSY,pSv`，最终204页/revision176；逐页本地预览、写入响应和在线截图人工验收均 PASS。整稿 closeout 55/55 PASS，前198页结构/属性/文本完全未变，新六页在线结构与本地验收稿一致。大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk41/ppt_v1/`。
+- [x] **文档 closeout**：独立核验 registry/tasks/handoff、production/independent/clean SHA、稿件、PPT 和科学边界，39/39 PASS；两份仅涉及表头匹配和允许路径范围的失败报告保留。
+- [ ] **科学任务仍未解决**：本轮只支持内部多起点盆地选择机制，未逆转 RK39 的共同输入 actual-set 失败；external SOTA、统一 time-matched、完整七方法共同 dense、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和 manuscript submittable 均未完成。昂贵生成训练未授权，functional untouched 未读取，wet-lab 未执行。
+- [ ] **下一项必须产生新判别证据**：在不把外部序列当作 CodonFlow 输出的前提下检验更强共同输入搜索，优先以 actual-set HV 为主门禁并纳入统一 time-matched/真实成本；若无法建立公平外部对照，转向新的合格数据源，不重复包装同一11点负结果。
