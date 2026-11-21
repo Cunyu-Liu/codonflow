@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "scripts/a8_rk34_closeout_ppt.py", line 110, in <module>
+    main()
+  File "scripts/a8_rk34_closeout_ppt.py", line 67, in main
+    screenshots[str(page)] = {"slide_id": sid, "path": str(path), "bytes": path.stat().st_size,
+  File "/usr/lib/python3.8/pathlib.py", line 1198, in stat
+    return self._accessor.stat(self)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/liucunyu/Library/Application Support/LarkShell/aha/users/75d39038b07591340774141238694f9f/doubao/.doubao/agent_mode/workspace/.sessions/38455444094217474/agents/m_0cweLfjApSt/rk29/staging/rk34/ppt_v2/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p156_pZz.jpg'

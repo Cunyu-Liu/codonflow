@@ -1,0 +1,20 @@
+{
+  "schema": "a8-rk34-ppt-visual-preview-audit-v1",
+  "status": "FAIL",
+  "pages_inspected": [156, 157, 158, 159, 160, 161, 162, 163, 164],
+  "layout": {
+    "clipping_or_overlap_observed": false,
+    "canvas_overflow_observed": false,
+    "tables_legible_at_960x540": true
+  },
+  "failed_checks": [
+    {
+      "name": "histgb_model_label_case",
+      "pages": [160, 161],
+      "observed": "Histgb",
+      "required": "HistGB",
+      "scientific_values_changed": false
+    }
+  ],
+  "disposition": "Regenerate display labels only; preserve all scientific values and retain v1 candidates and previews."
+}

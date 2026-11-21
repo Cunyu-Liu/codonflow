@@ -1,0 +1,476 @@
+{
+  "add_response_sha256": "18d177ba7d6db4add870ea1b5ab28e913ca4e4019537252684986c1cd1a2ca15",
+  "add_revision_id": 129,
+  "checks": [
+    {
+      "details": {
+        "ok": true,
+        "revision_id": 129,
+        "slide_id": "pSi"
+      },
+      "name": "add_business_success",
+      "pass": true
+    },
+    {
+      "details": {
+        "ok": true,
+        "revision_id": 129,
+        "slide_id": "pSi"
+      },
+      "name": "read_business_success",
+      "pass": true
+    },
+    {
+      "details": "slide",
+      "name": "single_slide",
+      "pass": true
+    },
+    {
+      "details": 0,
+      "name": "no_undefined",
+      "pass": true
+    },
+    {
+      "details": {
+        "live": [
+          "07 / REPRODUCTION EVIDENCE",
+          "A8 / RK34 / START CONTEXT",
+          "Independent code and clean checkout reproduce the same decision",
+          "155/155 independent checks \u00b7 exact CSV and NPZ agreement \u00b7 closeout bound to retained failure history",
+          "INDEPENDENT V2",
+          "155 / 155",
+          "raw source through all 900 fits",
+          "CLEAN COMPARISON",
+          "187 / 187",
+          "byte and array identity",
+          "FULL PROJECT TESTS",
+          "455 PASS",
+          "1 skipped \u00b7 5 subtests",
+          "CLOSEOUT",
+          "36 / 36",
+          "scientific evidence accepted",
+          "Evidence",
+          "SHA256 prefix / status",
+          "Protocol",
+          "5e75d50c65d5fea2",
+          "Result",
+          "5eaddc34e9a69b79",
+          "Independent v1",
+          "FAIL 154/155 \u00b7 retained",
+          "Independent v2",
+          "PASS 155/155 \u00b7 7f7f6d105560",
+          "Clean reproduction",
+          "PASS 187/187",
+          "Closeout",
+          "PASS 36/36",
+          "Exact clean-checkout reproduction",
+          "Clean commit 4533dd1794fa",
+          "Production CSV 6/6 byte-identical",
+          "Production arrays 82/82 exact",
+          "Independent CSV 5/5 byte-identical",
+          "Independent arrays 82/82 exact",
+          "Functional untouched not read",
+          "Failures preserved, not hidden",
+          "v1 null-arm CSV schema FAIL \u00b7 prefit GC3 log \u00b7 clean missing-argument log",
+          "REPRODUCED \u00b7 INDEPENDENTLY VERIFIED \u00b7 NO NUMERICAL TOLERANCE RELAXATION",
+          "Source: result 5eaddc34e9a6 \u00b7 closeout b9473cf36ba3 \u00b7 independent 155/155 \u00b7 clean 187/187",
+          "162"
+        ],
+        "live_paragraphs": 42,
+        "source": [
+          "07 / REPRODUCTION EVIDENCE",
+          "A8 / RK34 / START CONTEXT",
+          "Independent code and clean checkout reproduce the same decision",
+          "155/155 independent checks \u00b7 exact CSV and NPZ agreement \u00b7 closeout bound to retained failure history",
+          "INDEPENDENT V2",
+          "155 / 155",
+          "raw source through all 900 fits",
+          "CLEAN COMPARISON",
+          "187 / 187",
+          "byte and array identity",
+          "FULL PROJECT TESTS",
+          "455 PASS",
+          "1 skipped \u00b7 5 subtests",
+          "CLOSEOUT",
+          "36 / 36",
+          "scientific evidence accepted",
+          "Evidence",
+          "SHA256 prefix / status",
+          "Protocol",
+          "5e75d50c65d5fea2",
+          "Result",
+          "5eaddc34e9a69b79",
+          "Independent v1",
+          "FAIL 154/155 \u00b7 retained",
+          "Independent v2",
+          "PASS 155/155 \u00b7 7f7f6d105560",
+          "Clean reproduction",
+          "PASS 187/187",
+          "Closeout",
+          "PASS 36/36",
+          "Exact clean-checkout reproduction",
+          "Clean commit 4533dd1794fa",
+          "Production CSV 6/6 byte-identical",
+          "Production arrays 82/82 exact",
+          "Independent CSV 5/5 byte-identical",
+          "Independent arrays 82/82 exact",
+          "Functional untouched not read",
+          "Failures preserved, not hidden",
+          "v1 null-arm CSV schema FAIL \u00b7 prefit GC3 log \u00b7 clean missing-argument log",
+          "REPRODUCED \u00b7 INDEPENDENTLY VERIFIED \u00b7 NO NUMERICAL TOLERANCE RELAXATION",
+          "Source: result 5eaddc34e9a6 \u00b7 closeout b9473cf36ba3 \u00b7 independent 155/155 \u00b7 clean 187/187",
+          "162"
+        ],
+        "source_paragraphs": 42
+      },
+      "name": "visible_text_exact",
+      "pass": true
+    },
+    {
+      "details": {
+        "live": [
+          "The independent v1 failure was an identifier round-trip issue, not a numerical scientific discrepancy.",
+          "The clean comparison covers production and independent CSV files and every inference array.",
+          "All reported values and evidence boundaries on this page come from the accepted RK34 source files."
+        ],
+        "source": [
+          "The independent v1 failure was an identifier round-trip issue, not a numerical scientific discrepancy.",
+          "The clean comparison covers production and independent CSV files and every inference array.",
+          "All reported values and evidence boundaries on this page come from the accepted RK34 source files."
+        ]
+      },
+      "name": "speaker_notes_exact",
+      "pass": true
+    },
+    {
+      "details": {
+        "live": [
+          {
+            "cols": 2,
+            "rows": 7
+          }
+        ],
+        "source": [
+          {
+            "cols": 2,
+            "rows": 7
+          }
+        ]
+      },
+      "name": "table_shapes_exact",
+      "pass": true
+    },
+    {
+      "details": [
+        {
+          "height": 14.0,
+          "id": "basV",
+          "inside": true,
+          "tag": "shape",
+          "width": 650.0,
+          "x": 48.0,
+          "y": 8.0
+        },
+        {
+          "height": 14.0,
+          "id": "basF",
+          "inside": true,
+          "tag": "shape",
+          "width": 196.0,
+          "x": 716.0,
+          "y": 8.0
+        },
+        {
+          "height": 35.0,
+          "id": "basg",
+          "inside": true,
+          "tag": "shape",
+          "width": 864.0,
+          "x": 48.0,
+          "y": 27.0
+        },
+        {
+          "height": 3.0,
+          "id": "baWK",
+          "inside": true,
+          "tag": "shape",
+          "width": 58.0,
+          "x": 48.0,
+          "y": 72.0
+        },
+        {
+          "height": 18.0,
+          "id": "basc",
+          "inside": true,
+          "tag": "shape",
+          "width": 864.0,
+          "x": 48.0,
+          "y": 82.0
+        },
+        {
+          "height": 76.0,
+          "id": "bast",
+          "inside": true,
+          "tag": "shape",
+          "width": 204.0,
+          "x": 48.0,
+          "y": 104.0
+        },
+        {
+          "height": 15.0,
+          "id": "basI",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 62.0,
+          "y": 113.0
+        },
+        {
+          "height": 30.0,
+          "id": "basj",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 62.0,
+          "y": 129.0
+        },
+        {
+          "height": 17.0,
+          "id": "basH",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 62.0,
+          "y": 160.0
+        },
+        {
+          "height": 76.0,
+          "id": "basx",
+          "inside": true,
+          "tag": "shape",
+          "width": 204.0,
+          "x": 268.0,
+          "y": 104.0
+        },
+        {
+          "height": 15.0,
+          "id": "basS",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 282.0,
+          "y": 113.0
+        },
+        {
+          "height": 30.0,
+          "id": "basz",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 282.0,
+          "y": 129.0
+        },
+        {
+          "height": 17.0,
+          "id": "basv",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 282.0,
+          "y": 160.0
+        },
+        {
+          "height": 76.0,
+          "id": "basE",
+          "inside": true,
+          "tag": "shape",
+          "width": 204.0,
+          "x": 488.0,
+          "y": 104.0
+        },
+        {
+          "height": 15.0,
+          "id": "baWa",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 502.0,
+          "y": 113.0
+        },
+        {
+          "height": 30.0,
+          "id": "basB",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 502.0,
+          "y": 129.0
+        },
+        {
+          "height": 17.0,
+          "id": "basU",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 502.0,
+          "y": 160.0
+        },
+        {
+          "height": 76.0,
+          "id": "basX",
+          "inside": true,
+          "tag": "shape",
+          "width": 204.0,
+          "x": 708.0,
+          "y": 104.0
+        },
+        {
+          "height": 15.0,
+          "id": "basP",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 722.0,
+          "y": 113.0
+        },
+        {
+          "height": 30.0,
+          "id": "basb",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 722.0,
+          "y": 129.0
+        },
+        {
+          "height": 17.0,
+          "id": "basQ",
+          "inside": true,
+          "tag": "shape",
+          "width": 176.0,
+          "x": 722.0,
+          "y": 160.0
+        },
+        {
+          "height": 176.0,
+          "id": "basO",
+          "inside": true,
+          "tag": "table",
+          "width": 500.0,
+          "x": 48.0,
+          "y": 198.0
+        },
+        {
+          "height": 182.0,
+          "id": "basC",
+          "inside": true,
+          "tag": "shape",
+          "width": 364.0,
+          "x": 548.0,
+          "y": 198.0
+        },
+        {
+          "height": 18.0,
+          "id": "basd",
+          "inside": true,
+          "tag": "shape",
+          "width": 336.0,
+          "x": 562.0,
+          "y": 207.0
+        },
+        {
+          "height": 132.0,
+          "id": "basW",
+          "inside": true,
+          "tag": "shape",
+          "width": 336.0,
+          "x": 562.0,
+          "y": 233.0
+        },
+        {
+          "height": 58.0,
+          "id": "basN",
+          "inside": true,
+          "tag": "shape",
+          "width": 364.0,
+          "x": 548.0,
+          "y": 390.0
+        },
+        {
+          "height": 18.0,
+          "id": "basr",
+          "inside": true,
+          "tag": "shape",
+          "width": 336.0,
+          "x": 562.0,
+          "y": 399.0
+        },
+        {
+          "height": 22.0,
+          "id": "basD",
+          "inside": true,
+          "tag": "shape",
+          "width": 336.0,
+          "x": 562.0,
+          "y": 422.0
+        },
+        {
+          "height": 30.0,
+          "id": "basi",
+          "inside": true,
+          "tag": "shape",
+          "width": 864.0,
+          "x": 48.0,
+          "y": 474.0
+        },
+        {
+          "height": 21.0,
+          "id": "basJ",
+          "inside": true,
+          "tag": "shape",
+          "width": 836.0,
+          "x": 62.0,
+          "y": 478.0
+        },
+        {
+          "height": 13.0,
+          "id": "bass",
+          "inside": true,
+          "tag": "shape",
+          "width": 780.0,
+          "x": 48.0,
+          "y": 512.0
+        },
+        {
+          "height": 15.0,
+          "id": "basp",
+          "inside": true,
+          "tag": "shape",
+          "width": 62.0,
+          "x": 850.0,
+          "y": 510.0
+        }
+      ],
+      "name": "all_positioned_elements_inside_canvas",
+      "pass": true
+    },
+    {
+      "details": {
+        "page": 162
+      },
+      "name": "page_number_visible",
+      "pass": true
+    }
+  ],
+  "checks_passed": 9,
+  "checks_total": 9,
+  "failed_checks": [],
+  "page": 162,
+  "read_response_sha256": "3573d2e281212768fd6a66c1227867ba7fd3d871a2aae96ec927ec7839ebca39",
+  "read_revision_id": 129,
+  "readback_sha256": "ce8bfd5d9b133f807b25a8ddc782dc2e6ec06235b3ffa192d64094be97c93788",
+  "schema": "a8-rk33-slide-readback-audit-v1",
+  "slide_id": "pSi",
+  "source_sha256": "8bb9468d7a8eddc96211753f2ef024efeae3ffe93de651af3abbaf479bfa1c60",
+  "status": "PASS"
+}

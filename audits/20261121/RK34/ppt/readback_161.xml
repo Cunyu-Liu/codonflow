@@ -1,0 +1,504 @@
+<slide id="pSP">
+  <style>
+    <fill id="fSP">
+      <fillColor color="rgba(247, 248, 250, 1)"/>
+    </fill>
+  </style>
+  <data>
+    <shape width="650" height="14" topLeftX="48" topLeftY="8" type="text" id="baIo">
+      <content verticalAlign="top" fontSize="8.5" fontFamily="Inter" color="rgba(37, 99, 235, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left" wrap="false">
+        <p>06 / ABSOLUTE PERFORMANCE</p>
+      </content>
+    </shape>
+    <shape width="196" height="14" topLeftX="716" topLeftY="8" type="text" id="baIs">
+      <content verticalAlign="top" fontSize="8.5" fontFamily="Inter" color="rgba(100, 116, 139, 1)" lineSpacing="multiple:1.15" textAlign="right" wrap="false">
+        <p>A8 / RK34 / START CONTEXT</p>
+      </content>
+    </shape>
+    <shape width="864" height="35" topLeftX="48" topLeftY="27" type="text" id="baIr">
+      <content verticalAlign="top" fontSize="23" fontFamily="Inter" color="rgba(31, 41, 55, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left" wrap="false">
+        <p>Primary-seed scores support context, not separable mechanism</p>
+      </content>
+    </shape>
+    <shape width="58" height="3" topLeftX="48" topLeftY="72" presetHandlers="1" type="round-rect" id="baIc">
+      <fill>
+        <fillColor color="rgba(37, 99, 235, 1)"/>
+      </fill>
+      <content fontSize="16" fontFamily="Inter" color="rgba(31, 41, 55, 1)"/>
+    </shape>
+    <shape width="864" height="18" topLeftX="48" topLeftY="82" type="text" id="baIu">
+      <content verticalAlign="top" fontSize="10.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" lineSpacing="multiple:1.15" textAlign="left" wrap="false">
+        <p>Frozen primary seed 20261221 · dangles=2 arms shown · paired inference remains primary</p>
+      </content>
+    </shape>
+    <table id="baIA" width="864" height="277" topLeftX="48" topLeftY="104">
+      <colgroup>
+        <col span="1" width="160"/>
+        <col span="1" width="320"/>
+        <col span="2" width="192"/>
+      </colgroup>
+      <tr height="24">
+        <td id="baIO">
+          <fill>
+            <fillColor color="rgba(31, 41, 55, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Model</p>
+          </content>
+        </td>
+        <td id="baIV">
+          <fill>
+            <fillColor color="rgba(31, 41, 55, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Arm</p>
+          </content>
+        </td>
+        <td id="baIH">
+          <fill>
+            <fillColor color="rgba(31, 41, 55, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>Spearman</p>
+          </content>
+        </td>
+        <td id="baID">
+          <fill>
+            <fillColor color="rgba(31, 41, 55, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(255, 255, 255, 1)" bold="true" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>MSE</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baII">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Intercept</p>
+          </content>
+        </td>
+        <td id="baIE">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>null</p>
+          </content>
+        </td>
+        <td id="baIG">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>-0.367234</p>
+          </content>
+        </td>
+        <td id="baIz">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.194471</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIb">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Ridge</p>
+          </content>
+        </td>
+        <td id="basR">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>simple</p>
+          </content>
+        </td>
+        <td id="baIm">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>-0.318413</p>
+          </content>
+        </td>
+        <td id="baIX">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.257149</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIN">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Ridge</p>
+          </content>
+        </td>
+        <td id="bask">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>exact d2</p>
+          </content>
+        </td>
+        <td id="baIR">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.666270</p>
+          </content>
+        </td>
+        <td id="baId">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.100223</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIp">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Ridge</p>
+          </content>
+        </td>
+        <td id="basL">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>start only d2</p>
+          </content>
+        </td>
+        <td id="baIk">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.455853</p>
+          </content>
+        </td>
+        <td id="baIJ">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.141552</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIe">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Ridge</p>
+          </content>
+        </td>
+        <td id="basM">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>upstream only d2</p>
+          </content>
+        </td>
+        <td id="baIL">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.383899</p>
+          </content>
+        </td>
+        <td id="baIw">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.153133</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIq">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>Ridge</p>
+          </content>
+        </td>
+        <td id="basT">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>neither d2</p>
+          </content>
+        </td>
+        <td id="baIM">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>-0.060998</p>
+          </content>
+        </td>
+        <td id="baIf">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.219640</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIF">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>HistGB</p>
+          </content>
+        </td>
+        <td id="basK">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>simple</p>
+          </content>
+        </td>
+        <td id="baIT">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.302424</p>
+          </content>
+        </td>
+        <td id="baIU">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.198658</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIl">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>HistGB</p>
+          </content>
+        </td>
+        <td id="baIj">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>exact d2</p>
+          </content>
+        </td>
+        <td id="bash">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.705171</p>
+          </content>
+        </td>
+        <td id="baIK">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.094394</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIC">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>HistGB</p>
+          </content>
+        </td>
+        <td id="baIt">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>start only d2</p>
+          </content>
+        </td>
+        <td id="baIv">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.548147</p>
+          </content>
+        </td>
+        <td id="basa">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.119309</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIh">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>HistGB</p>
+          </content>
+        </td>
+        <td id="baIi">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>upstream only d2</p>
+          </content>
+        </td>
+        <td id="baIS">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.533281</p>
+          </content>
+        </td>
+        <td id="baIP">
+          <fill>
+            <fillColor color="rgba(241, 245, 249, 1)"/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.132174</p>
+          </content>
+        </td>
+      </tr>
+      <tr height="23">
+        <td id="baIa">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>HistGB</p>
+          </content>
+        </td>
+        <td id="baIy">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="left" wrap="false">
+            <p>neither d2</p>
+          </content>
+        </td>
+        <td id="baIW">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.519955</p>
+          </content>
+        </td>
+        <td id="baIQ">
+          <fill>
+            <fillColor/>
+          </fill>
+          <content fontSize="8.7" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1" textAlign="right" wrap="false">
+            <p>0.133258</p>
+          </content>
+        </td>
+      </tr>
+    </table>
+    <shape width="424" height="48" topLeftX="48" topLeftY="402" presetHandlers="8" type="round-rect" id="bazn">
+      <fill>
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+      <border color="rgba(226, 232, 240, 1)" width="1"/>
+      <content fontSize="16" fontFamily="Inter" color="rgba(31, 41, 55, 1)"/>
+    </shape>
+    <shape width="396" height="30" topLeftX="62" topLeftY="410" type="text" id="bazA">
+      <content verticalAlign="top" fontSize="9.4" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1.15" textAlign="left">
+        <p>Exact − simple Ridge Δρ +0.984683</p>
+        <p>95% CI [+0.5289, +1.1297]</p>
+      </content>
+    </shape>
+    <shape width="424" height="48" topLeftX="488" topLeftY="402" presetHandlers="8" type="round-rect" id="baIx">
+      <fill>
+        <fillColor color="rgba(255, 255, 255, 1)"/>
+      </fill>
+      <border color="rgba(226, 232, 240, 1)" width="1"/>
+      <content fontSize="16" fontFamily="Inter" color="rgba(31, 41, 55, 1)"/>
+    </shape>
+    <shape width="396" height="30" topLeftX="502" topLeftY="410" type="text" id="baIY">
+      <content verticalAlign="top" fontSize="9.4" fontFamily="Inter" color="rgba(31, 41, 55, 1)" lineSpacing="multiple:1.15" textAlign="left">
+        <p>Exact − simple HistGB Δρ +0.402747</p>
+        <p>95% CI [+0.2210, +0.5230]</p>
+      </content>
+    </shape>
+    <shape width="864" height="30" topLeftX="48" topLeftY="474" presetHandlers="6" type="round-rect" id="baIn">
+      <fill>
+        <fillColor color="rgba(204, 251, 241, 1)"/>
+      </fill>
+      <content fontSize="16" fontFamily="Inter" color="rgba(31, 41, 55, 1)"/>
+    </shape>
+    <shape width="836" height="21" topLeftX="62" topLeftY="478" type="text" id="baIB">
+      <content verticalAlign="top" fontSize="9.8" fontFamily="Inter" color="rgba(13, 148, 136, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="left" wrap="false">
+        <p>DESCRIPTIVE ABSOLUTE SCORES · RETROSPECTIVE FIXED-GFP EXPRESSION ONLY</p>
+      </content>
+    </shape>
+    <shape width="780" height="13" topLeftX="48" topLeftY="512" type="text" id="baIZ">
+      <content verticalAlign="top" fontSize="8.2" fontFamily="Inter" color="rgba(100, 116, 139, 1)" lineSpacing="multiple:1.15" textAlign="left" wrap="false">
+        <p>Source: result 5eaddc34e9a6 · closeout b9473cf36ba3 · independent 155/155 · clean 187/187</p>
+      </content>
+    </shape>
+    <shape width="62" height="15" topLeftX="850" topLeftY="510" type="text" id="baIg">
+      <content verticalAlign="top" fontSize="10" fontFamily="Inter" color="rgba(31, 41, 55, 1)" bold="true" lineSpacing="multiple:1.15" textAlign="right" wrap="false">
+        <p>161</p>
+      </content>
+    </shape>
+  </data>
+  <note id="bazQ">
+    <content>
+      <p>Absolute performance is descriptive and does not replace paired whole-cluster inference.</p>
+      <p>Negative simple-backbone Ridge Spearman cautions against interpreting a large increment as universal predictive strength.</p>
+      <p>All reported values and evidence boundaries on this page come from the accepted RK34 source files.</p>
+    </content>
+  </note>
+</slide>

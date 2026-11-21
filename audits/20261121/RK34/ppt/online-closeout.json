@@ -1,0 +1,460 @@
+{
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1",
+  "candidate_checks": "54/54",
+  "checks": [
+    {
+      "details": {
+        "checks": "54/54",
+        "status": "PASS"
+      },
+      "name": "candidate_source_and_canvas_audit",
+      "pass": true
+    },
+    {
+      "details": {
+        "authorized_for_online_append": true,
+        "candidate_audit": "54/54 PASS",
+        "candidate_directory": "candidate_v2",
+        "histgb_model_label_case": "PASS",
+        "label_fix_only_pages": [
+          160,
+          161
+        ],
+        "layout": {
+          "canvas_overflow_observed": false,
+          "clipping_or_overlap_observed": false,
+          "style": "concise research record with consistent typography, restrained blue/teal/amber status colors and native editable tables",
+          "tables_legible_at_960x540": true
+        },
+        "pages_inspected": [
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164
+        ],
+        "prior_failed_report_retained": "visual-preview-audit-v1.json",
+        "schema": "a8-rk34-ppt-visual-preview-audit-v2",
+        "scientific_values_changed": false,
+        "status": "PASS",
+        "unchanged_candidate_pages_byte_identical_to_v1": [
+          156,
+          157,
+          158,
+          159,
+          162,
+          163,
+          164
+        ]
+      },
+      "name": "candidate_visual_preview",
+      "pass": true
+    },
+    {
+      "details": "visual-preview-audit-v1.json",
+      "name": "failed_candidate_history_retained",
+      "pass": true
+    },
+    {
+      "details": {
+        "ignored_difference": "Formatting-only whitespace tail on slide 155 caused by parent indentation after append; tags, attributes, text and child structure identical.",
+        "new_slide_ids": [
+          "pZz",
+          "pSp",
+          "pSg",
+          "pSZ",
+          "pSS",
+          "pSP",
+          "pSi",
+          "pSn",
+          "pSo"
+        ],
+        "new_slides": 9,
+        "preexisting_slide_semantic_xml_unchanged": true,
+        "preexisting_slides": 155,
+        "prior_raw_xml_fail_report_retained": "final-structure-audit-v1-fail.json",
+        "revision_id": 131,
+        "status": "PASS",
+        "total_slides": 164
+      },
+      "name": "preexisting_deck_semantic_preservation",
+      "pass": true
+    },
+    {
+      "details": "final-structure-audit-v1-fail.json",
+      "name": "raw_whitespace_fail_history_retained",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "c1b28cc956d5c6a1aa82e9b6e62df6fdd56933aec967e1cf1c9328f7b5941366",
+        "slide_id": "pZz",
+        "status": "PASS"
+      },
+      "name": "page_156_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "c10d5bf2501eea6fd989dba3ce0634ceb7ed57baa4bc1649b755ca86a5759750",
+        "slide_id": "pSp",
+        "status": "PASS"
+      },
+      "name": "page_157_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "e0243a670431f7c56b69eb24002118bb0700ca2f574ab7e7ec9ff176bf1c2459",
+        "slide_id": "pSg",
+        "status": "PASS"
+      },
+      "name": "page_158_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "6677e17be1fbd4115ce3ad4f875d0210bd12d71d085ccdde1e2d7901d5782955",
+        "slide_id": "pSZ",
+        "status": "PASS"
+      },
+      "name": "page_159_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "e0cfc4691bbe4decdcb72940a4dd1af3900e3654c4857c58de4ce0988cd43e95",
+        "slide_id": "pSS",
+        "status": "PASS"
+      },
+      "name": "page_160_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "3217da1d456077f71b136190add28a120b877a9aab1f1399538f83e9cc4c9d70",
+        "slide_id": "pSP",
+        "status": "PASS"
+      },
+      "name": "page_161_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "45f3debe1aac61ef1b32cacc4b59dc6e43a84c9411e8e76f84ecaab472df967b",
+        "slide_id": "pSi",
+        "status": "PASS"
+      },
+      "name": "page_162_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "cf050e095bd039e3d899953f0ea692b758a65a8419843b0fa3782526da76d18c",
+        "slide_id": "pSn",
+        "status": "PASS"
+      },
+      "name": "page_163_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "checks": "9/9",
+        "report_sha256": "18a5c77992f07a00d75aa7a08850ad97d949df421b9bc0c9b069ccac68080a3e",
+        "slide_id": "pSo",
+        "status": "PASS"
+      },
+      "name": "page_164_online_readback",
+      "pass": true
+    },
+    {
+      "details": {
+        "ok": true
+      },
+      "name": "screenshot_batch1.json_business_success",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 169163,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p156_pZz.jpg",
+        "sha256": "8e3186b2b45ac347fe93117745675ce9f4e1da038373ab1e488bd08d190100f2",
+        "slide_id": "pZz"
+      },
+      "name": "page_156_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 158836,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p157_pSp.jpg",
+        "sha256": "ec622bac19815928a8bfb33b6c39f4fb5902cc72c70a746b9349baecd5211eee",
+        "slide_id": "pSp"
+      },
+      "name": "page_157_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 162664,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p158_pSg.jpg",
+        "sha256": "d392b594687e3d7b728af169e1efeb9e5c84a5cf4af23c1bfb2afb8ab9dcd3fd",
+        "slide_id": "pSg"
+      },
+      "name": "page_158_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 174007,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p159_pSZ.jpg",
+        "sha256": "58517fc87e339ec3b6e1bb1d012994e80dc1a7b9812de8eb331dfc8b2f563628",
+        "slide_id": "pSZ"
+      },
+      "name": "page_159_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 176497,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p160_pSS.jpg",
+        "sha256": "c1a9419401b369309d9b67bba5aa489c58c52cd399b2c8e9158e3bb920b228fc",
+        "slide_id": "pSS"
+      },
+      "name": "page_160_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 158191,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p161_pSP.jpg",
+        "sha256": "b15530d576ea58cbac9ca43a067942ad361771a3b354e71648db3611f2556466",
+        "slide_id": "pSP"
+      },
+      "name": "page_161_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 175593,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p162_pSi.jpg",
+        "sha256": "b2c3b18555b0edffc48d019ce8816fc36f65c555ba7745175235dafc10e17ff8",
+        "slide_id": "pSi"
+      },
+      "name": "page_162_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 166414,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p163_pSn.jpg",
+        "sha256": "200cb4c8e805a001a8c1c97a9a5ceefaad9ba9fa77e8ecf68bfffa0aa60a80f6",
+        "slide_id": "pSn"
+      },
+      "name": "page_163_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": {
+        "ok": true
+      },
+      "name": "screenshot_batch2.json_business_success",
+      "pass": true
+    },
+    {
+      "details": {
+        "bytes": 183474,
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p164_pSo.jpg",
+        "sha256": "742d49789e0cf904bcbc398cb34bdcb2bb43576bfc5e4325f6f7251c9c59a37d",
+        "slide_id": "pSo"
+      },
+      "name": "page_164_real_online_screenshot",
+      "pass": true
+    },
+    {
+      "details": [
+        "156",
+        "157",
+        "158",
+        "159",
+        "160",
+        "161",
+        "162",
+        "163",
+        "164"
+      ],
+      "name": "nine_unique_screenshots",
+      "pass": true
+    }
+  ],
+  "checks_passed": 26,
+  "checks_total": 26,
+  "failed_checks": [],
+  "failed_history_retained": [
+    "visual-preview-audit-v1.json",
+    "final-structure-audit-v1-fail.json"
+  ],
+  "new_pages": {
+    "156": "pZz",
+    "157": "pSp",
+    "158": "pSg",
+    "159": "pSZ",
+    "160": "pSS",
+    "161": "pSP",
+    "162": "pSi",
+    "163": "pSn",
+    "164": "pSo"
+  },
+  "not_claimed": [
+    "No external SOTA, unified time-matched or complete seven-method dense comparison is closed by this deck update.",
+    "No functional/protein OOD, independent untouched, prospective DBTL, wet-lab or RK-G1 claim is made."
+  ],
+  "online_readback_checks": "81/81",
+  "online_visual_inspection": {
+    "canvas_overflow_observed": false,
+    "clipping_or_overlap_observed": false,
+    "histgb_label_case_correct": true,
+    "layout": "concise, clear, restrained research style with native editable tables",
+    "pages": [
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      163,
+      164
+    ],
+    "status": "PASS"
+  },
+  "preexisting_pages_semantically_unchanged": true,
+  "presentation_url": "https://sii-czxy.feishu.cn/slides/WB1KsYGualerMUddEzMcCw1En0g",
+  "readback": {
+    "156": {
+      "checks": "9/9",
+      "report_sha256": "c1b28cc956d5c6a1aa82e9b6e62df6fdd56933aec967e1cf1c9328f7b5941366",
+      "slide_id": "pZz",
+      "status": "PASS"
+    },
+    "157": {
+      "checks": "9/9",
+      "report_sha256": "c10d5bf2501eea6fd989dba3ce0634ceb7ed57baa4bc1649b755ca86a5759750",
+      "slide_id": "pSp",
+      "status": "PASS"
+    },
+    "158": {
+      "checks": "9/9",
+      "report_sha256": "e0243a670431f7c56b69eb24002118bb0700ca2f574ab7e7ec9ff176bf1c2459",
+      "slide_id": "pSg",
+      "status": "PASS"
+    },
+    "159": {
+      "checks": "9/9",
+      "report_sha256": "6677e17be1fbd4115ce3ad4f875d0210bd12d71d085ccdde1e2d7901d5782955",
+      "slide_id": "pSZ",
+      "status": "PASS"
+    },
+    "160": {
+      "checks": "9/9",
+      "report_sha256": "e0cfc4691bbe4decdcb72940a4dd1af3900e3654c4857c58de4ce0988cd43e95",
+      "slide_id": "pSS",
+      "status": "PASS"
+    },
+    "161": {
+      "checks": "9/9",
+      "report_sha256": "3217da1d456077f71b136190add28a120b877a9aab1f1399538f83e9cc4c9d70",
+      "slide_id": "pSP",
+      "status": "PASS"
+    },
+    "162": {
+      "checks": "9/9",
+      "report_sha256": "45f3debe1aac61ef1b32cacc4b59dc6e43a84c9411e8e76f84ecaab472df967b",
+      "slide_id": "pSi",
+      "status": "PASS"
+    },
+    "163": {
+      "checks": "9/9",
+      "report_sha256": "cf050e095bd039e3d899953f0ea692b758a65a8419843b0fa3782526da76d18c",
+      "slide_id": "pSn",
+      "status": "PASS"
+    },
+    "164": {
+      "checks": "9/9",
+      "report_sha256": "18a5c77992f07a00d75aa7a08850ad97d949df421b9bc0c9b069ccac68080a3e",
+      "slide_id": "pSo",
+      "status": "PASS"
+    }
+  },
+  "schema": "a8-rk34-ppt-online-closeout-v1",
+  "screenshots": {
+    "156": {
+      "bytes": 169163,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p156_pZz.jpg",
+      "sha256": "8e3186b2b45ac347fe93117745675ce9f4e1da038373ab1e488bd08d190100f2",
+      "slide_id": "pZz"
+    },
+    "157": {
+      "bytes": 158836,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p157_pSp.jpg",
+      "sha256": "ec622bac19815928a8bfb33b6c39f4fb5902cc72c70a746b9349baecd5211eee",
+      "slide_id": "pSp"
+    },
+    "158": {
+      "bytes": 162664,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p158_pSg.jpg",
+      "sha256": "d392b594687e3d7b728af169e1efeb9e5c84a5cf4af23c1bfb2afb8ab9dcd3fd",
+      "slide_id": "pSg"
+    },
+    "159": {
+      "bytes": 174007,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p159_pSZ.jpg",
+      "sha256": "58517fc87e339ec3b6e1bb1d012994e80dc1a7b9812de8eb331dfc8b2f563628",
+      "slide_id": "pSZ"
+    },
+    "160": {
+      "bytes": 176497,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p160_pSS.jpg",
+      "sha256": "c1a9419401b369309d9b67bba5aa489c58c52cd399b2c8e9158e3bb920b228fc",
+      "slide_id": "pSS"
+    },
+    "161": {
+      "bytes": 158191,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p161_pSP.jpg",
+      "sha256": "b15530d576ea58cbac9ca43a067942ad361771a3b354e71648db3611f2556466",
+      "slide_id": "pSP"
+    },
+    "162": {
+      "bytes": 175593,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p162_pSi.jpg",
+      "sha256": "b2c3b18555b0edffc48d019ce8816fc36f65c555ba7745175235dafc10e17ff8",
+      "slide_id": "pSi"
+    },
+    "163": {
+      "bytes": 166414,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p163_pSn.jpg",
+      "sha256": "200cb4c8e805a001a8c1c97a9a5ceefaad9ba9fa77e8ecf68bfffa0aa60a80f6",
+      "slide_id": "pSn"
+    },
+    "164": {
+      "bytes": 183474,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/ppt_closeout_v1/screenshots/WB1KsYGualerMUddEzMcCw1En0g_p164_pSo.jpg",
+      "sha256": "742d49789e0cf904bcbc398cb34bdcb2bb43576bfc5e4325f6f7251c9c59a37d",
+      "slide_id": "pSo"
+    }
+  },
+  "status": "PASS",
+  "total_slides": 164
+}
