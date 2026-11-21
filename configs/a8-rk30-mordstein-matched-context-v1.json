@@ -1,0 +1,159 @@
+{
+  "schema": "a8-rk30-mordstein-matched-context-protocol-v1",
+  "protocol_id": "a8_rk30_mordstein_matched_context_v1",
+  "created_before_new_hela_outcome_read": true,
+  "created_before_rk30_model_fit": true,
+  "scientific_question": "Within one GFP library and one observed-R1 feature definition, does MFE transport across host or 5-prime-UTR-intron contexts after whole-sequence-cluster separation?",
+  "mechanistic_hypothesis": "If predicted initiation/local structure has a context-transportable association with Flow-seq, adding the three frozen observed-R1 MFE features to identical sequence/codon covariates improves source-trained prediction on held-out target-context clusters. Host transport and intron transport are evaluated separately; failure of any family endpoint rejects the corresponding broad transport claim and does not prove a universal null mechanism.",
+  "inputs": {
+    "reference_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/variant_counts.csv",
+      "sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef",
+      "label_free_columns": ["variant_id", "sequence_5prime_300nt"],
+      "expected_variants": 152,
+      "expected_sequence_length": 300
+    },
+    "cluster_facts_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/sequence_cluster_facts.csv",
+      "sha256": "6944156dc4bc491d1066083d10a35017b2052be33e60e11a58ebe811e8bbbbd1",
+      "expected_clusters": 74
+    },
+    "metadata_tsv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/metadata/PRJNA596086.read_run.tsv",
+      "sha256": "52b88829c9e18483c2709f9a6d91e4535ed137a907573107c5b413f8ef8778f4"
+    },
+    "raw_r1_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/raw",
+    "feature_implementation": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk02_mordstein_structure_increment.py",
+      "sha256": "9838de20edd6a52e3f49f0f53f43ea5ec90ab1eba6be1ed5825a33f72c71b7e2"
+    },
+    "recovery_implementation": {
+      "path": "/home/codonflow-a8-rk/scripts/a8_rk02_mordstein_reference_recovery.py",
+      "sha256": "d3326a4d9655d642fec26c4fb10c1f7c623a2f5331b858d6add11c29180ae75e"
+    },
+    "cai_wrapper": {
+      "path": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/CAI_calculator.py",
+      "sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a",
+      "reference_variable": "def_refs",
+      "reference_count": 9
+    }
+  },
+  "contexts": {
+    "hela_no_intron": {
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HeLa cells",
+      "replicates": ["CM5a", "CM5b", "CM5c", "CM5d", "CM5e"],
+      "expected_runs": 40
+    },
+    "hela_with_intron": {
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library with intron in HeLa cells",
+      "replicates": ["CM9a", "CM9b"],
+      "expected_runs": 16
+    },
+    "hek293_no_intron": {
+      "experiment_title": "Illumina MiSeq sequencing: Flow-Seq of GFP library without intron in HEK293 cells",
+      "replicates": ["CM2"],
+      "expected_runs": 8
+    }
+  },
+  "download": {
+    "mate": 1,
+    "new_hela_r1_files": 56,
+    "existing_hek293_r1_files": 8,
+    "expected_new_r1_bytes": 10939439991,
+    "transport": "parallel verified HTTP byte ranges; complete-file ENA size and MD5 gate before atomic rename; SHA256 recorded",
+    "r2_required": false,
+    "new_outcome_columns_may_be_read_before_freeze": false
+  },
+  "fixed_reference_counting": {
+    "references": "All 152 RK28 observed-R1 sequences in the frozen reference CSV order; no de novo centroids and no outcome-informed selection.",
+    "read_length": 300,
+    "assignment": "Unique minimum-Hamming reference within 8 nt using the frozen nine-segment exact-seed index; ties, >8 nt, non-300-nt reads are unassigned.",
+    "maximum_error_nt": 8,
+    "bins_per_replicate": [1, 2, 3, 4, 5, 6, 7, 8],
+    "exact_bins_required": true,
+    "assignment_cache_max_unique_sequences_per_run": 200000,
+    "audit_reservoir_reads_per_run": 100,
+    "audit_seed": 20261121,
+    "r2_used": false
+  },
+  "outcome_and_qc": {
+    "score_per_replicate": "sum_{bin=1..8} bin*count_bin / sum_{bin=1..8} count_bin",
+    "minimum_assigned_reads_per_variant_per_replicate": 1000,
+    "replicate_rule": "Every one of the eight experiments must have all eight bins and at least 1,000 assigned reads for a variant; no replicate may be dropped after inspecting scores.",
+    "context_score": "Unweighted arithmetic mean of replicate-level scores within each context.",
+    "common_cohort": "Intersection of variants passing the read-support rule in all eight experiments across all three contexts.",
+    "minimum_common_variants": 100,
+    "minimum_common_clusters": 50,
+    "coverage_failure": "If either minimum fails, stop before model fitting as MATCHED_CONTEXT_COVERAGE_INFEASIBLE_ZERO_FITS; no alternate threshold or subset search is allowed.",
+    "interpretation": "Weighted fluorescence-bin score from injected/library Flow-seq measurements; not translation velocity, mRNA decay, direct RFU, or a universal expression scale."
+  },
+  "features": {
+    "simple": ["gc3_observed_5prime", "gc_observed_5prime", "cpg_per_100nt_observed_5prime", "cai_human_def_refs_observed_r1"],
+    "structure_addition": ["mfe_observed_r1_full_kcal_mol", "mfe_observed_r1_window48_min_kcal_mol", "mfe_observed_r1_window48_mean_kcal_mol"],
+    "depth_excluded_reason": "Read depth is a condition-specific technical measurement and is not used as a transported biological predictor; it remains in QC.",
+    "structure_engine": "ViennaRNA RNA.fold_compound MFE; DNA converted to RNA; 37 C; dangles=0; full observed 300-nt fragment and every contiguous 48-nt window; identical to RK28."
+  },
+  "outer_evaluation": {
+    "folds": 5,
+    "primary_seed": 20261222,
+    "sensitivity_seeds": [20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230, 20261231],
+    "fold_assignment": "Reuse RK28 whole-cluster assignment algorithm and seeds on the common-cohort clusters. For transport, source outcomes from test clusters are excluded from training and target held-out clusters are never used for fitting or scaling.",
+    "leakage_rule": "No sequence cluster may occur in both source training and target testing. Hyperparameters and feature sets are frozen; no target-informed tuning."
+  },
+  "models": {
+    "ridge": "Training-fold feature and outcome mean/population-standard-deviation scaling, then Ridge(alpha=1.0, solver=cholesky).",
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=False, random_state=seed+fold).",
+    "null": "Source/training-fold mean outcome; descriptive only.",
+    "mfe_only": "Descriptive within-context reference only.",
+    "expected_transport_fits": 800,
+    "expected_within_context_fits": 900,
+    "expected_total_fits": 1700,
+    "device": "CPU_ONLY"
+  },
+  "primary_transport": {
+    "ordered_pairs": [
+      {"source": "hela_no_intron", "target": "hek293_no_intron", "mechanism": "host_transport_hela_to_hek"},
+      {"source": "hek293_no_intron", "target": "hela_no_intron", "mechanism": "host_transport_hek_to_hela"},
+      {"source": "hela_no_intron", "target": "hela_with_intron", "mechanism": "intron_transport_no_to_with"},
+      {"source": "hela_with_intron", "target": "hela_no_intron", "mechanism": "intron_transport_with_to_no"}
+    ],
+    "arms": ["ridge_simple", "ridge_structure", "histgb_simple", "histgb_structure"],
+    "tests_per_pair": ["ridge_spearman_effect", "ridge_mse_improvement", "histgb_spearman_effect", "histgb_mse_improvement"],
+    "effect_direction": "Spearman structure-minus-simple; MSE simple-minus-structure; positive favors structure.",
+    "cluster_bootstrap": {"resamples": 10000, "seed": 20261423},
+    "cluster_swap_permutation": {"permutations": 10000, "seed": 20261424},
+    "multiplicity": "One Holm family across all 16 ordered-pair primary endpoints.",
+    "seed_rule": "At least 8 of 10 seed-level effects must be positive for each endpoint.",
+    "pair_pass_rule": "All four endpoints for a direction have effect>0, 95% cluster-bootstrap lower bound>0, family-Holm p<0.05 and >=8/10 positive seeds.",
+    "family_pass_rule": "All four directions pass. Otherwise CONTEXT_TRANSPORTABLE_MFE_INCREMENT_NOT_SUPPORTED; report each direction separately and do not claim a universal negative mechanism."
+  },
+  "secondary_within_context": {
+    "contexts": ["hela_no_intron", "hela_with_intron", "hek293_no_intron"],
+    "arms": ["null", "ridge_simple", "ridge_structure", "ridge_mfe_only", "histgb_simple", "histgb_structure", "histgb_mfe_only"],
+    "inference": "Descriptive/secondary four structure-increment endpoints per context with 10,000 cluster bootstraps/permutations and Holm across the 12 secondary tests; not allowed to rescue a failed primary transport family."
+  },
+  "reproducibility": {
+    "protocol_freeze_commit_required_before_new_outcome_read": true,
+    "synthetic_tests_required": true,
+    "independent_implementation_required": true,
+    "ppt_write_requires_independent_pass": true,
+    "github_push_after_each_verified_stage": true,
+    "large_artifact_directory": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk30/mordstein_matched_context_v1",
+    "audit_directory": "/home/codonflow-a8-rk/audits/20261121/RK30"
+  },
+  "scientific_boundaries": {
+    "fixed_gfp_library": true,
+    "same_observed_r1_coverage": true,
+    "same_predicted_structure_definition": true,
+    "author_gfp_identity_mapping": false,
+    "complete_cds_observed": false,
+    "measured_structure": false,
+    "independent_untouched_confirmation": false,
+    "hela_labels_used_in_prior_development": false,
+    "protein_ood": false,
+    "velocity_or_decay_measured": false,
+    "generator_training_authorized": false,
+    "functional_untouched_read": false,
+    "rk_g1_complete": false
+  }
+}
