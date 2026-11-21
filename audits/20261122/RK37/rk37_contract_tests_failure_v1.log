@@ -1,0 +1,21 @@
+F..F.......
+======================================================================
+FAIL: test_alpha_selection_never_uses_target (__main__.RK37ContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk37_translation_pivot.py", line 83, in test_alpha_selection_never_uses_target
+    self.assertEqual(MODULE.select_candidate(candidates, "anchored")["alpha"], 1.0)
+AssertionError: 0.1 != 1.0
+
+======================================================================
+FAIL: test_codon_mapping_and_position_dimension (__main__.RK37ContractTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/codonflow-a8-rk/tests/test_a8_rk37_translation_pivot.py", line 18, in test_codon_mapping_and_position_dimension
+    self.assertEqual(MODULE.CODON_TO_INDEX["TTT"], 63)
+AssertionError: 21 != 63
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.005s
+
+FAILED (failures=2)

@@ -1,0 +1,120 @@
+{
+  "schema": "a8-rk37-translation-pivot-protocol-v1",
+  "status": "FROZEN_BEFORE_RK37_TARGET_EVALUATION",
+  "task": "RK37 data-supported translation-occupancy sequence-model pivot after RK36",
+  "trigger": {
+    "rk36_result": "audits/20261122/RK36/rk36_feasibility_result_v1.json",
+    "rk36_result_sha256": "9b02373b460a278d3e295f6d17786ed5e2f572b4afa662749d3ef443d8db9ffe",
+    "decision": "branch_3_no_qualifying_data_trigger_branch_2_pivot"
+  },
+  "scientific_question": "Can a fixed local-codon, transcript-centered, mean-anchored ridge improve the two strongest RK05 cross-study controls without using Subtelny14 outcomes for fitting, calibration, alpha selection or model selection?",
+  "retrospective_boundary": "Subtelny14 outcomes were observed in RK05 and motivated this follow-up. RK37 is a frozen diagnostic follow-up, not an untouched confirmation or a SOTA claim even if both gates pass.",
+  "studies": {
+    "source": "Mohammad16",
+    "target": "Subtelny14",
+    "source_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Mohammad16.txt",
+      "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+      "raw_records": 1761,
+      "eligible_records": 1179
+    },
+    "target_matrix": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk03/raw/ribomimo/Subtelny14.txt",
+      "sha256": "d982f6d8c14ba309ce26e29c8d81793df190b11d063c1333878d3dc6c0efa118",
+      "raw_records": 5614,
+      "eligible_records": 3921
+    },
+    "normalization": "Official RK05: counts >0.5; record eligible if coverage >0.60 and CDS has no N; density=count/mean(counts[counts>0.5]) at positive positions.",
+    "mask": "Set first five and last four codons to zero, then retain density >0 positions.",
+    "exact_cds_overlap_required": 0,
+    "target_access_rule": "Target coverage metadata may reproduce the frozen eligibility set. Target normalized outcome vectors, prior target predictions and all target metrics are accessed only after every source fit and alpha/deployment selection is complete."
+  },
+  "split": {
+    "procedure": "Exactly RK05 official split: sorted eligible source IDs; np.random.seed(seed); split_seed=randint(0,1024); shuffle with split_seed; first floor(n/10) validation, remainder train.",
+    "primary_seed": 1234,
+    "sensitivity_seeds": [2345, 3456],
+    "expected_train_records": 1062,
+    "expected_validation_records": 117,
+    "seed_selection_from_target_forbidden": true
+  },
+  "features": {
+    "position": "RK05 86 columns: ATCG-order 64 codon one-hot, 20 relative-position bins, relative-position scalar, ln(length)/7.",
+    "local": "477 columns: seven ATCG-order codon one-hots at offsets -3,-2,-1,0,+1,+2,+3 (448), seven in-window validity flags, 20 relative-position bins, relative-position scalar, ln(length)/7. Out-of-window codon one-hots are zero.",
+    "design": "Unscaled float64 sparse CSR; identical rows and masked positions for all compared arms."
+  },
+  "targets_and_deployment": {
+    "raw": "Fit official normalized density at source-train masked positions.",
+    "centered": "For each source-train transcript independently subtract its masked-position mean density; no cross-transcript or target information.",
+    "anchor": "For each evaluated transcript, prediction_anchor=prediction-mean(prediction at masked positions)+source_train_raw_masked_position_mean. Uses no target outcome and preserves within-transcript Pearson/Spearman.",
+    "primary_candidate": "local_centered_anchored",
+    "candidate_fixed_before_target": true
+  },
+  "models": {
+    "type": "sklearn Ridge, fit_intercept=true, solver=lsqr, tol=1e-8, max_iter=10000, float64",
+    "alpha_grid": [0.1, 1.0, 10.0, 100.0],
+    "families": ["position_raw", "position_centered", "local_raw", "local_centered"],
+    "unique_fits_per_seed": 16,
+    "seeds": 3,
+    "planned_unique_fits": 48,
+    "selection": "All alpha selection uses source-validation transcript-balanced MSE only; first grid value breaks ties. position_raw_unanchored uses unanchored validation predictions; every anchored deployment uses anchored validation predictions.",
+    "deployments": [
+      "constant",
+      "ribomimo_raw_frozen_RK05",
+      "ribomimo_anchored_diagnostic",
+      "position_raw_unanchored",
+      "position_raw_anchored",
+      "position_centered_anchored",
+      "local_raw_anchored",
+      "local_centered_anchored"
+    ],
+    "expected_position_raw_unanchored_alpha": {"1234": 100.0, "2345": 100.0, "3456": 100.0}
+  },
+  "frozen_external_predictions": {
+    "rk05_protocol_sha256": "99f7dd5c80044d04d97f64c24dca28a764c2df7ecac013375d44b5bb86fa46e5",
+    "prediction_template": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk05/ribomimo_study_ood_094c_v1/production/predictions/subtelny14_seed{seed}.npz",
+    "arrays": {"ribomimo": "model_prediction", "position_ridge": "ridge_prediction"},
+    "baseline_fidelity": "Record IDs, offsets, positions and float32 target must match exactly; recomputed position_raw_unanchored maximum absolute prediction difference <=1e-6 versus RK05."
+  },
+  "evaluation": {
+    "primary_seed": 1234,
+    "primary_endpoints": [
+      {
+        "name": "tb_mse_improvement_over_constant",
+        "per_transcript_effect": "constant_mse-local_centered_anchored_mse",
+        "positive_favors_candidate": true,
+        "required": "effect>0, paired bootstrap CI95 lower>0, Holm p<0.05"
+      },
+      {
+        "name": "mean_pearson_improvement_over_position_raw",
+        "per_transcript_effect": "local_centered_anchored_pearson-position_raw_unanchored_pearson",
+        "positive_favors_candidate": true,
+        "required": "effect>0, paired bootstrap CI95 lower>0, Holm p<0.05; finite pairs only with exclusion count reported"
+      }
+    ],
+    "sensitivity_gate": "Both effects must also be positive for seeds 2345 and 3456; no target-based seed choice.",
+    "multiplicity": "Holm across exactly two primary endpoints",
+    "bootstrap": {"unit": "target transcript", "resamples": 20000, "seed": 52261371, "interval": "two-sided percentile 95%"},
+    "permutation": {"unit": "paired target-transcript effect", "resamples": 20000, "seed": 52261372, "test": "two-sided sign-flip with plus-one correction"},
+    "secondary": "All eight absolute metric sets; position/local x raw/centered diagnostic contrasts; RiboMIMO raw/anchored; global MSE/R2/Pearson and mean/median within-transcript Pearson/Spearman; three seed results.",
+    "decision_rule": "DUAL_DIAGNOSTIC_PASS only if both primary endpoints and sensitivity gate pass. This is not SOTA or independent confirmation. Any failure leaves the cross-study translation task unresolved and triggers diagnosis of the failed component."
+  },
+  "execution": {
+    "python": "/home/codonflow-clean-env-v1/bin/python",
+    "cpu_numeric_threads": 1,
+    "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk37/translation_pivot_v1",
+    "output_must_be_empty": true,
+    "cost_claim": "Observed CPU wall times only; no unified time-matched claim.",
+    "independent_verification": "Separate raw parser/features/fitting/metrics/inference without importing production; refit all 48 models and compare predictions within declared numerical tolerance.",
+    "clean_reproduction": "Fresh checkout of frozen scientific commit, rerun all 48 fits and compare CSV/NPZ artifacts."
+  },
+  "scientific_scope": {
+    "occupancy_proxy_not_physical_velocity": true,
+    "study_ood_not_homology_protein_ood": true,
+    "retrospective_followup_not_untouched": true,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "rk_g1_complete": false,
+    "sota_claim_authorized": false,
+    "wet_lab_or_prospective_dbtl": false
+  }
+}
