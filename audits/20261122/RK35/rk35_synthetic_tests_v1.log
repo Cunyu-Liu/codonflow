@@ -1,0 +1,28 @@
+..F....F.......                                                          [100%]
+=================================== FAILURES ===================================
+____________________ test_energy_dangles_differ_and_finite _____________________
+
+    def test_energy_dangles_differ_and_finite():
+        RNA = pytest.importorskip("RNA")
+        seq = "GGGAAACCCUUUGGGAAACCC"
+        e0 = pre.energy(seq, 0)
+        e2 = pre.energy(seq, 2)
+        assert np.isfinite(e0) and np.isfinite(e2)
+>       assert e0 != e2
+E       assert -5.800000190734863 != -5.800000190734863
+
+tests/test_a8_rk35_coverage_transport.py:55: AssertionError
+____________________________ test_holm_known_values ____________________________
+
+    def test_holm_known_values():
+        adjusted = prod.holm([0.01, 0.04, 0.03])
+        assert abs(adjusted[0] - 0.03) < 1e-12
+>       assert abs(adjusted[1] - 0.04) < 1e-12
+E       assert 0.019999999999999997 < 1e-12
+E        +  where 0.019999999999999997 = abs((0.06 - 0.04))
+
+tests/test_a8_rk35_coverage_transport.py:100: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_a8_rk35_coverage_transport.py::test_energy_dangles_differ_and_finite
+FAILED tests/test_a8_rk35_coverage_transport.py::test_holm_known_values - ass...
+2 failed, 13 passed in 1.61s

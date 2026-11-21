@@ -1,0 +1,175 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "main_csv_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "coverage_report_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_preflight_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_result_sha",
+      "pass": true
+    },
+    {
+      "details": [
+        "source_row",
+        "seqId",
+        "CAI",
+        "sequenceWithUtr",
+        "utr_5prime",
+        "cds",
+        "protein_aa",
+        "cds_sha256",
+        "exact_cds_group"
+      ],
+      "name": "no_outcome_columns_read",
+      "pass": true
+    },
+    {
+      "details": 154,
+      "name": "measurement_rows_154",
+      "pass": true
+    },
+    {
+      "details": 150,
+      "name": "exact_cds_groups_150",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "multi_measurement_groups_4",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "all_cds_start_atg",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "all_window_energies_finite",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_preflight_rows_150",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "exact_window_matches_rk32_preflight",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "atg_window_matches_rk32_preflight",
+      "pass": true
+    },
+    {
+      "details": 3.299999713897705,
+      "name": "trunc_d0_d2_recorded_separately",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "coverage_status",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "cluster_facts_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "clusters_37_complete",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "folds_reproduce_rk27_no_leakage",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_reuse_oof_predictions.csv_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_reuse_fold_assignments.csv_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_reuse_seed_effects.csv_sha",
+      "pass": true
+    },
+    {
+      "details": 1500,
+      "name": "rk32_oof_rows_1500",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_folds_match_regenerated_all_seeds",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk32_oof_keys_complete",
+      "pass": true
+    }
+  ],
+  "checks_passed": 24,
+  "checks_total": 24,
+  "created_utc": "2026-11-21T16:49:10.653876+00:00",
+  "max_atg_delta_vs_rk32": 1.7763568394002505e-15,
+  "max_exact_delta_vs_rk32": 1.7763568394002505e-15,
+  "model_fits_performed": 0,
+  "n_exact_cds_groups": 150,
+  "n_measurement_rows": 154,
+  "n_sequence_clusters": 37,
+  "outcome_columns_read": false,
+  "output_csv": {
+    "bytes": 22949,
+    "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/preflight_candidate_windows.csv",
+    "sha256": "6d4ab6aa5cdc4c698078f9fc4ddaf5eb16b0b94aaf2cbdf1ce2cf598860ec774"
+  },
+  "reuse_inputs": {
+    "fold_assignments.csv": {
+      "expected": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/fold_assignments.csv",
+      "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    "oof_predictions.csv": {
+      "expected": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/oof_predictions.csv",
+      "sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    "seed_effects.csv": {
+      "expected": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/seed_effects.csv",
+      "sha256": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7"
+    }
+  },
+  "schema": "a8-rk35-label-free-preflight-v1",
+  "status": "PASS_LABEL_FREE_PREFLIGHT",
+  "trunc_d0_d2_max_abs_delta": 3.299999713897705,
+  "windows": {
+    "cds_start_local": "CDS[0:42], 42 nt, includes start ATG, no UTR, dangles=2, 37 C (RK32 preflight local_cds42)",
+    "exact_local": "UTR[-4:]+CDS[:38], 42 nt, dangles=2, 37 C (RK32 vienna_local definition)",
+    "trunc_local": "CDS[3:45] (1-based CDS4-45), 42 nt, excludes start ATG and UTR, dangles=2, 37 C (RK33 coverage, Kudla-matched dangles)",
+    "trunc_local_d0": "CDS[3:45], dangles=0, 37 C (RK33 prediction definition; secondary sensitivity only)"
+  }
+}

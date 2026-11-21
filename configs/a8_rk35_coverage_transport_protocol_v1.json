@@ -1,0 +1,261 @@
+{
+  "analysis_type": "retrospective_outcome_known_followup_not_independent_confirmation",
+  "code": {
+    "closeout_script": "scripts/a8_rk35_closeout.py",
+    "closeout_script_sha256": "f3a88270fdab2ddc1588c2f91070be68d0a4a65d46638f642c888fff5f70fa22",
+    "comparison_script": "scripts/a8_rk35_compare_reproduction.py",
+    "comparison_script_sha256": "018ade1eeb8bd5fbf5de10d58154591ffaf32ba7cbc5e13a50ef565ff1f06849",
+    "independent_script": "scripts/a8_rk35_verify_coverage_transport.py",
+    "independent_script_sha256": "7bc6e6b69041c83b30fe972644929f6e209131736cd36a28f149a6618a1b3681",
+    "preflight_script": "scripts/a8_rk35_preflight.py",
+    "preflight_script_sha256": "99c828031d33530ec820259c7b2776bed1986c12b54861b06b5ae4f2ca571653",
+    "production_script": "scripts/a8_rk35_run_coverage_transport.py",
+    "production_script_sha256": "73f3e8339ad036962ab21977bdec1ad341c901e1952355442340b1928ef12542",
+    "tests": "tests/test_a8_rk35_coverage_transport.py",
+    "tests_sha256": "842ef0736e0d6142d51b27f44cd2c582564ac2a305b9259ef5e3a41d025e4fb6"
+  },
+  "cohort": {
+    "aggregation": "exact cds_sha256 groups, CAI constant within group",
+    "cds_length": 720,
+    "n_exact_cds_groups": 150,
+    "n_measurement_rows": 154,
+    "n_sequence_clusters": 37,
+    "target": "group mean log10_expression",
+    "utr_length": 144
+  },
+  "consistency_gate": {
+    "fields": [
+      "observed_effect",
+      "ci95_lower",
+      "ci95_upper",
+      "p_cluster_swap",
+      "seed_effects_max"
+    ],
+    "on_failure": "CONSISTENCY_GATE_FAILED_NOT_EVALUATED; stop scientific interpretation; engineering audit only",
+    "reference": "RK32 result_v2 vienna_local primary tests and seed_effects",
+    "reference_values": {
+      "histgb__vienna_local__mse_improvement": {
+        "ci95": [
+          0.05566414462088933,
+          0.1301780643841748
+        ],
+        "observed_effect": 0.10426330696897464,
+        "p_cluster_swap": 0.0002999850007499625,
+        "pass": true
+      },
+      "histgb__vienna_local__spearman_effect": {
+        "ci95": [
+          0.22099868199285705,
+          0.5230205155513327
+        ],
+        "observed_effect": 0.402746946566092,
+        "p_cluster_swap": 9.99950002499875e-05,
+        "pass": true
+      },
+      "ridge__vienna_local__mse_improvement": {
+        "ci95": [
+          0.07130516135712904,
+          0.21456724192685425
+        ],
+        "observed_effect": 0.1569258349316947,
+        "p_cluster_swap": 0.0007999600019999,
+        "pass": true
+      },
+      "ridge__vienna_local__spearman_effect": {
+        "ci95": [
+          0.5288529340140695,
+          1.1296531183722225
+        ],
+        "observed_effect": 0.9846828339503453,
+        "p_cluster_swap": 4.999750012499375e-05,
+        "pass": true
+      }
+    },
+    "requirement": "all four gate tests bitwise-equal within tolerance AND pass own Holm(4)",
+    "tolerance": 1e-12
+  },
+  "created_utc": "2026-11-21T16:49:22.130838+00:00",
+  "decision_tree": {
+    "D1": {
+      "conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+      "condition": "trunc_vs_simple 4/4",
+      "implication": "the natural RK33 truncated coverage still carries the increment within Kudla; coverage is NOT necessary; RK28/RK33 cross-study negatives cannot be attributed to coverage alone; host/assay/study-level factors become primary candidates; next step: cross-host full-coverage public data transport test; no further Kudla window mining"
+    },
+    "D2": {
+      "conclusion": "START_AWARE_COVERAGE_NECESSARY_WITHIN_KUDLA_RETROSPECTIVELY",
+      "condition": "trunc_vs_simple fails AND exact_vs_trunc 4/4 AND gate passes",
+      "implication": "exact start-aware coverage beats the RK33 window and the RK33 window loses the increment within Kudla; start-aware coverage necessary within Kudla (natural-window evidence); clean upstream/start decomposition deferred to RK34; cross-host transport still unproven; host/assay not discriminated"
+    },
+    "D3": {
+      "conclusion": "COVERAGE_TRANSPORT_NOT_DISCRIMINATED_RETROSPECTIVELY",
+      "condition": "gate passes AND trunc_vs_simple fails AND exact_vs_trunc fails",
+      "implication": "no claim of coverage necessity or sufficiency; includes small-effect/underpowered cases"
+    },
+    "priority": [
+      "gate",
+      "D1",
+      "D2",
+      "D3"
+    ]
+  },
+  "fit_accounting": {
+    "evaluated_fits": 500,
+    "new_fits": 300,
+    "reuse_gates": [
+      "input SHA equality",
+      "regenerated folds equal RK32 fold_assignments for all 10 seeds",
+      "RK32 null equals recomputed train target mean within 1e-12",
+      "consistency gate below"
+    ],
+    "reused_arms": {
+      "exact_local": "RK32 vienna_local OOF",
+      "simple": "RK32 simple OOF"
+    },
+    "reused_fits": 200
+  },
+  "forbidden_claims": [
+    "independent_untouched_confirmation",
+    "causal_host_mechanism",
+    "protein_ood",
+    "external_sota",
+    "generator_training_authorization",
+    "post_hoc_feature_addition",
+    "gate_modification",
+    "resplit",
+    "tolerance_relaxation",
+    "clean_upstream_start_decomposition_from_body_confounded_secondary_contrasts"
+  ],
+  "functional_untouched_read": false,
+  "gate_contrast": {
+    "exact_vs_simple": [
+      "simple",
+      "exact_local"
+    ]
+  },
+  "generator_training_authorized": false,
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "rk27_coverage_report": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK27/rk27_sequence_coverage_v1.json",
+      "sha256": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4"
+    },
+    "rk32_fold_assignments": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/fold_assignments.csv",
+      "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    "rk32_oof_predictions": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/oof_predictions.csv",
+      "sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    "rk32_preflight_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/preflight_candidate_energies.csv",
+      "sha256": "5310cdfa65578c86d6b491bfdfc63d916d33ca610f8778650045f488e910a906"
+    },
+    "rk32_result_v2": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK32/rk32_structure_definition_result_v2.json",
+      "sha256": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c"
+    },
+    "rk32_seed_effects": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/seed_effects.csv",
+      "sha256": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7"
+    },
+    "rk35_preflight_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/preflight_candidate_windows.csv",
+      "sha256": "6d4ab6aa5cdc4c698078f9fc4ddaf5eb16b0b94aaf2cbdf1ce2cf598860ec774"
+    },
+    "rk35_preflight_report": {
+      "path": "audits/20261122/RK35/rk35_preflight_v1.json",
+      "sha256": "0847653d4060e8016cf39384951c055445ea68cb5a049fc57d25cf4ea0e6be5c"
+    }
+  },
+  "models": {
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=False, random_state=seed+fold)",
+    "ridge": "StandardScaler + Ridge(alpha=1.0)"
+  },
+  "outer_evaluation": {
+    "fold_scheme": "whole-cluster balanced OOD, identical algorithm to RK32",
+    "folds": 5,
+    "primary_seed": 20261221,
+    "seeds": [
+      20261221,
+      20261222,
+      20261223,
+      20261224,
+      20261225,
+      20261226,
+      20261227,
+      20261228,
+      20261229,
+      20261230
+    ]
+  },
+  "power_note": "37 clusters with 20000 resamples detect large coverage effects of RK32 magnitude; effects below ~0.2 delta-Spearman may fall into D3; no post-hoc power adjustment; primary family reduced to 8 tests (vs an earlier 16-test sketch) to concentrate power on the transport question after RK34 took ownership of the matched-body decomposition",
+  "primary_contrasts": {
+    "exact_vs_trunc": [
+      "trunc_local",
+      "exact_local"
+    ],
+    "trunc_vs_simple": [
+      "simple",
+      "trunc_local"
+    ]
+  },
+  "primary_inference": {
+    "bootstrap": "whole-cluster resample, int16 cluster indices, Spearman recomputed on concatenated resampled rows, MSE weighted by cluster multiplicity",
+    "bootstrap_seed": 20261321,
+    "ci": "percentile 2.5/97.5",
+    "contrast_support": "4/4 endpoints",
+    "multiplicity": "Holm over the 8 primary tests only; gate family Holm(4) internal; secondary family Holm(12) descriptive only, no gate",
+    "p": "plus-one two-sided (1+#{|null|>=|obs|})/(resamples+1)",
+    "pass_rule": "effect>0 AND ci_lower>0 AND p_holm<0.05 AND positive_seeds>=8/10",
+    "permutation": "within-cluster sign swap of the two arm predictions, int8 signs",
+    "permutation_seed": 20261322,
+    "resamples": 20000
+  },
+  "relationship_to_RK34": "RK34 (parallel session, matched N-mask factorial start_context) owns the clean upstream-vs-start decomposition with a fixed CDS4-38 body. RK35 is complementary: it tests the natural RK33 slice and natural CDS-start window, which RK34's N-masked controls cannot represent. RK35 secondary contrasts (atg_vs_trunc, exact_vs_atg) shift the CDS body and are therefore body-confounded; they are descriptive only and any clean decomposition is deferred to RK34.",
+  "schema": "a8-rk35-coverage-transport-protocol-v1",
+  "scientific_question": "Does the actual RK33 natural window CDS[3:45] (1-based CDS4-45, no start ATG, no upstream UTR) retain the RK32 local-structure increment within the frozen Kudla cohort, and does exact start-aware coverage beat it? Tests coverage-transport vs host/assay as explanations of the RK28/RK33 cross-study negatives, using natural (unmasked) windows.",
+  "secondary_contrasts": {
+    "atg_vs_trunc": [
+      "trunc_local",
+      "cds_start_local"
+    ],
+    "exact_vs_atg": [
+      "cds_start_local",
+      "exact_local"
+    ],
+    "trunc_d0_vs_simple": [
+      "simple",
+      "trunc_local_d0"
+    ]
+  },
+  "simple_features": [
+    "CAI",
+    "gc_cds",
+    "gc3_cds"
+  ],
+  "status": "FROZEN_BEFORE_RK35_EXPRESSION_ASSOCIATION_OR_MODEL_FIT",
+  "structure_features": {
+    "cds_start_local": [
+      "vienna_cds_start_mfe"
+    ],
+    "exact_local": [
+      "vienna_exact_local_mfe"
+    ],
+    "trunc_local": [
+      "vienna_trunc_mfe"
+    ],
+    "trunc_local_d0": [
+      "vienna_trunc_d0_mfe"
+    ]
+  },
+  "window_definitions": {
+    "cds_start_local": "CDS[0:42], 42 nt, includes start ATG, no UTR, dangles=2, 37 C; energy from RK32 preflight local_cds42__dangles2",
+    "exact_local": "UTR[-4:]+CDS[:38], 42 nt, dangles=2, 37 C; energy from RK32 preflight local_utr_minus4_cds38__dangles2",
+    "trunc_local": "CDS[3:45] (1-based CDS4-45), 42 nt, excludes start ATG and UTR, dangles=2, 37 C; energy from RK35 preflight trunc_cds4_45__dangles2",
+    "trunc_local_d0": "CDS[3:45], dangles=0, 37 C (RK33 prediction definition); secondary sensitivity only"
+  }
+}
