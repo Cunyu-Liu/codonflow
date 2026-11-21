@@ -396,9 +396,14 @@ def main() -> None:
     if protocol["status"] != "FROZEN_BEFORE_PRODUCTION":
         raise ValueError("protocol is not frozen")
     protocol_sha = sha(protocol_path)
-    benchmark = read_fasta(protocol["benchmark_fasta"])
+    benchmark = dict((header.split()[0], sequence)
+                     for header, sequence in read_fasta(protocol["benchmark_fasta"]))
     if sha(protocol["benchmark_fasta"]) != protocol["benchmark_sha256"]:
         raise ValueError("benchmark identity mismatch")
+    if sha(protocol["calibration_acceptance"]) != protocol["calibration_acceptance_sha256"]:
+        raise ValueError("calibration acceptance identity mismatch")
+    if sha(protocol["rscu_json"]) != protocol["rscu_sha256"]:
+        raise ValueError("RSCU identity mismatch")
     matrix_path = Path(protocol["external_matrix"])
     if sha(matrix_path) != protocol["external_matrix_sha256"]:
         raise ValueError("external matrix identity mismatch")
