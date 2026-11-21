@@ -1,0 +1,652 @@
+{
+  "checks": [
+    {
+      "detail": null,
+      "name": "presence:pSw",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "notes:pSw",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "presence:pSl",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "notes:pSl",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "presence:pSN",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "notes:pSN",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "presence:pSt",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "notes:pSt",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "presence:pSX",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "notes:pSX",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "arm_count_label",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "detail": 2.220446049250313e-16,
+      "name": "gate_delta",
+      "pass": true
+    },
+    {
+      "detail": 5,
+      "name": "gate_row_count",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "Spearman",
+          "+0.984683",
+          "[0.528853, 1.129653]",
+          "0.000200",
+          "Yes"
+        ],
+        "observed": [
+          "Ridge",
+          "Spearman",
+          "+0.984683",
+          "[0.528853, 1.129653]",
+          "0.000200",
+          "Yes"
+        ]
+      },
+      "name": "gate_row:ridge__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "MSE improve",
+          "+0.156926",
+          "[0.071305, 0.214567]",
+          "0.000800",
+          "Yes"
+        ],
+        "observed": [
+          "Ridge",
+          "MSE improve",
+          "+0.156926",
+          "[0.071305, 0.214567]",
+          "0.000800",
+          "Yes"
+        ]
+      },
+      "name": "gate_row:ridge__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "Spearman",
+          "+0.402747",
+          "[0.220999, 0.523021]",
+          "0.000300",
+          "Yes"
+        ],
+        "observed": [
+          "HistGB",
+          "Spearman",
+          "+0.402747",
+          "[0.220999, 0.523021]",
+          "0.000300",
+          "Yes"
+        ]
+      },
+      "name": "gate_row:histgb__exact_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "MSE improve",
+          "+0.104263",
+          "[0.055664, 0.130178]",
+          "0.000600",
+          "Yes"
+        ],
+        "observed": [
+          "HistGB",
+          "MSE improve",
+          "+0.104263",
+          "[0.055664, 0.130178]",
+          "0.000600",
+          "Yes"
+        ]
+      },
+      "name": "gate_row:histgb__exact_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": 9,
+      "name": "primary_row_count",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "trunc \u2212 simple",
+          "Ridge",
+          "Spearman",
+          "+0.735912",
+          "[0.269426, 0.883119]",
+          "0.011099",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "trunc \u2212 simple",
+          "Ridge",
+          "Spearman",
+          "+0.735912",
+          "[0.269426, 0.883119]",
+          "0.011099",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:ridge__trunc_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "trunc \u2212 simple",
+          "Ridge",
+          "MSE improve",
+          "+0.112439",
+          "[0.037299, 0.157190]",
+          "0.043398",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "trunc \u2212 simple",
+          "Ridge",
+          "MSE improve",
+          "+0.112439",
+          "[0.037299, 0.157190]",
+          "0.043398",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:ridge__trunc_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "exact \u2212 trunc",
+          "Ridge",
+          "Spearman",
+          "+0.248771",
+          "[0.096534, 0.433405]",
+          "0.011099",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "exact \u2212 trunc",
+          "Ridge",
+          "Spearman",
+          "+0.248771",
+          "[0.096534, 0.433405]",
+          "0.011099",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:ridge__exact_vs_trunc__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "exact \u2212 trunc",
+          "Ridge",
+          "MSE improve",
+          "+0.044487",
+          "[0.020955, 0.073430]",
+          "0.043398",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "exact \u2212 trunc",
+          "Ridge",
+          "MSE improve",
+          "+0.044487",
+          "[0.020955, 0.073430]",
+          "0.043398",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:ridge__exact_vs_trunc__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "trunc \u2212 simple",
+          "HistGB",
+          "Spearman",
+          "+0.365595",
+          "[0.215323, 0.493275]",
+          "0.001750",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "trunc \u2212 simple",
+          "HistGB",
+          "Spearman",
+          "+0.365595",
+          "[0.215323, 0.493275]",
+          "0.001750",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:histgb__trunc_vs_simple__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "trunc \u2212 simple",
+          "HistGB",
+          "MSE improve",
+          "+0.101934",
+          "[0.048890, 0.135677]",
+          "0.000800",
+          "10/10",
+          "Yes"
+        ],
+        "observed": [
+          "trunc \u2212 simple",
+          "HistGB",
+          "MSE improve",
+          "+0.101934",
+          "[0.048890, 0.135677]",
+          "0.000800",
+          "10/10",
+          "Yes"
+        ]
+      },
+      "name": "primary_row:histgb__trunc_vs_simple__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "exact \u2212 trunc",
+          "HistGB",
+          "Spearman",
+          "+0.037152",
+          "[-0.058908, 0.101375]",
+          "0.356982",
+          "10/10",
+          "No"
+        ],
+        "observed": [
+          "exact \u2212 trunc",
+          "HistGB",
+          "Spearman",
+          "+0.037152",
+          "[-0.058908, 0.101375]",
+          "0.356982",
+          "10/10",
+          "No"
+        ]
+      },
+      "name": "primary_row:histgb__exact_vs_trunc__spearman_effect",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "exact \u2212 trunc",
+          "HistGB",
+          "MSE improve",
+          "+0.002329",
+          "[-0.020657, 0.017988]",
+          "0.770161",
+          "10/10",
+          "No"
+        ],
+        "observed": [
+          "exact \u2212 trunc",
+          "HistGB",
+          "MSE improve",
+          "+0.002329",
+          "[-0.020657, 0.017988]",
+          "0.770161",
+          "10/10",
+          "No"
+        ]
+      },
+      "name": "primary_row:histgb__exact_vs_trunc__mse_improvement",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "failed_rows_keep_seed_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "decision",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "primary_conclusion",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "c1_c2_counts",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "bounded_title",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "unidentified_cross_study",
+      "pass": true
+    },
+    {
+      "detail": 11,
+      "name": "absolute_row_count",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "simple",
+          "-0.318413",
+          "0.257149"
+        ],
+        "observed": [
+          "Ridge",
+          "simple",
+          "-0.318413",
+          "0.257149"
+        ]
+      },
+      "name": "absolute_row:ridge:simple",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "exact local d2",
+          "+0.666270",
+          "0.100223"
+        ],
+        "observed": [
+          "Ridge",
+          "exact local d2",
+          "+0.666270",
+          "0.100223"
+        ]
+      },
+      "name": "absolute_row:ridge:exact_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "CDS-start d2",
+          "+0.307810",
+          "0.156892"
+        ],
+        "observed": [
+          "Ridge",
+          "CDS-start d2",
+          "+0.307810",
+          "0.156892"
+        ]
+      },
+      "name": "absolute_row:ridge:cds_start_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "trunc CDS4-45 d2",
+          "+0.417499",
+          "0.144710"
+        ],
+        "observed": [
+          "Ridge",
+          "trunc CDS4-45 d2",
+          "+0.417499",
+          "0.144710"
+        ]
+      },
+      "name": "absolute_row:ridge:trunc_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "Ridge",
+          "trunc CDS4-45 d0",
+          "+0.314038",
+          "0.163578"
+        ],
+        "observed": [
+          "Ridge",
+          "trunc CDS4-45 d0",
+          "+0.314038",
+          "0.163578"
+        ]
+      },
+      "name": "absolute_row:ridge:trunc_local_d0",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "simple",
+          "+0.302424",
+          "0.198658"
+        ],
+        "observed": [
+          "HistGB",
+          "simple",
+          "+0.302424",
+          "0.198658"
+        ]
+      },
+      "name": "absolute_row:histgb:simple",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "exact local d2",
+          "+0.705171",
+          "0.094394"
+        ],
+        "observed": [
+          "HistGB",
+          "exact local d2",
+          "+0.705171",
+          "0.094394"
+        ]
+      },
+      "name": "absolute_row:histgb:exact_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "CDS-start d2",
+          "+0.602022",
+          "0.117825"
+        ],
+        "observed": [
+          "HistGB",
+          "CDS-start d2",
+          "+0.602022",
+          "0.117825"
+        ]
+      },
+      "name": "absolute_row:histgb:cds_start_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "trunc CDS4-45 d2",
+          "+0.668019",
+          "0.096724"
+        ],
+        "observed": [
+          "HistGB",
+          "trunc CDS4-45 d2",
+          "+0.668019",
+          "0.096724"
+        ]
+      },
+      "name": "absolute_row:histgb:trunc_local",
+      "pass": true
+    },
+    {
+      "detail": {
+        "expected": [
+          "HistGB",
+          "trunc CDS4-45 d0",
+          "+0.538153",
+          "0.133087"
+        ],
+        "observed": [
+          "HistGB",
+          "trunc CDS4-45 d0",
+          "+0.538153",
+          "0.133087"
+        ]
+      },
+      "name": "absolute_row:histgb:trunc_local_d0",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "secondary_descriptive",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "no_gradient_claim",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "clean_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "closeout_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "manuscript_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "test_summary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "next_gate",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "not_pending_user",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "rk_g1_boundary",
+      "pass": true
+    },
+    {
+      "detail": null,
+      "name": "independent_boundary",
+      "pass": true
+    }
+  ],
+  "result_sha256": "c811bb6e3481f8450b600687e9bb9f9fa849f8d8c3c3c71b55d44ed71f4d5651",
+  "status": "PASS",
+  "summary": {
+    "checks_failed": 0,
+    "checks_passed": 55,
+    "checks_total": 55
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schema_version": "2.0",
+  "tool": "xml_lint",
+  "file": "./ppt_v1/candidate_v2/rk35_pSX.xml",
+  "slide_size": {
+    "width": 960,
+    "height": 540
+  },
+  "summary": {
+    "slide_count": 1,
+    "error_count": 2,
+    "warning_count": 0,
+    "info_count": 0,
+    "status": "blocked",
+    "release_ready": false,
+    "screenshot_review_required": false
+  },
+  "document": {
+    "errors": [],
+    "warnings": [],
+    "infos": []
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "status": "blocked",
+      "element_count": 28,
+      "errors": [
+        {
+          "level": "error",
+          "code": "shape_out_of_canvas",
+          "elements": [
+            "baPz"
+          ],
+          "canvas": {
+            "width": 960,
+            "height": 540
+          },
+          "bbox": {
+            "x": 62,
+            "y": 444,
+            "width": 908.1072,
+            "height": 21
+          },
+          "overflow": {
+            "left": 0,
+            "top": 0,
+            "right": 10.107200000000034,
+            "bottom": 0
+          },
+          "message": "shape baPz exceeds the 960x540 canvas (right by 10.1072px)",
+          "hint": "Locate via related_objects[].xml_path. Move the shape inside the canvas or reduce its width/height.",
+          "schema_version": "2.0",
+          "element_ids": [
+            "baPz"
+          ],
+          "target": {
+            "slide_number": 1
+          },
+          "rule": {
+            "id": "shape_out_of_canvas",
+            "name": "element_stays_within_slide_canvas",
+            "comparison": "max(left, top, right, bottom overflow) == 0"
+          },
+          "measurement": {
+            "canvas": {
+              "width": 960,
+              "height": 540
+            },
+            "bbox": {
+              "x": 62,
+              "y": 444,
+              "width": 908.1072,
+              "height": 21
+            },
+            "overflow": {
+              "left": 0,
+              "top": 0,
+              "right": 10.107200000000034,
+              "bottom": 0
+            }
+          },
+          "related_objects": [
+            {
+              "kind": "shape",
+              "type": "text",
+              "bbox": {
+                "x": 62,
+                "y": 444,
+                "width": 836,
+                "height": 21
+              },
+              "element_id": "baPz",
+              "xml_path": "slide[1]/data/shape[25]"
+            }
+          ]
+        },
+        {
+          "level": "error",
+          "code": "text_may_overflow_shape",
+          "overflow_axis": "width",
+          "elements": [
+            "baPz"
+          ],
+          "estimated_width": 908.1072,
+          "available_width": 836,
+          "width_ratio": 1.0862526315789474,
+          "message": "text shape baPz may overflow its own content box (estimated line 908.107px, available 836px); the run has wrap=\"false\" and cannot reflow, so widen the shape or shorten the text",
+          "hint": "Locate via related_objects[].xml_path. Increase shape.width or shorten the text. wrap=\"false\" text cannot reflow, so a line wider than the box is clipped or spills past its edge. This is an estimate based on font size, weight, and glyph widths.",
+          "schema_version": "2.0",
+          "element_ids": [
+            "baPz"
+          ],
+          "target": {
+            "slide_number": 1
+          },
+          "rule": {
+            "id": "text_may_overflow_shape",
+            "name": "estimated_text_fits_declared_shape",
+            "comparison": "estimated_width <= available_width"
+          },
+          "measurement": {
+            "violation_count": 1
+          },
+          "related_objects": [
+            {
+              "kind": "shape",
+              "type": "text",
+              "bbox": {
+                "x": 62,
+                "y": 444,
+                "width": 836,
+                "height": 21
+              },
+              "element_id": "baPz",
+              "xml_path": "slide[1]/data/shape[25]"
+            }
+          ]
+        }
+      ],
+      "warnings": [],
+      "infos": [],
+      "issues": [
+        {
+          "level": "error",
+          "code": "shape_out_of_canvas",
+          "elements": [
+            "baPz"
+          ],
+          "canvas": {
+            "width": 960,
+            "height": 540
+          },
+          "bbox": {
+            "x": 62,
+            "y": 444,
+            "width": 908.1072,
+            "height": 21
+          },
+          "overflow": {
+            "left": 0,
+            "top": 0,
+            "right": 10.107200000000034,
+            "bottom": 0
+          },
+          "message": "shape baPz exceeds the 960x540 canvas (right by 10.1072px)",
+          "hint": "Locate via related_objects[].xml_path. Move the shape inside the canvas or reduce its width/height.",
+          "schema_version": "2.0",
+          "element_ids": [
+            "baPz"
+          ],
+          "target": {
+            "slide_number": 1
+          },
+          "rule": {
+            "id": "shape_out_of_canvas",
+            "name": "element_stays_within_slide_canvas",
+            "comparison": "max(left, top, right, bottom overflow) == 0"
+          },
+          "measurement": {
+            "canvas": {
+              "width": 960,
+              "height": 540
+            },
+            "bbox": {
+              "x": 62,
+              "y": 444,
+              "width": 908.1072,
+              "height": 21
+            },
+            "overflow": {
+              "left": 0,
+              "top": 0,
+              "right": 10.107200000000034,
+              "bottom": 0
+            }
+          },
+          "related_objects": [
+            {
+              "kind": "shape",
+              "type": "text",
+              "bbox": {
+                "x": 62,
+                "y": 444,
+                "width": 836,
+                "height": 21
+              },
+              "element_id": "baPz",
+              "xml_path": "slide[1]/data/shape[25]"
+            }
+          ]
+        },
+        {
+          "level": "error",
+          "code": "text_may_overflow_shape",
+          "overflow_axis": "width",
+          "elements": [
+            "baPz"
+          ],
+          "estimated_width": 908.1072,
+          "available_width": 836,
+          "width_ratio": 1.0862526315789474,
+          "message": "text shape baPz may overflow its own content box (estimated line 908.107px, available 836px); the run has wrap=\"false\" and cannot reflow, so widen the shape or shorten the text",
+          "hint": "Locate via related_objects[].xml_path. Increase shape.width or shorten the text. wrap=\"false\" text cannot reflow, so a line wider than the box is clipped or spills past its edge. This is an estimate based on font size, weight, and glyph widths.",
+          "schema_version": "2.0",
+          "element_ids": [
+            "baPz"
+          ],
+          "target": {
+            "slide_number": 1
+          },
+          "rule": {
+            "id": "text_may_overflow_shape",
+            "name": "estimated_text_fits_declared_shape",
+            "comparison": "estimated_width <= available_width"
+          },
+          "measurement": {
+            "violation_count": 1
+          },
+          "related_objects": [
+            {
+              "kind": "shape",
+              "type": "text",
+              "bbox": {
+                "x": 62,
+                "y": 444,
+                "width": 836,
+                "height": 21
+              },
+              "element_id": "baPz",
+              "xml_path": "slide[1]/data/shape[25]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

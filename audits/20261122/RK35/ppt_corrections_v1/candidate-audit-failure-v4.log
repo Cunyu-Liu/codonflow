@@ -1,0 +1,4 @@
+RK35 PPT candidate audit v4 local failure (no online write).
+All frozen-data fields through the decision check were bound successfully. Failure: TypeError string indices must be integers at clean_summary.
+Root cause: the loop variable comparison shadowed the loaded clean-comparison report dictionary. Action: rename the local contrast variable in both endpoint loops.
+No PASS report emitted and online slides unchanged.

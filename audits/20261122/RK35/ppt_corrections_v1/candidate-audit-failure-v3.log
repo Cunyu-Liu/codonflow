@@ -1,0 +1,3 @@
+RK35 PPT candidate audit v3 local failure (no online write).
+Gate and primary endpoint field names were rebound to observed_effect; the next failure was KeyError 'decision' at the decision check.
+No PASS report emitted and online slides unchanged. Action: inspect all top-level scalar fields and bind the actual decision field.

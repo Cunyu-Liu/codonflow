@@ -1,0 +1,201 @@
+{
+  "branch_decision": "branch_3_no_qualifying_data_trigger_branch_2_pivot",
+  "created_utc": "2026-11-21T18:02:01.994906+00:00",
+  "datasets": {
+    "boel_2016_nesg6348": {
+      "failed_requirements": [
+        "R3_native_variant_specific_5utr",
+        "R4_fixed_protein_synonymous_library",
+        "R5_protein_identity_family_map",
+        "R6_fresh_continuous_outcome",
+        "R7_isolation_and_provenance"
+      ],
+      "host": [
+        "Escherichia coli BL21(DE3) with pMGK-argU"
+      ],
+      "n_rows": 6348,
+      "qualifying": false,
+      "requirements": {
+        "R1_independent_study_host": {
+          "evidence": "Independent Boel 2016 study (E. coli BL21(DE3) pMGK-argU), distinct from Kudla.",
+          "verdict": "PASS"
+        },
+        "R2_full_cds_per_variant": {
+          "evidence": "cds nonnull=6348/6348; sequence_status=full_cds_with_terminal_stop_and_c_terminal_tag.",
+          "verdict": "PASS"
+        },
+        "R3_native_variant_specific_5utr": {
+          "evidence": "UTR-like columns=[]; vector='pET plasmid; T7 RNA polymerase; C-terminal LEHHHHHH' (fixed vector leader, not variant-specific native UTR; not captured).",
+          "verdict": "FAIL"
+        },
+        "R4_fixed_protein_synonymous_library": {
+          "evidence": "variant_class=['cross_protein_natural_nonsynonymous_pool']; cross-protein natural NON-synonymous pool, not a fixed-protein synonymous library.",
+          "verdict": "FAIL"
+        },
+        "R5_protein_identity_family_map": {
+          "evidence": "protein_id present but protein_family=['not_provided_in_supplementary_data_2']...; split_assignment=UNASSIGNED_FAMILY_MAP_REQUIRED; family map absent.",
+          "verdict": "FAIL"
+        },
+        "R6_fresh_continuous_outcome": {
+          "evidence": "expression_type=['ordinal_total_protein_expression_score_0_5']; coarse ordinal 0-5 total protein expression score, not continuous.",
+          "verdict": "FAIL"
+        },
+        "R7_isolation_and_provenance": {
+          "evidence": "leakage_risk='not a fixed-protein synonymous library; family mapping absent'; protein/study isolation not feasible without family map.",
+          "verdict": "FAIL"
+        }
+      }
+    },
+    "kelsic_2016_mage_infA": {
+      "failed_requirements": [
+        "R2_full_cds_per_variant",
+        "R3_native_variant_specific_5utr",
+        "R7_isolation_and_provenance"
+      ],
+      "host": [
+        "Escherichia coli chromosomal infA"
+      ],
+      "n_rows": 19072,
+      "qualifying": false,
+      "requirements": {
+        "R1_independent_study_host": {
+          "evidence": "Independent Kelsic 2016 MAGE infA study (E. coli chromosomal infA).",
+          "verdict": "PASS"
+        },
+        "R2_full_cds_per_variant": {
+          "evidence": "sequence_status=['variant_only_full_construct_sequence_not_in_supplement']; cds nonnull=0/19072; full construct not in supplement.",
+          "verdict": "FAIL"
+        },
+        "R3_native_variant_specific_5utr": {
+          "evidence": "No full construct sequence, hence no native 5'UTR reconstructable.",
+          "verdict": "FAIL"
+        },
+        "R4_fixed_protein_synonymous_library": {
+          "evidence": "Fixed infA single-codon / codon-pair synonymous variants.",
+          "verdict": "PASS"
+        },
+        "R5_protein_identity_family_map": {
+          "evidence": "Single infA protein identity.",
+          "verdict": "PASS"
+        },
+        "R6_fresh_continuous_outcome": {
+          "evidence": "Continuous relative fitness (rich/minimal) outcome.",
+          "verdict": "PASS"
+        },
+        "R7_isolation_and_provenance": {
+          "evidence": "FUNCTIONAL UNTOUCHED: 19072 rows / 13569 signature groups frozen; reading outcomes for positives is forbidden by project gate.",
+          "verdict": "FAIL"
+        }
+      }
+    },
+    "kudla_2009_gfp": {
+      "failed_requirements": [
+        "R1_independent_study_host"
+      ],
+      "host": "Escherichia coli (Kudla GFP cohort)",
+      "n_rows": 154,
+      "qualifying": false,
+      "requirements": {
+        "R1_independent_study_host": {
+          "evidence": "Kudla is the RK27/RK32/RK34/RK35 training cohort, not independent.",
+          "verdict": "FAIL"
+        },
+        "R2_full_cds_per_variant": {
+          "evidence": "cds column present; nonnull=154/154.",
+          "verdict": "PASS"
+        },
+        "R3_native_variant_specific_5utr": {
+          "evidence": "UTR-like columns=['sequenceWithUtr', 'utr_5prime', 'mfe_5prime_kcal_mol']; utr_5prime 144 nt + sequenceWithUtr 864 nt available.",
+          "verdict": "PASS"
+        },
+        "R4_fixed_protein_synonymous_library": {
+          "evidence": "Fixed GFP protein synonymous library.",
+          "verdict": "PASS"
+        },
+        "R5_protein_identity_family_map": {
+          "evidence": "Single GFP protein identity; exact_cds_group present.",
+          "verdict": "PASS"
+        },
+        "R6_fresh_continuous_outcome": {
+          "evidence": "Continuous log10_expression outcome.",
+          "verdict": "PASS"
+        },
+        "R7_isolation_and_provenance": {
+          "evidence": "Whole-cluster OOD frozen (RK27); raw SHA documented.",
+          "verdict": "PASS"
+        }
+      }
+    },
+    "mordstein_2020_hek293": {
+      "failed_requirements": [
+        "R2_full_cds_per_variant",
+        "R3_native_variant_specific_5utr"
+      ],
+      "host": "Homo sapiens HEK293 (cross-host)",
+      "n_rows": 152,
+      "qualifying": false,
+      "requirements": {
+        "R1_independent_study_host": {
+          "evidence": "Independent Mordstein 2020 HEK293 study, cross-host vs Kudla E. coli.",
+          "verdict": "PASS"
+        },
+        "R2_full_cds_per_variant": {
+          "evidence": "observed-R1 recovered reads begin at CDS position 4; full CDS with start ATG not available (RK28/RK33 established).",
+          "verdict": "FAIL"
+        },
+        "R3_native_variant_specific_5utr": {
+          "evidence": "UTR-like columns=[]; start ATG (CDS 1-3) and upstream 4 nt absent, cannot reconstruct UTR[-4:]+CDS[:38].",
+          "verdict": "FAIL"
+        },
+        "R4_fixed_protein_synonymous_library": {
+          "evidence": "Synonymous variant library (RK28 observed-R1).",
+          "verdict": "PASS"
+        },
+        "R5_protein_identity_family_map": {
+          "evidence": "Protein identity + sequence-cluster facts frozen (RK28).",
+          "verdict": "PASS"
+        },
+        "R6_fresh_continuous_outcome": {
+          "evidence": "Continuous relative fitness outcome (RK28).",
+          "verdict": "PASS"
+        },
+        "R7_isolation_and_provenance": {
+          "evidence": "Whole-sequence-cluster OOD frozen (RK28); SRA accession PRJNA596086 documented.",
+          "verdict": "PASS"
+        }
+      }
+    }
+  },
+  "decision": "No available independent dataset can reconstruct the exact Kudla native start window UTR[-4:]+CDS[:38] for a fixed-protein synonymous transport test with fresh continuous outcome. Record missing dimensions and formally trigger the branch-2 pivot to data-supported functional sequence models / translation dynamics; stop treating start-aware MFE as the core model innovation.",
+  "input_sha256": {
+    "boel_sequence_expression_csv": "f76f0988c08aa7daa01c2a0100c01682f6e205b7003ba4d8c241d2eb167ccf2d",
+    "functional_long_csv": "c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377",
+    "kudla154_source_csv": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+    "mordstein_sequence_cluster_facts_csv": "6944156dc4bc491d1066083d10a35017b2052be33e60e11a58ebe811e8bbbbd1"
+  },
+  "label_free": true,
+  "missing_dimensions": [
+    "Fixed-protein synonymous library (Boel is cross-protein non-synonymous).",
+    "Native variant-specific 5'UTR (>=4 nt upstream of ATG) captured per construct (no UTR column in any available source; Mordstein truncated; MAGE no full construct).",
+    "Full CDS with start ATG in an independent cross-host study (Mordstein observed-R1 starts at CDS position 4).",
+    "Fresh continuous expression/fitness outcome with adequate dynamic range (Boel is ordinal 0-5).",
+    "Protein family map for protein/study OOD isolation (Boel family map absent).",
+    "Documented license/accession/raw SHA for a qualifying construct-level dataset."
+  ],
+  "n_qualifying_datasets": 0,
+  "non_claims": "Feasibility/eligibility audit only; no transport effect, no SOTA, no mechanism claim; functional untouched not read for outcomes; no generative training.",
+  "pivot_plan": {
+    "candidate_next_task_RK37": "Preregistered translation-speed / functional prediction benchmark on available bounded clean data (e.g., RiboMIMO), with strong constant/ridge controls, CAI/GC and full-proxy MFE baselines, general sequence models, protein/study OOD Spearman/RMSE/top-k enrichment; SOTA requires paired 95% CI lower>0, multiplicity pass, 100% legality, full cost.",
+    "data_to_seek": "Public construct-level synonymous datasets with native full UTR-CDS and continuous fresh outcome in an independent host/study (e.g., cross-host synonymous fitness with full construct sequences, or measured-structure synonymous data); Cambray 2018 fixed-UTR constructs require raw construct verification before any transport claim.",
+    "direction": "Data-supported functional sequence modeling / translation dynamics, not start-aware MFE as core innovation.",
+    "gates": {
+      "RK_G1": false,
+      "functional_untouched_readable": false,
+      "generative_training_authorized": false
+    },
+    "trigger": "branch_2 (no qualifying independent transport data; RK23 Boel protein-OOD 0/4 and RK25 mechanism 0/2 already constitute cross-protein/cross-host transport failure)."
+  },
+  "protocol_sha256": "891023c8746ba451746385b4e318054fad91db2af25831243071e0bb740c6c36",
+  "schema": "a8-rk36-independent-transport-feasibility-result-v1",
+  "status": "FEASIBILITY_AUDIT_COMPLETE_LABEL_FREE"
+}

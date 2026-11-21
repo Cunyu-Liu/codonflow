@@ -1,0 +1,62 @@
+[
+  {
+    "page": 163,
+    "id": "pSn",
+    "text": "08 / MANUSCRIPT SYNCHRONIZATION A8 / RK34 / START CONTEXT The working paper records the positive result and its limits English section generated from accepted JSON \u00b7 native tables \u00b7 insertion-only integration audited PAPER SECTION \u00a76.45 before RK35 when present ENDPOINT TABLE 20 ROWS Table 23 \u00b7 all primary tests ABSOLUTE TABLE 19 ROWS Table 24 \u00b7 d2 + d0 context DECISION 12 / 20 identical to source JSON Record Verified value Manuscript section \u00a76.45 Confirmatory table Table 23 \u00b7 20 rows Absolute table Table 24 \u00b7 19 rows Original SHA 1e2701a379dc362e Updated SHA be99325e8e43f625 Manuscript audit 27/27 PASS Submission status non-submittable working draft Paper claim: joint exact-context increment; no separable component identification. Prior manuscript bytes preserved outside insertion; no submit-ready claim. RESULTS, NON-CLAIMS AND REPRODUCTION ARE TRACEABLE TO ACCEPTED EVIDENCE Manuscript: be99325e8e43f625 \u00b7 section f4df13f0d27a7a59 163 The RK34 section is inserted before RK35 if that section already exists, otherwise before Discussion. The manuscript remains a non-submittable working draft and does not claim functional or protein OOD. All reported values and evidence boundaries on this page come from the accepted RK34 source files.",
+    "notes": [
+      "The RK34 section is inserted before RK35 if that section already exists, otherwise before Discussion.",
+      "The manuscript remains a non-submittable working draft and does not claim functional or protein OOD.",
+      "All reported values and evidence boundaries on this page come from the accepted RK34 source files."
+    ]
+  },
+  {
+    "page": 165,
+    "id": "pSw",
+    "text": "01 / TRANSPORT QUESTION A8 / RK35 / COVERAGE TRANSPORT Does the natural RK33 window still carry the Kudla increment? RK35 \u00b7 coverage-transport discriminative test \u00b7 natural unmasked windows STRUCTURE ARMS 6 3 new + 2 reused + null PRIMARY TESTS 8 C1 + C2 \u00b7 Holm(8) EVALUATED FITS 500 300 new + 200 reused GATE \u0394 vs RK32 0 exact_vs_simple reproduced Arm Window (42 nt \u00b7 37\u00b0C) Role simple sequence-only baseline reused \u00b7 RK32 simple exact_local UTR[-4:] + CDS[:38] \u00b7 dangles 2 reused \u00b7 RK32 vienna_local cds_start_local CDS[0:42] \u00b7 dangles 2 new \u00b7 ATG start coverage trunc_local CDS[3:45] \u00b7 dangles 2 new \u00b7 natural RK33 window trunc_local_d0 CDS[3:45] \u00b7 dangles 0 new \u00b7 dangles sensitivity Primary: C1 trunc_vs_simple + C2 exact_vs_trunc (8 tests). Gate: exact_vs_simple must reproduce RK32 within 1e-12. Decision tree gate > D1 > D2 > D3. C3/C4 are body-shift confounded \u2192 descriptive; clean decomposition deferred to RK34. Source: protocol a26ec02a1f5a \u00b7 preflight 0847653d4060 \u00b7 preregistration A8_RK35_PREREGISTRATION.md 165 RK35 asks whether the real, unmasked RK33 window CDS[3:45] still carries the RK32 local-structure increment inside Kudla. Six structure arms share one 154-sequence panel; three arms are new and two are reused from RK32 to keep the comparison fair. The gate forces exact_vs_simple to reproduce RK32 before any new contrast is interpreted.",
+    "notes": [
+      "RK35 asks whether the real, unmasked RK33 window CDS[3:45] still carries the RK32 local-structure increment inside Kudla.",
+      "Six structure arms share one 154-sequence panel; three arms are new and two are reused from RK32 to keep the comparison fair.",
+      "The gate forces exact_vs_simple to reproduce RK32 before any new contrast is interpreted."
+    ]
+  },
+  {
+    "page": 166,
+    "id": "pSl",
+    "text": "02 / FROZEN EXECUTION A8 / RK35 / COVERAGE TRANSPORT Frozen 500-fit contract; the gate reproduces RK32 exactly FROZEN_BEFORE_RK35_EXPRESSION_ASSOCIATION_OR_MODEL_FIT NEW REAL FITS 300 3 arms \u00d7 10 seeds \u00d7 5 folds \u00d7 2 REUSED FITS 200 simple + exact_local \u00b7 RK32 BOOTSTRAP / PERM 20k percentile CI \u00b7 plus-one p GATE MAX \u0394 0 within 1e-12 of RK32 Model Metric \u0394 effect 95% CI Holm p Pass Ridge Spearman +0.984683 [0.528853, 1.129653] 0.000200 Yes Ridge MSE improve +0.156926 [0.071305, 0.214567] 0.000800 Yes HistGB Spearman +0.402747 [0.220999, 0.523021] 0.000300 Yes HistGB MSE improve +0.104263 [0.055664, 0.130178] 0.000600 Yes Inference: seeds 20261221\u201320261230, primary 20261221 \u00b7 5 folds \u00b7 bootstrap 20000 (seed 20261321) \u00b7 permutation 20000 (seed 20261322). PASS = effect>0 and CI lower>0 and Holm<0.05 and >=8/10 seeds; contrast support requires 4/4. Production wall 166.54 s. Source: result c811bb6e3481 \u00b7 protocol a26ec02a1f5a \u00b7 independent d037542df5ee 166 The protocol was frozen before any RK35 expression association or model fit; no endpoint or seed changed after seeing results. Three hundred new real fits plus two hundred reused RK32 fits give five hundred evaluated fits with no double counting. All four gate endpoints pass and the maximum gate delta against RK32 is zero, so the new contrasts are interpretable.",
+    "notes": [
+      "The protocol was frozen before any RK35 expression association or model fit; no endpoint or seed changed after seeing results.",
+      "Three hundred new real fits plus two hundred reused RK32 fits give five hundred evaluated fits with no double counting.",
+      "All four gate endpoints pass and the maximum gate delta against RK32 is zero, so the new contrasts are interpretable."
+    ]
+  },
+  {
+    "page": 167,
+    "id": "pSN",
+    "text": "03 / PRIMARY DECISION A8 / RK35 / COVERAGE TRANSPORT Natural window retains the increment; coverage is not necessary D1 \u00b7 RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY PRIMARY DECISION D1 coverage retains increment C1 trunc \u2212 simple 4 / 4 both models \u00b7 both metrics C2 exact \u2212 trunc 2 / 4 Ridge only \u00b7 HistGB n.s. GATE exact \u2212 simple 4 / 4 reproduces RK32 \u00b7 \u0394=0 Comparison Model Metric \u0394 effect 95% CI Holm p Seeds Pass trunc \u2212 simple Ridge Spearman +0.735912 [0.269426, 0.883119] 0.011099 10/10 Yes trunc \u2212 simple Ridge MSE improve +0.112439 [0.037299, 0.157190] 0.043398 10/10 Yes exact \u2212 trunc Ridge Spearman +0.248771 [0.096534, 0.433405] 0.011099 10/10 Yes exact \u2212 trunc Ridge MSE improve +0.044487 [0.020955, 0.073430] 0.043398 10/10 Yes trunc \u2212 simple HistGB Spearman +0.365595 [0.215323, 0.493275] 0.001750 10/10 Yes trunc \u2212 simple HistGB MSE improve +0.101934 [0.048890, 0.135677] 0.000800 10/10 Yes exact \u2212 trunc HistGB Spearman +0.037152 [-0.058908, 0.101375] 0.356982 \u2014 No exact \u2212 trunc HistGB MSE improve +0.002329 [-0.020657, 0.017988] 0.770161 \u2014 No Supported: natural RK33 window CDS[3:45] carries the Kudla increment without ATG/UTR; coverage loss cannot solely explain RK28/RK33 negatives. C1 4 / 4 \u00b7 C2 2 / 4 \u00b7 HOST / ASSAY / STUDY-LEVEL FACTORS NOW PRIMARY CANDIDATES Source: result c811bb6e3481 \u00b7 independent 39/39 \u00b7 closeout 99308d7fad54 167 C1 trunc_vs_simple passes all four endpoints: the natural RK33 window keeps a positive increment for both models and both metrics. C2 exact_vs_trunc passes only for Ridge; HistGB is not significant, so exact coverage adds little beyond the natural window here. Decision D1: coverage is not necessary within Kudla retrospectively; host, assay and study-level factors become the primary candidates.",
+    "notes": [
+      "C1 trunc_vs_simple passes all four endpoints: the natural RK33 window keeps a positive increment for both models and both metrics.",
+      "C2 exact_vs_trunc passes only for Ridge; HistGB is not significant, so exact coverage adds little beyond the natural window here.",
+      "Decision D1: coverage is not necessary within Kudla retrospectively; host, assay and study-level factors become the primary candidates."
+    ]
+  },
+  {
+    "page": 168,
+    "id": "pSt",
+    "text": "04 / ABSOLUTE & SECONDARY A8 / RK35 / COVERAGE TRANSPORT Exact context leads; truncation keeps most of the gain Primary-seed absolute performance (Table 26) \u00b7 secondary contrasts descriptive Model Arm Spearman \u03c1 MSE Ridge simple -0.318413 0.257149 Ridge exact local d2 +0.666270 0.100223 Ridge CDS-start d2 +0.307810 0.156892 Ridge trunc CDS4-45 d2 +0.417499 0.144710 Ridge trunc CDS4-45 d0 +0.314038 0.163578 HistGB simple +0.302424 0.198658 HistGB exact local d2 +0.705171 0.094394 HistGB CDS-start d2 +0.602022 0.117825 HistGB trunc CDS4-45 d2 +0.668019 0.096724 HistGB trunc CDS4-45 d0 +0.538153 0.133087 Secondary (descriptive \u00b7 body-shift confounded): atg_vs_trunc is negative for both models (Ridge \u0394\u03c1 \u22120.109689, HistGB \u22120.065997). exact_vs_atg Ridge positive (\u0394\u03c1 +0.358460); trunc_d0_vs_simple mixed. Clean upstream/start decomposition deferred to RK34. Source: result c811bb6e3481 \u00b7 primary seed 20261221 \u00b7 null intercept \u03c1 \u22120.367234 / MSE 0.194471 168 On the primary seed, exact local context is strongest (Ridge \u03c1 0.666, HistGB \u03c1 0.705); the natural truncated window keeps most of that gain. The CDS-start and dangles-0 arms sit between simple and exact, consistent with a coverage gradient rather than a single necessary element. Secondary contrasts are descriptive only because the body shifts; the clean upstream-versus-start decomposition is left to RK34.",
+    "notes": [
+      "On the primary seed, exact local context is strongest (Ridge \u03c1 0.666, HistGB \u03c1 0.705); the natural truncated window keeps most of that gain.",
+      "The CDS-start and dangles-0 arms sit between simple and exact, consistent with a coverage gradient rather than a single necessary element.",
+      "Secondary contrasts are descriptive only because the body shifts; the clean upstream-versus-start decomposition is left to RK34."
+    ]
+  },
+  {
+    "page": 169,
+    "id": "pSX",
+    "text": "05 / EVIDENCE & BOUNDARY A8 / RK35 / COVERAGE TRANSPORT Independent code and a clean checkout reproduce every value Verification chain closed \u00b7 manuscript \u00a76.46 synchronized \u00b7 scope bounded INDEPENDENT 39 / 39 max pred \u0394 1.33e-15 CLEAN COMPARE 12 / 12 6 CSV byte-identical \u00b7 50 NPZ CLOSEOUT 21 / 21 freeze 291ccdbc \u00b7 clean 9c26dcab PROJECT TESTS 453 passed \u00b7 1 skipped \u00b7 0 failed Stage Result Evidence Label-free preflight 24 / 24 rk35_preflight_v1.json Synthetic unit tests 15 / 15 test_a8_rk35_coverage_transport.py Independent verifier v2 39 / 39 wall 185.09 s \u00b7 gate \u0394 0 Clean reproduction 12 / 12 worktree 9c26dcab \u00b7 compare v2 Closeout 21 / 21 rk35_closeout_v1.json Manuscript \u00a76.46 + Tables 25/26 written and audited (integration 10/10, review 43/43); registry, tasks and handoff recorded. Boundary: same-cohort Kudla-retrospective diagnostic, not independent confirmation. RK34 ends window ablation; independent-validation / pivot decision pending user. RK-G1=false. Source: closeout 99308d7fad54 \u00b7 compare f8faf2b69392 \u00b7 independent d037542df5ee \u00b7 manuscript a76d0a97f240 169 An independent verifier and a clean checkout at the science commit reproduce every CSV byte-for-byte and every NPZ array exactly. The full project suite passes 453 tests with one skip and zero failures; the manuscript section was audited against the frozen result. This is a same-cohort retrospective diagnostic, not independent confirmation; the prompt makes RK34 the end of window ablation, so the independent-validation versus pivot decision is left to the user.",
+    "notes": [
+      "An independent verifier and a clean checkout at the science commit reproduce every CSV byte-for-byte and every NPZ array exactly.",
+      "The full project suite passes 453 tests with one skip and zero failures; the manuscript section was audited against the frozen result.",
+      "This is a same-cohort retrospective diagnostic, not independent confirmation; the prompt makes RK34 the end of window ablation, so the independent-validation versus pivot decision is left to the user."
+    ]
+  }
+]

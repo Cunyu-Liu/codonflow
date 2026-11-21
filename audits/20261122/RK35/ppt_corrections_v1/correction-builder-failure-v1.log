@@ -1,0 +1,5 @@
+RK35 PPT correction builder v1 local failure (no online write).
+Command: prepare_rk35_ppt_corrections.py --source ppt_v1/prewrite.xml
+Failure: AttributeError: 'NoneType' object has no attribute 'group'
+Location: namespace regular expression assumed xmlns immediately followed <presentation.
+Scientific data and online slides unchanged. Fix: accept namespace anywhere in the presentation start tag.

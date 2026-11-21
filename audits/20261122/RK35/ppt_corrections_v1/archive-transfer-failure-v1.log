@@ -1,0 +1,3 @@
+RK35 PPT evidence transfer v1: full teams archive extraction and three script uploads succeeded.
+Failure: remote bash reported 'rsync: command not found' while creating the lightweight Git evidence copy.
+No scientific data changed and the online presentation was not affected. Recovery: use tar include/exclude copying from the frozen teams archive into the new ppt_corrections_v1 directory; exclude full-deck XML and JPEG directories from Git only.

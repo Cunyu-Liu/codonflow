@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "source_file": "rk35_pSw.xml",
+  "mode": "summary",
+  "usage_hints": {
+    "content": "沿用同一 --input，用 --mode content 读取页面文字和数据（不含演讲者备注）；默认全稿，可加 --slide-id ID... 选页、--output content.txt 保存。",
+    "raw": "沿用同一 --input，用 --mode raw 读取完整 XML；默认全稿，可加 --slide-id ID... 选页、--output raw.json 保存。XML 在 JSON 的 slides[].raw_xml 中，用于查看详细对象结构、布局和样式属性，以及精确编辑页面。"
+  },
+  "selection": {
+    "slide_numbers": [],
+    "slide_ids": [],
+    "block_ids": [],
+    "raw_xml": false,
+    "output_slide_count": 1
+  },
+  "presentation": {
+    "root": "slide",
+    "namespace": "https://www.larkoffice.com/sml/2.0",
+    "presentation_id": null,
+    "revision_id": null,
+    "title": null,
+    "width": null,
+    "height": null,
+    "slide_count": 1,
+    "slide_ids": [
+      "pSw"
+    ]
+  },
+  "summary": {
+    "blocks": 28,
+    "text_blocks": 21,
+    "images": 0,
+    "shapes": 27,
+    "tables": 1,
+    "charts": 0,
+    "icons": 0,
+    "lines": 0,
+    "undefined": 0,
+    "embeds": 0,
+    "media_usage": null,
+    "warnings": [
+      "页面文字预览有截断；请用 --mode content 读取完整页面内容，编辑对象前再读 raw XML",
+      "演讲者备注预览有截断；需要查看全文时请用 --mode raw，content 模式不包含演讲者备注"
+    ]
+  },
+  "slides": [
+    {
+      "index": 1,
+      "slide_id": "pSw",
+      "counts": {
+        "blocks": 28,
+        "text_blocks": 21,
+        "images": 0,
+        "shapes": 27,
+        "tables": 1,
+        "charts": 0,
+        "icons": 0,
+        "lines": 0,
+        "undefined": 0,
+        "embeds": 0
+      },
+      "tag_counts": {
+        "shape": 27,
+        "table": 1
+      },
+      "text_preview": "01 / TRANSPORT QUESTION | A8 / RK35 / COVERAGE TRANSPORT | Does the natural RK33 window still carry the Kudla increment? | RK35 · coverage-transport discriminative test · natural unmasked windows | EVALUATED ARMS | 6 | 3 new + 2 reused + n…",
+      "text_preview_truncated": true,
+      "note_preview": "RK35 asks whether the real, unmasked RK33 window CDS[3:45] still carries the RK32 local-structure increment inside Kudla. Six evaluated arms, including the null intercept, share one 154-sequence panel; three arms are new and two are reused…",
+      "note_preview_truncated": true
+    }
+  ],
+  "selected_blocks": []
+}

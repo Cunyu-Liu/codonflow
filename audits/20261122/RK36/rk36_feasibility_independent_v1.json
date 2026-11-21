@@ -1,0 +1,178 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "input_sha_boel_sequence_expression_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_functional_long_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_kudla154_source_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_mordstein_sequence_cluster_facts_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "protocol_sha_match",
+      "pass": true
+    },
+    {
+      "details": {
+        "cols": [
+          "source_id",
+          "dataset_id",
+          "source_file",
+          "source_row",
+          "protein_id",
+          "protein_family",
+          "construct_id",
+          "mutation_signature",
+          "record_class",
+          "variant_class",
+          "sequence_status",
+          "cds",
+          "protein_sequence",
+          "codon_position",
+          "wt_codon",
+          "mutant_codon",
+          "amino_acid",
+          "expression_type",
+          "expression_value",
+          "expression_stdev",
+          "protocol_id",
+          "host",
+          "vector",
+          "medium",
+          "temperature_c",
+          "induction_time",
+          "replicate",
+          "split_unit",
+          "split_assignment",
+          "leakage_risk",
+          "features_json"
+        ]
+      },
+      "name": "long_no_utr_column",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "boel_no_utr_column",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "mord_no_utr_column",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "kudla_has_utr",
+      "pass": true
+    },
+    {
+      "details": {
+        "nonnull": 0
+      },
+      "name": "mage_no_full_cds",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "boel_full_cds",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "boel_nonsynonymous",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "boel_ordinal_outcome",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "boel_family_absent",
+      "pass": true
+    },
+    {
+      "details": {
+        "audit": false,
+        "rederived": false
+      },
+      "name": "qualifying_match_kudla_2009_gfp",
+      "pass": true
+    },
+    {
+      "details": {
+        "audit": false,
+        "rederived": false
+      },
+      "name": "qualifying_match_boel_2016_nesg6348",
+      "pass": true
+    },
+    {
+      "details": {
+        "audit": false,
+        "rederived": false
+      },
+      "name": "qualifying_match_mordstein_2020_hek293",
+      "pass": true
+    },
+    {
+      "details": {
+        "audit": false,
+        "rederived": false
+      },
+      "name": "qualifying_match_kelsic_2016_mage_infA",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "n_qualifying_zero",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "branch_3_pivot",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "missing_dimensions_recorded",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "pivot_gates",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "label_free",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "all_datasets_audited",
+      "pass": true
+    }
+  ],
+  "checks_passed": 24,
+  "checks_total": 24,
+  "created_utc": "2026-11-21T18:02:03.337407+00:00",
+  "result_sha256": "9b02373b460a278d3e295f6d17786ed5e2f572b4afa662749d3ef443d8db9ffe",
+  "schema": "a8-rk36-feasibility-independent-v1",
+  "status": "PASS"
+}
