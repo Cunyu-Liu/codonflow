@@ -107,9 +107,14 @@ class RK41InternalBasinTests(unittest.TestCase):
                           "rk40_summary": str(summary_path), "rk40_summary_sha256": rk41.rk39.sha(summary_path),
                           "calibration_dir": str(calibration_dir), "calibration_sha256": rk41.rk39.sha(calibration_path),
                           "k": 11, "weights": [1.0, 1.0, 1.0, 1.0]}
+            def checked_descriptor(path, accepted_payload):
+                self.assertEqual(accepted_payload["arm"], "raw_random_b11")
+                self.assertEqual(accepted_payload["budget"], 11)
+                return accepted_payload
             with unittest.mock.patch.object(rk41.rk40, "evaluate_payload", side_effect=lambda p, c, k, w: p["evaluation"]), \
-                    unittest.mock.patch.object(rk41.rk40, "descriptor", side_effect=lambda p, payload: payload):
+                    unittest.mock.patch.object(rk41.rk40, "descriptor", side_effect=checked_descriptor):
                 accepted = rk41.accepted_baseline(descriptor, "raw_random_b11")
+        self.assertEqual(accepted["arm"], "raw_random_b11")
         self.assertEqual(accepted["unique_scorer_calls"], 11)
         self.assertEqual(len(accepted["points"]), 11)
 

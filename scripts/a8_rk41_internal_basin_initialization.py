@@ -111,6 +111,8 @@ def accepted_baseline(job: Mapping, arm: str) -> dict:
     if rk39.sha(calibration_path) != job["calibration_sha256"]:
         raise ValueError("accepted-arm calibration identity mismatch")
     accepted = dict(payload)
+    accepted["arm"] = arm
+    accepted["budget"] = 11
     accepted["evaluation"] = rk40.evaluate_payload(payload, calibration, job["k"], job["weights"])
     return rk40.descriptor(path, accepted)
 
