@@ -1,0 +1,35 @@
+=== [prepare] 校验元数据并对候选文献验真 ===
+{
+  "status": "pass",
+  "stage": "prepare",
+  "needs_citation": "no",
+  "verification_mode": "skipped",
+  "verification_note": "",
+  "failures": [],
+  "result": {
+    "meta_sha256": "f63829f99e4be34166c59b15ff471f9d3772361ba70ed2996af3b0c1881ed88a",
+    "candidates_sha256": ""
+  }
+}
+[prepare] 通过
+=== [write] 校验英文正文形态 ===
+{
+  "status": "pass",
+  "stage": "write",
+  "failures": [],
+  "warnings": [],
+  "result": {
+    "mode": "final",
+    "citation_style": "apa7",
+    "word_count": 1215,
+    "min_words": 800,
+    "max_words": 2400,
+    "headings": [
+      "exact local context adds robust signal, but matched ablation does not separably identify upstream or start-codon contributions"
+    ],
+    "input_sha256": "f4df13f0d27a7a59918144719ec5a06a956114d4c63cdcca76a5ba59cc11d226",
+    "meta_sha256": "f63829f99e4be34166c59b15ff471f9d3772361ba70ed2996af3b0c1881ed88a",
+    "verified_refs_sha256": ""
+  }
+}
+[write] 通过

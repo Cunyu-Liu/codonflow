@@ -1,0 +1,62 @@
+{
+  "section": "6.45",
+  "tables": [
+    23,
+    24
+  ],
+  "scientific_conclusion": "JOINT_EXACT_CONTEXT_WITHOUT_SEPARABLE_CONTRIBUTIONS_RETROSPECTIVELY",
+  "endpoints_passed": 12,
+  "endpoints_total": 20,
+  "family_results": [
+    {
+      "all_four_pass": true,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "exact_vs_simple",
+      "n_pass": 4,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_given_start",
+      "n_pass": 3,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_given_upstream",
+      "n_pass": 2,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "start_without_upstream",
+      "n_pass": 1,
+      "n_tests": 4
+    },
+    {
+      "all_four_pass": false,
+      "analysis": "primary",
+      "confirmatory": true,
+      "family": "upstream_without_start",
+      "n_pass": 2,
+      "n_tests": 4
+    }
+  ],
+  "independent_checks": "155/155",
+  "reproduction_checks": "187/187",
+  "evidence_sha256": {
+    "protocol": "5e75d50c65d5fea2c27aa92e287d72607af6cb709866384030583ddb7ba91ef4",
+    "result": "5eaddc34e9a69b79c4c595c83d4afd8beb4df51925171559fb6c864e2a4b2e12",
+    "independent": "7f7f6d105560da3e24b8653d0d0fbff52cef0947a4c7b336f69cae98c4d687b8",
+    "reproduction": "546619f08850c8306bf475f881882b6db3bad335b4cfb95b590738a4e30e6ff7",
+    "closeout": "b9473cf36ba331e105b8f58af35821367c728c37277352f12b4942cebe96f4d6"
+  },
+  "section_sha256": "c4e6e7a7c65547b42bde5836feec6938793320144aa30cf7f7f212c00d060eff"
+}
