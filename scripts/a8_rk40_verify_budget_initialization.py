@@ -42,6 +42,14 @@ def safe_name(text):
     return "".join(c if c.isalnum() or c in "._-" else "_" for c in text)
 
 
+def load_benchmark(path):
+    pairs = list(read_fasta(path))
+    benchmark = {header.split()[0]: sequence for header, sequence in pairs}
+    if not benchmark or len(benchmark) != len(pairs):
+        raise ValueError("benchmark must contain unique, nonempty record identifiers")
+    return benchmark, list(benchmark)
+
+
 def protein_from_cds(sequence):
     codons = split_codons(normalize_to_dna(sequence))
     aas = []
@@ -207,9 +215,7 @@ def main():
 
     check("summary_sha256_recorded", True, sha(summary_path))
     check("protocol_identity", sha(protocol_path) == summary["protocol_sha256"])
-    benchmark_pairs = read_fasta(protocol["benchmark_fasta"])
-    benchmark = {header.split()[0]: sequence for header, sequence in benchmark_pairs}
-    all_records = [header.split()[0] for header, _ in benchmark_pairs]
+    benchmark, all_records = load_benchmark(protocol["benchmark_fasta"])
     records = [protocol["execution"]["smoke_record"]] if summary["smoke"] else all_records
     seeds = [protocol["execution"]["smoke_seed"]] if summary["smoke"] else protocol["seeds"]
     matrix_path = Path(protocol["external_matrix"])

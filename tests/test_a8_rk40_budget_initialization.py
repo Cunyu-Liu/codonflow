@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
 
 import numpy as np
@@ -11,6 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import a8_rk40_budget_initialization as rk40
+import a8_rk40_verify_budget_initialization as verify40
 from codonflow.eval.anytime import FrozenReference
 
 
@@ -57,6 +59,15 @@ class RK40BudgetInitializationTests(unittest.TestCase):
         self.assertEqual(protocol["execution"]["smoke_expected_new_unique_scorer_calls"], 235)
         self.assertFalse(protocol["external_sota_authorized"])
         self.assertFalse(protocol["functional_untouched_used"])
+
+    def test_independent_benchmark_loader_preserves_all_records(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "two_records.fasta"
+            path.write_text(">first description\nATGGCTTAA\n>second\nATGGCTGCTTAA\n")
+            benchmark, records = verify40.load_benchmark(path)
+        self.assertEqual(records, ["first", "second"])
+        self.assertEqual(len(benchmark), 2)
+        self.assertEqual(benchmark["second"], "ATGGCTGCTTAA")
 
     def test_decision_labels_are_fixed(self):
         self.assertEqual(rk40.decision_label(True, True), "NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE")
