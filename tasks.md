@@ -322,3 +322,15 @@
 - [x] **在线 PPT187–192**：六页 IDs `pSA,pSr,pSH,pSd,pSb,pSF`，最终 **192页/revision164**；逐页预上传审计合计 **421/421 PASS**，每页在线 XML 文字精确一致并完成真实截图人工复核。第192页初版标题溢出在上传前拦截并修正；新增前186页结构/属性/文字全部一致，第186页仅末尾两个序列化空格差异。PPT closeout=`audits/20261122/RK39/rk39_ppt_closeout.json`，大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/ppt_v1/`。
 - [ ] **科学任务仍未解决**：共同输入与等实际输出数只消除一类公平性混杂，不构成 CodonFlow 胜利、外部 SOTA、time-matched、共同 dense、功能/protein OOD 或 untouched confirmation。完整七方法统一成本、真实功能标签、前瞻 DBTL 和 wet-lab 均未完成；RK-G1=false，昂贵生成训练未授权，manuscript_submittable=false。
 - [ ] **下一项必须是机制可判别实验**：优先预注册预算／初始化诊断，区分“短预算不足”与“protein-only 初始化／目标景观不匹配”是否导致 RK39 的巨大 HV 缺口；外部 LinearDesign 只能使用真实可执行的新预算轨迹，不能从 actual-set 反推 dense。若没有可执行的公平外部对照，则转向新的合格数据源，不重复同一11点负结果，不以敏感性臂或工程数量包装胜利。
+
+## RK40 · 预算、归一化与初始化机制判别（2026-11-22）
+
+- [x] **预注册与五新臂冻结**：18 records ×3 seeds ×5新臂，新增 `raw_random_b101`、`calibrated_random_b11/b101`、`raw_external_b11`、`calibrated_external_b11`，接受 RK39 已独立验证的54个 `raw_random_b11` runs。协议 SHA `367be7986a7868be2f37b8396461d45572faa3f3db35fed1d13abb25ec598c06`；两个确认性 family 分别为短预算归一化和原始搜索预算，均要求双终点 CI 下界>0、Holm p<0.05且三个 seed 全正。
+- [x] **真实执行与逐点身份**：正式与 detached clean 均完成270/270新 runs、12,690新 scorer calls；总分析324 runs/13,284 raw points，长短轨迹1188/1188 PASS。生产 wall=2261.533976 s；生产提交 `71cbf8cf900c83810260c144e970710223524c5c`。
+- [x] **双 primary families 通过**：calibrated11−raw11 的 utility 效应=`+0.0401927266`、95% CI=`[+0.0256777858,+0.0558081866]`，single-point HV=`+0.0181540103`、CI=`[+0.0099080811,+0.0282319343]`；raw101−raw11 的 utility=`+1.7391759769`、CI=`[+1.5300876281,+1.9641106294]`，HV=`+1.3228035451`、CI=`[+0.9926000660,+1.6667816479]`。四终点三个 seed 全正，判定 `NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE`。
+- [x] **初始化只作诊断**：raw external11−raw random11 的 utility/HV 效应=`+8.5879832606/+15.7874768009`，但外部种子来自 LinearDesign，不能作为独立 CodonFlow 设计或 common-input/SOTA 证据；长预算 calibrated101 也只诊断交互，不进入确认性门禁。
+- [x] **真实独立复核与 clean closeout**：独立器重翻译、重初始化、重算四目标与推断，5031/5031 PASS，覆盖11,275条唯一序列且四目标最大绝对误差0.0；detached clean comparator 948/948 PASS。formal FASTA 一次性迭代器问题及双记录回归修复提交 `aec5051f4cd3af374f3936fa5067e1dbe11f4458`，调试输出明确不作为独立证据。全项目484 passed/1 skipped/5 subtests passed。科学结果提交 `9b2eef793c639ce348a91f37f73e60612149c926`。
+- [x] **英文稿 §6.51**：新增 Tables 34–35，456词小节，prepare/write/deliver/status 全 PASS；全文2,186行，SHA `7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2`，旧文逐字节保留和单一插入等7项检查 PASS。论文提交 `339cf23ef71cd7f4952b7102fdca79665baf1c27`。
+- [x] **在线 PPT193–198**：六页 IDs=`pSQ,pSu,pSk,pSE,pSK,pSm`，最终198页/revision170；离线426/426 checks、六页预上传与在线真实截图人工验收均 PASS，文本/几何/备注回读一致，前192页语义完全未变。大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/ppt_v1/`；PPT 提交 `20d7001e60fdc18d53dbcc42beef2be6331a7268`。
+- [ ] **科学任务仍未解决**：本轮只支持内部代理搜索尺度和短预算均有贡献，未逆转 RK39 的共同输入 actual-set 失败；external SOTA、统一 time-matched、完整七方法共同 dense、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和 manuscript submittable 均未完成。昂贵生成训练未授权，functional untouched 未读取，wet-lab 未执行。
+- [ ] **下一项必须产生新判别证据**：根据初始化诊断，优先冻结不依赖外部序列的 basin-aware 内部初始化/多起点方案，再在共同输入 actual-set 与统一成本口径下检验；不得把 external-seeded 诊断当作 CodonFlow 设计，也不得预先宣称该方向能关闭共同输入或 SOTA 门禁。

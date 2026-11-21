@@ -1,0 +1,307 @@
+{
+  "protocol_id": "RK40_BUDGET_INITIALIZATION_V1",
+  "status": "PASS",
+  "n_checks": 40,
+  "n_pass": 40,
+  "checks": [
+    {
+      "check": "sha256_production",
+      "pass": true,
+      "detail": {
+        "expected": "fedfa32097232106e33e1107d7c2244b0b57939697899d828b40dda72c622187",
+        "actual": "fedfa32097232106e33e1107d7c2244b0b57939697899d828b40dda72c622187"
+      }
+    },
+    {
+      "check": "sha256_independent",
+      "pass": true,
+      "detail": {
+        "expected": "ae5b90d0ac3c5890194834f2c8c9bf8ffdb221ce1b7c86ec98ff9d52656897df",
+        "actual": "ae5b90d0ac3c5890194834f2c8c9bf8ffdb221ce1b7c86ec98ff9d52656897df"
+      }
+    },
+    {
+      "check": "sha256_clean_closeout",
+      "pass": true,
+      "detail": {
+        "expected": "7ddf1dab2bfaa92e603f0743b0ee0d06a6372f9a972c6985abe24ead957a11f4",
+        "actual": "7ddf1dab2bfaa92e603f0743b0ee0d06a6372f9a972c6985abe24ead957a11f4"
+      }
+    },
+    {
+      "check": "sha256_manuscript",
+      "pass": true,
+      "detail": {
+        "expected": "7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2",
+        "actual": "7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2"
+      }
+    },
+    {
+      "check": "production_status",
+      "pass": true,
+      "detail": {
+        "status": "PASS_COMPLETE_MECHANISM_EVALUATION",
+        "decision": "NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE"
+      }
+    },
+    {
+      "check": "independent_5031",
+      "pass": true,
+      "detail": {
+        "n_pass": 5031,
+        "n_checks": 5031
+      }
+    },
+    {
+      "check": "clean_948",
+      "pass": true,
+      "detail": {
+        "n_pass": 948,
+        "n_checks": 948
+      }
+    },
+    {
+      "check": "primary_families",
+      "pass": true,
+      "detail": {
+        "normalization_at_short_budget": true,
+        "budget_within_raw_search": true
+      }
+    },
+    {
+      "check": "production_open_boundaries",
+      "pass": true,
+      "detail": {
+        "scientific_gate_passed": false,
+        "external_sota_authorized": false,
+        "time_matched_comparison": false,
+        "functional_untouched_evaluated": false,
+        "rk_g1_pass": false,
+        "manuscript_submittable": false
+      }
+    },
+    {
+      "check": "independent_open_boundaries",
+      "pass": true,
+      "detail": {
+        "scientific_gate_passed": false,
+        "external_sota_authorized": false,
+        "time_matched_comparison": false,
+        "functional_untouched_evaluated": false,
+        "rk_g1_pass": false,
+        "manuscript_submittable": false
+      }
+    },
+    {
+      "check": "clean_open_boundaries",
+      "pass": true,
+      "detail": {
+        "scientific_gate_passed": false,
+        "external_sota_authorized": false,
+        "time_matched_comparison": false,
+        "functional_untouched_evaluated": false,
+        "rk_g1_pass": false,
+        "manuscript_submittable": false
+      }
+    },
+    {
+      "check": "ppt_open_boundaries",
+      "pass": true,
+      "detail": {
+        "scientific_gate_passed": false,
+        "external_sota_authorized": false,
+        "time_matched_comparison": false,
+        "functional_untouched_evaluated": false,
+        "rk_g1_pass": false,
+        "manuscript_submittable": false
+      }
+    },
+    {
+      "check": "manuscript_closeout",
+      "pass": true,
+      "detail": {
+        "status": "PASS",
+        "n_checks": 7
+      }
+    },
+    {
+      "check": "ppt_revision_and_ids",
+      "pass": true,
+      "detail": {
+        "status": "PASS",
+        "final_revision": 170,
+        "slide_ids": [
+          "pSQ",
+          "pSu",
+          "pSk",
+          "pSE",
+          "pSK",
+          "pSm"
+        ]
+      }
+    },
+    {
+      "check": "ppt_old_pages_protected",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "check": "ppt_visual_review",
+      "pass": true,
+      "detail": {
+        "n_reviews": 6
+      }
+    },
+    {
+      "check": "registry_single_rk40",
+      "pass": true,
+      "detail": {
+        "n_rows": 1
+      }
+    },
+    {
+      "check": "registry_decision",
+      "pass": true,
+      "detail": "NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE"
+    },
+    {
+      "check": "registry_independent",
+      "pass": true,
+      "detail": "independent5031/5031"
+    },
+    {
+      "check": "registry_clean",
+      "pass": true,
+      "detail": "clean948/948"
+    },
+    {
+      "check": "registry_paper_sha",
+      "pass": true,
+      "detail": "7a0a6dee54ff7e6c04199fb9b96671cecb8f4b3e8c762586a756bded44f6b1c2"
+    },
+    {
+      "check": "registry_ppt",
+      "pass": true,
+      "detail": "PPT193-198"
+    },
+    {
+      "check": "registry_open_gate",
+      "pass": true,
+      "detail": "common-input/external SOTA/time-matched/functional untouched/protein OOD/RK-G1/manuscript submittable remain false"
+    },
+    {
+      "check": "tasks_completion_counts",
+      "pass": true,
+      "detail": {
+        "checked": 7,
+        "open": 2
+      }
+    },
+    {
+      "check": "tasks_next_is_not_claimed_closed",
+      "pass": true,
+      "detail": "next task remains open"
+    },
+    {
+      "check": "handoff_decision",
+      "pass": true,
+      "detail": "NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE"
+    },
+    {
+      "check": "handoff_not_reversed",
+      "pass": true,
+      "detail": "RK39 的共同输入 actual-set 失败没有被逆转"
+    },
+    {
+      "check": "handoff_cli",
+      "pass": true,
+      "detail": "--production-independent"
+    },
+    {
+      "check": "handoff_external_boundary",
+      "pass": true,
+      "detail": "不能算作独立 CodonFlow 设计"
+    },
+    {
+      "check": "handoff_next_not_frozen",
+      "pass": true,
+      "detail": "该方向尚未冻结"
+    },
+    {
+      "check": "ancestor_1c3dfc77",
+      "pass": true,
+      "detail": {
+        "commit": "1c3dfc77d5b18e637852b1d3c57a7bf10a880e29",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "ancestor_71cbf8cf",
+      "pass": true,
+      "detail": {
+        "commit": "71cbf8cf900c83810260c144e970710223524c5c",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "ancestor_aec5051f",
+      "pass": true,
+      "detail": {
+        "commit": "aec5051f4cd3af374f3936fa5067e1dbe11f4458",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "ancestor_9b2eef79",
+      "pass": true,
+      "detail": {
+        "commit": "9b2eef793c639ce348a91f37f73e60612149c926",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "ancestor_339cf23e",
+      "pass": true,
+      "detail": {
+        "commit": "339cf23ef71cd7f4952b7102fdca79665baf1c27",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "ancestor_20d7001e",
+      "pass": true,
+      "detail": {
+        "commit": "20d7001e60fdc18d53dbcc42beef2be6331a7268",
+        "returncode": 0
+      }
+    },
+    {
+      "check": "asset_budget_initialization_v1",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/budget_initialization_v1"
+    },
+    {
+      "check": "asset_budget_initialization_clean_v1",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/budget_initialization_clean_v1"
+    },
+    {
+      "check": "asset_ppt_v1",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/ppt_v1"
+    },
+    {
+      "check": "asset_full_pytest_v1.log",
+      "pass": true,
+      "detail": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk40/full_pytest_v1.log"
+    }
+  ],
+  "documentation_commit": "current_commit_containing_this_report",
+  "head_before_documentation_commit": "20d7001e60fdc18d53dbcc42beef2be6331a7268",
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "manuscript_submittable": false
+}
