@@ -364,7 +364,7 @@ def main():
             stored_ok = stored_ok and close(evaluation["dense_internal_auc"]["auc"], stored["dense_internal_auc"]["auc"])
             check(f"raw_evaluation_{key}", stored_ok)
             frozen = FrozenReference.from_dict(calibrations[record])
-            selected_normalized = frozen.normalize(np.asarray(recomputed[pool[selected]], dtype=float))
+            selected_normalized = frozen.normalize(np.asarray(recomputed[pool[selected]], dtype=float)[None, :])[0]
             descriptor_values["initial_normalized_weighted_utility"] = float(selected_normalized @ np.asarray(protocol["weights"], dtype=float))
             descriptor_values["initial_single_point_normalized_hv"] = float(np.prod(np.maximum(selected_normalized, 0.0)))
             check(f"initial_metrics_{key}", close(descriptor_values["initial_normalized_weighted_utility"], descriptor["initial_normalized_weighted_utility"])

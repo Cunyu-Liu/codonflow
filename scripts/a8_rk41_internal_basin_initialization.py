@@ -221,7 +221,7 @@ def execute_job(job: Mapping) -> dict:
     if calibration["source_sha256"] != job["source_sha256"] or calibration["record_id"] != job["record_id"]:
         raise ValueError("calibration source or record mismatch")
     frozen = FrozenReference.from_dict(calibration)
-    selected_normalized = frozen.normalize(np.asarray(cache[selected], dtype=float))
+    selected_normalized = frozen.normalize(np.asarray(cache[selected], dtype=float)[None, :])[0]
     payload = {
         "schema": "a8-rk41-internal-basin-run-v1", "status": "done",
         "protocol_id": job["protocol_id"], "protocol_sha256": job["protocol_sha256"],
