@@ -1,0 +1,146 @@
+{
+  "schema": "a8-rk34-start-context-protocol-v1",
+  "status": "FROZEN_BEFORE_RK34_EXPRESSION_ASSOCIATION_OR_MODEL_FIT",
+  "created_date": "2026-11-22",
+  "scientific_question": "Within the fixed Kudla exact-CDS cohort and frozen sequence-cluster OOD, does the retrospective local-structure increment specifically require native upstream 4 nt and/or native start ATG when length, CDS4-38 body, model, folds and inference are matched?",
+  "analysis_type": "retrospective_outcome_known_coverage_followup_not_independent_confirmation",
+  "preparation_commit": "7e2c4b116998129e100ea4a462b4deac251923a9",
+  "expression_association_or_model_fit_performed_before_freeze": false,
+  "preregistration": {
+    "path": "audits/20261121/RK34/A8_RK34_START_CONTEXT_PREREGISTRATION.md",
+    "sha256": "9b77aaa39166f60112def9a2bfd6711f0caae293d47d14d1ad49fe18d1768293"
+  },
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "candidate_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/start_context_v1/preflight_context_energies.csv",
+      "sha256": "442eddde563387c54ebd366680f328f89322000bb89d9f8d33aa2afa5dc19745"
+    },
+    "preflight_report": {
+      "path": "audits/20261121/RK34/rk34_start_context_preflight_v1.json",
+      "sha256": "2a3bdd363e2b0178e758590f3e2cff3273c3ab586085c99407e55b92e57c64e0"
+    },
+    "coverage_report": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK27/rk27_sequence_coverage_v1.json",
+      "sha256": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4"
+    },
+    "rk32_oof_predictions": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/oof_predictions.csv",
+      "sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    "rk32_fold_assignments": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/fold_assignments.csv",
+      "sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    }
+  },
+  "cohort": {
+    "measurement_rows": 154,
+    "exact_cds_groups": 150,
+    "sequence_clusters": 37,
+    "aggregation": "Arithmetic mean of log10_expression within exact CDS; identical CDS, UTR, full mRNA, protein and CAI required within a group.",
+    "cluster_definition": "Reuse RK27/RK32 frozen 90% complete-linkage clusters and fold assignments without reclustering or outcome-dependent filtering.",
+    "utr_length_nt": 144,
+    "cds_length_nt": 720,
+    "full_mrna_length_nt": 864,
+    "native_start_required": "ATG"
+  },
+  "factorial_contexts": {
+    "length_nt": 42,
+    "shared_body": "CDS[3:38] (CDS4-38 in one-based coordinates)",
+    "exact_real": "UTR[-4:] + CDS[:3] + CDS[3:38]",
+    "start_only": "NNNN + CDS[:3] + CDS[3:38]",
+    "upstream_only": "UTR[-4:] + NNN + CDS[3:38]",
+    "neither": "NNNN + NNN + CDS[3:38]",
+    "vienna": "RNA.md(); temperature=37 C; isolated 42 nt; dangles=2 confirmatory and dangles=0 sensitivity",
+    "arms": [
+      "exact_real_d2", "start_only_d2", "upstream_only_d2", "neither_d2",
+      "exact_real_d0", "start_only_d0", "upstream_only_d0", "neither_d0"
+    ]
+  },
+  "simple_features": ["CAI", "gc_cds", "gc3_cds"],
+  "models": {
+    "ridge": "StandardScaler + Ridge(alpha=1.0)",
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=False, random_state=seed+fold)",
+    "device": "CPU_ONLY",
+    "threads": "OPENBLAS/OMP/MKL/NUMEXPR each fixed to 1"
+  },
+  "outer_evaluation": {
+    "folds": 5,
+    "primary_seed": 20261221,
+    "seeds": [20261221, 20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230],
+    "fold_assignment": "Exactly reproduce RK27/RK32 make_cluster_folds and accepted fold CSV; no sequence cluster in both train and test.",
+    "leakage_rule": "No target or model result may be used for clustering, fold assignment, arm selection or tuning."
+  },
+  "fit_accounting": {
+    "contexts": 4,
+    "dangles_settings": 2,
+    "structure_arms": 8,
+    "non_reused_arms": 7,
+    "new_model_fits": 700,
+    "reused_rk32_model_fits": 200,
+    "evaluated_model_fits": 900,
+    "formula": "10 seeds * 5 folds * 2 models * 7 non-reused arms = 700 new; accepted RK32 simple + exact_d2 contribute 200 reused; 900 evaluated."
+  },
+  "comparisons": {
+    "direction": "For A versus B: Spearman rho(A)-rho(B), MSE(B)-MSE(A); positive favors A.",
+    "families": [
+      "exact_vs_simple",
+      "upstream_given_start",
+      "start_given_upstream",
+      "start_without_upstream",
+      "upstream_without_start"
+    ],
+    "primary": "All five families at dangles=2; exact_real_d2 reuses accepted RK32 Vienna-local OOF.",
+    "sensitivity": "The same five families at dangles=0; sensitivity cannot upgrade a failed primary result."
+  },
+  "primary_inference": {
+    "evaluation_seed": 20261221,
+    "resamples": 20000,
+    "bootstrap_seed": 20261321,
+    "permutation_seed": 20261322,
+    "unit": "sequence_cluster",
+    "bootstrap": "Resample 37 cluster IDs with replacement, include all exact-CDS rows from each selected cluster, recompute paired OOF effects and take percentile 95% CI.",
+    "permutation": "Draw one sign per cluster and swap A/B OOF predictions within clusters; two-sided absolute-effect p-values with plus-one correction.",
+    "metrics": ["Spearman A minus B", "MSE B minus A"],
+    "confirmatory_tests": 20,
+    "sensitivity_tests": 20,
+    "total_tests": 40,
+    "multiplicity": "Holm separately across 20 confirmatory dangles=2 tests and 20 sensitivity dangles=0 tests.",
+    "seed_stability": "At least 8 of 10 seed-level effects must be positive.",
+    "endpoint_pass_rule": "Observed effect >0, bootstrap CI lower bound >0, Holm p<0.05 and at least 8/10 positive seeds.",
+    "family_pass_rule": "All four endpoints (2 models * 2 metrics) pass.",
+    "exact_context_rule": "exact_vs_simple family passes.",
+    "upstream_contribution_rule": "Both upstream_given_start and upstream_without_start families pass.",
+    "start_contribution_rule": "Both start_given_upstream and start_without_upstream families pass."
+  },
+  "code": {
+    "production_script": "scripts/a8_rk34_run_start_context.py",
+    "production_script_sha256": "f39586e2d1d21c6713f68f89bb8a23d0c43a3f297e223fac31f317f162592d35",
+    "preflight_script": "scripts/a8_rk34_start_context_preflight.py",
+    "preflight_script_sha256": "d130408afd4c5455f8b50a7daa7d78cf2c8581992747e9e15f8f90baa3b9b9e2"
+  },
+  "environment": {
+    "python": "3.10.22",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "ViennaRNA": "2.7.2"
+  },
+  "scientific_boundaries": {
+    "independent_untouched_confirmation": false,
+    "functional_untouched_read": false,
+    "generator_training_authorized": false,
+    "host_or_assay_identified": false,
+    "measured_structure_identified": false,
+    "protein_ood": false,
+    "full_external_sota": false,
+    "unified_time_matched": false,
+    "complete_seven_method_dense": false,
+    "sensitivity_can_upgrade_failed_primary": false,
+    "rk_g1_complete": false
+  }
+}

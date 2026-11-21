@@ -1,0 +1,143 @@
+{
+  "arms": [
+    "exact_real_d2",
+    "start_only_d2",
+    "upstream_only_d2",
+    "neither_d2",
+    "exact_real_d0",
+    "start_only_d0",
+    "upstream_only_d0",
+    "neither_d0"
+  ],
+  "candidate_csv": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/start_context_v1/preflight_context_energies.csv",
+  "candidate_csv_sha256": "442eddde563387c54ebd366680f328f89322000bb89d9f8d33aa2afa5dc19745",
+  "checks": [
+    {
+      "details": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+      "name": "source_sha256",
+      "pass": true
+    },
+    {
+      "details": "5310cdfa65578c86d6b491bfdfc63d916d33ca610f8778650045f488e910a906",
+      "name": "rk32_preflight_sha256",
+      "pass": true
+    },
+    {
+      "details": {
+        "groups": 150,
+        "rows": 154
+      },
+      "name": "source_rows_and_groups",
+      "pass": true
+    },
+    {
+      "details": {
+        "cds": 1,
+        "cds_sha256": 1,
+        "sequenceWithUtr": 1,
+        "utr_5prime": 1
+      },
+      "name": "within_group_sequence_identity",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "full_mrna_and_cds_identity",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "native_start_atg_all_groups",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "candidate_rows",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "matched_42nt",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "factorial_mask_identities",
+      "pass": true
+    },
+    {
+      "details": {
+        "exact_real_d0": 49,
+        "exact_real_d2": 52,
+        "neither_d0": 42,
+        "neither_d2": 42,
+        "start_only_d0": 47,
+        "start_only_d2": 45,
+        "upstream_only_d0": 47,
+        "upstream_only_d2": 45
+      },
+      "name": "finite_nonconstant_energies",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "exact_matches_rk32_d0",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "exact_matches_rk32_d2",
+      "pass": true
+    }
+  ],
+  "checks_passed": 12,
+  "checks_total": 12,
+  "code_commit": "7e2c4b116998129e100ea4a462b4deac251923a9",
+  "columns_read": [
+    "source_row",
+    "seqId",
+    "sequenceWithUtr",
+    "utr_5prime",
+    "cds",
+    "cds_sha256",
+    "exact_cds_group"
+  ],
+  "contexts": [
+    "exact_real",
+    "start_only",
+    "upstream_only",
+    "neither"
+  ],
+  "created_at": "2026-11-21T16:31:51.438140+00:00",
+  "exact_vs_rk32_max_abs_delta": {
+    "dangles0": 1.7763568394002505e-15,
+    "dangles2": 1.7763568394002505e-15
+  },
+  "expression_columns_read": false,
+  "functional_untouched_read": false,
+  "mfe_uniqueness": {
+    "exact_real_d0": 49,
+    "exact_real_d2": 52,
+    "neither_d0": 42,
+    "neither_d2": 42,
+    "start_only_d0": 47,
+    "start_only_d2": 45,
+    "upstream_only_d0": 47,
+    "upstream_only_d2": 45
+  },
+  "model_fit_performed": false,
+  "rk32_preflight": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/preflight_candidate_energies.csv",
+  "rk32_preflight_sha256": "5310cdfa65578c86d6b491bfdfc63d916d33ca610f8778650045f488e910a906",
+  "rows": 150,
+  "schema": "a8-rk34-start-context-preflight-v1",
+  "sequence_uniqueness": {
+    "exact_real": 66,
+    "neither": 66,
+    "start_only": 66,
+    "upstream_only": 66
+  },
+  "source": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+  "source_sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c",
+  "status": "PASS_LABEL_FREE_START_CONTEXT_PREFLIGHT",
+  "vienna_settings": "RNA.md(); temperature=37 C; isolated 42 nt; dangles=2 or 0"
+}
