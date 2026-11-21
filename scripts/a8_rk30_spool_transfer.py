@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Temporary local-to-server HeLa R1 spool with two-sided MD5 gates."""
+"""Temporary local-to-server HeLa R1 spool with two-sided MD5 gates.
+
+--local-only permits label-free acquisition during a server outage; a later
+default run performs the unchanged remote precheck, upload and atomic rename.
+"""
 from __future__ import annotations
 
 import argparse
@@ -63,12 +67,12 @@ else:
     return None if record["status"] == "missing" else record
 
 
-def transfer(job: dict, spool: Path, attempts: int) -> dict:
+def transfer(job: dict, spool: Path, attempts: int, local_only: bool = False) -> dict:
     run = job["run"]
     local = spool / f"{run}_1.fastq.gz"
     remote = f"{REMOTE_ROOT}/{run}/{run}_1.fastq.gz"
     temporary = remote + ".upload-local"
-    record = remote_formal_record(job, remote)
+    record = None if local_only else remote_formal_record(job, remote)
     if record is not None:
         if local.exists() and local.stat().st_size == job["bytes"] and digest(local, "md5") == job["md5"]:
             local.unlink()
@@ -105,6 +109,8 @@ def transfer(job: dict, spool: Path, attempts: int) -> dict:
         raise RuntimeError(f"local MD5/size mismatch: {run}")
     local_sha256 = digest(local, "sha256")
     log({"status": "local_verified", "run": run, "bytes": job["bytes"], "md5": job["md5"], "sha256": local_sha256})
+    if local_only:
+        return {"status": "local_only_verified", "run": run, "bytes": job["bytes"], "md5": job["md5"], "sha256": local_sha256, "local": str(local)}
     record = remote_formal_record(job, remote)
     if record is not None:
         local.unlink()
@@ -151,6 +157,7 @@ def main() -> None:
     parser.add_argument("--only", nargs="*", required=True)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--attempts", type=int, default=12)
+    parser.add_argument("--local-only", action="store_true", help="Download and verify locally without contacting the server")
     args = parser.parse_args()
     if not 1 <= args.workers <= 6 or not 1 <= args.attempts <= 20:
         raise ValueError("worker/attempt bounds")
@@ -168,7 +175,7 @@ def main() -> None:
     records = []
     failures = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(transfer, job, args.spool, args.attempts): job["run"] for job in sorted(jobs, key=lambda x: x["run"])}
+        futures = {pool.submit(transfer, job, args.spool, args.attempts, args.local_only): job["run"] for job in sorted(jobs, key=lambda x: x["run"])}
         for future in concurrent.futures.as_completed(futures):
             try:
                 records.append(future.result())
