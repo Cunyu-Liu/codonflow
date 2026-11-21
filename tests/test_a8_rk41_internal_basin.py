@@ -4,6 +4,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import unittest.mock
 
 import numpy as np
 
@@ -82,6 +83,35 @@ class RK41InternalBasinTests(unittest.TestCase):
         self.assertEqual(records, ["first", "second"])
         self.assertEqual(len(benchmark), 2)
         self.assertEqual(benchmark["second"], "ATGGCTGCTTAA")
+
+    def test_accepted_rk40_payload_does_not_require_redundant_arm_field(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "accepted.json"
+            payload = {"points": [{"budget": i + 1, "sequence": "ATGGCTTAA", "objectives": [0.0] * 4} for i in range(11)],
+                       "unique_scorer_calls": 11, "initial_state": "ATGGCTTAA", "initial_state_sha256": "abc",
+                       "search_normalization": None, "common_input": True,
+                       "evaluation": {"best_normalized_weighted_utility": 1.0, "best_single_point_normalized_hv": 2.0,
+                                      "matched_first_k_actual_set": {"hypervolume_normalized": 3.0, "pairwise_ned": 4.0},
+                                      "terminal_full_actual_set": {"hypervolume_normalized": 5.0, "pairwise_ned": 6.0},
+                                      "dense_internal_auc": {"auc": 7.0}}}
+            path.write_text(json.dumps(payload))
+            row = {"path": str(path), "arm": "raw_random_b11", "record_id": "r", "seed": 0,
+                   "sha256": rk41.rk39.sha(path)}
+            summary_path = Path(directory) / "rk40_summary.json"
+            summary_path.write_text(json.dumps({"runs": [row]}))
+            calibration_dir = Path(directory) / "calibration"
+            calibration_dir.mkdir()
+            calibration_path = calibration_dir / "r.json"
+            calibration_path.write_text("{}")
+            descriptor = {"arm": "raw_random_b11", "record_id": "r", "seed": 0,
+                          "rk40_summary": str(summary_path), "rk40_summary_sha256": rk41.rk39.sha(summary_path),
+                          "calibration_dir": str(calibration_dir), "calibration_sha256": rk41.rk39.sha(calibration_path),
+                          "k": 11, "weights": [1.0, 1.0, 1.0, 1.0]}
+            with unittest.mock.patch.object(rk41.rk40, "evaluate_payload", side_effect=lambda p, c, k, w: p["evaluation"]), \
+                    unittest.mock.patch.object(rk41.rk40, "descriptor", side_effect=lambda p, payload: payload):
+                accepted = rk41.accepted_baseline(descriptor, "raw_random_b11")
+        self.assertEqual(accepted["unique_scorer_calls"], 11)
+        self.assertEqual(len(accepted["points"]), 11)
 
     def test_independent_single_codon_proposal_is_synonymous(self):
         source = "ATGGCTGCTTAA"

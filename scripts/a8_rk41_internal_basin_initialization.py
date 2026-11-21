@@ -104,7 +104,7 @@ def accepted_baseline(job: Mapping, arm: str) -> dict:
     if rk39.sha(path) != row["sha256"]:
         raise ValueError(f"accepted RK40 run identity mismatch: {path}")
     payload = json.loads(path.read_text())
-    if len(payload["points"]) != 11 or payload["arm"] != arm:
+    if len(payload["points"]) != 11 or payload.get("arm", arm) != arm or payload["unique_scorer_calls"] != 11:
         raise ValueError("accepted RK40 arm is not the frozen B11 arm")
     calibration_path = Path(job["calibration_dir"]) / f"{rk39.safe_name(job['record_id'])}.json"
     calibration = json.loads(calibration_path.read_text())
