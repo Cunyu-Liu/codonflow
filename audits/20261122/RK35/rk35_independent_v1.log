@@ -1,0 +1,30 @@
+{
+  "schema": "a8-rk35-coverage-transport-independent-v1",
+  "status": "FAIL",
+  "started_utc": "2026-11-21T16:55:14.816014+00:00",
+  "completed_utc": "2026-11-21T16:58:25.194614+00:00",
+  "component_wall_seconds": 190.37862117495388,
+  "independent_model_fits": 500,
+  "max_feature_abs_delta": 1.7763568394002505e-15,
+  "max_prediction_abs_delta": 1.3322676295501878e-15,
+  "max_seed_metric_abs_delta": 1.1102230246251565e-16,
+  "max_seed_effect_abs_delta": 2.220446049250313e-16,
+  "max_inference_abs_delta": 1.8041124150158794e-16,
+  "max_primary_summary_abs_delta": 8.326672684688674e-17,
+  "consistency_gate_max_delta": 0.0,
+  "independent_conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+  "checks_passed": 37,
+  "checks_total": 39
+}
+[
+  {
+    "name": "seed_metric_recomputation",
+    "pass": false,
+    "details": 1.1102230246251565e-16
+  },
+  {
+    "name": "training_log_new_fits_only",
+    "pass": false,
+    "details": null
+  }
+]

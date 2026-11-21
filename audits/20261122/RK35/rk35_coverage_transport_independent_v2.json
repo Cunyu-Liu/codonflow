@@ -1,0 +1,237 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "input_sha_main_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk27_coverage_report",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk32_fold_assignments",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk32_oof_predictions",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk32_preflight_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk32_result_v2",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk32_seed_effects",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk35_preflight_csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "input_sha_rk35_preflight_report",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_script_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_protocol_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "raw_rows_154",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "groups_150",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "facts_sha",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "clusters_37",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "analysis_rows_align",
+      "pass": true
+    },
+    {
+      "details": 1.7763568394002505e-15,
+      "name": "raw_feature_recomputation",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "group_id_order",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "cluster_ids_match",
+      "pass": true
+    },
+    {
+      "details": [
+        23,
+        61,
+        22,
+        22,
+        22
+      ],
+      "name": "primary_fold_sizes",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "folds_match_production",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_cluster_leakage",
+      "pass": true
+    },
+    {
+      "details": 500,
+      "name": "independent_500_fits",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "oof_rows_1500",
+      "pass": true
+    },
+    {
+      "details": 1.3322676295501878e-15,
+      "name": "independent_500_fit_predictions",
+      "pass": true
+    },
+    {
+      "details": 1.3322676295501878e-15,
+      "name": "reused_arms_independently_refit",
+      "pass": true
+    },
+    {
+      "details": 1.1102230246251565e-16,
+      "name": "seed_metric_recomputation",
+      "pass": true
+    },
+    {
+      "details": {
+        "max_abs_delta": 2.220446049250313e-16,
+        "rows": 240
+      },
+      "name": "seed_effect_recomputation",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "bootstrap_indices_exact",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "permutation_signs_exact",
+      "pass": true
+    },
+    {
+      "details": {
+        "arrays": 48,
+        "max_abs_delta": 1.8041124150158794e-16
+      },
+      "name": "independent_inference_arrays",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "primary_family_8",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "secondary_family_12",
+      "pass": true
+    },
+    {
+      "details": {
+        "max_abs_delta": 8.326672684688674e-17,
+        "pass_mismatches": 0
+      },
+      "name": "primary_summary_recomputation",
+      "pass": true
+    },
+    {
+      "details": 0.0,
+      "name": "consistency_gate_independent",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_gate_agrees",
+      "pass": true
+    },
+    {
+      "details": {
+        "independent": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+        "production": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY"
+      },
+      "name": "scientific_conclusion_match",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": {
+        "new_sum": 300,
+        "reused_sum": 0,
+        "rows": 300
+      },
+      "name": "training_log_new_fits_only",
+      "pass": true
+    }
+  ],
+  "checks_passed": 39,
+  "checks_total": 39,
+  "completed_utc": "2026-11-21T17:05:31.669987+00:00",
+  "component_wall_seconds": 185.0887599978596,
+  "consistency_gate_max_delta": 0.0,
+  "independent_conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+  "independent_model_fits": 500,
+  "max_feature_abs_delta": 1.7763568394002505e-15,
+  "max_inference_abs_delta": 1.8041124150158794e-16,
+  "max_prediction_abs_delta": 1.3322676295501878e-15,
+  "max_primary_summary_abs_delta": 8.326672684688674e-17,
+  "max_seed_effect_abs_delta": 2.220446049250313e-16,
+  "max_seed_metric_abs_delta": 1.1102230246251565e-16,
+  "schema": "a8-rk35-coverage-transport-independent-v1",
+  "started_utc": "2026-11-21T17:02:26.581252+00:00",
+  "status": "PASS"
+}

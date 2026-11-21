@@ -240,6 +240,7 @@ def main() -> None:
     check("reused_arms_independently_refit", reused_delta <= 1e-10, reused_delta)
 
     prod_metrics = pd.read_csv(args.production_root / "seed_metrics.csv")
+    prod_metrics["arm"] = prod_metrics["arm"].fillna("null")  # CSV parses literal "null" arm label as NaN; restore (mirrors RK32 verifier)
     prod_effects = pd.read_csv(args.production_root / "seed_effects.csv")
     metric_rows, effect_rows = [], []
     for seed in seeds:
@@ -382,7 +383,7 @@ def main() -> None:
     check("scientific_conclusion_match", conclusion == production["scientific_conclusion"], {"independent": conclusion, "production": production["scientific_conclusion"]})
     check("fit_accounting", production["new_model_fits"] == 300 and production["reused_model_fits"] == 200 and production["evaluated_model_fits"] == 500)
     tl = pd.read_csv(args.production_root / "training_log.csv")
-    check("training_log_new_fits_only", int(tl["new_model_fits"].sum()) == 300 and int(tl["reused_model_fits"].sum()) == 200 and len(tl) == 50)
+    check("training_log_new_fits_only", len(tl) == 300 and int(tl["new_model_fits"].sum()) == 300 and int(tl["reused_model_fits"].sum()) == 0 and len(tl.drop_duplicates(["seed", "fold", "model", "arm"])) == 300 and set(tl["arm"]) == {"cds_start_local", "trunc_local", "trunc_local_d0"}, {"rows": len(tl), "new_sum": int(tl["new_model_fits"].sum()), "reused_sum": int(tl["reused_model_fits"].sum())})
 
     report = {
         "schema": "a8-rk35-coverage-transport-independent-v1",
