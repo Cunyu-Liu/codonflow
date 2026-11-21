@@ -1,0 +1,57 @@
+{
+  "audit_reads": "schema/coverage/identity metadata only; no outcome-effect correlation",
+  "created_utc": "2026-11-21T18:01:38.972895+00:00",
+  "datasets_audited": [
+    "kudla_2009_gfp",
+    "boel_2016_nesg6348",
+    "mordstein_2020_hek293",
+    "kelsic_2016_mage_infA"
+  ],
+  "decision_rule": {
+    "branch_1": "If >=1 dataset qualifies: draft a strict transport preregistration (data, full CDS/UTR, host/assay/batch, structure definition, cleaning, dynamic range, isolation, simple/full-proxy/strongest-external baseline, primary endpoint, whole-cluster stats, Holm, power, three conclusions).",
+    "branch_2_pivot": "Stop treating start-aware MFE as the core model innovation; pivot to data-supported functional sequence models / translation dynamics with strong baselines, OOD and SOTA criteria.",
+    "branch_3": "If 0 datasets qualify: record each dataset's failed requirements and missing dimensions; formally trigger branch 2 pivot.",
+    "forbidden": "No faking transport with a host/assay/coverage-mismatched dataset; no reading functional untouched (MAGE 19072 frozen) for positives; no generative training (RK-G1=false).",
+    "qualifying": "A dataset qualifies iff R1-R7 all PASS."
+  },
+  "exact_start_window": "UTR[-4:]+CDS[:38] (42 nt, dangles=2, 37C)",
+  "gates": {
+    "RK_G1": false,
+    "functional_untouched_readable": false,
+    "generative_training_authorized": false
+  },
+  "inputs": {
+    "boel_sequence_expression_csv": {
+      "exists": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/boel_2016_nesg6348/sequence_expression.csv",
+      "sha256": "f76f0988c08aa7daa01c2a0100c01682f6e205b7003ba4d8c241d2eb167ccf2d"
+    },
+    "functional_long_csv": {
+      "exists": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/clean/functional_long.csv",
+      "sha256": "c436b758369018fe0fd121ce6e741993e90a5de80b4706ab87082f7557b6a377"
+    },
+    "kudla154_source_csv": {
+      "exists": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "mordstein_sequence_cluster_facts_csv": {
+      "exists": true,
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/sequence_cluster_facts.csv",
+      "sha256": "6944156dc4bc491d1066083d10a35017b2052be33e60e11a58ebe811e8bbbbd1"
+    }
+  },
+  "label_free": true,
+  "requirements": {
+    "R1_independent_study_host": "Study/host independent of the Kudla training cohort (not the same GFP cohort).",
+    "R2_full_cds_per_variant": "Full CDS available for every variant.",
+    "R3_native_variant_specific_5utr": "Native variant-specific 5'UTR (>=4 nt upstream of ATG) available to reconstruct UTR[-4:]+CDS[:38] with the same construct geometry as Kudla; a fixed vector leader substitution does not qualify.",
+    "R4_fixed_protein_synonymous_library": "Fixed-protein synonymous codon library; a cross-protein natural non-synonymous pool cannot test the synonymous initiation-structure mechanism.",
+    "R5_protein_identity_family_map": "Clear protein identity plus family map enabling protein/study OOD isolation.",
+    "R6_fresh_continuous_outcome": "Fresh continuous expression/fitness outcome with adequate dynamic range; a coarse ordinal score does not qualify.",
+    "R7_isolation_and_provenance": "Sequence-cluster/protein/study isolation feasible; license/accession/raw SHA documentable."
+  },
+  "schema": "a8-rk36-independent-transport-feasibility-protocol-v1",
+  "status": "FROZEN_BEFORE_OUTCOME_ASSOCIATION"
+}
