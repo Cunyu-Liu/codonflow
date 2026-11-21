@@ -83,3 +83,4 @@
 - 新增 `a8_rk30_ppt_page.py`：只读取冻结协议、closeout、PPT payload、稿件整合报告、clean manifest 和等价报告，不重算科学结果。九类合成页面均通过 XML、960×540、单页、画布边界和文本宽度检查；把 manifest 改为 verification-only 后明确拒绝出页。九份 XML 均未上传，线上 PPT 未被修改。
 - 远端 Python 3.10 编译首次发现表头 f-string 使用了新版解释器语法，测试在正式 pytest 前停止。改为显式 `bold` 属性后，九份 XML 的 SHA256 与兼容性修复前逐一相同，并重新进入远端编译和测试门禁。
 - 最终远端门禁日志为 `rk30_gate_tests_v2_actual_pytest.log` 与 `project_pytest_rk30_reproduction_gate.log`：冻结/模型/raw 合计 **20 passed**；项目标准 `pytest tests/` 为 **423 passed, 1 skipped, 11 warnings, 5 subtests passed**。此前直接 pytest 调用漏设 `RK30_PROTOCOL` 的收集错误保留在 `rk30_gate_tests_v1_actual_pytest.log`，不计为通过。
+- 真实 closeout 首次发现 raw verifier 未输出 `counting_summary_sha256`，而早期合成 raw fixture 恰好自带该字段，导致烟测漏检；closeout 在发布前停止，未写论文或 PPT。现由 verifier 直接计算 counting 报告 SHA256，并在 64-run fixture 中新增该绑定断言。此修复只增加证据绑定，不改变 reads、结局、预测、效应、CI、p 值或科学判定。

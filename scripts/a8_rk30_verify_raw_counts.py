@@ -139,6 +139,7 @@ def main():
         "production_module_imported": False,
         "rk28_model_module_imported": False,
         "protocol_sha256": digest(args.protocol),
+        "counting_summary_sha256": digest(args.artifact_root / "RK30_COUNTING.json"),
         "cost_seconds": time.perf_counter() - wall_start,
         "checkpoints": len(checkpoints), "expected_checkpoints": 64,
         "audit_reads_reassigned_by_brute_force": audit_total,

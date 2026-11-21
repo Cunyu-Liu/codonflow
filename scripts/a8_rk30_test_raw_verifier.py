@@ -80,6 +80,7 @@ def make_fixture(tmp_path):
         writer.writeheader()
         for variant_id in variant_ids:
             writer.writerow({"variant_id": variant_id, **{name: 4.5 for name in fields[1:]}})
+    (tmp_path / "artifacts" / "RK30_COUNTING.json").write_text("{}\n")
     return protocol_path, tmp_path / "artifacts", per_run
 
 
@@ -102,6 +103,7 @@ def test_raw_verifier_pass_and_audit_count_negative(tmp_path):
     assert result["audit_reads_reassigned_by_brute_force"] == 6400
     assert result["audit_read_count_pass"] is True
     assert result["protocol_sha256"] == digest(protocol)
+    assert result["counting_summary_sha256"] == digest(artifacts / "RK30_COUNTING.json")
     assert result["cost_seconds"] >= 0
     first = sorted(per_run.glob("SRR*.json"))[0]
     record = json.loads(first.read_text())
