@@ -285,3 +285,15 @@
 - [x] **项目测试与 closeout**：`run_tests_json.py tests/` 得 **455 passed / 1 skipped / 0 failed**（18.17s）；closeout 全链路核验 PASS（协议/result/independent/integration/review/PPT/tests + 提交 + gates）。
 - [ ] **仍未闭合**：external actual-set SOTA 主矩阵、time-matched 七方法、完整 dense、多物种 VeloHARMO、functional protein OOD、独立确认、wet-lab/前瞻 DBTL；RK37 转向任务待启动。RK-G1=false、generator_training_authorized=false，不得启动昂贵生成训练或把本 closeout 写成 RK-G0–G4 全通过。
 - [ ] **复现边界**：本轮为标签无关可行性审计，无模型拟合，故无干净复现对比（不适用）；PASS 仅覆盖冻结协议、独立重导、稿件与页面验收及项目测试。权威工作树 `/home/codonflow-a8-rk`、分支 `a8-rk`，与并行会话共享并发提交。
+
+## 2026-11-22：RK37 跨研究翻译占据局部序列诊断（双终点显著反向，任务未解决）
+
+- [x] **预注册与生产**：冻结 Mohammad16→Subtelny14 的 study OOD 协议；source 1761 raw/1179 eligible，target 5614 raw/3921 eligible，exact CDS overlap=0。3 seeds×4 families×4 alphas=**48 次唯一 Ridge fits**全部在读取 target outcome 前完成；主候选 `local_centered_anchored`，部署锚定只用 source 均值。冻结提交 `5786ffc0`，生产 155.860567s。
+- [x] **双确认性终点均失败**：constant−local TB-MSE 改善 **-0.755228937381**，95%CI `[-0.762597457560,-0.748005346336]`，Holm p=`9.99950002499875e-05`；local−position raw mean Pearson 改善 **-0.033028385490**，95%CI `[-0.035758013452,-0.030296139561]`，Holm p=`9.99950002499875e-05`。两个 CI 全负、两个 sensitivity seeds 均同号为负；小 p 值表示稳定变差，绝不写成通过。
+- [x] **组件诊断而非事后调参**：主种子 constant TB-MSE=0.9669159810；position raw=1.0069665422、r=0.0375001498；local centered=1.7221449184、r=0.0044717643；RiboMIMO raw/anchored TB-MSE=2.1866082213/2.1580795860。position centering 仅增约0.000488 Pearson，source anchoring 未挽救 local 或 RiboMIMO 误差；没有在同一 target 后选“最佳臂”包装确认。
+- [x] **独立复核与 clean reproduction**：独立 COO→CSR 实现从原始矩阵重算48 fits、全部预测、系数与推断数组，**771/771 PASS**，最大数值差 `3.552713678800501e-15`；detached `/home/codonflow-rk37-clean-493a0a70` 重跑48 fits，比较 **877/877 PASS**，111个 NPZ arrays 精确一致、3个逐转录本 CSV 字节一致。提交 `b8cf49c7/493a0a70/066ee562/87a33bd4`。
+- [x] **测试与科学 closeout**：全项目 **466 passed / 1 skipped / 0 failed / 5 subtests passed**；最终 `rk37_science_closeout_v2.json` **90/90 PASS**，推送后复验仍90/90。初版 `88/90 FAIL` 与三次 verifier schema KeyError 日志均保留；修正仅涉及证据读取和日志格式，不改科学代码或结果。
+- [x] **英文稿 §6.48**：证据驱动生成 Tables 28–29，稿件 **2,039 行**，SHA `ff1fe05bfc761a8026b2528082fdb354ef5ba717c8f02b0d60e5a7cea1b76368`；integration/audit **16/16 PASS**，含精确回滚、双表唯一、负 decision 和证据边界。隔离 `paper-write-en` workflow prepare/write/deliver/status 全 PASS；提交 `f2108c0d`。
+- [x] **在线 PPT**：在173页/revision145后只追加 **174–180** 七页，ids `pSf,pSB,pSR,pSO,pSU,pSh,pSG`，最终 **180页/revision152**；写前 **61/61 PASS**、写后 **54/54 PASS**，前173页 ID+语义 XML 未变，七页真实预览均逐页验收。提交 `192f7b40`；大型 XML/预览位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk37/ppt_v1/`。
+- [ ] **科学任务仍未解决**：RK37 仅证明该局部线性翻译占据候选在此跨研究方向稳定反向，不支持 translation-speed、protein/homology OOD、untouched confirmation、SOTA 或生成器性能。下一项 RK38 先逐方法×任务×格盘点 GEMORNA/LD-scan/CAI-greedy 等真实运行证据，同时对翻译/功能未触碰队列做 label-free 盘点；核实前不预设主矩阵可闭合或新实验可执行，不得在同一 Subtelny14 target 继续调参后称为独立确认。
+- [ ] **总项目开放边界**：完整 external actual-set SOTA、time-matched 七方法、共同 dense、多物种 VeloHARMO、真实 functional/protein OOD、独立 untouched 和前瞻 DBTL 仍未闭合；RK-G1=false、generator_training_authorized=false、functional untouched 未读、wet-lab 未执行。

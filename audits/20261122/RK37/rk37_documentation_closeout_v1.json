@@ -1,0 +1,27 @@
+{
+  "after_sha256": {
+    "docs/handover/HANDOFF_A8_RK37_20261122.md": "9650c48012ac95fe10a3767fe40bfd16b4a64a6e91fd89460a788027d07ffc56",
+    "experiments/REGISTRY.md": "fc74da8ebdd4601d47b47135338625098c4167d536697b5348ea428c90e3332a",
+    "tasks.md": "eff93e53bd5e3de4a63acc220880875430127080233f6d4a1ca61e8deccea97d"
+  },
+  "before_sha256": {
+    "experiments/REGISTRY.md": "97fd3c44eadb7155d03a5ae3a23d1d7661d53b3b82d119d53ac84a6263870462",
+    "tasks.md": "a0c724767653d3959c7fc36d819e848a2828d974ea124cb01b425be2f65dd00c"
+  },
+  "checks": {
+    "handoff_both_negative": true,
+    "handoff_decision": true,
+    "handoff_untouched_boundary": true,
+    "registry_single_rk37": true,
+    "tasks_single_rk37": true
+  },
+  "handoff_sha256": "9650c48012ac95fe10a3767fe40bfd16b4a64a6e91fd89460a788027d07ffc56",
+  "head_before_docs_commit": "192f7b4049420d372dd776fa3d02fe2b9caa0e40",
+  "schema_version": "a8_rk37_documentation_closeout_v1",
+  "status": "PASS_RK37_DOCUMENTATION_CLOSEOUT",
+  "summary": {
+    "failures": [],
+    "pass": 5,
+    "total": 5
+  }
+}
