@@ -1,0 +1,108 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "csv_byte_identical_analysis_start_aware_150.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "csv_byte_identical_fold_assignments.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "csv_byte_identical_oof_predictions.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "csv_byte_identical_training_log.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "csv_byte_identical_seed_metrics.csv",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "csv_byte_identical_seed_effects.csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "n_keys": 50
+      },
+      "name": "npz_key_sets_equal",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "npz_arrays_exact",
+      "pass": true
+    },
+    {
+      "details": [],
+      "name": "result_scientific_fields_equal",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "result_output_hashes_equal",
+      "pass": true
+    },
+    {
+      "details": {
+        "production": "PASS",
+        "reproduction": "PASS"
+      },
+      "name": "independent_status_equal",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "independent_conclusion_equal",
+      "pass": true
+    }
+  ],
+  "checks_passed": 12,
+  "checks_total": 12,
+  "created_utc": "2026-11-21T17:24:42.917990+00:00",
+  "csv_details": {
+    "analysis_start_aware_150.csv": {
+      "byte_identical": true,
+      "production_sha256": "b3d83bf1f75f2e9634861059994cd726138d92a9ac0ec4b72f2f917bdc083e52",
+      "reproduction_sha256": "b3d83bf1f75f2e9634861059994cd726138d92a9ac0ec4b72f2f917bdc083e52"
+    },
+    "fold_assignments.csv": {
+      "byte_identical": true,
+      "production_sha256": "118973eda55fc9d4be38b0871444565b7a66108c11d1e7ce3bba9e5f791ecdf3",
+      "reproduction_sha256": "118973eda55fc9d4be38b0871444565b7a66108c11d1e7ce3bba9e5f791ecdf3"
+    },
+    "oof_predictions.csv": {
+      "byte_identical": true,
+      "production_sha256": "1d2d710ca714c8c5fb5837748f478d6efa6182b2aff10202703fc6f4b147dc30",
+      "reproduction_sha256": "1d2d710ca714c8c5fb5837748f478d6efa6182b2aff10202703fc6f4b147dc30"
+    },
+    "seed_effects.csv": {
+      "byte_identical": true,
+      "production_sha256": "91be7066e00a4a91358ab39bc822e56506372a30045961f3545f6340798894ec",
+      "reproduction_sha256": "91be7066e00a4a91358ab39bc822e56506372a30045961f3545f6340798894ec"
+    },
+    "seed_metrics.csv": {
+      "byte_identical": true,
+      "production_sha256": "9c843fc0ee52b931e0c7d2f72361eda68f5b3fda0d414fabd04460bf2f84cf7e",
+      "reproduction_sha256": "9c843fc0ee52b931e0c7d2f72361eda68f5b3fda0d414fabd04460bf2f84cf7e"
+    },
+    "training_log.csv": {
+      "byte_identical": true,
+      "production_sha256": "1f5081e7437bc9a9d3bdca9b699e8c72d0717e8c84fcf774b41179bfd1d1be5a",
+      "reproduction_sha256": "1f5081e7437bc9a9d3bdca9b699e8c72d0717e8c84fcf774b41179bfd1d1be5a"
+    }
+  },
+  "production_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/model_results_v1",
+  "reproduction_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/clean_reproduction_9c26dcab/model_results_v1",
+  "schema": "a8-rk35-reproduction-comparison-v1",
+  "status": "PASS"
+}

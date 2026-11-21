@@ -1,0 +1,96 @@
+{
+  "status": "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
+  "scientific_conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+  "decision_code": "D1",
+  "new_model_fits": 300,
+  "reused_model_fits": 200,
+  "consistency_gate": {
+    "pass": true,
+    "details": [
+      {
+        "test": "ridge__exact_vs_simple__spearman_effect",
+        "rk32_reference": "ridge__vienna_local__spearman_effect",
+        "deltas": {
+          "observed_effect": 0.0,
+          "ci95_lower": 0.0,
+          "ci95_upper": 0.0,
+          "p_cluster_swap": 0.0,
+          "seed_effects_max": 2.220446049250313e-16
+        },
+        "bitwise_equal_within_1e-12": true,
+        "rk35_gate_pass": true
+      },
+      {
+        "test": "ridge__exact_vs_simple__mse_improvement",
+        "rk32_reference": "ridge__vienna_local__mse_improvement",
+        "deltas": {
+          "observed_effect": 0.0,
+          "ci95_lower": 6.938893903907228e-17,
+          "ci95_upper": 0.0,
+          "p_cluster_swap": 0.0,
+          "seed_effects_max": 8.326672684688674e-17
+        },
+        "bitwise_equal_within_1e-12": true,
+        "rk35_gate_pass": true
+      },
+      {
+        "test": "histgb__exact_vs_simple__spearman_effect",
+        "rk32_reference": "histgb__vienna_local__spearman_effect",
+        "deltas": {
+          "observed_effect": 0.0,
+          "ci95_lower": 0.0,
+          "ci95_upper": 0.0,
+          "p_cluster_swap": 0.0,
+          "seed_effects_max": 5.551115123125783e-17
+        },
+        "bitwise_equal_within_1e-12": true,
+        "rk35_gate_pass": true
+      },
+      {
+        "test": "histgb__exact_vs_simple__mse_improvement",
+        "rk32_reference": "histgb__vienna_local__mse_improvement",
+        "deltas": {
+          "observed_effect": 0.0,
+          "ci95_lower": 2.0816681711721685e-17,
+          "ci95_upper": 0.0,
+          "p_cluster_swap": 0.0,
+          "seed_effects_max": 1.249000902703301e-16
+        },
+        "bitwise_equal_within_1e-12": true,
+        "rk35_gate_pass": true
+      }
+    ]
+  },
+  "contrast_results": {
+    "trunc_vs_simple": {
+      "n_tests": 4,
+      "n_pass": 4,
+      "all_four_pass": true
+    },
+    "exact_vs_trunc": {
+      "n_tests": 4,
+      "n_pass": 2,
+      "all_four_pass": false
+    }
+  },
+  "component_wall_seconds": 164.289885265287
+}
+{
+  "schema": "a8-rk35-coverage-transport-independent-v1",
+  "status": "PASS",
+  "started_utc": "2026-11-21T17:20:01.589389+00:00",
+  "completed_utc": "2026-11-21T17:22:41.580616+00:00",
+  "component_wall_seconds": 159.99126521497965,
+  "independent_model_fits": 500,
+  "max_feature_abs_delta": 1.7763568394002505e-15,
+  "max_prediction_abs_delta": 1.3322676295501878e-15,
+  "max_seed_metric_abs_delta": 1.1102230246251565e-16,
+  "max_seed_effect_abs_delta": 2.220446049250313e-16,
+  "max_inference_abs_delta": 1.8041124150158794e-16,
+  "max_primary_summary_abs_delta": 8.326672684688674e-17,
+  "consistency_gate_max_delta": 0.0,
+  "independent_conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+  "checks_passed": 39,
+  "checks_total": 39
+}
+REPRODUCTION_DONE

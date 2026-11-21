@@ -1,0 +1,178 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "protocol_frozen_status",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preflight_pass_label_free",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_protocol_binding",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "production_script_binding",
+      "pass": true
+    },
+    {
+      "details": {
+        "passed": 39,
+        "total": 39
+      },
+      "name": "independent_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "reproduction_comparison_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "reproduction_independent_pass",
+      "pass": true
+    },
+    {
+      "details": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+      "name": "conclusion_consistent",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "consistency_gate_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "primary_family_8",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "gate_family_4",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "secondary_family_12",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "functional_untouched",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_generator_authorization",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "rk_g1_not_complete",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_host_assay_claim",
+      "pass": true
+    },
+    {
+      "details": {
+        "failed": 0,
+        "passed": 453,
+        "skipped": 1
+      },
+      "name": "project_tests_pass",
+      "pass": true
+    },
+    {
+      "details": {
+        "failed": 0,
+        "passed": 15
+      },
+      "name": "rk35_tests_pass",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "freeze_commit_recorded",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "clean_commit_recorded",
+      "pass": true
+    }
+  ],
+  "checks_passed": 21,
+  "checks_total": 21,
+  "clean_reproduction_commit": "9c26dcabeb82147ea12d9b58a5c0549d46c5a10d",
+  "contrast_results": {
+    "exact_vs_trunc": {
+      "all_four_pass": false,
+      "n_pass": 2,
+      "n_tests": 4
+    },
+    "trunc_vs_simple": {
+      "all_four_pass": true,
+      "n_pass": 4,
+      "n_tests": 4
+    }
+  },
+  "created_utc": "2026-11-21T17:24:51.458032+00:00",
+  "decision_code": "D1",
+  "evidence": {
+    "independent_report": {
+      "path": "audits/20261122/RK35/rk35_coverage_transport_independent_v2.json",
+      "sha256": "d037542df5ee40e47e26f1c368acb5eb5070c6d23f18c168503b609487d820a6"
+    },
+    "preflight_report": {
+      "path": "audits/20261122/RK35/rk35_preflight_v1.json",
+      "sha256": "0847653d4060e8016cf39384951c055445ea68cb5a049fc57d25cf4ea0e6be5c"
+    },
+    "production_summary": {
+      "path": "audits/20261122/RK35/rk35_coverage_transport_result_v1.json",
+      "sha256": "c811bb6e3481f8450b600687e9bb9f9fa849f8d8c3c3c71b55d44ed71f4d5651"
+    },
+    "project_tests": {
+      "path": "audits/20261122/RK35/rk35_project_tests_clean_v1.json",
+      "sha256": "c44b1a668e469b4d180c776b0e33d5ff601127466ea6f5474fd594f0024ab378"
+    },
+    "protocol": {
+      "path": "configs/a8_rk35_coverage_transport_protocol_v1.json",
+      "sha256": "a26ec02a1f5a7fd8b83f9764ed98ac30c50a71a79d39bb4b27e082d2216b1f7b"
+    },
+    "reproduction_comparison": {
+      "path": "audits/20261122/RK35/rk35_reproduction_comparison_v2.json",
+      "sha256": "f8faf2b693924a45d4d8222d5eab2c4ad50c8e7033a3d77e9ea7fa2c07f9989f"
+    },
+    "reproduction_independent": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/clean_reproduction_9c26dcab/independent_v1.json",
+      "sha256": "c0f1f3f7b9dcc928164615fb5961d0e7dbb127f11e837d39bf94c76ec4e59907"
+    },
+    "reproduction_summary": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk35/coverage_transport_v1/clean_reproduction_9c26dcab/result_v1.json",
+      "sha256": "db459778fa3bc8b6cbd36cfa9aaef9ec6fa981ebb164c90c91ffac0588235905"
+    },
+    "rk35_tests": {
+      "path": "audits/20261122/RK35/rk35_unit_tests_v1.json",
+      "sha256": "35942db650fb8abfe1ac7709a02dcde5542b87d6ae20026bfbd1aadf37b4a4d0"
+    }
+  },
+  "freeze_commit": "291ccdbc8637156341e9c61c25c1d9434df08ae3",
+  "schema": "a8-rk35-closeout-v1",
+  "scientific_conclusion": "RK33_COVERAGE_RETAINS_INCREMENT_WITHIN_KUDLA_RETROSPECTIVELY",
+  "status": "PASS_RK35_CLOSEOUT"
+}
