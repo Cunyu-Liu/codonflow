@@ -1,0 +1,1112 @@
+{
+  "schema": "a8-rk32-clean-reproduction-comparison-v1",
+  "status": "PASS_RK32_CLEAN_CHECKOUT_REPRODUCTION",
+  "expected_head": "469b30e4604f3545157c299b18ab24a3713cf322",
+  "clean_clone_head": "469b30e4604f3545157c299b18ab24a3713cf322",
+  "original_result_sha256": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c",
+  "clean_result_sha256": "4b8bad7b1a91476439ead39ad3afd51159a57c28e6348d3c16e654cb25c6ab4a",
+  "original_independent_sha256": "e8c22276462e907d40fd84fc9c4d0d6526374dab92c5bf9dea3467967274cd2e",
+  "clean_independent_sha256": "988e9174972c020b2c3669e8af0c6000c26790b7f7d85db5c8c5c415406f0d0f",
+  "scientific_conclusion": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY",
+  "checks": [
+    {
+      "name": "clean_clone_exact_head",
+      "pass": true,
+      "detail": "469b30e4604f3545157c299b18ab24a3713cf322"
+    },
+    {
+      "name": "original_independent_pass",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "name": "clean_independent_pass",
+      "pass": true,
+      "detail": "PASS"
+    },
+    {
+      "name": "original_result_hash_binding",
+      "pass": true,
+      "detail": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c"
+    },
+    {
+      "name": "clean_result_hash_binding",
+      "pass": true,
+      "detail": "4b8bad7b1a91476439ead39ad3afd51159a57c28e6348d3c16e654cb25c6ab4a"
+    },
+    {
+      "name": "protocol_hash_binding",
+      "pass": true,
+      "detail": "67a5f4612d0bdd5d00e4b88d0869385580682750ef05cf2ab9d8642974fdc804"
+    },
+    {
+      "name": "analysis_script_hash",
+      "pass": true,
+      "detail": "d16f66694493b48a910f46221c7adc9a9bf782c52589aa22670918767d89c7eb"
+    },
+    {
+      "name": "scientific_conclusion",
+      "pass": true,
+      "detail": "STRUCTURE_INCREMENT_DEFINITION_DEPENDENT_RETROSPECTIVELY"
+    },
+    {
+      "name": "scientific_field__analysis_type",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__arm_results",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__n_exact_cds_groups",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__n_measurement_rows",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__n_sequence_clusters",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__n_structure_arms_all_four_pass",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__primary_absolute_performance",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__primary_seed",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__primary_tests",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__scientific_flags",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__seeds",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__folds_per_seed",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__model_fits_per_fold",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__structure_arms",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "scientific_field__total_model_fits",
+      "pass": true,
+      "detail": {
+        "equal": true
+      }
+    },
+    {
+      "name": "primary_endpoint_count",
+      "pass": true,
+      "detail": 24
+    },
+    {
+      "name": "fit_accounting",
+      "pass": true,
+      "detail": 700
+    },
+    {
+      "name": "artifact_exists__analysis_structure_definitions_150.csv",
+      "pass": true,
+      "detail": "analysis_structure_definitions_150.csv"
+    },
+    {
+      "name": "declared_original_hash__analysis_structure_definitions_150.csv",
+      "pass": true,
+      "detail": "77fb7a78d86a0aeda897855b37f4b116f1c24130896db228dde84b23993d6edb"
+    },
+    {
+      "name": "declared_clean_hash__analysis_structure_definitions_150.csv",
+      "pass": true,
+      "detail": "77fb7a78d86a0aeda897855b37f4b116f1c24130896db228dde84b23993d6edb"
+    },
+    {
+      "name": "csv_byte_equal__analysis_structure_definitions_150.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact_exists__fold_assignments.csv",
+      "pass": true,
+      "detail": "fold_assignments.csv"
+    },
+    {
+      "name": "declared_original_hash__fold_assignments.csv",
+      "pass": true,
+      "detail": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    {
+      "name": "declared_clean_hash__fold_assignments.csv",
+      "pass": true,
+      "detail": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023"
+    },
+    {
+      "name": "csv_byte_equal__fold_assignments.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact_exists__oof_predictions.csv",
+      "pass": true,
+      "detail": "oof_predictions.csv"
+    },
+    {
+      "name": "declared_original_hash__oof_predictions.csv",
+      "pass": true,
+      "detail": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    {
+      "name": "declared_clean_hash__oof_predictions.csv",
+      "pass": true,
+      "detail": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a"
+    },
+    {
+      "name": "csv_byte_equal__oof_predictions.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact_exists__primary_inference_arrays.npz",
+      "pass": true,
+      "detail": "primary_inference_arrays.npz"
+    },
+    {
+      "name": "declared_original_hash__primary_inference_arrays.npz",
+      "pass": true,
+      "detail": "36cdfc6d8367fbc4a66f3759dae493a70af6ce68a1264865a23415f525e68858"
+    },
+    {
+      "name": "declared_clean_hash__primary_inference_arrays.npz",
+      "pass": true,
+      "detail": "36cdfc6d8367fbc4a66f3759dae493a70af6ce68a1264865a23415f525e68858"
+    },
+    {
+      "name": "artifact_exists__seed_effects.csv",
+      "pass": true,
+      "detail": "seed_effects.csv"
+    },
+    {
+      "name": "declared_original_hash__seed_effects.csv",
+      "pass": true,
+      "detail": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7"
+    },
+    {
+      "name": "declared_clean_hash__seed_effects.csv",
+      "pass": true,
+      "detail": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7"
+    },
+    {
+      "name": "csv_byte_equal__seed_effects.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact_exists__seed_metrics.csv",
+      "pass": true,
+      "detail": "seed_metrics.csv"
+    },
+    {
+      "name": "declared_original_hash__seed_metrics.csv",
+      "pass": true,
+      "detail": "286651800ddbbab7fbdbf8c43602ac8e05ec155ac9eaa01f496f5d3cc81edca5"
+    },
+    {
+      "name": "declared_clean_hash__seed_metrics.csv",
+      "pass": true,
+      "detail": "286651800ddbbab7fbdbf8c43602ac8e05ec155ac9eaa01f496f5d3cc81edca5"
+    },
+    {
+      "name": "csv_byte_equal__seed_metrics.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "artifact_exists__training_log.csv",
+      "pass": true,
+      "detail": "training_log.csv"
+    },
+    {
+      "name": "declared_original_hash__training_log.csv",
+      "pass": true,
+      "detail": "c275c55ad7b1b46d0f7c51994d2fb33b11c9b189c4ce79e12fb4ea1389e8d753"
+    },
+    {
+      "name": "declared_clean_hash__training_log.csv",
+      "pass": true,
+      "detail": "c275c55ad7b1b46d0f7c51994d2fb33b11c9b189c4ce79e12fb4ea1389e8d753"
+    },
+    {
+      "name": "csv_byte_equal__training_log.csv",
+      "pass": true,
+      "detail": true
+    },
+    {
+      "name": "npz_key_set",
+      "pass": true,
+      "detail": 50
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__mordstein_like__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__mordstein_like__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__source_full__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__source_full__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__source_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__source_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_full_cds__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_full_cds__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_full_mrna__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_full_mrna__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__histgb__vienna_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__mordstein_like__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__mordstein_like__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__source_full__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__source_full__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__source_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__source_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_full_cds__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_full_cds__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_full_mrna__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_full_mrna__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap__ridge__vienna_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__bootstrap_cluster_indices",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__mordstein_like__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__mordstein_like__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__source_full__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__source_full__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__source_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__source_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_full_cds__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_full_cds__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_full_mrna__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_full_mrna__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__histgb__vienna_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__mordstein_like__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__mordstein_like__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__source_full__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__source_full__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__source_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__source_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_full_cds__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_full_cds__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_full_mrna__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_full_mrna__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_local__mse_improvement",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation__ridge__vienna_local__spearman_effect",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array__permutation_cluster_signs",
+      "pass": true,
+      "detail": 0.0
+    },
+    {
+      "name": "npz_array_count",
+      "pass": true,
+      "detail": 50
+    },
+    {
+      "name": "clean_independent_numeric_deltas",
+      "pass": true,
+      "detail": {
+        "features": 2.842170943040401e-14,
+        "predictions": 2.6645352591003757e-15,
+        "metrics": 1.3877787807814457e-16,
+        "effects": 2.3592239273284576e-16,
+        "inference": 2.2898349882893854e-16,
+        "summary": 6.245004513516506e-17
+      }
+    },
+    {
+      "name": "clean_scope_flags",
+      "pass": true,
+      "detail": "retrospective_only"
+    }
+  ],
+  "checks_total": 106,
+  "checks_passed": 106,
+  "csv_count": 6,
+  "csv_byte_equal_count": 6,
+  "npz_array_count": 50,
+  "npz_exact_equal_count": 50,
+  "artifacts": [
+    {
+      "name": "analysis_structure_definitions_150.csv",
+      "original_sha256": "77fb7a78d86a0aeda897855b37f4b116f1c24130896db228dde84b23993d6edb",
+      "clean_sha256": "77fb7a78d86a0aeda897855b37f4b116f1c24130896db228dde84b23993d6edb",
+      "original_bytes": 52358,
+      "clean_bytes": 52358,
+      "byte_equal": true
+    },
+    {
+      "name": "fold_assignments.csv",
+      "original_sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023",
+      "clean_sha256": "d6c6b2de8a25b14199be6b4226d7143e92359ebb1f273e75ffd41fe20682a023",
+      "original_bytes": 125270,
+      "clean_bytes": 125270,
+      "byte_equal": true
+    },
+    {
+      "name": "oof_predictions.csv",
+      "original_sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a",
+      "clean_sha256": "6d60e2c856e1a32436035f40110a6813cf6c23527bee6a75787b8ab4f0fbd96a",
+      "original_bytes": 569817,
+      "clean_bytes": 569817,
+      "byte_equal": true
+    },
+    {
+      "name": "primary_inference_arrays.npz",
+      "original_sha256": "36cdfc6d8367fbc4a66f3759dae493a70af6ce68a1264865a23415f525e68858",
+      "clean_sha256": "36cdfc6d8367fbc4a66f3759dae493a70af6ce68a1264865a23415f525e68858",
+      "original_bytes": 8026100,
+      "clean_bytes": 8026100
+    },
+    {
+      "name": "seed_effects.csv",
+      "original_sha256": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7",
+      "clean_sha256": "150d6ae27d65d5518e932a245ad1990075def7be9f7980475b85d0cc129c95d7",
+      "original_bytes": 16318,
+      "clean_bytes": 16318,
+      "byte_equal": true
+    },
+    {
+      "name": "seed_metrics.csv",
+      "original_sha256": "286651800ddbbab7fbdbf8c43602ac8e05ec155ac9eaa01f496f5d3cc81edca5",
+      "clean_sha256": "286651800ddbbab7fbdbf8c43602ac8e05ec155ac9eaa01f496f5d3cc81edca5",
+      "original_bytes": 10099,
+      "clean_bytes": 10099,
+      "byte_equal": true
+    },
+    {
+      "name": "training_log.csv",
+      "original_sha256": "c275c55ad7b1b46d0f7c51994d2fb33b11c9b189c4ce79e12fb4ea1389e8d753",
+      "clean_sha256": "c275c55ad7b1b46d0f7c51994d2fb33b11c9b189c4ce79e12fb4ea1389e8d753",
+      "original_bytes": 3120,
+      "clean_bytes": 3120,
+      "byte_equal": true
+    }
+  ],
+  "npz_arrays": [
+    {
+      "key": "bootstrap__histgb__mordstein_like__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__mordstein_like__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__source_full__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__source_full__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__source_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__source_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_full_cds__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_full_cds__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_full_mrna__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_full_mrna__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__histgb__vienna_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__mordstein_like__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__mordstein_like__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__source_full__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__source_full__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__source_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__source_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_full_cds__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_full_cds__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_full_mrna__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_full_mrna__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap__ridge__vienna_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "bootstrap_cluster_indices",
+      "shape": [
+        20000,
+        37
+      ],
+      "dtype": "int16",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__mordstein_like__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__mordstein_like__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__source_full__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__source_full__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__source_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__source_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_full_cds__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_full_cds__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_full_mrna__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_full_mrna__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__histgb__vienna_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__mordstein_like__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__mordstein_like__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__source_full__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__source_full__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__source_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__source_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_full_cds__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_full_cds__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_full_mrna__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_full_mrna__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_local__mse_improvement",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation__ridge__vienna_local__spearman_effect",
+      "shape": [
+        20000
+      ],
+      "dtype": "float64",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    },
+    {
+      "key": "permutation_cluster_signs",
+      "shape": [
+        20000,
+        37
+      ],
+      "dtype": "int8",
+      "exact_equal": true,
+      "max_abs_delta": 0.0
+    }
+  ],
+  "production_elapsed_seconds_original": 252.1404136591591,
+  "production_elapsed_seconds_clean": 236.907059550751,
+  "independent_elapsed_seconds_original": 443.40612746961415,
+  "independent_elapsed_seconds_clean": 453.8671385059133,
+  "clean_independent_max_deltas": {
+    "features": 2.842170943040401e-14,
+    "predictions": 2.6645352591003757e-15,
+    "metrics": 1.3877787807814457e-16,
+    "effects": 2.3592239273284576e-16,
+    "inference": 2.2898349882893854e-16,
+    "summary": 6.245004513516506e-17
+  },
+  "independent_untouched_confirmation": false,
+  "functional_untouched_read": false,
+  "RK_G1_complete": false
+}
