@@ -1,0 +1,219 @@
+{
+  "base_commit": "4fe48460d584cf43bb36a9c3b47c0f1da7c766b4",
+  "checks": [
+    {
+      "check": "protocol_schema",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "retrospective_boundary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "primary_contract",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "fit_contract",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "input_hash_analysis_csv",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "input_hash_rk30_model_summary",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "input_hash_rk30_independent_report",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "input_hash_rk30_closeout",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "artifact_root_absent",
+      "evidence": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk31/known_context_applicability_v1",
+      "pass": true
+    },
+    {
+      "check": "long_shape",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "indicator_reference_zero",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "interaction_exact",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "feature_widths",
+      "evidence": {
+        "context_gated_full": 15,
+        "no_transport_full": 7,
+        "no_transport_simple": 4,
+        "shared_full": 9,
+        "shared_simple": 6
+      },
+      "pass": true
+    },
+    {
+      "check": "whole_cluster_folds",
+      "evidence": [
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ],
+        [
+          18,
+          18,
+          18,
+          18,
+          18
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "check": "synthetic_fit_shared_simple",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "synthetic_fit_shared_full",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "synthetic_fit_context_gated_full",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "known_context_mechanism_discriminating",
+      "evidence": {
+        "context_gated_full": 0.0060071574959831295,
+        "shared_full": 0.9570050886008111,
+        "shared_simple": 0.9613282036955895
+      },
+      "pass": true
+    },
+    {
+      "check": "inference_finite",
+      "evidence": {
+        "bootstrap_median": 3.500128231309901,
+        "ci95": [
+          1.7019772311814327,
+          6.086956587091563
+        ],
+        "observed_effect": 3.7092491310871694,
+        "p_cluster_swap": 0.0297029702970297
+      },
+      "pass": true
+    },
+    {
+      "check": "holm_24",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "no_functional_untouched",
+      "evidence": null,
+      "pass": true
+    },
+    {
+      "check": "generator_not_authorized",
+      "evidence": null,
+      "pass": true
+    }
+  ],
+  "checks_passed": 22,
+  "checks_total": 22,
+  "created_utc": "2026-11-21T13:16:50.550453+00:00",
+  "functional_untouched_read": false,
+  "generator_training_authorized": false,
+  "git_tracked_dirty_before_freeze": true,
+  "production_script_sha256": "6e647fe19720c7a24be94134945ca2f704eea4d98e849fc2f161e7ce69deaf86",
+  "protocol": "/home/codonflow-a8-rk/configs/a8-rk31-known-context-applicability-v1.json",
+  "protocol_sha256": "499dc5f92458c467a18256054cf3f6adba06376f8e2fcf618be5ad903d219bf1",
+  "real_rk31_metric_readout_executed": false,
+  "real_rk31_model_fit_executed": false,
+  "schema": "a8-rk31-preexperiment-freeze-v1",
+  "status": "PASS_RK31_PREEXPERIMENT_FREEZE",
+  "synthetic_only": true,
+  "test_script_sha256": "5cf5d6eb704e36a4feacff26ce14c08e635bab34a8d7194b1efd6466f818518f"
+}
