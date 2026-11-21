@@ -251,7 +251,7 @@ def main() -> None:
         own_effect = pd.DataFrame(own_effects)
         production_pred = pd.read_csv(args.artifact_root / "model/known_context_oof_predictions.csv")
         production_fold = pd.read_csv(args.artifact_root / "model/whole_cluster_fold_assignments.csv")
-        production_metric = pd.read_csv(args.artifact_root / "model/seed_metrics.csv")
+        production_metric = pd.read_csv(args.artifact_root / "model/seed_metrics.csv", keep_default_na=False)
         production_effect = pd.read_csv(args.artifact_root / "model/seed_effects.csv")
         training_log = pd.read_csv(args.artifact_root / "model/training_log.csv")
         check("prediction_schema", len(production_pred) == 3780 and len(own_pred) == 3780)
@@ -276,6 +276,8 @@ def main() -> None:
         metric_keys = ["seed", "context", "arm"]
         own_metric = own_metric.sort_values(metric_keys).reset_index(drop=True)
         production_metric = production_metric.sort_values(metric_keys).reset_index(drop=True)
+        check("null_arm_literal_preserved", set(production_metric["arm"]) == set(arms) and
+              production_metric["arm"].notna().all())
         check("metric_keys", own_metric[metric_keys].equals(production_metric[metric_keys]))
         for metric in ["spearman", "mse"]:
             delta = float(np.max(np.abs(own_metric[metric].to_numpy(float) - production_metric[metric].to_numpy(float))))
