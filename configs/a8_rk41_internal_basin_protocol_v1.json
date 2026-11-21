@@ -1,0 +1,161 @@
+{
+  "schema": "a8-rk41-internal-basin-v1",
+  "protocol_id": "RK41_INTERNAL_BASIN_INITIALIZATION_V1",
+  "created_date": "2026-11-22",
+  "status": "FROZEN_BEFORE_PRODUCTION",
+  "scope": "Development-only fixed-protein proxy mechanism and common-input actual-set evaluation of internal multistart initialization. No external sequence is used by any new arm. No functional, untouched, generator-training, time-matched, or external-SOTA claim.",
+  "observed_before_new_outcomes": "RK39 raw random-initialized hill-climbing lost to LinearDesign-11 on both common-input actual-set endpoints. RK40 showed positive short-budget normalization and budget effects and a much larger external-seeded initialization diagnostic. No RK41 initialization-pool outcomes have been generated or read.",
+  "benchmark_fasta": "/teams/HoulabData_1788502323/liucunyu/codonflow/codonflow/corpora/a6_benchmark/unique18.fasta",
+  "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+  "population": "The same 18 development records as RK39/RK40; no untouched24, functional untouched, MAGE test, Ribo test, or assay labels.",
+  "external_matrix": "/home/codonflow-a8-rk/audits/20261118/RK13/seven_method_actual_set_matrix_v1.json",
+  "external_matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+  "rscu_json": "/home/codonflow-a8-rk/configs/cai_ref_v4train.json",
+  "rscu_sha256": "80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f",
+  "calibration_dir": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18",
+  "calibration_acceptance": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/07_a7_data/calibration_unique18_acceptance.json",
+  "calibration_acceptance_sha256": "e84a133c0c58df8d59adc62c47df7eb249b12ec969b76924c6ad41b2f419407c",
+  "rk40_summary": "/home/codonflow-a8-rk/audits/20261122/RK40/rk40_budget_initialization_v1.json",
+  "rk40_summary_sha256": "fedfa32097232106e33e1107d7c2244b0b57939697899d828b40dda72c622187",
+  "rk40_independent_sha256": "ae5b90d0ac3c5890194834f2c8c9bf8ffdb221ce1b7c86ec98ff9d52656897df",
+  "accepted_baseline_arms": [
+    "raw_random_b11",
+    "calibrated_random_b11"
+  ],
+  "accepted_baseline_rule": "Reuse the 108 independently verified RK40 B11 runs by exact record/seed/arm/path/SHA identity; no outcome-based selection or regeneration.",
+  "new_arms": [
+    "raw_pool_first_b11",
+    "raw_pool_best_b11",
+    "calibrated_pool_first_b11",
+    "calibrated_pool_best_b11"
+  ],
+  "all_analysis_arms": [
+    "raw_random_b11",
+    "calibrated_random_b11",
+    "raw_pool_first_b11",
+    "raw_pool_best_b11",
+    "calibrated_pool_first_b11",
+    "calibrated_pool_best_b11"
+  ],
+  "external_reference": "lineardesign_lambda11",
+  "seeds": [0, 1, 2],
+  "expected_record_count": 18,
+  "expected_new_run_count": 216,
+  "expected_new_unique_scorer_calls": 2376,
+  "expected_accepted_run_count": 108,
+  "expected_total_analysis_runs": 324,
+  "budget": 11,
+  "pool_size": 8,
+  "local_unique_proposals_after_pool": 3,
+  "pool_max_attempts": 1000,
+  "max_attempts": 25000,
+  "weights": [1.0, 1.0, 1.0, 0.5],
+  "gc_target": 0.55,
+  "rho": 0.01,
+  "initial_temperature": 1.0,
+  "final_temperature": 0.01,
+  "uniform_operator": "global_synonymous",
+  "initialization_pool": {
+    "construction": "Pool member 0 is exactly RK39 protein_only_initial(source,seed). Continue with candidate seeds seed+1000, seed+2000, ... until eight distinct legal synonymous DNA sequences are obtained. Native CDS is used only to translate the protein and is then discarded; terminal TAA is fixed. No LinearDesign, EnsembleDesign, native synonymous, or other external DNA sequence enters any new arm.",
+    "first_rule": "Select pool index 0; this is the matched-pool control.",
+    "best_rule": "Select the pool member with maximum search weighted utility before local search, with the lowest index breaking ties. Raw arms use unnormalized objectives; calibrated arms use frozen native-development normalization.",
+    "shared_cache": "All eight pool members are real scored outputs. The selected start is a cache hit, and only three further unique synonymous proposals are needed to reach exactly eleven unique-scorer outputs. Duplicate proposals are cache hits and never consume budget.",
+    "rationale": "Eight starts plus three local unique proposals were fixed before outcomes to make initialization allocation detectable within the original eleven-call budget; the first/best arms share the same pool and local-search RNG seed."
+  },
+  "normalization": {
+    "raw": "No normalization is used for pool selection or local hill-climbing; native calibration is read only after all eleven sequences are fixed. Raw pool arms preserve common-input semantics.",
+    "calibrated": "Frozen native-development calibration is read before pool selection and local search; calibrated arms are interaction diagnostics and not common-input evidence.",
+    "evaluation": "Every internal and LinearDesign actual point is evaluated with the same frozen per-record calibration after sequence generation."
+  },
+  "primary_endpoints": [
+    "best_normalized_weighted_utility",
+    "best_single_point_normalized_hv"
+  ],
+  "actual_set_endpoints": [
+    "first_k_hv",
+    "first_k_ned"
+  ],
+  "endpoint_definitions": {
+    "best_normalized_weighted_utility": "Maximum over all eleven real unique points of dot((objectives-reference)/scale,weights); one sequence contributes once.",
+    "best_single_point_normalized_hv": "Maximum over all eleven real unique points of prod(max((objectives-reference)/scale,0)); no multi-sequence archive advantage.",
+    "first_k_hv": "Normalized actual-set hypervolume of the first k real unique outputs, where k is the record-specific LinearDesign-11 actual unique-DNA cardinality frozen in RK39; no best-k, zero filling, or dense inference.",
+    "first_k_ned": "Pairwise normalized edit distance of the same first-k real unique outputs."
+  },
+  "primary_families": [
+    {
+      "family": "raw_common_input_basin_selection",
+      "left": "raw_pool_best_b11",
+      "right": "raw_pool_first_b11",
+      "endpoints": ["best_normalized_weighted_utility", "best_single_point_normalized_hv"],
+      "question": "Within the identical raw eight-member pool and eleven-call budget, does utility-selected initialization outperform first-member initialization after local search?"
+    },
+    {
+      "family": "raw_common_input_sequential_advantage",
+      "left": "raw_pool_best_b11",
+      "right": "raw_random_b11",
+      "endpoints": ["best_normalized_weighted_utility", "best_single_point_normalized_hv"],
+      "question": "Does the internal best-of-eight multistart allocation outperform the original raw sequential eleven-call hill-climb?"
+    },
+    {
+      "family": "common_input_actual_set_versus_linear_design",
+      "left": "raw_pool_best_b11",
+      "right": "lineardesign_lambda11",
+      "endpoints": ["first_k_hv", "first_k_ned"],
+      "question": "Does the new internal raw design outperform the real LinearDesign-11 actual set under the same fixed protein, fixed TAA, common post-hoc calibration, and record-specific first-k cardinality?"
+    }
+  ],
+  "statistics": {
+    "unit": "one record; arithmetic mean of its three seeds before paired inference",
+    "n_records": 18,
+    "paired_bootstrap_resamples": 20000,
+    "paired_sign_flip_permutations": 20000,
+    "bootstrap_seed": 20261142,
+    "permutation_seed": 20261143,
+    "ci_level": 0.95,
+    "ci_method": "two-sided percentile paired bootstrap of record-level mean effects",
+    "p_value": "two-sided paired sign-flip with plus-one correction, capped at 1",
+    "multiplicity": "Holm over the two endpoints within each of the three independently named primary families",
+    "family_success_rule": "Both endpoints require 95% CI lower bound >0, family-Holm p<0.05, and positive mean effects for every individual seed; otherwise that family is not supported."
+  },
+  "diagnostics": [
+    "calibrated_pool_best_b11 minus calibrated_pool_first_b11 on best-single endpoints",
+    "calibrated_pool_best_b11 minus calibrated_random_b11 on best-single endpoints",
+    "calibrated_pool_best_b11 minus raw_pool_best_b11 on best-single endpoints",
+    "raw_pool_best_b11 minus LinearDesign-11 on best-single endpoints, descriptive only",
+    "raw_pool_best_b11 minus raw_pool_first_b11 on matched-first-k actual-set HV/NED",
+    "Initial selected-point utility/HV, full eleven-point actual-set metrics, and dense internal anytime AUC are descriptive; external dense remains null"
+  ],
+  "decision_rules": {
+    "all_three_supported": "INTERNAL_MULTISTART_AND_COMMON_INPUT_PROXY_COMPARISON_SUPPORTED",
+    "external_supported_mechanism_partial": "COMMON_INPUT_PROXY_COMPARISON_SUPPORTED_MECHANISM_PARTIAL",
+    "selection_and_sequential_only": "INTERNAL_MULTISTART_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED",
+    "selection_only": "BASIN_SELECTION_ONLY_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED",
+    "sequential_only": "BUDGET_REALLOCATION_ONLY_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED",
+    "neither_internal_nor_external": "INTERNAL_MULTISTART_NOT_SUPPORTED_COMMON_INPUT_TASK_UNRESOLVED"
+  },
+  "execution": {
+    "formal_workers": 12,
+    "worker_per_run": 1,
+    "numerical_threads_per_worker": 1,
+    "order": "benchmark FASTA order, then seed ascending, then protocol new-arm order",
+    "resume": "skip only completed run JSON with matching protocol/code/input/pool/selection/budget identity; never accept partial output",
+    "smoke_record": "C01H6.8b.1",
+    "smoke_seed": 0,
+    "smoke_expected_new_runs": 4,
+    "smoke_expected_new_unique_scorer_calls": 44,
+    "smoke_output_is_formal_evidence": false
+  },
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk41/internal_basin_initialization_v1",
+  "summary": "/home/codonflow-a8-rk/audits/20261122/RK41/rk41_internal_basin_initialization_v1.json",
+  "allowed_conclusion": "A development-only fixed-protein proxy evaluation of internal multistart selection under a shared eleven-unique-scorer budget, plus a limited common-input actual-set comparison with LinearDesign-11. Positive internal or external contrasts do not establish universal mechanism, functional efficacy, or external SOTA.",
+  "forbidden_conclusion": "No external-sequence attribution to CodonFlow, unified time-matched ranking, complete seven-method dense matrix, functional or protein-OOD claim, untouched generalization, generator improvement, RK-G1 closure, or manuscript-submittable claim.",
+  "functional_untouched_used": false,
+  "untouched24_used": false,
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "time_matched_comparison": false,
+  "rk_g1_closed": false,
+  "expensive_generator_training_authorized": false,
+  "manuscript_submittable": false,
+  "sota_claim": false
+}
