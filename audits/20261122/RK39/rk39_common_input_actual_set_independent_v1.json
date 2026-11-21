@@ -1,0 +1,6101 @@
+{
+  "schema": "a8-rk39-common-input-independent-verification-v1",
+  "summary": "/home/codonflow-a8-rk/audits/20261122/RK39/rk39_common_input_actual_set_v1.json",
+  "summary_sha256": "b9882da074040176b71eb86b37245b8bab438bb71ffe80ea796498f57916f2d1",
+  "protocol_sha256": "6e72fc94bd395a524fd2ecc825625f17c0bb86583fda3871e338f0508f1d15e1",
+  "production_code_commit": "471ebfb0b6cae141c8f0106bfa08622d01790c31",
+  "status": "PASS",
+  "n_pass": 1216,
+  "n_checks": 1216,
+  "n_runs": 162,
+  "n_raw_points": 1782,
+  "n_unique_sequences_independently_rescored": 1594,
+  "max_objective_abs_error": 0.0,
+  "primary_gate_passed": false,
+  "decision": "COMMON_INPUT_ACTUAL_SET_TASK_UNRESOLVED",
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "functional_untouched_evaluated": false,
+  "checks": [
+    {
+      "name": "summary_schema",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "summary_complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "not_smoke",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "protocol_identity",
+      "passed": true,
+      "detail": "6e72fc94bd395a524fd2ecc825625f17c0bb86583fda3871e338f0508f1d15e1"
+    },
+    {
+      "name": "protocol_frozen",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "benchmark_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "matrix_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "rscu_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "calibration_acceptance_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "clean_launch",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "code_commit_shape",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "population",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_functional_labels",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_sota_or_rkg1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_time_matched_claim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no_dense_inference",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C31E10.3b.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C14A6.7.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C01H6.8b.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000027077.3', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000025296.3', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C07E3.9.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000037188.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000011420.3', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000044901.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C47A4.1.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C05E11.2.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C41G7.2.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000001586.4', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000017935.4', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000045324.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C17G10.10.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('C03B1.12.1', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 0, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 1, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'hill_climbing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'mh_annealing')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_descriptor_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_protein_only_input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_search_isolation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_budgets_identity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_cost_accounting",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "('ENSACAT00000006494.4', 2, 'uniform')_raw_objectives",
+      "passed": true,
+      "detail": "max_abs_error=0.0"
+    },
+    {
+      "name": "total_unique_scorer_calls",
+      "passed": true,
+      "detail": "1782"
+    },
+    {
+      "name": "C31E10.3b.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C31E10.3b.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C14A6.7.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C01H6.8b.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000027077.3_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000025296.3_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C07E3.9.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000037188.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000011420.3_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000044901.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C47A4.1.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C05E11.2.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C41G7.2.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000001586.4_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000017935.4_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000045324.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C17G10.10.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "C03B1.12.1_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_calibration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_external_raw_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_external_cardinality",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_0_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_0_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_0_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_1_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_1_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_1_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_2_hill_climbing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_2_mh_annealing_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ENSACAT00000006494.4_2_uniform_matched_metrics",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_hill_climbing_hypervolume_normalized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_hill_climbing_pairwise_ned",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_mh_annealing_hypervolume_normalized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_mh_annealing_pairwise_ned",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_uniform_hypervolume_normalized",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "inference_uniform_pairwise_ned",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "primary_gate_recomputed",
+      "passed": true,
+      "detail": "False"
+    },
+    {
+      "name": "decision_recomputed",
+      "passed": true,
+      "detail": "COMMON_INPUT_ACTUAL_SET_TASK_UNRESOLVED"
+    },
+    {
+      "name": "global_scientific_gate_remains_closed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "manuscript_remains_unsubmittable",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

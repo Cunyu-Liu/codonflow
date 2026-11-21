@@ -1,0 +1,3731 @@
+{
+  "schema": "a8-rk39-common-input-actual-set-summary-v1",
+  "protocol_id": "RK39_COMMON_INPUT_ACTUAL_SET_V1",
+  "protocol_path": "/home/codonflow-a8-rk/configs/a8_rk39_common_input_actual_set_protocol_v1.json",
+  "protocol_sha256": "6e72fc94bd395a524fd2ecc825625f17c0bb86583fda3871e338f0508f1d15e1",
+  "code_commit": "471ebfb0b6cae141c8f0106bfa08622d01790c31",
+  "code_tracked_dirty_at_launch": false,
+  "status": "PASS_COMPLETE_COMMON_INPUT_EVALUATION",
+  "smoke": false,
+  "artifact_root": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1",
+  "benchmark_sha256": "30e3dbbfc3480287b1f87177fe476d7ca283219f08949476da6d08555d0ab4e0",
+  "external_matrix_sha256": "29f5c0839135d5ff1bf53141c5016c4495b52ee466bcda6ca3a69f86c320b877",
+  "rscu_sha256": "80592c4eaeab61cdfc86a6f927fb1ef3c4b409b785c73bb466078df9af71bb6f",
+  "n_runs": 162,
+  "n_unique_scorer_calls": 1782,
+  "runs": [
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed0/hill_climbing.json",
+      "sha256": "b655770cf4321bccb47fd5f08710544a6905e9d70783811e18caece7b4f93448",
+      "initial_state_sha256": "765dcdbeb3063325c746eb0e2ab39f3d16853c34a25061aa8643a9126cd1395d",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.16788129274884356,
+      "pairwise_ned": 0.004993757802746567,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.156345299445093,
+      "run_wall_seconds_including_evaluation": 4.210734318010509
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed0/mh_annealing.json",
+      "sha256": "0306b3027972d73378dab4e2bee15dbf8d1281db4012fbd283d2de7981ad4eab",
+      "initial_state_sha256": "765dcdbeb3063325c746eb0e2ab39f3d16853c34a25061aa8643a9126cd1395d",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.16682315035636003,
+      "pairwise_ned": 0.0041020153379703935,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.177949761040509,
+      "run_wall_seconds_including_evaluation": 4.231898237019777
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed0/uniform.json",
+      "sha256": "e320bda70f8777e2a8f29d6f1c7711c03b3f654571f5d73b4cfcf2c9f9ef7e51",
+      "initial_state_sha256": "765dcdbeb3063325c746eb0e2ab39f3d16853c34a25061aa8643a9126cd1395d",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.822756080906623,
+      "pairwise_ned": 0.2378277153558052,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.070348501671106,
+      "run_wall_seconds_including_evaluation": 4.159993471112102
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed1/hill_climbing.json",
+      "sha256": "73b4f3749c798e87ded1c76fcad218bb9066f15768c8c33191dc6494064b2a25",
+      "initial_state_sha256": "7ef237e56673d63f6ce088164e4305bae7c722539f2092be8b5d7d5bfadd33a7",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.0714140249556579,
+      "pairwise_ned": 0.0054396290351346535,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.1152443443425,
+      "run_wall_seconds_including_evaluation": 4.170026280917227
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed1/mh_annealing.json",
+      "sha256": "6b3e3f2e07b10f618d1268c2a1a776debbda23094433e7fc8cda647502f88679",
+      "initial_state_sha256": "7ef237e56673d63f6ce088164e4305bae7c722539f2092be8b5d7d5bfadd33a7",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.14369619474910944,
+      "pairwise_ned": 0.004458712323880863,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.112583995331079,
+      "run_wall_seconds_including_evaluation": 4.121406790334731
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed1/uniform.json",
+      "sha256": "a7ffd0b5682a133dc08f2ffc97021c208106d61233cd465f9ba77a313c091b6d",
+      "initial_state_sha256": "7ef237e56673d63f6ce088164e4305bae7c722539f2092be8b5d7d5bfadd33a7",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.7247403618073245,
+      "pairwise_ned": 0.24469413233458173,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.759074395056814,
+      "run_wall_seconds_including_evaluation": 3.7699042041786015
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed2/hill_climbing.json",
+      "sha256": "d161370a881c068f6e5c9e32d518c1a7ec9cafdbb9c5216908acde2941791d29",
+      "initial_state_sha256": "35e2c420ec3d3b9a1cdc32cc99ad571c2b3303c4abab7b564adc93da7c9f7a88",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.0415617533386963,
+      "pairwise_ned": 0.004993757802746567,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.287047206424177,
+      "run_wall_seconds_including_evaluation": 4.295019234064966
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed2/mh_annealing.json",
+      "sha256": "d1225c33b60d474b5f6d7470533eb9743880df974b03f73f68c8f9491b540ce1",
+      "initial_state_sha256": "35e2c420ec3d3b9a1cdc32cc99ad571c2b3303c4abab7b564adc93da7c9f7a88",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.03942846780329591,
+      "pairwise_ned": 0.0041020153379703935,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.318771104328334,
+      "run_wall_seconds_including_evaluation": 4.32606639387086
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C31E10.3b.1/seed2/uniform.json",
+      "sha256": "c596d2153e9858dfbf6a0a4890ab52b3116dbc5c510bd550795e2a3a2d6c1d86",
+      "initial_state_sha256": "35e2c420ec3d3b9a1cdc32cc99ad571c2b3303c4abab7b564adc93da7c9f7a88",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4817017896899696,
+      "pairwise_ned": 0.2423756019261637,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.160798079799861,
+      "run_wall_seconds_including_evaluation": 4.176817355211824
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed0/hill_climbing.json",
+      "sha256": "060878abaddc20a43c328c39d0977b1e70d4abfcb98ba616eb31a21158ba0748",
+      "initial_state_sha256": "3f2f9f631ce51b644c798570ae04b5485cd0a4a8b471a82a35a02ed89620d130",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.24980428887062564,
+      "pairwise_ned": 0.005714285714285714,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3345185024663806,
+      "run_wall_seconds_including_evaluation": 1.3429763256572187
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed0/mh_annealing.json",
+      "sha256": "63c9464a35be90263a540a631e1bfb517757d28edbe13233025d0dad5adeb31d",
+      "initial_state_sha256": "3f2f9f631ce51b644c798570ae04b5485cd0a4a8b471a82a35a02ed89620d130",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.2817770853921741,
+      "pairwise_ned": 0.006349206349206349,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3477794351056218,
+      "run_wall_seconds_including_evaluation": 1.3537659170106053
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed0/uniform.json",
+      "sha256": "21da1d32a9599426471b3a999aabdb00be54138409f6ea15c24b023d8c73efa5",
+      "initial_state_sha256": "3f2f9f631ce51b644c798570ae04b5485cd0a4a8b471a82a35a02ed89620d130",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.3885715436627819,
+      "pairwise_ned": 0.24253968253968256,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.348544484935701,
+      "run_wall_seconds_including_evaluation": 1.3603039500303566
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed1/hill_climbing.json",
+      "sha256": "05a7c2014a20037df43f9504829f5258533817e42357b29d3dda95411d9fb29f",
+      "initial_state_sha256": "756139ef2078bdfcaa12fd6fbf53f8074215bea1d76c429028b012e723eb850f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.03275764484256497,
+      "pairwise_ned": 0.006349206349206349,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3450163793750107,
+      "run_wall_seconds_including_evaluation": 1.3508849376812577
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed1/mh_annealing.json",
+      "sha256": "2c7441ccea8e8e34e7a4c42bf35958fede41ec22e05097c311b831cbc58493cc",
+      "initial_state_sha256": "756139ef2078bdfcaa12fd6fbf53f8074215bea1d76c429028b012e723eb850f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.02856618729710208,
+      "pairwise_ned": 0.006349206349206349,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3302722182124853,
+      "run_wall_seconds_including_evaluation": 1.3356835031881928
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed1/uniform.json",
+      "sha256": "2f4148c4cce0b62c6526364c26f42723f3141d283a14efbb15684dba28a71150",
+      "initial_state_sha256": "756139ef2078bdfcaa12fd6fbf53f8074215bea1d76c429028b012e723eb850f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 1.1471046092011037,
+      "pairwise_ned": 0.2342857142857143,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3011651118285954,
+      "run_wall_seconds_including_evaluation": 1.3077011089771986
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed2/hill_climbing.json",
+      "sha256": "317fbbd464f756a5536e0977ab236fc7293b1cdc88780afb41230b6e81fc46c6",
+      "initial_state_sha256": "5fa6be0cddd48078e4ecdd6c37b7cc279eaca9a9b02a3c73b65ac0d952947bee",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.06037420978973977,
+      "pairwise_ned": 0.005714285714285714,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3234369913116097,
+      "run_wall_seconds_including_evaluation": 1.3286527381278574
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed2/mh_annealing.json",
+      "sha256": "d5f4c3dcd0d8b9ff602430351e26db279d6fda103240bfafc7f4b6ad9959eaf5",
+      "initial_state_sha256": "5fa6be0cddd48078e4ecdd6c37b7cc279eaca9a9b02a3c73b65ac0d952947bee",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.09169304761676458,
+      "pairwise_ned": 0.005714285714285714,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3515697345137596,
+      "run_wall_seconds_including_evaluation": 1.3576488951221108
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C14A6.7.1/seed2/uniform.json",
+      "sha256": "90da88bd3608eb120c2428f2bcd9cec414fe9534c8bf46d949b7a75c3f019727",
+      "initial_state_sha256": "5fa6be0cddd48078e4ecdd6c37b7cc279eaca9a9b02a3c73b65ac0d952947bee",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.5917343286920214,
+      "pairwise_ned": 0.2377777777777778,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3100015809759498,
+      "run_wall_seconds_including_evaluation": 1.3189703882671893
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed0/hill_climbing.json",
+      "sha256": "fd6e4cff596990d5d83e451e1bcca8b598a9d3b7ddd1a38e092c010f7d865eb9",
+      "initial_state_sha256": "bdf8e594dc4523da9d826f75fd76540793f4e52e0e06101cfe5db06527433c58",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.207361014056056,
+      "pairwise_ned": 0.005882352941176471,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.458786828443408,
+      "run_wall_seconds_including_evaluation": 2.4655655520036817
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed0/mh_annealing.json",
+      "sha256": "e8d0bf7ce03ea04a766d7539cd4b601158e9e8b48eb66e4a06faa26aa5f96034",
+      "initial_state_sha256": "bdf8e594dc4523da9d826f75fd76540793f4e52e0e06101cfe5db06527433c58",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.19236790984119467,
+      "pairwise_ned": 0.006372549019607844,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.442251440603286,
+      "run_wall_seconds_including_evaluation": 2.449632537085563
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed0/uniform.json",
+      "sha256": "6ffc6f4d7d336e7806d924f46e969f014550c71674aad5ad288501370c5d090a",
+      "initial_state_sha256": "bdf8e594dc4523da9d826f75fd76540793f4e52e0e06101cfe5db06527433c58",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 1.072242678254362,
+      "pairwise_ned": 0.25245098039215685,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.416047487873584,
+      "run_wall_seconds_including_evaluation": 2.42554445611313
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed1/hill_climbing.json",
+      "sha256": "560779e82b42d8f654e7281daeaeb1701cb68afae2510be20df969743de5dc78",
+      "initial_state_sha256": "8e6111787e905cd84cfdf80defb59fffc98584345f172d0554d0f0c840f189c5",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.7309693368023474,
+      "pairwise_ned": 0.005882352941176471,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.42384553514421,
+      "run_wall_seconds_including_evaluation": 2.4300612579099834
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed1/mh_annealing.json",
+      "sha256": "0096d52a0d5538c044509fab302d0158b6864efd2837bfb1cffed0dd4c7142da",
+      "initial_state_sha256": "8e6111787e905cd84cfdf80defb59fffc98584345f172d0554d0f0c840f189c5",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.6719421070904688,
+      "pairwise_ned": 0.006045751633986928,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.364038983359933,
+      "run_wall_seconds_including_evaluation": 2.3702925709076226
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed1/uniform.json",
+      "sha256": "58a993e097e7df152b4116db1bbf21b58dea7efee76af1254d71062b68c78d25",
+      "initial_state_sha256": "8e6111787e905cd84cfdf80defb59fffc98584345f172d0554d0f0c840f189c5",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.8464964868030105,
+      "pairwise_ned": 0.2503267973856209,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.342191031668335,
+      "run_wall_seconds_including_evaluation": 2.3499189442954957
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed2/hill_climbing.json",
+      "sha256": "ee6f0ecb23774947cc4e0a4d9dec11b023e77aae48ba96fdd59f199f803375e2",
+      "initial_state_sha256": "ba1cd3dc40a6f2be31ec2602c8ee7937e8def31a590db134f8761e62567453ed",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.3291473590459087,
+      "pairwise_ned": 0.005228758169934641,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3273702994920313,
+      "run_wall_seconds_including_evaluation": 2.3338652960956097
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed2/mh_annealing.json",
+      "sha256": "06f55109cd89a08b511f675c463f3265422a14de25c70168924b4ec5f56db6a1",
+      "initial_state_sha256": "ba1cd3dc40a6f2be31ec2602c8ee7937e8def31a590db134f8761e62567453ed",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.4714208893112396,
+      "pairwise_ned": 0.005718954248366013,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.420615980401635,
+      "run_wall_seconds_including_evaluation": 2.4267271128483117
+    },
+    {
+      "record_id": "C01H6.8b.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C01H6.8b.1/seed2/uniform.json",
+      "sha256": "db43ec105ea8d407318a7acc551f6a5f5a0c18ea876e6f2ae058ba1042df9574",
+      "initial_state_sha256": "ba1cd3dc40a6f2be31ec2602c8ee7937e8def31a590db134f8761e62567453ed",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.6180798044384701,
+      "pairwise_ned": 0.2400326797385621,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3650123551487923,
+      "run_wall_seconds_including_evaluation": 2.3731496441178024
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed0/hill_climbing.json",
+      "sha256": "811cbb6e57f87125583ede87a1d348e62db4f2ce61a0b50c669f1478b1cf121e",
+      "initial_state_sha256": "17969fab99531d02bc4d8a7fda0847d34d47645080b8bd12ce3bd2c799b8bb21",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.5750012630677157,
+      "pairwise_ned": 0.005797101449275362,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6489863116294146,
+      "run_wall_seconds_including_evaluation": 1.6753524453379214
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed0/mh_annealing.json",
+      "sha256": "56d208e79c02fe48fe19be2e0250c8e5f4b6bdb9858c073d2f9d846f07c43627",
+      "initial_state_sha256": "17969fab99531d02bc4d8a7fda0847d34d47645080b8bd12ce3bd2c799b8bb21",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.5259272242681095,
+      "pairwise_ned": 0.006376811594202898,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6491677518934011,
+      "run_wall_seconds_including_evaluation": 1.655093246139586
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed0/uniform.json",
+      "sha256": "667b564a172e1c8d92eeb09cfa028bc11a9030ef043bb2718bf2c6821dcefc20",
+      "initial_state_sha256": "17969fab99531d02bc4d8a7fda0847d34d47645080b8bd12ce3bd2c799b8bb21",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 1.3228429069451204,
+      "pairwise_ned": 0.22000000000000003,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6483099018223584,
+      "run_wall_seconds_including_evaluation": 1.6555624040775
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed1/hill_climbing.json",
+      "sha256": "8f1721c3e62a19e2c44d66bf2b421e3ec2ab85d9d41739e66f9b2180835d3172",
+      "initial_state_sha256": "89f98c83e3ea09dab78d95a68a44ab59b9eef42ca7eaa4554d7479f398f37f08",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.26136511359195425,
+      "pairwise_ned": 0.0063768115942029,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.618757571093738,
+      "run_wall_seconds_including_evaluation": 1.625403858255595
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed1/mh_annealing.json",
+      "sha256": "54577c2db4d7b133af10b1a8c6923883643b008ac31bda9995e53bdbcc5a3d30",
+      "initial_state_sha256": "89f98c83e3ea09dab78d95a68a44ab59b9eef42ca7eaa4554d7479f398f37f08",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.22788187472585628,
+      "pairwise_ned": 0.0057971014492753615,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6052442314103246,
+      "run_wall_seconds_including_evaluation": 1.6105924979783595
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed1/uniform.json",
+      "sha256": "cc0235ec6bbe425920fe892136e07ff343c98115998af97a27d62b86fc5d887a",
+      "initial_state_sha256": "89f98c83e3ea09dab78d95a68a44ab59b9eef42ca7eaa4554d7479f398f37f08",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.5207705706026595,
+      "pairwise_ned": 0.2255072463768116,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6676105079241097,
+      "run_wall_seconds_including_evaluation": 1.6746481722220778
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed2/hill_climbing.json",
+      "sha256": "87814ec366c7c745aa3b0721c30469eedf8089d778c875ba28d0265d38bce8ab",
+      "initial_state_sha256": "c82208a190c5aab0cf344556cff43f742b8ba52981c0fa1fd89a18f80eef6ec5",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.21677613120168637,
+      "pairwise_ned": 0.00753623188405797,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6563972495496273,
+      "run_wall_seconds_including_evaluation": 1.661813734099269
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed2/mh_annealing.json",
+      "sha256": "7a8395d97218b64431ef56f48fe12fa44fe29abfc68cb5f7181a0fe4baf68d6e",
+      "initial_state_sha256": "c82208a190c5aab0cf344556cff43f742b8ba52981c0fa1fd89a18f80eef6ec5",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.2039669998502655,
+      "pairwise_ned": 0.005217391304347828,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.6565039516426623,
+      "run_wall_seconds_including_evaluation": 1.6624773228541017
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000027077.3/seed2/uniform.json",
+      "sha256": "1d4443cfef6b157e01d830d5e9a4010ed7ffb975dd6eac1140964bf9475c037f",
+      "initial_state_sha256": "c82208a190c5aab0cf344556cff43f742b8ba52981c0fa1fd89a18f80eef6ec5",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.45775297818499916,
+      "pairwise_ned": 0.22376811594202897,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.61801634170115,
+      "run_wall_seconds_including_evaluation": 1.6249007852748036
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed0/hill_climbing.json",
+      "sha256": "1bd94629cbbc9613492aeb4bb00aa8cce44c31e70ffc389c618997145cee8270",
+      "initial_state_sha256": "2d21e37a6cda0aab2eca5b6c3e27080ca1df1360350a5a751a1abe3869a8dcc1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.43922090333230096,
+      "pairwise_ned": 0.00584126984126984,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.9543987256474793,
+      "run_wall_seconds_including_evaluation": 2.0998136028647423
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed0/mh_annealing.json",
+      "sha256": "22a89509825bfae096a5dc81b03a65c6f9736e224ec9682f07cb0f7f3ff81a26",
+      "initial_state_sha256": "2d21e37a6cda0aab2eca5b6c3e27080ca1df1360350a5a751a1abe3869a8dcc1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4746641511161582,
+      "pairwise_ned": 0.006603174603174604,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.9670270276255906,
+      "run_wall_seconds_including_evaluation": 1.972951479256153
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed0/uniform.json",
+      "sha256": "ee16b140a2eeaaae5665397cbd3c79c2ea6dbb02b6e101d157e610507d9aa000",
+      "initial_state_sha256": "2d21e37a6cda0aab2eca5b6c3e27080ca1df1360350a5a751a1abe3869a8dcc1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4280609716754522,
+      "pairwise_ned": 0.24609523809523814,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.9164441470056772,
+      "run_wall_seconds_including_evaluation": 1.9246907718479633
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed1/hill_climbing.json",
+      "sha256": "bc595ba1c4cf796fad3848d0722ae28d9b1c6010df7c8dfa5fb629ef7147df0b",
+      "initial_state_sha256": "9e4d8fc67eaf53e0d0790a9437086d987813014ad9d3167d9d1110a82e5ff5f5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4346055934391281,
+      "pairwise_ned": 0.006095238095238095,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.9107042192481458,
+      "run_wall_seconds_including_evaluation": 1.9165503629483283
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed1/mh_annealing.json",
+      "sha256": "1dcd79af9969f64c19362685149a74409f2327ffe3d932d2a714a5c8aa8239d6",
+      "initial_state_sha256": "9e4d8fc67eaf53e0d0790a9437086d987813014ad9d3167d9d1110a82e5ff5f5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4836811261102286,
+      "pairwise_ned": 0.006349206349206349,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.939572088420391,
+      "run_wall_seconds_including_evaluation": 1.9456849289126694
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed1/uniform.json",
+      "sha256": "e4f69af77f25d4a680e242c4518ebfd5bbbc7a3616cdfbb6b1619d08f88ed5ed",
+      "initial_state_sha256": "9e4d8fc67eaf53e0d0790a9437086d987813014ad9d3167d9d1110a82e5ff5f5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.7032406399232884,
+      "pairwise_ned": 0.24787301587301586,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.886418723501265,
+      "run_wall_seconds_including_evaluation": 1.8938512247987092
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed2/hill_climbing.json",
+      "sha256": "f91a536155782e3912661ea9737352c462a465cedb2586119ee99bac43449e81",
+      "initial_state_sha256": "f33c1ab625a80d19333b2f548be25fcd98d3d5884e9fd92d847f665688f1bcfa",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.16192419053789273,
+      "pairwise_ned": 0.005079365079365078,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.905545056797564,
+      "run_wall_seconds_including_evaluation": 1.911801055073738
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed2/mh_annealing.json",
+      "sha256": "c3dd7e1b737a96b844c19c8c3d07881bb8aead394cbc4312cfa5100f0ca564c0",
+      "initial_state_sha256": "f33c1ab625a80d19333b2f548be25fcd98d3d5884e9fd92d847f665688f1bcfa",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.21880614301210438,
+      "pairwise_ned": 0.00584126984126984,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.910652173217386,
+      "run_wall_seconds_including_evaluation": 1.9164346060715616
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000025296.3/seed2/uniform.json",
+      "sha256": "0cdb0ff699bbb1821a6199c91dc7f5833ba00811f789746473efe01e31a51a35",
+      "initial_state_sha256": "f33c1ab625a80d19333b2f548be25fcd98d3d5884e9fd92d847f665688f1bcfa",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.4756144328090851,
+      "pairwise_ned": 0.2532063492063492,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8855682630091906,
+      "run_wall_seconds_including_evaluation": 1.8931302702985704
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed0/hill_climbing.json",
+      "sha256": "84bb21115f1a46ff55b948d18452b779d0325a51b037901f3c4ea65820fc3417",
+      "initial_state_sha256": "d3cf01db3cad0f8414ac4d5989396c5f95f2de7d806d265ddc50aeef78b4c21d",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.5954534151920123,
+      "pairwise_ned": 0.0032467532467532465,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.1837726938538253,
+      "run_wall_seconds_including_evaluation": 3.2092460971325636
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed0/mh_annealing.json",
+      "sha256": "412d45ca6eb7d64e77913118112fa7b7d0e746cc619a99205dab5ddc9f4ada64",
+      "initial_state_sha256": "d3cf01db3cad0f8414ac4d5989396c5f95f2de7d806d265ddc50aeef78b4c21d",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.6480578487008569,
+      "pairwise_ned": 0.0036075036075036075,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.1772741614840925,
+      "run_wall_seconds_including_evaluation": 3.184241846203804
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed0/uniform.json",
+      "sha256": "f1a39177be7e5c3363090af0ee5ec6e99fe3518e4b9ae6e4aedd6b57d12059f9",
+      "initial_state_sha256": "d3cf01db3cad0f8414ac4d5989396c5f95f2de7d806d265ddc50aeef78b4c21d",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.7292596779915703,
+      "pairwise_ned": 0.20418470418470416,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.096700128633529,
+      "run_wall_seconds_including_evaluation": 3.1053097480908036
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed1/hill_climbing.json",
+      "sha256": "4ad0459af38db2e56239157df534a9a32660e36a372461ab7382055369dec046",
+      "initial_state_sha256": "ca93d63177fdd7b4b3a7e23c5d0704dd0edbabcdf4b4e4c1a6056524bc33c544",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.42401026810729453,
+      "pairwise_ned": 0.0036075036075036075,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.0746444975957274,
+      "run_wall_seconds_including_evaluation": 3.0809842627495527
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed1/mh_annealing.json",
+      "sha256": "3b20dc661c4c195354cfc26006e7b4c7e76da95498892be188eb3a19adc8c266",
+      "initial_state_sha256": "ca93d63177fdd7b4b3a7e23c5d0704dd0edbabcdf4b4e4c1a6056524bc33c544",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.2595879836074753,
+      "pairwise_ned": 0.0036075036075036075,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.0803980669006705,
+      "run_wall_seconds_including_evaluation": 3.08768102992326
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed1/uniform.json",
+      "sha256": "e2e05deb01c1d72bbee700c52f2e26e278541dbeeb5421aea4820c77046087bb",
+      "initial_state_sha256": "ca93d63177fdd7b4b3a7e23c5d0704dd0edbabcdf4b4e4c1a6056524bc33c544",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.639553122322391,
+      "pairwise_ned": 0.20923520923520925,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.0566213130950928,
+      "run_wall_seconds_including_evaluation": 3.06576820416376
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed2/hill_climbing.json",
+      "sha256": "d06f99692305fd6b25c5ded650b135408176e2d270210467dd5cb915e679834b",
+      "initial_state_sha256": "2ccd438ed7a5c50a3cdc0c9fc1bbeae28121b205befd924b5e0a0346ae6b8360",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.02485244374347077,
+      "pairwise_ned": 0.0036075036075036075,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.124124529771507,
+      "run_wall_seconds_including_evaluation": 3.130679378286004
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed2/mh_annealing.json",
+      "sha256": "07e21ee71c9884fafc3f435872e450aae73cc06fd233a30a93b4312d75eb9c51",
+      "initial_state_sha256": "2ccd438ed7a5c50a3cdc0c9fc1bbeae28121b205befd924b5e0a0346ae6b8360",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.017711781984182388,
+      "pairwise_ned": 0.0036075036075036075,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.13786905631423,
+      "run_wall_seconds_including_evaluation": 3.1446048696525395
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C07E3.9.1/seed2/uniform.json",
+      "sha256": "a7d9fc2f7984d9755a2beb4365dbb6381d6b040fe8b1511adf4bcaae7ccb9adc",
+      "initial_state_sha256": "2ccd438ed7a5c50a3cdc0c9fc1bbeae28121b205befd924b5e0a0346ae6b8360",
+      "matched_linear_design_k": 4,
+      "hypervolume_normalized": 0.2648794787680475,
+      "pairwise_ned": 0.20995670995670998,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.1047753803431988,
+      "run_wall_seconds_including_evaluation": 3.1133479881100357
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed0/hill_climbing.json",
+      "sha256": "28ca5f807cc2ab79199fd87268357e86798809b57ce496b6dd8b3ab116672f1d",
+      "initial_state_sha256": "b670a9a90274dc14edf54699dd6e16805d521c7406bda06e0d229e858f379de1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.3763805310429513,
+      "pairwise_ned": 0.0043368895827912216,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.779138469602913,
+      "run_wall_seconds_including_evaluation": 4.791200099978596
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed0/mh_annealing.json",
+      "sha256": "6fa1013affd2b2df2494c87e7be9b2606b3bfa68dcd26fef9b3d9d8b203e9a64",
+      "initial_state_sha256": "b670a9a90274dc14edf54699dd6e16805d521c7406bda06e0d229e858f379de1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.3791535997346924,
+      "pairwise_ned": 0.004510365166102871,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.811797899659723,
+      "run_wall_seconds_including_evaluation": 4.819439624901861
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed0/uniform.json",
+      "sha256": "2e1a264e3fdfb8fcec4d106fe391a3fa7ee23561c58e6cabc583eea5a6aad7c8",
+      "initial_state_sha256": "b670a9a90274dc14edf54699dd6e16805d521c7406bda06e0d229e858f379de1",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.8071233836934092,
+      "pairwise_ned": 0.23662069563708907,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.632667031604797,
+      "run_wall_seconds_including_evaluation": 4.645592567976564
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed1/hill_climbing.json",
+      "sha256": "b6fd9a92f2f934a0edde7c1dda6a127637a58f46d0f60e69237d60a89b17929b",
+      "initial_state_sha256": "59dddd3fb3c8e9b86ce9dd25fbbd24f39bde8dade344bf54d9d67f11e5e99dfb",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.03159960372869795,
+      "pairwise_ned": 0.004683840749414518,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.266174415592104,
+      "run_wall_seconds_including_evaluation": 4.273543039336801
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed1/mh_annealing.json",
+      "sha256": "affa2f8566c660a73eb81e25ca75eb8f0f4865dbaccf381fe981a5346b219a0a",
+      "initial_state_sha256": "59dddd3fb3c8e9b86ce9dd25fbbd24f39bde8dade344bf54d9d67f11e5e99dfb",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.03078862681073091,
+      "pairwise_ned": 0.005377743082661114,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.577530891634524,
+      "run_wall_seconds_including_evaluation": 4.585322342813015
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed1/uniform.json",
+      "sha256": "db8122c0d8255e93314214592f6ae88408771392c4fdb7116f29b9dcfe704725",
+      "initial_state_sha256": "59dddd3fb3c8e9b86ce9dd25fbbd24f39bde8dade344bf54d9d67f11e5e99dfb",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.7330852716518035,
+      "pairwise_ned": 0.24121779859484777,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.550792198628187,
+      "run_wall_seconds_including_evaluation": 4.560306439641863
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed2/hill_climbing.json",
+      "sha256": "c70729f69776f6ae2cdf30cbf654153463e20c0f2cad0421bfac0a5a5ec94294",
+      "initial_state_sha256": "c8068477296b18a8c044b0dba43acc0c469b89761907a89b78ff8fa5c11a68d5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.16196552930311375,
+      "pairwise_ned": 0.004510365166102872,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.576839950401336,
+      "run_wall_seconds_including_evaluation": 4.584052820224315
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed2/mh_annealing.json",
+      "sha256": "7ad76608c7c2f8dff793c4150dc6a4ade0860212f0e0e7ac6286730664549f9e",
+      "initial_state_sha256": "c8068477296b18a8c044b0dba43acc0c469b89761907a89b78ff8fa5c11a68d5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.21600672960468575,
+      "pairwise_ned": 0.007112498915777605,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.637311249040067,
+      "run_wall_seconds_including_evaluation": 3.643580558244139
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000037188.1/seed2/uniform.json",
+      "sha256": "326a09d4dbfe2f1ea1d514b90b7c750ddc0f0c166e49d274f92129a5ac321a0c",
+      "initial_state_sha256": "c8068477296b18a8c044b0dba43acc0c469b89761907a89b78ff8fa5c11a68d5",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.5536862284650282,
+      "pairwise_ned": 0.23332465955416776,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.411587542388588,
+      "run_wall_seconds_including_evaluation": 4.420808880124241
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed0/hill_climbing.json",
+      "sha256": "8c41c18034ee1d4b195189f6d3ef70f1f65561e0f14b4c76bf981911bd4382ed",
+      "initial_state_sha256": "5e8e30418f82d40866dd8a1ca03499867f81f295ebccd2495d66228e30a186ff",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.22745514499136932,
+      "pairwise_ned": 0.0063025210084033615,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8687575412914157,
+      "run_wall_seconds_including_evaluation": 1.898980821017176
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed0/mh_annealing.json",
+      "sha256": "ff38995289dcd6b3bcf85a44a5d610a6aa46dd2c8b5e1a21561fc97214892c26",
+      "initial_state_sha256": "5e8e30418f82d40866dd8a1ca03499867f81f295ebccd2495d66228e30a186ff",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.23192929355490002,
+      "pairwise_ned": 0.004668534080298785,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.4056570986285806,
+      "run_wall_seconds_including_evaluation": 2.4115798082202673
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed0/uniform.json",
+      "sha256": "676320d55db6efa0f6651858e1552b9c877f126786e7aaeaf514a7a2a42d1b89",
+      "initial_state_sha256": "5e8e30418f82d40866dd8a1ca03499867f81f295ebccd2495d66228e30a186ff",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.40923344302871784,
+      "pairwise_ned": 0.24626517273576093,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8716842303983867,
+      "run_wall_seconds_including_evaluation": 1.87821947876364
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed1/hill_climbing.json",
+      "sha256": "0137ff0e519fc07b32d39b0ae25d4444b8bdb73817b43e4d269d3c2c73282fad",
+      "initial_state_sha256": "880dfa8be77993d65846fbec8f203e067dfedab75a0dd219a68c53e452d35e7a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.12845057745675656,
+      "pairwise_ned": 0.005602240896358544,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8928710296750069,
+      "run_wall_seconds_including_evaluation": 1.89769073901698
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed1/mh_annealing.json",
+      "sha256": "468cb9335cf0f1d7919853ec77e00d7330ffa04a87afb83ee82f065b95d39da4",
+      "initial_state_sha256": "880dfa8be77993d65846fbec8f203e067dfedab75a0dd219a68c53e452d35e7a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.11524628191309301,
+      "pairwise_ned": 0.006769374416433241,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8501584101468325,
+      "run_wall_seconds_including_evaluation": 1.854798980988562
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed1/uniform.json",
+      "sha256": "b9e61e87fa65a038633a2639605d6e6885af8bde7fc8cb9dee3ab2e4deb1ab74",
+      "initial_state_sha256": "880dfa8be77993d65846fbec8f203e067dfedab75a0dd219a68c53e452d35e7a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.327925870503407,
+      "pairwise_ned": 0.2511671335200747,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3360186303034425,
+      "run_wall_seconds_including_evaluation": 2.3434843961149454
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed2/hill_climbing.json",
+      "sha256": "0b0e3bd0dd529300d56583385688dd24a92cd034b34660a640e2b60cd646e5be",
+      "initial_state_sha256": "287446b69fb0bbbfcccd4f2fb6210a5aa3035eda18b279f6d4c5eab1afebda8a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.05169749612982276,
+      "pairwise_ned": 0.004668534080298786,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8621369074098766,
+      "run_wall_seconds_including_evaluation": 1.86726182885468
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed2/mh_annealing.json",
+      "sha256": "0f71d7682d3070b821bb95f741db5d920645ca2a13a3402a1332970b42b75ef2",
+      "initial_state_sha256": "287446b69fb0bbbfcccd4f2fb6210a5aa3035eda18b279f6d4c5eab1afebda8a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.048264715375369235,
+      "pairwise_ned": 0.006769374416433241,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8425473109818995,
+      "run_wall_seconds_including_evaluation": 1.8474476682022214
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000011420.3/seed2/uniform.json",
+      "sha256": "75df91acf50030e5f86695239a113d75c2024862155473388c621edad9aaa8aa",
+      "initial_state_sha256": "287446b69fb0bbbfcccd4f2fb6210a5aa3035eda18b279f6d4c5eab1afebda8a",
+      "matched_linear_design_k": 7,
+      "hypervolume_normalized": 0.31790812222392706,
+      "pairwise_ned": 0.24836601307189538,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3955591022968292,
+      "run_wall_seconds_including_evaluation": 2.403461513109505
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed0/hill_climbing.json",
+      "sha256": "90427652db8bae9767a9eb982232fbaf2313b876a75db22d9e48ffe43df295c4",
+      "initial_state_sha256": "84df216d7adf0c2b8d60272ffcf6e888d17eadfb89b8ff064209c96b7e7c9711",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.057960814627423286,
+      "pairwise_ned": 0.006370370370370372,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.8312599095515907,
+      "run_wall_seconds_including_evaluation": 1.8574143671430647
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed0/mh_annealing.json",
+      "sha256": "f965ad4a0da3f6b39fe5b66caca889a8c86e1b4d9dcc8ce5d08f834b011dad09",
+      "initial_state_sha256": "84df216d7adf0c2b8d60272ffcf6e888d17eadfb89b8ff064209c96b7e7c9711",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.041268338842889433,
+      "pairwise_ned": 0.007259259259259261,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.4423752585425973,
+      "run_wall_seconds_including_evaluation": 1.4469553488306701
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed0/uniform.json",
+      "sha256": "3bdc21b77309db683414e9bdb5d46801a79fbf85814f57214c839b63c5f78e11",
+      "initial_state_sha256": "84df216d7adf0c2b8d60272ffcf6e888d17eadfb89b8ff064209c96b7e7c9711",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.4985212396490748,
+      "pairwise_ned": 0.22570370370370366,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.4238339932635427,
+      "run_wall_seconds_including_evaluation": 1.4298397689126432
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed1/hill_climbing.json",
+      "sha256": "98fcf21b202b91ae229fd31d7e4757e2e6ce9dc7e2aa53c6574889e9c7eaf41b",
+      "initial_state_sha256": "c01be9e407779b7d338d3616a33292143ef886ff02d6489f9a6f8f996c962820",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.1427584334613754,
+      "pairwise_ned": 0.004740740740740738,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.77867034310475,
+      "run_wall_seconds_including_evaluation": 1.7841227469034493
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed1/mh_annealing.json",
+      "sha256": "36310f2123c752f39ee2f50350fb37af006963c0305565d86e71b9fa9650fe66",
+      "initial_state_sha256": "c01be9e407779b7d338d3616a33292143ef886ff02d6489f9a6f8f996c962820",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2161713878011901,
+      "pairwise_ned": 0.007703703703703705,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.7729207901284099,
+      "run_wall_seconds_including_evaluation": 1.7778602419421077
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed1/uniform.json",
+      "sha256": "7b8d57fe0deba8a1eeffab7f7ff9e455d6f115147aab4e5828a9638b862df08d",
+      "initial_state_sha256": "c01be9e407779b7d338d3616a33292143ef886ff02d6489f9a6f8f996c962820",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.7424409169799265,
+      "pairwise_ned": 0.22762962962962963,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.3963255118578672,
+      "run_wall_seconds_including_evaluation": 1.4019425688311458
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed2/hill_climbing.json",
+      "sha256": "cf23bd314e3954d3eb2dc025f0ff49a1ab8874d07811c6babeaec39dd047cea6",
+      "initial_state_sha256": "06e16504128f2f50fa591a73734bb6e90c3849070cfdb6ce8e499fd189b4e7ec",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.07590505647594273,
+      "pairwise_ned": 0.0060740740740740755,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.405471463687718,
+      "run_wall_seconds_including_evaluation": 1.409510598052293
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed2/mh_annealing.json",
+      "sha256": "f0d817956d45cc3170c58ec790cdc1746aa20dd5c90e764cd22499b40d57e2b2",
+      "initial_state_sha256": "06e16504128f2f50fa591a73734bb6e90c3849070cfdb6ce8e499fd189b4e7ec",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.11043165659100211,
+      "pairwise_ned": 0.0060740740740740755,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.7953844456933439,
+      "run_wall_seconds_including_evaluation": 1.8011400080285966
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000044901.1/seed2/uniform.json",
+      "sha256": "8de7c28f273b8c6d13a28972a45d774febb61e1a3a1b90914b2d542c0a6c4a10",
+      "initial_state_sha256": "06e16504128f2f50fa591a73734bb6e90c3849070cfdb6ce8e499fd189b4e7ec",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 1.435033797428665,
+      "pairwise_ned": 0.22237037037037036,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.394854221958667,
+      "run_wall_seconds_including_evaluation": 1.4009088762104511
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed0/hill_climbing.json",
+      "sha256": "40b7057158da081cf2c1b01a7fe130960ef90e8cc635419e547463216e144b84",
+      "initial_state_sha256": "8c79ec374f93cdc6fe4bb0c9ca5fcbd8b51ad4899ab80238a7f435597e801e9c",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.5323310961445822,
+      "pairwise_ned": 0.005344585091420535,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.055217658635229,
+      "run_wall_seconds_including_evaluation": 3.0608877139165998
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed0/mh_annealing.json",
+      "sha256": "2d8fb7bee9fcd176640985a0b0162ec2171e594c9d70b6a8a60d37819d2bc328",
+      "initial_state_sha256": "8c79ec374f93cdc6fe4bb0c9ca5fcbd8b51ad4899ab80238a7f435597e801e9c",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.33322236865934013,
+      "pairwise_ned": 0.0064697609001406475,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.402063599321991,
+      "run_wall_seconds_including_evaluation": 2.4239607281051576
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed0/uniform.json",
+      "sha256": "5e55e20e2b876757091bd71d3120d77bfd4d1a9fccdc6d9007daf24d6100bf92",
+      "initial_state_sha256": "8c79ec374f93cdc6fe4bb0c9ca5fcbd8b51ad4899ab80238a7f435597e801e9c",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.4602810204009843,
+      "pairwise_ned": 0.20886075949367086,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3532663518562913,
+      "run_wall_seconds_including_evaluation": 2.3604078460484743
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed1/hill_climbing.json",
+      "sha256": "4067caa23a90f3ec9b2032b777e08ca61ea12a03a031d9c53d5f209d188eb9b0",
+      "initial_state_sha256": "7e1a14c64d51a1cb6d5320482a063f4945351fd70f6f3336d875658036cf22a8",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.19723046647311798,
+      "pairwise_ned": 0.0049226441631504934,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.850371761713177,
+      "run_wall_seconds_including_evaluation": 2.8562568491324782
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed1/mh_annealing.json",
+      "sha256": "b1293549621267b8bb14dc6829a866a404f8b2f29e56b4ab984a0bec0d15ae30",
+      "initial_state_sha256": "7e1a14c64d51a1cb6d5320482a063f4945351fd70f6f3336d875658036cf22a8",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.160001471698373,
+      "pairwise_ned": 0.0043600562587904354,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.717794784810394,
+      "run_wall_seconds_including_evaluation": 2.7236747788265347
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed1/uniform.json",
+      "sha256": "35c3a988a515bf7956ad67ea6ac5020a374594a9aa1f74b25d947aae827f9a44",
+      "initial_state_sha256": "7e1a14c64d51a1cb6d5320482a063f4945351fd70f6f3336d875658036cf22a8",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.8682065893670052,
+      "pairwise_ned": 0.210407876230661,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.976524797268212,
+      "run_wall_seconds_including_evaluation": 2.984649943653494
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed2/hill_climbing.json",
+      "sha256": "4e65eabc7336b686369c765ee4b047d5e0f564de2403ae26b998eef04a8c9682",
+      "initial_state_sha256": "a035750336773c5dd94a42ccf5083bbca9e188a1b86ce8c5373ca013cd34f721",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.3099028623493499,
+      "pairwise_ned": 0.005344585091420534,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3758015856146812,
+      "run_wall_seconds_including_evaluation": 2.3809006111696362
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed2/mh_annealing.json",
+      "sha256": "063e4bf22c2038e9d468874255cbf29b9e9bb11d6b71bf59f15bd0a74000d5e5",
+      "initial_state_sha256": "a035750336773c5dd94a42ccf5083bbca9e188a1b86ce8c5373ca013cd34f721",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.3853362303605169,
+      "pairwise_ned": 0.006047819971870606,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.375085080973804,
+      "run_wall_seconds_including_evaluation": 2.3800241048447788
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C47A4.1.1/seed2/uniform.json",
+      "sha256": "60fa9dbc885c487dfec8eec443dc3c2191f56bbf67e6992c0d24c314e0b2c95d",
+      "initial_state_sha256": "a035750336773c5dd94a42ccf5083bbca9e188a1b86ce8c5373ca013cd34f721",
+      "matched_linear_design_k": 6,
+      "hypervolume_normalized": 0.7116437453846626,
+      "pairwise_ned": 0.20928270042194097,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.000131832435727,
+      "run_wall_seconds_including_evaluation": 3.0094749848358333
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed0/hill_climbing.json",
+      "sha256": "1decbb29df9b83aefef1f7448a9a56d12f2a02e1f1694592f431e0c81f12513a",
+      "initial_state_sha256": "e9356c430ac99401c3e1f2aa31c307f4223c3a924fbd29767ea088fb9b827039",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.0745173476230776,
+      "pairwise_ned": 0.005228442728442729,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3375255460850894,
+      "run_wall_seconds_including_evaluation": 2.3634278420358896
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed0/mh_annealing.json",
+      "sha256": "d68b7b111f6368d2bc2a883e0a1856b83cdf611248a5396dbd771f6b5b8946a5",
+      "initial_state_sha256": "e9356c430ac99401c3e1f2aa31c307f4223c3a924fbd29767ea088fb9b827039",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.0180705107330061,
+      "pairwise_ned": 0.006676319176319177,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.994506360962987,
+      "run_wall_seconds_including_evaluation": 3.0003226110711694
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed0/uniform.json",
+      "sha256": "e37d61601e18a1384948be8b6efc319028478e3663d11c51dc81b3fbe929d8b3",
+      "initial_state_sha256": "e9356c430ac99401c3e1f2aa31c307f4223c3a924fbd29767ea088fb9b827039",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.707607007317368,
+      "pairwise_ned": 0.24814993564993568,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3254593522287905,
+      "run_wall_seconds_including_evaluation": 2.3326777778565884
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed1/hill_climbing.json",
+      "sha256": "fc5141c6b405b4c23e17037a1663197e9662bb92de10bb0092b660669d974763",
+      "initial_state_sha256": "4442127b5e39427576bdc21c4678d53fdf5234acd085232a6581f6db34704019",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.42221223982531114,
+      "pairwise_ned": 0.005871943371943374,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.4046575715765357,
+      "run_wall_seconds_including_evaluation": 2.4103397368453443
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed1/mh_annealing.json",
+      "sha256": "48fc6992c56cd7664e41cbf7874393fce4834b63e1edeb0a0e5fa1c076a3b8b0",
+      "initial_state_sha256": "4442127b5e39427576bdc21c4678d53fdf5234acd085232a6581f6db34704019",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.577028123554422,
+      "pairwise_ned": 0.005550193050193052,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 3.0278962957672775,
+      "run_wall_seconds_including_evaluation": 3.0339068891480565
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed1/uniform.json",
+      "sha256": "6d157da813aa50ccd739b6e969d9e93a4bfbd598c14ae77919bce8029b93d6ef",
+      "initial_state_sha256": "4442127b5e39427576bdc21c4678d53fdf5234acd085232a6581f6db34704019",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 2.10793267041935,
+      "pairwise_ned": 0.2516087516087516,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.3129443265497684,
+      "run_wall_seconds_including_evaluation": 2.3193032671697438
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed2/hill_climbing.json",
+      "sha256": "04d0623b2e6eb55be659d2ba031b90cf26c5e8a92534c9f43367e751cd1a431c",
+      "initial_state_sha256": "cf7aaeeb62318b81e893fde0da7e410ce6639c79831087385dafbd83081c5635",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.3311545844150771,
+      "pairwise_ned": 0.004826254826254826,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.7341013341210783,
+      "run_wall_seconds_including_evaluation": 2.7395295589230955
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed2/mh_annealing.json",
+      "sha256": "46ee2008f1014a192bae78e3ebe12c01d5ced44669b163e1b5372e48942cdca6",
+      "initial_state_sha256": "cf7aaeeb62318b81e893fde0da7e410ce6639c79831087385dafbd83081c5635",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.3631452902439596,
+      "pairwise_ned": 0.00546975546975547,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.2925990824587643,
+      "run_wall_seconds_including_evaluation": 2.297959140036255
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C05E11.2.1/seed2/uniform.json",
+      "sha256": "93b5749c89f6634cb9c77a4892a16878cfb32089e2cbd923cd71bf82961338a4",
+      "initial_state_sha256": "cf7aaeeb62318b81e893fde0da7e410ce6639c79831087385dafbd83081c5635",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.5909208072818868,
+      "pairwise_ned": 0.2536196911196911,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.9706297563388944,
+      "run_wall_seconds_including_evaluation": 2.9789707139134407
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed0/hill_climbing.json",
+      "sha256": "abba24ac36a16d7a293430c8ff2f0c2966731342b64b091b592cefeaecb56091",
+      "initial_state_sha256": "1b54261880927737306f5ddf85eee2b569392797a63423e86797857d6bf258aa",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2809611731649809,
+      "pairwise_ned": 0.0018581506676744772,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 40.086067049298435,
+      "run_wall_seconds_including_evaluation": 40.12361396709457
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed0/mh_annealing.json",
+      "sha256": "67113547ba4b66bedc74609a5870feeb276bee363cf0de5efb145ffa241364ec",
+      "initial_state_sha256": "1b54261880927737306f5ddf85eee2b569392797a63423e86797857d6bf258aa",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2506300416137475,
+      "pairwise_ned": 0.002173091458805744,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 42.51923458464444,
+      "run_wall_seconds_including_evaluation": 42.535505787003785
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed0/uniform.json",
+      "sha256": "291b051133453e7977397e2ac9db3442050c706bacdb9e56efebb4b1f62a51cc",
+      "initial_state_sha256": "1b54261880927737306f5ddf85eee2b569392797a63423e86797857d6bf258aa",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.36624301185729097,
+      "pairwise_ned": 0.2629440665154951,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 39.60704926867038,
+      "run_wall_seconds_including_evaluation": 39.634042993187904
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed1/hill_climbing.json",
+      "sha256": "824a41cbf3d496b94b716592d813897df14900b4ae09b37b9ce041d6eb8fd57d",
+      "initial_state_sha256": "3ad810661397e2651a92acac43bb0b5103309ff803d8ab688153197d278daded",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.11330723680079348,
+      "pairwise_ned": 0.0019526329050138574,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 44.39230425469577,
+      "run_wall_seconds_including_evaluation": 44.409325203858316
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed1/mh_annealing.json",
+      "sha256": "4babd992fe43cb487503a931d29b832047e0f3fe78f79433dab316dcfcaa9eca",
+      "initial_state_sha256": "3ad810661397e2651a92acac43bb0b5103309ff803d8ab688153197d278daded",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.09258854743619753,
+      "pairwise_ned": 0.0014802217183169564,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 39.41160786151886,
+      "run_wall_seconds_including_evaluation": 39.42619761638343
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed1/uniform.json",
+      "sha256": "a22b839c463f371782722c42f5d7ab312c2efceeb6b6a5cc97b2b03e14c09c19",
+      "initial_state_sha256": "3ad810661397e2651a92acac43bb0b5103309ff803d8ab688153197d278daded",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.38458232436343714,
+      "pairwise_ned": 0.26325900730662627,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 36.16221588058397,
+      "run_wall_seconds_including_evaluation": 36.18550111306831
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed2/hill_climbing.json",
+      "sha256": "09e990d6e28dc30d47519971d4f0cec221bdecf294562b4154f7f4b026ee7f73",
+      "initial_state_sha256": "fe003c6daae9ad8b6a332cb61f59414444f4fedfcf0c80effec21bed28ce6ed2",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.15177330858268362,
+      "pairwise_ned": 0.0015747039556563364,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 37.12347668642178,
+      "run_wall_seconds_including_evaluation": 37.13648920226842
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed2/mh_annealing.json",
+      "sha256": "3ac29420e68245db791fa76e75d3c53eeede3963d64e84326675204fb43ca6b0",
+      "initial_state_sha256": "fe003c6daae9ad8b6a332cb61f59414444f4fedfcf0c80effec21bed28ce6ed2",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.17648912619404933,
+      "pairwise_ned": 0.0013227513227513225,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 41.76058646431193,
+      "run_wall_seconds_including_evaluation": 41.77514875680208
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C41G7.2.1/seed2/uniform.json",
+      "sha256": "0d32f52239af71f0509cadb5bd31696fc04d0f2ed01999a760e13f0e8be75264",
+      "initial_state_sha256": "fe003c6daae9ad8b6a332cb61f59414444f4fedfcf0c80effec21bed28ce6ed2",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.43086383373711773,
+      "pairwise_ned": 0.26349521289997485,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 35.89548056200147,
+      "run_wall_seconds_including_evaluation": 35.9198372089304
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed0/hill_climbing.json",
+      "sha256": "364224e4625aad1d71cd863f6379d44c3450f87db9010140a16fa186bc443be9",
+      "initial_state_sha256": "05c3116126a4d883dbe0b3a000c8ad8db15b0278906d2fde1d31bafdc8daf3ee",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.025212943109488264,
+      "pairwise_ned": 0.0012725115927962904,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 45.527632731013,
+      "run_wall_seconds_including_evaluation": 45.55365226091817
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed0/mh_annealing.json",
+      "sha256": "98e286479d0e001f5066f803c9eb4d676dc30db2b45c8ed3ce16c8f3f45fed0d",
+      "initial_state_sha256": "05c3116126a4d883dbe0b3a000c8ad8db15b0278906d2fde1d31bafdc8daf3ee",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.02644151595376011,
+      "pairwise_ned": 0.0018764153995470712,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 45.00551309110597,
+      "run_wall_seconds_including_evaluation": 45.0263711148873
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed0/uniform.json",
+      "sha256": "d9f7dccc4b0f899faa07f819d15252720909a2e477bb30456ba1e87a48c65987",
+      "initial_state_sha256": "05c3116126a4d883dbe0b3a000c8ad8db15b0278906d2fde1d31bafdc8daf3ee",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.10895676754835243,
+      "pairwise_ned": 0.2501455839534132,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 39.059991569723934,
+      "run_wall_seconds_including_evaluation": 39.08632876398042
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed1/hill_climbing.json",
+      "sha256": "23fa807ef731863dcb97d7ae0180cb9b937984835e19a1ca2feccd0176057230",
+      "initial_state_sha256": "2ddaceed071772aadc97528eb8872b46717504bc633e4df3e85eb621b490c549",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.043292657448151584,
+      "pairwise_ned": 0.0020705273374312513,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 41.76293586567044,
+      "run_wall_seconds_including_evaluation": 41.77947065606713
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed1/mh_annealing.json",
+      "sha256": "c7a811be5356e9effb75120e831b824e2e2589291d8615c86975330688ffd4e0",
+      "initial_state_sha256": "2ddaceed071772aadc97528eb8872b46717504bc633e4df3e85eb621b490c549",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.048780372264149864,
+      "pairwise_ned": 0.0023724792408066427,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 36.16188484756276,
+      "run_wall_seconds_including_evaluation": 36.177168779075146
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed1/uniform.json",
+      "sha256": "504bbfce1ad5084b3bc76c64f843d69efa86ae6fe31cd62cf19d5f5e2781da7b",
+      "initial_state_sha256": "2ddaceed071772aadc97528eb8872b46717504bc633e4df3e85eb621b490c549",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.18787995446644837,
+      "pairwise_ned": 0.24645745713361367,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 36.017730633262545,
+      "run_wall_seconds_including_evaluation": 36.044103268068284
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed2/hill_climbing.json",
+      "sha256": "5754f60fc19a5b523bfe1ca98cddda1d1dc45f8de30786652faceb4f27f19b83",
+      "initial_state_sha256": "7195903692e099c913e770122bbf7e23c5ce10a7d9c5b234ea899d484131eac2",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.027898327256773343,
+      "pairwise_ned": 0.00215679930982422,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 38.966779249720275,
+      "run_wall_seconds_including_evaluation": 38.98175495909527
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed2/mh_annealing.json",
+      "sha256": "5ecccd7d7cf51f6fbc7e5df3da2728c4819f1e06e8c5cf3847c57cd0ad742374",
+      "initial_state_sha256": "7195903692e099c913e770122bbf7e23c5ce10a7d9c5b234ea899d484131eac2",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.031047949654687334,
+      "pairwise_ned": 0.0025234551924943377,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 41.94706840347499,
+      "run_wall_seconds_including_evaluation": 41.965856255963445
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000001586.4/seed2/uniform.json",
+      "sha256": "d0d64a1cf3cd47bae30f16f4ec3b3edeb045e80d692de578ffeb667a44f4fc03",
+      "initial_state_sha256": "7195903692e099c913e770122bbf7e23c5ce10a7d9c5b234ea899d484131eac2",
+      "matched_linear_design_k": 11,
+      "hypervolume_normalized": 0.1609690262267356,
+      "pairwise_ned": 0.24791329666774506,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 44.73341023363173,
+      "run_wall_seconds_including_evaluation": 44.7629718054086
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed0/hill_climbing.json",
+      "sha256": "fdd3b89a86161130a004146dc0a689d792f3d4a9b6c1c54808a7af40a13d2f59",
+      "initial_state_sha256": "f41cabbb38a0f2cd7b3b14383aeb4be1cfa391e1d92576a31ff9ff4427f0aab7",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.0102406102772592,
+      "pairwise_ned": 0.0044774546986936364,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.54185874434188,
+      "run_wall_seconds_including_evaluation": 6.585386619903147
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed0/mh_annealing.json",
+      "sha256": "0a37acc21422b447155413b7656c6e016756550e7a3c4622d37619c56b9ec24f",
+      "initial_state_sha256": "f41cabbb38a0f2cd7b3b14383aeb4be1cfa391e1d92576a31ff9ff4427f0aab7",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.9359225252138443,
+      "pairwise_ned": 0.004951538137378842,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.6748706279322505,
+      "run_wall_seconds_including_evaluation": 6.685838062316179
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed0/uniform.json",
+      "sha256": "d70c72445b7ffc98a0b01d370b4dbd0f010ee5f96e51021b01f9cf08d6471e21",
+      "initial_state_sha256": "f41cabbb38a0f2cd7b3b14383aeb4be1cfa391e1d92576a31ff9ff4427f0aab7",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.074228452261192,
+      "pairwise_ned": 0.2505267593763169,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.083330745343119,
+      "run_wall_seconds_including_evaluation": 6.107291733846068
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed1/hill_climbing.json",
+      "sha256": "c3efda65708f12ddf7ccfd986466783e265a97d3213ea561b9c5110ce134f99b",
+      "initial_state_sha256": "33fd88861c126272e5b397e563681d36132c0d1f05504f52f9139152ace28ce6",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.08896264256491145,
+      "pairwise_ned": 0.004635482511588706,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.782767703291029,
+      "run_wall_seconds_including_evaluation": 6.791354238986969
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed1/mh_annealing.json",
+      "sha256": "cc09312823fa9f3daf197b50f50a91fa6fe0a36362c56c169ce6da8d9cc9fb4e",
+      "initial_state_sha256": "33fd88861c126272e5b397e563681d36132c0d1f05504f52f9139152ace28ce6",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.05979293134517656,
+      "pairwise_ned": 0.0032659081331647697,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.740329788997769,
+      "run_wall_seconds_including_evaluation": 6.748446480836719
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed1/uniform.json",
+      "sha256": "bc360e2cec8776d0ad21b0c7d6ec6f5dc67e3fd1283f06f7a9a18e521f43a074",
+      "initial_state_sha256": "33fd88861c126272e5b397e563681d36132c0d1f05504f52f9139152ace28ce6",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.414689007196991,
+      "pairwise_ned": 0.25510956595027395,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 5.94313866365701,
+      "run_wall_seconds_including_evaluation": 5.954219659324735
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed2/hill_climbing.json",
+      "sha256": "6f3bf43884ca0c1e305304f9c538b279939fd1321d6f7a08e64c8715adff2992",
+      "initial_state_sha256": "ce7c901ab071ba46332fe6f64fbdcf99cf5e1ea637174b3e3cb88dc8d6330181",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.5613270459365483,
+      "pairwise_ned": 0.004530130636325325,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 5.537370027974248,
+      "run_wall_seconds_including_evaluation": 5.549176844302565
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed2/mh_annealing.json",
+      "sha256": "2e702112fd99614f157c29c6f3e2de4e5c860eda49d3904f4d787d372127e997",
+      "initial_state_sha256": "ce7c901ab071ba46332fe6f64fbdcf99cf5e1ea637174b3e3cb88dc8d6330181",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.5240333425338153,
+      "pairwise_ned": 0.0038980193847450487,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 4.267504272516817,
+      "run_wall_seconds_including_evaluation": 4.274918309878558
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000017935.4/seed2/uniform.json",
+      "sha256": "8e39fb8a0a6673e938b43e068b43986efbb25d0522d02ee37b8d00cdbb87a263",
+      "initial_state_sha256": "ce7c901ab071ba46332fe6f64fbdcf99cf5e1ea637174b3e3cb88dc8d6330181",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.1272310735033204,
+      "pairwise_ned": 0.25637378845343445,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 5.806974807288498,
+      "run_wall_seconds_including_evaluation": 5.81726264115423
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed0/hill_climbing.json",
+      "sha256": "5ad7678c21b310d25073f3989aa61acd1d2c5b4c95bd71314b06ad66bc0b9a37",
+      "initial_state_sha256": "eaa1535b111f3ae37f96387d1355ef6101ea601e08b1d397079b3fe6d50b299c",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.2563057110080384,
+      "pairwise_ned": 0.006933333333333333,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.2549497997388244,
+      "run_wall_seconds_including_evaluation": 1.271914497949183
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed0/mh_annealing.json",
+      "sha256": "603068ffeca83a3b62f501dcce594ccef5b0dfe6a0b456ff7c69a0b339deb4d0",
+      "initial_state_sha256": "eaa1535b111f3ae37f96387d1355ef6101ea601e08b1d397079b3fe6d50b299c",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.2235784780804865,
+      "pairwise_ned": 0.0048000000000000004,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.0880291303619742,
+      "run_wall_seconds_including_evaluation": 1.0926929977722466
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed0/uniform.json",
+      "sha256": "c5c89488daaa8ad3f71826f1074d30424b9980096c813a4417c70488e25ca7de",
+      "initial_state_sha256": "eaa1535b111f3ae37f96387d1355ef6101ea601e08b1d397079b3fe6d50b299c",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.19095271742119121,
+      "pairwise_ned": 0.25306666666666666,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.2418255140073597,
+      "run_wall_seconds_including_evaluation": 1.2477063522674143
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed1/hill_climbing.json",
+      "sha256": "10a4841c348837deef619e09d5627686957397b1845110d77d687a94eb1cab7a",
+      "initial_state_sha256": "cf9a41a6cb43853a483f16ae666be6365397846a3854a749e4a6858dd886576f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.141231660749744,
+      "pairwise_ned": 0.0048,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.2309408113360405,
+      "run_wall_seconds_including_evaluation": 1.2409495459869504
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed1/mh_annealing.json",
+      "sha256": "b3c47e6b926346743f773c5cca2a40d34e24631e252333e7d34d46238a8a8ac0",
+      "initial_state_sha256": "cf9a41a6cb43853a483f16ae666be6365397846a3854a749e4a6858dd886576f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.14326388795675732,
+      "pairwise_ned": 0.004266666666666667,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.2523577664978802,
+      "run_wall_seconds_including_evaluation": 1.2569130440242589
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed1/uniform.json",
+      "sha256": "f0a0ff67001413cde37c0dadd455392df6fa6b90549c09128aea1d8b147e15b8",
+      "initial_state_sha256": "cf9a41a6cb43853a483f16ae666be6365397846a3854a749e4a6858dd886576f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.23558958289896637,
+      "pairwise_ned": 0.2424,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.4245481556281447,
+      "run_wall_seconds_including_evaluation": 1.4320460767485201
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed2/hill_climbing.json",
+      "sha256": "91e1193b1c2646553923073655257e9d024c7b4f2095c3a21a17f755d7c5078b",
+      "initial_state_sha256": "7c36690a72143b19d17302e8817aaf66feacb81006345a454b30be5f5808fa8f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.05800261976189207,
+      "pairwise_ned": 0.005866666666666667,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.243617218453437,
+      "run_wall_seconds_including_evaluation": 1.248465821146965
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed2/mh_annealing.json",
+      "sha256": "eec52184d65350ddc24060c00d22298c5f7f4e97015ea726dbed4445bf1a9f47",
+      "initial_state_sha256": "7c36690a72143b19d17302e8817aaf66feacb81006345a454b30be5f5808fa8f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.05639967536322961,
+      "pairwise_ned": 0.005333333333333333,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.5796982180327177,
+      "run_wall_seconds_including_evaluation": 1.585308636073023
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000045324.1/seed2/uniform.json",
+      "sha256": "61dda31b78fbb38a30de5f8c057cfd8369ffe33c5647273fd83ff58b6e0d2150",
+      "initial_state_sha256": "7c36690a72143b19d17302e8817aaf66feacb81006345a454b30be5f5808fa8f",
+      "matched_linear_design_k": 5,
+      "hypervolume_normalized": 0.05638047049480427,
+      "pairwise_ned": 0.2554666666666667,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 1.451101906131953,
+      "run_wall_seconds_including_evaluation": 1.457900193054229
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed0/hill_climbing.json",
+      "sha256": "b2eaaf77c173558562cab5c1bae23b6071bb11a7de841f8ba1762386a345c5a6",
+      "initial_state_sha256": "d79d36ed9b515307e4e79482d32d5b7bb697ae15f131d99ffb727d1ffdda4fdb",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.5412318734169859,
+      "pairwise_ned": 0.005317460317460316,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.2324444777332246,
+      "run_wall_seconds_including_evaluation": 2.246352639980614
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed0/mh_annealing.json",
+      "sha256": "4ec8ed19084819f675f7b69f75795f61578ad897329b49c62693ecd9205b7a20",
+      "initial_state_sha256": "d79d36ed9b515307e4e79482d32d5b7bb697ae15f131d99ffb727d1ffdda4fdb",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.5425436899872402,
+      "pairwise_ned": 0.005952380952380951,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.8381049996241927,
+      "run_wall_seconds_including_evaluation": 2.8440019409172237
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed0/uniform.json",
+      "sha256": "14e4c8f97513c685645b3f7cb7889388928392bca0367b49c3031c54cbc5d5e6",
+      "initial_state_sha256": "d79d36ed9b515307e4e79482d32d5b7bb697ae15f131d99ffb727d1ffdda4fdb",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.3312883703118517,
+      "pairwise_ned": 0.24738095238095245,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.808042323682457,
+      "run_wall_seconds_including_evaluation": 2.816670269705355
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed1/hill_climbing.json",
+      "sha256": "b2bf0cb05221176b866fa1cc3d26742ccda753309fed6dfac222f5f16325735b",
+      "initial_state_sha256": "a226316e8f06837e0a3d37686a5cc4c8686cc7a9e85fe422fc44ebd1c7c250ab",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.025295400139518292,
+      "pairwise_ned": 0.004682539682539682,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.815206919796765,
+      "run_wall_seconds_including_evaluation": 2.8212405601516366
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed1/mh_annealing.json",
+      "sha256": "059a279f83f86a2aa6e4df34ee40eeb4014c7063d34be58455813368e19343b9",
+      "initial_state_sha256": "a226316e8f06837e0a3d37686a5cc4c8686cc7a9e85fe422fc44ebd1c7c250ab",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.02535740076306581,
+      "pairwise_ned": 0.004841269841269841,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.817777430638671,
+      "run_wall_seconds_including_evaluation": 2.8235174883157015
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed1/uniform.json",
+      "sha256": "6f8e6d0c7a304b2f5fc2a45f5bb1b0379b5530b5e9167db7dc71f8f98a693cb4",
+      "initial_state_sha256": "a226316e8f06837e0a3d37686a5cc4c8686cc7a9e85fe422fc44ebd1c7c250ab",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.1205769140549235,
+      "pairwise_ned": 0.25007936507936507,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.792159726843238,
+      "run_wall_seconds_including_evaluation": 2.8001238820143044
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed2/hill_climbing.json",
+      "sha256": "5c41e731922dd43646fba9282f39099dd6562a89f3000ee44f37be93169c4697",
+      "initial_state_sha256": "76bd7fe4fdee93280f94f4c3a441ffcef9e82e1a193b013758d7ce23a0938eb5",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.4317610067124888,
+      "pairwise_ned": 0.0045238095238095246,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.7882132972590625,
+      "run_wall_seconds_including_evaluation": 2.793915916699916
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed2/mh_annealing.json",
+      "sha256": "11ae8a5b96ab71a694f598ba8703f21aadd180357f1b7030728a7801e365858a",
+      "initial_state_sha256": "76bd7fe4fdee93280f94f4c3a441ffcef9e82e1a193b013758d7ce23a0938eb5",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 0.4419441058150529,
+      "pairwise_ned": 0.005793650793650793,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.780416182242334,
+      "run_wall_seconds_including_evaluation": 2.786346676759422
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C17G10.10.1/seed2/uniform.json",
+      "sha256": "25b7cda39e74a3a3131fd5de6fbb50d8eff8e27cbcd9fcc508869485d6be0ca3",
+      "initial_state_sha256": "76bd7fe4fdee93280f94f4c3a441ffcef9e82e1a193b013758d7ce23a0938eb5",
+      "matched_linear_design_k": 8,
+      "hypervolume_normalized": 1.7328760844296838,
+      "pairwise_ned": 0.2538095238095238,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 2.767884370405227,
+      "run_wall_seconds_including_evaluation": 2.776066327933222
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed0/hill_climbing.json",
+      "sha256": "096930d1763b5ddbd11a42a725836031b5622ab2cf19c3e9992af29597e52f37",
+      "initial_state_sha256": "f693dc09ff2ed142679cb7a055a6e69ceea58fc42a0401a6330e00e3088d28d8",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.0587765913697191,
+      "pairwise_ned": 0.0047619047619047615,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.748830289579928,
+      "run_wall_seconds_including_evaluation": 7.775194532237947
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed0/mh_annealing.json",
+      "sha256": "5d6a66c8819a9d4f6a6449294f40b6b1eea15c3c5c40c7c54a2802513e2ea97d",
+      "initial_state_sha256": "f693dc09ff2ed142679cb7a055a6e69ceea58fc42a0401a6330e00e3088d28d8",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.05208480951660504,
+      "pairwise_ned": 0.005073140367258015,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.706856771372259,
+      "run_wall_seconds_including_evaluation": 7.71522640902549
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed0/uniform.json",
+      "sha256": "7c69beb2c5b1dacdf7913c33c8a33f7f641406ea5f1e198c3f02d6972da2d1b1",
+      "initial_state_sha256": "f693dc09ff2ed142679cb7a055a6e69ceea58fc42a0401a6330e00e3088d28d8",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.45476399464025197,
+      "pairwise_ned": 0.24270152505446616,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.137243343517184,
+      "run_wall_seconds_including_evaluation": 7.148795386776328
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed1/hill_climbing.json",
+      "sha256": "b44bc022c8543bf40d39055cc38b1b42c0c788c2a7c13576cdf0df688b55a005",
+      "initial_state_sha256": "a075b1e877adc13e83303d5e9619990cbadd00ee008fc26c7cd673983d561035",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.149197139245031,
+      "pairwise_ned": 0.00404606286959228,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.607347929850221,
+      "run_wall_seconds_including_evaluation": 7.6156475390307605
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed1/mh_annealing.json",
+      "sha256": "937a381eba617ab9a2e8afb881cdc80ac5f569095312b676cad6ee66457ac909",
+      "initial_state_sha256": "a075b1e877adc13e83303d5e9619990cbadd00ee008fc26c7cd673983d561035",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.19342441490083115,
+      "pairwise_ned": 0.00392156862745098,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 8.03901403117925,
+      "run_wall_seconds_including_evaluation": 8.047494448255748
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed1/uniform.json",
+      "sha256": "801e5d4d88752ee68ffbfd95da8e2b6e3316fdc5e53b6a11c5698f28f61f9d1a",
+      "initial_state_sha256": "a075b1e877adc13e83303d5e9619990cbadd00ee008fc26c7cd673983d561035",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.4482026529898677,
+      "pairwise_ned": 0.2435418611889199,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 6.244139627553523,
+      "run_wall_seconds_including_evaluation": 6.254792761057615
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed2/hill_climbing.json",
+      "sha256": "d2316c5b66295a0ac0ab2d38d22b590ef522c3bd4d59b57de85cf5b7a324975a",
+      "initial_state_sha256": "3d6d40a019fbf3d7404bcfea8a924cd0546313b9f9ea9d880397a51a40f82a67",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.048624507927602326,
+      "pairwise_ned": 0.00606909430438842,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.9997442765161395,
+      "run_wall_seconds_including_evaluation": 8.008320494089276
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed2/mh_annealing.json",
+      "sha256": "0f269d03548b8e11b1381dbf96be54793fd2dc997f0480db8ed563fcad56c274",
+      "initial_state_sha256": "3d6d40a019fbf3d7404bcfea8a924cd0546313b9f9ea9d880397a51a40f82a67",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.026987118393871166,
+      "pairwise_ned": 0.004979769685652039,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 7.976143604144454,
+      "run_wall_seconds_including_evaluation": 7.989635210018605
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/C03B1.12.1/seed2/uniform.json",
+      "sha256": "b139555ef64335acc5424cc59bb736d2598daca412d5d54c5f2dfa537a6ec351",
+      "initial_state_sha256": "3d6d40a019fbf3d7404bcfea8a924cd0546313b9f9ea9d880397a51a40f82a67",
+      "matched_linear_design_k": 10,
+      "hypervolume_normalized": 0.23350888703334852,
+      "pairwise_ned": 0.2387799564270151,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 5.906887929420918,
+      "run_wall_seconds_including_evaluation": 5.919414261355996
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 0,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed0/hill_climbing.json",
+      "sha256": "e185954148bb8832cd6a21c2756162c0e96a2e86bf4f567e41e27b0bb0b45222",
+      "initial_state_sha256": "dc42e41e7d663b50ba8f4b1acc052116e602e5bbe2adfcd91eb5ffdc7a9cae8a",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.3019897601737698,
+      "pairwise_ned": 0.0016203703703703697,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 20.44055194174871,
+      "run_wall_seconds_including_evaluation": 20.466202214360237
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 0,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed0/mh_annealing.json",
+      "sha256": "57a622c34234aceafbfa6574e71e6793822371d7fa4d22fe6c055135f60644f7",
+      "initial_state_sha256": "dc42e41e7d663b50ba8f4b1acc052116e602e5bbe2adfcd91eb5ffdc7a9cae8a",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2778995101605893,
+      "pairwise_ned": 0.0022685185185185187,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 21.272297602146864,
+      "run_wall_seconds_including_evaluation": 21.282291658222675
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 0,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed0/uniform.json",
+      "sha256": "37e56fc3f3d8660f5a950a330ad1312712945431738f56c9d5981fb756b4abd2",
+      "initial_state_sha256": "dc42e41e7d663b50ba8f4b1acc052116e602e5bbe2adfcd91eb5ffdc7a9cae8a",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.5301434343160784,
+      "pairwise_ned": 0.25011574074074067,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 21.169611575081944,
+      "run_wall_seconds_including_evaluation": 21.189264643006027
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 1,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed1/hill_climbing.json",
+      "sha256": "fb1c195540cb43eda2e88b13bda1963c061fe72300f147cf1fa695c1fc5e465f",
+      "initial_state_sha256": "d8308318bd43944ec7ed2bf4cf8b486b97ddb9522e7df3dfaa98c5460f2cc7da",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2939254014852017,
+      "pairwise_ned": 0.0023611111111111107,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 17.135222132317722,
+      "run_wall_seconds_including_evaluation": 17.156368407886475
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 1,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed1/mh_annealing.json",
+      "sha256": "83cbd9bf9452740c020299c35d74bd722ddf73918a14096c2937cbb3faba6afd",
+      "initial_state_sha256": "d8308318bd43944ec7ed2bf4cf8b486b97ddb9522e7df3dfaa98c5460f2cc7da",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.2650912061259492,
+      "pairwise_ned": 0.001666666666666665,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 17.17405237723142,
+      "run_wall_seconds_including_evaluation": 17.18519006576389
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 1,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed1/uniform.json",
+      "sha256": "cc84771c685ae6bd0b553d2242576670d5297a9af1a1f563ac42b815587c6f15",
+      "initial_state_sha256": "d8308318bd43944ec7ed2bf4cf8b486b97ddb9522e7df3dfaa98c5460f2cc7da",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.5190999053411496,
+      "pairwise_ned": 0.2481944444444444,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 19.13985640136525,
+      "run_wall_seconds_including_evaluation": 19.158393134828657
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 2,
+      "method": "hill_climbing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed2/hill_climbing.json",
+      "sha256": "700cb71aca9dac51bbe01ca6378f4877912724257dbbbc81211d789df7f2d32c",
+      "initial_state_sha256": "05d1c7c2bf20b028ff518303ce648358d86483dd5a7ae8866c6550a22b8a6824",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.19124465812612934,
+      "pairwise_ned": 0.0016203703703703699,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 17.757858071941882,
+      "run_wall_seconds_including_evaluation": 17.768202286679298
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 2,
+      "method": "mh_annealing",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed2/mh_annealing.json",
+      "sha256": "1ee2f56c36beb6b1ee5e207a37f714e2aba798aca5809fac805bac31890becad",
+      "initial_state_sha256": "05d1c7c2bf20b028ff518303ce648358d86483dd5a7ae8866c6550a22b8a6824",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 0.23832284257273756,
+      "pairwise_ned": 0.0025000000000000005,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 21.42997266119346,
+      "run_wall_seconds_including_evaluation": 21.442292706109583
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "seed": 2,
+      "method": "uniform",
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk39/common_input_actual_set_v1/runs/ENSACAT00000006494.4/seed2/uniform.json",
+      "sha256": "f24f097e90dac0029c14254df2c44268be7b3d3c3f1a1e3e6556078766df3088",
+      "initial_state_sha256": "05d1c7c2bf20b028ff518303ce648358d86483dd5a7ae8866c6550a22b8a6824",
+      "matched_linear_design_k": 9,
+      "hypervolume_normalized": 1.2772850870157246,
+      "pairwise_ned": 0.24828703703703706,
+      "unique_scorer_calls": 11,
+      "objective_scoring_seconds": 22.07678771344945,
+      "run_wall_seconds_including_evaluation": 22.097631956916302
+    }
+  ],
+  "wall_seconds": 342.52174459490925,
+  "input_semantics": {
+    "algorithm_input": "protein sequence plus fixed terminal TAA; simple-search x0 is random synonymous codons constructed from a protein-only template",
+    "native_cds_used_in_search": false,
+    "native_derived_normalization_in_search": false,
+    "search_normalization": null,
+    "terminal_stop": "TAA",
+    "external_primary_methods_verified_terminal_stop": "TAA for every LinearDesign-11 and EnsembleDesign-11 actual output",
+    "evaluation_reference": "Frozen native-source calibration is loaded only after search and applied identically to simple-search and external actual sets for evaluation only"
+  },
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "untouched24_evaluated": false,
+  "new_functional_labels_read": false,
+  "dense_external_curve_inferred": false,
+  "external_sota_authorized": false,
+  "sota_claim": false,
+  "rk_g1_pass": false,
+  "manuscript_submittable": false,
+  "tests": [
+    {
+      "effect": -29.71461778089193,
+      "ci95": [
+        -41.92569883799738,
+        -19.552535077886407
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        -13.336570807229057,
+        -22.715608027499098,
+        -61.97947997254341,
+        -22.06292838109616,
+        -27.29448252459345,
+        -30.604385807946155,
+        -66.71597857478945,
+        -7.710630422967479,
+        -35.869881228527916,
+        -18.183388848341753,
+        -102.82963760600069,
+        -8.869988332524121,
+        -36.12096852221246,
+        -8.035206703746846,
+        -15.76735508042772,
+        -27.057824825596597,
+        -28.76084796714569,
+        -0.9479564228668146
+      ],
+      "n_records": 18,
+      "method": "hill_climbing",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "hypervolume_normalized",
+      "seed_mean_effects": [
+        -29.585216058360793,
+        -29.765521632421876,
+        -29.793115651893142
+      ],
+      "all_seed_effects_positive": false,
+      "confirmatory": true,
+      "supported_advantage": false,
+      "holm_p": 9.99950002499875e-05
+    },
+    {
+      "effect": -0.06659770044292795,
+      "ci95": [
+        -0.08224659476641297,
+        -0.051134681780848165
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        -0.01623093681917211,
+        -0.1105093889407615,
+        -0.020592020592020588,
+        -0.04846079846079846,
+        -0.11724867724867727,
+        -0.11595238095238096,
+        -0.1142619344866536,
+        -0.08056185437137815,
+        -0.04810126582278479,
+        -0.07010676156583627,
+        -0.07424382716049381,
+        -0.04606286959228134,
+        -0.06545863183031324,
+        -0.09858201058201059,
+        -0.054879227053140085,
+        -0.0726862694075809,
+        -0.02775308641975309,
+        -0.01706666666666666
+      ],
+      "n_records": 18,
+      "method": "hill_climbing",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "pairwise_ned",
+      "seed_mean_effects": [
+        -0.06655041835378157,
+        -0.06661591877366058,
+        -0.06662676420134174
+      ],
+      "all_seed_effects_positive": false,
+      "confirmatory": true,
+      "supported_advantage": false,
+      "holm_p": 9.99950002499875e-05
+    },
+    {
+      "effect": -29.71350437377736,
+      "ci95": [
+        -41.92333473837025,
+        -19.55245553414956
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        -13.313819741782858,
+        -22.710308659409446,
+        -61.93602672165411,
+        -22.102581218679585,
+        -27.274782465659083,
+        -30.600533502514025,
+        -66.69294832750093,
+        -7.719408424068967,
+        -35.92351601327752,
+        -18.180100211655695,
+        -102.83158635964264,
+        -8.874042641768982,
+        -36.167895688774415,
+        -7.988073126103789,
+        -15.79914388343343,
+        -27.039157061571483,
+        -28.730432274255577,
+        -0.9587224062398816
+      ],
+      "n_records": 18,
+      "method": "mh_annealing",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "hypervolume_normalized",
+      "seed_mean_effects": [
+        -29.60608959849919,
+        -29.76494914992007,
+        -29.769474372912807
+      ],
+      "all_seed_effects_positive": false,
+      "confirmatory": false,
+      "supported_advantage": null,
+      "holm_p": null
+    },
+    {
+      "effect": -0.06643187588889946,
+      "ci95": [
+        -0.0821335628899311,
+        -0.0509139927707235
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        -0.015849673202614375,
+        -0.1108102500259363,
+        -0.020002145002144995,
+        -0.04834054834054833,
+        -0.11703703703703705,
+        -0.11526455026455028,
+        -0.11518340170025565,
+        -0.0806983287142017,
+        -0.047679324894514756,
+        -0.06968259103490419,
+        -0.07396604938271602,
+        -0.04551820728291315,
+        -0.0659678325607529,
+        -0.09798941798941797,
+        -0.05565217391304347,
+        -0.07152976551883657,
+        -0.026469135802469138,
+        -0.018133333333333324
+      ],
+      "n_records": 18,
+      "method": "mh_annealing",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "pairwise_ned",
+      "seed_mean_effects": [
+        -0.0662842478866423,
+        -0.06661242848711407,
+        -0.06639895129294199
+      ],
+      "all_seed_effects_positive": false,
+      "confirmatory": false,
+      "supported_advantage": null,
+      "holm_p": null
+    },
+    {
+      "effect": -29.252641858250954,
+      "ci95": [
+        -41.38631870056268,
+        -19.182600725946063
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        -12.91345705403188,
+        -22.422315595458723,
+        -60.7866212014917,
+        -21.86646966374975,
+        -26.69965774524246,
+        -29.542234778436995,
+        -66.13319818766922,
+        -7.49874793916435,
+        -35.536325585132715,
+        -18.06292157486605,
+        -102.31651473703808,
+        -8.654166926798087,
+        -35.46909577748486,
+        -7.844818251380677,
+        -15.351280431137248,
+        -26.549841752351437,
+        -27.96105741731471,
+        -0.9388288297683856
+      ],
+      "n_records": 18,
+      "method": "uniform",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "hypervolume_normalized",
+      "seed_mean_effects": [
+        -29.26716100682387,
+        -29.213325409656576,
+        -29.277439158272443
+      ],
+      "all_seed_effects_positive": false,
+      "confirmatory": false,
+      "supported_advantage": null,
+      "holm_p": null
+    },
+    {
+      "effect": 0.1695770352229501,
+      "ci95": [
+        0.15396983061744512,
+        0.18559797722220786
+      ],
+      "sign_flip_p": 4.999750012499375e-05,
+      "per_record_effects": [
+        0.22570806100217866,
+        0.12620603797074376,
+        0.22522522522522526,
+        0.15584415584415587,
+        0.11502645502645503,
+        0.12962962962962965,
+        0.12222816717198735,
+        0.1808757453598724,
+        0.1562119081106423,
+        0.1762320716057371,
+        0.17275462962962962,
+        0.19701213818860874,
+        0.18399705014749265,
+        0.1448042328042328,
+        0.16164251207729471,
+        0.15985775002168442,
+        0.19175308641975305,
+        0.2273777777777778
+      ],
+      "n_records": 18,
+      "method": "uniform",
+      "comparator": "lineardesign_lambda11",
+      "endpoint": "pairwise_ned",
+      "seed_mean_effects": [
+        0.16902071314380895,
+        0.1699882200161625,
+        0.16972217250887875
+      ],
+      "all_seed_effects_positive": true,
+      "confirmatory": false,
+      "supported_advantage": null,
+      "holm_p": null
+    }
+  ],
+  "primary_gate_passed": false,
+  "per_record": [
+    {
+      "record_id": "C01H6.8b.1",
+      "external": {
+        "n_actual_outputs": 6,
+        "n_unique_objective_vectors": 6,
+        "n_pareto_points": 5,
+        "hypervolume_normalized": 13.75906337719716,
+        "pairwise_ned": 0.021895424836601302,
+        "dense_budget_step_auc_v2": null,
+        "k": 6
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.207361014056056,
+            "pairwise_ned": 0.005882352941176471,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.7309693368023474,
+            "pairwise_ned": 0.005882352941176471,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.3291473590459087,
+            "pairwise_ned": 0.005228758169934641,
+            "k": 6
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.19236790984119467,
+            "pairwise_ned": 0.006372549019607844,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.6719421070904688,
+            "pairwise_ned": 0.006045751633986928,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.4714208893112396,
+            "pairwise_ned": 0.005718954248366013,
+            "k": 6
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 1.072242678254362,
+            "pairwise_ned": 0.25245098039215685,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.8464964868030105,
+            "pairwise_ned": 0.2503267973856209,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.6180798044384701,
+            "pairwise_ned": 0.2400326797385621,
+            "k": 6
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C03B1.12.1",
+      "external": {
+        "n_actual_outputs": 10,
+        "n_unique_objective_vectors": 10,
+        "n_pareto_points": 10,
+        "hypervolume_normalized": 22.80114077367988,
+        "pairwise_ned": 0.11546840958605663,
+        "dense_budget_step_auc_v2": null,
+        "k": 10
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.0587765913697191,
+            "pairwise_ned": 0.0047619047619047615,
+            "k": 10
+          },
+          "1": {
+            "hypervolume_normalized": 0.149197139245031,
+            "pairwise_ned": 0.00404606286959228,
+            "k": 10
+          },
+          "2": {
+            "hypervolume_normalized": 0.048624507927602326,
+            "pairwise_ned": 0.00606909430438842,
+            "k": 10
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.05208480951660504,
+            "pairwise_ned": 0.005073140367258015,
+            "k": 10
+          },
+          "1": {
+            "hypervolume_normalized": 0.19342441490083115,
+            "pairwise_ned": 0.00392156862745098,
+            "k": 10
+          },
+          "2": {
+            "hypervolume_normalized": 0.026987118393871166,
+            "pairwise_ned": 0.004979769685652039,
+            "k": 10
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.45476399464025197,
+            "pairwise_ned": 0.24270152505446616,
+            "k": 10
+          },
+          "1": {
+            "hypervolume_normalized": 0.4482026529898677,
+            "pairwise_ned": 0.2435418611889199,
+            "k": 10
+          },
+          "2": {
+            "hypervolume_normalized": 0.23350888703334852,
+            "pairwise_ned": 0.2387799564270151,
+            "k": 10
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C05E11.2.1",
+      "external": {
+        "n_actual_outputs": 8,
+        "n_unique_objective_vectors": 8,
+        "n_pareto_points": 7,
+        "hypervolume_normalized": 62.5887746964979,
+        "pairwise_ned": 0.025900900900900897,
+        "dense_budget_step_auc_v2": null,
+        "k": 8
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 1.0745173476230776,
+            "pairwise_ned": 0.005228442728442729,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.42221223982531114,
+            "pairwise_ned": 0.005871943371943374,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.3311545844150771,
+            "pairwise_ned": 0.004826254826254826,
+            "k": 8
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 1.0180705107330061,
+            "pairwise_ned": 0.006676319176319177,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.577028123554422,
+            "pairwise_ned": 0.005550193050193052,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.3631452902439596,
+            "pairwise_ned": 0.00546975546975547,
+            "k": 8
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 1.707607007317368,
+            "pairwise_ned": 0.24814993564993568,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 2.10793267041935,
+            "pairwise_ned": 0.2516087516087516,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 1.5909208072818868,
+            "pairwise_ned": 0.2536196911196911,
+            "k": 8
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C07E3.9.1",
+      "external": {
+        "n_actual_outputs": 4,
+        "n_unique_objective_vectors": 4,
+        "n_pareto_points": 4,
+        "hypervolume_normalized": 22.411033756777087,
+        "pairwise_ned": 0.051948051948051945,
+        "dense_budget_step_auc_v2": null,
+        "k": 4
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.5954534151920123,
+            "pairwise_ned": 0.0032467532467532465,
+            "k": 4
+          },
+          "1": {
+            "hypervolume_normalized": 0.42401026810729453,
+            "pairwise_ned": 0.0036075036075036075,
+            "k": 4
+          },
+          "2": {
+            "hypervolume_normalized": 0.02485244374347077,
+            "pairwise_ned": 0.0036075036075036075,
+            "k": 4
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.6480578487008569,
+            "pairwise_ned": 0.0036075036075036075,
+            "k": 4
+          },
+          "1": {
+            "hypervolume_normalized": 0.2595879836074753,
+            "pairwise_ned": 0.0036075036075036075,
+            "k": 4
+          },
+          "2": {
+            "hypervolume_normalized": 0.017711781984182388,
+            "pairwise_ned": 0.0036075036075036075,
+            "k": 4
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.7292596779915703,
+            "pairwise_ned": 0.20418470418470416,
+            "k": 4
+          },
+          "1": {
+            "hypervolume_normalized": 0.639553122322391,
+            "pairwise_ned": 0.20923520923520925,
+            "k": 4
+          },
+          "2": {
+            "hypervolume_normalized": 0.2648794787680475,
+            "pairwise_ned": 0.20995670995670998,
+            "k": 4
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C14A6.7.1",
+      "external": {
+        "n_actual_outputs": 5,
+        "n_unique_objective_vectors": 5,
+        "n_pareto_points": 4,
+        "hypervolume_normalized": 27.408794572427762,
+        "pairwise_ned": 0.12317460317460319,
+        "dense_budget_step_auc_v2": null,
+        "k": 5
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.24980428887062564,
+            "pairwise_ned": 0.005714285714285714,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.03275764484256497,
+            "pairwise_ned": 0.006349206349206349,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.06037420978973977,
+            "pairwise_ned": 0.005714285714285714,
+            "k": 5
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.2817770853921741,
+            "pairwise_ned": 0.006349206349206349,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.02856618729710208,
+            "pairwise_ned": 0.006349206349206349,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.09169304761676458,
+            "pairwise_ned": 0.005714285714285714,
+            "k": 5
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.3885715436627819,
+            "pairwise_ned": 0.24253968253968256,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 1.1471046092011037,
+            "pairwise_ned": 0.2342857142857143,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.5917343286920214,
+            "pairwise_ned": 0.2377777777777778,
+            "k": 5
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C17G10.10.1",
+      "external": {
+        "n_actual_outputs": 8,
+        "n_unique_objective_vectors": 8,
+        "n_pareto_points": 6,
+        "hypervolume_normalized": 30.937148568035816,
+        "pairwise_ned": 0.1207936507936508,
+        "dense_budget_step_auc_v2": null,
+        "k": 8
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.5412318734169859,
+            "pairwise_ned": 0.005317460317460316,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.025295400139518292,
+            "pairwise_ned": 0.004682539682539682,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.4317610067124888,
+            "pairwise_ned": 0.0045238095238095246,
+            "k": 8
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.5425436899872402,
+            "pairwise_ned": 0.005952380952380951,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.02535740076306581,
+            "pairwise_ned": 0.004841269841269841,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.4419441058150529,
+            "pairwise_ned": 0.005793650793650793,
+            "k": 8
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 1.3312883703118517,
+            "pairwise_ned": 0.24738095238095245,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 1.1205769140549235,
+            "pairwise_ned": 0.25007936507936507,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 1.7328760844296838,
+            "pairwise_ned": 0.2538095238095238,
+            "k": 8
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C31E10.3b.1",
+      "external": {
+        "n_actual_outputs": 7,
+        "n_unique_objective_vectors": 7,
+        "n_pareto_points": 6,
+        "hypervolume_normalized": 66.80959759847052,
+        "pairwise_ned": 0.11940431603352954,
+        "dense_budget_step_auc_v2": null,
+        "k": 7
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.16788129274884356,
+            "pairwise_ned": 0.004993757802746567,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.0714140249556579,
+            "pairwise_ned": 0.0054396290351346535,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.0415617533386963,
+            "pairwise_ned": 0.004993757802746567,
+            "k": 7
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.16682315035636003,
+            "pairwise_ned": 0.0041020153379703935,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.14369619474910944,
+            "pairwise_ned": 0.004458712323880863,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.03942846780329591,
+            "pairwise_ned": 0.0041020153379703935,
+            "k": 7
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.822756080906623,
+            "pairwise_ned": 0.2378277153558052,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.7247403618073245,
+            "pairwise_ned": 0.24469413233458173,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.4817017896899696,
+            "pairwise_ned": 0.2423756019261637,
+            "k": 7
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C41G7.2.1",
+      "external": {
+        "n_actual_outputs": 9,
+        "n_unique_objective_vectors": 9,
+        "n_pareto_points": 9,
+        "hypervolume_normalized": 7.892644329150299,
+        "pairwise_ned": 0.08235701688082638,
+        "dense_budget_step_auc_v2": null,
+        "k": 9
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.2809611731649809,
+            "pairwise_ned": 0.0018581506676744772,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.11330723680079348,
+            "pairwise_ned": 0.0019526329050138574,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.15177330858268362,
+            "pairwise_ned": 0.0015747039556563364,
+            "k": 9
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.2506300416137475,
+            "pairwise_ned": 0.002173091458805744,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.09258854743619753,
+            "pairwise_ned": 0.0014802217183169564,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.17648912619404933,
+            "pairwise_ned": 0.0013227513227513225,
+            "k": 9
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.36624301185729097,
+            "pairwise_ned": 0.2629440665154951,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.38458232436343714,
+            "pairwise_ned": 0.26325900730662627,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.43086383373711773,
+            "pairwise_ned": 0.26349521289997485,
+            "k": 9
+          }
+        }
+      }
+    },
+    {
+      "record_id": "C47A4.1.1",
+      "external": {
+        "n_actual_outputs": 6,
+        "n_unique_objective_vectors": 6,
+        "n_pareto_points": 5,
+        "hypervolume_normalized": 36.2163693701836,
+        "pairwise_ned": 0.05330520393811532,
+        "dense_budget_step_auc_v2": null,
+        "k": 6
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.5323310961445822,
+            "pairwise_ned": 0.005344585091420535,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.19723046647311798,
+            "pairwise_ned": 0.0049226441631504934,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.3099028623493499,
+            "pairwise_ned": 0.005344585091420534,
+            "k": 6
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.33322236865934013,
+            "pairwise_ned": 0.0064697609001406475,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.160001471698373,
+            "pairwise_ned": 0.0043600562587904354,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.3853362303605169,
+            "pairwise_ned": 0.006047819971870606,
+            "k": 6
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.4602810204009843,
+            "pairwise_ned": 0.20886075949367086,
+            "k": 6
+          },
+          "1": {
+            "hypervolume_normalized": 0.8682065893670052,
+            "pairwise_ned": 0.210407876230661,
+            "k": 6
+          },
+          "2": {
+            "hypervolume_normalized": 0.7116437453846626,
+            "pairwise_ned": 0.20928270042194097,
+            "k": 6
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000001586.4",
+      "external": {
+        "n_actual_outputs": 11,
+        "n_unique_objective_vectors": 11,
+        "n_pareto_points": 11,
+        "hypervolume_normalized": 18.21552349094656,
+        "pairwise_ned": 0.07194004097918687,
+        "dense_budget_step_auc_v2": null,
+        "k": 11
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.025212943109488264,
+            "pairwise_ned": 0.0012725115927962904,
+            "k": 11
+          },
+          "1": {
+            "hypervolume_normalized": 0.043292657448151584,
+            "pairwise_ned": 0.0020705273374312513,
+            "k": 11
+          },
+          "2": {
+            "hypervolume_normalized": 0.027898327256773343,
+            "pairwise_ned": 0.00215679930982422,
+            "k": 11
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.02644151595376011,
+            "pairwise_ned": 0.0018764153995470712,
+            "k": 11
+          },
+          "1": {
+            "hypervolume_normalized": 0.048780372264149864,
+            "pairwise_ned": 0.0023724792408066427,
+            "k": 11
+          },
+          "2": {
+            "hypervolume_normalized": 0.031047949654687334,
+            "pairwise_ned": 0.0025234551924943377,
+            "k": 11
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.10895676754835243,
+            "pairwise_ned": 0.2501455839534132,
+            "k": 11
+          },
+          "1": {
+            "hypervolume_normalized": 0.18787995446644837,
+            "pairwise_ned": 0.24645745713361367,
+            "k": 11
+          },
+          "2": {
+            "hypervolume_normalized": 0.1609690262267356,
+            "pairwise_ned": 0.24791329666774506,
+            "k": 11
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000006494.4",
+      "external": {
+        "n_actual_outputs": 9,
+        "n_unique_objective_vectors": 9,
+        "n_pareto_points": 9,
+        "hypervolume_normalized": 103.09202421259573,
+        "pairwise_ned": 0.07611111111111109,
+        "dense_budget_step_auc_v2": null,
+        "k": 9
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.3019897601737698,
+            "pairwise_ned": 0.0016203703703703697,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.2939254014852017,
+            "pairwise_ned": 0.0023611111111111107,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.19124465812612934,
+            "pairwise_ned": 0.0016203703703703699,
+            "k": 9
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.2778995101605893,
+            "pairwise_ned": 0.0022685185185185187,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.2650912061259492,
+            "pairwise_ned": 0.001666666666666665,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.23832284257273756,
+            "pairwise_ned": 0.0025000000000000005,
+            "k": 9
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.5301434343160784,
+            "pairwise_ned": 0.25011574074074067,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.5190999053411496,
+            "pairwise_ned": 0.2481944444444444,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 1.2772850870157246,
+            "pairwise_ned": 0.24828703703703706,
+            "k": 9
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000011420.3",
+      "external": {
+        "n_actual_outputs": 7,
+        "n_unique_objective_vectors": 7,
+        "n_pareto_points": 6,
+        "hypervolume_normalized": 9.005856072050104,
+        "pairwise_ned": 0.05158730158730157,
+        "dense_budget_step_auc_v2": null,
+        "k": 7
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.22745514499136932,
+            "pairwise_ned": 0.0063025210084033615,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.12845057745675656,
+            "pairwise_ned": 0.005602240896358544,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.05169749612982276,
+            "pairwise_ned": 0.004668534080298786,
+            "k": 7
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.23192929355490002,
+            "pairwise_ned": 0.004668534080298785,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.11524628191309301,
+            "pairwise_ned": 0.006769374416433241,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.048264715375369235,
+            "pairwise_ned": 0.006769374416433241,
+            "k": 7
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.40923344302871784,
+            "pairwise_ned": 0.24626517273576093,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.327925870503407,
+            "pairwise_ned": 0.2511671335200747,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.31790812222392706,
+            "pairwise_ned": 0.24836601307189538,
+            "k": 7
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000017935.4",
+      "external": {
+        "n_actual_outputs": 8,
+        "n_unique_objective_vectors": 8,
+        "n_pareto_points": 8,
+        "hypervolume_normalized": 36.67447862180536,
+        "pairwise_ned": 0.0700063211125158,
+        "dense_budget_step_auc_v2": null,
+        "k": 8
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 1.0102406102772592,
+            "pairwise_ned": 0.0044774546986936364,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.08896264256491145,
+            "pairwise_ned": 0.004635482511588706,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.5613270459365483,
+            "pairwise_ned": 0.004530130636325325,
+            "k": 8
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.9359225252138443,
+            "pairwise_ned": 0.004951538137378842,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 0.05979293134517656,
+            "pairwise_ned": 0.0032659081331647697,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 0.5240333425338153,
+            "pairwise_ned": 0.0038980193847450487,
+            "k": 8
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 1.074228452261192,
+            "pairwise_ned": 0.2505267593763169,
+            "k": 8
+          },
+          "1": {
+            "hypervolume_normalized": 1.414689007196991,
+            "pairwise_ned": 0.25510956595027395,
+            "k": 8
+          },
+          "2": {
+            "hypervolume_normalized": 1.1272310735033204,
+            "pairwise_ned": 0.25637378845343445,
+            "k": 8
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000025296.3",
+      "external": {
+        "n_actual_outputs": 7,
+        "n_unique_objective_vectors": 7,
+        "n_pareto_points": 6,
+        "hypervolume_normalized": 8.380456932849953,
+        "pairwise_ned": 0.10425396825396825,
+        "dense_budget_step_auc_v2": null,
+        "k": 7
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.43922090333230096,
+            "pairwise_ned": 0.00584126984126984,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.4346055934391281,
+            "pairwise_ned": 0.006095238095238095,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.16192419053789273,
+            "pairwise_ned": 0.005079365079365078,
+            "k": 7
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.4746641511161582,
+            "pairwise_ned": 0.006603174603174604,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.4836811261102286,
+            "pairwise_ned": 0.006349206349206349,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.21880614301210438,
+            "pairwise_ned": 0.00584126984126984,
+            "k": 7
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.4280609716754522,
+            "pairwise_ned": 0.24609523809523814,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.7032406399232884,
+            "pairwise_ned": 0.24787301587301586,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.4756144328090851,
+            "pairwise_ned": 0.2532063492063492,
+            "k": 7
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000027077.3",
+      "external": {
+        "n_actual_outputs": 5,
+        "n_unique_objective_vectors": 5,
+        "n_pareto_points": 5,
+        "hypervolume_normalized": 16.118402583048173,
+        "pairwise_ned": 0.06144927536231883,
+        "dense_budget_step_auc_v2": null,
+        "k": 5
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.5750012630677157,
+            "pairwise_ned": 0.005797101449275362,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.26136511359195425,
+            "pairwise_ned": 0.0063768115942029,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.21677613120168637,
+            "pairwise_ned": 0.00753623188405797,
+            "k": 5
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.5259272242681095,
+            "pairwise_ned": 0.006376811594202898,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.22788187472585628,
+            "pairwise_ned": 0.0057971014492753615,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.2039669998502655,
+            "pairwise_ned": 0.005217391304347828,
+            "k": 5
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 1.3228429069451204,
+            "pairwise_ned": 0.22000000000000003,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.5207705706026595,
+            "pairwise_ned": 0.2255072463768116,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.45775297818499916,
+            "pairwise_ned": 0.22376811594202897,
+            "k": 5
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000037188.1",
+      "external": {
+        "n_actual_outputs": 7,
+        "n_unique_objective_vectors": 7,
+        "n_pareto_points": 6,
+        "hypervolume_normalized": 27.247806713621518,
+        "pairwise_ned": 0.07719663457368377,
+        "dense_budget_step_auc_v2": null,
+        "k": 7
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.3763805310429513,
+            "pairwise_ned": 0.0043368895827912216,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.03159960372869795,
+            "pairwise_ned": 0.004683840749414518,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.16196552930311375,
+            "pairwise_ned": 0.004510365166102872,
+            "k": 7
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.3791535997346924,
+            "pairwise_ned": 0.004510365166102871,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.03078862681073091,
+            "pairwise_ned": 0.005377743082661114,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.21600672960468575,
+            "pairwise_ned": 0.007112498915777605,
+            "k": 7
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.8071233836934092,
+            "pairwise_ned": 0.23662069563708907,
+            "k": 7
+          },
+          "1": {
+            "hypervolume_normalized": 0.7330852716518035,
+            "pairwise_ned": 0.24121779859484777,
+            "k": 7
+          },
+          "2": {
+            "hypervolume_normalized": 0.5536862284650282,
+            "pairwise_ned": 0.23332465955416776,
+            "k": 7
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000044901.1",
+      "external": {
+        "n_actual_outputs": 9,
+        "n_unique_objective_vectors": 9,
+        "n_pareto_points": 9,
+        "hypervolume_normalized": 28.853056068667268,
+        "pairwise_ned": 0.03348148148148149,
+        "dense_budget_step_auc_v2": null,
+        "k": 9
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.057960814627423286,
+            "pairwise_ned": 0.006370370370370372,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.1427584334613754,
+            "pairwise_ned": 0.004740740740740738,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.07590505647594273,
+            "pairwise_ned": 0.0060740740740740755,
+            "k": 9
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.041268338842889433,
+            "pairwise_ned": 0.007259259259259261,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.2161713878011901,
+            "pairwise_ned": 0.007703703703703705,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 0.11043165659100211,
+            "pairwise_ned": 0.0060740740740740755,
+            "k": 9
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.4985212396490748,
+            "pairwise_ned": 0.22570370370370366,
+            "k": 9
+          },
+          "1": {
+            "hypervolume_normalized": 0.7424409169799265,
+            "pairwise_ned": 0.22762962962962963,
+            "k": 9
+          },
+          "2": {
+            "hypervolume_normalized": 1.435033797428665,
+            "pairwise_ned": 0.22237037037037036,
+            "k": 9
+          }
+        }
+      }
+    },
+    {
+      "record_id": "ENSACAT00000045324.1",
+      "external": {
+        "n_actual_outputs": 5,
+        "n_unique_objective_vectors": 5,
+        "n_pareto_points": 4,
+        "hypervolume_normalized": 1.0998030867067061,
+        "pairwise_ned": 0.022933333333333326,
+        "dense_budget_step_auc_v2": null,
+        "k": 5
+      },
+      "methods": {
+        "hill_climbing": {
+          "0": {
+            "hypervolume_normalized": 0.2563057110080384,
+            "pairwise_ned": 0.006933333333333333,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.141231660749744,
+            "pairwise_ned": 0.0048,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.05800261976189207,
+            "pairwise_ned": 0.005866666666666667,
+            "k": 5
+          }
+        },
+        "mh_annealing": {
+          "0": {
+            "hypervolume_normalized": 0.2235784780804865,
+            "pairwise_ned": 0.0048000000000000004,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.14326388795675732,
+            "pairwise_ned": 0.004266666666666667,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.05639967536322961,
+            "pairwise_ned": 0.005333333333333333,
+            "k": 5
+          }
+        },
+        "uniform": {
+          "0": {
+            "hypervolume_normalized": 0.19095271742119121,
+            "pairwise_ned": 0.25306666666666666,
+            "k": 5
+          },
+          "1": {
+            "hypervolume_normalized": 0.23558958289896637,
+            "pairwise_ned": 0.2424,
+            "k": 5
+          },
+          "2": {
+            "hypervolume_normalized": 0.05638047049480427,
+            "pairwise_ned": 0.2554666666666667,
+            "k": 5
+          }
+        }
+      }
+    }
+  ],
+  "common_input_proxy_task_resolved": false,
+  "decision": "COMMON_INPUT_ACTUAL_SET_TASK_UNRESOLVED",
+  "scientific_gate_passed": false,
+  "allowed_conclusion": "A common-input, matched-cardinality terminal actual-set proxy comparison on 18 development records, with full search provenance and paired uncertainty.",
+  "forbidden_conclusion": "No unified time-matched ranking, functional effectiveness, untouched generalization, full seven-method dense matrix, external SOTA authorization, CodonFlow-RK generator improvement, RK-G1 closure, or manuscript-submittable claim."
+}
