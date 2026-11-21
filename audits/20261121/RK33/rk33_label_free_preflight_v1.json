@@ -1,0 +1,234 @@
+{
+  "checks": [
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/variant_counts.csv",
+        "sha256": "3158cba10d8c7c22d8276531a66eba134cf5f5d1414e490baf05526ed22d86ef"
+      },
+      "name": "input_hash_main_csv",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk_functional/mordstein2020/recovery_full_v1/references_r1.fasta",
+        "sha256": "8dacbe7f970918e55a8f62c7184898001001901a6a0e05ce562c6d5c361dd205"
+      },
+      "name": "input_hash_references_r1_fasta",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/home/codonflow-a8-rk/scripts/a8_rk02_mordstein_structure_increment.py",
+        "sha256": "9838de20edd6a52e3f49f0f53f43ea5ec90ab1eba6be1ed5825a33f72c71b7e2"
+      },
+      "name": "input_hash_rk02_feature_implementation",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/home/codonflow-a8-rk/scripts/a8_rk28_run_sequence_cluster_ood.py",
+        "sha256": "1b371cec2eaa8007c7aeb151e1b3232e1c347a91cc8287c68c890e6c3f85544d"
+      },
+      "name": "input_hash_rk28_analysis_implementation",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/home/codonflow-a8-rk-external/GFN_for_mRNA_design-952ccf9682988ef88cf1251877e918b85fbee9e9/CAI_calculator.py",
+        "sha256": "be13d48f2483e49000ccfe95f7ef64ddf814b1afb1678d398a1f3eb91df9bd8a"
+      },
+      "name": "input_hash_cai_wrapper",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/fold_assignments.csv",
+        "sha256": "9491d8c18d682f3f0279a4686bd5e47a5e7ab6d98e67aa696962e886236ee195"
+      },
+      "name": "input_hash_rk28_fold_assignments",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk28/mordstein_observed_r1_sequence_cluster_ood_v1/oof_predictions.csv",
+        "sha256": "bbdaa9dc8d92c3c7ee884fbe02ac745f1873624759930a56835f1c695d62b000"
+      },
+      "name": "input_hash_rk28_oof_predictions",
+      "pass": true
+    },
+    {
+      "details": {
+        "path": "/home/codonflow-a8-rk/audits/20261121/RK28/rk28_sequence_coverage_v1.json",
+        "sha256": "772a000a15aa53680a03195057e767fbadc670e3d6a1a89c119e479319a644a9"
+      },
+      "name": "input_hash_rk28_coverage_report",
+      "pass": true
+    },
+    {
+      "details": {
+        "rows": 152,
+        "unique_ids": 152
+      },
+      "name": "variant_rows_and_ids",
+      "pass": true
+    },
+    {
+      "details": {
+        "lengths": [
+          300
+        ],
+        "unique_sequences": 152
+      },
+      "name": "unique_300nt_acgt",
+      "pass": true
+    },
+    {
+      "details": {
+        "local_coordinate": "CDS4-45",
+        "note": "No folding or other model feature is computed.",
+        "unique_local42": 93
+      },
+      "name": "local42_coordinates_valid",
+      "pass": true
+    },
+    {
+      "details": {
+        "headers": 152,
+        "observed": "CDS_4_303",
+        "start_atg_and_upstream4_observed": false
+      },
+      "name": "fasta_observed_coordinate_provenance",
+      "pass": true
+    },
+    {
+      "details": {
+        "columns": [
+          "seed",
+          "variant_id",
+          "sequence_cluster_id",
+          "fold"
+        ],
+        "rows": 1520
+      },
+      "name": "rk28_assignment_shape",
+      "pass": true
+    },
+    {
+      "details": {
+        "seeds": 10,
+        "variants_per_seed": [
+          152
+        ]
+      },
+      "name": "rk28_assignment_coverage",
+      "pass": true
+    },
+    {
+      "details": {
+        "clusters": 74
+      },
+      "name": "rk28_cluster_coverage",
+      "pass": true
+    },
+    {
+      "details": {
+        "folds": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "name": "rk28_fold_domain",
+      "pass": true
+    },
+    {
+      "details": {
+        "fold_clusters": [
+          15,
+          15,
+          16,
+          15,
+          13
+        ],
+        "fold_sizes": [
+          30,
+          31,
+          31,
+          30,
+          30
+        ]
+      },
+      "name": "primary_fold_coverage",
+      "pass": true
+    },
+    {
+      "details": {
+        "leaking_seed_folds": 0
+      },
+      "name": "all_50_cluster_partitions_disjoint",
+      "pass": true
+    },
+    {
+      "details": {
+        "evaluated": 400,
+        "new": 200,
+        "reused": 200
+      },
+      "name": "frozen_fit_accounting",
+      "pass": true
+    },
+    {
+      "details": {
+        "multiplicity": "One Holm family across exactly 12 primary tests.",
+        "tests": 12
+      },
+      "name": "twelve_endpoint_family",
+      "pass": true
+    },
+    {
+      "details": {
+        "alternative_lengths": 0,
+        "functional_untouched_read": false,
+        "local_length": 42
+      },
+      "name": "no_untouched_or_window_search",
+      "pass": true
+    }
+  ],
+  "checks_passed": 21,
+  "checks_total": 21,
+  "coverage_feasible": true,
+  "expression_or_model_fit_performed": false,
+  "functional_untouched_read": false,
+  "local_mfe_computed": false,
+  "model_fit_authorized": true,
+  "outcome_columns_read": [],
+  "protocol_sha256": "d5a3282f0d03a384b3d77c3d30d2a98b315c0624d16e6d97563d09cee60a96fe",
+  "schema": "a8-rk33-label-free-preflight-v1",
+  "selected_coverage": {
+    "clusters": 74,
+    "primary_seed_fold_clusters": [
+      15,
+      15,
+      16,
+      15,
+      13
+    ],
+    "primary_seed_fold_sizes": [
+      30,
+      31,
+      31,
+      30,
+      30
+    ],
+    "unique_local42": 93,
+    "variants": 152
+  },
+  "source_columns_read": [
+    "variant_id",
+    "sequence_5prime_300nt"
+  ],
+  "status": "PASS_RK33_LABEL_FREE_PREFLIGHT"
+}

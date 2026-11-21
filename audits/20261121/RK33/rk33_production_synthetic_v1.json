@@ -1,0 +1,126 @@
+{
+  "checks": [
+    {
+      "details": {
+        "expected": -5.0,
+        "length": 42,
+        "observed": -5.0
+      },
+      "name": "local42_exact_slice_and_vienna",
+      "pass": true
+    },
+    {
+      "details": -5.0,
+      "name": "local42_finite",
+      "pass": true
+    },
+    {
+      "details": [
+        0.03,
+        0.04,
+        0.04
+      ],
+      "name": "holm_monotonic_running_max",
+      "pass": true
+    },
+    {
+      "details": [
+        "local42_vs_simple__ridge_spearman_effect",
+        "local42_vs_simple__ridge_mse_improvement",
+        "local42_vs_simple__histgb_spearman_effect",
+        "local42_vs_simple__histgb_mse_improvement",
+        "local42_vs_full1__ridge_spearman_effect",
+        "local42_vs_full1__ridge_mse_improvement",
+        "local42_vs_full1__histgb_spearman_effect",
+        "local42_vs_full1__histgb_mse_improvement",
+        "local42_vs_full3__ridge_spearman_effect",
+        "local42_vs_full3__ridge_mse_improvement",
+        "local42_vs_full3__histgb_spearman_effect",
+        "local42_vs_full3__histgb_mse_improvement"
+      ],
+      "name": "test_order_12_unique",
+      "pass": true
+    },
+    {
+      "details": 8,
+      "name": "eight_absolute_arms",
+      "pass": true
+    },
+    {
+      "details": 12,
+      "name": "twelve_seed_effects",
+      "pass": true
+    },
+    {
+      "details": 0.015326102556742494,
+      "name": "spearman_sign_convention",
+      "pass": true
+    },
+    {
+      "details": -0.005323153911415979,
+      "name": "mse_sign_convention",
+      "pass": true
+    },
+    {
+      "details": 12,
+      "name": "inference_12_rows",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "inference_finite",
+      "pass": true
+    },
+    {
+      "details": [
+        64,
+        74
+      ],
+      "name": "bootstrap_array_shapes",
+      "pass": true
+    },
+    {
+      "details": [
+        64,
+        74
+      ],
+      "name": "permutation_array_shapes",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "p_value_bounds",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "conclusion_all12",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "conclusion_simple_only",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "conclusion_simple_fail",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "new_fit_arms_frozen",
+      "pass": true
+    },
+    {
+      "details": true,
+      "name": "no_functional_untouched_access",
+      "pass": true
+    }
+  ],
+  "checks_passed": 18,
+  "checks_total": 18,
+  "research_outcome_used": false,
+  "schema": "a8-rk33-production-synthetic-v1",
+  "status": "PASS"
+}
