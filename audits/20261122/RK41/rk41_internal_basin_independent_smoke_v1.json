@@ -1,0 +1,589 @@
+{
+  "schema": "a8-rk41-independent-verification-v1",
+  "summary": "audits/20261122/RK41/rk41_internal_basin_initialization_smoke_v1.json",
+  "summary_sha256": "66d521cb1c20a1831a8a89cb4347f367ca397f0a5b2880ea4e35908c53c04bcc",
+  "protocol_sha256": "9ed2657dfe698bc096eb1e1fe853a723f26bd69dcd3b0bc768e4f946412dc83a",
+  "production_code_commit": "db1ea1db9863281c409067b5cd1075a9e7a56c6d",
+  "smoke": true,
+  "n_runs": 6,
+  "n_raw_points": 66,
+  "n_new_runs_full_trajectory_reconstructed": 4,
+  "n_unique_sequences_independently_rescored": 30,
+  "max_objective_abs_error": 0.0,
+  "scientific_gate_passed": false,
+  "external_sota_authorized": false,
+  "time_matched_comparison": false,
+  "functional_untouched_evaluated": false,
+  "rk_g1_pass": false,
+  "manuscript_submittable": false,
+  "status": "PASS",
+  "n_checks": 113,
+  "n_pass": 113,
+  "checks": [
+    {
+      "check": "summary_sha256_recorded",
+      "passed": true,
+      "detail": "66d521cb1c20a1831a8a89cb4347f367ca397f0a5b2880ea4e35908c53c04bcc"
+    },
+    {
+      "check": "protocol_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "external_matrix_identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "summary_run_accounting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "new_call_accounting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "accepted_call_accounting",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "exact_arm_coverage",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "calibration_identity_C01H6.8b.1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_12",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_13",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_14",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_15",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_18",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_19",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_20",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_21",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_25",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_26",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_27",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_28",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_29",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_30",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_31",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_34",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_35",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_36",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_37",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_38",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_39",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_40",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_41",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_42",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_43",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_44",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_sha_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "run_identity_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_47",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_49",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_50",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_51",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_52",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_53",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_54",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "duplicate_objective_consistency_55",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "accepted_initialization_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'raw_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "accepted_initialization_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'calibrated_random_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "full_trajectory_reconstruction_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pool_identity_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "selection_identity_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "shared_cache_cost_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "normalization_semantics_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw_evaluation_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "initial_metrics_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'raw_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "full_trajectory_reconstruction_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pool_identity_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "selection_identity_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "shared_cache_cost_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "normalization_semantics_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw_evaluation_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "initial_metrics_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'raw_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "full_trajectory_reconstruction_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pool_identity_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "selection_identity_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "shared_cache_cost_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "normalization_semantics_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw_evaluation_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "initial_metrics_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'calibrated_pool_first_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "budget_legality_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "objectives_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "full_trajectory_reconstruction_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "pool_identity_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "selection_identity_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "shared_cache_cost_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "normalization_semantics_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw_evaluation_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "initial_metrics_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "descriptor_metrics_('C01H6.8b.1', 0, 'calibrated_pool_best_b11')",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "global_objective_recompute",
+      "passed": true,
+      "detail": 0.0
+    },
+    {
+      "check": "all_new_trajectories_reconstructed",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "check": "pool_identity_summary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_scientific_gate_passed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_external_sota_authorized",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_time_matched_comparison",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_functional_untouched_evaluated",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_rk_g1_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "boundary_manuscript_submittable",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}
