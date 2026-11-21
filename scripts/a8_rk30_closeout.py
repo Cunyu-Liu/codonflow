@@ -166,7 +166,7 @@ def main() -> None:
         commit = None
     code_hashes = {}
     for relative in [
-        "scripts/a8_rk30_download_hela_r1.py", "scripts/a8_rk30_fixed_reference_counts.py",
+        "scripts/a8_rk30_download_hela_r1.py", "scripts/a8_rk30_spool_transfer.py", "scripts/a8_rk30_fixed_reference_counts.py",
         "scripts/a8_rk30_run_matched_context.py", "scripts/a8_rk30_verify_raw_counts.py",
         "scripts/a8_rk30_verify_model.py", "scripts/a8_rk30_test_freeze.py",
         "scripts/a8_rk30_test_model.py", "scripts/a8_rk30_closeout.py",
@@ -277,7 +277,7 @@ These 12 endpoints have a separate Holm family and cannot rescue a failed transp
 
 ```bash
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
-/home/codonflow-clean-env-v1/bin/python scripts/a8_rk30_test_freeze.py --protocol configs/a8-rk30-mordstein-matched-context-v1.json
+/home/codonflow-clean-env-v1/bin/python scripts/a8_rk30_test_freeze.py
 /home/codonflow-clean-env-v1/bin/python scripts/a8_rk30_test_model.py
 /home/codonflow-clean-env-v1/bin/python scripts/a8_rk30_verify_raw_counts.py --protocol configs/a8-rk30-mordstein-matched-context-v1.json --artifact-root <RK30_ROOT>
 /home/codonflow-clean-env-v1/bin/python scripts/a8_rk30_verify_model.py --protocol configs/a8-rk30-mordstein-matched-context-v1.json --artifact-root <RK30_ROOT> --production-summary <RK30_ROOT>/RK30_MODEL_SUMMARY.json --report <RK30_ROOT>/RK30_MODEL_INDEPENDENT.json
