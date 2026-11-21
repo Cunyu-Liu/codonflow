@@ -87,6 +87,12 @@ def context_sequences(utr: str, cds: str) -> dict[str, str]:
     return result
 
 
+def cds_gc_features(cds: str) -> tuple[float, float]:
+    sequence = np.array(list(cds.upper()))
+    gc_mask = (sequence == "G") | (sequence == "C")
+    return float(np.mean(gc_mask)), float(np.mean(gc_mask[2::3]))
+
+
 def mfe(sequence: str, dangles: int) -> float:
     if dangles not in (0, 2):
         raise ValueError("unsupported dangles")
@@ -309,15 +315,15 @@ def main() -> None:
             raise ValueError("full-mRNA coverage failure")
         if set(full) - set("ACGT") or hashlib.sha256(cds.encode()).hexdigest() != cds_sha:
             raise ValueError("CDS identity failure")
-        sequence = np.array(list(cds))
+        gc_cds, gc3_cds = cds_gc_features(cds)
         rows.append({
             "cds_sha256": cds_sha, "exact_cds_group": str(group["exact_cds_group"].iloc[0]),
             "first_source_row": int(group["source_row"].min()),
             "source_rows": ";".join(str(int(x)) for x in sorted(group["source_row"])),
             "seqIds": ";".join(str(x) for x in group["seqId"]), "n_measurements": len(group),
             "CAI": float(group["CAI"].iloc[0]),
-            "gc_cds": float(np.mean((sequence == "G") | (sequence == "C"))),
-            "gc3_cds": float(np.mean((sequence[2::3] == "G") | (sequence == "C"))),
+            "gc_cds": gc_cds,
+            "gc3_cds": gc3_cds,
             "target": float(group["log10_expression"].mean()), "cds": cds, "utr": utr,
         })
     analysis = pd.DataFrame(rows).sort_values("first_source_row").reset_index(drop=True)

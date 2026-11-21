@@ -38,6 +38,13 @@ def test_matched_factorial_sequences():
     assert contexts["exact_real"][7:] == contexts["upstream_only"][7:]
 
 
+def test_gc3_uses_third_codon_positions_only():
+    gc, gc3 = production.cds_gc_features("ATGCCCGGG")
+    assert np.isclose(gc, 7 / 9) and np.isclose(gc3, 1.0)
+    gc, gc3 = production.cds_gc_features("AAATTTAAA")
+    assert np.isclose(gc, 0.0) and np.isclose(gc3, 0.0)
+
+
 def test_vienna_exact_and_n_masked_energies():
     utr = "ACGU" * 36
     cds = "ATG" + "".join(np.random.default_rng(34).choice(list("ACGT"), size=717))

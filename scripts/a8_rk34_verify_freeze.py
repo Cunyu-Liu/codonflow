@@ -21,6 +21,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--report", type=Path, required=True)
+    parser.add_argument("--test-log", type=Path, default=Path("audits/20261121/RK34/rk34_synthetic_tests_v1.log"))
+    parser.add_argument("--expected-test-count", type=int, default=8)
+    parser.add_argument("--production-result", type=Path, default=Path("audits/20261121/RK34/rk34_start_context_result_v1.json"))
     args = parser.parse_args()
     if args.report.exists():
         raise FileExistsError(args.report)
@@ -63,10 +66,11 @@ def main() -> None:
     check("sensitivity_cannot_upgrade", protocol["scientific_boundaries"]["sensitivity_can_upgrade_failed_primary"] is False)
     check("functional_and_generator_boundaries", not protocol["scientific_boundaries"]["functional_untouched_read"] and not protocol["scientific_boundaries"]["generator_training_authorized"])
     check("no_untouched_protein_sota_rkg1_claim", all(not protocol["scientific_boundaries"][key] for key in ("independent_untouched_confirmation", "protein_ood", "full_external_sota", "rk_g1_complete")))
-    test_log = (ROOT / "audits/20261121/RK34/rk34_synthetic_tests_v1.log").read_text()
-    check("synthetic_tests_pass", "8 passed" in test_log)
-    result_path = ROOT / "audits/20261121/RK34/rk34_start_context_result_v1.json"
-    check("no_production_result_before_freeze", not result_path.exists())
+    test_log_path = args.test_log if args.test_log.is_absolute() else ROOT / args.test_log
+    test_log = test_log_path.read_text()
+    check("synthetic_tests_pass", f"{args.expected_test_count} passed" in test_log, {"test_log": str(test_log_path), "expected_test_count": args.expected_test_count})
+    result_path = args.production_result if args.production_result.is_absolute() else ROOT / args.production_result
+    check("no_production_result_before_freeze", not result_path.exists(), str(result_path))
     payload = {
         "schema": "a8-rk34-freeze-verification-v1",
         "status": "PASS" if all(row["pass"] for row in checks) else "FAIL",
