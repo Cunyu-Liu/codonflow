@@ -98,7 +98,7 @@ def main():
     check("live_read_ok", response.get("ok") is True, response.get("ok"))
     check("deck_page_count", len(live) == 139, len(live))
     check("pre_write_page_count", len(before) == 130, len(before))
-    check("deck_revision", response["data"]["revision_id"] == 102, response["data"]["revision_id"])
+    check("deck_revision", response["data"]["revision_id"] == 103, response["data"]["revision_id"])
 
     legacy_differences = []
     for index in range(130):
@@ -112,6 +112,13 @@ def main():
     new = live[130:]
     actual_ids = [slide.get("id") for slide in new]
     check("new_page_ids_and_order", actual_ids == EXPECTED_IDS, actual_ids)
+    fit_accounting_ok = (
+        result["ridge_fit_count"] == 450
+        and 10 * 5 * (3 + 3 * 2) == 450
+        and "10 seeds × 5 folds × 9 fits" in normalized_text(new[0])
+        and "10 seeds × 5 folds × 3 contexts" not in normalized_text(new[0])
+    )
+    check("design_fit_accounting", fit_accounting_ok, "450 = 10 seeds × 5 folds × (3 shared + 3 contexts × 2 per-context fits)")
 
     expected_row_counts = [0, 0, 4, 9, 9, 9, 19, 7, 0]
     actual_row_counts = [len(rows[0]) if rows else 0 for rows in map(table_rows, new)]
@@ -174,7 +181,7 @@ def main():
     screenshot_records = []
     screenshot_failures = []
     for index, page_number in enumerate(range(131, 140)):
-        response_name = "rk31_131_screenshot_response_v2.json" if page_number == 131 else f"rk31_{page_number}_screenshot_response.json"
+        response_name = "rk31_131_screenshot_response_v3.json" if page_number == 131 else f"rk31_{page_number}_screenshot_response.json"
         screenshot_response_path = screenshot_dir / response_name
         screenshot_response = json.loads(screenshot_response_path.read_text())
         image_path = Path(screenshot_response["data"]["output"])
@@ -220,6 +227,7 @@ def main():
             "The first page-135 add request timed out; a full read showed 134 pages/revision 97 before the confirmed-unwritten page was retried once.",
             "The first screenshot request used --page-id, which the installed CLI rejected; --slide-id from the installed help was used successfully.",
             "Page 130 differed only in XML tail whitespace after append; slide content was unchanged.",
+            "Page 131 fit accounting was clarified in place at revision 103 to 10 seeds × 5 folds × 9 fits, where nine fits are three shared plus six per-context fits.",
         ],
     }
     output = Path(args.output)
