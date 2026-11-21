@@ -1,0 +1,30 @@
+........................................................................ [ 15%]
+................................................................... [ 29%]
+........................................................................ [ 45%]
+........................................................................ [ 60%]
+........................................................................ [ 76%]
+......................................s................................. [ 91%]
+........................................                                 [100%]
+=============================== warnings summary ===============================
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:56: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    rho = stats.spearmanr(y, pred).statistic
+
+tests/test_a8_rk08_full_function.py::test_constant_prediction_spearman_is_null
+tests/test_a8_rk08_full_function.py::test_cluster_balanced_mse_is_not_row_weighted
+  /home/codonflow-a8-rk/scripts/a8_rk08_compare_full_function.py:57: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+    pearson = stats.pearsonr(y, pred).statistic
+
+tests/test_model_rl.py::test_model_forward_shapes
+tests/test_model_rl.py::test_edit_flow_loss_finite
+tests/test_pretrain_protocol.py::test_validation_is_reproducible_across_calls
+tests/test_pretrain_protocol.py::test_validation_generator_uses_model_device
+tests/test_pretrain_protocol.py::test_conditionality_probe_uses_device_and_matching_corruption
+tests/test_pretrain_protocol.py::test_validation_micro_batching_preserves_full_batch_loss[False]
+tests/test_pretrain_protocol.py::test_validation_micro_batching_preserves_full_batch_loss[True]
+  /home/codonflow-a8-rk/src/codonflow/models/edit_flow.py:94: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+    self.encoder = nn.TransformerEncoder(layer, num_layers=cfg.n_layers)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+466 passed, 1 skipped, 11 warnings, 5 subtests passed in 18.84s

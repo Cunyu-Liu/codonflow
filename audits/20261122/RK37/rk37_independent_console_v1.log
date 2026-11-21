@@ -1,0 +1,8 @@
+/home/codonflow-a8-rk/scripts/a8_rk37_verify_translation_pivot.py:161: RuntimeWarning: invalid value encountered in scalar divide
+  spearman.append(float(((yr - yr.mean()) * (pr - pr.mean())).mean() / (yr.std() * pr.std())))
+{
+  "status": "PASS_RK37_INDEPENDENT",
+  "checks": "771/771",
+  "decision": "CROSS_STUDY_TRANSLATION_TASK_UNRESOLVED_COMPONENT_DIAGNOSIS_REQUIRED",
+  "failures": []
+}
