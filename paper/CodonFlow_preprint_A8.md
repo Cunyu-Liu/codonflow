@@ -1697,6 +1697,38 @@ The common-input actual-set task therefore remains unresolved. These results do 
 | Scope | Common-protein, fixed-TAA, actual-cardinality proxy evaluation; unresolved task; no superiority, external SOTA, time-matched, functional, protein-OOD, untouched, generator, wet-lab, RK-G1, or submittable-manuscript claim |
 :::
 
+### 6.51 Normalization and short budget both contribute, while external initialization exposes a larger basin diagnostic
+
+RK40 separated scale mismatch, insufficient budget, and unfavorable initialization after RK39. Retaining the verified `raw_random_b11` arm, it added raw and calibrated random search at budgets 11 and 101, plus raw and calibrated external-seeded search at budget 11. This produced 270 new runs and 12,690 new unique-scorer calls; with 54 accepted RK39 runs, 324 runs were analyzed. Primary endpoints were trajectory-maximum normalized weighted utility and single-point normalized hypervolume. Seeds were averaged within records before paired inference across 18 records; each primary family required positive lower 95% confidence limits, Holm-adjusted sign-flip significance, and positive effects for all three seed means.
+
+Both frozen primary families passed (Table 34). Native-source calibration improved short-budget utility by 0.040193 and single-point hypervolume by 0.018154. Increasing raw-search budget from 11 to 101 produced larger gains of 1.739176 and 1.322804, respectively. All four confidence intervals excluded zero in the positive direction, and every seed-averaged effect was positive. Across all 1,188 paired prefix checks, the 101-point trajectories exactly reproduced their corresponding 11-point sequences and objective vectors, so the budget contrast cannot be explained by stochastic restart divergence or inconsistent scorer evaluation.
+
+**Table 34. Frozen RK40 primary inference.**
+
+| Primary family | Endpoint | Effect | 95% CI | Holm sign-flip P | Seed direction |
+|---|---|---:|---|---:|---|
+| Normalization at budget 11 | Best normalized weighted utility | 0.040193 | [0.025678, 0.055808] | 0.00019999 | 3/3 positive |
+| Normalization at budget 11 | Best single-point normalized HV | 0.018154 | [0.009908, 0.028232] | 0.00019999 | 3/3 positive |
+| Raw-search budget 101 vs 11 | Best normalized weighted utility | 1.739176 | [1.530088, 1.964111] | 0.000099995 | 3/3 positive |
+| Raw-search budget 101 vs 11 | Best single-point normalized HV | 1.322804 | [0.992600, 1.666782] | 0.000099995 | 3/3 positive |
+
+Table 35 reports absolute endpoint values. At budget 101, calibration additionally improved utility by 0.573728 (95% CI [0.420208, 0.741780]) and single-point hypervolume by 1.282496 (95% CI [0.861641, 1.728430]), although this interaction was diagnostic rather than a third primary gate. External initialization produced much larger descriptive contrasts: raw external-seeded minus raw random-search effects were 8.587983 for utility (95% CI [7.108140, 10.268182]) and 15.787477 for single-point hypervolume (95% CI [10.702811, 21.919415]). These initialization analyses were not confirmatory. Because the external seeds are LinearDesign outputs, they diagnose search basins rather than demonstrating an independent CodonFlow design.
+
+**Table 35. Mean absolute RK40 trajectory-maximum performance.**
+
+| Search arm | Best normalized weighted utility | Best single-point normalized HV | Evidence role |
+|---|---:|---:|---|
+| Raw random, budget 11 | 2.457592 | 0.287328 | Accepted primary baseline |
+| Raw random, budget 101 | 4.196768 | 1.610131 | Primary budget arm |
+| Calibrated random, budget 11 | 2.497785 | 0.305482 | Primary normalization arm |
+| Calibrated random, budget 101 | 4.770496 | 2.892627 | Diagnostic interaction |
+| Raw external-seeded, budget 11 | 11.045575 | 16.074805 | Diagnostic basin control |
+| Calibrated external-seeded, budget 11 | 11.049869 | 16.135076 | Diagnostic basin control |
+
+Values average seeds within records and then records. Independent verification passed 5,031/5,031 checks, recomputed 11,275 unique sequences with maximum absolute objective error 0.0, and reproduced the decision `NORMALIZATION_AND_SHORT_BUDGET_BOTH_CONTRIBUTE`. The detached clean closeout passed 948/948 checks; the full project suite recorded 484 passed tests, one skip, and five passed subtests.
+
+This mechanism result does not reverse RK39's common-input actual-set defeat. Calibrated arms read development-native calibration before search, external-seeded arms use comparator outputs, and the primary endpoints are internal trajectory maxima rather than external actual-set or unified time-matched outcomes. External SOTA, functional-untouched evaluation, protein OOD, RK-G1, and manuscript-submittable status therefore remain unresolved.
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
