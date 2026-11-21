@@ -1,0 +1,107 @@
+{
+  "schema": "a8-rk32-structure-definition-protocol-v2",
+  "status": "FROZEN_BEFORE_RK32_EXPRESSION_ASSOCIATION_OR_MODEL_FIT",
+  "created_date": "2026-11-21",
+  "scientific_question": "Within one fixed Kudla exact-CDS cohort and one frozen sequence-cluster OOD split, does the incremental predictive value of mRNA structure depend on the structure source, sequence coordinate system, or coverage definition?",
+  "analysis_type": "retrospective_outcome_known_followup_not_independent_confirmation",
+  "preparation_commit": "b7fc9697a336ed826f356a11a30fadcef5275512",
+  "expression_association_or_model_fit_performed_before_freeze": false,
+  "supersedes": "audits/20261121/RK32/a8_rk32_structure_definition_protocol_v1.json",
+  "engineering_correction": "v1 stopped before any model fit because preflight exact_cds_group values are KUDLA_CDS_* identifiers, not CDS SHA256 values. v2 joins preflight on exact_cds_group and asserts one identifier per exact-CDS group. Scientific arms, outcomes, folds, models, inference, and acceptance gates are unchanged; no model result was available when this correction was made.",
+  "inputs": {
+    "main_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "sha256": "91cd75e742f443517d3fb0ee6c031c0e6df196388c555bad7313e0468f77e95c"
+    },
+    "preflight_csv": {
+      "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/preflight_candidate_energies.csv",
+      "sha256": "5310cdfa65578c86d6b491bfdfc63d916d33ca610f8778650045f488e910a906"
+    },
+    "preflight_report": {
+      "path": "audits/20261121/RK32/rk32_structure_preflight_v1.json",
+      "sha256": "61b68f62f718b32984c8b6ea21a8696072767b320ec8d8dcea0c4554598f24bb"
+    },
+    "coverage_report": {
+      "path": "/home/codonflow-a8-rk/audits/20261121/RK27/rk27_sequence_coverage_v1.json",
+      "sha256": "14aa89fd9fa1be85d0019013375c7b5d638887b401f5e7f73083249797b71ed4"
+    }
+  },
+  "cohort": {
+    "measurement_rows": 154,
+    "exact_cds_groups": 150,
+    "sequence_clusters": 37,
+    "aggregation": "Arithmetic mean of log10_expression within exact CDS; identical CDS, protein, CAI and source structure values required within a group.",
+    "cluster_definition": "Reuse RK27 frozen 90% complete-linkage clusters without reclustering or outcome-dependent filtering.",
+    "utr_length_nt": 144,
+    "cds_length_nt": 720,
+    "full_mrna_length_nt": 864
+  },
+  "structure_coordinates": {
+    "vienna_local_column": "local_utr_minus4_cds38__dangles2",
+    "vienna_full_cds_column": "full_cds__dangles2",
+    "vienna_full_mrna_column": "full_mrna__dangles2",
+    "local_selection_rule": "Lowest label-free RMSE against source-reported rnaEnergyMinus4to37 among candidates with the stated UTR/CDS boundary; preflight selected UTR[-4:] + CDS[:38], dangles=2, 37 C.",
+    "full_cds_rule": "The complete 720-nt CDS including the terminal stop, ViennaRNA dangles=2, 37 C; deliberately distinct from full mRNA.",
+    "full_mrna_rule": "The complete 864-nt sequenceWithUtr = 144-nt 5'UTR + 720-nt CDS, ViennaRNA dangles=2, 37 C.",
+    "mordstein_like_rule": "ViennaRNA dangles=0, 37 C on CDS[:300], plus minimum and arithmetic mean MFE over all 253 contiguous 48-nt windows whose start positions are 0 through 252 within CDS[:300]."
+  },
+  "simple_features": ["CAI", "gc_cds", "gc3_cds"],
+  "structure_features": {
+    "source_local": ["mfe_5prime_kcal_mol"],
+    "vienna_local": ["vienna_local_mfe"],
+    "source_full": ["rna_energy_entire_prot_kcal_mol"],
+    "vienna_full_cds": ["vienna_full_cds_mfe"],
+    "vienna_full_mrna": ["vienna_full_mrna_mfe"],
+    "mordstein_like": ["mfe_cds300", "mfe_cds48_min", "mfe_cds48_mean"]
+  },
+  "models": {
+    "ridge": "StandardScaler + Ridge(alpha=1.0)",
+    "histgb": "HistGradientBoostingRegressor(loss=squared_error, learning_rate=0.05, max_iter=200, max_leaf_nodes=7, min_samples_leaf=10, l2_regularization=1.0, early_stopping=False, random_state=seed+fold)",
+    "device": "CPU_ONLY",
+    "threads": "OPENBLAS/OMP/MKL/NUMEXPR each fixed to 1"
+  },
+  "outer_evaluation": {
+    "folds": 5,
+    "primary_seed": 20261221,
+    "seeds": [20261221, 20261222, 20261223, 20261224, 20261225, 20261226, 20261227, 20261228, 20261229, 20261230],
+    "fold_assignment": "Exactly reproduce RK27 make_cluster_folds: shuffle sorted cluster IDs with default_rng(seed), stable-sort by descending cluster size, assign whole clusters to least-loaded folds, resolving load ties with the same RNG.",
+    "leakage_rule": "No sequence cluster may occur in both train and test. No target or model result may be used for clustering, fold assignment, arm selection or tuning."
+  },
+  "fit_accounting": {
+    "feature_sets_per_model": 7,
+    "models": 2,
+    "fits_per_fold": 14,
+    "folds": 50,
+    "total_model_fits": 700,
+    "formula": "10 seeds * 5 folds * 2 models * (1 shared simple + 6 structure arms) = 700"
+  },
+  "primary_inference": {
+    "evaluation_seed": 20261221,
+    "resamples": 20000,
+    "bootstrap_seed": 20261321,
+    "permutation_seed": 20261322,
+    "unit": "sequence_cluster",
+    "bootstrap": "Resample 37 cluster IDs with replacement, include all exact-CDS rows from each selected cluster, recompute paired OOF effects and take percentile 95% CI.",
+    "permutation": "Draw one sign per cluster and swap simple and structure OOF predictions within clusters; recompute every effect directly and use two-sided absolute-effect p-values with plus-one correction.",
+    "metrics": ["Spearman structure minus simple", "MSE simple minus structure"],
+    "primary_test_count": 24,
+    "multiplicity": "Holm across all 24 primary tests: 2 models * 6 structure arms * 2 metrics.",
+    "seed_stability": "At least 8 of 10 seed-level effects must be positive.",
+    "arm_pass_rule": "A structure arm passes only if all four endpoints have observed effect > 0, bootstrap CI lower bound > 0, Holm p < 0.05, and at least 8/10 positive seeds.",
+    "global_interpretation": "ALL only if all six arms pass; DEFINITION_DEPENDENT if at least one but not all pass; NO_STRUCTURE_DEFINITION if none passes."
+  },
+  "code": {
+    "production_script": "scripts/a8_rk32_run_structure_definition.py",
+    "production_script_sha256": "d16f66694493b48a910f46221c7adc9a9bf782c52589aa22670918767d89c7eb"
+  },
+  "forbidden_claims": [
+    "independent untouched confirmation",
+    "functional or protein OOD",
+    "prospective DBTL or wet-lab validation",
+    "full external SOTA or unified time-matched comparison",
+    "complete seven-method dense generation-call AUC",
+    "RK-G1 completion"
+  ],
+  "functional_untouched_read": false,
+  "generator_training_authorized": false
+}

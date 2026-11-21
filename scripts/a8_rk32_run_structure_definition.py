@@ -127,14 +127,14 @@ def main() -> None:
 
     usecols = [
         "source_row", "seqId", "cds", "protein_aa", "CAI", "log10_expression",
-        "mfe_5prime_kcal_mol", "rna_energy_entire_prot_kcal_mol", "cds_sha256",
+        "mfe_5prime_kcal_mol", "rna_energy_entire_prot_kcal_mol", "cds_sha256", "exact_cds_group",
     ]
     source = pd.read_csv(source_path, usecols=usecols)
     if len(source) != 154:
         raise ValueError("source row count")
     rows = []
     for cds_sha, group in source.groupby("cds_sha256", sort=False):
-        if group["cds"].nunique() != 1 or group["protein_aa"].nunique() != 1:
+        if group["cds"].nunique() != 1 or group["protein_aa"].nunique() != 1 or group["exact_cds_group"].nunique() != 1:
             raise ValueError("non-unique exact-CDS construct")
         for feature in ("CAI", "mfe_5prime_kcal_mol", "rna_energy_entire_prot_kcal_mol"):
             if not np.isfinite(group[feature]).all() or group[feature].nunique(dropna=False) != 1:
@@ -145,6 +145,7 @@ def main() -> None:
         sequence = np.array(list(cds))
         rows.append({
             "cds_sha256": cds_sha,
+            "exact_cds_group": str(group["exact_cds_group"].iloc[0]),
             "first_source_row": int(group["source_row"].min()),
             "source_rows": ";".join(str(int(x)) for x in sorted(group["source_row"])),
             "seqIds": ";".join(str(x) for x in group["seqId"]),
@@ -180,9 +181,9 @@ def main() -> None:
         selected["vienna_full_cds_column"], selected["vienna_full_mrna_column"],
     ]
     analysis = analysis.merge(
-        preflight[preflight_columns], left_on="cds_sha256", right_on="exact_cds_group",
+        preflight[preflight_columns], on="exact_cds_group",
         how="left", validate="one_to_one",
-    ).drop(columns="exact_cds_group")
+    )
     analysis["vienna_local_mfe"] = analysis[selected["vienna_local_column"]]
     analysis["vienna_full_cds_mfe"] = analysis[selected["vienna_full_cds_column"]]
     analysis["vienna_full_mrna_mfe"] = analysis[selected["vienna_full_mrna_column"]]
@@ -200,8 +201,10 @@ def main() -> None:
     analysis["mfe_cds48_mean"] = mfe48mean
     structure_features = protocol["structure_features"]
     numeric = analysis[["CAI", "gc_cds", "gc3_cds", "target"] + sum(structure_features.values(), [])]
-    if not np.isfinite(numeric.to_numpy(float)).all():
-        raise ValueError("non-finite analysis matrix")
+    finite = np.isfinite(numeric.to_numpy(float))
+    if not finite.all():
+        bad_columns = numeric.columns[~finite.all(axis=0)].tolist()
+        raise ValueError(f"non-finite analysis matrix columns: {bad_columns}")
 
     args.output_root.mkdir(parents=True, exist_ok=True)
     analysis_path = args.output_root / "analysis_structure_definitions_150.csv"
