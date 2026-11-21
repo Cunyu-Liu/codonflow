@@ -1,0 +1,41 @@
+{
+  "status": "PASS_RK30_CLEAN_REPRODUCTION_REVIEW",
+  "checks": {
+    "comparison_status": true,
+    "distinct_roots": true,
+    "csv_13_byte_exact": true,
+    "npz_7_files_70_arrays_exact": true,
+    "scientific_summary_equal": true,
+    "report_statuses_equal": true,
+    "manifest_clean_full_rerun": true,
+    "manifest_head_bound": true,
+    "manifest_download_hashes": true,
+    "clean_closeout_gates": true,
+    "clean_science_matches_production": true,
+    "clean_endpoint_counts": true,
+    "clean_model_independent": true,
+    "clean_raw_binding": true,
+    "counting_core_hashes_match": true,
+    "clean_manuscript_integration": true
+  },
+  "csv_byte_exact": 13,
+  "npz_files_exact": 7,
+  "npz_arrays_exact": 70,
+  "clean_git_head": "42d4c9926921e3c59316c7d6787103a927a4665c",
+  "clean_closeout_sha256": "a9e018e2f4c6f7ed4738ff33b6fa9f8306ebcc8a82c9695739084b5546d228f6",
+  "comparison_sha256": "aa3b6fa06a5cd6e04e94b5d7dad71e311bed60d58b5e999c6793050ef154268f",
+  "manifest_sha256": "dc3eb7a1f3d14d4e1a3b9862d9d989f764669f0abfb0a8ca16282f6a5df45439",
+  "execution_note": "Initial clean-rerun task stopped after raw verification; retained logs document the interruption. Missing verification, closeout, comparison, manuscript integration and manifest steps were resumed from the same clean checkout and separate artifact root. No scientific input or output was edited to obtain equivalence.",
+  "manifest_artifact_hash_checks": {
+    "RK30_COUNTING.json": true,
+    "RK30_MODEL_SUMMARY.json": true,
+    "RK30_RAW_VERIFICATION.json": true,
+    "RK30_MODEL_INDEPENDENT.json": true,
+    "RK30_CLOSEOUT.json": true,
+    "RK30_RESULTS_FOR_PPT.json": true,
+    "RK30_REPRODUCTION_COMPARISON.json": true,
+    "RK30_MANUSCRIPT_INTEGRATION.json": true,
+    "CodonFlow_preprint_A8.reproduced.md": true
+  },
+  "review_note": "The first local review lacked RK30_RESULTS_FOR_PPT.json; after fetching it, all nine manifest-bound downloaded artifacts match their recorded hashes."
+}
