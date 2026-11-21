@@ -161,7 +161,9 @@ def main() -> None:
         if sha256(Path(item["path"])) != item["sha256"]:
             raise RuntimeError(f"Input hash mismatch: {key}")
     independent = json.loads(Path(protocol["inputs"]["rk30_independent_report"]["path"]).read_text())
-    if independent.get("status") != "PASS_INDEPENDENT_VERIFICATION":
+    if (independent.get("status") != "PASS_INDEPENDENT_MODEL_VERIFICATION"
+            or not independent.get("scientific_conclusion_pass")
+            or not independent.get("fit_count_pass")):
         raise RuntimeError("RK30 independent model evidence is not accepted")
     analysis = pd.read_csv(protocol["inputs"]["analysis_csv"]["path"])
     expected = protocol["inputs"]["analysis_csv"]

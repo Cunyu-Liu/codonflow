@@ -59,6 +59,11 @@ def main() -> None:
            protocol["outer_evaluation"]["fits_per_seed"] == 45)
     for key, item in protocol["inputs"].items():
         record(f"input_hash_{key}", sha256(Path(item["path"])) == item["sha256"])
+    rk30_independent = json.loads(Path(protocol["inputs"]["rk30_independent_report"]["path"]).read_text())
+    record("rk30_independent_gate", rk30_independent.get("status") == "PASS_INDEPENDENT_MODEL_VERIFICATION" and
+           rk30_independent.get("scientific_conclusion_pass") is True and rk30_independent.get("fit_count_pass") is True,
+           {"status": rk30_independent.get("status"), "scientific_conclusion_pass": rk30_independent.get("scientific_conclusion_pass"),
+            "fit_count_pass": rk30_independent.get("fit_count_pass")})
     record("artifact_root_absent", not Path(protocol["execution"]["artifact_root"]).exists(),
            protocol["execution"]["artifact_root"])
 
