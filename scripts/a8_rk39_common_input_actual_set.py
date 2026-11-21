@@ -225,10 +225,12 @@ def execute_job(job: Mapping) -> dict:
     # Evaluation-only native calibration is deliberately loaded after search.
     calibration_path = Path(job["calibration_dir"]) / f"{safe_name(record_id)}.json"
     calibration = json.loads(calibration_path.read_text())
-    if sha(calibration_path) != calibration["calibration_sha256"]:
+    if sha(calibration_path) != job["calibration_sha256"]:
         raise ValueError("calibration artifact identity mismatch")
     if calibration["source_sha256"] != job["source_sha256"]:
         raise ValueError("calibration source mismatch")
+    if calibration["record_id"] != record_id or calibration["rscu_sha256"] != job["rscu_sha256"]:
+        raise ValueError("calibration record or RSCU mismatch")
     frozen = FrozenReference.from_dict(calibration)
     prefix = [{
         "output_id": point["budget"],
@@ -443,7 +445,8 @@ def main() -> None:
                              "protocol_sha256": protocol_sha, "code_commit": code_commit,
                              "output_root": str(output_root), "record_id": record_id,
                              "source": source, "source_sha256": source_sha,
-                             "seed": seed, "method": method, "k": k})
+                             "seed": seed, "method": method, "k": k,
+                             "calibration_sha256": external_record["calibration_sha256"]})
 
     expected_jobs = 3 if args.smoke else protocol["expected_run_count"]
     if len(jobs) != expected_jobs:
@@ -500,7 +503,10 @@ def main() -> None:
             raise ValueError("formal unique-scorer total mismatch")
         external = {}
         for record_id, record in matrix_records.items():
-            calibration = json.loads((Path(protocol["calibration_dir"]) / f"{safe_name(record_id)}.json").read_text())
+            calibration_path = Path(protocol["calibration_dir"]) / f"{safe_name(record_id)}.json"
+            if sha(calibration_path) != record["calibration_sha256"]:
+                raise ValueError(f"external calibration identity mismatch for {record_id}")
+            calibration = json.loads(calibration_path.read_text())
             frozen = FrozenReference.from_dict(calibration)
             method = record["methods"][protocol["primary_external_method"]]
             metrics = evaluate_actual_set(method["points"], frozen)
