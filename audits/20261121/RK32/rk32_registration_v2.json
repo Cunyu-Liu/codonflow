@@ -1,0 +1,200 @@
+{
+  "status": "PASS_RK32_REGISTRATION",
+  "head_before_registration": "3824a0883ee69d14b81e3d42c7df290070b06036",
+  "handoff": "docs/handover/HANDOFF_A8_RK32_20261121.md",
+  "handoff_sha256": "bacbaf4782df18abf9ddd41ca63d0b8abd13195bcc92b4e38f6a0761531ff0bc",
+  "registry_sha256": "a399a22114dac7bf4e9720d262bcfbdce34d789dee21895c97f875e98c86dc94",
+  "tasks_worktree_sha256": "a90583bcf8100d53f7011b2edd873dc2bd68a76ebc81f9356fb126cc6c7ca131",
+  "tasks_staged_head_plus_rk32_sha256": "f60f576070d76c0e9bac5716f81cff73d94d267c65f39291e880f8198e24b476",
+  "tasks_staged_blob": "e0b056c23376d47dcfc2b7e315ea576dabdc16af",
+  "preexisting_tasks_diff_sha256": "6db23b73efe6c3a3601fe594a7b154428613b21266532ec134e3e6ebb13532a2",
+  "preexisting_tasks_diff_bytes": 49232,
+  "poststaging_tasks_diff_sha256": "62aad6674b5a41af4ac1d9aa0f7ee8ed61e77684addb232cd4d63fd3c06a304c",
+  "evidence_hashes": {
+    "result": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c",
+    "independent": "e8c22276462e907d40fd84fc9c4d0d6526374dab92c5bf9dea3467967274cd2e",
+    "reproduction": "9dea683f56668e574b3c175b0640a2ee5824a5b3ee6cb471b27a31b0c3046f8a",
+    "closeout": "5811261bb820048ab463e67bc0307559845017a0bf5143a635f948c8e75132e2",
+    "manuscript": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+    "ppt_audit": "6a8ed367f8ea33c36ace43eec4129b21e632cefee5b3215037820a901b507767",
+    "ppt_receipts": "3d4a640ae4e9780975bf909e9e072c3a640d7e8489812f4e730d06645efed585",
+    "ppt_generator": "46775543f165ade0b41bbc407c9cb88e418da0644ae1b500433b13d54cc341d9",
+    "ppt_auditor": "dab68612a13fcc1994c21a9863c935756373ebc9197ea804a1e3b18fa6ac604f",
+    "final_deck_xml": "c5441c1e4f2f0852946ebb66a4126149338af50088d529340735e0b9e7e96e46"
+  },
+  "tasks_staging_policy": "stage HEAD plus RK32 append only; preserve unrelated worktree diff unstaged",
+  "checks_total": 19,
+  "checks_passed": 19,
+  "failed_checks": [],
+  "checks": [
+    {
+      "name": "expected_ppt_head",
+      "pass": true,
+      "evidence": "3824a0883ee69d14b81e3d42c7df290070b06036"
+    },
+    {
+      "name": "preexisting_tasks_diff_recorded",
+      "pass": true,
+      "evidence": {
+        "sha256": "6db23b73efe6c3a3601fe594a7b154428613b21266532ec134e3e6ebb13532a2",
+        "bytes": 49232
+      }
+    },
+    {
+      "name": "index_clean_before_registration",
+      "pass": true,
+      "evidence": ""
+    },
+    {
+      "name": "scientific_result_binding",
+      "pass": true,
+      "evidence": {
+        "fits": 700,
+        "endpoints": 24,
+        "passes": 9
+      }
+    },
+    {
+      "name": "independent_clean_closeout_binding",
+      "pass": true,
+      "evidence": {
+        "independent": "23/23",
+        "clean": "106/106",
+        "closeout": "23/23"
+      }
+    },
+    {
+      "name": "ppt_final_binding",
+      "pass": true,
+      "evidence": {
+        "status": "PASS_RK32_PPT_AUDIT",
+        "checks": "20/20",
+        "slides": 147,
+        "revision": 112
+      }
+    },
+    {
+      "name": "handoff_contains_all_evidence_hashes",
+      "pass": true,
+      "evidence": {
+        "result": "a75eaed1c01ad2023719823e740bf138c4a0931bf01bbef33fddf6521260e91c",
+        "independent": "e8c22276462e907d40fd84fc9c4d0d6526374dab92c5bf9dea3467967274cd2e",
+        "reproduction": "9dea683f56668e574b3c175b0640a2ee5824a5b3ee6cb471b27a31b0c3046f8a",
+        "closeout": "5811261bb820048ab463e67bc0307559845017a0bf5143a635f948c8e75132e2",
+        "manuscript": "e65608c5b46f012a9eb632bc0997062e65b33aa1a46ffd16376d1a21a555581c",
+        "ppt_audit": "6a8ed367f8ea33c36ace43eec4129b21e632cefee5b3215037820a901b507767",
+        "ppt_receipts": "3d4a640ae4e9780975bf909e9e072c3a640d7e8489812f4e730d06645efed585",
+        "ppt_generator": "46775543f165ade0b41bbc407c9cb88e418da0644ae1b500433b13d54cc341d9",
+        "ppt_auditor": "dab68612a13fcc1994c21a9863c935756373ebc9197ea804a1e3b18fa6ac604f",
+        "final_deck_xml": "c5441c1e4f2f0852946ebb66a4126149338af50088d529340735e0b9e7e96e46"
+      }
+    },
+    {
+      "name": "handoff_preserves_open_boundaries",
+      "pass": true,
+      "evidence": [
+        "overall not complete",
+        "no RK33 result",
+        "functional untouched",
+        "time-matched",
+        "seven-method dense",
+        "RK-G1"
+      ]
+    },
+    {
+      "name": "artifact_root_model_results_f4508080",
+      "pass": true,
+      "evidence": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080"
+    },
+    {
+      "name": "artifact_root_clean_reproduction_469b30e4",
+      "pass": true,
+      "evidence": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/clean_reproduction_469b30e4"
+    },
+    {
+      "name": "artifact_root_ppt_v1",
+      "pass": true,
+      "evidence": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/ppt_v1"
+    },
+    {
+      "name": "no_duplicate_rk32_sections",
+      "pass": true,
+      "evidence": {
+        "tasks_marker": 0,
+        "registry_marker": 0
+      }
+    },
+    {
+      "name": "registry_row_schema",
+      "pass": true,
+      "evidence": {
+        "pipe_split_fields": 13
+      }
+    },
+    {
+      "name": "staged_tasks_is_head_plus_rk32_only",
+      "pass": true,
+      "evidence": {
+        "head_bytes": 59007,
+        "append_bytes": 4859
+      }
+    },
+    {
+      "name": "worktree_prefix_preserved",
+      "pass": true,
+      "evidence": {
+        "tasks_prefix": true,
+        "registry_prefix": true
+      }
+    },
+    {
+      "name": "staged_tasks_blob_exact",
+      "pass": true,
+      "evidence": {
+        "blob": "e0b056c23376d47dcfc2b7e315ea576dabdc16af",
+        "sha256": "f60f576070d76c0e9bac5716f81cff73d94d267c65f39291e880f8198e24b476"
+      }
+    },
+    {
+      "name": "preexisting_tasks_diff_hunks_byte_identical_after_staging",
+      "pass": true,
+      "evidence": {
+        "before_raw_sha256": "6db23b73efe6c3a3601fe594a7b154428613b21266532ec134e3e6ebb13532a2",
+        "after_raw_sha256": "62aad6674b5a41af4ac1d9aa0f7ee8ed61e77684addb232cd4d63fd3c06a304c",
+        "bytes": 49232,
+        "comparison": "The isolated pre-work index/worktree reproduces the original diff exactly. Excluding only the git index blob-abbreviation header, every diff line and every hunk is byte-identical before and after staging HEAD+RK32. All pre-existing worktree changes remain unstaged.",
+        "pre_index_header": "index 9cfee3d0..a74ef683 100644",
+        "post_index_header": "index e0b056c2..6c5be89d 100644"
+      }
+    },
+    {
+      "name": "single_rk32_markers_after_append",
+      "pass": true,
+      "evidence": {
+        "tasks": 1,
+        "registry": 1
+      }
+    },
+    {
+      "name": "only_registration_files_staged_before_report",
+      "pass": true,
+      "evidence": [
+        "audits/20261121/RK32/rk32_registry_row.md",
+        "audits/20261121/RK32/rk32_tasks_append.md",
+        "docs/handover/HANDOFF_A8_RK32_20261121.md",
+        "docs/handover/tasks.md",
+        "experiments/REGISTRY.md"
+      ]
+    }
+  ],
+  "preexisting_tasks_diff_body_sha256": "86002a26cc2f5b24da98ae20541c082704d7ada43f2b02939b0d895234872987",
+  "registration_diff_artifacts": {
+    "prework_diff": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/registration_audit/prework.diff",
+    "poststaging_diff": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/registration_audit/poststaging.diff",
+    "pre_post_comparison": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/registration_audit/pre_post_comparison.diff"
+  },
+  "supersedes": {
+    "report": "rk32_registration_v1.json",
+    "reason": "v1 required raw git diff bytes to remain identical, but exact staging necessarily changes the index blob header. v2 independently reconstructs the original pre-work diff in an isolated index/worktree and verifies every non-index-header line is byte-identical."
+  }
+}
