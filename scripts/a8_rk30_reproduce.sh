@@ -52,7 +52,7 @@ paths += [repo / "scripts" / name for name in [
     "a8_rk30_download_hela_r1.py", "a8_rk30_spool_transfer.py", "a8_rk30_fixed_reference_counts.py",
     "a8_rk30_run_matched_context.py", "a8_rk30_test_freeze.py",
     "a8_rk30_test_model.py", "a8_rk30_verify_raw_counts.py",
-    "a8_rk30_verify_model.py", "a8_rk30_closeout.py", "a8_rk30_reproduce.sh",
+    "a8_rk30_verify_model.py", "a8_rk30_closeout.py", "a8_rk30_integrate_manuscript.py", "a8_rk30_reproduce.sh",
 ]]
 paths += [root / name for name in [
     "RK30_COUNTING.json", "RK30_MODEL_SUMMARY.json", "RK30_RAW_VERIFICATION.json",

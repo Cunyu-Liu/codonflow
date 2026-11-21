@@ -169,7 +169,7 @@ def main() -> None:
         "scripts/a8_rk30_download_hela_r1.py", "scripts/a8_rk30_spool_transfer.py", "scripts/a8_rk30_fixed_reference_counts.py",
         "scripts/a8_rk30_run_matched_context.py", "scripts/a8_rk30_verify_raw_counts.py",
         "scripts/a8_rk30_verify_model.py", "scripts/a8_rk30_test_freeze.py",
-        "scripts/a8_rk30_test_model.py", "scripts/a8_rk30_closeout.py",
+        "scripts/a8_rk30_test_model.py", "scripts/a8_rk30_closeout.py", "scripts/a8_rk30_integrate_manuscript.py",
     ]:
         path = repo / relative
         if path.is_file():
@@ -200,6 +200,7 @@ def main() -> None:
         "secondary_condition_summary": condition_rows,
         "primary_endpoints": primary_records,
         "secondary_endpoints": secondary_records,
+        "absolute_performance_seed": int(model["primary_seed"]),
         "primary_absolute_performance": primary_perf,
         "secondary_absolute_performance": secondary_perf,
         "scientific_flags": model["scientific_flags"],
@@ -227,7 +228,7 @@ def main() -> None:
         [[r["direction"], r["model"], r["endpoint"], fmt(r["effect"]), f"[{fmt(r['ci_low'])}, {fmt(r['ci_high'])}]", fmt(r["holm_p"]), f"{r['positive_seed_fraction']:.1f}", fmt(r["pass"])] for r in primary_records],
     )
     absolute_table = markdown_table(
-        ["Direction", "Model", "Endpoint", "Null", "Simple mean", "Structure mean", "Delta"],
+        ["Direction", "Model", "Endpoint", "Null (primary seed)", "Simple (primary seed)", "Structure (primary seed)", "Mean-seed delta"],
         [[r["direction"], r["model"], r["endpoint"], fmt(r["null_mean"]), fmt(r["simple_mean"]), fmt(r["structure_mean"]), fmt(r["effect"])] for r in primary_perf],
     )
     secondary_table = markdown_table(
@@ -256,7 +257,7 @@ def main() -> None:
 
 ## Absolute null/simple/structure performance
 
-Values are means over 10 seeds. They prevent a positive increment from being mistaken for a useful absolute model.
+Values are absolute performance at the frozen primary seed ({model['primary_seed']}); the delta column remains the mean effect over 10 seeds. They prevent a positive increment from being mistaken for a useful absolute model.
 
 {absolute_table}
 
@@ -301,6 +302,7 @@ The table reports the number of passed endpoints among four per direction; a pas
         "cohort": f"{n_variants} variants / {n_clusters} clusters / 3 conditions",
         "verification": "Raw counts + 1,700 fits independently verified", "directions": direction_rows,
         "primary_endpoints": primary_records, "primary_absolute_performance": primary_perf,
+        "absolute_performance_seed": int(model["primary_seed"]),
         "secondary_conditions": condition_rows, "cost_seconds": model["elapsed_seconds"],
         "closeout_sha256": closeout_digest,
         "interpretation_boundary": "Same GFP observed-R1 library; predicted MFE; no protein-OOD, velocity, decay or SOTA claim.",
