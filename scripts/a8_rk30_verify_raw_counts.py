@@ -8,6 +8,7 @@ import gzip
 import hashlib
 import json
 import re
+import time
 from pathlib import Path
 
 import numpy as np
@@ -64,6 +65,7 @@ def independent_outcomes(counts: pd.DataFrame, protocol: dict):
 
 
 def main():
+    wall_start = time.perf_counter()
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--artifact-root", type=Path, required=True)
@@ -109,7 +111,9 @@ def main():
     long_mismatches = []
     for record in checkpoints:
         data = json.loads(record.read_text())
-        current = counts[counts["run"] == data["run"]].sort_values("variant_id")
+        current = (counts[counts["run"] == data["run"]]
+                   .groupby("variant_id", as_index=False)["count"].sum()
+                   .sort_values("variant_id"))
         expected = pd.DataFrame({"variant_id": variant_ids, "expected": data["counts"]}).sort_values("variant_id")
         if current["variant_id"].tolist() != expected["variant_id"].tolist() or not np.array_equal(current["count"].to_numpy(), expected["expected"].to_numpy()):
             long_mismatches.append(data["run"])
@@ -124,16 +128,22 @@ def main():
         if len(a):
             max_outcome_difference = max(max_outcome_difference, float(np.max(np.abs(a - b))))
     outcome_ok = outcome_ok and max_outcome_difference <= 1e-12
+    expected_audit_total = 64 * int(protocol["fixed_reference_counting"]["audit_reservoir_reads_per_run"])
+    audit_read_count_pass = audit_total == expected_audit_total
     report = {
         "schema": "a8.rk30.independent_raw_count_verification.v1",
         "status": "PASS_INDEPENDENT_RAW_COUNT_VERIFICATION" if (
-            len(checkpoints) == 64 and not mismatches and not md5_mismatches and not long_mismatches and
+            len(checkpoints) == 64 and audit_read_count_pass and not mismatches and not md5_mismatches and not long_mismatches and
             all(all(value for key, value in row.items() if key != "run") for row in checks) and outcome_ok
         ) else "FAIL_INDEPENDENT_RAW_COUNT_VERIFICATION",
         "production_module_imported": False,
         "rk28_model_module_imported": False,
+        "protocol_sha256": digest(args.protocol),
+        "cost_seconds": time.perf_counter() - wall_start,
         "checkpoints": len(checkpoints), "expected_checkpoints": 64,
         "audit_reads_reassigned_by_brute_force": audit_total,
+        "expected_audit_reads": expected_audit_total,
+        "audit_read_count_pass": audit_read_count_pass,
         "assignment_mismatches": mismatches, "md5_mismatches": md5_mismatches,
         "long_count_mismatches": long_mismatches,
         "checkpoint_checks": checks,

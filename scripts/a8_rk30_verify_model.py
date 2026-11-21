@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import time
 from pathlib import Path
 
 import numpy as np
@@ -164,6 +165,7 @@ def compare_frames(production, independent, keys, value_columns, tolerance=1e-10
 
 
 def main():
+    wall_start = time.perf_counter()
     parser = argparse.ArgumentParser()
     parser.add_argument("--protocol", type=Path, required=True)
     parser.add_argument("--artifact-root", type=Path, required=True)
@@ -342,6 +344,7 @@ def main():
         "production_module_imported": False, "rk28_model_module_imported": False,
         "shared_frozen_feature_implementation": "a8_rk02_mordstein_structure_increment.py",
         "transport_fits_recomputed": transport_fits, "within_fits_recomputed": within_fits,
+        "cost_seconds": time.perf_counter() - wall_start,
         "fit_count_pass": fit_ok, "scientific_conclusion_pass": conclusion_ok,
         "independent_family_pass": all(row["pass"] for row in independent_primary),
         "comparisons": comparisons,

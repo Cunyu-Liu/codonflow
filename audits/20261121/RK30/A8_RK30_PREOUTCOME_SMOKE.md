@@ -70,3 +70,16 @@
 - 将 `raw_independent_pass` 人为设为 false 的反向 fixture 在哈希检查前被拒绝，未生成稿件，输出 `PASS_NEGATIVE_RELEASE_GATE_PRE_HASH`。所有合成文本与数值只用于工程验收，不进入真实论文或 PPT。
 - 复现清单已纳入整合器源码哈希。真实结果后将在干净克隆重新计数 64 runs、重跑 1,700 fits 并独立复核；该最终复现尚未执行。
 - 稿件门禁回归首次误用 `python scripts/a8_rk30_test_freeze.py` 与 `python scripts/a8_rk30_test_model.py` 直接执行 pytest 模块，产生空日志和 0 tests，不能算测试通过；`freeze_tests_v6_manuscript_gate.log`、`model_tests_v4_manuscript_gate.log` 保留为失败证据。`a8_rk30_reproduce.sh` 中同样的入口错误已改为 `python -m pytest -q`，随后重跑至明确计数后才允许提交。
+
+## 独立 raw verifier、复现等价与 release-gated PPT 工程回归
+
+以下均使用 `/tmp` 或本地 staging 中的显式合成副本；不是新 HeLa 结果，不进入论文或线上 PPT。
+
+- raw verifier 现绑定协议 SHA256，记录真实耗时，强制 `64 runs × 100 reads = 6,400` 条独立蛮力审计，并从长表重新计算结局。64-run 小型 fixture 使用真实 152 个参考 ID/序列、每 run 一个 bin、每 variant 125 reads。`raw_verifier_tests_v3_actual_pytest.log` 为 **1 passed**：正向 64 checkpoints、6,400 reads、协议哈希和成本字段通过；删除一条审计 read 后以 6,399 条触发 FAIL。
+- 前两次 raw fixture 回归未通过并保留日志：v1 在聚合修正部署前运行；v2 暴露 fixture 错把单 bin checkpoint 的 125 写成八 bin 汇总 1,000。仅修正 fixture 的 checkpoint 期望后 v3 通过，未改变真实计数规则、阈值或结局。
+- 合成 closeout v4 完成独立模型全量重算：`PASS_INDEPENDENT_MODEL_VERIFICATION`，独立复核耗时 237.449872 秒；closeout 为 `PASS_RK30_VERIFIED_RESULT_PACKAGING`，稿件整合为 `PASS_RK29_RK30_MANUSCRIPT_INTEGRATION`。raw 成本 0 仅为该合成 fixture 占位，真实成本尚未产生。
+- 生产—复现比较器对隔离合成副本比较 13 个 CSV、7 个 NPZ 的名称/shape/dtype/精确值及科学摘要，当前接口得到 `PASS_RK30_PRODUCTION_REPRODUCTION_EQUIVALENCE`；把生产与复现指向同一目录会被拒绝。该 PASS 不是 clean-clone 真实复现。
+- 复现入口区分首次生产运行和 clean-checkout 等价复现。旧 watcher 保持首次生产模式；只有显式 `RK30_REPRODUCTION_COMPARE=1`、独立 artifact root 和独立 production root 才执行 CSV/NPZ/科学摘要等价比较及稿件复现。manifest 不再把 verification-only、dirty checkout 或缺少等价比较标成 clean reproduction。稿件整合调用已对齐真实 `--artifact-root/--manuscript/--output` CLI。
+- 新增 `a8_rk30_ppt_page.py`：只读取冻结协议、closeout、PPT payload、稿件整合报告、clean manifest 和等价报告，不重算科学结果。九类合成页面均通过 XML、960×540、单页、画布边界和文本宽度检查；把 manifest 改为 verification-only 后明确拒绝出页。九份 XML 均未上传，线上 PPT 未被修改。
+- 远端 Python 3.10 编译首次发现表头 f-string 使用了新版解释器语法，测试在正式 pytest 前停止。改为显式 `bold` 属性后，九份 XML 的 SHA256 与兼容性修复前逐一相同，并重新进入远端编译和测试门禁。
+- 最终远端门禁日志为 `rk30_gate_tests_v2_actual_pytest.log` 与 `project_pytest_rk30_reproduction_gate.log`：冻结/模型/raw 合计 **20 passed**；项目标准 `pytest tests/` 为 **423 passed, 1 skipped, 11 warnings, 5 subtests passed**。此前直接 pytest 调用漏设 `RK30_PROTOCOL` 的收集错误保留在 `rk30_gate_tests_v1_actual_pytest.log`，不计为通过。

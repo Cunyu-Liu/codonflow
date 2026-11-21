@@ -135,7 +135,7 @@ def main() -> None:
     secondary_perf = performance_rows(model["secondary_within_context_tests"], model["secondary_within_context_absolute_performance"], "context")
     gates = {
         "production_complete": model["status"] == "ANALYSIS_COMPLETE_PENDING_INDEPENDENT_VERIFICATION",
-        "raw_independent_pass": raw["status"] == "PASS_RK30_RAW_VERIFICATION",
+        "raw_independent_pass": raw["status"] == "PASS_INDEPENDENT_RAW_COUNT_VERIFICATION",
         "model_independent_pass": independent["status"] == "PASS_INDEPENDENT_MODEL_VERIFICATION",
         "production_summary_binding": independent["production_summary_sha256"] == sha256(model_path),
         "protocol_binding": raw["protocol_sha256"] == model["protocol_sha256"] == sha256(protocol_path),
@@ -169,7 +169,8 @@ def main() -> None:
         "scripts/a8_rk30_download_hela_r1.py", "scripts/a8_rk30_spool_transfer.py", "scripts/a8_rk30_fixed_reference_counts.py",
         "scripts/a8_rk30_run_matched_context.py", "scripts/a8_rk30_verify_raw_counts.py",
         "scripts/a8_rk30_verify_model.py", "scripts/a8_rk30_test_freeze.py",
-        "scripts/a8_rk30_test_model.py", "scripts/a8_rk30_closeout.py", "scripts/a8_rk30_integrate_manuscript.py",
+        "scripts/a8_rk30_test_model.py", "scripts/a8_rk30_test_raw_verifier.py", "scripts/a8_rk30_closeout.py", "scripts/a8_rk30_integrate_manuscript.py",
+        "scripts/a8_rk30_compare_reproduction.py", "scripts/a8_rk30_ppt_page.py",
     ]:
         path = repo / relative
         if path.is_file():
@@ -209,6 +210,7 @@ def main() -> None:
             "within_context_fit_count": model["within_context_model_fits"], "cpu_threads": 1,
             "production_cost_seconds": model["elapsed_seconds"],
             "independent_verification_cost_seconds": independent.get("cost_seconds"),
+            "raw_independent_verification_cost_seconds": raw.get("cost_seconds"),
         },
         "code_sha256": code_hashes, "artifact_sha256": artifact_hashes,
         "limitations": [
@@ -247,7 +249,7 @@ def main() -> None:
 - Scientific conclusion: `{model['scientific_conclusion']}`.
 - Common complete cohort: {n_variants} variants / {n_clusters} fixed clusters.
 - Actual fits: {model['total_model_fits']} (800 transport + 900 within-context), single-thread CPU.
-- Production seconds: {model['elapsed_seconds']:.6f}; independent model verification seconds: {fmt(independent.get('cost_seconds'))}.
+- Production seconds: {model['elapsed_seconds']:.6f}; independent model verification seconds: {fmt(independent.get('cost_seconds'))}; independent raw verification seconds: {fmt(raw.get('cost_seconds'))}.
 
 ## Primary ordered transport
 
