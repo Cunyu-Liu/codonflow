@@ -62,14 +62,15 @@ def test_metadata_exactly_64_r1_runs_without_reading_fastq():
     assert all(r["r2"] is None for r in runs)
 
 
-def test_download_selects_56_hela_r1_only_and_exact_bytes():
+def test_download_selects_56_hela_r1_only_and_exact_bytes(tmp_path):
     p = protocol()
-    jobs = download.jobs_from_metadata(Path(p["inputs"]["metadata_tsv"]["path"]), Path("/unused"), [])
+    jobs = download.jobs_from_metadata(Path(p["inputs"]["metadata_tsv"]["path"]), tmp_path, [])
     assert len(jobs) == 56
     assert sum(j["expected_bytes"] for j in jobs) == p["download"]["expected_new_r1_bytes"]
     assert {j["mate"] for j in jobs} == {1}
     assert all(j["token"].endswith("_1") for j in jobs)
     assert all("HeLa" in j["experiment_title"] for j in jobs)
+    assert all(j["path"].with_suffix(j["path"].suffix + ".part").exists() for j in jobs)
 
 
 def test_common_cohort_requires_every_replicate():

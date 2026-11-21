@@ -44,6 +44,12 @@ def jobs_from_metadata(metadata: Path, root: Path, only: list[str]) -> list[dict
             })
     if not jobs:
         raise ValueError("no HeLa R1 jobs selected")
+    for job in jobs:
+        path = job["path"]
+        path.parent.mkdir(parents=True, exist_ok=True)
+        part = path.with_suffix(path.suffix + ".part")
+        if not path.exists() and not part.exists():
+            part.touch()
     return sorted(jobs, key=lambda job: job["run"])
 
 
