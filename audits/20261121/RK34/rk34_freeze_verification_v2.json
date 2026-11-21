@@ -1,0 +1,168 @@
+{
+  "checks": [
+    {
+      "details": null,
+      "name": "frozen_status",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_rk34_expression_or_fit_before_freeze",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "retrospective_boundary",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preparation_commit",
+      "pass": true
+    },
+    {
+      "details": {
+        "tracked_dirty": false
+      },
+      "name": "no_tracked_dirty_edits",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk21/kudla_recovery_v1/derived/kudla154_source.csv",
+      "name": "input_main_csv",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk34/start_context_v1/preflight_context_energies.csv",
+      "name": "input_candidate_csv",
+      "pass": true
+    },
+    {
+      "details": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_preflight_v1.json",
+      "name": "input_preflight_report",
+      "pass": true
+    },
+    {
+      "details": "/home/codonflow-a8-rk/audits/20261121/RK27/rk27_sequence_coverage_v1.json",
+      "name": "input_coverage_report",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/oof_predictions.csv",
+      "name": "input_rk32_oof_predictions",
+      "pass": true
+    },
+    {
+      "details": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk32/structure_definition_v1/model_results_f4508080/fold_assignments.csv",
+      "name": "input_rk32_fold_assignments",
+      "pass": true
+    },
+    {
+      "details": "4886fb7185b04f76b111e764994507663988ae16dc314b55d9fb343ab5f6129c",
+      "name": "code_production_script",
+      "pass": true
+    },
+    {
+      "details": "d130408afd4c5455f8b50a7daa7d78cf2c8581992747e9e15f8f90baa3b9b9e2",
+      "name": "code_preflight_script",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preregistration_hash",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "label_free_preflight",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preflight_did_not_read_expression_or_fit",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "preflight_functional_untouched_not_read",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "candidate_identity",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "arms_match_implementation",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "families_match_implementation",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "test_count_and_order",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "fit_accounting",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "matched_42nt_factorial",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "confirmatory_dangles2",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "sensitivity_dangles0",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "sensitivity_cannot_upgrade",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "functional_and_generator_boundaries",
+      "pass": true
+    },
+    {
+      "details": null,
+      "name": "no_untouched_protein_sota_rkg1_claim",
+      "pass": true
+    },
+    {
+      "details": {
+        "expected_test_count": 9,
+        "test_log": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_synthetic_tests_v2.log"
+      },
+      "name": "synthetic_tests_pass",
+      "pass": true
+    },
+    {
+      "details": "/home/codonflow-a8-rk/audits/20261121/RK34/rk34_start_context_result_v2.json",
+      "name": "no_production_result_before_freeze",
+      "pass": true
+    }
+  ],
+  "checks_passed": 30,
+  "checks_total": 30,
+  "expression_columns_read": false,
+  "head": "ea70232c19c6620a712a20baf7b28b8522237ebb",
+  "model_fit_performed": false,
+  "protocol": "audits/20261121/RK34/a8_rk34_start_context_protocol_v2.json",
+  "protocol_sha256": "5e75d50c65d5fea2c27aa92e287d72607af6cb709866384030583ddb7ba91ef4",
+  "schema": "a8-rk34-freeze-verification-v1",
+  "status": "PASS"
+}
