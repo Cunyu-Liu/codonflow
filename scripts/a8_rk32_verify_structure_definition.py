@@ -199,6 +199,7 @@ def main() -> None:
     check("independent_700_fit_predictions", len(aligned) == 1500 and prediction_delta <= 1e-10, {"rows": len(aligned), "max_abs_delta": prediction_delta})
 
     produced_metrics = pd.read_csv(args.output_root / "seed_metrics.csv")
+    produced_metrics["arm"] = produced_metrics["arm"].fillna("null")
     produced_effects = pd.read_csv(args.output_root / "seed_effects.csv")
     metric_delta = 0.0
     effect_delta = 0.0
