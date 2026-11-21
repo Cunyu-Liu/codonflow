@@ -297,3 +297,16 @@
 - [x] **在线 PPT**：在173页/revision145后只追加 **174–180** 七页，ids `pSf,pSB,pSR,pSO,pSU,pSh,pSG`，最终 **180页/revision152**；写前 **61/61 PASS**、写后 **54/54 PASS**，前173页 ID+语义 XML 未变，七页真实预览均逐页验收。提交 `192f7b40`；大型 XML/预览位于 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk37/ppt_v1/`。
 - [ ] **科学任务仍未解决**：RK37 仅证明该局部线性翻译占据候选在此跨研究方向稳定反向，不支持 translation-speed、protein/homology OOD、untouched confirmation、SOTA 或生成器性能。下一项 RK38 先逐方法×任务×格盘点 GEMORNA/LD-scan/CAI-greedy 等真实运行证据，同时对翻译/功能未触碰队列做 label-free 盘点；核实前不预设主矩阵可闭合或新实验可执行，不得在同一 Subtelny14 target 继续调参后称为独立确认。
 - [ ] **总项目开放边界**：完整 external actual-set SOTA、time-matched 七方法、共同 dense、多物种 VeloHARMO、真实 functional/protein OOD、独立 untouched 和前瞻 DBTL 仍未闭合；RK-G1=false、generator_training_authorized=false、functional untouched 未读、wet-lab 未执行。
+
+## 2026-11-22：RK38 真实 baseline 与 untouched 元数据盘点（资产闭环，科学门禁未闭合）
+
+- [x] **冻结真实布局协议**：逐文件 SHA、record/seed/method、原始 DNA 序列集、500 点连续预算、唯一序列和成本字段均按实际 schema 读取；禁止把缺失 dense AUC、重复调用、forward 或统一时间零填充/推断。协议 SHA `025006e43ec1bc5ba17c53ea1b4771cb89ffd3cb61bb4229bddf2f3a75eeaadf`。
+- [x] **完成 846 + 126 真实覆盖**：846 个原始运行/方法格（A7=324、RK06=216、A6=270、LinearDesign-11=18、EnsembleDesign-11=18）与 18×7=126 个 seed0 外部 actual-set 格全部核验；126 格原始 DNA 序列集与 RK13 矩阵精确一致。RK16 的 792 次 B11 generation calls 独立保留。
+- [x] **外部结果仅作描述性参考**：LinearDesign-11 平均 normalized HV=`29.9728874903` 为七方法描述性最高，但总实际输出仅131且输入语义、共同 dense 与成本口径不齐；不得写成 CodonFlow 胜负、外部 SOTA 或 time-matched 结论。
+- [x] **untouched 保持关闭**：仅读取 MAGE infA 既有 split 摘要、独立验证和元数据；19,072 行/13,569 groups 只有1个 operational cluster，362 行 synonymous single-codon 不能支撑多蛋白普遍结论。`new_functional_labels_read=false`、`functional_untouched_evaluated=false`；RK20 仍仅2/8 sequence-OOD 通过。
+- [x] **独立与 clean 验收**：独立 v2 **1851/1851 PASS**，clean independent **1851/1851 PASS**，clean closeout **9/9 PASS**；详细与外部格 CSV 逐字节一致，bounded summary 一致。全项目 **472 passed / 1 skipped / 0 failed / 5 subtests passed**。首版独立失败及所有 schema/layout 修正记录均保留。
+- [x] **英文稿 §6.49**：新增 Tables 30–31，2,096 行，SHA `7660294a876314c5ed9b24d70e49c68be3199d995f24cf53be0246d47a600f61`；隔离写作 workflow 全 PASS，integration/audit **19/19 PASS**；科学提交 `83469e5b`，论文提交 `dfc7cc69`。
+- [x] **在线 PPT181–186**：六页 IDs `pSW,pSc,pSD,pSq,pSe,pSa`，最终 **186页/revision158**；内容/几何审计 **15/15 PASS**，前180页无语义 XML 差异，六张最终在线截图人工验收无截断/溢出/遮挡/缺列，closeout **11/11 PASS**。v1/v2 失败审计保留；PPT 提交 `0cb827ed57b438868ea0efc352f3cc21cf4ec3bf`，大型归档 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk38/ppt_v1/`。
+- [x] **文档 closeout**：独立核验 registry/tasks/handoff、论文/PPT 哈希和科学边界，v2 **23/23 PASS**；v1 21/23 的 `n_pass/n_checks` 字段假定失败保留。
+- [ ] **科学任务仍未闭合**：本轮状态仅为 `PASS_INVENTORY_ONLY_SCIENTIFIC_GATES_UNRESOLVED`。完整 external SOTA、统一 time-matched、七方法共同 dense、多物种 VeloHARMO、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和可投稿稿件均未完成；昂贵生成训练未授权，wet-lab 未执行。
+- [ ] **下一项必须产生判别证据**：RK39 优先核实同一蛋白、同一初始化语义、同一真实 scorer 与完整成本口径下的 fixed-protein actual-set 对照是否可真实执行；满足冻结条件才运行，否则转向新的合格数据源判别实验，不再重复同类盘点。
