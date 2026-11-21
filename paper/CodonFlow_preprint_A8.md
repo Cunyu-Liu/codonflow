@@ -995,6 +995,118 @@ The initial production synthetic test incorrectly treated L2-regularized ridge a
 
 These results do not directly contradict RK27 because the study, host, assay, sequence coverage, and structural-feature operationalization differed. They nevertheless reject a strong claim that the structure increment transports generally across studies; they do not establish that structure is universally harmful. RK28 remains limited to retrospective observed-R1 analysis. The unobserved central 138 nucleotides, corresponding to 46 codons, could not be restored, and author-level GFP identity mapping was unavailable. This is not independent untouched or protein-OOD confirmation and provides no complete-CDS measured structure, translation velocity, mRNA decay, or complete spatial-coupling evidence. It does not establish CodonFlow-RK superiority, external SOTA, or functional untouched performance. RK-G1 remains false and expensive generator training remains unauthorized; the manuscript remains a non-submittable working draft.
 
+<!-- A8_RK29_RK30_START -->
+### 6.40 iCodon source tables did not identify unique sequence–outcome mappings
+
+RK29 asked whether computational MFE features improved out-of-protein prediction of injected-mRNA decay in one-cell zebrafish embryos [diez2022icodon]. The frozen protocol required a unique one-to-one mapping between all 955 S6 outcome measurements and 955 canonical FASTA names before fitting. Row order, nearest matching, arbitrary first matches and outcome-informed assignment were prohibited.
+
+The released GEO table contained 10227 rows, exactly the within-protein FASTA-name × measurement-vector Cartesian product. All 10227 pairs satisfied the frozen join. Candidate counts were 240 rows with one sequence candidate, 598 with two and 117 with three. Thus 715/955 measurements lacked a unique sequence candidate, and 338/578 protein-by-design groups admitted multiple legal one-to-one assignments. The frozen join admitted approximately 10^120.355867 global sequence–outcome assignments.
+
+The analysis therefore stopped with `NOT_DISCRIMINATING_SOURCE_ALIGNMENT_OR_COVERAGE_FAILED`: 0 analysis rows and 0 model fits were produced. No effect, confidence interval, permutation *p* value, runtime ranking or SOTA claim exists for RK29. This is a source-identifiability result, not a negative RNA-structure mechanism result. An independent implementation recomputed the Cartesian pairs and assignment ambiguity without importing production modules and returned `PASS_INDEPENDENT_ALIGNMENT_FAILURE_VERIFICATION`. A future analysis requires an authoritative per-variant sequence key and a new protocol; the current join must not be silently repaired.
+
+### 6.41 Matched host and 5′UTR-intron transport in the Mordstein GFP library
+
+RK30 held the Mordstein GFP reference set, observed 300-nt R1 coverage, sequence clusters, predicted-structure definitions and models constant across HeLa without intron, HeLa with intron and HEK293 without intron [mordstein2020codon]. The fixed counting pipeline used 64 R1 runs in 8 experiments. Reads were assigned to a unique nearest reference within 8 nt; every variant required all eight bins and at least 1,000 assigned reads in every experiment. The common complete cohort contained 126 variants in 69 frozen clusters. Raw independent verification passed, including source hashes, checkpoints, brute-force read assignment and outcome recomputation.
+
+**Table 12**
+
+*Common-cohort Flow-seq outcome distributions*
+
+| Condition | N | Mean | SD | Min | Max |
+|---|---|---|---|---|---|
+| HeLa no intron | 126 | 4.49844 | 1.09052 | 1.88263 | 7.231 |
+| HeLa with intron | 126 | 4.44398 | 1.05183 | 1.36483 | 6.8384 |
+| HEK293 no intron | 126 | 5.08069 | 1.34973 | 1.5003 | 7.14761 |
+
+*Note.* Scores are bin-weighted Flow-seq outcomes, not direct RFU, translation velocity or mRNA decay.
+
+The simple arms contained observed-R1 GC3, GC, CpG and CAI; structure arms added full-fragment MFE and 48-nt-window minimum/mean MFE. Depth was retained for QC but excluded from transported predictors. Ridge and HistGB used frozen hyperparameters, 10 fold-assignment seeds and 5 whole-cluster folds. Four ordered transport directions were evaluated with 10,000 cluster bootstraps and 10,000 cluster sign-swap permutations; all 16 primary endpoints formed one Holm family. A pass required a positive mean-seed effect, a 95% CI lower bound above zero, Holm *p* < 0.05 and at least 8/10 positive seeds.
+
+**Table 13**
+
+*Primary ordered transport decisions*
+
+| Transport direction | Passed endpoints | Direction decision |
+|---|---|---|
+| HeLa no intron → HEK293 no intron | 0/4 | FAIL |
+| HEK293 no intron → HeLa no intron | 0/4 | FAIL |
+| HeLa no intron → HeLa with intron | 0/4 | FAIL |
+| HeLa with intron → HeLa no intron | 0/4 | FAIL |
+
+**Table 14**
+
+*Primary predicted-MFE increment endpoints*
+
+| Direction | Model | Endpoint | Effect | 95% cluster-bootstrap CI | Holm *p* | Positive seeds | Decision |
+|---|---|---|---|---|---|---|---|
+| HeLa no intron → HEK293 no intron | Ridge | ΔSpearman | -0.0881788 | [-0.151121, 0.000572594] | 0.575342 | 0/10 | FAIL |
+| HeLa no intron → HEK293 no intron | Ridge | MSE improvement | -0.127391 | [-0.157001, -0.0118992] | 0.470353 | 0/10 | FAIL |
+| HeLa no intron → HEK293 no intron | HistGB | ΔSpearman | -0.0723091 | [-0.216051, 0.0914072] | 1 | 1/10 | FAIL |
+| HeLa no intron → HEK293 no intron | HistGB | MSE improvement | -0.203972 | [-0.451761, 0.20145] | 1 | 1/10 | FAIL |
+| HEK293 no intron → HeLa no intron | Ridge | ΔSpearman | -0.0724637 | [-0.117624, 0.00944974] | 1 | 0/10 | FAIL |
+| HEK293 no intron → HeLa no intron | Ridge | MSE improvement | -0.1633 | [-0.254287, -0.0193768] | 0.470353 | 0/10 | FAIL |
+| HEK293 no intron → HeLa no intron | HistGB | ΔSpearman | 0.000708198 | [-0.182129, 0.156955] | 1 | 5/10 | FAIL |
+| HEK293 no intron → HeLa no intron | HistGB | MSE improvement | -0.244197 | [-0.444579, 0.154975] | 1 | 0/10 | FAIL |
+| HeLa no intron → HeLa with intron | Ridge | ΔSpearman | -0.0341453 | [-0.0601183, 0.104995] | 1 | 2/10 | FAIL |
+| HeLa no intron → HeLa with intron | Ridge | MSE improvement | -0.0385068 | [-0.0341548, 0.0804563] | 1 | 2/10 | FAIL |
+| HeLa no intron → HeLa with intron | HistGB | ΔSpearman | -0.0316741 | [-0.201416, 0.0741045] | 1 | 2/10 | FAIL |
+| HeLa no intron → HeLa with intron | HistGB | MSE improvement | -0.147718 | [-0.25333, 0.237392] | 1 | 0/10 | FAIL |
+| HeLa with intron → HeLa no intron | Ridge | ΔSpearman | 0.0475459 | [-0.0431874, 0.216765] | 1 | 9/10 | FAIL |
+| HeLa with intron → HeLa no intron | Ridge | MSE improvement | -0.0874879 | [-0.146034, 0.0526291] | 1 | 0/10 | FAIL |
+| HeLa with intron → HeLa no intron | HistGB | ΔSpearman | 0.007591 | [-0.149569, 0.156047] | 1 | 6/10 | FAIL |
+| HeLa with intron → HeLa no intron | HistGB | MSE improvement | -0.174179 | [-0.576383, 0.0815228] | 1 | 0/10 | FAIL |
+
+*Note.* ΔSpearman = structure − simple; MSE improvement = simple − structure. Effects are means over 10 seeds. CI and permutation inference use the frozen primary seed (20261222).
+
+**Table 15**
+
+*Absolute null/simple/structure performance at the frozen primary seed (20261222)*
+
+| Direction | Model | Metric | Null | Simple | Structure | Mean-seed effect |
+|---|---|---|---|---|---|---|
+| HeLa no intron → HEK293 no intron | Ridge | Spearman | -0.0280274 | 0.364115 | 0.29327 | -0.0881788 |
+| HeLa no intron → HEK293 no intron | Ridge | MSE | 2.161 | 1.95518 | 2.03959 | -0.127391 |
+| HeLa no intron → HEK293 no intron | HistGB | Spearman | -0.0280274 | 0.151366 | 0.0867215 | -0.0723091 |
+| HeLa no intron → HEK293 no intron | HistGB | MSE | 2.161 | 2.32775 | 2.45545 | -0.203972 |
+| HEK293 no intron → HeLa no intron | Ridge | Spearman | -0.0126345 | 0.375958 | 0.325522 | -0.0724637 |
+| HEK293 no intron → HeLa no intron | Ridge | MSE | 1.53336 | 1.44571 | 1.5797 | -0.1633 |
+| HEK293 no intron → HeLa no intron | HistGB | Spearman | -0.0126345 | 0.129361 | 0.127741 | 0.000708198 |
+| HEK293 no intron → HeLa no intron | HistGB | MSE | 1.53336 | 1.86538 | 1.96139 | -0.244197 |
+| HeLa no intron → HeLa with intron | Ridge | Spearman | -0.20751 | -0.0635951 | -0.0490229 | -0.0341453 |
+| HeLa no intron → HeLa with intron | Ridge | MSE | 1.12996 | 1.35273 | 1.33478 | -0.0385068 |
+| HeLa no intron → HeLa with intron | HistGB | Spearman | -0.20751 | -0.196154 | -0.265819 | -0.0316741 |
+| HeLa no intron → HeLa with intron | HistGB | MSE | 1.12996 | 1.8071 | 1.83208 | -0.147718 |
+| HeLa with intron → HeLa no intron | Ridge | Spearman | -0.219967 | -0.293984 | -0.210265 | 0.0475459 |
+| HeLa with intron → HeLa no intron | Ridge | MSE | 1.21237 | 1.39567 | 1.44824 | -0.0874879 |
+| HeLa with intron → HeLa no intron | HistGB | Spearman | -0.219967 | -0.342869 | -0.344802 | 0.007591 |
+| HeLa with intron → HeLa no intron | HistGB | MSE | 1.21237 | 1.87653 | 2.11223 | -0.174179 |
+
+The three within-context analyses were secondary, with a separate 12-endpoint Holm family, and could not rescue a failed primary transport family.
+
+**Table 16**
+
+*Secondary within-context predicted-MFE increments*
+
+| Condition | Model | Endpoint | Effect | 95% cluster-bootstrap CI | Holm *p* | Positive seeds | Decision |
+|---|---|---|---|---|---|---|---|
+| HeLa no intron | Ridge | ΔSpearman | -0.080237 | [-0.0963068, 0.0499518] | 1 | 0/10 | FAIL |
+| HeLa no intron | Ridge | MSE improvement | -0.0831297 | [-0.0647209, 0.0332873] | 1 | 0/10 | FAIL |
+| HeLa no intron | HistGB | ΔSpearman | -0.0515629 | [-0.22254, 0.0979894] | 1 | 1/10 | FAIL |
+| HeLa no intron | HistGB | MSE improvement | -0.186431 | [-0.273063, 0.247578] | 1 | 1/10 | FAIL |
+| HeLa with intron | Ridge | ΔSpearman | -0.0023907 | [-0.141196, 0.13534] | 1 | 6/10 | FAIL |
+| HeLa with intron | Ridge | MSE improvement | -0.0523405 | [-0.113084, 0.0467244] | 1 | 0/10 | FAIL |
+| HeLa with intron | HistGB | ΔSpearman | -0.0588966 | [-0.175036, 0.09036] | 1 | 0/10 | FAIL |
+| HeLa with intron | HistGB | MSE improvement | -0.204518 | [-0.45454, 0.0526719] | 1 | 0/10 | FAIL |
+| HEK293 no intron | Ridge | ΔSpearman | -0.0171567 | [-0.062977, 0.0466192] | 1 | 2/10 | FAIL |
+| HEK293 no intron | Ridge | MSE improvement | -0.0638255 | [-0.130002, 0.0404939] | 1 | 0/10 | FAIL |
+| HEK293 no intron | HistGB | ΔSpearman | -0.0206983 | [-0.158299, 0.110726] | 1 | 3/10 | FAIL |
+| HEK293 no intron | HistGB | MSE improvement | -0.0779413 | [-0.292339, 0.314585] | 1 | 4/10 | FAIL |
+
+The resulting conclusion was `MATCHED_CONTEXT_MFE_TRANSPORT_NOT_SUPPORTED`. The four-direction family did not pass, so a broad context-transportable predicted-MFE increment is not supported. This does not establish that RNA structure is universally irrelevant. Bidirectional host transport decision: FAIL; bidirectional intron transport decision: FAIL. The matched design removes the study, vector-library, variant-reference, observed-fragment and predicted-feature-definition differences that jointly confounded RK27 versus RK28. It does not resolve measured-versus-predicted structure, full-CDS coverage, protein OOD, every cell-line-specific mechanism or a causal splicing mechanism.
+
+Production completed 1700 CPU fits (800 transport + 900 within-context) in 249.582456 s; independent model verification required 230.075 s. Both independent gates passed before manuscript integration. No functional-untouched evaluation, generator training, prospective design–build–test, external SOTA or clinical-expression claim follows. RK-G1 remains open and the manuscript remains a non-submittable working draft.
+<!-- A8_RK29_RK30_END -->
+
 ## 7. Discussion
 
 The intended scientific contribution is a testable explanation of when synonymous function depends on spatial coupling among RNA structure, translation dynamics and transcript decay. The model is a consequence of that explanation, not its starting point. If initiation accessibility dominates one assay, codon content dominates another, or velocity profiles fail to transfer across studies, those differences define biological boundaries rather than inconveniences to be hidden.
@@ -1371,6 +1483,19 @@ The working-manuscript values above were rendered from the following frozen arti
 | RK28 manuscript section | `6a47f1a1fba86ddc25c478dc024a63c2a0c3926ec61a1b4ab90489122f0336b2` |
 | RK28 manuscript writing status | `03f3d50a3438b29b803777f6e15d837ec97450a22720e0d5619968e861b566d9` |
 
+<!-- A8_RK29_RK30_ANCHORS_START -->
+| Evidence | SHA256 |
+|---|---|
+| RK29 alignment failure | ec1fc2c02370b21a333eb5cb38907cd3e893c4de86b95e8b8770e3033f4feb0d |
+| RK29 independent alignment verification | 1306b5c55eb21e196561f2fd1448b46fb5e0d6d95ff3ed4c0f3062a0ecdc0d22 |
+| RK30 frozen matched-context protocol | 11e1c771d601ba24274b2eabb695e7ec3236e5fac24431e1e4ee7ac586fe6cd5 |
+| RK30 fixed-reference counting | 7a58bef98f9228ac7f8ef95f35699f4aed30721495fa334cd2b6f2be4b44e67f |
+| RK30 model summary | b7d864e24e1690a5e2d0f77482af049595d6540a7262af5bc88769a5736003ad |
+| RK30 raw independent verification | 850394f066aa418cc1a1db155a9c1bc24737529efce98bec83cd59ab0b63b1f7 |
+| RK30 independent model verification | da25b54909fdbdaaa34b54e7ffb23a80de21b1b77dceae8dc9499407b8eff36e |
+| RK30 verified closeout | 1262757e8cc81681c6482a25280b882cabe35fd7c730a1c40d8d3fcc069ad523 |
+<!-- A8_RK29_RK30_ANCHORS_END -->
+
 A7 is retained as the prior manuscript snapshot. This A8 file remains a **non-submittable working manuscript** until the mechanism, main model, actual-set baselines, OOD, full experimental clean-environment reproduction, and prospective validation gates are complete.
 
 ## 9. References
@@ -1387,6 +1512,8 @@ Chen, T., Holsman, M., Zhao, L., and Chatterjee, P. pCoMole: Pareto-Constrained 
 
 Dai, N., Zhou, T., Tang, W.-Y., et al. EnsembleDesign: messenger RNA design minimizing ensemble free energy via probabilistic lattice parsing. *Bioinformatics* (2025). https://doi.org/10.1093/bioinformatics/btaf245
 
+Diez, M., Medina-Muñoz, S. G., Castellano, L. A., et al. iCodon customizes gene expression based on the codon composition. *Scientific Reports* (2022). https://doi.org/10.1038/s41598-022-15526-7
+
 Fallahpour, A., Gureghian, V., and Filion, G. J. CodonTransformer: a multispecies codon optimizer using context-aware neural networks. *Nature Communications* (2025). https://doi.org/10.1038/s41467-025-58588-7
 
 Kelsic, E. D., Chung, H., Cohen, N., Park, J., Wang, H. H., and Kishony, R. RNA Structural Determinants of Optimal Codons Revealed by MAGE-Seq. *Cell Systems* (2016). https://doi.org/10.1016/j.cels.2016.11.004
@@ -1400,6 +1527,8 @@ Laajil, A., et al. Curriculum-Augmented GFlowNets For mRNA Sequence Generation. 
 Li, H., Terai, G., Otagaki, T., and Asai, K. Gradient-based optimization for mRNA sequence design. *Bioinformatics* (2026). https://doi.org/10.1093/bioinformatics/btag667
 
 Lin, S., Tan, H., Wang, K., et al. RNARL: reinforcement learning-driven unified generative framework for multi-objective RNA codon design. *Genome Biology* (2026). https://doi.org/10.1186/s13059-026-04203-x
+
+Mordstein, C., Savisaar, R., Young, R. S., et al. Codon Usage and Splicing Jointly Influence mRNA Localization. *Cell Systems* (2020). https://doi.org/10.1016/j.cels.2020.03.001
 
 Patel, S., Tang, S., Kim, Y., et al. mRNAutilus: Multi-Objective-Guided Discrete Generation of mRNA with Optimized Therapeutic Properties. *arXiv:2605.31296* (2026).
 
