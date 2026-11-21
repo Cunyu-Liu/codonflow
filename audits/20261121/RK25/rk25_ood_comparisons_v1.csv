@@ -1,0 +1,7 @@
+partition,left,right,metric,point_delta_mean_per_seed,benefit,confirmatory,ci95_low,ci95_high,sign_pvalue,bootstrap_valid,bootstrap_requested,point_direction_pass,ci_direction_pass,holm_pvalue,direction_pass,endpoint_pass
+sequence_ood,ribokinetic_all,boel_author,spearman,-0.21811836219540887,-0.21811836219540887,True,-0.2722711773243162,-0.16334044169079254,0.0,20000,20000,False,False,0.0,False,False
+sequence_ood,ribokinetic_all,boel_author,cluster_balanced_mse,0.7306069546160505,-0.7306069546160505,True,0.5341382109633555,0.9258797959656737,0.0,20000,20000,False,False,0.0,False,False
+sequence_ood,boel_author,ridge_all,spearman,0.20952136656831705,0.20952136656831705,True,0.15881562830926724,0.2602926941378022,0.0,20000,20000,True,True,0.0,True,True
+sequence_ood,boel_author,ridge_all,cluster_balanced_mse,-0.8290870762002958,0.8290870762002958,True,-1.004941052200879,-0.6532704006471712,0.0,20000,20000,True,True,0.0,True,True
+sequence_ood,boel_author,histgb_all,spearman,0.2080114740266785,0.2080114740266785,True,0.15728926553841197,0.25857330923095795,0.0,20000,20000,True,True,0.0,True,True
+sequence_ood,boel_author,histgb_all,cluster_balanced_mse,-0.7047199149791634,0.7047199149791634,True,-0.8672243031203977,-0.5434487638967203,0.0,20000,20000,True,True,0.0,True,True

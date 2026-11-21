@@ -1,0 +1,171 @@
+{
+  "schema": "a8-rk33-registration-verification-v1",
+  "mode": "prepare",
+  "head": "a028d1986e05e7ece66fce6bc5d3a3dd06d1567f",
+  "status": "FAIL",
+  "checks_passed": 24,
+  "checks_total": 25,
+  "checks": [
+    {
+      "name": "expected_pre_registration_head",
+      "pass": true,
+      "details": "a028d1986e05e7ece66fce6bc5d3a3dd06d1567f"
+    },
+    {
+      "name": "registry_row_not_already_in_head",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "tasks_section_not_already_in_head",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "resume_has_exactly_one_registry_row",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "resume_has_exactly_one_tasks_section",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "reconstructed_preexisting_tasks_diff_sha_before",
+      "pass": true,
+      "details": {
+        "sha256": "62aad6674b5a41af4ac1d9aa0f7ee8ed61e77684addb232cd4d63fd3c06a304c",
+        "bytes": 49232,
+        "resumed": true
+      }
+    },
+    {
+      "name": "registry_row_exactly_once",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "tasks_append_exactly_once",
+      "pass": true,
+      "details": 1
+    },
+    {
+      "name": "tasks_commit_is_head_plus_append_only",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "handoff_exists_and_nonempty",
+      "pass": true,
+      "details": 13961
+    },
+    {
+      "name": "preexisting_tasks_patch_preserved",
+      "pass": true,
+      "details": {
+        "reconstructed_original_sha256": "62aad6674b5a41af4ac1d9aa0f7ee8ed61e77684addb232cd4d63fd3c06a304c",
+        "reconstructed_original_bytes": 49232,
+        "postappend_diff_sha256": "a9eb5100b4a747f87d22e4a5e2b327a449b96954eaacb38c85b4ab21dbfd6051",
+        "postappend_diff_bytes": 49232,
+        "worktree_is_original_plus_rk33_append": true
+      }
+    },
+    {
+      "name": "sha_rk33_local_coverage_result_v1.json",
+      "pass": true,
+      "details": "d341694fb336ba579bbb990d80d7b17eafff104250052cea8577e4b927c08b64"
+    },
+    {
+      "name": "sha_rk33_local_coverage_independent_v1.json",
+      "pass": true,
+      "details": "3b53c5118bc93a71a5eaadaaaf22e48f13bc0b2d580b017308348a0ff171fa8d"
+    },
+    {
+      "name": "sha_rk33_clean_reproduction_v1.json",
+      "pass": true,
+      "details": "7808acc84567fe972be0ddb870c23bd8714da2bc1e0dbdb1421ff08a5171e455"
+    },
+    {
+      "name": "sha_rk33_closeout_verification_v2.json",
+      "pass": true,
+      "details": "ae09d302c8dd331aa59239c6e90180289e3c7ab34a030d3510e26b6af55c334b"
+    },
+    {
+      "name": "sha_CodonFlow_preprint_A8.md",
+      "pass": true,
+      "details": "1e2701a379dc362e2d1a75949ac7d20fca039ca4703e6a6f73665a09b1b0e65d"
+    },
+    {
+      "name": "remote_ppt_closeout_21_of_21",
+      "pass": true,
+      "details": {
+        "revision": 122,
+        "slides": 155
+      }
+    },
+    {
+      "name": "ppt_bundle_sha",
+      "pass": true,
+      "details": {
+        "sha256": "804df9aac43aa55c93eaa78e4992fe75c056592244b1385eebad9c67b7e90a32",
+        "bytes": 2331319
+      }
+    },
+    {
+      "name": "teams_production_artifacts_present",
+      "pass": true,
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk33/local_coverage_v1/model_results_v1",
+        "files": 7,
+        "bytes": 5607215
+      }
+    },
+    {
+      "name": "teams_clean_artifacts_present",
+      "pass": true,
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk33/local_coverage_v1/clean_reproduction_20e1ac38",
+        "files": 14,
+        "bytes": 11222218
+      }
+    },
+    {
+      "name": "teams_ppt_artifacts_present",
+      "pass": true,
+      "details": {
+        "path": "/teams/HoulabData_1788502323/liucunyu/codonflow1031/rk33/ppt_v1",
+        "files": 126,
+        "bytes": 11067042
+      }
+    },
+    {
+      "name": "preexisting_untracked_preserved_A8_RK_tasks.md",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "preexisting_untracked_preserved_a8_rk32_run_structure_definition.py",
+      "pass": true,
+      "details": null
+    },
+    {
+      "name": "only_allowed_paths_staged_before_report",
+      "pass": true,
+      "details": [
+        "audits/20261121/RK33/rk33_registry_row.md",
+        "audits/20261121/RK33/rk33_tasks_append.md",
+        "docs/handover/HANDOFF_A8_RK33_20261121.md",
+        "docs/handover/tasks.md",
+        "experiments/REGISTRY.md",
+        "scripts/a8_rk33_register.py"
+      ]
+    },
+    {
+      "name": "staged_diff_check",
+      "pass": false,
+      "details": ""
+    }
+  ],
+  "nonclaims": "Registration verifies evidence and worktree hygiene only; it does not close external SOTA, time-matched, full seven-method dense, functional/protein OOD, prospective DBTL or RK-G1."
+}
