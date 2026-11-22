@@ -1,0 +1,166 @@
+{
+  "all_pass": false,
+  "cambray_independent_rederive": {
+    "aa_varies": true,
+    "lengths": [
+      96
+    ],
+    "n_peptides": 11854,
+    "n_rows": 19760,
+    "prot_max": 100.0,
+    "prot_min": 1.0,
+    "zip_sha": "792cf9f37ff61b16ec6bbdaa64672f6abceb3ed0510b586f3e46661884305af3"
+  },
+  "checks": [
+    {
+      "detail": "",
+      "name": "protocol_frozen",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "protocol_sha_matches",
+      "pass": true
+    },
+    {
+      "detail": "[96]",
+      "name": "cambray_raw_length_96_only",
+      "pass": true
+    },
+    {
+      "detail": "n_peptides=11854",
+      "name": "cambray_raw_aa_varies",
+      "pass": true
+    },
+    {
+      "detail": "1.0-100.0",
+      "name": "cambray_raw_continuous_prot",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_pdf_constant_upstream_quote",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_pdf_96bp_quote",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_pdf_sha_matches",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_zip_sha_matches",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_R2_fail",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_R3_fail",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_R4_fail",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_R5_fail",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_R6_pass",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "cambray_not_qualifying",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "kosuri_html_114_promoters",
+      "pass": false
+    },
+    {
+      "detail": "",
+      "name": "kosuri_html_sfgfp_fixed",
+      "pass": false
+    },
+    {
+      "detail": "",
+      "name": "kosuri_R4_fail",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "kosuri_not_qualifying",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "qualifying_recomputed_matches",
+      "pass": true
+    },
+    {
+      "detail": "n=0",
+      "name": "n_qualifying_zero",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "branch_B3",
+      "pass": true
+    },
+    {
+      "detail": "{\"R1\": 0, \"R2\": 8, \"R3\": 8, \"R4\": 8, \"R5\": 9, \"R6\": 0, \"R7\": 6}",
+      "name": "fail_tally_matches",
+      "pass": true
+    },
+    {
+      "detail": "[]",
+      "name": "raw_blocked_no_R7_pass",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "mage_frozen_boundary",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "no_fit_boundary",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "no_unilateral_relax",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "dbtl_requires_user",
+      "pass": true
+    },
+    {
+      "detail": "",
+      "name": "n_candidates_9",
+      "pass": true
+    }
+  ],
+  "n_checks": 29,
+  "n_fail": 2,
+  "n_pass": 27,
+  "result_sha256": "7487a14e811e1f5a95842b27c9468ef3145ecedc63dde1b1727c02262b2db9a0",
+  "schema": "a9-rk42-independent-data-acquisition-independent-v1"
+}

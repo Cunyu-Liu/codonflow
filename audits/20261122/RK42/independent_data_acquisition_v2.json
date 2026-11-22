@@ -1,0 +1,506 @@
+{
+  "boundaries": {
+    "historical_MAGE_functional_untouched_frozen": true,
+    "no_transport_effect_SOTA_mechanism_generator_claim": true,
+    "public_retrospective_vs_prospective_DBTL_separated": true
+  },
+  "branch_decision": "B3_NO_QUALIFYING_PUBLIC_DATA_WETLAB_DBTL_REQUIRES_USER_APPROVAL",
+  "date": "2026-11-22",
+  "fail_tally_non_qualifying": {
+    "R1": 0,
+    "R2": 8,
+    "R3": 8,
+    "R4": 8,
+    "R5": 9,
+    "R6": 0,
+    "R7": 7
+  },
+  "label_free": true,
+  "missing_dimensions": [
+    "fixed-protein synonymous CDS library (R4): absent in 7/9 regulatory-grammar/N-terminal-fusion sources",
+    "variant-specific native 5'UTR (R3): absent in 8/9 (fixed synthetic leader or synthetic regulatory parts)",
+    "full CDS per variant (R2): absent in 6/9 (N-terminal segment / fixed reporter / promoter library)",
+    "protein identity + family map for protein OOD (R5): absent in single-reporter sources",
+    "documentable raw construct-level table SHA (R7): blocked/unverified for several sources"
+  ],
+  "n_candidates": 9,
+  "n_qualifying": 0,
+  "no_model_fit_no_outcome_association": true,
+  "prospective_DBTL_design_B3": {
+    "design": {
+      "construct": "native complete variant-specific 5'UTR-CDS (>=4nt native upstream of ATG), reconstructable UTR[-4:]+CDS[:38]",
+      "controls": "WT / LinearDesign / RNARL synonymous controls; preregistered splits and leakage audit",
+      "host": "independent E. coli host distinct from Kudla cohort (e.g. MG1655/MDS42)",
+      "library": "fixed-protein synonymous CDS library, >=several hundred variants/protein for protein/cluster OOD",
+      "proteins": ">=2 fixed proteins (e.g. sfGFP + a native E. coli enzyme) with family map",
+      "readout": "continuous expression (fluorescence) + growth-competition fitness, with replicates and detection-limit audit"
+    },
+    "measurement_protocol_frozen_before_reading_outcomes": true,
+    "requires_user_budget_and_timeline_approval": true,
+    "timeline_note": "wet-lab DBTL extends beyond the one-month preprint goal; public-first is the fast path; user must approve budget and extension."
+  },
+  "protocol_sha256": "aa6071c3b13b0376953770e9292e17ea41e7267d1352ec91239d5b7a3fc1ddbd",
+  "schema": "a9-rk42-independent-data-acquisition-v1",
+  "sources": [
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent 2018 E. coli MDS42 study, not the Kudla training cohort.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Raw re-derivation: gs.sequence length = 96 bp for all 19760 sampled rows; variant region is a 32-codon N-terminal segment fused to sfGFP, not a full native CDS.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Supplementary Note 1: upstream [-30;3] segment is constant (fixed synthetic RBS leader); not variant-specific native 5'UTR. Primer Table 2 shows fixed AAGGAGGT...ATG leader.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "Raw re-derivation: 12394 distinct translated peptides among sampled rows (amino_acid_varies=True); factorial design varies hydropathy/amino-acid properties -> not fixed-protein synonymous.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Single engineered sfGFP reporter protein; no native protein identity/family map for protein OOD.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Raw continuous ranges: clean.lin.prot.mean {'max': 100.0, 'min': 1.0, 'n': 19665}; growth.aggregate.R {'max': 1.12549877310143, 'min': 0.624014904479096, 'n': 19145}; ss.rna.dna.mean {'max': 12915.176535182, 'min': 476.856777806589, 'n': 19112}; fresh continuous with replicates.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "SRA SRP086076 + Nature supplementary; raw artifact SHA256 documentable (partial download honestly recorded).",
+          "status": "PASS"
+        }
+      },
+      "construct_facts": [
+        "244000 sequences = 56 replicates of a full factorial design; each variant is a designed 96-bp (32-codon) N-terminal coding segment fused to an engineered sfGFP reporter (Supplementary Note 1: gs.sequence = 'the designed sequence (96 bp)').",
+        "Supplementary Note 1 utrCdsStructureMFE: 'The [-30;3] segment is constant; thus, the structure is dictated by variation in [1;27] of the designed sequence' -> upstream 5'UTR+start is a FIXED synthetic leader, not variant-specific native UTR.",
+        "Design factors include amino-acid-level hydropathy (ds.cdsHydropathyIndex; ANOVA factor 'hydrol') -> amino acids vary, NOT a fixed-protein synonymous library.",
+        "Continuous phenotypes: P_NI/P_FI protein (clean.lin.prot.mean, linear 1-100), relative growth W (growth.aggregate.R), mRNA abundance/half-life (ss.rna.dna.mean), polysome load; multiple replicates."
+      ],
+      "host": "Escherichia coli MDS42",
+      "id": "Cambray2018",
+      "qualifying": false,
+      "raw_access_status": "partial_raw_downloaded: 127MB Data15 zip throttled/truncated by Springer static-content to ~10.7MB; leading deflate stream decompressed yielding 19760 real CSV rows; Note1/Tables PDFs fully downloaded",
+      "raw_artifacts_sha256": {
+        "cambray2018_data15_integrated_phenotypes.zip_partial": "792cf9f37ff61b16ec6bbdaa64672f6abceb3ed0510b586f3e46661884305af3",
+        "cambray2018_partial_raw_rederive_v1.json": "b0a78e6424ade0e2d8e5ebdc91ea9a27c21b9d7d9f6f4c2770c44fc521f01a16",
+        "cambray2018_supp_notes.pdf": "50d285cc17fa90810e4ccfb740b74070562f5883e49d6ccc00dbe7695c16be0a",
+        "cambray2018_supp_notes.txt": "a57c1ff6311eefac437c81479d46620bf529f3940f29159dcfc36fb7219aa422",
+        "cambray2018_supp_tables.pdf": "00dcc47d268fb97c02f869a3d87a19f4c1026e1995a674923aab55cd943e0e49",
+        "cambray2018_supp_tables.txt": "04d6be778fb6444025808d473d854daa0cce8c458caf7e877c15b69b9bfbc0f1"
+      },
+      "raw_rederive": {
+        "amino_acid_varies": true,
+        "gs_sequence_length_distribution": {
+          "96": 19760
+        },
+        "n_complete_rows": 19760,
+        "n_distinct_translated_peptides": 12394,
+        "numeric_phenotype_ranges": {
+          "clean.lin.prot.mean": {
+            "max": 100.0,
+            "min": 1.0,
+            "n": 19665
+          },
+          "growth.aggregate.R": {
+            "max": 1.12549877310143,
+            "min": 0.624014904479096,
+            "n": 19145
+          },
+          "ss.rna.dna.mean": {
+            "max": 12915.176535182,
+            "min": 476.856777806589,
+            "n": 19112
+          }
+        }
+      },
+      "raw_sources": [
+        "SRA SRP086076",
+        "Nature Supplementary Data 15 (MOESM58_ESM.zip, integrated phenotypic measurements, 244000 sequences)",
+        "Nature Supplementary Note 1 (dataset column description, MOESM15_ESM.pdf)",
+        "Nature Supplementary Tables 1-3 (MOESM14_ESM.pdf)"
+      ],
+      "study": "Cambray, Guimaraes, Arkin. Nat Biotechnol 36:1005-1015 (2018), doi:10.1038/nbt.4238"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent 2013 E. coli MG1655 study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "sfGFP CDS fixed; no per-variant CDS variation (regulatory-grammar library).",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Variable elements are synthetic promoter/RBS parts, not variant-specific native 5'UTR.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "Fixed CDS, no synonymous codon library; variation is in regulatory elements.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Single sfGFP reporter; no protein family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous FlowSeq GFP/RFP protein levels.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "AddGene 47441 + PNAS datasets; provenance documentable.",
+          "status": "PASS"
+        }
+      },
+      "construct_facts": [
+        "12653 constructs = all combinations of 114 promoters x 111 RBSs driving FIXED superfolder GFP; mCherry independent internal control.",
+        "Promoters/RBSs are synthetic parts (BIOFAB, Anderson BioBrick, Salis RBS Calculator, cloning vectors); the sfGFP CDS is invariant.",
+        "FlowSeq continuous GFP/RFP protein levels over ~4 orders of magnitude."
+      ],
+      "host": "Escherichia coli MG1655",
+      "id": "Kosuri2013",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified_via_fetch: curl full-page HTML returned Cloudflare challenge (kosuri_pnas.html retained); construct geometry confirmed from publisher methods text (kosuri2013_pnas_methods.txt) + Fig.1; outcome Dataset S1 not separately fetched",
+      "raw_artifacts_sha256": {
+        "kosuri2013_pnas_methods.txt": "c322ef82a5a2f181df51b45d9d29372e053a595248d16325b58791bb4212c46d",
+        "kosuri_pnas.html_blocked_challenge": "c18db8defae899f645b08e1656baf5e9a55480f85b5b1f5650f27c86dd881845"
+      },
+      "raw_sources": [
+        "AddGene 47441 (pGERC reporter)",
+        "PNAS Dataset S1/S3",
+        "Fig.1 construct diagram (saved kosuri_pnas.html)"
+      ],
+      "study": "Kosuri et al. PNAS 110:14024-14029 (2013), doi:10.1073/pnas.1301301110"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent 2013 E. coli study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "N-terminal segment + reporter fusion, not full native CDS per variant.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Synthetic promoter/RBS combinations; not variant-specific native 5'UTR.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "Synonymous only within N-terminal segment across 137 genes with reporter fusion + regulatory variation; not a fixed-protein full-CDS synonymous library.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "137 gene identities present but no protein family map provided in raw; raw table blocked.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous fluorescence expression (methods).",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw Table S1 blocked by Cloudflare; raw SHA of outcome table not obtainable this round (SRA accession exists).",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        ">14000 synthetic reporters = N-terminal codon variants of 137 E. coli genes combined with promoter/RBS combinations (14234 combinations of promoters, RBSs and N-terminal coding sequences).",
+        "Variation is N-terminal coding segment within a reporter-fusion context plus regulatory (promoter/RBS) variation; fixed leader context per construct."
+      ],
+      "host": "Escherichia coli",
+      "id": "Goodman2013",
+      "qualifying": false,
+      "raw_access_status": "raw_table_blocked: science.org Table S1 CSV returned Cloudflare 'Just a moment...' challenge via curl AND fetch tool (real failure retained, goodman2013_tableS1.csv is a 5733-byte HTML challenge page); construct geometry verified from publisher methods/abstract",
+      "raw_artifacts_sha256": {
+        "goodman2013_tableS1.csv_blocked_html": "bdb308cb0bc26d442014e6c64669700fc1f6aef3527c087480c25c5a146184e4"
+      },
+      "raw_sources": [
+        "Table S1 = 1241934tables1.csv (12.57MB)",
+        "SRA SRP029609 (SRX346948 RNA / SRX346944 DNA / SRX346268 FlowSeq)",
+        "AddGene 47441"
+      ],
+      "study": "Goodman, Church, Kosuri. Science 342:475-479 (2013), doi:10.1126/science.1241934"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent 2013 E. coli study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Fixed reporter CDS; regulatory-element library.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Synthetic BCD promoter/RBS elements, not native variant-specific UTR.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "No synonymous CDS library; fixed CDS.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Reporter construct; no protein family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous expression distributions across libraries.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw construct-level table not downloaded this round; metadata-only.",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        "Bicistronic design (BCD): well-accessible RBS1 drives a short leader peptide; libraries of constitutive/repressor-regulated promoters + translation initiation elements; fixed downstream reporter.",
+        "Variation is in transcription/translation initiation elements, not synonymous CDS."
+      ],
+      "host": "Escherichia coli",
+      "id": "Mutalik2013",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified: BCD architecture (RBS1 drives short leader peptide; insulated promoter) confirmed; regulatory-element library with fixed reporter",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        "BIOFAB bicistronic design (BCD) promoter/RBS libraries",
+        "publisher methods"
+      ],
+      "study": "Mutalik et al. Nat Methods 10:354-360 (2013), doi:10.1038/nmeth.2404"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent study (BIOFAB).",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Regulatory-parts library, no synonymous CDS variation.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Synthetic regulatory parts.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "Not a fixed-protein synonymous CDS library.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "No protein family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous expression (regulatory activity).",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw source unverified; cannot document raw SHA.",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        "BIOFAB-associated regulatory parts (promoter/RBS) characterization; not a fixed-protein synonymous CDS dataset."
+      ],
+      "host": "Escherichia coli",
+      "id": "Rhodius2012",
+      "qualifying": false,
+      "raw_access_status": "raw_unverified: precise publication/raw table not located; BIOFAB context indicates promoter/RBS regulatory-parts library",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        "candidate identity ambiguous; raw source not precisely located this round"
+      ],
+      "study": "Rhodius et al. (2012), BIOFAB-associated regulatory-parts characterization"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Fixed reporter CDS.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Synthetic designed RBS, not native variant-specific UTR.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "No synonymous CDS library.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Single reporter; no family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous expression.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw construct table not downloaded this round.",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        "Designed synthetic RBS (5'UTR) variants with fixed reporter CDS; variation in RBS strength, not synonymous codons."
+      ],
+      "host": "Escherichia coli",
+      "id": "Salis2011",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified: designed synthetic RBS variants driving fixed reporter CDS",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        "RBS Calculator designed RBS datasets",
+        "publisher methods"
+      ],
+      "study": "Salis lab RBS Calculator / designed RBS variants (2011)"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Fixed reporter CDS.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Synthetic designed RBS/UTR, not native variant-specific UTR.",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "No synonymous CDS library.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Single reporter; no family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous translation-rate/expression readout.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw construct table not downloaded this round.",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        "Translation initiation controlled by RNA folding/standby-site accessibility; designed RBS/UTR structure variants driving fixed reporter CDS."
+      ],
+      "host": "Escherichia coli",
+      "id": "EspahBorujeni2014_2017",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified: designed RBS/UTR secondary-structure variants with fixed reporter",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        "designed RBS/UTR structure variants",
+        "publisher methods"
+      ],
+      "study": "Espah Borujeni, Channarasappa, Salis. NAR 42:2646-2659 (2014) doi:10.1093/nar/gkt1139; Espah Borujeni et al. (2017)"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent yeast study (distinct host).",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "No CDS variation; fixed reporter.",
+          "status": "FAIL"
+        },
+        "R3": {
+          "evidence": "Random synthetic promoters, not native variant-specific 5'UTR (and promoter != UTR).",
+          "status": "FAIL"
+        },
+        "R4": {
+          "evidence": "Promoter library, not synonymous CDS.",
+          "status": "FAIL"
+        },
+        "R5": {
+          "evidence": "Single reporter; no protein family map.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous expression output.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "GEO accession documentable but raw construct-level table not downloaded this round; raw SHA not obtained.",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        ">100 million fully random synthetic yeast promoter sequences; expression output measured; fixed reporter (YFP) CDS.",
+        "Variation is in promoters (cis-regulatory DNA), not synonymous CDS; promoter is not a 5'UTR."
+      ],
+      "host": "Saccharomyces cerevisiae (yeast)",
+      "id": "deBoer2020",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified: fully random synthetic PROMOTER library, fixed reporter CDS, yeast host",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        ">100 million fully random synthetic yeast promoter sequences driving fixed YFP",
+        "GEO (Vaishnav/de Boer promoter datasets)"
+      ],
+      "study": "de Boer et al. Nat Biotechnol 38:56-65 (2020)"
+    },
+    {
+      "R": {
+        "R1": {
+          "evidence": "Independent 2020 E. coli study.",
+          "status": "PASS"
+        },
+        "R2": {
+          "evidence": "Full CDS of the target gene (synonymous whole-gene variants).",
+          "status": "PASS"
+        },
+        "R3": {
+          "evidence": "Native locus context retains native 5'UTR (methods); exact upstream reconstruction not independently verified this round.",
+          "status": "PASS"
+        },
+        "R4": {
+          "evidence": "Fixed-protein synonymous substitutions.",
+          "status": "PASS"
+        },
+        "R5": {
+          "evidence": "Single gene; no multi-protein family map for protein OOD.",
+          "status": "FAIL"
+        },
+        "R6": {
+          "evidence": "Continuous growth fitness.",
+          "status": "PASS"
+        },
+        "R7": {
+          "evidence": "Raw variant-count table not fully verified; scale insufficient for a benchmark library (n_variants too small).",
+          "status": "FAIL"
+        }
+      },
+      "construct_facts": [
+        "Synonymous codon substitutions (e.g. Shuf1 shuffled synonymous allele) of a single gene in native locus context; continuous growth-fitness readout.",
+        "Variant set is small (WT + Shuf1 + chimeras), not a large construct-level synonymous library suitable for protein/cluster OOD benchmarking."
+      ],
+      "host": "Escherichia coli",
+      "id": "Lind2020",
+      "qualifying": false,
+      "raw_access_status": "publisher_methods_verified_partial: fixed-protein synonymous variants in native context with continuous growth fitness, but variant set is small (WT + Shuf1 + a handful of chimeras); raw variant-count table not fully downloaded",
+      "raw_artifacts_sha256": {},
+      "raw_sources": [
+        "SI Appendix (WT / Shuf1 synonymous-shuffled gene + 5'/middle/3' chimeras)",
+        "publisher methods"
+      ],
+      "study": "Lind et al. PNAS 117 (2020), doi:10.1073/pnas.1907126117 'Synonymous codon substitutions perturb cotranslational protein folding in vivo and impair cell fitness'"
+    }
+  ],
+  "strategic_option_for_user": {
+    "do_not_unilaterally_relax_frozen_R1_R7": true,
+    "note": "Cambray fails R4 (amino-acid variation) so R3-relaxation alone does NOT unlock Cambray as a fixed-protein synonymous benchmark; Goodman-style N-terminal synonymous data is the plausible public fast path but requires user authorization to relax frozen R1-R7.",
+    "question": "Authorize a relaxed eligibility for the FUNCTIONAL benchmark only (accept fixed synthetic leader + N-terminal synonymous editing window, e.g. Goodman-style), keeping strict R3 for start-structure transport claims?"
+  },
+  "task": "A9-RK42 phase B independent-data acquisition audit"
+}
