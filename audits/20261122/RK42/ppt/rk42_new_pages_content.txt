@@ -1,0 +1,137 @@
+=== slide pSI ===
+01 / ACQUISITION VERDICT
+A9 / RK42 / INDEPENDENT DATA ACQUISITION
+0 of 9 public candidates qualify under frozen R1-R7
+RK42 - label-free independent-data acquisition audit - Y=PASS, N=FAIL (R1/R6 all PASS, omitted)
+CANDIDATES
+9
+public construct-level sources
+ELIGIBILITY
+R1-R7
+frozen, reused from RK36
+QUALIFYING
+0
+none passes all seven
+BRANCH
+B3
+wet-lab DBTL - user approval
+Candidate
+R2 fullCDS
+R3 nativeUTR
+R4 synonym
+R5 family
+R7 rawSHA
+Qualify
+Cambray2018
+N
+N
+N
+N
+Y
+NO
+Kosuri2013
+N
+N
+N
+N
+Y
+NO
+Goodman2013
+N
+N
+N
+N
+N
+NO
+Mutalik2013
+N
+N
+N
+N
+N
+NO
+Rhodius2012
+N
+N
+N
+N
+N
+NO
+Salis2011
+N
+N
+N
+N
+N
+NO
+EspahBorujeni14/17
+N
+N
+N
+N
+N
+NO
+deBoer2020
+N
+N
+N
+N
+N
+NO
+Lind2020
+Y
+Y
+Y
+N
+N
+NO
+R1 (independent study/host) and R6 (continuous outcome) PASS for all 9. Gap = R2/R3/R4/R5: no fixed-protein synonymous library with native variant-specific UTR + full CDS + family map.
+Branch B3: no qualifying public data -> prospective DBTL/wet-lab requires user budget + timeline approval; phase C positive core is data-blocked.
+Source: audit v2 5b73e43fbc18 - protocol aa6071c3b13b - independent 30/30 - commit ab58f523
+205
+RK42 audits nine public construct-level datasets against the seven frozen eligibility requirements, label-free, before any outcome association.
+None passes all seven: regulatory-grammar libraries fix the CDS, N-terminal fusions fix the leader and vary amino acids, and the one synonymous set is too small.
+The branch decision is B3: build prospective independent data via DBTL/wet-lab, which requires user budget and timeline approval.
+=== slide pSj ===
+02 / RAW EVIDENCE & DECISION
+A9 / RK42 / INDEPENDENT DATA ACQUISITION
+Raw-verified evidence and the independent-data decision
+RK42 - independent verify 30/30 - full project tests 502 passed/1 skipped/0 failed - phase C training not started (RK-G1 authorized, data-blocked)
+DESIGNED SEGMENT
+96 bp
+all 19,760 raw rows - not full CDS
+DISTINCT PEPTIDES
+12,394
+amino acids vary - not synonymous
+PROTEIN P_NI
+1-100
+continuous + growth + mRNA t1/2
+UPSTREAM [-30;3]
+CONSTANT
+fixed synthetic leader - not native
+Missing dimension (non-qualifying sources)
+Count / 9
+Consequence
+R3 native variant-specific 5'UTR
+8
+fixed synthetic leader or synthetic regulatory parts
+R5 protein identity + family map
+9
+single reporter; no protein OOD
+R4 fixed-protein synonymous library
+8
+regulatory variation or amino-acid variation
+R7 documentable raw construct SHA
+7
+Cloudflare-blocked or not downloaded
+R2 full CDS per variant
+8
+N-terminal segment / fixed reporter / promoter
+Cambray raw re-derived independently: 19,760 real CSV rows, gs.sequence=96bp, 12,394 peptides, P_NI 1-100; Note 1 '[-30;3] segment is constant'. Kosuri: 114 promoters x 111 RBS drive fixed sfGFP.
+DBTL design (B3): >=2 fixed proteins + family map; synonymous CDS library; native complete UTR-CDS; independent E. coli host; continuous fluorescence + growth fitness; protocol frozen before outcomes.
+USER DECISION: (A) strict R1-R7 -> wet-lab DBTL (budget + >1 month); or (B) authorize R3-relaxation for the functional benchmark only (Goodman-style); strict R3 kept for transport claims.
+Source: Cambray nbt.4238 Supp Note1/Tables + partial Data15 - Kosuri pnas.1301301110 methods - audit v2 5b73e43fbc18
+206
+The Cambray verdict is re-derived from real raw data, not memory: every designed sequence is 96 base pairs, the encoded peptides vary, and the upstream leader is constant.
+The dominant missing dimensions are native variant-specific UTR, protein family map, and a fixed-protein synonymous library.
+Phase C cannot start without qualifying independent data; the user must choose strict wet-lab DBTL or authorize a functional-benchmark R3 relaxation.
