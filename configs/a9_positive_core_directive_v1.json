@@ -1,0 +1,59 @@
+{
+  "schema": "a9-positive-core-directive-v1",
+  "status": "AUTHORIZED_BY_USER_PROJECT_OWNER",
+  "created_date": "2026-11-22",
+  "timezone": "Asia/Shanghai",
+  "authorized_by": "user (project owner, 刘存宇)",
+  "provenance": "User strategic directive recorded in docs/handover/DECISION_A9_20261122.md; supersedes the bounded/negative-paper default for A9+ only.",
+  "supersedes": "RK-G1=false / generator_training_authorized=false for NEW tasks only; historical frozen protocols (RK01-RK36) remain unchanged.",
+  "positioning": {
+    "paper_core": "positive_only",
+    "must_fairly_beat_strongest_comparable_baseline": true,
+    "negative_resource_only_as_headline": false,
+    "negatives_retained_as_boundary_evidence": true
+  },
+  "gates": {
+    "RK_G1": true,
+    "generator_training_authorized": true,
+    "new_independent_data_read_after_freeze": true,
+    "functional_untouched_MAGE_frozen": true,
+    "historical_frozen_artifacts_unchanged": true
+  },
+  "sota_gate": {
+    "paired_95ci_lower_bound_gt_zero": true,
+    "multiplicity_correction_pass": true,
+    "legality_rate_100_percent": true,
+    "full_cost_accounting": true,
+    "time_or_compute_matched": true,
+    "protein_study_ood_strata_retained": true,
+    "no_weaker_baseline_substitution": true,
+    "unresolved_if_not_beating_strongest": true
+  },
+  "independent_data_mandate": {
+    "required": true,
+    "eligibility_requirements": "reuse RK36 R1-R7 (independent study/host; full CDS; native variant-specific 5'UTR >=4nt; fixed-protein synonymous; protein identity + family map; fresh continuous outcome; isolation + provenance)",
+    "acquisition_strategy": "public_first_then_wetlab_fallback",
+    "public_candidates_to_verify_raw": ["Cambray2018", "Kosuri2013", "Goodman2013", "Mutalik2013", "Rhodius2012", "Salis2011", "EspahBorujeni2014_2017", "deBoer2020", "Lind2020"],
+    "wetlab_fallback_requires_user_approval": true,
+    "preregister_before_reading_outcomes": true
+  },
+  "positive_core_candidates": [
+    "CodonFlow discrete-flow / generative CDS-mRNA editor trained under authorized RK-G1, evaluated on new independent data vs strongest baselines",
+    "functional / translation-speed sequence model beating full-proxy ridge / CAI-GC / RiboMIMO / general sequence models under protein-study OOD",
+    "start-aware initiation-structure mechanism ONLY if it transports on the new independent data and beats baselines"
+  ],
+  "timeline_note": "one-month preprint goal conflicts with wet-lab data acquisition; public-first is the fast path; wet-lab extends timeline and needs user budget approval.",
+  "iron_rules_retained": [
+    "preregister -> freeze -> read outcomes",
+    "retain all failure logs",
+    "verifier-only fixes do not change scientific values/tolerances",
+    "independent raw-source verification + clean checkout reproduction",
+    "update REGISTRY/tasks/new HANDOFF each round",
+    "final pytest tests/ + clean env reproduction",
+    "code/commits in /home; large data/weights/artifacts in /teams/HoulabData_1788502323/liucunyu/codonflow1031/",
+    "push confirmed code to GitHub after each task",
+    "results independently checked then written to online PPT (concise/clear/beautiful), append-only with readback audit + screenshots",
+    "shared worktree: fetch before commit, stage only own paths, never git add -A",
+    "no server password in docs/logs/git/reply"
+  ]
+}

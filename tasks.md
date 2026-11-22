@@ -347,3 +347,13 @@
 - [x] **文档 closeout**：独立核验 registry/tasks/handoff、production/independent/clean SHA、稿件、PPT 和科学边界，39/39 PASS；两份仅涉及表头匹配和允许路径范围的失败报告保留。
 - [ ] **科学任务仍未解决**：本轮只支持内部多起点盆地选择机制，未逆转 RK39 的共同输入 actual-set 失败；external SOTA、统一 time-matched、完整七方法共同 dense、真实 functional/protein OOD、独立 untouched、前瞻 DBTL、RK-G1 和 manuscript submittable 均未完成。昂贵生成训练未授权，functional untouched 未读取，wet-lab 未执行。
 - [ ] **下一项必须产生新判别证据**：在不把外部序列当作 CodonFlow 输出的前提下检验更强共同输入搜索，优先以 actual-set HV 为主门禁并纳入统一 time-matched/真实成本；若无法建立公平外部对照，转向新的合格数据源，不重复包装同一11点负结果。
+
+## 2026-11-22：A9 用户战略指令落档（阳性核心 / RK-G1 授权 / 补独立数据）
+
+- [x] **指令落档**：`DECISION_A9_20261122.md` + `configs/a9_positive_core_directive_v1.json` + `PROMPT_NEXT_AGENT_A9_RK37.md` + `HANDOFF_A9_20261122.md`；REGISTRY 追加 A9-DIRECTIVE 行。用户三决定：论文仅阳性核心且必须公平击败最强 baseline；RK-G1 授权；重新补独立数据。
+- [x] **gates 变更**：`RK_G1=true`、`generator_training_authorized=true`、`new_independent_data_read_after_freeze=true`，仅 A9+ 生效；历史冻结协议/结果不追改；历史 MAGE functional untouched（19072 行）仍冻结除非用户另行解封。
+- [x] **定位与 SOTA 门槛**：positive-only；paired 95%CI 下界>0 + 多重校正 + 合法率100% + 完整成本 + time/compute-matched + OOD 分层保留；未赢最强 baseline 标未解决，不换弱 baseline/不删失败分层；阴性保留为边界证据。
+- [ ] **阶段 B 独立数据获取审计**：公开优先逐源 raw 核实（Cambray2018/Kosuri2013/Goodman2013/Mutalik2013/Rhodius2012/Salis2011/Espah Borujeni/de Boer2020/Lind2020），R1–R7 判定；合格则 acquire/clean/SHA/预注册划分/泄漏审计；无合格则湿实验 DBTL 设计需用户批准预算与延期。
+- [ ] **阶段 C 阳性核心**：新独立数据上预注册公平 benchmark + RK-G1 授权训练离散流/生成核心（合法核归一化/采样一致性验证），击败最强 baseline；结构机制仅在独立运输成立时纳入。
+- [ ] **阶段 D 论文重定位**：阳性核心过 SOTA 门槛后重定位英文稿 headline；未建立则保持 working 并如实报阻塞，不编造阳性。
+- [ ] **时间线张力**：一个月预印本目标与湿实验补数据冲突；公开优先为快路径，湿实验需用户批准。须用户决定数据源/预算/算力/延期。
