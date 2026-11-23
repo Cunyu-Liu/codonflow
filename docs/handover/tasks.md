@@ -55,7 +55,7 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 - [x] 冻结各任务主指标、至少 3 seeds、相当调参预算、ASHA/小网格范围、统计方案和成本口径；无轨迹方法只评 actual set，缺失为 null。
 
 **输出**：数据卡与来源 manifest、raw/clean/split SHA、QC/分布/泄漏报告、baseline manifest 与 smoke、冻结协议和运行台账均已由 G0 closeout v3 验收；汇总见 `交接文档/HANDOFF_A10_01_E0_20261123.md`。closeout v3 与独立复核 SHA、20/20、45 tests 和 A10 定向 251 passed 登记如上。
-**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性，E2 仅数值基础完成，H2/G1 未证，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
+**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性，E2 v6 正在真实 CUDA 训练但无完整 outer 结果，H2/G1 未证，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
 
 ## A10-02 · 完成 E1：低自由度观察模型与跨研究可分性
 
