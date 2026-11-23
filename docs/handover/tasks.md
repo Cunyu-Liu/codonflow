@@ -1,7 +1,7 @@
 # CodonFlow Tasks（A10 · Kinetic-CodonFlow 一个月执行清单）
 
 > 生效日期：2026-11-23。唯一执行合同：`docs/handover/PROMPT_NEXT_AGENT_A10_KINETIC.md`；科学合同：`docs/handover/spec.md`；当前任务矩阵：`docs/handover/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md`。
-> A7–A9 只作不可变证据引用。勾选只表示对应事项已有真实交付，不表示相关科学假设成立。除 A10-00 明示的两项外，以下 A10 工作均未完成；尤其 **A10-00 完成不等于 E0 或 A10-G0 完成**。
+> A7–A9 只作不可变证据引用。勾选只表示对应事项已有真实交付，不表示相关科学假设成立。A10-00 已完成；A10-01 仅有下方明示的数据审计、划分、单项 smoke 和测试已完成，**E0 与 A10-G0 仍未完成，A10-G1–G3 也均未通过**。
 
 ## 全局执行约束
 
@@ -13,45 +13,53 @@
 
 ## A10-00 远端重核与任务矩阵
 
-**状态：已完成的部分仅为远端重核和矩阵建立；E0 尚未开始交付。**
+**状态：远端重核和矩阵建立已完成；A10-01 已有部分真实交付，但 E0 尚未完成。**
 
-- [x] 重核 `/home/codonflow-a8-rk` 与 GitHub `a8-rk`：HEAD 均为 `8200c5617748819f6a1ef27c968620c4b723f38f`，工作树干净。
+- [x] 更新版本事实：GitHub `a8-rk` 当前已推送至 `753277d6`；后续操作共享远端工作树前仍须重新核对 HEAD、工作树与进程，不沿用旧 HEAD。
 - [x] 核实 RTX 5090、`torch 2.14.1+cu132` CUDA 真 matmul 通过；旧 A7 PID `2071716` 暂停且不重启。
-- [x] 建立一页任务—数据—baseline—主张矩阵，明确 RK42=0/9 同时满足 R1–R7 的真实含义、Goodman raw 未取得、Lareau `GSE58321` 仅为未读候选及所有冻结边界。
+- [x] 建立并更新一页任务—数据—baseline—主张矩阵，明确 RK42=0/9 同时满足 R1–R7 的真实含义、Goodman/Tunney 当前真实交付、Lareau `GSE58321` 已出现于 RK03/RK05 及所有冻结边界。
 
 **依赖**：无。
 **验收**：上述事实与计划分离；矩阵逐任务列出实际数据、baseline 真实状态、主指标、可/不可主张和下一动作；不得据此宣称 E0、数据可用、baseline 可复现或任何科学 Gate 通过。
 
 ## A10-01 E0：取得任务化数据、完成审计与真实 baseline smoke
 
+**状态：进行中。** Goodman 官方数据、最终 v3 审计、nested 划分、Tunney 审计和 EnsembleDesign quick v2 smoke 已有真实交付；146 项定向测试通过。上述进展不等于 E0 全量完成。
 **依赖**：A10-00。
-**Gate**：全部验收后才通过 A10-G0；没有真实功能与可靠 Ribo 输入，不启动 E1–E3，关键 baseline 未跑通不在 E4 称 SOTA。
+**Gate**：全部验收后才通过 A10-G0；当前 G0 未通过。E0 全部验收前不启动 E1–E3，关键 baseline 未跑通不在 E4 称 SOTA。
 
 ### 功能与构建数据
 
-- [ ] 从论文公开补充材料、PMC/NCBI 或其他合法公开源取得 Goodman2013 construct-level raw；保存 accession/release/URL/license/下载时间/raw-clean SHA/处理谱系，不从网页或图中猜值。
-- [ ] 审计 Goodman 的固定 leader、N 端同义窗、完整/片段 CDS、UTR、载体、宿主、启动子、assay、batch、replicate、单位、检出限和缺失原因；结论限定到实际构建几何。
+- [x] 取得 Goodman2013 官方 CSV 并生成 clean：raw SHA256=`a03071027b8c0008d07fb7737de0a7d51765c6cff25bc86e93465a6253c7c33a`，14234 行、75 列、137 Gene、4817 exact CDS、280 leader、33 nt N 端片段、8439 SetGood；clean SHA256=`ce64f2caa9633fefae840e220d36b6360946d39b9253adc56f3ef297b9ab9c82`。
+- [x] 完成 Goodman 最终 v3 审计及独立复算：report SHA256=`3036961a32502c1ea7a9bf6cd45f2ffbb0cadf2d18ff8f3405b4abd4bb1a6304`，独立 SHA256=`c78359d03a45f3bbbcc867f36be8b2c74219a9410c543a90d08e8784a6bf42ab`，31/31 通过；结论限定到实际 N 端片段构建几何，不外推为全长 CDS 或天然 UTR。
 - [ ] 复核 Kudla154 仅作固定 GFP 开发，Boël6348 仅作 ordinal/非同义辅助，Cambray2018 仅作 96 bp 非固定蛋白辅助，Mordstein 仅作已观察辅助；iCodon 继续禁用。
 - [ ] 对全部实际取得的功能数据完成序列/构建 QC、动态范围、重复噪声、缺失与长尾报告；不删除低表达或失败变体，不静默补字段。
 
 ### Ribo 数据
 
-- [ ] 在远端反查 Lareau `GSE58321` 及其他未读研究的实际文件、是否已读、来源和可用性；未取得 P-site/密码子映射、覆盖、重复和研究元数据前保持 `candidate`。
-- [ ] Mohammad/Subtelny 只作开发；为最终研究 OOD 选定至少一个未读研究，并在读取 target outcome 前冻结 source train、独立 target calibration 和 target test 角色。
-- [ ] 保留原始计数，审计 read coverage、P-site 偏移、密码子映射、重复一致性、零覆盖、footprint 长度和研究批次；occupancy 不写成绝对速率。
+- [x] 完成 Tunney 本轮 E0 审计与独立验证：5894 transcripts、2920075 codon rows；report SHA256=`9fecfb838762950b2545f6db4fb0d6ba4ab92cc9483aad20c33cd1f0d8abf9b9`，clean SHA256=`238d9997f6449763bed69a4ba806b74ea0f77b95ee526cb6dff61fe9ce1b7a6e`，独立验证 24/24 通过。合并 lane 为非独立重复，不增加独立样本量；采用 A-site 映射与 RSEM 加权。
+- [x] 纠正 Lareau `GSE58321` 的历史身份：已出现于 RK03/RK05，不再记为未读候选，不作为新的最终研究 OOD。
+- [ ] Mohammad/Subtelny 只作开发；为最终研究 OOD 另选至少一个真正未读研究，并在读取 target outcome 前冻结 source train、独立 target calibration 和 target test 角色。
+- [ ] 对其余拟用 Ribo 数据保留原始计数，审计 read coverage、P-site 偏移、密码子映射、重复一致性、零覆盖、footprint 长度和研究批次；occupancy 不写成绝对速率。
 
 ### 划分、泄漏与协议冻结
 
 - [ ] 检查 exact CDS/protein/ID、同源簇、同变体、重复测量、功能来源蛋白、研究批次和第三方预训练重叠；所有 RSCU、归一化、校准、特征选择只由 train 拟合。
-- [ ] 功能按蛋白/family/研究分组，Ribo 按转录本/研究分组；开发、calibration、outer test 和最终 untouched 分开。
-- [ ] 冻结 T1–T3 主指标、nested grouped CV、inner-dev 调参预算、至少 3 seeds、paired cluster bootstrap 95% CI、Holm 校正和成本 schema；缺失轨迹为 null，不补零。
+- [x] 生成 Goodman 5 outer × 4 inner nested grouped CV 划分并独立验证：assignment SHA256=`e2d8b31bf6a5aee6f104c96ea484340b6d10654bc35494c36fa4a89a31e6a129`，split SHA256=`f49c93af8e2a30616d6f0e907f75dd8a08e29e5fe23e303484c120feb57683c2`，独立 25/25 通过，验证 SHA256=`379ef698d8f0029d929468c94bcdf594bd83384e957fcc31e4e66d46b4fc2f43`；仅称 Gene-grouped N 端片段构建 OOD，不称 protein OOD。
+- [ ] 按数据资格完成其余功能与 Ribo 分组：功能按实际构建、蛋白/family/研究的适用单位分组，Ribo 按转录本/研究分组；开发、calibration、outer test 和最终 untouched 分开。
+- [ ] 冻结 T1–T3 主指标、nested grouped CV、inner-dev 调参预算、至少 3 seeds、paired cluster bootstrap 95% CI、Holm 校正和成本 schema；缺失轨迹为 null，不补零。Goodman 已有划分不表示全部协议已冻结。
 
 ### 直接 baseline 官方资产与真实 smoke
 
 - [ ] T1：核实并运行适用的 constant、CAI/GC、局部/全局 MFE、位置场、Ridge/HistGB、Boël 作者模型、通用序列模型和直接竞争方法。
 - [ ] T2：核实并运行适用的 constant、位置场、Ridge、RiboMIMO、iXnos、ROSE、VeloGRU/VeloBERT、VeloHARMO；先做研究内 transcript OOD smoke。
-- [ ] T3：核实 LinearDesign、EnsembleDesign、ID3、RNARL、CodonTransformer、COformer、VeloHARMO 及内部 hill/MH/SA/GA/random/r5；按任务核验 CAGFN、codonGPT、GEMORNA，保留真实轨迹或 actual set。
-- [ ] 对 CodonTransformer、COformer、VeloHARMO、RNARL、ID3、EnsembleDesign 及补充候选记录官方 URL/commit、环境、训练数据、输入输出、目标、默认/最佳配置、预训练污染、运行状态和失败原因；不换弱 baseline 冒充 SOTA。
+- [x] EnsembleDesign 官方 quick v2 真实 smoke 成功 6/6，且 3 条输出与 README 匹配；该勾选仅限此 quick smoke，不代表完整公平设计比较完成。
+- [ ] T3：继续核实 LinearDesign、ID3、RNARL、CodonTransformer、COformer、VeloHARMO 及内部 hill/MH/SA/GA/random/r5；按任务核验 CAGFN、codonGPT、GEMORNA，保留真实轨迹或 actual set。ID3 两条 CPC 轨迹缺陷保留，不得记为成功；CodonTransformer 尚未成功运行，不得编造运行状态。
+- [ ] 对 CodonTransformer、COformer、VeloHARMO、RNARL、ID3、EnsembleDesign 及补充候选继续记录完整官方 URL/commit、环境、训练数据、输入输出、目标、默认/最佳配置、预训练污染、运行状态和失败原因；不换弱 baseline 冒充 SOTA。
+
+### 本轮工程核验
+
+- [x] 146 项定向测试通过。该结果只支持本轮代码与文档所述工程状态，不代表科学假设、E0 或任何 Gate 通过。
 
 **交付**：E0 数据卡、raw/clean/split manifest、分布与泄漏报告、分组文件、baseline 真实运行矩阵、评价与成本协议、定向测试及独立复算记录。
 **验收**：关键功能/Ribo 数据真实可用且分组无未处理泄漏；关键直接 baseline 有真实输出和公平配置；主指标、预算、成本及 OOD 全部冻结。任一关键项缺失，G0 保持未通过。

@@ -8,8 +8,8 @@
 
 ### 0.1 本轮已核实的运行事实
 
-- 权威远端工作树 `/home/codonflow-a8-rk` 与 GitHub 分支 `a8-rk` 的 HEAD 均为 `8200c5617748819f6a1ef27c968620c4b723f38f`，工作树干净。
-- RTX 5090 环境 `torch 2.14.1+cu132` 的 CUDA 真 matmul 已通过；这只是环境可用性，不是模型或科学结果。
+- GitHub 分支 `a8-rk` 当前已推送至 `753277d6`；共享远端工作树在后续每次操作前仍须重新核对 HEAD、工作树和进程状态，不能沿用旧 HEAD 记录。
+- RTX 5090 环境 `torch 2.14.1+cu132` 的 CUDA 真 matmul 已通过；本轮 **146 项定向测试通过**。两者都只是工程复现证据，不是模型或科学结果。
 - 旧 A7 PID `2071716` 为暂停状态，不重启。
 - 大型资产目录仍为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。共享工作树每次操作前仍须重新核对 HEAD、工作树、进程和数据状态；本地继承的 dirty/untracked 文件必须保留，不覆盖远端，不 `git add -A`，不 `reset --hard`/`clean`，不记录服务器密码。
 
@@ -18,7 +18,11 @@
 - G2 FULL/EDIT 中位 AUC 分别为 −94.28%/−93.47%；RK39–RK41 的实际集合设计任务仍未解决。
 - RK37 相对 constant 的 TB-MSE 改善为 −0.755、mean per-transcript Pearson 改善为 −0.033，跨研究直接运输失败。
 - RK42 的准确含义是 **0/9 数据源同时满足全部 R1–R7**，不是“没有任务化数据”，也不是“世界上没有可用数据”。历史 RK36/RK42 判定保持不变。
-- Goodman 构建级 raw 表尚未取得；Lareau `GSE58321` 目前仅是候选，未读其 Ribo 结局，必须在远端反查实际资产、读取状态和来源。
+- **Goodman2013 已取得并审计官方 CSV**：raw SHA256=`a03071027b8c0008d07fb7737de0a7d51765c6cff25bc86e93465a6253c7c33a`，共 14234 行、75 列、137 Gene、4817 exact CDS、280 leader、33 nt N 端片段、8439 SetGood；clean SHA256=`ce64f2caa9633fefae840e220d36b6360946d39b9253adc56f3ef297b9ab9c82`。最终 v3 audit report SHA256=`3036961a32502c1ea7a9bf6cd45f2ffbb0cadf2d18ff8f3405b4abd4bb1a6304`，独立复算 SHA256=`c78359d03a45f3bbbcc867f36be8b2c74219a9410c543a90d08e8784a6bf42ab`，31/31 通过。
+- Goodman 已生成 **5 outer × 4 inner nested grouped CV** 划分：assignment SHA256=`e2d8b31bf6a5aee6f104c96ea484340b6d10654bc35494c36fa4a89a31e6a129`，split SHA256=`f49c93af8e2a30616d6f0e907f75dd8a08e29e5fe23e303484c120feb57683c2`，独立验证 25/25 通过，验证 SHA256=`379ef698d8f0029d929468c94bcdf594bd83384e957fcc31e4e66d46b4fc2f43`。该划分只支持 **Gene-grouped N 端片段构建 OOD**，不得称为 protein OOD。
+- **Tunney 已完成本轮 E0 审计**：5894 transcripts、2920075 codon rows；report SHA256=`9fecfb838762950b2545f6db4fb0d6ba4ab92cc9483aad20c33cd1f0d8abf9b9`，clean SHA256=`238d9997f6449763bed69a4ba806b74ea0f77b95ee526cb6dff61fe9ce1b7a6e`，独立验证 24/24 通过。合并 lane 是非独立重复，不增加生物学独立样本量；使用 A-site 映射与 RSEM 加权，occupancy 仍不称绝对速率。
+- Lareau `GSE58321` 已出现于 RK03/RK05，**不再列为未读候选**，也不能充当新的最终研究 OOD；仍须另选真正未读研究。
+- EnsembleDesign 官方 quick v2 已成功 6/6，且 3 条输出与 README 匹配；ID3 的两条 CPC 轨迹存在缺陷，缺陷与失败证据保留。CodonTransformer 尚未成功运行，不能记为 ran 或通过 smoke。
 - `untouched24` 与 MAGE functional untouched 19072 行继续冻结；禁止直接或间接读取，除非相应最终协议已冻结且 owner 明确授权。
 
 ### 0.3 当前实现能声称与不能声称的内容
@@ -88,14 +92,15 @@ R1–R7 不再作为所有任务的统一门槛；这只是按主张分配合格
 
 ### 3.2 当前数据角色与冻结边界
 
-- **Goodman2013**：优先从论文公开补充材料、PMC/NCBI 或其他合法公开源取得 construct-level raw；只用于限定构建几何的功能 benchmark。Cloudflare 页面不是数据，不能猜值。
+- **Goodman2013**：官方 CSV 已取得，raw/clean、最终 v3 审计与 nested 5 outer × 4 inner 划分均已有上述 SHA 和独立验证；只用于实际 33 nt N 端片段构建几何的功能 benchmark。当前 OOD 仅称 Gene-grouped N 端片段构建 OOD，不称 protein OOD、全长 CDS 或天然 UTR 泛化。
 - **Kudla154**：固定 GFP 开发数据；已有结构结局不能重新冒充独立验证。
 - **Boël6348**：ordinal、天然跨蛋白非同义变体；只作匹配测量性质的辅助任务/对照，不冒充连续同义功能库。
 - **Cambray2018**：96 bp N 端片段且氨基酸变化；只作非固定蛋白辅助研究，不能进入固定蛋白同义主表。
 - **Mordstein**：已观察的匹配上下文辅助证据，不是 untouched。
 - **MAGE functional untouched 19072 行**：继续冻结，除非 owner 另行明确授权；不得通过派生文件间接读取。
 - **iCodon**：源对齐失败，禁止使用。
-- **Mohammad/Subtelny Ribo**：均已观察，只作开发；最终研究 OOD 必须另找未读研究。Lareau `GSE58321` 目前只是待远端反查的候选。
+- **Tunney Ribo**：5894 transcripts、2920075 codon rows 已完成本轮审计和 24/24 独立验证；合并 lane 只作非独立重复，采用 A-site/RSEM 加权，保留原始计数和 occupancy 的相对代理边界。
+- **Mohammad/Subtelny/Lareau Ribo**：Mohammad/Subtelny 均已观察，只作开发；Lareau `GSE58321` 已出现于 RK03/RK05，也不再是未读候选。最终研究 OOD 必须另找真正未读研究。
 - **untouched24**：继续冻结，最终一次使用。
 
 ### 3.3 E0 数据审计的必备字段
@@ -106,7 +111,7 @@ R1–R7 不再作为所有任务的统一门槛；这只是按主张分配合格
 4. **Ribo QC**：read coverage、P-site 偏移、密码子映射、重复一致性、零覆盖、footprint 长度和研究批次；保留原始计数，不只留归一化值。
 5. **分布**：长度、GC/CAI、密码子/氨基酸组成、变体位置、每蛋白/研究样本量、功能动态范围、重复噪声、覆盖与长尾；检查短序列、优势物种和大 assay 主导。
 6. **泄漏**：exact CDS/protein/ID、同源簇、同一变体、重复测量、功能来源蛋白、研究批次和第三方预训练重叠。RSCU、归一化、校准和特征选择只由 train 拟合。
-7. **划分**：功能按蛋白/family/研究分组；Ribo 按转录本和研究分组；同蛋白变体不得随机跨 split。开发、独立 calibration 和最终 untouched 分开。
+7. **划分**：按实际构建与主张确定分组单位；Goodman 本轮只使用 Gene-grouped N 端片段构建 OOD，不称 protein OOD，其他功能任务按蛋白/family/研究分组；Ribo 按转录本和研究分组；同蛋白变体不得随机跨 split。开发、独立 calibration 和最终 untouched 分开。
 
 无法获得的字段标缺失并限制结论；不静默填补，不删除低表达或失败变体。
 
@@ -114,7 +119,7 @@ R1–R7 不再作为所有任务的统一门槛；这只是按主张分配合格
 
 ### T1 构建内及 OOD 功能预测
 
-主指标为 Spearman、RMSE、top-k enrichment，蛋白/family/研究为独立单位。必须比较 constant、CAI/GC、局部/全局 MFE、位置场、Ridge/HistGB、Boël 作者模型（适用时）、通用序列模型及可复现直接竞争方法。先在构建内/转录本 OOD，再蛋白/family/研究 OOD。
+主指标为 Spearman、RMSE、top-k enrichment，独立单位必须与数据和构建几何一致。Goodman 当前只做 Gene-grouped N 端片段构建 OOD，不称 protein OOD；其他具备资格的功能任务再以蛋白/family/研究为独立单位。必须比较 constant、CAI/GC、局部/全局 MFE、位置场、Ridge/HistGB、Boël 作者模型（适用时）、通用序列模型及可复现直接竞争方法。先在构建内/转录本 OOD，再按数据资格进入蛋白/family/研究 OOD。
 
 ### T2 翻译占据与动力学预测
 
@@ -130,13 +135,13 @@ Harmonization、全长 UTR–CDS 联合设计和起始结构运输只在对应�
 
 已核实论文存在但代码/数据/可比性尚未全部核实的候选包括：CodonTransformer（DOI `10.1038/s41467-025-58588-7`）、COformer（`10.1016/j.omtn.2026.102991`）、VeloHARMO（`10.1093/bib/bbag558`）、RNARL（`10.1186/s13059-026-04203-x`）、ID3（`10.1093/bioinformatics/btag667`）、EnsembleDesign（`10.1093/bioinformatics/btaf245`）。另核查 ColiFormer、DeepCodon、High-Codon、CodonTranslator、CodonRL、RNAJog、NatCodon、CodonBERT、ppLM-CO，并区分预印本与同行评议状态。
 
-每个方法记录官方 URL/commit、环境、训练数据、输入、输出、目标、默认与最佳配置、预训练污染、实际运行状态和失败原因。不能运行的直接强 baseline 标不可比，不换弱方法冒充 SOTA。商业工具优化序列训练的模型单独审计目标泄漏，不能直接声称真实功能监督。
+每个方法记录官方 URL/commit、环境、训练数据、输入、输出、目标、默认与最佳配置、预训练污染、实际运行状态和失败原因。当前仅有 EnsembleDesign 官方 quick v2 6/6 成功且 3 条输出匹配 README，可据此记该 smoke 已完成；ID3 两条 CPC 轨迹缺陷必须保留，不能记为成功；CodonTransformer 尚未成功运行，状态不得编造。其余方法仍按真实核验结果登记，不能运行的直接强 baseline 标不可比，不换弱方法冒充 SOTA。商业工具优化序列训练的模型单独审计目标泄漏，不能直接声称真实功能监督。
 
 ## 5. 实验链 E0–E6
 
 ### E0：数据和 baseline 是否可信
 
-完成来源、QC、分布、泄漏和分组审计，取得真实功能与可靠 Ribo 输入，完成直接 baseline 官方资产核验和真实 smoke；冻结任务、划分、主指标、调参预算与成本。没有真实功能与可靠 Ribo 输入，E1–E3 不启动；关键 baseline 未跑通，E4 不称 SOTA。
+完成来源、QC、分布、泄漏和分组审计，取得真实功能与可靠 Ribo 输入，完成直接 baseline 官方资产核验和真实 smoke；冻结任务、划分、主指标、调参预算与成本。当前 Goodman、Tunney、Goodman nested 划分及 EnsembleDesign quick smoke 已取得部分真实交付，146 项定向测试通过，但其他关键数据、baseline 与协议项尚未全部完成，**E0 仍在进行，A10-G0 未通过**。在 E0 全部验收前不启动 E1–E3；关键 baseline 未跑通，E4 不称 SOTA。
 
 ### E1：跨研究失败有多少来自观察过程
 
@@ -164,7 +169,7 @@ Harmonization、全长 UTR–CDS 联合设计和起始结构运输只在对应�
 
 ## 6. 科学 Gates 与停止规则
 
-- **A10-G0 数据/baseline 可信**：E0 全部完成，关键数据和直接 baseline 真实可运行。本轮 A10-00 的远端重核与矩阵不等于 E0 或 G0 完成。
+- **A10-G0 数据/baseline 可信**：E0 全部完成，关键数据和直接 baseline 真实可运行。本轮 A10-00 的远端重核与矩阵，以及 A10-01 的 Goodman/Tunney/划分/单项 smoke 进展，都不等于 E0 或 G0 完成；当前 G0 仍未通过。
 - **A10-G1 动力学增量**：E2 在严格 OOD 超过去守恒和简单模型；E1 决定能否增加跨研究主张。G1 失败则停止动力学主线。
 - **A10-G2 功能阳性核心**：E3 达到预注册 SOTA 门槛后才允许大规模生成训练。G2 失败则停止生成训练。
 - **A10-G3 设计阳性核心**：E4 在等反馈/等成本下超过最强可比方法，且 E5 机制消融同向。
