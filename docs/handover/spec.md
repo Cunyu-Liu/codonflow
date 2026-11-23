@@ -1,151 +1,211 @@
-# CodonFlow Spec（A8-RK · 真实功能与翻译动力学执行合同）
+# CodonFlow Spec（A10 · Kinetic-CodonFlow 当前执行合同）
 
-> 生效日期：2026-11-18，A8-RK v2。主审查与完整路线：根目录 `CodonFlow_A8_严格科研工程审查与一个月路线_20261118.md`。
-> 最新权威实现审查点：远端 `/home/codonflow`，HEAD=`012338aa9fe700b25846f73546f4d9b1b3d05870`，工作树干净。核心文件与本地镜像 SHA 一致；本地继承的 dirty/untracked 文件不得删除或反向覆盖远端。
-> 旧 A7/G2/T3.8 是不可变诊断证据。旧“2×2 不通过即终止所有学习模型”的总 Gate 作废，仅保留其对 frozen r5 的归因意义。
+> 生效日期：2026-11-23。唯一执行合同为工作区根目录 `docs/handover/PROMPT_NEXT_AGENT_A10_KINETIC.md`；本文件与 `tasks.md` 是其执行化，不降低其中任何科学、数据或公平比较要求。
+> A7–A9 及其 RK 结果、Gate、prompt、handoff 均为不可变历史证据，只用于动机、边界和追溯，不再指导新实验。旧 A8 的空间耦合既定核心、统一 R1–R7 准入和 RK-G0–G4 执行顺序由本合同替代；历史判定不追改。
+> 文件级清单见 `docs/handover/tasks.md`；任务现状见 `docs/handover/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md`。
 
-## 0. 证据纪律
+## 0. 当前事实与证据纪律
 
-信息必须分为：实现事实、文献事实、科学假设、待数据审计、实验结果。文献报告样本数不等于数据已经下载；候选架构不等于已经实现；计划不等于结果。
+### 0.1 本轮已核实的运行事实
 
-禁止混淆：CE 收敛与终端性能、合法生成与优化能力、计算代理与生物功能、开发集与独立确认、相关与因果、单任务胜利与通用 SOTA。
+- 权威远端工作树 `/home/codonflow-a8-rk` 与 GitHub 分支 `a8-rk` 的 HEAD 均为 `8200c5617748819f6a1ef27c968620c4b723f38f`，工作树干净。
+- RTX 5090 环境 `torch 2.14.1+cu132` 的 CUDA 真 matmul 已通过；这只是环境可用性，不是模型或科学结果。
+- 旧 A7 PID `2071716` 为暂停状态，不重启。
+- 大型资产目录仍为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。共享工作树每次操作前仍须重新核对 HEAD、工作树、进程和数据状态；本地继承的 dirty/untracked 文件必须保留，不覆盖远端，不 `git add -A`，不 `reset --hard`/`clean`，不记录服务器密码。
 
-### 已冻结旧事实
+### 0.2 已确立的历史科学事实
 
-- FULL/EDIT r5 已收敛；G2 中位 AUC −94.28%/−93.47%，18/18 全负，原 open-loop 方案 No-Go。
-- T3.8 开发集 FULL/EDIT +59.95%/+68.73%，但时间比 42.68×/2.41×，不是独立、时间或外部优势。
-- D4/D5 数量、精确重叠、D5 cluster 隔离已复核；D5 不是 curated family/species OOD。
-- untouched24 未用于新模型选择；unique18 只作开发。
-- 当前 `EditFlowTransformer` 只读 codon ID，无蛋白/UTR/宿主/目标/时间条件；损失是简化 masking，不是完整 CTMC。
+- G2 FULL/EDIT 中位 AUC 分别为 −94.28%/−93.47%；RK39–RK41 的实际集合设计任务仍未解决。
+- RK37 相对 constant 的 TB-MSE 改善为 −0.755、mean per-transcript Pearson 改善为 −0.033，跨研究直接运输失败。
+- RK42 的准确含义是 **0/9 数据源同时满足全部 R1–R7**，不是“没有任务化数据”，也不是“世界上没有可用数据”。历史 RK36/RK42 判定保持不变。
+- Goodman 构建级 raw 表尚未取得；Lareau `GSE58321` 目前仅是候选，未读其 Ribo 结局，必须在远端反查实际资产、读取状态和来源。
+- `untouched24` 与 MAGE functional untouched 19072 行继续冻结；禁止直接或间接读取，除非相应最终协议已冻结且 owner 明确授权。
 
-## 1. 核心科学问题与任务
+### 0.3 当前实现能声称与不能声称的内容
 
-> 同义序列功能是否由“5′ 起始区结构可及性—全程翻译速度场—mRNA 降解”的空间耦合决定；显式学习这种耦合，能否在固定蛋白、固定 UTR/宿主上下文下实现优于现有方法的功能预测和多目标 CDS 设计？
+以下为 A10 合同记载的远端实现审查事实，不因旧命名而扩大解释：
 
-一个月聚焦固定 UTR 上下文下的 CDS，不生成 UTR。蛋白一致性、长度与 stop 由同义 simplex 参数化保证。
+- `EditFlowTransformer` 只读 codon ID，没有蛋白、UTR、宿主、功能或时间条件；`SynonymousJumpProposal._transition_tensors` 丢弃 `time`。
+- `edit_flow_loss` 是同义腐蚀 denoising CE/BCE，不是完整 CTMC rate objective，也不监督真实功能。
+- `RiboKineticModel` 的 pair channel 是合法互补碱基计数形成的 attention bias；initiation/velocity/decay 是线性位置头再加权汇聚到功能头。它不是结构系综、核糖体动力学或已验证机制模型。
+- `MinimalCodonFlowRK` 是单编辑枚举＋能量 softmax 的 smoke，不是训练完成的生成器，没有轨迹平衡或生产级离散流证据。
+- A9 的 `generator_training_authorized=true` 是权限，不是必须立刻训练，更不是模型有效；A10 大规模生成训练仍受 G2 约束。
 
-### 可证伪假设
+所有文档必须区分实现事实、文献事实、科学假设、待审计事项、实验结果和未来计划。论文样本数不等于已拥有数据；候选方法不等于已运行 baseline；测试、hash、Gate 数和 PPT 页数不等于科学进展。
 
-- **RK-H1**：CAI/GC/全局 MFE 在真实同义变体的蛋白/研究 OOD 上不如空间机制特征；若简单代理不劣，收窄动机。
-- **RK-H2**： initiation、velocity、decay、UTR–CDS pair channel 有独立增量；无消融收益的成分删除。
-- **RK-H3**：结构适应度、Ribo 速度、mRNA/蛋白功能可形成跨层一致证据；回顾性相关不称因果。
-- **RK-H4**：机制势改善同预算设计与 time-matched 表现；仅代理提高不算真实功能提高。
+## 1. 核心科学问题与可证伪假设
 
-## 2. 数据合同
+> **固定宿主与构建上下文中，局部同义替换是否通过延伸速率场和核糖体流守恒产生可迁移的非局部功能效应；将潜在动力学与 assay 观察过程分离，能否提高 transcript/protein/study OOD 功能预测，并进一步改善同义序列设计的质量—成本前沿？**
 
-### 2.1 三层数据
+核心不是证明 TASEP、Transformer、CTMC 或 GFlowNet 等概念本身，而是检验：流守恒能否解释独立密码子模型遗漏的非局部信息；分离研究特异观察映射后，潜在动力学能否比 raw occupancy 更可迁移；被证实的量能否转化为超过强 baseline 的预测和设计性能。
 
-1. **自然先验**：D4/D5、CodonTransformer、RNARL 六物种。只作序列/宿主先验。
-2. **机制数据**：五物种 Ribo-seq、tRNA/密码子参考、UTR–CDS 配对、结构/accessibility。occupancy 只称相对速度代理。
-3. **真实功能**：Kudla 154 GFP、Boël 6,348 次实验/Protein Data Set、MAGE-seq 12,726 infA 突变，以及实际可获得的 LinearDesign/GEMORNA/COformer 序列与测量。
+- **A10-H1 观察可分性**：研究特异观察映射能解释相当一部分 raw occupancy 跨研究失配。校准只使用 source train 或独立 target calibration，绝不读取 target test outcome。
+- **A10-H2 流守恒增量**：同容量下去除流守恒的模型不能达到相同的转录本/变体 OOD 表现；局部编辑的上下游响应与动力学预测一致。
+- **A10-H3 功能增量**：潜在通量与密度对真实功能有超出 CAI/GC/MFE、位置场和通用序列模型的独立信息。
+- **A10-H4 设计增量**：由同一已验证动力学目标导出的设计器，在等反馈、等 scorer、等时间下超过最强可比方法；预测消融与设计消融方向一致。
 
-Dasher/六蛋白原始数据原文明确不公开，禁止写入训练承诺。所有外部数据先下载、解析和校验，状态才能从 `candidate` 改为 `available`。
+任一假设不成立，就删除相应主张和模块，不得改名后继续作为核心。静态结构仅是起始率候选输入，必须在相同输入、参数和训练预算下显示独立 OOD 增量才保留；没有 decay 数据不添加 decay 头，没有多位点覆盖不虚构远程 pair 机制。
 
-### 2.2 清洗与 QC
+## 2. Kinetic-CodonFlow 的最小科学模型
 
-- 保存 accession/release/URL/时间/许可/raw-clean SHA。
-- CDS 检查长度、alphabet、终端/内部 stop、翻译一致性；ATG/部分 CDS 单独标记。
-- 功能记录保留蛋白、UTR、载体、宿主、启动子、化学修饰、assay、batch、replicate、单位、检出限和缺失原因。
-- 功能值只在 `protein×host×assay×batch` 内标准化，原始值与重复噪声保留。
-- Ribo-seq 检查覆盖、P-site/密码子映射、重复一致性、零覆盖和研究批次。
-- 报告长度/GC/CAI/MFE/EFE/宿主/蛋白簇分布，以及每蛋白变体数和表型范围。
+### 2.1 潜在生物状态
 
-### 2.3 划分与泄漏
+对序列 `x`、宿主 `h` 和可用上下文 `u`，模型输出严格为正的起始率 `αθ(x,u,h)`、逐位延伸率 `kθ,i(x,u,h)` 和终止率 `βθ(x,u,h)`。先用可微排斥晶格模型或经过验证的平均场近似求稳态，最小平均场形式为：
 
-- 检查 exact CDS/protein/ID、MMseqs2 同源簇、功能来源蛋白与 assay。
-- 同一蛋白的同义变体不得随机跨 split；功能主测为蛋白 OOD，速度另做研究 OOD，自然模型保留同源 OOD。
-- RSCU、归一化、calibration、特征选择只由 train 拟合。
-- untouched24 与功能 untouched 均只最终评估一次；第三方预训练污染单独披露。
-- 哺乳动物/跨宿主功能数据不足时，不得声称跨宿主功能泛化。
+`J_i = k_i ρ_i(1-ρ_{i+1})`，稳态要求 `J_i=J`，边界由 `α` 与 `β` 给定。
 
-## 3. CodonFlow-RK 候选架构
+需要时再扩展全长足印、多核糖体尺度和数值残差。必须记录稳态残差、参数可辨识性和近似误差；平均场输出不得冒称精确随机模拟。
 
-### 3.1 约束与输入
+### 2.2 观察过程与功能层
 
-状态 `x=(c1,…,cL), ci∈C(ai)`；输入包括当前同义状态、蛋白/氨基酸、固定 5′/3′UTR、宿主、Pareto 偏好和剩余预算。本阶段不生成 UTR。
+每个 Ribo-seq 研究 `s` 单独建模：`y_s,i = g_s(ρ_i) + ε_s,i`。`g_s` 从单调或低自由度仿射映射开始；覆盖、检出限、重复噪声和缺失机制进入 `ε_s`。禁止高自由度 calibration 吞掉生物信号。映射只在 source train 或独立 target calibration 上拟合，target test 只最终评估。
 
-### 3.2 必要组成
+功能层仅在测量支持时加入 mRNA 丰度 `A`、通量 `J` 等，例如 `E=f(A,J,…)`。occupancy 始终称实验依赖的相对占据/速度代理，不称绝对物理速率。
 
-- codon 节点与候选密码子的三核苷酸展开；
-- 合法碱基配对约束的 pair channel，显式建模 UTR–CDS 和远程 CDS 耦合；
-- 起始窗口高分辨率与长程稀疏/轴向交互；
-- 分别可监督的 `Φinit`、`Φens`、速度场 `v`、`Φdecay`/功能头及不确定性；
-- 低保真 CAI/motif、中保真结构/Ribo、高保真真实功能的多保真训练。
+小型卷积、状态空间模型或局部上下文编码器只用于参数化速率，不列为创新。容量随数据量受控，并与独立密码子、位置场、同参数量无守恒模型公平比较。默认不加入 MoE、大 ESM、完整 pair transformer、RLOO 或扩参。
 
-pair channel 不宣称等价精确 partition function；ESM、attention、GFlowNet 本身均不列创新。
+### 2.3 只有科学 Gate 通过后才接生成器
 
-### 3.3 生成目标
+同义状态图为 `x=(c1,…,cL)`，`ci∈C(ai)`；蛋白、长度和 stop 由状态空间保证。候选可逆核为：
 
-候选核形式：
+`rθ(x→y)=r0(x→y) exp[(Fθ(y)-Fθ(x))/(2τ)]`，并精确归一化。
 
-`qθ(y|x;w,b,h,u) ∝ q0(y|x;h,u) exp[-βΣk wkΔΦk(x,y)-βcΔcost(x,y)]`。
+若 `r0` 相对 `π0` 可逆，则目标为 `π(x)∝π0(x)exp(Fθ(x)/τ)`。`Fθ` 只能包含已验证的功能/动力学项和明确约束。必须在可枚举小状态验证合法率、归一化、详细平衡/平稳分布、采样一致、单/多步一致和成本。若实现只是 denoising 或局部搜索，不称 CTMC/flow；若 ID3 式 simplex 梯度设计更强，必须保留其为强 baseline 并如实报告，不能强行维护 CodonFlow 名称。
 
-用偏好条件轨迹平衡/能量倾斜目标替代天然 CE，使反馈从训练起进入模型。数学目标与实现不一致时不得使用 flow 命名。
+## 3. 数据合同：按科学主张确定资格
 
-先验证机制预测头，再接入合法单密码子核。不得默认同时加入 MoE、完整 CTMC、短 rollout、RLOO 或扩参。每个组件需同输入、同参数/成本消融。
+### 3.1 任务化数据资格
 
-## 4. 任务—baseline—指标合同
+| 任务 | 必要数据条件 | 可以接受 | 不能声称 |
+|---|---|---|---|
+| 构建内/N 端功能预测 | 变体序列、连续结局、明确构建与批次 | Goodman 式固定 leader＋N 端同义窗 | 全长 CDS 或天然 UTR 泛化 |
+| 起始结构运输 | 精确变体特异 UTR–ATG–CDS | 可重建精确起始窗的数据 | 借固定 leader 数据证明该机制 |
+| 翻译动力学 | P-site/密码子映射、覆盖、重复、研究元数据 | 天然转录本 Ribo-seq，无需固定蛋白同义库 | occupancy=绝对速度 |
+| 同义设计 | 固定蛋白、合法同义空间、明确目标与成本 | 公开蛋白和计算 benchmark | 代理优化=真实功能提升 |
+| 真实功能验证 | 未参与选择的真实变体与独立测量 | 回顾性独立验证或前瞻 DBTL | 同一 scorer 自评即生物验证 |
 
-| 任务 | 必需 baseline | 主终点 |
-|---|---|---|
-| 功能/适应度预测 | CAI/GC/局部与全局 MFE、Boël logistic、通用序列模型、可复现 VeloHARMO/COformer | 蛋白/研究 OOD Spearman/Pearson/RMSE/top-k enrichment |
-| 速度预测 | RiboMIMO、iXnos、ROSE、VeloGRU/VeloBERT | 蛋白与研究 OOD R²/相关/RMSE |
-| Harmonization | VeloHARMO、CHARMING、tAI、ICOR、HFC/BFC/URC、RNARL | 速度谱一致性、真实功能分层、等成本 |
-| Accessibility 设计 | ID3、GA、SA、C10/C10-CAI | 同 1000 离散评估；可枚举时精确 ceiling |
-| CDS 多目标设计 | LinearDesign、EnsembleDesign、RNARL、CAGFN、codonGPT、GEMORNA、CodonTransformer、COformer、内部强搜索/r5 | dense HV AUC、实际 Pareto/best、NED、time-matched |
-| 全长外部边界 | mRNAutilus、ProMORNA | 仅同 UTR/输入/成本可比时排名 |
+R1–R7 不再作为所有任务的统一门槛；这只是按主张分配合格数据，不降低起始结构运输或独立验证标准。
 
-benchmark 由 unique18 扩展到 ID3 12 蛋白、RNARL 六物种、真实功能蛋白和 untouched24。外部方法按官方最佳可复现配置，不得故意弱化。
+### 3.2 当前数据角色与冻结边界
 
-## 5. 评价与统计
+- **Goodman2013**：优先从论文公开补充材料、PMC/NCBI 或其他合法公开源取得 construct-level raw；只用于限定构建几何的功能 benchmark。Cloudflare 页面不是数据，不能猜值。
+- **Kudla154**：固定 GFP 开发数据；已有结构结局不能重新冒充独立验证。
+- **Boël6348**：ordinal、天然跨蛋白非同义变体；只作匹配测量性质的辅助任务/对照，不冒充连续同义功能库。
+- **Cambray2018**：96 bp N 端片段且氨基酸变化；只作非固定蛋白辅助研究，不能进入固定蛋白同义主表。
+- **Mordstein**：已观察的匹配上下文辅助证据，不是 untouched。
+- **MAGE functional untouched 19072 行**：继续冻结，除非 owner 另行明确授权；不得通过派生文件间接读取。
+- **iCodon**：源对齐失败，禁止使用。
+- **Mohammad/Subtelny Ribo**：均已观察，只作开发；最终研究 OOD 必须另找未读研究。Lareau `GSE58321` 目前只是待远端反查的候选。
+- **untouched24**：继续冻结，最终一次使用。
 
-- 真实初始 B=1；dense budget-step AUC，不插 `(0,0)`；缺失预算 `null`，不补零。
-- 保留 B=50/100/500 Pareto/best、双向支配、NED、identity/legal。
-- cache-before、唯一 scorer、forward、生成/评分时间、wall-clock、硬件和并行度分开。
-- 无轨迹的外部集合不构造统一 AUC；ID3 等连续优化内部成本不得隐藏。
-- 超参只在 dev 用 ASHA/小网格：LR/wd/dropout、batch tokens、ESM 冻结、能量/偏好温度、轨迹损失、候选/top-k、块长、早停与采样权重。
-- 功能以蛋白/研究为独立单位，搜索以基因为单位，seed 组内聚合；报告 paired bootstrap 95% CI、逐单位方向和 Holm 校正。
-- SOTA 判据：预注册主效应及 CI 下界>0、多重校正通过、合法率100%、成本完整；不能只赢均值或 r5。
+### 3.3 E0 数据审计的必备字段
 
-## 6. 实验链与 Gates
+1. **来源**：accession/release/URL/license/下载时间/raw-clean SHA/处理谱系；论文样本数不等于已拥有数据。
+2. **序列 QC**：长度整除 3、合法 alphabet、终端/内部 stop、翻译与蛋白一致、起始/部分 CDS、重复与合成错误。
+3. **构建 QC**：蛋白、完整或片段 CDS、5′/3′UTR、leader、载体、宿主、启动子、化学修饰、assay、batch、replicate、单位、检出限和缺失原因。
+4. **Ribo QC**：read coverage、P-site 偏移、密码子映射、重复一致性、零覆盖、footprint 长度和研究批次；保留原始计数，不只留归一化值。
+5. **分布**：长度、GC/CAI、密码子/氨基酸组成、变体位置、每蛋白/研究样本量、功能动态范围、重复噪声、覆盖与长尾；检查短序列、优势物种和大 assay 主导。
+6. **泄漏**：exact CDS/protein/ID、同源簇、同一变体、重复测量、功能来源蛋白、研究批次和第三方预训练重叠。RSCU、归一化、校准和特征选择只由 train 拟合。
+7. **划分**：功能按蛋白/family/研究分组；Ribo 按转录本和研究分组；同蛋白变体不得随机跨 split。开发、独立 calibration 和最终 untouched 分开。
 
-### RK-G0：数据与强 baseline 真相
+无法获得的字段标缺失并限制结论；不静默填补，不删除低表达或失败变体。
 
-完成实际下载、QC、分布、无泄漏划分、官方 smoke、dense v2 和统一成本。数据不可用不得冒充；关键 baseline 不可运行需记录原因与边界。
+## 4. 三个主任务与强 baseline
 
-### RK-G1：机制成立
+### T1 构建内及 OOD 功能预测
 
-E1 量化代理效度；E2 同骨干验证 initiation/velocity/decay/pair 的蛋白/研究 OOD 增量；E3 检查结构—速度—mRNA/蛋白跨层一致性。
+主指标为 Spearman、RMSE、top-k enrichment，蛋白/family/研究为独立单位。必须比较 constant、CAI/GC、局部/全局 MFE、位置场、Ridge/HistGB、Boël 作者模型（适用时）、通用序列模型及可复现直接竞争方法。先在构建内/转录本 OOD，再蛋白/family/研究 OOD。
 
-至少一个机制组合稳定优于简单代理和同骨干无机制模型，才启动生成训练。失败时先修正科学问题，不默认接受“负结果论文”。
+### T2 翻译占据与动力学预测
 
-### RK-G2：逐任务性能
+先在研究内 transcript OOD 验证，再做有独立 calibration 的研究 OOD。比较 constant、位置场、Ridge、RiboMIMO、iXnos、ROSE、VeloGRU/VeloBERT、VeloHARMO（适用时）。报告 transcript-balanced MSE、mean per-transcript Pearson/Spearman、密度响应和校准；不得随机拆 codon 行。
 
-接入最小 CodonFlow-RK，完成功能、速度、accessibility、CDS 多目标主表和对应消融。未赢最强可比 baseline 的任务继续定向诊断，不能换弱 baseline。
+### T3 固定蛋白同义设计
 
-### RK-G3：独立与实用泛化
+代理设计与真实功能验证分表。比较 LinearDesign、EnsembleDesign、ID3、RNARL、CodonTransformer、COformer、VeloHARMO、内部 hill/MH/SA/GA/random/r5；按任务核验 CAGFN、codonGPT、GEMORNA。主指标为 dense budget-step HV AUC、实际 Pareto/best、NED、合法率和 time-matched 表现。
 
-冻结后一次评估 untouched24/功能 untouched；完成长度/GC/同源/研究/可用宿主分层和 time-matched。未重复则不写普遍泛化。
+Harmonization、全长 UTR–CDS 联合设计和起始结构运输只在对应数据与机制通过后增加，不与三个主任务同时铺开。不得拼接不可比数字形成虚假总排名。
 
-### RK-G4：论文与真实价值
+### 外部方法审计
 
-每项主张映射原始数据、对照、指标和反驳条件。公开变体回顾验证只支持相应计算/机制结论；顶刊版本另需前瞻 design–build–test–learn，含 WT、LinearDesign/RNARL 等对照与独立重复。
+已核实论文存在但代码/数据/可比性尚未全部核实的候选包括：CodonTransformer（DOI `10.1038/s41467-025-58588-7`）、COformer（`10.1016/j.omtn.2026.102991`）、VeloHARMO（`10.1093/bib/bbag558`）、RNARL（`10.1186/s13059-026-04203-x`）、ID3（`10.1093/bioinformatics/btag667`）、EnsembleDesign（`10.1093/bioinformatics/btaf245`）。另核查 ColiFormer、DeepCodon、High-Codon、CodonTranslator、CodonRL、RNAJog、NatCodon、CodonBERT、ppLM-CO，并区分预印本与同行评议状态。
 
-## 7. 论文推理链
+每个方法记录官方 URL/commit、环境、训练数据、输入、输出、目标、默认与最佳配置、预训练污染、实际运行状态和失败原因。不能运行的直接强 baseline 标不可比，不换弱方法冒充 SOTA。商业工具优化序列训练的模型单独审计目标泄漏，不能直接声称真实功能监督。
 
-代理失效现象 → 真实数据中的空间耦合 → 由有效耦合推导模型 → 同预算强 baseline → 预测与生成两侧机制消融 → OOD/成本 → 真实变体验证 → 前瞻实验闭环。
+## 5. 实验链 E0–E6
 
-Fig.1 代理失效；Fig.2 机制增量；Fig.3 模型推导；Fig.4 各任务主结果；Fig.5 机制消融；Fig.6 OOD/成本；Fig.7 真实验证。每图只承担一个科学问题。
+### E0：数据和 baseline 是否可信
 
-## 8. 记录与复现
+完成来源、QC、分布、泄漏和分组审计，取得真实功能与可靠 Ribo 输入，完成直接 baseline 官方资产核验和真实 smoke；冻结任务、划分、主指标、调参预算与成本。没有真实功能与可靠 Ribo 输入，E1–E3 不启动；关键 baseline 未跑通，E4 不称 SOTA。
 
-每次运行登记：假设、commit+dirty diff hash、环境/GPU、数据与 split SHA、checkpoint、完整命令/配置、seed、优化器/scheduler、best/last、训练曲线、forward/scorer/time、artifact SHA、指标版本、结果、结论与不可声称事项。
+### E1：跨研究失败有多少来自观察过程
 
-三重检查：代码 diff 与契约测试；输入/hash/schema/数量守恒；独立原始序列或原始测量复算。`experiments/REGISTRY.md` 实时更新，旧负结果与失败分层不得删除。
+对照 raw 直接运输、研究内校准、无动力学序列模型、位置/constant；观察映射自由度、源内拟合、潜在参数稳定性和未读研究表现。校准后仍不优于简单模型，则不写跨研究动力学；可在研究内继续 E2，但不得外推。只有观察可分性成立，E2 非局部响应才有跨研究解释基础。
 
-## 9. 范围与停止规则
+### E2：流守恒是否提供独立非局部信息
 
-- 一个月不同时扩展 UTR 生成、MoE、完整 CTMC、RLOO 和大模型 scaling。
-- 数据无法获得或机制无 OOD 增量时，不启动昂贵生成训练；先修数据或科学问题。
-- 某任务未赢不得宣称该任务 SOTA；不用不可比数字、弱 baseline 或重复 untouched 制造胜利。
-- 计算代理不等于生物功能；未做前瞻实验不得声称疗效、免疫原性或普遍表达提升。
+对照完整动力学、去流守恒同容量模型、独立密码子模型、纯位置场；观察局部变体上下游密度响应、通量变化、稳态残差和转录本/变体 OOD。没有超出独立模型的增量，就删除动力学核心并停止 Kinetic-CodonFlow 主线，而不是增加模块。只有通过的动力学量进入 E3。
+
+### E3：功能预测能否公平击败最强 baseline
+
+使用 T1 全部直接可比方法，先构建内/转录本 OOD，再蛋白/family/研究 OOD；报告主效应、逐蛋白方向、top-k、校准、不确定性和失败分层。paired 95% CI 下界>0且 Holm 通过，才形成功能阳性核心；否则继续诊断数据/目标，不接生成器。E3 验证的潜在功能场是 E4 唯一候选设计驱动力。
+
+### E4：机制是否转化为设计质量—成本优势
+
+对照 T3 最强外部与内部方法，同初始、反馈、目标、预算和硬件；报告 dense anytime、实际集合、time-matched、全成本和合法率，真实 held-out 功能另表。未赢最强可比方法即未解决；只赢 r5/hill，或只赢等 scorer 而输等时间，不算实用 SOTA。
+
+### E5：为什么有效，以及在哪里失效
+
+对照去流守恒、去观察映射、去起始结构、去自然先验，同参数、同训练/推理成本；检查预测与设计消融是否同向，长度/GC/同源/研究/宿主分层及不确定性。无独立收益组件删除，失败层保留，形成“现象→机制→模型→性能→边界”的闭环。
+
+### E6：真实功能与前瞻验证
+
+公开 held-out 变体只支持回顾性验证。顶刊版本另需 design–build–test–learn：至少两个蛋白、明确宿主/UTR、WT 和强方法对照、独立重复、功能/稳定性测量。预算与周期由 owner 决定；未完成前不得写疗效、免疫原性或普遍表达提升。
+
+## 6. 科学 Gates 与停止规则
+
+- **A10-G0 数据/baseline 可信**：E0 全部完成，关键数据和直接 baseline 真实可运行。本轮 A10-00 的远端重核与矩阵不等于 E0 或 G0 完成。
+- **A10-G1 动力学增量**：E2 在严格 OOD 超过去守恒和简单模型；E1 决定能否增加跨研究主张。G1 失败则停止动力学主线。
+- **A10-G2 功能阳性核心**：E3 达到预注册 SOTA 门槛后才允许大规模生成训练。G2 失败则停止生成训练。
+- **A10-G3 设计阳性核心**：E4 在等反馈/等成本下超过最强可比方法，且 E5 机制消融同向。
+
+文档、测试、hash 和 PPT 是复现条件，不是科学 Gate。不得改成弱 baseline、回顾性最佳臂或“工程已完成”收尾；不得继续做无新科学问题的窗口、覆盖、初始化和 gating 消融。
+
+## 7. Nested grouped CV、统计与成本合同
+
+- 使用 nested grouped CV；outer test 不参与模型、特征、早停、超参或阈值选择。最终 untouched 在全部协议冻结后一次评估。
+- 优化器 LR log-uniform、weight decay、dropout、warmup、grad clip、batch tokens、训练步数、编码器容量和正则强度只在 inner dev 用 ASHA/小网格。
+- 动力学专属超参包括速率上下界、稳态容差、观察映射自由度、功能/占据损失权重和缺失数据采样；先做局部敏感性和可辨识性，再考虑大训练。
+- 生成专属超参包括自然先验强度、能量温度、偏好采样、候选/top-k、早停与块长；全部计入推理成本。
+- 所有方法使用相当调参预算和官方最佳可复现配置；至少 3 seeds，关键结论按功效分析增加，不能用默认超参误判架构。
+- OOD 至少分 transcript、蛋白/family、研究、长度/GC；数据支持时才加宿主。已读 Subtelny、unique18 等不得再冒充 untouched。
+- 功能以蛋白/研究为独立单位，Ribo 以转录本/研究为单位，设计以基因为单位；seed 先在组内聚合。报告 paired cluster bootstrap 95% CI、逐单位方向、Holm 校正和效应量。
+- 分开记录 cache-before requests、唯一 scorer、模型 forward、生成时间、评分时间、训练成本、wall-clock、硬件和并行度。无真实轨迹的方法只比较 actual set；缺失为 null，不补零。
+- 每个选定任务独立要求主效应及 CI 下界>0、多重校正通过、完整成本与 OOD；生成另需合法率100%。SOTA 是待验证目标，不是文档承诺。
+
+## 8. 论文证据链
+
+主线固定为：**独立密码子代理与 raw occupancy 的失败现象 → 测量过程和全局耦合缺口 → 非局部动力学证据 → 由守恒方程推导模型 → 功能 OOD 强 baseline → 设计质量—成本 → 对应消融与失败边界 → 真实功能验证。**
+
+- Fig.1：真实变体/占据分布、简单代理失败、raw 跨研究失配及反例。
+- Fig.2：观察校准、非局部密度响应和去守恒对照，给效应与 CI。
+- Fig.3：速率参数化、稳态通量、研究观察映射和合法同义图，不画普通模块拼图。
+- Fig.4：T1/T2/T3 分任务主表，不拼不可比数字或虚假总排名。
+- Fig.5：预测与设计对应消融、参数可辨识性和失败案例。
+- Fig.6：OOD、time-matched、全成本、不确定性与真实变体；前瞻完成后才加入生物功能结论。
+
+每节按“问题→对照→现象→结论边界→为什么需要下一实验”写。每图只回答一个科学问题，每个主张映射 raw data、split、对照、指标和反驳条件。旧 RK21–RK42 只保留支撑动机的强证据，其余进入补充或审计档案，不按实验流水账组织 Results。
+
+## 9. 三重核验、运行登记与一个月边界
+
+每个阶段必须完成三重核验：
+
+1. **代码核验**：检查 diff，运行项目风格的定向契约测试和真实端到端 smoke；最终运行项目标准测试。
+2. **数据核验**：独立检查输入、hash、schema、数量守恒、split 隔离和原始计数保留。
+3. **科学复算**：从独立原始序列或原始测量复算关键指标，先独立核验结果，再写论文或 PPT。
+
+每项运行登记假设、commit+dirty hash、环境、数据/split SHA、完整命令、seed、拟合数、超参、forward/scorer/time、artifact SHA、结果和不可声称事项；`experiments/REGISTRY.md` 按实际运行更新，失败日志和历史 artifact 不删除、不覆盖。
+
+一个月只推进 A10-00–06 与 T1–T3：先数据和 baseline，再观察过程与最小动力学，再功能 OOD，最后才是条件式生成、untouched 和论文。不得同时扩展 UTR 生成、MoE、大模型 scaling、完整 pair transformer、RLOO、 harmonization 或全长联合设计；不得先做大模型/生成训练再补数据与科学问题。公开数据优先；若需要湿实验/DBTL，预算和延期必须由 owner 决定，不能默认纳入一个月已交付结果。
+
+禁止把训练收敛、合法率、文件数、测试数、Gate 数或 PPT 页数当作核心性能；禁止把 occupancy 写成绝对速率、回顾性关联写成因果、计算代理写成真实生物功能；禁止同蛋白随机拆分、target outcome 校准、反复 untouched、弱 baseline 或缺失预算补零制造胜利。
