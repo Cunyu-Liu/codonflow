@@ -12,7 +12,7 @@ import math
 import numpy as np
 import torch
 from scipy.integrate import solve_ivp
-from scipy.optimize import OptimizeResult, brentq, least_squares, root
+from scipy.optimize import OptimizeResult, least_squares, root
 
 
 def _residual_numpy(
@@ -254,7 +254,7 @@ def _state_from_flux_numpy(flux, alpha, rates, beta):
     return np.concatenate((rho, [flux]))
 
 
-def _transient_state_numpy(alpha, rates, beta, initial, maxfev):
+def _transient_state_numpy(alpha, rates, beta, initial, maxfev, residual_tolerance):
     length = rates.size + 1
 
     def derivative(_, rho):
@@ -270,20 +270,27 @@ def _transient_state_numpy(alpha, rates, beta, initial, maxfev):
 
     minimum_rate = min(alpha, beta, float(rates.min(initial=math.inf)))
     end_time = max(10000.0, 10000.0 / minimum_rate)
-    result = solve_ivp(
-        derivative,
-        (0.0, end_time),
-        np.clip(initial, 1e-10, 1.0 - 1e-10),
-        method="LSODA",
-        rtol=1e-8,
-        atol=1e-10,
-        max_step=math.inf,
-    )
-    if not result.success or not np.all(np.isfinite(result.y)):
-        raise RuntimeError(f"transient mean-field integration failed: {result.message}")
-    rho = result.y[:, -1]
-    flux = alpha * (1.0 - rho[0])
-    return np.concatenate((rho, [flux]))
+    state = np.clip(initial, 1e-10, 1.0 - 1e-10)
+    for _ in range(10):
+        result = solve_ivp(
+            derivative,
+            (0.0, end_time),
+            state,
+            method="LSODA",
+            rtol=1e-10,
+            atol=1e-12,
+            max_step=math.inf,
+        )
+        if not result.success or not np.all(np.isfinite(result.y)):
+            raise RuntimeError(f"transient mean-field integration failed: {result.message}")
+        state = result.y[:, -1]
+        flux = alpha * (1.0 - state[0])
+        candidate = np.concatenate((state, [flux]))
+        residual = _residual_numpy(candidate, alpha, rates, beta) / flux
+        if np.max(np.abs(residual)) <= residual_tolerance:
+            return candidate
+        end_time *= 2.0
+    return candidate
 
 
 def _solve_state_numpy(
@@ -345,26 +352,26 @@ def _solve_state_numpy(
             )
         except RuntimeError as scaled_error:
             try:
-                scalar_state = _transient_state_numpy(
-                    alpha, rates, beta, initial_rho, maxfev
+                transient_state = _transient_state_numpy(
+                    alpha, rates, beta, initial_rho, maxfev, residual_tolerance
                 )
-                scalar_result = OptimizeResult(
+                transient_result = OptimizeResult(
                     success=True,
-                    message="scalar flux solve completed",
-                    x=scalar_state,
+                    message="transient solve completed",
+                    x=transient_state,
                 )
                 return _checked_root_state(
-                    scalar_result,
-                    scalar_state,
+                    transient_result,
+                    transient_state,
                     initial.shape,
                     alpha,
                     rates,
                     beta,
                     residual_tolerance,
                 )
-            except (RuntimeError, ValueError) as scalar_error:
+            except (RuntimeError, ValueError) as transient_error:
                 raise RuntimeError(
-                    f"Kinetic mean-field scalar flux solve failed: {scalar_error}"
+                    f"Kinetic mean-field transient solve failed: {transient_error}"
                 ) from scaled_error
 
 
