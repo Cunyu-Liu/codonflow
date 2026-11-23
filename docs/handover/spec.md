@@ -8,10 +8,11 @@
 
 ### 0.1 本轮已核实的运行事实
 
-- GitHub 分支 `a8-rk` 当前已推送至 `b4604b09`；共享远端工作树在后续每次操作前仍须重新核对 HEAD、工作树和进程状态，不能沿用旧 HEAD 记录。
+- GitHub 分支 `a8-rk` 当前已推送至 `9c10fb77`；共享远端工作树在后续每次操作前仍须重新核对 HEAD、工作树和进程状态，不能沿用旧 HEAD 记录。
 - RTX 5090 环境 `torch 2.14.1+cu132` 的 CUDA 真 matmul 已通过；G0 closeout 生产与独立复核 **45 项测试通过**，全部 A10 定向测试 **251 passed**。这些都只是工程复现证据，不是模型或科学结果。
 - **G0 closeout v3 已登记**：closeout SHA256=`93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395711ac8cc`，独立复核 SHA256=`1c6a3b1e211998f7a79959eca68af3a03c92d94548b31eefcc7e62a0ebe1ebd3`，独立复核 **20/20 通过**；裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`，E0/G0 完成，允许启动 E1/E2。
-- **A10-02（E1）已启动但尚无结果**；final untouched=`false`，H1/H2 未证，E3/G2 未证，SOTA=`false`。大规模生成训练仍须先通过 G2。
+- **A10-02（E1）v2 开发研究已完成，独立复核全量通过**：summary SHA256=`2902e678f93815ccd7731720d940700ae84a88b7e8d5ee3dba8f3a833e6bef5d`，独立复核 SHA256=`cf5ebfcb450363722e7b49e2e8cf720f883778ddebea3a01b80a2a8cb35c0539`；**33 项测试通过**，wall-clock **51.8138 s**。H1 仅为**开发阳性**：raw_unanchored−calibrated 的 TB-MSE effects 为 **0.0420274/0.0418212/0.0406288**，raw_anchored−calibrated 为 **0.0403316/0.0402787/0.0390835**；两组对照全部 CI lower>0、Holm<0.05，且 3 seeds 同向。仿射斜率 **0.1580–0.1644**、截距 **0.8224–0.8308**；Pearson/Spearman 不变。该结果不是最终跨研究结论，不支持绝对速率或 SOTA；final untouched=`false`。
+- **A10-03（E2）仅完成最小平均场实现及工程/数值审计，E2/G1 未完成**：**36 项测试通过**，真实 CUDA 审计 SHA256=`3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`；五组独立 least_squares 的最大密度误差 **1.33e-14**、梯度误差 **1.16e-14**、独立守恒误差 **3.94e-14**。平均场非精确随机模拟，未训练动力学模型，H2 未证。E3/G2 未证，SOTA=`false`；不越过 G2 生成训练。
 - 旧 A7 PID `2071716` 为暂停状态，不重启。
 - 大型资产目录仍为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/`。共享工作树每次操作前仍须重新核对 HEAD、工作树、进程和数据状态；本地继承的 dirty/untracked 文件必须保留，不覆盖远端，不 `git add -A`，不 `reset --hard`/`clean`，不记录服务器密码。
 
@@ -147,15 +148,15 @@ Harmonization、全长 UTR–CDS 联合设计和起始结构运输只在对应�
 
 ### E0：数据和 baseline 是否可信
 
-完成来源、QC、分布、泄漏和分组审计，取得真实功能与可靠 Ribo 输入，完成直接 baseline 官方资产核验和真实 smoke；冻结任务、划分、主指标、调参预算与成本。**E0 已完成，A10-G0 已通过**：G0 closeout v3 SHA256=`93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395711ac8cc`，独立复核 SHA256=`1c6a3b1e211998f7a79959eca68af3a03c92d94548b31eefcc7e62a0ebe1ebd3`，独立复核 20/20 通过；closeout 生产与独立复核 45 项测试通过，全部 A10 定向测试 251 passed，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。现允许启动 E1/E2；A10-02（E1）已启动但尚无结果，E2 也没有新结果。Goodman 7臂结果仍只作开发 baseline，不构成机制、SOTA、protein OOD 或真实生物泛化结论。G0 通过不表示 H1/H2、E3/G2 或 SOTA 已证，final untouched=`false`，大规模生成训练仍须先通过 G2。
+完成来源、QC、分布、泄漏和分组审计，取得真实功能与可靠 Ribo 输入，完成直接 baseline 官方资产核验和真实 smoke；冻结任务、划分、主指标、调参预算与成本。**E0 已完成，A10-G0 已通过**：G0 closeout v3 SHA256=`93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395711ac8cc`，独立复核 SHA256=`1c6a3b1e211998f7a79959eca68af3a03c92d94548b31eefcc7e62a0ebe1ebd3`，独立复核 20/20 通过；closeout 生产与独立复核 45 项测试通过，全部 A10 定向测试 251 passed，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。E1 v2 开发研究现已完成，H1 仅开发阳性；E2 仅有最小平均场实现与数值审计，E2/G1 未完成。Goodman 7臂结果仍只作开发 baseline，不构成机制、SOTA、protein OOD 或真实生物泛化结论。G0 和 E1 开发阳性均不表示 H2、最终跨研究、E3/G2 或 SOTA 已证，final untouched=`false`，大规模生成训练仍须先通过 G2。
 
 ### E1：跨研究失败有多少来自观察过程
 
-对照 raw 直接运输、研究内校准、无动力学序列模型、位置/constant；观察映射自由度、源内拟合、潜在参数稳定性和未读研究表现。**A10-02 已启动，当前进行中且无结果，不得写 H1、观察可分性或跨研究动力学结论。**校准后仍不优于简单模型，则不写跨研究动力学；可在研究内继续 E2，但不得外推。只有观察可分性成立，E2 非局部响应才有跨研究解释基础。
+对照 raw 直接运输、研究内校准、无动力学序列模型、位置/constant；观察映射自由度、源内拟合、潜在参数稳定性和未读研究表现。**A10-02 v2 开发研究已完成，H1=`development_positive`**：raw_unanchored−calibrated 的 TB-MSE effects 为 0.0420274/0.0418212/0.0406288，raw_anchored−calibrated 为 0.0403316/0.0402787/0.0390835；全部 CI lower>0、Holm<0.05，3 seeds 同向，说明该校准在开发研究中降低了 TB-MSE。斜率 0.1580–0.1644、截距 0.8224–0.8308；Pearson/Spearman 不变，不得把 MSE 改善改写为相关结构改善。summary 与独立复核 SHA 见第 0.1 节，独立复核全量通过；33 项测试通过，wall-clock 51.8138 s。该结果只支持开发研究中的观察过程可分性，不是最终跨研究、绝对速率、动力学机制或 SOTA 结论；最终未读研究仍须遵守独立 calibration/target test 隔离。E2 可继续研究内数值与动力学检验，但只有后续相应证据成立，非局部响应才可作跨研究解释。
 
 ### E2：流守恒是否提供独立非局部信息
 
-对照完整动力学、去流守恒同容量模型、独立密码子模型、纯位置场；观察局部变体上下游密度响应、通量变化、稳态残差和转录本/变体 OOD。没有超出独立模型的增量，就删除动力学核心并停止 Kinetic-CodonFlow 主线，而不是增加模块。只有通过的动力学量进入 E3。
+对照完整动力学、去流守恒同容量模型、独立密码子模型、纯位置场；观察局部变体上下游密度响应、通量变化、稳态残差和转录本/变体 OOD。**当前仅提交最小平均场实现**：36 项测试通过，真实 CUDA 审计 SHA256=`3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`；五组独立 least_squares 的最大密度误差 1.33e-14、梯度误差 1.16e-14、独立守恒误差 3.94e-14。这些只证明最小实现的工程与数值一致性；平均场不是精确随机模拟，尚未训练动力学模型，未完成去守恒/简单模型公平比较和严格 OOD，E2/G1 未完成、H2 未证。没有超出独立模型的增量，就删除动力学核心并停止 Kinetic-CodonFlow 主线，而不是增加模块。只有通过的动力学量进入 E3。
 
 ### E3：功能预测能否公平击败最强 baseline
 
@@ -175,9 +176,9 @@ Harmonization、全长 UTR–CDS 联合设计和起始结构运输只在对应�
 
 ## 6. 科学 Gates 与停止规则
 
-- **A10-G0 数据/baseline 可信**：E0 已全部完成，关键数据和直接 baseline 已达到 closeout 验收要求。G0 closeout v3 与独立复核 SHA 见第 0.1 节，独立复核 20/20 通过，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1/E2 允许启动。A10-02 已启动但无结果，G0 通过不证明 H1/H2、E3/G2、SOTA 或 final untouched。
-- **A10-G1 动力学增量**：E2 在严格 OOD 超过去守恒和简单模型；E1 决定能否增加跨研究主张。当前 H1/H2 均未证，G1 未通过；G1 失败则停止动力学主线。
-- **A10-G2 功能阳性核心**：E3 达到预注册 SOTA 门槛后才允许大规模生成训练。当前 E3/G2 未证、SOTA=`false`；G2 失败则停止生成训练。
+- **A10-G0 数据/baseline 可信**：E0 已全部完成，关键数据和直接 baseline 已达到 closeout 验收要求。G0 closeout v3 与独立复核 SHA 见第 0.1 节，独立复核 20/20 通过，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1/E2 允许启动。E1 v2 开发研究已完成且 H1 仅开发阳性；G0 通过不证明 H2、最终跨研究、E3/G2、SOTA 或 final untouched。
+- **A10-G1 动力学增量**：E2 在严格 OOD 超过去守恒和简单模型；E1 决定能否增加跨研究主张。当前 H1 仅开发阳性、H2 未证；E2 只有最小平均场实现和数值审计，E2/G1 未完成、未通过。G1 失败则停止动力学主线。
+- **A10-G2 功能阳性核心**：E3 达到预注册 SOTA 门槛后才允许大规模生成训练。当前 E3/G2 未证、SOTA=`false`；不得越过 G2 生成训练，G2 失败则停止生成训练。
 - **A10-G3 设计阳性核心**：E4 在等反馈/等成本下超过最强可比方法，且 E5 机制消融同向。
 
 文档、测试、hash 和 PPT 是复现条件，不是科学 Gate。不得改成弱 baseline、回顾性最佳臂或“工程已完成”收尾；不得继续做无新科学问题的窗口、覆盖、初始化和 gating 消融。
