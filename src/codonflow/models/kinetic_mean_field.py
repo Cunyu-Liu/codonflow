@@ -137,38 +137,51 @@ def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnos
     row_scale = matrix.abs().amax(dim=-1, keepdim=True)
     if not bool(torch.isfinite(row_scale).all()) or not bool((row_scale > 0).all()):
         raise RuntimeError("Kinetic mean-field backward Jacobian has invalid row scales")
-    multiplier = torch.linalg.solve(
-        matrix / row_scale, output_gradient.unsqueeze(-1) / row_scale
-    ).squeeze(-1)
-    recovery = torch.matmul(matrix, multiplier.unsqueeze(-1)).squeeze(-1) - output_gradient
-    denominator = (
-        torch.matmul(matrix.abs(), multiplier.abs().unsqueeze(-1)).squeeze(-1)
-        + output_gradient.abs()
-    )
-    relative_recovery = torch.where(
-        denominator > 0, recovery.abs() / denominator, recovery.abs()
-    )
-    if relative_recovery.ndim == 1:
-        reported_recovery = relative_recovery.max()
-    else:
-        reported_recovery = relative_recovery.amax(dim=-1)
-    if diagnostics is not None:
-        diagnostics["backward_recovery_residual"].copy_(reported_recovery)
-    if not bool(torch.isfinite(multiplier).all()) or not bool(
-        torch.isfinite(reported_recovery).all()
-    ):
-        raise RuntimeError("Kinetic mean-field backward solve returned non-finite values")
-    if bool((reported_recovery > residual_tolerance).any()):
-        if relative_recovery.ndim == 1:
-            detail = f"{float(reported_recovery):.3e}"
-        else:
-            index = int((reported_recovery > residual_tolerance).nonzero()[0, 0])
-            detail = f"batch sample {index}: {float(reported_recovery[index]):.3e}"
-        raise RuntimeError(
-            "Kinetic mean-field backward solve exceeded the recovery residual tolerance: "
-            f"{detail} > {residual_tolerance:.3e}"
+    scaled_matrix = matrix / row_scale
+    factor, pivots = torch.linalg.lu_factor(scaled_matrix)
+    rhs = output_gradient.unsqueeze(-1) / row_scale
+    multiplier = torch.linalg.lu_solve(factor, pivots, rhs).squeeze(-1)
+
+    for refinement in range(3):
+        recovery = torch.matmul(matrix, multiplier.unsqueeze(-1)).squeeze(-1) - output_gradient
+        denominator = (
+            torch.matmul(matrix.abs(), multiplier.abs().unsqueeze(-1)).squeeze(-1)
+            + output_gradient.abs()
         )
-    return multiplier
+        relative_recovery = torch.where(
+            denominator > 0, recovery.abs() / denominator, recovery.abs()
+        )
+        if relative_recovery.ndim == 1:
+            reported_recovery = relative_recovery.max()
+        else:
+            reported_recovery = relative_recovery.amax(dim=-1)
+        if diagnostics is not None:
+            diagnostics["backward_recovery_residual"].copy_(reported_recovery)
+        if not bool(torch.isfinite(multiplier).all()) or not bool(
+            torch.isfinite(reported_recovery).all()
+        ):
+            raise RuntimeError("Kinetic mean-field backward solve returned non-finite values")
+        needs_refinement = reported_recovery > residual_tolerance
+        if not bool(needs_refinement.any()):
+            return multiplier
+        if refinement == 2:
+            break
+        correction = torch.linalg.lu_solve(
+            factor, pivots, recovery.unsqueeze(-1) / row_scale
+        ).squeeze(-1)
+        multiplier = torch.where(
+            needs_refinement.unsqueeze(-1), multiplier - correction, multiplier
+        )
+
+    if relative_recovery.ndim == 1:
+        detail = f"{float(reported_recovery):.3e}"
+    else:
+        index = int(needs_refinement.nonzero()[0, 0])
+        detail = f"batch sample {index}: {float(reported_recovery[index]):.3e}"
+    raise RuntimeError(
+        "Kinetic mean-field backward solve exceeded the recovery residual tolerance after "
+        f"two refinement steps: {detail} > {residual_tolerance:.3e}"
+    )
 
 
 def _scaled_residual_numpy(

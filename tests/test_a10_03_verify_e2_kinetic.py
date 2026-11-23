@@ -60,7 +60,8 @@ def make_protocol(path, raw_path):
     protocol["inputs"]["expected_eligible_transcripts"] = N_TRANSCRIPTS
     protocol["inputs"]["expected_basename"] = raw_path.name
     protocol["training"]["early_stopping"]["patience_epochs"] = 2
-    protocol["training"]["maximum_epochs"] = 20
+    protocol["training"]["successive_halving"]["rung_epochs"] = 5
+    protocol["outputs"]["v3_requires_new_directory_not_v1_or_v2_output"] = True
     write_json(path, protocol)
     return protocol
 
@@ -89,6 +90,7 @@ def selected_state(seed, outer, inner, arm):
 
 def make_training(output, protocol, splits):
     grid = verifier.curve_grid(protocol)
+    rung_epochs = protocol["training"]["successive_halving"]["rung_epochs"]
     selection_records = []
     curve_lines = []
     for seed in SEEDS:
@@ -97,36 +99,67 @@ def make_training(output, protocol, splits):
             for arm in verifier.ARMS:
                 candidates = []
                 for grid_index, (learning_rate, weight_decay) in enumerate(grid):
+                    promoted = grid_index < 2
                     folds = []
-                    weighted_score = 0.0
+                    weighted_rung_score = 0.0
+                    weighted_final_score = 0.0
                     validation_count = 0
                     for inner in outer["inner"]:
                         inner_index = inner["inner_fold"]
-                        dev, best_epoch = epoch_values(grid_index)
-                        epochs = [
+                        rung_values = [1.0 + 0.05 * grid_index - 0.05 * epoch for epoch in range(rung_epochs)]
+                        if grid_index == 0:
+                            continuation_values = [0.20, 0.21, 0.22]
+                        elif grid_index == 1:
+                            continuation_values = [0.40, 0.30, 0.31, 0.32]
+                        else:
+                            continuation_values = []
+                        all_values = rung_values + continuation_values
+                        rung_history = [
                             {
-                                "epoch": index + 1,
-                                "train_tb_mse": 0.8 - 0.02 * index,
-                                "validation_tb_mse": value,
-                                "elapsed_seconds": 0.1 * (index + 1),
+                                "epoch": index + 1, "train_tb_mse": 0.8 - 0.001 * index,
+                                "validation_tb_mse": value, "elapsed_seconds": 0.1 * (index + 1),
                             }
-                            for index, value in enumerate(dev)
+                            for index, value in enumerate(rung_values)
                         ]
+                        continuation_history = [
+                            {
+                                "epoch": rung_epochs + index + 1, "train_tb_mse": 0.7 - 0.001 * index,
+                                "validation_tb_mse": value,
+                                "elapsed_seconds": 0.1 * (rung_epochs + index + 1),
+                            }
+                            for index, value in enumerate(continuation_values)
+                        ]
+                        stop_reason = "validation_plateau" if promoted else "rejected_at_rung_not_converged"
+                        state_sha = hashlib.sha256(f"state/{seed}/{outer_index}/{inner_index}/{arm}/{grid_index}".encode()).hexdigest()
+                        optimizer_sha = hashlib.sha256(f"optimizer/{seed}/{outer_index}/{inner_index}/{arm}/{grid_index}".encode()).hexdigest()
+                        resume = {
+                            "source": "rung_last_state", "source_epoch": rung_epochs,
+                            "start_epoch": rung_epochs + 1,
+                            "rung_last_state_sha256": state_sha,
+                            "restored_model_state_sha256": state_sha,
+                            "rung_last_optimizer_state_sha256": optimizer_sha,
+                            "optimizer_state_restored": True, "rng_state_restored": True,
+                        } if promoted else None
                         curve = {
                             "schema": verifier.CURVE_SCHEMA,
-                            "seed": seed,
-                            "outer_fold": outer_index,
-                            "inner_fold": inner_index,
-                            "arm": arm,
-                            "grid_index": grid_index,
-                            "learning_rate": learning_rate,
-                            "weight_decay": weight_decay,
-                            "stop_reason": "validation_plateau",
-                            "validation_plateau_converged": True,
-                            "maximum_epoch_is_not_convergence": True,
-                            "epochs": epochs,
+                            "seed": seed, "outer_fold": outer_index, "inner_fold": inner_index,
+                            "arm": arm, "grid_index": grid_index,
+                            "learning_rate": learning_rate, "weight_decay": weight_decay,
+                            "rung_selected": promoted,
+                            "rung": {
+                                "epochs": rung_epochs, "last_epoch": rung_epochs,
+                                "last_validation_tb_mse": rung_values[-1],
+                                "last_state_sha256": state_sha, "last_optimizer_state_sha256": optimizer_sha,
+                            },
+                            "resume": resume,
+                            "stop_reason": stop_reason,
+                            "validation_plateau_converged": promoted,
+                            "rung_rejection_is_not_convergence": True,
+                            "selected_candidates_have_no_final_epoch_cap": True,
+                            "epochs": rung_history + continuation_history,
                         }
                         curve_lines.append(json.dumps(curve, allow_nan=False))
+                        epochs = rung_history + continuation_history
                         cost = {
                             "wall_clock_seconds": epochs[-1]["elapsed_seconds"] + 0.01,
                             "epochs_ran": len(epochs),
@@ -134,30 +167,38 @@ def make_training(output, protocol, splits):
                             "validation_transcripts": len(inner["validation"]),
                             "cuda_peak_memory_bytes": 1024,
                         }
+                        best_epoch = int(np.argmin(all_values)) + 1
+                        best_loss = min(all_values)
                         folds.append({
                             "inner_fold": inner_index,
+                            "rung_last_validation_tb_mse": rung_values[-1],
+                            "resumed_from_rung_last_state": promoted,
                             "best_epoch": best_epoch,
-                            "best_validation_tb_mse": dev[best_epoch - 1],
-                            "stop_reason": "validation_plateau",
-                            "validation_plateau_converged": True,
+                            "best_validation_tb_mse": best_loss,
+                            "stop_reason": stop_reason,
+                            "validation_plateau_converged": promoted,
                             "cost": cost,
                         })
-                        weighted_score += dev[best_epoch - 1] * len(inner["validation"])
+                        weighted_rung_score += rung_values[-1] * len(inner["validation"])
+                        if promoted:
+                            weighted_final_score += best_loss * len(inner["validation"])
                         validation_count += len(inner["validation"])
                     candidates.append({
                         "grid_index": grid_index,
                         "learning_rate": learning_rate,
                         "weight_decay": weight_decay,
                         "folds": folds,
-                        "inner_oof_tb_mse": weighted_score / validation_count,
+                        "rung_selected": promoted,
+                        "rung_inner_oof_tb_mse": weighted_rung_score / validation_count,
+                        "rung_inner_oof_transcripts": validation_count,
+                        "inner_oof_tb_mse": weighted_final_score / validation_count if promoted else None,
                         "inner_oof_transcripts": validation_count,
                     })
                 selection_records.append({
-                    "seed": seed,
-                    "outer_fold": outer_index,
-                    "arm": arm,
-                    "selected_grid_index": 0,
-                    "selection_metric": "inner_oof_tb_mse",
+                    "seed": seed, "outer_fold": outer_index, "arm": arm,
+                    "selected_grid_index": 0, "rung_selected_grid_indices": [0, 1],
+                    "rung_selection_metric": "rung_inner_oof_tb_mse",
+                    "selection_metric": "inner_oof_tb_mse_after_rung_resume",
                     "outer_test_used_for_selection": False,
                     "candidates": candidates,
                 })
@@ -413,8 +454,12 @@ def save_predictions(case, arrays):
 
 
 def test_frozen_identity_and_verifier_has_no_production_imports(tmp_path):
-    assert json.loads(FROZEN_PROTOCOL.read_text(encoding="utf-8"))["protocol"].endswith("_v2")
-    frozen = verifier.load_protocol(FROZEN_PROTOCOL, allow_synthetic=True)
+    assert json.loads(FROZEN_PROTOCOL.read_text(encoding="utf-8"))["protocol"].endswith("_v3")
+    frozen = verifier.load_protocol(FROZEN_PROTOCOL)
+    assert frozen["inputs"]["expected_eligible_transcripts"] == 1073
+    assert frozen["training"]["successive_halving"]["rung_epochs"] == 50
+    assert frozen["training"]["successive_halving"]["retained_candidates_per_arm"] == 2
+    assert frozen["training"]["final_epoch_limit"] is None
     assert verifier.REAL_ELIGIBLE == 1073
     raw_path = tmp_path / "synthetic.txt"
     write_raw(raw_path)
@@ -441,6 +486,13 @@ def test_synthetic_full_independent_verification_passes(tmp_path):
     assert result["recomputed"]["qc"]["input_records"] == N_TRANSCRIPTS + 7
     assert result["recomputed"]["qc"]["eligible_transcripts"] == N_TRANSCRIPTS
     assert result["recomputed"]["training"]["fit_count"] == 486
+    convergence = result["recomputed"]["training"]["convergence"]
+    assert convergence["rung_fits"] == 486
+    assert convergence["resumed_fits"] == 162
+    assert convergence["validation_plateau"] == 162
+    assert convergence["rejected_at_rung_not_converged"] == 324
+    assert convergence["rung_rejection_is_not_convergence"] is True
+    assert convergence["selected_candidates_have_no_final_epoch_cap"] is True
     assert result["recomputed"]["member_conservation"]["kinetic_members_checked"] == 3 * N_TRANSCRIPTS * 3
     assert result["recomputed"]["member_conservation"]["maximum_member_abs_normalized_residual"] < 1e-8
     assert result["recomputed"]["member_conservation"]["ensemble_mean_is_common_steady_state"] is False
@@ -525,6 +577,111 @@ def test_plateau_curve_tampering_is_detected(tmp_path):
     assert result["checks"]["summary_artifact_sha256"]
 
 
+def test_rung_top2_elimination_and_continuation_tampering_are_detected(tmp_path):
+    case = make_case(tmp_path)
+    lines = (case["output"] / "curves.jsonl").read_text(encoding="utf-8").splitlines()
+    eliminated_index = next(index for index, line in enumerate(lines) if json.loads(line)["grid_index"] == 2)
+    curve = json.loads(lines[eliminated_index])
+    curve["stop_reason"] = "validation_plateau"
+    curve["validation_plateau_converged"] = True
+    lines[eliminated_index] = json.dumps(curve)
+    (case["output"] / "curves.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    refresh_artifact_sha(case, "curves.jsonl")
+    result = verify(case)
+    assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+    assert "rejected rung candidates cannot be converged" in result["mismatches"]["training"][0]
+
+    case = make_case(tmp_path / "top2")
+    selection = load_selection(case)
+    selection["records"][0]["rung_selected_grid_indices"] = [0, 2]
+    save_selection(case, selection)
+    result = verify(case)
+    assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+    assert "top2 promotion" in result["mismatches"]["training"][0]
+
+    case = make_case(tmp_path / "eliminated_final_score")
+    selection = load_selection(case)
+    selection["records"][0]["candidates"][2]["inner_oof_tb_mse"] = 0.5
+    save_selection(case, selection)
+    result = verify(case)
+    assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+    assert "eliminated candidate must not have a final converged OOF score" in result["mismatches"]["training"][0]
+
+    case = make_case(tmp_path / "rung_length")
+    lines = (case["output"] / "curves.jsonl").read_text(encoding="utf-8").splitlines()
+    curve = json.loads(lines[0])
+    curve["epochs"].pop(4)
+    lines[0] = json.dumps(curve)
+    (case["output"] / "curves.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    refresh_artifact_sha(case, "curves.jsonl")
+    assert not verify(case)["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+
+    case = make_case(tmp_path / "continuation_restart")
+    lines = (case["output"] / "curves.jsonl").read_text(encoding="utf-8").splitlines()
+    curve = json.loads(lines[0])
+    curve["epochs"][5]["epoch"] = 1
+    lines[0] = json.dumps(curve)
+    (case["output"] / "curves.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    refresh_artifact_sha(case, "curves.jsonl")
+    result = verify(case)
+    assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+    assert "contiguous" in result["mismatches"]["training"][0]
+
+    case = make_case(tmp_path / "not_from_rung_last")
+    lines = (case["output"] / "curves.jsonl").read_text(encoding="utf-8").splitlines()
+    curve = json.loads(lines[0])
+    curve["resume"]["restored_model_state_sha256"] = "0" * 64
+    lines[0] = json.dumps(curve)
+    (case["output"] / "curves.jsonl").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    refresh_artifact_sha(case, "curves.jsonl")
+    assert not verify(case)["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+
+
+def test_promoted_plateau_has_no_final_epoch_ceiling(tmp_path):
+    raw_path = tmp_path / "synthetic.txt"
+    write_raw(raw_path)
+    protocol = make_protocol(tmp_path / "protocol.json", raw_path)
+    protocol["training"]["successive_halving"]["rung_epochs"] = 50
+    protocol["training"]["early_stopping"]["patience_epochs"] = 25
+    total_epochs = 2005
+
+    def validation_value(epoch):
+        return 2.0 - min(epoch // 20, 99) * 0.001
+
+    history = [
+        {
+            "epoch": epoch, "train_tb_mse": 1.0,
+            "validation_tb_mse": validation_value(epoch), "elapsed_seconds": epoch * 0.01,
+        }
+        for epoch in range(1, total_epochs + 1)
+    ]
+    learning_rate, weight_decay = verifier.curve_grid(protocol)[0]
+    curve = {
+        "schema": verifier.CURVE_SCHEMA, "seed": 1234, "outer_fold": 0, "inner_fold": 0,
+        "arm": "independent", "grid_index": 0,
+        "learning_rate": learning_rate, "weight_decay": weight_decay,
+        "rung_selected": True,
+        "rung": {
+            "epochs": 50, "last_epoch": 50, "last_validation_tb_mse": history[49]["validation_tb_mse"],
+            "last_state_sha256": "1" * 64, "last_optimizer_state_sha256": "2" * 64,
+        },
+        "resume": {
+            "source": "rung_last_state", "source_epoch": 50, "start_epoch": 51,
+            "rung_last_state_sha256": "1" * 64, "restored_model_state_sha256": "1" * 64,
+            "rung_last_optimizer_state_sha256": "2" * 64,
+            "optimizer_state_restored": True, "rng_state_restored": True,
+        },
+        "stop_reason": "validation_plateau", "validation_plateau_converged": True,
+        "rung_rejection_is_not_convergence": True,
+        "selected_candidates_have_no_final_epoch_cap": True,
+        "epochs": history,
+    }
+    audit = verifier.validate_curve(curve, (1234, 0, 0, "independent", 0), verifier.curve_grid(protocol), protocol)
+    assert audit["epochs_ran"] == 2005
+    assert audit["continuation_epochs_ran"] == 1955
+    assert audit["best_epoch"] == 1980
+
+
 def test_missing_curve_and_non_inner_selected_candidate_are_detected(tmp_path):
     case = make_case(tmp_path)
     lines = (case["output"] / "curves.jsonl").read_text(encoding="utf-8").splitlines()
@@ -538,7 +695,7 @@ def test_missing_curve_and_non_inner_selected_candidate_are_detected(tmp_path):
     save_selection(case, selection)
     result = verify(case)
     assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
-    assert "inner-OOF minimum" in result["mismatches"]["training"][0]
+    assert "promoted post-continuation" in result["mismatches"]["training"][0]
 
 
 def test_parameter_count_mismatch_is_detected(tmp_path):
@@ -818,7 +975,7 @@ def make_real_shaped_protocol(tmp_path):
     protocol["inputs"]["sha256"] = verifier.REAL_RAW_SHA256
     protocol["inputs"]["expected_eligible_transcripts"] = verifier.REAL_ELIGIBLE
     protocol["inputs"]["expected_basename"] = "Mohammad16.txt"
-    protocol["training"]["maximum_epochs"] = 2000
+    protocol["training"]["successive_halving"]["rung_epochs"] = 50
     protocol["training"]["early_stopping"]["patience_epochs"] = 25
     write_json(tmp_path / "protocol.json", protocol)
     return tmp_path / "protocol.json", raw_path, protocol
@@ -829,7 +986,7 @@ def make_real_shaped_protocol(tmp_path):
     (("training", "model_seeds"), [1234, 2345, 9999]),
     (("hyperparameters", "learning_rate", "minimum"), 0.0002),
     (("hyperparameters", "weight_decays"), [0.0]),
-    (("training", "maximum_epochs"), 1999),
+    (("training", "successive_halving", "retained_candidates_per_arm"), 1),
     (("training", "batch_transcripts"), 31),
     (("model", "rate_floor"), 0.001),
 ])
@@ -841,7 +998,7 @@ def test_real_mode_freezes_all_scientific_numeric_paths(tmp_path, path, value):
         target = target[part]
     target[path[-1]] = value
     write_json(protocol_path, protocol)
-    with pytest.raises(ValueError, match="frozen scientific numerics"):
+    with pytest.raises(ValueError, match="frozen scientific numerics|successive-halving"):
         verifier.load_protocol(protocol_path)
 
 

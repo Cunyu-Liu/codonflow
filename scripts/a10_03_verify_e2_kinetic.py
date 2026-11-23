@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Independently verify A10-03/E2 v2 artifacts without production imports.
+"""Independently verify A10-03/E2 v3/v4 artifacts without production imports.
 
 The verifier rebuilds RK37 QC/density/mask and transcript-grouped nested folds
-from the raw header/codon/count matrix, rejecting exact CDS/ID conflicts. It audits every inner training curve,
-plateau stopping, inner-only LR/weight-decay selection, parameter matching,
-CUDA and cost records. Selected inner states are used to rebuild every score,
+from the raw header/codon/count matrix, rejecting exact CDS/ID conflicts. It
+recomputes fixed-rung top2 selection, rejected-at-rung status, rung-last-state
+resume history and selected-only plateau stopping without a final epoch cap.
+It also audits parameter matching, CUDA and cost records. Selected inner states are used to rebuild every score,
 rate, independent SciPy steady state and outer ensemble prediction. Ensemble
 means are density ensembles, never a claim of a common steady state.
 
@@ -34,15 +35,15 @@ from scipy.special import expit
 ROOT = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_PATH = ROOT / "scripts" / "a10_03_e2_kinetic.py"
 MEAN_FIELD_OPERATOR_PATH = ROOT / "src" / "codonflow" / "models" / "kinetic_mean_field.py"
-PROTOCOL = "a10_03_e2_kinetic_protocol_v2"
-PROTOCOL_SCHEMA = "a10-03-e2-kinetic-protocol-v2"
-SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v2"
-SPLIT_SCHEMA = "a10-03-e2-kinetic-splits-v2"
-SELECTION_SCHEMA = "a10-03-e2-kinetic-selection-v2"
-CURVE_SCHEMA = "a10-03-e2-kinetic-curve-v2"
-PROVENANCE_SCHEMA = "a10-03-e2-kinetic-startup-provenance-v2"
-STATE_SCHEMA = "a10-03-e2-kinetic-selected-inner-states-v2"
-VERIFICATION_SCHEMA = "a10-03-e2-kinetic-independent-verification-v2"
+PROTOCOL = "a10_03_e2_kinetic_protocol_v3"
+PROTOCOL_SCHEMA = "a10-03-e2-kinetic-protocol-v3"
+SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v4"
+SPLIT_SCHEMA = "a10-03-e2-kinetic-splits-v3"
+SELECTION_SCHEMA = "a10-03-e2-kinetic-selection-v4"
+CURVE_SCHEMA = "a10-03-e2-kinetic-curve-v4"
+PROVENANCE_SCHEMA = "a10-03-e2-kinetic-startup-provenance-v3"
+STATE_SCHEMA = "a10-03-e2-kinetic-selected-inner-states-v3"
+VERIFICATION_SCHEMA = "a10-03-e2-kinetic-independent-verification-v4"
 REAL_RAW_SHA256 = "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
 REAL_ELIGIBLE = 1073
 ARMS = ("independent", "position", "kinetic")
@@ -84,7 +85,8 @@ REAL_FROZEN_VALUES = {
     ("training", "model_seeds"): REAL_MODEL_SEEDS,
     ("training", "minimum_model_seeds"): 3,
     ("training", "batch_transcripts"): 32,
-    ("training", "maximum_epochs"): 2000,
+    ("training", "successive_halving", "rung_epochs"): 50,
+    ("training", "successive_halving", "retained_candidates_per_arm"): 2,
     ("training", "gradient_clip_norm"): 1.0,
     ("training", "early_stopping", "min_absolute_improvement"): 0.000001,
     ("training", "early_stopping", "patience_epochs"): 25,
@@ -250,16 +252,31 @@ def load_protocol(path, allow_synthetic=False):
         or not all(is_integer(seed, 1) for seed in seeds)
         or training.get("minimum_model_seeds") != 3
         or training.get("record_every_epoch_train_and_validation_curve") is not True
-        or training.get("maximum_epoch_is_not_convergence") is not True
+        or training.get("record_rung_and_resume_history") is not True
         or training.get("optimizer") != "AdamW"
         or training.get("dtype") != "float64"
         or training.get("gradient_clip_error_if_nonfinite") is not True
         or training.get("finite_parameters_required_after_optimizer_step") is not True
         or not is_integer(training.get("batch_transcripts"), 1)
         or not is_number(training.get("gradient_clip_norm"), positive=True)
-        or not is_integer(training.get("maximum_epochs"), 2)
+        or training.get("final_epoch_limit") is not None
+        or training.get("resume_from_rung_last_state") is not True
+        or training.get("resume_optimizer_and_rng_state") is not True
+        or training.get("selected_candidates_stop_only_on_validation_plateau") is not True
+        or training.get("rung_rejection_is_not_convergence") is not True
     ):
-        raise ValueError("at least three seeds and complete curves are required")
+        raise ValueError("at least three seeds, complete curves and no continuation epoch cap are required")
+    halving = training.get("successive_halving", {})
+    if any((
+        not is_integer(halving.get("rung_epochs"), 1),
+        halving.get("rung_is_fixed_and_never_early_stopped") is not True,
+        halving.get("retained_candidates_per_arm") != 2,
+        halving.get("ranking_metric") != "inner_oof_validation_tb_mse_at_rung_last_epoch",
+        halving.get("ranking_scope") != "within each seed, outer fold and arm across the unchanged hyperparameter grid",
+        halving.get("tie_break") != "protocol grid order",
+        halving.get("rejected_stop_reason") != "rejected_at_rung_not_converged",
+    )):
+        raise ValueError("successive-halving rung/top2/continuation contract mismatch")
     stopping = training.get("early_stopping", {})
     if any((
         stopping.get("monitor") != "inner validation transcript-balanced MSE",
@@ -267,7 +284,6 @@ def load_protocol(path, allow_synthetic=False):
         not is_number(stopping.get("min_absolute_improvement"), nonnegative=True),
         not is_integer(stopping.get("patience_epochs"), 1),
         stopping.get("restore_best_validation_state") is not True,
-        training["maximum_epochs"] <= stopping["patience_epochs"],
     )):
         raise ValueError("inner validation plateau stopping contract mismatch")
     hyper = protocol.get("hyperparameters", {})
@@ -275,8 +291,11 @@ def load_protocol(path, allow_synthetic=False):
     decays = hyper.get("weight_decays")
     if not isinstance(decays, list) or not decays or not all(is_number(value, nonnegative=True) for value in decays):
         raise ValueError("weight-decay grid must be finite and nonnegative")
-    if hyper.get("selection_metric") != "inner out-of-fold transcript-balanced MSE at each fold's restored best-validation state":
-        raise ValueError("hyperparameter selection must use inner OOF TB-MSE only")
+    if any((
+        hyper.get("rung_selection_metric") != "inner out-of-fold transcript-balanced MSE at each fold's rung last state",
+        hyper.get("selection_metric") != "inner out-of-fold transcript-balanced MSE at each fold's restored best-validation state after resume",
+    )):
+        raise ValueError("rung and resumed hyperparameter selection must use inner OOF TB-MSE only")
     runtime = protocol.get("runtime", {})
     if any((
         runtime.get("device") != "cuda", runtime.get("cpu_fallback") is not False,
@@ -297,11 +316,11 @@ def load_protocol(path, allow_synthetic=False):
     outputs = protocol.get("outputs", {})
     if any((
         outputs.get("overwrite") != "forbidden",
-        outputs.get("v2_requires_new_directory_not_v1_remote_output") is not True,
+        outputs.get("v3_requires_new_directory_not_v1_or_v2_output") is not True,
         outputs.get("files") != list(OUTPUT_FILES),
         outputs.get("ensemble_mean_residual_diagnostic") != "arithmetic diagnostic only; not a common steady-state residual",
     )):
-        raise ValueError("v2 outputs must be exclusive, separate from v1 and explicit about ensemble diagnostics")
+        raise ValueError("v3 outputs must be exclusive, separate from v1/v2 and explicit about ensemble diagnostics")
     if not allow_synthetic:
         if any((
             inputs.get("sha256") != REAL_RAW_SHA256,
@@ -529,8 +548,9 @@ def validate_curve(record, key, grid, protocol):
     seed, outer, inner, arm, grid_index = key
     required = {
         "schema", "seed", "outer_fold", "inner_fold", "arm", "grid_index",
-        "learning_rate", "weight_decay", "stop_reason", "validation_plateau_converged",
-        "maximum_epoch_is_not_convergence", "epochs",
+        "learning_rate", "weight_decay", "rung_selected", "rung", "resume",
+        "stop_reason", "validation_plateau_converged", "rung_rejection_is_not_convergence",
+        "selected_candidates_have_no_final_epoch_cap", "epochs",
     }
     if set(record) != required or record["schema"] != CURVE_SCHEMA:
         raise ValueError("curve schema or fields mismatch")
@@ -539,22 +559,42 @@ def validate_curve(record, key, grid, protocol):
     lr, wd = grid[grid_index]
     if record["learning_rate"] != lr or record["weight_decay"] != wd:
         raise ValueError("curve hyperparameters differ from frozen grid")
+    if any((
+        not isinstance(record["rung_selected"], bool),
+        record["rung_rejection_is_not_convergence"] is not True,
+        record["selected_candidates_have_no_final_epoch_cap"] is not True,
+    )):
+        raise ValueError("rung rejection/no-final-cap boundaries missing")
     epochs = record["epochs"]
-    if not isinstance(epochs, list) or not epochs:
-        raise ValueError("empty training curve")
+    rung_epochs = protocol["training"]["successive_halving"]["rung_epochs"]
+    if not isinstance(epochs, list) or len(epochs) < rung_epochs:
+        raise ValueError("every candidate must have the complete frozen rung history")
     previous_elapsed = 0.0
     validation = []
     for index, epoch in enumerate(epochs, 1):
         if set(epoch) != {"epoch", "train_tb_mse", "validation_tb_mse", "elapsed_seconds"}:
             raise ValueError("curve epoch fields mismatch")
         if epoch["epoch"] != index or not is_number(epoch["train_tb_mse"], nonnegative=True):
-            raise ValueError("curve epochs must be contiguous with finite train loss")
+            raise ValueError("rung/resume epochs must be contiguous with finite train loss")
         if not is_number(epoch["validation_tb_mse"], nonnegative=True):
             raise ValueError("curve validation loss must be finite")
         if not is_number(epoch["elapsed_seconds"], nonnegative=True) or epoch["elapsed_seconds"] < previous_elapsed:
-            raise ValueError("curve elapsed time must be finite and nondecreasing")
+            raise ValueError("curve elapsed time must be finite and nondecreasing across resume")
         previous_elapsed = epoch["elapsed_seconds"]
         validation.append(float(epoch["validation_tb_mse"]))
+    rung = record["rung"]
+    if not isinstance(rung, dict) or set(rung) != {
+        "epochs", "last_epoch", "last_validation_tb_mse", "last_state_sha256", "last_optimizer_state_sha256",
+    }:
+        raise ValueError("rung metadata fields mismatch")
+    if any((
+        rung["epochs"] != rung_epochs, rung["last_epoch"] != rung_epochs,
+        not is_number(rung["last_validation_tb_mse"], nonnegative=True),
+        not math.isclose(rung["last_validation_tb_mse"], validation[rung_epochs - 1], rel_tol=1e-9, abs_tol=1e-11),
+        re.fullmatch(r"[0-9a-f]{64}", rung["last_state_sha256"]) is None,
+        re.fullmatch(r"[0-9a-f]{64}", rung["last_optimizer_state_sha256"]) is None,
+    )):
+        raise ValueError("rung last epoch/loss/state metadata mismatch")
     stopping = protocol["training"]["early_stopping"]
     best_loss = math.inf
     best_epoch = None
@@ -564,26 +604,41 @@ def validate_curve(record, key, grid, protocol):
             best_epoch = epoch
     if best_epoch is None:
         raise ValueError("curve has no best validation state")
-    maximum = protocol["training"]["maximum_epochs"]
-    patience = stopping["patience_epochs"]
-    if record["stop_reason"] == "validation_plateau":
-        if len(epochs) != best_epoch + patience or len(epochs) > maximum:
-            raise ValueError("validation plateau does not satisfy frozen patience")
-        if record["validation_plateau_converged"] is not True:
-            raise ValueError("plateau curve is mislabeled as not converged")
-    elif record["stop_reason"] == "maximum_epochs_reached":
-        if len(epochs) != maximum or best_epoch + patience <= maximum:
-            raise ValueError("maximum-epoch curve violated stopping rules")
-        if record["validation_plateau_converged"] is not False:
-            raise ValueError("maximum epoch must not be relabeled as plateau convergence")
+    rung_last_validation = validation[rung_epochs - 1]
+    rung_last_elapsed = epochs[rung_epochs - 1]["elapsed_seconds"]
+    if not record["rung_selected"]:
+        if any((
+            len(epochs) != rung_epochs, record["resume"] is not None,
+            record["stop_reason"] != "rejected_at_rung_not_converged",
+            record["validation_plateau_converged"] is not False,
+        )):
+            raise ValueError("rejected rung candidates cannot be converged or resumed")
     else:
-        raise ValueError("unknown stopping reason")
-    if record["maximum_epoch_is_not_convergence"] is not True:
-        raise ValueError("maximum epoch convergence boundary missing")
+        resume = record["resume"]
+        if not isinstance(resume, dict) or set(resume) != {
+            "source", "source_epoch", "start_epoch", "rung_last_state_sha256",
+            "restored_model_state_sha256", "rung_last_optimizer_state_sha256",
+            "optimizer_state_restored", "rng_state_restored",
+        }:
+            raise ValueError("selected candidate resume metadata fields mismatch")
+        if any((
+            len(epochs) <= rung_epochs,
+            resume["source"] != "rung_last_state", resume["source_epoch"] != rung_epochs,
+            resume["start_epoch"] != rung_epochs + 1,
+            resume["rung_last_state_sha256"] != rung["last_state_sha256"],
+            resume["restored_model_state_sha256"] != rung["last_state_sha256"],
+            resume["rung_last_optimizer_state_sha256"] != rung["last_optimizer_state_sha256"],
+            resume["optimizer_state_restored"] is not True, resume["rng_state_restored"] is not True,
+            record["stop_reason"] != "validation_plateau", record["validation_plateau_converged"] is not True,
+        )):
+            raise ValueError("selected candidates must restore rung-last model/optimizer/RNG and reach plateau")
+        if len(epochs) != best_epoch + stopping["patience_epochs"]:
+            raise ValueError("selected validation plateau does not satisfy frozen patience")
     return {
-        "best_epoch": best_epoch,
-        "best_validation_tb_mse": best_loss,
-        "epochs_ran": len(epochs),
+        "promoted": record["rung_selected"], "best_epoch": best_epoch, "best_validation_tb_mse": best_loss,
+        "rung_last_validation_tb_mse": rung_last_validation,
+        "epochs_ran": len(epochs), "continuation_epochs_ran": len(epochs) - rung_epochs,
+        "rung_last_elapsed_seconds": rung_last_elapsed,
         "last_elapsed_seconds": previous_elapsed,
     }
 
@@ -623,8 +678,8 @@ def audit_training(output_dir, protocol, splits):
     peak_memory = 0
     for record in records:
         required = {
-            "seed", "outer_fold", "arm", "selected_grid_index", "selection_metric",
-            "outer_test_used_for_selection", "candidates",
+            "seed", "outer_fold", "arm", "selected_grid_index", "rung_selected_grid_indices",
+            "rung_selection_metric", "selection_metric", "outer_test_used_for_selection", "candidates",
         }
         if set(record) != required:
             raise ValueError("selection record fields mismatch")
@@ -633,15 +688,21 @@ def audit_training(output_dir, protocol, splits):
             raise ValueError("duplicate or unexpected selection record")
         seen.add(key)
         seed, outer, arm = key
-        if record["selection_metric"] != "inner_oof_tb_mse" or record["outer_test_used_for_selection"] is not False:
-            raise ValueError("outer test participated in selection")
+        if any((
+            record["rung_selection_metric"] != "rung_inner_oof_tb_mse",
+            record["selection_metric"] != "inner_oof_tb_mse_after_rung_resume",
+            record["outer_test_used_for_selection"] is not False,
+        )):
+            raise ValueError("outer test participated in selection or final selection ignored rung resume")
         candidates = record["candidates"]
         if not isinstance(candidates, list) or len(candidates) != len(grid):
             raise ValueError("selection does not contain the complete LR/wd grid")
-        scores = []
+        rung_scores = []
+        final_scores = {}
         for grid_index, (candidate, (lr, wd)) in enumerate(zip(candidates, grid)):
             if set(candidate) != {
-                "grid_index", "learning_rate", "weight_decay", "folds",
+                "grid_index", "learning_rate", "weight_decay", "folds", "rung_selected",
+                "rung_inner_oof_tb_mse", "rung_inner_oof_transcripts",
                 "inner_oof_tb_mse", "inner_oof_transcripts",
             }:
                 raise ValueError("candidate fields mismatch")
@@ -650,19 +711,29 @@ def audit_training(output_dir, protocol, splits):
             folds = candidate["folds"]
             if not isinstance(folds, list) or len(folds) != 3:
                 raise ValueError("candidate must contain all three inner folds")
-            weighted_loss = 0.0
+            if not isinstance(candidate["rung_selected"], bool):
+                raise ValueError("candidate promoted status must be boolean")
+            weighted_rung_loss = 0.0
+            weighted_final_loss = 0.0
             validation_count = 0
             for inner in range(3):
                 fold = folds[inner]
                 if set(fold) != {
-                    "inner_fold", "best_epoch", "best_validation_tb_mse", "stop_reason",
+                    "inner_fold", "rung_last_validation_tb_mse", "resumed_from_rung_last_state",
+                    "best_epoch", "best_validation_tb_mse", "stop_reason",
                     "validation_plateau_converged", "cost",
                 } or fold["inner_fold"] != inner:
                     raise ValueError("inner selection fold fields mismatch")
                 curve = curves[(seed, outer, inner, arm, grid_index)]
                 audit = curve["audit"]
-                for field in ("best_epoch", "best_validation_tb_mse", "stop_reason", "validation_plateau_converged"):
-                    if value_mismatches(fold[field], curve["raw"][field] if field != "best_epoch" and field != "best_validation_tb_mse" else audit[field], field):
+                if fold["resumed_from_rung_last_state"] is not candidate["rung_selected"] or audit["promoted"] is not candidate["rung_selected"]:
+                    raise ValueError("curve, fold and candidate disagree on promoted status")
+                for field in (
+                    "rung_last_validation_tb_mse", "best_epoch", "best_validation_tb_mse",
+                    "stop_reason", "validation_plateau_converged",
+                ):
+                    expected = audit[field] if field in audit else curve["raw"][field]
+                    if value_mismatches(fold[field], expected, field):
                         raise ValueError(f"selection and curve disagree on {field}")
                 split = splits[outer]["inner"][inner]
                 cost = fold["cost"]
@@ -680,20 +751,38 @@ def audit_training(output_dir, protocol, splits):
                     not is_integer(cost["cuda_peak_memory_bytes"], 0),
                 )):
                     raise ValueError("fit cost differs from curve, split or CUDA ledger")
-                weighted_loss += fold["best_validation_tb_mse"] * len(split["validation"])
+                weighted_rung_loss += fold["rung_last_validation_tb_mse"] * len(split["validation"])
+                if candidate["rung_selected"]:
+                    weighted_final_loss += fold["best_validation_tb_mse"] * len(split["validation"])
                 validation_count += len(split["validation"])
                 fit_wall += cost["wall_clock_seconds"]
                 epochs_ran += cost["epochs_ran"]
                 peak_memory = max(peak_memory, cost["cuda_peak_memory_bytes"])
                 all_fits.append(fold)
-            expected_score = weighted_loss / validation_count
-            if not is_number(candidate["inner_oof_tb_mse"], nonnegative=True) or not math.isclose(
-                candidate["inner_oof_tb_mse"], expected_score, rel_tol=1e-9, abs_tol=1e-11,
-            ) or candidate["inner_oof_transcripts"] != validation_count:
-                raise ValueError("inner OOF selection score differs from restored best validation curves")
-            scores.append(expected_score)
-        if record["selected_grid_index"] != int(np.argmin(scores)):
-            raise ValueError("selected LR/wd are not the inner-OOF minimum with grid-order ties")
+            expected_rung_score = weighted_rung_loss / validation_count
+            if not is_number(candidate["rung_inner_oof_tb_mse"], nonnegative=True) or not math.isclose(
+                candidate["rung_inner_oof_tb_mse"], expected_rung_score, rel_tol=1e-9, abs_tol=1e-11,
+            ) or candidate["rung_inner_oof_transcripts"] != validation_count:
+                raise ValueError("rung OOF score differs from rung-last validation curves")
+            rung_scores.append(expected_rung_score)
+            if candidate["rung_selected"]:
+                expected_final_score = weighted_final_loss / validation_count
+                if not is_number(candidate["inner_oof_tb_mse"], nonnegative=True) or not math.isclose(
+                    candidate["inner_oof_tb_mse"], expected_final_score, rel_tol=1e-9, abs_tol=1e-11,
+                ):
+                    raise ValueError("final OOF score differs from promoted plateau curves")
+                final_scores[grid_index] = expected_final_score
+            elif candidate["inner_oof_tb_mse"] is not None:
+                raise ValueError("eliminated candidate must not have a final converged OOF score")
+            if candidate["inner_oof_transcripts"] != validation_count:
+                raise ValueError("candidate OOF transcript count mismatch")
+        expected_promoted = np.argsort(np.asarray(rung_scores), kind="mergesort")[:2].tolist()
+        if record["rung_selected_grid_indices"] != expected_promoted or set(final_scores) != set(expected_promoted):
+            raise ValueError("top2 promotion is not the rung-OOF minimum with grid-order ties")
+        if record["selected_grid_index"] not in expected_promoted or record["selected_grid_index"] != min(
+            final_scores, key=final_scores.get,
+        ):
+            raise ValueError("selected LR/wd are not the promoted post-continuation inner-OOF minimum")
     if seen != expected_selection_keys:
         raise ValueError("missing selection records")
     return {
@@ -703,9 +792,14 @@ def audit_training(output_dir, protocol, splits):
         "cuda_peak_memory_bytes": peak_memory,
         "convergence": {
             "fits": len(all_fits),
+            "rung_fits": len(all_fits),
+            "resumed_fits": sum(fold["resumed_from_rung_last_state"] for fold in all_fits),
             "validation_plateau": sum(fold["stop_reason"] == "validation_plateau" for fold in all_fits),
-            "maximum_epochs_reached_not_converged": sum(fold["stop_reason"] == "maximum_epochs_reached" for fold in all_fits),
-            "maximum_epoch_is_not_convergence": True,
+            "rejected_at_rung_not_converged": sum(
+                fold["stop_reason"] == "rejected_at_rung_not_converged" for fold in all_fits
+            ),
+            "rung_rejection_is_not_convergence": True,
+            "selected_candidates_have_no_final_epoch_cap": True,
             "complete_curves_file": "curves.jsonl",
         },
     }

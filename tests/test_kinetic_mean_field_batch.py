@@ -306,6 +306,36 @@ def test_single_sample_opt_in_diagnostics_preserves_legacy_interface():
     assert diagnostics["backward_recovery_residual"] <= 1e-10
 
 
+def test_backward_refinement_repairs_deterministic_1070e_10_residual(monkeypatch):
+    alpha = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    k = torch.empty((1, 0), dtype=torch.float64, requires_grad=True)
+    beta = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    rho, flux, _, diagnostics = solve_kinetic_mean_field_batch(
+        alpha, k, [1], beta, return_diagnostics=True
+    )
+    real_lu_solve = torch.linalg.lu_solve
+    target_recovery = 1.070e-10
+    perturbation = target_recovery * 1.2 / (1.0 - target_recovery)
+    solve_calls = 0
+
+    def perturb_initial_solve(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        result = real_lu_solve(factor, pivots, rhs)
+        if solve_calls == 1:
+            result = result.clone()
+            result[0, 0, 0] -= perturbation
+        return result
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", perturb_initial_solve)
+    gradients = torch.autograd.grad(rho.sum() + 0.2 * flux.sum(), (alpha, k, beta))
+
+    assert perturbation / (1.2 + perturbation) == pytest.approx(target_recovery)
+    assert solve_calls == 2
+    assert all(bool(torch.isfinite(gradient).all()) for gradient in gradients)
+    assert diagnostics["backward_recovery_residual"] <= 1e-10
+
+
 def test_backward_recovery_residual_failure_is_not_silent(monkeypatch):
     alpha = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
     k = torch.tensor([[2.0, 2.0]], dtype=torch.float64, requires_grad=True)
@@ -313,10 +343,18 @@ def test_backward_recovery_residual_failure_is_not_silent(monkeypatch):
     rho, flux, _, diagnostics = solve_kinetic_mean_field_batch(
         alpha, k, [3], beta, return_diagnostics=True
     )
-    monkeypatch.setattr(torch.linalg, "solve", lambda matrix, rhs: torch.zeros_like(rhs))
+    solve_calls = 0
 
-    with pytest.raises(RuntimeError, match="recovery residual tolerance"):
+    def fail_every_solve(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        return torch.zeros_like(rhs)
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", fail_every_solve)
+
+    with pytest.raises(RuntimeError, match="recovery residual tolerance.*two refinement steps"):
         torch.autograd.grad(rho.sum() + flux.sum(), (alpha, k, beta))
+    assert solve_calls == 3
     assert bool(torch.isfinite(diagnostics["backward_recovery_residual"]).all())
     assert bool((diagnostics["backward_recovery_residual"] > 1e-10).all())
 

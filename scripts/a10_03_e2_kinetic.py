@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import hashlib
 import json
@@ -29,12 +30,13 @@ if str(ROOT / "src") not in sys.path:
 from codonflow.models import kinetic_mean_field
 
 
-PROTOCOL = "a10_03_e2_kinetic_protocol_v2"
-SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v2"
-SPLIT_SCHEMA = "a10-03-e2-kinetic-splits-v2"
-SELECTION_SCHEMA = "a10-03-e2-kinetic-selection-v2"
-PROVENANCE_SCHEMA = "a10-03-e2-kinetic-startup-provenance-v2"
-STATE_SCHEMA = "a10-03-e2-kinetic-selected-inner-states-v2"
+PROTOCOL = "a10_03_e2_kinetic_protocol_v3"
+SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v4"
+SPLIT_SCHEMA = "a10-03-e2-kinetic-splits-v3"
+SELECTION_SCHEMA = "a10-03-e2-kinetic-selection-v4"
+PROVENANCE_SCHEMA = "a10-03-e2-kinetic-startup-provenance-v3"
+STATE_SCHEMA = "a10-03-e2-kinetic-selected-inner-states-v3"
+CURVE_SCHEMA = "a10-03-e2-kinetic-curve-v4"
 ARMS = ("independent", "position", "kinetic")
 CODON_ALPHABET = "TCAG"
 CODONS = tuple(
@@ -109,7 +111,7 @@ def learning_rate_grid(config):
 def load_protocol(path):
     with Path(path).open(encoding="utf-8") as handle:
         protocol = json.load(handle)
-    if protocol.get("protocol") != PROTOCOL or protocol.get("schema") != "a10-03-e2-kinetic-protocol-v2":
+    if protocol.get("protocol") != PROTOCOL or protocol.get("schema") != "a10-03-e2-kinetic-protocol-v3":
         raise ValueError(f"protocol identity mismatch: expected {PROTOCOL}")
     scope = protocol.get("scope", {})
     for key in ("development_only",):
@@ -164,13 +166,22 @@ def load_protocol(path):
         raise ValueError("at least three unique model seeds are required")
     for seed in seeds:
         _positive_int(seed, "model seed")
-    maximum_epochs = _positive_int(training.get("maximum_epochs"), "maximum epochs")
     stopping = training.get("early_stopping", {})
-    patience = _positive_int(stopping.get("patience_epochs"), "early stopping patience")
-    if maximum_epochs <= patience or stopping.get("restore_best_validation_state") is not True:
-        raise ValueError("epoch limit must exceed patience and best validation state must be restored")
-    if training.get("maximum_epoch_is_not_convergence") is not True:
-        raise ValueError("the epoch ceiling must not count as convergence")
+    _positive_int(stopping.get("patience_epochs"), "early stopping patience")
+    if stopping.get("restore_best_validation_state") is not True:
+        raise ValueError("best validation state must be restored")
+    efficiency = training.get("successive_halving", {})
+    _positive_int(efficiency.get("rung_epochs"), "rung epochs")
+    if efficiency.get("retained_candidates_per_arm") != 2:
+        raise ValueError("successive halving must retain exactly two candidates per arm")
+    if efficiency.get("ranking_metric") != "inner_oof_validation_tb_mse_at_rung_last_epoch":
+        raise ValueError("rung ranking must use inner OOF validation TB-MSE at the last rung epoch")
+    if training.get("final_epoch_limit") is not None:
+        raise ValueError("selected candidates must not have a final epoch limit")
+    if training.get("resume_from_rung_last_state") is not True or training.get("selected_candidates_stop_only_on_validation_plateau") is not True:
+        raise ValueError("selected candidates must resume the rung last state and stop only on validation plateau")
+    if training.get("rung_rejection_is_not_convergence") is not True:
+        raise ValueError("rung rejection must not count as convergence")
     if training.get("record_every_epoch_train_and_validation_curve") is not True:
         raise ValueError("every train and validation epoch must be recorded")
     if training.get("gradient_clip_error_if_nonfinite") is not True or training.get("finite_parameters_required_after_optimizer_step") is not True:
@@ -185,8 +196,8 @@ def load_protocol(path):
     if runtime.get("device") != "cuda" or runtime.get("cpu_fallback") is not False:
         raise ValueError("production training requires explicit CUDA without CPU fallback")
     outputs = protocol.get("outputs", {})
-    if outputs.get("overwrite") != "forbidden" or outputs.get("v2_requires_new_directory_not_v1_remote_output") is not True:
-        raise ValueError("v2 outputs must be exclusive and separate from v1")
+    if outputs.get("overwrite") != "forbidden" or outputs.get("v3_requires_new_directory_not_v1_or_v2_output") is not True:
+        raise ValueError("v3 outputs must be exclusive and separate from v1/v2")
     if protocol.get("evaluation", {}).get("ensemble_mean_is_common_steady_state") is not False:
         raise ValueError("ensemble means must not be labeled a common steady state")
     return protocol
@@ -586,82 +597,229 @@ def predict_from_saved_state(path, seed, outer_fold, arm, inner_fold, records, p
     return predict_on_records(model, arm, records, protocol, device)
 
 
-def fit_candidate(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
-    """Fit one inner candidate without accepting or inspecting any outer-test records."""
+def _cpu_tree(value):
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().clone()
+    if isinstance(value, dict):
+        return {key: _cpu_tree(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_cpu_tree(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_cpu_tree(item) for item in value)
+    return copy.deepcopy(value)
+
+
+def _update_state_hash(digest, value):
+    if isinstance(value, dict):
+        for key in sorted(value, key=lambda item: str(item)):
+            digest.update(str(key).encode("utf-8"))
+            _update_state_hash(digest, value[key])
+    elif isinstance(value, (list, tuple)):
+        for item in value:
+            _update_state_hash(digest, item)
+    elif isinstance(value, torch.Tensor):
+        array = value.detach().cpu().numpy()
+        digest.update(str(array.dtype).encode("ascii"))
+        digest.update(str(array.shape).encode("ascii"))
+        digest.update(array.tobytes())
+    else:
+        digest.update(repr(value).encode("utf-8"))
+
+
+def state_dict_sha256(state):
+    digest = hashlib.sha256()
+    _update_state_hash(digest, state)
+    return digest.hexdigest()
+
+
+def _new_candidate_context(arm, learning_rate, weight_decay, seed, device):
     started = time.perf_counter()
     if device.type == "cuda":
         torch.cuda.reset_peak_memory_stats(device)
     model = _new_model(device, seed, arm)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    return {
+        "started": started,
+        "model": model,
+        "optimizer": torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay),
+        "rng": np.random.default_rng(seed),
+        "best_loss": math.inf,
+        "best_epoch": None,
+        "best_state": None,
+        "stale_epochs": 0,
+        "curves": [],
+    }
+
+
+def _advance_candidate(context, arm, train_records, validation_records, protocol, device):
     training = protocol["training"]
     stopping = training["early_stopping"]
-    maximum_epochs = training["maximum_epochs"]
-    patience = stopping["patience_epochs"]
-    min_improvement = float(stopping["min_absolute_improvement"])
-    rng = np.random.default_rng(seed)
-    best_loss = math.inf
-    best_epoch = None
-    best_state = None
-    stale_epochs = 0
-    curves = []
-    stop_reason = "maximum_epochs_reached"
-    for epoch in range(1, maximum_epochs + 1):
-        model.train()
-        for batch in _batches(train_records, training["batch_transcripts"], rng.permutation(len(train_records))):
-            packed = _pack(batch, device)
-            optimizer.zero_grad(set_to_none=True)
-            loss = _transcript_losses(forward_arm(model, arm, packed, protocol["model"]), packed).mean()
-            if not bool(torch.isfinite(loss)):
-                raise RuntimeError("nonfinite training loss")
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(
-                model.parameters(), training["gradient_clip_norm"], error_if_nonfinite=True,
-            )
-            optimizer.step()
-            _require_finite_parameters(model, "after optimizer step")
-        train_loss = loss_on_records(model, arm, train_records, protocol, device)
-        validation_loss = loss_on_records(model, arm, validation_records, protocol, device)
-        _synchronize(device)
-        curves.append({
-            "epoch": epoch,
-            "train_tb_mse": train_loss,
-            "validation_tb_mse": validation_loss,
-            "elapsed_seconds": time.perf_counter() - started,
-        })
-        if validation_loss < best_loss - min_improvement:
-            best_loss = validation_loss
-            best_epoch = epoch
-            best_state = {name: value.detach().cpu().clone() for name, value in model.state_dict().items()}
-            stale_epochs = 0
-        else:
-            stale_epochs += 1
-            if stale_epochs >= patience:
-                stop_reason = "validation_plateau"
-                break
-    if best_state is None:
-        raise RuntimeError("training did not produce a finite validation state")
-    model.load_state_dict({name: value.to(device) for name, value in best_state.items()})
-    _require_finite_parameters(model, "after restoring best validation state")
-    validation_mse = loss_on_records(model, arm, validation_records, protocol, device, per_transcript=True)
+    model = context["model"]
+    optimizer = context["optimizer"]
+    model.train()
+    for batch in _batches(train_records, training["batch_transcripts"], context["rng"].permutation(len(train_records))):
+        packed = _pack(batch, device)
+        optimizer.zero_grad(set_to_none=True)
+        loss = _transcript_losses(forward_arm(model, arm, packed, protocol["model"]), packed).mean()
+        if not bool(torch.isfinite(loss)):
+            raise RuntimeError("nonfinite training loss")
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(
+            model.parameters(), training["gradient_clip_norm"], error_if_nonfinite=True,
+        )
+        optimizer.step()
+        _require_finite_parameters(model, "after optimizer step")
+    train_loss = loss_on_records(model, arm, train_records, protocol, device)
+    validation_loss = loss_on_records(model, arm, validation_records, protocol, device)
     _synchronize(device)
-    cost = {
-        "wall_clock_seconds": time.perf_counter() - started,
-        "epochs_ran": len(curves),
+    epoch = len(context["curves"]) + 1
+    context["curves"].append({
+        "epoch": epoch,
+        "train_tb_mse": train_loss,
+        "validation_tb_mse": validation_loss,
+        "elapsed_seconds": time.perf_counter() - context["started"],
+    })
+    if validation_loss < context["best_loss"] - float(stopping["min_absolute_improvement"]):
+        context["best_loss"] = validation_loss
+        context["best_epoch"] = epoch
+        context["best_state"] = {name: value.detach().cpu().clone() for name, value in model.state_dict().items()}
+        context["stale_epochs"] = 0
+    else:
+        context["stale_epochs"] += 1
+    return context["stale_epochs"] >= stopping["patience_epochs"]
+
+
+def _candidate_cost(context, train_records, validation_records, device):
+    return {
+        "wall_clock_seconds": time.perf_counter() - context["started"],
+        "epochs_ran": len(context["curves"]),
         "train_transcripts": len(train_records),
         "validation_transcripts": len(validation_records),
         "cuda_peak_memory_bytes": torch.cuda.max_memory_allocated(device) if device.type == "cuda" else None,
     }
-    return {
-        "best_state": best_state,
-        "best_epoch": best_epoch,
-        "best_validation_tb_mse": best_loss,
-        "validation_transcript_mse": validation_mse,
-        "curves": curves,
-        "stop_reason": stop_reason,
-        "validation_plateau_converged": stop_reason == "validation_plateau",
-        "maximum_epoch_is_not_convergence": True,
-        "cost": cost,
+
+
+def start_candidate_rung(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+    context = _new_candidate_context(arm, learning_rate, weight_decay, seed, device)
+    rung_epochs = protocol["training"]["successive_halving"]["rung_epochs"]
+    for _ in range(rung_epochs):
+        _advance_candidate(context, arm, train_records, validation_records, protocol, device)
+    if context["best_state"] is None:
+        raise RuntimeError("rung did not produce a finite validation state")
+    model = context["model"]
+    model.eval()
+    rung_validation_mse = loss_on_records(
+        model, arm, validation_records, protocol, device, per_transcript=True,
+    )
+    model_state = _cpu_tree(model.state_dict())
+    optimizer_state = _cpu_tree(context["optimizer"].state_dict())
+    rung = {
+        "epochs": rung_epochs,
+        "last_epoch": len(context["curves"]),
+        "last_validation_tb_mse": context["curves"][-1]["validation_tb_mse"],
+        "last_state_sha256": state_dict_sha256(model_state),
+        "last_optimizer_state_sha256": state_dict_sha256(optimizer_state),
     }
+    return {
+        "model_state": model_state,
+        "optimizer_state": optimizer_state,
+        "rng_state": copy.deepcopy(context["rng"].bit_generator.state),
+        "best_state": context["best_state"],
+        "best_epoch": context["best_epoch"],
+        "best_loss": context["best_loss"],
+        "stale_epochs": context["stale_epochs"],
+        "curves": context["curves"],
+        "started": context["started"],
+        "rung": rung,
+        "rung_validation_transcript_mse": rung_validation_mse,
+        "cost": _candidate_cost(context, train_records, validation_records, device),
+    }
+
+
+def resume_candidate(rung, arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+    model = _new_model(device, seed, arm)
+    model.load_state_dict({name: value.to(device) for name, value in rung["model_state"].items()})
+    _require_finite_parameters(model, "after restoring rung last state")
+    restored_hash = state_dict_sha256(model.state_dict())
+    if restored_hash != rung["rung"]["last_state_sha256"]:
+        raise RuntimeError("resumed model state does not match the rung last state")
+    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    optimizer.load_state_dict(copy.deepcopy(rung["optimizer_state"]))
+    rng = np.random.default_rng(seed)
+    rng.bit_generator.state = copy.deepcopy(rung["rng_state"])
+    context = {
+        "started": rung["started"],
+        "model": model,
+        "optimizer": optimizer,
+        "rng": rng,
+        "best_loss": rung["best_loss"],
+        "best_epoch": rung["best_epoch"],
+        "best_state": rung["best_state"],
+        "stale_epochs": rung["stale_epochs"],
+        "curves": rung["curves"],
+    }
+    resume = {
+        "source": "rung_last_state",
+        "source_epoch": rung["rung"]["last_epoch"],
+        "start_epoch": rung["rung"]["last_epoch"] + 1,
+        "rung_last_state_sha256": rung["rung"]["last_state_sha256"],
+        "restored_model_state_sha256": restored_hash,
+        "rung_last_optimizer_state_sha256": rung["rung"]["last_optimizer_state_sha256"],
+        "optimizer_state_restored": True,
+        "rng_state_restored": True,
+    }
+    while not _advance_candidate(context, arm, train_records, validation_records, protocol, device):
+        pass
+    model.load_state_dict({name: value.to(device) for name, value in context["best_state"].items()})
+    _require_finite_parameters(model, "after restoring best validation state")
+    validation_mse = loss_on_records(model, arm, validation_records, protocol, device, per_transcript=True)
+    _synchronize(device)
+    return {
+        "best_state": context["best_state"],
+        "best_epoch": context["best_epoch"],
+        "best_validation_tb_mse": context["best_loss"],
+        "validation_transcript_mse": validation_mse,
+        "curves": context["curves"],
+        "stop_reason": "validation_plateau",
+        "validation_plateau_converged": True,
+        "rung": rung["rung"],
+        "resume": resume,
+        "cost": _candidate_cost(context, train_records, validation_records, device),
+    }
+
+
+def reject_rung_candidate(rung):
+    return {
+        "best_epoch": rung["best_epoch"],
+        "best_validation_tb_mse": rung["best_loss"],
+        "curves": rung["curves"],
+        "stop_reason": "rejected_at_rung_not_converged",
+        "validation_plateau_converged": False,
+        "rung": rung["rung"],
+        "resume": None,
+        "cost": rung["cost"],
+    }
+
+
+def fit_candidate(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+    rung = start_candidate_rung(
+        arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device,
+    )
+    return resume_candidate(
+        rung, arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device,
+    )
+
+
+def successive_halving_indices(candidates, retained=2):
+    if retained != 2:
+        raise ValueError("the frozen efficiency contract retains exactly two candidates")
+    ordered = sorted(
+        range(len(candidates)),
+        key=lambda index: (
+            candidates[index]["report"]["rung_inner_oof_tb_mse"],
+            candidates[index]["report"]["grid_index"],
+        ),
+    )
+    return ordered[:min(retained, len(ordered))]
 
 
 def _correlations(target, prediction):
@@ -820,64 +978,104 @@ def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
                             "grid_index": grid_index,
                             "learning_rate": learning_rate,
                             "weight_decay": weight_decay,
+                            "rung_selected": False,
+                            "rung_inner_oof_tb_mse": None,
+                            "rung_inner_oof_transcripts": 0,
+                            "inner_oof_tb_mse": None,
+                            "inner_oof_transcripts": 0,
                             "folds": [],
                         }
-                        states = []
-                        oof_mse = {}
+                        rungs = []
+                        rung_oof_mse = {}
                         for inner in outer["inner"]:
                             train_records = [records[int(index)] for index in inner["train"]]
                             validation_records = [records[int(index)] for index in inner["validation"]]
                             fit_seed = int(np.random.SeedSequence([seed, outer["outer_fold"], inner["inner_fold"]]).generate_state(1)[0])
-                            fitted = fit_candidate(
+                            rung = start_candidate_rung(
                                 arm, train_records, validation_records, learning_rate, weight_decay,
                                 fit_seed, protocol, device,
                             )
-                            states.append({
-                                "inner_fold": inner["inner_fold"],
-                                "fit_seed": fit_seed,
+                            rungs.append({"rung": rung, "fit_seed": fit_seed})
+                            rung_oof_mse.update(rung["rung_validation_transcript_mse"])
+                        expected_oof = set(int(index) for outer_inner in outer["inner"] for index in outer_inner["validation"])
+                        if set(rung_oof_mse) != expected_oof or set(rung_oof_mse) & set(outer["test"].tolist()):
+                            raise RuntimeError("rung out-of-fold predictions are incomplete or touch outer test")
+                        candidate["rung_inner_oof_tb_mse"] = float(np.mean(list(rung_oof_mse.values())))
+                        candidate["rung_inner_oof_transcripts"] = len(rung_oof_mse)
+                        candidates.append({"report": candidate, "rungs": rungs, "states": []})
+                    retained = successive_halving_indices(candidates)
+                    for candidate_index, candidate in enumerate(candidates):
+                        rung_selected = candidate_index in retained
+                        candidate["report"]["rung_selected"] = rung_selected
+                        oof_mse = {}
+                        for inner, rung_entry in zip(outer["inner"], candidate["rungs"]):
+                            inner_fold = inner["inner_fold"]
+                            train_records = [records[int(index)] for index in inner["train"]]
+                            validation_records = [records[int(index)] for index in inner["validation"]]
+                            rung = rung_entry["rung"]
+                            fit_seed = rung_entry["fit_seed"]
+                            learning_rate = candidate["report"]["learning_rate"]
+                            weight_decay = candidate["report"]["weight_decay"]
+                            if rung_selected:
+                                fitted = resume_candidate(
+                                    rung, arm, train_records, validation_records, learning_rate, weight_decay,
+                                    fit_seed, protocol, device,
+                                )
+                                candidate["states"].append({
+                                    "inner_fold": inner_fold,
+                                    "fit_seed": fit_seed,
+                                    "best_epoch": fitted["best_epoch"],
+                                    "best_validation_tb_mse": fitted["best_validation_tb_mse"],
+                                    "state": fitted["best_state"],
+                                })
+                                oof_mse.update(fitted["validation_transcript_mse"])
+                            else:
+                                fitted = reject_rung_candidate(rung)
+                            candidate["report"]["folds"].append({
+                                "inner_fold": inner_fold,
                                 "best_epoch": fitted["best_epoch"],
                                 "best_validation_tb_mse": fitted["best_validation_tb_mse"],
-                                "state": fitted["best_state"],
-                            })
-                            oof_mse.update(fitted["validation_transcript_mse"])
-                            candidate["folds"].append({
-                                "inner_fold": inner["inner_fold"],
-                                "best_epoch": fitted["best_epoch"],
-                                "best_validation_tb_mse": fitted["best_validation_tb_mse"],
+                                "rung_last_validation_tb_mse": fitted["rung"]["last_validation_tb_mse"],
                                 "stop_reason": fitted["stop_reason"],
                                 "validation_plateau_converged": fitted["validation_plateau_converged"],
+                                "resumed_from_rung_last_state": rung_selected,
                                 "cost": fitted["cost"],
                             })
                             fit_costs.append(fitted["cost"])
                             curve_record = {
-                                "schema": "a10-03-e2-kinetic-curve-v2",
+                                "schema": CURVE_SCHEMA,
                                 "seed": seed,
                                 "outer_fold": outer["outer_fold"],
-                                "inner_fold": inner["inner_fold"],
+                                "inner_fold": inner_fold,
                                 "arm": arm,
-                                "grid_index": grid_index,
+                                "grid_index": candidate["report"]["grid_index"],
                                 "learning_rate": learning_rate,
                                 "weight_decay": weight_decay,
+                                "rung_selected": rung_selected,
+                                "rung": fitted["rung"],
+                                "resume": fitted["resume"],
                                 "stop_reason": fitted["stop_reason"],
                                 "validation_plateau_converged": fitted["validation_plateau_converged"],
-                                "maximum_epoch_is_not_convergence": True,
+                                "rung_rejection_is_not_convergence": True,
+                                "selected_candidates_have_no_final_epoch_cap": True,
                                 "epochs": fitted["curves"],
                             }
                             curve_handle.write(json.dumps(curve_record, allow_nan=False) + "\n")
-                        expected_oof = set(int(index) for outer_inner in outer["inner"] for index in outer_inner["validation"])
-                        if set(oof_mse) != expected_oof or set(oof_mse) & set(outer["test"].tolist()):
-                            raise RuntimeError("inner out-of-fold predictions are incomplete or touch outer test")
-                        candidate["inner_oof_tb_mse"] = float(np.mean(list(oof_mse.values())))
-                        candidate["inner_oof_transcripts"] = len(oof_mse)
-                        candidates.append({"report": candidate, "states": states})
-                    selected_index = min(range(len(candidates)), key=lambda index: candidates[index]["report"]["inner_oof_tb_mse"])
+                        if rung_selected:
+                            if set(oof_mse) != expected_oof or set(oof_mse) & set(outer["test"].tolist()):
+                                raise RuntimeError("resumed out-of-fold predictions are incomplete or touch outer test")
+                            candidate["report"]["inner_oof_tb_mse"] = float(np.mean(list(oof_mse.values())))
+                            candidate["report"]["inner_oof_transcripts"] = len(oof_mse)
+                    selected_index = min(retained, key=lambda index: candidates[index]["report"]["inner_oof_tb_mse"])
                     selected = candidates[selected_index]
                     selection_records.append({
                         "seed": seed,
                         "outer_fold": outer["outer_fold"],
                         "arm": arm,
                         "selected_grid_index": selected_index,
-                        "selection_metric": "inner_oof_tb_mse",
+                        "rung_selected_grid_indices": retained,
+                        "rung_selection_metric": "rung_inner_oof_tb_mse",
+                        "selection_metric": "inner_oof_tb_mse_after_rung_resume",
                         "outer_test_used_for_selection": False,
                         "candidates": [candidate["report"] for candidate in candidates],
                     })
@@ -994,9 +1192,14 @@ def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
         "metrics": metrics,
         "convergence": {
             "fits": len(all_fits),
+            "rung_fits": len(all_fits),
+            "resumed_fits": sum(fold["resumed_from_rung_last_state"] for fold in all_fits),
             "validation_plateau": sum(fold["stop_reason"] == "validation_plateau" for fold in all_fits),
-            "maximum_epochs_reached_not_converged": sum(fold["stop_reason"] == "maximum_epochs_reached" for fold in all_fits),
-            "maximum_epoch_is_not_convergence": True,
+            "rejected_at_rung_not_converged": sum(
+                fold["stop_reason"] == "rejected_at_rung_not_converged" for fold in all_fits
+            ),
+            "rung_rejection_is_not_convergence": True,
+            "selected_candidates_have_no_final_epoch_cap": True,
             "complete_curves_file": "curves.jsonl",
         },
         "cost": {

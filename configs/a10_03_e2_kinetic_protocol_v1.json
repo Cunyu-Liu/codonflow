@@ -1,8 +1,10 @@
 {
-  "schema": "a10-03-e2-kinetic-protocol-v2",
-  "protocol": "a10_03_e2_kinetic_protocol_v2",
-  "status": "frozen_development_training_protocol_v2",
-  "supersedes": "a10_03_e2_kinetic_protocol_v1",
+  "schema": "a10-03-e2-kinetic-protocol-v3",
+  "protocol": "a10_03_e2_kinetic_protocol_v3",
+  "status": "frozen_development_training_protocol_v3",
+  "supersedes": "a10_03_e2_kinetic_protocol_v2",
+  "artifact_contract": "training curves, selection and summary v4",
+  "efficiency_rationale": "Low-LR candidates were still decreasing at the former 2000-epoch ceiling; stopped v1/v2 runs and curves remain historical evidence and are not convergence.",
   "created_date": "2026-11-23",
   "scope": {
     "experiment": "A10-03/E2 minimal within-study flux-conservation comparison",
@@ -111,7 +113,8 @@
     }
   },
   "hyperparameters": {
-    "selection_metric": "inner out-of-fold transcript-balanced MSE at each fold's restored best-validation state",
+    "rung_selection_metric": "inner out-of-fold transcript-balanced MSE at each fold's rung last state",
+    "selection_metric": "inner out-of-fold transcript-balanced MSE at each fold's restored best-validation state after resume",
     "learning_rate": {
       "spacing": "log10_uniform",
       "minimum": 0.0001,
@@ -133,7 +136,20 @@
     "minimum_model_seeds": 3,
     "optimizer": "AdamW",
     "batch_transcripts": 32,
-    "maximum_epochs": 2000,
+    "successive_halving": {
+      "rung_epochs": 50,
+      "rung_is_fixed_and_never_early_stopped": true,
+      "ranking_metric": "inner_oof_validation_tb_mse_at_rung_last_epoch",
+      "retained_candidates_per_arm": 2,
+      "ranking_scope": "within each seed, outer fold and arm across the unchanged hyperparameter grid",
+      "tie_break": "protocol grid order",
+      "rejected_stop_reason": "rejected_at_rung_not_converged"
+    },
+    "final_epoch_limit": null,
+    "resume_from_rung_last_state": true,
+    "resume_optimizer_and_rng_state": true,
+    "selected_candidates_stop_only_on_validation_plateau": true,
+    "rung_rejection_is_not_convergence": true,
     "gradient_clip_norm": 1.0,
     "gradient_clip_error_if_nonfinite": true,
     "finite_parameters_required_after_optimizer_step": true,
@@ -144,8 +160,8 @@
       "patience_epochs": 25,
       "restore_best_validation_state": true
     },
-    "maximum_epoch_is_not_convergence": true,
     "record_every_epoch_train_and_validation_curve": true,
+    "record_rung_and_resume_history": true,
     "dtype": "float64"
   },
   "evaluation": {
@@ -171,7 +187,7 @@
   "outputs": {
     "overwrite": "forbidden",
     "directory_creation": "exclusive",
-    "v2_requires_new_directory_not_v1_remote_output": true,
+    "v3_requires_new_directory_not_v1_or_v2_output": true,
     "files": [
       "provenance.json",
       "splits.json",
@@ -183,6 +199,7 @@
       "summary.json"
     ],
     "startup_provenance": "protocol, implementation and mean-field operator SHA256 recorded before device probe, raw parsing or training",
+    "curves": "complete fixed-rung and resumed epochs with rung-last state hash and optimizer/RNG resume history",
     "selected_inner_states": "every outer/arm/seed selected inner best state, model configuration and selection hyperparameters; predictions rebuildable without refitting",
     "prediction_arrays": "target, mask, codons, outer fold, all three arms' density, ensemble-mean flux diagnostic and member-level solver residual diagnostics",
     "ensemble_mean_residual_diagnostic": "arithmetic diagnostic only; not a common steady-state residual",
@@ -192,7 +209,8 @@
     "Mohammad16 is an observed development study, not final research OOD or untouched evaluation.",
     "The comparison tests a minimal flux-conservation inductive bias; it does not establish a positive kinetic effect, SOTA, or absolute physical rates.",
     "The algebraic mean field is not an exact stochastic ribosome simulation.",
-    "Reaching the epoch ceiling is recorded as not converged and is never relabeled as plateau convergence.",
+    "Rung rejection is not convergence; selected candidates resume from the rung last state without a final epoch cap and stop only on validation plateau.",
+    "Stopped v1/v2 runs and their curves remain historical evidence; low-LR improvement at the former 2000-epoch ceiling is not relabeled as convergence.",
     "Independent and kinetic have matched 65-parameter score fields; position is deliberately a one-parameter simple control.",
     "Each kinetic ensemble member is separately solver-conserved; the density/flux/residual means are not a common steady state.",
     "The three-member count is matched across arms and is not an extra ensemble-size advantage for kinetic."

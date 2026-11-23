@@ -60,12 +60,13 @@ def synthetic_protocol(tmp_path, raw_path, n_transcripts=9):
     protocol["inputs"]["expected_eligible_transcripts"] = n_transcripts
     protocol["training"]["model_seeds"] = [11, 22, 33]
     protocol["training"]["batch_transcripts"] = 4
-    protocol["training"]["maximum_epochs"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
     protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    protocol["training"]["early_stopping"]["min_absolute_improvement"] = 1e100
     protocol["hyperparameters"]["learning_rate"] = {
         "spacing": "log10_uniform", "minimum": 0.001, "maximum": 0.001, "count": 1,
     }
-    protocol["hyperparameters"]["weight_decays"] = [0.0]
+    protocol["hyperparameters"]["weight_decays"] = [0.0, 0.0001, 0.001]
     path = tmp_path / f"{raw_path.stem}_protocol.json"
     path.write_text(json.dumps(protocol), encoding="utf-8")
     return path
@@ -80,10 +81,13 @@ def science_selection(payload, outer_fold=0):
             "seed": record["seed"],
             "arm": record["arm"],
             "selected_grid_index": record["selected_grid_index"],
+            "rung_selected_grid_indices": record["rung_selected_grid_indices"],
             "candidates": [
                 {
                     "learning_rate": candidate["learning_rate"],
                     "weight_decay": candidate["weight_decay"],
+                    "rung_selected": candidate["rung_selected"],
+                    "rung_inner_oof_tb_mse": candidate["rung_inner_oof_tb_mse"],
                     "inner_oof_tb_mse": candidate["inner_oof_tb_mse"],
                     "folds": [
                         {
@@ -112,6 +116,10 @@ def science_curves(path, outer_fold=0):
                 "arm": record["arm"],
                 "inner_fold": record["inner_fold"],
                 "grid_index": record["grid_index"],
+                "rung_selected": record["rung_selected"],
+                "rung": record["rung"],
+                "resume": record["resume"],
+                "stop_reason": record["stop_reason"],
                 "epochs": [
                     {
                         "epoch": epoch["epoch"],
@@ -126,7 +134,8 @@ def science_curves(path, outer_fold=0):
 
 def test_frozen_protocol_pins_raw_qc_nested_cv_three_seeds_and_claim_boundary():
     protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
-    assert protocol["protocol"] == "a10_03_e2_kinetic_protocol_v2"
+    assert protocol["protocol"] == "a10_03_e2_kinetic_protocol_v3"
+    assert kinetic.SUMMARY_SCHEMA == "a10-03-e2-kinetic-summary-v4"
     assert protocol["model"]["arms"] == ["independent", "position", "kinetic"]
     assert protocol["model"]["trainable_parameters_per_model"] == {"independent": 65, "position": 1, "kinetic": 65}
     assert protocol["evaluation"]["ensemble_mean_is_common_steady_state"] is False
@@ -159,8 +168,14 @@ def test_frozen_protocol_pins_raw_qc_nested_cv_three_seeds_and_claim_boundary():
     assert protocol["split"]["outer_folds"] == 3
     assert protocol["split"]["inner_folds"] == 3
     assert protocol["training"]["model_seeds"] == [1234, 2345, 3456]
-    assert protocol["training"]["maximum_epochs"] == 2000
-    assert protocol["training"]["maximum_epoch_is_not_convergence"] is True
+    assert protocol["training"]["successive_halving"]["rung_epochs"] == 50
+    assert protocol["training"]["successive_halving"]["retained_candidates_per_arm"] == 2
+    assert protocol["training"]["final_epoch_limit"] is None
+    assert protocol["training"]["resume_from_rung_last_state"] is True
+    assert protocol["training"]["resume_optimizer_and_rng_state"] is True
+    assert protocol["training"]["selected_candidates_stop_only_on_validation_plateau"] is True
+    assert protocol["training"]["rung_rejection_is_not_convergence"] is True
+    assert "maximum_epochs" not in protocol["training"]
     assert protocol["training"]["gradient_clip_error_if_nonfinite"] is True
     assert protocol["training"]["finite_parameters_required_after_optimizer_step"] is True
     assert protocol["hyperparameters"]["learning_rate"]["spacing"] == "log10_uniform"
@@ -315,32 +330,58 @@ def test_missing_batch_interface_and_cpu_production_device_fail_closed(monkeypat
         kinetic._require_batch_solver()
 
 
-def test_plateau_and_epoch_ceiling_have_distinct_complete_convergence_records(tmp_path):
+def test_rung_rejection_is_not_convergence_and_top2_uses_rung_score(tmp_path):
     raw = write_raw(tmp_path / "synthetic.txt")
     records, _ = kinetic.parse_raw_matrix(raw)
     protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
     protocol["training"]["batch_transcripts"] = 3
-    protocol["training"]["maximum_epochs"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
+    protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    rung = kinetic.start_candidate_rung(
+        "position", records[:1], records[1:2], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+    )
+    rejected = kinetic.reject_rung_candidate(rung)
+    assert rejected["stop_reason"] == "rejected_at_rung_not_converged"
+    assert rejected["validation_plateau_converged"] is False
+    assert rejected["resume"] is None
+    assert len(rejected["curves"]) == 2
+    candidates = [
+        {"report": {"grid_index": index, "rung_inner_oof_tb_mse": score}}
+        for index, score in enumerate((0.3, 0.1, 0.2))
+    ]
+    assert kinetic.successive_halving_indices(candidates) == [1, 2]
+
+
+def test_selected_candidate_resumes_rung_last_state_beyond_old_epoch_ceiling(tmp_path):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
+    protocol["training"]["batch_transcripts"] = 1
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2000
     protocol["training"]["early_stopping"]["patience_epochs"] = 1
     protocol["training"]["early_stopping"]["min_absolute_improvement"] = 1e100
-    plateau = kinetic.fit_candidate(
-        "independent", records[:5], records[5:8], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+    rung = kinetic.start_candidate_rung(
+        "position", records[:1], records[1:2], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
     )
-    assert plateau["stop_reason"] == "validation_plateau"
-    assert plateau["validation_plateau_converged"] is True
-    assert plateau["best_epoch"] == 1
-    assert len(plateau["curves"]) == 2
-    assert [epoch["epoch"] for epoch in plateau["curves"]] == [1, 2]
-    assert all("train_tb_mse" in epoch and "validation_tb_mse" in epoch for epoch in plateau["curves"])
-
-    protocol["training"]["maximum_epochs"] = 1
-    ceiling = kinetic.fit_candidate(
-        "independent", records[:5], records[5:8], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+    rung_curves = [dict(epoch) for epoch in rung["curves"]]
+    fitted = kinetic.resume_candidate(
+        rung, "position", records[:1], records[1:2], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
     )
-    assert ceiling["stop_reason"] == "maximum_epochs_reached"
-    assert ceiling["validation_plateau_converged"] is False
-    assert ceiling["maximum_epoch_is_not_convergence"] is True
-    assert len(ceiling["curves"]) == 1
+    assert fitted["stop_reason"] == "validation_plateau"
+    assert fitted["validation_plateau_converged"] is True
+    assert len(fitted["curves"]) == 2001
+    assert fitted["curves"][:2000] == rung_curves
+    assert fitted["curves"][-1]["epoch"] == 2001
+    assert fitted["resume"]["source"] == "rung_last_state"
+    assert fitted["resume"]["source_epoch"] == 2000
+    assert fitted["resume"]["start_epoch"] == 2001
+    assert fitted["resume"]["restored_model_state_sha256"] == rung["rung"]["last_state_sha256"]
+    assert fitted["resume"]["optimizer_state_restored"] is True
+    assert fitted["resume"]["rng_state_restored"] is True
+    assert fitted["best_epoch"] == 1
+    assert np.mean(list(fitted["validation_transcript_mse"].values())) == pytest.approx(
+        fitted["best_validation_tb_mse"],
+    )
 
 
 def test_nonfinite_gradient_fails_at_strict_clip_before_optimizer_step(tmp_path, monkeypatch):
@@ -348,7 +389,7 @@ def test_nonfinite_gradient_fails_at_strict_clip_before_optimizer_step(tmp_path,
     records, _ = kinetic.parse_raw_matrix(raw)
     protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
     protocol["training"]["batch_transcripts"] = 3
-    protocol["training"]["maximum_epochs"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
     protocol["training"]["early_stopping"]["patience_epochs"] = 1
     original_clip = torch.nn.utils.clip_grad_norm_
     observed = {"called": False}
@@ -373,7 +414,7 @@ def test_nonfinite_parameter_after_optimizer_step_fails_closed(tmp_path, monkeyp
     records, _ = kinetic.parse_raw_matrix(raw)
     protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
     protocol["training"]["batch_transcripts"] = 3
-    protocol["training"]["maximum_epochs"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
     protocol["training"]["early_stopping"]["patience_epochs"] = 1
     original_step = torch.optim.AdamW.step
 
@@ -410,9 +451,14 @@ def test_synthetic_end_to_end_outer_test_cannot_change_its_fold_selection_or_cur
     assert first_summary["ensemble"]["mean_is_common_steady_state"] is False
     assert first_summary["selected_inner_states"]["selections"] == 27
     assert first_summary["selected_inner_states"]["members"] == 81
-    assert first_summary["convergence"]["fits"] == 81
-    assert first_summary["convergence"]["maximum_epoch_is_not_convergence"] is True
-    assert first_summary["cost"]["candidate_fits"] == 81
+    assert first_summary["convergence"]["fits"] == 243
+    assert first_summary["convergence"]["rung_fits"] == 243
+    assert first_summary["convergence"]["resumed_fits"] == 162
+    assert first_summary["convergence"]["validation_plateau"] == 162
+    assert first_summary["convergence"]["rejected_at_rung_not_converged"] == 81
+    assert first_summary["convergence"]["rung_rejection_is_not_convergence"] is True
+    assert first_summary["convergence"]["selected_candidates_have_no_final_epoch_cap"] is True
+    assert first_summary["cost"]["candidate_fits"] == 243
     assert first_summary["data"]["qc"]["eligible_transcripts"] == 9
     assert first_summary["scope"]["development_only"] is True
     assert first_summary["scope"]["final_research_ood"] is False
@@ -421,16 +467,33 @@ def test_synthetic_end_to_end_outer_test_cannot_change_its_fold_selection_or_cur
 
     with (first_output / "curves.jsonl").open(encoding="utf-8") as handle:
         curves = [json.loads(line) for line in handle]
-    assert len(curves) == 81
-    assert all(len(record["epochs"]) == 2 for record in curves)
-    assert all(record["stop_reason"] in {"maximum_epochs_reached", "validation_plateau"} for record in curves)
+    assert len(curves) == 243
+    rejected_curves = [record for record in curves if not record["rung_selected"]]
+    resumed_curves = [record for record in curves if record["rung_selected"]]
+    assert len(rejected_curves) == 81
+    assert len(resumed_curves) == 162
+    assert all(len(record["epochs"]) == 2 for record in rejected_curves)
+    assert all(record["stop_reason"] == "rejected_at_rung_not_converged" for record in rejected_curves)
+    assert all(record["validation_plateau_converged"] is False for record in rejected_curves)
+    assert all(record["resume"] is None for record in rejected_curves)
+    assert all(len(record["epochs"]) >= 3 for record in resumed_curves)
+    assert all(record["stop_reason"] == "validation_plateau" for record in resumed_curves)
+    assert all(record["validation_plateau_converged"] is True for record in resumed_curves)
+    assert all(record["resume"]["source_epoch"] == 2 for record in resumed_curves)
+    assert all(record["resume"]["start_epoch"] == 3 for record in resumed_curves)
     assert all(
-        record["validation_plateau_converged"] == (record["stop_reason"] == "validation_plateau")
-        for record in curves
+        record["resume"]["restored_model_state_sha256"] == record["rung"]["last_state_sha256"]
+        for record in resumed_curves
     )
+    assert all(record["resume"]["optimizer_state_restored"] for record in resumed_curves)
+    assert all(record["resume"]["rng_state_restored"] for record in resumed_curves)
     selection = json.loads((first_output / "selection.json").read_text(encoding="utf-8"))
     assert selection["schema"] == kinetic.SELECTION_SCHEMA
     assert len(selection["records"]) == 27
+    assert all(len(record["rung_selected_grid_indices"]) == 2 for record in selection["records"])
+    assert all(record["selected_grid_index"] in record["rung_selected_grid_indices"] for record in selection["records"])
+    assert all(len(record["candidates"]) == 3 for record in selection["records"])
+    assert all(sum(candidate["rung_selected"] for candidate in record["candidates"]) == 2 for record in selection["records"])
     assert all(record["outer_test_used_for_selection"] is False for record in selection["records"])
     with (first_output / "per_transcript_metrics.csv").open(newline="") as handle:
         rows = list(csv.DictReader(handle))
