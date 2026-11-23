@@ -1,0 +1,114 @@
+{
+  "schema": "a10-01-goodman-baseline-protocol-v1",
+  "protocol": "a10_01_goodman_baseline_protocol_v1",
+  "status": "frozen_development_benchmark_protocol",
+  "created_date": "2026-11-23",
+  "study": {
+    "citation_key": "Goodman2013",
+    "doi": "10.1126/science.1241934",
+    "benchmark_role": "development_only",
+    "final_untouched": false,
+    "mechanism_claim_eligible": false,
+    "sota_claim_eligible": false,
+    "supported_ood": "Gene-grouped N-terminal fragment construct OOD",
+    "protein_ood_supported": false,
+    "full_length_cds_supported": false,
+    "native_utr_supported": false
+  },
+  "inputs": {
+    "clean_csv": {
+      "role": "clean_v3_lossless_input",
+      "sha256": "ce64f2caa9633fefae840e220d36b6360946d39b9253adc56f3ef297b9ab9c82",
+      "expected_data_rows": 14234,
+      "expected_setgood_rows": 8439,
+      "encoding": "UTF-8 with optional BOM",
+      "filter_applied_by_cleaning": false,
+      "filter_applied_by_baseline_after_read": true
+    },
+    "split_json": {
+      "schema": "a10-01-goodman-frozen-nested-grouped-cv-v1",
+      "protocol": "a10_01_goodman_split_protocol_v1",
+      "sha256": "f49c93af8e2a30616d6f0e907f75dd8a08e29e5fe23e303484c120feb57683c2",
+      "outer_folds": 5,
+      "inner_folds": 4
+    },
+    "untouched_inputs_read": false
+  },
+  "outcome": {
+    "source_column": "Count.Prot",
+    "transform": "log1p",
+    "require_finite_nonnegative": true,
+    "primary_filter": "Fltr.SetGood==TRUE after lossless clean CSV parsing",
+    "raw_clean_filtering_history_changed": false
+  },
+  "features": {
+    "sequence_column": "CDS.seq",
+    "sequence_nt_length": 33,
+    "codon_positions": 11,
+    "codon_vocabulary_size": 64,
+    "numeric_columns": ["CAI", "GC", "dG", "tAI"],
+    "categorical_columns": ["Promoter", "RBS.Display"],
+    "numeric_preprocessing": "finite source values; mean and population standard deviation fitted separately on each corresponding training pool; zero variance maps to scale 1",
+    "categorical_preprocessing": "training-only frequency selection of at most 15 observed levels plus one other/unknown level per field",
+    "max_categories_per_categorical": 16,
+    "max_encoded_features": 740,
+    "outer_test_used_for_preprocessing": false
+  },
+  "models": {
+    "constant": {"estimator": "training-pool mean of log1p Count.Prot"},
+    "univariate": {
+      "columns": ["CAI", "GC", "dG", "tAI"],
+      "estimator": "standardized least squares on one original numeric field",
+      "direction_and_coefficient": "fitted on each corresponding training pool; no test-derived sign constraint"
+    },
+    "ridge": {
+      "estimator": "Ridge with LSQR on the complete controlled feature arm",
+      "alpha_grid": [0.1, 1.0, 10.0, 100.0],
+      "solver": "lsqr",
+      "tol": 1e-8,
+      "max_iter": 10000
+    },
+    "histgb": {
+      "estimator": "HistGradientBoostingRegressor on the complete controlled feature arm",
+      "learning_rate_grid": [0.05, 0.1],
+      "l2_regularization_grid": [0.0, 1.0],
+      "max_iter": 500,
+      "early_stopping": true,
+      "validation_fraction": 0.15,
+      "n_iter_no_change": 30,
+      "tol": 1e-7,
+      "random_state": 20261123,
+      "early_stopping_scope": "corresponding fit-training rows only; outer test is never used",
+      "actual_n_iter_required": true,
+      "reaching_max_iter_is_convergence": false
+    }
+  },
+  "selection": {
+    "outer_test_role": "final metric calculation only",
+    "outer_test_used_for_model_feature_early_stopping_hyperparameter_or_threshold_selection": false,
+    "inner_validation_role": "candidate selection using all four frozen inner folds",
+    "criterion": "minimum mean inner RMSE on log1p Count.Prot; higher mean inner Spearman then canonical config JSON break ties",
+    "final_refit": "selected configuration refitted on the complete outer-training pool"
+  },
+  "metrics": {
+    "names": ["Spearman", "RMSE", "top-decile enrichment"],
+    "spearman_and_rmse_scale": "log1p Count.Prot",
+    "constant_spearman": null,
+    "top_decile_enrichment_scale": "untransformed Count.Prot",
+    "top_decile": "k=ceil(n/10); mean observed Count.Prot in the highest-predicted k rows divided by mean observed Count.Prot in all rows; prediction ties use clean row order",
+    "reported_per_outer_fold": true
+  },
+  "outputs": {
+    "directory_creation": "exclusive; an existing output directory is fatal",
+    "overwrite": "forbidden",
+    "files": ["predictions.csv", "run_report.json"],
+    "predictions_granularity": "one row per outer-test clean row per model",
+    "run_report_contents": ["all inner fit records", "all candidate and selected configurations", "per-outer metrics", "fit wall and CPU time", "environment", "Git and SHA256 provenance"]
+  },
+  "limitations": [
+    "Development benchmark only; this is not untouched evaluation, mechanism evidence, protein OOD, or a SOTA claim.",
+    "Only the observed Gene-grouped N-terminal fragment construct geometry is evaluated.",
+    "Raw and lossless clean historical assets remain unfiltered; the SetGood restriction applies only to this baseline analysis after input parsing.",
+    "Synthetic tests establish software behavior only and are not Goodman performance results."
+  ]
+}
