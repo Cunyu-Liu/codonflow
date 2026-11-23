@@ -1,7 +1,7 @@
 # CodonFlow Tasks（A10 · Kinetic-CodonFlow 一个月执行清单）
 
 > 生效日期：2026-11-23。唯一执行合同：`docs/handover/PROMPT_NEXT_AGENT_A10_KINETIC.md`；科学合同：`docs/handover/spec.md`；当前任务矩阵：`docs/handover/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md`。
-> A7–A9 只作不可变证据引用。勾选只表示对应事项已有真实交付，不表示相关科学假设成立。A10-00 已完成；A10-01 仅有下方明示的数据审计、划分、单项 smoke 和测试已完成，**E0 与 A10-G0 仍未完成，A10-G1–G3 也均未通过**。
+> A7–A9 只作不可变证据引用。勾选只表示对应事项已有真实交付，不表示相关科学假设成立。A10-00 已完成；A10-01 仅有下方明示的数据审计、划分、Goodman 7臂 nested 5×4 开发 baseline、单项 smoke 和测试已完成，**E0 与 A10-G0 仍未完成，A10-G1–G3 也均未通过**。
 
 ## 全局执行约束
 
@@ -15,7 +15,7 @@
 
 **状态：远端重核和矩阵建立已完成；A10-01 已有部分真实交付，但 E0 尚未完成。**
 
-- [x] 更新版本事实：GitHub `a8-rk` 当前已推送至 `753277d6`；后续操作共享远端工作树前仍须重新核对 HEAD、工作树与进程，不沿用旧 HEAD。
+- [x] 更新版本事实：GitHub `a8-rk` 当前已推送至 `c241fbfa`；后续操作共享远端工作树前仍须重新核对 HEAD、工作树与进程，不沿用旧 HEAD。
 - [x] 核实 RTX 5090、`torch 2.14.1+cu132` CUDA 真 matmul 通过；旧 A7 PID `2071716` 暂停且不重启。
 - [x] 建立并更新一页任务—数据—baseline—主张矩阵，明确 RK42=0/9 同时满足 R1–R7 的真实含义、Goodman/Tunney 当前真实交付、Lareau `GSE58321` 已出现于 RK03/RK05 及所有冻结边界。
 
@@ -24,7 +24,7 @@
 
 ## A10-01 E0：取得任务化数据、完成审计与真实 baseline smoke
 
-**状态：进行中。** Goodman 官方数据、最终 v3 审计、nested 划分、Tunney 审计和 EnsembleDesign quick v2 smoke 已有真实交付；146 项定向测试通过。上述进展不等于 E0 全量完成。
+**状态：进行中。** Goodman 官方数据、最终 v3 审计、nested 划分、7臂 nested 5×4 开发 benchmark、Tunney 审计和 EnsembleDesign quick v2 smoke 已有真实交付；Goodman benchmark 独立验证 32/32 通过，本轮 146 项定向测试通过。上述进展不等于 E0 全量完成。
 **依赖**：A10-00。
 **Gate**：全部验收后才通过 A10-G0；当前 G0 未通过。E0 全部验收前不启动 E1–E3，关键 baseline 未跑通不在 E4 称 SOTA。
 
@@ -51,7 +51,11 @@
 
 ### 直接 baseline 官方资产与真实 smoke
 
-- [ ] T1：核实并运行适用的 constant、CAI/GC、局部/全局 MFE、位置场、Ridge/HistGB、Boël 作者模型、通用序列模型和直接竞争方法。
+- [x] Goodman 7臂 nested 5×4 开发 benchmark 已完成：8439 SetGood rows，59073 prediction rows（7臂×5折），独立验证 32/32 通过。prediction SHA256=`aa0cfbc280f1dc3a3b1e1e829ce71bfabe942122dbac8671d322e314bdade271`，report SHA256=`0dc67e5b2b38bd79cfe19211362994a28a6206020264ea819400b7b7e76eea9d`，独立验证 SHA256=`384519f7bfc4a6cd574694bee838176b6f4d0c871367c4a567bfffd30828e5a4`。
+  - 逐 outer 均值统一为 **Spearman/RMSE/top1**：constant=`NA/.785062/.090952`；CAI=`.992955/.015030/.784884`；GC=`.885724/.021479/.780810`；dG=`.792860/-.049617/.784445`；tAI=`.981755/.003549/.785177`；Ridge=`1.085185/.147541/.762021`；HistGB=`1.321994/.320124/.697210`。
+  - 成本：wall-clock **370.0619 s**；HistGB **85 fits** 均为 **52–264 iterations**，**0 次触及 500 iterations 上限**。
+  - 边界：只称开发 baseline；不构成机制、SOTA、protein OOD 或真实生物泛化结论，也不表示全部适用直接 baseline、公平功能主表、E0 或 G0 已完成。
+- [ ] T1：在上述7臂开发 benchmark 基础上，继续核实并运行其余适用的局部/全局 MFE、位置场、Boël 作者模型、通用序列模型和直接竞争方法，并补齐尚未覆盖的适用直接 baseline；不得以7臂结果代替全部 T1 公平性核验。
 - [ ] T2：核实并运行适用的 constant、位置场、Ridge、RiboMIMO、iXnos、ROSE、VeloGRU/VeloBERT、VeloHARMO；先做研究内 transcript OOD smoke。
 - [x] EnsembleDesign 官方 quick v2 真实 smoke 成功 6/6，且 3 条输出与 README 匹配；该勾选仅限此 quick smoke，不代表完整公平设计比较完成。
 - [ ] T3：继续核实 LinearDesign、ID3、RNARL、CodonTransformer、COformer、VeloHARMO 及内部 hill/MH/SA/GA/random/r5；按任务核验 CAGFN、codonGPT、GEMORNA，保留真实轨迹或 actual set。ID3 两条 CPC 轨迹缺陷保留，不得记为成功；CodonTransformer 尚未成功运行，不得编造运行状态。
