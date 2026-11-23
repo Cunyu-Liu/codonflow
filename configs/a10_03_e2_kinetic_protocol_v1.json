@@ -1,0 +1,173 @@
+{
+  "schema": "a10-03-e2-kinetic-protocol-v2",
+  "protocol": "a10_03_e2_kinetic_protocol_v2",
+  "status": "frozen_development_training_protocol_v2",
+  "supersedes": "a10_03_e2_kinetic_protocol_v1",
+  "created_date": "2026-11-23",
+  "scope": {
+    "experiment": "A10-03/E2 minimal within-study flux-conservation comparison",
+    "study": "Mohammad16",
+    "development_only": true,
+    "untouched": false,
+    "final_research_ood": false,
+    "absolute_elongation_rates": false,
+    "exact_stochastic_simulation": false,
+    "sota_claim": false,
+    "positive_kinetic_claim_presupposed": false
+  },
+  "inputs": {
+    "raw_path_supplied_by_cli": true,
+    "development_path_hint": "/teams/.../rk03/raw/ribomimo/Mohammad16.txt",
+    "expected_basename": "Mohammad16.txt",
+    "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
+    "format": "strict three-line records: header, codon line, count line",
+    "identity_conflicts": "duplicate transcript ID or duplicate exact normalized CDS is a fatal input conflict",
+    "expected_eligible_transcripts": 1179,
+    "untouched_inputs_read": false
+  },
+  "preprocessing": {
+    "convention": "RK37",
+    "positive_rule": "count > 0.5",
+    "coverage_rule": "mean(count > 0.5) > 0.6 over all codon positions",
+    "density_rule": "count / mean(count[count > 0.5]) using all positions in that transcript",
+    "loss_evaluation_mask": "(count > 0.5) and zero-based position >= 5 and position < L - 4",
+    "masked_first_positions": 5,
+    "masked_last_positions": 4,
+    "minimum_length": 10,
+    "identity_rule": "transcript ID and exact normalized CDS must each be unique",
+    "start_codon_rule": "first codon must be ATG",
+    "terminal_stop_rule": "last codon must be TAA, TAG or TGA",
+    "internal_stop_rule": "no TAA, TAG or TGA before the terminal codon",
+    "qc_rejection_precedence": "length, ATG, terminal stop, internal stop, coverage, unmasked positive position",
+    "normalization_scope": "within each transcript only; no cross-transcript fitted statistic",
+    "low_count_targets_masked": true
+  },
+  "split": {
+    "unit": "transcript",
+    "outer_folds": 3,
+    "inner_folds": 3,
+    "seed": 9100301,
+    "algorithm": "numpy_default_rng_permutation_then_sorted_np_array_split",
+    "shared_across_arms_and_model_seeds": true,
+    "outer_test_use": "final prediction and metrics only after inner hyperparameter selection and early stopping are complete",
+    "inner_validation_use": "plateau early stopping and out-of-fold hyperparameter selection",
+    "final_predictor": "equal-weight density ensemble of the three selected inner-fold models",
+    "outer_test_targets_used_for_fitting_early_stopping_or_selection": false
+  },
+  "model": {
+    "arms": [
+      "independent",
+      "position",
+      "kinetic"
+    ],
+    "shared_score_field": "independent/kinetic: codon_embedding_64_by_1[codon_i] + relative_position_weight * i / (L - 1)",
+    "position_score_field": "relative_position_weight * i / (L - 1), without codon parameters or bias",
+    "trainable_parameters_per_model": {
+      "independent": 65,
+      "position": 1,
+      "kinetic": 65
+    },
+    "extra_modules": false,
+    "independent_density": "sigmoid(score)",
+    "position_density": "sigmoid(relative_position_weight * i / (L - 1))",
+    "kinetic_rate": "clamp(rate_floor + softplus(score), max=rate_ceiling)",
+    "rate_floor": 0.0001,
+    "rate_ceiling": 1000.0,
+    "boundary_mapping": "alpha=rate[0]; k=rate[0:L-1]; beta=rate[L-1]",
+    "mean_field_batch_interface": "solve_kinetic_mean_field_batch(alpha,k,beta,lengths) -> padded rho,J,normalized_residual",
+    "objective": "mean over transcripts of masked-position MSE",
+    "selected_inner_ensemble_members": 3,
+    "trainable_parameters_per_selected_ensemble": {
+      "independent": 195,
+      "position": 3,
+      "kinetic": 195
+    }
+  },
+  "hyperparameters": {
+    "selection_metric": "inner out-of-fold transcript-balanced MSE at each fold's restored best-validation state",
+    "learning_rate": {
+      "spacing": "log10_uniform",
+      "minimum": 0.0001,
+      "maximum": 0.01,
+      "count": 3
+    },
+    "weight_decays": [
+      0.0,
+      0.0001
+    ],
+    "tie_break": "protocol grid order"
+  },
+  "training": {
+    "model_seeds": [
+      1234,
+      2345,
+      3456
+    ],
+    "minimum_model_seeds": 3,
+    "optimizer": "AdamW",
+    "batch_transcripts": 32,
+    "maximum_epochs": 2000,
+    "gradient_clip_norm": 1.0,
+    "gradient_clip_error_if_nonfinite": true,
+    "finite_parameters_required_after_optimizer_step": true,
+    "early_stopping": {
+      "monitor": "inner validation transcript-balanced MSE",
+      "mode": "min",
+      "min_absolute_improvement": 0.000001,
+      "patience_epochs": 25,
+      "restore_best_validation_state": true
+    },
+    "maximum_epoch_is_not_convergence": true,
+    "record_every_epoch_train_and_validation_curve": true,
+    "dtype": "float64"
+  },
+  "evaluation": {
+    "split": "outer test only",
+    "primary_metric": "transcript_balanced_mse",
+    "secondary_metrics": [
+      "mean_per_transcript_pearson",
+      "mean_per_transcript_spearman"
+    ],
+    "undefined_constant_correlations": "null with defined counts; never zero",
+    "kinetic_effect": "primary: independent TB-MSE minus kinetic TB-MSE; positive favors kinetic",
+    "position_control_effect": "position TB-MSE minus kinetic TB-MSE; positive favors kinetic over the simple position control",
+    "steady_state_diagnostic": "maximum absolute residual/J computed separately for every selected inner kinetic member",
+    "ensemble_mean_is_common_steady_state": false,
+    "development_comparison_only": true
+  },
+  "runtime": {
+    "device": "cuda",
+    "device_supplied_by_cli": "explicit CUDA device, default cuda:0",
+    "cpu_fallback": false,
+    "cuda_forward_backward_probe_required": true
+  },
+  "outputs": {
+    "overwrite": "forbidden",
+    "directory_creation": "exclusive",
+    "v2_requires_new_directory_not_v1_remote_output": true,
+    "files": [
+      "provenance.json",
+      "splits.json",
+      "curves.jsonl",
+      "selection.json",
+      "selected_inner_states.npz",
+      "predictions.npz",
+      "per_transcript_metrics.csv",
+      "summary.json"
+    ],
+    "startup_provenance": "protocol, implementation and mean-field operator SHA256 recorded before device probe, raw parsing or training",
+    "selected_inner_states": "every outer/arm/seed selected inner best state, model configuration and selection hyperparameters; predictions rebuildable without refitting",
+    "prediction_arrays": "target, mask, codons, outer fold, all three arms' density, ensemble-mean flux diagnostic and member-level solver residual diagnostics",
+    "ensemble_mean_residual_diagnostic": "arithmetic diagnostic only; not a common steady-state residual",
+    "sha256": "startup protocol, implementation and mean-field operator hashes plus raw input and every non-summary artifact"
+  },
+  "limitations": [
+    "Mohammad16 is an observed development study, not final research OOD or untouched evaluation.",
+    "The comparison tests a minimal flux-conservation inductive bias; it does not establish a positive kinetic effect, SOTA, or absolute physical rates.",
+    "The algebraic mean field is not an exact stochastic ribosome simulation.",
+    "Reaching the epoch ceiling is recorded as not converged and is never relabeled as plateau convergence.",
+    "Independent and kinetic have matched 65-parameter score fields; position is deliberately a one-parameter simple control.",
+    "Each kinetic ensemble member is separately solver-conserved; the density/flux/residual means are not a common steady state.",
+    "The three-member count is matched across arms and is not an extra ensemble-size advantage for kinetic."
+  ]
+}
