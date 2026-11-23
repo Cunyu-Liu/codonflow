@@ -54,3 +54,13 @@
 - 真实 v4 有新状态后，应区分运行进度、淘汰、入选续训与最终独立稳态重建结果。
 - 在获得相应证据前，不得把 v1、v3、v4 的任何阶段表述为收敛或形成科学结论。
 - 在直接局部同义响应数据闭合前，不得仅凭预测响应判定 G1 通过。
+
+
+## Yu2015 实物审计与项目回归补充
+
+- Yu `GSE71032` 最终 raw tar SHA256=`851b0bbca80bd363f4e2d50766b4ca6154308c03a3df28006df199a0a1641612`；OPT FASTA=`ff0cfe2bffd52400a964ad265a92c84fc1ebebfb113189c261c449111ea35644`；Cwt-Opt FASTA=`debf79eabe495284aa3662c5ad3a935bb1fb354267ea3943f65025517f17a51c`；SOFT=`9ab51cb747426b6ba98f47d280976b72246e4d1c7b3c4fd8ca618e3b3cc708cd`。
+- 两个构建均为 1839 nt；CDS 为 zero-based 半开 `[100,1753)`，1653 nt、551 个密码子含 stop；蛋白翻译一致，差异限于 CDS 424–551，终端 stop 为 TGA→TAA。
+- Cwt-Opt WIG 覆盖完整 1839 nt reporter，但 OPT WIG 未找到对应 reporter 记录。必须回到 raw reads 重映射，不能直接计算 OPT↔Cwt-Opt 配对响应。
+- 每构建仅一个样本，仍不支持重复完备的局部同义响应或阳性结论。
+- 项目完整回归：877 passed、0 failed、2 skipped；报告 SHA256=`1abed7e5d721f7996cef363b7a96c94c81009f39a2de518707cce75d66e93d78`，registry 提交 `cf762eb0`。这只是工程复现证据。
+- E2 v4 仍在运行，当前没有最终预测、H2 或 G1 结果。
