@@ -3,6 +3,7 @@ import numpy as np
 import pytest
 import torch
 
+import codonflow.models.kinetic_mean_field as kinetic_mean_field
 from codonflow.models.kinetic_mean_field import (
     solve_kinetic_mean_field,
     solve_kinetic_mean_field_batch,
@@ -172,7 +173,8 @@ def test_batch_rejects_invalid_solver_controls():
         solve_kinetic_mean_field_batch([1.0], [[1.0]], [2], [1.0], maxfev=1.5)
 
 
-def test_batch_nonconvergence_is_not_returned_as_a_success():
+def test_batch_nonconvergence_is_not_returned_as_a_success(monkeypatch):
+    monkeypatch.setattr(kinetic_mean_field, "solve_ivp", lambda *args, **kwargs: type("FailedIntegration", (), {"success": False, "message": "did not converge", "y": np.zeros((4, 1))})())
     with pytest.raises(RuntimeError, match="batch sample 0.*did not converge"):
         solve_kinetic_mean_field_batch(
             [1.3], [[0.8, 1.7, 1.1]], [4], [0.9], maxfev=1
@@ -388,3 +390,34 @@ def test_cuda_batch_backward_matches_cpu_and_keeps_diagnostics_on_device():
     assert cuda_diagnostics["jacobian_condition_number"].device.type == "cuda"
     assert cuda_diagnostics["backward_recovery_residual"].device.type == "cuda"
     assert bool((cuda_diagnostics["backward_recovery_residual"] <= 1e-10).all())
+
+
+def test_long_heterogeneous_fallback_and_gradient():
+    torch.manual_seed(913)
+    length = 512
+    alpha = torch.tensor([1.3], dtype=torch.float64, requires_grad=True)
+    beta = torch.tensor([0.9], dtype=torch.float64, requires_grad=True)
+    rates = torch.exp(torch.empty(1, length - 1, dtype=torch.float64).uniform_(-3.0, 3.0))
+    rates.requires_grad_()
+    rho, flux, residual = solve_kinetic_mean_field_batch(alpha, rates, torch.tensor([length]), beta)
+    assert rho.shape == (1, length)
+    assert bool(torch.isfinite(rho).all())
+    assert float(residual.abs().max()) < 1e-10
+    (rho.square().mean() + flux).backward()
+    assert bool(torch.isfinite(alpha.grad))
+    assert bool(torch.isfinite(beta.grad))
+    assert bool(torch.isfinite(rates.grad).all())
+
+
+def test_extreme_long_rates_remain_fail_closed():
+    torch.manual_seed(917)
+    length = 256
+    alpha = torch.tensor([1e-4], dtype=torch.float64)
+    beta = torch.tensor([1e4], dtype=torch.float64)
+    rates = torch.logspace(-8, 8, length - 1, dtype=torch.float64).unsqueeze(0)
+    try:
+        rho, flux, residual = solve_kinetic_mean_field_batch(alpha, rates, torch.tensor([length]), beta)
+    except RuntimeError:
+        return
+    assert bool(torch.isfinite(rho).all())
+    assert float(residual.abs().max()) < 1e-10

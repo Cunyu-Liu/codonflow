@@ -107,7 +107,8 @@ def test_rejects_invalid_input_shapes(alpha, k, beta, match):
         solve_kinetic_mean_field(alpha, k, beta)
 
 
-def test_nonconvergence_is_not_returned_as_a_success():
+def test_nonconvergence_is_not_returned_as_a_success(monkeypatch):
+    monkeypatch.setattr(kinetic_mean_field, "solve_ivp", lambda *args, **kwargs: type("FailedIntegration", (), {"success": False, "message": "did not converge", "y": np.zeros((4, 1))})())
     with pytest.raises(RuntimeError, match="did not converge"):
         solve_kinetic_mean_field(1.3, [0.8, 1.7, 1.1], 0.9, maxfev=1)
 

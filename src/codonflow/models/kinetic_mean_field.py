@@ -11,7 +11,8 @@ import math
 
 import numpy as np
 import torch
-from scipy.optimize import root
+from scipy.integrate import solve_ivp
+from scipy.optimize import OptimizeResult, brentq, least_squares, root
 
 
 def _residual_numpy(
@@ -240,6 +241,51 @@ def _checked_root_state(result, state, initial_shape, alpha, rates, beta, residu
     return state, residual
 
 
+def _state_from_flux_numpy(flux, alpha, rates, beta):
+    rho = np.empty(rates.size + 1, dtype=np.float64)
+    rho[-1] = flux / beta
+    for index in range(rates.size - 1, -1, -1):
+        denominator = 1.0 - rho[index + 1]
+        if denominator <= 0.0:
+            raise ValueError("flux leaves the physical density domain")
+        rho[index] = flux / (rates[index] * denominator)
+        if rho[index] > 1.0:
+            raise ValueError("flux leaves the physical density domain")
+    return np.concatenate((rho, [flux]))
+
+
+def _transient_state_numpy(alpha, rates, beta, initial, maxfev):
+    length = rates.size + 1
+
+    def derivative(_, rho):
+        result = np.empty_like(rho)
+        result[0] = alpha * (1.0 - rho[0]) - rates[0] * rho[0] * (1.0 - rho[1])
+        result[-1] = rates[-1] * rho[-2] * (1.0 - rho[-1]) - beta * rho[-1]
+        if length > 2:
+            result[1:-1] = (
+                rates[:-1] * rho[:-2] * (1.0 - rho[1:-1])
+                - rates[1:] * rho[1:-1] * (1.0 - rho[2:])
+            )
+        return result
+
+    minimum_rate = min(alpha, beta, float(rates.min(initial=math.inf)))
+    end_time = max(10000.0, 10000.0 / minimum_rate)
+    result = solve_ivp(
+        derivative,
+        (0.0, end_time),
+        np.clip(initial, 1e-10, 1.0 - 1e-10),
+        method="LSODA",
+        rtol=1e-8,
+        atol=1e-10,
+        max_step=math.inf,
+    )
+    if not result.success or not np.all(np.isfinite(result.y)):
+        raise RuntimeError(f"transient mean-field integration failed: {result.message}")
+    rho = result.y[:, -1]
+    flux = alpha * (1.0 - rho[0])
+    return np.concatenate((rho, [flux]))
+
+
 def _solve_state_numpy(
     alpha: float,
     rates: np.ndarray,
@@ -298,7 +344,28 @@ def _solve_state_numpy(
                 residual_tolerance,
             )
         except RuntimeError as scaled_error:
-            raise scaled_error from original_error
+            try:
+                scalar_state = _transient_state_numpy(
+                    alpha, rates, beta, initial_rho, maxfev
+                )
+                scalar_result = OptimizeResult(
+                    success=True,
+                    message="scalar flux solve completed",
+                    x=scalar_state,
+                )
+                return _checked_root_state(
+                    scalar_result,
+                    scalar_state,
+                    initial.shape,
+                    alpha,
+                    rates,
+                    beta,
+                    residual_tolerance,
+                )
+            except (RuntimeError, ValueError) as scalar_error:
+                raise RuntimeError(
+                    f"Kinetic mean-field scalar flux solve failed: {scalar_error}"
+                ) from scaled_error
 
 
 class _KineticMeanFieldFunction(torch.autograd.Function):
