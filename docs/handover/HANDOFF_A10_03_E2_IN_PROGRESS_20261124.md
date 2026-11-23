@@ -49,7 +49,7 @@
 
 ## 5. 工程与论文边界
 
-- E2 v4 代码时项目完整回归曾为 877 passed、0 failed、2 skipped，报告 SHA256=`1abed7e5d721f7996cef363b7a96c94c81009f39a2de518707cce75d66e93d78`；v6 代码必须重新跑相应回归，不继承旧通过状态。
+- E2 v4 代码时项目完整回归曾为 877 passed、0 failed、2 skipped，报告 SHA256=`1abed7e5d721f7996cef363b7a96c94c81009f39a2de518707cce75d66e93d78`。当前 HEAD 干净工作树已重新完成全量回归：**886 passed、1 skipped、5 subtests passed**，92.33 s；日志 SHA256=`80da9d0e72e4576934181e4427a983170dbe8f249003225ece8823421d04db54`。该回归覆盖 v6 数值算子与 Yu 新代码，但不替代科学结果。
 - 失败日志、训练曲线和历史 artifact 全保留；不以固定 epoch 上限冒充收敛，不把 smoke、proxy 或训练集指标写成最终科学结论。
 - 当前不更新论文/PPT，不启动 E3 或生成训练。完成训练、独立验证和 Gate 裁决后，再同步代码、运行台账与交接。
 
