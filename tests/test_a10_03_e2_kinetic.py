@@ -133,7 +133,26 @@ def test_frozen_protocol_pins_raw_qc_nested_cv_three_seeds_and_claim_boundary():
     assert "selected_inner_states.npz" in protocol["outputs"]["files"]
     assert "provenance.json" in protocol["outputs"]["files"]
     assert protocol["inputs"]["sha256"] == RAW_SHA
-    assert protocol["inputs"]["expected_eligible_transcripts"] == 1179
+    assert protocol["inputs"]["expected_eligible_transcripts"] == 1073
+    expected_qc = protocol["inputs"]["expected_label_free_qc"]
+    assert expected_qc["label_free"] is True
+    assert expected_qc["counts"] == {
+        "input_records": 1761,
+        "rejected_too_short": 0,
+        "rejected_missing_start_atg": 171,
+        "rejected_missing_terminal_stop": 0,
+        "rejected_internal_stop": 0,
+        "rejected_coverage": 517,
+        "rejected_no_unmasked_positive_position": 0,
+        "eligible_transcripts": 1073,
+    }
+    assert expected_qc["minimum_eligible_length"] == 16
+    assert expected_qc["maximum_eligible_length"] == 1521
+    assert expected_qc["transcript_id_conflicts"] == 0
+    assert expected_qc["exact_cds_conflicts"] == 0
+    rejection_counts = {key: value for key, value in expected_qc["counts"].items() if key.startswith("rejected_")}
+    assert set(expected_qc["rejection_reasons"]) == set(rejection_counts)
+    assert expected_qc["counts"]["input_records"] - sum(rejection_counts.values()) == 1073
     assert protocol["preprocessing"]["positive_rule"] == "count > 0.5"
     assert protocol["preprocessing"]["masked_first_positions"] == 5
     assert protocol["preprocessing"]["masked_last_positions"] == 4

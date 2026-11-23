@@ -22,7 +22,34 @@
     "sha256": "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc",
     "format": "strict three-line records: header, codon line, count line",
     "identity_conflicts": "duplicate transcript ID or duplicate exact normalized CDS is a fatal input conflict",
-    "expected_eligible_transcripts": 1179,
+    "expected_eligible_transcripts": 1073,
+    "expected_label_free_qc": {
+      "label_free": true,
+      "scope": "development input sequence/count QC only; no scientific split or hyperparameter grid changes",
+      "counts": {
+        "input_records": 1761,
+        "rejected_too_short": 0,
+        "rejected_missing_start_atg": 171,
+        "rejected_missing_terminal_stop": 0,
+        "rejected_internal_stop": 0,
+        "rejected_coverage": 517,
+        "rejected_no_unmasked_positive_position": 0,
+        "eligible_transcripts": 1073
+      },
+      "minimum_eligible_length": 16,
+      "maximum_eligible_length": 1521,
+      "transcript_id_conflicts": 0,
+      "exact_cds_conflicts": 0,
+      "rejection_reasons": {
+        "rejected_too_short": "fewer than 10 codons",
+        "rejected_missing_start_atg": "first codon is not ATG",
+        "rejected_missing_terminal_stop": "last codon is not TAA, TAG or TGA",
+        "rejected_internal_stop": "TAA, TAG or TGA occurs before the terminal codon",
+        "rejected_coverage": "mean(count > 0.5) <= 0.6 over all codon positions",
+        "rejected_no_unmasked_positive_position": "no count > 0.5 remains at zero-based positions 5 through L - 5"
+      },
+      "accounting": "1761 input - 171 missing ATG - 517 coverage = 1073 eligible; all other rejection categories and ID/exact CDS conflicts are zero"
+    },
     "untouched_inputs_read": false
   },
   "preprocessing": {

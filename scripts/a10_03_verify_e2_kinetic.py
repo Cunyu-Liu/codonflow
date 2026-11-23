@@ -44,7 +44,7 @@ PROVENANCE_SCHEMA = "a10-03-e2-kinetic-startup-provenance-v2"
 STATE_SCHEMA = "a10-03-e2-kinetic-selected-inner-states-v2"
 VERIFICATION_SCHEMA = "a10-03-e2-kinetic-independent-verification-v2"
 REAL_RAW_SHA256 = "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
-REAL_ELIGIBLE = 1179
+REAL_ELIGIBLE = 1073
 ARMS = ("independent", "position", "kinetic")
 COMPARATORS = ("independent", "position")
 REAL_MODEL_SEEDS = [1234, 2345, 3456]
@@ -55,6 +55,19 @@ REBUILD_ATOL = 2e-8
 MEMBER_RESIDUAL_TOLERANCE = 1e-8
 ROOT_TOLERANCE = 1e-12
 ROOT_MAXFEV = 1000
+REAL_QC = {
+    "input_records": 1761,
+    "rejected_too_short": 0,
+    "rejected_missing_start_atg": 171,
+    "rejected_missing_terminal_stop": 0,
+    "rejected_internal_stop": 0,
+    "rejected_coverage": 517,
+    "rejected_no_unmasked_positive_position": 0,
+    "eligible_transcripts": REAL_ELIGIBLE,
+    "sha256": REAL_RAW_SHA256,
+    "minimum_eligible_length": 16,
+    "maximum_eligible_length": 1521,
+}
 REAL_FROZEN_VALUES = {
     ("inputs", "expected_eligible_transcripts"): REAL_ELIGIBLE,
     ("preprocessing", "masked_first_positions"): 5,
@@ -295,7 +308,7 @@ def load_protocol(path, allow_synthetic=False):
             expected != REAL_ELIGIBLE,
             inputs.get("expected_basename") != "Mohammad16.txt",
         )):
-            raise ValueError("real verification requires pinned Mohammad16 SHA and 1179 eligible transcripts")
+            raise ValueError(f"real verification requires pinned Mohammad16 SHA and {REAL_ELIGIBLE} eligible transcripts")
         mismatches = []
         for path_parts, expected_value in REAL_FROZEN_VALUES.items():
             observed = protocol
@@ -1333,6 +1346,9 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
         and all(not any(CODONS[codon] in STOP_CODONS for codon in record["codons"][:-1]) for record in records)
     )
     checks["eligible_transcript_count"] = len(records) == protocol["inputs"]["expected_eligible_transcripts"]
+    real_qc_mismatches = [] if allow_synthetic else value_mismatches(qc, REAL_QC, "qc")
+    checks["real_strict_qc_recomputed_from_raw"] = not real_qc_mismatches
+    details["real_qc"] = real_qc_mismatches
     if not allow_synthetic:
         checks["eligible_transcript_count"] = checks["eligible_transcript_count"] and len(records) == REAL_ELIGIBLE
     mismatches = value_mismatches(load_json(output_dir / "splits.json"), split_payload(splits, records), "splits")

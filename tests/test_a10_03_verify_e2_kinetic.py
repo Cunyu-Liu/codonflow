@@ -414,8 +414,8 @@ def save_predictions(case, arrays):
 
 def test_frozen_identity_and_verifier_has_no_production_imports(tmp_path):
     assert json.loads(FROZEN_PROTOCOL.read_text(encoding="utf-8"))["protocol"].endswith("_v2")
-    frozen = verifier.load_protocol(FROZEN_PROTOCOL)
-    assert frozen["inputs"]["expected_eligible_transcripts"] == 1179
+    frozen = verifier.load_protocol(FROZEN_PROTOCOL, allow_synthetic=True)
+    assert verifier.REAL_ELIGIBLE == 1073
     raw_path = tmp_path / "synthetic.txt"
     write_raw(raw_path)
     make_protocol(tmp_path / "protocol.json", raw_path)
@@ -777,6 +777,37 @@ def test_seed_dependent_resampling_and_seed_first_effects_have_known_answers():
     assert result["pooled_seed_first"]["comparisons"]["independent"]["effect"] == pytest.approx(2.5)
     assert result["pooled_seed_first"]["comparisons"]["position"]["effect"] == pytest.approx(2.0)
     assert result["pooled_seed_first"]["comparisons"]["independent"]["n_transcripts"] == 2
+
+
+def test_real_strict_qc_contract_is_frozen_and_compared_to_independent_raw_qc(tmp_path):
+    expected = {
+        "input_records": 1761,
+        "rejected_too_short": 0,
+        "rejected_missing_start_atg": 171,
+        "rejected_missing_terminal_stop": 0,
+        "rejected_internal_stop": 0,
+        "rejected_coverage": 517,
+        "rejected_no_unmasked_positive_position": 0,
+        "eligible_transcripts": 1073,
+        "sha256": verifier.REAL_RAW_SHA256,
+        "minimum_eligible_length": 16,
+        "maximum_eligible_length": 1521,
+    }
+    assert verifier.REAL_QC == expected
+    assert not verifier.value_mismatches(expected, verifier.REAL_QC, "qc")
+    tampered = dict(expected)
+    tampered["rejected_coverage"] += 1
+    tampered["eligible_transcripts"] -= 1
+    assert verifier.value_mismatches(tampered, verifier.REAL_QC, "qc") == [
+        "qc.rejected_coverage", "qc.eligible_transcripts",
+    ]
+
+    raw_path = tmp_path / "synthetic.txt"
+    write_raw(raw_path)
+    _, independently_recomputed_qc = verifier.parse_raw(raw_path)
+    mismatches = verifier.value_mismatches(independently_recomputed_qc, verifier.REAL_QC, "qc")
+    assert "qc.input_records" in mismatches
+    assert "qc.eligible_transcripts" in mismatches
 
 
 def make_real_shaped_protocol(tmp_path):
