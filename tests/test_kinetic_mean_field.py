@@ -125,6 +125,21 @@ def test_scipy_exceptions_are_preserved(monkeypatch):
         solve_kinetic_mean_field(1.0, [1.0], 1.0)
 
 
+def test_transient_integrator_controls_preserve_strict_steady_residual(monkeypatch):
+    observed = {}
+
+    def steady_integration(*args, **kwargs):
+        observed.update(kwargs)
+        return type("Integration", (), {"success": True, "message": "ok", "y": np.full((3, 1), 0.5)})()
+
+    monkeypatch.setattr(kinetic_mean_field, "solve_ivp", steady_integration)
+    state = kinetic_mean_field._transient_state_numpy(
+        1.0, np.asarray([2.0, 2.0]), 1.0, np.full(3, 0.25), 1000, 1e-10,
+    )
+    assert observed["rtol"] == 1e-8 and observed["atol"] == 1e-10
+    np.testing.assert_allclose(state, [0.5, 0.5, 0.5, 0.5], rtol=0, atol=0)
+
+
 def test_implicit_gradients_match_central_finite_differences():
     alpha = torch.tensor(1.3, dtype=torch.float64, requires_grad=True)
     k = torch.tensor([0.8, 1.7, 1.1], dtype=torch.float64, requires_grad=True)

@@ -277,8 +277,8 @@ def _transient_state_numpy(alpha, rates, beta, initial, maxfev, residual_toleran
             (0.0, end_time),
             state,
             method="LSODA",
-            rtol=1e-10,
-            atol=1e-12,
+            rtol=1e-8,
+            atol=1e-10,
             max_step=math.inf,
         )
         if not result.success or not np.all(np.isfinite(result.y)):
