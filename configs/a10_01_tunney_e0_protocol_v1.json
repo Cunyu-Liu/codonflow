@@ -1,0 +1,109 @@
+{
+  "schema": "a10-01-tunney-e0-protocol-v1",
+  "protocol": "a10_01_tunney_e0_protocol_v1",
+  "status": "frozen_candidate_procedure_and_qc_only",
+  "created_date": "2026-11-23",
+  "study": {
+    "citation_key": "Tunney_GSE106572",
+    "accession": "GSE106572",
+    "sample_accession": "GSM2842830",
+    "organism": "Saccharomyces cerevisiae",
+    "strain": "BY474",
+    "genome_build": "sacCer3",
+    "assay": "Ribo-seq",
+    "eligibility": {
+      "task": "T2_translation_occupancy_and_kinetics",
+      "candidate_research_only": true,
+      "procedure_and_qc_only": true,
+      "final_untouched": false,
+      "functional_prediction_eligible": false,
+      "model_training_or_calibration_eligible": false,
+      "scientific_positive_claim_eligible": false,
+      "reason": "This E0 audit establishes only source integrity, file structure, metadata consistency and descriptive QC. It does not establish final untouched status, scientific validity, functional signal or model utility."
+    }
+  },
+  "inputs": {
+    "raw_tar": {
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE106nnn/GSE106572/suppl/GSE106572_RAW.tar",
+      "sha256": "77e463a2ff17b3049bf1d7cc11325e5fa2510a9dee9680970ba5c7a241054e8d",
+      "required_members": [
+        "GSM2842830_cts_by_codon.size.27.29.txt.gz"
+      ],
+      "member_format": {
+        "compression": "gzip",
+        "delimiter": "tab",
+        "header": false,
+        "columns": "gene followed by A-site footprint counts for successive CDS codons",
+        "codon_index_base_in_clean_csv": 1
+      }
+    },
+    "soft_gz": {
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE106nnn/GSE106572/soft/GSE106572_family.soft.gz",
+      "sha256": "bece19f4017a51558a0475ba2b1f775556d038df573194f5a6351a949b0393d1"
+    }
+  },
+  "soft_qualification": {
+    "required_sample_fields": [
+      "Sample_organism_ch1",
+      "Sample_characteristics_ch1",
+      "Sample_data_processing",
+      "Sample_supplementary_file"
+    ],
+    "expected_sample_count": 1,
+    "expected_ribo_experiment_count": 1,
+    "expected_lane_count": 2,
+    "lanes_merged_before_analysis": true,
+    "read_count_method": "RSEM",
+    "expected_rsem_version": "1.3.0",
+    "multimapping_weights_expected": true,
+    "a_site_offsets": [
+      {"read_length": 27, "frame": 0, "offset": 15},
+      {"read_length": 27, "frame": 1, "offset": 14},
+      {"read_length": 28, "frame": 0, "offset": 15},
+      {"read_length": 29, "frame": 0, "offset": 15},
+      {"read_length": 29, "frame": 2, "offset": 16}
+    ]
+  },
+  "count_rules": {
+    "preserve_original_count_tokens_in_clean_csv": true,
+    "allow_noninteger_multimapping_weights": true,
+    "round_counts": false,
+    "aggregate_duplicate_genes": false,
+    "fail_on_duplicate_or_empty_gene": true,
+    "fail_on_missing_invalid_negative_or_nonfinite_count": true,
+    "fail_on_blank_or_malformed_row": true
+  },
+  "archive_safety": {
+    "require_exactly_one_regular_file": true,
+    "require_exact_member_name": true,
+    "reject_absolute_parent_or_backslash_paths": true,
+    "reject_links_devices_and_extra_members": true,
+    "stream_member_without_tar_extraction": true
+  },
+  "qc_definitions": {
+    "total_coverage": "Sum of the unrounded per-codon counts within one transcript.",
+    "zero_coverage_position": "A CDS codon whose parsed count is exactly zero.",
+    "long_tail_top_10pct_count_share": "Sum of the largest ceil(CDS_codon_count * 0.10) counts divided by transcript total coverage; null when total coverage is zero.",
+    "long_tail_max_count_share": "Largest single-codon count divided by transcript total coverage; null when total coverage is zero."
+  },
+  "outputs": {
+    "clean_csv_columns": [
+      "gene",
+      "codon_index",
+      "count"
+    ],
+    "clean_count_representation": "original input token, without rounding or numeric normalization",
+    "overwrite": "forbidden",
+    "creation_mode": "exclusive"
+  },
+  "limitations": [
+    "Candidate-study E0 provenance and QC only; this is not a final untouched dataset designation.",
+    "The two lanes come from one Ribo experiment and are merged; they are not independent biological or technical replicates available for replication analysis.",
+    "RSEM 1.3.0 multi-mapping weights can produce non-integer counts; values are not unique-molecule counts and must not be rounded or silently converted to integers.",
+    "Only the frozen read-length/frame A-site offsets are supported; offsets for other read lengths or frames must not be inferred from this artifact.",
+    "Counts are already A-site-mapped CDS-codon summaries; this audit does not independently verify read alignment, P-site or A-site placement, gene annotation or sacCer3 coordinate correctness.",
+    "Duplicate genes must not be summed or collapsed, and duplicate SOFT metadata must be reported rather than silently deduplicated.",
+    "Descriptive coverage and long-tail statistics are not evidence of translation speed, functional effect, biological mechanism, generalization or model performance.",
+    "No functional conclusion, scientific positive claim, model training, calibration, selection or benchmark conclusion is authorized by this E0 artifact."
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "a10-01-goodman-split-protocol-v1",
+  "protocol": "a10_01_goodman_split_protocol_v1",
+  "status": "frozen_candidate_nested_grouped_cv_partition_only",
+  "created_date": "2026-11-23",
+  "study": {
+    "citation_key": "Goodman2013",
+    "doi": "10.1126/science.1241934",
+    "assay": "construct-level DNA/RNA/protein measurements for synonymous N-terminal variants",
+    "final_untouched": false
+  },
+  "inputs": {
+    "clean_csv": {
+      "role": "clean_v3_candidate_partition_input_not_untouched",
+      "sha256": "ce64f2caa9633fefae840e220d36b6360946d39b9253adc56f3ef297b9ab9c82",
+      "expected_data_rows": 14234,
+      "expected_gene_count": 137,
+      "expected_rows_per_gene": [
+        102,
+        104
+      ],
+      "expected_unique_exact_cds": 4817,
+      "required_columns": [
+        "Name",
+        "Gene",
+        "CDS.seq"
+      ],
+      "encoding": "UTF-8 with optional BOM",
+      "parser": "Python standard-library csv.reader with strict=True",
+      "additional_columns_policy": "ignored and never selected or inspected for partitioning"
+    },
+    "untouched_inputs_read": false
+  },
+  "source_qc_reference": {
+    "n_terminal_translation_count": 137,
+    "leader_context_count": 280,
+    "note": "Previously audited source QC metadata only; these values are not recomputed or used by the partitioner."
+  },
+  "split": {
+    "primary_group": "Gene",
+    "consistency_groups": [
+      "exact_CDS",
+      "Name"
+    ],
+    "duplicate_policy": "Preserve every row; each exact CDS and each Name must map to exactly one Gene, with cross-Gene conflicts fatal.",
+    "outer_folds": 5,
+    "inner_folds": 4,
+    "inner_fold_role": "For each outer training pool, inner fold k is its validation Gene set and the other three inner folds form its training set.",
+    "balance_metric": "Gene_count",
+    "maximum_gene_count_difference_within_partition": 1,
+    "deterministic": true,
+    "algorithm": "Process Genes in lexicographic order; among folds tied for the fewest assigned Genes, choose by SHA-256 of protocol, partition namespace, Gene and fold index, then by fold index.",
+    "hash_algorithm": "SHA256",
+    "hash_namespace": "a10_01_goodman_split_protocol_v1",
+    "selection_columns": [
+      "Name",
+      "Gene",
+      "CDS.seq"
+    ],
+    "outcome_columns_used_for_splitting": false,
+    "forbidden_outcome_columns": [
+      "Trans",
+      "Count.Prot",
+      "Count.DNA",
+      "Count.RNA",
+      "Count.A.DNA",
+      "Count.B.DNA",
+      "Count.A.RNA",
+      "Count.B.RNA",
+      "RNA",
+      "RNA.A",
+      "RNA.B",
+      "Bin.1",
+      "Bin.2",
+      "Bin.3",
+      "Bin.4",
+      "Bin.5",
+      "Bin.6",
+      "Bin.7",
+      "Bin.8",
+      "Bin.9",
+      "Bin.10",
+      "Bin.11",
+      "Bin.12",
+      "Bin.Pct.1",
+      "Bin.Pct.2",
+      "Bin.Pct.3",
+      "Bin.Pct.4",
+      "Bin.Pct.5",
+      "Bin.Pct.6",
+      "Bin.Pct.7",
+      "Bin.Pct.8",
+      "Bin.Pct.9",
+      "Bin.Pct.10",
+      "Bin.Pct.11",
+      "Bin.Pct.12",
+      "Insuff.Prot",
+      "Insuff.DNA",
+      "Insuff.RNA",
+      "Fltr.BelowRange",
+      "Fltr.AboveRange",
+      "Fltr.SetGood"
+    ],
+    "outer_test_use": "Outer test Genes are excluded from model fitting, feature selection, early stopping, hyperparameter selection and threshold selection for that outer evaluation."
+  },
+  "scope": {
+    "task": "T1_leader_context_n_terminal_construct_function",
+    "supported_ood": "Gene-grouped N-terminal fragment construct OOD",
+    "leader_context_n_terminal_window_supported": true,
+    "protein_ood_supported": false,
+    "multi_gene_pool_is_protein_ood": false,
+    "full_length_cds_supported": false,
+    "native_utr_supported": false,
+    "scientific_positive_claim_eligible": false
+  },
+  "outputs": {
+    "assignment_csv_columns": [
+      "Name",
+      "Gene",
+      "CDS.seq",
+      "outer_fold"
+    ],
+    "split_json": "Five outer test Gene sets and four inner Gene sets within every outer training pool, with input hashes and Gene/row counts.",
+    "overwrite": "forbidden",
+    "creation_mode": "exclusive"
+  },
+  "limitations": [
+    "This is a candidate clean-v3 partition, not a final untouched dataset designation or an evaluation result.",
+    "Only Gene-grouped N-terminal fragment construct OOD within the observed leader-context geometry is supported.",
+    "Gene diversity is not protein OOD evidence; full-length CDS and native-UTR generalization claims are unsupported.",
+    "No outcome, filter, expression, translation-count or leader-count value is used to assign folds.",
+    "No functional conclusion, scientific positive claim or model selection is authorized by this partition artifact."
+  ]
+}
