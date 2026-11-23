@@ -1,0 +1,67 @@
+{
+  "schema": "a10-03-yu-local-response-protocol-v1",
+  "protocol": "a10_03_yu_local_response_v1",
+  "status": "frozen_before_wig_response_analysis",
+  "scope": {
+    "development_only": true,
+    "descriptive_only": true,
+    "independent_biological_replicates": 0,
+    "one_run_per_construct": true,
+    "causal_claim": false,
+    "gate_pass_by_this_analysis_alone": false,
+    "untouched": false
+  },
+  "source": {
+    "study": "Yu2015",
+    "series": "GSE71032",
+    "project": "SRP061262",
+    "opt_run": "SRR2105979",
+    "cwt_opt_run": "SRR2105980",
+    "raw_tar_sha256": "851b0bbca80bd363f4e2d50766b4ca6154308c03a3df28006df199a0a1641612"
+  },
+  "constructs": {
+    "opt": {
+      "sample": "GSM1825740",
+      "reporter": "Opt_luc",
+      "fasta_sha256": "ff0cfe2bffd52400a964ad265a92c84fc1ebebfb113189c261c449111ea35644",
+      "wig_sha256": "649a2c0572778490936a50a160fb5c8d9318ef6eee094439ab93a8a979d53684"
+    },
+    "cwt_opt": {
+      "sample": "GSM1825741",
+      "reporter": "Cwt-Opt_luc",
+      "fasta_sha256": "debf79eabe495284aa3662c5ad3a935bb1fb354267ea3943f65025517f17a51c",
+      "wig_sha256": "6c951aed07b76ea26ecb441434a76e25de40adfdc1bbce13cb16dfb4d3b91fef"
+    }
+  },
+  "geometry": {
+    "reporter_length_nt": 1839,
+    "cds_start_zero_based": 100,
+    "cds_end_zero_based_exclusive": 1753,
+    "edited_sense_codon_first_one_based": 424,
+    "edited_sense_codon_last_one_based": 550,
+    "terminal_stop_included_in_sense_edit": false,
+    "downstream_coding_region_available": false
+  },
+  "processing": {
+    "wig_coordinate": "zero-based half-open; expand each interval to one value per nucleotide",
+    "codon_summary": "arithmetic mean of the three nucleotide A-site RPM values",
+    "primary_scale": "source RPM without reporter-specific rescaling",
+    "sensitivity_scale": "divide each construct by its mean RPM over unchanged upstream CDS [100,1369)",
+    "pseudocount": null,
+    "undefined_ratio": null,
+    "statistical_tests": null,
+    "p_values": null,
+    "confidence_intervals": null
+  },
+  "outputs": {
+    "overwrite": "forbidden",
+    "files": ["codon_response.csv", "summary.json"]
+  },
+  "limitations": [
+    "One run per construct; no inferential P value, confidence interval or biological-replicate claim.",
+    "The terminal stop differs TGA to TAA but is excluded from edited sense-codon effects.",
+    "The edit is C-terminal, so no downstream coding response is measurable in this construct pair.",
+    "Descriptive occupancy responses do not independently establish flux conservation or a transferable mechanism.",
+    "This analysis does not pass A10-G1 by itself and does not alter the frozen transcript-OOD comparison."
+  ]
+}

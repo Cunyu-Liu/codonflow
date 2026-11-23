@@ -82,7 +82,7 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 - [x] 为小状态、边界、通量守恒、数值残差和梯度补项目风格测试，36 tests；真实 CUDA 审计 SHA 为 `3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`。五组独立 least_squares 的最大密度误差为 1.33e-14、最大梯度误差为 1.16e-14、独立守恒误差为 3.94e-14；平均场不得冒称精确随机模拟。
 - [ ] 补齐平均场近似误差与适用边界、局部敏感性和参数可辨识性；当前数值精度不证明近似生物有效性。
 - [x] 预注册完整动力学、同容量去流守恒、独立密码子和纯位置场对照；独立/动力学单模型均 65 参数，位置场 1 参数，统一 successive-halving、3 outer×3 inner×3 seeds 和三成员 inner ensemble。勾选表示协议已冻结且运行中，不表示科学对照已完成。
-- [ ] 先研究内 transcript OOD，再按冻结协议做研究 OOD；评价 TB-MSE、mean per-transcript Pearson/Spearman、局部编辑上下游密度响应、通量和校准，不随机拆 codon 行。局部直接实验仍未闭合，但不额外改写预注册 G1 的 OOD 判决条件。
+- [ ] 先研究内 transcript OOD，再按冻结协议做研究 OOD；评价 TB-MSE、mean per-transcript Pearson/Spearman、局部编辑上下游密度响应、通量和校准，不随机拆 codon 行。Yu OPT/Cwt-Opt 的直接局部同义 WIG 配对已完成描述性分析与独立复算，但每构建 1 run、无下游编码区，不能单独完成 H2；不额外改写预注册 G1 的 OOD 判决条件。
 - [ ] 至少 3 seeds，按转录本/研究做 paired CI、Holm 和失败分层；未完成动力学模型训练与这些科学对照前不得判 H2。
 - [ ] 独立复算稳态解、密度响应和主指标，执行真实端到端 smoke；无 decay 数据不加 decay 头，无多位点覆盖不加远程 pair 机制。
 

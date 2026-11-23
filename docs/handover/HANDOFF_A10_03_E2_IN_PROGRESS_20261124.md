@@ -41,8 +41,10 @@
 
 - Yu2015/GSE71032 raw tar SHA256=`851b0bbca80bd363f4e2d50766b4ca6154308c03a3df28006df199a0a1641612`。
 - OPT/Cwt-Opt 均 1839 nt；CDS 为 zero-based `[100,1753)`，1653 nt/551 codons 含 stop；蛋白翻译一致，差异在 CDS 424–551，stop TGA→TAA。
-- Cwt-Opt WIG 有完整 reporter，OPT WIG 没有对应 reporter；需 raw reads 重映射，不能直接配对。
-- 每构建仅一个样本，不支持重复完备的局部同义响应或阳性结论。
+- **纠正此前误判**：OPT WIG 实际包含完整 `Opt_luc`，Cwt-Opt 包含完整 `Cwt-Opt_luc`；两者都连续覆盖 0–1839 nt，不需要因“缺项”而重映射才能配对。OPT/Cwt-Opt WIG SHA256 分别为 `649a2c0572778490936a50a160fb5c8d9318ef6eee094439ab93a8a979d53684`、`6c951aed07b76ea26ecb441434a76e25de40adfdc1bbce13cb16dfb4d3b91fef`。
+- 描述性分析已运行并逐密码子独立复算：summary SHA256=`9e50a2fa115f0b15ed21203729975f703837948434cbed74813d764f7a8b1bd5`，CSV SHA256=`96fc2e75282c4fa8782831802bc86de06c771ee26fb52c72b3cf5efc64164631`，独立报告 SHA256=`8d272304c5fe04f436aab426e057bcdce5fe5066457323fc7d0bbba9f3cab11b`。
+- 编辑区 127 个 sense codons 中 66 个密码子不同；RPM 均值 OPT=4.8184504、Cwt-Opt=11.1842228，差值=6.3657724。上游不变区原始均值 OPT=3.9750203、Cwt-Opt=2.3757896，存在明显文库尺度差异；上游归一化后的编辑区差值=3.4953988。两种口径均保留，不选择性隐藏原始差异。
+- 每构建仅一个 run、没有独立生物重复，故不计算 P 值或 CI，不作因果/普遍机制结论。编辑位于 C 端，没有下游编码区；该数据只提供局部及上游描述性响应，不能单独完成 H2 或通过 G1。
 - Tunney 无变体 Ribo；GSE189404 局部 CGA12 非同义；GSE202900 是整段 FLuc 重编码。均不能直接补足当前局部同义响应证据。
 
 ## 5. 工程与论文边界
