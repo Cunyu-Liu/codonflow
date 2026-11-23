@@ -1,0 +1,126 @@
+{
+  "schema": "a10-02-e1-observation-protocol-v1",
+  "protocol": "a10_02_e1_observation_protocol_v1",
+  "status": "frozen_development_analysis",
+  "created_date": "2026-11-23",
+  "scope": {
+    "analysis": "within-study transcript-held-out affine observation mapping",
+    "studies": {
+      "Mohammad": "development_only",
+      "Subtelny": "development_only"
+    },
+    "development_only": true,
+    "untouched": false,
+    "absolute_elongation_rates": false,
+    "cross_study_final_confirmation": false,
+    "sota_claim": false
+  },
+  "inputs": {
+    "format": "NPZ",
+    "allow_pickle": false,
+    "paths_supplied_by_cli": true,
+    "required_arrays": [
+      "offsets",
+      "positions",
+      "target",
+      "prediction_position_raw_unanchored",
+      "prediction_position_raw_anchored",
+      "prediction_constant"
+    ],
+    "expected_transcripts": 3921,
+    "expected_offsets_length": 3922,
+    "seeds": [
+      {
+        "seed": 1234,
+        "sha256": "dc3f06a2df0114f3bf02ccad37018e9d1c0654b0e87ebed1bd9292cd14edcfc8"
+      },
+      {
+        "seed": 2345,
+        "sha256": "896489c8774216b7667dd7a203f6219f2aa8a1bcc777f02bc838638e0c1048ef"
+      },
+      {
+        "seed": 3456,
+        "sha256": "79d35876312778d6497db1cf085496e8ef9de326605b39707674e3f8baf5ce31"
+      }
+    ]
+  },
+  "split": {
+    "unit": "transcript",
+    "method": "numpy_default_rng_permutation_then_sorted_exact_allocation",
+    "seed": 9100201,
+    "calibration_fraction": 0.5,
+    "calibration_count": 1960,
+    "test_count": 1961,
+    "shared_across_model_seeds": true,
+    "test_targets_used_for_fitting": false
+  },
+  "observation_model": {
+    "formula": "y = a + b * x",
+    "fit_split": "calibration_only",
+    "slope_constraint": "b >= 0",
+    "transcript_point_weight": "1 / n_i",
+    "fitted_parameters_per_predictor": [
+      "a",
+      "b"
+    ],
+    "predictors": [
+      "prediction_position_raw_unanchored",
+      "prediction_position_raw_anchored"
+    ]
+  },
+  "evaluation": {
+    "split": "test_only",
+    "primary_metric": "transcript_balanced_mse",
+    "co_primary_endpoints": [
+      "raw_unanchored_minus_calibrated_tb_mse",
+      "raw_anchored_minus_calibrated_tb_mse"
+    ],
+    "effect_direction": "raw_tb_mse_minus_calibrated_tb_mse",
+    "secondary_metrics": [
+      "mean_per_transcript_pearson",
+      "mean_per_transcript_spearman"
+    ],
+    "correlation_invariance_required_for_positive_slope": true,
+    "correlation_gain_claim_allowed": false
+  },
+  "inference": {
+    "bootstrap": {
+      "n_resamples": 20000,
+      "unit": "paired_transcript",
+      "confidence_level": 0.95,
+      "interval": "percentile"
+    },
+    "signflip": {
+      "n_resamples": 20000,
+      "alternative": "two_sided",
+      "p_value_correction": "add_one_to_numerator_and_denominator"
+    },
+    "seed": 9100202,
+    "batch_size": 512,
+    "holm": {
+      "family": "two_co_primary_endpoints_within_each_model_seed",
+      "alpha": 0.05
+    },
+    "across_seed_rule": "each_co_primary_effect_has_the_same_nonzero_sign_in_all_3_seeds",
+    "h1_development_positive_rule": "for_every_seed_and_co_primary_endpoint_effect>0_and_bootstrap_95ci_lower>0_and_holm_p<0.05_and_each_endpoint_has_the_same_sign_across_all_3_seeds"
+  },
+  "outputs": {
+    "overwrite": "forbidden",
+    "directory_creation": "exclusive",
+    "per_seed": [
+      "result.json",
+      "calibration_points.npz",
+      "test_points.npz",
+      "test_transcript_effects.csv"
+    ],
+    "summary": "summary.json",
+    "point_arrays": "original transcript indices and positions, target, all raw predictions and both calibrated predictions"
+  },
+  "limitations": [
+    "Mohammad and Subtelny are development studies in this analysis; neither is an untouched final evaluation.",
+    "The fitted affine map concerns observed relative occupancy and does not identify absolute elongation rates.",
+    "This within-study development analysis is not cross-study final confirmation and does not establish a SOTA claim.",
+    "Pearson and Spearman invariance under a positive-slope affine map is a correctness check, not evidence of predictive gain.",
+    "H1 development positivity requires both co-primary endpoints to pass every frozen criterion in all three seeds; otherwise the result is not positive."
+  ]
+}
