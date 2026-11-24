@@ -14,6 +14,7 @@
 - v6 历史快照有 36 条完整配置曲线，覆盖 seed 1234、outer 0 的 independent 与 position；这些曲线属于旧实现，不当作 v7 结果。v7 当前尚无科学结果。
 - 入选曲线均记录 `validation_plateau`；50-epoch rung 淘汰曲线均记录 `rejected_at_rung_not_converged`。入选者恢复 rung-last 的模型、AdamW 与 RNG 状态，续训无最终 epoch 上限。
 - GPU 运行由进程记录与真实 CUDA 前后向探针支持；不是 CPU 降级。当前只核对运行，不以显存或利用率代替科学结果。
+- 进程管理纠正：本地 TaskStop/SSH 句柄结束不等于远端训练终止。v6 曾在停止后继续残留，已按明确 PID 终止；v7 的本地失败通知后，远端 PID 3046541 仍在真实运行，不能误判为训练失败。现由远端 PID 跟踪器等待其真实结束。
 
 ## 2. 训练与数值失败链
 
