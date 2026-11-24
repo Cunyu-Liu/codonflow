@@ -1,7 +1,7 @@
 # CodonFlow Tasks（A10 · Kinetic-CodonFlow 执行清单）
 
 > 生效日期：2026-11-23。唯一执行合同为 `交接文档/PROMPT_NEXT_AGENT_A10_KINETIC.md` 与 `交接文档/spec.md`；A7–A9 仅作不可变证据引用。
-> 当前 **A10-00、A10-01/E0、A10-G0 与 A10-02/E1 已完成；H1 为开发集阳性判决，A10-03/E2 v6 正在真实 CUDA 训练，E2/G1 未完成**。G0 裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1 结果不构成最终跨研究、绝对速率或 SOTA 结论，H2、E3/G2 均未证，`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。不得把历史 A8 bounded G0 或 A9 生成训练授权继承为 A10 Gate 通过。
+> 当前 **A10-00、A10-01/E0、A10-G0 与 A10-02/E1 已完成；H1 为开发集阳性判决，A10-03/E2 v7 正在真实 CUDA 训练，E2/G1 未完成**。G0 裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1 结果不构成最终跨研究、绝对速率或 SOTA 结论，H2、E3/G2 均未证，`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。不得把历史 A8 bounded G0 或 A9 生成训练授权继承为 A10 Gate 通过。
 > 未获相应 Gate 前禁止生成器训练；禁止读取 untouched24、MAGE functional untouched 及派生文件。权威新代码在 `/home/codonflow-a10-e2-v2`，大型产物在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/`。后续任何 untouched 读取均须先冻结最终协议并具备相应明确授权。
 
 ## A10-00 · 重核权威状态并建立任务—数据—baseline—主张矩阵
@@ -55,7 +55,7 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 - [x] 冻结各任务主指标、至少 3 seeds、相当调参预算、ASHA/小网格范围、统计方案和成本口径；无轨迹方法只评 actual set，缺失为 null。
 
 **输出**：数据卡与来源 manifest、raw/clean/split SHA、QC/分布/泄漏报告、baseline manifest 与 smoke、冻结协议和运行台账均已由 G0 closeout v3 验收；汇总见 `交接文档/HANDOFF_A10_01_E0_20261123.md`。closeout v3 与独立复核 SHA、20/20、45 tests 和 A10 定向 251 passed 登记如上。
-**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性，E2 v6 正在真实 CUDA 训练但无完整 outer 结果，H2/G1 未证，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
+**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性，E2 v7 正在真实 CUDA 训练但无完整 outer 结果，H2/G1 未证，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
 
 ## A10-02 · 完成 E1：低自由度观察模型与跨研究可分性
 
@@ -75,7 +75,7 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 
 ## A10-03 · 完成 E2：最小可微流守恒算子与严格 OOD 增量
 
-**状态：进行中；E2 v6 正在真实 CUDA 训练，E2/H2/G1 未完成；当前仅有部分配置曲线，没有完整 outer 预测或统计判决。**
+**状态：进行中；E2 v7 正在真实 CUDA 训练，E2/H2/G1 未完成；v7 尚处运行早期，没有完整 outer 预测或统计判决。**
 **依赖：A10-02 的开发观察过程边界；不得先写生成器，最终跨研究解释仍须独立最终评价。**
 
 - [x] 实现严格为正的起始率、逐位延伸率和终止率，并完成最小可微平均场稳态算子；登记稳态与守恒数值误差。该勾选不包括参数可辨识性或严格 OOD 科学增量。

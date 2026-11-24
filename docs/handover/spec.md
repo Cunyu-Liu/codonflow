@@ -21,7 +21,7 @@
 - **E0 与 A10-G0 已完成**：裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395711ac8cc`；独立复核 SHA 为 `1c6a3b1e211998f7a79959eca68af3a03c92d94548b31eefcc7e62a0ebe1ebd3`，20/20 通过；closeout 生产与独立复核测试合计 45 passed，G0 时 A10 全部定向测试 251 passed。
 - **E1/A10-02 已完成，H1 获开发集阳性判决**：E1 v2 summary SHA 为 `2902e678f93815ccd7731720d940700ae84a88b7e8d5ee3dba8f3a833e6bef5d`，独立复核 SHA 为 `cf5ebfcb450363722e7b49e2e8cf720f883778ddebea3a01b80a2a8cb35c0539`，全量检查通过；wall-clock 51.8138 s，33 tests。raw_unanchored−calibrated 的 TB-MSE effects 为 0.0420274/0.0418212/0.0406288，raw_anchored−calibrated 为 0.0403316/0.0402787/0.0390835；全部 CI lower>0、Holm<0.05、3 seeds 同向。
 - E1 校准斜率为 0.1580–0.1644、截距为 0.8224–0.8308；Pearson/Spearman 不变。该判决只支持开发研究中的 TB-MSE 观察校准改善，不是最终跨研究结论，不把 occupancy 称为绝对速率，也不构成 SOTA。
-- **A10-03/E2 v6 正在真实 CUDA 训练**：最小平均场数值基础已独立复核；真实 CUDA 审计 SHA 为 `3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`。五组独立 least_squares 复核的最大密度误差为 1.33e-14、最大梯度误差为 1.16e-14、独立守恒误差为 3.94e-14。平均场不是精确随机模拟；当前只有部分配置曲线，没有完整 outer 预测、H2 或 G1 结果。
+- **A10-03/E2 v7 正在真实 CUDA 训练**：最小平均场数值基础已独立复核；真实 CUDA 审计 SHA 为 `3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`。五组独立 least_squares 复核的最大密度误差为 1.33e-14、最大梯度误差为 1.16e-14、独立守恒误差为 3.94e-14。平均场不是精确随机模拟；v7 尚处运行早期，没有完整 outer 预测、H2 或 G1 结果。
 - E3/G2 未证，G3 未通过；`final_untouched=false`、`SOTA=false`。大规模生成训练仍须 G2；E1 开发阳性、E2 数值测试或 G0 均不构成最终跨研究、机制、功能、设计 SOTA 或真实生物功能结论。完整交接见 `交接文档/HANDOFF_A10_02_E1_20261123.md`。
 
 ### 0.2 不可变历史证据，不是 A10 结果
@@ -208,7 +208,7 @@ CodonTransformer（`10.1038/s41467-025-58588-7`）、COformer（`10.1016/j.omtn.
 
 文档、测试、hash 和 PPT 是复现条件，不是科学 Gate。不得通过弱 baseline、回顾性最佳臂、target outcome 校准或反复 untouched 制造通过。
 
-当前登记：**E0/A10-G0、E1/A10-02 已完成**；H1 仅为开发集阳性，最终跨研究结论仍未建立。A10-03/E2 v6 正在训练，当前只有部分配置曲线，E2/H2 未证，**G1 未通过**；E3/G2、G3 也未通过。G0 只关闭数据与 baseline readiness，E1 的 TB-MSE 改善不证明 Pearson/Spearman 增量或动力学增量；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。历史 schema/算法修正只修复审计与复核实现，**不是放宽 Gate、降低标准或改写历史 Gate**。
+当前登记：**E0/A10-G0、E1/A10-02 已完成**；H1 仅为开发集阳性，最终跨研究结论仍未建立。A10-03/E2 v7 正在训练，v7 尚处运行早期，E2/H2 未证，**G1 未通过**；E3/G2、G3 也未通过。G0 只关闭数据与 baseline readiness，E1 的 TB-MSE 改善不证明 Pearson/Spearman 增量或动力学增量；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。历史 schema/算法修正只修复审计与复核实现，**不是放宽 Gate、降低标准或改写历史 Gate**。
 
 ## 8. 三重核验、运行登记与论文证据
 
@@ -233,7 +233,7 @@ Fig.1 展示真实分布、简单代理失败与反例；Fig.2 展示观察校�
 ## 9. 一个月执行边界
 
 - **第 1 周：A10-00/A10-01、E0/G0（已完成）。** G0 closeout v3 裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；完整登记与 SHA 见 `交接文档/HANDOFF_A10_01_E0_20261123.md`。仍不训练新生成器，不写机制、SOTA、protein OOD 或真实生物泛化结论。
-- **第 2 周：A10-02/E1 已完成，A10-03/E2 v6 正在真实 CUDA 训练，G1 未通过。** H1 为开发集阳性，仅限 TB-MSE 校准改善，Pearson/Spearman 不变，不外推为最终跨研究结论；SHA 与完整指标见 `交接文档/HANDOFF_A10_02_E1_20261123.md`。下一步等待完整 outer 预测，独立重建稳态与指标，并按冻结合同完成同容量严格 OOD 判决；G1 未过则停止动力学主线。
+- **第 2 周：A10-02/E1 已完成，A10-03/E2 v7 正在真实 CUDA 训练，G1 未通过。** H1 为开发集阳性，仅限 TB-MSE 校准改善，Pearson/Spearman 不变，不外推为最终跨研究结论；SHA 与完整指标见 `交接文档/HANDOFF_A10_02_E1_20261123.md`。下一步等待完整 outer 预测，独立重建稳态与指标，并按冻结合同完成同容量严格 OOD 判决；G1 未过则停止动力学主线。
 - **第 3 周：A10-04、E3/G2；有条件进入 A10-05。** 只有 G1 通过后做动力学驱动的功能主表；只有 G2 通过后才允许大规模生成训练及 E4/E5。
 - **第 4 周：有条件完成 A10-05/A10-06，或如实收束缺口。** 通过前序 Gate 才做设计、对应消融和最终一次 untouched；随后干净复现、论文证据矩阵和 PPT。未建立阳性核心时稿件保持 working，不用工程量包装成功。
 

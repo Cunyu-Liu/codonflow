@@ -1,4 +1,4 @@
-# HANDOFF A10-03：E2 v6 进行中
+# HANDOFF A10-03：E2 v7 进行中
 
 - 日期：2026-11-24
 - 阶段：A10-03 / E2
@@ -7,11 +7,11 @@
 
 ## 1. 当前权威状态
 
-- 工作树：`/home/codonflow-a10-e2-v2`；当前提交 `f9c0a4d5`，运行前定向回归 108 passed、1 个本机 CUDA skip。
+- 工作树：`/home/codonflow-a10-e2-v2`；v7 代码提交 `3e73210a`，启动前定向回归 111 passed。
 - 数据：Mohammad16 开发集，严格 QC 后 1073 条转录本；1761 原始记录中缺 ATG 171、覆盖不足 517，其他拒绝与 ID/exact-CDS 冲突均为 0。长度 16–1521 nt。
-- 输出：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_development_v6`；日志为同路径加 `.log`。
+- 当前输出：`/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_development_v7`；日志为同路径加 `.log`，不得覆盖 v1–v6。
 - 协议：3 outer×3 inner×3 seeds；三臂为 independent、kinetic、position；65/65/1 个单模型参数，均用三成员 inner ensemble。
-- 运行快照已有 36 条完整配置曲线，覆盖 seed 1234、outer 0 的 independent 与 position；kinetic 主臂及其他 outer/seed 尚未完成。此快照没有 outer 预测、效应或统计判决。
+- v6 历史快照有 36 条完整配置曲线，覆盖 seed 1234、outer 0 的 independent 与 position；这些曲线属于旧实现，不当作 v7 结果。v7 当前尚无科学结果。
 - 入选曲线均记录 `validation_plateau`；50-epoch rung 淘汰曲线均记录 `rejected_at_rung_not_converged`。入选者恢复 rung-last 的模型、AdamW 与 RNG 状态，续训无最终 epoch 上限。
 - GPU 运行由进程记录与真实 CUDA 前后向探针支持；不是 CPU 降级。当前只核对运行，不以显存或利用率代替科学结果。
 
@@ -23,13 +23,14 @@
 | v2 | 严格 QC 数量变化，在训练前停止 | 无训练结果 |
 | v4 | 长序列的原始及缩放多维求根不收敛 | fail-closed；日志与曲线保留 |
 | v5 | 瞬态后备仍有样本归一化残差 `6.395e-03 > 1e-10` | 不接受、不放宽阈值 |
-| v6 | 逐段延长瞬态积分，每段检查完整残差；训练进行中 | 尚无最终结果 |
+| v6 | 逐段延长瞬态积分；同一 1487-codon 困难样本近 3 小时无新曲线，确认停滞后停止 | 历史曲线保留，不作科学结论 |
+| v7 | LSODA 内部 `rtol=1e-8/atol=1e-10`，最终稳态残差仍须 `<=1e-10`；真实困难样本 80.27 s 达残差 `2.36e-15` | CUDA 训练进行中，尚无最终结果 |
 
 平均场实现位于 `src/codonflow/models/kinetic_mean_field.py`。它包含单样本/变长 batch、解析 Jacobian、隐式梯度、守恒检查、行缩放、iterative refinement 和自适应 LSODA 后备。平均场不是精确随机模拟；ensemble 均值不是共同稳态，只能逐成员检查守恒。
 
 ## 3. 下一步与验收
 
-1. 不重复提交 v6，不覆盖旧产物；等待 `summary.json`、`predictions.npz`、`selected_inner_states.npz`、selection、逐转录本指标和完整 curves。
+1. 不重复提交 v7，不覆盖旧产物；等待 `summary.json`、`predictions.npz`、`selected_inner_states.npz`、selection、逐转录本指标和完整 curves。
 2. 用 `scripts/a10_03_verify_e2_kinetic.py` 从原始数据、split、保存状态独立重建预测；用 SciPy 独立复核每个 kinetic 成员稳态，并核对 CUDA、成本、双比较 Holm 与 seed-first pooled CI。
 3. 只有完整 outer 预测和独立复核通过后，才记录 H2 开发效应、CI、成本与收敛；不能从 inner 曲线推断 outer 阳性。
 4. G1 按原合同裁决：E2 严格 transcript OOD 同时超过 independent 与 position，paired 95% CI 下界大于 0 且 Holm 通过。开发结果不等于最终研究 OOD、绝对速率、SOTA 或真实功能验证。
@@ -60,4 +61,5 @@
 - 原型在修复单位点返回类型和 bracket 后曾通过 111 项定向测试，但随机异质序列压力测试仍失败；一个 64-codon 案例的边界归一化残差为 `1.762e+01`，远超 `1e-10`，不能用于训练。
 - 失败输入保存为 `a10/e2/flux_bracket_failure_v1.npz`、`flux_bracket_failure_v2.npz`、`flux_bracket_failure_v3.npz`。一维递推在异质序列上有显著数值敏感性，不能因部分样本更快而替代严格多维求解。
 - 原型未合入 GitHub，权威生产算子恢复并保持 v6 SHA `7c3bf6a651af5168b0a6e9794aa4957a43d17864c4c4e5b9bb54470a3432b7fc`。111 项旁路测试不是正式运行验收，也不是科学结论。
-- 尝试用 `py-spy` 只读获取 v6 堆栈，容器因缺少 `SYS_PTRACE` 拒绝；未绕过权限。当前没有足够证据把长耗时归因于某个具体函数，不能经验主义地修改数值路径。
+- 尝试用 `py-spy` 只读获取 v6 堆栈，容器因缺少 `SYS_PTRACE` 拒绝；未绕过权限。随后新增 CUDA 诊断记录器，捕获同一 1487-codon 输入持续停滞；真实 `α/k/β` 保存于 `a10/e2/kinetic_solver_diagnostic_v1/current_case.npz`，避免无目标修改。
+- 对该真实输入，普通及 warm-start root/least-squares 均未同时满足精度与耗时；最终采用仅调整 LSODA 内部容差、保持严格稳态验收的 v7。诊断代码及测试随 `3e73210a` 提交。
