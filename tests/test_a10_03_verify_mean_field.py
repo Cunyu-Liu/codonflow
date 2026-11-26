@@ -104,25 +104,25 @@ def test_rate_shapes_and_solver_controls_are_validated():
         kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0, maxfev=1.5)
 
 
-def test_newton_receives_analytic_sparse_jacobian(monkeypatch):
-    actual_spsolve = kinetic_mean_field.spsolve
+def test_newton_receives_analytic_banded_jacobian(monkeypatch):
+    actual_banded_solve = kinetic_mean_field._banded_lu_once_numpy
     observed = {}
 
-    def checked_spsolve(matrix, rhs):
-        observed["jacobian"] = matrix
-        return actual_spsolve(matrix, rhs)
+    def checked_banded_solve(bands, rhs, **kwargs):
+        observed["jacobian"] = kinetic_mean_field._banded_to_dense_numpy(bands)
+        return actual_banded_solve(bands, rhs, **kwargs)
 
-    monkeypatch.setattr(kinetic_mean_field, "spsolve", checked_spsolve)
+    monkeypatch.setattr(kinetic_mean_field, "_banded_lu_once_numpy", checked_banded_solve)
     kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0)
     assert observed["jacobian"].shape == (3, 3)
-    assert observed["jacobian"].nnz == 7
+    assert np.count_nonzero(observed["jacobian"]) == 7
 
 
 def test_newton_nonconvergence_is_never_silently_accepted(monkeypatch):
-    def failed_spsolve(*args, **kwargs):
+    def failed_banded_solve(*args, **kwargs):
         raise RuntimeError("synthetic nonconvergence")
 
-    monkeypatch.setattr(kinetic_mean_field, "spsolve", failed_spsolve)
+    monkeypatch.setattr(kinetic_mean_field, "_banded_lu_once_numpy", failed_banded_solve)
     monkeypatch.setattr(kinetic_mean_field, "_transient_state_numpy", lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("did not converge: synthetic nonconvergence")))
     with pytest.raises(RuntimeError, match="did not converge.*synthetic nonconvergence"):
         kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0)

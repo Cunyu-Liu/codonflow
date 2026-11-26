@@ -1,4 +1,7 @@
 import json
+import multiprocessing
+import os
+import queue
 import time
 from pathlib import Path
 
@@ -26,6 +29,61 @@ def synthetic_worker(task):
         "curves": [{"epochs": [{"epoch": 1, "elapsed_seconds": time.perf_counter()}]}],
         "fit_costs": [{"continuation_wall_clock_seconds": time.perf_counter()}],
         "shard_cost": {"wall_clock_seconds": 0.001 + value / 1000},
+    }
+
+
+def tracked_worker(task):
+    active, peak, lock = task["active"], task["peak"], task["lock"]
+    arm = task["spec"]["arm"]
+    with lock:
+        active[arm] += 1
+        peak[arm] = max(peak[arm], active[arm])
+    try:
+        time.sleep(0.05)
+        return synthetic_worker(task)
+    finally:
+        with lock:
+            active[arm] -= 1
+
+
+def blocking_failure_worker(task):
+    task["started"].put({"value": task["value"], "pid": os.getpid()})
+    task["barrier"].wait(timeout=30)
+    if task["value"] < 0:
+        snapshot_dir = Path(task["snapshot_dir"])
+        snapshot_dir.mkdir(parents=True, exist_ok=True)
+        kinetic.write_json_exclusive(snapshot_dir / "injected_worker_failure.json", {
+            "spec": task["spec"], "pid": os.getpid(), "status": "complete_before_raise",
+        })
+        raise RuntimeError("injected blocking shard failure")
+    task["never_release"].wait(60)
+    raise RuntimeError("blocking worker escaped scheduler termination")
+
+
+def synthetic_cuda_worker(task):
+    device = torch.device("cuda:0")
+    spec = task["spec"]
+    length = 96
+    positions = np.arange(length)
+    codons = (positions * 3 + spec["seed_index"]) % len(kinetic.CODONS)
+    density = 1.0 + ((positions * 5 + spec["outer_fold"]) % 11)
+    record = kinetic.Transcript(
+        index=0, transcript_id="synthetic_cuda_long", codons=codons,
+        counts=density.copy(), density=density,
+        mask=(positions >= 5) & (positions < length - 4),
+        coverage=1.0, positive_mean=float(density.mean()),
+    )
+    model = kinetic._new_model(device, spec["seed"], spec["arm"])
+    packed = kinetic._pack([record], device)
+    output = kinetic.forward_arm(model, spec["arm"], packed, task["model_config"])
+    kinetic._transcript_losses(output, packed).mean().backward()
+    torch.cuda.synchronize(device)
+    gradient = torch.cat([parameter.grad.detach().reshape(-1) for parameter in model.parameters()])
+    return {
+        "spec": spec, "value": task["value"], "array": output["rho"].detach().cpu(),
+        "state": gradient.cpu(),
+        "residual": None if output["residual"] is None else output["residual"].detach().cpu(),
+        "shard_cost": {"wall_clock_seconds": 0.0},
     }
 
 
@@ -78,6 +136,24 @@ def test_spawn_1_2_4_workers_are_bitwise_equivalent_and_cache_reuses_results(tmp
     assert ledger["cache_hits"] == 27 and ledger["cache_misses"] == 0
 
 
+@pytest.mark.integration
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="synthetic CUDA equivalence requires CUDA")
+def test_spawn_1_2_4_workers_real_cuda_forward_backward_are_bitwise_equivalent(tmp_path):
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    tasks = synthetic_tasks(protocol)
+    for task in tasks:
+        task["model_config"] = protocol["model"]
+    fingerprints = []
+    for workers in (1, 2, 4):
+        results, ledger = parallel.execute_shard_tasks(
+            tasks, tmp_path / f"cuda_workers_{workers}", {"case": "real_cuda"}, workers, synthetic_cuda_worker,
+        )
+        assert len(results) == 27
+        assert ledger["cache_misses"] == 27
+        fingerprints.append([parallel.shard_science_sha256(result) for result in results])
+    assert fingerprints[0] == fingerprints[1] == fingerprints[2]
+
+
 def test_spawn_failure_is_fail_closed_and_preserves_prior_complete_cache(tmp_path):
     protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
     cache = tmp_path / "failure_cache"
@@ -88,6 +164,70 @@ def test_spawn_failure_is_fail_closed_and_preserves_prior_complete_cache(tmp_pat
     assert len(list(cache.glob("*.npz"))) < 27
     for path in cache.glob("*.npz"):
         assert path.with_suffix(path.suffix + ".sha256").is_file()
+
+
+def test_arm_worker_limits_are_enforced_without_changing_canonical_results(tmp_path):
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    tasks = synthetic_tasks(protocol)
+    with multiprocessing.get_context("spawn").Manager() as manager:
+        active, peak, lock = manager.dict(), manager.dict(), manager.Lock()
+        limits = {"kinetic": 1, "independent": 2, "position": 3}
+        for arm in kinetic.ARMS:
+            active[arm], peak[arm] = 0, 0
+        for task in tasks:
+            task.update({"active": active, "peak": peak, "lock": lock})
+        results, ledger = parallel.execute_shard_tasks(
+            tasks, tmp_path / "arm_limits", {"case": "arm_limits"}, 21, tracked_worker, limits,
+        )
+        assert all(1 <= peak[arm] <= limits[arm] for arm in kinetic.ARMS)
+        assert dict(active) == {arm: 0 for arm in kinetic.ARMS}
+    assert ledger["configured_arm_max_workers"] == limits
+    assert ledger["arm_max_workers"] == limits
+    assert [result["spec"] for result in results] == parallel.shard_specs(protocol)
+    assert ledger["cache_hits"] == 0 and ledger["cache_misses"] == 27
+
+
+def test_first_failure_cancels_pending_terminates_pids_and_preserves_snapshot(tmp_path):
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    tasks = synthetic_tasks(protocol, failing=True)
+    cache = tmp_path / "terminated_cache"
+    snapshot_dir = tmp_path / "failure_snapshots"
+    with multiprocessing.get_context("spawn").Manager() as manager:
+        started, barrier, never_release = manager.Queue(), manager.Barrier(4), manager.Event()
+        for task in tasks:
+            task.update({
+                "started": started, "barrier": barrier, "never_release": never_release,
+                "snapshot_dir": str(snapshot_dir),
+            })
+        started_clock = time.perf_counter()
+        with pytest.raises(parallel.ShardExecutionError, match="injected blocking shard failure") as caught:
+            parallel.execute_shard_tasks(tasks, cache, {"case": "terminate"}, 4, blocking_failure_worker)
+        assert time.perf_counter() - started_clock < 30
+        observed = [started.get(timeout=1) for _ in range(4)]
+        with pytest.raises(queue.Empty):
+            started.get_nowait()
+    cancellation = caught.value.scheduler_cancellation
+    assert cancellation["all_workers_reaped"] is True
+    assert len(cancellation["terminated_worker_pids"]) == 4
+    assert cancellation["cancelled_pending_futures"] == 0
+    assert len(cancellation["unsubmitted_shard_specs"]) == 23
+    assert {entry["value"] for entry in observed} == {-1, 1, 2, 3}
+    assert {entry["pid"] for entry in observed} == set(cancellation["terminated_worker_pids"])
+    assert set(cancellation["worker_exit_codes"]) == {str(entry["pid"]) for entry in observed}
+    for entry in observed:
+        with pytest.raises(ProcessLookupError):
+            os.kill(entry["pid"], 0)
+    assert json.loads((snapshot_dir / "injected_worker_failure.json").read_text())["status"] == "complete_before_raise"
+    assert not list(cache.glob("*.npz"))
+
+
+def test_arm_worker_limit_validation_rejects_unknown_and_nonpositive_values():
+    assert parallel.resolve_arm_max_workers(21)[1] == parallel.DEFAULT_ARM_MAX_WORKERS
+    assert parallel.resolve_arm_max_workers(2)[1] == {arm: 2 for arm in kinetic.ARMS}
+    with pytest.raises(ValueError, match="unknown arm"):
+        parallel.resolve_arm_max_workers(4, {"unknown": 1})
+    with pytest.raises(ValueError, match="positive integer"):
+        parallel.resolve_arm_max_workers(4, {"kinetic": 0})
 
 
 def test_cache_rejects_identity_mismatch_and_tampering(tmp_path):

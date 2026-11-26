@@ -1,9 +1,9 @@
-# HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 生产运行中
+# HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近只读复核：2026-11-26
-- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）
+- 文档日期：2026-11-25；最近复核与 w21 收束：2026-11-26
+- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21）
 - 阶段：A10-03 / E2
-- 状态：**v7、v8 历史 fail-closed 不删除；release `/home/codonflow-a10-e2-release` 与 GitHub `a8-rk` 均为 `79dcbf377b043e21f45573428128d236c9534685`，登记时干净，相关 144 tests、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过。v10 27 workers 与 w23 均 OOM、0 shard 且失败保留；w21 真实 CUDA 运行中但 0 完成 shard/0 曲线，不能称完成；E2/H2/G1 未完成、未裁决且未通过。**
+- 状态：**v7、v8 历史 fail-closed 不删除；当前 release `/home/codonflow-a10-e2-release` HEAD 为 `6075ad5381800c84e99b4f4a277b26b6594a7fbf`，本次核对干净。历史 release 集成验收为 `79dcbf377b043e21f45573428128d236c9534685`，相关 144 tests、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过。v10 27 workers、w23 与 w21 均 OOM、0 shard/0 曲线且失败保留；w21 已按明确 PID 收束，退出码 1，无科学恢复价值。结构化求解修复已在独立 worktree `/home/codonflow-a10-e2-structured` 完成工程验收（本地 `b6012ac50b30110636505a26aa716f5d59af6e11`，未 push）；E2/H2/G1 未完成、未裁决且未通过。**
 - 本文只登记已核实的失败、恢复与数值验证事实及后续验收边界，不预写训练或科学成功。
 
 ## 1. v7 已核实的退出事实（不可变历史）
@@ -87,17 +87,33 @@
 - **859** 个 L1–L6 合成小状态精确 CTMC cases 及独立 review 通过；mean-field 边界仍按第 3 节，不因 release 整合而扩大。
 - 集成 manifest 为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_release_integration_v1/integration_manifest.json`，其中 `H2_evaluated=false`、`G1_evaluated=false`、`scientific_gate_claimed=false`。w21 manifest/closeout 的指定归集目录同为 `kinetic_release_integration_v1/`；路径登记不表示 w21 已形成完成摘要。
 
-### 5.2 v10/w23 失败保留，w21 尚未完成
+### 5.2 v10/w23/w21 失败保留
 
 - **v10（27 workers）**：因 CUDA `CUBLAS_STATUS_ALLOC_FAILED` fail-closed，退出码 1；0 完成 shard、0 曲线，无完成摘要。产物目录为同级 `kinetic_development_v10/`，失败证据保留，不覆盖。
 - **w23（23 workers）**：因 CUDA out of memory fail-closed，退出码 1；0 完成 shard、0 曲线，无完成摘要。产物目录为同级 `kinetic_development_v10_w23/`，失败证据保留，不覆盖。
-- **w21（21 workers）**：真实 CUDA 进程运行中；登记快照为 **24.8GB 已用、7.2GB 空闲、约 25% GPU util**，0 完成 shard、0 曲线、无 traceback、无退出码。产物目录为同级 `kinetic_development_v10_w21/`。**不能称训练完成，也不能由显存占用或进程存在推断科学进展。**
-- v7/v8 历史失败、v10/w23 OOM 与 w21 进行中状态必须并列保留；工程 release 通过不抵消任何生产失败，也不预写 w21 成功。
+- **w21（21 workers）**：启动后的历史快照曾登记 24.8GB 已用、7.2GB 空闲、约 25% GPU util；随后 26 份 worker failure 全部为 CUDA OOM（independent 9、kinetic 8、position 9），0 完成 shard、0 曲线。产物目录为同级 `kinetic_development_v10_w21/`，失败证据保留，不覆盖。
+- v7/v8 历史失败与 v10/w23/w21 OOM 必须并列保留；工程 release 通过不抵消任何生产失败。
+
+### 5.3 w21 收束、证据保全与性能根因（2026-11-26）
+
+- 终止前核对唯一运行态 worker PID `3989620` 的 `spawn_main` 身份、parent `3989510` 的 w21 完整命令行和 launcher `3989507` 的 w21 脚本路径，并保存 PID/starttime/命令行。复核身份未变后仅向 worker `3989620` 发送一次 SIGTERM；worker 退出，parent/launcher 随后自行退出，无需 KILL，也未向其他 PID 发信号。
+- executor 写入 `kinetic_development_v10_w21/failure.json`；`.exit_code=1`，`.finished=2026-11-26T15:56:12+08:00`。最终仍为 26 份 worker failure JSON、0 curves，且无 `summary.json` 或 `predictions.npz`，故 w21 判为无效 OOM 失败，无科学恢复价值。
+- 完整 failure 目录快照、26 份摘要及 SHA、进程身份、executor failure/log、退出码与关闭清单保存在新目录 `kinetic_release_integration_v1/w21_oom_closeout_20261126_v1/`；原始目录和性能探针均未覆盖。
+- 性能证据位于同级 `performance_probe_v1/`。真实 Mohammad16 开发样本、float64 CUDA 探针显示 batch-32 forward 中 CPU Newton 占约 94.8% 时间；backward 使用 padded dense 线性代数，复杂度为 `O(BL^3)`，并出现单次约 593 MB 分配。`complexity_corrected_v2.json` 纠正初版重复 outer 计数；该性能诊断不改变科学 protocol、Gate 或 `1e-10` 阈值。
+- 当前权威 release HEAD 已核对为 `6075ad5381800c84e99b4f4a277b26b6594a7fbf` 且干净。结构化求解修复仅在独立 worktree `/home/codonflow-a10-e2-structured` 开展，artifacts 写入新的 teams 目录；未经真实 CUDA 前后向、长序列、独立残差/梯度及定向回归验证，不声称修复完成，也不降低阈值。
+
+### 5.4 结构化求解工程验收完成，科学运行仍未完成
+
+- 独立 worktree 本地提交为 **`b6012ac50b30110636505a26aa716f5d59af6e11`**，只修改 `src/codonflow/models/kinetic_mean_field.py` 与 `tests/test_kinetic_mean_field_batch.py`，提交后干净、未 push。长序列 forward 使用带边双对角牛顿步并保留 sparse 回退；长序列 backward 双向结构化 adjoint 按 recovery 择优，困难样本保留逐样本 dense LU/QR 严格恢复；短序列路径不变。protocol、Gate 和 `1e-10` 未改。
+- release 定向集实测 **146 passed in 212.59 s**（原 144＋新增 2），日志在新目录 `structured_solver_v1/release_directed_tests.log`。新增测试禁止长序列调用 sparse/dense 分解，并检查异质序列独立方向有限差分。
+- 真实 RTX 5090、float64 CUDA 的 65/257/1025/1521-codon 变长 batch 前后向通过：峰值 **677,376 bytes**，最大生产/独立归一化残差均 `4.486e-16`，最大 backward recovery `1.405e-15`，相对独立 dense adjoint 最大梯度误差 `1.243e-13`，257-codon 方向差分绝对误差 `1.045e-9`。报告为 `structured_solver_v1/independent_cuda_v4/cuda_long_sequence_independent_validation.json`。
+- 真实 Mohammad 模型探针的 1521-codon 案例残差 `4.894e-15`、峰值 142.6 MB；32×264 batch 峰值由旧 143.0 MB 降至 **70.4 MB**，但 backward 中位约 1.67 s、旧探针约 0.48 s，故只主张消除 padded dense 大额分配，不声称所有场景提速。结果在 `structured_solver_v1/real_model_probe/results.json`。
+- 失败历史全部保留：病态周期长序列两次 backward recovery 失败（条件数约 1e17–1e18）、一次独立报告 NumPy JSON 序列化失败、一次真实探针导入路径失败；对应 v1/v2/v3 和首次 probe 日志均未覆盖。上述工程验收不重跑 w21、不产生 outer 预测，不裁决 H2/G1。
 
 ## 6. 当前科学与 Gate 边界
 
 - E0/A10-G0 已完成；E1/A10-02 已完成，H1 仅为开发集 TB-MSE 观察校准阳性。这些历史状态不变。
-- E2 生产科学运行仍未完成，w21 处于真实 CUDA 运行中但无完成 shard/曲线，H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、w21 进程/显存、inner 状态、工程测试、精确 CTMC 对照或局部 rank 推断 outer 阳性。
+- E2 生产科学运行仍未完成，w21 已 OOM 退出且无完成 shard/曲线，H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、历史进程/显存、inner 状态、工程测试、精确 CTMC 对照或局部 rank 推断 outer 阳性。
 - E3/G2 未证，G3 未通过；`final_untouched=false`、`SOTA=false`。大规模生成训练仍须先通过 G2。
 - 平均场不是精确随机模拟，occupancy 仍只是实验依赖的相对占据/速度代理。不得作最终跨研究、绝对物理速率、因果机制、真实生物功能或 SOTA 结论。
 - untouched24、MAGE functional untouched 及其派生文件继续禁止读取；冻结数据边界未因恢复工作改变。
@@ -113,6 +129,6 @@
 
 ## 8. 本次文档登记范围
 
-本次仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接，精确镜像到 `codonflow-main/docs/handover/`，再只同步这四份文件到 release 的 `docs/handover/`。不修改其他代码、配置、数据或训练产物，不启动或停止训练；远端提交只 add 这四份文档，历史 handoff 与失败证据不删除。
+上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。本轮仍只更新这四份现行文档及本地/远端镜像，登记 w21 OOM 收束与性能根因；不提交或推送远端文档，历史 handoff 与失败证据不删除。代码修改严格限制在新的 `/home/codonflow-a10-e2-structured` worktree，不 push。
 
-当前可执行事实是：**release 与 GitHub 均为 `79dcbf377b043e21f45573428128d236c9534685`，144 项定向测试、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过；保留 v7/v8 失败链及 v10/w23 OOM，不覆盖失败目录；w21 真实 CUDA 运行中但 0 完成 shard/0 曲线，不能称完成；没有 H2、G1 或生物有效性的证据，不预写 w21 成功。**
+当前可执行事实是：**release HEAD 为 `6075ad5381800c84e99b4f4a277b26b6594a7fbf`；历史 144 项定向测试、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过只支持 scoped 工程验收；保留 v7/v8 失败链及 v10/w23/w21 OOM，不覆盖失败目录；w21 已退出 1、0 完成 shard/0 曲线，无科学恢复价值；结构化求解修复已完成 146 项定向测试和真实 CUDA/独立数值验收，本地 `b6012ac50b30110636505a26aa716f5d59af6e11` 未 push，但没有 H2、G1 或生物有效性的证据。**

@@ -113,15 +113,15 @@ def test_nonconvergence_is_not_returned_as_a_success(monkeypatch):
         solve_kinetic_mean_field(1.3, [0.8, 1.7, 1.1], 0.9, maxfev=1)
 
 
-def test_scipy_exceptions_are_preserved(monkeypatch):
-    class ExpectedSparseSolveError(Exception):
+def test_banded_solve_exceptions_are_preserved(monkeypatch):
+    class ExpectedBandedSolveError(Exception):
         pass
 
-    def failing_spsolve(*args, **kwargs):
-        raise ExpectedSparseSolveError("sparse solve failure")
+    def failing_banded_solve(*args, **kwargs):
+        raise ExpectedBandedSolveError("banded solve failure")
 
-    monkeypatch.setattr(kinetic_mean_field, "spsolve", failing_spsolve)
-    with pytest.raises(ExpectedSparseSolveError, match="sparse solve failure"):
+    monkeypatch.setattr(kinetic_mean_field, "_banded_lu_once_numpy", failing_banded_solve)
+    with pytest.raises(ExpectedBandedSolveError, match="banded solve failure"):
         solve_kinetic_mean_field(1.0, [1.0], 1.0)
 
 
@@ -142,14 +142,14 @@ def test_transient_integrator_controls_preserve_strict_steady_residual(monkeypat
 
 
 def test_normalized_newton_jacobian_matches_finite_differences(monkeypatch):
-    actual_spsolve = kinetic_mean_field.spsolve
+    actual_banded_solve = kinetic_mean_field._banded_lu_once_numpy
     observed = []
 
-    def capture_spsolve(matrix, rhs):
-        observed.append(matrix.toarray())
-        return actual_spsolve(matrix, rhs)
+    def capture_banded_solve(bands, rhs, **kwargs):
+        observed.append(kinetic_mean_field._banded_to_dense_numpy(bands))
+        return actual_banded_solve(bands, rhs, **kwargs)
 
-    monkeypatch.setattr(kinetic_mean_field, "spsolve", capture_spsolve)
+    monkeypatch.setattr(kinetic_mean_field, "_banded_lu_once_numpy", capture_banded_solve)
     alpha = 1.3
     rates = np.asarray([0.8, 1.7, 1.1])
     beta = 0.9

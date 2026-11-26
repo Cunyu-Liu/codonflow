@@ -22,6 +22,8 @@ from scripts import a10_03_e2_kinetic as kinetic
 PARALLEL_SCHEMA = "a10-03-e2-kinetic-parallel-v1"
 SHARD_SCHEMA = "a10-03-e2-kinetic-shard-v1"
 FAILURE_SCHEMA = "a10-03-e2-kinetic-candidate-failure-v1"
+DEFAULT_ARM_MAX_WORKERS = {"kinetic": 4, "independent": 8, "position": 8}
+WORKER_TERMINATION_GRACE_SECONDS = 5.0
 
 
 def shard_specs(protocol):
@@ -165,8 +167,51 @@ class ShardExecutionError(RuntimeError):
         super().__init__(f"shard {spec} failed: {type(original).__name__}: {original}")
 
 
-def execute_shard_tasks(tasks, cache_dir, identity, max_workers, worker):
+def resolve_arm_max_workers(max_workers, arm_max_workers=None):
     kinetic._positive_int(max_workers, "max_workers")
+    configured = dict(DEFAULT_ARM_MAX_WORKERS)
+    if arm_max_workers is not None:
+        unknown = set(arm_max_workers) - set(kinetic.ARMS)
+        if unknown:
+            raise ValueError(f"unknown arm worker limits: {sorted(unknown)}")
+        configured.update(arm_max_workers)
+    for arm, limit in configured.items():
+        kinetic._positive_int(limit, f"arm_max_workers[{arm!r}]")
+    effective = {arm: min(max_workers, limit) for arm, limit in configured.items()}
+    return configured, effective
+
+
+def _cancel_and_terminate(executor, futures, unsubmitted):
+    cancelled = sum(future.cancel() for future in futures)
+    processes = list(executor._processes.values())
+    worker_pids = sorted(process.pid for process in processes if process.pid is not None)
+    for process in processes:
+        if process.is_alive():
+            process.terminate()
+    deadline = time.monotonic() + WORKER_TERMINATION_GRACE_SECONDS
+    for process in processes:
+        process.join(max(0.0, deadline - time.monotonic()))
+    killed = []
+    for process in processes:
+        if process.is_alive():
+            process.kill()
+            killed.append(process.pid)
+    kill_deadline = time.monotonic() + WORKER_TERMINATION_GRACE_SECONDS
+    for process in processes:
+        process.join(max(0.0, kill_deadline - time.monotonic()))
+    executor.shutdown(wait=True, cancel_futures=True)
+    return {
+        "cancelled_pending_futures": int(cancelled),
+        "unsubmitted_shard_specs": [task["spec"] for task, _ in unsubmitted],
+        "terminated_worker_pids": worker_pids,
+        "killed_worker_pids": sorted(killed),
+        "worker_exit_codes": {str(process.pid): process.exitcode for process in processes},
+        "all_workers_reaped": all(not process.is_alive() for process in processes),
+    }
+
+
+def execute_shard_tasks(tasks, cache_dir, identity, max_workers, worker, arm_max_workers=None):
+    configured_arm_workers, effective_arm_workers = resolve_arm_max_workers(max_workers, arm_max_workers)
     cache_dir = Path(cache_dir).expanduser().resolve()
     cache_dir.mkdir(parents=True, exist_ok=True)
     results = {}
@@ -192,38 +237,57 @@ def execute_shard_tasks(tasks, cache_dir, identity, max_workers, worker):
         else:
             pending.append((task, path))
     started = time.perf_counter()
-    executor = concurrent.futures.ProcessPoolExecutor(
-        max_workers=max_workers, mp_context=multiprocessing.get_context("spawn"),
-    )
+    executor = None
     futures = {}
+    active_by_arm = {arm: 0 for arm in kinetic.ARMS}
     try:
-        for task, path in pending:
-            futures[executor.submit(worker, task)] = (task, path)
-        for future in concurrent.futures.as_completed(futures):
-            task, path = futures[future]
-            spec = task["spec"]
-            try:
-                result = future.result()
-            except Exception as error:
-                for other in futures:
-                    other.cancel()
-                raise ShardExecutionError(spec, error) from error
-            if result.get("spec") != spec:
-                raise RuntimeError(f"worker returned the wrong shard spec: expected {spec}")
-            result = kinetic._cpu_tree(result)
-            digest = save_shard(path, result, identity)
-            results[canonical_spec_key(spec)] = result
-            ledger.append({
-                "spec": spec, "cache_hit": False, "path": str(path), "sha256": digest,
-                "shard_cost": result.get("shard_cost"),
-            })
-    except Exception:
-        for future in futures:
-            future.cancel()
-        executor.shutdown(wait=True, cancel_futures=True)
+        if pending:
+            executor = concurrent.futures.ProcessPoolExecutor(
+                max_workers=min(max_workers, sum(effective_arm_workers.values())),
+                mp_context=multiprocessing.get_context("spawn"),
+            )
+
+            def submit_ready():
+                while len(futures) < max_workers:
+                    ready_index = next((
+                        index for index, (task, _) in enumerate(pending)
+                        if active_by_arm[task["spec"]["arm"]] < effective_arm_workers[task["spec"]["arm"]]
+                    ), None)
+                    if ready_index is None:
+                        return
+                    task, path = pending.pop(ready_index)
+                    arm = task["spec"]["arm"]
+                    futures[executor.submit(worker, task)] = (task, path)
+                    active_by_arm[arm] += 1
+
+            submit_ready()
+            while futures:
+                done, _ = concurrent.futures.wait(futures, return_when=concurrent.futures.FIRST_COMPLETED)
+                for future in done:
+                    task, path = futures.pop(future)
+                    spec = task["spec"]
+                    active_by_arm[spec["arm"]] -= 1
+                    try:
+                        result = future.result()
+                    except Exception as error:
+                        raise ShardExecutionError(spec, error) from error
+                    if result.get("spec") != spec:
+                        raise RuntimeError(f"worker returned the wrong shard spec: expected {spec}")
+                    result = kinetic._cpu_tree(result)
+                    digest = save_shard(path, result, identity)
+                    results[canonical_spec_key(spec)] = result
+                    ledger.append({
+                        "spec": spec, "cache_hit": False, "path": str(path), "sha256": digest,
+                        "shard_cost": result.get("shard_cost"),
+                    })
+                submit_ready()
+    except Exception as error:
+        if executor is not None:
+            error.scheduler_cancellation = _cancel_and_terminate(executor, futures, pending)
         raise
     else:
-        executor.shutdown(wait=True)
+        if executor is not None:
+            executor.shutdown(wait=True)
     execution_wall = time.perf_counter() - started
     ordered_results = [results[key] for key in sorted(results)]
     if len(ordered_results) != len(tasks):
@@ -231,6 +295,8 @@ def execute_shard_tasks(tasks, cache_dir, identity, max_workers, worker):
     ledger.sort(key=lambda entry: canonical_spec_key(entry["spec"]))
     return ordered_results, {
         "max_workers": max_workers, "start_method": "spawn",
+        "configured_arm_max_workers": configured_arm_workers,
+        "arm_max_workers": effective_arm_workers,
         "shard_execution_wall_clock_seconds": execution_wall,
         "shard_wall_clock_seconds_sum": sum((entry["shard_cost"] or {}).get("wall_clock_seconds", 0.0) for entry in ledger),
         "cache_hits": sum(entry["cache_hit"] for entry in ledger),
@@ -582,7 +648,7 @@ def save_candidate_failure_snapshot(context, error):
     return path
 
 
-def run_experiment(protocol_path, raw_path, output_dir, device, max_workers, shard_cache_dir):
+def run_experiment(protocol_path, raw_path, output_dir, device, max_workers, shard_cache_dir, arm_max_workers=None):
     started, started_utc = time.perf_counter(), datetime.now(timezone.utc).isoformat()
     protocol_path, raw_path = Path(protocol_path).expanduser().resolve(), Path(raw_path).expanduser().resolve()
     output_dir = Path(output_dir).expanduser().resolve()
@@ -616,13 +682,16 @@ def run_experiment(protocol_path, raw_path, output_dir, device, max_workers, sha
         for spec in kinetic_first(shard_specs(protocol))
     ]
     try:
-        shard_results, parallel = execute_shard_tasks(tasks, cache_dir, identity, max_workers, _run_shard_task)
+        shard_results, parallel = execute_shard_tasks(
+            tasks, cache_dir, identity, max_workers, _run_shard_task, arm_max_workers,
+        )
     except Exception as error:
         kinetic.write_json_exclusive(output_dir / "failure.json", {
             "schema": "a10-03-e2-kinetic-parallel-failure-v1", "recorded_utc": datetime.now(timezone.utc).isoformat(),
             "status": "failed_no_completion_summary", "max_workers": max_workers, "start_method": "spawn",
             "wall_clock_seconds": time.perf_counter() - started, "error_type": type(error).__name__, "error": str(error),
             "shard_spec": getattr(error, "spec", None),
+            "scheduler_cancellation": getattr(error, "scheduler_cancellation", {}),
             "snapshot_files": sorted(str(path) for path in snapshot_dir.glob("*") if path.is_file()),
             "scientific_gate_claimed": False,
         })
@@ -710,7 +779,7 @@ def run_experiment(protocol_path, raw_path, output_dir, device, max_workers, sha
             "rung_wall_clock_seconds": sum(c["rung_wall_clock_seconds"] for c in fit_costs),
             "continuation_wall_clock_seconds": sum(c["continuation_wall_clock_seconds"] for c in fit_costs),
             "cuda_peak_memory_bytes": max((c["cuda_peak_memory_bytes"] or 0 for c in fit_costs), default=0),
-            "parallel": {key: parallel[key] for key in ("max_workers", "start_method", "shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses")},
+            "parallel": {key: parallel[key] for key in ("max_workers", "start_method", "configured_arm_max_workers", "arm_max_workers", "shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses")},
         },
         "environment": kinetic._environment(device),
         "sha256": {**startup_sha256, "parallel_implementation": identity["parallel_implementation"], "raw_input": protocol["inputs"]["sha256"], "artifacts": {name: kinetic.sha256_file(output_dir / name) for name in artifact_names}},

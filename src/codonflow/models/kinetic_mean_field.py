@@ -13,8 +13,11 @@ import warnings
 import numpy as np
 import torch
 from scipy.integrate import solve_ivp
-from scipy.sparse import coo_matrix
-from scipy.sparse.linalg import MatrixRankWarning, spsolve
+from scipy.linalg import solve_banded
+
+
+_RANK_ONE_DENOMINATOR_TOLERANCE = 64.0 * np.finfo(np.float64).eps
+_LINEAR_REFINEMENT_STEPS = 4
 
 
 def _residual_numpy(
@@ -29,20 +32,305 @@ def _residual_numpy(
     return residual
 
 
+def _banded_jacobian_numpy(state, alpha, rates, beta):
+    rho = state[:-1]
+    length = rho.size
+    lower = np.empty(length, dtype=np.float64)
+    diagonal = np.zeros(length + 1, dtype=np.float64)
+    upper = np.zeros(length, dtype=np.float64)
+    diagonal[0] = -alpha
+    if rates.size:
+        lower[:-1] = rates * (1.0 - rho[1:])
+        diagonal[1:-1] = -rates * rho[:-1]
+    lower[-1] = beta
+    flux_column = -np.ones(length + 1, dtype=np.float64)
+    return lower, diagonal, upper, flux_column
+
+
 def _jacobian_numpy(
     state: np.ndarray, alpha: float, rates: np.ndarray, beta: float
 ) -> np.ndarray:
-    rho = state[:-1]
-    length = rho.size
-    jacobian = np.zeros((length + 1, length + 1), dtype=np.float64)
-    jacobian[0, 0] = -alpha
-    if rates.size:
-        rows = np.arange(1, length)
-        jacobian[rows, rows - 1] = rates * (1.0 - rho[1:])
-        jacobian[rows, rows] = -rates * rho[:-1]
-    jacobian[-1, -2] = beta
-    jacobian[:, -1] = -1.0
-    return jacobian
+    return _banded_to_dense_numpy(_banded_jacobian_numpy(state, alpha, rates, beta))
+
+
+def _banded_to_dense_numpy(bands):
+    lower, diagonal, upper, flux_column = bands
+    matrix = np.diag(diagonal)
+    matrix += np.diag(lower, k=-1)
+    matrix += np.diag(upper, k=1)
+    matrix[:, -1] = flux_column
+    return matrix
+
+
+def _banded_matvec_numpy(bands, vector, *, transpose=False):
+    lower, diagonal, upper, flux_column = bands
+    dtype = np.result_type(diagonal, vector)
+    lower = np.asarray(lower, dtype=dtype)
+    diagonal = np.asarray(diagonal, dtype=dtype)
+    upper = np.asarray(upper, dtype=dtype)
+    flux_column = np.asarray(flux_column, dtype=dtype)
+    vector = np.asarray(vector, dtype=dtype)
+    if vector.ndim == 2 and vector.shape[1] == 1:
+        vector = vector[:, 0]
+    result = diagonal * vector
+    if transpose:
+        result[:-1] += lower * vector[1:]
+        result[1:] += upper * vector[:-1]
+        result[-1] += np.dot(flux_column[:-1], vector[:-1])
+        result[-1] += flux_column[-1] * vector[-1]
+    else:
+        result[1:] += lower * vector[:-1]
+        result[:-1] += upper * vector[1:]
+        result += flux_column * vector[-1]
+    return result
+
+
+def _banded_recovery_numpy(bands, solution, rhs, *, transpose=False):
+    extended_bands = tuple(
+        np.asarray(value, dtype=np.longdouble) for value in bands
+    )
+    solution = np.asarray(solution, dtype=np.longdouble)
+    rhs = np.asarray(rhs, dtype=np.longdouble)
+    recovery = _banded_matvec_numpy(
+        extended_bands, solution, transpose=transpose
+    ) - rhs
+    absolute_bands = tuple(np.abs(value) for value in extended_bands)
+    denominator = _banded_matvec_numpy(
+        absolute_bands, np.abs(solution), transpose=transpose
+    ) + np.abs(rhs)
+    relative = np.abs(recovery).copy()
+    np.divide(np.abs(recovery), denominator, out=relative, where=denominator > 0)
+    return recovery, denominator, relative
+
+
+def _banded_lu_once_numpy(bands, rhs, *, transpose=False):
+    lower, diagonal, upper, flux_column = bands
+    size = diagonal.size
+    if transpose:
+        scales = np.abs(flux_column)
+        scales[0] = max(scales[0], abs(diagonal[0]))
+        scales[1:] = np.maximum(scales[1:], np.abs(diagonal[1:]))
+        scales[:-1] = np.maximum(scales[:-1], np.abs(lower))
+        scales[1:] = np.maximum(scales[1:], np.abs(upper))
+        lower = lower / scales[:-1]
+        diagonal = diagonal / scales
+        upper = upper / scales[1:]
+        flux_column = flux_column / scales[-1]
+    else:
+        scales = np.abs(diagonal)
+        scales[1:] = np.maximum(scales[1:], np.abs(lower))
+        scales[:-1] = np.maximum(scales[:-1], np.abs(upper))
+        scales = np.maximum(scales, np.abs(flux_column))
+        lower = lower / scales[1:]
+        diagonal = diagonal / scales
+        upper = upper / scales[:-1]
+        flux_column = flux_column / scales
+    if np.any(scales <= 0) or not np.all(np.isfinite(scales)):
+        raise ValueError("banded matrix has invalid equilibration scales")
+    rhs = rhs / scales
+    base_diagonal = diagonal.copy()
+    base_diagonal[-1] = -flux_column[-1]
+    rank_vector = -flux_column.copy()
+    rank_vector[-1] = -2.0 * flux_column[-1]
+    if transpose:
+        band_lower, band_upper = upper, lower
+        second_rhs = np.zeros(size, dtype=np.float64)
+        second_rhs[-1] = 1.0
+    else:
+        band_lower, band_upper = lower, upper
+        second_rhs = rank_vector
+    ab = np.zeros((3, size), dtype=np.float64)
+    ab[0, 1:] = band_upper
+    ab[1] = base_diagonal
+    ab[2, :-1] = band_lower
+    solutions = solve_banded(
+        (1, 1),
+        ab,
+        np.column_stack((rhs, second_rhs)),
+        overwrite_ab=True,
+        overwrite_b=True,
+        check_finite=False,
+    )
+    first, second = solutions[:, 0], solutions[:, 1]
+    if transpose:
+        denominator = 1.0 - np.dot(rank_vector, second)
+        numerator = np.dot(rank_vector, first)
+    else:
+        denominator = 1.0 - second[-1]
+        numerator = first[-1]
+    solution = first + second * (numerator / denominator)
+    return solution, float(denominator)
+
+
+def _rank_one_denominator_is_safe(denominator):
+    return math.isfinite(denominator) and abs(denominator) > _RANK_ONE_DENOMINATOR_TOLERANCE
+
+
+def _banded_qr_once_numpy(bands, rhs, *, transpose=False):
+    lower, diagonal, upper, flux_column = bands
+    size = diagonal.size
+    diagonal = diagonal.copy()
+    upper = upper.copy()
+    second_upper = np.zeros(max(size - 2, 0), dtype=np.float64)
+    flux_column = flux_column.copy()
+    transformed_rhs = rhs.copy()
+    rotations = []
+    for index in range(size - 1):
+        norm = math.hypot(diagonal[index], lower[index])
+        if norm == 0.0 or not math.isfinite(norm):
+            raise np.linalg.LinAlgError("singular banded QR pivot")
+        cosine = diagonal[index] / norm
+        sine = lower[index] / norm
+        rotations.append((cosine, sine))
+        if index < size - 2:
+            current_upper = upper[index]
+            next_diagonal = diagonal[index + 1]
+            next_upper = upper[index + 1]
+            upper[index] = cosine * current_upper + sine * next_diagonal
+            diagonal[index + 1] = -sine * current_upper + cosine * next_diagonal
+            second_upper[index] = sine * next_upper
+            upper[index + 1] = cosine * next_upper
+        first_flux = flux_column[index]
+        second_flux = flux_column[index + 1]
+        flux_column[index] = cosine * first_flux + sine * second_flux
+        flux_column[index + 1] = -sine * first_flux + cosine * second_flux
+        first_rhs = transformed_rhs[index]
+        second_rhs = transformed_rhs[index + 1]
+        transformed_rhs[index] = cosine * first_rhs + sine * second_rhs
+        transformed_rhs[index + 1] = -sine * first_rhs + cosine * second_rhs
+        diagonal[index] = norm
+    diagonal[-1] = flux_column[-1]
+
+    solution = rhs.copy() if transpose else transformed_rhs
+    if transpose:
+        for index in range(size):
+            value = solution[index]
+            if index > 0:
+                value -= upper[index - 1] * solution[index - 1]
+            if index > 1:
+                value -= second_upper[index - 2] * solution[index - 2]
+            if index == size - 1:
+                value -= np.dot(flux_column[:-1], solution[:-1])
+            solution[index] = value / diagonal[index]
+        for index in range(size - 2, -1, -1):
+            cosine, sine = rotations[index]
+            first = solution[index]
+            second = solution[index + 1]
+            solution[index] = cosine * first - sine * second
+            solution[index + 1] = sine * first + cosine * second
+        return solution
+
+    for index in range(size - 1, -1, -1):
+        value = solution[index]
+        if index < size - 1:
+            value -= upper[index] * solution[index + 1]
+            value -= flux_column[index] * solution[-1]
+        if index < size - 2:
+            value -= second_upper[index] * solution[index + 2]
+        solution[index] = value / diagonal[index]
+    return solution
+
+
+def _rank_one_banded_solve_numpy(
+    bands, rhs, residual_tolerance=1e-10, *, transpose=False
+):
+    denominator = float("nan")
+    refinement_steps = 0
+    qr_fallback = False
+    qr_error = None
+    solution = np.full_like(rhs, np.nan, dtype=np.float64)
+    recovery, component_denominator, relative = _banded_recovery_numpy(
+        bands, solution, rhs, transpose=transpose
+    )
+    converged = False
+    try:
+        solution, denominator = _banded_lu_once_numpy(
+            bands, rhs, transpose=transpose
+        )
+        recovery, component_denominator, relative = _banded_recovery_numpy(
+            bands, solution, rhs, transpose=transpose
+        )
+        converged = bool(
+            _rank_one_denominator_is_safe(denominator)
+            and np.all(np.isfinite(solution))
+            and np.all(np.isfinite(relative))
+            and np.max(relative) <= residual_tolerance
+        )
+        while (
+            not converged
+            and refinement_steps < _LINEAR_REFINEMENT_STEPS
+            and _rank_one_denominator_is_safe(denominator)
+            and np.all(np.isfinite(relative))
+        ):
+            correction, correction_denominator = _banded_lu_once_numpy(
+                bands,
+                recovery.astype(np.float64),
+                transpose=transpose,
+            )
+            if not _rank_one_denominator_is_safe(correction_denominator):
+                break
+            solution = solution - correction
+            refinement_steps += 1
+            recovery, component_denominator, relative = _banded_recovery_numpy(
+                bands, solution, rhs, transpose=transpose
+            )
+            converged = bool(
+                np.all(np.isfinite(solution))
+                and np.all(np.isfinite(relative))
+                and np.max(relative) <= residual_tolerance
+            )
+    except (ValueError, np.linalg.LinAlgError) as error:
+        qr_error = str(error)
+
+    if not converged:
+        qr_fallback = True
+        try:
+            solution = _banded_qr_once_numpy(bands, rhs, transpose=transpose)
+            recovery, component_denominator, relative = _banded_recovery_numpy(
+                bands, solution, rhs, transpose=transpose
+            )
+            converged = bool(
+                np.all(np.isfinite(solution))
+                and np.all(np.isfinite(relative))
+                and np.max(relative) <= residual_tolerance
+            )
+            qr_steps = 0
+            while not converged and qr_steps < _LINEAR_REFINEMENT_STEPS:
+                correction = _banded_qr_once_numpy(
+                    bands, recovery.astype(np.float64), transpose=transpose
+                )
+                solution = solution - correction
+                refinement_steps += 1
+                qr_steps += 1
+                recovery, component_denominator, relative = _banded_recovery_numpy(
+                    bands, solution, rhs, transpose=transpose
+                )
+                converged = bool(
+                    np.all(np.isfinite(solution))
+                    and np.all(np.isfinite(relative))
+                    and np.max(relative) <= residual_tolerance
+                )
+        except (ValueError, np.linalg.LinAlgError) as error:
+            qr_error = str(error)
+            converged = False
+    info = {
+        "rank_one_denominator": denominator,
+        "refinement_steps": refinement_steps,
+        "qr_fallback": qr_fallback,
+        "qr_error": qr_error,
+        "recovery_extended": recovery,
+        "denominator_extended": component_denominator,
+        "relative_recovery_extended": relative,
+    }
+    if not converged:
+        detail = float(np.max(relative))
+        error = RuntimeError(
+            "Banded rank-one linear solve exceeded the recovery residual tolerance "
+            f"after LU and QR refinement: {detail:.3e} > {residual_tolerance:.3e}"
+        )
+        error.linear_solver_info = info
+        raise error
+    return solution, info
 
 
 def _validate_rate(name: str, value) -> torch.Tensor:
@@ -129,7 +417,31 @@ def _validate_solver_controls(root_tolerance, residual_tolerance, maxfev):
 
 
 def _jacobian_condition_number(state, alpha, rates, beta) -> float:
-    condition = float(np.linalg.cond(_jacobian_numpy(state, alpha, rates, beta)))
+    bands = _banded_jacobian_numpy(state, alpha, rates, beta)
+    lower, diagonal, upper, flux_column = bands
+    column_sums = np.abs(flux_column)
+    column_sums[0] += abs(diagonal[0])
+    column_sums[1:] += np.abs(diagonal[1:])
+    column_sums[:-1] += np.abs(lower)
+    column_sums[1:] += np.abs(upper)
+    matrix_norm = float(np.max(column_sums))
+    size = state.size
+    vector = np.full(size, 1.0 / size, dtype=np.float64)
+    inverse_norm = 0.0
+    for _ in range(5):
+        vector = _rank_one_banded_solve_numpy(bands, vector)[0]
+        inverse_norm = float(np.sum(np.abs(vector)))
+        signs = np.where(vector >= 0.0, 1.0, -1.0)
+        dual = _rank_one_banded_solve_numpy(
+            bands, signs, transpose=True
+        )[0]
+        dual_norm = float(np.max(np.abs(dual)))
+        if dual_norm <= float(np.dot(dual, vector)):
+            break
+        next_vector = np.zeros(size, dtype=np.float64)
+        next_vector[int(np.argmax(np.abs(dual)))] = 1.0
+        vector = next_vector
+    condition = matrix_norm * inverse_norm
     if not math.isfinite(condition) or condition <= 0.0:
         raise RuntimeError("Kinetic mean-field Jacobian condition number is non-finite")
     return condition
@@ -160,13 +472,21 @@ def _extended_backward_recovery(matrix, multiplier, output_gradient):
     return recovery, denominator, relative_recovery
 
 
-def _backward_qr_solve(scaled_matrix, scaled_rhs):
-    q, r = torch.linalg.qr(scaled_matrix)
-    return torch.linalg.solve_triangular(r, q.transpose(0, 1) @ scaled_rhs, upper=True)
+def _extended_banded_backward_recovery(bands, multiplier, output_gradient):
+    numpy_bands = tuple(
+        np.asarray(value.detach().cpu().numpy(), dtype=np.longdouble)
+        for value in bands
+    )
+    return _banded_recovery_numpy(
+        numpy_bands,
+        multiplier.detach().cpu().numpy(),
+        output_gradient.detach().cpu().numpy(),
+        transpose=True,
+    )
 
 
 def _set_backward_diagnostic(diagnostics, name, index, value, single):
-    if diagnostics is None:
+    if diagnostics is None or name not in diagnostics:
         return
     target = diagnostics[name]
     if single:
@@ -175,10 +495,300 @@ def _set_backward_diagnostic(diagnostics, name, index, value, single):
         target[index].fill_(value)
 
 
+def _dense_to_banded(matrix):
+    diagonal = torch.diagonal(matrix, dim1=-2, dim2=-1).clone()
+    upper = torch.diagonal(matrix, dim1=-2, dim2=-1, offset=1).clone()
+    diagonal[..., -1] = 0
+    if upper.shape[-1]:
+        upper[..., -1] = 0
+    return (
+        torch.diagonal(matrix, dim1=-2, dim2=-1, offset=-1).clone(),
+        diagonal,
+        upper,
+        matrix[..., :, -1].clone(),
+    )
+
+
+def _banded_to_dense_torch(bands):
+    lower, diagonal, upper, flux_column = bands
+    size = diagonal.shape[-1]
+    matrix = torch.diag_embed(diagonal)
+    if size > 1:
+        matrix = matrix + torch.diag_embed(lower, offset=-1)
+        matrix = matrix + torch.diag_embed(upper, offset=1)
+    matrix[..., :, -1] = flux_column
+    return matrix
+
+
+def _tridiagonal_factor_torch(lower, diagonal, upper):
+    lower = lower.clone()
+    diagonal = diagonal.clone()
+    upper = upper.clone()
+    batch_size, size = diagonal.shape
+    second_upper = diagonal.new_zeros((batch_size, max(size - 2, 0)))
+    pivots = []
+    for index in range(size - 1):
+        current_diagonal = diagonal[:, index]
+        current_lower = lower[:, index]
+        current_upper = upper[:, index]
+        next_diagonal = diagonal[:, index + 1]
+        interchange = current_lower.abs() > current_diagonal.abs()
+        pivot = torch.where(interchange, current_lower, current_diagonal)
+        safe_pivot = torch.where(pivot != 0, pivot, torch.ones_like(pivot))
+        multiplier = torch.where(
+            interchange, current_diagonal, current_lower
+        ) / safe_pivot
+        no_swap_next = next_diagonal - multiplier * current_upper
+        swapped_next = current_upper - multiplier * next_diagonal
+        diagonal[:, index] = torch.where(
+            interchange, current_lower, current_diagonal
+        )
+        upper[:, index] = torch.where(
+            interchange, next_diagonal, current_upper
+        )
+        diagonal[:, index + 1] = torch.where(
+            interchange, swapped_next, no_swap_next
+        )
+        lower[:, index] = multiplier
+        pivots.append(interchange)
+        if index < size - 2:
+            following_upper = upper[:, index + 1].clone()
+            second_upper[:, index] = torch.where(
+                interchange, following_upper, torch.zeros_like(multiplier)
+            )
+            upper[:, index + 1] = torch.where(
+                interchange,
+                -multiplier * following_upper,
+                following_upper,
+            )
+    return lower, diagonal, upper, second_upper, pivots
+
+
+def _tridiagonal_solve_torch(factor, rhs, *, transpose=False):
+    lower, diagonal, upper, second_upper, pivots = factor
+    size = diagonal.shape[1]
+    safe_diagonal = torch.where(
+        diagonal != 0, diagonal, torch.ones_like(diagonal)
+    )
+    solution = rhs.clone()
+    if transpose:
+        for index in range(size):
+            value = solution[:, index]
+            if index > 0:
+                value = value - upper[:, index - 1].unsqueeze(-1) * solution[:, index - 1]
+            if index > 1:
+                value = value - second_upper[:, index - 2].unsqueeze(-1) * solution[:, index - 2]
+            solution[:, index] = value / safe_diagonal[:, index].unsqueeze(-1)
+        for index in range(size - 2, -1, -1):
+            solution[:, index] = (
+                solution[:, index] - lower[:, index].unsqueeze(-1) * solution[:, index + 1]
+            )
+            interchange = pivots[index].unsqueeze(-1)
+            current = solution[:, index].clone()
+            following = solution[:, index + 1]
+            solution[:, index] = torch.where(interchange, following, current)
+            solution[:, index + 1] = torch.where(interchange, current, following)
+        return solution
+
+    for index in range(size - 1):
+        interchange = pivots[index].unsqueeze(-1)
+        current = solution[:, index].clone()
+        following = solution[:, index + 1]
+        no_swap = following - lower[:, index].unsqueeze(-1) * current
+        swapped_current = following
+        swapped_next = current - lower[:, index].unsqueeze(-1) * following
+        solution[:, index] = torch.where(interchange, swapped_current, current)
+        solution[:, index + 1] = torch.where(interchange, swapped_next, no_swap)
+    solution[:, -1] = solution[:, -1] / safe_diagonal[:, -1].unsqueeze(-1)
+    if size > 1:
+        solution[:, -2] = (
+            solution[:, -2] - upper[:, -1].unsqueeze(-1) * solution[:, -1]
+        ) / safe_diagonal[:, -2].unsqueeze(-1)
+    for index in range(size - 3, -1, -1):
+        solution[:, index] = (
+            solution[:, index]
+            - upper[:, index].unsqueeze(-1) * solution[:, index + 1]
+            - second_upper[:, index].unsqueeze(-1) * solution[:, index + 2]
+        ) / safe_diagonal[:, index].unsqueeze(-1)
+    return solution
+
+
+def _banded_rank_one_solve_cuda(bands, rhs, *, transpose=False, diagnostics=None):
+    if rhs.device.type == "cuda":
+        try:
+            from codonflow.models import kinetic_banded_cuda
+
+            result = kinetic_banded_cuda.rank_one(bands, rhs, transpose=transpose)
+            if diagnostics is not None:
+                diagnostics["backward_cuda_kernel_backend"] = "triton"
+            return result
+        except (ImportError, RuntimeError) as error:
+            if diagnostics is not None:
+                diagnostics["backward_cuda_kernel_backend"] = "torch_after_triton_error"
+                diagnostics["backward_cuda_accelerator_error"] = str(error)
+    return _banded_rank_one_solve_torch(bands, rhs, transpose=transpose)
+
+
+def _banded_qr_once_cuda(bands, rhs, *, transpose=False, diagnostics=None):
+    if rhs.device.type == "cuda":
+        try:
+            from codonflow.models import kinetic_banded_cuda
+
+            result = kinetic_banded_cuda.qr(bands, rhs, transpose=transpose)
+            if diagnostics is not None:
+                diagnostics["backward_cuda_kernel_backend"] = "triton"
+            return result
+        except (ImportError, RuntimeError) as error:
+            if diagnostics is not None:
+                diagnostics["backward_cuda_kernel_backend"] = "torch_after_triton_error"
+                diagnostics["backward_cuda_accelerator_error"] = str(error)
+    return _banded_qr_once_torch(bands, rhs, transpose=transpose)
+
+
+def _banded_rank_one_solve_torch(bands, rhs, *, transpose=False):
+    lower, diagonal, upper, flux_column = bands
+    size = diagonal.shape[1]
+    base_diagonal = diagonal.clone()
+    base_diagonal[:, -1] = -flux_column[:, -1]
+    rank_vector = -flux_column.clone()
+    rank_vector[:, -1] = -2.0 * flux_column[:, -1]
+    factor = _tridiagonal_factor_torch(lower, base_diagonal, upper)
+    if transpose:
+        second_rhs = rhs.new_zeros((rhs.shape[0], size))
+        second_rhs[:, -1] = 1.0
+    else:
+        second_rhs = rank_vector
+    solutions = _tridiagonal_solve_torch(
+        factor,
+        torch.stack((rhs, second_rhs), dim=-1),
+        transpose=transpose,
+    )
+    first, second = solutions[..., 0], solutions[..., 1]
+    if transpose:
+        denominator = 1.0 - (rank_vector * second).sum(dim=-1)
+        numerator = (rank_vector * first).sum(dim=-1)
+    else:
+        denominator = 1.0 - second[:, -1]
+        numerator = first[:, -1]
+    safe_denominator = torch.where(
+        denominator.abs() > _RANK_ONE_DENOMINATOR_TOLERANCE,
+        denominator,
+        torch.ones_like(denominator),
+    )
+    solution = first + second * (numerator / safe_denominator).unsqueeze(-1)
+    return solution, denominator
+
+
+def _banded_qr_once_torch(bands, rhs, *, transpose=False):
+    vector_rhs = rhs.ndim == 2
+    if vector_rhs:
+        rhs = rhs.unsqueeze(-1)
+    lower, diagonal, upper, flux_column = bands
+    size = diagonal.shape[1]
+    diagonal = diagonal.clone()
+    upper = upper.clone()
+    second_upper = diagonal.new_zeros((diagonal.shape[0], max(size - 2, 0)))
+    flux_column = flux_column.clone()
+    transformed_rhs = rhs.clone()
+    rotations = []
+    for index in range(size - 1):
+        norm = torch.hypot(diagonal[:, index], lower[:, index])
+        safe_norm = torch.where(norm > 0, norm, torch.ones_like(norm))
+        cosine = diagonal[:, index] / safe_norm
+        sine = lower[:, index] / safe_norm
+        rotations.append((cosine, sine))
+        if index < size - 2:
+            current_upper = upper[:, index].clone()
+            next_diagonal = diagonal[:, index + 1].clone()
+            next_upper = upper[:, index + 1].clone()
+            upper[:, index] = cosine * current_upper + sine * next_diagonal
+            diagonal[:, index + 1] = -sine * current_upper + cosine * next_diagonal
+            second_upper[:, index] = sine * next_upper
+            upper[:, index + 1] = cosine * next_upper
+        first_flux = flux_column[:, index].clone()
+        second_flux = flux_column[:, index + 1].clone()
+        flux_column[:, index] = cosine * first_flux + sine * second_flux
+        flux_column[:, index + 1] = -sine * first_flux + cosine * second_flux
+        first_rhs = transformed_rhs[:, index].clone()
+        second_rhs = transformed_rhs[:, index + 1]
+        transformed_rhs[:, index] = (
+            cosine.unsqueeze(-1) * first_rhs + sine.unsqueeze(-1) * second_rhs
+        )
+        transformed_rhs[:, index + 1] = (
+            -sine.unsqueeze(-1) * first_rhs + cosine.unsqueeze(-1) * second_rhs
+        )
+        diagonal[:, index] = norm
+    diagonal[:, -1] = flux_column[:, -1]
+    safe_diagonal = torch.where(
+        diagonal != 0, diagonal, torch.ones_like(diagonal)
+    )
+
+    solution = rhs.clone() if transpose else transformed_rhs
+    if transpose:
+        for index in range(size):
+            value = solution[:, index]
+            if index > 0:
+                value = value - upper[:, index - 1].unsqueeze(-1) * solution[:, index - 1]
+            if index > 1:
+                value = value - second_upper[:, index - 2].unsqueeze(-1) * solution[:, index - 2]
+            if index == size - 1:
+                value = value - (
+                    flux_column[:, :-1].unsqueeze(-1) * solution[:, :-1]
+                ).sum(dim=1)
+            solution[:, index] = value / safe_diagonal[:, index].unsqueeze(-1)
+        for index in range(size - 2, -1, -1):
+            cosine, sine = rotations[index]
+            first = solution[:, index].clone()
+            second = solution[:, index + 1]
+            solution[:, index] = (
+                cosine.unsqueeze(-1) * first - sine.unsqueeze(-1) * second
+            )
+            solution[:, index + 1] = (
+                sine.unsqueeze(-1) * first + cosine.unsqueeze(-1) * second
+            )
+        return solution[..., 0] if vector_rhs else solution
+
+    for index in range(size - 1, -1, -1):
+        value = solution[:, index]
+        if index < size - 1:
+            value = value - upper[:, index].unsqueeze(-1) * solution[:, index + 1]
+            value = value - flux_column[:, index].unsqueeze(-1) * solution[:, -1]
+        if index < size - 2:
+            value = value - second_upper[:, index].unsqueeze(-1) * solution[:, index + 2]
+        solution[:, index] = value / safe_diagonal[:, index].unsqueeze(-1)
+    return solution[..., 0] if vector_rhs else solution
+
+
+def _banded_matvec_torch(bands, vector, *, transpose=False):
+    lower, diagonal, upper, flux_column = bands
+    result = diagonal * vector
+    if transpose:
+        result[..., :-1] += lower * vector[..., 1:]
+        result[..., 1:] += upper * vector[..., :-1]
+        result[..., -1] += (flux_column[..., :-1] * vector[..., :-1]).sum(dim=-1)
+        result[..., -1] += flux_column[..., -1] * vector[..., -1]
+    else:
+        result[..., 1:] += lower * vector[..., :-1]
+        result[..., :-1] += upper * vector[..., 1:]
+        result += flux_column * vector[..., -1:]
+    return result
+
+
+def _banded_column_scales(bands):
+    lower, diagonal, upper, flux_column = bands
+    scales = flux_column.abs().clone()
+    scales[..., 0] = torch.maximum(scales[..., 0], diagonal[..., 0].abs())
+    scales[..., 1:] = torch.maximum(scales[..., 1:], diagonal[..., 1:].abs())
+    if diagonal.shape[-1] > 1:
+        scales[..., :-1] = torch.maximum(scales[..., :-1], lower.abs())
+        scales[..., 1:] = torch.maximum(scales[..., 1:], upper.abs())
+    return scales
+
+
 def _backward_failure_context(
     index,
     single,
-    matrix,
+    bands,
     output_gradient,
     multiplier,
     recovery,
@@ -193,9 +803,14 @@ def _backward_failure_context(
     if diagnostics is not None and "jacobian_condition_number" in diagnostics:
         condition = diagnostics["jacobian_condition_number"]
         condition_number = float((condition if single else condition[index]).detach().cpu())
+    size = bands[1].numel()
+    dense_transpose = None
+    if size <= 512:
+        dense_transpose = _banded_to_dense_torch(bands).transpose(0, 1).detach().cpu()
     return {
         "batch_index": None if single else int(index),
-        "jacobian_transpose": matrix.detach().cpu().clone(),
+        "jacobian_transpose": dense_transpose,
+        "jacobian_banded": tuple(value.detach().cpu().clone() for value in bands),
         "output_gradient": output_gradient.detach().cpu().clone(),
         "multiplier": multiplier.detach().cpu().clone(),
         "recovery_extended": recovery,
@@ -205,28 +820,43 @@ def _backward_failure_context(
         "refinement_steps": int(refinement_steps),
         "qr_fallback": bool(qr_fallback),
         "qr_error": qr_error,
+        "extended_precision_device": "cpu",
     }
 
 
 def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnostics):
-    single = jacobian.ndim == 2
-    matrices = jacobian.transpose(-1, -2)
+    if isinstance(jacobian, torch.Tensor):
+        single = jacobian.ndim == 2
+        bands = _dense_to_banded(jacobian)
+    else:
+        single = jacobian[1].ndim == 1
+        bands = jacobian
     if single:
-        matrices = matrices.unsqueeze(0)
+        bands = tuple(value.unsqueeze(0) for value in bands)
         output_gradient = output_gradient.unsqueeze(0)
-    row_scale = matrices.abs().amax(dim=-1, keepdim=True)
+    row_scale = _banded_column_scales(bands)
     if not bool(torch.isfinite(row_scale).all()) or not bool((row_scale > 0).all()):
         raise RuntimeError("Kinetic mean-field backward Jacobian has invalid row scales")
-    scaled_matrices = matrices / row_scale
-    factor, pivots = torch.linalg.lu_factor(scaled_matrices)
-    rhs = output_gradient.unsqueeze(-1) / row_scale
-    multipliers = torch.linalg.lu_solve(factor, pivots, rhs).squeeze(-1)
-
-    recovery = torch.matmul(matrices, multipliers.unsqueeze(-1)).squeeze(-1) - output_gradient
-    denominator = (
-        torch.matmul(matrices.abs(), multipliers.abs().unsqueeze(-1)).squeeze(-1)
-        + output_gradient.abs()
+    lower, diagonal, upper, flux_column = bands
+    scaled_bands = (
+        lower / row_scale[..., :-1],
+        diagonal / row_scale,
+        upper / row_scale[..., 1:],
+        flux_column / row_scale[..., -1:],
     )
+    rhs = output_gradient / row_scale
+    multipliers, rank_denominators = _banded_rank_one_solve_cuda(
+        scaled_bands, rhs, transpose=True, diagnostics=diagnostics
+    )
+
+    recovery = _banded_matvec_torch(
+        bands, multipliers, transpose=True
+    ) - output_gradient
+    denominator = _banded_matvec_torch(
+        tuple(value.abs() for value in bands),
+        multipliers.abs(),
+        transpose=True,
+    ) + output_gradient.abs()
     relative_recovery = torch.where(
         denominator > 0, recovery.abs() / denominator, recovery.abs()
     )
@@ -235,46 +865,72 @@ def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnos
         diagnostics["backward_recovery_residual"].copy_(
             reported_recovery[0] if single else reported_recovery
         )
-    failed = ~torch.isfinite(multipliers).all(dim=-1) | ~torch.isfinite(
-        reported_recovery
-    ) | (reported_recovery > residual_tolerance)
+        if "backward_rank_one_denominator_min" in diagnostics:
+            diagnostics["backward_rank_one_denominator_min"].copy_(
+                rank_denominators.abs()[0] if single else rank_denominators.abs()
+            )
+    failed = (
+        ~torch.isfinite(multipliers).all(dim=-1)
+        | ~torch.isfinite(reported_recovery)
+        | (reported_recovery > residual_tolerance)
+        | ~torch.isfinite(rank_denominators)
+        | (rank_denominators.abs() <= _RANK_ONE_DENOMINATOR_TOLERANCE)
+    )
     if not bool(failed.any()):
         return multipliers[0] if single else multipliers
 
+    if diagnostics is None and multipliers.device.type == "cuda":
+        warnings.warn(
+            "Kinetic backward recovery is using explicitly recorded CPU extended "
+            "precision residuals; CUDA model tensors are not moved to CPU.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
     failures = []
     for index in failed.nonzero(as_tuple=False).flatten().tolist():
-        matrix = matrices[index]
+        sample_bands = tuple(value[index] for value in bands)
+        sample_scaled_bands = tuple(value[index].unsqueeze(0) for value in scaled_bands)
         gradient = output_gradient[index]
         multiplier = multipliers[index].clone()
         refinement_steps = 0
         qr_fallback = False
         qr_error = None
+        rank_denominator = float(rank_denominators[index].detach().cpu())
         recovery_extended, denominator_extended, relative_extended = (
-            _extended_backward_recovery(matrix, multiplier, gradient)
+            _extended_banded_backward_recovery(sample_bands, multiplier, gradient)
+        )
+        _set_backward_diagnostic(
+            diagnostics, "backward_cpu_extended_precision", index, True, single
         )
         converged = bool(
-            np.all(np.isfinite(multiplier.detach().cpu().numpy()))
+            _rank_one_denominator_is_safe(rank_denominator)
+            and np.all(np.isfinite(multiplier.detach().cpu().numpy()))
             and np.all(np.isfinite(relative_extended))
             and np.max(relative_extended) <= residual_tolerance
         )
 
         while not converged and refinement_steps < _BACKWARD_LU_REFINEMENT_STEPS:
-            if not np.all(np.isfinite(relative_extended)):
+            if not np.all(np.isfinite(relative_extended)) or not _rank_one_denominator_is_safe(
+                rank_denominator
+            ):
                 break
-            correction = torch.linalg.lu_solve(
-                factor[index],
-                pivots[index],
+            correction, correction_denominator = _banded_rank_one_solve_cuda(
+                sample_scaled_bands,
                 torch.as_tensor(
                     recovery_extended.astype(np.float64),
-                    dtype=matrix.dtype,
-                    device=matrix.device,
-                ).unsqueeze(-1)
-                / row_scale[index],
-            ).squeeze(-1)
-            multiplier = multiplier - correction
+                    dtype=gradient.dtype,
+                    device=gradient.device,
+                ).unsqueeze(0) / row_scale[index],
+                transpose=True,
+                diagnostics=diagnostics,
+            )
+            rank_denominator = float(correction_denominator[0].detach().cpu())
+            if not _rank_one_denominator_is_safe(rank_denominator):
+                break
+            multiplier = multiplier - correction[0]
             refinement_steps += 1
             recovery_extended, denominator_extended, relative_extended = (
-                _extended_backward_recovery(matrix, multiplier, gradient)
+                _extended_banded_backward_recovery(sample_bands, multiplier, gradient)
             )
             converged = bool(
                 np.all(np.isfinite(multiplier.detach().cpu().numpy()))
@@ -285,31 +941,56 @@ def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnos
         if not converged:
             qr_fallback = True
             try:
-                multiplier = _backward_qr_solve(scaled_matrices[index], rhs[index]).squeeze(-1)
+                scaled_rhs = (gradient / row_scale[index]).unsqueeze(0)
+                multiplier = _banded_qr_once_cuda(
+                    sample_scaled_bands,
+                    scaled_rhs,
+                    transpose=True,
+                    diagnostics=diagnostics,
+                )[0]
                 recovery_extended, denominator_extended, relative_extended = (
-                    _extended_backward_recovery(matrix, multiplier, gradient)
+                    _extended_banded_backward_recovery(sample_bands, multiplier, gradient)
                 )
                 converged = bool(
                     np.all(np.isfinite(multiplier.detach().cpu().numpy()))
                     and np.all(np.isfinite(relative_extended))
                     and np.max(relative_extended) <= residual_tolerance
                 )
+                if not converged and gradient.device.type == "cuda":
+                    multiplier = _banded_qr_once_torch(
+                        sample_scaled_bands, scaled_rhs, transpose=True
+                    )[0]
+                    _set_backward_diagnostic(
+                        diagnostics,
+                        "backward_triton_qr_reference_fallback",
+                        index,
+                        True,
+                        single,
+                    )
+                    recovery_extended, denominator_extended, relative_extended = (
+                        _extended_banded_backward_recovery(sample_bands, multiplier, gradient)
+                    )
+                    converged = bool(
+                        np.all(np.isfinite(multiplier.detach().cpu().numpy()))
+                        and np.all(np.isfinite(relative_extended))
+                        and np.max(relative_extended) <= residual_tolerance
+                    )
                 qr_steps = 0
                 while not converged and qr_steps < _BACKWARD_QR_REFINEMENT_STEPS:
-                    correction = _backward_qr_solve(
-                        scaled_matrices[index],
+                    correction = _banded_qr_once_torch(
+                        sample_scaled_bands,
                         torch.as_tensor(
                             recovery_extended.astype(np.float64),
-                            dtype=matrix.dtype,
-                            device=matrix.device,
-                        ).unsqueeze(-1)
-                        / row_scale[index],
-                    ).squeeze(-1)
+                            dtype=gradient.dtype,
+                            device=gradient.device,
+                        ).unsqueeze(0) / row_scale[index],
+                        transpose=True,
+                    )[0]
                     multiplier = multiplier - correction
                     refinement_steps += 1
                     qr_steps += 1
                     recovery_extended, denominator_extended, relative_extended = (
-                        _extended_backward_recovery(matrix, multiplier, gradient)
+                        _extended_banded_backward_recovery(sample_bands, multiplier, gradient)
                     )
                     converged = bool(
                         np.all(np.isfinite(multiplier.detach().cpu().numpy()))
@@ -330,6 +1011,13 @@ def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnos
         _set_backward_diagnostic(
             diagnostics, "backward_qr_fallback", index, qr_fallback, single
         )
+        _set_backward_diagnostic(
+            diagnostics,
+            "backward_rank_one_denominator_min",
+            index,
+            abs(rank_denominator),
+            single,
+        )
         if converged:
             multipliers[index] = multiplier
         else:
@@ -337,7 +1025,7 @@ def _solve_adjoint_system(jacobian, output_gradient, residual_tolerance, diagnos
                 _backward_failure_context(
                     index,
                     single,
-                    matrix,
+                    sample_bands,
                     gradient,
                     multiplier,
                     recovery_extended,
@@ -399,6 +1087,7 @@ def _newton_state_numpy(
     residual_tolerance,
     maxfev,
     normalized,
+    linear_diagnostics=None,
 ):
     length = rates.size + 1
     flux_scale = min(alpha, beta, float(rates.min(initial=math.inf)))
@@ -428,34 +1117,25 @@ def _newton_state_numpy(
         if not need_jacobian:
             return residual, None
 
-        rows = [0, length]
-        columns = [0, length - 1]
+        lower = np.empty(length, dtype=np.float64)
+        diagonal = np.zeros(length + 1, dtype=np.float64)
+        upper = np.zeros(length, dtype=np.float64)
         if normalized:
-            values = [-alpha / flux, beta / flux]
+            diagonal[0] = -alpha / flux
+            lower[-1] = beta / flux
+            flux_column = -(residual + 1.0) / scaled_flux
         else:
-            values = [-1.0, 1.0]
+            diagonal[0] = -1.0
+            lower[-1] = 1.0
+            flux_column = -inverse_rates
         if length > 1:
-            indices = np.arange(1, length)
-            rows.extend(indices)
-            columns.extend(indices - 1)
-            rows.extend(indices)
-            columns.extend(indices)
             if normalized:
-                values.extend(rates * (1.0 - rho[1:]) / flux)
-                values.extend(-rates * rho[:-1] / flux)
+                lower[:-1] = rates * (1.0 - rho[1:]) / flux
+                diagonal[1:-1] = -rates * rho[:-1] / flux
             else:
-                values.extend(1.0 - rho[1:])
-                values.extend(-rho[:-1])
-        rows.extend(np.arange(length + 1))
-        columns.extend(np.full(length + 1, length))
-        if normalized:
-            values.extend(-(residual + 1.0) / scaled_flux)
-        else:
-            values.extend(-inverse_rates)
-        jacobian = coo_matrix(
-            (values, (rows, columns)), shape=(length + 1, length + 1)
-        ).tocsc()
-        return residual, jacobian
+                lower[:-1] = 1.0 - rho[1:]
+                diagonal[1:-1] = -rho[:-1]
+        return residual, (lower, diagonal, upper, flux_column)
 
     residual, _ = residual_and_jacobian(x, False)
     if not np.all(np.isfinite(residual)):
@@ -469,9 +1149,15 @@ def _newton_state_numpy(
         if iteration == maxfev:
             break
         residual, jacobian = residual_and_jacobian(x, True)
-        with warnings.catch_warnings():
-            warnings.simplefilter("error", MatrixRankWarning)
-            step = spsolve(jacobian, -residual)
+        step, linear_info = _rank_one_banded_solve_numpy(
+            jacobian, -residual, residual_tolerance
+        )
+        if linear_diagnostics is not None:
+            linear_diagnostics.append({
+                "rank_one_denominator": linear_info["rank_one_denominator"],
+                "refinement_steps": linear_info["refinement_steps"],
+                "qr_fallback": linear_info["qr_fallback"],
+            })
         if not np.all(np.isfinite(step)):
             raise RuntimeError("Kinetic mean-field Newton step is non-finite")
 
@@ -509,6 +1195,7 @@ def _transient_state_numpy(
     maxfev,
     residual_tolerance,
     root_tolerance=1e-12,
+    linear_diagnostics=None,
 ):
     length = rates.size + 1
 
@@ -561,6 +1248,7 @@ def _transient_state_numpy(
                 residual_tolerance,
                 maxfev,
                 normalized=True,
+                linear_diagnostics=linear_diagnostics,
             )
             return _checked_state(
                 polished, candidate.shape, alpha, rates, beta, residual_tolerance
@@ -579,6 +1267,7 @@ def _solve_state_numpy(
     root_tolerance: float,
     residual_tolerance: float,
     maxfev: int,
+    linear_diagnostics=None,
 ) -> tuple[np.ndarray, np.ndarray]:
     length = rates.size + 1
     flux_scale = min(alpha, beta, float(rates.min(initial=math.inf)))
@@ -610,6 +1299,7 @@ def _solve_state_numpy(
                 residual_tolerance,
                 maxfev,
                 normalized=normalized,
+                linear_diagnostics=linear_diagnostics,
             )
             if not normalized:
                 candidate = _newton_state_numpy(
@@ -621,6 +1311,7 @@ def _solve_state_numpy(
                     residual_tolerance,
                     maxfev,
                     normalized=True,
+                    linear_diagnostics=linear_diagnostics,
                 )
             return _checked_state(
                 candidate, initial.shape, alpha, rates, beta, residual_tolerance
@@ -636,6 +1327,7 @@ def _solve_state_numpy(
             maxfev,
             residual_tolerance,
             root_tolerance,
+            linear_diagnostics,
         )
         return _checked_state(
             transient_state,
@@ -651,6 +1343,66 @@ def _solve_state_numpy(
         ) from errors[-1]
 
 
+def _record_solver_diagnostics(diagnostics, alpha, linear_details):
+    if diagnostics is None:
+        return
+    batch_size = len(linear_details)
+    solve_counts = [len(details) for details in linear_details]
+    refinement_steps = [
+        sum(item["refinement_steps"] for item in details)
+        for details in linear_details
+    ]
+    qr_fallbacks = [
+        any(item["qr_fallback"] for item in details)
+        for details in linear_details
+    ]
+    denominator_minima = [
+        min((abs(item["rank_one_denominator"]) for item in details), default=-1.0)
+        for details in linear_details
+    ]
+    shape = () if batch_size == 1 and alpha.ndim == 0 else (batch_size,)
+    def scalar_or_vector(values, dtype=None):
+        tensor = torch.as_tensor(values, dtype=dtype, device=alpha.device)
+        return tensor[0] if shape == () else tensor
+    diagnostics["forward_linear_solve_count"] = scalar_or_vector(
+        solve_counts, dtype=torch.int64
+    )
+    diagnostics["forward_linear_refinement_steps"] = scalar_or_vector(
+        refinement_steps, dtype=torch.int64
+    )
+    diagnostics["forward_qr_fallback"] = scalar_or_vector(
+        qr_fallbacks, dtype=torch.bool
+    )
+    diagnostics["forward_rank_one_denominator_min"] = scalar_or_vector(
+        denominator_minima, dtype=torch.float64
+    )
+    diagnostics["backward_rank_one_denominator_min"] = alpha.new_full(
+        shape, float("nan")
+    )
+    diagnostics["backward_cpu_extended_precision"] = torch.zeros(
+        shape, dtype=torch.bool, device=alpha.device
+    )
+    diagnostics["backward_triton_qr_reference_fallback"] = torch.zeros(
+        shape, dtype=torch.bool, device=alpha.device
+    )
+    diagnostics["backward_cuda_kernel_backend"] = (
+        "not_applicable_cpu" if not alpha.is_cuda else "torch_until_accelerated"
+    )
+    diagnostics["forward_device"] = "cpu"
+    diagnostics["forward_linear_solver"] = (
+        "scipy_lapack_banded_partial_pivoting_sherman_morrison_with_givens_qr_fallback"
+    )
+    diagnostics["forward_cpu_path_explicit"] = True
+    diagnostics["backward_device"] = str(alpha.device)
+    diagnostics["backward_linear_solver"] = (
+        "torch_banded_partial_pivoting_sherman_morrison_with_givens_qr_fallback"
+    )
+    diagnostics["backward_dense_padded_matrix_constructed"] = False
+    diagnostics["jacobian_condition_number_kind"] = (
+        "one_norm_times_estimated_inverse_one_norm"
+    )
+
+
 class _KineticMeanFieldFunction(torch.autograd.Function):
     @staticmethod
     def forward(
@@ -659,6 +1411,7 @@ class _KineticMeanFieldFunction(torch.autograd.Function):
         alpha_numpy = float(alpha.detach().cpu())
         k_numpy = k.detach().cpu().numpy()
         beta_numpy = float(beta.detach().cpu())
+        linear_details = []
         state, residual = _solve_state_numpy(
             alpha_numpy,
             k_numpy,
@@ -666,6 +1419,7 @@ class _KineticMeanFieldFunction(torch.autograd.Function):
             root_tolerance,
             residual_tolerance,
             maxfev,
+            linear_details,
         )
         rho_tensor = alpha.new_tensor(state[:-1])
         flux_tensor = alpha.new_tensor(state[-1])
@@ -677,6 +1431,7 @@ class _KineticMeanFieldFunction(torch.autograd.Function):
             diagnostics["backward_recovery_residual"] = alpha.new_tensor(float("nan"))
             diagnostics["backward_refinement_steps"] = alpha.new_tensor(0, dtype=torch.int64)
             diagnostics["backward_qr_fallback"] = alpha.new_tensor(False, dtype=torch.bool)
+        _record_solver_diagnostics(diagnostics, alpha, [linear_details])
         ctx.save_for_backward(alpha, k, beta, rho_tensor)
         ctx.residual_tolerance = residual_tolerance
         ctx.diagnostics = diagnostics
@@ -688,14 +1443,15 @@ class _KineticMeanFieldFunction(torch.autograd.Function):
         del grad_residual
         alpha, k, beta, rho = ctx.saved_tensors
         length = rho.numel()
-        jacobian = rho.new_zeros((length + 1, length + 1))
-        jacobian[0, 0] = -alpha
+        lower = rho.new_empty(length)
+        diagonal = rho.new_zeros(length + 1)
+        upper = rho.new_zeros(length)
+        diagonal[0] = -alpha
         if k.numel():
-            rows = torch.arange(1, length, device=rho.device)
-            jacobian[rows, rows - 1] = k * (1.0 - rho[1:])
-            jacobian[rows, rows] = -k * rho[:-1]
-        jacobian[-1, -2] = beta
-        jacobian[:, -1] = -1.0
+            lower[:-1] = k * (1.0 - rho[1:])
+            diagonal[1:-1] = -k * rho[:-1]
+        lower[-1] = beta
+        jacobian = (lower, diagonal, upper, -rho.new_ones(length + 1))
 
         if grad_rho is None:
             grad_rho = torch.zeros_like(rho)
@@ -726,10 +1482,13 @@ class _KineticMeanFieldBatchFunction(torch.autograd.Function):
         beta_numpy = beta.detach().cpu().numpy()
         lengths_list = lengths.detach().cpu().tolist()
         condition_numbers = []
+        all_linear_details = []
         for index, length in enumerate(lengths_list):
             sample_alpha = float(alpha_numpy[index])
             sample_k = k_numpy[index, : length - 1]
             sample_beta = float(beta_numpy[index])
+            linear_details = []
+            all_linear_details.append(linear_details)
             try:
                 state, residual = _solve_state_numpy(
                     sample_alpha,
@@ -738,6 +1497,7 @@ class _KineticMeanFieldBatchFunction(torch.autograd.Function):
                     root_tolerance,
                     residual_tolerance,
                     maxfev,
+                    linear_details,
                 )
             except RuntimeError as error:
                 raise RuntimeError(f"Kinetic mean-field batch sample {index} failed: {error}") from error
@@ -760,6 +1520,7 @@ class _KineticMeanFieldBatchFunction(torch.autograd.Function):
             diagnostics["backward_qr_fallback"] = alpha.new_zeros(
                 batch_size, dtype=torch.bool
             )
+        _record_solver_diagnostics(diagnostics, alpha, all_linear_details)
         ctx.save_for_backward(alpha, k, lengths, beta, rho_tensor)
         ctx.residual_tolerance = residual_tolerance
         ctx.diagnostics = diagnostics
@@ -771,20 +1532,23 @@ class _KineticMeanFieldBatchFunction(torch.autograd.Function):
         del grad_residual
         alpha, k, lengths, beta, rho = ctx.saved_tensors
         batch_size, max_length = rho.shape
-        jacobian = torch.eye(
-            max_length + 1, dtype=rho.dtype, device=rho.device
-        ).expand(batch_size, -1, -1).clone()
         lengths_list = lengths.detach().cpu().tolist()
+        lower = rho.new_zeros((batch_size, max_length))
+        diagonal = rho.new_ones((batch_size, max_length + 1))
+        upper = rho.new_zeros((batch_size, max_length))
+        flux_column = rho.new_zeros((batch_size, max_length + 1))
+        diagonal[:, -1] = 0.0
         for index, length in enumerate(lengths_list):
+            offset = max_length - length
             sample_k = k[index, : length - 1]
             sample_rho = rho[index, :length]
-            jacobian[index, 0, 0] = -alpha[index]
+            diagonal[index, offset] = -alpha[index]
             if length > 1:
-                rows = torch.arange(1, length, device=rho.device)
-                jacobian[index, rows, rows - 1] = sample_k * (1.0 - sample_rho[1:])
-                jacobian[index, rows, rows] = -sample_k * sample_rho[:-1]
-            jacobian[index, length, length - 1] = beta[index]
-            jacobian[index, : length + 1, length] = -1.0
+                diagonal[index, offset + 1 : max_length] = -sample_k * sample_rho[:-1]
+                lower[index, offset : max_length - 1] = sample_k * (1.0 - sample_rho[1:])
+            lower[index, -1] = beta[index]
+            flux_column[index, offset:] = -1.0
+        jacobian = (lower, diagonal, upper, flux_column)
 
         if grad_rho is None:
             grad_rho = torch.zeros_like(rho)
@@ -792,19 +1556,23 @@ class _KineticMeanFieldBatchFunction(torch.autograd.Function):
             grad_flux = torch.zeros_like(alpha)
         batch_indices = torch.arange(batch_size, device=rho.device)
         output_gradient = rho.new_zeros((batch_size, max_length + 1))
-        output_gradient[:, :max_length] = grad_rho
-        output_gradient[batch_indices, lengths] = grad_flux
+        output_gradient[:, -1] = grad_flux
+        for index, length in enumerate(lengths_list):
+            offset = max_length - length
+            output_gradient[index, offset:max_length] = grad_rho[index, :length]
         multiplier = _solve_adjoint_system(
             jacobian, output_gradient, ctx.residual_tolerance, ctx.diagnostics
         )
-        grad_alpha = -multiplier[:, 0] * (1.0 - rho[:, 0])
-        grad_beta = -multiplier[batch_indices, lengths] * rho[batch_indices, lengths - 1]
+        offsets = max_length - lengths
+        grad_alpha = -multiplier[batch_indices, offsets] * (1.0 - rho[:, 0])
+        grad_beta = -multiplier[:, -1] * rho[batch_indices, lengths - 1]
         grad_k = torch.zeros_like(k)
         for index, length in enumerate(lengths_list):
             if length > 1:
+                offset = max_length - length
                 sample_rho = rho[index, :length]
                 grad_k[index, : length - 1] = (
-                    -multiplier[index, 1:length]
+                    -multiplier[index, offset + 1 : max_length]
                     * sample_rho[:-1]
                     * (1.0 - sample_rho[1:])
                 )
@@ -824,16 +1592,19 @@ def solve_kinetic_mean_field(
     """Solve one mean-field steady state and return ``rho, J, residual / J``.
 
     ``k`` contains the ``L - 1`` internal rates and may be empty when ``L=1``.
-    All computations use float64. The forward solve uses sparse Newton iterations
-    with an analytic Jacobian and a banded transient fallback; PyTorch gradients
-    for ``rho`` and ``J`` use implicit differentiation.
+    All computations use float64. The forward solve explicitly uses CPU SciPy/LAPACK
+    Newton iterations with an analytic tridiagonal-plus-rank-one Jacobian and a
+    banded transient fallback. PyTorch gradients for ``rho`` and ``J`` use implicit
+    differentiation with a pivoted banded solve on the input device; CUDA inputs do
+    not silently move the adjoint model computation to CPU.
     The normalized residual is a non-differentiable convergence diagnostic.
     Root failures, excessive residuals, and states outside physical bounds raise
     an exception instead of returning an unconverged result.
 
-    With ``return_diagnostics=True``, a fourth return value contains the Jacobian
-    condition number, relative backward recovery residual, refinement count, and QR
-    fallback status.  The residual is NaN until backward runs.  Backward always checks this residual against
+    With ``return_diagnostics=True``, a fourth return value contains a deterministic
+    one-norm Jacobian condition estimate, forward/backward solver paths, rank-one
+    denominators, relative backward recovery residual, refinement counts, and QR
+    fallback status. The residual is NaN until backward runs. Backward always checks this residual against
     ``residual_tolerance`` and raises on failure, including for legacy three-output
     calls.
     """
@@ -868,14 +1639,15 @@ def solve_kinetic_mean_field_batch(
     padding. Valid internal rates must be finite and strictly positive, while
     padding may be zero but must be finite.
 
-    Each forward sample is solved independently by the same strict sparse
+    Each forward sample is solved independently by the same strict CPU banded
     Newton/banded-transient solve as :func:`solve_kinetic_mean_field`.
-    Gradients for ``rho`` and ``J``
-    use one batched implicit solve over the per-sample block Jacobians.
+    Gradients for ``rho`` and ``J`` use one O(BL)-storage batched implicit solve over
+    left-identity-padded tridiagonal-plus-rank-one Jacobians on the input device.
     Gradients through ``lengths`` and the normalized residual are not defined.
-    ``return_diagnostics=True`` adds a dictionary with per-sample Jacobian
-    condition numbers, backward recovery residuals, refinement counts, and QR fallback
-    statuses, on the requested device.  Recovery residuals are NaN until backward runs and are always checked against
+    ``return_diagnostics=True`` adds per-sample Jacobian condition estimates,
+    forward/backward solver paths, rank-one denominators, backward recovery residuals,
+    refinement counts, and QR fallback statuses. Tensor diagnostics are on the
+    requested device. Recovery residuals are NaN until backward runs and are always checked against
     ``residual_tolerance``, including for legacy three-output calls.
     """
     alpha, k, lengths, beta = _validate_batch_inputs(alpha, k, lengths, beta)
