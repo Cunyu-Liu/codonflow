@@ -1,15 +1,15 @@
 # CodonFlow Tasks（A10 · Kinetic-CodonFlow 执行清单）
 
 > 生效日期：2026-11-23。唯一执行合同为 `交接文档/PROMPT_NEXT_AGENT_A10_KINETIC.md` 与 `交接文档/spec.md`；A7–A9 仅作不可变证据引用。
-> 当前 **A10-00、A10-01/E0、A10-G0 与 A10-02/E1 已完成；H1 为开发集阳性判决，A10-03/E2 v7 正在真实 CUDA 训练，E2/G1 未完成**。G0 裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1 结果不构成最终跨研究、绝对速率或 SOTA 结论，H2、E3/G2 均未证，`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。不得把历史 A8 bounded G0 或 A9 生成训练授权继承为 A10 Gate 通过。
-> 未获相应 Gate 前禁止生成器训练；禁止读取 untouched24、MAGE functional untouched 及派生文件。权威新代码在 `/home/codonflow-a10-e2-v2`，大型产物在 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/`。后续任何 untouched 读取均须先冻结最终协议并具备相应明确授权。
+> 当前 **A10-00、A10-01/E0、A10-G0 与 A10-02/E1 已完成；H1 为开发集阳性判决；A10-03/E2 release 工程验收已通过，但生产科学运行未完成，E2/G1 未完成**。release `/home/codonflow-a10-e2-release` 与 GitHub `a8-rk` 均为 `79dcbf377b043e21f45573428128d236c9534685`，登记时干净；相关 144 tests、synthetic 1/2/4-worker 逐位一致、每份 27 verifier checks、859 个 L1–L6 精确 CTMC cases 及 review 通过仅是 scoped 工程数值证据。v7/v8 历史失败不删除；v10 27 workers 与 w23 均 CUDA OOM、退出 1、0 shard、0 曲线且失败保留。w21 以 21 workers 真实 CUDA 运行中，登记快照 24.8GB 已用/7.2GB 空闲、约 25% util，0 完成 shard、0 曲线、无 traceback，不能称完成。H2/G1 未裁决且未通过。G0 裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`；E1 结果不构成最终跨研究、绝对速率或 SOTA 结论，H2、E3/G2 均未证，`final_untouched=false`、`SOTA=false`，生成训练仍须 G2。不得把历史 A8 bounded G0 或 A9 生成训练授权继承为 A10 Gate 通过。
+> 未获相应 Gate 前禁止生成器训练；禁止读取 untouched24、MAGE functional untouched 及派生文件。v8 历史工作树为 `/home/codonflow-a10-e2-v8`，HEAD `287c02569e7af325da8578fd5973d9c98f681562`；v8 已退出，其产物目录 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_development_v8` 不可覆盖。历史 integrate dirty 状态与 910 tests 记录保留，但当前权威实现为干净 release `/home/codonflow-a10-e2-release@79dcbf377b043e21f45573428128d236c9534685`。release 集成 manifest 为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_release_integration_v1/integration_manifest.json`；v10、w23、w21 产物分别在同级 `kinetic_development_v10/`、`kinetic_development_v10_w23/`、`kinetic_development_v10_w21/`。solver 验证在同级 `kinetic_solver_v8/`，mean-field 原始与历史整合产物分别在同级 `mean_field_validation_v1/`、`mean_field_validation_integrate_v1/`；大型产物根目录为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/`。后续任何 untouched 读取均须先冻结最终协议并具备相应明确授权。
 
 ## A10-00 · 重核权威状态并建立任务—数据—baseline—主张矩阵
 
 **状态：已完成（仅限本项两个交付物，不代表 E0 完成）。**
 **依赖：无。**
 
-- [x] 完成权威执行环境重核；当前版本事实更新为 GitHub 已推送 `a8-rk@9c10fb77`。RTX 5090、torch 2.14.1+cu132 真 matmul 通过。
+- [x] 完成权威执行环境重核；当前版本事实更新为 GitHub 已推送 `a8-rk@79dcbf377b043e21f45573428128d236c9534685`，A10-03/E2 release 为 `/home/codonflow-a10-e2-release`。RTX 5090、torch 2.14.1+cu132 真 matmul 通过。
 - [x] 确认旧 A7 PID `2071716` 暂停且不重启；本轮不启动新生成器训练、不读冻结数据；保留 RK42=0/9 和冻结集边界，Goodman/Tunney/Lareau 的后续事实以 A10-01 为准。
 - [x] 新建 `交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md`，逐任务记录实际数据、baseline 真实状态、主指标、可/不可主张和下一动作。
 
@@ -55,7 +55,7 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 - [x] 冻结各任务主指标、至少 3 seeds、相当调参预算、ASHA/小网格范围、统计方案和成本口径；无轨迹方法只评 actual set，缺失为 null。
 
 **输出**：数据卡与来源 manifest、raw/clean/split SHA、QC/分布/泄漏报告、baseline manifest 与 smoke、冻结协议和运行台账均已由 G0 closeout v3 验收；汇总见 `交接文档/HANDOFF_A10_01_E0_20261123.md`。closeout v3 与独立复核 SHA、20/20、45 tests 和 A10 定向 251 passed 登记如上。
-**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性，E2 v7 正在真实 CUDA 训练但无完整 outer 结果，H2/G1 未证，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
+**验收**：**E0 与 A10-G0 已勾选完成**，裁决为 `A10_G0=PASS_DATA_AND_BASELINE_READY`。当前 E1 已完成且 H1 为开发集阳性；E2 v7 已于 2026-11-24 因 batch sample 10 normalized residual `8.842e-06 > 1e-10` fail-closed 退出，无 `summary.json` 或 `predictions.npz`，不能称训练完成，恢复工作在进行。H2/G1 未裁决且未通过，E3/G2 未证；`final_untouched=false`、`SOTA=false`，生成训练仍须 G2，E4 不称 SOTA。
 
 ## A10-02 · 完成 E1：低自由度观察模型与跨研究可分性
 
@@ -75,18 +75,19 @@ G0 closeout v3 SHA 为 `93928d6b6c2599d7e18e59896863f4b3bea91b3e034f64538631d395
 
 ## A10-03 · 完成 E2：最小可微流守恒算子与严格 OOD 增量
 
-**状态：进行中；E2 v7 正在真实 CUDA 训练，E2/H2/G1 未完成；v7 尚处运行早期，没有完整 outer 预测或统计判决。**
+**状态：release 工程验收通过，生产科学运行仍未完成。E2 v7 已于 2026-11-24 因 batch sample 10 normalized residual `8.842e-06 > 1e-10` fail-closed 退出；v8 已于 36/486 条曲线后因 backward batch sample 13 residual `2.944e-08 > 1e-10` fail-closed 退出 1，二者均无完整 outer 预测或统计判决。当前 release 为 `79dcbf377b043e21f45573428128d236c9534685`，相关 144 tests、synthetic 多 worker 逐位一致、每份 27 verifier checks、859 CTMC cases/review 通过。v10 27 workers 与 w23 均 OOM、0 shard 且失败保留；w21 真实 CUDA 运行中但 0 完成 shard/0 曲线，不能称完成。E2/H2/G1 未完成、未裁决且未通过。**
 **依赖：A10-02 的开发观察过程边界；不得先写生成器，最终跨研究解释仍须独立最终评价。**
 
-- [x] 实现严格为正的起始率、逐位延伸率和终止率，并完成最小可微平均场稳态算子；登记稳态与守恒数值误差。该勾选不包括参数可辨识性或严格 OOD 科学增量。
-- [x] 为小状态、边界、通量守恒、数值残差和梯度补项目风格测试，36 tests；真实 CUDA 审计 SHA 为 `3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd`。五组独立 least_squares 的最大密度误差为 1.33e-14、最大梯度误差为 1.16e-14、独立守恒误差为 3.94e-14；平均场不得冒称精确随机模拟。
-- [ ] 补齐平均场近似误差与适用边界、局部敏感性和参数可辨识性；当前数值精度不证明近似生物有效性。
-- [x] 预注册完整动力学、同容量去流守恒、独立密码子和纯位置场对照；独立/动力学单模型均 65 参数，位置场 1 参数，统一 successive-halving、3 outer×3 inner×3 seeds 和三成员 inner ensemble。勾选表示协议已冻结且运行中，不表示科学对照已完成。
+- [x] 实现严格为正的起始率、逐位延伸率和终止率，并完成最小可微平均场稳态算子；登记稳态与守恒数值误差。该勾选不包括参数可辨识性或严格 OOD 科学增量，也不抵消 v7 运行时失败。
+- [x] 为小状态、边界、通量守恒、数值残差和梯度补项目风格测试；v7 前 36 tests 与真实 CUDA 审计 SHA `3cd3add70d9d05a47e9f6662867da0faf620586685d6d9092b96b1c975d471fd` 保留为历史。v8 使用 sparse normalized-residual Newton＋scaled Newton＋LSODA/Newton polishing，严格 `1e-10`；64 项定向检查、全项目 889 passed/1 skipped/5 subtests、真实训练快照、历史失败输入、长度 2–4096 及 CUDA 前后向通过。五组独立 least_squares 复核的最大密度误差为 1.3767e-14、最大梯度误差为 1.1796e-14、独立守恒误差为 3.9308e-14；首次 directional 有限差分公式双重计数 `k` 方向的失败已保留，修正公式后通过。以上均不抵消 v7 失败，平均场不得冒称精确随机模拟。
+- [x] 完成 scoped 平均场近似误差、适用边界、局部敏感性和可辨识性验证：859 个 L1–L6 精确 CTMC 案例，`independent_review_v2.passed=true`；log-uniform random 组密度最大绝对误差中位 0.0223736651、最大 0.3391923462，最大通量相对误差 0.3198444691。密度仅观测存在共同时间尺度零空间；加入绝对通量后局部满秩但条件数可很差。该勾选只登记 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/mean_field_validation_v1` 的合成小状态数值产物，不证明生物有效性、长转录本近似或 H2/G1；原始验证本身不表示当时代码已整合，后续 release 整合见下项。
+- [x] 关闭 release producer–verifier 工程整合验收：历史 `/home/codonflow-a10-e2-integrate` dirty 状态及 **910 passed、1 skipped、5 subtests passed（6126.13 s）** 保留；当前干净 release `/home/codonflow-a10-e2-release` 与 GitHub `a8-rk` 均为 `79dcbf377b043e21f45573428128d236c9534685`。相关 **144 tests** 通过；synthetic 1/2/4-worker predictions/states/metrics/science records 逐位一致，每份独立 verifier **27/27 checks** 通过，859 CTMC cases 和独立 review 通过。集成 manifest 为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_release_integration_v1/integration_manifest.json`。原始 production solver SHA `68d669bd…` 与 v8 训练清单 SHA `83b1def7…` 的身份差异保留为历史。本勾选仅关闭工程整合，**不表示端到端科学生产运行或 G1 完成**；v7/v8 不覆盖，v10/w23 OOM 与 w21 进行中状态见下。
+- [x] 预注册完整动力学、同容量去流守恒、独立密码子和纯位置场对照；独立/动力学单模型均 65 参数，位置场 1 参数，统一 successive-halving、3 outer×3 inner×3 seeds 和三成员 inner ensemble。勾选只表示协议已冻结；v7 已 fail-closed，v8 科学对照未完成。
 - [ ] 先研究内 transcript OOD，再按冻结协议做研究 OOD；评价 TB-MSE、mean per-transcript Pearson/Spearman、局部编辑上下游密度响应、通量和校准，不随机拆 codon 行。Yu OPT/Cwt-Opt 的直接局部同义 WIG 配对已完成描述性分析与独立复算，但每构建 1 run、无下游编码区，不能单独完成 H2；不额外改写预注册 G1 的 OOD 判决条件。
-- [ ] 至少 3 seeds，按转录本/研究做 paired CI、Holm 和失败分层；未完成动力学模型训练与这些科学对照前不得判 H2。
-- [ ] 独立复算稳态解、密度响应和主指标，执行真实端到端 smoke；无 decay 数据不加 decay 头，无多位点覆盖不加远程 pair 机制。
+- [ ] 至少 3 seeds，按转录本/研究做 paired CI、Holm 和失败分层；v7/v8/v10/w23 均未产生最终预测，w21 仍 0 完成 shard/0 曲线，未完成动力学模型训练与这些科学对照前不得判 H2。
+- [ ] 保留 v1–v8、v10/w23 失败日志与产物，不覆盖任何失败目录；w21 只有形成完整运行产物后才独立复算稳态解、密度响应和主指标。release 已执行真实 CUDA synthetic smoke，不代替完整科学运行；无 decay 数据不加 decay 头，无多位点覆盖不加远程 pair 机制。
 
-**验收**：当前只通过数值基础子项，**E2 与 A10-G1 均未通过**。E2 在严格 OOD 超过去守恒和简单模型，主效应 paired 95% CI 下界>0且 Holm 通过，才标 **A10-G1** 并允许相应动力学量进入 E3；无独立增量即删除动力学核心并停止 Kinetic-CodonFlow 主线。
+**验收**：当前通过数值基础、scoped 精确 CTMC 对照子项和 release 工程验收；v7、v8、v10、w23 均失败，w21 真实 CUDA 运行中但无完成 shard/曲线，**E2 与 A10-G1 均未通过，H2/G1 未裁决**。后续运行仍须真实 CUDA、项目风格测试和独立复核；E2 在严格 OOD 超过去守恒和简单模型，主效应 paired 95% CI 下界>0且 Holm 通过，才标 **A10-G1** 并允许相应动力学量进入 E3；无独立增量即删除动力学核心并停止 Kinetic-CodonFlow 主线。完整失败与恢复事实见 `交接文档/HANDOFF_A10_03_E2_RECOVERY_20261125.md`。
 
 ## A10-04 · 完成 E3：T1 功能 OOD 主表与功能阳性核心
 
