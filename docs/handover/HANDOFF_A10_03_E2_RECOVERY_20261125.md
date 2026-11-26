@@ -1,10 +1,10 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-27（三臂 bounded soak、outer0 replay 拒绝复用与 v14 从头运行快照）
+- 文档日期：2026-11-25；最近复核：2026-11-27（三臂 bounded soak、outer0 replay 拒绝复用、最早分歧诊断与 v14 从头运行快照）
 - 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12/v13）；v13 已于 2026-11-26 22:36:45+08:00 退出 1，最终无完成摘要
 - 阶段：A10-03 / E2
 - 状态：**v7、v8、v10/w23/w21、v11/v12/v13 历史 fail-closed 不删除。v13 使用启动时代码祖先 `40603527afa3ee2275166b4293234cdd48a9e38c`，运行 13321.0843 s 后在 position/epoch890 OOM、退出 1；2 个成功 cache shard 加 1 个 OOM 失败 shard 共 3 个终止 shard，无完成摘要。独立 verifier 当前证据基线为 `cac91df1468b0e01b4e619a5ca9f57e4b242896d`：全量 952 passed/1 failed/1 skipped/5 subtests，唯一失败为共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、verifier 各 28/28 checks，manifest SHA `e34cba…`。受控真实 CUDA A/B 已定位为 output-gradient hook 闭包逐 batch 保留 CUDA 张量，本轮未修改生产代码、protocol、Gate 或 v13 artifacts；E2/H2/G1 未完成、未裁决且未通过。**
-- **2026-11-27 当前权威更新：v14 恢复代码为 `fe11a241…`，hook 修复定向测试独立复跑为 31 passed；本轮登记时 memory 工作树 `/home/codonflow-a10-e2-memory` HEAD 为 `8b73984f`。v13 复用 oracle 严格只有 2 个成功 independent shard（outer0/1）。三臂 1000-step 无显式 GC soak 均完成并有界，kinetic 峰值约 100.58 MB、后半程下降，未见持续线性增长。outer0 正式 replay 结构完整但有 547 个字段不一致，science SHA 由 `cc3a19a7…` 变为 `d8b4817d…`，逐位不等价，按合同拒绝复用；outer1 未重放，旧 cache 不变。v14 已从全新空 cache 启动，输出 `kinetic_development_v14`，cache `kinetic_development_v14_from_scratch_shard_cache`，producer PID `4176767`，4 workers，cache hits 预期 0，不是 2 或 3；登记时未见 OOM，warnings 保留，尚无完成摘要。E2/H2/G1 仍未完成、未裁决且未通过。**
+- **2026-11-27 当前权威更新：v14 恢复代码为 `fe11a241…`，hook 修复定向测试独立复跑为 31 passed；本轮登记时 memory 工作树 `/home/codonflow-a10-e2-memory` HEAD 为 `3ba302dfcab8dd250409bcf1b514c415a5b3f9f9`。v13 复用 oracle 严格只有 2 个成功 independent shard（outer0/1）。三臂 1000-step 无显式 GC soak 均完成并有界，kinetic 峰值约 100.58 MB、后半程下降，未见持续线性增长。outer0 正式 replay 结构完整但有 547 个字段不一致，science SHA 由 `cc3a19a7…` 变为 `d8b4817d…`，逐位不等价，按合同拒绝复用；outer1 未重放，旧 cache 不变。v14 已从全新空 cache 启动，输出 `kinetic_development_v14`，cache `kinetic_development_v14_from_scratch_shard_cache`，producer PID `4176767`，4 workers，cache hits 预期 0，不是 2 或 3；登记时未见 OOM，warnings 保留，尚无完成摘要。E2/H2/G1 仍未完成、未裁决且未通过。**
 - 本文只登记已核实的失败、恢复与数值验证事实及后续验收边界，不预写训练或科学成功。
 
 ## 1. v7 已核实的退出事实（不可变历史）
@@ -178,6 +178,12 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 - v14 production 已从**全新空 cache** 启动，输出目录为 `kinetic_development_v14/`，cache 为 `kinetic_development_v14_from_scratch_shard_cache/`；producer PID **`4176767`**，`--max-workers 4`。from-scratch preflight 的 `expected_cache_hits=0`，因为 outer0 复用被拒绝且 outer1 未重放，**不得沿用两个或三个成功 shard 命中的旧预期**。登记时未见 OOM，日志 warnings 保留；尚无完成摘要，producer 实际 cache_hits 只能在完整 `parallel.json` 形成后读取，启动不等于 E2 完成。
 - 独立复核的临时 replay 入口首次因合同字段路径 KeyError 在训练前退出；发现更早的权威 1000-step 流程后，为避免重复 GPU 工作，仅取消了本轮重复 soak/replay worker，分别保留 exit143 和 BrokenProcessPool，无完成 shard、无残留进程。这些验证 harness 事件不是数值不一致，也不替代权威 soak/replay 结果。旧 cache、producer 和其他项目进程未修改或触碰。
 
+### 5.12 outer0 replay 最早分歧诊断（2026-11-27）
+
+- 只读诊断报告为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_v14_recovery_v1/replay/outer0_first_divergence_analysis_v1.json`，SHA256=`6866e92ee456712a30a0b895f01935c0a3cdf84f9073d51781657fc8c1c41a95`。报告记录的最早 train loss 差为 **2 ULP**；最大 loss 差为 **8.881784197001252e-16（约 8.88e-16）**，预测最大差为 **3.3306690738754696e-16（约 3.33e-16）**，离散选择不变。
+- 上述数值只限定本次 replay 中观察到的浮点尾差，**仍不满足 bitwise 复用合同**，不得据此声称统计等价、科学等价或任何科学结果。报告明确不能从这些 NPZ 定位具体 CUDA kernel；CUDA embedding backward 非确定性只是候选机制，**尚未确证**，不得写成根因已经闭合。
+- 因此 outer0 cache 继续拒绝复用，outer1 未重放，旧 cache 不变；v14 继续从全新空 cache 从头训练。该诊断不修改 producer、protocol、统计、Gate 或 `1e-10`，E2/H2/G1 仍未完成、未裁决且未通过。
+
 ## 6. 当前科学与 Gate 边界
 
 - E0/A10-G0 已完成；E1/A10-02 已完成，H1 仅为开发集 TB-MSE 观察校准阳性。这些历史状态不变。
@@ -197,9 +203,9 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 
 ## 8. 本次文档登记范围
 
-上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。v11/v12 轮已推送 cache provenance 代码提交 `40603527…` 和文档提交 `f7e3fdbb…`，v13 审计文档提交为 `46039512…`。此前已登记 verifier `cac91df` 全量/干净复现证据、v13 最终 OOM 和受控真实 CUDA 显存根因。本轮登记三臂 1000-step 无显式 GC soak 有界通过、outer0 replay 逐位不等价且拒绝复用、outer1 未重放和 v14 从全新空 cache 运行中的事实，同步四份现行文档的本地、`codonflow-main/docs/handover` 和 memory 镜像；仅将这四份文档单独提交并推送 `a8-rk`。不修改 release dirty docs、producer、protocol、v13/v14 训练输出或其他项目进程，不预写 v14 或科学通过。
+上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。v11/v12 轮已推送 cache provenance 代码提交 `40603527…` 和文档提交 `f7e3fdbb…`，v13 审计文档提交为 `46039512…`。此前已登记 verifier `cac91df` 全量/干净复现证据、v13 最终 OOM 和受控真实 CUDA 显存根因。本轮登记 outer0 replay 最早分歧诊断及其数值边界、候选机制未确证、cache 继续拒绝复用和 v14 继续从全新空 cache 从头训练的事实，同步四份现行文档的本地、`codonflow-main/docs/handover` 和 memory 镜像；仅将这四份文档单独提交并推送 `a8-rk`。不修改 release dirty docs、producer、protocol、v13/v14 训练输出或其他项目进程，不预写 v14 或科学通过。
 
 当前可执行事实是：**verifier `cac91df1468b0e01b4e619a5ca9f57e4b242896d` 的全量证据为 952 passed/1 failed/1 skipped/5 subtests，唯一失败是共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、各 28/28 checks，manifest SHA `e34cba…`。v13 运行 13321.0843 s 后于 position/epoch890 OOM、退出 1，2 个成功 cache shard＋1 个失败 shard，无完成摘要，未运行 ready verifier。失败 PID 是 4057037，9.83 GiB allocated 属于该进程；4057040 是 peer。真实 32×1487、128-step A/B 证明 output-gradient hook 闭包逐 batch 保留 CUDA 张量：production 斜率 2334208 bytes/step、128 弱引用全活且 GC 无效；禁用 hook 或无 failure_context 均斜率 0、弱引用 0。诊断摘要 SHA `7b8b4fd8…`。release 仍为旧 `46039512…` 且只有四份文档 dirty，producer 科学实现代码提交仍为 `40603527…`；未修改生产代码、protocol、Gate、`1e-10` 或 v13 artifacts，未预写修复。outer-test 残差复核合同为 9657，28971 不是新增 Gate。E2/H2/G1 未完成、未裁决且未通过，没有生物有效性的新证据。**
 
 
-**2026-11-27 当前可执行事实：hook 修复代码 `fe11a241…` 已发布，31 项定向测试独立复跑通过；本轮登记时 memory 工作树 HEAD 为 `8b73984f`，v13 仍只有 2 个成功 independent oracle shard。三臂 1000-step 无显式 GC soak 均完成并有界，kinetic 峰值约 100.58 MB、后半程下降，未见持续线性增长。outer0 正式 replay 结构完整但有 547 个字段不一致，science SHA 由 `cc3a19a7…` 变为 `d8b4817d…`，逐位不等价，按合同拒绝复用；outer1 未重放，旧 cache 不变。v14 已从全新空 cache 启动，输出 `kinetic_development_v14`，cache `kinetic_development_v14_from_scratch_shard_cache`，producer PID `4176767`，4 workers，cache hits 预期 0；登记时未见 OOM，warnings 保留，无完成摘要。科学 protocol、Gate、统计与 `1e-10` 不变，E2/H2/G1 未完成、未裁决且未通过。**
+**2026-11-27 当前可执行事实：hook 修复代码 `fe11a241…` 已发布，31 项定向测试独立复跑通过；本轮登记时 memory 工作树 HEAD 为 `3ba302dfcab8dd250409bcf1b514c415a5b3f9f9`，v13 仍只有 2 个成功 independent oracle shard。三臂 1000-step 无显式 GC soak 均完成并有界，kinetic 峰值约 100.58 MB、后半程下降，未见持续线性增长。outer0 正式 replay 结构完整但有 547 个字段不一致，science SHA 由 `cc3a19a7…` 变为 `d8b4817d…`，逐位不等价，按合同拒绝复用；outer1 未重放，旧 cache 不变。v14 已从全新空 cache 启动，输出 `kinetic_development_v14`，cache `kinetic_development_v14_from_scratch_shard_cache`，producer PID `4176767`，4 workers，cache hits 预期 0；登记时未见 OOM，warnings 保留，无完成摘要。outer0 最早分歧诊断报告 SHA256=`6866e92ee456712a30a0b895f01935c0a3cdf84f9073d51781657fc8c1c41a95`，最早 train loss 差为 2 ULP，最大 loss 差为 8.88e-16，预测最大差为 3.33e-16，离散选择不变但不满足 bitwise 合同；CUDA embedding backward 非确定性仅为未确证候选，cache 继续拒绝复用，v14 继续从全新空 cache 从头训练。科学 protocol、Gate、统计与 `1e-10` 不变，E2/H2/G1 未完成、未裁决且未通过。**
