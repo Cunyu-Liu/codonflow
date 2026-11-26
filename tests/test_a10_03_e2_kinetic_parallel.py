@@ -108,6 +108,56 @@ def test_schedule_has_27_shards_kinetic_first_and_canonical_merge_order():
     assert sorted(scheduled, key=parallel.canonical_spec_key) == canonical
 
 
+def test_banded_cuda_backend_identity_is_hashed_and_invalidates_cache(tmp_path, monkeypatch):
+    protocol_path = Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json"
+    protocol = kinetic.load_protocol(protocol_path)
+    identity = parallel.source_identity(protocol_path)
+    assert identity["banded_cuda_backend"] == kinetic.sha256_file(parallel.kinetic_banded_cuda.__file__)
+    assert set(identity) == {
+        "protocol", "implementation", "mean_field_operator", "banded_cuda_backend", "parallel_implementation",
+    }
+
+    tasks = synthetic_tasks(protocol)
+    cache = tmp_path / "backend_identity_cache"
+    parallel.execute_shard_tasks(tasks, cache, identity, 2, synthetic_worker)
+    changed_backend = tmp_path / "kinetic_banded_cuda.py"
+    changed_backend.write_text("# changed backend identity\n", encoding="utf-8")
+    monkeypatch.setattr(parallel.kinetic_banded_cuda, "__file__", str(changed_backend))
+    changed_identity = parallel.source_identity(protocol_path)
+    assert changed_identity["banded_cuda_backend"] != identity["banded_cuda_backend"]
+    assert {key: value for key, value in changed_identity.items() if key != "banded_cuda_backend"} == {
+        key: value for key, value in identity.items() if key != "banded_cuda_backend"
+    }
+    with pytest.raises(RuntimeError, match="shard cache identity mismatch"):
+        parallel.execute_shard_tasks(tasks, cache, changed_identity, 2, failing_worker)
+
+
+def test_worker_rejects_backend_only_identity_change_before_training(tmp_path, monkeypatch):
+    protocol_path = Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json"
+    identity = parallel.source_identity(protocol_path)
+    changed_backend = tmp_path / "kinetic_banded_cuda.py"
+    changed_backend.write_text("# worker-observed backend change\n", encoding="utf-8")
+    monkeypatch.setattr(parallel.kinetic_banded_cuda, "__file__", str(changed_backend))
+    changed_identity = parallel.source_identity(protocol_path)
+    assert {key: value for key, value in changed_identity.items() if key != "banded_cuda_backend"} == {
+        key: value for key, value in identity.items() if key != "banded_cuda_backend"
+    }
+    monkeypatch.setattr(
+        parallel, "_run_single_shard", lambda task: pytest.fail("training ran despite worker identity mismatch"),
+    )
+    task = {
+        "spec": {"seed": 1234, "seed_index": 0, "outer_fold": 0, "arm": "kinetic"},
+        "protocol_path": str(protocol_path), "identity": identity, "snapshot_dir": str(tmp_path / "failures"),
+    }
+    with pytest.raises(RuntimeError, match="worker source identity differs"):
+        parallel._run_shard_task(task)
+    failures = list((tmp_path / "failures").glob("*.json"))
+    assert len(failures) == 1
+    failure = json.loads(failures[0].read_text())
+    assert failure["error_type"] == "RuntimeError"
+    assert "worker source identity differs" in failure["error"]
+
+
 def test_spawn_1_2_4_workers_are_bitwise_equivalent_and_cache_reuses_results(tmp_path):
     protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
     tasks = synthetic_tasks(protocol)

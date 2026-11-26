@@ -17,6 +17,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
+from codonflow.models import kinetic_banded_cuda
 from scripts import a10_03_e2_kinetic as kinetic
 
 PARALLEL_SCHEMA = "a10-03-e2-kinetic-parallel-v1"
@@ -24,6 +25,16 @@ SHARD_SCHEMA = "a10-03-e2-kinetic-shard-v1"
 FAILURE_SCHEMA = "a10-03-e2-kinetic-candidate-failure-v1"
 DEFAULT_ARM_MAX_WORKERS = {"kinetic": 4, "independent": 8, "position": 8}
 WORKER_TERMINATION_GRACE_SECONDS = 5.0
+
+
+def source_identity(protocol_path):
+    return {
+        "protocol": kinetic.sha256_file(protocol_path),
+        "implementation": kinetic.sha256_file(kinetic.__file__),
+        "mean_field_operator": kinetic.sha256_file(kinetic.kinetic_mean_field.__file__),
+        "banded_cuda_backend": kinetic.sha256_file(kinetic_banded_cuda.__file__),
+        "parallel_implementation": kinetic.sha256_file(__file__),
+    }
 
 
 def shard_specs(protocol):
@@ -311,6 +322,7 @@ def _failure_metadata(task, seed, outer_fold, arm, grid_index, lr, wd, inner_fol
         "protocol_sha256": task["identity"]["protocol"],
         "implementation_sha256": task["identity"]["implementation"],
         "mean_field_operator_sha256": task["identity"]["mean_field_operator"],
+        "banded_cuda_backend_sha256": task["identity"]["banded_cuda_backend"],
         "parallel_implementation_sha256": task["identity"]["parallel_implementation"],
         "solver_interface": "v9 native backward failure telemetry with captured batch reconstruction", "residual_tolerance": 1e-10,
     }
@@ -443,12 +455,7 @@ def _run_single_shard(task):
 def _run_shard_task(task):
     started = time.perf_counter()
     try:
-        observed = {
-            "protocol": kinetic.sha256_file(task["protocol_path"]),
-            "implementation": kinetic.sha256_file(kinetic.__file__),
-            "mean_field_operator": kinetic.sha256_file(kinetic.kinetic_mean_field.__file__),
-            "parallel_implementation": kinetic.sha256_file(__file__),
-        }
+        observed = source_identity(task["protocol_path"])
         if observed != task["identity"]:
             raise RuntimeError("worker source identity differs from the parent startup identity")
         result = _run_single_shard(task)
@@ -657,11 +664,8 @@ def run_experiment(protocol_path, raw_path, output_dir, device, max_workers, sha
     protocol = kinetic.load_protocol(protocol_path)
     if protocol["inputs"].get("expected_basename") and raw_path.name != protocol["inputs"]["expected_basename"]:
         raise ValueError("raw input basename mismatch")
-    startup_sha256 = {
-        "protocol": kinetic.sha256_file(protocol_path), "implementation": kinetic.sha256_file(kinetic.__file__),
-        "mean_field_operator": kinetic.sha256_file(kinetic.kinetic_mean_field.__file__),
-    }
-    identity = {**startup_sha256, "parallel_implementation": kinetic.sha256_file(__file__)}
+    identity = source_identity(protocol_path)
+    startup_sha256 = {key: value for key, value in identity.items() if key != "parallel_implementation"}
     output_dir.mkdir(parents=True, exist_ok=False)
     kinetic.write_json_exclusive(output_dir / "provenance.json", {
         "schema": kinetic.PROVENANCE_SCHEMA, "protocol": kinetic.PROTOCOL, "recorded_utc": started_utc,
