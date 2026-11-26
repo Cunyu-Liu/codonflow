@@ -1,9 +1,9 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-26（v11/v12 provenance 与生产失败）
-- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12）
+- 文档日期：2026-11-25；最近复核：2026-11-26（v13 共享显存审计与单次启动后只读检查）
+- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12）；v13 于 2026-11-26 启动，尚无最终结局
 - 阶段：A10-03 / E2
-- 状态：**v7、v8、v10/w23/w21、v11/v12 历史 fail-closed 不删除；当前 release `/home/codonflow-a10-e2-release` 代码 HEAD 与 GitHub `a8-rk` 均为 `40603527afa3ee2275166b4293234cdd48a9e38c`，本次核对干净。v11 的 cache identity 缺 banded CUDA backend SHA，属于生产 provenance 阻断而非科学失败；修复后定向 151 tests、提交后并行 12 tests 和真实 CUDA/cache 复核通过。v11 最终 CUDA OOM、v12 最终 `CUBLAS_STATUS_ALLOC_FAILED`，均退出 1、0 shard/0 曲线且无完成摘要。历史 release 集成验收为 `79dcbf377b043e21f45573428128d236c9534685`，相关 144 tests、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过；E2/H2/G1 未完成、未裁决且未通过。**
+- 状态：**v7、v8、v10/w23/w21、v11/v12 历史 fail-closed 不删除；v13 启动时 release `/home/codonflow-a10-e2-release` HEAD 与 GitHub `a8-rk` 均为文档提交 `f7e3fdbb7684befe947a12b06de56744defbdb96`，本次核对干净；backend identity 代码提交 `40603527afa3ee2275166b4293234cdd48a9e38c` 是其直接祖先。本轮仅登记文档，不修改代码。v11 的 cache identity 缺 banded CUDA backend SHA，属于生产 provenance 阻断而非科学失败；修复后定向 151 tests、提交后并行 12 tests 和真实 CUDA/cache 复核通过。v11 最终 CUDA OOM、v12 最终 `CUBLAS_STATUS_ALLOC_FAILED`，均退出 1、0 shard/0 曲线且无完成摘要。历史 release 集成验收为 `79dcbf377b043e21f45573428128d236c9534685`，相关 144 tests、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过；E2/H2/G1 未完成、未裁决且未通过。**
 - 本文只登记已核实的失败、恢复与数值验证事实及后续验收边界，不预写训练或科学成功。
 
 ## 1. v7 已核实的退出事实（不可变历史）
@@ -81,7 +81,7 @@
 
 ### 5.1 release 身份与 scoped 工程证据
 
-- 当前权威工作树为 `/home/codonflow-a10-e2-release`，HEAD 与 GitHub `a8-rk` 均为 **`79dcbf377b043e21f45573428128d236c9534685`**；登记时 `git status --short` 无输出，工作树干净。
+- 历史 release 集成验收时，权威工作树 `/home/codonflow-a10-e2-release` 的 HEAD 与 GitHub `a8-rk` 均为 **`79dcbf377b043e21f45573428128d236c9534685`**；当时 `git status --short` 无输出，工作树干净。后续代码与文档身份见第 5.5、5.6 节。
 - 相关 **144 tests** 通过（94.70 s）。release 集成 manifest 明确 `full_project_suite_run_on_release=false`，因此不得把 144 项定向测试写成 release 全项目测试。
 - synthetic **1/2/4-worker** 的 predictions、states、metrics 和 science records 逐位一致；每份独立 verifier 均为 **27/27 checks** 通过，cache-hit 复核也通过。该结论限于 synthetic smoke 与并行等价性。
 - **859** 个 L1–L6 合成小状态精确 CTMC cases 及独立 review 通过；mean-field 边界仍按第 3 节，不因 release 整合而扩大。
@@ -119,10 +119,19 @@
 - 最终真实 RTX 5090、torch 2.14.1+cu132 的 CUDA/cache 报告为 `cuda_cache_identity_validation.json`，SHA `918343221e843a8f59e269d7b1ecfd50bdc41e76cc8bc66602ee0780a9f741c5`：初始 cache miss 1、相同 identity cache hit 1、变更 backend identity 被拒绝、科学结果 SHA 一致、梯度有限，最大归一化残差 `9.50439078614984e-15 <= 1e-10`。这些只证明工程 identity 与 scoped CUDA 前后向，不证明 outer 科学结果。
 - v12 使用 `40603527…` 和 16 workers，于 2026-11-26 18:36:52+08:00 真实启动；18:37:17+08:00 退出 1，约 19.81 s executor 内记录 position shard `CUBLAS_STATUS_ALLOC_FAILED`，0 完成 shard、0 曲线、无 `summary.json` 或 `predictions.npz`。v12 startup provenance 已含正确 backend SHA，provenance SHA 为 `70a4983fe0065d99095b1d683d5a8c48b189ac855fda6a7fab12767d005c3148`，failure SHA 为 `f5e28977c677b1cf239c0540eb58d2b9f0909cbe0d33460bf046ac610ae72056`。v12 是资源/工程失败，未产生科学预测，不据此裁决 H2/G1；未预写后续运行成功。
 
+### 5.6 v13 共享显存审计、6-worker 启动与单次只读快照
+
+- 启动前审计时间为 **2026-11-26 18:53:38+08:00**。RTX 5090 总显存 32607 MiB、已用 13189 MiB、空闲 18923 MiB。`nvidia-smi` 仅列 PID `3996745`=7034 MiB 和 `4045601`=6138 MiB；二者合计 13172 MiB，与整卡已用量仅差 17 MiB。
+- 进程身份由完整命令行、工作目录和可执行文件共同核对：`3996745` 为 `/root/rareseq/work` 下的 `e5_rbp_holdout.py`，输出归 ProxyFunctionGap/RARESeq；`4045601` 为 `/home/cunyuliu/rna-ft-eval` 下的 `python -m rnafteval.finetune_base`。二者均非 CodonFlow，未停止、未发送信号、未改变其环境。按 `/proc` 完整命令行扫描，未发现 v11/v12 runner 或 spawn worker 残留；审计 shell 的字符串自匹配不计作训练进程。
+- v13=6 的保守资源依据为：启动前空闲 18923 MiB，固定预留 **12 GiB=12288 MiB** 给共享进程波动、allocator 和临时分配，可预算总量为 `18923-12288=6635 MiB`，等效每并发 **1105.8 MiB**。这是资源上限选择而非显存不 OOM 的保证；protocol、科学 Gate 和 `1e-10` 不变。
+- v13 启动时 release HEAD 与 GitHub `a8-rk` 均为 **`f7e3fdbb7684befe947a12b06de56744defbdb96`**，工作树干净；`40603527afa3ee2275166b4293234cdd48a9e38c` 是其直接代码祖先。实测 protocol SHA 仍为 `3c4b9a3b345524d4c9ea9779aacb4c1f4afa57e131ee4c23d5d8f33b139b6b24`，backend SHA 为 `c2c70271d1a94055173926973db5c689d6fbbb08f20fc5d6c8026ac971704aa3`。本轮未修改代码。
+- v13 命令使用 `scripts/a10_03_e2_kinetic.py --device cuda:0 --max-workers 6`，输出为同级 `kinetic_development_v13/`。唯一一次启动后只读状态检查在 **2026-11-26 18:55:35+08:00**：主 PID `4057023` 加六个 worker GPU PID `4057034`、`4057037`、`4057038`、`4057039`、`4057040`、`4057041`，显存分别合计 **5468 MiB**；整卡已用 18694 MiB、空闲 **13417 MiB**，高于 12 GiB 预留，且 CodonFlow 占用低于 6635 MiB 总预算。两个外部 PID 仍为 7034/6138 MiB，未触碰。
+- 该快照仅有 `provenance.json` 与 `splits.json`；provenance SHA 为 **`350a515bb7a621c54693fe53f1109082221cc3decd11f597b8a5d9a11a8b23b9`**。当时 **0 曲线、0 cache NPZ/0 完成 shard**，无 `summary.json`、`predictions.npz`、`.exit_code` 或 `.finished`，故只登记“真实 CUDA 运行中”的瞬时状态，不宣称训练完成。日志保留 numerical recovery 期间的 invalid/overflow RuntimeWarning；既不隐去，也不在缺少 executor 失败/退出证据时单独判为最终失败。没有 outer 预测或统计判决，H2/G1 未裁决且未通过。
+
 ## 6. 当前科学与 Gate 边界
 
 - E0/A10-G0 已完成；E1/A10-02 已完成，H1 仅为开发集 TB-MSE 观察校准阳性。这些历史状态不变。
-- E2 生产科学运行仍未完成，w21、v11 已 OOM 退出，v12 已 `CUBLAS_STATUS_ALLOC_FAILED` 退出，均无完成 shard/曲线，H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、历史进程/显存、inner 状态、工程测试、cache/CUDA provenance 验证、精确 CTMC 对照或局部 rank 推断 outer 阳性。
+- E2 生产科学运行仍未完成，w21、v11 已 OOM 退出，v12 已 `CUBLAS_STATUS_ALLOC_FAILED` 退出，均无完成 shard/曲线；v13 的唯一启动后快照也是 0 完成 shard/0 曲线且无退出码，不能预写其最终状态。H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、历史或当前进程/显存、inner 状态、工程测试、cache/CUDA provenance 验证、精确 CTMC 对照或局部 rank 推断 outer 阳性。
 - E3/G2 未证，G3 未通过；`final_untouched=false`、`SOTA=false`。大规模生成训练仍须先通过 G2。
 - 平均场不是精确随机模拟，occupancy 仍只是实验依赖的相对占据/速度代理。不得作最终跨研究、绝对物理速率、因果机制、真实生物功能或 SOTA 结论。
 - untouched24、MAGE functional untouched 及其派生文件继续禁止读取；冻结数据边界未因恢复工作改变。
@@ -138,6 +147,6 @@
 
 ## 8. 本次文档登记范围
 
-上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，未提交或推送远端文档，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。以上是历史范围。本轮获得明确代码与文档推送授权，cache provenance 代码提交 `40603527…` 已先行推送；四份现行文档及本地/远端镜像登记 v11/v12 真实失败与验证证据，文档另行 commit/push，不再修改代码。
+上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，未提交或推送远端文档，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。以上是历史范围。v11/v12 轮已推送 cache provenance 代码提交 `40603527…` 和文档提交 `f7e3fdbb…`。本轮只登记共享 GPU 约束、v13=6 的保守显存依据及唯一一次启动后只读快照，同步四份现行文档的本地与 release 镜像，远端 docs 单独 commit/push，不修改代码、不启动其他任务。
 
-当前可执行事实是：**release 代码 HEAD 为 `40603527afa3ee2275166b4293234cdd48a9e38c`；历史 144 项定向测试、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过只支持 scoped 工程验收；v11 cache backend identity 缺口已修复，151 项定向测试、提交后 12 项并行测试及真实 CUDA/cache 复核通过，protocol/Gate 不变；v11 最终 OOM、v12 最终 `CUBLAS_STATUS_ALLOC_FAILED`，均退出 1、0 完成 shard/0 曲线且无完成摘要，失败目录不覆盖；没有 H2、G1 或生物有效性的证据。**
+当前可执行事实是：**v13 启动时 release HEAD 为 `f7e3fdbb7684befe947a12b06de56744defbdb96`，backend identity 代码提交为 `40603527afa3ee2275166b4293234cdd48a9e38c`；历史 144 项定向测试、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过只支持 scoped 工程验收；v11 最终 OOM、v12 最终 `CUBLAS_STATUS_ALLOC_FAILED`，均退出 1、0 完成 shard/0 曲线且无完成摘要，失败目录不覆盖；v13 的 6-worker 真实 CUDA 快照符合共享显存预算但当时 0 曲线/0 shard、无退出码，科学运行未完成；没有 H2、G1 或生物有效性的证据。**
