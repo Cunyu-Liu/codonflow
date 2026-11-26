@@ -694,6 +694,7 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
         })
     for batch_index, batch in enumerate(_batches(train_records, training["batch_transcripts"], context["rng"].permutation(len(train_records)))):
         capture = {}
+        output_gradients = {}
         if failure_context is not None:
             failure_context.update({"phase": "training", "epoch": epoch, "batch_index": batch_index, "batch": batch, "capture": capture})
         try:
@@ -706,9 +707,9 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
                     2.0 * (output["rho"] - packed["target"]) * packed["mask"]
                     / packed["mask"].sum(dim=1, keepdim=True) / len(batch)
                 )
-                output["rho"].register_hook(lambda gradient: capture.__setitem__("output_gradient_rho", gradient))
+                output["rho"].register_hook(lambda gradient: output_gradients.__setitem__("output_gradient_rho", gradient))
                 if output["flux"] is not None:
-                    output["flux"].register_hook(lambda gradient: capture.__setitem__("output_gradient_J", gradient))
+                    output["flux"].register_hook(lambda gradient: output_gradients.__setitem__("output_gradient_J", gradient))
             if not bool(torch.isfinite(loss)):
                 raise RuntimeError("nonfinite training loss")
             loss.backward()
@@ -716,6 +717,7 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
             optimizer.step()
             _require_finite_parameters(model, "after optimizer step")
         except Exception as error:
+            capture.update(output_gradients)
             _save_failure_snapshot(failure_context, error)
             raise
     if failure_context is not None:

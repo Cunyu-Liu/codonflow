@@ -1,6 +1,8 @@
 import csv
+import gc
 import hashlib
 import json
+import weakref
 from pathlib import Path
 
 import numpy as np
@@ -401,6 +403,76 @@ def test_selected_candidate_resumes_rung_last_state_beyond_old_epoch_ceiling(tmp
     assert np.mean(list(fitted["validation_transcript_mse"].values())) == pytest.approx(
         fitted["best_validation_tb_mse"],
     )
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+@pytest.mark.parametrize("arm", ["independent", "kinetic"])
+def test_training_output_hook_does_not_retain_cuda_outputs_or_grow_allocated_memory(tmp_path, monkeypatch, arm):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
+    protocol["training"]["batch_transcripts"] = 1
+    protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    device = kinetic.resolve_cuda_device("cuda:0")
+    context = kinetic._new_candidate_context(arm, 1e-3, 0.0, 17, device)
+    failure_context = {"metadata": {}, "directory": None}
+    original_forward = kinetic.forward_arm
+    output_references = []
+
+    def track_output(*args, **kwargs):
+        output = original_forward(*args, **kwargs)
+        output_references.append(weakref.ref(output["rho"]))
+        return output
+
+    monkeypatch.setattr(kinetic, "forward_arm", track_output)
+    allocated = []
+    for _ in range(128):
+        kinetic._advance_candidate(
+            context, arm, records[:1], records[1:2], protocol, device, failure_context,
+        )
+        if arm == "kinetic":
+            gc.collect()
+        allocated.append(torch.cuda.memory_allocated(device))
+
+    assert sum(reference() is not None for reference in output_references) == 1
+    assert output_references[-1]() is not None
+    assert len(set(allocated[8:])) == 1
+
+
+@pytest.mark.parametrize("arm", ["independent", "kinetic"])
+def test_failure_snapshot_preserves_autograd_output_hook_gradients(tmp_path, monkeypatch, arm):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(FROZEN_PROTOCOL)
+    protocol["training"]["batch_transcripts"] = 2
+    protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    device = torch.device("cpu")
+    context = kinetic._new_candidate_context(arm, 1e-3, 0.0, 17, device)
+    failure_context = {"metadata": {}, "directory": tmp_path}
+
+    def stop_after_backward(*args, **kwargs):
+        raise RuntimeError("stop after backward")
+
+    monkeypatch.setattr(torch.nn.utils, "clip_grad_norm_", stop_after_backward)
+    with pytest.raises(RuntimeError, match="stop after backward"):
+        kinetic._advance_candidate(
+            context, arm, records[:2], records[2:3], protocol, device, failure_context,
+        )
+
+    capture = failure_context["capture"]
+    assert "output_gradient_rho" in capture
+    if arm == "kinetic":
+        assert "output_gradient_J" in capture
+        assert capture["output_gradient_J"] is None
+    snapshots = list(tmp_path.glob("*.npz"))
+    assert len(snapshots) == 1
+    with np.load(snapshots[0], allow_pickle=False) as archive:
+        metadata = json.loads(archive["metadata"].item())
+        assert metadata["output_gradient_source"] == "autograd_output_hook"
+        analytic_gradient = capture["analytic_output_gradient"]
+        expected = torch.zeros((analytic_gradient.shape[0], analytic_gradient.shape[1] + 1), dtype=torch.float64)
+        expected[:, :-1] = analytic_gradient
+        torch.testing.assert_close(torch.from_numpy(archive["output_gradient"]), expected, rtol=0, atol=0)
 
 
 def test_nonfinite_gradient_fails_at_strict_clip_before_optimizer_step(tmp_path, monkeypatch):
