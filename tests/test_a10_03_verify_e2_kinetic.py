@@ -192,7 +192,7 @@ def make_training(output, protocol, splits):
                         "rung_inner_oof_tb_mse": weighted_rung_score / validation_count,
                         "rung_inner_oof_transcripts": validation_count,
                         "inner_oof_tb_mse": weighted_final_score / validation_count if promoted else None,
-                        "inner_oof_transcripts": validation_count,
+                        "inner_oof_transcripts": validation_count if promoted else 0,
                     })
                 selection_records.append({
                     "seed": seed, "outer_fold": outer_index, "arm": arm,
@@ -478,6 +478,23 @@ def test_frozen_identity_and_verifier_has_no_production_imports(tmp_path):
     assert verifier.REAL_RAW_SHA256 == "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
 
 
+def test_pre_outer_analysis_addendum_matches_verifier_inference_contract():
+    addendum = json.loads(
+        (ROOT / "configs" / "a10_03_e2_analysis_addendum_v1.json").read_text(encoding="utf-8")
+    )
+    inference = addendum["inference"]
+    assert addendum["status"] == "specified_before_outer_results"
+    assert addendum["outer_results_available"] is False
+    assert addendum["scientific_gate_change"] is False
+    assert inference["seed"] == verifier.INFERENCE_SEED == 9100302
+    assert inference["bootstrap_resamples"] == inference["signflip_resamples"] == verifier.REAL_RESAMPLES == 20000
+    assert inference["comparators"] == list(verifier.COMPARATORS)
+    assert "two comparators" in inference["holm_family"]
+    assert "within each transcript" in inference["pooled_seed_first"]
+    assert "every model seed" in inference["per_seed_condition"]
+    assert "both comparators" in inference["joint_development_condition"]
+
+
 def test_synthetic_full_independent_verification_passes(tmp_path):
     case = make_case(tmp_path)
     result = verify(case)
@@ -494,7 +511,7 @@ def test_synthetic_full_independent_verification_passes(tmp_path):
     assert convergence["rung_rejection_is_not_convergence"] is True
     assert convergence["selected_candidates_have_no_final_epoch_cap"] is True
     assert result["recomputed"]["member_conservation"]["kinetic_members_checked"] == 3 * N_TRANSCRIPTS * 3
-    assert result["recomputed"]["member_conservation"]["maximum_member_abs_normalized_residual"] < 1e-8
+    assert result["recomputed"]["member_conservation"]["maximum_member_abs_normalized_residual"] <= 1e-10
     assert result["recomputed"]["member_conservation"]["ensemble_mean_is_common_steady_state"] is False
     with (case["output"] / "per_transcript_metrics.csv").open(newline="") as handle:
         rows = list(csv.DictReader(handle))
@@ -637,6 +654,53 @@ def test_rung_top2_elimination_and_continuation_tampering_are_detected(tmp_path)
     assert not verify(case)["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
 
 
+def test_eliminated_oof_transcript_semantics_and_grid_order_final_tie_break(tmp_path):
+    case = make_case(tmp_path)
+    selection = load_selection(case)
+    eliminated = selection["records"][0]["candidates"][2]
+    assert eliminated["inner_oof_tb_mse"] is None
+    assert eliminated["inner_oof_transcripts"] == 0
+    eliminated["inner_oof_transcripts"] = N_TRANSCRIPTS - 3
+    save_selection(case, selection)
+    result = verify(case)
+    assert not result["checks"]["complete_inner_curves_plateau_and_inner_only_selection"]
+    assert "zero final OOF transcripts" in result["mismatches"]["training"][0]
+    assert verifier.grid_order_minimum({1: 0.25, 0: 0.25, 2: 0.50}) == 0
+
+
+def test_member_residual_threshold_accepts_boundary_and_rejects_next_float(monkeypatch):
+    solved = type("Solved", (), {"success": True, "message": "synthetic"})()
+    state = np.asarray([0.5, 1.0])
+
+    def residual_at(value):
+        return lambda *args: np.asarray([value, value])
+
+    monkeypatch.setattr(verifier, "steady_state_residual", residual_at(verifier.MEMBER_RESIDUAL_TOLERANCE))
+    accepted = verifier.checked_physical_state(solved, state, 2.0, np.asarray([]), 2.0)
+    assert np.max(np.abs(accepted["residual"])) == verifier.MEMBER_RESIDUAL_TOLERANCE
+    monkeypatch.setattr(
+        verifier, "steady_state_residual",
+        residual_at(np.nextafter(verifier.MEMBER_RESIDUAL_TOLERANCE, 1.0)),
+    )
+    with pytest.raises(RuntimeError, match="flux conservation tolerance"):
+        verifier.checked_physical_state(solved, state, 2.0, np.asarray([]), 2.0)
+
+
+def test_legacy_cumulative_cost_is_decomposed_without_double_counting(tmp_path):
+    case = make_case(tmp_path)
+    result = verify(case)
+    assert result["passed"], result["mismatches"]
+    training = result["recomputed"]["training"]
+    assert training["legacy_cumulative_cost_fits"] == training["fit_count"]
+    assert training["fit_wall_clock_seconds"] == pytest.approx(
+        training["rung_wall_clock_seconds"] + training["continuation_wall_clock_seconds"]
+    )
+    summary = load_summary(case)
+    summary["cost"]["candidate_fit_wall_clock_seconds"] += training["rung_wall_clock_seconds"]
+    save_summary(case, summary)
+    assert not verify(case)["checks"]["complete_cost_ledger"]
+
+
 def test_promoted_plateau_has_no_final_epoch_ceiling(tmp_path):
     raw_path = tmp_path / "synthetic.txt"
     write_raw(raw_path)
@@ -680,6 +744,52 @@ def test_promoted_plateau_has_no_final_epoch_ceiling(tmp_path):
     assert audit["epochs_ran"] == 2005
     assert audit["continuation_epochs_ran"] == 1955
     assert audit["best_epoch"] == 1980
+
+
+
+def test_parallel_ledger_preserves_serial_cost_sum_and_rejects_schedule_tampering(tmp_path):
+    case = make_case(tmp_path)
+    summary = load_summary(case)
+    training = verifier.audit_training(case["output"], case["protocol_payload"], case["splits"])
+    expected_specs = [
+        {"seed": seed, "seed_index": seed_index, "outer_fold": outer, "arm": arm}
+        for seed_index, seed in enumerate(SEEDS) for outer in range(3) for arm in verifier.ARMS
+    ]
+    scheduled = sorted(expected_specs, key=lambda spec: (spec["arm"] != "kinetic", spec["seed_index"], spec["outer_fold"]))
+    ledger = {
+        "schema": verifier.PARALLEL_SCHEMA, "protocol": verifier.PROTOCOL,
+        "max_workers": 4, "start_method": "spawn", "schedule": "kinetic_first",
+        "scheduled_specs": scheduled, "canonical_merge": "seed_index,outer_fold,protocol_arm_order",
+        "parallel_implementation_sha256": sha256(verifier.PARALLEL_IMPLEMENTATION_PATH),
+        "shards": [
+            {"spec": spec, "cache_hit": False, "path": f"external/{index}.npz", "sha256": f"{index:064d}", "shard_cost": {"wall_clock_seconds": 0.1}}
+            for index, spec in enumerate(expected_specs)
+        ],
+        "cache_hits": 0, "cache_misses": 27, "shard_execution_wall_clock_seconds": 1.0,
+        "shard_wall_clock_seconds_sum": 2.7,
+        "candidate_fit_wall_clock_seconds_serial_sum": training["fit_wall_clock_seconds"],
+        "wall_is_not_serial_sum": True, "scientific_gate_claimed": False,
+    }
+    write_json(case["output"] / "parallel.json", ledger)
+    summary["cost"]["wall_clock_seconds"] = 2.0
+    summary["cost"]["parallel"] = {
+        key: ledger[key] for key in (
+            "max_workers", "start_method", "shard_execution_wall_clock_seconds",
+            "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
+        )
+    }
+    summary["sha256"]["parallel_implementation"] = sha256(verifier.PARALLEL_IMPLEMENTATION_PATH)
+    summary["sha256"]["artifacts"]["parallel.json"] = sha256(case["output"] / "parallel.json")
+    save_summary(case, summary)
+    result = verify(case)
+    assert result["passed"], result["mismatches"]
+    ledger["scheduled_specs"] = list(reversed(scheduled))
+    write_json(case["output"] / "parallel.json", ledger)
+    summary["sha256"]["artifacts"]["parallel.json"] = sha256(case["output"] / "parallel.json")
+    save_summary(case, summary)
+    result = verify(case)
+    assert not result["checks"]["parallel_shard_execution_ledger"]
+    assert "parallel.schedule" in result["mismatches"]["parallel"]
 
 
 def test_missing_curve_and_non_inner_selected_candidate_are_detected(tmp_path):
@@ -894,7 +1004,7 @@ def test_independent_scipy_and_score_field_have_known_answers():
     difficult = verifier.independent_steady_state(difficult_rates[0], difficult_rates[1:-1], difficult_rates[-1])
     assert np.all((difficult["rho"] >= 0) & (difficult["rho"] <= 1))
     assert difficult["flux"] > 0
-    assert np.max(np.abs(difficult["residual"])) < 1e-8
+    assert np.max(np.abs(difficult["residual"])) <= 1e-10
 
     record = {"length": 3, "codons": np.asarray([0, 1, 63])}
     state = {
@@ -1009,6 +1119,54 @@ def test_real_mode_rejects_synthetic_raw(tmp_path):
     protocol_path, raw_path, _ = make_real_shaped_protocol(tmp_path / "resamples")
     with pytest.raises(ValueError, match="exactly 20000 resamples"):
         verifier.verify_e2_kinetic(protocol_path, raw_path, tmp_path / "unused", n_resamples=512)
+
+
+def test_producer_format_end_to_end_verifies_eliminated_oof_and_split_costs(tmp_path, monkeypatch):
+    from scripts import a10_03_e2_kinetic as producer
+
+    monkeypatch.setattr(producer, "resolve_cuda_device", lambda name: producer.torch.device("cpu"))
+    monkeypatch.setattr(producer, "_environment", lambda device: {
+        "cuda": {
+            "requested_device": "cuda:0", "available": True, "torch_cuda_version": "synthetic",
+            "name": "Synthetic CUDA record", "capability": [9, 0],
+        },
+    })
+    original_candidate_cost = producer._candidate_cost
+
+    def synthetic_cuda_cost(*args, **kwargs):
+        cost = original_candidate_cost(*args, **kwargs)
+        cost["cuda_peak_memory_bytes"] = 1024
+        return cost
+
+    monkeypatch.setattr(producer, "_candidate_cost", synthetic_cuda_cost)
+    raw_path = tmp_path / "synthetic_mohammad.txt"
+    write_raw(raw_path)
+    protocol_path = tmp_path / "protocol.json"
+    protocol = make_protocol(protocol_path, raw_path)
+    protocol["training"]["batch_transcripts"] = 4
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
+    protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    protocol["training"]["early_stopping"]["min_absolute_improvement"] = 1e100
+    protocol["hyperparameters"]["weight_decays"] = [0.0]
+    write_json(protocol_path, protocol)
+    output = tmp_path / "producer_output"
+    summary = producer.run_experiment(protocol_path, raw_path, output)
+    summary["cost"]["cuda_peak_memory_bytes"] = 1024
+    write_json(output / "summary.json", summary)
+    result = verify({"protocol": protocol_path, "raw": raw_path, "output": output})
+    assert result["passed"], json.dumps(result["mismatches"], indent=2)
+    selection = load_selection({"output": output})
+    eliminated = [
+        candidate for record in selection["records"] for candidate in record["candidates"]
+        if not candidate["rung_selected"]
+    ]
+    assert eliminated
+    assert all(candidate["inner_oof_tb_mse"] is None for candidate in eliminated)
+    assert all(candidate["inner_oof_transcripts"] == 0 for candidate in eliminated)
+    assert result["recomputed"]["training"]["legacy_cumulative_cost_fits"] == 0
+    assert summary["cost"]["candidate_fit_wall_clock_seconds"] == pytest.approx(
+        summary["cost"]["rung_wall_clock_seconds"] + summary["cost"]["continuation_wall_clock_seconds"]
+    )
 
 
 def cli_arguments(case, output):

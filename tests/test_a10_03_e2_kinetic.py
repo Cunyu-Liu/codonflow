@@ -352,6 +352,15 @@ def test_rung_rejection_is_not_convergence_and_top2_uses_rung_score(tmp_path):
     assert kinetic.successive_halving_indices(candidates) == [1, 2]
 
 
+def test_final_selection_tie_break_uses_grid_order_not_rung_rank():
+    candidates = [
+        {"report": {"grid_index": 0, "inner_oof_tb_mse": 0.25}},
+        {"report": {"grid_index": 1, "inner_oof_tb_mse": 0.25}},
+        {"report": {"grid_index": 2, "inner_oof_tb_mse": 0.50}},
+    ]
+    assert kinetic.final_selection_index(candidates, [1, 0]) == 0
+
+
 def test_selected_candidate_resumes_rung_last_state_beyond_old_epoch_ceiling(tmp_path):
     raw = write_raw(tmp_path / "synthetic.txt")
     records, _ = kinetic.parse_raw_matrix(raw)
@@ -379,6 +388,16 @@ def test_selected_candidate_resumes_rung_last_state_beyond_old_epoch_ceiling(tmp
     assert fitted["resume"]["optimizer_state_restored"] is True
     assert fitted["resume"]["rng_state_restored"] is True
     assert fitted["best_epoch"] == 1
+    assert rung["cost"]["rung_wall_clock_seconds"] == rung["cost"]["wall_clock_seconds"]
+    assert rung["cost"]["continuation_wall_clock_seconds"] == 0.0
+    assert fitted["cost"]["rung_wall_clock_seconds"] == rung["cost"]["wall_clock_seconds"]
+    assert fitted["cost"]["continuation_wall_clock_seconds"] > 0.0
+    assert fitted["cost"]["wall_clock_seconds"] == pytest.approx(
+        fitted["cost"]["rung_wall_clock_seconds"] + fitted["cost"]["continuation_wall_clock_seconds"]
+    )
+    assert fitted["curves"][-1]["elapsed_seconds"] - rung_curves[-1]["elapsed_seconds"] <= (
+        fitted["cost"]["continuation_wall_clock_seconds"]
+    )
     assert np.mean(list(fitted["validation_transcript_mse"].values())) == pytest.approx(
         fitted["best_validation_tb_mse"],
     )
@@ -512,7 +531,7 @@ def test_synthetic_end_to_end_outer_test_cannot_change_its_fold_selection_or_cur
         kinetic_index = kinetic.ARMS.index("kinetic")
         assert np.isnan(predictions["flux"][:, :kinetic_index]).all()
         assert np.isfinite(predictions["flux"][:, kinetic_index]).all()
-        assert np.nanmax(predictions["solver_max_abs_normalized_residual"][:, kinetic_index]) < 1e-8
+        assert np.nanmax(predictions["solver_max_abs_normalized_residual"][:, kinetic_index]) <= 1e-10
         assert predictions["ensemble_mean_is_common_steady_state"].item() is False
         assert predictions["kinetic_conservation_level"].item() == "selected_inner_member_separately"
         assert "mean_normalized_residual" not in predictions.files

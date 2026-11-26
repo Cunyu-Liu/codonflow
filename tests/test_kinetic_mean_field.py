@@ -114,14 +114,14 @@ def test_nonconvergence_is_not_returned_as_a_success(monkeypatch):
 
 
 def test_scipy_exceptions_are_preserved(monkeypatch):
-    class ExpectedRootError(Exception):
+    class ExpectedSparseSolveError(Exception):
         pass
 
-    def failing_root(*args, **kwargs):
-        raise ExpectedRootError("root failure")
+    def failing_spsolve(*args, **kwargs):
+        raise ExpectedSparseSolveError("sparse solve failure")
 
-    monkeypatch.setattr(kinetic_mean_field, "root", failing_root)
-    with pytest.raises(ExpectedRootError, match="root failure"):
+    monkeypatch.setattr(kinetic_mean_field, "spsolve", failing_spsolve)
+    with pytest.raises(ExpectedSparseSolveError, match="sparse solve failure"):
         solve_kinetic_mean_field(1.0, [1.0], 1.0)
 
 
@@ -137,7 +137,45 @@ def test_transient_integrator_controls_preserve_strict_steady_residual(monkeypat
         1.0, np.asarray([2.0, 2.0]), 1.0, np.full(3, 0.25), 1000, 1e-10,
     )
     assert observed["rtol"] == 1e-8 and observed["atol"] == 1e-10
+    assert observed["jac"] is None and observed["lband"] == observed["uband"] == 1
     np.testing.assert_allclose(state, [0.5, 0.5, 0.5, 0.5], rtol=0, atol=0)
+
+
+def test_normalized_newton_jacobian_matches_finite_differences(monkeypatch):
+    actual_spsolve = kinetic_mean_field.spsolve
+    observed = []
+
+    def capture_spsolve(matrix, rhs):
+        observed.append(matrix.toarray())
+        return actual_spsolve(matrix, rhs)
+
+    monkeypatch.setattr(kinetic_mean_field, "spsolve", capture_spsolve)
+    alpha = 1.3
+    rates = np.asarray([0.8, 1.7, 1.1])
+    beta = 0.9
+    initial = np.asarray([0.4, 0.5, 0.6, 0.45, 0.1])
+    kinetic_mean_field._newton_state_numpy(
+        alpha, rates, beta, initial, 1e-12, 1e-10, 1000, normalized=True,
+    )
+    jacobian = observed[0]
+    scale = min(alpha, beta, float(rates.min()))
+    x = initial.copy()
+    x[-1] /= scale
+
+    def residual(state):
+        physical = state.copy()
+        physical[-1] *= scale
+        return kinetic_mean_field._residual_numpy(physical, alpha, rates, beta) / physical[-1]
+
+    numeric = np.empty_like(jacobian)
+    epsilon = 1e-6
+    for index in range(x.size):
+        plus = x.copy()
+        minus = x.copy()
+        plus[index] += epsilon
+        minus[index] -= epsilon
+        numeric[:, index] = (residual(plus) - residual(minus)) / (2.0 * epsilon)
+    np.testing.assert_allclose(jacobian, numeric, rtol=1e-5, atol=1e-6)
 
 
 def test_implicit_gradients_match_central_finite_differences():

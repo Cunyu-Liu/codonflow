@@ -28,13 +28,15 @@ from datetime import datetime
 from pathlib import Path
 
 import numpy as np
-from scipy.optimize import root
+from scipy.optimize import least_squares, root
 from scipy.special import expit
 
 
 ROOT = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_PATH = ROOT / "scripts" / "a10_03_e2_kinetic.py"
 MEAN_FIELD_OPERATOR_PATH = ROOT / "src" / "codonflow" / "models" / "kinetic_mean_field.py"
+PARALLEL_IMPLEMENTATION_PATH = ROOT / "scripts" / "a10_03_e2_kinetic_parallel.py"
+PARALLEL_SCHEMA = "a10-03-e2-kinetic-parallel-v1"
 PROTOCOL = "a10_03_e2_kinetic_protocol_v3"
 PROTOCOL_SCHEMA = "a10-03-e2-kinetic-protocol-v3"
 SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v4"
@@ -53,7 +55,7 @@ REAL_SPLIT_SEED = 9100301
 INFERENCE_SEED = 9100302
 REAL_RESAMPLES = 20000
 REBUILD_ATOL = 2e-8
-MEMBER_RESIDUAL_TOLERANCE = 1e-8
+MEMBER_RESIDUAL_TOLERANCE = 1e-10
 ROOT_TOLERANCE = 1e-12
 ROOT_MAXFEV = 1000
 REAL_QC = {
@@ -632,7 +634,8 @@ def validate_curve(record, key, grid, protocol):
             record["stop_reason"] != "validation_plateau", record["validation_plateau_converged"] is not True,
         )):
             raise ValueError("selected candidates must restore rung-last model/optimizer/RNG and reach plateau")
-        if len(epochs) != best_epoch + stopping["patience_epochs"]:
+        expected_stop_epoch = max(rung_epochs + 1, best_epoch + stopping["patience_epochs"])
+        if len(epochs) != expected_stop_epoch:
             raise ValueError("selected validation plateau does not satisfy frozen patience")
     return {
         "promoted": record["rung_selected"], "best_epoch": best_epoch, "best_validation_tb_mse": best_loss,
@@ -641,6 +644,10 @@ def validate_curve(record, key, grid, protocol):
         "rung_last_elapsed_seconds": rung_last_elapsed,
         "last_elapsed_seconds": previous_elapsed,
     }
+
+
+def grid_order_minimum(scores):
+    return min(scores, key=lambda grid_index: (scores[grid_index], grid_index))
 
 
 def audit_training(output_dir, protocol, splits):
@@ -674,6 +681,9 @@ def audit_training(output_dir, protocol, splits):
     seen = set()
     all_fits = []
     fit_wall = 0.0
+    rung_wall = 0.0
+    continuation_wall = 0.0
+    legacy_cumulative_cost_fits = 0
     epochs_ran = 0
     peak_memory = 0
     for record in records:
@@ -737,10 +747,12 @@ def audit_training(output_dir, protocol, splits):
                         raise ValueError(f"selection and curve disagree on {field}")
                 split = splits[outer]["inner"][inner]
                 cost = fold["cost"]
-                if set(cost) != {
+                cost_fields = {
                     "wall_clock_seconds", "epochs_ran", "train_transcripts",
                     "validation_transcripts", "cuda_peak_memory_bytes",
-                }:
+                }
+                split_cost_fields = {"rung_wall_clock_seconds", "continuation_wall_clock_seconds"}
+                if set(cost) not in (cost_fields, cost_fields | split_cost_fields):
                     raise ValueError("fit cost fields mismatch")
                 if any((
                     cost["epochs_ran"] != audit["epochs_ran"],
@@ -751,11 +763,36 @@ def audit_training(output_dir, protocol, splits):
                     not is_integer(cost["cuda_peak_memory_bytes"], 0),
                 )):
                     raise ValueError("fit cost differs from curve, split or CUDA ledger")
+                if set(cost) == cost_fields:
+                    legacy_cumulative_cost_fits += 1
+                    if candidate["rung_selected"]:
+                        fit_rung_wall = audit["rung_last_elapsed_seconds"]
+                        fit_continuation_wall = cost["wall_clock_seconds"] - fit_rung_wall
+                    else:
+                        fit_rung_wall = cost["wall_clock_seconds"]
+                        fit_continuation_wall = 0.0
+                else:
+                    fit_rung_wall = cost["rung_wall_clock_seconds"]
+                    fit_continuation_wall = cost["continuation_wall_clock_seconds"]
+                    continuation_elapsed = audit["last_elapsed_seconds"] - audit["rung_last_elapsed_seconds"]
+                    if any((
+                        not is_number(fit_rung_wall, nonnegative=True),
+                        not is_number(fit_continuation_wall, nonnegative=True),
+                        fit_rung_wall + 1e-12 < audit["rung_last_elapsed_seconds"],
+                        fit_continuation_wall + 1e-12 < continuation_elapsed,
+                        not math.isclose(
+                            cost["wall_clock_seconds"], fit_rung_wall + fit_continuation_wall,
+                            rel_tol=1e-9, abs_tol=1e-11,
+                        ),
+                    )):
+                        raise ValueError("split rung/continuation cost is inconsistent with curves or total wall")
                 weighted_rung_loss += fold["rung_last_validation_tb_mse"] * len(split["validation"])
                 if candidate["rung_selected"]:
                     weighted_final_loss += fold["best_validation_tb_mse"] * len(split["validation"])
                 validation_count += len(split["validation"])
                 fit_wall += cost["wall_clock_seconds"]
+                rung_wall += fit_rung_wall
+                continuation_wall += fit_continuation_wall
                 epochs_ran += cost["epochs_ran"]
                 peak_memory = max(peak_memory, cost["cuda_peak_memory_bytes"])
                 all_fits.append(fold)
@@ -771,16 +808,18 @@ def audit_training(output_dir, protocol, splits):
                     candidate["inner_oof_tb_mse"], expected_final_score, rel_tol=1e-9, abs_tol=1e-11,
                 ):
                     raise ValueError("final OOF score differs from promoted plateau curves")
+                if candidate["inner_oof_transcripts"] != validation_count:
+                    raise ValueError("promoted candidate OOF transcript count mismatch")
                 final_scores[grid_index] = expected_final_score
             elif candidate["inner_oof_tb_mse"] is not None:
                 raise ValueError("eliminated candidate must not have a final converged OOF score")
-            if candidate["inner_oof_transcripts"] != validation_count:
-                raise ValueError("candidate OOF transcript count mismatch")
+            elif candidate["inner_oof_transcripts"] != 0:
+                raise ValueError("eliminated candidate must have zero final OOF transcripts")
         expected_promoted = np.argsort(np.asarray(rung_scores), kind="mergesort")[:2].tolist()
         if record["rung_selected_grid_indices"] != expected_promoted or set(final_scores) != set(expected_promoted):
             raise ValueError("top2 promotion is not the rung-OOF minimum with grid-order ties")
-        if record["selected_grid_index"] not in expected_promoted or record["selected_grid_index"] != min(
-            final_scores, key=final_scores.get,
+        if record["selected_grid_index"] not in expected_promoted or record["selected_grid_index"] != grid_order_minimum(
+            final_scores,
         ):
             raise ValueError("selected LR/wd are not the promoted post-continuation inner-OOF minimum")
     if seen != expected_selection_keys:
@@ -788,6 +827,9 @@ def audit_training(output_dir, protocol, splits):
     return {
         "fit_count": len(all_fits),
         "fit_wall_clock_seconds": fit_wall,
+        "rung_wall_clock_seconds": rung_wall,
+        "continuation_wall_clock_seconds": continuation_wall,
+        "legacy_cumulative_cost_fits": legacy_cumulative_cost_fits,
         "epochs_ran": epochs_ran,
         "cuda_peak_memory_bytes": peak_memory,
         "convergence": {
@@ -992,7 +1034,30 @@ def independent_steady_state(alpha, internal_rates, beta):
         try:
             return checked_physical_state(scaled, scaled_state, alpha, internal_rates, beta)
         except RuntimeError as scaled_error:
-            raise scaled_error from original_error
+            bounded = least_squares(
+                steady_state_residual, np.maximum(initial, 0.0), args=(alpha, internal_rates, beta),
+                jac=steady_state_jacobian, bounds=(0.0, np.inf),
+                xtol=1e-14, ftol=1e-14, gtol=1e-14, max_nfev=ROOT_MAXFEV,
+            )
+            try:
+                return checked_physical_state(
+                    bounded, np.asarray(bounded.x, dtype=np.float64), alpha, internal_rates, beta,
+                )
+            except RuntimeError:
+                bounded_initial = np.maximum(scaled_initial, 0.0)
+                bounded = least_squares(
+                    scaled_steady_state_residual, bounded_initial,
+                    args=(alpha, internal_rates, beta, flux_scale),
+                    jac=scaled_steady_state_jacobian, bounds=(0.0, np.inf),
+                    xtol=1e-14, ftol=1e-14, gtol=1e-14, max_nfev=ROOT_MAXFEV,
+                )
+                bounded_state = np.asarray(bounded.x, dtype=np.float64)
+                if bounded_state.shape == initial.shape:
+                    bounded_state[-1] *= flux_scale
+                try:
+                    return checked_physical_state(bounded, bounded_state, alpha, internal_rates, beta)
+                except RuntimeError as bounded_error:
+                    raise bounded_error from scaled_error
 
 
 def rebuild_selected_member(record, state, arm, model_config):
@@ -1365,7 +1430,11 @@ def valid_cost(cost, training):
         "started_utc", "finished_utc", "wall_clock_seconds", "candidate_fits",
         "epochs_ran", "candidate_fit_wall_clock_seconds", "cuda_peak_memory_bytes",
     }
-    if not isinstance(cost, dict) or set(cost) != required:
+    split_fields = {"rung_wall_clock_seconds", "continuation_wall_clock_seconds"}
+    allowed = required | split_fields | {"parallel"}
+    if not isinstance(cost, dict) or not required <= set(cost) or not set(cost) <= allowed:
+        return False, ["cost.keys"]
+    if set(cost) & split_fields and not split_fields <= set(cost):
         return False, ["cost.keys"]
     mismatches = []
     try:
@@ -1380,13 +1449,101 @@ def valid_cost(cost, training):
         "candidate_fit_wall_clock_seconds": training["fit_wall_clock_seconds"],
         "cuda_peak_memory_bytes": training["cuda_peak_memory_bytes"],
     }
+    if set(cost) & split_fields:
+        expected.update({
+            "rung_wall_clock_seconds": training["rung_wall_clock_seconds"],
+            "continuation_wall_clock_seconds": training["continuation_wall_clock_seconds"],
+        })
     for key, value in expected.items():
         mismatches.extend(value_mismatches(cost.get(key), value, f"cost.{key}"))
     if not is_number(cost.get("wall_clock_seconds"), nonnegative=True):
         mismatches.append("cost.wall_clock_seconds")
-    elif cost["wall_clock_seconds"] + 1e-9 < training["fit_wall_clock_seconds"]:
-        mismatches.append("cost.wall_clock_seconds")
+    parallel = cost.get("parallel")
+    if parallel is None:
+        if is_number(cost.get("wall_clock_seconds"), nonnegative=True) and cost["wall_clock_seconds"] + 1e-9 < training["fit_wall_clock_seconds"]:
+            mismatches.append("cost.wall_clock_seconds")
+    else:
+        parallel_fields = {
+            "max_workers", "start_method", "shard_execution_wall_clock_seconds",
+            "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
+        }
+        if not isinstance(parallel, dict) or set(parallel) != parallel_fields:
+            mismatches.append("cost.parallel.keys")
+        else:
+            if not is_integer(parallel["max_workers"], 1) or parallel["start_method"] != "spawn":
+                mismatches.append("cost.parallel.execution")
+            for key in ("shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum"):
+                if not is_number(parallel[key], nonnegative=True):
+                    mismatches.append(f"cost.parallel.{key}")
+            for key in ("cache_hits", "cache_misses"):
+                if not is_integer(parallel[key], 0):
+                    mismatches.append(f"cost.parallel.{key}")
+            if is_integer(parallel["cache_hits"], 0) and is_integer(parallel["cache_misses"], 0) and parallel["cache_hits"] + parallel["cache_misses"] != 27:
+                mismatches.append("cost.parallel.shard_count")
+            if is_number(parallel["shard_execution_wall_clock_seconds"], nonnegative=True) and parallel["shard_execution_wall_clock_seconds"] > cost["wall_clock_seconds"] + 1e-9:
+                mismatches.append("cost.parallel.wall_clock_seconds")
     return not mismatches, mismatches
+
+
+def audit_parallel(path, protocol, training, summary):
+    payload = load_json(path)
+    mismatches = []
+    required = {
+        "schema", "protocol", "max_workers", "start_method", "schedule", "scheduled_specs",
+        "canonical_merge", "parallel_implementation_sha256", "shards", "cache_hits", "cache_misses",
+        "shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum",
+        "candidate_fit_wall_clock_seconds_serial_sum", "wall_is_not_serial_sum", "scientific_gate_claimed",
+    }
+    if set(payload) != required or payload["schema"] != PARALLEL_SCHEMA or payload["protocol"] != PROTOCOL:
+        return ["parallel.identity_or_keys"]
+    expected_specs = [
+        {"seed": seed, "seed_index": seed_index, "outer_fold": outer, "arm": arm}
+        for seed_index, seed in enumerate(protocol["training"]["model_seeds"])
+        for outer in range(3) for arm in ARMS
+    ]
+    scheduled = sorted(expected_specs, key=lambda spec: (spec["arm"] != "kinetic", spec["seed_index"], spec["outer_fold"]))
+    if payload["scheduled_specs"] != scheduled or payload["schedule"] != "kinetic_first":
+        mismatches.append("parallel.schedule")
+    if payload["canonical_merge"] != "seed_index,outer_fold,protocol_arm_order":
+        mismatches.append("parallel.canonical_merge")
+    if payload["parallel_implementation_sha256"] != sha256_file(PARALLEL_IMPLEMENTATION_PATH):
+        mismatches.append("parallel.implementation_sha256")
+    shards = payload["shards"]
+    if not isinstance(shards, list) or len(shards) != 27:
+        mismatches.append("parallel.shards.count")
+    else:
+        if [entry.get("spec") for entry in shards] != expected_specs:
+            mismatches.append("parallel.shards.canonical_order")
+        for entry in shards:
+            if set(entry) != {"spec", "cache_hit", "path", "sha256", "shard_cost"}:
+                mismatches.append("parallel.shards.keys")
+                break
+            if not isinstance(entry["cache_hit"], bool) or re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]) is None:
+                mismatches.append("parallel.shards.integrity")
+                break
+            cost = entry["shard_cost"]
+            if not isinstance(cost, dict) or set(cost) != {"wall_clock_seconds"} or not is_number(cost["wall_clock_seconds"], nonnegative=True):
+                mismatches.append("parallel.shards.cost")
+                break
+    if payload["cache_hits"] + payload["cache_misses"] != 27:
+        mismatches.append("parallel.cache_accounting")
+    for key in ("shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum", "candidate_fit_wall_clock_seconds_serial_sum"):
+        if not is_number(payload[key], nonnegative=True):
+            mismatches.append(f"parallel.{key}")
+    if not math.isclose(payload["candidate_fit_wall_clock_seconds_serial_sum"], training["fit_wall_clock_seconds"], rel_tol=1e-12, abs_tol=1e-12):
+        mismatches.append("parallel.serial_cost_sum")
+    shard_sum = sum(entry["shard_cost"]["wall_clock_seconds"] for entry in shards if isinstance(entry.get("shard_cost"), dict))
+    if not math.isclose(payload["shard_wall_clock_seconds_sum"], shard_sum, rel_tol=1e-9, abs_tol=1e-9):
+        mismatches.append("parallel.shard_cost_sum")
+    if payload["wall_is_not_serial_sum"] is not True or payload["scientific_gate_claimed"] is not False:
+        mismatches.append("parallel.claim_boundary")
+    summary_parallel = summary.get("cost", {}).get("parallel")
+    expected_summary = {key: payload[key] for key in (
+        "max_workers", "start_method", "shard_execution_wall_clock_seconds",
+        "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
+    )}
+    mismatches.extend(value_mismatches(summary_parallel, expected_summary, "summary.cost.parallel"))
+    return mismatches
 
 
 def audit_provenance(path, startup_sha256):
@@ -1418,6 +1575,8 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
     splits = make_nested_splits(records, protocol["split"]["seed"])
     seeds = protocol["training"]["model_seeds"]
     summary = load_json(output_dir / "summary.json")
+    parallel_path = output_dir / "parallel.json"
+    has_parallel = parallel_path.exists() or "parallel" in summary.get("cost", {})
     startup_sha256 = {
         "protocol": sha256_file(protocol_path),
         "implementation": sha256_file(IMPLEMENTATION_PATH),
@@ -1426,7 +1585,8 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
     checks = {}
     details = {}
     observed_files = {str(path.relative_to(output_dir)) for path in output_dir.rglob("*") if path.is_file()}
-    checks["output_files_exact"] = observed_files == set(OUTPUT_FILES)
+    expected_output_files = set(OUTPUT_FILES) | ({"parallel.json"} if has_parallel else set())
+    checks["output_files_exact"] = observed_files == expected_output_files
     provenance_mismatches = audit_provenance(output_dir / "provenance.json", startup_sha256)
     checks["startup_source_provenance_recomputed"] = not provenance_mismatches
     details["provenance"] = provenance_mismatches
@@ -1535,9 +1695,22 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
         checks["summary_convergence"] = False
         checks["complete_cost_ledger"] = False
     checks["real_cuda_no_fallback_recorded"] = valid_environment(summary.get("environment"))
-    artifact_hashes = {name: sha256_file(output_dir / name) for name in ARTIFACT_FILES}
+    if has_parallel and training is not None:
+        try:
+            parallel_mismatches = audit_parallel(parallel_path, protocol, training, summary)
+        except Exception as exc:
+            parallel_mismatches = [f"{type(exc).__name__}: {exc}"]
+        checks["parallel_shard_execution_ledger"] = not parallel_mismatches
+        details["parallel"] = parallel_mismatches
+    else:
+        checks["parallel_shard_execution_ledger"] = not has_parallel
+        details["parallel"] = [] if not has_parallel else ["parallel ledger requires complete training"]
+    artifact_names = list(ARTIFACT_FILES) + (["parallel.json"] if has_parallel else [])
+    artifact_hashes = {name: sha256_file(output_dir / name) for name in artifact_names}
     observed_sha = summary.get("sha256", {})
     expected_sha = {**startup_sha256, "raw_input": raw_sha, "artifacts": artifact_hashes}
+    if has_parallel:
+        expected_sha["parallel_implementation"] = sha256_file(PARALLEL_IMPLEMENTATION_PATH)
     mismatches = []
     for key, value in expected_sha.items():
         mismatches.extend(value_mismatches(observed_sha.get(key), value, f"summary.sha256.{key}"))

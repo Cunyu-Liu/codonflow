@@ -24,6 +24,8 @@ from torch import nn
 from torch.nn import functional as F
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 if str(ROOT / "src") not in sys.path:
     sys.path.insert(0, str(ROOT / "src"))
 
@@ -430,12 +432,17 @@ def _pack(records, device):
     return {"codons": codons, "target": target, "mask": mask, "lengths": lengths}
 
 
-def forward_arm(model, arm, packed, model_config):
+def forward_arm(model, arm, packed, model_config, capture=None):
     if arm not in ARMS:
         raise ValueError(f"unknown arm {arm!r}")
     score = model(packed["codons"], packed["lengths"])
+    if capture is not None:
+        capture.update({"packed": packed, "score": score})
     if arm in {"independent", "position"}:
-        return {"rho": torch.sigmoid(score), "flux": None, "residual": None, "rates": None}
+        rho = torch.sigmoid(score)
+        if capture is not None:
+            capture.update({"rho": rho, "J": None, "flux": None, "residual": None})
+        return {"rho": rho, "flux": None, "residual": None, "rates": None}
     rates = float(model_config["rate_floor"]) + F.softplus(score)
     rates = torch.clamp(rates, max=float(model_config["rate_ceiling"]))
     lengths = packed["lengths"]
@@ -446,8 +453,12 @@ def forward_arm(model, arm, packed, model_config):
     alpha = rates[:, 0]
     k = rates[:, :-1]
     beta = rates[rows, lengths - 1]
+    if capture is not None:
+        capture.update({"rates": rates, "alpha": alpha, "k": k, "beta": beta})
     solver = _require_batch_solver()
     rho, flux, residual = solver(alpha=alpha, k=k, beta=beta, lengths=lengths)
+    if capture is not None:
+        capture.update({"rho": rho, "J": flux, "flux": flux, "residual": residual})
     expected_shapes = (rates.shape, (len(lengths),), (len(lengths), rates.shape[1] + 1))
     if rho.shape != expected_shapes[0] or flux.shape != expected_shapes[1] or residual.shape != expected_shapes[2]:
         raise RuntimeError("mean-field batch solver returned invalid padded shapes")
@@ -476,14 +487,31 @@ def _batches(records, batch_size, order=None):
         yield [records[int(index)] for index in order[start:start + batch_size]]
 
 
-def loss_on_records(model, arm, records, protocol, device, per_transcript=False):
+def _save_failure_snapshot(failure_context, error):
+    if failure_context is None or failure_context.get("directory") is None:
+        return
+    if getattr(error, "codonflow_snapshot_path", None) is not None:
+        return
+    from scripts import a10_03_e2_kinetic_parallel as parallel
+    path = parallel.save_candidate_failure_snapshot(failure_context, error)
+    error.codonflow_snapshot_path = str(path)
+
+
+def loss_on_records(model, arm, records, protocol, device, per_transcript=False, failure_context=None, epoch=None):
     model.eval()
     losses = []
     indices = []
     with torch.no_grad():
-        for batch in _batches(records, protocol["training"]["batch_transcripts"]):
-            packed = _pack(batch, device)
-            values = _transcript_losses(forward_arm(model, arm, packed, protocol["model"]), packed)
+        for batch_index, batch in enumerate(_batches(records, protocol["training"]["batch_transcripts"])):
+            capture = {}
+            if failure_context is not None:
+                failure_context.update({"epoch": epoch, "batch_index": batch_index, "batch": batch, "capture": capture})
+            try:
+                packed = _pack(batch, device)
+                values = _transcript_losses(forward_arm(model, arm, packed, protocol["model"], capture=capture), packed)
+            except Exception as error:
+                _save_failure_snapshot(failure_context, error)
+                raise
             losses.extend(float(value) for value in values.detach().cpu())
             indices.extend(record.index for record in batch)
     if per_transcript:
@@ -650,33 +678,56 @@ def _new_candidate_context(arm, learning_rate, weight_decay, seed, device):
     }
 
 
-def _advance_candidate(context, arm, train_records, validation_records, protocol, device):
+def _advance_candidate(context, arm, train_records, validation_records, protocol, device, failure_context=None):
     training = protocol["training"]
     stopping = training["early_stopping"]
     model = context["model"]
     optimizer = context["optimizer"]
     model.train()
-    for batch in _batches(train_records, training["batch_transcripts"], context["rng"].permutation(len(train_records))):
-        packed = _pack(batch, device)
-        optimizer.zero_grad(set_to_none=True)
-        loss = _transcript_losses(forward_arm(model, arm, packed, protocol["model"]), packed).mean()
-        if not bool(torch.isfinite(loss)):
-            raise RuntimeError("nonfinite training loss")
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_(
-            model.parameters(), training["gradient_clip_norm"], error_if_nonfinite=True,
-        )
-        optimizer.step()
-        _require_finite_parameters(model, "after optimizer step")
-    train_loss = loss_on_records(model, arm, train_records, protocol, device)
-    validation_loss = loss_on_records(model, arm, validation_records, protocol, device)
-    _synchronize(device)
     epoch = len(context["curves"]) + 1
+    if failure_context is not None:
+        failure_context.update({
+            "epoch": epoch, "epoch_start_model_state": _cpu_tree(model.state_dict()),
+            "epoch_start_optimizer_state": _cpu_tree(optimizer.state_dict()),
+            "epoch_start_rng_state": copy.deepcopy(context["rng"].bit_generator.state),
+            "model": model, "optimizer": optimizer, "rng": context["rng"],
+        })
+    for batch_index, batch in enumerate(_batches(train_records, training["batch_transcripts"], context["rng"].permutation(len(train_records)))):
+        capture = {}
+        if failure_context is not None:
+            failure_context.update({"phase": "training", "epoch": epoch, "batch_index": batch_index, "batch": batch, "capture": capture})
+        try:
+            packed = _pack(batch, device)
+            optimizer.zero_grad(set_to_none=True)
+            output = forward_arm(model, arm, packed, protocol["model"], capture=capture)
+            loss = _transcript_losses(output, packed).mean()
+            if failure_context is not None and output["rho"].requires_grad:
+                capture["analytic_output_gradient"] = (
+                    2.0 * (output["rho"] - packed["target"]) * packed["mask"]
+                    / packed["mask"].sum(dim=1, keepdim=True) / len(batch)
+                )
+                output["rho"].register_hook(lambda gradient: capture.__setitem__("output_gradient_rho", gradient))
+                if output["flux"] is not None:
+                    output["flux"].register_hook(lambda gradient: capture.__setitem__("output_gradient_J", gradient))
+            if not bool(torch.isfinite(loss)):
+                raise RuntimeError("nonfinite training loss")
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), training["gradient_clip_norm"], error_if_nonfinite=True)
+            optimizer.step()
+            _require_finite_parameters(model, "after optimizer step")
+        except Exception as error:
+            _save_failure_snapshot(failure_context, error)
+            raise
+    if failure_context is not None:
+        failure_context["phase"] = "train_evaluation"
+    train_loss = loss_on_records(model, arm, train_records, protocol, device, failure_context=failure_context, epoch=epoch)
+    if failure_context is not None:
+        failure_context["phase"] = "validation_evaluation"
+    validation_loss = loss_on_records(model, arm, validation_records, protocol, device, failure_context=failure_context, epoch=epoch)
+    _synchronize(device)
     context["curves"].append({
-        "epoch": epoch,
-        "train_tb_mse": train_loss,
-        "validation_tb_mse": validation_loss,
-        "elapsed_seconds": time.perf_counter() - context["started"],
+        "epoch": epoch, "train_tb_mse": train_loss, "validation_tb_mse": validation_loss,
+        "elapsed_seconds": context.get("elapsed_offset", 0.0) + time.perf_counter() - context["started"],
     })
     if validation_loss < context["best_loss"] - float(stopping["min_absolute_improvement"]):
         context["best_loss"] = validation_loss
@@ -688,9 +739,14 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
     return context["stale_epochs"] >= stopping["patience_epochs"]
 
 
-def _candidate_cost(context, train_records, validation_records, device):
+def _candidate_cost(context, train_records, validation_records, device, rung_wall_clock_seconds=None):
+    elapsed = time.perf_counter() - context["started"]
+    continuation_wall_clock_seconds = 0.0 if rung_wall_clock_seconds is None else elapsed
+    rung_wall_clock_seconds = elapsed if rung_wall_clock_seconds is None else rung_wall_clock_seconds
     return {
-        "wall_clock_seconds": time.perf_counter() - context["started"],
+        "wall_clock_seconds": rung_wall_clock_seconds + continuation_wall_clock_seconds,
+        "rung_wall_clock_seconds": rung_wall_clock_seconds,
+        "continuation_wall_clock_seconds": continuation_wall_clock_seconds,
         "epochs_ran": len(context["curves"]),
         "train_transcripts": len(train_records),
         "validation_transcripts": len(validation_records),
@@ -698,11 +754,13 @@ def _candidate_cost(context, train_records, validation_records, device):
     }
 
 
-def start_candidate_rung(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+def start_candidate_rung(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device, failure_metadata=None, snapshot_dir=None):
     context = _new_candidate_context(arm, learning_rate, weight_decay, seed, device)
     rung_epochs = protocol["training"]["successive_halving"]["rung_epochs"]
+    failure_context = {"metadata": dict(failure_metadata or {}), "directory": snapshot_dir}
+    failure_context["metadata"]["stage"] = "fixed_rung"
     for _ in range(rung_epochs):
-        _advance_candidate(context, arm, train_records, validation_records, protocol, device)
+        _advance_candidate(context, arm, train_records, validation_records, protocol, device, failure_context)
     if context["best_state"] is None:
         raise RuntimeError("rung did not produce a finite validation state")
     model = context["model"]
@@ -735,7 +793,7 @@ def start_candidate_rung(arm, train_records, validation_records, learning_rate, 
     }
 
 
-def resume_candidate(rung, arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+def resume_candidate(rung, arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device, failure_metadata=None, snapshot_dir=None):
     model = _new_model(device, seed, arm)
     model.load_state_dict({name: value.to(device) for name, value in rung["model_state"].items()})
     _require_finite_parameters(model, "after restoring rung last state")
@@ -747,7 +805,8 @@ def resume_candidate(rung, arm, train_records, validation_records, learning_rate
     rng = np.random.default_rng(seed)
     rng.bit_generator.state = copy.deepcopy(rung["rng_state"])
     context = {
-        "started": rung["started"],
+        "started": time.perf_counter(),
+        "elapsed_offset": rung["curves"][-1]["elapsed_seconds"],
         "model": model,
         "optimizer": optimizer,
         "rng": rng,
@@ -767,7 +826,9 @@ def resume_candidate(rung, arm, train_records, validation_records, learning_rate
         "optimizer_state_restored": True,
         "rng_state_restored": True,
     }
-    while not _advance_candidate(context, arm, train_records, validation_records, protocol, device):
+    failure_context = {"metadata": dict(failure_metadata or {}), "directory": snapshot_dir}
+    failure_context["metadata"]["stage"] = "continuation"
+    while not _advance_candidate(context, arm, train_records, validation_records, protocol, device, failure_context):
         pass
     model.load_state_dict({name: value.to(device) for name, value in context["best_state"].items()})
     _require_finite_parameters(model, "after restoring best validation state")
@@ -783,7 +844,9 @@ def resume_candidate(rung, arm, train_records, validation_records, learning_rate
         "validation_plateau_converged": True,
         "rung": rung["rung"],
         "resume": resume,
-        "cost": _candidate_cost(context, train_records, validation_records, device),
+        "cost": _candidate_cost(
+            context, train_records, validation_records, device, rung["cost"]["wall_clock_seconds"],
+        ),
     }
 
 
@@ -800,12 +863,14 @@ def reject_rung_candidate(rung):
     }
 
 
-def fit_candidate(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device):
+def fit_candidate(arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device, failure_metadata=None, snapshot_dir=None):
     rung = start_candidate_rung(
         arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device,
+        failure_metadata, snapshot_dir,
     )
     return resume_candidate(
         rung, arm, train_records, validation_records, learning_rate, weight_decay, seed, protocol, device,
+        failure_metadata, snapshot_dir,
     )
 
 
@@ -820,6 +885,16 @@ def successive_halving_indices(candidates, retained=2):
         ),
     )
     return ordered[:min(retained, len(ordered))]
+
+
+def final_selection_index(candidates, retained):
+    return min(
+        retained,
+        key=lambda index: (
+            candidates[index]["report"]["inner_oof_tb_mse"],
+            candidates[index]["report"]["grid_index"],
+        ),
+    )
 
 
 def _correlations(target, prediction):
@@ -912,7 +987,7 @@ def _environment(device):
     }
 
 
-def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
+def _run_experiment_serial(protocol_path, raw_path, output_dir, device="cuda:0"):
     started = time.perf_counter()
     started_utc = datetime.now(timezone.utc).isoformat()
     protocol_path = Path(protocol_path).expanduser().resolve()
@@ -1066,7 +1141,7 @@ def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
                                 raise RuntimeError("resumed out-of-fold predictions are incomplete or touch outer test")
                             candidate["report"]["inner_oof_tb_mse"] = float(np.mean(list(oof_mse.values())))
                             candidate["report"]["inner_oof_transcripts"] = len(oof_mse)
-                    selected_index = min(retained, key=lambda index: candidates[index]["report"]["inner_oof_tb_mse"])
+                    selected_index = final_selection_index(candidates, retained)
                     selected = candidates[selected_index]
                     selection_records.append({
                         "seed": seed,
@@ -1209,6 +1284,8 @@ def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
             "candidate_fits": len(fit_costs),
             "epochs_ran": sum(cost["epochs_ran"] for cost in fit_costs),
             "candidate_fit_wall_clock_seconds": sum(cost["wall_clock_seconds"] for cost in fit_costs),
+            "rung_wall_clock_seconds": sum(cost["rung_wall_clock_seconds"] for cost in fit_costs),
+            "continuation_wall_clock_seconds": sum(cost["continuation_wall_clock_seconds"] for cost in fit_costs),
             "cuda_peak_memory_bytes": max((cost["cuda_peak_memory_bytes"] or 0 for cost in fit_costs), default=0) if device.type == "cuda" else None,
         },
         "environment": _environment(device),
@@ -1224,18 +1301,28 @@ def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0"):
     return summary
 
 
+def run_experiment(protocol_path, raw_path, output_dir, device="cuda:0", max_workers=1, shard_cache_dir=None):
+    _positive_int(max_workers, "max_workers")
+    if max_workers == 1 and shard_cache_dir is None:
+        return _run_experiment_serial(protocol_path, raw_path, output_dir, device)
+    from scripts import a10_03_e2_kinetic_parallel as parallel
+    return parallel.run_experiment(protocol_path, raw_path, output_dir, device, max_workers, shard_cache_dir)
+
+
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--protocol", required=True, help="Frozen A10-03/E2 protocol JSON")
     parser.add_argument("--raw", required=True, help="Development Mohammad16 raw matrix; never an untouched input")
     parser.add_argument("--output-dir", required=True, help="New exclusive output directory")
     parser.add_argument("--device", default="cuda:0", help="Explicit CUDA device; CPU is rejected")
+    parser.add_argument("--max-workers", type=int, default=1, help="Concurrent spawn shard workers")
+    parser.add_argument("--shard-cache-dir", help="Optional reusable verified shard cache directory")
     return parser.parse_args(argv)
 
 
 def main(argv=None):
     args = parse_args(sys.argv[1:] if argv is None else argv)
-    run_experiment(args.protocol, args.raw, args.output_dir, args.device)
+    run_experiment(args.protocol, args.raw, args.output_dir, args.device, args.max_workers, args.shard_cache_dir)
     return 0
 
 

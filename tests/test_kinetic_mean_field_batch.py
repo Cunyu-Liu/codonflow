@@ -334,11 +334,44 @@ def test_backward_refinement_repairs_deterministic_1070e_10_residual(monkeypatch
 
     assert perturbation / (1.2 + perturbation) == pytest.approx(target_recovery)
     assert solve_calls == 2
+    assert diagnostics["backward_refinement_steps"].item() == 1
+    assert not diagnostics["backward_qr_fallback"].item()
     assert all(bool(torch.isfinite(gradient).all()) for gradient in gradients)
     assert diagnostics["backward_recovery_residual"] <= 1e-10
 
 
-def test_backward_recovery_residual_failure_is_not_silent(monkeypatch):
+def test_backward_refinement_can_require_three_correction_steps(monkeypatch):
+    alpha = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    k = torch.empty((1, 0), dtype=torch.float64, requires_grad=True)
+    beta = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    rho, flux, _, diagnostics = solve_kinetic_mean_field_batch(
+        alpha, k, [1], beta, return_diagnostics=True
+    )
+    real_lu_solve = torch.linalg.lu_solve
+    solve_calls = 0
+
+    def delay_convergence(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        result = real_lu_solve(factor, pivots, rhs)
+        if solve_calls == 1:
+            result = result.clone()
+            result[0, 0, 0] -= 1e-6
+        elif solve_calls in (2, 3):
+            result = torch.zeros_like(rhs)
+        return result
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", delay_convergence)
+    gradients = torch.autograd.grad(rho.sum() + 0.2 * flux.sum(), (alpha, k, beta))
+
+    assert solve_calls == 4
+    assert diagnostics["backward_refinement_steps"].item() == 3
+    assert not diagnostics["backward_qr_fallback"].item()
+    assert diagnostics["backward_recovery_residual"].item() <= 1e-10
+    assert all(bool(torch.isfinite(gradient).all()) for gradient in gradients)
+
+
+def test_persistent_lu_failure_uses_qr_fallback(monkeypatch):
     alpha = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
     k = torch.tensor([[2.0, 2.0]], dtype=torch.float64, requires_grad=True)
     beta = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
@@ -347,18 +380,130 @@ def test_backward_recovery_residual_failure_is_not_silent(monkeypatch):
     )
     solve_calls = 0
 
-    def fail_every_solve(factor, pivots, rhs):
+    def fail_every_lu_solve(factor, pivots, rhs):
         nonlocal solve_calls
         solve_calls += 1
         return torch.zeros_like(rhs)
 
-    monkeypatch.setattr(torch.linalg, "lu_solve", fail_every_solve)
+    monkeypatch.setattr(torch.linalg, "lu_solve", fail_every_lu_solve)
+    gradients = torch.autograd.grad(rho.sum() + flux.sum(), (alpha, k, beta))
 
-    with pytest.raises(RuntimeError, match="recovery residual tolerance.*two refinement steps"):
+    assert solve_calls == 5
+    assert diagnostics["backward_refinement_steps"].item() == 4
+    assert diagnostics["backward_qr_fallback"].item()
+    assert diagnostics["backward_recovery_residual"].item() <= 1e-10
+    assert all(bool(torch.isfinite(gradient).all()) for gradient in gradients)
+
+
+def test_near_zero_component_denominator_uses_extended_refinement(monkeypatch):
+    jacobian = torch.diag(torch.tensor([1e-300, 1.0], dtype=torch.float64))
+    output_gradient = torch.tensor([1e-300, 0.0], dtype=torch.float64)
+    diagnostics = {
+        "backward_recovery_residual": torch.tensor(float("nan"), dtype=torch.float64),
+        "backward_refinement_steps": torch.tensor(0, dtype=torch.int64),
+        "backward_qr_fallback": torch.tensor(False, dtype=torch.bool),
+    }
+    real_lu_solve = torch.linalg.lu_solve
+    solve_calls = 0
+
+    def perturb_initial_solve(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        if solve_calls == 1:
+            return torch.zeros_like(rhs)
+        return real_lu_solve(factor, pivots, rhs)
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", perturb_initial_solve)
+    multiplier = kinetic_mean_field._solve_adjoint_system(
+        jacobian, output_gradient, 1e-10, diagnostics
+    )
+
+    torch.testing.assert_close(
+        multiplier, torch.tensor([1.0, 0.0], dtype=torch.float64), rtol=0.0, atol=0.0
+    )
+    _, denominator, relative = kinetic_mean_field._extended_backward_recovery(
+        jacobian.transpose(0, 1), multiplier, output_gradient
+    )
+    assert denominator[0] > 0 and denominator[0] < 1e-200
+    assert np.max(relative) <= 1e-10
+    assert diagnostics["backward_refinement_steps"].item() == 1
+
+
+def test_mixed_batch_refines_only_the_failed_sample(monkeypatch):
+    jacobian = torch.eye(2, dtype=torch.float64).repeat(3, 1, 1)
+    output_gradient = torch.tensor(
+        [[1.0, 0.2], [0.3, -0.7], [0.5, 0.4]], dtype=torch.float64
+    )
+    diagnostics = {
+        "jacobian_condition_number": torch.tensor([2.0, 3.0, 4.0]),
+        "backward_recovery_residual": torch.full((3,), float("nan")),
+        "backward_refinement_steps": torch.zeros(3, dtype=torch.int64),
+        "backward_qr_fallback": torch.zeros(3, dtype=torch.bool),
+    }
+    real_lu_solve = torch.linalg.lu_solve
+    solve_calls = 0
+
+    def perturb_middle_sample(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        result = real_lu_solve(factor, pivots, rhs)
+        if solve_calls == 1:
+            result = result.clone()
+            result[1, 0, 0] += 1e-5
+        return result
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", perturb_middle_sample)
+    multiplier = kinetic_mean_field._solve_adjoint_system(
+        jacobian, output_gradient, 1e-10, diagnostics
+    )
+
+    torch.testing.assert_close(multiplier, output_gradient, rtol=0.0, atol=0.0)
+    assert diagnostics["backward_refinement_steps"].tolist() == [0, 1, 0]
+    assert diagnostics["backward_qr_fallback"].tolist() == [False, False, False]
+    assert bool((diagnostics["backward_recovery_residual"] <= 1e-10).all())
+    assert solve_calls == 2
+
+
+def test_permanent_backward_failure_is_not_silent_and_has_snapshot_context(monkeypatch):
+    alpha = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    k = torch.tensor([[2.0, 2.0]], dtype=torch.float64, requires_grad=True)
+    beta = torch.tensor([1.0], dtype=torch.float64, requires_grad=True)
+    rho, flux, _, diagnostics = solve_kinetic_mean_field_batch(
+        alpha, k, [3], beta, return_diagnostics=True
+    )
+    solve_calls = 0
+    qr_calls = 0
+
+    def fail_every_lu_solve(factor, pivots, rhs):
+        nonlocal solve_calls
+        solve_calls += 1
+        return torch.zeros_like(rhs)
+
+    def fail_every_qr_solve(matrix, rhs):
+        nonlocal qr_calls
+        qr_calls += 1
+        return torch.zeros_like(rhs)
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", fail_every_lu_solve)
+    monkeypatch.setattr(kinetic_mean_field, "_backward_qr_solve", fail_every_qr_solve)
+
+    with pytest.raises(RuntimeError, match="recovery residual tolerance.*4 LU and 4 QR") as caught:
         torch.autograd.grad(rho.sum() + flux.sum(), (alpha, k, beta))
-    assert solve_calls == 3
+    assert solve_calls == 5
+    assert qr_calls == 5
     assert bool(torch.isfinite(diagnostics["backward_recovery_residual"]).all())
     assert bool((diagnostics["backward_recovery_residual"] > 1e-10).all())
+    assert diagnostics["backward_refinement_steps"].item() == 8
+    assert diagnostics["backward_qr_fallback"].item()
+    context = caught.value.backward_failures[0]
+    assert context["batch_index"] == 0
+    assert context["jacobian_condition_number"] == pytest.approx(2.613125929752753)
+    assert context["refinement_steps"] == 8 and context["qr_fallback"]
+    assert context["recovery_extended"].dtype == np.longdouble
+    assert context["denominator_extended"].dtype == np.longdouble
+    assert np.max(context["relative_recovery_extended"]) > 1e-10
+    assert "jacobian_transpose" in caught.value.backward_snapshot_fields
+    assert "output_gradient" in caught.value.backward_snapshot_fields
 
 
 @pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is not available")
@@ -390,6 +535,39 @@ def test_cuda_batch_backward_matches_cpu_and_keeps_diagnostics_on_device():
     assert cuda_diagnostics["jacobian_condition_number"].device.type == "cuda"
     assert cuda_diagnostics["backward_recovery_residual"].device.type == "cuda"
     assert bool((cuda_diagnostics["backward_recovery_residual"] <= 1e-10).all())
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is not available")
+def test_cuda_persistent_lu_failure_uses_cuda_qr(monkeypatch):
+    device = torch.device("cuda")
+    jacobian = torch.eye(3, dtype=torch.float64, device=device).unsqueeze(0)
+    output_gradient = torch.tensor([[0.3, -0.7, 0.5]], dtype=torch.float64, device=device)
+    diagnostics = {
+        "jacobian_condition_number": torch.ones(1, dtype=torch.float64, device=device),
+        "backward_recovery_residual": torch.full((1,), float("nan"), device=device),
+        "backward_refinement_steps": torch.zeros(1, dtype=torch.int64, device=device),
+        "backward_qr_fallback": torch.zeros(1, dtype=torch.bool, device=device),
+    }
+    real_qr_solve = kinetic_mean_field._backward_qr_solve
+    qr_devices = []
+
+    def record_qr_device(matrix, rhs):
+        qr_devices.append(matrix.device)
+        assert matrix.device.type == "cuda" and rhs.device.type == "cuda"
+        return real_qr_solve(matrix, rhs)
+
+    monkeypatch.setattr(torch.linalg, "lu_solve", lambda factor, pivots, rhs: torch.zeros_like(rhs))
+    monkeypatch.setattr(kinetic_mean_field, "_backward_qr_solve", record_qr_device)
+    multiplier = kinetic_mean_field._solve_adjoint_system(
+        jacobian, output_gradient, 1e-10, diagnostics
+    )
+
+    torch.testing.assert_close(multiplier, output_gradient, rtol=1e-12, atol=1e-12)
+    assert multiplier.device.type == "cuda"
+    assert qr_devices and all(device.type == "cuda" for device in qr_devices)
+    assert diagnostics["backward_qr_fallback"].item()
+    assert diagnostics["backward_refinement_steps"].item() == 4
+    assert diagnostics["backward_recovery_residual"].item() <= 1e-10
 
 
 def test_long_heterogeneous_fallback_and_gradient():

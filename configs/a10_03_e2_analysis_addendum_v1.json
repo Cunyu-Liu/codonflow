@@ -1,0 +1,23 @@
+{
+  "schema": "a10-03-e2-analysis-addendum-v1",
+  "protocol": "a10_03_e2_kinetic_protocol_v3",
+  "status": "specified_before_outer_results",
+  "created_date": "2026-11-25",
+  "outer_results_available": false,
+  "scientific_gate_change": false,
+  "inference": {
+    "seed": 9100302,
+    "bootstrap_resamples": 20000,
+    "signflip_resamples": 20000,
+    "cluster": "transcript",
+    "comparators": [
+      "independent",
+      "position"
+    ],
+    "holm_family": "two comparators within each model seed and separately for pooled seed-first inference",
+    "pooled_seed_first": "average comparator-minus-kinetic TB-MSE effects across model seeds within each transcript before pooled bootstrap and sign-flip inference",
+    "per_seed_condition": "for each comparator and every model seed, effect > 0, bootstrap 95% CI lower bound > 0, and two-comparator Holm p < 0.05",
+    "joint_development_condition": "both comparators satisfy every per-seed condition and the pooled seed-first bootstrap 95% CI lower bound > 0 with two-comparator Holm p < 0.05"
+  },
+  "note": "This records the verifier's existing stricter criteria before outer results; it is not a post-hoc analysis choice and does not change the frozen protocol or Gate."
+}

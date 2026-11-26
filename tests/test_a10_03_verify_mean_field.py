@@ -4,7 +4,6 @@ import math
 import numpy as np
 import pytest
 import torch
-from scipy.optimize import OptimizeResult
 
 from codonflow.models import kinetic_mean_field
 from scripts import a10_03_verify_mean_field as verifier
@@ -105,23 +104,25 @@ def test_rate_shapes_and_solver_controls_are_validated():
         kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0, maxfev=1.5)
 
 
-def test_root_receives_analytic_jacobian(monkeypatch):
-    actual_root = kinetic_mean_field.root
+def test_newton_receives_analytic_sparse_jacobian(monkeypatch):
+    actual_spsolve = kinetic_mean_field.spsolve
     observed = {}
 
-    def checked_root(*args, **kwargs):
-        observed["jac"] = kwargs.get("jac")
-        return actual_root(*args, **kwargs)
+    def checked_spsolve(matrix, rhs):
+        observed["jacobian"] = matrix
+        return actual_spsolve(matrix, rhs)
 
-    monkeypatch.setattr(kinetic_mean_field, "root", checked_root)
+    monkeypatch.setattr(kinetic_mean_field, "spsolve", checked_spsolve)
     kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0)
-    assert callable(observed["jac"])
+    assert observed["jacobian"].shape == (3, 3)
+    assert observed["jacobian"].nnz == 7
 
 
-def test_root_nonconvergence_is_never_silently_accepted(monkeypatch):
-    failed = OptimizeResult(success=False, message="synthetic nonconvergence", x=np.zeros(3))
-    monkeypatch.setattr(kinetic_mean_field, "root", lambda *args, **kwargs: failed)
-    monkeypatch.setattr(kinetic_mean_field, "least_squares", lambda *args, **kwargs: failed)
+def test_newton_nonconvergence_is_never_silently_accepted(monkeypatch):
+    def failed_spsolve(*args, **kwargs):
+        raise RuntimeError("synthetic nonconvergence")
+
+    monkeypatch.setattr(kinetic_mean_field, "spsolve", failed_spsolve)
     monkeypatch.setattr(kinetic_mean_field, "_transient_state_numpy", lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("did not converge: synthetic nonconvergence")))
     with pytest.raises(RuntimeError, match="did not converge.*synthetic nonconvergence"):
         kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0)
@@ -131,10 +132,8 @@ def test_root_nonconvergence_is_never_silently_accepted(monkeypatch):
     (np.array([1.2, 0.5, 0.25]), "densities outside"),
     (np.array([0.5, 0.5, 1.0]), "residual tolerance"),
 ])
-def test_success_flag_cannot_bypass_domain_or_residual_checks(monkeypatch, state, message):
-    invalid = OptimizeResult(success=True, message="synthetic success flag", x=state)
-    monkeypatch.setattr(kinetic_mean_field, "root", lambda *args, **kwargs: invalid)
-    monkeypatch.setattr(kinetic_mean_field, "least_squares", lambda *args, **kwargs: invalid)
+def test_solver_return_cannot_bypass_domain_or_residual_checks(monkeypatch, state, message):
+    monkeypatch.setattr(kinetic_mean_field, "_newton_state_numpy", lambda *args, **kwargs: state)
     monkeypatch.setattr(kinetic_mean_field, "_transient_state_numpy", lambda *args, **kwargs: state)
     with pytest.raises(RuntimeError, match=message):
         kinetic_mean_field.solve_kinetic_mean_field(1.0, [1.0], 1.0)
