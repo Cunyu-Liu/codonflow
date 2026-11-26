@@ -210,15 +210,18 @@ def make_training(output, protocol, splits):
     })
 
 
-def source_sha256(protocol_path):
-    return {
+def source_sha256(protocol_path, include_banded=False):
+    identity = {
         "protocol": sha256(protocol_path),
         "implementation": sha256(verifier.IMPLEMENTATION_PATH),
         "mean_field_operator": sha256(verifier.MEAN_FIELD_OPERATOR_PATH),
     }
+    if include_banded:
+        identity["banded_cuda_backend"] = sha256(verifier.BANDED_CUDA_BACKEND_PATH)
+    return identity
 
 
-def make_state_archive(output, protocol, protocol_path):
+def make_state_archive(output, protocol, protocol_path, include_banded=False):
     selection = json.loads((output / "selection.json").read_text(encoding="utf-8"))
     arrays = {}
     records = []
@@ -251,7 +254,7 @@ def make_state_archive(output, protocol, protocol_path):
         records.append(metadata)
     payload = {
         "schema": verifier.STATE_SCHEMA, "protocol": verifier.PROTOCOL, "dtype": "float64",
-        "model_config": protocol["model"], "startup_sha256": source_sha256(protocol_path),
+        "model_config": protocol["model"], "startup_sha256": source_sha256(protocol_path, include_banded),
         "records": records,
     }
     arrays["metadata"] = np.asarray(json.dumps(payload, ensure_ascii=False, allow_nan=False))
@@ -322,7 +325,7 @@ def write_metric_csv(path, rows):
             writer.writerow({key: "" if value is None else value for key, value in row.items()})
 
 
-def make_case(tmp_path):
+def make_case(tmp_path, include_banded=False):
     tmp_path = tmp_path.resolve()
     tmp_path.mkdir(parents=True, exist_ok=True)
     raw_path = tmp_path / "synthetic_mohammad.txt"
@@ -338,12 +341,14 @@ def make_case(tmp_path):
         "schema": verifier.PROVENANCE_SCHEMA, "protocol": verifier.PROTOCOL,
         "recorded_utc": "2026-01-01T00:00:00+00:00",
         "stage": "startup_before_device_probe_raw_parse_or_training",
-        "sha256": source_sha256(protocol_path),
+        "sha256": source_sha256(protocol_path, include_banded),
     })
     make_training(output, protocol, splits)
-    make_state_archive(output, protocol, protocol_path)
+    make_state_archive(output, protocol, protocol_path, include_banded)
     training = verifier.audit_training(output, protocol, splits)
-    selected_states = verifier.load_selected_states(output / "selected_inner_states.npz", protocol, source_sha256(protocol_path))
+    selected_states = verifier.load_selected_states(
+        output / "selected_inner_states.npz", protocol, source_sha256(protocol_path, include_banded),
+    )
     arrays = make_predictions(output, records, protocol, splits, selected_states)
     evaluation = verifier.evaluate_predictions(arrays, records, protocol, splits, selected_states)
     write_metric_csv(output / "per_transcript_metrics.csv", evaluation["rows"])
@@ -400,7 +405,7 @@ def make_case(tmp_path):
             },
         },
         "sha256": {
-            **source_sha256(protocol_path),
+            **source_sha256(protocol_path, include_banded),
             "raw_input": sha256(raw_path),
             "artifacts": {name: sha256(output / name) for name in verifier.ARTIFACT_FILES},
         },
@@ -476,6 +481,7 @@ def test_frozen_identity_and_verifier_has_no_production_imports(tmp_path):
             imported.append(node.module)
     assert not any(name == "codonflow" or name.startswith(("codonflow.", "scripts.")) for name in imported)
     assert verifier.REAL_RAW_SHA256 == "d093a3b0c53aa90d0626cc277a65a558c538ecbeb4d1cda091f02aad134588bc"
+    assert verifier.REAL_OUTER_TEST_KINETIC_MEMBERS == 3 * 1073 * 3 == 9657
 
 
 def test_pre_outer_analysis_addendum_matches_verifier_inference_contract():
@@ -790,6 +796,174 @@ def test_parallel_ledger_preserves_serial_cost_sum_and_rejects_schedule_tamperin
     result = verify(case)
     assert not result["checks"]["parallel_shard_execution_ledger"]
     assert "parallel.schedule" in result["mismatches"]["parallel"]
+
+
+def make_v13_parallel_case(tmp_path):
+    from scripts import a10_03_e2_kinetic_parallel as parallel
+
+    case = make_case(tmp_path, include_banded=True)
+    summary = load_summary(case)
+    training = verifier.audit_training(case["output"], case["protocol_payload"], case["splits"])
+    expected_specs = [
+        {"seed": seed, "seed_index": seed_index, "outer_fold": outer, "arm": arm}
+        for seed_index, seed in enumerate(SEEDS) for outer in range(3) for arm in verifier.ARMS
+    ]
+    scheduled = sorted(expected_specs, key=lambda spec: (spec["arm"] != "kinetic", spec["seed_index"], spec["outer_fold"]))
+    identity = {
+        **source_sha256(case["protocol"], include_banded=True),
+        "parallel_implementation": sha256(verifier.PARALLEL_IMPLEMENTATION_PATH),
+    }
+    cache = tmp_path / "v13_shard_cache"
+    cache.mkdir()
+    shards = []
+    for spec in expected_specs:
+        path = cache / f"{parallel.shard_basename(spec)}.npz"
+        result = {"spec": spec, "shard_cost": {"wall_clock_seconds": 0.1}}
+        digest = parallel.save_shard(path, result, identity)
+        shards.append({
+            "spec": spec, "cache_hit": False, "path": str(path),
+            "sha256": digest, "shard_cost": result["shard_cost"],
+        })
+    ledger = {
+        "schema": verifier.PARALLEL_SCHEMA, "protocol": verifier.PROTOCOL,
+        "max_workers": 4, "start_method": "spawn", "schedule": "kinetic_first",
+        "configured_arm_max_workers": dict(parallel.DEFAULT_ARM_MAX_WORKERS),
+        "arm_max_workers": {arm: min(4, limit) for arm, limit in parallel.DEFAULT_ARM_MAX_WORKERS.items()},
+        "scheduled_specs": scheduled, "canonical_merge": "seed_index,outer_fold,protocol_arm_order",
+        "parallel_implementation_sha256": identity["parallel_implementation"],
+        "shards": shards, "cache_hits": 0, "cache_misses": 27,
+        "shard_execution_wall_clock_seconds": 1.0, "shard_wall_clock_seconds_sum": 2.7,
+        "candidate_fit_wall_clock_seconds_serial_sum": training["fit_wall_clock_seconds"],
+        "wall_is_not_serial_sum": True, "scientific_gate_claimed": False,
+    }
+    write_json(case["output"] / "parallel.json", ledger)
+    summary["cost"]["wall_clock_seconds"] = 2.0
+    summary["cost"]["parallel"] = {
+        key: ledger[key] for key in (
+            "max_workers", "start_method", "configured_arm_max_workers", "arm_max_workers",
+            "shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
+        )
+    }
+    summary["sha256"]["parallel_implementation"] = identity["parallel_implementation"]
+    summary["sha256"]["artifacts"]["parallel.json"] = sha256(case["output"] / "parallel.json")
+    save_summary(case, summary)
+    case.update({"cache": cache, "cache_identity": identity})
+    return case
+
+
+def load_parallel(case):
+    return json.loads((case["output"] / "parallel.json").read_text(encoding="utf-8"))
+
+
+def save_parallel(case, ledger):
+    write_json(case["output"] / "parallel.json", ledger)
+    refresh_artifact_sha(case, "parallel.json")
+
+
+def test_v13_parallel_schema_real_shard_cache_and_outer_member_contract(tmp_path):
+    case = make_v13_parallel_case(tmp_path)
+    result = verify(case)
+    assert result["passed"], result["mismatches"]
+    assert result["checks"]["outer_test_member_residual_contract"]
+    assert result["recomputed"]["member_conservation"]["kinetic_members_checked"] == 3 * N_TRANSCRIPTS * 3
+
+
+@pytest.mark.parametrize("repeat", [0, 1, 2])
+def test_real_cuda_v13_small_producer_rebuild_three_times(tmp_path, repeat):
+    import torch
+    from scripts import a10_03_e2_kinetic_parallel as parallel
+
+    if not torch.cuda.is_available():
+        pytest.skip("real CUDA producer rebuild requires CUDA")
+    raw_path = tmp_path / "synthetic_mohammad.txt"
+    write_raw(raw_path)
+    protocol_path = tmp_path / "protocol.json"
+    protocol = make_protocol(protocol_path, raw_path)
+    protocol["training"]["batch_transcripts"] = 4
+    protocol["training"]["successive_halving"]["rung_epochs"] = 1
+    protocol["training"]["early_stopping"]["patience_epochs"] = 1
+    protocol["training"]["early_stopping"]["min_absolute_improvement"] = 1e100
+    protocol["hyperparameters"]["weight_decays"] = [0.0]
+    write_json(protocol_path, protocol)
+    output = tmp_path / "producer_output"
+    parallel.run_experiment(
+        protocol_path, raw_path, output, "cuda:0", 1, tmp_path / "shard_cache",
+        arm_max_workers={arm: 1 for arm in verifier.ARMS},
+    )
+    result = verifier.verify_e2_kinetic(
+        protocol_path, raw_path, output, allow_synthetic=True, n_resamples=128,
+    )
+    assert result["passed"], result["mismatches"]
+    assert result["checks"]["outer_test_member_residual_contract"]
+    assert result["recomputed"]["member_conservation"]["kinetic_members_checked"] == 3 * N_TRANSCRIPTS * 3
+
+
+@pytest.mark.parametrize("kind,expected", [
+    ("missing", "parallel.shards.cache_missing"),
+    ("payload", "parallel.shards.cache_sha256"),
+    ("sidecar", "parallel.shards.cache_sidecar_sha256"),
+])
+def test_v13_verifier_rejects_missing_or_tampered_real_shard_cache(tmp_path, kind, expected):
+    case = make_v13_parallel_case(tmp_path)
+    path = case["cache"] / "seed_00_outer_00_independent.npz"
+    if kind == "missing":
+        path.unlink()
+    elif kind == "payload":
+        with path.open("ab") as handle:
+            handle.write(b"tampered")
+    else:
+        path.with_suffix(path.suffix + ".sha256").write_text("0" * 64 + "\n", encoding="ascii")
+    result = verify(case)
+    assert not result["checks"]["parallel_shard_execution_ledger"]
+    assert expected in result["mismatches"]["parallel"]
+
+
+def test_v13_verifier_rejects_backend_identity_mismatch_even_with_refreshed_hashes(tmp_path):
+    case = make_v13_parallel_case(tmp_path)
+    path = case["cache"] / "seed_00_outer_00_independent.npz"
+    with np.load(path, allow_pickle=False) as archive:
+        arrays = {name: archive[name].copy() for name in archive.files}
+    metadata = json.loads(arrays["metadata"].item())
+    metadata["identity"]["banded_cuda_backend"] = "0" * 64
+    arrays["metadata"] = np.asarray(json.dumps(metadata, ensure_ascii=False, allow_nan=False))
+    with path.open("wb") as handle:
+        np.savez_compressed(handle, **arrays)
+    digest = sha256(path)
+    path.with_suffix(path.suffix + ".sha256").write_text(digest + "\n", encoding="ascii")
+    ledger = load_parallel(case)
+    ledger["shards"][0]["sha256"] = digest
+    save_parallel(case, ledger)
+    result = verify(case)
+    assert not result["checks"]["parallel_shard_execution_ledger"]
+    assert "parallel.shards.cache_identity" in result["mismatches"]["parallel"]
+    assert "parallel.shards.cache_sha256" not in result["mismatches"]["parallel"]
+
+
+def test_v13_verifier_strictly_checks_scheduler_arm_quotas(tmp_path):
+    case = make_v13_parallel_case(tmp_path)
+    ledger = load_parallel(case)
+    ledger["arm_max_workers"]["kinetic"] += 1
+    save_parallel(case, ledger)
+    summary = load_summary(case)
+    summary["cost"]["parallel"]["arm_max_workers"]["kinetic"] += 1
+    save_summary(case, summary)
+    result = verify(case)
+    assert not result["checks"]["parallel_shard_execution_ledger"]
+    assert not result["checks"]["complete_cost_ledger"]
+    assert "parallel.arm_max_workers" in result["mismatches"]["parallel"]
+
+    case = make_v13_parallel_case(tmp_path / "missing_quotas")
+    ledger = load_parallel(case)
+    del ledger["configured_arm_max_workers"], ledger["arm_max_workers"]
+    save_parallel(case, ledger)
+    summary = load_summary(case)
+    del summary["cost"]["parallel"]["configured_arm_max_workers"], summary["cost"]["parallel"]["arm_max_workers"]
+    save_summary(case, summary)
+    result = verify(case)
+    assert result["checks"]["startup_source_provenance_recomputed"]
+    assert not result["checks"]["parallel_shard_execution_ledger"]
+    assert not result["checks"]["complete_cost_ledger"]
+    assert "parallel.arm_quotas" in result["mismatches"]["parallel"]
 
 
 def test_missing_curve_and_non_inner_selected_candidate_are_detected(tmp_path):

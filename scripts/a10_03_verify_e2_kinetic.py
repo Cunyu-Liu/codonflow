@@ -36,7 +36,9 @@ ROOT = Path(__file__).resolve().parents[1]
 IMPLEMENTATION_PATH = ROOT / "scripts" / "a10_03_e2_kinetic.py"
 MEAN_FIELD_OPERATOR_PATH = ROOT / "src" / "codonflow" / "models" / "kinetic_mean_field.py"
 PARALLEL_IMPLEMENTATION_PATH = ROOT / "scripts" / "a10_03_e2_kinetic_parallel.py"
+BANDED_CUDA_BACKEND_PATH = ROOT / "src" / "codonflow" / "models" / "kinetic_banded_cuda.py"
 PARALLEL_SCHEMA = "a10-03-e2-kinetic-parallel-v1"
+SHARD_SCHEMA = "a10-03-e2-kinetic-shard-v1"
 PROTOCOL = "a10_03_e2_kinetic_protocol_v3"
 PROTOCOL_SCHEMA = "a10-03-e2-kinetic-protocol-v3"
 SUMMARY_SCHEMA = "a10-03-e2-kinetic-summary-v4"
@@ -51,6 +53,7 @@ REAL_ELIGIBLE = 1073
 ARMS = ("independent", "position", "kinetic")
 COMPARATORS = ("independent", "position")
 REAL_MODEL_SEEDS = [1234, 2345, 3456]
+REAL_OUTER_TEST_KINETIC_MEMBERS = len(REAL_MODEL_SEEDS) * REAL_ELIGIBLE * 3
 REAL_SPLIT_SEED = 9100301
 INFERENCE_SEED = 9100302
 REAL_RESAMPLES = 20000
@@ -1425,7 +1428,28 @@ def valid_environment(environment):
     )
 
 
-def valid_cost(cost, training):
+def arm_quota_mismatches(parallel, prefix):
+    mismatches = []
+    configured = parallel.get("configured_arm_max_workers")
+    effective = parallel.get("arm_max_workers")
+    if (
+        not isinstance(configured, dict) or set(configured) != set(ARMS)
+        or not all(is_integer(configured.get(arm), 1) for arm in ARMS)
+    ):
+        mismatches.append(f"{prefix}.configured_arm_max_workers")
+    if (
+        not isinstance(effective, dict) or set(effective) != set(ARMS)
+        or not all(is_integer(effective.get(arm), 1) for arm in ARMS)
+    ):
+        mismatches.append(f"{prefix}.arm_max_workers")
+    if not mismatches and is_integer(parallel.get("max_workers"), 1):
+        expected = {arm: min(parallel["max_workers"], configured[arm]) for arm in ARMS}
+        if effective != expected:
+            mismatches.append(f"{prefix}.arm_max_workers")
+    return mismatches
+
+
+def valid_cost(cost, training, require_arm_quotas=False):
     required = {
         "started_utc", "finished_utc", "wall_clock_seconds", "candidate_fits",
         "epochs_ran", "candidate_fit_wall_clock_seconds", "cuda_peak_memory_bytes",
@@ -1467,7 +1491,14 @@ def valid_cost(cost, training):
             "max_workers", "start_method", "shard_execution_wall_clock_seconds",
             "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
         }
-        if not isinstance(parallel, dict) or set(parallel) != parallel_fields:
+        quota_fields = {"configured_arm_max_workers", "arm_max_workers"}
+        has_quotas = bool(set(parallel) & quota_fields) if isinstance(parallel, dict) else False
+        if (
+            not isinstance(parallel, dict) or not parallel_fields <= set(parallel)
+            or not set(parallel) <= parallel_fields | quota_fields
+            or (has_quotas and not quota_fields <= set(parallel))
+            or (require_arm_quotas and not quota_fields <= set(parallel))
+        ):
             mismatches.append("cost.parallel.keys")
         else:
             if not is_integer(parallel["max_workers"], 1) or parallel["start_method"] != "spawn":
@@ -1482,10 +1513,52 @@ def valid_cost(cost, training):
                 mismatches.append("cost.parallel.shard_count")
             if is_number(parallel["shard_execution_wall_clock_seconds"], nonnegative=True) and parallel["shard_execution_wall_clock_seconds"] > cost["wall_clock_seconds"] + 1e-9:
                 mismatches.append("cost.parallel.wall_clock_seconds")
+            if quota_fields <= set(parallel):
+                mismatches.extend(arm_quota_mismatches(parallel, "cost.parallel"))
     return not mismatches, mismatches
 
 
-def audit_parallel(path, protocol, training, summary):
+def audit_shard_cache(entry, expected_spec, expected_identity):
+    mismatches = []
+    path_value = entry.get("path")
+    if not isinstance(path_value, str) or not path_value:
+        return ["parallel.shards.cache_path"]
+    path = Path(path_value).expanduser()
+    digest_path = path.with_suffix(path.suffix + ".sha256")
+    try:
+        observed_sha = sha256_file(path)
+    except OSError:
+        return ["parallel.shards.cache_missing"]
+    if entry.get("sha256") != observed_sha:
+        mismatches.append("parallel.shards.cache_sha256")
+    try:
+        sidecar = digest_path.read_text(encoding="ascii")
+    except OSError:
+        mismatches.append("parallel.shards.cache_sidecar_missing")
+    else:
+        if re.fullmatch(r"[0-9a-f]{64}\n?", sidecar) is None or sidecar.strip() != observed_sha:
+            mismatches.append("parallel.shards.cache_sidecar_sha256")
+    try:
+        with np.load(path, allow_pickle=False) as archive:
+            if "metadata" not in archive.files:
+                raise ValueError("missing shard metadata")
+            metadata = json.loads(archive["metadata"].item(), parse_constant=reject_nonfinite_json)
+    except Exception:
+        mismatches.append("parallel.shards.cache_metadata")
+        return mismatches
+    if not isinstance(metadata, dict) or set(metadata) != {"schema", "identity", "spec", "payload"}:
+        mismatches.append("parallel.shards.cache_metadata_keys")
+        return mismatches
+    if metadata["schema"] != SHARD_SCHEMA:
+        mismatches.append("parallel.shards.cache_schema")
+    if metadata["spec"] != expected_spec:
+        mismatches.append("parallel.shards.cache_spec")
+    if metadata["identity"] != expected_identity:
+        mismatches.append("parallel.shards.cache_identity")
+    return mismatches
+
+
+def audit_parallel(path, protocol, training, summary, startup_sha256, allow_legacy=False):
     payload = load_json(path)
     mismatches = []
     required = {
@@ -1494,8 +1567,17 @@ def audit_parallel(path, protocol, training, summary):
         "shard_execution_wall_clock_seconds", "shard_wall_clock_seconds_sum",
         "candidate_fit_wall_clock_seconds_serial_sum", "wall_is_not_serial_sum", "scientific_gate_claimed",
     }
-    if set(payload) != required or payload["schema"] != PARALLEL_SCHEMA or payload["protocol"] != PROTOCOL:
+    quota_fields = {"configured_arm_max_workers", "arm_max_workers"}
+    if (
+        not required <= set(payload) or not set(payload) <= required | quota_fields
+        or payload.get("schema") != PARALLEL_SCHEMA or payload.get("protocol") != PROTOCOL
+    ):
         return ["parallel.identity_or_keys"]
+    strict_v13 = not allow_legacy or bool(set(payload) & quota_fields)
+    if strict_v13 and not quota_fields <= set(payload):
+        mismatches.append("parallel.arm_quotas")
+    if quota_fields <= set(payload):
+        mismatches.extend(arm_quota_mismatches(payload, "parallel"))
     expected_specs = [
         {"seed": seed, "seed_index": seed_index, "outer_fold": outer, "arm": arm}
         for seed_index, seed in enumerate(protocol["training"]["model_seeds"])
@@ -1508,19 +1590,28 @@ def audit_parallel(path, protocol, training, summary):
         mismatches.append("parallel.canonical_merge")
     if payload["parallel_implementation_sha256"] != sha256_file(PARALLEL_IMPLEMENTATION_PATH):
         mismatches.append("parallel.implementation_sha256")
+    cache_identity = {
+        **startup_sha256,
+        "parallel_implementation": sha256_file(PARALLEL_IMPLEMENTATION_PATH),
+    }
     shards = payload["shards"]
     if not isinstance(shards, list) or len(shards) != 27:
         mismatches.append("parallel.shards.count")
     else:
         if [entry.get("spec") for entry in shards] != expected_specs:
             mismatches.append("parallel.shards.canonical_order")
-        for entry in shards:
+        for index, entry in enumerate(shards):
             if set(entry) != {"spec", "cache_hit", "path", "sha256", "shard_cost"}:
                 mismatches.append("parallel.shards.keys")
                 break
             if not isinstance(entry["cache_hit"], bool) or re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]) is None:
                 mismatches.append("parallel.shards.integrity")
                 break
+            if strict_v13:
+                cache_mismatches = audit_shard_cache(entry, expected_specs[index], cache_identity)
+                mismatches.extend(cache_mismatches)
+                if cache_mismatches:
+                    break
             cost = entry["shard_cost"]
             if not isinstance(cost, dict) or set(cost) != {"wall_clock_seconds"} or not is_number(cost["wall_clock_seconds"], nonnegative=True):
                 mismatches.append("parallel.shards.cost")
@@ -1538,10 +1629,13 @@ def audit_parallel(path, protocol, training, summary):
     if payload["wall_is_not_serial_sum"] is not True or payload["scientific_gate_claimed"] is not False:
         mismatches.append("parallel.claim_boundary")
     summary_parallel = summary.get("cost", {}).get("parallel")
-    expected_summary = {key: payload[key] for key in (
+    summary_keys = [
         "max_workers", "start_method", "shard_execution_wall_clock_seconds",
         "shard_wall_clock_seconds_sum", "cache_hits", "cache_misses",
-    )}
+    ]
+    if quota_fields <= set(payload):
+        summary_keys.extend(["configured_arm_max_workers", "arm_max_workers"])
+    expected_summary = {key: payload[key] for key in summary_keys}
     mismatches.extend(value_mismatches(summary_parallel, expected_summary, "summary.cost.parallel"))
     return mismatches
 
@@ -1581,7 +1675,19 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
         "protocol": sha256_file(protocol_path),
         "implementation": sha256_file(IMPLEMENTATION_PATH),
         "mean_field_operator": sha256_file(MEAN_FIELD_OPERATOR_PATH),
+        "banded_cuda_backend": sha256_file(BANDED_CUDA_BACKEND_PATH),
     }
+    provenance_payload = load_json(output_dir / "provenance.json")
+    parallel_payload = load_json(parallel_path) if parallel_path.exists() else {}
+    quota_fields = {"configured_arm_max_workers", "arm_max_workers"}
+    legacy_identity = (
+        allow_synthetic
+        and set(provenance_payload.get("sha256", {})) == set(startup_sha256) - {"banded_cuda_backend"}
+        and not set(parallel_payload) & quota_fields
+        and not set(summary.get("cost", {}).get("parallel", {})) & quota_fields
+    )
+    if legacy_identity:
+        startup_sha256.pop("banded_cuda_backend")
     checks = {}
     details = {}
     observed_files = {str(path.relative_to(output_dir)) for path in output_dir.rglob("*") if path.is_file()}
@@ -1626,6 +1732,14 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
         evaluation = None
         checks["selected_states_outer_ensembles_and_member_conservation"] = False
         details["predictions"] = [f"{type(exc).__name__}: {exc}"]
+    expected_outer_members = (
+        REAL_OUTER_TEST_KINETIC_MEMBERS if not allow_synthetic
+        else len(seeds) * len(records) * protocol["model"]["selected_inner_ensemble_members"]
+    )
+    checks["outer_test_member_residual_contract"] = (
+        evaluation is not None
+        and evaluation["member_conservation"]["kinetic_members_checked"] == expected_outer_members
+    )
     if evaluation is not None:
         mismatches = compare_csv(output_dir / "per_transcript_metrics.csv", evaluation["rows"])
         checks["per_transcript_metrics_csv_recomputed"] = not mismatches
@@ -1688,7 +1802,9 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
         mismatches = value_mismatches(summary.get("convergence"), training["convergence"], "summary.convergence")
         checks["summary_convergence"] = not mismatches
         details["convergence"] = mismatches
-        valid, mismatches = valid_cost(summary.get("cost"), training)
+        valid, mismatches = valid_cost(
+            summary.get("cost"), training, require_arm_quotas=has_parallel and not legacy_identity,
+        )
         checks["complete_cost_ledger"] = valid
         details["cost"] = mismatches
     else:
@@ -1697,7 +1813,9 @@ def verify_e2_kinetic(protocol_path, raw_path, output_dir, allow_synthetic=False
     checks["real_cuda_no_fallback_recorded"] = valid_environment(summary.get("environment"))
     if has_parallel and training is not None:
         try:
-            parallel_mismatches = audit_parallel(parallel_path, protocol, training, summary)
+            parallel_mismatches = audit_parallel(
+                parallel_path, protocol, training, summary, startup_sha256, allow_legacy=legacy_identity,
+            )
         except Exception as exc:
             parallel_mismatches = [f"{type(exc).__name__}: {exc}"]
         checks["parallel_shard_execution_ledger"] = not parallel_mismatches
