@@ -1,9 +1,9 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-26（独立 verifier 修复 `18a80c2` 已发布、49+3+12 tests、outer-test 残差计数与 v13 状态登记）
-- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12）；v13 于 2026-11-26 启动，尚无最终结局
+- 文档日期：2026-11-25；最近复核：2026-11-26（verifier `cac91df` 全量/干净复现证据、v13 最终 OOM 与真实 CUDA 显存增长根因诊断）
+- 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12/v13）；v13 已于 2026-11-26 22:36:45+08:00 退出 1，最终无完成摘要
 - 阶段：A10-03 / E2
-- 状态：**v7、v8、v10/w23/w21、v11/v12 历史 fail-closed 不删除；v13 启动时 release `/home/codonflow-a10-e2-release` HEAD 与 GitHub `a8-rk` 均为文档提交 `f7e3fdbb7684befe947a12b06de56744defbdb96`，本次核对干净；backend identity 代码提交 `40603527afa3ee2275166b4293234cdd48a9e38c` 是其直接祖先。本轮仅登记文档，不修改代码。v11 的 cache identity 缺 banded CUDA backend SHA，属于生产 provenance 阻断而非科学失败；修复后定向 151 tests、提交后并行 12 tests 和真实 CUDA/cache 复核通过。v11 最终 CUDA OOM、v12 最终 `CUBLAS_STATUS_ALLOC_FAILED`，均退出 1、0 shard/0 曲线且无完成摘要。历史 release 集成验收为 `79dcbf377b043e21f45573428128d236c9534685`，相关 144 tests、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 通过；E2/H2/G1 未完成、未裁决且未通过。**
+- 状态：**v7、v8、v10/w23/w21、v11/v12/v13 历史 fail-closed 不删除。v13 使用启动时代码祖先 `40603527afa3ee2275166b4293234cdd48a9e38c`，运行 13321.0843 s 后在 position/epoch890 OOM、退出 1；2 个成功 cache shard 加 1 个 OOM 失败 shard 共 3 个终止 shard，无完成摘要。独立 verifier 当前证据基线为 `cac91df1468b0e01b4e619a5ca9f57e4b242896d`：全量 952 passed/1 failed/1 skipped/5 subtests，唯一失败为共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、verifier 各 28/28 checks，manifest SHA `e34cba…`。受控真实 CUDA A/B 已定位为 output-gradient hook 闭包逐 batch 保留 CUDA 张量，本轮未修改生产代码、protocol、Gate 或 v13 artifacts；E2/H2/G1 未完成、未裁决且未通过。**
 - 本文只登记已核实的失败、恢复与数值验证事实及后续验收边界，不预写训练或科学成功。
 
 ## 1. v7 已核实的退出事实（不可变历史）
@@ -135,7 +135,7 @@
 - 原 verifier 对 `parallel.json` 的精确键集及 summary parallel 比较不接受 `configured_arm_max_workers`、`arm_max_workers`，且对 ledger shard SHA 仅检查 64 位十六进制格式；现已接受并精确比较两项 arm quotas，要求三臂精确键集、正整数且 effective 等于 `min(max_workers, configured)`。真实 shard cache 会重算 NPZ 与 `.sha256` sidecar 摘要，以 `allow_pickle=False` 读取 NPZ，并精确核对 metadata 四键、`a10-03-e2-kinetic-shard-v1` schema、canonical spec 和含 backend 的 identity；缺失、篡改或 backend-only mismatch 均 fail-closed。legacy 三项 identity 只对显式 synthetic 且完全无 quotas 的历史案例兼容，真实 v13 不走该回退。修复提交只修改 `scripts/a10_03_verify_e2_kinetic.py` 与 `tests/test_a10_03_verify_e2_kinetic.py`，不改 producer、protocol、统计或 Gate。
 - 冻结 protocol 原文规定 `outer_test_use` 为 inner 选择/早停完成后的最终预测与指标，`final_predictor` 为对应三 selected inner-fold models 的等权 density ensemble，`evaluation.split` 为 outer test only，`steady_state_diagnostic` 为每个 selected inner kinetic member 分别计算。故 outer-test 逐成员残差合同复核项为 **`3 seeds × 1073 transcripts × 3 members = 9657`**。新 verifier 的 `REAL_OUTER_TEST_KINETIC_MEMBERS` 与 `outer_test_member_residual_contract` 显式要求实际复核数等于 9657；每个成员仍由独立稳态重建并沿用 `1e-10` 阈值。
 - **`28971 = 3 seeds × 1073 transcripts × 3 outer folds × 3 members`** 对应全 27 个 kinetic models 在全转录本上的额外诊断；它不是对应 outer-test 的 9657 项，不得事后加入 Gate，也不改变 paired CI、Holm、双比较或 `1e-10`。9657/28971 均为复核范围计数，不是 H2/G1 结果。
-- 本轮唯一一次 v13 进程/exit/cache 只读快照在 **19:57:14+08:00**：主 PID `4057023` 仍运行，命令行仍使用原 producer/protocol/output/shard-cache。输出仅有 `provenance.json`、`splits.json`，shard-cache 为 **0 NPZ/0 sidecar**，0 完成 shard、0 曲线，无 `summary.json`、`predictions.npz`、`parallel.json`、selected states、`.exit_code` 或 `.finished`。本轮未修改其 producer、protocol、输出或进程，不预写最终结局。
+- **历史运行中快照（已被第 5.9 节最终状态覆盖）**：19:57:14+08:00 主 PID `4057023` 仍运行，命令行仍使用原 producer/protocol/output/shard-cache；当时输出仅有 `provenance.json`、`splits.json`，shard-cache 为 0 NPZ/0 sidecar，无完成摘要或退出码。该快照只证明当时状态，不是最终结局；本轮未修改其 producer、protocol、输出或进程。
 - verifier 与 release 的 producer、parallel implementation、mean-field operator、banded CUDA backend 和 protocol 五个文件已逐字比较一致。**仅在 v13 正常退出且完整产物形成后**执行以下 ready 命令；输出采用 exclusive 创建，当前不存在，不得提前运行或用不完整产物替代科学验收。真实数据默认且必须保持 20000 resamples，不加 `--allow-synthetic`：
 
 ```bash
@@ -147,10 +147,30 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
   --output /teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_development_v13_verifier_18a80c2_v1.json
 ```
 
+### 5.8 verifier 全量测试与干净 checkout 复现证据（2026-11-26）
+
+- 证据基线为 `/home/codonflow-a10-e2-verifier@cac91df1468b0e01b4e619a5ca9f57e4b242896d`，本轮开始时干净且与 GitHub `a8-rk` 一致。全量 `tests` 实测 **952 passed、1 failed、1 skipped、5 subtests passed，9219.64 s**，exit 1；日志 `release_full_suite_v1/pytest.log` SHA256=`3e66bfb35832ac4f1579bca320821a029ddda82ab62cce21c28633380b7d3780`。唯一失败是 `test_spawn_1_2_4_workers_real_cuda_forward_backward_are_bitwise_equivalent` 在共享 GPU 的 2-worker 阶段发生 CUDA OOM，不是数值断言或科学 Gate 失败；本轮不重跑全量 suite，也不把 952 passed 写成全绿。
+- 干净 checkout `/home/codonflow-a10-e2-clean` 与 verifier 均在 `cac91df`、status 为空。`clean_reproduction_v1/run_manifest.json` SHA256=`e34cba1c7d33ea948eb3d6e7833c333014c7f67ab214ce0e23d5b657c2862aac`，`overall_passed=true`：真实 CUDA synthetic producer 在 1/2 workers 下各完成 **27/27 shards**，两份独立 verifier 均 **28/28 checks=true**，predictions/states/metrics 和 shard science 逐位一致；cache payload、backend identity 和 arm quotas 三个负控制均按预期 fail-closed。另有一例真实 Mohammad 开发样本数值 probe，训练未启动、outer split/outcome 未读取。
+- 上述干净复现是 synthetic 工程复现加 scoped 数值探针，不是 v13 完整科学运行，不裁决 H2/G1。v13 启动时 producer/protocol 五文件 SHA 与该基线一致，但运行中的长训练显存缺陷须单独诊断。
+
+### 5.9 v13 最终 OOM 事实与 PID/shard 口径纠正
+
+- v13 于 **2026-11-26 22:36:45+08:00** 退出 1，executor wall-clock **13321.084314 s**。失败 shard 为 seed1234、outer0、position、grid4、inner2，在 continuation **epoch890、train-evaluation batch2** 申请 **2 MiB** 时 OOM；`failure.json` SHA256=`ebc478266985075d3fb95da23981e59f152bd42c901f46e9593ca814bb515617`，日志 SHA256=`dfd54da023af0b25fe258383c1f01ba6b41f74173ac8b42d37f299c03e7606b8`。原主 PID 与六个 worker 均已回收；无 `summary.json`、`predictions.npz`、`parallel.json`、selected states 或完整 curves，第 5.7 节 ready 命令未执行。
+- cache 实测 **2 个成功 NPZ＋2 个 sidecar**，第 3 个终止 shard 即本次 position OOM；故准确口径是“2 个成功 cache shard＋1 个 OOM 失败 shard，共 3 个终止 shard”，不是 3 个成功 shard。另有 6 个已提交 worker 由 scheduler 回收、18 个 shard 未提交，原始调度记录保留。
+- worker failure 和快照文件名均明确失败 PID 为 **4057037**；其 self-reported non-PyTorch-inclusive/allocated 显存为 10.95/9.83 GiB。错误文本另列 peer **4057040=10.51 GiB total in use**，不能把 9.83 GiB allocated 归给 4057040。失败快照 SHA256=`a0c1e2effe2cff18fa18fbcde277dcff6543b80b608cb2b3d930da3e06c624b3`，其中 optimizer step=13350，恰为 `890 epochs×15 batches/epoch`。v13 原目录、日志、cache 和 failures 均未修改。
+
+### 5.10 真实 CUDA 小规模显存增长根因诊断
+
+- 新证据目录为 `kinetic_v13_oom_diagnostic_v1/`，最终摘要 `summary_v3.json` SHA256=`7b8b4fd8310c7f7c77a13951b0aceed7916cbc5318811ab50903c7b7d068d600`。诊断直接导入 release 未改动的生产函数，使用真实失败快照的 **32×1487** batch，三个条件各在独立进程运行 **128 steps**；每进程 CUDA fraction=0.0625（约 2 GiB），allocated>1 GiB 即停止，测量循环不调用 `empty_cache`，不重跑全量 suite，不读取 untouched。首轮三个探针均因记录器读取 AdamW `step` 字段触发 KeyError 而在第 1 step 后退出 1，原脚本、日志和 exit codes 保留；v2 仅修正诊断记录器后三个条件均 exit 0。
+- **原始 production 条件**：128 step 后 allocated 从 512 增至 **367461376 bytes**，增长 **367460864 bytes**；warmup 后线性斜率 **2334208 bytes/step、R²=1.0**，128 个训练 `rho` 弱引用全部存活。显式 `gc.collect()` 回收 0 个对象，allocated 与 128 个存活弱引用均不变。
+- **仅禁用 hook 的消融**：128 次 hook 注册被禁用后，warmup 后 allocated 恒为 **68682752 bytes**、斜率 0，旧训练 `rho` 弱引用存活数为 0。**无 failure_context 对照**同样 warmup 后恒为 **67110912 bytes**、斜率 0、弱引用为 0。两对照的常量 warmup 基线不是逐 step 增长。
+- 根因闭合为 `a10_03_e2_kinetic.py:709` 的 `output["rho"].register_hook(lambda gradient: capture.__setitem__("output_gradient_rho", gradient))`：hook 闭包持有 `capture`，而 `capture` 又含 `packed/score/rho/analytic_output_gradient/output_gradient_rho` 等 CUDA 张量，使每个训练 batch 的输出与相关 autograd 对象保持强可达。长训练中逐 batch 累积最终导致 OOM；2 MiB 只是耗尽后的下一次分配，403.29 MiB reserved-unallocated 也不是 9.83 GiB allocated 增长的解释。仅禁用 hook 即同时消除弱引用保留和显存斜率，排除“单纯 allocator 碎片化”作为根因。
+- 该诊断只证明资源/对象生命周期根因，**未应用或预写修复**，不改变失败快照语义、科学 protocol、outer-test 9657 合同、统计、Gate 或 `1e-10`。后续任何修复均须单独授权、项目风格测试、长训练受控复验和独立复核。
+
 ## 6. 当前科学与 Gate 边界
 
 - E0/A10-G0 已完成；E1/A10-02 已完成，H1 仅为开发集 TB-MSE 观察校准阳性。这些历史状态不变。
-- E2 生产科学运行仍未完成，w21、v11 已 OOM 退出，v12 已 `CUBLAS_STATUS_ALLOC_FAILED` 退出，均无完成 shard/曲线；v13 的唯一启动后快照也是 0 完成 shard/0 曲线且无退出码，不能预写其最终状态。H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、历史或当前进程/显存、inner 状态、工程测试、cache/CUDA provenance 验证、精确 CTMC 对照或局部 rank 推断 outer 阳性。
+- E2 生产科学运行仍未完成，w21、v11、v13 已 OOM 退出，v12 已 `CUBLAS_STATUS_ALLOC_FAILED` 退出；v13 只有 2 个成功 cache shard 和 1 个 OOM 失败 shard，无完成摘要或 outer 预测。H2 未证且 H2/G1 未裁决，A10-G1 未通过；不能从 v7/v8 部分曲线、历史进程/显存、inner 状态、工程测试、干净 synthetic 复现、显存根因诊断、cache/CUDA provenance 验证、精确 CTMC 对照或局部 rank 推断 outer 阳性。
 - E3/G2 未证，G3 未通过；`final_untouched=false`、`SOTA=false`。大规模生成训练仍须先通过 G2。
 - 平均场不是精确随机模拟，occupancy 仍只是实验依赖的相对占据/速度代理。不得作最终跨研究、绝对物理速率、因果机制、真实生物功能或 SOTA 结论。
 - untouched24、MAGE functional untouched 及其派生文件继续禁止读取；冻结数据边界未因恢复工作改变。
@@ -166,6 +186,6 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 
 ## 8. 本次文档登记范围
 
-上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。v11/v12 轮已推送 cache provenance 代码提交 `40603527…` 和文档提交 `f7e3fdbb…`，v13 审计文档提交为 `46039512…`。本轮只登记独立 verifier `18a80c2df28e063025787a0ac853fa467c6f42b3` 已发布、49+3+12 tests 通过、ready 命令及既有 9657/28971 与 v13 边界，同步四份现行文档的本地、`codonflow-main/docs/handover` 和 verifier 镜像；仅将这四份文档提交并推送 `a8-rk`。不修改 release dirty docs、producer、protocol、训练输出或进程，不启动其他任务。
+上一轮仅更新 `交接文档/spec.md`、`交接文档/tasks.md`、`交接文档/A10_00_TASK_DATA_BASELINE_CLAIM_MATRIX.md` 和本恢复交接并同步镜像。w21 轮次只登记 OOM 收束与性能根因，历史 handoff 与失败证据不删除；代码修改曾严格限制在新的 `/home/codonflow-a10-e2-structured` worktree。v11/v12 轮已推送 cache provenance 代码提交 `40603527…` 和文档提交 `f7e3fdbb…`，v13 审计文档提交为 `46039512…`。本轮登记 verifier `cac91df` 全量/干净复现证据、v13 最终 OOM 和受控真实 CUDA 显存根因，同步四份现行文档的本地、`codonflow-main/docs/handover` 和 verifier 镜像；仅将这四份文档提交并推送 `a8-rk`。不修改 release dirty docs、producer、protocol、v13 训练输出或其他项目进程，不预写修复。
 
-当前可执行事实是：**独立 verifier 修复代码提交 `18a80c2df28e063025787a0ac853fa467c6f42b3` 已推送 `a8-rk`，代码验收时 `/home/codonflow-a10-e2-verifier` 工作树干净，49+3+12 tests 全部通过；backend identity、scheduler quotas 精确键集、真实 shard schema/spec/identity 和文件/sidecar SHA 检查阻断已关闭。release 仍为旧 `4603951295352ae20b849cc4132ba56519d34ba3` 且只有四份文档 dirty，producer 科学实现代码提交仍为 `40603527afa3ee2275166b4293234cdd48a9e38c`。outer-test 残差复核合同为 9657，28971 仅为全模型全转录本额外诊断，不是新增 Gate。历史 144 项定向测试、synthetic 多 worker 等价、27 checks 和 859 CTMC cases/review 只支持 scoped 工程验收；v11/v12 失败保留。v13 在 19:57:14+08:00 仍运行，0 曲线/0 完成 shard、无摘要或退出码，科学运行未完成；没有 H2、G1 或生物有效性的证据。完整产物形成后才执行第 5.7 节 ready 命令。**
+当前可执行事实是：**verifier `cac91df1468b0e01b4e619a5ca9f57e4b242896d` 的全量证据为 952 passed/1 failed/1 skipped/5 subtests，唯一失败是共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、各 28/28 checks，manifest SHA `e34cba…`。v13 运行 13321.0843 s 后于 position/epoch890 OOM、退出 1，2 个成功 cache shard＋1 个失败 shard，无完成摘要，未运行 ready verifier。失败 PID 是 4057037，9.83 GiB allocated 属于该进程；4057040 是 peer。真实 32×1487、128-step A/B 证明 output-gradient hook 闭包逐 batch 保留 CUDA 张量：production 斜率 2334208 bytes/step、128 弱引用全活且 GC 无效；禁用 hook 或无 failure_context 均斜率 0、弱引用 0。诊断摘要 SHA `7b8b4fd8…`。release 仍为旧 `46039512…` 且只有四份文档 dirty，producer 科学实现代码提交仍为 `40603527…`；未修改生产代码、protocol、Gate、`1e-10` 或 v13 artifacts，未预写修复。outer-test 残差复核合同为 9657，28971 不是新增 Gate。E2/H2/G1 未完成、未裁决且未通过，没有生物有效性的新证据。**
