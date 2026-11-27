@@ -1,6 +1,6 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-27（v15 真实 sanitizer OOB/720-case memcheck、raw direct-kernel 数值失败分解与 12-worker temporary 运行快照）
+- 文档日期：2026-11-25；最近复核：2026-11-27（v15 首 shard 尚未验收纠偏与 12-worker temporary 持续运行快照）
 - 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12/v13）；v13 已于 2026-11-26 22:36:45+08:00 退出 1，最终无完成摘要
 - 阶段：A10-03 / E2
 - 状态：**v7、v8、v10/w23/w21、v11/v12/v13 历史 fail-closed 不删除。v13 使用启动时代码祖先 `40603527afa3ee2275166b4293234cdd48a9e38c`，运行 13321.0843 s 后在 position/epoch890 OOM、退出 1；2 个成功 cache shard 加 1 个 OOM 失败 shard 共 3 个终止 shard，无完成摘要。独立 verifier 当前证据基线为 `cac91df1468b0e01b4e619a5ca9f57e4b242896d`：全量 952 passed/1 failed/1 skipped/5 subtests，唯一失败为共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、verifier 各 28/28 checks，manifest SHA `e34cba…`。受控真实 CUDA A/B 已定位为 output-gradient hook 闭包逐 batch 保留 CUDA 张量，本轮未修改生产代码、protocol、Gate 或 v13 artifacts；E2/H2/G1 未完成、未裁决且未通过。**
@@ -193,6 +193,7 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 - 原证据 `/tmp/a10_e2_v15_capture_validation_v1/` 保留，并复制到 `/dev/shm/codonflow_a10_e2/capture_validation_v1_temporary/`；独立分解报告为 `capture_validation_fact_refresh_v1.temporary.json`，SHA `d34b616f89df7c66819d61c05ec2d741601a2432357d659d425e276d9b226078`。全部均属 temporary，未删除或覆盖历史。
 - v15 于 **2026-11-27 12:44:59+08:00** 从全新 cache 启动，producer PID **`99295`**、`--max-workers 12`，默认 configured/effective arm quotas 均为 independent/kinetic/position=`4/8/8`。输出 `/dev/shm/codonflow_a10_e2/kinetic_development_v15`，cache `/dev/shm/codonflow_a10_e2/kinetic_development_v15_from_scratch_shard_cache`；launch manifest 明确 `temporary=true`、`permanent_migration_pending=true`，cache hits 启动预期 0，实际值只能待完整 parallel 记录。teams quota 满，public 挂载 `ro`；启动时 tmpfs 可用 **23192823398 bytes**（df 当时显示 22G），永久迁移待 teams 恢复，不删除历史。
 - 12:48:17+08:00 快照显示 producer＋12 workers 存活、真实 CUDA 工作进行中，0 成功 shard、0 curves，无 `summary.json`、`predictions.npz`、exit code 或 finished；RuntimeWarning 保留。启动和显存快照不等于完成，E2/H2/G1 未完成、未裁决且未通过，protocol、统计、Gate 和 `1e-10` 不变。
+- **13:25:16+08:00 首 shard 复核纠偏**：指定 cache 根目录仍为 **0 成功 NPZ/0 sidecar**，且根目录 mtime 自 12:45:11 起未变；13:17:10 observation 与 13:17:56 摘要均明确 `successful_shard_npz_count=0`，摘要状态为 `running_no_successful_shard_after_bounded_observation`。`failures/pre_backward_latest.npz` 是持续覆盖的 pre-backward 诊断快照，不是成功 shard，不能据此登记首 shard 或数值通过。故首 shard 尚未验收，实际 arm/outer/seed、数值与收敛结果均不可登记。producer `99295` 与 12 workers 仍运行，无 `summary.json`、`predictions.npz`、`parallel.json`、`curves.jsonl`、exit code 或 finished；capture HEAD 为文档提交 `63b54aae879753f4d624ddc682f3f73350458e40`，直接父提交为生产启动代码 `911390cb…`，工作树干净，本轮未同步或修改 capture。observation summary SHA256=`ba5abd7269e7b7db05b638c9b120ea19b97258772c78705022c9e551f984f6ab`，observation JSONL SHA256=`3d73460151ddeec64fff70cc2bc739d910d35250c1267e74523eb8a9eac3fdc4`，launch manifest SHA256=`2b9f4dfc7384c93ac913a26f3b0bba0c4e76a9ba2e14304ca4acbc02fc570454`。protocol、统计、Gate 与 `1e-10` 不变；首 shard 即使后续形成也不等于 H2/G1。
 
 ## 6. 当前科学与 Gate 边界
 
