@@ -118,6 +118,8 @@ def sm_kernel(
 
 
 def rank_one(bands, rhs, transpose=False):
+    bands = tuple(value.contiguous() for value in bands)
+    rhs = rhs.contiguous()
     lower, diagonal, upper, flux = bands
     batch, size = diagonal.shape
     base_diagonal = diagonal.clone()
@@ -138,7 +140,7 @@ def rank_one(bands, rhs, transpose=False):
     sm_kernel[(batch,)](
         lower, diagonal, upper, rank, rhs, output, denominator,
         work_l, work_d, work_u, work_u2, work_p, work_y,
-        size, transpose,
+        size, transpose, num_warps=1,
     )
     return output, denominator
 
@@ -231,6 +233,8 @@ def qr_kernel(
 
 
 def qr(bands, rhs, transpose=False):
+    bands = tuple(value.contiguous() for value in bands)
+    rhs = rhs.contiguous()
     lower, diagonal, upper, flux = bands
     batch, size = diagonal.shape
     work_d = diagonal.clone()

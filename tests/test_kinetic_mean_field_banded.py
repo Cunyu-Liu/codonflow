@@ -297,3 +297,99 @@ def test_triton_errors_are_recorded_and_use_torch_cuda_fallback(monkeypatch):
     assert diagnostics["backward_cuda_kernel_backend"] == "torch_after_triton_error"
     assert "synthetic Triton failure" in diagnostics["backward_cuda_accelerator_error"]
     assert actual.device.type == "cuda"
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is not available")
+def test_p0_triton_rank_one_transpose_batch32_forced_pivot_dense_regression():
+    pytest.importorskip("triton")
+    from codonflow.models import kinetic_banded_cuda
+
+    rng = np.random.default_rng(20261127)
+    size, batch = 8, 32
+    bands = tuple(torch.stack([
+        random_arrow_bands(rng, size, "cuda")[index] for _ in range(batch)
+    ]) for index in range(4))
+    with torch.no_grad():
+        bands[0][:] = 2.0
+        bands[1][:, :-1] = 0.05
+        bands[1][:, -1] = 0.0
+        bands[2][:, :-1] = 0.2
+        bands[2][:, -1] = 0.0
+        bands[3][:] = 0.02
+    rhs = torch.as_tensor(
+        rng.normal(size=(batch, size)), dtype=torch.float64, device="cuda"
+    )
+    expected, expected_denominator = kinetic_mean_field._banded_rank_one_solve_torch(
+        bands, rhs, transpose=True
+    )
+    for index in range(batch):
+        dense = kinetic_mean_field._banded_to_dense_torch(
+            tuple(value[index] for value in bands)
+        )
+        torch.testing.assert_close(
+            expected[index], torch.linalg.solve(dense.T, rhs[index]),
+            rtol=1e-8, atol=1e-8,
+        )
+    for _ in range(16):
+        actual, denominator = kinetic_banded_cuda.rank_one(bands, rhs, transpose=True)
+        torch.cuda.synchronize()
+        torch.testing.assert_close(actual, expected, rtol=1e-8, atol=1e-8)
+        torch.testing.assert_close(denominator, expected_denominator, rtol=1e-8, atol=1e-8)
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is not available")
+def test_p1_triton_rank_one_and_qr_layout_and_long_regression():
+    pytest.importorskip("triton")
+    from codonflow.models import kinetic_banded_cuda
+
+    rng = np.random.default_rng(20261128)
+    size, batch = 8, 2
+    contiguous = tuple(torch.stack([
+        random_arrow_bands(rng, size, "cuda")[index] for _ in range(batch)
+    ]) for index in range(4))
+    rhs = torch.as_tensor(
+        rng.normal(size=(batch, size)), dtype=torch.float64, device="cuda"
+    )
+    for layout in ("transposed", "padded"):
+        if layout == "transposed":
+            bands = tuple(
+                torch.empty((value.shape[1], value.shape[0]), dtype=value.dtype, device="cuda").T.copy_(value)
+                for value in contiguous
+            )
+            laid_out_rhs = torch.empty((size, batch), dtype=rhs.dtype, device="cuda").T.copy_(rhs)
+        else:
+            bands = tuple(
+                torch.empty((value.shape[0], value.shape[1] + 3), dtype=value.dtype, device="cuda")[:, :-3].copy_(value)
+                for value in contiguous
+            )
+            laid_out_rhs = torch.empty((batch, size + 3), dtype=rhs.dtype, device="cuda")[:, :-3].copy_(rhs)
+        for transpose in (False, True):
+            expected, expected_denominator = kinetic_mean_field._banded_rank_one_solve_torch(
+                contiguous, rhs, transpose=transpose
+            )
+            actual, denominator = kinetic_banded_cuda.rank_one(bands, laid_out_rhs, transpose=transpose)
+            qr_actual = kinetic_banded_cuda.qr(bands, laid_out_rhs, transpose=transpose)
+            qr_expected = kinetic_mean_field._banded_qr_once_torch(contiguous, rhs, transpose=transpose)
+            torch.cuda.synchronize()
+            torch.testing.assert_close(actual, expected, rtol=1e-9, atol=1e-9)
+            torch.testing.assert_close(denominator, expected_denominator, rtol=1e-9, atol=1e-9)
+            torch.testing.assert_close(qr_actual, qr_expected, rtol=1e-9, atol=1e-9)
+
+    for long_batch in (1, 32):
+        for transpose in (False, True):
+            bands = tuple(torch.stack([
+                random_arrow_bands(rng, 1488, "cuda")[index] for _ in range(long_batch)
+            ]) for index in range(4))
+            long_rhs = torch.as_tensor(
+                rng.normal(size=(long_batch, 1488)), dtype=torch.float64, device="cuda"
+            )
+            expected, expected_denominator = kinetic_mean_field._banded_rank_one_solve_torch(
+                bands, long_rhs, transpose=transpose
+            )
+            actual, denominator = kinetic_banded_cuda.rank_one(bands, long_rhs, transpose=transpose)
+            qr_actual = kinetic_banded_cuda.qr(bands, long_rhs, transpose=transpose)
+            qr_expected = kinetic_mean_field._banded_qr_once_torch(bands, long_rhs, transpose=transpose)
+            torch.cuda.synchronize()
+            torch.testing.assert_close(actual, expected, rtol=1e-8, atol=1e-8)
+            torch.testing.assert_close(denominator, expected_denominator, rtol=1e-8, atol=1e-8)
+            torch.testing.assert_close(qr_actual, qr_expected, rtol=1e-8, atol=1e-8)
