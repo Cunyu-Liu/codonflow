@@ -1,6 +1,6 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-27（v15 首 shard 尚未验收纠偏与 12-worker temporary 持续运行快照）
+- 文档日期：2026-11-25；最近复核：2026-11-27（v15 四个 independent shards 只读阶段验收与 12-worker temporary 持续运行快照）
 - 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12/v13）；v13 已于 2026-11-26 22:36:45+08:00 退出 1，最终无完成摘要
 - 阶段：A10-03 / E2
 - 状态：**v7、v8、v10/w23/w21、v11/v12/v13 历史 fail-closed 不删除。v13 使用启动时代码祖先 `40603527afa3ee2275166b4293234cdd48a9e38c`，运行 13321.0843 s 后在 position/epoch890 OOM、退出 1；2 个成功 cache shard 加 1 个 OOM 失败 shard 共 3 个终止 shard，无完成摘要。独立 verifier 当前证据基线为 `cac91df1468b0e01b4e619a5ca9f57e4b242896d`：全量 952 passed/1 failed/1 skipped/5 subtests，唯一失败为共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、verifier 各 28/28 checks，manifest SHA `e34cba…`。受控真实 CUDA A/B 已定位为 output-gradient hook 闭包逐 batch 保留 CUDA 张量，本轮未修改生产代码、protocol、Gate 或 v13 artifacts；E2/H2/G1 未完成、未裁决且未通过。**
@@ -194,6 +194,22 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 - v15 于 **2026-11-27 12:44:59+08:00** 从全新 cache 启动，producer PID **`99295`**、`--max-workers 12`，默认 configured/effective arm quotas 均为 independent/kinetic/position=`4/8/8`。输出 `/dev/shm/codonflow_a10_e2/kinetic_development_v15`，cache `/dev/shm/codonflow_a10_e2/kinetic_development_v15_from_scratch_shard_cache`；launch manifest 明确 `temporary=true`、`permanent_migration_pending=true`，cache hits 启动预期 0，实际值只能待完整 parallel 记录。teams quota 满，public 挂载 `ro`；启动时 tmpfs 可用 **23192823398 bytes**（df 当时显示 22G），永久迁移待 teams 恢复，不删除历史。
 - 12:48:17+08:00 快照显示 producer＋12 workers 存活、真实 CUDA 工作进行中，0 成功 shard、0 curves，无 `summary.json`、`predictions.npz`、exit code 或 finished；RuntimeWarning 保留。启动和显存快照不等于完成，E2/H2/G1 未完成、未裁决且未通过，protocol、统计、Gate 和 `1e-10` 不变。
 - **13:25:16+08:00 首 shard 复核纠偏**：指定 cache 根目录仍为 **0 成功 NPZ/0 sidecar**，且根目录 mtime 自 12:45:11 起未变；13:17:10 observation 与 13:17:56 摘要均明确 `successful_shard_npz_count=0`，摘要状态为 `running_no_successful_shard_after_bounded_observation`。`failures/pre_backward_latest.npz` 是持续覆盖的 pre-backward 诊断快照，不是成功 shard，不能据此登记首 shard 或数值通过。故首 shard 尚未验收，实际 arm/outer/seed、数值与收敛结果均不可登记。producer `99295` 与 12 workers 仍运行，无 `summary.json`、`predictions.npz`、`parallel.json`、`curves.jsonl`、exit code 或 finished；capture HEAD 为文档提交 `63b54aae879753f4d624ddc682f3f73350458e40`，直接父提交为生产启动代码 `911390cb…`，工作树干净，本轮未同步或修改 capture。observation summary SHA256=`ba5abd7269e7b7db05b638c9b120ea19b97258772c78705022c9e551f984f6ab`，observation JSONL SHA256=`3d73460151ddeec64fff70cc2bc739d910d35250c1267e74523eb8a9eac3fdc4`，launch manifest SHA256=`2b9f4dfc7384c93ac913a26f3b0bba0c4e76a9ba2e14304ca4acbc02fc570454`。protocol、统计、Gate 与 `1e-10` 不变；首 shard 即使后续形成也不等于 H2/G1。
+
+### 5.14 v15 四个 independent shards 只读阶段验收（2026-11-27）
+
+- **快照边界**：2026-11-27 16:18:52+08:00，指定临时 cache 中已有 **4 个完成 independent shard**：seed1234 的 outer0/1/2 与 seed2345 的 outer0。producer PID `99295` 和 **12 个 spawn workers** 仍在执行其余未完成 shards/arms；另一个子进程是 multiprocessing resource tracker，不计作 worker。输出目录仍只有 `provenance.json` 与 `splits.json`，没有 `summary.json`、`predictions.npz`、`parallel.json`、`curves.jsonl`、`selection.json`、`selected_inner_states.npz`、per-transcript metrics、exit code 或 finished；日志 RuntimeWarning 保留。capture 当前 HEAD 为文档提交 `63b54aae879753f4d624ddc682f3f73350458e40`，直接父提交为生产启动代码 `911390cb…`，工作树干净，本轮未修改 capture、producer 或训练产物。
+- **验收方法与通过范围**：以生产 `parallel.load_shard` 重算 NPZ/sidecar SHA，校验 `a10-03-e2-kinetic-shard-v1`、canonical spec 和五字段 identity 并解包；再用独立补充断言核对冻结 outer splits、候选/曲线/成本数量、选择顺序、早停语义、参数与预测有限性。四份 shard 均含 6 候选×3 inner folds=**18 条曲线和 18 份成本记录**，rung grids 均为 `[4,5]`，最终均选 **grid4、learning_rate=0.01、weight_decay=0**；`outer_test_used_for_selection=false`，最终三成员均从 rung last state 恢复，并按 validation plateau、patience25 停止。rung 未入选者仍标 `rejected_at_rung_not_converged`，不得改写为收敛。预测索引与各 outer 的冻结 `test_indices` 精确一致，density 全为有限 float64 且位于 `(0,1)`；independent 的 flux/residual 字段按合同为 null。该结果仅为 **4-shard scoped 阶段验收通过**，不是完整科学 verifier。
+- 首轮补充审计脚本误将每个 outer 的开发转录本数固定为 715，outer2 按冻结 splits 应为 716；该脚本断言失败后已改为按各 outer test 数量计算并完整复跑通过。此为本轮审计 harness 假设纠偏，未发现 shard 内容异常，也不改变 protocol、数据或科学 Gate。
+
+| shard | NPZ SHA256 | canonical science SHA256 | outer 预测数 | selected best epochs |
+|---|---|---|---:|---|
+| seed1234 / outer0 / independent | `4ad0fdf65efbd45333c33c89fcb9ac0c858ec2780c9c5f5aac0817df4a227861` | `857e20ee37f6d605283870b5b50b5174c29653b5d916fd1ddb41813aa11b030e` | 358 | 543 / 315 / 429 |
+| seed1234 / outer1 / independent | `ebc3aca6944bfb91c0191bdcb494b82f10a83ad29a949446f0832f002dc640d2` | `eec636cf01ba58a04bd00f4a54cd832d02dcbc3ff687a6207fdb1c6e0e33ae90` | 358 | 407 / 392 / 470 |
+| seed1234 / outer2 / independent | `d6ae8660b8318d7366a0a11237ef2c062567de35f2a45d15ad7b9a283c7eb1e6` | `57a68e0c6f78446918eed0ffb211f920c648a7917da6e1237c00c2cf6c3868da` | 357 | 413 / 418 / 504 |
+| seed2345 / outer0 / independent | `72f94381a6484c687cdb40fc46d5d27359418b64437b0415419ab5fc10f6ab47` | `bf86ac1922a465b760652c9c3018d5813769df56ee106d487d1a35184d380f3f` | 358 | 417 / 322 / 421 |
+
+- 四份 cache 的五字段 identity 相同并与当前 capture 对应源码重算一致：protocol=`3c4b9a3b345524d4c9ea9779aacb4c1f4afa57e131ee4c23d5d8f33b139b6b24`、implementation=`c26afcc6ac2ec1338134bffa95c76b16645e1164cee06a8bd0205211ab48579c`、mean-field operator=`f4805ace98c83b85884ebc10f2e77cacf3020787bd8c9e6c30c28d26ab4c94f8`、banded CUDA backend=`fdd7881a3aa77e254fe4e0d12435f784a1bd9c004669ef6b8299590a05e5734c`、parallel implementation=`425d5eaa8e34c12b9f734a175fcf2eabf32388ccf32ad0399f43cfff6738ca80`。startup provenance 含前四项且一致，其文件 SHA256=`8b2c493f7835c6bc677f7fe79735417958125bc31c9039599e3d5408201db95f`；splits SHA256=`3a96c66737befd53d37c7c8539d0e9f8e6c34b5d06f353bdc71c1e4b4a6c3371`。
+- **科学边界不变**：这 4 个 shard 只覆盖 independent 的部分 seed/outer 组合，没有三臂完整预测、seed-first pooled CI、双比较 Holm 或 kinetic 逐成员 outer-test 残差复核。完整 verifier 未运行，H2/G1 未裁决且未通过；不能从 inner 选择或局部 shard 推断 outer 科学增量。protocol、统计、Gate 和 `1e-10` 均未修改，temporary 产物永久迁移仍待 teams 恢复。
 
 ## 6. 当前科学与 Gate 边界
 
