@@ -454,7 +454,7 @@ def test_failure_snapshot_preserves_autograd_output_hook_gradients(tmp_path, mon
         raise RuntimeError("stop after backward")
 
     monkeypatch.setattr(torch.nn.utils, "clip_grad_norm_", stop_after_backward)
-    with pytest.raises(RuntimeError, match="stop after backward"):
+    with pytest.raises(RuntimeError, match="stop after backward") as caught:
         kinetic._advance_candidate(
             context, arm, records[:2], records[2:3], protocol, device, failure_context,
         )
@@ -464,9 +464,10 @@ def test_failure_snapshot_preserves_autograd_output_hook_gradients(tmp_path, mon
     if arm == "kinetic":
         assert "output_gradient_J" in capture
         assert capture["output_gradient_J"] is None
-    snapshots = list(tmp_path.glob("*.npz"))
-    assert len(snapshots) == 1
-    with np.load(snapshots[0], allow_pickle=False) as archive:
+    snapshot = Path(caught.value.codonflow_snapshot_path)
+    assert snapshot.is_file()
+    assert (tmp_path / "pre_backward_latest.npz").is_file()
+    with np.load(snapshot, allow_pickle=False) as archive:
         metadata = json.loads(archive["metadata"].item())
         assert metadata["output_gradient_source"] == "autograd_output_hook"
         analytic_gradient = capture["analytic_output_gradient"]

@@ -487,14 +487,29 @@ def _batches(records, batch_size, order=None):
         yield [records[int(index)] for index in order[start:start + batch_size]]
 
 
+def _save_pre_backward_snapshot(failure_context):
+    if failure_context is None or failure_context.get("directory") is None:
+        return
+    from scripts import a10_03_e2_kinetic_parallel as parallel
+    parallel.save_pre_backward_snapshot(failure_context)
+
+
 def _save_failure_snapshot(failure_context, error):
     if failure_context is None or failure_context.get("directory") is None:
         return
     if getattr(error, "codonflow_snapshot_path", None) is not None:
         return
     from scripts import a10_03_e2_kinetic_parallel as parallel
-    path = parallel.save_candidate_failure_snapshot(failure_context, error)
-    error.codonflow_snapshot_path = str(path)
+    try:
+        path = parallel.save_candidate_failure_snapshot(failure_context, error)
+    except Exception as snapshot_error:
+        note = f"failure snapshot could not be saved: {type(snapshot_error).__name__}: {snapshot_error}"
+        if hasattr(error, "add_note"):
+            error.add_note(note)
+        else:
+            error.__notes__ = [*getattr(error, "__notes__", []), note]
+    else:
+        error.codonflow_snapshot_path = str(path)
 
 
 def loss_on_records(model, arm, records, protocol, device, per_transcript=False, failure_context=None, epoch=None):
@@ -506,6 +521,7 @@ def loss_on_records(model, arm, records, protocol, device, per_transcript=False,
             capture = {}
             if failure_context is not None:
                 failure_context.update({"epoch": epoch, "batch_index": batch_index, "batch": batch, "capture": capture})
+                failure_context["pre_backward"] = None
             try:
                 packed = _pack(batch, device)
                 values = _transcript_losses(forward_arm(model, arm, packed, protocol["model"], capture=capture), packed)
@@ -697,6 +713,7 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
         output_gradients = {}
         if failure_context is not None:
             failure_context.update({"phase": "training", "epoch": epoch, "batch_index": batch_index, "batch": batch, "capture": capture})
+            failure_context["pre_backward"] = None
         try:
             packed = _pack(batch, device)
             optimizer.zero_grad(set_to_none=True)
@@ -712,6 +729,19 @@ def _advance_candidate(context, arm, train_records, validation_records, protocol
                     output["flux"].register_hook(lambda gradient: output_gradients.__setitem__("output_gradient_J", gradient))
             if not bool(torch.isfinite(loss)):
                 raise RuntimeError("nonfinite training loss")
+            if failure_context is not None and failure_context.get("directory") is not None:
+                failure_context["pre_backward"] = {
+                    "capture": _cpu_tree(capture),
+                    "model_state": _cpu_tree(model.state_dict()),
+                    "optimizer_state": _cpu_tree(optimizer.state_dict()),
+                    "rng_state": copy.deepcopy(context["rng"].bit_generator.state),
+                }
+                try:
+                    _save_pre_backward_snapshot(failure_context)
+                except OSError as snapshot_error:
+                    failure_context["pre_backward_snapshot_error"] = (
+                        f"{type(snapshot_error).__name__}: {snapshot_error}"
+                    )
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), training["gradient_clip_norm"], error_if_nonfinite=True)
             optimizer.step()

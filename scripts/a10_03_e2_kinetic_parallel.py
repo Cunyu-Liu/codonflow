@@ -23,6 +23,7 @@ from scripts import a10_03_e2_kinetic as kinetic
 PARALLEL_SCHEMA = "a10-03-e2-kinetic-parallel-v1"
 SHARD_SCHEMA = "a10-03-e2-kinetic-shard-v1"
 FAILURE_SCHEMA = "a10-03-e2-kinetic-candidate-failure-v1"
+PRE_BACKWARD_SCHEMA = "a10-03-e2-kinetic-pre-backward-v1"
 DEFAULT_ARM_MAX_WORKERS = {"kinetic": 4, "independent": 8, "position": 8}
 WORKER_TERMINATION_GRACE_SECONDS = 5.0
 
@@ -60,7 +61,7 @@ def shard_basename(spec):
 def _pack_tree(value, arrays):
     if isinstance(value, torch.Tensor):
         key = f"array_{len(arrays):06d}"
-        arrays[key] = value.detach().cpu().numpy()
+        arrays[key] = value.detach().numpy() if value.device.type == "cpu" else value.detach().cpu().numpy()
         return {"type": "tensor", "key": key}
     if isinstance(value, np.ndarray):
         key = f"array_{len(arrays):06d}"
@@ -479,7 +480,9 @@ def _as_array(value):
     if value is None:
         return np.asarray([], dtype=np.float64)
     if isinstance(value, torch.Tensor):
-        return value.detach().cpu().numpy()
+        if value.device.type != "cpu":
+            raise RuntimeError("failure snapshot arrays must be copied to CPU before the failure")
+        return value.detach().numpy()
     return np.asarray(value)
 
 
@@ -517,12 +520,51 @@ def reconstruct_backward_refinement(matrix, output_gradient, residual_tolerance=
         return trajectory, f"{type(error).__name__}: {error}"
 
 
-def save_candidate_failure_snapshot(context, error):
-    directory = Path(context["directory"])
-    directory.mkdir(parents=True, exist_ok=True)
-    capture, batch = context.get("capture", {}), context.get("batch", [])
-    native_failures = getattr(error, "backward_failures", ())
-    native_snapshot_fields = getattr(error, "backward_snapshot_fields", ())
+def _atomic_savez(path, arrays):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}_{time.time_ns()}.tmp")
+    try:
+        with temporary.open("xb") as handle:
+            np.savez_compressed(handle, **arrays)
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _atomic_write_text(path, text):
+    path = Path(path)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}_{time.time_ns()}.tmp")
+    try:
+        temporary.write_text(text, encoding="ascii")
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def _cpu_native_failures(error):
+    failures = getattr(error, "backward_failures", ()) if error is not None else ()
+    cpu_failures = []
+    for failure in failures:
+        if any(isinstance(value, torch.Tensor) and value.device.type != "cpu" for value in failure.values()):
+            continue
+        cpu_failures.append(failure)
+    return tuple(cpu_failures), len(failures) - len(cpu_failures)
+
+
+def _candidate_snapshot_payload(context, error):
+    pre_backward = context.get("pre_backward")
+    if pre_backward is None:
+        raise RuntimeError("pre-backward CPU capture is unavailable")
+    capture = dict(pre_backward["capture"])
+    if error is not None:
+        for name in ("output_gradient_rho", "output_gradient_J"):
+            value = context.get("capture", {}).get(name)
+            if isinstance(value, torch.Tensor) and value.device.type == "cpu":
+                capture[name] = value
+    batch = context.get("batch", [])
+    native_failures, omitted_native_failures = _cpu_native_failures(error)
+    native_snapshot_fields = getattr(error, "backward_snapshot_fields", ()) if error is not None else ()
     expected_native_fields = {
         "batch_index", "jacobian_transpose", "output_gradient", "multiplier",
         "recovery_extended", "denominator_extended", "relative_recovery_extended",
@@ -532,19 +574,24 @@ def save_candidate_failure_snapshot(context, error):
         raise RuntimeError("unrecognized native backward failure snapshot fields")
     metadata = dict(context.get("metadata", {}))
     metadata.update({
-        "schema": FAILURE_SCHEMA, "recorded_utc": datetime.now(timezone.utc).isoformat(),
+        "schema": FAILURE_SCHEMA if error is not None else PRE_BACKWARD_SCHEMA,
+        "snapshot_timing": "post_forward_pre_backward",
+        "recorded_utc": datetime.now(timezone.utc).isoformat(),
         "phase": context.get("phase"), "epoch": context.get("epoch"), "batch_index": context.get("batch_index"),
         "record_indices": [record.index for record in batch], "record_ids": [record.transcript_id for record in batch],
-        "error_type": type(error).__name__, "error": str(error), "traceback": traceback.format_exc(),
+        "error_type": type(error).__name__ if error is not None else None,
+        "error": str(error) if error is not None else None,
+        "traceback": traceback.format_exc() if error is not None else None,
         "epoch_start_rng_state": context.get("epoch_start_rng_state"),
-        "current_rng_state": copy.deepcopy(context["rng"].bit_generator.state) if context.get("rng") else None,
+        "current_rng_state": copy.deepcopy(pre_backward["rng_state"]),
         "refinement_trace_source": (
             "native v9 backward_failures telemetry plus exact reconstruction from captured A and output_gradient"
             if native_failures else
             "exact reconstruction from captured A and output_gradient; native solver telemetry unavailable"
-        ),
+        ) if error is not None else "deferred until failure; CPU forward capture persisted before backward",
         "refinement_residual_tolerance": 1e-10,
         "native_backward_snapshot_fields": list(native_snapshot_fields),
+        "omitted_cuda_native_backward_failures": omitted_native_failures,
     })
     arrays = {}
     native_metadata = []
@@ -559,15 +606,12 @@ def save_candidate_failure_snapshot(context, error):
             arrays[f"{prefix}/{name}"] = _as_array(failure[name])
         batch_sample = failure["batch_index"]
         native_metadata.append({
-            "failure_index": failure_index,
-            "batch_sample": batch_sample,
+            "failure_index": failure_index, "batch_sample": batch_sample,
             "record_index": batch[batch_sample].index if batch_sample is not None else None,
             "record_id": batch[batch_sample].transcript_id if batch_sample is not None else None,
             "jacobian_condition_number": failure["jacobian_condition_number"],
-            "refinement_steps": failure["refinement_steps"],
-            "qr_fallback": failure["qr_fallback"],
-            "qr_error": failure["qr_error"],
-            "array_prefix": prefix,
+            "refinement_steps": failure["refinement_steps"], "qr_fallback": failure["qr_fallback"],
+            "qr_error": failure["qr_error"], "array_prefix": prefix,
         })
     metadata["native_backward_failures"] = native_metadata
     for name in ("alpha", "k", "beta", "rho", "J", "flux", "residual", "rates", "score"):
@@ -589,69 +633,82 @@ def save_candidate_failure_snapshot(context, error):
     rho, flux = capture.get("rho"), capture.get("flux")
     if rho is not None and len(lengths):
         max_length = rho.shape[1]
-        output_gradient = torch.zeros((len(lengths), max_length + 1), dtype=torch.float64)
+        output_gradient = np.zeros((len(lengths), max_length + 1), dtype=np.float64)
         if "output_gradient_rho" in capture:
-            output_gradient[:, :max_length] = capture["output_gradient_rho"].detach().cpu()
+            output_gradient[:, :max_length] = _as_array(capture["output_gradient_rho"])
             gradient_source = "autograd_output_hook"
         elif "analytic_output_gradient" in capture:
-            output_gradient[:, :max_length] = capture["analytic_output_gradient"].detach().cpu()
+            output_gradient[:, :max_length] = _as_array(capture["analytic_output_gradient"])
             gradient_source = "analytic_loss_gradient_fallback"
         if capture.get("output_gradient_J") is not None:
-            output_gradient[np.arange(len(lengths)), lengths] = capture["output_gradient_J"].detach().cpu()
+            output_gradient[np.arange(len(lengths)), lengths] = _as_array(capture["output_gradient_J"])
     arrays["output_gradient"] = _as_array(output_gradient)
     metadata["output_gradient_source"] = gradient_source
-    alpha, k, beta = capture.get("alpha"), capture.get("k"), capture.get("beta")
-    A = None
-    if all(value is not None for value in (alpha, k, beta, rho, flux)) and len(lengths):
-        alpha_np, k_np, beta_np, rho_np = map(_as_array, (alpha, k, beta, rho))
-        max_length = rho_np.shape[1]
-        A = np.zeros((len(lengths), max_length + 1, max_length + 1), dtype=np.float64)
-        for index, length_value in enumerate(lengths):
-            length = int(length_value)
-            A[index, 0, 0] = -alpha_np[index]
-            if length > 1:
-                rows = np.arange(1, length)
-                A[index, rows, rows - 1] = k_np[index, :length - 1] * (1.0 - rho_np[index, 1:length])
-                A[index, rows, rows] = -k_np[index, :length - 1] * rho_np[index, :length - 1]
-            A[index, length, length - 1] = beta_np[index]
-            A[index, :length + 1, length] = -1.0
-    arrays["A"], arrays["jacobian"] = _as_array(A), _as_array(A)
     refinement = []
-    if A is not None and output_gradient is not None:
-        for index, length_value in enumerate(lengths):
-            length = int(length_value)
-            trajectory, refinement_error = reconstruct_backward_refinement(
-                A[index, :length + 1, :length + 1], output_gradient[index, :length + 1].numpy(),
-            )
-            for step in trajectory:
-                for name, value in step.items():
-                    if name != "refinement":
-                        arrays[f"refinement/{index}/{step['refinement']}/{name}"] = value
-            refinement.append({
-                "batch_sample": index, "record_index": batch[index].index, "record_id": batch[index].transcript_id,
-                "steps": [step["refinement"] for step in trajectory], "error": refinement_error,
-            })
+    if error is not None:
+        alpha, k, beta = capture.get("alpha"), capture.get("k"), capture.get("beta")
+        A = None
+        if all(value is not None for value in (alpha, k, beta, rho, flux)) and len(lengths):
+            alpha_np, k_np, beta_np, rho_np = map(_as_array, (alpha, k, beta, rho))
+            max_length = rho_np.shape[1]
+            A = np.zeros((len(lengths), max_length + 1, max_length + 1), dtype=np.float64)
+            for index, length_value in enumerate(lengths):
+                length = int(length_value)
+                A[index, 0, 0] = -alpha_np[index]
+                if length > 1:
+                    rows = np.arange(1, length)
+                    A[index, rows, rows - 1] = k_np[index, :length - 1] * (1.0 - rho_np[index, 1:length])
+                    A[index, rows, rows] = -k_np[index, :length - 1] * rho_np[index, :length - 1]
+                A[index, length, length - 1] = beta_np[index]
+                A[index, :length + 1, length] = -1.0
+        arrays["A"], arrays["jacobian"] = _as_array(A), _as_array(A)
+        if A is not None and output_gradient is not None:
+            for index, length_value in enumerate(lengths):
+                length = int(length_value)
+                trajectory, refinement_error = reconstruct_backward_refinement(
+                    A[index, :length + 1, :length + 1], output_gradient[index, :length + 1],
+                )
+                for step in trajectory:
+                    for name, value in step.items():
+                        if name != "refinement":
+                            arrays[f"refinement/{index}/{step['refinement']}/{name}"] = value
+                refinement.append({
+                    "batch_sample": index, "record_index": batch[index].index, "record_id": batch[index].transcript_id,
+                    "steps": [step["refinement"] for step in trajectory], "error": refinement_error,
+                })
     metadata["refinement_trajectory"] = refinement
     state_arrays = {}
     metadata["states"] = {
         name: _pack_tree(context.get(name), state_arrays)
         for name in ("epoch_start_model_state", "epoch_start_optimizer_state")
     }
-    if context.get("model") is not None:
-        metadata["states"]["current_model_state"] = _pack_tree(context["model"].state_dict(), state_arrays)
-    if context.get("optimizer") is not None:
-        metadata["states"]["current_optimizer_state"] = _pack_tree(context["optimizer"].state_dict(), state_arrays)
+    metadata["states"]["current_model_state"] = _pack_tree(pre_backward["model_state"], state_arrays)
+    metadata["states"]["current_optimizer_state"] = _pack_tree(pre_backward["optimizer_state"], state_arrays)
     arrays.update({f"state/{key}": value for key, value in state_arrays.items()})
     arrays["metadata"] = np.asarray(json.dumps(metadata, ensure_ascii=False, allow_nan=False))
+    return arrays, metadata
+
+
+def save_pre_backward_snapshot(context):
+    arrays, _ = _candidate_snapshot_payload(context, None)
+    path = Path(context["directory"]) / "pre_backward_latest.npz"
+    _atomic_savez(path, arrays)
+    return path
+
+
+def save_candidate_failure_snapshot(context, error):
+    arrays, metadata = _candidate_snapshot_payload(context, error)
+    directory = Path(context["directory"])
     spec_name = shard_basename({"seed_index": metadata.get("seed", 0), "outer_fold": metadata.get("outer_fold", 0), "arm": metadata.get("arm", "unknown")})
     path = directory / (
         f"{spec_name}_grid_{metadata.get('grid_index')}_inner_{metadata.get('inner_fold')}_"
         f"epoch_{metadata.get('epoch')}_batch_{metadata.get('batch_index')}_{time.time_ns()}_{os.getpid()}.npz"
     )
-    with path.open("xb") as handle:
-        np.savez_compressed(handle, **arrays)
+    if path.exists():
+        raise FileExistsError(path)
+    _atomic_savez(path, arrays)
     digest = kinetic.sha256_file(path)
-    path.with_suffix(path.suffix + ".sha256").write_text(digest + "\n", encoding="ascii")
+    _atomic_write_text(path.with_suffix(path.suffix + ".sha256"), digest + "\n")
     return path
 
 

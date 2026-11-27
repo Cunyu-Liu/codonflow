@@ -372,6 +372,164 @@ def test_backward_failure_snapshot_has_exact_reconstruction_state_and_refinement
     monkeypatch.setattr(kinetic_mean_field, "_solve_adjoint_system", original)
 
 
+def test_pre_backward_snapshot_is_readable_after_injected_ima_without_later_cpu_conversion(tmp_path, monkeypatch):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    protocol["training"]["batch_transcripts"] = 3
+    protocol["training"]["successive_halving"]["rung_epochs"] = 1
+    poisoned = {"value": False}
+    original_cpu = torch.Tensor.cpu
+
+    def guarded_cpu(self, *args, **kwargs):
+        if poisoned["value"]:
+            raise AssertionError("post-IMA tensor conversion attempted")
+        return original_cpu(self, *args, **kwargs)
+
+    def inject_ima(*args, **kwargs):
+        poisoned["value"] = True
+        raise RuntimeError("injected CUDA illegal memory access")
+
+    monkeypatch.setattr(torch.Tensor, "cpu", guarded_cpu)
+    monkeypatch.setattr(kinetic_mean_field, "_solve_adjoint_system", inject_ima)
+    metadata = {
+        "seed": 11, "outer_fold": 0, "arm": "kinetic", "grid_index": 2,
+        "learning_rate": 1e-3, "weight_decay": 0.0, "inner_fold": 1, "fit_seed": 17,
+    }
+    with pytest.raises(RuntimeError, match="injected CUDA illegal memory access") as caught:
+        kinetic.fit_candidate(
+            "kinetic", records[:5], records[5:8], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+            metadata, tmp_path / "snapshots",
+        )
+    latest = tmp_path / "snapshots" / "pre_backward_latest.npz"
+    historical = Path(caught.value.codonflow_snapshot_path)
+    assert latest.is_file() and historical.is_file() and latest != historical
+    for path, schema in ((latest, parallel.PRE_BACKWARD_SCHEMA), (historical, parallel.FAILURE_SCHEMA)):
+        with np.load(path, allow_pickle=False) as archive:
+            saved = json.loads(archive["metadata"].item())
+            assert saved["schema"] == schema
+            assert saved["snapshot_timing"] == "post_forward_pre_backward"
+            assert (saved["grid_index"], saved["inner_fold"], saved["epoch"], saved["batch_index"]) == (2, 1, 1, 0)
+            assert len(saved["record_indices"]) == len(saved["record_ids"]) == 3
+            assert set(saved["record_indices"]) <= {record.index for record in records[:5]}
+            assert set(saved["record_ids"]) <= {record.transcript_id for record in records[:5]}
+            assert saved["current_rng_state"] is not None
+            assert set(saved["states"]) == {
+                "epoch_start_model_state", "epoch_start_optimizer_state",
+                "current_model_state", "current_optimizer_state",
+            }
+            for name in ("alpha", "k", "beta", "batch/target", "batch/mask", "packed/codons", "output_gradient"):
+                assert name in archive.files and archive[name].size
+            assert any(key.startswith("state/") for key in archive.files)
+    with np.load(latest, allow_pickle=False) as archive:
+        assert "A" not in archive.files and "jacobian" not in archive.files
+    with np.load(historical, allow_pickle=False) as archive:
+        assert json.loads(archive["metadata"].item())["error"] == "injected CUDA illegal memory access"
+        assert "A" in archive.files and "jacobian" in archive.files
+
+
+@pytest.mark.integration
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="requires CUDA")
+def test_real_cuda_pre_backward_snapshot_survives_injected_ima(tmp_path, monkeypatch):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    protocol["training"]["batch_transcripts"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 1
+    device = kinetic.resolve_cuda_device("cuda:0")
+    poisoned = {"value": False}
+    original_cpu = torch.Tensor.cpu
+
+    def guarded_cpu(self, *args, **kwargs):
+        if poisoned["value"] and self.device.type == "cuda":
+            raise AssertionError("post-IMA CUDA tensor conversion attempted")
+        return original_cpu(self, *args, **kwargs)
+
+    def inject_ima(*args, **kwargs):
+        poisoned["value"] = True
+        raise RuntimeError("injected CUDA illegal memory access")
+
+    monkeypatch.setattr(torch.Tensor, "cpu", guarded_cpu)
+    monkeypatch.setattr(kinetic_mean_field, "_solve_adjoint_system", inject_ima)
+    metadata = {
+        "seed": 11, "outer_fold": 0, "arm": "kinetic", "grid_index": 0,
+        "learning_rate": 1e-3, "weight_decay": 0.0, "inner_fold": 0, "fit_seed": 17,
+    }
+    with pytest.raises(RuntimeError, match="injected CUDA illegal memory access") as caught:
+        kinetic.fit_candidate(
+            "kinetic", records[:3], records[3:5], 1e-3, 0.0, 17, protocol, device,
+            metadata, tmp_path / "snapshots",
+        )
+    latest = tmp_path / "snapshots" / "pre_backward_latest.npz"
+    historical = Path(caught.value.codonflow_snapshot_path)
+    assert latest.is_file() and historical.is_file()
+    assert historical.with_suffix(historical.suffix + ".sha256").is_file()
+    for path, schema in ((latest, parallel.PRE_BACKWARD_SCHEMA), (historical, parallel.FAILURE_SCHEMA)):
+        with np.load(path, allow_pickle=False) as archive:
+            saved = json.loads(archive["metadata"].item())
+            assert saved["schema"] == schema
+            assert (saved["epoch"], saved["batch_index"]) == (1, 0)
+            assert len(saved["record_indices"]) == len(saved["record_ids"]) == 2
+            for name in ("alpha", "k", "beta", "batch/target", "batch/mask", "output_gradient"):
+                assert archive[name].size
+            assert any(key.startswith("state/") for key in archive.files)
+
+
+def test_snapshot_disk_failure_does_not_replace_original_cuda_exception(tmp_path, monkeypatch):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    protocol["training"]["batch_transcripts"] = 3
+    protocol["training"]["successive_halving"]["rung_epochs"] = 1
+    injected = RuntimeError("original CUDA illegal memory access")
+
+    def disk_failure(*args, **kwargs):
+        raise OSError(122, "injected disk quota exhaustion")
+
+    def inject_ima(*args, **kwargs):
+        raise injected
+
+    monkeypatch.setattr(parallel, "_atomic_savez", disk_failure)
+    monkeypatch.setattr(kinetic_mean_field, "_solve_adjoint_system", inject_ima)
+    with pytest.raises(RuntimeError, match="original CUDA illegal memory access") as caught:
+        kinetic.fit_candidate(
+            "kinetic", records[:5], records[5:8], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+            {"arm": "kinetic"}, tmp_path / "snapshots",
+        )
+    assert caught.value is injected
+    assert not hasattr(caught.value, "codonflow_snapshot_path")
+    assert any("failure snapshot could not be saved" in note for note in caught.value.__notes__)
+
+
+def test_pre_backward_capture_does_not_change_normal_training_numerics(tmp_path):
+    raw = write_raw(tmp_path / "synthetic.txt")
+    records, _ = kinetic.parse_raw_matrix(raw)
+    protocol = kinetic.load_protocol(Path(__file__).parents[1] / "configs" / "a10_03_e2_kinetic_protocol_v1.json")
+    protocol["training"]["batch_transcripts"] = 2
+    protocol["training"]["successive_halving"]["rung_epochs"] = 2
+    arguments = (
+        "independent", records[:4], records[4:6], 1e-3, 0.0, 17, protocol, torch.device("cpu"),
+        {"seed": 11, "outer_fold": 0, "arm": "independent", "grid_index": 0, "inner_fold": 0},
+    )
+    baseline = kinetic.start_candidate_rung(*arguments)
+    captured = kinetic.start_candidate_rung(*arguments, tmp_path / "snapshots")
+    for name in ("model_state", "optimizer_state", "best_state"):
+        assert kinetic.state_dict_sha256(baseline[name]) == kinetic.state_dict_sha256(captured[name])
+    assert baseline["rng_state"] == captured["rng_state"]
+    assert baseline["rung_validation_transcript_mse"] == captured["rung_validation_transcript_mse"]
+    assert baseline["rung"]["last_state_sha256"] == captured["rung"]["last_state_sha256"]
+    assert baseline["rung"]["last_optimizer_state_sha256"] == captured["rung"]["last_optimizer_state_sha256"]
+    assert [
+        {key: value for key, value in epoch.items() if key != "elapsed_seconds"} for epoch in baseline["curves"]
+    ] == [
+        {key: value for key, value in epoch.items() if key != "elapsed_seconds"} for epoch in captured["curves"]
+    ]
+    with np.load(tmp_path / "snapshots" / "pre_backward_latest.npz", allow_pickle=False) as archive:
+        saved = json.loads(archive["metadata"].item())
+        assert (saved["epoch"], saved["batch_index"]) == (2, 1)
+        assert len(saved["record_ids"]) == 2
+
+
 def test_parallel_failure_writes_failure_record_but_never_completion_summary(tmp_path, monkeypatch):
     monkeypatch.setattr(kinetic, "resolve_cuda_device", lambda name: torch.device("cpu"))
     raw = write_raw(tmp_path / "synthetic.txt")
