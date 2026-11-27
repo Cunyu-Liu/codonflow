@@ -1,6 +1,6 @@
 # HANDOFF A10-03：E2 历史失败、release 工程验收与 w21 OOM 收束
 
-- 文档日期：2026-11-25；最近复核：2026-11-27（三臂 bounded soak、outer0 replay 拒绝复用、最早分歧诊断与 v14 从头运行快照）
+- 文档日期：2026-11-25；最近复核：2026-11-27（v15 真实 sanitizer OOB/720-case memcheck、raw direct-kernel 数值失败分解与 12-worker temporary 运行快照）
 - 失败事件日期：2026-11-24（v7）；2026-11-25（v8）；2026-11-26（v10/w23/w21/v11/v12/v13）；v13 已于 2026-11-26 22:36:45+08:00 退出 1，最终无完成摘要
 - 阶段：A10-03 / E2
 - 状态：**v7、v8、v10/w23/w21、v11/v12/v13 历史 fail-closed 不删除。v13 使用启动时代码祖先 `40603527afa3ee2275166b4293234cdd48a9e38c`，运行 13321.0843 s 后在 position/epoch890 OOM、退出 1；2 个成功 cache shard 加 1 个 OOM 失败 shard 共 3 个终止 shard，无完成摘要。独立 verifier 当前证据基线为 `cac91df1468b0e01b4e619a5ca9f57e4b242896d`：全量 952 passed/1 failed/1 skipped/5 subtests，唯一失败为共享 GPU synthetic 多 worker OOM；干净 checkout 的 1/2-worker synthetic 各 27/27 shards、verifier 各 28/28 checks，manifest SHA `e34cba…`。受控真实 CUDA A/B 已定位为 output-gradient hook 闭包逐 batch 保留 CUDA 张量，本轮未修改生产代码、protocol、Gate 或 v13 artifacts；E2/H2/G1 未完成、未裁决且未通过。**
@@ -183,6 +183,16 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 - 只读诊断报告为 `/teams/HoulabData_1788502323/liucunyu/codonflow1031/a10/e2/kinetic_v14_recovery_v1/replay/outer0_first_divergence_analysis_v1.json`，SHA256=`6866e92ee456712a30a0b895f01935c0a3cdf84f9073d51781657fc8c1c41a95`。报告记录的最早 train loss 差为 **2 ULP**；最大 loss 差为 **8.881784197001252e-16（约 8.88e-16）**，预测最大差为 **3.3306690738754696e-16（约 3.33e-16）**，离散选择不变。
 - 上述数值只限定本次 replay 中观察到的浮点尾差，**仍不满足 bitwise 复用合同**，不得据此声称统计等价、科学等价或任何科学结果。报告明确不能从这些 NPZ 定位具体 CUDA kernel；CUDA embedding backward 非确定性只是候选机制，**尚未确证**，不得写成根因已经闭合。
 - 因此 outer0 cache 继续拒绝复用，outer1 未重放，旧 cache 不变；v14 继续从全新空 cache 从头训练。该诊断不修改 producer、protocol、统计、Gate 或 `1e-10`，E2/H2/G1 仍未完成、未裁决且未通过。
+
+### 5.13 capture sanitizer 修复、720-case 数值边界与 v15 temporary 启动（2026-11-27）
+
+- 权威 capture 工作树 `/home/codonflow-a10-e2-capture` 的 HEAD 为 **`911390cbe589d46d093dec37883269242570a19e`**，`git status --porcelain` 为空，`origin/a8-rk` 一致。直接祖先 `20dd9f74be9e626e378c34bced59ba45f43a6464` 在 backward 前持久化 CPU batch/capture/model/optimizer/RNG 快照；`911390cb…` 仅修改 `kinetic_banded_cuda.py` 及其测试，SM launch 固定 `num_warps=1`，rank-one/QR public entry 对 bands/rhs 调用 `contiguous()`。protocol SHA 保持 `3c4b9a3b…`，backend SHA 为 `fdd7881a…`。
+- 原始真实 memcheck 在 `matrix_full_v8` ordinal561（size8、batch32、transpose、SM、forced pivot、contiguous）记录 **16 次 invalid global read** 和后续 **719 CUDA errors**，位置为旧 backend source line 116；单例 blocking replay 未复现，full blocking v9 为 0 errors，因此时序/序列相关根因未完全建立。上述最小修复关闭了后续 scoped memcheck 观察，不据此宣称原 v14 IMA 根因闭合。
+- 修复后同诊断 NPZ（SHA `b105790c…`，明确不是原 v14 failure snapshot）forward 含 NaN 逐位一致，rank-one 53＋QR 32 共 **85 次 launch** 全连续，backward 完成、梯度有限，memcheck **0 errors**、exit 0。定向测试分别为 banded **14 passed/3 warnings**、pre-backward **3 passed/32 deselected**、parallel real-CUDA/synthetic **2 passed/14 deselected**；本轮不跑全量 suite。
+- raw direct-kernel bypass 矩阵 **720/720** 完成，0 guard failures、0 exceptions、memcheck 0 errors，但应用因有 **306 numeric failures** 返回 exit 2，不得写成数值通过。逐 `cases.jsonl` 独立重算：transposed SM 94＋padded SM 16＋transposed QR 90＋padded QR 90＝**非连续 290**；另有 **contiguous SM 16**，contiguous QR 0。故 306 是 raw direct-kernel 总失败，不是“非连续 306”。public-entry P0/P1 layout/long regressions 通过只证明 wrapper 的 scoped 修复，不删除 raw 数值失败；memcheck 也不替代 racecheck/initcheck/synccheck。
+- 原证据 `/tmp/a10_e2_v15_capture_validation_v1/` 保留，并复制到 `/dev/shm/codonflow_a10_e2/capture_validation_v1_temporary/`；独立分解报告为 `capture_validation_fact_refresh_v1.temporary.json`，SHA `d34b616f89df7c66819d61c05ec2d741601a2432357d659d425e276d9b226078`。全部均属 temporary，未删除或覆盖历史。
+- v15 于 **2026-11-27 12:44:59+08:00** 从全新 cache 启动，producer PID **`99295`**、`--max-workers 12`，默认 configured/effective arm quotas 均为 independent/kinetic/position=`4/8/8`。输出 `/dev/shm/codonflow_a10_e2/kinetic_development_v15`，cache `/dev/shm/codonflow_a10_e2/kinetic_development_v15_from_scratch_shard_cache`；launch manifest 明确 `temporary=true`、`permanent_migration_pending=true`，cache hits 启动预期 0，实际值只能待完整 parallel 记录。teams quota 满，public 挂载 `ro`；启动时 tmpfs 可用 **23192823398 bytes**（df 当时显示 22G），永久迁移待 teams 恢复，不删除历史。
+- 12:48:17+08:00 快照显示 producer＋12 workers 存活、真实 CUDA 工作进行中，0 成功 shard、0 curves，无 `summary.json`、`predictions.npz`、exit code 或 finished；RuntimeWarning 保留。启动和显存快照不等于完成，E2/H2/G1 未完成、未裁决且未通过，protocol、统计、Gate 和 `1e-10` 不变。
 
 ## 6. 当前科学与 Gate 边界
 
