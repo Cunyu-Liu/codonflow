@@ -244,3 +244,9 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 - 精确失败快照：`/dev/shm/codonflow_a10_e2/kinetic_development_v15_from_scratch_shard_cache/failures/seed_1234_outer_01_kinetic_grid_0_inner_1_epoch_2_batch_11_1795862778466204005_99351.npz`。使用同一输入、当前模型状态和 `CUDA_LAUNCH_BLOCKING=1` 单进程重放，forward 含 NaN 逐位一致，backward 完成、梯度有限，89 次 rank-one＋27 次 QR，wall 172.9057 s。该结果排除“此输入在单进程路径必然越界”，但不排除多进程/异步执行边界，原 IMA 根因未闭合。
 - **四问审查**：①失效点：raw occupancy 跨研究直接运输失败，独立密码子模型是否遗漏非局部信息仍待 E2 判决；②问题独立性：删除 CodonFlow 后，测量可分性、非局部同义效应和流守恒仍是独立问题；③机制解释：局部速率经排斥/通量守恒影响上下游密度只是数学候选机制，尚未由严格 OOD 和变体响应证实；④可预测性：强耦合/慢位点/边界受限应更明显，弱耦合应减弱，平均场误差也应在强相关情形增大，须预注册分层验证。机制与预测未闭合前，不新增 idea、不重提完整训练。
 - 16 个完成 shards 只支持 baseline 工程与训练记录验收，不能推出动力学增量。temporary 产物继续保留，永久迁移仍待 teams 恢复。
+
+## 10. 2026-11-28：v16 保守恢复
+
+- v15 精确快照在 12 个并发 CUDA 进程、`CUDA_LAUNCH_BLOCKING=1` 下全部 backward 完成，梯度有限；这支持 blocking 运行时隔离，但不证明原 IMA 根因已修复。
+- v15 的 16 个 independent/position cache 已逐份通过 `load_shard` identity/spec/SHA、18 curves、3 selected members 与 science SHA 校验；清单 `/dev/shm/codonflow_a10_e2/v15_cache_integrity_v1.json`。0 kinetic cache。
+- v16 输出 `/dev/shm/codonflow_a10_e2/kinetic_development_v16`，复用 v15 cache，producer `493604`、12 workers，显式 `CUDA_LAUNCH_BLOCKING=1`；预期 16 cache hits、11 kinetic misses。数学代码、protocol、统计、Gate 与 `1e-10` 未改。temporary 与永久迁移边界不变，H2/G1 未裁决。

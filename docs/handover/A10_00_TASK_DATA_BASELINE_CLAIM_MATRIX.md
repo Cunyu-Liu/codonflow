@@ -15,6 +15,8 @@
 
 > **2026-11-28 当前权威更新**：v15 运行 108084.9561 s 后因 seed1234/outer1/kinetic/grid0/inner1、epoch2/batch11 CUDA illegal memory access 退出 1；16 个 independent/position shards 完成、0 kinetic，无完整 summary/predictions。精确 CPU 快照单进程 blocking 重放 forward 逐位一致、backward 完成且梯度有限，原 IMA 根因未闭合。四问门槛下暂停重提完整训练；失效点和问题独立性有既有证据，机制解释与可预测性仍待 E2/局部响应验证，不得把 baseline shards 或工程修复写成 H2/G1。
 
+> **2026-11-28 v16 保守恢复**：12 进程 blocking 精确快照全部通过，16 个 baseline cache 全量校验通过；v16 复用 16 shards、仅算 11 kinetic，producer `493604`，显式 `CUDA_LAUNCH_BLOCKING=1`。原 IMA 根因未闭合，H2/G1 未裁决。
+
 | 任务 / 科学 Gate | 当前实际数据与资格 | Baseline 真实状态 | 预注册主指标 | 当前可主张 / 不可主张 | 下一动作 |
 |---|---|---|---|---|---|
 | **A10-00** 权威起点 | A10-00 时 E2 release 为 `/home/codonflow-a10-e2-release@6075ad5381800c84e99b4f4a277b26b6594a7fbf`；release 当前保持旧文档提交 `4603951295352ae20b849cc4132ba56519d34ba3` 且只有四份文档 dirty，producer 科学实现代码提交为 `40603527afa3ee2275166b4293234cdd48a9e38c`；独立 verifier `/home/codonflow-a10-e2-verifier@cac91df1468b0e01b4e619a5ca9f57e4b242896d` 为本轮证据基线并已发布；冻结集未读；Goodman、Tunney、Lareau 状态如上方事实快照 | 不适用；CUDA smoke 只证明后端可用 | commit/status、环境、进程与矩阵完整性 | **可**：权威版本和文档起点已重核，后续 E0/G0、E1 已完成。**不可**：模型有效或生成训练已获 G2 许可 | 接续 A10-03/E2 结构化求解修复与科学对照；保留事实/计划分离和冻结约束 |
