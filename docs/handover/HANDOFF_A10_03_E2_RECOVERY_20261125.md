@@ -236,3 +236,11 @@ PYTHONPATH=src:. /root/miniconda3/envs/codonflow/bin/python scripts/a10_03_verif
 
 
 **2026-11-27 当前可执行事实：hook 修复代码 `fe11a241…` 已发布，31 项定向测试独立复跑通过；本轮登记时 memory 工作树 HEAD 为 `3ba302dfcab8dd250409bcf1b514c415a5b3f9f9`，v13 仍只有 2 个成功 independent oracle shard。三臂 1000-step 无显式 GC soak 均完成并有界，kinetic 峰值约 100.58 MB、后半程下降，未见持续线性增长。outer0 正式 replay 结构完整但有 547 个字段不一致，science SHA 由 `cc3a19a7…` 变为 `d8b4817d…`，逐位不等价，按合同拒绝复用；outer1 未重放，旧 cache 不变。v14 已从全新空 cache 启动，输出 `kinetic_development_v14`，cache `kinetic_development_v14_from_scratch_shard_cache`，producer PID `4176767`，4 workers，cache hits 预期 0；登记时未见 OOM，warnings 保留，无完成摘要。outer0 最早分歧诊断报告 SHA256=`6866e92ee456712a30a0b895f01935c0a3cdf84f9073d51781657fc8c1c41a95`，最早 train loss 差为 2 ULP，最大 loss 差为 8.88e-16，预测最大差为 3.33e-16，离散选择不变但不满足 bitwise 合同；CUDA embedding backward 非确定性仅为未确证候选，cache 继续拒绝复用，v14 继续从全新空 cache 从头训练。科学 protocol、Gate、统计与 `1e-10` 不变，E2/H2/G1 未完成、未裁决且未通过。**
+
+
+## 9. 2026-11-28：v15 最终失败与四问门槛
+
+- v15 运行 `108084.95606188197 s` 后于 seed1234/outer1/kinetic/grid0/inner1、epoch2/batch11 发生 CUDA illegal memory access，退出 1。已有 **16 个完成 independent/position shards、0 个 kinetic shard**；无 `summary.json`、`predictions.npz` 或完整 outer 统计，H2/G1 未裁决。
+- 精确失败快照：`/dev/shm/codonflow_a10_e2/kinetic_development_v15_from_scratch_shard_cache/failures/seed_1234_outer_01_kinetic_grid_0_inner_1_epoch_2_batch_11_1795862778466204005_99351.npz`。使用同一输入、当前模型状态和 `CUDA_LAUNCH_BLOCKING=1` 单进程重放，forward 含 NaN 逐位一致，backward 完成、梯度有限，89 次 rank-one＋27 次 QR，wall 172.9057 s。该结果排除“此输入在单进程路径必然越界”，但不排除多进程/异步执行边界，原 IMA 根因未闭合。
+- **四问审查**：①失效点：raw occupancy 跨研究直接运输失败，独立密码子模型是否遗漏非局部信息仍待 E2 判决；②问题独立性：删除 CodonFlow 后，测量可分性、非局部同义效应和流守恒仍是独立问题；③机制解释：局部速率经排斥/通量守恒影响上下游密度只是数学候选机制，尚未由严格 OOD 和变体响应证实；④可预测性：强耦合/慢位点/边界受限应更明显，弱耦合应减弱，平均场误差也应在强相关情形增大，须预注册分层验证。机制与预测未闭合前，不新增 idea、不重提完整训练。
+- 16 个完成 shards 只支持 baseline 工程与训练记录验收，不能推出动力学增量。temporary 产物继续保留，永久迁移仍待 teams 恢复。
